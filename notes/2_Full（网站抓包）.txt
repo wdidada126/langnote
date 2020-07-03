@@ -1,0 +1,124 @@
+GET https://www.edidada.cn/ HTTP/1.1
+Host: www.edidada.cn
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+
+
+HTTP/1.1 200 OK
+Date: Sun, 01 Apr 2018 06:44:14 GMT
+Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips
+Last-Modified: Sun, 01 Apr 2018 05:29:13 GMT
+ETag: "7c-568c2c0f60c79"
+Accept-Ranges: bytes
+Content-Length: 124
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: text/html; charset=UTF-8
+
+<html>
+        <body>
+                <h1>
+                        It works!
+                </h1>
+        </body>
+
+</html>
+
+
+------------------------------------------------------------------
+
+CONNECT www.edidada.cn:443 HTTP/1.1
+Host: www.edidada.cn:443
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+
+A SSLv3-compatible ClientHello handshake was found. Fiddler extracted the parameters below.
+
+Version: 3.3 (TLS/1.2)
+Random: 31 D7 F4 D1 C6 BD ED 5E 5D B0 10 52 AE B9 4C 67 34 A8 06 08 D9 C7 0D F3 B2 D5 8B D8 B0 6B DE D5
+"Time": 2081/8/15 19:46:57
+SessionID: 63 22 00 00 2D 61 17 F1 60 81 63 4A 62 CD FF 90 AC 25 B8 0B 46 1C 74 C1 86 E4 94 91 19 9E A9 07
+Extensions: 
+	0xfafa		empty
+	renegotiation_info	00
+	server_name	www.edidada.cn
+	extended_master_secret	empty
+	SessionTicket	empty
+	signature_algs	sha256_ecdsa, Unknown[0x8]_Unknown[0x4], sha256_rsa, sha384_ecdsa, Unknown[0x8]_Unknown[0x5], sha384_rsa, Unknown[0x8]_Unknown[0x6], sha512_rsa, sha1_rsa
+	status_request	OCSP - Implicit Responder
+	SignedCertTimestamp (RFC6962)	empty
+	ALPN		h2, http/1.1
+	channel_id(GoogleDraft)	empty
+	ec_point_formats	uncompressed [0x0]
+	0x0033		00 29 DA DA 00 01 00 00 1D 00 20 CB 68 EC 60 D7 2E 26 C5 CB 4E A9 79 5E 5C 73 F3 2E 94 88 FE EF 8E D3 40 AC D8 D8 F6 86 D7 5A 7D
+	0x002d		01 01
+	0x002b		0A CA CA 7F 17 03 03 03 02 03 01
+	elliptic_curves	unknown [0xDADA), unknown [0x1D), secp256r1 [0x17], secp384r1 [0x18]
+	0xdada		00
+	padding	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Ciphers: 
+	[3A3A]	Unrecognized cipher - See http://www.iana.org/assignments/tls-parameters/
+	[1301]	Unrecognized cipher - See http://www.iana.org/assignments/tls-parameters/
+	[1302]	Unrecognized cipher - See http://www.iana.org/assignments/tls-parameters/
+	[1303]	Unrecognized cipher - See http://www.iana.org/assignments/tls-parameters/
+	[C02B]	TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+	[C02F]	TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	[C02C]	TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+	[C030]	TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	[CCA9]	TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+	[CCA8]	TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+	[C013]	TLS1_CK_ECDHE_RSA_WITH_AES_128_CBC_SHA
+	[C014]	TLS1_CK_ECDHE_RSA_WITH_AES_256_CBC_SHA
+	[009C]	TLS_RSA_WITH_AES_128_GCM_SHA256
+	[009D]	TLS_RSA_WITH_AES_256_GCM_SHA384
+	[002F]	TLS_RSA_AES_128_SHA
+	[0035]	TLS_RSA_AES_256_SHA
+	[000A]	SSL_RSA_WITH_3DES_EDE_SHA
+
+Compression: 
+	[00]	NO_COMPRESSION
+
+
+
+HTTP/1.1 200 Connection Established
+FiddlerGateway: Direct
+StartTime: 14:44:14.409
+Connection: close
+
+Encrypted HTTPS traffic flows through this CONNECT tunnel. HTTPS Decryption is enabled in Fiddler, so decrypted sessions running in this tunnel will be shown in the Web Sessions list.
+
+Secure Protocol: Tls12
+Cipher: Aes256 256bits
+Hash Algorithm: Sha384 ?bits
+Key Exchange: ECDHE_RSA (0xae06) 256bits
+
+== Server Certificate ==========
+[Subject]
+  CN=edidada.cn
+
+[Issuer]
+  CN=TrustAsia TLS RSA CA, OU=Domain Validated SSL, O="TrustAsia Technologies, Inc.", C=CN
+
+[Serial Number]
+  0E26EA411CA5B7129277C85EC919AE4D
+
+[Not Before]
+  2018/4/1 8:00:00
+
+[Not After]
+  2019/4/1 20:00:00
+
+[Thumbprint]
+  6FC11344FBAC301156087A7D86F964AE72FE233B
+
+[SubjectAltNames]
+edidada.cn, www.edidada.cn
+
+
+------------------------------------------------------------------
+

@@ -1,0 +1,483 @@
+# oracle
+
+
+
+oracle rac集群
+
+
+
+https://blog.csdn.net/stevensxiao/article/details/90605443 sample是linux的，不是windows的
+
+https://www.cndba.cn/dave/article/1985
+
+
+
+navicate
+
+用户角色
+
+defalut
+
+sysdba
+
+sysoper
+
+https://www.cnblogs.com/sunnyliu357/articles/2301738.html
+
+
+
+Oracle RAC
+
+https://docs.oracle.com/database/121/index.htm
+https://www.oracletutorial.com/getting-started/oracle-sample-database/
+https://www.cnblogs.com/lcword/p/8231860.html
+navicate 连接oracle，是自动提交的
+OCP/OCA认证考试指南全册:Oracle Database 11g
+待正式从业后，再择机通过OCM认证提高自己。
+OCA,OCP
+现在基本上都是OCP，网上听课，然后线下就近考点考试即可，考试通过可以拿个证书，但是对于有工作经验的人来说好像价值已经不大了，现在ocm都漫天飞了。
+
+
+在cmd中
+C:\Documents and Settings\Administrator>sqlplus/nolog
+SQL*Plus: Release 9.2.0.1.0 - Production on 星期四 11月 1 15:14:12 2007
+Copyright (c) 1982, 2002, Oracle Corporation. All rightsreserved.
+SQL> connect/as sysdba
+已连接。
+
+新版本都是云的    19
+
+18
+
+IBM Aix
+
+HP Unix
+
+
+
+
+
+12c
+https://www.oracle.com/database/technologies/database12c-win64-downloads.html
+
+关于oracle sql语句查询时表名和字段名要加双引号的问题
+https://blog.csdn.net/u011754180/article/details/85097434
+
+1、oracle表和字段是有大小写的区别。oracle默认是大写，如果我们用双引号括起来的就区分大小写，如果没有，系统会自动转成大写。
+
+2、我们在使用navicat使用可视化创建数据库时候，navicat自动给我们加上了“”。
+
+
+
+
+
+
+https://docs.oracle.com/database/121/TDDDG/tdddg_dml.htm#TDDDG99941
+
+```SQL
+INSERT INTO EMPLOYEES (
+  EMPLOYEE_ID,
+  FIRST_NAME,
+  LAST_NAME,
+  EMAIL,
+  PHONE_NUMBER,
+  HIRE_DATE,
+  JOB_ID,
+  SALARY,
+  COMMISSION_PCT,
+  MANAGER_ID,
+  DEPARTMENT_ID
+)
+VALUES (
+  10,              -- EMPLOYEE_ID
+  'George',        -- FIRST_NAME
+  'Gordon',        -- LAST_NAME
+  'GGORDON',       -- EMAIL
+  '650.506.2222',  -- PHONE_NUMBER
+  '01-JAN-07',     -- HIRE_DATE
+  'SA_REP',        -- JOB_ID
+  9000,            -- SALARY
+  .1,              -- COMMISSION_PCT
+  148,             -- MANAGER_ID
+  80               -- DEPARTMENT_ID
+);
+
+```
+
+
+select username,created from dba_users where created>sysdate-1;
+
+
+sqlplus system/5Edidada@127.0.0.1:1521/ORCL
+
+sqlplus system/5Edidada@127.0.0.1:1521/ORCL @mksample.sql 5Edidada 5Edidada 5Edidada 5Edidada 5Edidada 5Edidada 5Edidada 5Edidada users temp C:\Users\edidada\Desktop\db-sample-schemas-12.1.0.2\log\ 127.0.0.1:1521/ORCL
+sqlplus system/5Edidada@127.0.0.1:1521/ORCL@drop_hr.sql
+
+
+https://docs.oracle.com/en/database/oracle/oracle-database/12.2/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D
+
+https://github.com/oracle/db-sample-schemas/releases/tag/v12.1.0.2
+
+https://www.linuxidc.com/Linux/2017-08/146337.htm
+
+http://www.uwenku.com/question/p-ymnovpyv-ts.html
+
+https://docs.oracle.com/database/121/TDDDG/tdddg_connecting.htm#TDDDG99998
+
+https://docs.oracle.com/database/121/TDDDG/tdddg_dml.htm#TDDDG99941
+
+https://docs.oracle.com/database/121/CNCPT/tablecls.htm#CNCPT010
+https://docs.oracle.com/database/121/index.htm#
+
+登录https://localhost:5500/em/shell#/dbhome/show_regions
+输入用户名system，密码5Edidada，可以登录
+
+
+?\demo\db-sample-schemas-12.1.0.2\log\hr_main.log
+127.0.0.1:1521/ORCL
+D:/Oracle/DataBase/app/edidada/product/12.1.0/dbhome_1/demo/db-sample-schemas-12.1.0.2/human_resources
+
+
+https://www.jianshu.com/p/7530246fc34b
+
+
+```
+conn as sysdba;
+sys 5Edidada
+alter session set container=PDBORCL;
+DROP USER hr cascade;
+CREATE USER hr IDENTIFIED BY "5Edidada";
+ALTER USER hr DEFAULT TABLESPACE users;
+ALTER USER hr TEMPORARY TABLESPACE temp;
+GRANT CREATE SESSION, CREATE VIEW, ALTER SESSION, CREATE SEQUENCE TO hr;
+GRANT CREATE SYNONYM, CREATE DATABASE LINK, RESOURCE , UNLIMITED TABLESPACE TO hr;
+GRANT execute ON sys.dbms_stats TO hr;
+
+
+show con_name;
+select con_id,dbid,NAME,OPEN_MODE from v$pdbs;
+
+
+
+CREATE TABLE employees( employee_id NUMBER(6),first_name VARCHAR2(20),last_name VARCHAR2(25) CONSTRAINT emp_last_name_nn NOT NULL,email VARCHAR2(25),phone_number VARCHAR2(20),hire_date DATE CONSTRAINT emp_hire_date_nn NOT NULL,job_id VARCHAR2(10)	CONSTRAINT     emp_job_nn  NOT NULL    , salary         NUMBER(8,2)    , commission_pct NUMBER(2,2),manager_id NUMBER(6),department_id NUMBER(4),CONSTRAINT emp_salary_min CHECK(salary > 0),CONSTRAINT emp_email_uk UNIQUE(email));
+
+CREATE UNIQUE INDEX emp_emp_id_pk ON employees (employee_id);
+
+ALTER TABLE employeesADD(CONSTRAINTemp_emp_id_pk PRIMARY KEY(employee_id),CONSTRAINT emp_dept_fk FOREIGN KEY(department_id) REFERENCES departments,CONSTRAINT emp_job_fk FOREIGN KEY(job_id) REFERENCES jobs (job_id),CONSTRAINT emp_manager_fk FOREIGN KEY(manager_id) REFERENCES employees);
+
+ALTER TABLE departments ADD ( CONSTRAINT dept_mgr_fk FOREIGN KEY (manager_id)REFERENCES employees (employee_id));
+
+```
+
+登录sqlplus之后，执行sql脚本
+@?/demo/hr_create.sql
+
+
+
+https://www.jb51.net/article/92720.htm
+
+
+
+cmd输入
+
+```
+查看oracle的sid叫什么，比如创建数据库的时候，实例名叫“orcl”，那么先手工设置一下oralce的sid，cmd命令窗口中，set ORACLE_SID=orcl（还是大写？？
+不然报错：ORA-01034: ORACLE not available ORA-27101
+
+
+用sqlplus / as sysdba登陆oracle系统，这种登录方式来使用的是操作系统的验证方式，因此，无源需输入用户名和密码即可直接登录进去。
+
+sqlplus sys/orcl as sysdba       //orcl是数据库
+
+select USERNAME, USER_ID  from dba_users;//查看数据库用户 前提是你度是有dba权限的帐号，如sys,system；
+```
+
+
+
+
+SYSTEM
+
+SYS
+
+HR       hr用户是个示例用户，是在创建数据库时选中“示例数据库”后产生的，实际上就是模拟一个人力资源部的数据库。
+
+OE
+
+PM
+
+IX
+
+SH
+
+BI
+
+
+
+Oracle数据库中sys，system，scott，hr用户的区别
+https://blog.csdn.net/zhang18330699274/article/details/55517836
+
+
+
+###### sys和system的区别？
+
+存储的数据的重要性不同。所有oracle的数据字典的基表和视图都存放在sys用户中，这些基表和视图对于oracle的运行是至关重要的，由数据库自己维护，任何用户都不能手动更改。sys用户拥有dba,sysdba,sysoper等角色或权限，是oracle权限最高的用户。
+
+　　system用户用于存放次一级的内部数据，如oracle的一些特性或工具的管理信息。system用户拥有普通dba角色权限。
+
+
+
+
+
+cdb pdb
+
+Oracle 12C引入了CDB与PDB的新特性
+
+cdb容器数据库 pdb可插播数据库 
+
+https://blog.csdn.net/qq877507054/article/details/81209967
+
+
+
+
+
+
+新建数据库 C##开头
+
+
+
+
+
+oracle12c 启用容器数据库之后，创建用户名只能c#[#开头，那怎么才能不适用c#](http://tieba.baidu.com/hottopic/browse/hottopic?topic_id=0&topic_name=开头，那怎么才能不适用c)#开头的用户呢。
+如果你去搜索的话，90%的答案会告诉你重新创建数据库实例，然后把创“建为容器数据库”勾选掉。
+
+其实并不用那么麻烦，只需要几部就可以创建不带C##的用户。
+1.使用sqlplus 以 DBA 身份链接。 命令：sqlplus / as sysdba
+2.在链接成功后，通过命令查看存在的PDB服务。语句：show pdbs;
+3.切换到pdb服务上。语句：
+alter session set container=pdb服务名;
+alter pluggable database pdb服务名 open;
+4.尝试创建不带C##的用户吧。
+
+###### Oracle 12C 创建用户以c##开头
+
+https://blog.csdn.net/songpeiying/article/details/82894922
+
+角色
+
+
+
+
+
+https://zhuanlan.zhihu.com/p/59402726
+
+
+
+创建非cdb数据库
+
+
+
+打开Database Configuration Assistant
+
+点击“下一步”出现如下界面，在创建数据库的时候将“创建为容器数据库”项取消勾选。
+
+数据库名要大写
+
+TEST202005
+
+5Edidada
+
+
+
+ORA-03113:通信通道的文件结尾 解决办法
+https://blog.csdn.net/zwk626542417/article/details/39667999
+
+
+
+
+重点
+
+https://blog.csdn.net/wangsimiao118/article/details/78818836
+
+
+
+
+orcl表示数据库名
+
+[oracle连接两种方式thin与oci区别](https://blog.csdn.net/kevin_pso/article/details/54949476)
+thin:表示知连接时采用thin模式道(oracle中有两中模式)
+Java连接Oracle两种方式thin与oci区别
+1 从使用上来说，oci必须在客户机上安装oracle客户端或才能连接，而thin就不需要，因此从使用上来讲thin还是更加方便，这也是thin比较常见的原因。 
+2 原理上来看，thin是纯java实现tcp/ip的c/s通讯；而oci方式,客户端通过native java method调用c library访问服务端，而这个c library就是oci(oracle called interface)，因此这个oci总是需要随着oracle客户端安装（从oracle10.1.0开始，单独提供OCI Instant Client，不用再完整的安装client） 
+3 它们分别是不同的驱动类别，oci是二类驱动， thin是四类驱动，但它们在功能上并无差异。 
+4 虽然很多人说oci的速度快于thin，但找了半天没有找到相关的测试报告。
+
+
+
+oracle 命令行创建标（也可以用工具创建
+
+https://jingyan.baidu.com/article/948f5924de98add80ef5f952.html
+
+
+
+
+
+service name 和sid区别
+
+https://www.cnblogs.com/matd/p/11051884.html
+
+service name 该参数的缺省值为Db_name. Db_domain，即等于Global_name。一个数据库可以对应多个Service_name，以便实现更灵活的配置。该参数与SID没有直接关系，即不必Service name 必须与SID一样。Sid是数据库实例的名字，每个实例各不相同。
+
+
+
+```
+sqlplus查看服务名
+查看服务名：
+
+show parameter service
+
+查看实例名：
+
+select * from v$instance;
+
+ 查看数据库名：
+
+select name from v$database;
+
+查看数据库用到几个表空间：
+
+select distinct TABLESPACE_NAME from tabs；
+
+```
+
+
+
+
+
+Oracle 12c 用户密码过期设置的一些问题
+
+https://blog.csdn.net/seagal890/article/details/82716798
+
+
+https://blog.csdn.net/weixin_39921821/article/details/82720851
+oracle11g ORA-01078与LRM-00109 解决方法（详细）
+https://blog.csdn.net/qq_15904277/article/details/86521808
+
+
+新建数据库 ORA-03113: 通信通道的文件结尾
+
+D:\Oracle\DataBase\app\edidada\admin
+
+数据库文件
+
+
+
+```
+CREATE USER "AAA" IDENTIFIED BY "5Edidada" DEFAULT TABLESPACE "USERS" TEMPORARY TABLESPACE "TEMP";
+
+GRANT "DBA" TO "AAA" WITH ADMIN OPTION;
+
+ALTER USER "AAA" DEFAULT ROLE "DBA";
+
+ALTER USER "AAA" QUOTA UNLIMITED ON "USERS";
+
+GRANT UNLIMITED TABLESPACE TO "AAA" WITH ADMIN OPTION
+
+
+```
+
+
+
+
+
+oracle跟mysql区别在哪儿？
+
+https://www.cnblogs.com/ios9/p/8227574.html#_label0
+
+
+
+
+
+https://blog.csdn.net/qq_41303486/article/details/104452529
+
+
+
+
+
+ORA-01034: ORACLE not available
+
+https://blog.csdn.net/qq_22498277/article/details/51621863
+
+
+
+
+
+web管理台
+
+https://localhost:5500/em/shell#/dbhome/show_regions
+
+https://www.cnblogs.com/sunsiyuan/p/8485418.html
+
+
+
+
+
+Oracle 12c视频教程
+
+https://www.bilibili.com/video/BV1d54y197n3?p=10
+
+
+
+
+
+管理工具
+
+
+
+sqlplus     有自己的指令
+
+isqlplus是网页版
+
+navicate
+
+pl/sql
+
+oem 数据库的企业管理功能
+
+
+
+
+
+oracle账户
+
+本地管理员
+
+在sqlplus上输入用户名system as sysdba         （只输入system不行
+
+密码输入5Edidada
+
+system/5Edidada as sysdba
+
+本地管理员可以不输入密码
+
+
+
+disconn 断开
+
+conn     连接
+
+网络用户登录
+
+username/pwd
+
+
+
+
+
+连接时没有指定数据库，默认连接orcl
+
+
+
+连接指定是数据库
+
+
+

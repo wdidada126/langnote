@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,会看到log4j2内部各种详细输出
+    monitorInterval : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。此处表示每隔600秒重读一次配置文件
+-->
+<configuration status="TRACE" monitorInterval="600" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <!--日志级别：TRACE < DEBUG < INFO < WARN < ERROR < FATAL-->
+  <!--如果设置为WARN，则低于WARN的信息都不会输出-->
+  <Properties>
+    <!-- 配置日志文件输出目录,此处为项目根目录下的logs文件夹 -->
+    <property name="logDirect">/data/appLogs</property>
+    <property name="logFileName">image-extraction</property>
+    <property name="loggerLogLevel">INFO</property>
+  </Properties>
+
+  <Appenders>
+    <!--这个输出控制台的配置-->
+    <Console name="Console" target="SYSTEM_OUT">
+      <!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）
+         onMatch和onMismatch都有三个属性值，分别为Accept、DENY和NEUTRAL
+
+        分别介绍这两个配置项的三个属性值：
+
+        onMatch="ACCEPT" 表示匹配该级别及以上
+        onMatch="DENY" 表示不匹配该级别及以上
+        onMatch="NEUTRAL" 表示该级别及以上的，由下一个filter处理，如果当前是最后一个，则表示匹配该级别及以上
+        onMismatch="ACCEPT" 表示匹配该级别以下
+        onMismatch="NEUTRAL" 表示该级别及以下的，由下一个filter处理，如果当前是最后一个，则不匹配该级别以下的
+        onMismatch="DENY" 表示不匹配该级别以下的
+      -->
+      <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+      <!--日志输出的格式-->
+      <!--
+          %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间,输出到毫秒的时间
+          %-5level : 输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0
+          %c : Logger的名称(%Logger)
+          %t : 输出当前线程名称
+          %p : 日志输出格式
+          %m : 日志内容，即 Logger.info("message")
+          %n : 换行符
+          %C : Java类名(%F)
+          %L : 行号
+          %M : 方法名
+          %l : 输出语句所在的行数, 包括类名、方法名、文件名、行数
+          hostName : 本地机器名
+          hostAddress : 本地ip地址
+       -->
+      <!--<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %Logger{36} - %msg%n"/>-->
+
+      <PatternLayout charset="UTF-8" pattern="[%date][%c{1.}][%t][%p] dstTraceId:[%X{dstTraceId}] [%X{TRACE_LOG_ID}] -%msg%xEx%n"/>
+    </Console>
+
+    <!--
+        循环日志文件：日志文件大于阀值的时候，就开始写一个新的日志文件
+        这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档
+
+        fileName    : 指定当前日志文件的位置和文件名称
+        filePattern : 指定当发生Rolling时，文件的转移和重命名规则
+        SizeBasedTriggeringPolicy : 指定当文件体积大于size指定的值时，触发Rolling
+        DefaultRolloverStrategy : 指定最多保存的文件个数
+        TimeBasedTriggeringPolicy : 这个配置需要和filePattern结合使用
+            注意filePattern中配置的文件重命名规则是${FILE_NAME}_%d{yyyy-MM-dd}_%i，最小的时间粒度是dd，即天，
+            TimeBasedTriggeringPolicy指定的size是1，结合起来就是每1天生成一个新文件
+    -->
+
+    <!--  避免auto-config对logback变量解析  -->
+    <xi:include href="log4j2-appender.xml" />
+
+    <RollingRandomAccessFile name="INFO" fileName="${logDirect}/${logFileName}-info.log" filePattern="${logDirect}/${logFileName}.%d{yyyy-MM-dd}.%i.log">
+        <Filters>
+            <!--先拒绝warn及以上的-->
+            <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+            <!--然后再收走INFO的，这个顺序不能乱-->
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+        <PatternLayout charset="UTF-8" pattern="[%date][%c{1.}][%t][%p] dstTraceId:[%X{dstTraceId}] [%X{TRACE_LOG_ID}] -%msg%xEx%n"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1"/>
+            <SizeBasedTriggeringPolicy size="512MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="30"/>
+    </RollingRandomAccessFile>
+
+    <!--警告信息记录-->
+    <RollingRandomAccessFile name="WARN" fileName="logs/${logFileName}-warn.log" filePattern="log/${logFileName}-warn%d{yyyy-MM-dd}_%i.log.gz">
+        <Filters>
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+        <PatternLayout pattern="[%date] [%-5level] dstTraceId:[%X{dstTraceId}]  %Logger %line --%mdc{client}[%X{TRACE_LOG_ID}] %msg%n"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1"/>
+            <SizeBasedTriggeringPolicy size="512MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="3000"/>
+    </RollingRandomAccessFile>
+
+    <!-- 错误信息记录 -->
+    <RollingRandomAccessFile name="ERROR" fileName="logs/${logFileName}-error.log" filePattern="log/${logFileName}-error%d{yyyy-MM-dd}_%i.log.gz">
+    <Filters>
+        <ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+    </Filters>
+    <PatternLayout pattern="[%date] [%-5level] dstTraceId:[%X{dstTraceId}]  %Logger %line --%mdc{client}[%X{TRACE_LOG_ID}] %msg%n"/>
+    <Policies>
+        <TimeBasedTriggeringPolicy interval="1"/>
+        <SizeBasedTriggeringPolicy size="512MB"/>
+    </Policies>
+    <DefaultRolloverStrategy max="3000"/>
+    </RollingRandomAccessFile>
+
+    <!-- 系统级别的错误信息 -->
+    <RollingRandomAccessFile name="FATAL" fileName="logs/${logFileName}-fatal.log" filePattern="log/${logFileName}-fatal%d{yyyy-MM-dd}_%i.log.gz">
+        <Filters>
+            <ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+        <PatternLayout pattern="[%date] [%-5level] dstTraceId:[%X{dstTraceId}]  %Logger %line --%mdc{client}[%X{TRACE_LOG_ID}] %msg%n"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1"/>
+            <SizeBasedTriggeringPolicy size="512MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="3000"/>
+    </RollingRandomAccessFile>
+
+    <!-- 全部日志信息:DEBUG及以上级别 -->
+    <RollingRandomAccessFile name="ALL" fileName="logs/${logFileName}-all.log" filePattern="log/${logFileName}-all%d{yyyy-MM-dd}_%i.log.gz">
+        <Filters>
+            <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Filters>
+        <PatternLayout pattern="[%date] [%-5level] dstTraceId:[%X{dstTraceId}]  %Logger %line --%mdc{client}[%X{TRACE_LOG_ID}] %msg%n"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="1"/>
+            <SizeBasedTriggeringPolicy size="1KB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="10"/>
+    </RollingRandomAccessFile>
+
+     <!--使用AsyncAppender-->
+    <Async name="Async">
+    <AppenderRef ref="Console"/>
+    <AppenderRef ref="${loggerLogLevel}"/>
+    </Async>
+
+  </Appenders>
+
+  <!--然后定义Logger，只有定义了Logger并引入的appender，appender才会生效-->
+  <Loggers>
+    <!-- 第三方 jar 日志输出配置 -->
+    <Logger name="org.springframework.web.servlet.DispatcherServlet" level="INFO"/>
+    <Logger name="org.springframework.web.context.support.XmlWebApplicationContext" level="INFO"/>
+    <Logger name="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" level="INFO"/>
+    <Logger name="com.alibaba.dubbo" level="INFO"/>
+     <Logger name="com.alibaba.dubbo.config.AbstractConfig" level="INFO"/>
+    <Logger name="org.apache.commons" level="INFO"/>
+
+    <!-- 因为使用了完全异步模式，因此这里使用root即可，asyncRoot虽然不错，但是没有必要-->
+    <root level="INFO">
+      <!-- 这儿为trace表示什么都可以打印出来了,其他几个级别分别为：TRACE、DEBUG、INFO、WARN、ERROR和FATAL -->
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="${loggerLogLevel}"/>
+    </root>
+  </Loggers>
+</configuration>

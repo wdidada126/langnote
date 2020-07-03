@@ -1,0 +1,11 @@
+https://www.bookstack.cn/read/feiskyer-kubernetes-handbook/appendix-play-with-k8s.md
+
+kubeadm join 192.168.0.14:6443 --token dv9afu.6u9xd9l5eo4qdenj --discovery-token-ca-cert-hash sha256:7e5323797d27a90cb02d2df749c1f2a769339cef86bba58c9e16973d441e6d1
+
+kubectl get nodes
+
+NAME      STATUS     ROLES     AGE       VERSION
+node2     NotReady   master    1h        v1.11.3
+node4     NotReady   <none>    47s       v1.11.3
+node5     NotReady   <none>    32s       v1.11.3
+

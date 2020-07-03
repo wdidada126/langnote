@@ -1,0 +1,33 @@
+47.94.136.171
+60.205.203.243
+117.50.51.81
+
+elk-es01.edidada.toppp
+elk-es02.edidada.toppp
+elk-es03.edidada.toppp
+
+47.94.136.171	elk-es01.edidada.toppp
+60.205.203.243	elk-es02.edidada.toppp
+117.50.51.81	elk-es03.edidada.toppp
+
+01 172.17.230.63
+02 172.17.201.198
+
+
+curl -XGET 'http://117.50.51.81:9200/_cat/health?v'
+curl -XGET 'http://60.205.203.243:9200/_cat/health?v'
+curl -XGET 'http://47.94.136.171:9200/_cat/health?v'
+curl -XGET 'http://60.205.203.243:9200/_cat/nodes?v&pretty'
+
+curl -XGET 'http://60.205.203.243:9200/_cluster/state'
+curl -XGET 'http://117.50.51.81:9200/_cluster/stats?human&pretty'
+curl -XGET 'http://117.50.51.81:9200/_cluster/pending_tasks'
+
+curl -XGET '47.94.136.171:9200'
+curl -XGET '60.205.203.243:9200/_cluster/health?pretty'
+curl -XGET '117.50.51.81:9200/_cluster/health?pretty'
+
+curl -XGET '47.94.136.171:9200/_cluster/health?pretty'
+
+curl -XGET '60.205.203.243:9200/test/name/8?pretty'
+curl -XPOST '60.205.203.243:9200/test/name/8' -d '{"name":"xiaoluo"}'

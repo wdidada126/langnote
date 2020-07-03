@@ -1,0 +1,100 @@
+﻿1，什么是线程安全 （参考书：https://book.douban.com/subject/10484692/）
+当多个线程访问某个类时，这个类始终都能表现出正确的行为，那么就称这个类是线程安全的。
+2，都说String是不可变的，为什么我可以这样做呢
+   String a = "1";
+   a = "2";
+这里面String对象内存地址上的值并没有改变，改变的只是引用。String类型的变量指向了“2”对应的内存地址，“1”这个String值并没有改变成“2”；
+3，HashMap的实现原理
+4，写出三种单例模式，如果能考虑线程安全最好
+public class EagerSingleton {  
+        // jvm保证在任何线程访问uniqueInstance静态变量之前一定先创建了此实例  
+        private static EagerSingleton uniqueInstance = new EagerSingleton();  
+  
+        // 私有的默认构造子，保证外界无法直接实例化  
+        private EagerSingleton() {  
+        }  
+  
+        // 提供全局访问点获取唯一的实例  
+        public static EagerSingleton getInstance() {  
+                return uniqueInstance;  
+        }  
+}
+
+
+public class LazySingleton {  
+        private static LazySingleton uniqueInstance;  
+  
+        private LazySingleton() {  
+        }  
+  
+        public static synchronized LazySingleton getInstance() {  
+                if (uniqueInstance == null)  
+                        uniqueInstance = new LazySingleton();  
+                return uniqueInstance;  
+        }  
+} 
+
+
+public class DoubleCheckedLockingSingleton {  
+        // java中使用双重检查锁定机制,由于Java编译器和JIT的优化的原因系统无法保证我们期望的执行次序。  
+        // 在java5.0修改了内存模型,使用volatile声明的变量可以强制屏蔽编译器和JIT的优化工作  
+        private volatile static DoubleCheckedLockingSingleton uniqueInstance;  
+  
+        private DoubleCheckedLockingSingleton() {  
+        }  
+  
+        public static DoubleCheckedLockingSingleton getInstance() {  
+                if (uniqueInstance == null) {  
+                        synchronized (DoubleCheckedLockingSingleton.class) {  
+                                if (uniqueInstance == null) {  
+                                        uniqueInstance = new DoubleCheckedLockingSingleton();  
+                                }  
+                        }  
+                }  
+                return uniqueInstance;  
+        }  
+}
+
+5，ArrayList和LinkedList有什么区别
+可以参考数组和链表的区别。
+ArrayList查找效率高		  内存利用效率高    扩容时是复制数组  
+LinkedList 增加删除效率高 可以按照索引添加  按照索引删除
+
+6，实现线程的2种方式
+继承Thread
+实现Runnable赋值给Thread的构造参数
+
+7，JVM的内存结构
+
+堆
+栈（普通方法栈 本地方法栈）
+程序计数寄存器
+方法区
+
+8，Lock与Synchronized的区别
+Lock更加灵活		  代码实现 					java接口
+Synchronized是jvm实现 可以通过配置vm参数来实现   java关键字	
+
+9，数据库隔离级别有哪些，各自的含义是什么，MYSQL默认的隔离级别是是什么。
+四个
+read uncommit 未提交读
+read commit	已提交读
+repeated read 可重复读
+serialize 串行化
+
+MySQL
+repeated read
+
+
+10，请解释如下jvm参数的含义：
+-server -Xms512m -Xmx512m -Xss1024K 
+-XX:PermSize=256m -XX:MaxPermSize=512m -XX:MaxTenuringThreshold=20 XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSInitiatingOccupancyOnly。
+
+-Xms 初始分配的堆内存
+-Xmx 最大允许分配的堆内存
+-Xss 栈内存
+-XX:PermSize 持久代(perm gen)初始值
+-XX:MaxPermSize 持久代(perm gen)最大值
+-XX:MaxTenuringThreshold新生代的对象经过几次垃圾回收后（如果还存活），进入老年代
+XX:CMSInitiatingOccupancyFraction 开始进行CMS垃圾收集的比例
+-XX:+UseCMSInitiatingOccupancyOnly 使用手动定义初始化定义开始CMS收集

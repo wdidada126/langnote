@@ -1,0 +1,212 @@
+The vboxdrv kernel module is not loaded. Either there is no module available for the current kernel (3.10.0-862.
+
+yum -y install 3.10.0-862.14.4.el7.x86_64
+yum install net-tools -y
+
+https://www.jianshu.com/p/ca4de9f10daf
+https://lihaoquan.me/2017/2/25/create-kubernetes-single-node-mode.html
+
+vi mysql-rc.yaml
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mysql
+spec:
+  replicas: 2
+  selector:
+    app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
+		  
+kubectl create -f mysql-rc.yaml
+kubectl get rc
+
+vi mysql-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+	
+kubectl create -f mysql-svc.yaml
+
+kubectl get svc
+
+
+
+vi myweb-rc.yaml
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myweb
+spec:
+  replicas: 2
+  selector:
+    app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - name: mysql
+        image: kubeguide/tomcat-app:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MYSQL_SERVICE_HOST
+          value: "mysql"
+        - name: MYSQL_SERVICE_PORT
+          value: "3306"
+
+kubectl create -f myweb-rc.yaml
+
+
+curl ip:30001/demo
+
+
+vi myweb-svc.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30001
+  selector:
+    app: myweb
+
+kubectl create -f myweb-svc.yaml
+
+vi my-eureka-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: eureka
+spec:
+  replicas: 2
+  selector:
+    app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+      - name: spring-cloud-eureka
+        image: edidada/spring-cloud-eureka
+        ports:
+        - containerPort: 3306
+kubectl create -f my-eureka-rc.yaml
+
+
+labs.play-with-k8s.com
+环境
+
+kubectl proxy
+kubectl get nodes --show-labels
+
+kubectl get namespaces
+获取命名空间
+kubectl get pods
+获取Pods
+kubectl describe pods
+kubectl describe pod #{podname}
+kubectl logs $POD_NAME
+
+
+kubectl get services --namespace=kube-system
+检查看Heapster服务是否运行，执行命令：
+
+
+
+kubectl get namespace
+NAME          STATUS    AGE
+default       Active    57m
+kube-public   Active    57m
+kube-system   Active    57m
+mem-example   Active    13m
+
+kubectl get nodes
+kubectl get pods -n kube-system -owide
+
+https://blog.csdn.net/qq_21816375/article/details/80222689
+https://blog.csdn.net/xingwangc2014/article/details/51204224
+https://www.jianshu.com/p/ca4de9f10daf
+https://www.kubernetes.org.cn/2647.html
+http://docs.kubernetes.org.cn/729.html
+https://www.kubernetes.org.cn/2377.html
+http://dockone.io/question/498
+https://blog.csdn.net/hahachenchen789/article/details/80619590
+
+
+node就是有几台设备加入集群
+
+
+kubectl cluster-info
+
+
+
+## 集群初始化
+kubeadm init --apiserver-advertise-address $(hostname -i)
+
+## 配置kubectl
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+export KUBECONFIG=$HOME/.kube/config
+
+## 初始化网络
+kubectl apply -n kube-system -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+## 创建Dashboard
+curl -L -s https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml  | sed 's/targetPort: 9090/targetPort: 9090\n  type: LoadBalancer/' | kubectl apply -f -
+稍等一会，在页面上方会显示Dashborad服务的端口号，点击端口号就可以访问Dashboard页面。
+
+
+
+wget 192.168.0.8:30001
+
+curl ip172-18-0-11-bfp120jdi24000ejem2g.direct.labs.play-with-k8s.com:6443/api
+
+kubelet 查看日志
+
+在kubernetes集群中，每个Node节点都会启动kubelet进程，用来处理Master节点下发到本节点的任务，管理Pod和其中的容器。kubelet会在API Server上注册节点信息，定期向Master汇报节点资源使用情况，并通过cAdvisor监控容器和节点资源。可以把kubelet理解成【Server-Agent】架构中的agent，是Node上的pod管家。
+
+
+kubectl describe secret
+Name:         default-token-tdmwp
+Namespace:    default
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name=default
+              kubernetes.io/service-account.uid=009f2dbe-eb9b-11e8-b72b-024298ba8104
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1025 bytes
+namespace:  7 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tdGRtd3AiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjAwOWYyZGJlLWViOWItMTFlOC1iNzJiLTAyNDI5OGJhODEwNCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.Of4Aer4ytZOH2JZBJujYicwgUoPeTAAI8hiuRfMuOC1xymGIMSCckIoLL8TRFwoOGY__sJGCIWqlrs42Bt_G2gqpKHtgMxmqAtkus2Qo03L7o-jSuneyl9JwHPfJVw835TCLXPoSwx3lpDGp1fNAXNx2d5e-RjkBXLwTIklCaNk8x34ev1gYHJ5xNMI7D0I9c2R-4swGkcL97cKxEFhPlcgPLzOj4SJodNfSeV_I8ndbV4dL4pgsRdPC4_tISH_2pBB5xb038odB-yPEUaEV-sdG3uBGnW-1nc_a4Zx-SDR5HUGkaBP6PGkqegdpZ8QgRIKlzzijmo6xFzN1Sz0jbA
+
+

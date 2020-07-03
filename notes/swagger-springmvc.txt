@@ -1,0 +1,21 @@
+        <dependency>
+            <groupId>com.mangofactory</groupId>
+            <artifactId>swagger-springmvc</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+		
+7428e719e22ca295ea77e539554994ef3c64a446 blob   119502 12779 268116275
+
+git rev-list --objects --all | grep 7428e7
+
+00942ba66c1c9038ad0f852498b763af17b8a818 classes/artifacts/blogs/blogs.war
+
+git log --pretty=oneline --branches -- classes/artifacts/blogs/blogs.war
+
+git filter-branch --index-filter "git rm --cached --ignore-unmatch  classes/artifacts/blog/blog.war"  --prune-empty --tag-name-filter cat -- --all
+
+https://blog.csdn.net/ZCF1002797280/article/details/50723783
+https://blog.csdn.net/hongchangfirst/article/details/45339229
+https://walterlv.com/git/2017/09/18/delete-a-file-from-whole-git-history.html
+https://stackoverflow.com/questions/32715034/removing-files-from-git-history-bad-revision-error
+https://walterlv.com/git/2017/09/18/delete-a-file-from-whole-git-history.html

@@ -1,0 +1,53 @@
+# Spring ReaderContext
+org.springframework.beans.factory.parsing
+子类XmlReaderContext
+
+
+
+
+BeanDefinitionRegistry是beandefinition的仓库，可以get和set
+DefaultListableBeanFactory
+private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>(64);
+
+
+spring bean属性及子元素使用总结
+    spring框架中主要有四种标签bean、alias、import、beans，其中bean标签是其他标签的基础，此文主要对bean标签的属性及其子元素进行讨论，废话不多，请往下看。
+一、bean标签的属性
+1）scope：用来配置spring bean的作用域
+2）singleton：表示bean为单例的
+3）abstract：设置为true，将该bean仅仅作为模板使用，应用程序上下文不会试图预先初始化它
+4）lazy-init：设为true，延迟加载，该bean不会在ApplicationContext启动时提前被实例化，而是第一次向容器通过getBean索取bean时实例化
+注：只对singleton的bean起作用
+5）autowire：自动装配
+6）dependency-check：依赖检查
+7）depends-on：表示一个bean的实例化依靠另一个bean先实例化
+8）autowire-candidate：设为false，容器在查找自动装配对象时，将不考虑该bean，即它不会被考虑作为其他bean自动装配的候选者，但是该bean本身可以使用自动装配来注入其他bean
+9）primary：该bean优先被注入
+10）init-method：初始化bean时调用的方法
+11）destory-method：容器销毁之前所调用的方法
+12）factory-method：当调用factory-method所指向的方法时，才开始实例化bean
+13）factory-bean：调用静态工厂方法的方式创建bean
+二、bean的子元素
+1）meta：元数据，当需要使用里面的信息时可以通过key获取
+2）lookup-method：获取器注入，是把一个方法声明为返回某种类型的bean但实际要返回的bean是在配置文件里面配置的
+3）replaced-method：可以在运行时调用新的方法替换现有的方法，还能动态的更新原有方法的逻辑
+4）constructor-arg：对bean自动寻找对应的构造函数，并在初始化的时候将设置的参数传入进去
+5）property：基本数据类型赋值
+6）qualifier：通过Qualifier指定注入bean的名称
+
+
+
+ApplicationContext继承 BeanFactory，是 BeanFactory 的扩展升级版，区别是
+1、继承 MessageSource，提供国际化的标准访问策略。
+2、继承 ApplicationEventPublisher ，提供强大的事件机制。
+3、扩展 ResourceLoader，可以用来加载多个 Resource，可以灵活访问不同的资源。
+4、对 Web 应用的支持。
+
+
+
+AbstractBeanDefinition
+子类
+ChildBeanDefinition
+GenericBeanDefinition
+RootBeanDefinition
+

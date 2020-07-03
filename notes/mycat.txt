@@ -1,0 +1,17 @@
+mysql -uroot -p123456 -h127.0.0.1 -P8066 -DTESTDB
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+flush privileges;
+
+create table travelrecord (id int not null primary key,name varchar(100),sharding_id int not null);
+
+insert into travelrecord(id,name,sharding_id) values(1,'leader us',10000);
+insert into travelrecord(id,name,sharding_id) values(2, 'me',10010);
+insert into travelrecord(id,name,sharding_id) values(3, 'mycat',10000);
+insert into travelrecord(id,name,sharding_id) values(4, 'mydog',10010);
+
+0.0.0.0/0
+TCP:3306
+
+TCP:8080
+TCP:6379
+

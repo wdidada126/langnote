@@ -1,0 +1,56 @@
+# Data Structures and the Java Collections Framework 3rd Edition
+
+数据结构和Java集合框架
+
+书中的源码介绍对应的jdk版本是1.6
+
+2006年jdk 6刚好发布
+
+
+LinkedTransferQueue java 1.7开始
+
+LinkedPriorityQueue
+LinkedPriorityDeque
+
+Vector类 是在 java 中可以实现自动增长的对象数组
+addElement(E)
+removeElement(Object)
+capacity()
+size()
+
+
+Stack继承自Vector
+Stack的类
+push
+pop 移除
+pick如果有，返回，不移除
+
+HashMap源码
+jdk1.7和jdk1.8内部实现不一样
+
+以下是jdk1.8的源码
+
+https://www.jianshu.com/p/f16bfeeeea88
+
+构造函数
+HashMap有多个构造函数，主要支持配置容量capacity和load factor，以及从其他Map集合获取初始化数据。
+public HashMap(int initialCapacity, float loadFactor)
+这里的loadFactor的初步测试，可以设置大于1的值
+
+这就是找到距离cap参数最近的2的次幂
+static final int tableSizeFor(int cap) {
+    int n = cap - 1;
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+}
+
+“>> 右移,高位补符号位” 这里右移一位表示除2
+“>>> 无符号右移,高位补0”； 与>>类似
+“<< 左移” 左移一位表示乘2，二位就表示4，就是2的n次方
+
+		System.out.println(8>> 2); //除法，如果右边因子大于1，结果变小，
+		System.out.println(8<< 2); //乘法，左移位

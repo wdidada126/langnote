@@ -1,0 +1,23 @@
+
+
+# RabbitMQ
+
+开发语言？
+
+
+
+是否支持消息分组？
+
+
+
+https://www.rabbitmq.com/
+
+
+
+[消息确认Ack](https://blog.csdn.net/vbirdbest/article/details/78699913)
+
+
+
+
+
+**RabbitMQ**是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ服务器是用[Erlang](https://baike.baidu.com/item/Erlang)语言编写的，而集群和故障转移是构建在[开放电信平台](https://baike.baidu.com/item/开放电信平台)框架上的。所有主要的编程语言均有与代理接口通讯的客户端[库](https://baike.baidu.com/item/库)。

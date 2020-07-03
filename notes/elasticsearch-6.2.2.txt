@@ -1,0 +1,50 @@
+elasticsearch-6.2.2
+
+vultr云服务器需要关闭防火墙
+systemctl status firewalld
+systemctl stop firewalld.service #停止firewall
+
+systemctl disable firewalld.service #禁止firewall开机启动
+
+nmap -Pn -p 22,80,443 45.32.67.119
+
+yum install nginx
+nginx
+yum install vim
+
+设置java环境变量
+vim /etc/profile
+
+export JAVA_HOME=/usr/local/jdk1.8.0_181
+export CLASSPATH=:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+sudo vim /etc/security/limits.conf	
+
+# End of file
+root soft nofile 65536
+root hard nofile 65536
+##  soft nofile 65535
+##  hard nofile 65535
+
+* soft nofile 65536
+* hard nofile 131072
+* soft nproc 2048
+* hard nproc 4096
+
+10.40.96.4
+
+"45.77.35.92","45.76.159.53","207.148.70.79"
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.2.tar.gz
+
+使用外网搭建集群时需注意：
+network.host需要修改为0.0.0.0，同时要暴露你的外网地址，代码如下：
+network.host: 0.0.0.0
+network.publish_host: xx.xx.xx.xx
+
+
+
+
+
+guice 这个ioc框架 es用了

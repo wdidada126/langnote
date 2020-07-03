@@ -1,0 +1,247 @@
+<applications>
+  <versions__delta>1</versions__delta>
+  <apps__hashcode>UP_7_</apps__hashcode>
+  <application>
+    <name>ZIPKIN-SERVER</name>
+    <instance>
+      <instanceId>f7389d7085bc:zipkin-server:8111</instanceId>
+      <hostName>f7389d7085bc</hostName>
+      <app>ZIPKIN-SERVER</app>
+      <ipAddr>172.18.0.5</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8111</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189086724</registrationTimestamp>
+        <lastRenewalTimestamp>1542203685593</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189086724</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata class="java.util.Collections$EmptyMap"/>
+      <homePageUrl>http://f7389d7085bc:8111/</homePageUrl>
+      <statusPageUrl>http://f7389d7085bc:8111/info</statusPageUrl>
+      <healthCheckUrl>http://f7389d7085bc:8111/health</healthCheckUrl>
+      <vipAddress>zipkin-server</vipAddress>
+      <secureVipAddress>zipkin-server</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189086727</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1540304323172</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+  </application>
+  <application>
+    <name>SPRING-CLOUD-CONSUMER</name>
+    <instance>
+      <instanceId>45536a75038e:spring-cloud-consumer:8092</instanceId>
+      <hostName>172.17.0.3</hostName>
+      <app>SPRING-CLOUD-CONSUMER</app>
+      <ipAddr>172.17.0.3</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8092</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189088610</registrationTimestamp>
+        <lastRenewalTimestamp>1542203705581</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189088610</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata class="java.util.Collections$EmptyMap"/>
+      <homePageUrl>http://172.17.0.3:8092/</homePageUrl>
+      <statusPageUrl>http://172.17.0.3:8092/info</statusPageUrl>
+      <healthCheckUrl>http://172.17.0.3:8092/health</healthCheckUrl>
+      <vipAddress>spring-cloud-consumer</vipAddress>
+      <secureVipAddress>spring-cloud-consumer</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189088610</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1542181157337</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+    <instance>
+      <instanceId>e28b12811bc3:spring-cloud-consumer:8092</instanceId>
+      <hostName>172.18.0.3</hostName>
+      <app>SPRING-CLOUD-CONSUMER</app>
+      <ipAddr>172.18.0.3</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8092</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189088611</registrationTimestamp>
+        <lastRenewalTimestamp>1542203685593</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189088611</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata class="java.util.Collections$EmptyMap"/>
+      <homePageUrl>http://172.18.0.3:8092/</homePageUrl>
+      <statusPageUrl>http://172.18.0.3:8092/info</statusPageUrl>
+      <healthCheckUrl>http://172.18.0.3:8092/health</healthCheckUrl>
+      <vipAddress>spring-cloud-consumer</vipAddress>
+      <secureVipAddress>spring-cloud-consumer</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189088611</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1542183926617</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+  </application>
+  <application>
+    <name>SPRING-CLOUD-PRODUCER</name>
+    <instance>
+      <instanceId>117.50.51.81:8090</instanceId>
+      <hostName>172.17.0.4</hostName>
+      <app>SPRING-CLOUD-PRODUCER</app>
+      <ipAddr>172.17.0.4</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8090</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542197229576</registrationTimestamp>
+        <lastRenewalTimestamp>1542203700589</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542197229576</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata class="java.util.Collections$EmptyMap"/>
+      <homePageUrl>http://172.17.0.4:8090/</homePageUrl>
+      <statusPageUrl>http://172.17.0.4:8090/info</statusPageUrl>
+      <healthCheckUrl>http://172.17.0.4:8090/health</healthCheckUrl>
+      <vipAddress>spring-cloud-producer</vipAddress>
+      <secureVipAddress>spring-cloud-producer</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542197229576</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1542197229112</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+  </application>
+  <application>
+    <name>SPRING-CLOUD-CURD-WITHZIPKINANDADMIN</name>
+    <instance>
+      <instanceId>172.18.0.6:8130</instanceId>
+      <hostName>172.18.0.6</hostName>
+      <app>SPRING-CLOUD-CURD-WITHZIPKINANDADMIN</app>
+      <ipAddr>172.18.0.6</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8130</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189088612</registrationTimestamp>
+        <lastRenewalTimestamp>1542203702631</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189088612</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata class="java.util.Collections$EmptyMap"/>
+      <homePageUrl>http://172.18.0.6:8130/</homePageUrl>
+      <statusPageUrl>http://172.18.0.6:8130/info</statusPageUrl>
+      <healthCheckUrl>http://172.18.0.6:8130/health</healthCheckUrl>
+      <vipAddress>spring-cloud-curd-withzipkinandadmin</vipAddress>
+      <secureVipAddress>spring-cloud-curd-withzipkinandadmin</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189088612</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1540382085745</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+  </application>
+  <application>
+    <name>SPRING-CLOUD-EUREKA</name>
+    <instance>
+      <instanceId>01273d9705ba:spring-cloud-eureka:8089</instanceId>
+      <hostName>47.94.136.171</hostName>
+      <app>SPRING-CLOUD-EUREKA</app>
+      <ipAddr>172.18.0.2</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8089</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189093641</registrationTimestamp>
+        <lastRenewalTimestamp>1542203696591</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189093641</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata>
+        <management.port>8089</management.port>
+      </metadata>
+      <homePageUrl>http://47.94.136.171:8089/</homePageUrl>
+      <statusPageUrl>http://47.94.136.171:8089/actuator/info</statusPageUrl>
+      <healthCheckUrl>http://47.94.136.171:8089/actuator/health</healthCheckUrl>
+      <vipAddress>spring-cloud-eureka</vipAddress>
+      <secureVipAddress>spring-cloud-eureka</secureVipAddress>
+      <isCoordinatingDiscoveryServer>true</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189093641</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1542189085691</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+    <instance>
+      <instanceId>f19a50586ed3:spring-cloud-eureka:8089</instanceId>
+      <hostName>117.50.51.81</hostName>
+      <app>SPRING-CLOUD-EUREKA</app>
+      <ipAddr>172.17.0.2</ipAddr>
+      <status>UP</status>
+      <overriddenstatus>UNKNOWN</overriddenstatus>
+      <port enabled="true">8089</port>
+      <securePort enabled="false">443</securePort>
+      <countryId>1</countryId>
+      <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+      </dataCenterInfo>
+      <leaseInfo>
+        <renewalIntervalInSecs>30</renewalIntervalInSecs>
+        <durationInSecs>90</durationInSecs>
+        <registrationTimestamp>1542189099706</registrationTimestamp>
+        <lastRenewalTimestamp>1542203704671</lastRenewalTimestamp>
+        <evictionTimestamp>0</evictionTimestamp>
+        <serviceUpTimestamp>1542189099706</serviceUpTimestamp>
+      </leaseInfo>
+      <metadata>
+        <management.port>8089</management.port>
+      </metadata>
+      <homePageUrl>http://117.50.51.81:8089/</homePageUrl>
+      <statusPageUrl>http://117.50.51.81:8089/actuator/info</statusPageUrl>
+      <healthCheckUrl>http://117.50.51.81:8089/actuator/health</healthCheckUrl>
+      <vipAddress>spring-cloud-eureka</vipAddress>
+      <secureVipAddress>spring-cloud-eureka</secureVipAddress>
+      <isCoordinatingDiscoveryServer>false</isCoordinatingDiscoveryServer>
+      <lastUpdatedTimestamp>1542189099706</lastUpdatedTimestamp>
+      <lastDirtyTimestamp>1542189099665</lastDirtyTimestamp>
+      <actionType>ADDED</actionType>
+    </instance>
+  </application>
+</applications>

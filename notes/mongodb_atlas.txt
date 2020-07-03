@@ -1,0 +1,12 @@
+需要设置ip白名单
+需要设置账户
+mangodb compass可视化工具
+
+edidada
+密码
+5Edidada
+admin
+密码
+5Edidada
+
+mongodb+srv://admin:5Edidada@cluster0-yapjx.mongodb.net/admin

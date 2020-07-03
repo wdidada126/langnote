@@ -1,0 +1,23 @@
+数据库范式
+https://www.zhihu.com/question/24696366
+
+https://blog.csdn.net/zhangyulin54321/article/details/7956699
+alter table添加"with check"，"with check"sql语句执行失败
+
+in
+not in
+where
+group by
+order by
+limit 
+count
+sum
+min
+max
+avg
+distinect
+
+select count(distinct(tname)) from teacher where tname like '李%‘
+
+create table a(id int, type int);
+create table b(id int, class int);

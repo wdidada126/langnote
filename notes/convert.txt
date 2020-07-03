@@ -1,0 +1,29 @@
+# nutch
+
+bin/nutch readseg -dump crawl/segments/20180516061825 segdb_zhilai -nocontent -nofetch -nogenerate -noparse -noparsedata
+
+<property>
+  <name>http.robot.rules.whitelist</name>
+  <value>www.szzhilai.com</value>
+  <description>Comma separated list of hostnames or IP addresses to ignore robot rules parsing for.
+  </description>
+</property>
+
+http://www.kingwins.com.cn/
+
+<property>
+  <name>http.robot.rules.whitelist</name>
+  <value>www.kingwins.com.cn</value>
+  <description>Comma separated list of hostnames or IP addresses to ignore robot rules parsing for.
+  </description>
+</property>
+
+
+
+bin/nutch generate crawl/crawldb crawl/segments -topN 100000
+s2=`ls -d crawl/segments/2* | tail -1`
+echo $s2
+
+bin/nutch fetch $s2
+bin/nutch parse $s2
+bin/nutch updatedb crawl/crawldb $s2

@@ -1,0 +1,56 @@
+# llvm
+
+
+Swift官方就是用llvm，在LLVM IR上面也有一层SIR的东西。毕竟两个的爹都是Apple。感觉llvm以后要一统江湖啊，原先每个编译器企业自己做技术栈，以后估计都要整合到llvm的框架里了。
+
+http://releases.llvm.org/8.0.0/docs/CMake.html
+
+
+
+mac
+
+```shell
+/Users/ibqo/mybuilddir
+cmake -version
+cmake --build .
+cmake -DLLVM_BUILD_EXAMPLES=ON ../llvm-8.0.0.src
+
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/llvm -P cmake_install.cmake
+```
+
+
+
+
+
+编译
+
+带example
+
+归功于整个AI产业吧，目前AI芯片需要大量编译器背景的人，同时AI框架也是很多采用LLVM，需要有编译器背景的人。另外，在安全，区块链，数据库等很多行业都开始采用LLVM，所以这是做编译器，尤其是LLVM的人，很好的一个时机
+知乎 蓝色 阿里巴巴
+
+
+
+
+
+llvm支持的后端有：
+
+添加后端
+
+https://www.zhihu.com/question/315440674/answer/683641589
+
+
+
+
+
+LLVM从一个学术研究项目进化成C、C++和Objective C编译器的通用后端。成功的关键是性能和适应能力，两者都得益于LLVM独特的设计和实现。
+传统的编译器架构为：
+Source Code -> [ Frontend & Optimizer & Backend ] -> Machine Code
+对比，LLVM的架构为：
+Source Code @ x -> [ x Frontend ] -> [ LLVM Optimizer @ IR ] -> [ LLVM m Backend ] -> Machine Code @ m
+其中，x为C/C++, Objcect C等多种语言；m为x86，PowerPC，ARM等多种CPU架构。
+
+不同的前端后端使用统一的中间代码LLVM Intermediate Representation (LLVM IR)
+优化阶段是一个通用的阶段，它针对的是统一的LLVM IR，和具体语言无关；
+扩展性好：如果需要支持一种新的编程语言，那么只需要实现一个新的前端；如果需要支持一种新的硬件设备，那么只需要实现一个新的后端
+

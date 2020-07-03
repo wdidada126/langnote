@@ -1,0 +1,49 @@
+云服务器配置
+阿里云
+腾讯云
+搬瓦工(可以免费换ip)
+gcp(免费使用期限已经过了)
+woothosting
+alp
+
+阿里云
+mysql
+mysql每天4点定时备份
+用到了两个数据库
+bitnami_wordpress
+db_blog(个人博客)
+
+tomcat 8
+httpd
+logstash
+redis
+euroka /usr/local/euroka/*jar 8000 端口
+
+腾讯云
+nginx
+httpd
+solr
+nutch
+tomcat 7
+logstash
+mysql 目前没使用
+阿里云的mysql备份
+
+
+搬瓦工
+阿里云的mysql备份
+
+
+三个项目
+
+java blog 
+腾讯云nginx 负载均衡
+连接阿里云tomcat
+腾讯云tomcat
+session一致性 阿里云redis
+搜索 腾讯云solr
+日志 logstash到win 10电脑
+
+edibeta.top 阿里云httpd 目前开启
+edidada.cn 腾讯云httpd，目前关闭
+

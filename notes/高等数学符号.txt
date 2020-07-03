@@ -1,0 +1,8 @@
+大写 小写 英文注音 国际音标注音 中文注音
+Α α alpha alfa 阿耳法
+Β β beta beta 贝塔
+Γ γ gamma gamma 伽马
+Δ δ deta delta 德耳塔
+Ε ε epsilon epsilon 艾普西隆
+Ζ ζ zeta zeta 截塔
+Η η eta eta

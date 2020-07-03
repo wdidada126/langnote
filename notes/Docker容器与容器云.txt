@@ -1,0 +1,60 @@
+# Docker容器与容器云
+
+- cgroups
+- namespace
+
+第四章
+pipework网络解析
+
+
+进入LXC namesopace的工具
+ip netns
+nsenter
+
+ip netns help
+Usage: ip netns list
+       ip netns add NAME
+       ip netns set NAME NETNSID
+       ip [-all] netns delete [NAME]
+       ip netns identify [PID]
+       ip netns pids NAME
+       ip [-all] netns exec [NAME] cmd ...
+       ip netns monitor
+       ip netns list-id
+
+ip - show / manipulate routing, devices, policy routing and tunnels
+
+在传统的计算机网络中，交换机能隔离隔离冲突域，但是不能隔离广播域
+路由器 交换机区别
+
+VLAN可以隔离广播域
+
+命令行 ovs-vsctl
+
+## overlay的网络虚拟化技术
+
+overlay网络其实就是隧道技术，即将一种网络协议包装在另外一种协议中传输的技术
+解决跨网络Docker容器实现实现二层网络通信的需求。
+
+VXLAN
+NVGRE
+
+
+GRE协议
+
+OpenFlow
+流表
+流表项（转发规则）
+
+cAdivse
+
+
+docker-machine
+swarm
+
+fleet
+
+deis  PAAS
+
+flynn
+

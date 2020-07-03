@@ -1,0 +1,24 @@
+SpringMVC RequestParam和PathVariable的区别
+
+    @RequestMapping("/hello/{name}")
+    public String index(@PathVariable("name") String name) {
+        return HelloRemote.hello(name);
+    }
+
+http://localhost:9001/hello/neo
+
+
+
+
+http://localhost:9000/hello?name=neo
+
+
+    @RequestMapping("/hello")
+    public String index(@RequestParam String name) {
+        return "hello "+name+"，this is first messge";
+    }
+
+java module diagram
+
+AbstractBeanFactory.getBean();
+AbstractBeanFactory.doGetBean()

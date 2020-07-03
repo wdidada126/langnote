@@ -1,0 +1,153 @@
+# hadoop
+
+2.7.6
+
+http://hadoop.apache.org/docs/r2.7.6/hadoop-project-dist/hadoop-common/ClusterSetup.html
+
+http://mirrors.shu.edu.cn/apache/hadoop/common/hadoop-2.7.6/hadoop-2.7.6.tar.gz
+
+sudo yum -y install net-tools
+
+cd /etc/sysconfig/network-scripts/
+sudo vim /etc/sysconfig/network-scripts/ifcfg-ens33
+sudo vim /etc/sysconfig/network-scripts/ifcfg-enp0s3
+
+https://segmentfault.com/a/1190000011954814
+https://www.centos.bz/2017/08/virtualbox-centos7-nat-bridge/
+https://blog.csdn.net/u012592062/article/details/51188401
+https://blog.csdn.net/liu_shi_jun/article/details/78088185
+https://blog.csdn.net/liu_shi_jun/article/details/78088185
+
+192.168.213.1
+
+IPADDR=192.168.213.134
+NETMASK=255.255.255.0
+GATEWAY=192.168.213.1
+
+IPADDR=10.0.2.15
+NETMASK=255.255.255.0
+GATEWAY=10.0.2.1
+DNS1=114.114.114.114
+
+sudo systemctl restart network
+curl -o a www.baidu.com
+
+https://blog.csdn.net/summer_huan/article/details/76104611
+
+sudo hostnamectl --static set-hostname mini1
+sudo vim /etc/hostname
+
+sudo vim /etc/hosts
+
+127.0.0.1  mini1
+::1        mini1
+
+192.168.213.134        mini1
+192.168.213.135	       mini2
+
+
+https://www.cnblogs.com/panzhaohui/p/6306675.html
+
+sudo vim /etc/profile
+
+export JAVA_HOME=/usr/jdk1.7.0_80
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+
+export HADOOP_HOME=/usr/hadoop/hadoop-2.7.6
+export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
+
+hadoop配置
+
+https://blog.csdn.net/liuyunshengsir/article/details/52816883
+
+1、hadoop-env.sh
+/usr/hadoop/hadoop-2.7.6/etc/hadoop/hadoop-env.sh
+
+export JAVA_HOME=/usr/jdk1.7.0_80
+
+2、core-site.xml
+
+公共参数
+
+
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://mini1:9000</value>
+</property>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/home/hadoop/hadoopdata</value>
+</property>
+
+
+3、hdfs-site.xml
+
+视频上说可以不用配置
+
+50070 http访问不了
+
+https://blog.csdn.net/Neone__u/article/details/53741786
+<property>
+  <name>dfs.http.address</name>
+  <value>0.0.0.0:50070</value>
+</property>
+
+
+4、mapred-site.xml
+
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+
+	
+5、yarn-site.xml
+
+<property>
+<name>yarn.resourcemanager.hostname</name>
+<value>mini1</value>
+</property>
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+
+
+配置环境变量
+hadoop_home
+path bin sbin
+
+sudo vim /etc/profile
+
+export JAVA_HOME=/usr/jdk1.7.0_80
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+
+export HADOOP_HOME=/usr/hadoop/hadoop-2.7.6
+export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
+
+
+关闭防火墙，开放外网访问端口的权限 
+https://blog.csdn.net/Post_Yuan/article/details/78603212
+
+格式化
+hadoop namenode -format
+
+起守护进程
+sbin/hadoop-daemon.sh start namenode
+
+
+gfs tfs
+
+
+hadoop 添加本机文件夹到HDFS目录以及一些简单命令
+https://blog.csdn.net/macanv/article/details/52729625
+
+vim test.txt
+
+hadoop fs -put test.txt hdfs://mini1:9000/
+
+访问50070端口对应的网页

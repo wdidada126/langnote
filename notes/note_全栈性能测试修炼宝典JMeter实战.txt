@@ -1,0 +1,35 @@
+学习Jmeter，需要搭建开源论坛JForum测试环境
+
+
+240 对应书籍页码 222
+
+9.4
+
+jforum page.60
+
+看到239
+
+美国四大运营商：Verizon Wireless、AT&T Wireless、Sprint Nextel、T-Mobile USA。
+其中Verizon Wireless和Sprint Nextel使用CDMA技术；
+AT&T Wireless和T-Mobile USA使用GSM/WCDMA技术；
+CDMA与GSM系用户在美国各占半壁江山。
+美国有哪些网络运营商
+
+全栈性能测试修炼宝典JMeter实战
+
+top w uptime
+系统负载linux命令行
+
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --quic-host-whitelist="https://www.google.com.hk" --origin-to-force-quic-on=www.google.com.hk:443 "https://www.google.com.hk"
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --origin-to-force-quic-on=www.google.com.hk:443 "https://www.google.com.hk"
+
+
+
+以前是业余兴趣，随便看看，09年以后做android手机的底层软件开发，就用的比较多，目前在linux下做过一些硬件驱动以及通信模块的开发。感觉从以前的开发工作转换过来也没有很大障碍。书是必须要花时间看的，几本比较经典的推荐一下，内核两本：深入理解Linux内核（Understanding the Linux Kernel）、LINUX内核设计与实现（Linux.Kernel.Development）前者比较厚，后者比较薄，看你喜欢；驱动开发：Linux设备驱动（Linux Device Drivers）；内核网络：Understanding Linux Network Internals；用户空间编程：unix环境高级编程。学习是一个循序渐进的积累过程，最好有这些经典的书放在手边随时可以查询，即使有高手在身边，书里的答案可能更全面。
+
+libusb
+http://libusb.sourceforge.net/api-1.0/structlibusb__bos__descriptor.html
+
+
+

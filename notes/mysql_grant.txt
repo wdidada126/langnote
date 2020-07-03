@@ -1,0 +1,14 @@
+opyright (c) 2017 http://www.51idc.com All rights reserved.        |
++---------------------------------------------------------------------+
+安装信息:
+apache:   目录:/etc/httpd/        使用:systemctl (start|stop|restart|status) httpd 网站根目录:/webdata
+FTP:      目录:/ftp               使用:systemctl (start|stop|restart|status) vsftpd
+MySQL:    目录:/var/lib/mysql     使用:systemctl (start|stop|restart|status) mysqld
+
+
+VSftpd：  用户名:ftpuser 密码:ftppasswd
+Mysql：   用户名:root    密码:mysqlpasswd
+systemctl restart mysqld
+mysql -uroot -pmysqlpasswd
+mysql -uroot -p5Edidada
+grant all privileges on *.* to 'root'@'%' identified by '5Edidada' with grant option;

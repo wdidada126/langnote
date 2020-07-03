@@ -1,0 +1,67 @@
+Setting up a Danted SOCKS Proxy Server on Debian Jessie
+
+登录root用户
+
+```shell
+apt-get update
+apt-get install build-essential libwrap0-dev libpam0g-dev libkrb5-dev libsasl2-dev
+```
+
+And then get the latest source files, as of this post it was 1.4.1
+
+wget http://www.inet.no/dante/files/dante-1.4.1.tar.gz
+tar xvf dante-1.4.1.tar.gz
+Then build the software
+
+cd dante-1.4.1
+./configure
+make
+make install
+Now we need to create a config file for the service open in an editor:
+
+vim /etc/sockd.conf
+
+And put in Some things to note about this config, change line 3 with whatever your external IP is, and note you may have to replace line 2 eth0 with whatever your NIC is called. For more configuration options check here - https://www.inet.no/dante/doc/latest/config/index.html NOTE: if you want to use this with a browser as the SOCKS client remove username from socksmethod and change it none.
+
+logoutput: /var/log/socks.log
+internal: eth0 port = 8088
+external: Replace.With.Your.IP
+socksmethod: username #none #rfc931
+clientmethod: none
+user.privileged: root
+user.notprivileged: nobody
+user.libwrap: nobody
+client pass {
+        from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0
+        log: connect disconnect error
+}
+socks pass {
+        from: 0.0.0.0/0 to: 0.0.0.0/0
+        protocol: tcp udp
+}
+Run the daemon, I suppose you could make a nice systemd service file but for now just run this:
+
+sockd
+Now you can connect your program that suports SOCKS proxying to this server, note that firefox does not support authentication so if you want to use this with a browser you have to turn off authentication (this works but is dangerious, definetly pick an odd port to run this on if that is your plan). Programs like torrent clients do work with authentication though.
+
+username就是linux系统账户的用户名和密码
+
+#logging
+errorlog: /var/log/sockd.errlog
+logoutput: /var/log/sockd.log
+debug: 2
+internal: eth0 port = 8088
+external: replace with your ip
+socksmethod: username #none #rfc931
+clientmethod: none
+user.privileged: root
+user.notprivileged: nobody
+user.libwrap: nobody
+client pass {
+        from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0
+        log: connect disconnect error
+}
+socks pass {
+        from: 0.0.0.0/0 to: 0.0.0.0/0
+        protocol: tcp udp
+}

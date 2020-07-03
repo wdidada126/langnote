@@ -1,0 +1,36 @@
+提供了一键脚本
+
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
+java -jar zipkin.jar
+如果用 Docker 的话，直接
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+https://github.com/forezp/SpringCloudLearning
+
+curl -H 'Content-Type:application/x-www-form-urlencoded;charset=UTF-8'\
+ -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"\
+ --cookie\
+ "Hm_lvt_aa5c701f4f646931bf78b6f40b234ef5=1537238899,1539148653;\
+JSESSIONID=66EFA6D2DA3E6B54A7677326D3C42BEC;\
+Hm_lpvt_aa5c701f4f646931bf78b6f40b234ef5=1539678634;\
+Hm_lvt_95fe05d21bcf7426c149294f7de9a621=1537172033,1539148644;\
+UM_distinctid=16667a0479d7b8-02f1b993978af2-8383268-144000-16667a0479ea7;\
+SESSION=cd2ac40c-d84e-4a7a-ac29-1e5f1c7340cc;\
+CNZZDATA1275037349=421865789-1539336851-%7C1539678434;\
+Hm_lpvt_95fe05d21bcf7426c149294f7de9a621=1539534781"\
+ -d "title%3d%e6%a1%86%e6%9e%b6%26blogType.id%3d11%26content%3d%3cp%3elink%3c%2fp%3e%26contentNoTag%3dconentdd%26summary%3dSpring%26keyWord%3dSpring"\
+ http://193.112.34.55:8080/admin/blog/save.do
+ 
+ 
+ <!-- 热部署模块 -->
+ 
+```xml
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+</dependency>
+
+```
+

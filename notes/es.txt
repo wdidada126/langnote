@@ -1,0 +1,184 @@
+{"query":{"match_all":{}}}
+
+To check the cluster health, we will be using the _cat API.
+
+```shell
+curl -X GET "localhost:9200/_cat/health?v"
+curl -X GET "http://192.168.1.5:9200/_cat/health?v"
+```
+
+
+
+We can also get a list of nodes in our cluster as follows:
+
+```shell
+curl -X GET "localhost:9200/_cat/nodes?v"
+```
+
+
+list_all_indices
+
+```shell
+curl -X GET "localhost:9200/_cat/indices?v"
+```
+
+create_an_index  增删index
+
+```shell
+curl -X PUT "localhost:9200/customer?pretty"
+curl -X GET "localhost:9200/_cat/indices?v"
+```
+
+
+```shell
+curl -X PUT "localhost:9200/secisland?pretty"
+```
+
+增
+```shell
+curl -X PUT "localhost:9200/customer/external/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+```
+
+查
+```shell
+curl -X GET "localhost:9200/customer/external/1?pretty"
+```
+
+删
+```shell
+curl -X DELETE "localhost:9200/customer?pretty"
+curl -X GET "localhost:9200/_cat/indices?v"
+```
+
+```shell
+curl -X PUT "localhost:9200/customer/external/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "John Doe"
+}
+'
+```
+
+改  The above changes the name of the document with the ID of 1 from "John Doe" to "Jane Doe". 
+```shell
+curl -X PUT "localhost:9200/customer/external/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jane Doe"
+}
+'
+```
+
+If, on the other hand, we use a different ID, a new document will be indexed and the existing document(s) already in the index remains untouched.
+
+```shell
+curl -X PUT "localhost:9200/customer/external/2?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jane Doe"
+}
+'
+```
+
+```shell
+curl -X POST "localhost:9200/customer/external?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "Jane Doe"
+}
+'
+```
+
+Note that in the above case, we are using the POST verb instead of PUT since we didn’t specify an ID.
+
+```shell
+```
+
+另外一种更改的方式
+```shell
+curl -X POST "localhost:9200/customer/external/1/_update?pretty" -H 'Content-Type: application/json' -d'
+{
+  "doc": { "name": "Jane Doe", "age": 20 }
+}
+'
+```
+
+又一种更改的方式
+
+```shell
+curl -X POST "localhost:9200/customer/external/1/_update?pretty" -H 'Content-Type: application/json' -d'
+{
+  "script" : "ctx._source.age += 5"
+}
+'
+```
+
+deleting_documents
+
+```shell
+curl -X DELETE "localhost:9200/customer/external/2?pretty"
+```
+
+batch_processing
+
+```shell
+curl -X POST "localhost:9200/customer/external/_bulk?pretty" -H 'Content-Type: application/json' -d'
+{"index":{"_id":"1"}}
+{"name": "John Doe" }
+{"index":{"_id":"2"}}
+{"name": "Jane Doe" }
+'
+```
+
+```shell
+curl -X POST "localhost:9200/customer/external/_bulk?pretty" -H 'Content-Type: application/json' -d'
+{"update":{"_id":"1"}}
+{"doc": { "name": "John Doe becomes Jane Doe" } }
+{"delete":{"_id":"2"}}
+'
+```
+
+```shell
+curl -XPOST 'localhost:9200/bank/account/_bulk?pretty&refresh' --data-binary "@accounts.json"
+curl 'localhost:9200/_cat/indices?v'
+```
+
+注意，在wsl中，需要使用管理员权限来加载accounts.json文件。
+
+
+curl -X GET "localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty"
+
+
+```shell
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "size": 1
+}
+'
+```
+
+Note that if size is not specified, it defaults to 10.
+
+
+This example does a match_all and returns documents 11 through 20:
+
+```shell
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "from": 10,
+  "size": 10
+}
+'
+```
+
+This example does a match_all and sorts the results by account balance in descending order and returns the top 10 (default size) documents.
+```shell
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": { "match_all": {} },
+  "sort": { "balance": { "order": "desc" } }
+}
+'
+```

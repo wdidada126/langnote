@@ -1,0 +1,24 @@
+# jsr
+
+JSR是Java Specification Requests的缩写，意思是Java 规范提案。是指向JCP(Java Community Process)提出新增一个标准化技术规范的正式请求。任何人都可以提交JSR，以向Java平台增添新的API和服务。JSR已成为Java界的一个重要标准。而决定规范提案是否通过，则是需要由一些Java界大牛（这些大牛来自于各大公司、各个领域）组成的评审委员会审核通过。
+在这众多规范中，有一些规范，可能会有不同的提供商、组织来实现。例如JDBC的规范，各个数据库提供商来实现。根据Jsp/Servlet规范，产生了各个Web 服务器。
+DI规范，各种DI框架都会遵守。JAX-WS、JAX-RS规范，各个WebService框架都会遵守。
+所以呢，在编程时，我们一定要遵守响应的规范，这样代码写一次，就可以在他们的各种实现之间切换，而不需要对我们的业务逻辑有任何的调整。
+为了对规范有一个更好的理解，决定开启规范学习的系列。
+最后附上JSR的链接：https://jcp.org/en/jsr/all
+
+
+[Spring核心——JSR250与资源控制](https://my.oschina.net/chkui/blog/1858734)
+
+JSR-175与元编程
+要说明JSR-250先要解释清楚JSR-175
+JSR-175的全文标题是 A Metadata Facility for the Java Programming Language （为Java语言提供元数据设施）。它明确提出了在Java平台引入“元编程”（Meta Programming）的思想，要求提供对“元数据”（Meta Data）的支持。这就是我们现在大量使用的“@”注解（Annotation）功能的最早来源。JSR-175之后的JSR-181（Web服务支持）、JSR-250、JSR-330都是基于“元数据”功能提出的一些更细节的实现。
+
+
+
+[JSR-330标准注解](https://maxwell.gitbook.io/way-to-architect/java-yu-yan/zhu-jie/chang-yong-zhu-jie/jsr-330biao-zhun-zhu-jie)
+
+<<<<<<< HEAD
+JCache (JSR-107)
+=======
+>>>>>>> afe522da082020e5ece0b75c43067644b2edb768

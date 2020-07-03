@@ -1,0 +1,20 @@
+java ssl okhttp andrdoid
+
+https://docs.oracle.com/javase/7/docs/api/
+
+http://square.github.io/okhttp/3.x/okhttp/okhttp3/CipherSuite.html
+
+java SSLSocket的详解
+https://blog.csdn.net/qq_31694651/article/details/52372341
+
+
+okhttp学习笔记--Https与SSL
+https://blog.csdn.net/yuanjw2014/article/details/53312285
+
+
+OkHttp 3.x框架简要分析
+https://blog.csdn.net/newhope1106/article/details/54636393
+
+
+NativeCrypto
+http://androidxref.com/6.0.0_r5/xref/external/conscrypt/src/main/java/org/conscrypt/NativeCrypto.java

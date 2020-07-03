@@ -1,0 +1,1632 @@
+vi /etc/selinux/config
+#SELINUX=enforcing
+SELINUX=disabled
+
+先设置selinux配置文件
+
+sudo -i
+export LC_ALL="en_US.UTF-8"
+cd /opt
+wget https://raw.githubusercontent.com/haiwen/seafile-server-installer-cn/master/seafile-server-centos-7-amd64-http
+wget https://download.seafile.com/seafhttp/files/9f7b109d-62ab-4cf1-b817-4cf8e34a27ec/seafile-pro-server_6.1.8_x86-64.tar.gz
+wget https://download.seafile.com/d/6e5297246c/files/?p=/pro/seafile-pro-server_6.1.8_x86-64.tar.gz
+bash seafile-server-centos-7-amd64-http 6.1.8
+
+
+6.1.8版本的说明，登录后不可用
+verifying password of user root ...  done
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       127.0.0.1
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /opt/seafile/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+for information.
+
+
+sed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data available
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+[05/25/18 04:40:59] ../common/session.c(139): using config file /opt/seafile/conf/ccnet.conf
+[05/25/18 04:40:59] ../common/license.c(427): Loading license file /opt/seafile/seafile-license.txt ..
+[05/25/18 04:40:59] ../common/license.c(430): License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Starting seafile server, please wait ...
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Seafile server started
+
+Done.
+
+LC_ALL is not set in ENV, set to en_US.UTF-8
+Starting seahub at port 8000 ...
+
+
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+
+
+
+Seahub is started
+
+Done.
+
+
+Stopping seahub ...
+Done.
+
+
+Stopping seafile server ...
+Done.
+sed: warning: failed to get security context of /opt/seafile/conf/seafevents.conf: No data available
+
+  Your Seafile server is installed
+  -----------------------------------------------------------------
+
+  Server Address:      http://127.0.0.1
+
+  Seafile Admin:       admin@seafile.local
+  Admin Password:      ou6Agh7i
+
+  Seafile Data Dir:    /opt/seafile/seafile-data
+
+  Seafile DB Credentials:  Check /opt/seafile.my.cnf
+  Root DB Credentials:     Check /root/.my.cnf
+
+  This report is also saved to /opt/seafile/aio_seafile-server.log
+
+
+
+  Next you should manually complete the following steps
+  -----------------------------------------------------------------
+
+  1) Log in to Seafile and configure your server domain via the system
+     admin area if applicable.
+
+  2) If this server is behind a firewall, you need to ensure that
+     tcp port 80 is open.
+
+  3) Seahub tries to send emails via the local server. Install and
+     configure Postfix for this to work or
+     check https://manual.seafile.com/config/sending_email.html
+     for instructions on how to use an existing email account via SMTP.
+
+
+
+
+  Optional steps
+  -----------------------------------------------------------------
+
+  1) Check seahub_settings.py and customize it to fit your needs. Consult
+     http://manual.seafile.com/config/seahub_settings_py.html for possible switches.
+
+  2) Setup NGINX with official SSL certificate.
+
+  3) Secure server with iptables based firewall. For instance: UFW or shorewall
+
+  4) Harden system with port knocking, fail2ban, etc.
+
+  5) Enable unattended installation of security updates. Check
+     https://wiki.Ubuntu.org/UnattendedUpgrades for details.
+
+  6) Implement a backup routine for your Seafile server.
+
+  7) Update NGINX worker processes to reflect the number of CPU cores.
+
+
+
+
+  Seafile support options
+  -----------------------------------------------------------------
+
+  For free community support visit:   https://bbs.seafile.com
+  For paid commercial support visit:  https://seafile.com
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+systemctl status seahub.service
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Installing : libcom_err-devel-1.42.9-12.el7_5.x86_64                                                                165/284 
+  Installing : pcsc-lite-libs-1.8.8-7.el7.x86_64                                                                      166/284 
+  Installing : gsettings-desktop-schemas-3.24.1-1.el7.x86_64                                                          167/284 
+  Installing : glib-networking-2.50.0-1.el7.x86_64                                                                    168/284 
+  Installing : libsoup-2.56.0-6.el7.x86_64                                                                            169/284 
+  Installing : rest-0.8.0-2.el7.x86_64                                                                                170/284 
+  Installing : soundtouch-1.4.0-9.el7.x86_64                                                                          171/284 
+  Installing : keyutils-libs-devel-1.5.8-3.el7.x86_64                                                                 172/284 
+  Installing : libmpcdec-1.2.6-12.el7.x86_64                                                                          173/284 
+  Installing : cyrus-sasl-2.1.26-23.el7.x86_64                                                                        174/284 
+  Installing : cyrus-sasl-devel-2.1.26-23.el7.x86_64                                                                  175/284 
+  Installing : tzdata-java-2018e-3.el7.noarch                                                                         176/284 
+  Installing : libXau-1.0.8-2.1.el7.x86_64                                                                            177/284 
+  Installing : libxcb-1.12-1.el7.x86_64                                                                               178/284 
+  Installing : ttmkfdir-3.0.9-42.el7.x86_64                                                                           179/284 
+  Installing : xorg-x11-fonts-Type1-7.5-9.el7.noarch                                                                  180/284 
+  Installing : 1:libreoffice-ure-common-5.3.6.1-10.el7.noarch                                                         181/284 
+  Installing : python-six-1.9.0-2.el7.noarch                                                                          182/284 
+  Installing : yajl-2.0.4-4.el7.x86_64                                                                                183/284 
+  Installing : raptor2-2.0.9-3.el7.x86_64                                                                             184/284 
+  Installing : rasqal-0.9.30-4.el7.x86_64                                                                             185/284 
+  Installing : python-backports-1.0-8.el7.x86_64                                                                      186/284 
+  Installing : python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch                                               187/284 
+  Installing : python-setuptools-0.9.8-7.el7.noarch                                                                   188/284 
+  Installing : python-urllib3-1.10.2-5.el7.noarch                                                                     189/284 
+  Installing : libX11-common-1.6.5-1.el7.noarch                                                                       190/284 
+  Installing : libX11-1.6.5-1.el7.x86_64                                                                              191/284 
+  Installing : libXext-1.3.3-3.el7.x86_64                                                                             192/284 
+  Installing : gdk-pixbuf2-2.36.5-1.el7.x86_64                                                                        193/284 
+  Installing : libXrender-0.9.10-1.el7.x86_64                                                                         194/284 
+  Installing : libXfixes-5.0.3-1.el7.x86_64                                                                           195/284 
+  Installing : libXi-1.7.9-1.el7.x86_64                                                                               196/284 
+  Installing : libXinerama-1.1.3-2.1.el7.x86_64                                                                       197/284 
+  Installing : libXtst-1.2.3-1.el7.x86_64                                                                             198/284 
+  Installing : libXdamage-1.1.4-4.1.el7.x86_64                                                                        199/284 
+  Installing : libXrandr-1.5.1-2.el7.x86_64                                                                           200/284 
+  Installing : libXcomposite-0.4.4-4.1.el7.x86_64                                                                     201/284 
+  Installing : mesa-libEGL-17.2.3-8.20171019.el7.x86_64                                                               202/284 
+  Installing : libXcursor-1.1.14-8.el7.x86_64                                                                         203/284 
+  Installing : gtk-update-icon-cache-3.22.26-4.el7_5.x86_64                                                           204/284 
+  Installing : pulseaudio-libs-10.0-5.el7.x86_64                                                                      205/284 
+  Installing : at-spi2-core-2.22.0-1.el7.x86_64                                                                       206/284 
+  Installing : at-spi2-atk-2.22.0-2.el7.x86_64                                                                        207/284 
+  Installing : libXft-2.3.2-2.el7.x86_64                                                                              208/284 
+  Installing : libXv-1.0.11-1.el7.x86_64                                                                              209/284 
+  Installing : libXxf86vm-1.1.4-1.el7.x86_64                                                                          210/284 
+  Installing : mesa-libGL-17.2.3-8.20171019.el7.x86_64                                                                211/284 
+  Installing : cairo-1.14.8-2.el7.x86_64                                                                              212/284 
+  Installing : pango-1.40.4-1.el7.x86_64                                                                              213/284 
+  Installing : cairo-gobject-1.14.8-2.el7.x86_64                                                                      214/284 
+  Installing : gtk3-3.22.26-4.el7_5.x86_64                                                                            215/284 
+  Installing : gstreamer1-plugins-base-1.10.4-1.el7.x86_64                                                            216/284 
+  Installing : gtk2-2.24.31-1.el7.x86_64                                                                              217/284 
+  Installing : librsvg2-2.40.16-1.el7.x86_64                                                                          218/284 
+  Installing : giflib-4.1.6-9.el7.x86_64                                                                              219/284 
+  Installing : lksctp-tools-1.0.17-2.el7.x86_64                                                                       220/284 
+  Installing : 1:java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64                                          221/284 
+  Installing : 1:java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64                                                   222/284 
+  Installing : 1:libreoffice-ure-5.3.6.1-10.el7.x86_64                                                                223/284 
+  Installing : sac-1.3-17.el7.noarch                                                                                  224/284 
+  Installing : xml-commons-apis-1.4.01-16.el7.noarch                                                                  225/284 
+  Installing : flute-1.3.0-11.OOo31.el7.noarch                                                                        226/284 
+  Installing : geronimo-jms-1.1.1-19.el7.noarch                                                                       227/284 
+  Installing : xml-commons-resolver-1.2-15.el7.noarch                                                                 228/284 
+  Installing : xalan-j2-2.7.1-23.el7.noarch                                                                           229/284 
+  Installing : xerces-j2-2.11.0-17.el7_0.noarch                                                                       230/284 
+  Installing : javamail-1.4.6-8.el7.noarch                                                                            231/284 
+  Installing : log4j-1.2.17-16.el7_4.noarch                                                                           232/284 
+  Installing : avalon-logkit-2.1-14.el7.noarch                                                                        233/284 
+  Installing : apache-commons-logging-1.1.2-7.el7.noarch                                                              234/284 
+  Installing : avalon-framework-4.3-10.el7.noarch                                                                     235/284 
+  Installing : libbase-1.1.3-10.el7.noarch                                                                            236/284 
+  Installing : libloader-1.1.3-9.el7.noarch                                                                           237/284 
+  Installing : pentaho-libxml-1.1.3-10.el7.noarch                                                                     238/284 
+  Installing : libfonts-1.1.3-13.el7.noarch                                                                           239/284 
+  Installing : librepository-1.1.3-9.el7.noarch                                                                       240/284 
+  Installing : liblayout-0.2.10-8.el7.noarch                                                                          241/284 
+  Installing : libformula-1.1.3-10.el7.noarch                                                                         242/284 
+  Installing : libserializer-1.1.2-10.el7.noarch                                                                      243/284 
+  Installing : 1:pentaho-reporting-flow-engine-0.9.4-8.el7.noarch                                                     244/284 
+  Installing : postgresql-jdbc-9.2.1002-6.el7_5.noarch                                                                245/284 
+  Installing : libtool-ltdl-2.4.2-22.el7_3.x86_64                                                                     246/284 
+  Installing : redland-1.0.16-6.el7.x86_64                                                                            247/284 
+  Installing : libverto-devel-0.2.5-4.el7.x86_64                                                                      248/284 
+  Installing : krb5-devel-1.15.1-19.el7.x86_64                                                                        249/284 
+  Installing : libsrtp-1.4.4-10.20101004cvs.el7.x86_64                                                                250/284 
+  Installing : gstreamer1-plugins-bad-free-1.10.4-3.el7.x86_64                                                        251/284 
+  Installing : gstreamer1-plugins-bad-free-gtk-1.10.4-3.el7.x86_64                                                    252/284 
+  Installing : 1:libreoffice-gtk3-5.3.6.1-10.el7.x86_64                                                               253/284 
+  Installing : 1:libreoffice-langpack-en-5.3.6.1-10.el7.x86_64                                                        254/284 
+  Installing : 1:libreoffice-core-5.3.6.1-10.el7.x86_64                                                               255/284 
+  Installing : 1:libreoffice-x11-5.3.6.1-10.el7.x86_64                                                                256/284 
+  Installing : 1:libreoffice-gtk2-5.3.6.1-10.el7.x86_64                                                               257/284 
+  Installing : 1:libreoffice-pyuno-5.3.6.1-10.el7.x86_64                                                              258/284 
+  Installing : 1:libreoffice-calc-5.3.6.1-10.el7.x86_64                                                               259/284 
+  Installing : 1:libreoffice-writer-5.3.6.1-10.el7.x86_64                                                             260/284 
+  Installing : 1:libreoffice-emailmerge-5.3.6.1-10.el7.x86_64                                                         261/284 
+  Installing : 1:libreoffice-base-5.3.6.1-10.el7.x86_64                                                               262/284 
+  Installing : 1:libreoffice-math-5.3.6.1-10.el7.x86_64                                                               263/284 
+  Installing : 1:libreoffice-impress-5.3.6.1-10.el7.x86_64                                                            264/284 
+  Installing : 1:libreoffice-graphicfilter-5.3.6.1-10.el7.x86_64                                                      265/284 
+  Installing : 1:libreoffice-pdfimport-5.3.6.1-10.el7.x86_64                                                          266/284 
+  Installing : 1:libreoffice-draw-5.3.6.1-10.el7.x86_64                                                               267/284 
+  Installing : 1:libreoffice-5.3.6.1-10.el7.x86_64                                                                    268/284 
+  Installing : 1:openssl-devel-1.0.2k-12.el7.x86_64                                                                   269/284 
+  Installing : poppler-utils-0.26.5-17.el7_4.x86_64                                                                   270/284 
+  Installing : python-requests-2.6.0-1.el7_1.noarch                                                                   271/284 
+  Installing : python2-pip-8.1.2-6.el7.noarch                                                                         272/284 
+  Installing : libmemcached-devel-1.0.16-5.el7.x86_64                                                                 273/284 
+  Installing : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64                                                           274/284 
+  Installing : gcc-4.8.5-28.el7_5.1.x86_64                                                                            275/284 
+  Installing : memcached-1.4.15-10.el7_3.1.x86_64                                                                     276/284 
+  Installing : wqy-unibit-fonts-1.1.0-13.el7.noarch                                                                   277/284 
+  Installing : wqy-zenhei-fonts-0.9.46-11.el7.noarch                                                                  278/284 
+  Installing : wqy-microhei-fonts-0.2.0-0.12.beta.el7.noarch                                                          279/284 
+  Installing : libffi-devel-3.0.13-18.el7.x86_64                                                                      280/284 
+  Installing : pwgen-2.07-1.el7.x86_64                                                                                281/284 
+  Installing : python-ldap-2.4.15-2.el7.x86_64                                                                        282/284 
+  Installing : python-devel-2.7.5-68.el7.x86_64                                                                       283/284 
+  Installing : MySQL-python-1.2.5-1.el7.x86_64                                                                        284/284 
+  Verifying  : libXext-1.3.3-3.el7.x86_64                                                                               1/284 
+  Verifying  : 1:libreoffice-calc-5.3.6.1-10.el7.x86_64                                                                 2/284 
+  Verifying  : libXi-1.7.9-1.el7.x86_64                                                                                 3/284 
+  Verifying  : cairo-gobject-1.14.8-2.el7.x86_64                                                                        4/284 
+  Verifying  : libwpd-0.10.0-1.el7.x86_64                                                                               5/284 
+  Verifying  : perl-HTTP-Tiny-0.033-3.el7.noarch                                                                        6/284 
+  Verifying  : avalon-logkit-2.1-14.el7.noarch                                                                          7/284 
+  Verifying  : libXrender-0.9.10-1.el7.x86_64                                                                           8/284 
+  Verifying  : libsrtp-1.4.4-10.20101004cvs.el7.x86_64                                                                  9/284 
+  Verifying  : glibc-devel-2.17-222.el7.x86_64                                                                         10/284 
+  Verifying  : poppler-utils-0.26.5-17.el7_4.x86_64                                                                    11/284 
+  Verifying  : MySQL-python-1.2.5-1.el7.x86_64                                                                         12/284 
+  Verifying  : python-lxml-3.2.1-4.el7.x86_64                                                                          13/284 
+  Verifying  : perl-threads-1.87-4.el7.x86_64                                                                          14/284 
+  Verifying  : 2:libpng-1.5.13-7.el7_2.x86_64                                                                          15/284 
+  Verifying  : rest-0.8.0-2.el7.x86_64                                                                                 16/284 
+  Verifying  : nettle-2.7.1-8.el7.x86_64                                                                               17/284 
+  Verifying  : 1:libvorbis-1.3.3-8.el7.1.x86_64                                                                        18/284 
+  Verifying  : poppler-0.26.5-17.el7_4.x86_64                                                                          19/284 
+  Verifying  : 4:perl-5.16.3-292.el7.x86_64                                                                            20/284 
+  Verifying  : libverto-devel-0.2.5-4.el7.x86_64                                                                       21/284 
+  Verifying  : dconf-0.26.0-2.el7.x86_64                                                                               22/284 
+  Verifying  : libetonyek-0.1.7-1.el7.x86_64                                                                           23/284 
+  Verifying  : python-javapackages-3.4.1-11.el7.noarch                                                                 24/284 
+  Verifying  : gcc-4.8.5-28.el7_5.1.x86_64                                                                             25/284 
+  Verifying  : libvisio-0.1.6-1.el7.x86_64                                                                             26/284 
+  Verifying  : perl-File-Temp-0.23.01-3.el7.noarch                                                                     27/284 
+  Verifying  : libXcomposite-0.4.4-4.1.el7.x86_64                                                                      28/284 
+  Verifying  : libtool-ltdl-2.4.2-22.el7_3.x86_64                                                                      29/284 
+  Verifying  : 1:liberation-sans-fonts-1.07.2-16.el7.noarch                                                            30/284 
+  Verifying  : lksctp-tools-1.0.17-2.el7.x86_64                                                                        31/284 
+  Verifying  : 1:libreoffice-opensymbol-fonts-5.3.6.1-10.el7.noarch                                                    32/284 
+  Verifying  : perl-Socket-2.010-4.el7.x86_64                                                                          33/284 
+  Verifying  : libX11-common-1.6.5-1.el7.noarch                                                                        34/284 
+  Verifying  : orc-0.4.26-1.el7.x86_64                                                                                 35/284 
+  Verifying  : mesa-libglapi-17.2.3-8.20171019.el7.x86_64                                                              36/284 
+  Verifying  : boost-date-time-1.53.0-27.el7.x86_64                                                                    37/284 
+  Verifying  : pentaho-libxml-1.1.3-10.el7.noarch                                                                      38/284 
+  Verifying  : perl-threads-shared-1.43-6.el7.x86_64                                                                   39/284 
+  Verifying  : pango-1.40.4-1.el7.x86_64                                                                               40/284 
+  Verifying  : 4:perl-libs-5.16.3-292.el7.x86_64                                                                       41/284 
+  Verifying  : mesa-libGLES-17.2.3-8.20171019.el7.x86_64                                                               42/284 
+  Verifying  : libstaroffice-0.0.4-1.el7.x86_64                                                                        43/284 
+  Verifying  : python-backports-1.0-8.el7.x86_64                                                                       44/284 
+  Verifying  : perl-Storable-2.45-3.el7.x86_64                                                                         45/284 
+  Verifying  : dejavu-sans-fonts-2.33-6.el7.noarch                                                                     46/284 
+  Verifying  : libwayland-client-1.14.0-2.el7.x86_64                                                                   47/284 
+  Verifying  : python-devel-2.7.5-68.el7.x86_64                                                                        48/284 
+  Verifying  : 1:liberation-mono-fonts-1.07.2-16.el7.noarch                                                            49/284 
+  Verifying  : 1:perl-Pod-Escapes-1.04-292.el7.noarch                                                                  50/284 
+  Verifying  : yajl-2.0.4-4.el7.x86_64                                                                                 51/284 
+  Verifying  : 1:liberation-serif-fonts-1.07.2-16.el7.noarch                                                           52/284 
+  Verifying  : libsoup-2.56.0-6.el7.x86_64                                                                             53/284 
+  Verifying  : python-six-1.9.0-2.el7.noarch                                                                           54/284 
+  Verifying  : 1:libreoffice-ure-common-5.3.6.1-10.el7.noarch                                                          55/284 
+  Verifying  : librepository-1.1.3-9.el7.noarch                                                                        56/284 
+  Verifying  : ttmkfdir-3.0.9-42.el7.x86_64                                                                            57/284 
+  Verifying  : neon-0.30.0-3.el7.x86_64                                                                                58/284 
+  Verifying  : postgresql-jdbc-9.2.1002-6.el7_5.noarch                                                                 59/284 
+  Verifying  : libdvdnav-5.0.3-1.el7.x86_64                                                                            60/284 
+  Verifying  : libXau-1.0.8-2.1.el7.x86_64                                                                             61/284 
+  Verifying  : perl-File-Path-2.09-2.el7.noarch                                                                        62/284 
+  Verifying  : libicu-50.1.2-15.el7.x86_64                                                                             63/284 
+  Verifying  : 1:libreoffice-pdfimport-5.3.6.1-10.el7.x86_64                                                           64/284 
+  Verifying  : 1:libreoffice-base-5.3.6.1-10.el7.x86_64                                                                65/284 
+  Verifying  : python-ipaddress-1.0.16-2.el7.noarch                                                                    66/284 
+  Verifying  : 1:libreoffice-gtk3-5.3.6.1-10.el7.x86_64                                                                67/284 
+  Verifying  : tzdata-java-2018e-3.el7.noarch                                                                          68/284 
+  Verifying  : perl-Text-ParseWords-3.29-4.el7.noarch                                                                  69/284 
+  Verifying  : cyrus-sasl-2.1.26-23.el7.x86_64                                                                         70/284 
+  Verifying  : iso-codes-3.46-2.el7.noarch                                                                             71/284 
+  Verifying  : libmpcdec-1.2.6-12.el7.x86_64                                                                           72/284 
+  Verifying  : libcmis-0.5.1-2.el7.x86_64                                                                              73/284 
+  Verifying  : mesa-libgbm-17.2.3-8.20171019.el7.x86_64                                                                74/284 
+  Verifying  : 1:xorg-x11-font-utils-7.5-20.el7.x86_64                                                                 75/284 
+  Verifying  : clucene-contribs-lib-2.3.3.4-11.el7.x86_64                                                              76/284 
+  Verifying  : libX11-1.6.5-1.el7.x86_64                                                                               77/284 
+  Verifying  : hyphen-2.8.6-5.el7.x86_64                                                                               78/284 
+  Verifying  : libICE-1.0.9-9.el7.x86_64                                                                               79/284 
+  Verifying  : keyutils-libs-devel-1.5.8-3.el7.x86_64                                                                  80/284 
+  Verifying  : giflib-4.1.6-9.el7.x86_64                                                                               81/284 
+  Verifying  : clucene-core-2.3.3.4-11.el7.x86_64                                                                      82/284 
+  Verifying  : 4:perl-Time-HiRes-1.9725-3.el7.x86_64                                                                   83/284 
+  Verifying  : sac-1.3-17.el7.noarch                                                                                   84/284 
+  Verifying  : soundtouch-1.4.0-9.el7.x86_64                                                                           85/284 
+  Verifying  : libloader-1.1.3-9.el7.noarch                                                                            86/284 
+  Verifying  : javamail-1.4.6-8.el7.noarch                                                                             87/284 
+  Verifying  : google-crosextra-caladea-fonts-1.002-0.4.20130214.el7.noarch                                            88/284 
+  Verifying  : libxcb-1.12-1.el7.x86_64                                                                                89/284 
+  Verifying  : libmwaw-0.3.5-1.el7.x86_64                                                                              90/284 
+  Verifying  : boost-system-1.53.0-27.el7.x86_64                                                                       91/284 
+  Verifying  : perl-Getopt-Long-2.40-3.el7.noarch                                                                      92/284 
+  Verifying  : hunspell-en-US-0.20121024-6.el7.noarch                                                                  93/284 
+  Verifying  : harfbuzz-1.3.2-1.el7.x86_64                                                                             94/284 
+  Verifying  : python-setuptools-0.9.8-7.el7.noarch                                                                    95/284 
+  Verifying  : gsettings-desktop-schemas-3.24.1-1.el7.x86_64                                                           96/284 
+  Verifying  : python2-pip-8.1.2-6.el7.noarch                                                                          97/284 
+  Verifying  : wqy-unibit-fonts-1.1.0-13.el7.noarch                                                                    98/284 
+  Verifying  : hyphen-en-2.8.6-5.el7.noarch                                                                            99/284 
+  Verifying  : pcsc-lite-libs-1.8.8-7.el7.x86_64                                                                      100/284 
+  Verifying  : gstreamer1-plugins-bad-free-gtk-1.10.4-3.el7.x86_64                                                    101/284 
+  Verifying  : fontpackages-filesystem-1.44-8.el7.noarch                                                              102/284 
+  Verifying  : libfreehand-0.1.1-1.el7.x86_64                                                                         103/284 
+  Verifying  : perl-Filter-1.49-3.el7.x86_64                                                                          104/284 
+  Verifying  : libwayland-cursor-1.14.0-2.el7.x86_64                                                                  105/284 
+  Verifying  : librsvg2-2.40.16-1.el7.x86_64                                                                          106/284 
+  Verifying  : libXtst-1.2.3-1.el7.x86_64                                                                             107/284 
+  Verifying  : boost-iostreams-1.53.0-27.el7.x86_64                                                                   108/284 
+  Verifying  : libcom_err-devel-1.42.9-12.el7_5.x86_64                                                                109/284 
+  Verifying  : psmisc-22.20-15.el7.x86_64                                                                             110/284 
+  Verifying  : python-urllib3-1.10.2-5.el7.noarch                                                                     111/284 
+  Verifying  : log4j-1.2.17-16.el7_4.noarch                                                                           112/284 
+  Verifying  : 1:libtheora-1.1.1-8.el7.x86_64                                                                         113/284 
+  Verifying  : unzip-6.0-19.el7.x86_64                                                                                114/284 
+  Verifying  : wqy-zenhei-fonts-0.9.46-11.el7.noarch                                                                  115/284 
+  Verifying  : libmodman-2.0.1-8.el7.x86_64                                                                           116/284 
+  Verifying  : wqy-microhei-fonts-0.2.0-0.12.beta.el7.noarch                                                          117/284 
+  Verifying  : geronimo-jms-1.1.1-19.el7.noarch                                                                       118/284 
+  Verifying  : libXdamage-1.1.4-4.1.el7.x86_64                                                                        119/284 
+  Verifying  : 1:libreoffice-langpack-en-5.3.6.1-10.el7.x86_64                                                        120/284 
+  Verifying  : redland-1.0.16-6.el7.x86_64                                                                            121/284 
+  Verifying  : mythes-en-3.0-13.el7.noarch                                                                            122/284 
+  Verifying  : gsm-1.0.13-11.el7.x86_64                                                                               123/284 
+  Verifying  : pulseaudio-libs-10.0-5.el7.x86_64                                                                      124/284 
+  Verifying  : 1:libreoffice-data-5.3.6.1-10.el7.noarch                                                               125/284 
+  Verifying  : mythes-1.2.3-7.el7.x86_64                                                                              126/284 
+  Verifying  : 2:libogg-1.3.0-7.el7.x86_64                                                                            127/284 
+  Verifying  : 1:java-1.7.0-openjdk-1.7.0.181-2.6.14.8.el7_5.x86_64                                                   128/284 
+  Verifying  : 1:libreoffice-emailmerge-5.3.6.1-10.el7.x86_64                                                         129/284 
+  Verifying  : libmpc-1.0.1-3.el7.x86_64                                                                              130/284 
+  Verifying  : python-pillow-2.0.0-19.gitd1c6db8.el7.x86_64                                                           131/284 
+  Verifying  : python-ldap-2.4.15-2.el7.x86_64                                                                        132/284 
+  Verifying  : libepoxy-1.3.1-2.el7_5.x86_64                                                                          133/284 
+  Verifying  : perl-Pod-Usage-1.63-3.el7.noarch                                                                       134/284 
+  Verifying  : libfonts-1.1.3-13.el7.noarch                                                                           135/284 
+  Verifying  : pakchois-0.4-10.el7.x86_64                                                                             136/284 
+  Verifying  : dejavu-sans-mono-fonts-2.33-6.el7.noarch                                                               137/284 
+  Verifying  : apache-commons-logging-1.1.2-7.el7.noarch                                                              138/284 
+  Verifying  : gtk3-3.22.26-4.el7_5.x86_64                                                                            139/284 
+  Verifying  : fontconfig-2.10.95-11.el7.x86_64                                                                       140/284 
+  Verifying  : graphite2-1.3.10-1.el7_3.x86_64                                                                        141/284 
+  Verifying  : glib-networking-2.50.0-1.el7.x86_64                                                                    142/284 
+  Verifying  : libmemcached-devel-1.0.16-5.el7.x86_64                                                                 143/284 
+  Verifying  : at-spi2-core-2.22.0-1.el7.x86_64                                                                       144/284 
+  Verifying  : 1:liberation-fonts-common-1.07.2-16.el7.noarch                                                         145/284 
+  Verifying  : 1:libreoffice-core-5.3.6.1-10.el7.x86_64                                                               146/284 
+  Verifying  : libexttextcat-3.4.1-3.el7.x86_64                                                                       147/284 
+  Verifying  : librevenge-0.0.2-2.el7.x86_64                                                                          148/284 
+  Verifying  : libXfixes-5.0.3-1.el7.x86_64                                                                           149/284 
+  Verifying  : libsndfile-1.0.25-10.el7.x86_64                                                                        150/284 
+  Verifying  : openjpeg-libs-1.5.1-17.el7.x86_64                                                                      151/284 
+  Verifying  : pixman-0.34.0-1.el7.x86_64                                                                             152/284 
+  Verifying  : krb5-devel-1.15.1-19.el7.x86_64                                                                        153/284 
+  Verifying  : libtiff-4.0.3-27.el7_3.x86_64                                                                          154/284 
+  Verifying  : python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch                                               155/284 
+  Verifying  : trousers-0.3.14-2.el7.x86_64                                                                           156/284 
+  Verifying  : libjpeg-turbo-1.2.90-5.el7.x86_64                                                                      157/284 
+  Verifying  : javapackages-tools-3.4.1-11.el7.noarch                                                                 158/284 
+  Verifying  : libXv-1.0.11-1.el7.x86_64                                                                              159/284 
+  Verifying  : gstreamer1-1.10.4-2.el7.x86_64                                                                         160/284 
+  Verifying  : mesa-libwayland-egl-17.2.3-8.20171019.el7.x86_64                                                       161/284 
+  Verifying  : pcre-devel-8.32-17.el7.x86_64                                                                          162/284 
+  Verifying  : 4:perl-macros-5.16.3-292.el7.x86_64                                                                    163/284 
+  Verifying  : xkeyboard-config-2.20-1.el7.noarch                                                                     164/284 
+  Verifying  : colord-libs-1.3.4-1.el7.x86_64                                                                         165/284 
+  Verifying  : mesa-libEGL-17.2.3-8.20171019.el7.x86_64                                                               166/284 
+  Verifying  : libmemcached-1.0.16-5.el7.x86_64                                                                       167/284 
+  Verifying  : pwgen-2.07-1.el7.x86_64                                                                                168/284 
+  Verifying  : liborcus-0.12.1-2.el7.x86_64                                                                           169/284 
+  Verifying  : libformula-1.1.3-10.el7.noarch                                                                         170/284 
+  Verifying  : hicolor-icon-theme-0.12-7.el7.noarch                                                                   171/284 
+  Verifying  : 1:libreoffice-math-5.3.6.1-10.el7.x86_64                                                               172/284 
+  Verifying  : 1:perl-parent-0.225-244.el7.noarch                                                                     173/284 
+  Verifying  : avahi-libs-0.6.31-19.el7.x86_64                                                                        174/284 
+  Verifying  : harfbuzz-icu-1.3.2-1.el7.x86_64                                                                        175/284 
+  Verifying  : libcdr-0.1.4-1.el7.x86_64                                                                              176/284 
+  Verifying  : libwps-0.4.7-1.el7.x86_64                                                                              177/284 
+  Verifying  : copy-jdk-configs-3.3-10.el7_5.noarch                                                                   178/284 
+  Verifying  : jasper-libs-1.900.1-31.el7.x86_64                                                                      179/284 
+  Verifying  : 1:libreoffice-gtk2-5.3.6.1-10.el7.x86_64                                                               180/284 
+  Verifying  : cdparanoia-libs-10.2-17.el7.x86_64                                                                     181/284 
+  Verifying  : gstreamer1-plugins-base-1.10.4-1.el7.x86_64                                                            182/284 
+  Verifying  : libserializer-1.1.2-10.el7.noarch                                                                      183/284 
+  Verifying  : boost-filesystem-1.53.0-27.el7.x86_64                                                                  184/284 
+  Verifying  : gnutls-3.3.26-9.el7.x86_64                                                                             185/284 
+  Verifying  : perl-Encode-2.51-7.el7.x86_64                                                                          186/284 
+  Verifying  : perl-Carp-1.26-244.el7.noarch                                                                          187/284 
+  Verifying  : mesa-libGL-17.2.3-8.20171019.el7.x86_64                                                                188/284 
+  Verifying  : libvisual-0.4.0-16.el7.x86_64                                                                          189/284 
+  Verifying  : libmspub-0.1.2-1.el7.x86_64                                                                            190/284 
+  Verifying  : libbase-1.1.3-10.el7.noarch                                                                            191/284 
+  Verifying  : libevent-2.0.21-4.el7.x86_64                                                                           192/284 
+  Verifying  : poppler-data-0.4.6-3.el7.noarch                                                                        193/284 
+  Verifying  : xerces-j2-2.11.0-17.el7_0.noarch                                                                       194/284 
+  Verifying  : cpp-4.8.5-28.el7_5.1.x86_64                                                                            195/284 
+  Verifying  : libXrandr-1.5.1-2.el7.x86_64                                                                           196/284 
+  Verifying  : libXfont-1.5.2-1.el7.x86_64                                                                            197/284 
+  Verifying  : gtk-update-icon-cache-3.22.26-4.el7_5.x86_64                                                           198/284 
+  Verifying  : xml-common-0.6.3-39.el7.noarch                                                                         199/284 
+  Verifying  : google-crosextra-carlito-fonts-1.103-0.2.20130920.el7.noarch                                           200/284 
+  Verifying  : 1:pentaho-reporting-flow-engine-0.9.4-8.el7.noarch                                                     201/284 
+  Verifying  : at-spi2-atk-2.22.0-2.el7.x86_64                                                                        202/284 
+  Verifying  : perl-Exporter-5.68-3.el7.noarch                                                                        203/284 
+  Verifying  : tomcat-servlet-3.0-api-7.0.76-6.el7.noarch                                                             204/284 
+  Verifying  : libxshmfence-1.2-1.el7.x86_64                                                                          205/284 
+  Verifying  : gstreamer1-plugins-bad-free-1.10.4-3.el7.x86_64                                                        206/284 
+  Verifying  : libSM-1.2.2-2.el7.x86_64                                                                               207/284 
+  Verifying  : mpfr-3.1.1-4.el7.x86_64                                                                                208/284 
+  Verifying  : zlib-devel-1.2.7-17.el7.x86_64                                                                         209/284 
+  Verifying  : flute-1.3.0-11.OOo31.el7.noarch                                                                        210/284 
+  Verifying  : 1:libreoffice-pyuno-5.3.6.1-10.el7.x86_64                                                              211/284 
+  Verifying  : 1:libreoffice-ure-5.3.6.1-10.el7.x86_64                                                                212/284 
+  Verifying  : libodfgen-0.1.4-1.el7.x86_64                                                                           213/284 
+  Verifying  : adwaita-cursor-theme-3.26.0-1.el7.noarch                                                               214/284 
+  Verifying  : libwayland-server-1.14.0-2.el7.x86_64                                                                  215/284 
+  Verifying  : atk-2.22.0-3.el7.x86_64                                                                                216/284 
+  Verifying  : libdvdread-5.0.3-3.el7.x86_64                                                                          217/284 
+  Verifying  : hunspell-1.3.2-15.el7.x86_64                                                                           218/284 
+  Verifying  : libXinerama-1.1.3-2.1.el7.x86_64                                                                       219/284 
+  Verifying  : lpsolve-5.5.2.0-8.el7.x86_64                                                                           220/284 
+  Verifying  : libkadm5-1.15.1-19.el7.x86_64                                                                          221/284 
+  Verifying  : libXxf86vm-1.1.4-1.el7.x86_64                                                                          222/284 
+  Verifying  : libxkbcommon-0.7.1-1.el7.x86_64                                                                        223/284 
+  Verifying  : dejavu-serif-fonts-2.33-6.el7.noarch                                                                   224/284 
+  Verifying  : perl-constant-1.27-2.el7.noarch                                                                        225/284 
+  Verifying  : perl-PathTools-3.40-5.el7.x86_64                                                                       226/284 
+  Verifying  : glibc-headers-2.17-222.el7.x86_64                                                                      227/284 
+  Verifying  : libzmf-0.0.2-1.el7.x86_64                                                                              228/284 
+  Verifying  : gtk2-2.24.31-1.el7.x86_64                                                                              229/284 
+  Verifying  : rasqal-0.9.30-4.el7.x86_64                                                                             230/284 
+  Verifying  : liblayout-0.2.10-8.el7.noarch                                                                          231/284 
+  Verifying  : xml-commons-apis-1.4.01-16.el7.noarch                                                                  232/284 
+  Verifying  : cairo-1.14.8-2.el7.x86_64                                                                              233/284 
+  Verifying  : libasyncns-0.8-7.el7.x86_64                                                                            234/284 
+  Verifying  : libffi-devel-3.0.13-18.el7.x86_64                                                                      235/284 
+  Verifying  : 1:openssl-devel-1.0.2k-12.el7.x86_64                                                                   236/284 
+  Verifying  : 1:java-1.7.0-openjdk-headless-1.7.0.181-2.6.14.8.el7_5.x86_64                                          237/284 
+  Verifying  : 1:libreoffice-x11-5.3.6.1-10.el7.x86_64                                                                238/284 
+  Verifying  : memcached-1.4.15-10.el7_3.1.x86_64                                                                     239/284 
+  Verifying  : libpagemaker-0.0.3-1.el7.x86_64                                                                        240/284 
+  Verifying  : raptor2-2.0.9-3.el7.x86_64                                                                             241/284 
+  Verifying  : libwpg-0.3.0-1.el7.x86_64                                                                              242/284 
+  Verifying  : dejavu-fonts-common-2.33-6.el7.noarch                                                                  243/284 
+  Verifying  : 1:libreoffice-5.3.6.1-10.el7.x86_64                                                                    244/284 
+  Verifying  : 1:perl-Pod-Simple-3.28-4.el7.noarch                                                                    245/284 
+  Verifying  : libthai-0.1.14-9.el7.x86_64                                                                            246/284 
+  Verifying  : perl-Time-Local-1.2300-2.el7.noarch                                                                    247/284 
+  Verifying  : libXft-2.3.2-2.el7.x86_64                                                                              248/284 
+  Verifying  : perl-Pod-Perldoc-3.20-4.el7.noarch                                                                     249/284 
+  Verifying  : cyrus-sasl-devel-2.1.26-23.el7.x86_64                                                                  250/284 
+  Verifying  : json-glib-1.2.6-1.el7.x86_64                                                                           251/284 
+  Verifying  : libwebp-0.3.0-7.el7.x86_64                                                                             252/284 
+  Verifying  : libusbx-1.0.21-1.el7.x86_64                                                                            253/284 
+  Verifying  : xml-commons-resolver-1.2-15.el7.noarch                                                                 254/284 
+  Verifying  : 1:autocorr-en-5.3.6.1-10.el7.noarch                                                                    255/284 
+  Verifying  : flac-libs-1.3.0-5.el7_1.x86_64                                                                         256/284 
+  Verifying  : opus-1.0.2-6.el7.x86_64                                                                                257/284 
+  Verifying  : xorg-x11-fonts-Type1-7.5-9.el7.noarch                                                                  258/284 
+  Verifying  : libxslt-1.1.28-5.el7.x86_64                                                                            259/284 
+  Verifying  : libXcursor-1.1.14-8.el7.x86_64                                                                         260/284 
+  Verifying  : adwaita-icon-theme-3.26.0-1.el7.noarch                                                                 261/284 
+  Verifying  : 1:libreoffice-draw-5.3.6.1-10.el7.x86_64                                                               262/284 
+  Verifying  : 1:libreoffice-writer-5.3.6.1-10.el7.x86_64                                                             263/284 
+  Verifying  : perl-Scalar-List-Utils-1.27-248.el7.x86_64                                                             264/284 
+  Verifying  : xalan-j2-2.7.1-23.el7.noarch                                                                           265/284 
+  Verifying  : libgusb-0.2.9-1.el7.x86_64                                                                             266/284 
+  Verifying  : jbigkit-libs-2.0-11.el7.x86_64                                                                         267/284 
+  Verifying  : GConf2-3.2.6-8.el7.x86_64                                                                              268/284 
+  Verifying  : libproxy-0.4.11-11.el7.x86_64                                                                          269/284 
+  Verifying  : gdk-pixbuf2-2.36.5-1.el7.x86_64                                                                        270/284 
+  Verifying  : 1:cups-libs-1.6.3-35.el7.x86_64                                                                        271/284 
+  Verifying  : libselinux-devel-2.5-12.el7.x86_64                                                                     272/284 
+  Verifying  : lcms2-2.6-3.el7.x86_64                                                                                 273/284 
+  Verifying  : perl-podlators-2.5.1-3.el7.noarch                                                                      274/284 
+  Verifying  : 1:libreoffice-impress-5.3.6.1-10.el7.x86_64                                                            275/284 
+  Verifying  : python-requests-2.6.0-1.el7_1.noarch                                                                   276/284 
+  Verifying  : libsepol-devel-2.5-8.1.el7.x86_64                                                                      277/284 
+  Verifying  : python-chardet-2.2.1-1.el7_1.noarch                                                                    278/284 
+  Verifying  : 1:libreoffice-graphicfilter-5.3.6.1-10.el7.x86_64                                                      279/284 
+  Verifying  : libfontenc-1.1.3-3.el7.x86_64                                                                          280/284 
+  Verifying  : kernel-headers-3.10.0-862.3.2.el7.x86_64                                                               281/284 
+  Verifying  : liblangtag-0.6.2-1.1.el7.x86_64                                                                        282/284 
+  Verifying  : avalon-framework-4.3-10.el7.noarch                                                                     283/284 
+  Verifying  : libabw-0.1.1-2.el7.x86_64                                                                              284/284 
+
+Installed:
+  MySQL-python.x86_64 0:1.2.5-1.el7                                gcc.x86_64 0:4.8.5-28.el7_5.1                             
+  java-1.7.0-openjdk.x86_64 1:1.7.0.181-2.6.14.8.el7_5             libffi-devel.x86_64 0:3.0.13-18.el7                       
+  libmemcached.x86_64 0:1.0.16-5.el7                               libmemcached-devel.x86_64 0:1.0.16-5.el7                  
+  libreoffice.x86_64 1:5.3.6.1-10.el7                              libreoffice-core.x86_64 1:5.3.6.1-10.el7                  
+  libreoffice-pyuno.x86_64 1:5.3.6.1-10.el7                        memcached.x86_64 0:1.4.15-10.el7_3.1                      
+  openssl-devel.x86_64 1:1.0.2k-12.el7                             poppler-utils.x86_64 0:0.26.5-17.el7_4                    
+  pwgen.x86_64 0:2.07-1.el7                                        python-devel.x86_64 0:2.7.5-68.el7                        
+  python-ldap.x86_64 0:2.4.15-2.el7                                python-pillow.x86_64 0:2.0.0-19.gitd1c6db8.el7            
+  python-requests.noarch 0:2.6.0-1.el7_1                           python-setuptools.noarch 0:0.9.8-7.el7                    
+  python-urllib3.noarch 0:1.10.2-5.el7                             python2-pip.noarch 0:8.1.2-6.el7                          
+  wqy-microhei-fonts.noarch 0:0.2.0-0.12.beta.el7                  wqy-unibit-fonts.noarch 0:1.1.0-13.el7                    
+  wqy-zenhei-fonts.noarch 0:0.9.46-11.el7                         
+
+Dependency Installed:
+  GConf2.x86_64 0:3.2.6-8.el7                                                                                                 
+  adwaita-cursor-theme.noarch 0:3.26.0-1.el7                                                                                  
+  adwaita-icon-theme.noarch 0:3.26.0-1.el7                                                                                    
+  apache-commons-logging.noarch 0:1.1.2-7.el7                                                                                 
+  at-spi2-atk.x86_64 0:2.22.0-2.el7                                                                                           
+  at-spi2-core.x86_64 0:2.22.0-1.el7                                                                                          
+  atk.x86_64 0:2.22.0-3.el7                                                                                                   
+  autocorr-en.noarch 1:5.3.6.1-10.el7                                                                                         
+  avahi-libs.x86_64 0:0.6.31-19.el7                                                                                           
+  avalon-framework.noarch 0:4.3-10.el7                                                                                        
+  avalon-logkit.noarch 0:2.1-14.el7                                                                                           
+  boost-date-time.x86_64 0:1.53.0-27.el7                                                                                      
+  boost-filesystem.x86_64 0:1.53.0-27.el7                                                                                     
+  boost-iostreams.x86_64 0:1.53.0-27.el7                                                                                      
+  boost-system.x86_64 0:1.53.0-27.el7                                                                                         
+  cairo.x86_64 0:1.14.8-2.el7                                                                                                 
+  cairo-gobject.x86_64 0:1.14.8-2.el7                                                                                         
+  cdparanoia-libs.x86_64 0:10.2-17.el7                                                                                        
+  clucene-contribs-lib.x86_64 0:2.3.3.4-11.el7                                                                                
+  clucene-core.x86_64 0:2.3.3.4-11.el7                                                                                        
+  colord-libs.x86_64 0:1.3.4-1.el7                                                                                            
+  copy-jdk-configs.noarch 0:3.3-10.el7_5                                                                                      
+  cpp.x86_64 0:4.8.5-28.el7_5.1                                                                                               
+  cups-libs.x86_64 1:1.6.3-35.el7                                                                                             
+  cyrus-sasl.x86_64 0:2.1.26-23.el7                                                                                           
+  cyrus-sasl-devel.x86_64 0:2.1.26-23.el7                                                                                     
+  dconf.x86_64 0:0.26.0-2.el7                                                                                                 
+  dejavu-fonts-common.noarch 0:2.33-6.el7                                                                                     
+  dejavu-sans-fonts.noarch 0:2.33-6.el7                                                                                       
+  dejavu-sans-mono-fonts.noarch 0:2.33-6.el7                                                                                  
+  dejavu-serif-fonts.noarch 0:2.33-6.el7                                                                                      
+  flac-libs.x86_64 0:1.3.0-5.el7_1                                                                                            
+  flute.noarch 0:1.3.0-11.OOo31.el7                                                                                           
+  fontconfig.x86_64 0:2.10.95-11.el7                                                                                          
+  fontpackages-filesystem.noarch 0:1.44-8.el7                                                                                 
+  gdk-pixbuf2.x86_64 0:2.36.5-1.el7                                                                                           
+  geronimo-jms.noarch 0:1.1.1-19.el7                                                                                          
+  giflib.x86_64 0:4.1.6-9.el7                                                                                                 
+  glib-networking.x86_64 0:2.50.0-1.el7                                                                                       
+  glibc-devel.x86_64 0:2.17-222.el7                                                                                           
+  glibc-headers.x86_64 0:2.17-222.el7                                                                                         
+  gnutls.x86_64 0:3.3.26-9.el7                                                                                                
+  google-crosextra-caladea-fonts.noarch 0:1.002-0.4.20130214.el7                                                              
+  google-crosextra-carlito-fonts.noarch 0:1.103-0.2.20130920.el7                                                              
+  graphite2.x86_64 0:1.3.10-1.el7_3                                                                                           
+  gsettings-desktop-schemas.x86_64 0:3.24.1-1.el7                                                                             
+  gsm.x86_64 0:1.0.13-11.el7                                                                                                  
+  gstreamer1.x86_64 0:1.10.4-2.el7                                                                                            
+  gstreamer1-plugins-bad-free.x86_64 0:1.10.4-3.el7                                                                           
+  gstreamer1-plugins-bad-free-gtk.x86_64 0:1.10.4-3.el7                                                                       
+  gstreamer1-plugins-base.x86_64 0:1.10.4-1.el7                                                                               
+  gtk-update-icon-cache.x86_64 0:3.22.26-4.el7_5                                                                              
+  gtk2.x86_64 0:2.24.31-1.el7                                                                                                 
+  gtk3.x86_64 0:3.22.26-4.el7_5                                                                                               
+  harfbuzz.x86_64 0:1.3.2-1.el7                                                                                               
+  harfbuzz-icu.x86_64 0:1.3.2-1.el7                                                                                           
+  hicolor-icon-theme.noarch 0:0.12-7.el7                                                                                      
+  hunspell.x86_64 0:1.3.2-15.el7                                                                                              
+  hunspell-en-US.noarch 0:0.20121024-6.el7                                                                                    
+  hyphen.x86_64 0:2.8.6-5.el7                                                                                                 
+  hyphen-en.noarch 0:2.8.6-5.el7                                                                                              
+  iso-codes.noarch 0:3.46-2.el7                                                                                               
+  jasper-libs.x86_64 0:1.900.1-31.el7                                                                                         
+  java-1.7.0-openjdk-headless.x86_64 1:1.7.0.181-2.6.14.8.el7_5                                                               
+  javamail.noarch 0:1.4.6-8.el7                                                                                               
+  javapackages-tools.noarch 0:3.4.1-11.el7                                                                                    
+  jbigkit-libs.x86_64 0:2.0-11.el7                                                                                            
+  json-glib.x86_64 0:1.2.6-1.el7                                                                                              
+  kernel-headers.x86_64 0:3.10.0-862.3.2.el7                                                                                  
+  keyutils-libs-devel.x86_64 0:1.5.8-3.el7                                                                                    
+  krb5-devel.x86_64 0:1.15.1-19.el7                                                                                           
+  lcms2.x86_64 0:2.6-3.el7                                                                                                    
+  libICE.x86_64 0:1.0.9-9.el7                                                                                                 
+  libSM.x86_64 0:1.2.2-2.el7                                                                                                  
+  libX11.x86_64 0:1.6.5-1.el7                                                                                                 
+  libX11-common.noarch 0:1.6.5-1.el7                                                                                          
+  libXau.x86_64 0:1.0.8-2.1.el7                                                                                               
+  libXcomposite.x86_64 0:0.4.4-4.1.el7                                                                                        
+  libXcursor.x86_64 0:1.1.14-8.el7                                                                                            
+  libXdamage.x86_64 0:1.1.4-4.1.el7                                                                                           
+  libXext.x86_64 0:1.3.3-3.el7                                                                                                
+  libXfixes.x86_64 0:5.0.3-1.el7                                                                                              
+  libXfont.x86_64 0:1.5.2-1.el7                                                                                               
+  libXft.x86_64 0:2.3.2-2.el7                                                                                                 
+  libXi.x86_64 0:1.7.9-1.el7                                                                                                  
+  libXinerama.x86_64 0:1.1.3-2.1.el7                                                                                          
+  libXrandr.x86_64 0:1.5.1-2.el7                                                                                              
+  libXrender.x86_64 0:0.9.10-1.el7                                                                                            
+  libXtst.x86_64 0:1.2.3-1.el7                                                                                                
+  libXv.x86_64 0:1.0.11-1.el7                                                                                                 
+  libXxf86vm.x86_64 0:1.1.4-1.el7                                                                                             
+  libabw.x86_64 0:0.1.1-2.el7                                                                                                 
+  libasyncns.x86_64 0:0.8-7.el7                                                                                               
+  libbase.noarch 0:1.1.3-10.el7                                                                                               
+  libcdr.x86_64 0:0.1.4-1.el7                                                                                                 
+  libcmis.x86_64 0:0.5.1-2.el7                                                                                                
+  libcom_err-devel.x86_64 0:1.42.9-12.el7_5                                                                                   
+  libdvdnav.x86_64 0:5.0.3-1.el7                                                                                              
+  libdvdread.x86_64 0:5.0.3-3.el7                                                                                             
+  libepoxy.x86_64 0:1.3.1-2.el7_5                                                                                             
+  liberation-fonts-common.noarch 1:1.07.2-16.el7                                                                              
+  liberation-mono-fonts.noarch 1:1.07.2-16.el7                                                                                
+  liberation-sans-fonts.noarch 1:1.07.2-16.el7                                                                                
+  liberation-serif-fonts.noarch 1:1.07.2-16.el7                                                                               
+  libetonyek.x86_64 0:0.1.7-1.el7                                                                                             
+  libevent.x86_64 0:2.0.21-4.el7                                                                                              
+  libexttextcat.x86_64 0:3.4.1-3.el7                                                                                          
+  libfontenc.x86_64 0:1.1.3-3.el7                                                                                             
+  libfonts.noarch 0:1.1.3-13.el7                                                                                              
+  libformula.noarch 0:1.1.3-10.el7                                                                                            
+  libfreehand.x86_64 0:0.1.1-1.el7                                                                                            
+  libgusb.x86_64 0:0.2.9-1.el7                                                                                                
+  libicu.x86_64 0:50.1.2-15.el7                                                                                               
+  libjpeg-turbo.x86_64 0:1.2.90-5.el7                                                                                         
+  libkadm5.x86_64 0:1.15.1-19.el7                                                                                             
+  liblangtag.x86_64 0:0.6.2-1.1.el7                                                                                           
+  liblayout.noarch 0:0.2.10-8.el7                                                                                             
+  libloader.noarch 0:1.1.3-9.el7                                                                                              
+  libmodman.x86_64 0:2.0.1-8.el7                                                                                              
+  libmpc.x86_64 0:1.0.1-3.el7                                                                                                 
+  libmpcdec.x86_64 0:1.2.6-12.el7                                                                                             
+  libmspub.x86_64 0:0.1.2-1.el7                                                                                               
+  libmwaw.x86_64 0:0.3.5-1.el7                                                                                                
+  libodfgen.x86_64 0:0.1.4-1.el7                                                                                              
+  libogg.x86_64 2:1.3.0-7.el7                                                                                                 
+  liborcus.x86_64 0:0.12.1-2.el7                                                                                              
+  libpagemaker.x86_64 0:0.0.3-1.el7                                                                                           
+  libpng.x86_64 2:1.5.13-7.el7_2                                                                                              
+  libproxy.x86_64 0:0.4.11-11.el7                                                                                             
+  libreoffice-base.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-calc.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-data.noarch 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-draw.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-emailmerge.x86_64 1:5.3.6.1-10.el7                                                                              
+  libreoffice-graphicfilter.x86_64 1:5.3.6.1-10.el7                                                                           
+  libreoffice-gtk2.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-gtk3.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-impress.x86_64 1:5.3.6.1-10.el7                                                                                 
+  libreoffice-langpack-en.x86_64 1:5.3.6.1-10.el7                                                                             
+  libreoffice-math.x86_64 1:5.3.6.1-10.el7                                                                                    
+  libreoffice-opensymbol-fonts.noarch 1:5.3.6.1-10.el7                                                                        
+  libreoffice-pdfimport.x86_64 1:5.3.6.1-10.el7                                                                               
+  libreoffice-ure.x86_64 1:5.3.6.1-10.el7                                                                                     
+  libreoffice-ure-common.noarch 1:5.3.6.1-10.el7                                                                              
+  libreoffice-writer.x86_64 1:5.3.6.1-10.el7                                                                                  
+  libreoffice-x11.x86_64 1:5.3.6.1-10.el7                                                                                     
+  librepository.noarch 0:1.1.3-9.el7                                                                                          
+  librevenge.x86_64 0:0.0.2-2.el7                                                                                             
+  librsvg2.x86_64 0:2.40.16-1.el7                                                                                             
+  libselinux-devel.x86_64 0:2.5-12.el7                                                                                        
+  libsepol-devel.x86_64 0:2.5-8.1.el7                                                                                         
+  libserializer.noarch 0:1.1.2-10.el7                                                                                         
+  libsndfile.x86_64 0:1.0.25-10.el7                                                                                           
+  libsoup.x86_64 0:2.56.0-6.el7                                                                                               
+  libsrtp.x86_64 0:1.4.4-10.20101004cvs.el7                                                                                   
+  libstaroffice.x86_64 0:0.0.4-1.el7                                                                                          
+  libthai.x86_64 0:0.1.14-9.el7                                                                                               
+  libtheora.x86_64 1:1.1.1-8.el7                                                                                              
+  libtiff.x86_64 0:4.0.3-27.el7_3                                                                                             
+  libtool-ltdl.x86_64 0:2.4.2-22.el7_3                                                                                        
+  libusbx.x86_64 0:1.0.21-1.el7                                                                                               
+  libverto-devel.x86_64 0:0.2.5-4.el7                                                                                         
+  libvisio.x86_64 0:0.1.6-1.el7                                                                                               
+  libvisual.x86_64 0:0.4.0-16.el7                                                                                             
+  libvorbis.x86_64 1:1.3.3-8.el7.1                                                                                            
+  libwayland-client.x86_64 0:1.14.0-2.el7                                                                                     
+  libwayland-cursor.x86_64 0:1.14.0-2.el7                                                                                     
+  libwayland-server.x86_64 0:1.14.0-2.el7                                                                                     
+  libwebp.x86_64 0:0.3.0-7.el7                                                                                                
+  libwpd.x86_64 0:0.10.0-1.el7                                                                                                
+  libwpg.x86_64 0:0.3.0-1.el7                                                                                                 
+  libwps.x86_64 0:0.4.7-1.el7                                                                                                 
+  libxcb.x86_64 0:1.12-1.el7                                                                                                  
+  libxkbcommon.x86_64 0:0.7.1-1.el7                                                                                           
+  libxshmfence.x86_64 0:1.2-1.el7                                                                                             
+  libxslt.x86_64 0:1.1.28-5.el7                                                                                               
+  libzmf.x86_64 0:0.0.2-1.el7                                                                                                 
+  lksctp-tools.x86_64 0:1.0.17-2.el7                                                                                          
+  log4j.noarch 0:1.2.17-16.el7_4                                                                                              
+  lpsolve.x86_64 0:5.5.2.0-8.el7                                                                                              
+  mesa-libEGL.x86_64 0:17.2.3-8.20171019.el7                                                                                  
+  mesa-libGL.x86_64 0:17.2.3-8.20171019.el7                                                                                   
+  mesa-libGLES.x86_64 0:17.2.3-8.20171019.el7                                                                                 
+  mesa-libgbm.x86_64 0:17.2.3-8.20171019.el7                                                                                  
+  mesa-libglapi.x86_64 0:17.2.3-8.20171019.el7                                                                                
+  mesa-libwayland-egl.x86_64 0:17.2.3-8.20171019.el7                                                                          
+  mpfr.x86_64 0:3.1.1-4.el7                                                                                                   
+  mythes.x86_64 0:1.2.3-7.el7                                                                                                 
+  mythes-en.noarch 0:3.0-13.el7                                                                                               
+  neon.x86_64 0:0.30.0-3.el7                                                                                                  
+  nettle.x86_64 0:2.7.1-8.el7                                                                                                 
+  openjpeg-libs.x86_64 0:1.5.1-17.el7                                                                                         
+  opus.x86_64 0:1.0.2-6.el7                                                                                                   
+  orc.x86_64 0:0.4.26-1.el7                                                                                                   
+  pakchois.x86_64 0:0.4-10.el7                                                                                                
+  pango.x86_64 0:1.40.4-1.el7                                                                                                 
+  pcre-devel.x86_64 0:8.32-17.el7                                                                                             
+  pcsc-lite-libs.x86_64 0:1.8.8-7.el7                                                                                         
+  pentaho-libxml.noarch 0:1.1.3-10.el7                                                                                        
+  pentaho-reporting-flow-engine.noarch 1:0.9.4-8.el7                                                                          
+  perl.x86_64 4:5.16.3-292.el7                                                                                                
+  perl-Carp.noarch 0:1.26-244.el7                                                                                             
+  perl-Encode.x86_64 0:2.51-7.el7                                                                                             
+  perl-Exporter.noarch 0:5.68-3.el7                                                                                           
+  perl-File-Path.noarch 0:2.09-2.el7                                                                                          
+  perl-File-Temp.noarch 0:0.23.01-3.el7                                                                                       
+  perl-Filter.x86_64 0:1.49-3.el7                                                                                             
+  perl-Getopt-Long.noarch 0:2.40-3.el7                                                                                        
+  perl-HTTP-Tiny.noarch 0:0.033-3.el7                                                                                         
+  perl-PathTools.x86_64 0:3.40-5.el7                                                                                          
+  perl-Pod-Escapes.noarch 1:1.04-292.el7                                                                                      
+  perl-Pod-Perldoc.noarch 0:3.20-4.el7                                                                                        
+  perl-Pod-Simple.noarch 1:3.28-4.el7                                                                                         
+  perl-Pod-Usage.noarch 0:1.63-3.el7                                                                                          
+  perl-Scalar-List-Utils.x86_64 0:1.27-248.el7                                                                                
+  perl-Socket.x86_64 0:2.010-4.el7                                                                                            
+  perl-Storable.x86_64 0:2.45-3.el7                                                                                           
+  perl-Text-ParseWords.noarch 0:3.29-4.el7                                                                                    
+  perl-Time-HiRes.x86_64 4:1.9725-3.el7                                                                                       
+  perl-Time-Local.noarch 0:1.2300-2.el7                                                                                       
+  perl-constant.noarch 0:1.27-2.el7                                                                                           
+  perl-libs.x86_64 4:5.16.3-292.el7                                                                                           
+  perl-macros.x86_64 4:5.16.3-292.el7                                                                                         
+  perl-parent.noarch 1:0.225-244.el7                                                                                          
+  perl-podlators.noarch 0:2.5.1-3.el7                                                                                         
+  perl-threads.x86_64 0:1.87-4.el7                                                                                            
+  perl-threads-shared.x86_64 0:1.43-6.el7                                                                                     
+  pixman.x86_64 0:0.34.0-1.el7                                                                                                
+  poppler.x86_64 0:0.26.5-17.el7_4                                                                                            
+  poppler-data.noarch 0:0.4.6-3.el7                                                                                           
+  postgresql-jdbc.noarch 0:9.2.1002-6.el7_5                                                                                   
+  psmisc.x86_64 0:22.20-15.el7                                                                                                
+  pulseaudio-libs.x86_64 0:10.0-5.el7                                                                                         
+  python-backports.x86_64 0:1.0-8.el7                                                                                         
+  python-backports-ssl_match_hostname.noarch 0:3.5.0.1-1.el7                                                                  
+  python-chardet.noarch 0:2.2.1-1.el7_1                                                                                       
+  python-ipaddress.noarch 0:1.0.16-2.el7                                                                                      
+  python-javapackages.noarch 0:3.4.1-11.el7                                                                                   
+  python-lxml.x86_64 0:3.2.1-4.el7                                                                                            
+  python-six.noarch 0:1.9.0-2.el7                                                                                             
+  raptor2.x86_64 0:2.0.9-3.el7                                                                                                
+  rasqal.x86_64 0:0.9.30-4.el7                                                                                                
+  redland.x86_64 0:1.0.16-6.el7                                                                                               
+  rest.x86_64 0:0.8.0-2.el7                                                                                                   
+  sac.noarch 0:1.3-17.el7                                                                                                     
+  soundtouch.x86_64 0:1.4.0-9.el7                                                                                             
+  tomcat-servlet-3.0-api.noarch 0:7.0.76-6.el7                                                                                
+  trousers.x86_64 0:0.3.14-2.el7                                                                                              
+  ttmkfdir.x86_64 0:3.0.9-42.el7                                                                                              
+  tzdata-java.noarch 0:2018e-3.el7                                                                                            
+  unzip.x86_64 0:6.0-19.el7                                                                                                   
+  xalan-j2.noarch 0:2.7.1-23.el7                                                                                              
+  xerces-j2.noarch 0:2.11.0-17.el7_0                                                                                          
+  xkeyboard-config.noarch 0:2.20-1.el7                                                                                        
+  xml-common.noarch 0:0.6.3-39.el7                                                                                            
+  xml-commons-apis.noarch 0:1.4.01-16.el7                                                                                     
+  xml-commons-resolver.noarch 0:1.2-15.el7                                                                                    
+  xorg-x11-font-utils.x86_64 1:7.5-20.el7                                                                                     
+  xorg-x11-fonts-Type1.noarch 0:7.5-9.el7                                                                                     
+  yajl.x86_64 0:2.0.4-4.el7                                                                                                   
+  zlib-devel.x86_64 0:1.2.7-17.el7                                                                                            
+
+Complete!
+Collecting pylibmc
+  Downloading https://files.pythonhosted.org/packages/f5/b8/6325cea86a71f25cea81e4d4ea2bc2838079e10f79b5ecacf0b639ca4bff/pylibmc-1.5.2.tar.gz (62kB)
+    100% |████████████████████████████████| 71kB 4.4MB/s 
+Collecting django-pylibmc
+  Downloading https://files.pythonhosted.org/packages/1b/2b/cbc55be77062f783b2a28dcc0aa6bb8f55ebbbf2c186b76e58ea79e25ee5/django_pylibmc-0.6.1-py2.py3-none-any.whl
+Installing collected packages: pylibmc, django-pylibmc
+  Running setup.py install for pylibmc ... done
+Successfully installed django-pylibmc-0.6.1 pylibmc-1.5.2
+You are using pip version 8.1.2, however version 10.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Created symlink from /etc/systemd/system/multi-user.target.wants/memcached.service to /usr/lib/systemd/system/memcached.service.
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.mirror.constant.com
+ * epel: epel.mirror.constant.com
+ * extras: centos.mirror.constant.com
+ * updates: centos.mirror.constant.com
+Resolving Dependencies
+--> Running transaction check
+---> Package nginx.x86_64 1:1.12.2-2.el7 will be installed
+--> Processing Dependency: nginx-all-modules = 1:1.12.2-2.el7 for package: 1:nginx-1.12.2-2.el7.x86_64
+--> Processing Dependency: nginx-filesystem = 1:1.12.2-2.el7 for package: 1:nginx-1.12.2-2.el7.x86_64
+--> Processing Dependency: nginx-filesystem for package: 1:nginx-1.12.2-2.el7.x86_64
+--> Processing Dependency: libprofiler.so.0()(64bit) for package: 1:nginx-1.12.2-2.el7.x86_64
+--> Running transaction check
+---> Package gperftools-libs.x86_64 0:2.6.1-1.el7 will be installed
+---> Package nginx-all-modules.noarch 1:1.12.2-2.el7 will be installed
+--> Processing Dependency: nginx-mod-http-geoip = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+--> Processing Dependency: nginx-mod-http-image-filter = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+--> Processing Dependency: nginx-mod-http-perl = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+--> Processing Dependency: nginx-mod-http-xslt-filter = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+--> Processing Dependency: nginx-mod-mail = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+--> Processing Dependency: nginx-mod-stream = 1:1.12.2-2.el7 for package: 1:nginx-all-modules-1.12.2-2.el7.noarch
+---> Package nginx-filesystem.noarch 1:1.12.2-2.el7 will be installed
+--> Running transaction check
+---> Package nginx-mod-http-geoip.x86_64 1:1.12.2-2.el7 will be installed
+---> Package nginx-mod-http-image-filter.x86_64 1:1.12.2-2.el7 will be installed
+--> Processing Dependency: gd for package: 1:nginx-mod-http-image-filter-1.12.2-2.el7.x86_64
+--> Processing Dependency: libgd.so.2()(64bit) for package: 1:nginx-mod-http-image-filter-1.12.2-2.el7.x86_64
+---> Package nginx-mod-http-perl.x86_64 1:1.12.2-2.el7 will be installed
+---> Package nginx-mod-http-xslt-filter.x86_64 1:1.12.2-2.el7 will be installed
+---> Package nginx-mod-mail.x86_64 1:1.12.2-2.el7 will be installed
+---> Package nginx-mod-stream.x86_64 1:1.12.2-2.el7 will be installed
+--> Running transaction check
+---> Package gd.x86_64 0:2.0.35-26.el7 will be installed
+--> Processing Dependency: libXpm.so.4()(64bit) for package: gd-2.0.35-26.el7.x86_64
+--> Running transaction check
+---> Package libXpm.x86_64 0:3.5.12-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================
+ Package                                     Arch                   Version                        Repository            Size
+==============================================================================================================================
+Installing:
+ nginx                                       x86_64                 1:1.12.2-2.el7                 epel                 530 k
+Installing for dependencies:
+ gd                                          x86_64                 2.0.35-26.el7                  base                 146 k
+ gperftools-libs                             x86_64                 2.6.1-1.el7                    base                 272 k
+ libXpm                                      x86_64                 3.5.12-1.el7                   base                  55 k
+ nginx-all-modules                           noarch                 1:1.12.2-2.el7                 epel                  16 k
+ nginx-filesystem                            noarch                 1:1.12.2-2.el7                 epel                  17 k
+ nginx-mod-http-geoip                        x86_64                 1:1.12.2-2.el7                 epel                  23 k
+ nginx-mod-http-image-filter                 x86_64                 1:1.12.2-2.el7                 epel                  26 k
+ nginx-mod-http-perl                         x86_64                 1:1.12.2-2.el7                 epel                  36 k
+ nginx-mod-http-xslt-filter                  x86_64                 1:1.12.2-2.el7                 epel                  26 k
+ nginx-mod-mail                              x86_64                 1:1.12.2-2.el7                 epel                  54 k
+ nginx-mod-stream                            x86_64                 1:1.12.2-2.el7                 epel                  76 k
+
+Transaction Summary
+==============================================================================================================================
+Install  1 Package (+11 Dependent packages)
+
+Total download size: 1.2 M
+Installed size: 3.9 M
+Downloading packages:
+(1/12): gd-2.0.35-26.el7.x86_64.rpm                                                                    | 146 kB  00:00:00     
+(2/12): gperftools-libs-2.6.1-1.el7.x86_64.rpm                                                         | 272 kB  00:00:00     
+(3/12): libXpm-3.5.12-1.el7.x86_64.rpm                                                                 |  55 kB  00:00:00     
+(4/12): nginx-1.12.2-2.el7.x86_64.rpm                                                                  | 530 kB  00:00:00     
+(5/12): nginx-all-modules-1.12.2-2.el7.noarch.rpm                                                      |  16 kB  00:00:00     
+(6/12): nginx-filesystem-1.12.2-2.el7.noarch.rpm                                                       |  17 kB  00:00:00     
+(7/12): nginx-mod-http-geoip-1.12.2-2.el7.x86_64.rpm                                                   |  23 kB  00:00:00     
+(8/12): nginx-mod-http-image-filter-1.12.2-2.el7.x86_64.rpm                                            |  26 kB  00:00:00     
+(9/12): nginx-mod-http-perl-1.12.2-2.el7.x86_64.rpm                                                    |  36 kB  00:00:00     
+(10/12): nginx-mod-http-xslt-filter-1.12.2-2.el7.x86_64.rpm                                            |  26 kB  00:00:00     
+(11/12): nginx-mod-mail-1.12.2-2.el7.x86_64.rpm                                                        |  54 kB  00:00:00     
+(12/12): nginx-mod-stream-1.12.2-2.el7.x86_64.rpm                                                      |  76 kB  00:00:00     
+------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                         2.8 MB/s | 1.2 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : gperftools-libs-2.6.1-1.el7.x86_64                                                                        1/12 
+warning: Failed to open SELinux handle.
+  Installing : 1:nginx-filesystem-1.12.2-2.el7.noarch                                                                    2/12 
+  Installing : libXpm-3.5.12-1.el7.x86_64                                                                                3/12 
+  Installing : gd-2.0.35-26.el7.x86_64                                                                                   4/12 
+  Installing : 1:nginx-mod-http-perl-1.12.2-2.el7.x86_64                                                                 5/12 
+  Installing : 1:nginx-mod-http-geoip-1.12.2-2.el7.x86_64                                                                6/12 
+  Installing : 1:nginx-mod-mail-1.12.2-2.el7.x86_64                                                                      7/12 
+  Installing : 1:nginx-mod-http-xslt-filter-1.12.2-2.el7.x86_64                                                          8/12 
+  Installing : 1:nginx-mod-stream-1.12.2-2.el7.x86_64                                                                    9/12 
+  Installing : 1:nginx-1.12.2-2.el7.x86_64                                                                              10/12 
+  Installing : 1:nginx-mod-http-image-filter-1.12.2-2.el7.x86_64                                                        11/12 
+  Installing : 1:nginx-all-modules-1.12.2-2.el7.noarch                                                                  12/12 
+  Verifying  : libXpm-3.5.12-1.el7.x86_64                                                                                1/12 
+  Verifying  : 1:nginx-filesystem-1.12.2-2.el7.noarch                                                                    2/12 
+  Verifying  : gd-2.0.35-26.el7.x86_64                                                                                   3/12 
+  Verifying  : 1:nginx-mod-http-perl-1.12.2-2.el7.x86_64                                                                 4/12 
+  Verifying  : 1:nginx-mod-http-geoip-1.12.2-2.el7.x86_64                                                                5/12 
+  Verifying  : 1:nginx-1.12.2-2.el7.x86_64                                                                               6/12 
+  Verifying  : 1:nginx-mod-mail-1.12.2-2.el7.x86_64                                                                      7/12 
+  Verifying  : 1:nginx-all-modules-1.12.2-2.el7.noarch                                                                   8/12 
+  Verifying  : gperftools-libs-2.6.1-1.el7.x86_64                                                                        9/12 
+  Verifying  : 1:nginx-mod-http-xslt-filter-1.12.2-2.el7.x86_64                                                         10/12 
+  Verifying  : 1:nginx-mod-http-image-filter-1.12.2-2.el7.x86_64                                                        11/12 
+  Verifying  : 1:nginx-mod-stream-1.12.2-2.el7.x86_64                                                                   12/12 
+
+Installed:
+  nginx.x86_64 1:1.12.2-2.el7                                                                                                 
+
+Dependency Installed:
+  gd.x86_64 0:2.0.35-26.el7                                         gperftools-libs.x86_64 0:2.6.1-1.el7                      
+  libXpm.x86_64 0:3.5.12-1.el7                                      nginx-all-modules.noarch 1:1.12.2-2.el7                   
+  nginx-filesystem.noarch 1:1.12.2-2.el7                            nginx-mod-http-geoip.x86_64 1:1.12.2-2.el7                
+  nginx-mod-http-image-filter.x86_64 1:1.12.2-2.el7                 nginx-mod-http-perl.x86_64 1:1.12.2-2.el7                 
+  nginx-mod-http-xslt-filter.x86_64 1:1.12.2-2.el7                  nginx-mod-mail.x86_64 1:1.12.2-2.el7                      
+  nginx-mod-stream.x86_64 1:1.12.2-2.el7                           
+
+Complete!
+Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.mirror.constant.com
+ * epel: epel.mirror.constant.com
+ * extras: centos.mirror.constant.com
+ * updates: centos.mirror.constant.com
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb-server.x86_64 1:5.5.56-2.el7 will be installed
+--> Processing Dependency: mariadb(x86-64) = 1:5.5.56-2.el7 for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: perl-DBI for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: perl-DBD-MySQL for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: perl(Data::Dumper) for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: perl(DBI) for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: libaio.so.1(LIBAIO_0.4)(64bit) for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: libaio.so.1(LIBAIO_0.1)(64bit) for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Processing Dependency: libaio.so.1()(64bit) for package: 1:mariadb-server-5.5.56-2.el7.x86_64
+--> Running transaction check
+---> Package libaio.x86_64 0:0.3.109-13.el7 will be installed
+---> Package mariadb.x86_64 1:5.5.56-2.el7 will be installed
+---> Package perl-DBD-MySQL.x86_64 0:4.023-6.el7 will be installed
+---> Package perl-DBI.x86_64 0:1.627-4.el7 will be installed
+--> Processing Dependency: perl(RPC::PlServer) >= 0.2001 for package: perl-DBI-1.627-4.el7.x86_64
+--> Processing Dependency: perl(RPC::PlClient) >= 0.2000 for package: perl-DBI-1.627-4.el7.x86_64
+---> Package perl-Data-Dumper.x86_64 0:2.145-3.el7 will be installed
+--> Running transaction check
+---> Package perl-PlRPC.noarch 0:0.2020-14.el7 will be installed
+--> Processing Dependency: perl(Net::Daemon) >= 0.13 for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Net::Daemon::Test) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Net::Daemon::Log) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Compress::Zlib) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Running transaction check
+---> Package perl-IO-Compress.noarch 0:2.061-2.el7 will be installed
+--> Processing Dependency: perl(Compress::Raw::Zlib) >= 2.061 for package: perl-IO-Compress-2.061-2.el7.noarch
+--> Processing Dependency: perl(Compress::Raw::Bzip2) >= 2.061 for package: perl-IO-Compress-2.061-2.el7.noarch
+---> Package perl-Net-Daemon.noarch 0:0.48-5.el7 will be installed
+--> Running transaction check
+---> Package perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7 will be installed
+---> Package perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================
+ Package                                  Arch                    Version                         Repository             Size
+==============================================================================================================================
+Installing:
+ mariadb-server                           x86_64                  1:5.5.56-2.el7                  base                   11 M
+Installing for dependencies:
+ libaio                                   x86_64                  0.3.109-13.el7                  base                   24 k
+ mariadb                                  x86_64                  1:5.5.56-2.el7                  base                  8.7 M
+ perl-Compress-Raw-Bzip2                  x86_64                  2.061-3.el7                     base                   32 k
+ perl-Compress-Raw-Zlib                   x86_64                  1:2.061-4.el7                   base                   57 k
+ perl-DBD-MySQL                           x86_64                  4.023-6.el7                     base                  140 k
+ perl-DBI                                 x86_64                  1.627-4.el7                     base                  802 k
+ perl-Data-Dumper                         x86_64                  2.145-3.el7                     base                   47 k
+ perl-IO-Compress                         noarch                  2.061-2.el7                     base                  260 k
+ perl-Net-Daemon                          noarch                  0.48-5.el7                      base                   51 k
+ perl-PlRPC                               noarch                  0.2020-14.el7                   base                   36 k
+
+Transaction Summary
+==============================================================================================================================
+Install  1 Package (+10 Dependent packages)
+
+Total download size: 21 M
+Installed size: 110 M
+Downloading packages:
+(1/11): libaio-0.3.109-13.el7.x86_64.rpm                                                               |  24 kB  00:00:00     
+(2/11): mariadb-5.5.56-2.el7.x86_64.rpm                                                                | 8.7 MB  00:00:01     
+(3/11): perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64.rpm                                                 |  32 kB  00:00:00     
+(4/11): perl-Compress-Raw-Zlib-2.061-4.el7.x86_64.rpm                                                  |  57 kB  00:00:00     
+(5/11): perl-DBD-MySQL-4.023-6.el7.x86_64.rpm                                                          | 140 kB  00:00:00     
+(6/11): perl-DBI-1.627-4.el7.x86_64.rpm                                                                | 802 kB  00:00:00     
+(7/11): perl-Data-Dumper-2.145-3.el7.x86_64.rpm                                                        |  47 kB  00:00:00     
+(8/11): perl-IO-Compress-2.061-2.el7.noarch.rpm                                                        | 260 kB  00:00:00     
+(9/11): perl-Net-Daemon-0.48-5.el7.noarch.rpm                                                          |  51 kB  00:00:00     
+(10/11): perl-PlRPC-0.2020-14.el7.noarch.rpm                                                           |  36 kB  00:00:00     
+(11/11): mariadb-server-5.5.56-2.el7.x86_64.rpm                                                        |  11 MB  00:00:01     
+------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                          10 MB/s |  21 MB  00:00:02     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Data-Dumper-2.145-3.el7.x86_64                                                                       1/11 
+warning: Failed to open SELinux handle.
+  Installing : 1:mariadb-5.5.56-2.el7.x86_64                                                                             2/11 
+  Installing : libaio-0.3.109-13.el7.x86_64                                                                              3/11 
+  Installing : 1:perl-Compress-Raw-Zlib-2.061-4.el7.x86_64                                                               4/11 
+  Installing : perl-Net-Daemon-0.48-5.el7.noarch                                                                         5/11 
+  Installing : perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64                                                                6/11 
+  Installing : perl-IO-Compress-2.061-2.el7.noarch                                                                       7/11 
+  Installing : perl-PlRPC-0.2020-14.el7.noarch                                                                           8/11 
+  Installing : perl-DBI-1.627-4.el7.x86_64                                                                               9/11 
+  Installing : perl-DBD-MySQL-4.023-6.el7.x86_64                                                                        10/11 
+  Installing : 1:mariadb-server-5.5.56-2.el7.x86_64                                                                     11/11 
+  Verifying  : perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64                                                                1/11 
+  Verifying  : perl-Net-Daemon-0.48-5.el7.noarch                                                                         2/11 
+  Verifying  : perl-Data-Dumper-2.145-3.el7.x86_64                                                                       3/11 
+  Verifying  : perl-DBD-MySQL-4.023-6.el7.x86_64                                                                         4/11 
+  Verifying  : perl-PlRPC-0.2020-14.el7.noarch                                                                           5/11 
+  Verifying  : 1:perl-Compress-Raw-Zlib-2.061-4.el7.x86_64                                                               6/11 
+  Verifying  : 1:mariadb-server-5.5.56-2.el7.x86_64                                                                      7/11 
+  Verifying  : libaio-0.3.109-13.el7.x86_64                                                                              8/11 
+  Verifying  : perl-DBI-1.627-4.el7.x86_64                                                                               9/11 
+  Verifying  : perl-IO-Compress-2.061-2.el7.noarch                                                                      10/11 
+  Verifying  : 1:mariadb-5.5.56-2.el7.x86_64                                                                            11/11 
+
+Installed:
+  mariadb-server.x86_64 1:5.5.56-2.el7                                                                                        
+
+Dependency Installed:
+  libaio.x86_64 0:0.3.109-13.el7                                 mariadb.x86_64 1:5.5.56-2.el7                                
+  perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7                   perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7                  
+  perl-DBD-MySQL.x86_64 0:4.023-6.el7                            perl-DBI.x86_64 0:1.627-4.el7                                
+  perl-Data-Dumper.x86_64 0:2.145-3.el7                          perl-IO-Compress.noarch 0:2.061-2.el7                        
+  perl-Net-Daemon.noarch 0:0.48-5.el7                            perl-PlRPC.noarch 0:0.2020-14.el7                            
+
+Complete!
+Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seafile.service to /etc/systemd/system/seafile.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seahub.service to /etc/systemd/system/seahub.service.
+Checking python on this machine ...
+  Checking python module: setuptools ... Done.
+  Checking python module: python-imaging ... Done.
+  Checking python module: python-mysqldb ... Done.
+
+Checking for java ...Done.
+
+
+verifying password of user root ...  done
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       127.0.0.1
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /opt/seafile/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+for information.
+
+
+sed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.2.9//check_init_admin.py: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.2.9//check_init_admin.py: No data available
+** Message: seafile-controller.c(1124): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+[05/25/18 05:01:12] ../common/session.c(139): using config file /opt/seafile/conf/ccnet.conf
+[05/25/18 05:01:12] ../common/license.c(440): Loading license file /opt/seafile/seafile-license.txt ..
+[05/25/18 05:01:12] ../common/license.c(443): License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Starting seafile server, please wait ...
+** Message: seafile-controller.c(1124): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+Seafile server started
+
+Done.
+
+LC_ALL is not set in ENV, set to en_US.UTF-8
+Starting seahub at port 8000 ...
+
+
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+
+
+
+Seahub is started
+
+Done.
+
+
+Seahub is not running
+Done.
+
+
+Stopping seafile server ...
+Done.
+sed: warning: failed to get security context of /opt/seafile/conf/seafevents.conf: No data availableJob for seahub.service failed because the control process exited with error code. See "systemctl status seahub.service" and "journalctl -xe" for details.
+
+
+
+
+Installed:
+  mariadb-server.x86_64 1:5.5.56-2.el7                                                                                        
+
+Dependency Installed:
+  libaio.x86_64 0:0.3.109-13.el7                                 mariadb.x86_64 1:5.5.56-2.el7                                
+  perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7                   perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7                  
+  perl-DBD-MySQL.x86_64 0:4.023-6.el7                            perl-DBI.x86_64 0:1.627-4.el7                                
+  perl-Data-Dumper.x86_64 0:2.145-3.el7                          perl-IO-Compress.noarch 0:2.061-2.el7                        
+  perl-Net-Daemon.noarch 0:0.48-5.el7                            perl-PlRPC.noarch 0:0.2020-14.el7                            
+
+Complete!
+Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seafile.service to /etc/systemd/system/seafile.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seahub.service to /etc/systemd/system/seahub.service.
+Checking python on this machine ...
+  Checking python module: setuptools ... Done.
+  Checking python module: python-imaging ... Done.
+  Checking python module: python-mysqldb ... Done.
+
+Checking for java ...Done.
+
+
+verifying password of user root ...  done
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       127.0.0.1
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /opt/seafile/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+for information.
+
+
+sed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data available
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+[05/25/18 06:08:46] ../common/session.c(139): using config file /opt/seafile/conf/ccnet.conf
+[05/25/18 06:08:46] ../common/license.c(427): Loading license file /opt/seafile/seafile-license.txt ..
+[05/25/18 06:08:46] ../common/license.c(430): License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Starting seafile server, please wait ...
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Seafile server started
+
+Done.
+
+Starting seahub at port 8000 ...
+
+
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+
+
+
+Seahub is started
+
+Done.
+
+
+Stopping seahub ...
+Done.
+
+
+Stopping seafile server ...
+Done.
+sed: warning: failed to get security context of /opt/seafile/conf/seafevents.conf: No data available
+
+  Your Seafile server is installed
+  -----------------------------------------------------------------
+
+  Server Address:      http://127.0.0.1
+
+  Seafile Admin:       admin@seafile.local
+  Admin Password:      Ood6aiph
+
+  Seafile Data Dir:    /opt/seafile/seafile-data
+
+  Seafile DB Credentials:  Check /opt/seafile.my.cnf
+  Root DB Credentials:     Check /root/.my.cnf
+
+  This report is also saved to /opt/seafile/aio_seafile-server.log
+
+
+
+  Next you should manually complete the following steps
+  -----------------------------------------------------------------
+
+  1) Log in to Seafile and configure your server domain via the system
+     admin area if applicable.
+
+  2) If this server is behind a firewall, you need to ensure that
+     tcp port 80 is open.
+
+  3) Seahub tries to send emails via the local server. Install and
+     configure Postfix for this to work or
+     check https://manual.seafile.com/config/sending_email.html
+     for instructions on how to use an existing email account via SMTP.
+
+
+
+
+  Optional steps
+  -----------------------------------------------------------------
+
+  1) Check seahub_settings.py and customize it to fit your needs. Consult
+     http://manual.seafile.com/config/seahub_settings_py.html for possible switches.
+
+  2) Setup NGINX with official SSL certificate.
+
+  3) Secure server with iptables based firewall. For instance: UFW or shorewall
+
+  4) Harden system with port knocking, fail2ban, etc.
+
+  5) Enable unattended installation of security updates. Check
+     https://wiki.Ubuntu.org/UnattendedUpgrades for details.
+
+  6) Implement a backup routine for your Seafile server.
+
+  7) Update NGINX worker processes to reflect the number of CPU cores.
+
+
+
+
+  Seafile support options
+  -----------------------------------------------------------------
+
+  For free community support visit:   https://bbs.seafile.com
+  For paid commercial support visit:  https://seafile.com
+
+
+Installed:
+  mariadb-server.x86_64 1:5.5.56-2.el7                                                                                        
+
+Dependency Installed:
+  libaio.x86_64 0:0.3.109-13.el7                                 mariadb.x86_64 1:5.5.56-2.el7                                
+  perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7                   perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7                  
+  perl-DBD-MySQL.x86_64 0:4.023-6.el7                            perl-DBI.x86_64 0:1.627-4.el7                                
+  perl-Data-Dumper.x86_64 0:2.145-3.el7                          perl-IO-Compress.noarch 0:2.061-2.el7                        
+  perl-Net-Daemon.noarch 0:0.48-5.el7                            perl-PlRPC.noarch 0:0.2020-14.el7                            
+
+Complete!
+Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seafile.service to /etc/systemd/system/seafile.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/seahub.service to /etc/systemd/system/seahub.service.
+Checking python on this machine ...
+  Checking python module: setuptools ... Done.
+  Checking python module: python-imaging ... Done.
+  Checking python module: python-mysqldb ... Done.
+
+Checking for java ...Done.
+
+
+verifying password of user root ...  done
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       127.0.0.1
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /opt/seafile/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+for information.
+
+
+sed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/conf/seafdav.conf: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data availablesed: warning: failed to get security context of /opt/seafile/seafile-pro-server-6.1.8//check_init_admin.py: No data available
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+[05/25/18 06:28:42] ../common/session.c(139): using config file /opt/seafile/conf/ccnet.conf
+[05/25/18 06:28:42] ../common/license.c(427): Loading license file /opt/seafile/seafile-license.txt ..
+[05/25/18 06:28:42] ../common/license.c(430): License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Starting seafile server, please wait ...
+** Message: seafile-controller.c(1088): loading seafdav config from /opt/seafile/conf/seafdav.conf
+
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Seafile server started
+
+Done.
+
+Starting seahub at port 8000 ...
+
+
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+
+
+
+Seahub is started
+
+Done.
+
+
+Stopping seahub ...
+Done.
+
+
+Stopping seafile server ...
+Done.
+sed: warning: failed to get security context of /opt/seafile/conf/seafevents.conf: No data available
+
+  Your Seafile server is installed
+  -----------------------------------------------------------------
+
+  Server Address:      http://127.0.0.1
+
+  Seafile Admin:       admin@seafile.local
+  Admin Password:      ohkoX2oh
+
+  Seafile Data Dir:    /opt/seafile/seafile-data
+
+  Seafile DB Credentials:  Check /opt/seafile.my.cnf
+  Root DB Credentials:     Check /root/.my.cnf
+
+  This report is also saved to /opt/seafile/aio_seafile-server.log
+
+
+
+  Next you should manually complete the following steps
+  -----------------------------------------------------------------
+
+  1) Log in to Seafile and configure your server domain via the system
+     admin area if applicable.
+
+  2) If this server is behind a firewall, you need to ensure that
+     tcp port 80 is open.
+
+  3) Seahub tries to send emails via the local server. Install and
+     configure Postfix for this to work or
+     check https://manual.seafile.com/config/sending_email.html
+     for instructions on how to use an existing email account via SMTP.
+
+
+
+
+  Optional steps
+  -----------------------------------------------------------------
+
+  1) Check seahub_settings.py and customize it to fit your needs. Consult
+     http://manual.seafile.com/config/seahub_settings_py.html for possible switches.
+
+  2) Setup NGINX with official SSL certificate.
+
+  3) Secure server with iptables based firewall. For instance: UFW or shorewall
+
+  4) Harden system with port knocking, fail2ban, etc.
+
+  5) Enable unattended installation of security updates. Check
+     https://wiki.Ubuntu.org/UnattendedUpgrades for details.
+
+  6) Implement a backup routine for your Seafile server.
+
+  7) Update NGINX worker processes to reflect the number of CPU cores.
+
+
+
+
+  Seafile support options
+  -----------------------------------------------------------------
+
+  For free community support visit:   https://bbs.seafile.com
+  For paid commercial support visit:  https://seafile.com

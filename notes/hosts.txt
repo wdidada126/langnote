@@ -1,0 +1,27 @@
+# Copyright (c) 2017-2018, googlehosts members.
+# https://github.com/googlehosts/hosts
+# Last updated: 2018-04-06
+
+# This work is licensed under a modified HOSTS License.
+# https://github.com/googlehosts/hosts/raw/master/LICENSE
+
+# Modified Hosts Start
+
+# Localhost (DO NOT REMOVE) Start
+127.0.0.1	localhost
+::1	localhost
+::1	ip6-localhost
+::1	ip6-loopback
+# Localhost (DO NOT REMOVE) End
+127.0.0.1       activate.navicat.com
+
+127.0.0.1	peer1
+127.0.0.1	peer2
+127.0.0.1	peer3
+# 192.30.253.112 github.com
+
+# XMind Mind-Mapper
+0.0.0.0 xmind.net
+0.0.0.0 www.xmind.net
+
+

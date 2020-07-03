@@ -1,0 +1,7 @@
+root密码
+MyNewPass4!
+
+账户：pig
+密码：123456E%
+
+grant all privileges on *.* to root@"%" identified by 'password' with grant option

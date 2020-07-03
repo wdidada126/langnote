@@ -1,0 +1,8 @@
+elastic
+cd/d D:
+esm -s http://127.0.0.1:9200 -d http://47.94.136.171:9200 -n=elastic:YXeMWv5iV3ihyaYUCsde -x ^logstash-2018.06.* -w=5 -b=10 -c 10000
+
+esm -s http://117.50.51.81:9200 -d http://127.0.0.1:9200 -x ^logstash-2018.09.* -w=5 -b=10 -c 10000
+esm -s http://127.0.0.1:9200 -d http://47.94.136.171:9200 -n=elastic:YXeMWv5iV3ihyaYUCsde -x ^logstash-2018..* -w=5 -b=10 -c 10000
+
+esm -s http://117.50.51.81:9200 -d http://113.87.161.234:9200 -n=elastic:changeme -x index_name -w=5 -b=10 -c 10000

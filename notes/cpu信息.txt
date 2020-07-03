@@ -1,0 +1,34 @@
+	
+处理器	英特尔 Core i7-5500U @ 2.40GHz 双核
+速度	2.40 GHz (100 MHz x 24.0)
+处理器数量	核心数: 2 / 线程数: 4
+核心代号	Broadwell
+生产工艺	14 纳米
+插槽/插座	Socket BGA1168
+一级数据缓存	2 x 32 KB, 8-Way, 64 byte lines
+一级代码缓存	2 x 32 KB, 8-Way, 64 byte lines
+二级缓存	2 x 256 KB, 8-Way, 64 byte lines
+三级缓存	4 MB, 16-Way, 64 byte lines
+特征	MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, HTT, EM64T, EIST, Turbo Boost
+
+ * As of  release JDK 5, this class has been supplemented with an equivalent
+ * class designed for use by a single thread, {@link StringBuilder}.  The
+ * {@code StringBuilder} class should generally be used in preference to
+ * this one, as it supports all of the same operations but it is faster, as
+ * it performs no synchronization.
+ *
+ * @author      Arthur van Hoff
+ * @see     java.lang.StringBuilder
+ * @see     java.lang.String
+ * @since   JDK1.0
+ */
+ public final class StringBuffer
+
+ 
+中文版 链接: http://pan.baidu.com/s/1dE8mSxz 密码: g6ah
+英文版 链接: http://pan.baidu.com/s/1jIe6KEa 密码: yj4t
+
+spring.datasource.url=jdbc:mysql://localhost:3306/test
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver

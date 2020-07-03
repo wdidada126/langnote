@@ -1,0 +1,60 @@
+GET /logstash-2018.10.10/_search
+{
+    "size": 2,
+    "from": 10, 
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+        { "timestamp":{ "order":"desc" }},
+        { "path": { "order": "desc" }}
+    ]
+}
+
+
+47.94.136.171
+117.50.51.81
+60.205.203.243
+
+edidada.xyz
+
+register47.edidada.xyz
+
+47.94.136.171
+117.50.51.81
+60.205.203.243
+
+register46.edidada.xyz
+47.94.136.171
+117.50.51.81
+
+base=https://github.com/docker/machine/releases/download/v0.15.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+  
+  
+  
+
+  
+  
+Hm_lvt_aa5c701f4f646931bf78b6f40b234ef5=1528645388,1528645407,1528645458,1528645723; 
+JSESSIONID=66EFA6D2DA3E6B54A7677326D3C42BEC;
+Hm_lpvt_aa5c701f4f646931bf78b6f40b234ef5=1528736847;
+Hm_lvt_95fe05d21bcf7426c149294f7de9a621=1537172033,1539148644;
+UM_distinctid=1666792798b1c1-0e6a982cfcc537-8383268-144000-16667927990323;
+SESSION=4dc7ad10-b075-41ba-a535-e4674c385af2;
+CNZZDATA1275037349=579929313-1539330715-%7C1539534757;
+Hm_lpvt_95fe05d21bcf7426c149294f7de9a621=1539534781
+
+Hm_lvt_95fe05d21bcf7426c149294f7de9a621=1537238899,1539148653;
+UM_distinctid=16667a0479d7b8-02f1b993978af2-8383268-144000-16667a0479ea7;
+CNZZDATA1275037349=421865789-1539336851-%7C1539534757;
+SESSION=78d8c748-9f61-4d9a-8792-3e9f62ef46c0;
+Hm_lpvt_95fe05d21bcf7426c149294f7de9a621=1539537387
+
+kubectl patch svc "wordpress-1-wordpress-svc" \
+  --namespace "default" \
+  --patch '{"spec": {"type": "LoadBalancer"}}'
+
+
+kubectl get svc

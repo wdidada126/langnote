@@ -1,0 +1,10 @@
+# mysql x protocel
+
+
+
+https://dev.mysql.com/doc/refman/5.7/en/x-plugin.html
+
+
+
+[mysql 5.7.12 新增 X plugin 详解](http://www.mamicode.com/info-detail-1443939.html?__cf_chl_jschl_tk__=bab43a8c2805821f929f0d5b208f437ee208dc29-1590039489-0-Aau2jcHEZu2dNBFNpC1pE1xPlZf1ezLf9OcVtyCT7A0lDMmdG94mww0hgzTcmGH6Y5EkCIamCwQAhvzGkocMnHtQ0HLmbhLrSvKiGIVYkoDeI56pL7tK1XuELsqu-mB5KhdbqahiSA25YGw3g7rN5MbHKIZN78JjnfRLRdAgsecMn9JpDTsZRYARAtOXPI3FyRRfaHKRSiYR3WDaqCFicmQ594Pce9pEGU9YMDoSGAINCPL8ehyGELnSzvkyuagManugVuyGldwA1jK33JwCjXCksmVUuIA4pbMn1EWvqSNTPdxCtml3orQHm1-H6MesLA)
+

@@ -1,0 +1,6 @@
+# DNS实现网站的负载均衡
+
+DNS负责把域名解析成ip
+CNAME
+TXT
+CNAME

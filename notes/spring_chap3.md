@@ -1,0 +1,30 @@
+spring中xml格式的配置文件标签分为两种
+默认标签
+自定义标签
+
+
+DefaultBeanDefinitionDocumentReader类
+parseBeanDefinitions()
+分类处理四种标签
+import	importBeanDefinitionResource()
+beans	doRegisterBeanDefinitions()
+alias	processAliasRegistration()
+bean	parseDefaultElement()
+
+
+先分析对bean标签的处理
+parseDefaultElement(Element, BeanDefinitionParserDelegate)方法分析
+
+1、BeanDefinitionParserDelegate类的processBeanDefinition()详解
+返回实例BeanDefinitionHolder，包含class name id alias等属性
+如果还有返回实例BeanDefinitionHolder不为空
+2、BeanDefinitionParserDelegate类的decorateBeanDefinitionIfRequired()
+3、BeanDefinitionReaderUtils类的静态方法registerBeanDefinition(BeanDefinitionHolder, BeanDefinitionRegistry)
+4、发送注册事件给监听器
+getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));
+
+
+BeanDefinitionParserDelegate类的parseBeanDefinitionElement(Element, BeanDefinition)方法
+1、解析id属性
+2、解析name属性
+3、分割name属性

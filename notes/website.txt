@@ -1,0 +1,43 @@
+http://edibeta.top/assets/img/portfolio/2.jpg
+
+121.14.24.250
+116.31.73.82
+39.106.237.110
+
+wget http://edibeta.top/assets/img/portfolio/2.jpg
+
+systemctl stop nginx.service
+
+centos 7 httpd文件目录
+
+/etc/http
+/usr/local/apache/htdocs
+
+
+1.查看httpd包是否可用
+yum list | grep httpd
+
+2.安装Apache
+yum install httpd
+
+3.配置servername
+vi /etc/httpd/conf/httpd.conf
+修改这行: ServerName localhost:80
+
+4.启动
+systemctl start httpd
+
+
+默认目录是/var/www/html下。修改方法：
+打开/etc/httpd/conf/httpd.conf文件，找到下面这行
+DocumentRoot "/var/www/html"
+可以改成你想要的目录。
+
+上传文件到/var/www/html
+重启httpd
+
+1、firewalld的基本使用
+启动： systemctl start firewalld
+查看状态： systemctl status firewalld 
+停止： systemctl disable firewalld
+禁用： systemctl stop firewalld

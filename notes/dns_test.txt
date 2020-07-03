@@ -1,0 +1,28 @@
+dig @204.44.80.209 www.google.com
+dig @127.0.0.1 www.google.com
+
+dig @204.44.80.209 +tcp www.google.com +trace
+
+vim /etc/resolv.conf
+vim /etc/dhcp/dhclient.conf
+
+cd /root/Pcap_DNSProxy/Source/Release
+
+systemctl status Pcap_DNSProxy
+systemctl stop Pcap_DNSProxy
+vim E*
+
+/root/Pcap_DNSProxy/Source/Release/Pcap_DNSProxy --disable-daemon
+
+systemctl stop Pcap_DNSProxy
+
+systemctl start Pcap_DNSProxy
+
+cd ~/Pcap_DNSProxy/Source/Release
+
+查看网卡配置信息
+vim /etc/network/interfaces
+
+/etc/init.d/bind9 stop
+
+service networking restart

@@ -1,0 +1,566 @@
+servlet API中有4个Java包，包括：
+javax.servlet 定义Servlet和Servlet容器之间的七月类和接口。
+javax.servlet.http 定义HTTP Servlet与Serlvet容器之间的契约和接口
+javax.servlet.annotation 包含对Servlet、Filter和Listener进行标注的注解。还为标注元件指定元数据。
+javax.servlet.descriptor 包含为Web应用程序的配置星系提供编程式访问的类型。
+
+Servlet mServlet;
+ServletConfig mServletConfig;
+ServletRequest mServletRequest;
+ServletResponse mServletResponse;
+ServletContext mServletContext;
+GenericServlet mGenericServlet;
+RequestDispatcher mRequestDispatcher;
+Filter mFilter;
+
+Servlet接口是核心接口，是所有Serlvet都必须直接或间接实现的一个接口，Servlet接口定义了Servlet与Servlet容器之间的约定，总的来说就是Servlet容器会把Servlet类加载到内存中，并在Servlet实例中调用特定方法，在一个应用程序中，每个Servlet类型只能有一个实例。当用户的请求引发service方法，并给这个方法传入一个ServletRequest实例和一个ServletResponse实例。ServletRequest封装当前的HTTP请求，让开发者不必去解析和操作原始的HTTP数据，同理，ServletResponse表示当前用户的HTTP响应，它的作用是使得将响应回传给用户更容易。Servlet容器还为每个应用程序创建一个ServletContext实例。这个对象封装context（应用程序）的环境细节，而每个context只有一个ServletContext。每个Servlet实例还有一个封装Servlet配置信息的ServletConfig。
+
+在Servlet3.x中可以使用@WebServlet来部署应用，可以不必在WEB-INF目录下放一个web.xml配置文件，当然也可以同时使用，前者优先级更高，这是annotation为我们带来的好处，介于使用web.xml来配置Servlet也有其有点，就简单介绍下，使用web.xml配置优点：
+不用更改代码，也就意味着不需要重新编译
+可包含@WebServlet中没有的元素，如load-on-startup元素，init方法比较费时间这个就很有帮助了。
+
+
+
+public class MyServlet implements Servlet {
+    public void init(ServletConfig config) throws ServletException {
+
+    }
+
+    public ServletConfig getServletConfig() {
+        return null;
+    }
+
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+
+    }
+
+    public String getServletInfo() {
+        return null;
+    }
+
+    public void destroy() {
+
+    }
+}
+
+
+
+
+public class MyServletConfig implements ServletConfig {
+    public String getServletName() {
+        return null;
+    }
+
+    public ServletContext getServletContext() {
+        return null;
+    }
+
+    public String getInitParameter(String name) {
+        return null;
+    }
+
+    public Enumeration<String> getInitParameterNames() {
+        return null;
+    }
+}
+
+
+
+public class MyServletContext implements ServletContext {
+    public String getContextPath() {
+        return null;
+    }
+
+    public ServletContext getContext(String uripath) {
+        return null;
+    }
+
+    public int getMajorVersion() {
+        return 0;
+    }
+
+    public int getMinorVersion() {
+        return 0;
+    }
+
+    public int getEffectiveMajorVersion() {
+        return 0;
+    }
+
+    public int getEffectiveMinorVersion() {
+        return 0;
+    }
+
+    public String getMimeType(String file) {
+        return null;
+    }
+
+    public Set<String> getResourcePaths(String path) {
+        return null;
+    }
+
+    public URL getResource(String path) throws MalformedURLException {
+        return null;
+    }
+
+    public InputStream getResourceAsStream(String path) {
+        return null;
+    }
+
+    public RequestDispatcher getRequestDispatcher(String path) {
+        return null;
+    }
+
+    public RequestDispatcher getNamedDispatcher(String name) {
+        return null;
+    }
+
+    public Servlet getServlet(String name) throws ServletException {
+        return null;
+    }
+
+    public Enumeration<Servlet> getServlets() {
+        return null;
+    }
+
+    public Enumeration<String> getServletNames() {
+        return null;
+    }
+
+    public void log(String msg) {
+
+    }
+
+    public void log(Exception exception, String msg) {
+
+    }
+
+    public void log(String message, Throwable throwable) {
+
+    }
+
+    public String getRealPath(String path) {
+        return null;
+    }
+
+    public String getServerInfo() {
+        return null;
+    }
+
+    public String getInitParameter(String name) {
+        return null;
+    }
+
+    public Enumeration<String> getInitParameterNames() {
+        return null;
+    }
+
+    public boolean setInitParameter(String name, String value) {
+        return false;
+    }
+
+    public Object getAttribute(String name) {
+        return null;
+    }
+
+    public Enumeration<String> getAttributeNames() {
+        return null;
+    }
+
+    public void setAttribute(String name, Object object) {
+
+    }
+
+    public void removeAttribute(String name) {
+
+    }
+
+    public String getServletContextName() {
+        return null;
+    }
+
+    public ServletRegistration.Dynamic addServlet(String servletName, String className) {
+        return null;
+    }
+
+    public ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet) {
+        return null;
+    }
+
+    public ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass) {
+        return null;
+    }
+
+    public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException {
+        return null;
+    }
+
+    public ServletRegistration getServletRegistration(String servletName) {
+        return null;
+    }
+
+    public Map<String, ? extends ServletRegistration> getServletRegistrations() {
+        return null;
+    }
+
+    public FilterRegistration.Dynamic addFilter(String filterName, String className) {
+        return null;
+    }
+
+    public FilterRegistration.Dynamic addFilter(String filterName, Filter filter) {
+        return null;
+    }
+
+    public FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass) {
+        return null;
+    }
+
+    public <T extends Filter> T createFilter(Class<T> clazz) throws ServletException {
+        return null;
+    }
+
+    public FilterRegistration getFilterRegistration(String filterName) {
+        return null;
+    }
+
+    public Map<String, ? extends FilterRegistration> getFilterRegistrations() {
+        return null;
+    }
+
+    public SessionCookieConfig getSessionCookieConfig() {
+        return null;
+    }
+
+    public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes) {
+
+    }
+
+    public Set<SessionTrackingMode> getDefaultSessionTrackingModes() {
+        return null;
+    }
+
+    public Set<SessionTrackingMode> getEffectiveSessionTrackingModes() {
+        return null;
+    }
+
+    public void addListener(String className) {
+
+    }
+
+    public <T extends EventListener> void addListener(T t) {
+
+    }
+
+    public void addListener(Class<? extends EventListener> listenerClass) {
+
+    }
+
+    public <T extends EventListener> T createListener(Class<T> clazz) throws ServletException {
+        return null;
+    }
+
+    public JspConfigDescriptor getJspConfigDescriptor() {
+        return null;
+    }
+
+    public ClassLoader getClassLoader() {
+        return null;
+    }
+
+    public void declareRoles(String... roleNames) {
+
+    }
+
+    public String getVirtualServerName() {
+        return null;
+    }
+}
+
+
+
+
+
+
+
+public class MyServletRequest implements ServletRequest {
+    public Object getAttribute(String name) {
+        return null;
+    }
+
+    public Enumeration<String> getAttributeNames() {
+        return null;
+    }
+
+    public String getCharacterEncoding() {
+        return null;
+    }
+
+    public void setCharacterEncoding(String env) throws UnsupportedEncodingException {
+
+    }
+
+    public int getContentLength() {
+        return 0;
+    }
+
+    public long getContentLengthLong() {
+        return 0;
+    }
+
+    public String getContentType() {
+        return null;
+    }
+
+    public ServletInputStream getInputStream() throws IOException {
+        return null;
+    }
+
+    public String getParameter(String name) {
+        return null;
+    }
+
+    public Enumeration<String> getParameterNames() {
+        return null;
+    }
+
+    public String[] getParameterValues(String name) {
+        return new String[0];
+    }
+
+    public Map<String, String[]> getParameterMap() {
+        return null;
+    }
+
+    public String getProtocol() {
+        return null;
+    }
+
+    public String getScheme() {
+        return null;
+    }
+
+    public String getServerName() {
+        return null;
+    }
+
+    public int getServerPort() {
+        return 0;
+    }
+
+    public BufferedReader getReader() throws IOException {
+        return null;
+    }
+
+    public String getRemoteAddr() {
+        return null;
+    }
+
+    public String getRemoteHost() {
+        return null;
+    }
+
+    public void setAttribute(String name, Object o) {
+
+    }
+
+    public void removeAttribute(String name) {
+
+    }
+
+    public Locale getLocale() {
+        return null;
+    }
+
+    public Enumeration<Locale> getLocales() {
+        return null;
+    }
+
+    public boolean isSecure() {
+        return false;
+    }
+
+    public RequestDispatcher getRequestDispatcher(String path) {
+        return null;
+    }
+
+    public String getRealPath(String path) {
+        return null;
+    }
+
+    public int getRemotePort() {
+        return 0;
+    }
+
+    public String getLocalName() {
+        return null;
+    }
+
+    public String getLocalAddr() {
+        return null;
+    }
+
+    public int getLocalPort() {
+        return 0;
+    }
+
+    public ServletContext getServletContext() {
+        return null;
+    }
+
+    public AsyncContext startAsync() throws IllegalStateException {
+        return null;
+    }
+
+    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse) throws IllegalStateException {
+        return null;
+    }
+
+    public boolean isAsyncStarted() {
+        return false;
+    }
+
+    public boolean isAsyncSupported() {
+        return false;
+    }
+
+    public AsyncContext getAsyncContext() {
+        return null;
+    }
+
+    public DispatcherType getDispatcherType() {
+        return null;
+    }
+}
+
+
+
+
+
+
+
+
+
+public class MyServletResponse implements ServletResponse {
+    public String getCharacterEncoding() {
+        return null;
+    }
+
+    public String getContentType() {
+        return null;
+    }
+
+    public ServletOutputStream getOutputStream() throws IOException {
+        return null;
+    }
+
+    public PrintWriter getWriter() throws IOException {
+        return null;
+    }
+
+    public void setCharacterEncoding(String charset) {
+
+    }
+
+    public void setContentLength(int len) {
+
+    }
+
+    public void setContentLengthLong(long len) {
+
+    }
+
+    public void setContentType(String type) {
+
+    }
+
+    public void setBufferSize(int size) {
+
+    }
+
+    public int getBufferSize() {
+        return 0;
+    }
+
+    public void flushBuffer() throws IOException {
+
+    }
+
+    public void resetBuffer() {
+
+    }
+
+    public boolean isCommitted() {
+        return false;
+    }
+
+    public void reset() {
+
+    }
+
+    public void setLocale(Locale loc) {
+
+    }
+
+    public Locale getLocale() {
+        return null;
+    }
+}
+
+
+
+
+
+
+public class MyGenericServlet extends GenericServlet {
+    @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+
+    }
+}
+
+
+
+
+
+
+
+public class MyRequestDispatcher implements RequestDispatcher {
+    @Override
+    public void forward(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
+    }
+
+    @Override
+    public void include(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public class MyFilter implements Filter {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+}

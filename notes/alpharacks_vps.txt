@@ -1,0 +1,22 @@
+https://www.alpharacks.com
+
+VPS Package: March Madness Special #1
+Hostname: server1.example.com
+IP Address: 204.44.80.209
+
+====================
+VPS Control Panel
+====================
+
+Panel URL (https): https://vpscp.alpharacks.com:5656/
+Username: vmuser21798
+Password: 24a131cbff
+
+====================
+SSH Access Information
+====================
+
+Main IP: 204.44.80.209
+Username: root
+Password: 24a131cbff
+Listen Port: 22

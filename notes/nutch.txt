@@ -1,0 +1,44 @@
+where COMMAND is one of:
+  readdb            read / dump crawl db
+  mergedb           merge crawldb-s, with optional filtering
+  readlinkdb        read / dump link db
+  inject            inject new urls into the database
+  generate          generate new segments to fetch from crawl db
+  freegen           generate new segments to fetch from text files
+  fetch             fetch a segment's pages
+  parse             parse a segment's pages
+  readseg           read / dump segment data
+  mergesegs         merge several segments, with optional filtering and slicing
+  updatedb          update crawl db from segments after fetching
+  invertlinks       create a linkdb from parsed segments
+  mergelinkdb       merge linkdb-s, with optional filtering
+  index             run the plugin-based indexer on parsed segments and linkdb
+  dedup             deduplicate entries in the crawldb and give them a special status
+  dump              exports crawled data from segments into files
+  commoncrawldump   exports crawled data from segments into common crawl data format encoded as CBOR
+  solrindex         run the solr indexer on parsed segments and linkdb - DEPRECATED use the index command instead
+  solrdedup         remove duplicates from solr - DEPRECATED use the dedup command instead
+  solrclean         remove HTTP 301 and 404 documents from solr - DEPRECATED use the clean command instead
+  clean             remove HTTP 301 and 404 documents and duplicates from indexing backends configured via plugins
+  parsechecker      check the parser for a given url
+  indexchecker      check the indexing filters for a given url
+  filterchecker     check url filters for a given url
+  normalizerchecker check url normalizers for a given url
+  domainstats       calculate domain statistics from crawldb
+  protocolstats     calculate protocol status code stats from crawldb
+  crawlcomplete     calculate crawl completion stats from crawldb
+  webgraph          generate a web graph from existing segments
+  linkrank          run a link analysis program on the generated web graph
+  scoreupdater      updates the crawldb with linkrank scores
+  nodedumper        dumps the web graph's node scores
+  plugin            load a plugin and run one of its classes main()
+  junit             runs the given JUnit test
+  startserver       runs the Nutch Server on localhost:8081
+  webapp            run a local Nutch Web Application on locahost:8080
+  warc              exports crawled data from segments at the WARC format
+  updatehostdb      update the host db with records from the crawl db
+  readhostdb        read / dump host db
+  sitemap           perform Sitemap processing
+ or
+  CLASSNAME         run the class named CLASSNAME
+Most commands print help when invoked w/o parameters.

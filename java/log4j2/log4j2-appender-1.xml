@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- logFilePrefix变量: 在综测环境多部署情况下分别写log文件（按部署目录） -->
+
+<RollingRandomAccessFile name="${loggerLogLevel}" fileName="${logDirect}/${logFileName}.log"
+                         filePattern="${logDirect}/${logFileName}.%d{yyyy-MM-dd}.%i.log">
+  <Filters>
+    <ThresholdFilter level="${loggerLogLevel}" onMatch="ACCEPT" onMismatch="DENY"/>
+  </Filters>
+  <PatternLayout charset="UTF-8" pattern="[%date][%c{1.}][%t][%p] dstTraceId:[%X{dstTraceId}] [%X{TRACE_LOG_ID}] -%msg%xEx%n"/>
+  <Policies>
+    <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+    <SizeBasedTriggeringPolicy size="512MB"/>
+  </Policies>
+  <DefaultRolloverStrategy max="50000"/>
+</RollingRandomAccessFile>

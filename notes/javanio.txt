@@ -1,0 +1,41 @@
+java nio类
+抽象类Buffer
+ByteBuffer, CharBuffer, DoubleBuffer, FloatBuffer, IntBuffer, LongBuffer, ShortBuffer
+
+Channel 代表一个io对象
+可以读或者写
+
+ServerSocketChannel
+SocketChannel
+FileChannel
+
+其中，响应码302的定义中写道
+若客户端的原始请求方法不是GET或HEAD，并且接收到302响应码，则在经用户确认之前，是禁止自动跳转的，因为这可能会改变请求的发生条件。
+响应码303与302类似，但在跳转时，会强制使用GET方法，即使原始请求时使用POST方法发出的。
+响应码307与303类似，区别在于，若原始请求方法不是GET或HEAD，则在经用户确认之前，禁止执行跳转。
+
+
+Summary of Queue methods
+		Throws exception	Returns special value
+Insert	add(e)				offer(e)
+Remove	remove()			poll()
+Examine	element()			peek()
+
+
+default void	forEachRemaining(Consumer<? super E> action)
+Performs the given action for each remaining element until all elements have been processed or the action throws an exception.
+boolean	hasNext()
+Returns true if the iteration has more elements.
+E	next()
+Returns the next element in the iteration.
+default void	remove()
+Removes from the underlying collection the last element returned by this iterator (optional operation).
+
+关于ArrayList和Vector区别如下：
+
+ArrayList在内存不够时默认是扩展50% + 1个，Vector是默认扩展1倍。
+Vector提供indexOf(obj, start)接口，ArrayList没有。
+Vector属于线程安全级别的，但是大多数情况下不使用Vector，因为线程安全需要更大的系统开销。
+
+
+Set SortedSet实现类ConcurrentSkipListSet TreeSet

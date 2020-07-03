@@ -1,0 +1,5 @@
+/.idea/
+/infoq_articles/
+/.vscode/
+/cplusplus/test/.vscode/
+.DS_Store

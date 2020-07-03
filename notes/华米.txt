@@ -1,0 +1,12 @@
+有大规模高并发访问的Web应用架构设计和开发经验者优先；
+ 具有两年以上TSM系统或SE相关管理系统平台的开发经验者优先；
+ 熟悉GP、EMV或PBOC规范者优先； 
+ 熟悉SE体系结构者优先； 
+ 熟悉密钥体系、加密机，具有密钥管理系统、认证系统等安全相关系统的开发经验者优先。
+ 
+ 
+  NVMe
+  
+  mmtls
+  https://blog.csdn.net/wueryan/article/details/50533974
+  https://www.cnblogs.com/jhj117/p/5505454.html

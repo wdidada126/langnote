@@ -1,0 +1,13 @@
+G:\apache-tomcat-8.5.20 启动
+日志文件位置
+G:/apache-tomcat-8.5.20/logs/localhost_access_log.2018-05-28.txt
+
+
+G:\elasticsearch-5.0.2\bin 启动
+
+G:\logstash-5.0.2\bin
+logstash -f catalinalog2.conf
+
+谷歌插件
+elasticsearch-head
+查看logstash-2018.05.28 索引

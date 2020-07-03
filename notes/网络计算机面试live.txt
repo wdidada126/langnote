@@ -1,0 +1,54 @@
+技术面试中常见的网络通信细节问题解答
+1. TCP/IP协议栈层次结构
+2. TCP三次握手需要知道的细节点
+connect函数具体实现
+客户端服务器的连接请求是如何配对的
+seq
+ack=seq+1
+3. TCP四次挥手需要知道的细节点(CLOSE_WAIT、TIME_WAIT、MSL)
+MSL最大生存周期
+4. TCP与UDP的区别与适用场景
+失败重发
+接收方需要纠正发送顺序再提交给应用层
+
+5. linux常见网络模型详解(select、poll与epoll)
+
+6. epoll_event结构中的epoll_data_t的fd与ptr的使用场景
+
+7. Windows常见的网络模型详解(select、WSAEventSelect、WSAAsyncSelect)
+
+8. Windows上的完成端口模型(IOCP)
+
+9. 异步的connect函数如何编写
+
+10.select函数可以检测网络异常吗？
+11.你问我答环节一
+12. epoll的水平模式和边缘模式
+13. 如何将socket设置成非阻塞的(创建时设置与创建完成后设置)，非阻塞socket与阻塞的socket在收发数据上的区别
+14. send/recv(read/write)返回值大于0、等于0、小于0的区别
+15.如何编写正确的收数据代码与发数据代码
+16.发送数据缓冲区与接收数据缓冲区如何设计
+17.socket选项SO_SNDTIMEO和SO_RCVTIMEO
+18.socket选项TCP_NODELAY
+19.socket选项SO_REUSEADDR和SO_REUSEPORT（Windows平台与linux平台的区别）
+20.socket选项SO_LINGER
+21.shutdown与优雅关闭
+22.你问我答环节二
+23.socket选项SO_KEEPALIVE
+24.关于错误码EINTR
+25.如何解决tcp粘包问题
+26.信号SIGPIPE与EPIPE错误码
+27.gethostbyname阻塞与错误码获取问题
+28.心跳包的设计技巧（保活心跳包与业务心跳包）
+29.断线重连机制如何设计
+30.如何检测对端已经关闭
+31.如何清除无效的死链（端与端之间的线路故障）
+32.定时器的不同实现及优缺点
+33.你问我答环节三
+34.http协议的具体格式
+35.http head、get与post方法的细节
+36.http代理、socks4代理与socks5代理如何编码实现
+37.ping
+38.telnet
+39.你问我答环节四
+40.总结

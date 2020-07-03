@@ -1,0 +1,60 @@
+bin/nutch generate crawl/crawldb crawl/segments -topN 1000
+s5=`ls -d crawl/segments/2* | tail -1`
+echo $s5
+
+bin/nutch fetch $s5
+bin/nutch parse $s5
+bin/nutch updatedb crawl/crawldb $s5
+
+
+
+cp -r solr-6.6.0/server/solr/configsets/basic_configs solr-6.6.0/server/solr/configsets/nutch
+cp apache-nutch-1.14/conf/schema.xml solr-6.6.0/server/solr/configsets/nutch/conf
+rm solr-6.6.0/server/solr/configsets/nutch/conf/managed-schema
+solr-6.6.0/bin/solr start
+solr-6.6.0/bin/solr create -c nutch -d solr-6.6.0/server/solr/configsets/nutch/conf/
+
+
+
+
+
+~/solr-6.6.0/bin/solr start -force
+Waiting up to 180 seconds to see Solr running on port 8983 [\]  
+Started Solr server on port 8983 (pid=32146). Happy searching!
+                                                                                                                        [root@VM_0_17_centos ~]# solr-6.6.0/bin/solr create -c nutch -d solr-6.6.0/server/solr/configsets/nutch/conf/
+WARNING: Creating cores as the root user can cause Solr to fail and is not advisable. Exiting.
+         If you started Solr as root (not advisable either), force core creation by adding argument -force
+[root@VM_0_17_centos ~]# solr-6.6.0/bin/solr create -c nutch -d solr-6.6.0/server/solr/configsets/nutch/conf/ -force
+
+Copying configuration to new core instance directory:
+/root/solr-6.6.0/server/solr/nutch
+
+Creating new core 'nutch' using command:
+http://localhost:8983/solr/admin/cores?action=CREATE&name=nutch&instanceDir=nutch
+
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":6943},
+  "core":"nutch"}
+
+
+[root@VM_0_17_centos ~]# bin/nutch invertlinks crawl/linkdb -dir crawl/segments
+LinkDb: adding segment: file:/root/apache-nutch-1.14/crawl/segments/20180612075710
+LinkDb: adding segment: file:/root/apache-nutch-1.14/crawl/segments/20180612075815
+LinkDb: adding segment: file:/root/apache-nutch-1.14/crawl/segments/20180612074546
+LinkDb: adding segment: file:/root/apache-nutch-1.14/crawl/segments/20180612075434
+LinkDb: adding segment: file:/root/apache-nutch-1.14/crawl/segments/20180612075347
+
+bin/nutch index -Dsolr.server.url=http://localhost:8983/solr/nutch crawl/crawldb/ -linkdb crawl/linkdb/ -dir crawl/segments/ -filter -normalize -deleteGone
+
+bin/crawl -i -D solr.server.url=http://localhost:8983/solr/nutch -s urls/ TestCrawl/  2
+
+/root/apache-nutch-1.14/bin/nutch index -Dsolr.server.url=http://localhost:8983/solr/nutch TestCrawl//crawldb -linkdb TestCrawl//linkdb TestCrawl//segments/20180612175116
+
+bin/crawl -i -D solr.server.url=http://localhost:8983/solr/nutch -s urls/ huaguoshanCrawl/  2
+
+/root/apache-nutch-1.14/bin/nutch index -Dsolr.server.url=http://172.16.0.17:8983/solr/nutch TestCrawl//crawldb -linkdb TestCrawl//linkdb TestCrawl//segments/20180612175116
+
+
+solr-6.6.0/bin/solr create -c blog -d solr-6.6.0/server/solr/configsets/blog/conf/ -force

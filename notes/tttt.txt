@@ -1,0 +1,100 @@
+grant all privileges on *.* to root@'localhost' identified by "5Edidada" with grant option;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '5Edidada' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY '5Edidada' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'193.112.34.55' IDENTIFIED BY '5Edidada' WITH GRANT OPTION;
+
+#!/bin/bash 
+# Name:bakmysql.sh
+# This is a ShellScript For Auto DB Backup and Delete old Backup 
+# 
+
+mkdir -p ~/mysqlbak
+backupdir=~/mysqlbak 
+time=` date +%Y%m%d%H%M%S `
+mysqldump -u root -p5Edidada db_blog | gzip > $backupdir/name_1_db_blog$time.sql.gz
+find $backupdir -name "name_*.sql.gz" -type f -mtime +8 -exec rm {} \; > /dev/null 2>&1 
+
+vim /etc/crontab
+添加上下一行内容
+00 3 * * * root /root/bakmysql.sh
+
+crond restart
+crond重启失败
+报错
+crond: can't lock /var/run/crond.pid, otherpid may be 1426: Resource temporarily unavailable
+解决方式，命令行执行shell
+rm /var/run/crond.pid
+https://blog.csdn.net/luoww1/article/details/72677405
+
+mysql dump备份方式 mysql还原操作练习
+https://blog.csdn.net/u010098331/article/details/50896175
+
+http://novell.me/Linux/201612/linux-backup-mysql-database.html
+
+https://juejin.im/post/5a61ad34f265da3e3c6c3943
+https://blog.csdn.net/laoyang360/article/details/60347828
+
+https://www.linuxidc.com/Linux/2013-07/87665.htm
+
+ssh-keygen -t rsa
+scp ~/.ssh/id_rsa.pub root@193.112.34.55:/root/.ssh/authorized_keys
+
+scp ~/.ssh/id_rsa.pub root@60.205.225.118:/root/.ssh/authorized_keys
+scp -r ~/mysqlbak root@193.112.34.55:/root/
+
+
+
+scp -P 27795 ~/.ssh/id_rsa.pub root@67.209.189.188:/root/.ssh/authorized_keys
+
+
+linux下scp进行远程复制的时候，如果有同样文件存在，它默认是怎么处理的？
+直接覆盖
+
+https://www.cnblogs.com/wendu/p/6036107.html
+http://blog.chinaunix.net/uid-23886490-id-3621916.html
+
+telnet 60.205.225.118 8080
+
+
+scp /mnt/g/Blogs/java_blog_druid/classes/artifacts/blogs/blogs.war root@193.112.34.55:/usr/tomcat/apache-tomcat-7.0.88/webapps/
+scp /mnt/g/Blogs/java_blog_druid/classes/artifacts/blogs/blogs.war root@67.209.189.188:193.112.34.55/webapps/
+rm -f /mnt/g/Blogs/java_blog_druid/classes/artifacts/blogs/blogs.war
+
+
+wget https://artifacts.elastic.co/downloads/logstash/logstash-5.0.2.rpm
+yum localinstall logstash-5.0.2.rpm –y
+
+rpm -e logstash-5.0.2
+
+rpm方式安装logstash
+/usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'
+
+bin/logstash --help
+
+/usr/share/logstash/bin/logstash -f  ~/logstash.sh &
+
+WARNING: Could not find logstash.yml which is typically located in $LS_HOME/config or /etc/logstash. You can specify the path using --path.settings. Continuing using the defaults
+Could not find log4j2 configuration at path /usr/share/logstash/config/log4j2.properties. Using default config which logs to console
+
+/usr/share/logstash/bin/logstash -e 'input { stdin{} } output { elasticsearch { hosts => "172.16.5.37:9200" user => elastic  password => 123456 } } '
+
+/usr/share/logstash/bin/logstash -e 'input { stdin{} } output { elasticsearch { hosts => "119.29.188.224:9200" } } '
+
+bin/logstash -e 'input { stdin { } } output { stdout {} }'
+bin/logstash -e 'input { stdin { } } output { elasticsearch { hosts => "119.29.188.224:9200" } }'
+bin/logstash -e 'input { input { file { path => ["/usr/local/apache-tomcat-8.0.52/logs/localhost.*.log","/usr/local/apache-tomcat-8.0.52/logs/localhost_access_log.*.txt","/usr/local/apache-tomcat-8.0.52/logs/catalina.*.log"] } } } output { elasticsearch { hosts => "119.29.188.224:9200" } }'
+
+bin/logstash -e 'input { input { file { path => ["/usr/tomcat/apache-tomcat-7.0.88/logs/localhost.*.log","/usr/tomcat/apache-tomcat-7.0.88/logs/localhost_access_log.*.txt","/usr/tomcat/apache-tomcat-7.0.88/logs/catalina.*.log"] } } } output { elasticsearch { hosts => "119.29.188.224:9200" } }'
+
+#nohup /root/logstash-5.0.2/bin/logstash -f ~/logstash.sh 2>&1 &
+
+#/root/logstash-5.0.2/bin/logstash -f ~/logstash.sh
+
+cd ~
+nohup /root/logstash-5.0.2/bin/logstash -f ~/logstash.sh &
+
+
+,"/var/log/nginx/access.log"
+,"/var/log/nginx/error.log"
