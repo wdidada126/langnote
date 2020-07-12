@@ -1,5 +1,4154 @@
 # icloud
 
+
+
+
+
+
+
+再往上，就是shell脚本了。
+
+
+
+shell是图灵完备的
+
+
+
+shell脚本是一种比python更“糙”、因此性能等方面更为受限的语言；但它有个极大的优点，那就是可以把其他人写的程序本身，像其他语言的库函数那样使用。
+
+为了做到这个，它要求每个程序都把命令行参数当作“函数输入”、向stdout/stderr的输出当作函数输出，同时以程序返回值说明执行成功与否。
+
+这个约定是强制性的，在操作系统设计时就确定了的——这也是C语言的main函数需要返回一个int的原因。
+
+但是，这个“命令行参数”的约定也束缚了shell，使得它比起其他语言更在乎空格/回车等符号——因为它的每一行，都必须是“命令 参数1 参数2”的格式。
+
+这个约定就使得它语法怪异，也很难像其他编程语言那样，支持语法结构的任意嵌套——不管有多像，它毕竟是“用命令行模拟出来的语法结构”。
+
+那么，这就是shell脚本的定位：它是一种只能支持较为简单逻辑的、可以直接把任意现有程序当作函数无缝集成的“超高级语言”；但因为“命令行模拟”这个本质，它的语法较为笨拙，很难像正规的脚本语言那样得到很多很多的语法糖或者其它便利。
+
+但，同样的，其它脚本语言语法结构是灵活了；但它们也就不可能很方便的和系统安装的现有程序交互了——注意是不方便，不是不能。你完全可以通过popen/shellexec等方法调用外部程序。
+
+程序员都是一群特别特别“懒”的人。他们会根据目标的不同，选择能够最轻易达到目标的方法——这种选择同样包括编程语言。这反过来也导致了诸多不同定位的语言的出现。
+
+
+
+
+
+
+
+
+
+
+
+内核的bug
+
+
+
+https://askubuntu.com/questions/967441/17-1-wlp6s0-failed-to-remove-key-1-ffffffffffff-from-hardware-22
+
+
+
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1720930
+
+
+
+https://blog.csdn.net/weixin_40641735/article/details/89019657
+
+
+
+升级内核 切换内核
+
+
+
+https://bugzilla.kernel.org/show_bug.cgi?id=198357
+
+
+
+sudo dpkg -i *.deb
+
+uname -r
+
+
+
+
+
+
+
+
+
+
+
+# 有点过了尺度，安徽电信要插排
+
+
+
+签约补助
+
+甜橙金融要盒饭
+
+
+
+
+
+
+
+多重继承 虚表
+
+
+
+https://www.zhihu.com/question/29251261/answer/1297439131
+
+
+
+# 有一个规划
+
+
+
+
+
+
+
+[ubuntu 手动连接wifi](https://blog.csdn.net/david394/article/details/106783963)
+
+https://blog.csdn.net/david394/article/details/106783963
+
+
+
+
+
+Ubuntu 18操作镜像
+
+http://tel.mirrors.163.com/ubuntu-releases/18.04.4/ubuntu-18.04.4-desktop-amd64.iso
+
+
+
+# ubuntu 18
+
+
+
+startx
+
+好用
+
+
+
+https://blog.csdn.net/qq_42955378/article/details/86673976
+
+
+
+
+
+
+
+学习操作系统最有效及最具有挑战性的训练是从零开始动手写一个小操作系统（OS）。目前很多国内外知名大学的操作系统课程的实验都与动手写一个小OS相关，比如麻省理工大学的操作系统课程采用xv6系统来做实验。xv6是在x86处理器上重新实现的Unix第六版系统，用于教学目的。清华大学的操作系统课程也采用类似的思路，他们基于xv6的设计思想，通过实验一步一步完善一个小操作系统：ucore OS。xv6和ucore OS实验都是采用类似英语考试中完成填空式的方式来引导大家实现和完善一个小OS。
+
+
+
+
+
+# Cap
+
+https://blog.csdn.net/u013332124/java/article/details/82874178
+
+
+
+
+
+
+
+# 高铁动车
+
+列车时刻是发车时间，不是到达该车站的时间 错过列车误事费钱
+
+提前5分钟列车停止检票
+
+
+
+# SDK的问题要懂
+
+
+
+一个操作系统，如何支持c/c++语言
+
+centos
+
+devtools set
+
+gcc g++ gdb
+
+系统调用头文件
+
+头文件路径
+
+库文件路径 根据库的名称
+
+libstdc++
+
+libstdc
+
+
+
+
+
+
+
+android如何支持c/c++
+
+
+
+
+
+
+
+
+
+
+
+Repology, the packaging hub
+
+
+
+https://repology.org/
+
+
+
+
+
+腾讯课堂，图灵学院，架构师课
+
+
+
+**CPU 的工作原理是什么**
+
+https://www.zhihu.com/question/40571490/answer/746043817#ref_16
+
+
+
+
+
+
+
+
+
+# 京东数科
+
+独立上市
+
+京东集团区别
+
+
+
+
+
+
+
+# 对象存储
+
+Redis
+
+关系存储
+
+
+
+
+
+
+
+# 20200609
+
+商汤ocr
+
+飞
+
+0609交付，结果没交付，一直在问
+
+原来是这个意思
+
+其实一直在交付的是测试版
+
+
+
+
+
+
+
+
+
+# AI
+
+模型
+
+大佬回归学界
+
+负责落地的是博士
+
+知识点比较高深
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 回过头来看安卓开发
+
+现在市面上缺安卓的
+
+google dev大会
+
+郭霖 kotlin 协程
+
+那些工具，ndk-build
+
+AS原生支持c/c++开发了
+
+
+
+
+
+
+
+# Trello to do icloud mi cloud记笔记要注意
+
+不能敏感信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 数据库 sql优化
+
+
+
+要有实践经验带
+
+explain 关键字
+
+
+
+Oracle 优化 公司有培训
+
+
+
+
+
+大家好，请教一个问题：当flink job中存在两个sink分别为mysql和phoenix。在初始化获取jdbc连接时遇到以下情况，Class.forName(driver);无法加载类，陷入阻塞状态。若去掉两者中的一个则能正常加载。代码如下：
+
+帮忙解答一下，感谢
+
+
+
+
+
+@星语 看起来像低版本JDK并发加载JDBC 驱动的bug，参考
+
+http://lovestblog.cn/blog/2014/07/08/jdk-sql-deadlock/
+
+建议你试试通过加锁之类的方式，让驱动类的加载过程变串行，看是否还会阻塞。
+
+Condition在Concurrent包中，主要用于替代以前对象Object上的wait()、notify()等方法实现线程间的协作。
+
+相比wait()、notify()，Condition根据和Lock的结合，可以实现更复杂和精细的线程协同和等待。
+
+Condition包含了接口和在AbstractQueuedSynchronizer类中的ConditionObject类的实现
+
+Condition根据和Lock的结合
+
+lock.lock();
+
+lock.unlock();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 如何排错
+
+curl
+
+直接man
+
+百度出来的curl的参数都是错的
+
+mysql ms sqlserver 局域网连接不上
+
+http server 可以访问，证明
+
+网络是通的 ，80/8030端口是好的
+
+3306端口的问题
+
+wrieshark抓包
+
+没有返回的mysql数据包
+
+防火墙拦截了？
+
+Ubuntu 16 图形界面进不去
+
+看日志，先看系统日志，再看
+
+Openwrt系统坏了，重装不了？
+
+breed 清空
+
+
+
+
+
+
+
+图形学入门
+
+https://www.zhihu.com/question/26720808/answer/1151114077
+
+
+
+
+
+
+
+DCL，即Double Check Lock，中文双重检查锁定。其实DCL很多人在单例模式中用过，LZ面试人的时候也要他们写过，但是有很多人都会写错。
+
+Java可以实现
+
+
+
+
+
+
+
+**架构师是跟行业强相关的**
+
+
+
+
+
+# 35岁换工作，领导级别
+
+好多人都这样讲
+
+
+
+
+
+# 过年要喊人，不然不礼貌
+
+别人喊我要回应
+
+
+
+
+
+
+
+中国银行it base合肥
+
+找渠道
+
+
+
+
+
+
+
+
+
+csapp 15-213 Introduction to Computer Systems 2017与CS162 Operating Systems and System Programming 2020的课程翻译工作正式开拔，感兴趣可以关注simviso
+
+
+
+
+
+
+
+# Raft
+
+Leader 选举
+
+Log
+
+
+
+
+
+
+
+navicate 12 windows激活
+
+https://zhuanlan.zhihu.com/p/84993756
+
+
+
+
+
+
+
+
+
+# 分布式总结
+
+gossip
+
+udp
+
+ping/pong
+
+传输数据
+
+多线程并发总结
+
+性能优化 内存模型
+
+Ddd总结
+
+Java中间件使用到的技术总结
+
+Spring Jar包太大了
+
+数据库总结
+
+考证
+
+
+
+
+
+
+
+
+
+CN2，中国电信下一代承载网（ChinaNet Next Carrying Network）
+
+https://www.jianshu.com/p/6230d286bfe8
+
+https://zhuanlan.zhihu.com/p/128006449
+
+
+
+
+
+
+
+
+
+
+
+## 强、软、弱、虚四种引用：
+
+强引用：任何时候都不会被回收，即使报了OOM错误。清除方法需要手动将对象置null，如调用List的clear方法等
+
+软引用：soft，内存不够时，为了避免oom问题，会回收软引用对应的对象。
+
+弱引用：weak，无论内存是否足够，只要发生了垃圾回收，就会进行回收
+
+虚引用：phantom，任意时候都会被回收
+
+有个地方是三种，补充一种虚引用
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 为什么会有那么多烂尾的开源项目
+
+开源作者没时间搞这个了
+
+
+
+
+
+
+
+
+
+玩转MySQL
+
+微信公众号
+
+
+
+
+
+
+
+
+
+# Oracle
+
+缓存
+
+大阳哥负责
+
+
+
+# Warden
+
+
+
+https://blog.csdn.net/restkuan/article/details/13630351
+
+
+
+
+
+
+
+# 抓紧时间
+
+领导不一定懂技术，但一定懂管理
+
+搞k8s
+
+
+
+
+
+# 学习酒桌上说话
+
+夸人
+
+敬酒，挨个敬
+
+
+
+# cppcheck
+
+yum installl cppckeck -y
+
+
+
+cppcheck —version
+
+
+
+Windows也有
+
+
+
+
+
+Grpc搭建的项目
+
+
+
+prptoc
+
+boringssl
+
+各种语言的插件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 深入理解Java虚拟机
+
+3
+
+
+
+java模型
+
+jvm模型
+
+回收器 cms g1 zgc
+
+
+
+回收算法
+
+标记清楚
+
+标记整理
+
+可达性分析
+
+
+
+debug
+
+
+
+
+
+
+
+java模型
+
+heap
+
+method no-heap
+
+stack
+
+native stack
+
+主要回收heap区域
+
+
+
+
+
+运行时数据区域
+
+程序计数器
+
+Java虚拟机栈
+
+本地方法栈
+
+Java堆
+
+方法区
+
+运行时常量池
+
+直接内存
+
+
+
+
+
+[**JVM内存模型、Java内存模型 和 Java对象模型**](https://www.cnblogs.com/wenxiangchen/p/11478767.html)
+
+
+
+
+
+https://www.cnblogs.com/wenxiangchen/p/11478767.html
+
+
+
+**总结**
+
+ **1.JVM内存模型，和Java虚拟机的运行时区域有关。**
+
+ **2.Java内存模型，和Java的并发编程有关。**
+
+ **3.Java对象模型，和Java对象在虚拟机中的表现形式有关。**
+
+
+
+1.标记/清除算法【最基础】
+
+2.复制算法
+
+3.标记/整理算法
+
+jvm采用`分代收集算法`对不同区域采用不同的回收算法。
+
+https://www.jianshu.com/p/76959115d486
+
+
+
+
+
+
+
+# 20200602
+
+ifeve 好好看啊
+
+
+
+
+
+上月，华为发布了新一代企业级存储解决方案产品OceanStor存储Pacific系列，号称为5G时代而来。OceanStor Pacific集区块、文件、HDFS、对象存储等为一体，用以取代FusionStorage产品线。据介绍，OceanStor Pacific可配置3~4096个节点，采用弹性EC算法而非RAID，华为称，好处是可以利用91%磁盘空间。
+
+
+
+
+
+
+
+bsd系统 兼容性测试
+
+
+
+了解软件测试指标
+
+
+
+
+
+
+
+**光传输技术**
+
+https://book.douban.com/subject/1230064/
+
+**SDH光传输技术与设备**
+
+https://book.douban.com/subject/19980692/
+
+
+
+
+
+通信运营商
+
+高薪挖人，挖得华为都怕了
+
+
+
+
+
+看了asm的 data text
+
+想想c的内存模型
+
+
+
+# Aix p275 淘宝二手
+
+
+
+大型机
+
+小型机
+
+
+
+
+
+2021年推出Power CPU的全新版本——Power 10
+
+
+
+
+
+IBM i
+
+Os
+
+
+
+Power 9芯片首席架构师Brian Thompto
+
+
+
+
+
+
+
+Power是Power Optimization With Enhanced RISC的缩写，是由IBM开发的一种RISC指令集架构(ISA)。
+
+
+
+
+
+
+
+**POWER 1** 发布于1990年
+
+**POWER 2** 发布于1993年
+
+**POWER 3**发布于1998年
+
+**POWER 4**发布于2001年
+
+**POWER 5** 2004 年发布
+
+
+
+**POWER 6**在 2007年5月发布
+
+
+
+2010年发布了POWER 7
+
+
+
+Power 8处理器 2013
+
+
+
+2017 Power 9
+
+
+
+
+
+
+
+**先进交互运行系统**（英语：Advanced Interactive executive，缩写为）
+
+AIX 5L 5.1, 2001年5月
+
+AIX 5L 5.2, 2002年10月
+
+AIX 5L 5.3, 2004年8月
+
+AIX 6.1, 2007年11月9号
+
+AIX 7.1, 2010年发布
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 20200530
+
+了解ibm power 9发布时间
+
+
+
+Ibm i os
+
+
+
+Arm ip授权模式
+
+
+
+开源指令集架构
+
+
+
+二手p750淘宝买，没找到店铺
+
+
+
+树莓派 arm
+
+
+
+Posix pthread 公开的接口
+
+
+
+Mutex condiction
+
+
+
+
+
+http://www.jos.org.cn/
+
+软件学报
+
+月报
+
+
+
+
+
+银行
+
+X86 上四台cpu 内存寻址速度下降
+
+
+
+db tcc-h之类的测试
+
+
+
+中间件研发
+
+
+
+
+
+自适应系统
+
+
+
+
+
+netfix cdn bsd系统
+
+
+
+freebsd 应用 最新版
+
+
+
+谷歌用debian 最新版
+
+
+
+
+
+
+
+sshpass -p 555%xxxxx scp odb-2.4.0.zip root@193.112.34.55:/root/buildfromci/
+
+
+
+
+
+sshpass -p 555%xxxxx scp -o stricthostkeychecking=no -r xxxdirectory root@193.112.34.55:/root/buildfromci/
+
+
+
+
+
+
+
+
+
+# 20200531
+
+火关了
+
+粥焦了
+
+Cmake
+
+Docker
+
+
+
+https://github.com/Rikorose/gcc-cmake/blob/master/gcc-9/Dockerfile
+
+
+
+基于gcc9，引入cmake
+
+
+
+
+
+poppler
+
+
+
+
+
+Docker中我们一般会有两种执行命令的方式，一种是直接进入容器的命令行，在终端执行并查看结果，一种是在后台执行，并不会在终端查看结果。
+
+
+
+docker run -name cmake -d rikorose/gcc-cmake
+
+
+
+docker run -i -t rikorose/gcc-cmake /bin/bash
+
+
+
+cat /etc/issue
+
+Debian GNU/Linux 10
+
+
+
+
+
+jgossip 代码例子跑了，但是不知道怎么访问
+
+vert.x netty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**travis command line tool**
+
+
+
+**Ruby**
+
+
+
+**Gen**
+
+
+
+**Rvm**
+
+
+
+**Cmake编译设置编译后头文件 库文件的位置**
+
+
+
+
+
+https://www.jianshu.com/p/a1a4d59490d7
+
+
+
+https://blog.csdn.net/qq8427003/article/details/64921238
+
+
+
+travis encrypt DEPLOY_USER=root
+
+travis encrypt DEPLOY_PASS=555%Edidada
+
+
+
+
+
+travis encrypt DEPLOY_USER=root
+
+Shell completion not installed. Would you like to install it now? |y| y
+
+Can't figure out GitHub repo name. Ensure you're in the repo directory, or specify the repo name via the -r option (e.g. travis <command> -r <owner>/<repo>)
+
+
+
+必须在git仓库文件夹下操作
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 周 论文
+
+
+
+一周总结
+
+英语没学习多少
+
+Java面试也没多少
+
+驼背管理也没多少
+
+
+
+不能抓头发
+
+
+
+从学习编译原理的过程来看，先理解概念，然后做实现，跑开源代码
+
+然后是算法，最后是开源，课程大作业
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 怎么提高Redis缓存命中率
+
+
+
+
+
+**说话别人听不清楚**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+硬件交流群
+
+
+
+国内公司
+
+龙芯
+
+兆芯
+
+
+
+浪潮信息
+
+海康威视
+
+
+
+IBM
+
+十八摸
+
+
+
+显卡
+
+
+
+
+
+阿里中台
+
+
+
+
+
+aix电脑 二手
+
+
+
+Ibm小型机 十万起
+
+
+
+大数据离不开Java生态
+
+Jvm openjdk 腾讯开源
+
+
+
+
+
+
+
+docker run -d -i -t b5b4d78bc90c /bin/bash
+
+docker exec -it 91d21dab0f35 bash
+
+
+
+
+
+公司项目，可以打包 rpm deb去部署
+
+打成docker镜像也行
+
+
+
+
+
+Cpp代码检查
+
+
+
+http://cppcheck.net/
+
+
+
+https://scan.coverity.com/
+
+
+
+
+
+**C++代码动态检查**
+
+valgrind
+
+
+
+
+
+**风控模型开发流程标准化**
+
+https://zhuanlan.zhihu.com/p/90251922
+
+
+
+
+
+打包成rpm
+
+cd rpmbuild/
+
+[root@VM_0_17_centos rpmbuild]# ls
+
+BUILD BUILDROOT RPMS SOURCES SPECS SRPMS
+
+
+
+https://blog.csdn.net/weixin_41619143/article/details/88577384
+
+
+
+
+
+
+
+**ubuntu下打包制作deb安装包**
+
+https://blog.csdn.net/yangbingzhou/article/details/33318625
+
+
+
+
+
+# arm
+
+处理器IP 授权
+
+**芯片开源指令集RISC-V**
+
+https://riscv.org/
+
+
+
+
+
+
+
+
+
+
+
+树莓派3 Model B+采用了1.4GHz的64位四核Broadcom ARM Cortex A53的架构处理器
+
+http://www.elecfans.com/d/993621.html
+
+
+
+
+
+
+
+
+
+
+
+# posix
+
+线程
+
+mutex
+
+conditcion
+
+java
+
+Lock
+
+Condiction
+
+
+
+
+
+
+
+
+
+# 安卓的epoll被阉割过
+
+
+
+# cpp pgsql的数据库
+
+
+
+
+
+Soci
+
+Odb
+
+
+
+
+
+
+
+
+
+
+
+# 进行系统设计
+
+看书，分层，spring子属性
+
+继承
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo apt install build-essential --fix-missing
+
+
+
+
+
+
+
+# clion有makefile插件
+
+
+
+# Clion remote toolchans
+
+比远程gdb更好使
+
+
+
+
+
+
+
+
+
+
+
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+
+执行 cmake 命令会生成 Makefile 文件，指定 -DCMAKE_BUILD_TYPE=Debug 是为了支持 gdb 调试。
+
+
+
+
+
+​	**Neural**
+
+
+
+
+
+
+
+# IT排错思路
+
+分步骤，各个步骤去试
+
+
+
+
+
+
+
+
+
+
+
+DirectByteBuffer是好东西
+
+
+
+edidada微信收藏
+
+
+
+# 软件新旧版本兼容
+
+Windows
+
+
+
+IT方案 成本
+
+
+
+标准，几个9
+
+强调专利
+
+
+
+电信
+
+银行
+
+电力
+
+金融
+
+能源
+
+
+
+物流
+
+
+
+讯飞AI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 根据公司技术栈学习ES
+
+好像是数据库方面的
+
+
+
+
+
+
+
+
+
+
+
+# Docker
+
+cgroup
+
+namespace技术
+
+https://www.cnblogs.com/maoqide/p/11259092.html
+
+Lfs
+
+微信读书书籍
+
+B站oracle视频
+
+
+
+
+
+
+
+
+
+
+
+# Mac 安装rg
+
+https://www.infoq.cn/article/81QWgXgcW6kNf8Iiu9Ca
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 创建空白文件
+
+touch xxx.md
+
+open -a Typora xxxx.md
+
+
+
+
+
+
+
+
+
+
+
+
+
+# c memory modle
+
+https://en.cppreference.com/w/c/language/memory_model
+
+https://blog.csdn.net/logicworldzju/article/details/38591529
+
+https://github.com/preshing/turf
+
+Understanding the C/C++ memory model
+
+book
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+build-essential是c/c++语言的开发包，包含了gcc、g++、make、gdb和libc等函数库，很多工具。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sshpass
+
+
+
+
+
+1. brew install sshpass 
+2. Error: No available formula for sshpass 
+3. We won't add sshpass because it makes it too easy for novice SSH users to 
+4. ruin SSH's security. 
+
+
+
+
+
+
+
+
+
+1. wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz 
+2. tar xvzf sshpass-1.05.tar.gz 
+3. ./configure --prefix=/usr/local/Cellar/sshpass/1.05 
+4. make 
+5. sudo make install 
+
+https://www.jianshu.com/p/2ce1bc682ac6
+
+https://blog.csdn.net/yilovexing/article/details/54693435
+
+
+
+
+
+# 20200524
+
+# clion远程调试
+
+
+
+https://blog.csdn.net/lihao21/article/details/87425187
+
+
+
+
+
+gdbserver :1234 /home/lihao/code/cpp/hello/build/helloworld
+
+
+
+需要指出的是，helloworld 程序的运行是在远程主机，并不是本地主机，CLion 通过向 gdbserver 发送调试命令从而达到控制远程主机上的 gdb 的目的。
+
+
+
+
+
+
+
+Ubuntu 18进入符号界面
+
+https://blog.csdn.net/weixin_42238876/article/details/104534634
+
+
+
+sudo systemctl set-default multi-user.target  # 默认进入字符界面
+
+sudo systemctl set-default graphical.target  # 默认进入图形界面
+
+
+
+
+
+
+
+
+
+**CentOS-7设置开机进入命令行界面（不进入图形界面）**
+
+
+
+使用systemctl get-default可以获得当前的默认target； 
+
+使用systemctl set-default可以设置默认target，target可以是graphical.target、multi-user.target。
+
+
+
+//graphical.target表示开机将默认进入图形界面 
+
+//multi-user.target表示开机将默认进入文本界面
+
+
+
+
+
+
+
+# Tf
+
+https://tensorflow.google.cn/learn
+
+
+
+Mac的gpu是英特尔的
+
+
+
+## TensorFlow 是一个端到端开源机器学习平台
+
+借助 TensorFlow，初学者和专家可以轻松地创建机器学习模型。请参阅以下几部分，了解如何开始使用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TLPI
+
+http://www.man7.org/tlpi/index.html
+
+
+
+https://www.jianshu.com/p/cf2320f180d7
+
+
+
+Mac电脑下载了
+
+
+
+
+
+https://www.cnblogs.com/binbinjx/p/5626916.html
+
+
+
+增加文件夹路径
+
+
+
+
+
+Man ftruncate
+
+
+
+BSD System Calls Manual
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# linux/unix系统编程手册 pdf 孙剑
+
+
+
+**高级语言**
+
+**内存模型**
+
+**并发**
+
+
+
+**symbol table**
+
+linux 下查看符号表工具：nm
+
+
+
+符号表在库文件中
+
+
+
+因此未声明的引用是头文件引入错误，而未定义的引用是函数的实现没有引入。
+
+原因是将C/C++编译为obj文件的时候并不需要函数的具体实现，只需要有函数的原型即可。但是在编译为可执行文件的时候，需要找到函数的具体实现。 
+
+
+
+在CMakeLists中的target_link_libraries 
+
+如果对于一个可执行文件需要挂上多个依赖文件（.a或者.so），那么多个依赖文件之间是有顺序的。被依赖的文件应该在依赖文件的后面。
+
+target_link_libraries(MAIN A.a B.so)
+
+其中MAIN依赖于A.a和B.so，A.a依赖于B.so。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**linux系统调用表(system call table)**
+
+
+
+请问linux 2.0.35内核的系统调用号码映射表是在哪个文件里面存储的
+
+
+
+https://blog.csdn.net/sinat_26227857/article/details/44244433
+
+
+
+
+
+
+
+0	read	sys_read	fs/read_write.c
+
+1	write	sys_write	fs/read_write.c
+
+2	open	sys_open	fs/open.c
+
+3	close	sys_close	fs/open.c
+
+4	stat	sys_newstat	fs/stat.c
+
+5	fstat	sys_newfstat	fs/stat.c
+
+6	lstat	sys_newlstat	fs/stat.c
+
+7	poll	sys_poll	fs/select.c
+
+8	lseek	sys_lseek	fs/read_write.c
+
+9	mmap	sys_mmap	arch/x86/kernel/sys_x86_64.c
+
+10	mprotect	sys_mprotect	mm/mprotect.c
+
+11	munmap	sys_munmap	mm/mmap.c
+
+12	brk	sys_brk	mm/mmap.c
+
+13	rt_sigaction	sys_rt_sigaction	kernel/signal.c
+
+14	rt_sigprocmask	sys_rt_sigprocmask	kernel/signal.c
+
+15	rt_sigreturn	stub_rt_sigreturn	arch/x86/kernel/signal.c
+
+16	ioctl	sys_ioctl	fs/ioctl.c
+
+17	pread64	sys_pread64	fs/read_write.c
+
+18	pwrite64	sys_pwrite64	fs/read_write.c
+
+19	readv	sys_readv	fs/read_write.c
+
+20	writev	sys_writev	fs/read_write.c
+
+21	access	sys_access	fs/open.c
+
+22	pipe	sys_pipe	fs/pipe.c
+
+23	select	sys_select	fs/select.c
+
+24	sched_yield	sys_sched_yield	kernel/sched/core.c
+
+25	mremap	sys_mremap	mm/mmap.c
+
+26	msync	sys_msync	mm/msync.c
+
+27	mincore	sys_mincore	mm/mincore.c
+
+28	madvise	sys_madvise	mm/madvise.c
+
+29	shmget	sys_shmget	ipc/shm.c
+
+30	shmat	sys_shmat	ipc/shm.c
+
+31	shmctl	sys_shmctl	ipc/shm.c
+
+32	dup	sys_dup	fs/file.c
+
+33	dup2	sys_dup2	fs/file.c
+
+34	pause	sys_pause	kernel/signal.c
+
+35	nanosleep	sys_nanosleep	kernel/hrtimer.c
+
+36	getitimer	sys_getitimer	kernel/itimer.c
+
+37	alarm	sys_alarm	kernel/timer.c
+
+38	setitimer	sys_setitimer	kernel/itimer.c
+
+39	getpid	sys_getpid	kernel/sys.c
+
+40	sendfile	sys_sendfile64	fs/read_write.c
+
+41	socket	sys_socket	net/socket.c
+
+42	connect	sys_connect	net/socket.c
+
+43	accept	sys_accept	net/socket.c
+
+44	sendto	sys_sendto	net/socket.c
+
+45	recvfrom	sys_recvfrom	net/socket.c
+
+46	sendmsg	sys_sendmsg	net/socket.c
+
+47	recvmsg	sys_recvmsg	net/socket.c
+
+48	shutdown	sys_shutdown	net/socket.c
+
+49	bind	sys_bind	net/socket.c
+
+50	listen	sys_listen	net/socket.c
+
+51	getsockname	sys_getsockname	net/socket.c
+
+52	getpeername	sys_getpeername	net/socket.c
+
+53	socketpair	sys_socketpair	net/socket.c
+
+54	setsockopt	sys_setsockopt	net/socket.c
+
+55	getsockopt	sys_getsockopt	net/socket.c
+
+56	clone	stub_clone	kernel/fork.c
+
+57	fork	stub_fork	kernel/fork.c
+
+58	vfork	stub_vfork	kernel/fork.c
+
+59	execve	stub_execve	fs/exec.c
+
+60	exit	sys_exit	kernel/exit.c
+
+61	wait4	sys_wait4	kernel/exit.c
+
+62	kill	sys_kill	kernel/signal.c
+
+63	uname	sys_newuname	kernel/sys.c
+
+64	semget	sys_semget	ipc/sem.c
+
+65	semop	sys_semop	ipc/sem.c
+
+66	semctl	sys_semctl	ipc/sem.c
+
+67	shmdt	sys_shmdt	ipc/shm.c
+
+68	msgget	sys_msgget	ipc/msg.c
+
+69	msgsnd	sys_msgsnd	ipc/msg.c
+
+70	msgrcv	sys_msgrcv	ipc/msg.c
+
+71	msgctl	sys_msgctl	ipc/msg.c
+
+72	fcntl	sys_fcntl	fs/fcntl.c
+
+73	flock	sys_flock	fs/locks.c
+
+74	fsync	sys_fsync	fs/sync.c
+
+75	fdatasync	sys_fdatasync	fs/sync.c
+
+76	truncate	sys_truncate	fs/open.c
+
+77	ftruncate	sys_ftruncate	fs/open.c
+
+78	getdents	sys_getdents	fs/readdir.c
+
+79	getcwd	sys_getcwd	fs/dcache.c
+
+80	chdir	sys_chdir	fs/open.c
+
+81	fchdir	sys_fchdir	fs/open.c
+
+82	rename	sys_rename	fs/namei.c
+
+83	mkdir	sys_mkdir	fs/namei.c
+
+84	rmdir	sys_rmdir	fs/namei.c
+
+85	creat	sys_creat	fs/open.c
+
+86	link	sys_link	fs/namei.c
+
+87	unlink	sys_unlink	fs/namei.c
+
+88	symlink	sys_symlink	fs/namei.c
+
+89	readlink	sys_readlink	fs/stat.c
+
+90	chmod	sys_chmod	fs/open.c
+
+91	fchmod	sys_fchmod	fs/open.c
+
+92	chown	sys_chown	fs/open.c
+
+93	fchown	sys_fchown	fs/open.c
+
+94	lchown	sys_lchown	fs/open.c
+
+95	umask	sys_umask	kernel/sys.c
+
+96	gettimeofday	sys_gettimeofday	kernel/time.c
+
+97	getrlimit	sys_getrlimit	kernel/sys.c
+
+98	getrusage	sys_getrusage	kernel/sys.c
+
+99	sysinfo	sys_sysinfo	kernel/sys.c
+
+100	times	sys_times	kernel/sys.c
+
+101	ptrace	sys_ptrace	kernel/ptrace.c
+
+102	getuid	sys_getuid	kernel/sys.c
+
+103	syslog	sys_syslog	kernel/printk/printk.c
+
+104	getgid	sys_getgid	kernel/sys.c
+
+105	setuid	sys_setuid	kernel/sys.c
+
+106	setgid	sys_setgid	kernel/sys.c
+
+107	geteuid	sys_geteuid	kernel/sys.c
+
+108	getegid	sys_getegid	kernel/sys.c
+
+109	setpgid	sys_setpgid	kernel/sys.c
+
+110	getppid	sys_getppid	kernel/sys.c
+
+111	getpgrp	sys_getpgrp	kernel/sys.c
+
+112	setsid	sys_setsid	kernel/sys.c
+
+113	setreuid	sys_setreuid	kernel/sys.c
+
+114	setregid	sys_setregid	kernel/sys.c
+
+115	getgroups	sys_getgroups	kernel/groups.c
+
+116	setgroups	sys_setgroups	kernel/groups.c
+
+117	setresuid	sys_setresuid	kernel/sys.c
+
+118	getresuid	sys_getresuid	kernel/sys.c
+
+119	setresgid	sys_setresgid	kernel/sys.c
+
+120	getresgid	sys_getresgid	kernel/sys.c
+
+121	getpgid	sys_getpgid	kernel/sys.c
+
+122	setfsuid	sys_setfsuid	kernel/sys.c
+
+123	setfsgid	sys_setfsgid	kernel/sys.c
+
+124	getsid	sys_getsid	kernel/sys.c
+
+125	capget	sys_capget	kernel/capability.c
+
+126	capset	sys_capset	kernel/capability.c
+
+127	rt_sigpending	sys_rt_sigpending	kernel/signal.c
+
+128	rt_sigtimedwait	sys_rt_sigtimedwait	kernel/signal.c
+
+129	rt_sigqueueinfo	sys_rt_sigqueueinfo	kernel/signal.c
+
+130	rt_sigsuspend	sys_rt_sigsuspend	kernel/signal.c
+
+131	sigaltstack	sys_sigaltstack	kernel/signal.c
+
+132	utime	sys_utime	fs/utimes.c
+
+133	mknod	sys_mknod	fs/namei.c
+
+134	uselib	 	fs/exec.c
+
+135	personality	sys_personality	kernel/exec_domain.c
+
+136	ustat	sys_ustat	fs/statfs.c
+
+137	statfs	sys_statfs	fs/statfs.c
+
+138	fstatfs	sys_fstatfs	fs/statfs.c
+
+139	sysfs	sys_sysfs	fs/filesystems.c
+
+140	getpriority	sys_getpriority	kernel/sys.c
+
+141	setpriority	sys_setpriority	kernel/sys.c
+
+142	sched_setparam	sys_sched_setparam	kernel/sched/core.c
+
+143	sched_getparam	sys_sched_getparam	kernel/sched/core.c
+
+144	sched_setscheduler	sys_sched_setscheduler	kernel/sched/core.c
+
+145	sched_getscheduler	sys_sched_getscheduler	kernel/sched/core.c
+
+146	sched_get_priority_max	sys_sched_get_priority_max	kernel/sched/core.c
+
+147	sched_get_priority_min	sys_sched_get_priority_min	kernel/sched/core.c
+
+148	sched_rr_get_interval	sys_sched_rr_get_interval	kernel/sched/core.c
+
+149	mlock	sys_mlock	mm/mlock.c
+
+150	munlock	sys_munlock	mm/mlock.c
+
+151	mlockall	sys_mlockall	mm/mlock.c
+
+152	munlockall	sys_munlockall	mm/mlock.c
+
+153	vhangup	sys_vhangup	fs/open.c
+
+154	modify_ldt	sys_modify_ldt	arch/x86/um/ldt.c
+
+155	pivot_root	sys_pivot_root	fs/namespace.c
+
+156	_sysctl	sys_sysctl	kernel/sysctl_binary.c
+
+157	prctl	sys_prctl	kernel/sys.c
+
+158	arch_prctl	sys_arch_prctl	arch/x86/um/syscalls_64.c
+
+159	adjtimex	sys_adjtimex	kernel/time.c
+
+160	setrlimit	sys_setrlimit	kernel/sys.c
+
+161	chroot	sys_chroot	fs/open.c
+
+162	sync	sys_sync	fs/sync.c
+
+163	acct	sys_acct	kernel/acct.c
+
+164	settimeofday	sys_settimeofday	kernel/time.c
+
+165	mount	sys_mount	fs/namespace.c
+
+166	umount2	sys_umount	fs/namespace.c
+
+167	swapon	sys_swapon	mm/swapfile.c
+
+168	swapoff	sys_swapoff	mm/swapfile.c
+
+169	reboot	sys_reboot	kernel/reboot.c
+
+170	sethostname	sys_sethostname	kernel/sys.c
+
+171	setdomainname	sys_setdomainname	kernel/sys.c
+
+172	iopl	stub_iopl	arch/x86/kernel/ioport.c
+
+173	ioperm	sys_ioperm	arch/x86/kernel/ioport.c
+
+174	create_module	 	NOT IMPLEMENTED
+
+175	init_module	sys_init_module	kernel/module.c
+
+176	delete_module	sys_delete_module	kernel/module.c
+
+177	get_kernel_syms	 	NOT IMPLEMENTED
+
+178	query_module	 	NOT IMPLEMENTED
+
+179	quotactl	sys_quotactl	fs/quota/quota.c
+
+180	nfsservctl	 	NOT IMPLEMENTED
+
+181	getpmsg	 	NOT IMPLEMENTED
+
+182	putpmsg	 	NOT IMPLEMENTED
+
+183	afs_syscall	 	NOT IMPLEMENTED
+
+184	tuxcall	 	NOT IMPLEMENTED
+
+185	security	 	NOT IMPLEMENTED
+
+186	gettid	sys_gettid	kernel/sys.c
+
+187	readahead	sys_readahead	mm/readahead.c
+
+188	setxattr	sys_setxattr	fs/xattr.c
+
+189	lsetxattr	sys_lsetxattr	fs/xattr.c
+
+190	fsetxattr	sys_fsetxattr	fs/xattr.c
+
+191	getxattr	sys_getxattr	fs/xattr.c
+
+192	lgetxattr	sys_lgetxattr	fs/xattr.c
+
+193	fgetxattr	sys_fgetxattr	fs/xattr.c
+
+194	listxattr	sys_listxattr	fs/xattr.c
+
+195	llistxattr	sys_llistxattr	fs/xattr.c
+
+196	flistxattr	sys_flistxattr	fs/xattr.c
+
+197	removexattr	sys_removexattr	fs/xattr.c
+
+198	lremovexattr	sys_lremovexattr	fs/xattr.c
+
+199	fremovexattr	sys_fremovexattr	fs/xattr.c
+
+200	tkill	sys_tkill	kernel/signal.c
+
+201	time	sys_time	kernel/time.c
+
+202	futex	sys_futex	kernel/futex.c
+
+203	sched_setaffinity	sys_sched_setaffinity	kernel/sched/core.c
+
+204	sched_getaffinity	sys_sched_getaffinity	kernel/sched/core.c
+
+205	set_thread_area	 	arch/x86/kernel/tls.c
+
+206	io_setup	sys_io_setup	fs/aio.c
+
+207	io_destroy	sys_io_destroy	fs/aio.c
+
+208	io_getevents	sys_io_getevents	fs/aio.c
+
+209	io_submit	sys_io_submit	fs/aio.c
+
+210	io_cancel	sys_io_cancel	fs/aio.c
+
+211	get_thread_area	 	arch/x86/kernel/tls.c
+
+212	lookup_dcookie	sys_lookup_dcookie	fs/dcookies.c
+
+213	epoll_create	sys_epoll_create	fs/eventpoll.c
+
+214	epoll_ctl_old	 	NOT IMPLEMENTED
+
+215	epoll_wait_old	 	NOT IMPLEMENTED
+
+216	remap_file_pages	sys_remap_file_pages	mm/fremap.c
+
+217	getdents64	sys_getdents64	fs/readdir.c
+
+218	set_tid_address	sys_set_tid_address	kernel/fork.c
+
+219	restart_syscall	sys_restart_syscall	kernel/signal.c
+
+220	semtimedop	sys_semtimedop	ipc/sem.c
+
+221	fadvise64	sys_fadvise64	mm/fadvise.c
+
+222	timer_create	sys_timer_create	kernel/posix-timers.c
+
+223	timer_settime	sys_timer_settime	kernel/posix-timers.c
+
+224	timer_gettime	sys_timer_gettime	kernel/posix-timers.c
+
+225	timer_getoverrun	sys_timer_getoverrun	kernel/posix-timers.c
+
+226	timer_delete	sys_timer_delete	kernel/posix-timers.c
+
+227	clock_settime	sys_clock_settime	kernel/posix-timers.c
+
+228	clock_gettime	sys_clock_gettime	kernel/posix-timers.c
+
+229	clock_getres	sys_clock_getres	kernel/posix-timers.c
+
+230	clock_nanosleep	sys_clock_nanosleep	kernel/posix-timers.c
+
+231	exit_group	sys_exit_group	kernel/exit.c
+
+232	epoll_wait	sys_epoll_wait	fs/eventpoll.c
+
+233	epoll_ctl	sys_epoll_ctl	fs/eventpoll.c
+
+234	tgkill	sys_tgkill	kernel/signal.c
+
+235	utimes	sys_utimes	fs/utimes.c
+
+236	vserver	 	NOT IMPLEMENTED
+
+237	mbind	sys_mbind	mm/mempolicy.c
+
+238	set_mempolicy	sys_set_mempolicy	mm/mempolicy.c
+
+239	get_mempolicy	sys_get_mempolicy	mm/mempolicy.c
+
+240	mq_open	sys_mq_open	ipc/mqueue.c
+
+241	mq_unlink	sys_mq_unlink	ipc/mqueue.c
+
+242	mq_timedsend	sys_mq_timedsend	ipc/mqueue.c
+
+243	mq_timedreceive	sys_mq_timedreceive	ipc/mqueue.c
+
+244	mq_notify	sys_mq_notify	ipc/mqueue.c
+
+245	mq_getsetattr	sys_mq_getsetattr	ipc/mqueue.c
+
+246	kexec_load	sys_kexec_load	kernel/kexec.c
+
+247	waitid	sys_waitid	kernel/exit.c
+
+248	add_key	sys_add_key	security/keys/keyctl.c
+
+249	request_key	sys_request_key	security/keys/keyctl.c
+
+250	keyctl	sys_keyctl	security/keys/keyctl.c
+
+251	ioprio_set	sys_ioprio_set	fs/ioprio.c
+
+252	ioprio_get	sys_ioprio_get	fs/ioprio.c
+
+253	inotify_init	sys_inotify_init	fs/notify/inotify/inotify_user.c
+
+254	inotify_add_watch	sys_inotify_add_watch	fs/notify/inotify/inotify_user.c
+
+255	inotify_rm_watch	sys_inotify_rm_watch	fs/notify/inotify/inotify_user.c
+
+256	migrate_pages	sys_migrate_pages	mm/mempolicy.c
+
+257	openat	sys_openat	fs/open.c
+
+258	mkdirat	sys_mkdirat	fs/namei.c
+
+259	mknodat	sys_mknodat	fs/namei.c
+
+260	fchownat	sys_fchownat	fs/open.c
+
+261	futimesat	sys_futimesat	fs/utimes.c
+
+262	newfstatat	sys_newfstatat	fs/stat.c
+
+263	unlinkat	sys_unlinkat	fs/namei.c
+
+264	renameat	sys_renameat	fs/namei.c
+
+265	linkat	sys_linkat	fs/namei.c
+
+266	symlinkat	sys_symlinkat	fs/namei.c
+
+267	readlinkat	sys_readlinkat	fs/stat.c
+
+268	fchmodat	sys_fchmodat	fs/open.c
+
+269	faccessat	sys_faccessat	fs/open.c
+
+270	pselect6	sys_pselect6	fs/select.c
+
+271	ppoll	sys_ppoll	fs/select.c
+
+272	unshare	sys_unshare	kernel/fork.c
+
+273	set_robust_list	sys_set_robust_list	kernel/futex.c
+
+274	get_robust_list	sys_get_robust_list	kernel/futex.c
+
+275	splice	sys_splice	fs/splice.c
+
+276	tee	sys_tee	fs/splice.c
+
+277	sync_file_range	sys_sync_file_range	fs/sync.c
+
+278	vmsplice	sys_vmsplice	fs/splice.c
+
+279	move_pages	sys_move_pages	mm/migrate.c
+
+280	utimensat	sys_utimensat	fs/utimes.c
+
+281	epoll_pwait	sys_epoll_pwait	fs/eventpoll.c
+
+282	signalfd	sys_signalfd	fs/signalfd.c
+
+283	timerfd_create	sys_timerfd_create	fs/timerfd.c
+
+284	eventfd	sys_eventfd	fs/eventfd.c
+
+285	fallocate	sys_fallocate	fs/open.c
+
+286	timerfd_settime	sys_timerfd_settime	fs/timerfd.c
+
+287	timerfd_gettime	sys_timerfd_gettime	fs/timerfd.c
+
+288	accept4	sys_accept4	net/socket.c
+
+289	signalfd4	sys_signalfd4	fs/signalfd.c
+
+290	eventfd2	sys_eventfd2	fs/eventfd.c
+
+291	epoll_create1	sys_epoll_create1	fs/eventpoll.c
+
+292	dup3	sys_dup3	fs/file.c
+
+293	pipe2	sys_pipe2	fs/pipe.c
+
+294	inotify_init1	sys_inotify_init1	fs/notify/inotify/inotify_user.c
+
+295	preadv	sys_preadv	fs/read_write.c
+
+296	pwritev	sys_pwritev	fs/read_write.c
+
+297	rt_tgsigqueueinfo	sys_rt_tgsigqueueinfo	kernel/signal.c
+
+298	perf_event_open	sys_perf_event_open	kernel/events/core.c
+
+299	recvmmsg	sys_recvmmsg	net/socket.c
+
+300	fanotify_init	sys_fanotify_init	fs/notify/fanotify/fanotify_user.c
+
+301	fanotify_mark	sys_fanotify_mark	fs/notify/fanotify/fanotify_user.c
+
+302	prlimit64	sys_prlimit64	kernel/sys.c
+
+303	name_to_handle_at	sys_name_to_handle_at	fs/fhandle.c
+
+304	open_by_handle_at	sys_open_by_handle_at	fs/fhandle.c
+
+305	clock_adjtime	sys_clock_adjtime	kernel/posix-timers.c
+
+306	syncfs	sys_syncfs	fs/sync.c
+
+307	sendmmsg	sys_sendmmsg	net/socket.c
+
+308	setns	sys_setns	kernel/nsproxy.c
+
+309	getcpu	sys_getcpu	kernel/sys.c
+
+310	process_vm_readv	sys_process_vm_readv	mm/process_vm_access.c
+
+311	process_vm_writev	sys_process_vm_writev	mm/process_vm_access.c
+
+312	kcmp	sys_kcmp	kernel/kcmp.c
+
+313	finit_module	sys_finit_module	kernel/module.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# linux c开发 如何区分系统api c标准库
+
+
+
+C标准库是在操作系统API上加入独特的算法封装成标准接口的库，使用C标准库可以屏蔽底层实现细节，比如fopen这样的函数，在Windows上通过调用CreateFileEx实现，在linux上通过调用open系统调用实现。不仅是包装，还在上层使用独特的算法提供了用户态缓冲区的功能。
+
+
+
+
+
+标准c库都是一样的！大家想必都在windows下做过文件编程，在linux下也是一样的函数名，参数都一样。当时就有了疑问，因为我们非常清楚
+
+其本质是不可能一样的，源于这是俩个操作系统啊！但由于c标准库的封装就实现了接口一样。但是如果往深入，我们就非常清楚了在这层封装上还有一层封装其实就是操作系统对文件操作的封装，也就是文件IO。而我们c语言的封装叫标准IO，他们有什么区别那？显然标准iO是基于文件io的，标准IO调用了文件IO，也优化了文件IO，例如引入缓存机制。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**linux下查找库文件所在位置**
+
+ldconfig -p | grep libcrypto
+
+
+
+
+
+\#1. 查看依赖的库：
+
+objdump -x xxoo.so | grep NEEDED#2. 查看缺失的库：
+
+ldd xxoo.so
+
+\#如果某个依赖的库不存在，会输出类似 OOXX.so not found 字样。
+
+
+
+
+
+rpm -qal |grep xxx
+
+
+
+Brew mv vcpkg 都是这样吧？
+
+
+
+
+
+centos7 ld 查找.a库文件位置
+
+
+
+
+
+ldconfig -p: 打印当前缓存所保存的所有库的名字。
+
+grep libnccl: 用管道符解析libpcap.so是否已加入缓存中。
+
+ldconfig主要是在默认搜寻目录/lib和/usr/lib以及动态库配置文件/etc/ld.so.conf内所列的目录下，搜索出可共享的动态链接库（格式如lib*.so*）,进而创建出动态装入程序(ld.so)所需的连接和缓存文件。缓存文件默认为/etc/ld.so.cache，此文件保存已排好序的动态链接库名字列表，为了让动态链接库为系统所共享，需运行动态链接库的管理命令ldconfig，此执行程序存放在/sbin目录下。
+
+
+
+
+
+**/usr/bin/ld 搜索路径顺序**
+
+一.静态库链接时搜索路径顺序 
+
+​    \1. ld会去找GCC命令中的参数-L
+
+​    \2. 再找gcc的环境变量LIBRARY_PATH
+
+​    \3. 再找内定目录 /lib /usr/lib /usr/local/lib 这是当初compile gcc时写在程序内的  
+
+二.动态链接时、执行时搜索路径顺序: 
+
+​    \1. 编译目标代码时指定的动态库搜索路径
+
+​    \2. 环境变量LD_LIBRARY_PATH指定的动态库搜索路径
+
+​    \3. 配置文件/etc/ld.so.conf中指定的动态库搜索路径
+
+​    \4. 默认的动态库搜索路径/lib 
+
+​    \5. 默认的动态库搜索路径/usr/lib  
+
+三.有关环境变量
+
+​    LIBRARY_PATH环境变量：指定程序静态链接库文件搜索路径
+
+​    LD_LIBRARY_PATH环境变量：指定程序动态链接库文件搜索路径
+
+
+
+在在Mac OS 中Library文件夹是默认不显示的，这对普通用户来说是有好处的可以防止用户误操作删除Library文件夹
+
+
+
+下面提供一种方法，将Library目录显示在当前User的目录下。
+
+在终端执行下面的命令即可
+
+chflags nohidden ~/Library/
+
+如果想隐藏，则执行下面的命令
+
+chflags hidden ~/Library
+
+
+
+
+
+
+
+
+
+# 不光是语言，需要对分布式 事务 区块链 大数据 为服务 架构 驱动 有了解
+
+性能优化
+
+
+
+编译器
+
+图形学
+
+
+
+虚拟机
+
+
+
+数据库
+
+
+
+网络
+
+
+
+
+
+
+
+
+
+DDD 更强调面向对象的设计方法，这些实体类通常采用充血模型，与这个实体相关的所有业务逻辑都在实体类的方法中实现，跨多个实体的领域逻辑则在领域服务中实现。充血模型与贫血模型的差异：在充血模型中，业务逻辑都在领域实体对象中实现，实体本身不仅包含了属性，还包含了它的业务行为，在 DDD 的领域模型中实体是一个具有业务行为和逻辑的对象。而在贫血模型中领域对象大多只有 setter 和 getter 方法，业务逻辑统一放在业务逻辑层实现，而不是在领域对象中实现。
+
+
+
+聚合根的主要职责？
+
+协调实体和值对象，按照固定的业务规则，协同完成聚合共同的业务逻辑
+
+实体构建和数据初始化
+
+聚合对外的联络人和接口人
+
+
+
+在实现领域逻辑与基础资源逻辑依赖倒置时，采用了何种设计模式？
+
+
+
+仓储模式
+
+
+
+在洋葱架构模型中，各层服务的依赖关系是什么样的？
+
+外层依赖内层
+
+
+
+
+
+在 DDD 领域层中，组合和协调聚合内的多个实体或者值对象，实现复杂的领域逻辑的是以下哪种服务的职责？
+
+领域服务. — pppp
+
+
+
+
+
+应用服务
+
+
+
+Facade
+
+
+
+Repository
+
+
+
+
+
+核心子域 普通子域 支撑子域
+
+
+
+
+
+在进行微服务拆分时，除了限界上下文，还有哪些非业务因素需要考虑？
+
+基于应用性能的要求不同
+
+基于组织架构和团队规模
+
+基于安全边界的不同
+
+基于技术异构等因素
+
+
+
+
+
+实体有唯一 ID
+
+实体可以修改
+
+
+
+
+
+
+
+在 DDD 领域建模时，哪些内容可以作为拆分微服务依据？
+
+聚合
+
+限界上下文
+
+
+
+
+
+当微服务之间发生领域事件时，一般会采用什么样的设计，来实现微服务的解耦？
+
+最终一致性
+
+基于消息中间件的异步方式
+
+
+
+
+
+
+
+# 先学c
+
+再学习一门函数式语言
+
+
+
+
+
+
+
+
+
+
+
+https://book.tidb.io/session1/chapter1/tidb-architecture.html
+
+
+
+https://developer.aliyun.com/live/2861
+
+
+
+https://book.tidb.io/session1/chapter1/tidb-architecture.html
+
+
+
+
+
+
+
+# SS要熟悉，写例子
+
+抓紧啊
+
+
+
+SS功能小结
+
+分库分表
+
+支持读写分离
+
+数据脱敏，加密
+
+XA sega分布式事务
+
+集群功能
+
+
+
+
+
+# csdn可以淘宝付费下载
+
+一块钱一次
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Dubbo
+
+所有组件
+
+Dubbo admin
+
+register
+
+provider
+
+customer
+
+运维的qos
+
+
+
+
+
+
+
+
+
+
+
+# 开会 云峰介绍内容
+
+一直追着问
+
+不礼貌
+
+
+
+
+
+
+
+
+
+# zl客户端可以链接集群的任意一个节点
+
+Server挂掉连接其他节点
+
+2N+1
+
+
+
+
+
+
+
+# 周冠亚
+
+Java语言规范
+
+https://book.douban.com/subject/26740358/
+
+
+
+
+
+
+
+
+
+**学习** **ss****等中间件** **先看文档，再看例子，再思考**
+
+
+
+**学习，已知推倒未知，举通俗的例子**
+
+
+
+​	RPC框架
+
+可以本地调用
+
+本质上是一种软件开发技术
+
+程序员熟悉调用本地方法，现在要跨主机通信，把后者写的跟前者一样
+
+
+
+
+
+# 分布式
+
+本质上通过高端硬件，来提升系统性能
+
+或者舍弃一些东西，满足分布式这个条件
+
+
+
+
+
+# 携程 .net转Java
+
+递四方 .net
+
+Twitter ruby
+
+Google c++ python
+
+Facebook php
+
+
+
+头条 Go
+
+58 Go
+
+
+
+阿里 美团 Java
+
+腾讯 百度 c++
+
+
+
+快手 
+
+
+
+
+
+
+
+
+
+**学习****jmm****，以两个月为周期**
+
+
+
+
+
+**工作学习，以小时为单位**
+
+
+
+# Oracle学习
+
+
+
+先了解业界使用情况
+
+是不是只是存数据
+
+
+
+
+
+# EasyFind
+
+
+
+
+
+长沙软件业的优势主要是工业互联网和IT生态两个领域，长沙工业云、三一根云、中科云谷、山河智能工业互联网平台都已经是工信部工业互联网试点示范，“PK”体系和鲲鹏计算体系也是国内最大的自主IT生态，北斗导航在工程机械、现代物流、车载系统等领域全国率先应用，优势还是很明显的
+
+科大讯飞
+
+研究院
+
+
+
+
+
+**学习要有规律，努力整理资料**
+
+
+
+Fred Chow已经来了华为Santa Clara 一年多了，想知道他对华为编译器方面做了哪些工作还改善，是否对国内编译方面的学术带了促进作用。
+
+
+
+**领导管理岗位要整合资源**
+
+
+
+
+
+
+
+# Arm架构硬件
+
+
+
+国内钦定
+
+
+
+IBM
+
+Power
+
+Intel AMD x86
+
+
+
+低端路由器 mips
+
+
+
+Android操作系统都兼容
+
+
+
+
+
+https://blog.csdn.net/bassersai/article/details/102395714
+
+
+
+Cpu生产大致分为三个环节
+
+设计，验证，生产
+
+设计arm
+
+验证 华为 高通 三星
+
+生产 台积电
+
+
+
+Intel都可以
+
+AMD没有生产
+
+IBM power 架构
+
+Mips
+
+
+
+
+
+Inter x86平板 大陆出货少
+
+
+
+
+
+银行一般用UNIX系统比较多。UNIX系统：SUN的solaris,IBM的AIX,HP的HP-UX,SCO的SCO UNIX。这些系统都是基于AT&T System 或者BSD UNIX发展过来的。学习UNIX，最好学习IBM的AIX和SUN的solaris.数据库一般IBM小型机系统里面是DB2，SUN的solaris里面一般安装ORACLE.开发的话，用JAVA和C都要用。中国银行总行都在用IBM的AIX系统，央视用SUN的solaris和IBM的AIX。
+
+
+
+
+
+
+
+
+
+
+
+# 大学生面试，
+
+# 211学生
+
+**面试问题知识点很仔细，不能含糊**
+
+
+
+
+
+大公司要专业人才，某一方面的
+
+安卓V大
+
+
+
+# 说话自带嘲讽
+
+大学学校保卫处把一个民警给惹毛了
+
+
+
+
+
+
+
+
+
+**去外企，或者上升期的公司，写代码，找亮点，吹牛逼**
+
+
+
+
+
+
+
+
+
+# maven
+
+parent pom是否引用子module
+
+需要写例子去运行
+
+
+
+
+
+
+
+**命令行运行****ss idea****占内存，需要尝试搞定这个问题**
+
+
+
+
+
+
+
+# 找到学习交流氛围好的圈子
+
+融入进去
+
+
+
+Telegram
+
+Mit6.824
+
+
+
+
+
+
+
+**做技术的，一看技术文档，看代码，就看太久缓不过来**
+
+
+
+# 不能抓头发
+
+
+
+不能翻旧账
+
+
+
+对别人好，也要别人对自己好
+
+
+
+
+
+
+
+
+
+**电信公司也是实习期，干活干不好。翼支付，被批评不能干活。**
+
+
+
+
+
+# Java 14
+
+Lombok
+
+https://zhuanlan.zhihu.com/p/137364563
+
+
+
+
+
+有一题，经典rate limiter. 我回答按照sliding window + Redis 解法。然后他们就深入问redis，抓瞎。后来问题是从我说现在项目用了Kafka 开始问，比如zookeepers 高链接数有没有问题，之类的。我项目中没有考虑啊，规模远远不到。
+
+算法题，连leetcode的easy 都算不上吧。一个array题 一个matrix dfs 题
+
+
+
+是啊，我感觉对有经验的程序员面试，算法题就不那么看中了，会问一些很简单的题。倒是系统设计问的比较深，我感觉国内比较偏重实操的经验，国外比较看设计的理念。
+
+系统设计的时候我主要看是否有scalability的问题，比如说我们从10台服务器增加到100台，能承受的访问量是不是也是线性增加了10倍，比如说有的设计每一个节点要和所有其他节点通信，这时就可能会出现问题。这些基本和具体的traffic pattern关系不大。
+
+
+
+
+
+
+
+
+
+# 测试
+
+混沌系统
+
+开源
+
+
+
+
+
+
+
+
+
+# Disruptor
+
+https://blog.csdn.net/m0_37690267/article/details/104340806
+
+内存队列
+
+跟java常用数据结构比较
+
+
+
+
+
+
+
+
+
+# MySQL
+
+https://dev.mysql.com/doc/dev/mysql-server/latest/mysqlx_protocol.html
+
+
+
+
+
+
+
+
+
+
+
+# 1.事实就是把公司测试等工作相关的文件传到github公开仓库上了
+
+2.整改方案:工作电脑不上跟工作无关的网站，平时用其他电脑
+
+3.文件放错文件夹了，本来放D:\tiancheng文件夹的，后来放其他地方了，一股脑全上传到github上了。
+
+
+
+
+
+# 生产环境
+
+大总管配置一定要验证，等有数据过来
+
+
+
+# 阅文集团
+
+地震
+
+吴文辉
+
+出走
+
+
+
+ACM、蓝桥杯、Kaggle
+
+
+
+可以参考linkedin的helix，基于zk写了一套比较完整的分布式存储的框架，data sharding， load balance，schedluer，replicate等等都支持。
+
+
+
+https://helix.apache.org/
+
+
+
+
+
+
+
+
+
+都是图灵完备的语言，没什么是c能做而c++不能做的。不过如果依赖现实的话，估计说的是底层，像硬件编程那些，很多都是只支持c不支持c++的。
+
+
+
+
+
+
+
+平安科技的CTO，前微软azure云和前亚马逊AWS云的系统架构师方国伟
+
+
+
+
+
+
+
+亚马逊 CTO Werner
+
+Vogels，是云计算领域的领军人物，以及亚马逊AWS业务的核心推动者。Werner Vogels在云计算领域的高瞻远瞩和战略眼光，以及推动执行落地的能力，帮助AWS取得了无比巨大的成功。
+
+
+
+
+
+在两年后的NIST竞赛中，各家公司的算法精度上虽然没有赶上原来的第一名，但已经开始接近了。
+
+近期NIST公布最新国际权威人脸识别大赛结果，中俄两国包揽了此次比赛的前五名，其中中国公司占据三席。它们分别是，来自中国的依图科技（yitu－001）位列第一，中国科学院深圳先进技术研究院（siat－002）排在第二，旷视科技（megvii-001）位于第五。
+
+值得一提的是，排名第二的中国科学院深圳先进技术研究院（siat-002），国内AI独角兽商汤科技的联合创始人汤晓鸥为该院副院长。
+
+NIST即美国国家标准与技术研究院（National Institute of Standards and Technology，NIST）直属美国商务部，从事物理、生物和工程方面的基础和应用研究，以及测量技术和测试方法方面的研究，提供标准、标准参考数据及有关服务，在国际上享有很高的声誉。
+
+NIST举办的人脸识别竞赛是目前全球数据规模最大、标准最为严格的比赛，是业界公认的最权威人脸识别算法比赛。此次官方发布的榜单中有来自全球的40多家企业，包括Vocord、Morpho等欧洲老牌安防企业。
+
+
+
+
+
+# 发现自己从大学开始就没用心学过一门技术
+
+
+
+数据库
+
+Java
+
+IT项目管理 Project
+
+
+
+
+
+
+
+
+
+# Http报文字符
+
+人类可以观看
+
+二进制人看不懂 没有合适的工具
+
+
+
+
+
+
+
+# 技术管理
+
+
+
+
+
+https://www.zhihu.com/question/377457299/answer/1065851579
+
+
+
+
+
+
+
+
+
+多租户(multi-tenancy technology)，参考维基百科定义，它是在探讨与实现如何于多用户的环境下共享相同的系统或程序，并且仍可确保各用户间数据的隔离性。
+
+
+
+
+
+
+
+
+
+# 三级缓存难以debug
+
+
+
+需要加缓存日志？
+
+
+
+日志的分类
+
+
+
+base64日志单独分出来
+
+
+
+公司Dubbo升级
+
+
+
+统一升级
+
+
+
+
+
+
+
+# mit视频，mater的数据是否要写入磁盘
+
+
+
+有中文翻译了
+
+
+
+​	
+
+
+
+# Dubbo独立运行
+
+书上有
+
+2.4 基于api实现
+
+
+
+本质是Dubbo独立实现了一个container，可以脱离Spring运行
+
+
+
+
+
+
+
+
+
+**asp.net是什么是编程语言还是什么？**
+
+框架
+
+是的，就是C#。
+
+当然，ASP.NET也可以用 VB 或其他 .NET 语言
+
+
+
+
+
+
+
+
+
+你说的应该是好舒服hsf吧。aone是变更发布系统
+
+那个应该是协同开发平台，集成发布，缺陷管理，项目管理各种
+
+关键是太耗资源了，看各大互联网公司基本上没有能做好真正跨语言服务框架的，因为只要想做得好，一个语言想服务好都是很耗资源的，跨语言不止是工作量，还要抹平语言差别，相当于在设计跨平台语言一样，各种适配各种降级。不值得，真的不值得，没几个业务值得。
+
+
+
+
+
+
+
+
+
+**不能喝太多糖，容易糖尿病**
+
+
+
+
+
+
+
+
+
+lmctfy
+
+https://blog.csdn.net/liujiangce/article/details/80119519
+
+只提供了CPU与内存隔离
+
+
+
+
+
+
+
+
+
+
+
+- ​		Protocol Buffers
+- ​		gflags
+- ​		RE2
+
+
+
+
+
+
+
+
+
+# Omega
+
+
+
+
+
+
+
+
+
+# Rust
+
+所有权
+
+
+
+
+
+
+
+
+
+# Thrift udp
+
+
+
+
+
+
+
+
+
+**好好学习**
+
+
+
+
+
+
+
+
+
+中国电信股份有限公司云计算分公司成立于2012年3月，是中国电信旗下承担云计算和大数据领域的专业化公司，集市场营销、运营和产品研发于一体，提供公有云服务(ctyun.cn)、混合云服务和私有云解决方案;同时在大数据领域承担中国电信统一对外数据经营和数据平台的运营，致力借助核心研发和运营能力提升中国电信数据资产的价值。
+
+
+
+
+
+某保险公司负责大数据后台研发工作的项目负责人 Pony 告诉 InfoQ，今年起，他们公司已经明确要求外包也必须是本科毕业，最好是计算机专业毕业、尽量不要培训出身，尤其是美学、人力专业转行培训几个月出来的。
+
+“人力成本太高了。我们也是有研发压力的，不愿意试错，要是认真学了三年，哪怕一年，我们都愿意一试。但现在培训出来的基本都是速成班，几个月就完事儿了，很难相信。”Pony 表示。
+
+
+
+
+
+
+
+
+
+
+
+体制内，呆长了，必把人呆废，除非是极其严格自律的人，每天下班后，都能读书到深夜的人。我就是在体制内呆了快三十年了，天天潇洒自在，虚度光阴，最终成了一个大废物。但现在到私企也没有人要，就在这里养老送终吧
+
+
+
+
+
+**前端** **移动端开源组织**
+
+
+
+支付对账系统是整个支付清结算体系中具体基础性意义的一个环节，是确保支付平台与各类第三方支付渠道数据一致性的关键系统，是商户资金结算、资金划拨、资金报表等逻辑准确运行的重要前提。很多互联网公司的支付系统和订单系统，是通过对账来发现支付系统和订单系统数据有问题的，对电商系统来说，要求每一笔交易，在所有相关主体侧都要能对得上，这是保证用户资金安全的根本也是基础。
+
+## 讲师简介
+
+王子硕，后端APAAS组架构师。长期专注支付领域，2011年开始进入去哪儿网，开始去哪儿网支付系统1.0的搭建，先后经历过美丽说、微店、便利蜂、爱农支付等公司，关注高并发、秒杀、微服务等技术发展。
+
+
+
+
+
+
+
+
+
+
+
+**ll****是啥命令**
+
+
+
+
+
+# Curl -d 接收不到
+
+
+
+curl -f key@file.txt edidada.cn
+
+
+
+
+
+
+
+主意我说的是入门只学微积分就行。要想真深入做，那就多了，什么拓扑、泛函都得来点。
+
+
+
+2015 年恒生电子子公司恒生网络因 HOMS 系统涉场外配资违规违法案件，后受到巨额监管处罚。2016 年，恒生电子斥巨资成立研究院，投入研发费用总计 10.51 亿元，占营业收入的 48.43%，研发人员占公司总人数的 63%，涉及人工智能、区块链、大数据等技术。
+
+
+
+
+
+# aspectj积累debug经验
+
+
+
+
+
+
+
+
+
+# Dubbo
+
+协议，魔术
+
+0x8
+
+
+
+
+
+
+
+
+
+
+
+# pizza
+
+
+
+计算机实验 pizza
+
+
+
+
+
+
+
+
+
+
+
+**好好看书，记住要复习的**
+
+
+
+招聘：资深信息安全开发工程师/架构师
+
+\* 丰富的分布式系统设计和开发经验
+
+\* 丰富的微服务系统设计和开发经验
+
+\* 熟练掌握Spring Framework, Zookeeper, Kafka, Docker, Netty, Redis, K8S
+
+\* 熟练掌握Unix Operation Systems, Networking, DB
+
+\* 良好的英语沟通和协作能力
+
+\* 有客户身份认证和权限管理系统相关经验优先考虑
+
+\* 有AWS相关经验优先考虑
+
+
+
+
+
+
+
+
+
+**刷****leetcode**
+
+
+
+
+
+
+
+# 计算机网络
+
+自顶向下分层
+
+
+
+Internet
+
+广域网
+
+局域网
+
+
+
+
+
+
+
+
+
+
+
+**论文参考的网站**
+
+
+
+
+
+https://www.zhihu.com/question/361792450
+
+
+
+
+
+
+
+
+
+平滑上云ASI云原生体系相关的干货真不是一般的多
+
+
+
+zxid
+
+
+
+在分布式场景中，ZooKeeper 的应用非常广泛，比如数据发布和订阅、命名服务、配置中心、注册中心、分布式锁等。
+
+
+
+
+
+Zab 协议的具体实现可以分为以下两部分：
+
+
+
+消息广播阶段
+
+崩溃恢复阶段
+
+
+
+
+
+如果在同步过程中出现 Leader 节点宕机，会进入崩溃恢复阶段，重新进行 Leader 选举，崩溃恢复阶段还包含数据同步操作，同步集群中最新的数据，保持集群的数据一致性。
+
+
+
+
+
+Zxid是Zab协议的一个事务编号，Zxid是一个64位的数字，其中低32位是一个简单的单调递增计数器，针对客户端每一个事务请求，计数器加1；而高32位则代表Leader周期...
+
+
+
+
+
+
+
+
+
+
+
+作为一名研究生，跟着导师研究区块链知识，从而了解到分布式等相关知识。从Paxos、PBFT等经典算法到PoW等区块链共识算法，一直都是处于理论研究阶段，苦于没有很好的实践方法。
+
+
+
+
+
+
+
+# router -n
+
+
+
+
+
+# sudo su -
+
+
+
+
+
+
+
+
+
+**vi x****退出？？？**
+
+
+
+
+
+# 搞it技术的，不能马虎一点点
+
+面试时遇到的困难，就是平时学习不用功
+
+
+
+
+
+# Tomcat核心源码剖析
+
+拉钩教育
+
+
+
+
+
+
+
+
+
+# 状态机
+
+tcp
+
+https://www.cnblogs.com/nzbbody/p/4320925.html
+
+
+
+为什么建立连接需要三次握手，断开连接需要四次握手？
+
+   举例来说，C与S要可靠的沟通，沟通之前要又准备工作，沟通完了，要有清理工作。
+
+   沟通之前的准备工作
+
+  C：我要跟你说话，你注意听（SYN）
+
+  S：好的（ACK），我也要跟你说话，你注意听（SYN）
+
+  C：好的（ACK） 
+
+  ........
+
+  交流过程中
+
+  .......
+
+   沟通完了的清理工作
+
+  C：我说完了（FIN）
+
+  S：我知道了（ACK）
+
+  S 再说一些...... 
+
+  S：我说完了（FIN）
+
+  C：我知道了（ACK）
+
+  tcp是全双工的， 建立连接，ACK的同时可以SYN，而断开连接，往往不满足条件，C说完了，S可能还要再说一会。
+
+
+
+
+
+MSL（Maximum Segment Lifetime）
+
+
+
+
+
+
+
+
+
+说的有道理，存储过程之类的不用说了肯定是转移到中间件更有效率，但是外键这个也去掉是不是有点太激进了？尤其是对一些涉及到资金或critical数据的复杂关系，没有外键关联会非常难以管理。整体方案来看，是不是应该把这种重要数据还用外键关联的方式存在数据库，但是真正特别影响用户体验的一些业务用NoSQL来处理好些？
+
+Db只存储，不计算，计算移到java代码里面去
+
+做数据之间高度耦合的系统这套原则就跪了。比如EPR
+
+
+
+
+
+
+
+
+
+
+
+
+
+这本数据的确很不错，配合斯坦福大学的简易数据库Redbase来理解，会发现对数据库有一个更深的认识
+
+这本书比较偏重数据库底层实现，数据物理存储结构，查询引擎，查询优化器，索引，缓冲区管理，并发控制等都讲的比较详细，例子也丰富，适合作为学习数据库的第二本书。学习完这本书，在比较有经验的人的指导下，就可以一点点实现一个简单的传统关系型数据库了，简易版PostgreSQL，性能肯定会比较差。
+
+后面可以看CMU的这个视频和相关论文[Schedule - CMU 15-721 :: Database Systems (Spring 2016)](https://link.zhihu.com/?target=http%3A//15721.courses.cs.cmu.edu/spring2016/schedule.html)，可以学到如何实现一个高性能的OLAP&OLTP内存数据库。
+
+看一下CMU的那门高级数据库的课吧，里面的论文好好看一下，如果有精力，可以实现一些论文里的内容
+
+
+
+
+
+
+
+
+
+**想不开心的事，转移注意力，看电视剧，想编程题**
+
+
+
+
+
+
+
+
+
+**现在书籍资料，培训班视频资料那么多，抓紧看，不能看直播，看视频，玩游戏，睡觉**
+
+
+
+
+
+Leetcode要抓紧
+
+
+
+
+
+
+
+腾讯出的Shadow插件化框架
+
+
+
+零反射全动态Android插件框架
+
+
+
+**自己写的测试代码出错？**
+
+以我们多年的插件环境下业务开发经验，插件框架是不可能一步到位实现完美的。 因此，我们相信大部分业务在接入时都是需要一定的二次开发工作。 Shadow现有的代码满足的是我们自己的业务现在的需求。得益于全动态的设计， 插件框架和插件本身都是动态发布的，插件包里既有插件代码也有插件框架代码， 所以可以根据新版本插件的需要同时开发插件框架。
+
+
+
+
+
+
+
+
+
+[Sublime Mac快捷键](https://segmentfault.com/q/1010000002397241)
+
+
+
+https://segmentfault.com/q/1010000002397241
+
+
+
+
+
+
+
+
+
+
+
+Ctrl+A：到行首（达到Home键的效果）
+
+Ctrl+E：到行尾（达到End键的效果）
+
+Ctrl+N：到下一行
+
+Ctrl+P：到上一行
+
+Ctrl+K：从光标处开始删除，直到行尾
+
+fn键+左方向键是HOME
+
+fn键+右方向键是END
+
+fn+上方向键是page up
+
+fn+下方向键是page down
+
+
+
+
+
+
+
+
+
+使用电脑有记录
+
+
+
 Arm
 以前是移动平台，现在占领server
 X86 Intel Android 没推广起来

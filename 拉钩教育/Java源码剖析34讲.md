@@ -1,5 +1,149 @@
 # Java源码剖析34讲
 
+Java面试真题及源码剖析34讲
+
+https://kaiwu.lagou.com/course/courseInfo.htm?courseId=59#/content
+
+前 360 技术专家
+
+10 多年 Java 老兵，5 年大厂面试官经验。拥有 10 多年大型系统设计、开发和调优经验，热衷于技术分享，是阿里云社区的认证专家，腾讯社区 2019 年年度最佳作者。资深面试官与面试辅导讲师，曾辅导过 1000+ Java 工程师找到满意工作。
+
+java知识点
+
+第一道题
+
+String
+
+1、String类是final的
+
+2 StringBuffer StrigBuilder为参数构造String对象
+
+百度应届生考的
+
+8种基本数据类型 占用的字节数
+
+Rust语言设计的时候就有int32 int64
+
+java标准库
+
+io
+
+nio Netty
+
+序列化
+
+java集合类
+
+Collection
+
+Map
+
+List
+
+Set
+
+Araray
+
+Set是如何保证没有重复元素的 Map的key
+
+List如何边遍历，边删除 用迭代器
+
+map解决hash冲突
+
+1、链表法（chaining）
+
+在哈希表中，每一个桶（bucket）或者槽（slot）都会对应一条链表，所有哈希值相同的元素放到相同槽位对应的链表中。
+
+2、开放寻址法
+
+核心思想：如果出现散列冲突，我们就**重新探测**一个空闲位置，再将元素插入。
+
+一种比较简单的探测方法：**线性探测法**（Linear Probing）
+
+另外的两种探测方法是**二次探测法**（Quadratic probing）和**双重散列法**（Double hashing）
+
+juc 多线程
+
+每个线程私有数据 tl remove
+
+Thread ThreadStatus
+
+ThreadGroup
+
+AQS
+
+UnSafe
+
+内存
+
+内存模型
+
+垃圾回收算法
+
+垃圾回收器
+
+编译原理相关的
+
+ClassLoader
+
+双亲委派模型
+
+内存泄漏工具
+
+多线程 死锁工具
+
+虚拟机相关的 jvm
+
+Spring/Spring Boot/Spring Cloud
+
+消息队列 rabbitmq kafka
+
+分库分表
+
+SS
+
+数据库
+
+事务
+
+分布式事务
+
+数据库 MySQL Oracle SQL Server
+
+网络编程
+
+io的
+
+TCP 状态机
+
+前沿 dpkg 
+
+软件工程
+
+设计模式
+
+架构图
+
+缓存
+
+分布式缓存 Redis
+
+CDN
+
+DNS
+
+分布式系统
+
+分布式锁
+
+分布式id生成器
+
+分布式事务
+
+
+
+
+
 
 
 结合面试题的

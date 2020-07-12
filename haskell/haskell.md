@@ -20,8 +20,8 @@ https://www.cnblogs.com/svenzhang9527/p/10704459.html
 
  
 
-<<<<<<< HEAD
-=======
+
+
 1.因为pthread不是C标准库，需要链接 
 
 2.在CMakeLists.txt里添加： 
@@ -29,4 +29,4 @@ https://www.cnblogs.com/svenzhang9527/p/10704459.html
 　　FIND_PACKAGE(Threads REQUIRED) 
 
 　　TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
