@@ -41,7 +41,11 @@ localhost:3000/?query=a&a=b
 
 
 
-http post ?query=a&a=b
+http post ?query=a&a=b 用法也是可以的
+
+
+
+url encoded
 
 
 
@@ -118,6 +122,12 @@ c++ pistache
 go 
 
 rust 
+
+
+
+有测试的，针对不同语言的web框架
+
+web是计算机程序的对外接口
 
 
 

@@ -25,3 +25,27 @@ The Skia Graphics Engine is an open-source graphics library written in C++. Skia
  Flutter Framework 源码解析（ 1 ）—— 开篇和绘图引擎的用法
  https://xieguanglei.github.io/blog/post/flutter-code-chapter-01.html
 
+
+
+
+
+flutter pub get
+
+安装flutter不需要单独安装Dart
+
+D:\flutter\bin\cache\dart-sdk
+
+D:\flutter\bin\cache\artifacts\engine\android-arm\flutter.jar
+
+flutter里面有.so文件
+
+Dart被编译为本机代码(ARM,Intel等)可执行文件,并与某些本机平台代码(Java,Kotlin,Objective-C / Swift)捆绑在一起,以与本机平台进行交互.
+
+ndk
+
+llvm
+
+react native/js-->java oc/swift
+
+
+

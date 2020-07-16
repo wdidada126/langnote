@@ -1,5 +1,11 @@
 # hystrix
 
+
+
+Sentinel
+
+
+
 最多支持多少个线程池？
 
 

@@ -1,5 +1,59 @@
 # seata
 
+seata
+
+QQ群
+
+254657148
+
+需要独立部署一个seata server
+
+tm tc rm
+
+at
+
+模式 默认的
+
+本质上是通过添加一个undo_log来维护事务
+
+数据库事务
+
+套上seata的事务
+
+saga
+
+长事误
+
+Saga 理论出自 Hector & Kenneth 1987发表的论文 Sagas。
+
+https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
+
+https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/EldeebBernstein-TransactionalActors-MSR-TR-1.pdf
+
+saga模式的实现，是长事务解决方案。
+
+https://objcoding.com/2019/11/27/seata-at-start/
+
+servicecomb
+
+https://blog.csdn.net/tianyaleixiaowu/article/details/95208906
+
+https://blog.csdn.net/weixin_39860915/article/details/103917845
+
+**（AT、TCC、Saga、XA）模式分析**
+
+四种分布式事务模式，分别在不同的时间被提出，每种模式都有它的适用场景
+
+AT 模式是无侵入的分布式事务解决方案，适用于不希望对业务进行改造的场景，几乎0学习成本。TCC 模式是高性能分布式事务解决方案，适用于核心系统等对性能有很高要求的场景。Saga 模式是长事务解决方案，适用于业务流程长且需要保证事务最终一致性的业务系统，Saga 模式一阶段就会提交本地事务，无锁，长流程情况下可以保证性能，多用于渠道层、集成层业务系统。事务参与者可能是其它公司的服务或者是遗留系统的服务，无法进行改造和提供 TCC 要求的接口，也可以使用 Saga 模式。XA模式是分布式强一致性的解决方案，但性能低而使用较少。
+
+https://zhuanlan.zhihu.com/p/78599954
+
+XA Protocol
+
+The earliest distributed transaction model was X/Open Distributed Transaction Processing (DTP), or the XA protocol for short.
+
+
+
 
 
 Seata整合教程:https://www.bilibili.com/video/BV1tz411z7BX/
