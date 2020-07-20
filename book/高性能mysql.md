@@ -40,11 +40,10 @@ innodb
 
 
 
-<<<<<<< HEAD
-=======
+
 explain 解释 说明
 
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 
 
 MySQL-8.0执行器及其改进

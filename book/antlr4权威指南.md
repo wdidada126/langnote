@@ -2,7 +2,7 @@
 
 
 
-<<<<<<< HEAD
+
 https://book.douban.com/subject/27082372/       中文版
 
 
@@ -12,9 +12,12 @@ https://book.douban.com/subject/17912658/        英文版
 
 
 Twitter搜索使用ANTLR进行语法分析，每天处理超过20亿次查询；Hadoop生态系统中的Hive、Pig、数据仓库和分析系统所使用的语言都用到了ANTLR；Lex Machina将ANTLR用于分析法律文本；Oracle公司在SQL开发者IDE和迁移工具中使用了ANTLR；NetBeans公司的IDE使用ANTLR来解析C++；Hibernate对象-关系映射框架（ORM）使用ANTLR来处理HQL语言。
-=======
+
+
+
 https://book.douban.com/subject/27082372/
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
+
 
 
 
@@ -103,7 +106,8 @@ org.antlr.v4.runtime.ParserRuleContext 实际上是ast
 
 
 
-<<<<<<< HEAD
+
+
 #### Chap. 5 设计语法
 
 
@@ -140,8 +144,9 @@ right recursive
 
 词法结构
 
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
+
+
 
 
 P.67
@@ -160,10 +165,7 @@ line 1:8 extraneous input '4' expecting {',', '}'}
 (init { (value (init { (value 2) 3 })) 4 })
 
 Process finished with exit code 0
-<<<<<<< HEAD
-```
 
 
-=======
 ```
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+

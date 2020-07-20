@@ -1,4 +1,8 @@
-# [MIT 6.824: Distributed Systems](https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g)
+# MIT 6.824: Distributed Systems
+
+
+
+[MIT 6.824: Distributed Systems](https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g)
 
 
 

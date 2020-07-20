@@ -8,6 +8,14 @@
 
 
 
+先看官方文档
+
+
+
+H好像是http层的东西，跟webservice差不多
+
+
+
 [深入理解Apache Dubbo与实战](https://book.douban.com/subject/34455777/)
 
 

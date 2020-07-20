@@ -8,7 +8,7 @@ skia
 
 多媒体
 
-android kernel被从Linux Kernel中移除了
+android kernel被从Linux Kernel中移除了，现在又恢复了？
 
 
 

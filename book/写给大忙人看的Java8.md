@@ -21,6 +21,8 @@ Paths
 
 [写给大忙人的JavaSE8书后习题简析-第一章](https://blog.mythsman.com/post/5d2fef02976abc05b34545ed/)
 
+
+
 #### Chap. 2
 
 Stream.of()
@@ -66,12 +68,16 @@ FilePredicate vs Predicate<File>
 
 jjs jss
 
+
+
 #### Chap. 4
 JavaFX
 
 AWT 
 Swing 自己绘制
 一般都不用
+
+
 
 #### Chap. 5
 
@@ -98,6 +104,8 @@ LocalDate alonzosBirthday = LocalDate.of(1903,6,14);
 新Date api与之前的Date java.sql.Date/Time/Timestamp
 
 #### Chap. 6
+
+
 并发
 java 5 java.util.concurrent 既有并发类，又有实现API开发者实现的类 UnSafe 
 
@@ -106,6 +114,8 @@ competeleFuture
 #### Chap. 7
 
 nashorn js引擎
+
+
 
 #### Chap. 8 杂项改进
 Java8在String类中只添加了一个新方法，就是join，该方法实现了字符串的拼接，可以把它看作split方法的逆操作。

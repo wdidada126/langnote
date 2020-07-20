@@ -73,7 +73,7 @@ git diff --cached
 
 git diff HEAD
 
-Chap. 40
+### Chap. 40
 
 跨操作系统
 需要实际操作下
