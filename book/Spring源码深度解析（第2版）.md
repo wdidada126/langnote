@@ -220,15 +220,15 @@ aspectj
 
 
 
-mybatis
+mybatis mybatis-spring
 
 springmvc
 
 rmi
 
-事务
+事务 jta 
 
-jms
+jms 不适合互联网业务
 
 
 
@@ -306,7 +306,7 @@ interface Resource extends InputStreamSource
 
 
 
-常用子类有：1、FileSystemResource；2、ClassPathResource；3、UrlResource；4、InputStreamResource；5、ByteArrayResource
+常用子类有：1、FileSystemResource；2、ClassPathResource；3、UrlResource；4、InputStreamResource；5、ByteArrayResource vfsResources
 
 
 
@@ -316,7 +316,7 @@ Aware
 
 org.springframework.beans.factory.Aware
 
-
+回调
 
 
 
@@ -334,15 +334,15 @@ https://blog.csdn.net/ilovejava_2010/article/details/7953582
 
 
 
-BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。
+1、BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。
 
-BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。
+2、BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。
 
-ApplicationContextAware，可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。
+3、ApplicationContextAware，可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。
 
-MessageSourceAware，在Bean中可以得到消息源。
+4、MessageSourceAware，在Bean中可以得到消息源。
 
-ApplicationEventPublisherAware，在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。
+5、ApplicationEventPublisherAware，在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。
 
 ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。
 

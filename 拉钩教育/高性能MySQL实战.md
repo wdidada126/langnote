@@ -64,9 +64,27 @@ mysql隔离级别
 
 ur rc rr s
 
+
+
+READ UNCOMMITTED
+
+READ COMMITTED
+
+REPEATABLE READ
+
+SERIALIZABLE
+
+
+
+[你真的明白事务的隔离性吗 姜承尧](https://mp.weixin.qq.com/s?__biz=MjM5MjIxNDA4NA==&mid=400262409&idx=1&sn=827bdcde075ef2f96c82a3f11fa422d4&scene=0&key=b410d3164f5f798ea52ee30c99dcb9c7e079c79659c2ffd9927976ab0093eb3003db7a80ff517fb25e7d1f4d95c602ad&ascene=0&uin=Mjk1ODMyNTYyMg%3D%3D&devicetype=iMac+MacBookPro11%2C4+OSX+OSX+10.11.1+build(15B42)&version=11020201&pass_ticket=R6pckpGE0E2s4Glv9xfkwcXltT2IyLOoSgjYv8LFO%2Bbf7dCsH7csTqs%2BqUqWZJaF)
+
+
+
 脏读
 
-幻读？
+不可重复读
+
+幻读
 
 
 

@@ -2,7 +2,7 @@
 
 
 
-redis集群方案：淘宝
+redis集群方案：淘宝 推特 Twemproxy
 
 官方
 

@@ -1,5 +1,19 @@
 # Spring
 
+按照学习Java Se的方法来学习Spring
+
+先用，在看源码类，挨个写用例
+
+
+
+Spring用了注解 反射
+
+代理 字节码生成
+
+类加载器
+
+
+
 
 
 
@@ -70,6 +84,8 @@ aop是软件工程，减少重复代码
 
 
 Spring能方便的与Java EE（如Java Mail、任务调度）整合，与更多技术整合（比如缓存框架）
+
+SpringBoot SpringCloud starter
 
 
 

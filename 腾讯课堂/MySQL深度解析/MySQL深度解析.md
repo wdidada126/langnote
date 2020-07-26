@@ -1,6 +1,6 @@
 # MySQL深度解析
 
-
+得出一个结论，要看官方文档
 
 腾讯课堂 马士兵
 
@@ -50,9 +50,17 @@ mysql四层
 
 问题3:为什么不用select *
 
-当年房即可被问到了
+当年房极客被问到了
 
 覆盖索引 耗内存 回表
+
+组合索引联合索引 UNIQUE INDEX 最左匹配原则
+
+
+
+like “%aaa%” 不会使用索引，而like “aaa%”可以使用索引。
+
+
 
 
 
@@ -65,6 +73,10 @@ innode
 myasd
 
 memory
+
+现在有新的数据库引擎出现
+
+
 
 
 
@@ -128,6 +140,10 @@ NDBCluster
 
 意向锁
 
+https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html#innodb-intention-locks
+
+https://blog.csdn.net/zcl_love_wx/article/details/82015281
+
 面试问的问题，工作中用不到
 
 
@@ -164,7 +180,7 @@ ACID
 
 
 
-mvcc 多版本并发控制
+mvcc 多版本并发控制 看《高性能MySQL》
 
 不是mvvc
 
@@ -174,9 +190,11 @@ mvcc 多版本并发控制
 
 脏读
 
+不可重复读
+
 幻读
 
-不可重复读
+
 
 举例
 
@@ -188,7 +206,7 @@ rdb
 
 aof 文件格式
 
-string hash string set zset geoip？
+string hash list set zset geoip？
 
 如何实现
 
@@ -348,7 +366,7 @@ lock in share module
 
 
 
-​                排他锁          共享锁
+排他锁          共享锁
 
 排他锁   错                    错
 

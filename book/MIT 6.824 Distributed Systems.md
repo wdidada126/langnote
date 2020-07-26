@@ -1,5 +1,13 @@
 # MIT 6.824: Distributed Systems
 
+mit计算机课程
+
+http://www.mamicode.com/info-detail-1738462.html
+
+https://zhuanlan.zhihu.com/p/112763953
+
+
+
 
 
 [MIT 6.824: Distributed Systems](https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g)
