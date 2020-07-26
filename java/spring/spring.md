@@ -1,5 +1,31 @@
 # Spring
 
+spring api
+
+要挨个熟悉
+
+https://zhuanlan.zhihu.com/p/157416835
+
+#### 1.BeanDefinition
+
+在 Spring 容器中，我们广泛使用的是一个一个的 Bean，BeanDefinition 从名字上就可以看出是关于 Bean 的定义。
+
+https://www.jianshu.com/p/3b338dda2437
+
+
+
+
+
+
+
+https://tool.oschina.net/apidocs/apidoc?api=Spring-3.1.1
+
+
+
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/
+
+
+
 按照学习Java Se的方法来学习Spring
 
 先用，在看源码类，挨个写用例

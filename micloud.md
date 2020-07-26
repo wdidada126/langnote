@@ -8,7 +8,7 @@
 
 目前比较先进，性能优异的虚拟化平台例如 IBM VSphere 的 VMware ESXi 等都采用的是这种设计思路。
 
-虚机基于hyper-v
+虚机基于hyper-v os也是基于虚拟化
 
 
 
@@ -27,6 +27,12 @@ https://zhuanlan.zhihu.com/p/48866777
 https://zhuanlan.zhihu.com/p/96130650
 
 https://zhuanlan.zhihu.com/p/94919502
+
+
+
+中科院
+
+***http://dpaper.las.ac.cn\***
 
 
 
@@ -92,13 +98,19 @@ DOI是digital object identifier的首写字母缩写，译文为数字对象唯�
 
 是不是只有论文有doi
 
-浙江图书馆 免费下载 维普 知网 万方
+浙江图书馆https://www.zjlib.cn/
+
+免费下载 维普 知网 万方
 
 支付宝注册的
 
 安徽图书馆
 
-https://zhuanlan.zhihu.com/p/44473923
+[网站｜万方、知网、维普、超星学术论文免费下载，杂志期刊免费看](https://zhuanlan.zhihu.com/p/44473923)
+
+
+
+Mysql表锁 mysql server 行锁 innodb myassm没有实现
 
 
 
@@ -106,7 +118,7 @@ Greenplum
 
 数据仓库和商业智能方面
 
-ClickHouse
+ClickHouse yadex开源 头条等公司使用
 
 OLAP
 
@@ -118,7 +130,11 @@ https://news.china.com/socialgd/10000169/20200722/38527522.html
 
 
 
-springmvc 自定义注解
+springmvc 自定义注解 例子
+
+
+
+注意核心类
 
 https://www.cnblogs.com/wyq1995/p/10672710.html
 
@@ -136,6 +152,14 @@ InnoDB的非主键索引是聚集索引还是非聚集索引
 
 非聚集
 
+
+
+second index 二级索引 相对于主键索引
+
+
+
+
+
 anki，强记
 
 
@@ -150,7 +174,7 @@ https://my.oschina.net/u/4030990/blog/4401631
 
 cap
 
-三个辅导机构
+三个辅导机构 会计岛 东奥 中华会计网校
 
 https://www.zhihu.com/question/408222320
 
@@ -200,7 +224,7 @@ k8s架构
 
 https://blog.51cto.com/12480612/2304823
 
-可以不用docker
+可以不用docker cdr
 
 官方有架构图
 
@@ -264,7 +288,7 @@ Asr
 
 Amr
 
-stamp啥意思 邮票 
+stamp 邮票  写例子
 
 
 
@@ -336,6 +360,12 @@ TubeMQ腾讯开源的
 
 
 
+滴滴开源 章文嵩 mq
+
+
+
+
+
 vultr
 
 do
@@ -400,7 +430,7 @@ Clion远程调试
 
 Cpp不同平台工具不同
 
-其他ide没有
+其他ide java go rust没有
 
 
 
@@ -441,6 +471,12 @@ linux kernel patch
 安卓 hotfix
 
 Js bridge
+
+
+
+
+
+
 
 阿里云 飞天 os
 
@@ -518,7 +554,7 @@ fuse isolation
 
 东方通是国内做企业级中间件的老牌企业了
 
-
+https://www.cnblogs.com/jifeng/p/4193445.html
 
 
 
@@ -562,9 +598,7 @@ defer join
 
 为了模拟真实的线上场景，我们通过 TCPCopy，把线上实际的查询流量引到测试环境，先后经过 13 轮的性能测试，最终 6 个 MySQL 库相对一个 Oracle，在当时的数据量下，SQL 执行时间基本持平。
 
-TCPCopy
 
-https://blog.csdn.net/wenjun258120/article/details/86702858
 
 
 
