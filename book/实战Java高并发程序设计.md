@@ -28,6 +28,10 @@ https://www.sohu.com/a/256535222_494939
 
 
 
+
+
+
+
 并发级别
 
 - 阻塞（Blocking）
@@ -35,6 +39,16 @@ https://www.sohu.com/a/256535222_494939
 - 无障碍（Obstruction-Free）
 - 无锁（Lock-Free）
 - 无等待（Wait-Free）
+
+
+
+http://ifeve.com/lock-free-and-wait-free/
+
+并发级别区别
+
+Disruptor 就是lock - free
+
+
 
 
 
