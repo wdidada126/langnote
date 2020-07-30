@@ -1027,3 +1027,704 @@ rpc rmi区别
 基于 Redis 的分布式锁
 https://segmentfault.com/a/1190000014128432
 
+
+jetty 部署原理 IDEA 设置war文件绝对路径
+
+Jetty部署 https://blog.csdn.net/tomato__/article/details/28874805
+
+
+
+IDEA jetty端口修改 https://my.oschina.net/pengzai/blog/130797
+
+加大IT技术文档英语阅读量
+
+拿社保卡，激活储蓄功能，搞定6位数查询密码
+
+ltp4j
+https://github.com/HIT-SCIR/ltp4j
+
+JMX
+Java Management Extensions (JMX)
+
+多交流吧，毕竟自己不是最先进的了
+
+JMS
+https://en.wikipedia.org/wiki/Java_Message_Service
+阿里云账号申请
+
+Java8 接口，默认方法 Default Methods
+https://ebnbin.com/2015/12/20/java-8-default-methods/
+
+Servlet要搞清楚业务流程，然后再记类
+
+lock free算法
+CAS ABA
+
+
+
+http://novoland.github.io/%E5%B9%B6%E5%8F%91/2014/07/26/Lock-Free%20%E7%AE%97%E6%B3%95.html
+
+离散数学在计算机科学中的应用
+离散数学在计算机科学中的应用
+
+
+
+https://blog.csdn.net/xyisv/article/details/79245952
+
+Log4j2架构图
+Spring View 记子类  ViewResolve
+判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。  示例 1:  输入: 121 输出: true 示例 2:  输入: -121 输出: false 解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。 示例 3:  输入: 10 输出: false 解释: 从右向左读, 为 01 。因此它不是一个回文数。 进阶:  你能不将整数转为字符串来解决这个问题吗？
+
+hc
+熟悉MySQL数据库结构、数据结构设计、性能调优和日常故障解决方法
+
+熟悉MySQL主从复制，读写分离、分库分表设计，熟悉mariadb等MySQL各分支的区别和特性
+
+
+
+了解主流开源存储系统原理，如HBase，RocksDB，LevelDB，Ceph等，对源码有研究者优先
+
+有线上高并发，高性能，低延迟系统开发经验者优先
+
+有国际一流系统会议：ODSI，SOSP，USENIX ATC, USENIX FAST, VLDB，SIGMOD，EuroSys，
+
+
+
+会计 CPA
+
+cat 日志监控
+https://github.com/dianping/cat
+
+Jwt记不住，因为没跑例子
+Redis要加强 基本数据类型 二进制 过期时间 哨兵模式
+	消息中间件面试题：如何保证消息不被重复消费
+
+消息中间件面试题：如何保证消息不被重复消费
+
+
+
+https://blog.csdn.net/weixin_34111819/article/details/87770104
+
+
+
+因为这问题通常不是 MQ 自己保证的，是由我们开发来保证的。挑一个 Kafka 来举个例子，说说怎么重复消费吧。
+
+leetcode 121
+https://mp.weixin.qq.com/s?__biz=MzA3MjU5NjU2NA==&mid=2455501947&idx=1&sn=dd08b2f7b955e4c4b5007f248b3ba6ca&chksm=88b4b140bfc338568ae56600f5e7ba22fb7d6bb694a700327eb637cc118b93edc6902ca48505&mpshare=1&scene=1&srcid=&sharer_sharetime=1564101539595&sharer_shareid=887d04566c34e5f38ff4fd051a5b689e&key=bc8c7e003d0328abc7ad8d28fc886876a41565ddfb346eec5ba570f3bd420c207fc3d8dde390226c0004bc30938cf101f2cd7c0cdb363b53a8a4f00bb4692a22fd3e0e3bab41301c260c47b80ea3160a&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=f6hmhg8QwiIjbur9EfvfTFJIFZ5g6opdM2V5meBJMhWFUJIkPdwS3awXQyOZXAWl
+
+tpcc mysql测试
+TPC(Tracsaction Processing Performance Council) 事务处理性能协会是一个评价大型数据库系统软硬件性能的非盈利的组织,TPC-C是TPC协会制定的，用来测试典型的复杂OLTP系统的性能。Tpcc-mysql是percona基于tpcc衍生出来的产品，专用于mysql基准测试，其源码放在bazaar上，因此需要先安装bazaar客户端。
+
+
+
+https://yq.aliyun.com/articles/131187
+
+
+
+https://github.com/Percona-Lab/tpcc-mysql
+
+BAT如何处理相同的数据
+MySQL 索引 B+树
+https://mp.weixin.qq.com/s/fR1a6yu1MfoZLov2xSwgsQ
+
+
+
+局部性原理与磁盘预读
+
+消息中间件面试题：如何保证消息不被重复消费
+
+aries算法
+https://my.oschina.net/fileoptions/blog/2988622
+
+
+人人都是 API 设计者：我对 RESTful API、GraphQL、RPC API 的思考
+https://www.infoq.cn/article/ZgAAVBZZaoo4I0-pkgV8
+
+mysql Jeremy Cole
+mysql 索引有哪些？
+https://blog.csdn.net/qq_27388039/article/details/79647887
+
+
+
+https://blog.csdn.net/u012006689/article/details/73195837
+
+
+
+https://blog.csdn.net/u012006689/article/details/73195837
+
+
+关于InnoDB优化，在《高性能Mysql》里有更加全面的介绍
+解决幂等 思路
+
+mysql 索引有哪些？
+
+Spring Cloud项目之间是如何是实现调用的
+我感觉应该不用记调用链那些。tcp是协议，代码是协议实现，不是一个维度 个人推荐重点还是从tcp的那四个timer各自作用来理解tcp协议会比较没那么痛苦
+
+todo字节跳动 分布式 头条 三大算法
+Mysql工具测ss
+ss测试官方代码
+https://github.com/OpenSharding/shardingsphere-acceptance-test
+
+公司内部使用消息队列实现分布式事务，查相关资料，咨询阳哥
+
+求数组中第k大的数的题
+求数组中第k大的数的题
+
+题目描述：
+
+在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+
+示例 1:
+
+输入: [3,2,1,5,6,4] 和 k = 2
+
+输出: 5
+
+示例 2:
+
+输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
+
+输出: 4
+
+说明:
+
+你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
+
+题目链接： https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
+
+false sharing(伪共享)
+
+所谓的“广域网负载均衡”（跨地域负载均衡） >>这个是自己配置，还是依赖于运营商呢
+
+Disruptor 无锁队列
+http://lmax-exchange.github.io/disruptor/
+
+java  如何打印当前程序运行堆栈信息
+
+
+supervisor
+http://liyangliang.me/posts/2015/06/using-supervisor/
+
+学习无鼠标操作电脑
+ShardingSphere微信1群讨论SPI
+SPI ss是原生
+
+Dubbo上是修改的
+
+数据库 异地多活
+OB
+多活架构
+
+
+数据库指标 RTO
+https://blog.51cto.com/se7en/1085442
+
+Leetcode链表总结
+https://blog.csdn.net/wonner_/article/details/79766037
+
+数据库 XA协议 分布式规范
+XA协议包括两套函数，以xa_开头的及以ax_开头的
+
+MySQL索引的创建、删除和查看
+https://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html
+
+Redis阻塞访问，非阻塞访问
+
+Java Logger
+https://bryantchang.github.io/2018/07/19/log4j2-code-1/
+
+在查询语句后面增加for update，数据库会在查询过程中给数据库表增加排他锁（这里再多提一句，InnoDB引擎在加锁的时候，只有通过索引进行检索的时候才会使用行级锁，否则会使用表级锁。这里我们希望使用行级锁，就要给method_name添加索引，值得注意的是，这个索引一定要创建成唯一索引，否则会出现多个重载方法之间无法同时被访问的问题。重载方法的话建议把参数类型也加上。）
+
+虽然我们对method_name 使用了唯一索引，并且显示使用for update来使用行级锁。但是，MySql会对查询进行优化，即便在条件中使用了索引字段，但是否使用索引来检索数据是由 MySQL 通过判断不同执行计划的代价来决定的，如果 MySQL 认为全表扫效率更高，比如对一些很小的表，它就不会使用索引，这种情况下 InnoDB 将使用表锁，而不是行锁。如果发生这种情况就悲剧了。
+
+基于缓存实现分布式锁
+JUnit Spring test testng原理
+在本地开启了一个socket
+
+ubuntu 16 ss命令行版本不工作了
+
+再见linux kernel source，open jdk source code,android open source code，I try to love Java application code for ever!
+Log4j2 多个文件怎么压缩
+怎么配置输出格式
+
+怎么
+
+
+
+https://blog.csdn.net/u010597819/article/details/92429838
+
+
+Log4j2 插件 spi优劣
+
+tgockel-zookeeper-cpp
+tgockel-zookeeper-cpp
+
+
+
+https://www.findbestopensource.com/product/tgockel-zookeeper-cpp
+
+没有保持好的读书习惯，阅读新书，复习读过的书籍 温故知新
+
+多看书，分布式协议 dubbo序列化 ss代码
+
+Mabatis Generator源码
+美团线上有基础平台用zgc，直接上的12
+
+Java 教程
+
+
+
+http://how2j.cn/?p=81319/ 
+
+Paxos，Raft，2PC，3PC等等，在这讲一种协议，ZAB 协议
+
+如果你是技术岗，问你这些其实没啥问题。原理真不难，写出来难。理解多线程的底层实现(这个面试的时候很多人都是背博客，其实都是有问题的)和虚拟机原理是大有好处的。我觉得高阶程序员手撕一个依赖注入和虚拟机(不用对应所有jvm bytecode，有栈有算数逻辑跳转有GC就够了)应该是基本功。
+
+大学体系结构课是用FPGA实现支持简单指令集的pipeline cpu.  但是我甚至不会用简单指令集实现快速排序… 我觉得挺正常的
+
+写了五年代码了，还没见过用rb树的。c#的sorteddictionary里面用了rb树，但是基本不用这个数据结构啊
+
+人脸识别，旷视。  语音识别，讯飞。  情感识别，依图。
+
+推荐大家去读《A Tour of C++》第二版，英文版在2018年6月出版。（译注：Oreilly会员可以直接读）本书包括了C++17以及C++20的内容，是最近相当全面的C++17的特性指南。
+
+
+Leetcode 个人题解
+https://github.com/hqztrue/LeetCodeSolutions
+
+https://github.com/azl397985856/leetcode
+
+协程 cpp
+
+Jdk8后续版本新特性
+https://mp.weixin.qq.com/s/BDJhcoY0DK03cuCMfA-KAQ
+
+mysql B +树源码
+
+IsRoot isLeaf boolean值
+
+两个指针
+
+左右节点
+
+孩子节点
+
+Java io包需要强记
+
+我们去更加深入的理解什么是计算机。给计算机建立模型。  所以，形式语言就应运而生了。其中最基础的就是自动机(automata)。它可以将很多的东西抽象话， 也让我们更加了解一些简单的程序。
+
+Leetcode题解
+https://zhuanlan.zhihu.com/c_213492055
+
+二叉树中序遍历，取最大的K个值
+javap 查看class文件
+多API支持：log4j2提供Log4j 1.2, SLF4J, Commons Logging and java.util.logging (JUL) 的API支持
+
+插件架构： Log4j使用插件模式配置组件。因此，您无需编写代码来创建和配置Appender，Layout，Pattern Converter等。Log4j自动识别插件并在配置引用它们时使用它们。
+
+微软 cpp library http
+
+https://github.com/Microsoft/cpprestsdk 
+
+ICML或CVPR ECCV、CVPR、AAAI、ICML
+
+cpp代码 configure generate compiler
+阿丙的博客园
+
+https://www.cnblogs.com/acm-bingzi/category/468280.html
+
+同感，spp框架是很不错，但是源码一坨翔
+http://www.pianshen.com/article/4844349025/
+
+
+
+https://blog.csdn.net/mijichui2153/article/details/89291390
+
+收购奇妙清单之后，微软在几年前推出了这款全新的任务清单工具——Microsoft To-Do，现在，你可以在你的 Windows10 系统、苹果、安卓，以及网页端同时使用。
+
+算法、自动机理论、形式语言、可计算性理论之间都是什么关系
+矩阵 数学基础
+矩阵 数学基础
+
+
+
+https://www.zhihu.com/question/338548610/answer/796325582?hb_wx_block=1
+
+http://mysqllover.com/
+
+tidb
+
+
+
+Slack
+
+MySQL内核：InnoDB存储引擎 卷1
+
+Write-Behind Logging 论文介绍 数据库相关
+
+Write-Behind Logging 论文介绍
+
+
+
+https://zhuanlan.zhihu.com/p/47369609
+
+cmake小记 多个cmakefile.txt
+
+https://zhuanlan.zhihu.com/p/51391675
+
+Cmake 单元测试
+二叉树 中序遍历 排序效果
+主机有多个cpu
+JVM回收机制
+JMM 是围绕着在并发过程中如何处理原子性、可见性和有序性这 3 个特征来建立的
+Happens-Before  JMM 为程序中所有的操作定义了一个偏序关系，称之为 Happens-Before。
+
+Java内存模型
+JVM内存结构，和Java虚拟机的运行时区域有关。 Java内存模型，和Java的并发编程有关。 Java对象模型，和Java对象在虚拟机中的表现形式有关。
+
+
+
+https://www.zhihu.com/question/64586462/answer/576543433?hb_wx_block=1
+
+Servlet同步阻塞模型 一个请求一个线程
+db Schema 个人理解不透彻
+Spring中解析xml格式配置文件使用的工具 dom org.w3c.dom.Element
+Spring scope 范围 余地 视野
+<bean id="role" class="spring.chapter2.maryGame.Role" scope="singleton"/>
+
+这里的scope就是用来配置spring bean的作用域，它标识bean的作用域。
+
+在spring2.0之前bean只有2种作用域即：singleton(单例)、non-singleton（也称 prototype）, Spring2.0以后，增加了session、request、global session三种专用于Web应用程序上下文的Bean。因此，默认情况下Spring2.0现在有五种类型的Bean。当然，Spring2.0对 Bean的类型的设计进行了重构，并设计出灵活的Bean类型支持，理论上可以有无数多种类型的Bean，用户可以根据自己的需要，增加新的Bean类 型，满足实际应用需求。
+
+Spring注解处理器
+https://www.jianshu.com/p/acd1565510e3
+
+三年经验连表单校验都不知道是啥。这种人我都想抽他。
+http://09x.ant.design/components/validation/
+
+motan
+https://github.com/weibocom/motan/issues/539
+
+嵌套虚拟化
+如何让junit的测试跑多次
+https://blog.csdn.net/lantianjialiang/article/details/82811704
+
+springmvc 定时任务
+多线程 要测试熔断限流 如何实现在特定时间内执行任务多少次
+https://zhuanlan.zhihu.com/p/67069088
+
+分布式测试senselink resilinece4j
+c++编译慢是事实，但是大规模项目不是应该分模块独立编译么？比如chromiun
+你想的太简单了，做后端需要考虑的有很多，不只是Orm什么，你有了简单的Http后，你还要考虑是否支持REST，考虑CORS，考虑权限认证，考虑Health Check，考虑数据库连接池，考虑监控系统的集成，还有常见的工具集成，比如Swagger，常见中间件集成，比如Redis。这都还是只考虑你单机部署，如果你起成集群，或者做微服务什么的就更复杂了，而这些都是框架的工作，而不是你的工作，浪费时间去开发这些得不偿失
+
+MyCat2
+https://github.com/MyCatApache/MyCat2
+
+高并发系统设计 40 问 极客时间
+
+thesis.pdf zab raft
+https://ramcloud.stanford.edu/~ongaro/thesis.pdf
+
+http://www.tcs.hut.fi/Studies/T-79.5001/reports/2012-deSouzaMedeiros.pdf
+
+C++ 的 std::string 有什么缺点
+
+
+
+https://www.zhihu.com/question/35967887/answer/800711658?hb_wx_block=1
+
+MQ解偶 异步 削峰 事务
+
+系统可用性降低:
+
+你想啊，本来其他系统只要运行好好的，那你的系统就是正常的。
+
+现在你非要加个消息队列进去，那消息队列挂了，你的系统不是呵呵了。因此，系统可用性降低
+
+系统复杂性增加:
+
+要多考虑很多方面的问题，比如一致性问题、如何保证消息不被重复消费，如何保证保证消息可靠传输。
+
+因此，需要考虑的东西更多，系统复杂性增大。
+
+但是，我们该用还是要用的。
+
+
+
+https://zhuanlan.zhihu.com/p/84007327
+
+https://blog.csdn.net/weixin_43970890
+
+交换机 隔离广播域 交换机 路由器 区别
+
+Banzai Cloud这家来自匈牙利的公司很有意思，我从2018年初就开始关注，他们的每次分享都能准确得戳中G点，这应该是他们在中国的首秀，明天上午10点云栖大会C101，How to fail with service mesh？分享的内容就是这篇博客Announcing Banzai Cloud automated service mesh, Backyards - Istio the easy way，https://banzaicloud.com/blog/istio-the-easy-way/
+
+以实时游戏服务器的角度看，首先建议学习高性能网络库Raknet，这个库仅专注于高性能的传输协议，可以认为是一种“可靠UDP”协议，没有涉及其它方面。历史较久综合评价较高，值得推荐。  至今我觉得actor仍是高性能游戏服务器的王道思路，有了actor模型，对游戏服务器来说很多其它复杂的并发概念都可以不用看了。而且actor用很少的代码就可以做出相当完美的实现，强烈推荐skynet框架（用C+Lua编写）。
+
+被loki库带坏的, 太学院派了
+
+《领域驱动设计》作者 Eric Evans 在 Explore DDD 主题演讲会上呼吁与会者积极参与改进用于复杂系统的建模和设计语言。
+
+8cc c编译器
+https://github.com/rui314/8cc
+
+苦归苦，但是我也特别感谢这四年，作为一个计算机的从业人员，这四年扎实的基础和磨练，真的是受益终身的，工作也有好几年了，这些年面试和招聘的新人有3位数了，我发现能够在大学期间帮学生打好这样的或者差不多点基础的学校，真是全中国都超不过10家。
+
+ss的流量特征早就被识别了，然后依然没有不ban掉。这就是上边的态度了。最近换策略了，对ip间歇性的干扰，什么方案都是这样。无差别攻击的感觉
+
+Dubbo admin 屏蔽一个节点
+
+有两条路可以走，一条是学习一门函数式语言如Haskell，F#来感受函数式编程，另一条路则枯燥和深入一些，需要看一些专业的书籍和论文，比如从计算模型开始，如lambda演算，讲归约机的论文等，到类型论，域论，范畴论等，这个就深坑了。
+
+中石油 60+核100G
+
+通过了SUN Java（SCJP、SCWCD、SCBCD）及Oracle OCA等认证
+
+InfoQ：我们知道阿里内部现在基本上没有在使用 Dubbo，而是用了 Dubbo 开发的第三代 RPC 服务框架 HSF（High-speed Service Framework），那现在还将 Dubbo 重启维护，大家不免疑惑。  罗毅：Dubbo 和 HSF 都是阿里巴巴集团自研的 RPC 服务框架，在不同时期都很好的支持了集团业务的发展。目前，HSF2 主要服务于集团内部业务，而 Dubbo2 主要以开源的形式服务社会，它们之间的关系与 Google 内部使用的 Stubby 和开源的 gRPC
+
+深入理解Apache Dubbo与实战
+
+ubuntu 16 连接企业wifi，总是提示输入账户密码，百度解决
+
+Eclipse 基金会正努力使开发人员更容易构建云原生应用程序。为此，它成立了 Eclipse Cloud Development Tools 工作组。该小组是一个与供应商无关的开源组，将专注于云的开发工具。其创始成员包括 Broadcom、IBM、RedHat 和 SAP 等。
+
+https://github.com/liqiangit/maven-in-action
+https://github.com/spotify/dockerfile-maven  docker-maven-plugin弃用了
+
+
+2016年，百度宣布PaddlePaddle开源，这标志着国内第一个开源深度学习平台的诞生。
+
+跟国外比 不行
+另外一篇比较新的论文Scotty: Efficient Window Aggregation for out-of-order Stream Processing，其在2018年柏林的Apache Flink Forward会议上面进行过presentation，网上可以找到相应的PPT和视频，讲得很好，未来可能会增加到Flink中，推荐了解了解！  IBM研究院发表了一篇相关的教程，类似于综述，非常推荐，链接为link，或者直接google：Tutorial: Sliding-Window Aggreg
+
+动手学深度学习
+https://github.com/d2l-ai/d2l-zh
+
+
+激活码，激活码只用于尝试 VisualStudio 的使用，请不要在商业环境使用  Visual Studio 2019 Enterprise  BF8Y8-GN2QH-T84XB-QVY3B-RC4DF  Visual Studio 2019 Professional  NYWVH-HT4XC-R2WYW-9Y3CM-X4V3Y
+
+java null的String变量和一个非nullstring变量相加 有个null在里面，需要写示例程序
+
+gradle多模块打jar，上传本地仓库，并给本地其他项目使用
+https://blog.csdn.net/cradle2006/article/details/95072540
+
+整体架构还是DDD的四层架构：UserInterface-接口层，Application-应用层，Domain-领域层和Infrastructure-基础设施层。
+
+基于 DDD 的微服务设计和开发实战
+https://www.infoq.cn/article/s_LFUlU6ZQODd030RbH9
+
+注释版muduo
+https://github.com/chenyahui/AnnotatedCode/tree/master/muduo
+
+Java日志框架演化历史
+https://zhuanlan.zhihu.com/p/86249472
+
+Cmake 分模块，静态库，动态库
+Gradle，分模块，Spring源码是如何组织的
+
+可以说都是代码静态分析工具，但侧重点不同。pmd：基于源代码分析，主要面向安全编码规则，如“避免声明同名变量”，包括风格类、类型使用等等，具备一定的数据流分析和路径分析能力。checkstyle：基于源代码，与pmd类似，但更侧重编码的语法风格，分析深度不及pmd。findbugs：基于字节码分析，大量使用数据流分析技术，侧重运行时错误检测，如空指针引用等，分析深度大于前述两个。sonar：定位是代码质量平台，本身不进行代码分析，但可以集成各个静态分析工具以及其他软件开发测试工具，并基于集成工具的结果数据
+
+Office 2019 for Mac 下载和激活
+https://zhuanlan.zhihu.com/p/62981751
+
+TeamView也是使用x11协议
+
+推荐系统有哪些比较好的论文
+https://www.zhihu.com/question/25566638/answer/859024541
+
+https://hyperledgercn.github.io/hyperledgerDocs/blockchain_zh/
+怎么没有打价格战？我现在双卡，移动18的淘宝，电信卡就用来上网，20元无限流量。
+
+自制编译器
+https://m.ituring.com.cn/book/1308
+
+
+sofa-mesh
+
+https://github.com/youzan/gatling-dubbo
+
+Vcpkg 是一款开源的 VC++ 打包工具。该项目于 2016 年首次在 CppCon 上发布，以满足开发人员的需求。
+
+brpc + folly
+
+从物理机到虚拟化再到容器化、微服务和DevOps，更加灵活的IT架构、更加便捷高效的开发流程，这就是云原生，并不存在什么难以逾越的鸿沟。
+
+/etc/fastdb 挂载点
+
+开源cpp库列表
+https://zh.cppreference.com/w/cpp/links/libs
+
+C++实现轻量级极简httpserver和httpclient
+https://blog.csdn.net/u012234115/article/details/79596826
+
+by ex-googlers, for ex-googler
+https://github.com/jhuangtw-dev/xg2xg
+
+
+定期更新chinadns 文件列表
+
+http://phyer.click/2016/06/23/update-ignore-list-of-chinadns/
+
+AMD 被称为农企
+https://www.zhihu.com/question/21683232
+
+南京it公司
+https://www.zhihu.com/question/22524282/answer/803267480
+
+https://www.zhihu.com/question/22524282/answer/803267480
+
+如何看待语音识别大牛、Kaldi 之父 Daniel Povey 加入小米？
+https://www.zhihu.com/question/351137894/answer/861767125
+
+没用过，看起来貌似不错。和zero ice相比，除了license以外，有什么其他优势吗？
+
+cpp 库 zeroc-ice
+
+https://github.com/zeroc-ice/ice
+
+curl 有提供三方库 libcurl
+Mongoose Embedded Web Server Library
+https://github.com/cesanta/mongoose
+
+boost Windows
+https://www.boost.org/doc/libs/1_71_0/more/getting_started/windows.html
+
+网易互娱的数据库选型和 TiDB 应用实践
+
+https://mp.weixin.qq.com/s/prQ3EKkcv-eZR4nDhHWWZA
+
+如果是公募基金，你可以看到基金都持仓了什么股票，这钱你是放心的，只要股票没崩盘，你的钱就一定还在那儿。  如果是货币基金，就跟存银行差不多，还有的是债券投资，你知道投的标的是什么，只要你投的标的没有出现系统性金融风险，你的钱也是安全的。
+
+很明显你不是没学好C++，是没学好C#。。  论高性能编程，C#静态编译有多麻烦？怎么处理内存非托管和托管资源的关系？怎么解决反射元数据量大的问题？Lambda怎么能像C++一样生成纯值类型匿名类？指针和泛型怎么兼容？  但凡考虑过以上任何一个问题，你都不会这么问。
+
+如果换做今天，我可能会被层出不穷的框架、库和换汤不换药的技术名词压得喘不过气来，满脑子就是一堆编程语言十几个前端后端框架和linux docker kubernetes mapreduce spark, 电脑在我眼中就会是个无法感知无法控制的神奇黑盒。
+
+图灵机
+
+
+如何愉快地写个小parser
+https://zhuanlan.zhihu.com/p/20178871
+
+
+Cpp 依赖头文件 不分模块
+《数据库系统概念》8-选择、投影等关系运算
+
+https://www.cnblogs.com/zhixin9001/p/7912572.html
+
+形式语言总结
+https://www.jianshu.com/p/575add9b80c3
+
+mysql如何使用bison flex
+http://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-1/
+
+架构设计 考虑实时，非实时
+brpc属于分布式RPC框架， 而dubbo是分布式服务框架。 所以这个问题也可以看做是分布式RPC框架和分布式服务框架的异同。从功能上看，可以简单将分布式服务框架看做是分布式RPC框架的升级，二者的核心部分基本是相似的。分布式RPC框架核心功能： 网络通信、序列化/反序列化、协议封装。分布式服务框架核心功能， 在分布式RPC基础上，增加了服务发现和服务治理的功能
+
+spring 中英文文档
+https://www.docs4dev.com/docs/zh/spring-framework/4.3.21.RELEASE/reference
+
+思考一个问题，如何从0新建一个项目
+
+十年后，随着虚拟化技术的进步以及硬件的进步，量变引起了质变，云计算在成本控制、性能和稳定性等方面都体现出了巨大的优势。另一方面，随着互联网的持续发展和传统企业的数字化，市场对于成本低、灵活性强、功能全面的互联网基础设施服务的需求越来跃强劲。两个因素共同作用，催生了一场云计算革命。
+
+spring http参数接收
+https://blog.csdn.net/yh_zeng2/article/details/75172990
+
+问丁旺 小环，生产哪些宁静可以执行
+假如不需要基础镜像，可以使用空白镜像 scratch 作为基础镜像。scratch 这个镜像是虚拟的，实际并不存在。
+
+flex 可执行文件 flex-dev 编程用到库文件
+线程模型 posix freebsd
+卸载chrome企业插件Symantec Extension
+https://malwaretips.com/blogs/installed-enterprise-policy-removal/#removal
+
+阿里巴巴中间件
+http://jm.taobao.org/
+
+RocketMQ 不支持多点之间自动同步
+多看几遍架构师的文章
+Antlr 生成的java代码，如何添加package
+短网址
+https://www.infoq.cn/article/2v4QjIYziuj5Wf59rLs2
+
+2019 腾讯区块链白皮书
+Uber 正式开源 Go 语言编程规范，内部已使用多年
+GSoC，如果你没有被选上可以再算进JSoC
+Centos的包，是不是类似maven
+数据库分表，对数据库操作
+
+想使用消息队列，先考虑下这些问题！
+https://mp.weixin.qq.com/s/LpN_OcEJEJBw38xxQzOtgA
+
+
+千亿级数量下日志分析系统的技术架构选型
+https://mp.weixin.qq.com/s/7jKABLwsxdm5ZR7imNhhFQ
+
+预处理SQL  普通SQL：即使用Statement接口执行SQL 预处理SQL：即使用PreparedStatement接口执行SQL 使用PreparedStatement接口允许数据库预编译SQL语句，以后只需传入参数，避免了数据库每次都编译SQL语句，因此性能更好。
+
+Spring Security、Session 和 LDAP 项目负责人 ROB WINCH 指出
+
+Mybatis 讲解的点
+Spring aop查看注解了哪些方法的工具
+
+整理常用中间件用法
+
+亚军 302网址跳转
+infoq 短网址 写文档 借鉴
+https://www.infoq.cn/article/2v4QjIYziuj5Wf59rLs2
+
+springmvc redirect原理分析
+
+Spring jar包 作用
+https://www.docs4dev.com/docs/zh/spring-framework/4.3.21.RELEASE/reference/overview.html#overview-core-container
+
+Dubbo书籍 telnet invoke
+Dubbo zk分组 有四个
+
+这本O'Reilly的免费电子书只有不到200页，相信可以帮助你入门BPF，。如果你听过Cilium的话那么一定知道BPF，这是类Unix系统上数据链路层的一种原始接口，可以用在Service Mesh中的透明流量劫持，https://www.servicemesher.com/blog/cilium-intro
+
+dubbo zk 自定义命令行
+http://alibaba.github.io/dubbo-doc-static/Telnet+Command+Reference-zh-showComments=true&showCommentArea=true.htm
+
+Mbg是典型的ddd对立面
+tidb是兼容mysql协议的
+
+Redis适合存放小并且经常写的数据
+Cpp 库文件依赖关系怎么定
+IDEA使用三方库套路 idea插件 maven插件 配置文件
+Spring cloud的ip问题，可以通过动态ip解决
+
+Pivotal公司是由EMC和VMware联合成立的一家公司。spring是他下面的一个team在维护
+
+Maven optional 例子
+https://www.zhihu.com/question/318377502/answer/639574906
+
+亚军 金融系统分为账单 账户 交易等等
+dubbo云原生 k8s
+https://mp.weixin.qq.com/s?__biz=MzUzNzYxNjAzMg==&mid=2247487207&idx=1&sn=e185d620c6b821614ec621529b75ed1e&chksm=fae50528cd928c3e5563236193a59601cae403968c3e34c21520ca56240140c451f5c46bee78&mpshare=1&scene=1&srcid=&sharer_sharetime=1572352478294&sharer_shareid=02e3c79169caf3429aa8f00c9f73608f&key=f9d17ab3d743a978fb49ab8939166c522da437621f9d3c08aa699346f7ad15f0d70bd71f681d7b88987f75a638b5093a3b59f3996d5641c263c64928ed525a23fb720f9d9a3233d77206c3327a4df545&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62060844&lang=zh_CN&pass_ticket=%2BGo8sDEUEg6W6AuObCiENdFpHai%2BQgd%2BXp%2Bxw4Q%2FWGfx6Ga%2Bp5RMjda72LE3fhCN
+
+金数据
+https://jinshuju.net/
+
+.net rpc
+https://www.cnblogs.com/Leo_wl/p/10531496.html?utm_medium=referral&utm_source=itdadao
+
+中华石杉的两万架构师培训
+
+Apollo配置中心部署
+https://blog.csdn.net/luhong327/article/details/81453001
+
+Shell的本质
+Zsh bash
+mysql 命令行 redis命令行
+
+单元测试框架含有main函数
+填充一部分代码，这些填充的代码包含要测试的内容
+
+控制台上如何运行junit，如何查看单元测试结果
+对http body不熟悉
+https://blog.csdn.net/u010244522/article/details/79385502
+
+
+
