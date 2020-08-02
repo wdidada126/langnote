@@ -1727,4 +1727,245 @@ mysql 命令行 redis命令行
 https://blog.csdn.net/u010244522/article/details/79385502
 
 
+整理Spring Springmvc配置文件先顺序
+
+字节全是go
+
+视频流媒体 ，大部分也是C++
+
+存储也用C++
+
+c++主要用于高性能实时性强的部分
+
+c++一线今年也不好了 大厂 打着招人招牌 其实也不怎么想招
+
+Dubbo qos telenet登陆
+
+rpc是什么？php中流行的rpc框架有哪些
+
+建议找大型PHP团队练练手,技术只看不动手不深入场景,很难悟出道道.
+
+另外多学学自然语言处理、推荐系统、智能客服之类这些和web方面结合比较紧密的人工智能。数学思维很重要。
+
+spring动态变量 properties
+
+Chubby
+Zookeep 谷歌论文Chubby的开源实现
+
+系统设计 北美IT面试
+初中开始写代码，一天12小时，不能间断，不断突破舒适区，先用别人轮子，然后迅速自己造轮子，首先写一个2d rpg游戏，再写一个2d游戏引擎，然后写一个静态语言，再写一个jit语言,然后把Java,c,c++,Haskell,python,ocaml啥的语言都学会了，然后大学没毕业去面试msra，并在实习的时候认识一个谷歌的妹子，然后去西雅图写office，如果你卡在某一步了，记得多关注几个知乎妹子
+
+javaee标准 jcp社区维护 提供标准api 不同厂商实现，开源闭源都有
+
+javaee的收费产品，受到云计算产品的冲击
+
+tomcat HTTP2 alpn
+https://www.cnblogs.com/haore147/p/5508287.html
+
+
+
+https://http2.akamai.com/demo
+
+
+
+http2 二进制打包 多路复用
+
+web.xml  是javaee servlet标准
+
+https://blog.csdn.net/m751075306/article/details/9452893
+
+
+
+https://docs.oracle.com/cd/E24329_01/web.1211/e21049/web_xml.htm#WBAPP547
+
+
+
+tomcat jetty jboss websperer都有实现
+
+华泰证券 it es建设
+http://www.itdks.com/Course/detail?id=12972
+
+spi 阿里中间件开发个人笔记
+https://www.cnkirito.moe/spi/
+
+讲数据库中间件现状国外的情况，做数据库中间件的多吗？貌似不多，因为直接跨过中间件搞数据库本身去
+
+ReactiveX是Reactive Extensions的缩写，一般简写为Rx。Rx是一个编程模型，目标是提供一致的编程接口，帮助开发者更方便的处理异步数据流，Rx库支持.NET、JavaScript和C++，Rx近几年越来越流行了，现在已经支持几乎全部的流行编程语言了。社区网站是 ReactiveX 。
+
+头条OLAP招聘要求
+对市面上常见的 OLAP 系统设计与源码有深入研究；
+
+给 Hive/Kylin/Presto/Spark/Druid 等项目提交过 patch 者优先；
+
+在PB以上级生产环境经验者优先
+
+Google利器之Chubby
+https://blog.csdn.net/historyasamirror/article/details/3870168
+
+Dubbo看书要查资料
+@Gome 兄弟 不和你争了 你可以参照一下rust mod的设计，然后看看cocoapods 是不是完善，cocoapods 解决不了 不能用carthage吗？我心目中完善的包管理工具是npm 和 gradle，cocoapods还是不完整的
+
+Mysql 连接数
+show processlists
+
+返回结果的行数就是当前用户的连接数
+
+dubbo引入Spring配置，使用了BeanDefinationParseDelegate#parseCustomerElement方法
+
+沪江有两套文件存储系统，一套是基于Ceph自建的内部存储系统。另一套是基于云厂商的外部存储(DFS)。本次分享主要介绍两套文件系统的适用场景及构建思路，包括： 存储模式的选择， 对象存储 OR 块存储 为什么需要搭建内部存储系统 为什么选择Ceph， Ceph与Swfit、HDFS、fastDFS的对比。 有了Ceph，为什么还需要DFS 如何在享受云厂商的便利性的同时，最大限度的规避相应的各种不可控因素
+
+沪江网 存储系统 fastdfs 转换到ceph
+
+fastdfs问题多，不符合云存储理念
+
+
+Kubernetes 是从 Google 的 Borg 系统演变而来，Prometheus 同样受到 Google 的 Borgmon 监控系统的启发
+
+Zabbix, Nagios
+
+bind9
+现在CDN厂商也就cloudflare和akamai技术上革新比较积极吧。。
+
+https://renderdoc.org/  vulkan windows安装时会安装
+
+把代理服务器地址写入shell配置文件.bashrc或者.zshrc
+利用proxychains在终端使用socks5代理
+
+补充：
+
+如果代理服务器需要登陆，这时可以直接把用户名和密码写进去
+
+
+
+http_proxy=http://userName:password@proxyAddress:port
+
+期待。之前做压测时候有些问题比较困惑，希望写文章时候如果可能顺带提一下。 典型配置下的一些经验数据，比如4核8G服务器大概可以扛到的并发，mysql连接数多少正常，time_wait数目多少是正常范围。
+termux 更换源
+https://www.jianshu.com/p/5c8678cef499
+
+
+但人家Rosen写离散数学及其应用的初衷，是给学计算机的同学入门用的，如果无论你是应付期末考试，还是为了考研，看这本书我敢保证没好果子吃。
+离散数学及其应用
+看书，看笔记时需要思考
+
+没有哪家银行是用java写的核心，交易系统都是用C
+
+联通王卡 dubxbo
+ubuntu 16 systemd 企业wifi
+https://askubuntu.com/questions/279762/how-to-connect-to-wpa2-peap-mschapv2-enterprise-wifi-networks-that-dont-use-a-c
+
+谷歌密码在苹果手机上
+
+leveldb 思想牛逼 代码就那样
+cpp编译，带上头文件和编译好的文件
+vs就是这样干的
+
+C++模板
+https://zhuanlan.zhihu.com/p/97907193
+
+
+开课吧 课程
+conans
+https://blog.csdn.net/qqqq123qqqqqqq/article/details/79421686
+
+
+
+https://blog.csdn.net/h511555/article/details/8904143
+
+Comments:
+
+Cheng Wu: https://conan.io/
+
+济南平安作为平安8个区域
+死磕源码系列
+mybatis 不开启事务 如何
+
+sentinel集群部署方案
+集群
+
+如何评价首发价4499起步的联想小新Pro13锐龙版 因特尔版6千多
+
+20191124 netty 线程 17个？cpu个数*2
+
+
+
+
+对比下配置中心
+https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&mid=2650778104&idx=2&sn=d069efc206e5312f6b2d5360196bae7f&chksm=f3f91c6dc48e957b22a38fbb49521273d2582dd26fe6496e138e1af159a55bdbd203d0bd4620&scene=21#wechat_redirect
+
+图形化显示sql慢日志
+https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&mid=2650776064&idx=1&sn=3413111ad786a9264a8747857323f102&chksm=f3f91795c48e9e839a5e7e4e2e13ec27f3f8806a465358ab89ef0b1f7e283f2506ca54d97390&scene=21#wechat_redirect
+
+腾讯云 mysql源码涉及到
+https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&mid=2650782428&idx=2&sn=e9c90b1eba3307a62f064c1d5967df0c&chksm=f3f90f49c48e865f138c8846f3d6cafd7a63a53ce44fc71169c1226ec5d8ed51ffaddfa2da73&scene=21#wechat_redirect
+
+OpenResty  Scalable Web Platform by Extending NGINX with Lua
+算法动态演示
+https://visualgo.net/zh
+
+maven内置变量
+${basedir} 项目根目录(即pom.xml文件所在目录)
+
+${project.build.directory} 构建目录，缺省为target目录
+
+${project.build.outputDirectory} 构建过程输出目录，缺省为target/classes
+
+${project.build.finalName} 产出物名称，缺省为${project.artifactId}-${project.version}
+
+${project.packaging} 打包类型，缺省为jar
+
+${project.xxx} 当前pom文件的任意节点的内容
+
+${env.xxx} 获取系统环境变量。例如,"env.PATH"指代了$path环境变量（在Windows上是%PATH%）。
+
+${settings.xxx} 指代了settings.xml中对应元素的值。例如：<settings><offline>false</offline></settings>通过 ${settings.offline}获得offline的值。
+
+Java System Properties: 所有可通过java.lang.System.getProperties()访问的属性都能在POM中使用，例如 ${JAVA_HOME}。
+
+c++有个开源库spdlog，可以格式化输出日志
+可能就搜索 和 广告引擎用c++ 了
+搜索es满足大部分需求
+
+Mybatis generator也是idea插件 maven插件，自身jar包
+不过，Java的确可以写出性能很强大的程序，个人认为比较优秀的例子就是kafka，渣机都能跑出十万并发
+
+Meituan-Dianping Zebra  ss竞品
+中国安防领域的芯片大部分使用的是海思的芯片，未来的ARM cpu绝对会继续百花齐放的
+2018年，手机CPU没有百花齐放。除了苹果华为三星三家CPU专供。就剩下高通和联发科了。
+CPU开启虚拟化支持
+icc -S 输出出来的汇编都是att风格的
+gas是gnu出的，masm是ms出的，nasm和yasm是……嗯……奇奇怪怪的人出的。
+
+gas用的AT&T风格汇编“甚至可以是平台无关的”。
+
+intel倒是出过icc。贵到正常人不会去用的那种。
+RPO一般按客户公司职级收费，比如8级以上是猎头收费，8级以下是RPO收费，收费标准比如6-7级收1.5倍月薪，6级以下1倍月薪。比如你为客户招到一个候选人 薪资是2万/月，如果定7级，就收3万，如果5级，就收2万
+
+grpc和thrift区别真心不太大，差的最多的是你自己要填坑的那些东西：连接池、服务框架、服务发现、服务治理、trace、打点、context日志
+一般应用来说，并发估算公式如下：qps = 5 * 日pv / 864005是通用峰值倍数，如果你有高峰值特性自行调整，比如秒杀功能。mysql通常在实体机的读写综合qps在几千左右，具体你可以自己压测一下，跟机器配置有关。所以首先你需要通过收集日志得到日pv，然后通过估算得到当前qps，再根据未来一段时间的用户量和场景看看够不够。比如你每天数据库访问次数是100万，可估算峰值qps为60左右，比如数据库qps可达3000，那么可估算你的服务器还能撑同等场景50倍增长。以上方法都是通用方法 作者：大雄
+
+clinet为什么不rpc
+sso header读写 文件
+
+
+
+优势是io性能好，从根源上做到了io异步化。我可以告诉你为什么我们不用go语言做业务了，因为生态与java差太远，因为基础库质量太差，因为依赖比较坑，因为人比机器贵。性能？作为acmer，我是爱性能的，但绝大部分所谓性能问题都是代码写sb了。在坐的绝大部分互联网公司的业务，都谈不上语言与io的极限优化。正常的服务端语言，再差5w qps总有了吧？啥概念？单机40亿请求每天，你那破业务做到了吗？做不到扯什么性能。省10台机器，不够一个码农年薪的，而挖的坑造成的用户流失，就更不计其数了。用技术做业务与用业务做技术，是两种不同的价值观，其实说白了就这么回事。
+
+ssdb pika这种也是有适用场景的
+手写递归下降分析器
+感觉记忆力是智商的基础
+
+
+所以男人还是非常非常非常有必要找个处 否则你岂知道别人以前是人是鬼？所以我努力买房买车 就是不想以后新房新车新家具 新娘却是n手的
+
+笛卡尔积  集合做交集
+比如OI知识点：  树套树，树形DP，状态压缩DP，AC自动机，最小费用最大流，快速傅里叶变换。
+
+比如LeetCode考点：  哈希表，动态规划，图，二叉树，堆栈
+
+真正的央企有自己的电厂、电视台、电话站或局，有自己的医院、银行、派出所、幼儿园、从小学到大学的不同等级的学校，有自己的房产公司、物业公司、热力公司，有自己不同的养殖厂，有自己的农场，有自己的商场、酒店，地方有的企业都有，地方没有的，企业也有。
+
+这得看情况了，很多公司实际项目全是写业务逻辑，其他你什么都不用管，需要什么直接公司出钱买。这样干个5年，你从实际项目中学会了啥？学会了怎么写业务逻辑，怎么使用各种商业软件服务？  脑子是个好东西，不用脑子永远只有被忽悠的份。
+
+
 
