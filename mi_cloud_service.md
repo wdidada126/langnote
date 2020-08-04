@@ -1,0 +1,792 @@
+# mi cloud service
+
+
+
+eclipse c++版本
+
+外部库 头文件 静态库 动态库
+
+https://www.cnblogs.com/chanshuyi/p/jvm_serial_12_jvm_param_jvm_param.html
+
+https://docs.oracle.com/javase/specs/jvms/se8/html/index.html
+
+eclipse是调用gcc的，如果不用autotools的，cmake ninja
+
+qmake
+
+
+
+Maven
+
+src main java
+
+src main resources
+
+src test java
+
+src test rezources
+
+target
+
+pom.xml
+
+src/main/webapp
+
+　　 |-- WEB-INF       myeclipse web项目中 
+
+　　 |-- web.xml        WebRoot目录
+
+antlr
+
+protoc
+
+生成的java代码在target
+
+mvn deploy　　--将压缩文件上传私服
+
+maven项目的完整生命周期，当执行生命周期后面命令时，**前面步骤的命令自动执行**
+
+**https://images2015.cnblogs.com/blog/874710/201707/874710-20170704162427690-1399019923.png**
+
+☺ undefined
+
+scope：依赖范围，意思就是通过pom.xml加载进来的jar包，来什么范围内使用生效，范围包括编译时，运行时，测试时
+
+compile：默认值，如果选择此值，表示编译、测试和运行都使用当前jar
+
+test：表示只在测试时当前jar生效，在别的范围内就不能使用该jar包。例如：junit 。此处不写也不报错，因为默认是compile，compile包扩了测试
+
+runtime，表示测试和运行时使用当前jar，编译时不用该jar包。例如：JDBC驱动。JDBC驱动，在编译时(也就是我们写代码的时候都是采用接口编程，压根就没使用到JDBC驱动包内任何东西，只有在运行时才用的到，所以这个是典型的使用runtime这个值的例子)，此处不写也不报错，理由同上
+
+　　　　　　　　　　　　provided，表示编译和测试时使用当前jar，运行时不在使用该jar了。例如：servlet-api、jsp-api等。【必须填写】
+
+☺ undefined
+
+
+
+AdoptOpenJDK
+
+
+
+endeavour
+
+n.(尤指新的或艰苦的) 努力，尝试;
+
+v.努力; 尽力; 竭力;
+
+collaborative 合作的，写作的
+
+https://maven.apache.org/guides/getting-started/index.html
+
+nutshell
+
+n.坚果壳；体形（数量）小的东西；无价值的东西;adj.简洁的；扼要的;
+
+maven reporting
+
+https://blog.csdn.net/taiyangdao/article/details/52389407
+
+
+
+dart中全是引用好吗
+
+dart没有基本数据类型
+
+一切皆对象
+
+
+
+数据库查询优化器的艺术
+
+mysql sql慢查询的问题
+
+https://www.jb51.net/books/615884.html
+
+greenplum
+
+https://github.com/greenplum-db/gpdb
+
+**Percona**
+
+**https://mariadb.org/**
+
+**https://www.biaodianfu.com/mysql-percona-or-mariadb.html**
+
+**Percona XtraDB 是 InnoDB 存储引擎的增强版，被设计用来更好的使用更新计算机硬件系统的性能，同时还包含有一些在高性能环境下的新特性。XtraDB 存储引擎是完全的向下兼容，在 MariaDB 中，XtraDB 存储引擎被标识为”ENGINE=InnoDB”，这个与 InnoDB 是一样的，所以你可以直接用XtraDB 替换掉 InnoDB 而不会产生任何问题。**
+
+**《高性能MySQL》读书笔记**
+
+**http://www.woojean.com/2017/04/05/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/**
+
+**https://www.zhihu.com/question/268937681/answer/344852696**
+
+**https://item.jd.com/12656779.html**
+
+
+
+LangNote
+
+高性能MySQL
+
+XA
+
+Innodb
+
+XtraDB
+
+XtraDB is a fork of the InnoDB storage engine for MySQL
+
+MySQL内核：InnoDB存储引擎 卷1
+
+社招可能更看重能否融入团队，是否有自己的发挥空间，虽然OceanBase已经经历了8年的发展，但与Oracle相比还很稚嫩，需要做的事情还是非常多的，只要你对自己的水平有信心，积极探索，绝对有足够的发挥空间。
+
+
+
+ndb cluster storage
+
+https://en.wikipedia.org/wiki/NDB_Cluster
+
+ndb network db 
+
+NDB 7.5/7.6 GA版本
+
+https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-ndb-innodb-engines.html
+
+https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html
+
+XtraDB存储引擎是由Percona开发的一款MySQL数据库的高性能存储引擎，其目的是用来代替InnoDB存储引擎，可用于需要更高性能的环境。
+
+在多核CPU上面的性能和伸缩性要更好；对于内存的分配和使用也要更好；也解除了InnoDB的很多限制；提供了比InnoDB更多的配置和性能监控参数。
+
+
+
+泰康保险集团
+
+
+
+*RAID*一般指磁盘阵列。磁盘阵列（Redundant Arrays of Independent Disks，*RAID*）
+
+DRBD 是由内核模块和相关脚本而构成，用以构建高可用性的集群。其实现方式是通过网络来镜像整个设备。您可以把它看作是一种网络RAID。
+
+DRBD负责接收数据，把数据写到本地磁盘，然后发送给另一个主机。另一个主机再将数据存到自己的磁盘中。其他所需的组件有集群成员服  务，如TurboHA 或 心跳连接，以及一些能在块设备上运行的应用程序。例如：裸I/O、文件系统及fsck、具有恢复能力的数据库。
+
+ *DRBD* (Distributed Replicated Block Device) 是 Linux 平台上的分散式储存系统
+
+
+
+Jvm参数
+
+多进程
+
+多线程？
+
+
+
+中间件 连接业务开发人员(给业务开发人员接口文档)和编程语言特性(Java的接口 配置文件 反射 SPI 继承)
+
+
+
+Beyond Compare
+
+https://winmerge.org/downloads/?lang=en
+
+http://meldmerge.org/
+
+
+
+file to base64
+
+https://www.zhangxinxu.com/sp/base64.html
+
+
+
+DHT
+
+分布式hash表
+
+数据库 sharding nothing sharding disk
+
+
+
+
+
+状态机
+
+重点复习
+
+Java c+实现，看
+
+从当前状态回退到上一个状态
+
+http://www.360doc.com/content/18/0205/20/45654100_727968804.shtml
+
+https://zhuanlan.zhihu.com/p/163373813
+
+jvm 总结
+
+工具
+
+mat
+
+分析类对象个数
+
+基本数据类型对象在哪儿
+
+-128-127的缓存
+
+Replicated State Machine 多副本状态机
+
+slow sql optimize工具
+
+https://baijiahao.baidu.com/s?id=1601677248541064233 论文
+
+https://blog.csdn.net/qq_38777579/article/details/82321717
+
+gc 看gc日志
+
+full gc ？还有哪些
+
+Concurrent Mark Sweep (CMS) Collector     CMS是垃圾回收器，不是回收算法
+
+标记清除 周志明的书 再看下
+
+https://howtodoinjava.com/java/garbage-collection/all-garbage-collection-algorithms
+
+垃圾回收器
+
+Serial Garbage Collector
+
+Parallel Garbage Collector
+
+CMS Garbage Collector
+
+G1 Garbage Collector
+
+静态常量在方法区
+
+openjdk里包含hotspot
+
+
+
+SNMP的实现 Java VM
+
+
+
+NVM （Non-volatile Memory，固定存储器，非易失存储器
+
+java volatile 易变的
+
+scholar
+
+schlor X not right
+
+
+
+zookeep dubbo配置
+
+Dubbo zk
+
+https://www.cnblogs.com/tusheng/articles/6831873.html
+
+<dubbo:registry>
+
+
+
+flex 词法解析
+
+https://my.oschina.net/taodf/blog/3003200/print
+
+定义
+
+规则
+
+c代码
+
+三个部分
+
+.l
+
+.c
+
+可执行程序
+
+
+
+MySQL解析sql
+
+Flex
+
+bison
+
+
+
+慕课网
+
+一站式学习Redis 从入门到高可用分布式实践(17章完整版)
+
+原课程地址：https://coding.imooc.com/class/151.html
+
+下载地址：https://cloud.189.cn/t/7zmUvaRvYriy（访问码：h1rc）
+
+
+
+拉勾
+
+300分钟搞定数据结构与算法
+
+原课程地址：https://kaiwu.lagou.com/course/courseInfo.htm?courseId=3
+
+下载地址：https://pan.baidu.com/s/1OR-ykgTr91DFC7goihISoA 提取码: y362
+
+
+
+Java 配置文件
+
+autoconfig 静态配置 git
+
+archius Apollo 动态配置
+
+
+
+go build -o .go
+
+go mod init github.com/edidada
+
+package main
+
+func main
+
+没有封号 直接换行
+
+
+
+Webgl
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/WebGL_API
+
+前端开发就用这个
+
+
+
+select optimize
+
+https://dev.mysql.com/doc/refman/5.7/en/select-optimization.html
+
+
+
+Activiti6.0工作流引擎深度解析与实战
+
+链接:https://pan.baidu.com/s/1kqITeSXTmjjZGeNH47N4uw 密码:gsfv
+
+
+
+LSM 树
+
+LSM（Log-Structured Merge-Trees）和 B+ 树相比，是牺牲了部分读的性能来换取写的性能(通过批量写入)，实现读写之间的平衡。 Hbase、LevelDB、Tair（Long DB）、nessDB 采用 LSM 树的结构。LSM可以快速建立索引。
+
+https://blog.csdn.net/dbanote/article/details/8897599
+
+B+ 树读性能好，但由于需要有序结构，当key比较分散时，磁盘寻道频繁，造成写性能较差。LSM 是将一个大树拆分成N棵小树，先写到内存（无寻道问题，性能高），在内存中构建一颗有序小树（有序树），随着小树越来越大，内存的小树会flush到磁盘上。当读时，由于不知道数据在哪棵小树上，因此必须遍历（二分查找）所有的小树，但在每颗小树内部数据是有序的。
+
+https://blog.csdn.net/u014774781/article/details/52105708
+
+极端的说，基于LSM树实现的HBase的写性能比MySQL高了一个数量级，读性能低了一个数量级。优化方式：Bloom filter 替代二分查找；compact 小数位大树，提高查询性能。Hbase 中，内存中达到一定阈值后，整体flush到磁盘上、形成一个文件（B+数），HDFS不支持update操作，所以Hbase做整体flush而不是merge update。flush到磁盘上的小树，定期会合并成一个大树。
+
+https://github.com/xingshaocheng/architect-awesome/blob/master/README.md#lsm-%E6%A0%91
+
+**Minor GC**
+
+从年轻代空间（包括 Eden 和 Survivor 区域）回收内存被称为 Minor GC。
+
+Eden 和 Survivor
+
+from to
+
+新生代中又继续分为三个子块，Eden区、Survivor from区、Survivor to区，实际上分为三个区的原因是为了方便采用复制-清除（详情请参考深入理解JVM中内存回收策略）策略而采用的策略，复制策略就是将原来存在的内存分为两个相等的区，使用一块进行新生代的内存分配，当要GC时，则将存活的对象复制进入另一块空闲的内存，然后将使用的内存进行清除，从而又有一个空闲区和一个使用区，并且不会有碎片问题。实际上并不需要两个1：1的分区比例，因为一般存活的对象很少，所以JVM聪明的讲新生代占据的总内存分为Eden：Survivor from：Survivor to = 8:1:1三部分，其中Eden就用来分配新的对象内存，Survivor from则用于GC时的复制，那为什么需要两个Survivor区呢，因为复制后Survivor from区虽然现在很整齐，没有碎片，当下一次进行回收时，Eden区和Survivor from区里都存在需要回收的对象，则Survivor from区也会出现碎片。
+
+
+
+select optimize
+
+https://dev.mysql.com/doc/refman/5.7/en/select-optimization.html
+
+
+
+一个人的知识领域，有限
+
+行业 圈子
+
+一个或者几个行业
+
+一群人
+
+人靠衣装
+
+马靠鞍
+
+注重仪表
+
+
+
+ubuntu 查看库的依赖
+
+apt-cache depends proj
+
+apt-cache rdepends proj
+
+
+
+Example usage:
+
+'go mod init example.com/m' to initialize a v0 or v1 module
+
+'go mod init example.com/m/v2' to initialize a v2 module
+
+
+
+用top命令观察系统运行情况
+
+用jps定位虚拟机进程
+
+用jstat定位JVM问题 jstat命令可以查看堆内存各部分的使用量，以及加载类的数量。
+
+用jmap导出内存转储文件
+
+用jstack定位问题线程
+
+用jhat分析转储文件
+
+其他给力的工具visual VM，MAT，Arthas
+
+https://www.cnblogs.com/sxdcgaq8080/p/11089841.html
+
+1、**类加载统计    class**
+
+2、**编译统计    compiler**
+
+3、**垃圾回收统计  gc**
+
+4、**堆内存统计    gccapacity**
+
+5、**新生代垃圾回收统计 gcnew**
+
+6、**新生代内存统计    gcnewcapacity**
+
+7、**老年代垃圾回收统计 gcold**
+
+
+
+
+
+**jmap**
+
+打印出某个java进程（使用pid）内存内的，所有‘对象’的情况（如：产生那些对象，及其数量）。
+
+jhat也是jdk内置的工具之一。主要是用来分析java堆的命令，可以将堆中的对象以html的形式显示出来，包括对象的数量，大小等等，并支持**对象查询语言**。
+
+使用jmap等方法生成java的堆文件后，使用其进行分析。
+
+
+
+https://www.cnblogs.com/baihuitestsoftware/articles/6406271.html
+
+
+
+Oracle RAC
+
+RAC是real application clusters的缩写，译为“实时应用集群”
+
+https://baike.baidu.com/item/Oracle%20RAC/6542374
+
+
+
+C++需要不断练习
+
+多复习Java语法，多熟悉Java框架
+
+多看论文，多看行业动态
+
+私企，领导层很忙的
+
+https://www.zhihu.com/answer/697259312
+
+
+
+Linux基金会Akraino边缘计算项目
+
+
+
+less
+
+https://blog.csdn.net/z469571695/article/details/51314772
+
+G 最后一行
+
+v 进入vi
+
+用less看文件时如果需要修改，按v可以直接调用vi进行编辑，不用退出less
+
+https://blog.csdn.net/qq_38777579/article/details/82321717
+
+http://www.importnew.com/14961.html
+
+
+
+
+
+Tomcat
+
+线程 进程
+
+java -jar xxx.jar
+
+jar文件有哪些东西
+
+TPC,TPCC,TPMC(数据库性能衡量指标)
+
+TPC-C is an On-Line Transaction Processing Benchmark
+
+http://www.tpc.org/tpcc/
+
+java8新特性 Base64
+
+http://www.importnew.com/14961.html
+
+https://hoxis.github.io/mysql-zhuanlan-14-how-count-works.html
+
+
+
+Fail fast
+
+Fail safe
+
+
+
+**什么是显卡？**
+
+显卡（Video card，Graphics card）全称显示接口卡，又称显示适配器，是计算机最基本配置、最重要的配件之一。就像电脑联网需要网卡，主机里的数据要显示在屏幕上就需要显卡。因此，显卡是电脑进行数模信号转换的设备，承担输出显示图形的任务。具体来说，**显卡接在电脑主板上，它将电脑的数字信号转换成模拟信号让显示器显示出来**。
+
+原始的显卡一般都是集成在主板上，只完成最基本的信号输出工作，并不用来处理数据。随着显卡的迅速发展，就出现了GPU的概念，显卡也分为独立显卡和集成显卡（见附1）。
+
+**什么是GPU？**
+
+GPU这个概念是由Nvidia公司于1999年提出的。GPU是显卡上的一块芯片，就像CPU是主板上的一块芯片。那么1999年之前显卡上就没有GPU吗？当然有，只不过那时候没有人给它命名，也没有引起人们足够的重视，发展比较慢。
+
+自Nvidia提出GPU这个概念后，GPU就进入了快速发展时期。简单来说，其经过了以下几个阶段的发展：
+
+1）**仅用于图形渲染**，此功能是GPU的初衷，这一点从它的名字就可以看出：Graphic Processing Unit，图形处理单元；
+
+2）后来人们发现，GPU这么一个强大的器件只用于图形处理太浪费了，它应该用来做更多的工作，例如浮点运算。怎么做呢？直接把浮点运算交给GPU是做不到的，因为它只能用于图形处理（那个时候）。最容易想到的，是把浮点运算做一些处理，包装成图形渲染任务，然后交给GPU来做。这就是**GPGPU（General Purpose GPU）**的概念。不过这样做有一个缺点，就是你必须有一定的图形学知识，否则你不知道如何包装。
+
+3）于是，为了让不懂图形学知识的人也能体验到GPU运算的强大，Nvidia公司又提出了CUDA的概念。
+
+**什么是CUDA？**
+
+CUDA(Compute Unified Device Architecture)，通用并行计算架构，是一种运算平台。它包含CUDA指令集架构以及GPU内部的并行计算引擎。你只要使用一种类似于C语言的**CUDA C语言**，就可以开发CUDA程序，从而可以更加方便的利用GPU强大的计算能力，而不是像以前那样先将计算任务包装成图形渲染任务，再交由GPU处理。
+
+**注意，并不是所有GPU都支持CUDA。**
+
+**CPU和GPU的关系**
+
+在没有GPU之前，基本上所有的任务都是交给CPU来做的。有GPU之后，二者就进行了分工，**CPU负责逻辑性强的事物处理和串行计算，GPU则专注于执行高度线程化的并行处理任务（大规模计算任务）**。为什么这么分工？这是由二者的硬件构成决定的。
+
+可以看出，**CPU是“主（host）”而GPU是“从（device）”**，GPU无论发展得多快，都只能是替CPU分担工作，而不是取代CPU。
+
+附1：**独立显卡和集成显卡的区别。**
+
+所谓集成，是指显卡集成在主板上，不能随意更换。而独立显卡是作为一个独立的器件插在主板的AGP接口上的，可以随时更换升级。
+
+另外，集成显卡使用物理内存，而独立显卡有自己的显存。一般而言，同期推出的独立显卡的性能和速度要比集成显卡好、快。
+
+值得一提的是，集成显卡和独立显卡都是有GPU的。
+
+**附2：Nvidia显卡分类。**
+
+**GeForce系列：家庭娱乐。**打游戏必备；
+
+**Quadro系列：专业绘图设计。**视频渲染，经常使用3ds Max、Maya等软件的必备。
+
+**Tesla系列：高端显卡，用于大规模的并行计算。**土豪必备。
+
+另外，目前比较流行的物理引擎PhysX，并不是所有显卡都支持。官方文档上说GeForce 8及之后的显卡都支持。
+
+**结束语：**
+
+CUDA只是一种并行计算架构，相关的概念还有OpenCL、OpenMP等。
+
+
+
+rpm包
+
+redhat 没有         centos 有
+
+https://packages.ubuntu.com/
+
+
+
+中兴GoldenDB数据库
+
+强一致性
+
+存储计算分离
+
+计算无状态
+
+gpu 包括显卡
+
+N卡
+
+A卡
+
+苹果 获取N卡，现在是A卡授权
+
+
+
+base64
+
+https://www.zhangxinxu.com/sp/base64.html
+
+从Paxos到Raft再到EPaxos：分布式一致性应用趋势
+
+EPaxos（Egalitarian Paxos）于SOSP'13提出，比Raft还稍早一些，但Raft在工业界大行其道的时间里，EPaxos却长期无人问津，直到最近，EPaxos开始被工业界所关注。
+
+EPaxos是一个Leaderless的一致性算法，任意副本均可提交日志，通常情况下，一次日志提交需要一次或两次网络来回。
+
+https://zhuanlan.zhihu.com/p/163271175
+
+重点：EPaxos文献
+
+
+
+三湘银行的架构图
+
+业务中台各中心的定位如下：
+
+1、用户中心：建立线上线下统一的用户管理体系，实现用户全生命周期的管理，形成资产、交易、签约、行为、客户画像等统一用户视图，提供三方登陆、成长体系等互联网体验支持；
+
+2、账户中心：采用产品与账户分离的理念，完成账户业务模型的抽象，整合全行账户系统并形成标准能力输出，实现银行各类账户的对产品运营的统一支持；
+
+3、产品中心：实现全行产品目录的统一管理，除产品基本信息外，还提供店铺、分类、上下架、黑白名单等销售管理能力，全面支持各渠道的产品展示和销售；
+
+4、支付中心：在业务模型设计中提出“动账即支付“的理念，其支付概念不再局限于三方支付，而将资金动账、权益发放使用、产品购买赎回均视为支付动作，利用统一支付实现资产交换业务的简化；
+
+5、交易中心：利用电商订单模式重新定义了银行的交易模型，以订单标准模型实现金融产品及服务的支付和交付，实现产品与交易的解耦，让前台渠道系统无需再与后台各产品系统进行对接；
+
+6、核算中心：采用交易与核算分离的理念，通过交易型总账实现会计核算规则的统一管理，让产品系统无需再关注核算功能的实现。
+
+分账系统
+
+https://mp.weixin.qq.com/s?__biz=MzIzNzgyMjYxOQ==&mid=100001232&idx=1&sn=0ac3987a5ada74e12bc62b53b8c0d31f&chksm=68c3f2245fb47b32a0ddaae88d8f253d8db6180fa973eabbf37f063c589e28da884f6e15f347&mpshare=1&scene=1&srcid=070798d1ci1OaoKvnZS1WoX9&sharer_sharetime=1594112093888&sharer_shareid=449cff268a54795e87b6b3027424ac69&key=33ebd99a2dcdcfac803128bad8eefa40130082256092e583979cae80ae428d1b36ffc718df7c9975438dfc0f36287b0f3b43b23580316d4c6a2f6ae4ee70c10e796a57b7d0c7de9a7f1bba2fdc4e9609&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=Aca1OV6diPOVgbPPa5UDDVo%3D&pass_ticket=dHN8Z92mvoe1k4WhpJvr9KHeEc9yfjs%2FMYy%2BihEipA%2Fp%2FEsECxQSqIQcs0R1UAZz
+
+
+
+4.精通一种以上的MQ系统（kafka、rabbitmq、beanstalkd、activemq等）优先
+
+
+
+SHOW TABLE STATUS LIKE 'table_name';
+
+高性能MySQL
+
+https://learning.oreilly.com/library/view/high-performance-mysql/9781449332471/ch01.html 
+
+
+
+
+
+legacy platforms
+
+传统平台
+
+O'Reilly 线上三个月不访问会冻结账号，找acmhelp重新激活一下账号就好了
+
+https://learning.acm.org/e-learning/oreilly 
+
+这个页面右上角的 tab 中的 Oreilly
+
+epub 自适应屏幕
+
+
+
+CAP 理论最早在 1998 年秋季提出，1999 年正式发表，并在 2000 年登上 Symposium on Principles of Distributed Computing 大会的主题演讲
+
+**Eric Brewer**是 University of California, Berkeley 的计算机科学教授，在 Google 担任基础设施方面的 VP。他的研究兴趣包括云计算、可伸缩的服务器、传感器网络，还有适合发展中地区应用的技术。他还帮助建立了美国联邦政府的门户网站 USA.gov。Brewer 从 MIT 获得电子工程和计算机科学的博士学位。他是 National Academy of Engineering 的院士。
+
+*Computer 杂志是 IEEE Computer Society 的旗舰刊物，发表经过同行评议的高水平文章，读者和作者都是从事各类计算科技相关领域的专业人士，文章涵盖的范围囊括软硬件的新研究和新应用。这本杂志比商业杂志更注重技术内涵，比研究期刊更注重实用思维。 Computer 为您传递工作中用得上的信息。*
+
+
+
+https://del.dog/
+
+paste.ubuntu.com
+
+
+
+
+
+MySQL 幻读
+
+https://www.cnblogs.com/rayso/p/12162699.html
+
+select @@global.tx_isolation;
+
+select @@global.tx_isolation,@@global.tx_isolation;
+
+select * for update
+
+当前读 快照读
+
+可重复读
+
+REPEATABLE-READ 隔离级别
+
+会出现幻读
+
+不会出现脏读 不可重复读
+
+
+
+mvn 命令行设置
+
+https://blog.csdn.net/top_code/article/details/51851571
+
+mvn clean package --settings D:\settings.xml
+
+Java Go
+
+语言层面的lock
+
+MySQL 应用锁
+
+Mysql表有虚拟的列
+
+性能优化 方向:
+
+内存，io cpu(lock)
+
+阻塞是同步里面的
+
+
+
+Sentinel 
+
+Redis 2.8开始支持
+
+https://redis.io/topics/sentinel
+
+
+
+Sentinel卡了 spring junit
+
+
+
+jetty start
+
+https://www.eclipse.org/jetty/documentation/9.4.30.v20200611/quickstart-common-config.html#creating-jetty-base
+
+
+
+在ATC、DAC、ICPP、SIGMOD等会议和期刊
+
+
+
