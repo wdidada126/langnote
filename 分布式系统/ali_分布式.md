@@ -12,7 +12,11 @@ https://zhuanlan.zhihu.com/p/85772085
 
 两提交 - > XA
 
+XA状态图
 
+
+
+![xa_status](../imgs/xa_status.png)
 
 2 两阶段提交理论的一个广泛工业应用是 XA 协议。目前几乎所有收费的商业数据库都支持 XA 协议。XA 协议已在业界成熟运行数十年，但目前它在互联网海量流量的应用场景中，吞吐量这个瓶颈变得十分致命，因此很少被用到
 TCC 是由支付宝架构师提供的一种柔性解决分布式事务解决方案,主要包括三个步骤： Try：预留业务资源/数据效验 Confirm：确认执行业务操作；Cancel：取消执行业务操作
@@ -222,7 +226,7 @@ public class AntMinStack {
 
 at
 
-# 分布式事务框架FESCAR执行过程-AT
+分布式事务框架FESCAR执行过程-AT
 
 https://www.jianshu.com/p/77a95a0cf850
 

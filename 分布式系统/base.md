@@ -44,6 +44,8 @@ BASE：全称：Basically Available(基本可用)，Soft state（软状态）,�
 
 
 
-# 分布式系统因果一致性与COPS算法
+分布式系统因果一致性与COPS算法
+
+Clusters of Order Preserving System
 
 https://www.jdon.com/artichect/cops.html
