@@ -14,6 +14,64 @@ mybatis版本3.5
 
 [Mapper.xml中的命名空间及命名解析](https://blog.csdn.net/weixin_36210698/article/details/82992771)
 
+
+
+
+
+命名空间
+
+interface
+
+xml
+
+
+
+mybatis-config.xml
+
+
+
+事务
+
+
+
+mybatis-spring
+
+
+
+cglib
+
+动态代理
+
+
+
+sql解析的时候
+
+
+
+trim
+
+when
+
+动态sql
+
+https://mybatis.org/mybatis-3/zh/dynamic-sql.html
+
+if
+
+choose when otherwise
+
+trim、where、set
+
+foreach
+
+script
+
+需要记忆的点
+
+
+
+
+
 ### Chap.1 入门
 
 ORM框架

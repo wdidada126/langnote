@@ -2,7 +2,7 @@
 
 
 
-https://book.douban.com/subject/25844475/
+[Java 7并发编程实战手册](https://book.douban.com/subject/25844475/)
 
 
 
@@ -74,7 +74,7 @@ isInterrupted()
 
 ### chapter2 线程同步基础
 
-synchronized
+synchronized java keyword
 Lock
 ReadWriteLock
 
@@ -83,8 +83,19 @@ Condiction
 
 await（）
 
-条件锁
+条件锁 Condiction接口及其子类
 读写锁
+
+
+
+```
+Lock lock = new ReentrantLock();
+Condition condition = lock.newCondition();
+```
+
+
+
+![类](https://img-blog.csdnimg.cn/20190804170455298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ExNDM5Nzc1NTIw,size_16,color_FFFFFF,t_70)
 
 
 
@@ -94,8 +105,9 @@ Semaphore 大多数语言都提供
 CountDownLatch java提供
 一个线程等待另一个线程执行完
 CyclicBarries java提供
-Phaser java提供
-Exchanger java提供
+Phaser java提供   java.util.concurrent.Phaser 1.7
+
+Exchanger java提供   Exchanger<V>
 
 
 ### chapter4 线程执行器
@@ -104,21 +116,148 @@ ES
 
 ### chapter5 Fork/Join框架
 
+
+
+java.util.concurrent.ForkJoinTask abstract
+
+java.util.concurrent.RecursiveTask abstract
+
+java.util.concurrent.ForkJoinPool AbstractExecutorService子类
+
+
+
+https://blog.csdn.net/tyrroo/article/details/81390202
+
+
+
+fork join
+
+mapreduce
+
+并行计算
+
+
+
+public ForkJoinPool(int parallelism,
+                        ForkJoinWorkerThreadFactory factory,
+                        UncaughtExceptionHandler handler,
+                        boolean asyncMode)
+
+- parallelism：可并行级别，Fork/Join框架将依据这个并行级别的设定，决定框架内并行执行的线程数量。并行的每一个任务都会有一个线程进行处理，但是千万不要将这个属性理解成Fork/Join框架中最多存在的线程数量，也不要将这个属性和ThreadPoolExecutor线程池中的corePoolSize、maximumPoolSize属性进行比较，因为ForkJoinPool的组织结构和工作方式与后者完全不一样。而后续的讨论中，读者还可以发现Fork/Join框架中可存在的线程数量和这个参数值的关系并不是绝对的关联（有依据但并不全由它决定）。
+- factory：当Fork/Join框架创建一个新的线程时，同样会用到线程创建工厂。只不过这个线程工厂不再需要实现ThreadFactory接口，而是需要实现ForkJoinWorkerThreadFactory接口。后者是一个函数式接口，只需要实现一个名叫newThread的方法。在Fork/Join框架中有一个默认的ForkJoinWorkerThreadFactory接口实现：DefaultForkJoinWorkerThreadFactory。
+- handler：异常捕获处理器。当执行的任务中出现异常，并从任务中被抛出时，就会被handler捕获。
+- asyncMode：这个参数也非常重要，从字面意思来看是指的异步模式，它并不是说Fork/Join框架是采用同步模式还是采用异步模式工作。Fork/Join框架中为每一个独立工作的线程准备了对应的待执行任务队列，这个任务队列是使用数组进行组合的双向队列。即是说存在于队列中的待执行任务，即可以使用先进先出的工作模式，也可以使用后进先出的工作模式。
+
+
+
+
+
+```
+// 这是Fork/Join框架的线程池
+ForkJoinPool pool = new ForkJoinPool();
+ForkJoinTask<Integer> taskFuture =  pool.submit(new MyForkJoinTask(1,1001));
+try {
+    Integer result = taskFuture.get();
+    System.out.println("result = " + result);
+} 
+```
+
+
+
+
+
+
+
 ### chapter6 并发集合 
 
 原子变量
 
 原子数组
 
+
+
+java.util.concurrent.atomic.AtomicBoolean
+
+java.util.concurrent.atomic.AtomicInteger
+
+java.util.concurrent.atomic.AtomicIntegerArray
+
+java.util.concurrent.atomic.AtomicIntegerFieldUpdater abstract
+
+java.util.concurrent.atomic.AtomicLong
+
+java.util.concurrent.atomic.AtomicLongArray
+
+java.util.concurrent.atomic.AtomicLongFieldUpdater abstract
+
+java.util.concurrent.atomic.AtomicMarkableReference<V>
+
+java.util.concurrent.atomic.AtomicReference
+
+java.util.concurrent.atomic.AtomicReferenceArray
+
+java.util.concurrent.atomic.AtomicReferenceFieldUpdater<T,V>
+
+java.util.concurrent.atomic.AtomicStampedReference<V>
+
+java.util.concurrent.atomic.DoubleAccumulator java1.8
+
+java.util.concurrent.atomic.DoubleAdder   java1.8
+
+java.util.concurrent.atomic.LongAccumulator  java1.8
+
+java.util.concurrent.atomic.LongAdder java1.8
+
+java.util.concurrent.atomic.Striped64
+
+
+
+17个类
+
+
+
 ### chapter7 定制并发类
 
 定制Lock类
+
+
+
+java.util.concurrent.locks.StampedLock       java1.8
+
+java.util.concurrent.locks.ReentrantReadWriteLock
+
+java.util.concurrent.locks.ReentrantLock
+
+java.util.concurrent.locks.ReadWriteLock interface
+
+java.util.concurrent.locks.LockSupport
+
+java.util.concurrent.locks.Lock  interface
+
+java.util.concurrent.locks.Condition   interface
+
+
+
+public abstract class AbstractQueuedSynchronizer
+    extends AbstractOwnableSynchronizer
+
+
+
+
+
+public abstract class AbstractQueuedLongSynchronizer
+    extends AbstractOwnableSynchronizer
+
+
+
 
 ### chapter8 测试并发应用程序
 
 FindBugs
 
-MultithreadedTC
+MultithreadedTC 2007最新更新的
+
+https://code.google.com/archive/p/multithreadedtc/downloads
 
 
 

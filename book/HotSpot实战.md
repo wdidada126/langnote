@@ -10,3 +10,4 @@ https://book.douban.com/subject/25847620/
 
 
 
+hotspot源码在openjdk中，openjsk包括jstat，jstack

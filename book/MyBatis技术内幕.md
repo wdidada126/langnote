@@ -4,7 +4,7 @@ https://book.douban.com/subject/27087564/
 
 徐郡明
 
-
+https://www.jb51.net/books/641555.html
 
 源码讲解，不是用法
 
@@ -26,11 +26,15 @@ https://book.douban.com/subject/27087564/
 
 #### 第2章　基础支持层
 
-
+XPath简介
 
 
 
 #### 第3章　核心处理层
+
+OGNL表达式简介
+
+对象导航图语言（Object Graph Navigation Language），简称*OGNL*，是应用于Java中的一个开源的表达式语言（Expression Language）
 
 
 

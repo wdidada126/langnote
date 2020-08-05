@@ -4,6 +4,22 @@ https://book.douban.com/subject/5345682/
 
 
 
+idea整合maven
+
+mvn命令行
+
+mvn gradle区别
+
+mvn插件
+
+mvn环境变量
+
+archtype编写
+
+
+
+
+
 注意超级POM
 自定义的变量
 profile

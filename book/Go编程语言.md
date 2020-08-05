@@ -14,6 +14,12 @@ go
 makefile 编译
 bazel
 
+
+
+go mod init
+
+
+
 #### Chap. 1
 
 

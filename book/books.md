@@ -3,7 +3,7 @@
 
 
 - Introduction to algorithms，作者首字母缩写 CLRS ，讲算法的。
-- Structure and Interpretation of Computer Programs， 简称 SICP，一本有些被神化的书，不过的确值得一读。多数人初读此书，两章后会有眼前豁然开朗的感觉。虽然这书已经不再是教材了。封面是魔术师和 lamda 。什么是经典，这就是经典。
+- Structure and Interpretation of Computer Programs， 简称 SICP，一本有些被神化的书，不过的确值得一读。多数人初读此书，两章后会有眼前豁然开朗的感觉。虽然这书已经不再是教材了。封面是魔术师和 lamda 。什么是经典，这就是经典。计算机程序的构造和解释-SICP中文第2版
 - Computer architecture: a quantitative approach，此书我还没看，因为我自己也不是科班出身，而且此前对硬件毫无兴趣（Dijkstra 说过 computer science is no more about computers than astronomy is about telescopes），不过据说讲计算机架构的书里这本很好。
 - Concrete Mathematics: A Foundation for Computer Science，高德纳出品，讲述与计算机相关的数学知识。如果数学书只想看一本，这个应该差不多够了。
 - Computer Networks，作者Tanenbaum。

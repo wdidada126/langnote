@@ -1,6 +1,6 @@
 # cpp prime
 
-cpp现在不看
+cpp
 
 https://github.com/edidada/Cpp_Primer_Answers
 
