@@ -10,3 +10,10 @@ fastjson
 
 jackson
 
+
+
+
+
+Unicode 标准
+
+UTF-8实现

@@ -14,6 +14,22 @@
 
 
 
+CtClass
+
+- writeFile() 保存字节码文件
+
+CtField
+
+CtConstructor
+
+
+
+
+
+
+
+
+
 [Java动态编程初探——Javassist](https://www.cnblogs.com/hucn/p/3636912.html)
 
 

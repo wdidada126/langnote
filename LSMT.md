@@ -1,6 +1,8 @@
 # LSMT
 
+今天来聊聊lsm tree，它的全称是log structured merge tree ，简单来说，lsm tree可以认为是针对传统b树在磁盘写入上低劣表现的一种优化，其核心思想的核心就是放弃部分读能力，换取写入的最大化能力。
 
+https://www.cnblogs.com/shenzhaohai1989/p/3893123.html
 
 在我们介绍LSMT的原理之前，我们先来介绍一下它的子结构SSTable。
 
