@@ -48,11 +48,9 @@ maven idea先装插件
 
 "Content-Type"："application/x-protobuf"
 
-<<<<<<< HEAD
-基于http协议的
-=======
 
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+基于http协议的
+
 
 
 

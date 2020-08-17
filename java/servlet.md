@@ -97,7 +97,13 @@ JavaEE就是提供了一堆API
 
 Tomcat实现了
 
-SpringMVC实现了?
+SpringMVC实现了
+
+
+
+HttpServletBean是一个class直接实现了HttpServlet,这个类主要负责配置文件
+
+
 
 
 

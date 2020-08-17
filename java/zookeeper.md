@@ -2,17 +2,27 @@
 
 
 
-AP?
+AP
 
 一致性
 
 zookeeper做dubbo的服务注册/发现，会出现40-60分钟(几十秒)的不可用
 
+hbase kafka
+
+竞品：etcd nacos
+
+
+
+主从分离的
+
+单主？
+
 
 
 选举的时候，也只是服务上线不可用
 
-服务信息在本地会做缓存
+customer有缓存的 服务信息在本地会做缓存
 
 
 
@@ -106,8 +116,8 @@ Zookeeper是Apacahe Hadoop的子项目，是一个树型的目录服务，支持
 zkCli -server host:port
 连接远程zk
 
-dubbo的在向zookeeper注册服务时，放了些什么数据进去？
-dubbo的负载均衡是dubbo自己做的，还是zookeeper做的？
+dubbo的在向zookeeper注册服务时，放了些什么数据进去？ /dubbo /d../config /d.../provider 
+dubbo的负载均衡是dubbo自己做的，还是zookeeper做的？dubbo自己做的
 
 dubbo_zookeeper.png
 
