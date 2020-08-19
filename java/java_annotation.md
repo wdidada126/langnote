@@ -1,16 +1,15 @@
 # java annotation
 
-<<<<<<< HEAD
+
 [秒懂，Java 注解 Annotation 你可以这样学](https://blog.csdn.net/briblue/article/details/73824058)
-=======
-[秒懂，Java 注解 （Annotation）你可以这样学](https://blog.csdn.net/briblue/article/details/73824058)
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
+
 这个要常看
 
 元标签有 @Retention、@Documented、@Target、@Inherited、@Repeatable 5 种。
 
 
-<<<<<<< HEAD
+
 
 java @Inherited注解的作用
 
@@ -19,8 +18,6 @@ https://www.jianshu.com/p/7f54e7250be3
 
 
 
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 Target 是目标的意思，@Target 指定了注解运用的地方。
 
 你可以这样理解，当一个注解被 @Target 注解时，这个注解就被限定了运用的场景。
@@ -43,7 +40,6 @@ getAnnotations()
 一个注解要在运行时被成功提取，那么 @Retention(RetentionPolicy.RUNTIME) 是必须的。
 
 
-<<<<<<< HEAD
 
 https://blog.csdn.net/heyrian/article/details/80764783
 
@@ -129,5 +125,4 @@ java.lang.reflect.Method
 - Method
 
 这三个类
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+

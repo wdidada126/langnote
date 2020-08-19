@@ -72,11 +72,9 @@ https://jingyan.baidu.com/article/29697b9163ac7dab20de3cbf.html
 ### add jar
 Project Struct
 
-<<<<<<< HEAD
+
 Modules Dependencies
-=======
-MOdules Dependencies
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 
 
 IDEA新建Maven项目文件结构
