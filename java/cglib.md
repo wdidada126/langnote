@@ -5,7 +5,7 @@
 
 github repo
 
-testcglib
+testcglib https://github.com/edidada/testcglib
 
 
 
@@ -48,7 +48,7 @@ jar包
 
 net.sf.cglib.proxy.Enhancer
 
-```
+```java
 new Enhancer()
 net.sf.cglib.proxy.Enhancer#create(java.lang.Class, java.lang.Class[], net.sf.cglib.proxy.Callback)
 net.sf.cglib.proxy.Enhancer#setCallbacks
@@ -58,7 +58,7 @@ net.sf.cglib.proxy.Enhancer#setCallbackFilter
 
 net.sf.cglib.proxy.MethodInterceptor
 
-```
+```java
 public Object intercept(Object obj, Method method, Object[] params,
                         MethodProxy proxy)
 ```
@@ -67,7 +67,7 @@ public Object intercept(Object obj, Method method, Object[] params,
 
 net.sf.cglib.proxy.CallbackFilter
 
-```
+```java
 public int accept(Method method)
 ```
 
@@ -75,9 +75,8 @@ public int accept(Method method)
 
 net.sf.cglib.proxy.InterfaceMaker
 
-```
+```java
 new InterfaceMaker()
-
 ```
 
 
@@ -112,7 +111,7 @@ http://devdoc.net/javamisc/cglib-3.2.5/
 
 
 
-asm
+asm  javaasist
 
 api
 
