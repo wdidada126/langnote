@@ -1,6 +1,8 @@
 # person
 
+常平，中科大硕，DELL EMC 资深首席工程师，曾就职于 Marvell、AMD，主要从事 Linux 内核以及分布式产品的交付、架构设计以及开发工作。
 
+https://www.changping.me/2020/02/20/distributed-product_opensource_and_product/
 
 个人博客
 
