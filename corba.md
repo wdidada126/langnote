@@ -34,7 +34,7 @@ org.omg.CORBA.ORB
 但实际是因为修改了应用端口，而org应用端口与其不一致造成的，修改org目录下的如D:\aictms\aicorg\applications\WEB-INF\classes的entity-j2ee.xml文件，将端口修改为与应用一致，该目录下其他文件修改正确的路径值则解决。
 
 
-<<<<<<< HEAD
+
 https://www.iteye.com/blog/kanexiao-1259105
 
 
@@ -76,7 +76,5 @@ webservice很不幸，也步其后尘，载入史册。
 Java有开源实现
 
 
-
-=======
 https://www.iteye.com/blog/kanexiao-1259105
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
+

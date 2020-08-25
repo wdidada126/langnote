@@ -29,3 +29,10 @@ ubuntu 16查看libmysqlclient-dev包含的文件
 ##### Systemd 入门教程：命令篇
 
  https://juejin.im/post/5a5119886fb9a01ca2675013 
+
+
+
+apt get 原理
+
+https://www.cnblogs.com/kex1n/p/5845782.html
+

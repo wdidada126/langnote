@@ -9,13 +9,13 @@ Spring实战4 源码 就是gradle组织的
 https://www.cnblogs.com/bluestorm/p/9516122.html
 
 `gradle build -x test --stacktrace`
-<<<<<<< HEAD
 
 
 
 
 
-# [gradle编译命令 & 自动打包等](https://www.cnblogs.com/bluestorm/p/9516122.html)
+
+### [gradle编译命令 & 自动打包等](https://www.cnblogs.com/bluestorm/p/9516122.html)
 
 ./gradlew -v 版本号，首次运行，没有gradle的要下载的哦。
 
@@ -32,6 +32,3 @@ https://www.cnblogs.com/bluestorm/p/9516122.html
 ./gradlew uninstallRelease 卸载Release模式包
 
 
-
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

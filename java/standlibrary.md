@@ -1,7 +1,7 @@
 # Java Stand Library
 
 - Why String class is final?
-- Java multy thread
+- Java multythread
 - Java class
 - Map sorted Map?
 
@@ -11,4 +11,5 @@
 - java.utils.collection
 - java.beans
 - java.reflect
-- 
+- java.sql
+- javax

@@ -1,6 +1,6 @@
 # java proxy
 
-InvocationHandler
+InvocationHandler     Invocation 求助; 祈祷; 调用; 启用;
 MyBatis
 
 JDK本身提供了动态代理的实现，要求被代理者必须实现接口。

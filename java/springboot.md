@@ -33,7 +33,7 @@ Simple
 
 #### RestTemplate
 
-<<<<<<< HEAD
+
 #### WebClient
 webflux类
 Calling REST Services with WebClient
@@ -42,7 +42,7 @@ Calling REST Services with WebClient
 https://docs.spring.io/spring-boot/docs/2.1.11.RELEASE/reference/html/boot-features-validation.html
 
 #### Logging
-=======
+
 ### WebClient
 webflux类
 Calling REST Services with WebClient
@@ -51,7 +51,7 @@ Calling REST Services with WebClient
 https://docs.spring.io/spring-boot/docs/2.1.11.RELEASE/reference/html/boot-features-validation.html
 
 ## Logging
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 https://docs.spring.io/spring-boot/docs/2.1.11.RELEASE/reference/html/boot-features-logging.html
 
 [Spring Boot干货系列：（十二）Spring Boot使用单元测试](http://tengj.top/2017/12/28/springboot12/)

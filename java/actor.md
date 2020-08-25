@@ -2,7 +2,7 @@
 
 [了解 Actor 模型](https://www.jianshu.com/p/449850aa8e82)
 
-<<<<<<< HEAD
+
 并行
 
 并不擅长密集计算
@@ -17,8 +17,7 @@ scala
 
 https://github.com/guobinhit/akka-guide/blob/master/articles/qucikstart-akka-java.md
 
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 
 
 Actors
@@ -55,7 +54,7 @@ threads并不是获取并发性的好方法，往往会带来难以查找的bug
 
 
 
-<<<<<<< HEAD
+
 ### ECUP
 
 
@@ -77,6 +76,3 @@ https://www.jianshu.com/p/c69e69c9c0a9
 vert.x
 
 
-
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

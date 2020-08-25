@@ -8,3 +8,8 @@ QQ群
 嵌入式网络那些事：LwIP协议深度剖析与实战演练 书籍
 
 [TCP/IP协议栈之QEMU（零）--- LwIP开发调试环境搭建](https://blog.csdn.net/m0_37621078/article/details/103190694)
+
+
+
+记忆tcp状态图
+

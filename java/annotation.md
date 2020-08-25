@@ -9,6 +9,15 @@ https://blog.csdn.net/heyrian/article/details/80764783
 
 
 注解处理器类库
+
+
+
+```
+java.lang.reflect.AnnotatedElement annotationElement;
+```
+
+
+
 Java通过反射机制获取类、方法、属性上的注解，因此java.lang.reflect提供AnnotationElement支持注解，主要方法如下：
 
 boolean is AnnotationPresent(Class<?extends Annotation> annotationClass)：判断该元素是否被annotationClass注解修饰
@@ -20,6 +29,10 @@ Annotation[] getDeclaredAnnotations()：返回直接修饰该元素的所有注�
 ————————————————
 版权声明：本文为CSDN博主「heyrian」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/heyrian/article/details/80764783
+
+
+
+https://blog.csdn.net/jinlong59421/article/details/106631041
 
 
 

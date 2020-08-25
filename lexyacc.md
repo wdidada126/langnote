@@ -1,4 +1,4 @@
-# lexyacc
+# lex yacc
 http://dinosaur.compilertools.net/flex/flex_5.html#SEC5
 
 
