@@ -97,3 +97,137 @@ docker ip port
 invoke com.XXXX.media.platform.isomerization.proxy.api.IsomerizationAccessService.access({“prop”: “value”}, 1, “1”)
 
 
+
+docker部署image之后，如何登录进去进行操作
+
+
+
+docker exec
+
+
+
+docker run 和 docker exec 的差异 - 龙凌云端 - 博客园
+
+
+
+https://www.cnblogs.com/sparkdev/p/9129334.html
+
+
+
+也可以通过 `docker ps -a` 命令查看已经在运行的容器，然后使用容器 ID 进入容器。
+
+`docker exec -it 9df70f9a0714 /bin/bash`
+
+
+
+```
+docker info
+Containers: 11
+ Running: 8
+ Paused: 0
+ Stopped: 3
+Images: 10
+Server Version: 18.09.2
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
+runc version: 09c8266bf2fcf9519a651b04ae54c967b9ab86ec
+init version: fec3683
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.9.125-linuxkit
+Operating System: Docker for Mac
+OSType: linux
+Architecture: x86_64
+CPUs: 4
+Total Memory: 1.952GiB
+Name: linuxkit-025000000001
+ID: NSAV:ZK4I:LGUU:O2CR:HL3O:F25E:225E:BTEE:WB64:GJCV:XQJV:WIXB
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): true
+ File Descriptors: 93
+ Goroutines: 107
+ System Time: 2020-08-27T15:01:26.053875352Z
+ EventsListeners: 2
+HTTP Proxy: gateway.docker.internal:3128
+HTTPS Proxy: gateway.docker.internal:3129
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+Product License: Community Engine
+```
+
+
+
+
+
+### overlay
+
+
+
+**1. Overlay 网络**
+**Overlay 技术概述**
+
+Overlay 在网络技术领域，指的是一种网络架构上叠加的虚拟化技术模式，其大体框架是对基础网络不进行大规模修改的条件下，实现应用在网络上的承载，并能与其它网络业务分离，并且以基于IP的基础网络技术为主。Overlay 技术是在现有的物理网络之上构建一个虚拟网络，上层应用只与虚拟网络相关。一个Overlay网络主要由三部分组成：
+
+  边缘设备：是指与虚拟机直接相连的设备
+  控制平面：主要负责虚拟隧道的建立维护以及主机可达性信息的通告
+  转发平面：承载 Overlay 报文的物理网络
+
+当前主流的 Overlay 技术主要有VXLAN, GRE/NVGRE和 STT。这三种二层 Overlay 技术，大体思路均是将以太网报文承载到某种隧道层面，差异性在于选择和构造隧道的不同，而底层均是 IP 转发。如下表所示为这三种技术关键特性的比较。其中VXLAN利用了现有通用的UDP传输，其成熟性高。总体比较，VLXAN技术相对具有优势。
+
+https://blog.csdn.net/cisco_eigrp/article/details/50829035
+
+https://www.zhihu.com/question/24393680
+
+
+
+笔者在前文《[RunC 简介](http://www.cnblogs.com/sparkdev/p/9032209.html)》和《[Containerd 简介](http://www.cnblogs.com/sparkdev/p/9063042.html)》中分别介绍了 runC 和 containerd。本文我们将结合 docker 中的其它组件探索 docker 是如何把这些组件组织起来协调工作的。
+
+Docker CLI(docker)   /usr/bin/docker
+
+Dockerd                     /usr/bin/dockerd
+
+Containerd                /usr/bin/docker-containerd
+
+Containerd-shim      /usr/bin/docker-containerd-shim
+
+Runc                           /usr/bin/docker-runc
+
+
+
+![docker compont](https://images2018.cnblogs.com/blog/952033/201806/952033-20180603152512054-430725545.png)
+
+
+
+
+
+### containerd
+
+
+
+### runc
+
+
+
+
+
+
+
