@@ -38,6 +38,12 @@ javax.annotation.concurrent.ThreadSafe
 final修饰变量 只能赋值一次
 static修饰的变量 java内存模型里面有同步机制，确保线程安全
 
+实现好的并发是一件困难的事情，所以很多时候我们都想躲避并发。避免并发最简单的方法就是线程封闭。
+
+线程封闭的三种方式：Ad-hoc线程封闭、栈封闭、ThreadLocal封闭。
+
+https://www.cnblogs.com/gnivor/p/4913132.html
+
 
 
 ### 第4章 对象的组合
