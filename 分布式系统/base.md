@@ -38,14 +38,37 @@ BASE：全称：Basically Available(基本可用)，Soft state（软状态）,�
 
 指一个系统要能够保证来自同一个节点的写操作被顺序的执行。
 
-然而，在实际的实践中，这 5 种系统往往会结合使用，以构建一个具有最终一致性的分布式系统。实际上，不只是分布式系统使用最终一致性，关系型数据库在某个功能上，也是使用最终一致性的，比如备份，数据库的复制过程是需要时间的，这个复制过程中，业务读取到的值就是旧的。当然，最终还是达成了数据一致性。这也算是一个最终一致性的经典案例
+然而，在实际的实践中，这 5 种系统往往会结合使用，以构建一个具有最终一致性的分布式系统。实际上，不只是分布式系统使用最终一致性，关系型数据库在某个功能上，也是使用最终一致性的，比如备份，数据库的复制过程是需要时间的，这个复制过程中，业务读取到的值就是旧的。当然，最终还是达成了数据一致性。这也算是一个最终一致性的经典案例。
 
 
+
+上述5个一致性从属关系 集合表示
 
 
 
 分布式系统因果一致性与COPS算法
 
-Clusters of Order Preserving System
+COPS算法
+
+COPS算法
+
+
+
+保序系统的集群
+
+
+
+对应英文：Clusters of Order Preserving System
 
 https://www.jdon.com/artichect/cops.html
+
+
+
+https://www.jdon.com/
+
+通过COPS我们能够获得ALPS：**A**vailability, **L**ow-Latency,**P**artition-tolerance, 和 **S**calability.
+
+
+
+https://www.cs.cmu.edu/~dga/papers/cops-sosp2011.pdf
+

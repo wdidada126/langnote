@@ -8,9 +8,9 @@ https://zhuanlan.zhihu.com/p/85772085
 
 
 
-理论       -- > 协议
+理论       -- >  协议
 
-两提交 - > XA
+两提交   - >     XA
 
 XA状态图
 
