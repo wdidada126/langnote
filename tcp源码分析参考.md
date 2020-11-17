@@ -1,6 +1,9 @@
 # ﻿tcp源码分析参考
 
 tfo我知道是tcp fast open，tnd
+nagle 算法
+
+lwip
 
 Tcp No delay
 

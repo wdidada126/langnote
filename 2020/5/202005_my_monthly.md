@@ -9,7 +9,7 @@
 
 
 远程调试 linux c++
-
+Docker调试 非跨平台代码
 
 
 grpc
@@ -18,7 +18,7 @@ java c++
 
 
 
-弃用goland，使用IDEA+go插件
+弃用goland，使用IDEA+go插件，用回GoLang，香
 
 c#
 
@@ -28,7 +28,7 @@ Mybatis pagehelper
 
 
 
-my sqlserver安装
+ms sqlserver安装
 
 
 
