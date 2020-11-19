@@ -12,3 +12,6 @@ Alt - 7 查看当前类所有的方法
 MAC 查找接口的实现类：
 IDEA 风格 ctrl+h
 windows
+
+IDEA 区分大小写 查找 CTrl -F
+选择“W”
