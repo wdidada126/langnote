@@ -1,5 +1,32 @@
 # jvm
 
+验证
+验证主要是为了保证类和接口的二进制表示的结构正确性。
+
+如果类或者接口的二进制表示不满足相应的约束，则会抛出VerifyError异常。
+
+准备
+准备主要是创建类或者接口的静态字段，并使用默认值来初始化这些字段。
+
+解析
+解析是指根据运行时常量池中的符号引用来动态决定其具体值的过程。
+
+在执行java虚拟机指令：
+
+anewarray,checkcat, getfield, getstatic, instanceof, invokedynamic, invokeinterface, invokespecial, invokestatic, invokevirtual, ldc, ldc_w, multianewarray, new , putfield和putstatic这些指令的时候，都会去将符号引用指向运行时常量池，从而需要对符号引用进行解析。
+
+解析可以分为类和接口的解析，字段解析，普通方法的解析，接口方法解析，方法类型和方法句柄解析，调用点限定符解析这几种。
+
+
+![jvm architect](../imgs/20200524221637660.png)
+
+https://github.com/edidada/ClassReader
+
+https://www.cnblogs.com/flydean/p/jvm-class-load-link-ini.html
+有了java class文件之后，为了让class文件转换成为JVM可以真正运行的结构，需要经历加载，链接和初始化的过程。
+这三个过程是怎么工作的呢？在本文中你将会找到答案。
+加载
+JVM可以分为三大部分，五大空间和三大引擎，要讲起来也不是特别复杂，先看下面的总体的JVM架构图。
 
 
 ```shell

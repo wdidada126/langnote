@@ -14,4 +14,8 @@ IDEA 风格 ctrl+h
 windows
 
 IDEA 区分大小写 查找 CTrl -F
-选择“W”
+选择“Aa”
+
+Ctrl+f12 查看
+
+https://blog.csdn.net/weixin_36210698/article/details/78564252
