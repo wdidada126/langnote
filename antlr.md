@@ -151,9 +151,6 @@ https://www.beichengjiu.com/informationscience/172297.html
 熟悉SQL语言（关系代数、RBO、CBO）、编译原理，熟悉ANTLR、JavaCC、Calcite、SystemML或类似的开源框架，有DSL实现经验是加分项。
 
 
-熟悉SQL语言（关系代数、RBO、CBO）、编译原理，熟悉ANTLR、JavaCC、Calcite、SystemML或类似的开源框架，有DSL实现经验是加分项。
-
-
 
 
 [antlr 官网](https://www.antlr.org/)

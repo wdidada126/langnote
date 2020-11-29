@@ -1,6 +1,6 @@
 # asop note
 
-
+高通 soc厂商提供Android源码
 
 图形 opengl
 vulkan

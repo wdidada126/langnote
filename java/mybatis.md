@@ -1,5 +1,33 @@
 # mybatis
 
+ognl，直接获取List Map array中的值，获取对象属性的值，直接绑定
+
+sql，本质是字符串，sql语句，返回的结果/报错信息
+
+select name from table_name where id='1';
+
+sql有1.语句本身，2.参数
+
+参数是java的类String Integer等类型
+sql返回的结果，需要封装成Java类
+
+sql 批量插入数据
+
+例如：
+CREATE TABLE "websites" (
+  "id" int  NOT NULL  ,
+  "name" char(20) NOT NULL DEFAULT ''  ,
+  "url" varchar(255) NOT NULL DEFAULT '',
+  "alexa" int  NOT NULL DEFAULT '0' ,
+  "country" char(10) NOT NULL DEFAULT '' ,
+  PRIMARY KEY ("id")
+) 
+
+
+INSERT INTO "websites" VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'USA'), ('2', '淘宝', 'https://www.taobao.com/', '13', 'CN'), ('3', '菜鸟教程', 'http://www.runoob.com', '5892', ''), ('4', '微博', 'http://weibo.com/', '20', 'CN'), ('5', 'Facebook', 'https://www.facebook.com/', '3', 'USA');
+本身的数据就很多了
+
+
 - mybatis 刘增辉
 
 mybatis需要练习
