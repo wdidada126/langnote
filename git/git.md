@@ -1,6 +1,7 @@
 # Git
 
-
+git config  user.name "Edidada Tom"
+git config  user.email "sandisks555@gmail.com"
 
 [How to “git clone” including submodules](https://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)
 
