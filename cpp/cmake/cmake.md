@@ -1,5 +1,12 @@
 # CMake
 
+在 gRPC 的 CMakeLists.txt 文件中，c-ares 的 find_package 模式为 CONFIG（find_package(c-ares CONFIG) ），关于 find_package() 模式的解释如下：
+find_package()包括module模式和config模式。
+在module模式下，CMake搜索所有名为Find<package>.cmake的文件，这些文件的路径由变量由安装CMake时指定的CMAKE_MODULE_PATH变量指定。如果查找到了该文件，它会被CMake读取并被处理。如果没有找到文件，则进入config模式。
+Config 模式，继续搜索<Name>config.cmake 或<low-case-name>config.cmake文件，这两个文件是安装库自动安装的。
+
+
+
 - cpack
 
 - ctest
