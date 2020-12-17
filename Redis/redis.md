@@ -1,6 +1,9 @@
 # redis
 
+Redis cluster是gossip协议
 
+Redis 集群和sentinal模式的区别
+数据集中存储，所有节点都有
 
 windows图形客户端
 

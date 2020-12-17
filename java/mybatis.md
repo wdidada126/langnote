@@ -1,5 +1,15 @@
 # mybatis
 
+跨表的数据 分页 union
+
+https://blog.csdn.net/QIU1988YANG/article/details/77247556
+
+select * from 
+不能这样写，以后增加/减少列
+
+df -hl
+df - report file system disk space usage
+
 ognl，直接获取List Map array中的值，获取对象属性的值，直接绑定
 
 sql，本质是字符串，sql语句，返回的结果/报错信息
@@ -27,25 +37,15 @@ CREATE TABLE "websites" (
 INSERT INTO "websites" VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'USA'), ('2', '淘宝', 'https://www.taobao.com/', '13', 'CN'), ('3', '菜鸟教程', 'http://www.runoob.com', '5892', ''), ('4', '微博', 'http://weibo.com/', '20', 'CN'), ('5', 'Facebook', 'https://www.facebook.com/', '3', 'USA');
 本身的数据就很多了
 
-
 - mybatis 刘增辉
 
 mybatis需要练习
-
-
-
-
-
 
 mybatis
 
 jdbc
 
-
-
 连接池
-
-
 
 接口
 
@@ -53,25 +53,17 @@ xml
 
 SqlSessionFactory等核心类
 
-
-
 mybatis spring
 
 http://mybatis.org/spring/zh/factorybean.html
-
-
 
 https://github.com/edidada/testmybatis
 
 https://github.com/edidada/testmybatisspring
 
-
-
 @Mapper
 
 作用？
-
-
 
 mybatis.xml
 spring-hikari.xml
@@ -307,7 +299,6 @@ sql语句中直接引用
 
 另一种是java类对象
 
-
 ```java
 
 public List<student> selectuser(@Param(value = "page")int pn ,@Param(value = "st")student student);
@@ -354,16 +345,7 @@ Java数据类型 MySQL数据库的类型
 
 ## MyBatis Generator
 
-
-
-
-
-
-
-
 mybatis 2 3区别
-
-
 
 mybatis命名空间？
 
@@ -373,37 +355,19 @@ mybatis spring boot starter
 
 要熟悉
 
-
-
-
-
 mybatis 的连接池
-
-
 
 缓存
 
-
-
 转换器
 
-
-
 装饰器模式
-
-
 
 ```java
 SqlSessionManager implements SqlSessionFactory, SqlSession
 ```
 
-
-
-
-
 org.apache.ibatis.io.Resources#getResourceAsReader(java.lang.String)
-
-
 
 org.apache.ibatis.session.SqlSessionFactoryBuilder
 
@@ -466,4 +430,7 @@ pagerhelper例子
 
 
 git@github.com:edidada/ssm.git
+
+
+tk.mapper
 

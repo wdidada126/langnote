@@ -2,6 +2,8 @@
 
 version 5.7
 
+https://dev.mysql.com/doc/refman/5.7/en/
+
 USE，比如 QUIT ，不需要分号
 
 ```mysql
