@@ -5,6 +5,18 @@
 
 
 
+dubbo 跟http对比
+
+http是url port 等等
+
+dubbo是zk ip port，直连，底层Netty，dubbo协议
+
+一个Java接口，通过方法参数传参。
+
+
+
+
+
 ###### 服务提供者
 
 ```
@@ -215,11 +227,7 @@ brpc没有注册中心
 
 Dubbo有集群，避免单点故障
 
-thrift
-
-grpc
-
-tars有没有？
+thrift grpc tars有没有？
 
 
 
