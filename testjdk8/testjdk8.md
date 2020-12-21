@@ -12,7 +12,17 @@ CyclicBarrie构造函数有一个runnable参数
 SPI
 Java spi
 
+solid 面向接口编程，接口与实现分离
+
+
+
+更改SPI实现类需要重启程序吗？还是更改文件后就试试生效
+
+
+
 - TestJavaSPI 可以运行的程序
+
+
 
 java.util.ServiceLoader#load(java.lang.Class<S>)
 
@@ -59,6 +69,26 @@ java.lang.reflect.AnnotatedElement
 
 
 下面列出Java NIO中最重要的集中Channel的实现：
+
+
+
+java io
+
+Reader/Wroter
+
+InputStream OutputStream
+
+
+
+
+
+Throwable Exception RuntimeException
+
+NullPointException IllegralStateException
+
+
+
+common-io 二..七版本IOUtils FileUtils不支持
 
 
 
