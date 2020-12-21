@@ -1,6 +1,10 @@
 # asop note
 
+源码学习 android os source code 
+打印日志，集中看某一个模块
 
+
+高通 soc厂商提供Android源码
 
 图形 opengl
 vulkan

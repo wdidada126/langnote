@@ -1,5 +1,35 @@
 # make
 
+http://www.gnu.org/software/make/
+
+make 官方
+
+
+
+语法
+
+.PHONY
+
+make test
+
+make clean
+
+sudo make install
+
+.o .c
+
+
+
+CXX gcc
+
+需要熟悉gcc的参数
+
+makefile + make 执行各种命令行脚本
+
+
+
+make支持Go语言的编译
+
 
 
 windows有make嘛？
@@ -23,4 +53,8 @@ windows下cmake是否也是生成make执行的makefile文件来执行
 
 
 widows下也有自己的命令行编译工具，比如msbuild，nmake等。这两个工具是和VS一起升级维护的，所以对于像笔者这样，一台机器安装3个版本的VS的人，要使用正确版本的编译工具其实需要走些弯路。
+
+
+
+xmake
 

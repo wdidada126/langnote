@@ -13,7 +13,7 @@ MyBatis使用动态代理
 
 
 
-spring 非接口使用的代理
+spring非接口使用的代理
 
 
 
@@ -119,7 +119,6 @@ api
 
 
 
-
 [asm 3.0](https://www.jianshu.com/p/a1e6b3abd789)
 
 
@@ -136,3 +135,10 @@ https://www.jianshu.com/p/92a75a18cbc1
 
 
 javap查看字节码
+
+
+
+cglib使用了，动态生成字节码的
+
+ASM
+

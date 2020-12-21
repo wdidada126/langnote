@@ -1,8 +1,101 @@
 # mysql
 
+（1）*.frm--表定义，是描述表结构的文件。
+
+（2）*.MYD--"D"数据信息文件，是表的数据文件。
+
+（3）*.MYI--"I"索引信息文件，是表数据文件中任何索引的数据树。
 
 
-开启 general log 将所有到达MySQL Server的SQL语句记录下来。
+
+
+
+ibd InnoDB存储数据的物理文件通常以ibd作为其文件名后缀
+
+cvs
+
+
+
+天津滨海新区 河北 重工业
+
+
+
+淮南 铜陵
+
+
+
+矿产 石油 化工
+
+航天工业
+
+
+
+服饰
+
+
+
+媒体
+
+
+
+视频
+
+
+
+金融
+
+
+
+能源 光伏
+
+
+
+教科文卫
+
+
+
+电力 国家电网
+
+家电 电子产品
+
+
+
+class jvm 读写 kotlin grovvy kafka android app develop
+
+
+
+编译原理
+
+字节码 加载 链接 初始化
+
+同一个包，全部加载，还是只加载用到的
+
+
+
+gc thread
+
+tomcat http线程
+
+
+
+
+
+linux elf windows pe
+
+
+
+
+
+
+
+
+
+
+
+mysql 存储过程 源码实现
+.ibd
+
+开启 general log 将所有到达MySQL Server的SQL语句记录下来。存储方式有两种，一种是file ，一种是table
 
 一般不会开启开功能，因为log的量会非常庞大。但个别情况下可能会临时的开一会儿general log以供排障使用。 
 相关参数一共有3：general_log、log_output、general_log_file
@@ -41,8 +134,13 @@ mysqlbinlog
 
 
 show variables like 'log_bin';
+general_log
+general_log_file
 
+log_output  FILE
 
+slow_query_log
+slow_query_log_file  D:\devtools\mysql-5.7.31-winx64\data\chengwu2-slow.log
 
 
 

@@ -13,3 +13,5 @@
 | bullhead | device/lge/bullhead-kernel | kernel/msm | bullhead_defconfig |
 | -------- | -------------------------- | ---------- | ------------------ |
 |          |                            |            |                    |
+
+合并进linux kernel了

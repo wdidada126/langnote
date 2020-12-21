@@ -1,6 +1,29 @@
 # antlr
 
 
+
+重视对官方提供的antlr语法 github 的学习https://github.com/antlr/grammars-v4
+
+图形工具 有一个
+
+IDEA Preview
+
+
+
+Lexi
+
+token
+
+ast
+
+parser
+
+dfn
+
+
+
+
+
 ANTLR与与编译原理学习笔记
 
 https://blog.csdn.net/qq_38835878/article/details/82355616
@@ -18,6 +41,18 @@ org.antlr.v4.runtime.dfa.DFA
 
 
 antlr的maven插件给生成的代码设置包名
+
+
+
+
+
+LL
+
+Antlr 支持上下文无关文法 LL(*)。
+第一个L：从左至右分析输入；
+第二个L: 使用最左派生分析语法规则；
+
+Antlr4 现在支持直接左递归，但不支持间接左递归。
 
 https://www.thinbug.com/q/46798136
 
@@ -111,9 +146,6 @@ cfg是一个数学概念，bnf ebnf是其计算机领域的实现
 
 https://www.beichengjiu.com/informationscience/172297.html
 
-
-
-熟悉SQL语言（关系代数、RBO、CBO）、编译原理，熟悉ANTLR、JavaCC、Calcite、SystemML或类似的开源框架，有DSL实现经验是加分项。
 
 
 熟悉SQL语言（关系代数、RBO、CBO）、编译原理，熟悉ANTLR、JavaCC、Calcite、SystemML或类似的开源框架，有DSL实现经验是加分项。
