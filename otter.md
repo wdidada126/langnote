@@ -1,8 +1,11 @@
 # otter
 
+讯飞技术部 中台 用
 数据复制中间件
 
 otter 阿里巴巴分布式数据库同步系统
+
+https://github.com/alibaba/otter
 
 https://dbaplus.cn/news-11-2798-1.html
 
