@@ -2,6 +2,10 @@
 
 
 
+rg rust-grep
+
+
+
 cmd下运行
 
 powershell下不行
