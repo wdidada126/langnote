@@ -1,5 +1,22 @@
 # centos rpm
 
+
+
+rpm
+包管理器
+利用 Downloadonly 插件下载 RPM 软件包及其所有依赖包
+我们可以通过 yum 命令的 Downloadonly 插件下载 RPM 软件包及其所有依赖包。
+为了安装 Downloadonly 插件，以 root 身份运行以下命令。
+
+
+
+使用 Yumdownloader 工具来下载 RPM 软件包及其所有依赖包
+Yumdownloader是一款简单，但是却十分有用的命令行工具，它可以一次性下载任何 RPM 软件包及其所有依赖包。
+以 root 身份运行如下命令安装 Yumdownloader 工具。
+https://blog.csdn.net/beeworkshop/article/details/101591990
+
+
+
 yum源默认安装路径
 
 rpm -qa | grep XXXXX
