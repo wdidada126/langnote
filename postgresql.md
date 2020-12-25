@@ -15,20 +15,18 @@ PostgreSQL 10.12 Documentation
 
 https://www.postgresql.org/docs/10/index.html
 
-<<<<<<< HEAD
+
 卸载了，腾讯云安装
-=======
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
 
 
 
 
-<<<<<<< HEAD
+
+
 
 开发语言 c
-=======
-开发语言
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
+
+
 
 maillist
 
@@ -38,7 +36,7 @@ maillist
 
 centos 7安装
 
-<<<<<<< HEAD
+
 https://www.postgresql.org/download/linux/redhat/
 
 
@@ -54,6 +52,17 @@ qsql -U postgres ？？？
 
 
 命令行方式登录PostgreSQL
-=======
-https://www.postgresql.org/download/linux/redhat/
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
+
+
+
+**PostgreSQL 数据库内核分析**
+
+https://book.douban.com/subject/6971366/
+
+
+
+
+
+适合刚开始研读PG源代码的朋友
+
+数据库执行计划用到了动态规划和图论等相关知识

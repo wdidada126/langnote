@@ -4,6 +4,10 @@ https://book.douban.com/subject/24722611/
 
 
 
+源码 G:\Linux高性能服务器编程清晰PDF+源码\LinuxServerCodes
+
+
+
 ## 第一篇 TCPIP协议详解
 
 ### 第1章 TCPIP协议族
@@ -297,4 +301,4 @@ nummap释放上述申请的内存
 17.8 mpstat
 
 
-非阻塞write没有一次写对
+非阻塞write没有一次写对  陈硕 知乎上有说法 两次
