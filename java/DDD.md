@@ -1,5 +1,9 @@
 # DDD
 
+DDD研究十年心得：《复杂软件设计之道：领域驱动设计全面解析与实战》出版
+https://www.jdon.com/54881
+
+
 大型系统应用架构实战：部署、容灾、性能优化
 https://www.douban.com/doubanapp/dispatch/review/12094490
 
