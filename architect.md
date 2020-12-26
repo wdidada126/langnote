@@ -2,6 +2,45 @@
 
 
 
+monolithic(巨石、整体性和铁板一块)架构切换到Go语言 microservice(微服务)架构
+
+
+
+架构师 书籍
+
+https://www.zhihu.com/answer/245214823
+
+
+
+《Expert One-on-One J2EE Design and Development》
+
+这本书是Rod Johnson的成名著作，非常经典，从这本书中的代码诞生了springframework
+
+
+
+《敏捷软件开发原则、模式与实践》
+
+Uncle Bob的名著，敏捷的经典名著，这本书比较特别，与其说是讲软件开发过程的书，不如说讲软件架构的书，本书用了很大篇幅讲各种面向对象软件开发的各种模式，个人以为看了这本书，就不必看GoF的《设计模式》了。
+
+
+
+《DAMA数据管理知识体系指南》
+
+DAMA数据资产管理体系
+
+TOGAF架构开发方法论
+
+
+参加大牛的技术分享会
+
+https://www.zhihu.com/answer/1209698711
+
+Expert One-on-One J2EE Design and Development
+
+
+
+
+
 
 Redis 是一个优秀的高性能分布式缓存服务器：在实际应用场景中，每秒 QPS 能够达到 4.5 万 ～5 万
 

@@ -1,6 +1,10 @@
 # maven
 
 ```shell
+
+[设置Maven的默认jdk编译版本](https://blog.csdn.net/jxchallenger/article/details/90247471)
+
+```
 /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/bin/java -Dmaven.multiModuleProjectDirectory=/private/var/folders/ns/qm0ch94j5fbcgfykhrhw4x580000gn/T/archetype1tmp "-Dmaven.home=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3" "-Dclassworlds.conf=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin/m2.conf" "-Dmaven.ext.class.path=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar" -Dfile.encoding=UTF-8 -classpath "/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar" org.codehaus.classworlds.Launcher -Didea.version2019.2.4 -DinteractiveMode=false -DgroupId=cn.wdidada.test -DartifactId=testshorturl-web -Dversion=1.0-SNAPSHOT -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=RELEASE org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate
 ```
 
@@ -380,7 +384,7 @@ tributionManagement element or in -DaltDeploymentRepository=id::layout::url para
 
 [maven跳过单元测试-maven.test.skip和skipTests的区别](https://blog.csdn.net/arkblue/article/details/50974957)
 
-```java
+​```java
 
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

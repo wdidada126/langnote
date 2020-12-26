@@ -1,5 +1,8 @@
 # jps
 
+jps -lm
+
+
 jps -v
 jps -lv
 

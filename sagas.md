@@ -1,4 +1,12 @@
-# saga
+### Sagas
+
+
+
+### 
+
+https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
+
+
 
 https://servicecomb.apache.org/cn/docs/distributed-transactions-saga-implementation/
 

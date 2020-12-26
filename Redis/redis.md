@@ -1,5 +1,9 @@
 # redis
 
+![redis windows](images/redis_windows.png)
+
+dump.rdb
+
 Redis cluster是gossip协议
 
 Redis 集群和sentinal模式的区别
