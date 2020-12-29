@@ -1,6 +1,14 @@
 # sso
 
-**spring-security + oauth2**
+spring-security + oauth2
+
+
+
+jwt规范
+
+
+
+
 
 https://www.jianshu.com/p/d80061e6d900
 
