@@ -1,5 +1,5 @@
 # sso
-
+Single Sign On,单点登录
 spring-security + oauth2
 
 
@@ -13,3 +13,12 @@ jwt规范
 https://www.jianshu.com/p/d80061e6d900
 
 https://blog.csdn.net/u012394095/article/details/79732224
+
+
+jwt客户端headers中的Authorization: Bearer 怎么理解
+Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDkzODA5NzUsInVzZXJfbmFtZSI6Imxpbnl1YW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiZGZhNTliZGMtMDg4Ny00ZGYzLWI2ZTEtYmMwYjkwNDhlOGNhIiwiY2xpZW50X2lkIjoicmVzb3VyY2UxIiwic2NvcGUiOlsicmVhZCJdfQ.Rvzp4uLEzKi1lYogdsfx-of6Z28M6o2--5qLYqZTQq5YPPzLyWNwBQwWG1gfxSFCu8DhZhJVd0OCwg6yQhr3Pi0hwD9wtsKut3hkuD00Gk_8XACvGQPeWuhIAC_rYiV4Hdqc1z0v4XgUAxNYU3XIsKl70t34VQ1VxQ7IKnwW0XYaFQQv_oeSF7j8nJfvxxeMFUtFkUWeiqyWb9ZWydw9CNAQapQ6Rkih_M7sFLEK9nyw4ndVTt5iqXd07rEn_Aoih8tXvyyXtPvRiLdoI8H9dYO2BzoTmXMnoMxBwDTxYgO7K-wFko_d5LbmO5C10n2z0BpuSKpboCJGCdP1nCfXrw
+
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Authentication_schemes
+
+https://www.jianshu.com/p/64f2ee59acd9
