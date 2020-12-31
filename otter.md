@@ -29,3 +29,7 @@ otter 基于数据库增量日志解析，准实时同步到本机房或异地�
 
 binlog
 
+
+同步资源文件？
+https://github.com/alibaba/canal
+
