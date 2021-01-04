@@ -1,5 +1,55 @@
 # mysql
 
+共享锁：select * from tableName where ... + lock in share more
+排他锁：select * from tableName where ... + for update
+
+执行计划，执行计划
+
+
+MySQL提供explain/desc命令输出执行计划
+
+问：MySQL数据库，desc如何查看执行计划
+
+如何创建组合索引
+语法：CREATE UNIQUE INDEX index ON table( col1, col2, col3 )
+实例：CREATE UNIQUE INDEX index_unique ON app(pkgName,version,device,osver)
+
+
+SQL中函数REPLACE()的用法及实例
+https://blog.csdn.net/lanxingbudui/article/details/83854735
+MySQL的replace方法
+https://www.cnblogs.com/libin6505/p/10422910.html
+
+MySQL执行计划
+https://www.cnblogs.com/sunjingwu/p/10755823.html
+
+
+SELECT CONNECTION_ID();
+
+
+```shell
+mysql> SELECT CONNECTION_ID();
++-----------------+
+| CONNECTION_ID() |
++-----------------+
+|           14709 |
++-----------------+
+1 row in set (0.06 sec)
+
+mysql> explain for connection 14709;
+3012 - EXPLAIN FOR CONNECTION command is supported only for SELECT/UPDATE/INSERT/DELETE/REPLACE
+```
+
+
+mysql 锁表，锁行
+https://www.cnblogs.com/itdragon/p/8194622.html
+
+https://github.com/ITDragonBlog/daydayup
+
+mysql optimization
+https://dev.mysql.com/doc/refman/8.0/en/optimization.html
+Query Execution Plan
+https://dev.mysql.com/doc/refman/8.0/en/execution-plan-information.html
 
 MySQL主键索引 层数
 微信收藏
@@ -8,8 +58,7 @@ MySQL主键索引 层数
 MySQL连接池 连接数有关
 
 
-XA
-
+XA 
 数据库
 
 MySQL
@@ -19,7 +68,6 @@ MySQL
 show status
 
 ```
-
 #!/bin/bash
 while true
 do
@@ -28,7 +76,6 @@ mysqladmin -uroot -p "密码" ext | awk
 sleep 
 1
 done
-
 ```
 
 Converting HEAP to MyISAM
