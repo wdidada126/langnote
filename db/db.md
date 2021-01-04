@@ -153,14 +153,13 @@ IEEE的数据库会议。IEEE的会议一般都比ACM对应会议差一些，ICD
 
 工程实现超高的编程技巧
 
-
 1.能够像haskell那样impure和pure分离.
 2.幂等的设计, 让部分有状态的模块成为metal unit, 同时幂等设计和failstop能够将有效地避bf. 
 3.元编程能力, 降低代码的冗余和耦合, 代码更适合扩展和组合.
 4.超高的系统编程能力.
 5.单测, mock测试设计能力.
 6.漂亮的日志输出. 
-7.会做性能分析, [参考大牛博客](http://link.zhihu.com/?target=http%3A//www.brendangregg.com/).
+7.会做性能分析, [参考大牛博客](http://www.brendangregg.com/).
 8.会使用docker加速自己的开发效率. 
 
 周边涉及
