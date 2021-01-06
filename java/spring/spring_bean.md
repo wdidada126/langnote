@@ -1,5 +1,25 @@
 # Spring bean
 
+ConstructorArgumentValues
+ValueHolder
+String type
+Object value
+String name
+Object source
+
+org.springframework.beans.BeanMetadataElement
+Object getSource();
+
+Spring bean 生命周期，面试题，看源码
+
+```java
+@Component
+public class ConfigProperties {
+
+    @Value("${config.use.start:600}")
+    public int start;
+}
+```
 
 
 eclipse需要引用命名空间dtd，对xml文件进行校验
@@ -15,9 +35,7 @@ schema改为“spring-beans-2.5.xsd”
 Spring容器支持的三种依赖注入的方式以及具体配置方法：
 
 •  属性注入方法
-
 •  构造函数注入方法
-
 •  工厂方法注入方法
 
 
