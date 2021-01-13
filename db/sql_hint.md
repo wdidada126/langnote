@@ -59,4 +59,23 @@ SELECT SQL_BUFFER_RESULT FIELD1, COUNT(*) FROM TABLE1 GROUP BY FIELD1;
 一般用于分组或DISTINCT关键字，这个选项通知MySQL，如果有必要，就将查询结果放到临时表中，甚至在临时表中进行排序。SQL_SMALL_RESULT比起SQL_BIG_RESULT差不多，很少使用。
 
 
+ss中使用了hint
+新特性解读 | MySQL 8.0 新增 HINT 模式
+https://zhuanlan.zhihu.com/p/69456261
 
+### ob
+Hint 是 SQL 语句中将指令传递给 OceanBase 数据库优化器或服务器的一种注释。通过 Hint 可以使优化器或服务器生成某种特定的计划。 一般情况下，优化器会为用户查询选择最佳的执行计划，不需要用户主动使用 Hint 指定，但在某些场景下，优化器生成的执行计划可能不满足用户的要求，这时就需要用户使用 Hint 来主动指定并生成特殊的执行计划。
+
+Hint 应该少用，仅在您收集了相关表的统计信息并且使用 EXPLAIN PLAN 语句在没有 Hint 的情况下评估了优化器计划之后，才谨慎考虑使用。更改数据库条件以及在后续版本中增强查询性能可能会导致您代码中的 Hint 对性能产生重大影响。
+
+Hint 有以下几类：
+
+与连接顺序相关的 Hint
+与联接操作相关的 Hint
+与并行执行相关的 Hint
+与访问路径相关的 Hint
+与查询装换相关的 Hint
+与查询策略相关的 Hint
+其他 Hint
+
+[ob hint](https://help.aliyun.com/document_detail/158313.html?spm=a2c4g.11186623.6.748.36951335kVqqAj)

@@ -1,5 +1,9 @@
 # fastdfs
 
+https://blog.csdn.net/zollty/article/details/108331055
+
+POSIX通用接口
+https://zhuanlan.zhihu.com/p/86827617
 
 跟其他文件系统对比
 
