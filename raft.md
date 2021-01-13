@@ -1,5 +1,11 @@
 # raft
 
+
+
+[raft中文翻译](https://www.infoq.cn/article/raft-paper/)
+
+
+
 https://blog.csdn.net/LU_ZHAO/article/details/104934220
 
 
