@@ -1,9 +1,14 @@
 # SQL必知必会
 
-个人总结，
+个人总结，测试
+mvvc原理有考题
+count(*) count(1) count(column_name)
 
+10/20正确率 有些没有理解
+ACID-> BASE
 
 陈旸
+
 清华大学计算机博士
 前IBM中国研究院工程师。IEEE & ACM Member，中国人工智能协会成员，中国计算机协会CCF大数据专委。
 
@@ -19,7 +24,8 @@ SQL语言是关系型数据库管理系统（RDBMS）的通用语言。在工作
 从实战角度出发，将前几个模块的内容系统整合，讲解如何用SQL完成数据分析中具体的项目，比如数据清洗、数据集成等。
 
 
-
+SQL提示（hint）
+https://blog.csdn.net/qq_17613195/article/details/82845361
 
 
 ### 07 SQL函数
