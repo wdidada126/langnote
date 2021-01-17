@@ -45,6 +45,10 @@ explain 解释 说明
 
 
 
+execute plan 执行计划
+
+
+
 
 MySQL-8.0执行器及其改进
 https://cloud.tencent.com/developer/article/1461353
@@ -103,7 +107,7 @@ select ... for update
 
 mysql 事务性数据引擎实现的都不是简单的行级锁，提升并发，使用mvcc
 
-oracle pgsql 都实现了mvcc
+oracle pgsql 等rdbms都实现了mvcc
 
 可以认为mvcc是行级锁的一个变种
 
@@ -123,7 +127,50 @@ D:\mysql-5.7.17-winx64\data
 
 数据字典保存在 .frm文件中
 
+.idb
 
+索引 数据保存在哪儿？ .ibd
+
+
+
+
+
+[mysql之frm,MYD,MYI.idb,par文件说明](https://www.cnblogs.com/jdbeyond/p/11373802.html)
+
+如数据库a，表b。
+
+1、如果表b采用MyISAM，data\a中会产生3个文件：
+
+b.frm ：描述表结构文件，字段长度等
+
+b.MYD(MYData)：数据信息文件，存储数据信息(如果采用独立表存储模式)
+
+b.MYI(MYIndex)：索引信息文件。
+
+2、如果表b采用InnoDB，data\a中会产生1个或者2个文件：
+
+b.frm ：描述表结构文件，字段长度等
+
+如果采用独立表存储模式，data\a中还会产生b.ibd文件（存储数据信息和索引信息）
+
+如果采用共存储模式的，数据信息和索引信息都存储在ibdata1中
+
+如果采用分区存储，data\a中还会有一个b.par文件（用来存储分区信息）
+
+
+
+
+
+
+
+# mysql之 共享表空间与独立表空间
+
+https://blog.csdn.net/zhang123456456/article/details/72802056
+
+
+
+独立表空间：
+在配置文件（my.cnf）中设置： innodb_file_per_table 为 On
 
 
 
@@ -137,9 +184,9 @@ performance_schema
 
 sysbench
 
+*sysbench*压力测试工具简介: *sysbench*是一个开源的、模块化的、跨平台的多线程性能测试工具,可以用来进行CPU、内存、磁盘I/O、线程、数据库的性能测试。
 
-
-
+https://github.com/akopytov/sysbench
 
 ### Chap.4 schema 与数据类型优化
 
@@ -161,9 +208,30 @@ sysbench
 
 ### Chap. 6
 
-MVVC
+MVCC 不是mvvc，mvvc是前端的概念
+
+mvcc对应的是lock base version control
 
 加了三个字段 隐藏的
+
+
+
+
+
+1.DB_TRX_ID：一个6byte的标识，每处理一个事务，其值自动+1
+下面提到的“创建时间”和“删除时间”记录的就是这个DB_TRX_ID的值
+如insert、update、delete操作时，删除操作用1个bit表示。 
+DB_TRX_ID是最重要的一个，可以通过语句“show engine innodb status”来查找 
+2.DB_ROLL_PTR: 大小是7byte,指向写到rollback segment（回滚段）的一条undo log记录
+（update操作的话，记录update前的ROW值）
+3.DB_ROW_ID: 大小是6byte,该值随新行插入单调增加。
+当由innodb自动产生聚集索引时聚集索引(即没有主键时,因为MYSQL默认聚簇表,会自动生成一个ROWID)
+包括这个DB_ROW_ID的值，
+不然的话聚集索引中不包括这个值,这个用于索引当中。
+
+
+
+https://www.cnblogs.com/zzq-include/p/13532019.html
 
 
 
@@ -197,3 +265,32 @@ Cloud & MySQL
 
 索引和实际的数据是分开的，只不过是用索引指向了实际的数据，这种索引就是所谓的非聚集索引
 
+
+
+
+
+SQL Sever索引类型有：唯一索引，主键索引，聚集索引，非聚集索引。
+
+MySQL 索引类型有：唯一索引，主键（聚集）索引，非聚集索引，全文索引。
+
+聚集（clustered）索引，也叫聚簇索引。
+
+> 定义：数据行的物理顺序与列值（一般是主键的那一列）的逻辑顺序相同，一个表中只能拥有一个聚集索引。
+
+
+
+非聚集（unclustered）索引。
+
+> 定义：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。
+
+spatial index
+
+https://cloud.tencent.com/developer/news/199266
+
+MySQL5.7对于GIS进行了大幅重构和优化，InnoDB引擎原生支持地理空间数据类型，内部通过R-树来实现空间索引。MySQL5.7还提供了原生的st_geohash函数，可将地理空间坐标转化为Geohash格式，通过SPATIAL KEY添加空间索引。
+
+优点：5.7新版功能，未来值得期待
+
+缺点：数据库版本升级较复杂，对于现有业务系统来讲是个巨大的挑战。另外对于大数据量下的空间索引支持有待线上系统检验。
+
+API：http://mysqlserverteam.com/mysql-5-7-and-gis-an-example/
