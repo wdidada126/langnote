@@ -19,7 +19,7 @@ dubbo是zk ip port，直连，底层Netty，dubbo协议
 
 ###### 服务提供者
 
-```
+```java
 import org.apache.dubbo.rpc.config.ApplicationConfig;
 import org.apache.dubbo.rpc.config.RegistryConfig;
 import org.apache.dubbo.rpc.config.ProviderConfig;
@@ -63,7 +63,7 @@ service.export();
 
 
 ###### 服务消费者
-```
+```java
 import org.apache.dubbo.rpc.config.ApplicationConfig;
 import org.apache.dubbo.rpc.config.RegistryConfig;
 import org.apache.dubbo.rpc.config.ConsumerConfig;
@@ -152,7 +152,7 @@ Exception in thread "main" java.lang.IllegalStateException: ref not allow null!
 
 
 
-```
+```java
 org.apache.dubbo.config.AbstractInterfaceConfig
 List<RegistryConfig> registries
 ```
@@ -169,25 +169,25 @@ https://blog.csdn.net/u012489091/article/details/83314798
 
 
 
-invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo(123)
+`invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo(123)`
 
-invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo("123")
+`invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo("123")`
 
-invoke cn.wdidada.dubbo.samples.echo.impl.EchoServiceImpl.echo("123")
-
-
+`invoke cn.wdidada.dubbo.samples.echo.impl.EchoServiceImpl.echo("123")`
 
 
 
- invoke EchoService.echo({"msg":"msg"})
-
- invoke EchoService.echo("msg")
-
- invoke EchoService.echo(msg)
 
 
+ `invoke EchoService.echo({"msg":"msg"})`
 
-invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo({"msg":"msg","class":"java.lang.String"})
+ `invoke EchoService.echo("msg")`
+
+ `invoke EchoService.echo(msg)`
+
+
+
+`invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo({"msg":"msg","class":"java.lang.String"})`
 
 
 
@@ -213,7 +213,10 @@ debug源码了
 
 
 
-###### 深入理解Apache Dubbo
+###### books
+
+- 深入理解Apache Dubbo与实战
+- 深度剖析Apache Dubbo核心技术内幕
 
 Dubbo容错
 

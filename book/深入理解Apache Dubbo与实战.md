@@ -3,7 +3,6 @@
 
 
 商宗海，花名诣极，Apache Dubbo PMC。曾就职于阿里巴巴、有赞，担任Dubbo框架技术负责人，长期活跃在Dubbo社区。现就职于蚂蚁金服中间件团队，负责sofa-rpc和云原生方向的产品研发。
-
 林琳，花名景竹，曾就职于华软集团、递四方等公司，担任技术经理、高级架构师等职位。现就职于蚂蚁金服支付宝事业群，负责工程平台架构工作。
 
 
@@ -12,15 +11,17 @@
 
 
 
-H好像是http层的东西，跟webservice差不多
+Hession好像是http层的东西，跟webservice差不多
 
 
 
 [深入理解Apache Dubbo与实战](https://book.douban.com/subject/34455777/)
 
-
+https://blog.csdn.net/shaolong1013/article/details/105582263
 
 Dubbo在zk中的配置信息
+telnet ip port 回车 记住要有回车
+
 四大类
 
 [Dubbo zk命令行](http://alibaba.github.io/dubbo-doc-static/Telnet+Command+Reference-zh-showComments=true&showCommentArea=true.htm)
@@ -28,14 +29,74 @@ Dubbo在zk中的配置信息
 20880 port
 
 ExtensionLoader
-
 classpath下面有三个位置
 前置条件
 Interface
 @SPI注解
 
+Filter
+配置有两种，一种是注解，一种是spring xml配置文件
+
+https://www.cnblogs.com/mumuxinfei/p/9305710.html
+定义类，实现Filter接口，
 
 
+```java
+    @Override
+    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
+       return invoker.invoke(invocation);
+    }
+```
+
+在META-INF/dubbo目录下, 添加com.alibaba.dubbo.rpc.Filter文件, 其内容为
+statFilter=com.test.StatFilter
+
+而对于每个需要用到该filter的dubbo provider/consumer, 都需要在xml申明中添加filter标签, 比如:
+```xml
+<dubbo:reference id="echoService" check="false" interface="com.test.EchoService" filter="statFilter" />
+```
+
+
+全局配置:
+　　其实实现全局配置, 非常的简单, 一种方式是通过额外的配置, 一种通过指定@Activate的group实现.
+　　1. 额外的配置方式
+　　以上文的案例为例, 在resource目录下, 添加dubbo.properties文件, 然后配置如下:
+
+invoker：指服务提供者provider列表
+invocation：指服务rpc调用相关参数信息
+
+
+4
+# 如果该filter要作用于为provider
+dubbo.provider.filter=com.test.StatFilter
+# 如果该filter要作用于为consumer
+dubbo.consumer.filter=com.test.StatFilter
+　　具体的目录结果如下:
+　　
+　　2. 指定@Activate的group
+　　这个方法, 就比较简单了, 而且也不需要额外的配置文件了
+
+package com.test
+ 
+import com.alibaba.dubbo.common.Constants;
+import com.alibaba.dubbo.common.extension.Activate;
+ 
+@Activate(
+        group = {Constants.PROVIDER, Constants.CONSUMER},
+        order = -2000
+)
+public class StatFilter implements Filter {
+ 
+    @Override
+    public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
+       return invoker.invoke(invocation);
+    }
+ 
+}
+　　
+
+总结:
+　　权当做笔记吧, 确实dubbo filter给了开发者很大自由度和空间.
 
 
 ### Chap. 1 Dubbo——高性能RPC通信框架 
@@ -158,6 +219,21 @@ exporer dubbo 协议 rmi协议
 Dubbo协议详解
 
 
+### 第7章 Dubbo集群容错
+
+
+
+### 第8章 Dubbo扩展点
+Dubbo核心扩展点概述
+
+
+### 第9章 Dubbo高级特性
+
+### 第10章 Dubbo过滤器
+
+公司项目用
+分为消费者过滤器 提供者过滤器
+
 
 **Dubbo书籍第二章**
 
@@ -187,3 +263,5 @@ Token
 
 Buck
 
+AccessLogFilter
+https://blog.csdn.net/u013160932/article/details/81074231

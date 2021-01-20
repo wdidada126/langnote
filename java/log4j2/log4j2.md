@@ -1,5 +1,7 @@
 # log4j2
 
+https://issues.apache.org/jira/projects/LOG4J2/issues/LOG4J2-2901?filter=allopenissues
+
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/D:/mavenrepository/201904/org/slf4j/slf4j-simple/1.7.25/slf4j-simple-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: Found binding in [jar:file:/D:/mavenrepository/201904/org/apache/logging/log4j/log4j-slf4j-impl/2.9.1/log4j-slf4j-impl-2.9.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]

@@ -1,7 +1,6 @@
 # junit
 
 ```java
-
 Class SpringJUnit4ClassRunner
 java.lang.Object
 org.junit.runner.Runner
@@ -14,9 +13,7 @@ org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 http://www.java1234.com/a/javabook/javaweb/2013/1108/1031.html
 
 ```shell
-
 java.lang.Exception: Method setUp() should be public
-
 	at org.junit.runners.model.FrameworkMethod.validatePublicVoid(FrameworkMethod.java:94)
 	at org.junit.runners.model.FrameworkMethod.validatePublicVoidNoArg(FrameworkMethod.java:70)
 	at org.junit.runners.ParentRunner.validatePublicVoidNoArgMethods(ParentRunner.java:133)
@@ -64,9 +61,8 @@ http://www.java1234.com/a/javabook/javaweb/2013/1108/1031.html
 
 
 
-```
+```shell
 java.lang.Exception: Method mainsdddddddd should have no parameters
-
 	at org.junit.runners.model.FrameworkMethod.validatePublicVoidNoArg(FrameworkMethod.java:76)
 	at org.junit.runners.ParentRunner.validatePublicVoidNoArgMethods(ParentRunner.java:155)
 	at org.junit.runners.BlockJUnit4ClassRunner.validateTestMethods(BlockJUnit4ClassRunner.java:208)
@@ -85,14 +81,17 @@ java.lang.Exception: Method mainsdddddddd should have no parameters
 	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
 	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
 	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
-
-
 Process finished with exit code -1
 ```
 
 
 
+JUnit
+@Before
+@BeforeClass
 
+@Before,@After和@BeforeClass和@AfterClass的区别
+https://blog.csdn.net/dingjiajia_949/article/details/80183828
 
 
 
