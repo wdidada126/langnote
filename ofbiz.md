@@ -41,3 +41,7 @@ https://blog.csdn.net/qq_38802742/article/details/89397510
 
 社区
 https://ofbiz.apache.org/mailing-lists.html
+
+表结构设计
+大量的外键 触发器
+
