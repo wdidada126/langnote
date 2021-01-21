@@ -8,7 +8,6 @@ https://cloud.tencent.com/developer/article/1033405
 
 https://blog.csdn.net/ostrichmyself/article/details/42581227
 
-
 https://blog.csdn.net/culuo4781/article/details/107624314
 
 https://www.sqlshack.com/learn-sql-how-to-write-a-complex-select-query/
@@ -125,4 +124,22 @@ GROUP BY task.plan_mock_id, taskclass.class_id
 	</update>
 
 
+<if test="operaType != null and operaType[0] != 0">
+    and opera_type IN (
+    <foreach collection="operaType" separator="," item="item" index="idx">
+        #{item}
+    </foreach>
+    )
+
+
+<update id="updateSchoolName">
+	update ems_dog_permission perm,
+	(
+		<foreach collection="list" item="item" separator=" union all ">
+			select #{item.id} id,#{item.schoolName} school_name
+		</foreach>
+	) tmp
+	set perm.school_name = tmp.school_name
+	where perm.id = tmp.id
+</update>
 

@@ -1,63 +1,68 @@
  # mi cloud
 
 
+天津滨海新区 河北 重工业
+淮南 铜陵
+矿产 石油 化工
+航天工业
+服饰
+媒体
+视频
+金融
+能源 光伏
+教科文卫
+电力 国家电网
+家电 电子产品
+class jvm 读写 kotlin grovvy kafka android app develop
+编译原理
+字节码 加载 链接 初始化
+同一个包，全部加载，还是只加载用到的
+
 
 从开发的角度，学习技术先深度后广度，比如把rabbitMQ吃透，再学其他MQ，避免样样能，样样不精。
 
 
-
-目前比较先进，性能优异的虚拟化平台例如 IBM VSphere 的 VMware ESXi 等都采用的是这种设计思路。
-
+kvm/xen/vmware esx
+目前比较先进，性能优异的虚拟化平台例如IBM VSphere的VMware ESXi等都采用的是这种设计思路。
 虚机基于hyper-v os也是基于虚拟化
 
 
 
 csw
-
 单机几万tps
-
 压测
 
 
 
 国外知名大学博士论文免费下载
-
 https://zhuanlan.zhihu.com/p/48866777
-
 https://zhuanlan.zhihu.com/p/96130650
-
 https://zhuanlan.zhihu.com/p/94919502
 
 
 
 中科院
-
-***http://dpaper.las.ac.cn\***
-
+http://dpaper.las.ac.cn/
 
 
-选择 Pulsar 而不是 Kafka 的 7 大理由
+
+选择Pulsar而不是 Kafka 的 7 大理由
 
 https://zhuanlan.zhihu.com/p/68809190
 
 
 
 Software enginer at google
-
 O出版社，电子版
-
 豆瓣读书
 
 
 
 RocksDB
-
 https://zhuanlan.zhihu.com/p/162053980
 
 需记忆的概念
-
 读放大（Read Amplification），写放大（Write Amplification）
-
 空间放大（Space Amplification）
 
 https://cloud.tencent.com/developer/article/1352666
@@ -77,7 +82,6 @@ spring官方布道师Josh long与Reactor 项目的founder ，Reactor-Netty项目
 
 
 Silver Bullet
-
 万能解决方案
 
 
@@ -95,15 +99,11 @@ http://www.pcac.org.cn/eportal/ui?pageId=607959&articleKey=610257&columnId=59504
 
 
 DOI是digital object identifier的首写字母缩写，译文为数字对象唯一标志。DOI主要由前缀和后缀组成，前缀由“10．”开始，后面4位（可以加长）数字是注册者号码。一般每个成员都有1个前缀，但也可有多种前缀（如每种期刊各有1个前缀）。
-
 是不是只有论文有doi
 
 浙江图书馆https://www.zjlib.cn/
-
 免费下载 维普 知网 万方
-
 支付宝注册的
-
 安徽图书馆
 
 [网站｜万方、知网、维普、超星学术论文免费下载，杂志期刊免费看](https://zhuanlan.zhihu.com/p/44473923)
@@ -125,7 +125,6 @@ OLAP
 
 
 不能高空抛物
-
 https://news.china.com/socialgd/10000169/20200722/38527522.html
 
 
@@ -135,7 +134,6 @@ springmvc 自定义注解 例子
 
 
 注意核心类
-
 https://www.cnblogs.com/wyq1995/p/10672710.html
 
 
@@ -149,11 +147,7 @@ certify
 赁lin 姓
 
 InnoDB的非主键索引是聚集索引还是非聚集索引
-
 非聚集
-
-
-
 second index 二级索引 相对于主键索引
 
 
@@ -161,8 +155,6 @@ second index 二级索引 相对于主键索引
 
 
 anki，强记
-
-
 
 分布式 双写
 
@@ -173,9 +165,7 @@ https://my.oschina.net/u/4030990/blog/4401631
 会计
 
 cap
-
 三个辅导机构 会计岛 东奥 中华会计网校
-
 https://www.zhihu.com/question/408222320
 
 

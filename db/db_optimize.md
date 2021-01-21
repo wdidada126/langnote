@@ -7,3 +7,7 @@
 参考
 
 sql_hint.md
+
+mysql优化
+mysql_optimize.md
+

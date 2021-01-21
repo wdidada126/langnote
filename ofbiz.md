@@ -37,3 +37,7 @@ https://localhost:8443/catalog/control/main
 登陆 用户名/密码  admin ofbiz(一样的)
 
 https://blog.csdn.net/qq_38802742/article/details/89397510
+
+
+社区
+https://ofbiz.apache.org/mailing-lists.html
