@@ -1,5 +1,10 @@
 # SQL
 
+SQL92
+SQL99
+
+
+
 [自己实现一个SQL解析引擎](https://blog.csdn.net/kxjrzyk/article/details/79341657)
 
 [SQL中Truncate的用法](https://www.cnblogs.com/zhoufangcheng04050227/p/7991759.html)
