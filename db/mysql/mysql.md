@@ -1,5 +1,7 @@
 # mysql
 
+https://github.com/shlomi-noach/awesome-mysql
+
 http://lists.mysql.com/
 
 
