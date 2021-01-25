@@ -1,5 +1,66 @@
 # mysql
 
+http://lists.mysql.com/
+
+
+mysql> select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
++--------------------------------------------------------+
+| str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s') |
++--------------------------------------------------------+
+| 2016-09-09 15:43:28                                    |
++--------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select date_format(now(), '%Y-%m-%d %h:%i:%s');
++-----------------------------------------+
+| date_format(now(), '%Y-%m-%d %h:%i:%s') |
++-----------------------------------------+
+| 2021-01-21 04:28:13                     |
++-----------------------------------------+
+1 row in set (0.01 sec)
+
+
+
+Mysql中字符串互转时间类型,date_format()和str_to_date()函数
+https://blog.csdn.net/lyg1153/article/details/79755768
+
+Mysql关键字和保留字 - 版本5.7
+https://blog.csdn.net/qq_15071263/article/details/77985485
+
+
+MySQL关键字大全
+https://blog.csdn.net/benxiaohai888/article/details/77803090
+
+MySQL Aggregate Functions and Grouping
+Aggregate Functions and Grouping
+AVG()
+BIT_AND()
+BIT_OR()
+BIT_XOR()
+COUNT()
+GROUP_CONCAT()
+MAX()
+MIN()
+STD()
+STDDEV_POP()
+STDDEV_SAMP()
+STDDEV()
+SUM()
+VAR_POP()
+VAR_SAMP()
+VARIANCE()
+
+https://www.w3resource.com/mysql/aggregate-functions-and-grouping/aggregate-functions-and-grouping-group_concat.php
+https://www.educative.io/edpresso/what-is-the-groupconcat-function-in-mysql
+https://mariadb.com/kb/en/group_concat/
+
+内置函数 聚合函数
+https://mariadb.com/kb/en/built-in-functions/
+https://mariadb.com/kb/en/aggregate-functions/
+
+String相关函数
+Date相关函数
+
 李春 mysql
 maridb
 XtraBackup和pt-Toolkits

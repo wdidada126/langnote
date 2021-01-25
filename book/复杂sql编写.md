@@ -172,3 +172,508 @@ select ${@com.iflytek.jkpt.ems.common.constants.Constants$PlanType@UNITE_PLAN} A
 
 		AND townplan.plan_state ${@com.iflytek.jkpt.ems.common.util.state.PlanStateUtil@getUniteState(status)}
 连等于号都不用写
+
+
+	<select id="listPlanSchoolCountExamed" resultType="com.iflytek.jkpt.ems.api.model.common.PlanDetailDTO">
+		<bind name="plan_field_id" value="@com.iflytek.jkpt.ems.core.util.plan.PlanFieldUtil@getTableFieldId(planType)"/>
+		select 
+			mockplan.${plan_field_id} planId,
+			mockplan.plan_type planType,
+			count(1) schoolCountExamed
+		from ems_mock_plan mockplan
+		where 1=1
+		and mockplan.${plan_field_id} 
+			in (<foreach collection="planIds" item="item" separator=",">#{item}</foreach>)
+		and mockplan.complete_stu_count > 0
+		group by mockplan.${plan_field_id}
+	</select>
+
+sql 列名是mybatis的入参
+
+
+
+			GROUP_CONCAT(distinct taskclass.class_id) classIds,
+			count(distinct taskclass.class_id) classCountExamed
+
+
+对虚表的操作
+update虚表
+select出来的表
+
+
+
+where task_id in
+select出来的
+
+
+
+<if test="!(userId!=null)">
+
+
+	listTestTaskState  if() sum()
+
+mybatis
+xml
+
+一个<delete 节点
+多个delete语句
+
+
+
+				<if test="classIds != null and classIds.size() > 0">
+					taskclass.class_id in (
+					<foreach collection="classIds" item="item" separator=",">#{item,jdbcType=VARCHAR}</foreach>
+					)
+				</if>
+
+
+
+queryClientTask
+
+
+
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND task.start_time BETWEEN str_to_date(concat(#{startTime}, ' 00:00:00'), '%Y-%m-%d %H:%i:%s') AND str_to_date(concat(#{endTime}, ' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+		</if>
+
+
+AND task.task_state NOT IN
+		(0, 38, 98, 102, 103)
+
+
+
+sum(if(task_state in (5,6,7), 1, 0)) taskEvalNum
+
+
+
+
+	<update id="updateTownPlanStuCountByTaskId">
+		update ems_town_plan townplan,
+		(select * from  (
+			select plan_town_id,sum(complete_stu_count) ccount, sum(total_stu_count) tcount from ems_mock_plan
+			where plan_town_id in (
+				select plan_town_id from ems_test_task where id in (<foreach collection="taskIds" item="item" separator=",">#{item}</foreach>)
+			)
+			and plan_state != 100 and plan_town_id != ''
+			GROUP BY plan_town_id
+		) tmp2 ) tmp
+		<if test="totalCount">
+			set townplan.total_stu_count = tmp.tcount
+		</if>
+		<if test="!totalCount">
+			set townplan.complete_stu_count = tmp.ccount
+		</if>
+		where tmp.plan_town_id = townplan.id
+	</update>
+
+
+
+		delete from ems_test_task_paper
+
+
+select  COUNT(DISTINCT e.examineeCode) gatherAmount
+
+
+select 列名那边 子查询
+
+
+select DISTINCT area from sys_plan where area is NOT NULL and LENGTH(area) != 0
+
+select count(*) total,sum(case when sp.planState=11 then 1 else 0 end) completed from sys_plan sp
+
+
+select 7 num;
++-----+
+| num |
++-----+
+|   7 |
++-----+
+
+
+
+单个sql，还是多个sql
+<!--批量更新record成绩-->
+<update id="updateRecord" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update log_hum_record
+        <set>
+            score = #{item.score},detail=#{item.detail},
+            markStatus=#{item.markStatus},commiteTime=#{item.commiteTime},userAccount=#{item.userAccount}
+        </set>
+        where id = #{item.id}
+    </foreach>
+</update>
+
+
+
+
+log_hum_examinee,log_hum_task
+WHERE log_hum_examinee.taskUid = log_hum_task.uid
+
+
+
+
+COUNT(DISTINCT e.examineeCode) gatherAmount
+
+
+ROUND(A.分差,2) evaScoreGap,
+
+A是表别名 分差是select查询出来虚表的列
+
+join 默认是哪个join
+
+
+where planState not in (0, 1, 2, 11);
+
+
+    <!--批量更新record成绩-->
+    <update id="updateRecord" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update log_hum_record
+            <set>
+                score = #{item.score},detail=#{item.detail},
+                markStatus=#{item.markStatus},commiteTime=#{item.commiteTime},userAccount=#{item.userAccount}
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+
+批量插入
+批量更新
+
+
+
+<update id="batchUpdate" parameterType="java.util.List">
+	update log_hum_examinee
+	<trim prefix="set" suffixOverrides=",">
+		detail =
+		<foreach collection="list" item="item" open="case " close=" end,">
+			when examineeCode = #{item.examineeCode}
+			AND paperCode = #{item.paperCode}
+			AND sectionCode = #{item.senctionName}
+			AND examineeType in (0,1)
+			then #{item.detail}
+		</foreach>
+		score =
+		<foreach collection="list" item="item" open="case " close=" end,">
+			when examineeCode = #{item.examineeCode}
+			AND paperCode = #{item.paperCode}
+			AND sectionCode = #{item.senctionName}
+			AND examineeType in (0,1)
+			then #{item.score}
+		</foreach>
+	</trim>
+</update>
+
+
+
+
+<!-- 评分质量监控 -->
+<select id="getMarkQualityMonitor" resultType="com.iflytek.webService.entitys.LogHumTaskQualityMonitorBean">
+    SELECT
+        r.sectionCode sectionCode,
+        t.description sectionName,
+        u.userType userType,
+        u.taskType taskType,
+        u.userAccount userAccount,
+        COUNT(DISTINCT r.id) haveEvalAmount,
+        t.fullScore fullScore,
+        AVG(r.score) avgEvalScore,
+        MAX(r.score) maxEvalScore,
+        MIN(r.score) minEvalScore
+    FROM
+        log_hum_record r
+    LEFT JOIN log_user u ON r.userAccount = u.userAccount
+    LEFT JOIN log_hum_task t ON r.sectionCode = t.sectionCode
+    WHERE
+        r.jkptPlanId = #{planId}
+    AND r.markStatus = 2
+    <choose>
+        <when test="roleType != -1 and roleType != null">
+            <choose>
+                <when test="roleType == 2">
+                    AND u.userType = 3
+                </when>
+                <otherwise>
+                    AND u.userType = 2
+                    <!-- 数据库中 0 定标+验证，  1异常集-->
+                    AND u.taskType = #{roleType}
+                </otherwise>
+            </choose>
+        </when>
+        <otherwise>
+            AND (u.userType = 2 OR u.userType = 3)
+        </otherwise>
+    </choose>
+    <if test="sectionCode != null">
+        AND r.sectionCode = #{sectionCode}
+    </if>
+    GROUP BY
+    r.sectionCode, u.userAccount
+</select>
+
+
+
+and data_time = (SELECT MAX(data_time) FROM large_screen_school_exam_statistics)
+
+
+order by (interaction_user_count+classwork_user_count) desc
+
+
+
+
+SELECT FROM manager_app_detail_${tableSuffix}
+
+
+ExamTaskStatMapper.xml
+
+
+
+	<select id="listTableColumn" resultType="com.iflytek.jkpt.manager.core.model.dto.bigdata.ColumnMetaData">
+    	desc ${tableName}
+    </select>
+
+	<insert id="loadTableData">
+    	load data local infile '${localFilePath}' into table ${tableName} fields
+        	terminated by '${terminated}' (${fields})
+    </insert>
+
+
+insert into 没有values
+直接是select的值
+
+
+where and条件
+
+<foreach collection="param.operaTypes" item="item" separator=" or ">
+	(opera_type &amp; #{item}) > 0
+</foreach>
+
+
+
+
+<update id="updateSchoolName">
+	update manager_product_school mps,
+	(
+	<foreach collection="schools" item="item" separator=" union all ">
+		select #{item.id} id,#{item.schoolName} school_name
+	</foreach>
+	) tmp
+	set mps.school_name = tmp.school_name
+	where mps.id = tmp.id
+</update>
+
+
+
+<if test="!single">
+
+<if test="single">
+
+
+WHERE 1 = 1
+and (school.school_id,school.phase_code) in
+	(<foreach collection="schoolList" item="item" separator=",">
+(#{item.schoolId},#{item.phaseCode})</foreach>)
+
+
+
+and data_time = #{dataTime}
+group by province_code
+order by sum(mock_count+task_count) desc, province_code
+
+
+
+provinceName
+from  manager_tss_pandect_${tableSuffix}
+where province_code != 'all'
+
+
+        order by sum(selftraining_count) desc,province_code,school_id
+
+
+
+    <!--资源储量统计-试题总数-->
+    <select id="getItemTotal" parameterType="com.iflytek.jkpt.manager.model.v2.resource.common.ResourceParamDTO"
+            resultType="com.iflytek.jkpt.manager.model.v2.resource.item.ReservesItemPandectDTO">
+        SELECT
+        SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count END) totalPhaseItem,
+        SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1201' THEN item_count END) totalItemMaterial,
+        SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1203' THEN item_count END) totalItemSubject,
+        SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1202' THEN item_count END) totalItemSpecial,
+        SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '2601' THEN item_count END) totalItemBreach,
+        SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1204' THEN item_count END) totalItemFun
+        FROM
+            manager_reserves_item_pandect t
+        WHERE
+           t.phase_code = #{phaseCode}
+           AND t.grade_code = #{gradeCode}
+           AND item_type = 'all'
+    </select>
+
+
+
+
+
+
+    </select>
+    <!--试题使用与授权统计-试题总数-->
+    <select id="getItemAuthAndUseTotal"
+            parameterType="com.iflytek.jkpt.manager.model.v2.resource.common.ResourceParamDTO"
+            resultType="com.iflytek.jkpt.manager.model.v2.resource.item.ItemGrantUsePandectDTO">
+         SELECT SUM( CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN area_grant END ) totalAreaGrant,
+	        SUM( CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN not_area_grant END ) totalNotAreaGrant,
+            SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count_use END) totalUse,
+            SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count_grant END) totalGrant,
+            SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count_not_grant END) totalNotGrant,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1201' THEN item_count_use END) totalMaterialUse,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1201' THEN item_count_grant END) totalMaterialGrant,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1203' THEN item_count_use END) totalSubjectUse,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1203' THEN item_count_grant END) totalSubjectGrant,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1202' THEN item_count_use END) totalSpecialUse,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1202' THEN item_count_grant END) totalSpecialGrant,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '2601' THEN item_count_use END) totalBreachUse,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '2601' THEN item_count_grant END) totalBreachGrant,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1204' THEN item_count_use END) totalFunUse,
+            SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1204' THEN item_count_grant END) totalFunGrant
+            FROM manager_item_grant_use_pandect t
+        WHERE resource_phase_code = #{resourcePhaseCode}
+        AND t.province_code = #{provinceCode}
+        AND t.city_code = #{cityCode}
+        AND t.district_code = #{districtCode}
+        AND item_type = 'all'
+    </select>
+
+
+
+
+
+	<delete id="deleteCodeSerial" parameterType="com.iflytek.jkpt.product.api.model.dto.ActivationCodeSerialDTO">
+			delete from p_activationcode_serial where 1=1
+			and (data_id,data_type) in (
+			<foreach collection="list" item="item" separator=",">
+				(#{item.dataId}, #{item.dataType})
+			</foreach>
+		)
+	</delete>
+
+
+
+	<update id="updateById">
+		update p_activationcode_serial
+		<trim prefix="set" suffixOverrides=",">
+			<if test="flowCode!=null">code=#{flowCode,jdbcType=VARCHAR},</if>
+			<if test="dataNewId!=null">data_id=#{dataNewId,jdbcType=VARCHAR},</if>
+		</trim>
+		 where data_id = #{dataId} and data_type = 4;
+	</update>
+
+
+
+
+        select
+        <include refid="Base_Column_List"/>
+        from sps_practice_task
+        <where>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT}
+            </if>
+<where
+子节点
+
+
+    <select id="listClassworkList" resultType="com.iflytek.jkpt.tss.api.model.task.TssClassWork4TeacherDTO">
+        select id taskId,date_format(end_datetime,'%Y-%m-%d %T') endDateTime,state taskState
+        from tss_classwork
+        where id in
+        <foreach item="item" index="index" collection="classworkIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+
+
+<!--更新任务的schoolId-->
+<update id="UpdateListTaskSchoolId" parameterType="list">
+    update tss_classwork
+    <trim prefix="set" suffixOverrides=",">
+        <trim prefix="school_id =case" suffix="end,">
+            <foreach collection="list" item="i" index="index">
+                <if test="i.schoolId!=null">
+                    when id=#{i.id} then #{i.schoolId}
+                </if>
+            </foreach>
+        </trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="i" index="index">
+        id=#{i.id}
+    </foreach>
+</update>
+
+
+
+
+<select id="getNoSyncTaskCount" resultType="int">
+    select count(1)
+    from tss_interactive_task where state = 2
+    <if test="syncDatetime != null">
+        and create_datetime <![CDATA[>=]]> #{syncDatetime}
+    </if>
+</select>
+
+
+
+<where>
+    <if test="taskIds != null and taskIds.size() != 0">
+        id in
+        <foreach collection="taskIds" item="taskId" separator=","  open="(" close=")">
+            #{taskId}
+        </foreach>
+    </if>
+</where>
+
+
+
+<select id="getClassTaskClasses" resultType="com.iflytek.jkpt.tascollect.model.dto.ems.TaskClassDto">
+    SELECT DISTINCT p.id as task_id, class_id, c.class_type as class_type
+    from ems_test_task p
+                 LEFT JOIN ems_test_task_class c on p.id = c.task_id
+            where c.class_id is not null
+    <if test="taskIds != null and taskIds.size() != 0">
+        and p.id in
+        <foreach collection="taskIds" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </if>
+</select>
+
+
+<!--更新任务的schoolId-->
+<update id="UpdateListTaskSchoolId" parameterType="list">
+    update tss_classwork
+    <trim prefix="set" suffixOverrides=",">
+        <trim prefix="school_id =case" suffix="end,">
+            <foreach collection="list" item="i" index="index">
+                <if test="i.schoolId!=null">
+                    when id=#{i.id} then #{i.schoolId}
+                </if>
+            </foreach>
+        </trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="i" index="index">
+        id=#{i.id}
+    </foreach>
+</update>
+
+update
+trim
+trim
+foreach
+if
+
+
+
+
