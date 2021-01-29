@@ -531,32 +531,23 @@ LeastActiveLoadBalance 翻译过来是最小活跃数负载均衡
 
 
 问：dubbo单词传输信息量多大？
-
 8M
 
 Dubbo支持的协议？
 
 推荐使用 Dubbo 协议
-
 1、http
-
 2、thrift
-
 3、hession
-
 4、dubbo
-
 5、rmi
-
 6、webservice
-
 7：memcached
-
 8、redis
-
 9、rest
 
 
+com.alibaba.dubbo.common.logger.LoggerFactory
 
 dubbo协议抓包
 
