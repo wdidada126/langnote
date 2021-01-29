@@ -2,6 +2,7 @@
 
 
 
+
 Field	Type	Null	Key	Default	Extra
 name	varchar(50)	NO	PRI	null	
 continent	varchar(60)	YES	MUL	null	
@@ -113,6 +114,12 @@ order by后面可以跟sum函数
 
 where having的区别
 having后面可以跟sum函数
+
+临时表
+
+union all
+
+MyBatis动态SQL
 
 https://www.nowcoder.com/activity/oj
 

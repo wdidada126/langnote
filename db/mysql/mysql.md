@@ -1,6 +1,8 @@
 # mysql
 
 https://github.com/shlomi-noach/awesome-mysql
+https://github.com/jobbole/awesome-mysql-cn
+https://github.com/tmcallaghan/iibench-mysql
 
 http://lists.mysql.com/
 
@@ -24,7 +26,48 @@ mysql> select date_format(now(), '%Y-%m-%d %h:%i:%s');
 
 
 Mysql中字符串互转时间类型,date_format()和str_to_date()函数
+字符串 日期对象相互转换
+
 https://blog.csdn.net/lyg1153/article/details/79755768
+
+str_to_date()有两个参数？对
+select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
+select date_format(now(), '%Y-%m-%d %h:%i:%s');
+2016-09-09 15:43:28
+2021-01-25 04:26:40
+
+附加：MySQL now()函数
+now()函数是通用的
+https://www.w3school.com.cn/sql/func_now.asp
+
+
+
+
+
+SELECT function(列) FROM 表
+
+
+
+
+SQL 函数
+- SQL avg()       平均数
+- SQL count() 计数
+- SQL first() 首个
+- SQL last() 最后一个 作用在cloumn_name上
+- SQL max() 最大值
+- SQL min() 最小值
+- SQL sum() 求和
+- SQL Group By 分组
+- SQL Having 分组条件
+- SQL ucase() 全部大写
+- SQL lcase() 全部小写
+- SQL mid() 
+- SQL len()
+- SQL round()
+- SQL now()
+- SQL format()
+
+
 
 Mysql关键字和保留字 - 版本5.7
 https://blog.csdn.net/qq_15071263/article/details/77985485
@@ -60,6 +103,8 @@ https://mariadb.com/kb/en/group_concat/
 https://mariadb.com/kb/en/built-in-functions/
 https://mariadb.com/kb/en/aggregate-functions/
 
+不要光盯着mysql，关注下mariadb和percona等其他mysql分支
+
 String相关函数
 Date相关函数
 
@@ -78,7 +123,7 @@ https://www.cnblogs.com/oxspirt/p/6208912.html
 ICDE
 PVLDB指的是VLDB会议论文集，被VLDB会议接受的论文，按期将会刊登在PVLDB中。VLDBJ则是VLDB基金会主管的期刊，其论文篇幅长，审稿周期长。
 关于POLARDB的一篇论文《PolarFS： An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database》就被数据库顶级学术会议VLDB 2018接收
-国际数据工程会议（International Conference on Data Engineering，简称ICDE）是全球范围内顶级三  大数据 库学术会议之一
+国际数据工程会议（International Conference on Data Engineering，简称ICDE）是全球范围内顶级三大数据 库学术会议之一
 
 
 

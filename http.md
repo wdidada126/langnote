@@ -2,6 +2,10 @@
 
 [Http请求中Content-Type](https://www.cnblogs.com/klb561/p/10090540.html)
 
+[ietf http 2.0 翻译](https://blog.csdn.net/violet_chengxiao/article/details/45335905)
+
+
+https://www.ietf.org/blog/http-20/
 
 
 对比起算法和数据结构来说，前端忽略 HTTP 的后果更严重。有时间的话，建议读 RFC 2616，至少挑重点来读。还有时间可以看看 Roy Fielding 那篇关于 REST 的论文

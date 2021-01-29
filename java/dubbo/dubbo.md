@@ -1,16 +1,16 @@
 # Dubbo
 
+
+http://dubbo.apache.org/zh/docs/v2.7/dev/impls/protocol/
+
 - spring xsd
 - java api
 
 
 
 dubbo 跟http对比
-
 http是url port 等等
-
 dubbo是zk ip port，直连，底层Netty，dubbo协议
-
 一个Java接口，通过方法参数传参。
 
 
