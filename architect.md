@@ -1,6 +1,7 @@
 # architect
 
-
+阿里中台架构图 注意图
+https://zhuanlan.zhihu.com/p/81410765
 
 monolithic(巨石、整体性和铁板一块)架构切换到Go语言 microservice(微服务)架构
 

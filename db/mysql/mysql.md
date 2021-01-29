@@ -1,12 +1,135 @@
 # mysql
 
+https://github.com/shlomi-noach/awesome-mysql
+https://github.com/jobbole/awesome-mysql-cn
+https://github.com/tmcallaghan/iibench-mysql
+
+http://lists.mysql.com/
+
+
+mysql> select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
++--------------------------------------------------------+
+| str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s') |
++--------------------------------------------------------+
+| 2016-09-09 15:43:28                                    |
++--------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select date_format(now(), '%Y-%m-%d %h:%i:%s');
++-----------------------------------------+
+| date_format(now(), '%Y-%m-%d %h:%i:%s') |
++-----------------------------------------+
+| 2021-01-21 04:28:13                     |
++-----------------------------------------+
+1 row in set (0.01 sec)
+
+
+
+Mysql中字符串互转时间类型,date_format()和str_to_date()函数
+字符串 日期对象相互转换
+
+https://blog.csdn.net/lyg1153/article/details/79755768
+
+str_to_date()有两个参数？对
+select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
+select date_format(now(), '%Y-%m-%d %h:%i:%s');
+2016-09-09 15:43:28
+2021-01-25 04:26:40
+
+附加：MySQL now()函数
+now()函数是通用的
+https://www.w3school.com.cn/sql/func_now.asp
+
+
+
+
+
+SELECT function(列) FROM 表
+
+
+
+
+SQL 函数
+- SQL avg()       平均数
+- SQL count() 计数
+- SQL first() 首个
+- SQL last() 最后一个 作用在cloumn_name上
+- SQL max() 最大值
+- SQL min() 最小值
+- SQL sum() 求和
+- SQL Group By 分组
+- SQL Having 分组条件
+- SQL ucase() 全部大写
+- SQL lcase() 全部小写
+- SQL mid() 
+- SQL len()
+- SQL round()
+- SQL now()
+- SQL format()
+
+
+
+Mysql关键字和保留字 - 版本5.7
+https://blog.csdn.net/qq_15071263/article/details/77985485
+
+
+MySQL关键字大全
+https://blog.csdn.net/benxiaohai888/article/details/77803090
+
+MySQL Aggregate Functions and Grouping
+Aggregate Functions and Grouping
+AVG()
+BIT_AND()
+BIT_OR()
+BIT_XOR()
+COUNT()
+GROUP_CONCAT()
+MAX()
+MIN()
+STD()
+STDDEV_POP()
+STDDEV_SAMP()
+STDDEV()
+SUM()
+VAR_POP()
+VAR_SAMP()
+VARIANCE()
+
+https://www.w3resource.com/mysql/aggregate-functions-and-grouping/aggregate-functions-and-grouping-group_concat.php
+https://www.educative.io/edpresso/what-is-the-groupconcat-function-in-mysql
+https://mariadb.com/kb/en/group_concat/
+
+内置函数 聚合函数
+https://mariadb.com/kb/en/built-in-functions/
+https://mariadb.com/kb/en/aggregate-functions/
+
+不要光盯着mysql，关注下mariadb和percona等其他mysql分支
+
+String相关函数
+Date相关函数
+
+李春 mysql
+maridb
+XtraBackup和pt-Toolkits
+innodb Oracle 收紧
+用户返回的问题，test case，Oracle不反馈给社区
+
+
+
+DB2 大型机
+VLDB、SIGMOD
+https://www.cnblogs.com/oxspirt/p/6208912.html
+清华大学李国良教授写的"大数据下的数据管理领域研究体会"一文。
+ICDE
+PVLDB指的是VLDB会议论文集，被VLDB会议接受的论文，按期将会刊登在PVLDB中。VLDBJ则是VLDB基金会主管的期刊，其论文篇幅长，审稿周期长。
+关于POLARDB的一篇论文《PolarFS： An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database》就被数据库顶级学术会议VLDB 2018接收
+国际数据工程会议（International Conference on Data Engineering，简称ICDE）是全球范围内顶级三大数据 库学术会议之一
+
+
+
 （1）*.frm--表定义，是描述表结构的文件。
-
 （2）*.MYD--"D"数据信息文件，是表的数据文件。
-
 （3）*.MYI--"I"索引信息文件，是表数据文件中任何索引的数据树。
-
-
 
 
 
@@ -14,99 +137,17 @@ ibd InnoDB存储数据的物理文件通常以ibd作为其文件名后缀
 
 cvs
 
-
-
-天津滨海新区 河北 重工业
-
-
-
-淮南 铜陵
-
-
-
-矿产 石油 化工
-
-航天工业
-
-
-
-服饰
-
-
-
-媒体
-
-
-
-视频
-
-
-
-金融
-
-
-
-能源 光伏
-
-
-
-教科文卫
-
-
-
-电力 国家电网
-
-家电 电子产品
-
-
-
-class jvm 读写 kotlin grovvy kafka android app develop
-
-
-
-编译原理
-
-字节码 加载 链接 初始化
-
-同一个包，全部加载，还是只加载用到的
-
-
-
-gc thread
-
-tomcat http线程
-
-
-
-
-
-linux elf windows pe
-
-
-
-
-
-
-
-
-
-
+https://dev.mysql.com/doc/refman/8.0/en/explain.html
+https://www.kancloud.cn/baoguoxiao0538/mysql-8-0-chinese-doc/1117563
 
 mysql 存储过程 源码实现
 .ibd
 
 开启 general log 将所有到达MySQL Server的SQL语句记录下来。存储方式有两种，一种是file ，一种是table
-
 一般不会开启开功能，因为log的量会非常庞大。但个别情况下可能会临时的开一会儿general log以供排障使用。 
 相关参数一共有3：general_log、log_output、general_log_file
 
 https://blog.csdn.net/intelrain/article/details/80451120
-
-
-
-
-
-
 
 mysql 日志 查看select的结果
 
@@ -136,9 +177,7 @@ mysqlbinlog
 show variables like 'log_bin';
 general_log
 general_log_file
-
 log_output  FILE
-
 slow_query_log
 slow_query_log_file  D:\devtools\mysql-5.7.31-winx64\data\chengwu2-slow.log
 
@@ -156,16 +195,11 @@ MySQL5.7-官方文档
 
 
 X Protocol
-
-
 [MySQL 数据库的提速器-写缓存（Change Buffer）](https://www.cnblogs.com/jamaler/p/12371205.html)
 
 
 
 mysql protocol
-
-
-
 https://blog.csdn.net/caisini_vc/article/details/5356136
 
 
@@ -173,11 +207,8 @@ https://blog.csdn.net/caisini_vc/article/details/5356136
 mysql 存储过程 函数
 
 http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html
-
 https://blog.csdn.net/u011983531/article/details/67639678
-
 https://blog.csdn.net/u013488847/article/details/53819976
-
 http://www.cnblogs.com/xuanzhi201111/p/4175635.html
 
 
@@ -187,10 +218,8 @@ mysql select 查询时间测试
 
 
 导入数据的方式
-
 1 sql文件 在使用syslog导入
-
-2  写存储过程
+2 写存储过程
 
 
 
@@ -203,7 +232,6 @@ https://www.cnblogs.com/1175429393wljblog/p/5918150.html
 
 
 sqlyog
-
 导出 导入脚本
 
 
@@ -217,9 +245,6 @@ https://blog.csdn.net/qq_20975027/article/details/78343972
 
 
 https://blog.csdn.net/weixin_37288522/article/details/79710909
-
-
-
 https://blog.csdn.net/blueheart20/article/details/51007659
 
 
@@ -229,7 +254,6 @@ https://blog.csdn.net/blueheart20/article/details/51007659
 
 
 navicate 导入失败
-
 sqlyog 数据库必须存在 导入sql文件
 
 
@@ -239,25 +263,19 @@ sqlyog 数据库必须存在 导入sql文件
 
 
 hash 索引
-
 平衡树
-
 b-树
-
 b+树
 
 
 
 根据红黑树的算法来分析TreeMap的实现
-
 https://www.cnblogs.com/coderising/articles/5719517.html
 
 
 
 二叉树是不是不能有重复的元素？
-
 没有重复元素
-
 
 
 二叉查找树 又叫 二叉排序树，二叉搜索树。Binary Search Tree(BST)
@@ -286,10 +304,8 @@ https://www.cnblogs.com/coderising/articles/5719517.html
 自平衡二叉查找树  又被称为AVL树（有别于AVL算法）  字母是发明者的名字
 它是一棵空树或它的左右两个子树的高度差(平衡因子)的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树，平衡二叉树必定是二叉搜索树，反之则不一定
 
- 平衡因子（平衡度）：平衡度为1，既每个结点的平衡因子都为 1、－1、0 的二叉排序树。或者说每个结点的左右子树的高度最多差1的二叉排序树。
-
+平衡因子（平衡度）：平衡度为1，既每个结点的平衡因子都为 1、－1、0 的二叉排序树。或者说每个结点的左右子树的高度最多差1的二叉排序树。
 平衡二叉树的目的是为了减少二叉查找树层次，提高查找速度
-
 平衡二叉树的常用实现方法有AA树、AVL树、红黑树、树堆Treap、伸展树等
 
 三、红黑树-R-B Tree，全称是Red-Black Tree
@@ -368,11 +384,10 @@ https://www.zhihu.com/question/22364529
 
 
 
-线上业务先和 DBA 确认服务器磁盘是否是 SSD
+线上业务先和DBA确认服务器磁盘是否是SSD
 
 Mysql 为我们提供了分布式事务解决方案（https://dev.mysql.com/doc/refman/5.7/en/xa.html 这是mysql5.7的文档）
 这里先声明两个概念：
-
 资源管理器（resource manager）：用来管理系统资源，是通向事务资源的途径。数据库就是一种资源管理器。资源管理还应该具有管理事务提交或回滚的能力。
 事务管理器（transaction manager）：事务管理器是分布式事务的核心管理者。事务管理器与每个资源管理器（resource
 manager）进行通信，协调并完成事务的处理。事务的各个分支由唯一命名进行标识。
@@ -397,15 +412,6 @@ MySQL XA 的实践
 
 
 ddd：https://www.jianshu.com/p/7003d58ea182
-
-
-ddd：https://www.jianshu.com/p/7003d58ea182
-
-作者：foreversunyao
-链接：https://www.jianshu.com/p/7003d58ea182
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
 
 
 MySQL书籍
@@ -435,9 +441,33 @@ https://segmentfault.com/a/1190000012166738
 
 set profiling =1; -- 打开profile分析工具
 show variables like '%profil%'; -- 查看是否生效
+
+
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| have_profiling         | YES   |
+| profiling              | ON    |
+| profiling_history_size | 15    |
++------------------------+-------+
+
+
 show processlist; -- 查看进程
 use cmc; -- 选择数据库
 show PROFILE all; -- 全部分析的类型
+
+
++----------------+----------+----------+------------+-------------------+---------------------+--------------+---------------+---------------+-------------------+-------------------+-------------------+-------+-----------------------+--------------+-------------+
+| Status         | Duration | CPU_user | CPU_system | Context_voluntary | Context_involuntary | Block_ops_in | Block_ops_out | Messages_sent | Messages_received | Page_faults_major | Page_faults_minor | Swaps | Source_function       | Source_file  | Source_line |
++----------------+----------+----------+------------+-------------------+---------------------+--------------+---------------+---------------+-------------------+-------------------+-------------------+-------+-----------------------+--------------+-------------+
+| starting       | 0.000175 | 0.000000 | 0.000000   | NULL              | NULL                | NULL         | NULL          | NULL          | NULL              | NULL              | NULL              | NULL  | NULL                  | NULL         | NULL        |
+| query end      | 0.000007 | 0.000000 | 0.000000   | NULL              | NULL                | NULL         | NULL          | NULL          | NULL              | NULL              | NULL              | NULL  | mysql_execute_command | sql_parse.cc |        4956 |
+| closing tables | 0.000003 | 0.000000 | 0.000000   | NULL              | NULL                | NULL         | NULL          | NULL          | NULL              | NULL              | NULL              | NULL  | mysql_execute_command | sql_parse.cc |        5009 |
+| freeing items  | 0.000035 | 0.000000 | 0.000000   | NULL              | NULL                | NULL         | NULL          | NULL          | NULL              | NULL              | NULL              | NULL  | mysql_parse           | sql_parse.cc |        5622 |
+| cleaning up    | 0.000011 | 0.000000 | 0.000000   | NULL              | NULL                | NULL         | NULL          | NULL          | NULL              | NULL              | NULL              | NULL  | dispatch_command      | sql_parse.cc |        1931 |
++----------------+----------+----------+------------+-------------------+---------------------+--------------+---------------+---------------+-------------------+-------------------+-------------------+-------+-----------------------+--------------+-------------+
+
+
 show index from t_log_account; ##查看某个表的索引
 show index from t_car_copy; ##查看某个表的索引
 -- 使用explain命令查看query语句的性能：

@@ -1,5 +1,10 @@
 # 分布式
 
+Distributed System: Lease && Master
+
+https://zhuanlan.zhihu.com/p/340246214
+
+
 
 分布式系统
 https://www.zhihu.com/question/35420101/answer/904773724

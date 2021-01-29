@@ -1,5 +1,15 @@
 # Spring Aop
 
+
+
+如何强制使用CGLIB实现AOP？
+
+ （1）添加CGLIB库，SPRING_HOME/cglib/*.jar
+
+ （2）在spring配置文件中加入<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+
 [基于注解的Spring AOP的配置和使用](https://my.oschina.net/sniperLi/blog/491854)
 
 在Spring AOP中有两种代理方式，JDK动态代理和CGLIB代理。默认情况下，TargetObject实现了接口时，则采用JDK动态代理，例如，AServiceImpl；反之，采用CGLIB代理，例如，BServiceImpl。强制使用CGLIB代理需要将 <aop:config>的 proxy-target-class属性设为true。

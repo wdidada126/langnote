@@ -1,7 +1,7 @@
 # cglib
 
 
-
+![cglib 例子](cglib_alone.png)
 
 github repo
 
@@ -17,6 +17,28 @@ spring非接口使用的代理
 
 
 
+cn.wdidada.test.cglib.impl.UserManagerImpl$$EnhancerByBGLiB$$cc
+
+```shell script
+toString
+method2
+method1
+method3
+filter method3 
+filter method1 
+mmmmmmmmm
+```
+
+- TestInterfaceMaker
+- CglibProxy
+
+```shell script
+Cglib动态代理，监听开始！
+调用了删除的方法！
+传入参数为 userName: admin
+Cglib动态代理，监听结束！
+```
+
 
 CGlib是一个强大的,高性能,高质量的Code生成类库。它常常被用来在运行期扩展Java类与实现Java接口。
 
@@ -29,22 +51,17 @@ CGLIB底层使用了ASM（一个短小精悍的字节码操作框架）来操作
 
 jar包
 
-- **cglib-nodep-2.2.jar**：使用nodep包不需要关联asm的jar包,jar包内部包含asm的类.
-- **cglib-2.2.jar**：使用此jar包需要关联asm的jar包,否则运行时报错.
+- cglib-nodep-2.2.jar：使用nodep包不需要关联asm的jar包,jar包内部包含asm的类.
+- cglib-2.2.jar：使用此jar包需要关联asm的jar包,否则运行时报错.
 
 基本代码很少，学起来有一定的困难，主要是缺少文档和示例
 
-- **net.sf.cglib.core**: 底层字节码处理类，他们大部分与ASM有关系。
-
-- **net.sf.cglib.transform**: 编译期或运行期类和类文件的转换
-
-- **net.sf.cglib.proxy**: 实现创建代理和方法拦截器的类
-
-- **net.sf.cglib.reflect**: 实现快速反射和C#风格代理的类
-
-- **net.sf.cglib.util**: 集合排序等工具类
-
-- **net.sf.cglib.beans**: JavaBean相关的工具类
+- net.sf.cglib.core: 底层字节码处理类，他们大部分与ASM有关系。
+- net.sf.cglib.transform: 编译期或运行期类和类文件的转换
+- net.sf.cglib.proxy: 实现创建代理和方法拦截器的类
+- net.sf.cglib.reflect: 实现快速反射和C#风格代理的类
+- net.sf.cglib.util: 集合排序等工具类
+- net.sf.cglib.beans: JavaBean相关的工具类
 
 net.sf.cglib.proxy.Enhancer
 

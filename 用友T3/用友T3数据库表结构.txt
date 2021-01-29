@@ -1,0 +1,741 @@
+# 用友T3
+
+用友软件T3用友通数据库表结构、表名  
+
+用友软件T3用友通数据库表结构、表名  
+
+fa_Control 30_记录互斥 
+
+fa_Departments 07_部门 
+
+fa_Depreciations 11_折旧方法 
+
+fa_DeprList 34_折旧日志 
+
+fa_DeprTransactions 19_折旧 
+
+fa_DeprVoucherMain 23_折旧分配凭证主表 
+
+fa_DeprVouchers 24_折旧分配凭证 
+
+fa_DeprVouchers_pre 24_折旧分配凭证_准备 
+
+fa_Dictionary 12_常用参照字典 
+
+fa_EvaluateMain 21_评估单主表 
+
+fa_EvaluateVouchers 22_评估单 
+
+fa_Items 12_项目 
+
+fa_ItemsManual 32_自定义项目 
+
+fa_ItemsOfModel 14_对应各样式的项目 
+
+fa_ItemsOfQuery 35_查询项目 
+
+fa_Log 33_日志 
+
+fa_Models 13_样式 
+
+fa_Msg 29_信息 
+
+fa_Objects 03_对象表 
+
+fa_Operators 02_操作员 
+
+fa_Origins 09_增减方式 
+
+fa_QueryFilters 05_查询条件 
+
+fa_Querys 04_查询 
+
+fa_ReportTemp  
+
+fa_Status 10_使用状况 
+
+fa_Total 31_汇总表 
+
+Accessaries 成套件表 
+
+AccInformation 账套参数表 
+
+Ap_AlarmSet 单位报警分类设置表 
+
+Ap_BillAge 账龄区间表 
+
+Ap_Cancel 核销情况表 
+
+Ap_CancelNo 生成自动序号 
+
+Ap_CloseBill 收付款结算表 
+
+Ap_CtrlCode 控制科目设置表 
+
+Ap_Detail 应收/付明细账 
+
+AP_DispSet 查询显示列设置表 
+
+Ap_InputCode 入账科目表 
+
+Ap_InvCode 存货科目设置表 
+
+Ap_Lock 操作互斥表 
+
+Ap_MyTableSet 查询条件存储表 
+
+Ap_Note 票据登记簿 
+
+Ap_Note_Sub 票据登记簿结算表 
+
+Ap_SStyleCode 结算方式科目表 
+
+Ap_Sum 应收/付总账表 
+
+Ap_Vouch 应付/收单主表 
+
+Ap_Vouchs 应付/收单主表的关联表 
+
+Ap_VouchType 单据类型表 
+
+Ar_BadAge 坏账计提账龄期间表 
+
+Ar_BadPara 坏账计提参数表 
+
+ArrivalVouch 到货单、质检单主表 
+
+ArrivalVouchs 到货单、质检单子表 
+
+AssemVouch 组装、拆卸、形态转换单主表 
+
+AssemVouchs 组装、拆卸、形态转换单子表 
+
+Bank 本企业开户银行及账号 
+
+CA_ACR 按产品产量约当分配率表 
+
+CA_AllMt 分配率分配方法表 
+
+CA_AmoCt 各项费用成本表 
+
+CA_AsDIF 辅助部门内部固定分配率表 
+
+CA_AssCW 辅助费用耗用表 
+
+CA_AssMP 辅助部门计划单价表 
+
+CA_AWPC 各项费用耗用计划表 
+
+CA_CBSys 系统设置表 
+
+CA_ClassDef 产品类别定义 
+
+CA_ComPD 完工产品处理表 
+
+CA_ComPS 完工产品统计表 
+
+CA_Control  
+
+CA_CostCD 费用明细定义表 
+
+CA_DaCPS 完工产品产量日报表 
+
+CA_DaMBW 材料及外购半成品耗用日报表 
+
+CA_DayTiS 工时日报表 
+
+CA_Depcf 部门预测录入表 
+
+CA_DepCs 折旧费用表 
+
+CA_DepDf 部门属性表 
+
+CA_DepFR 部门预测结果表 
+
+CA_DepHC 部门历史成本表 
+
+CA_DepPMA 部门计划人工费用率表 
+
+CA_DirMA 直接人工费用表 
+
+CA_EnMMC 月末部门共用材料盘点表 
+
+CA_EnMOM 月末在产品原材料盘点表 
+
+CA_EnMOP 月末在产品盘点表 
+
+CA_IDMAC 记入直接材料费用的出库类别表 
+
+CA_MaBSW 材料及外购半成品耗用表 
+
+CA_ManCt 制造费用表 
+
+CA_MAPC 人工费用人员类别
+
+表 
+
+CA_MatDf 材料定义表 
+
+CA_OnlIA 其它费用表 
+
+CA_OnpB 在产品年初数表 
+
+CA_OnPCE 在产品每月变动约当系数表 
+
+CA_OnPQu 在产品约当系数表 
+
+CA_OnpQuo 在产品定额表 
+
+CA_PlanC 计划成本表 
+
+CA_PPUDR 工序产品领用日报表 
+
+CA_PreDf 工序定义表 
+
+CA_ProCF 产品成本预测表 
+
+CA_ProNb 产品批号表 
+
+CA_ProPMA 工序计划人工费用率表 
+
+CA_ProPt 工序产品属性表 
+
+CA_ProPU 工序产品领用表 
+
+CA_Quo 定额表 
+
+CA_RptAdd 成本报表自定义加项 
+
+CA_RptFld 成本报表自定义栏目表 
+
+CA_RptSub 成本报表自定义减项 
+
+CA_RptSum 成本汇总表 
+
+CA_RptSys 成本汇总报表系统备份 
+
+CA_SAmoCt 服务项目费用成本表 
+
+CA_SerPri 服务价格表 
+
+CA_SPDf 结转凭证定义表 
+
+CA_TimSt 工时统计表 
+
+CA_UserProperty 操作员权限表 
+
+CA_WasPR 废品回收表 
+
+CheckVouch 盘点单主表 
+
+CheckVouchs 盘点单子表 
+
+code 《科目表》 
+
+code_1 《科目表》 
+
+CostJustVouch 计划价/售价调整主表 
+
+CostJustVouchs 计划价/售价调整子表 
+
+CostObj 成本对象表 
+
+CurrentStock 现存量表 
+
+Customer 客户档案 
+
+CustomerClass 客户分类体系 
+
+CW_CodePlan 科目计划初始(code plan) 
+
+CW_CodePlus 科目追加计划(code plus) 
+
+CW_DeptPlan 部门计划初始(department plan) 
+
+CW_DeptPlus 部门追加计划(department plus) 
+
+CW_ProfPlan 利润计划初始(profit plan) 
+
+CW_ProfPlus 利润追加计划(profit plus) 
+
+CW_ProjPlan 项目计划初始(project plan) 
+
+CW_ProjPlus 项目追加计划(project plus) 
+
+CW_WideDeptCode 粗放部门计划控制科目(wide department code) 
+
+CW_WideProjCode 粗放项目计划控制科目(wide project code) 
+
+Department 部门档案 
+
+Department_1 部门档案 
+
+Department_2 部门档案 
+
+DispatchList 发货单、委托代销结算单主表 
+
+DispatchLists 发货单、委托代销结算单子表 
+
+DistrictClass 地区分类体系 
+
+dsign 《凭证类别表》 
+
+dsigns 《凭证类别子表》 
+
+DynTemplet 打印版面临时表模版 
+
+DynTempletUFSOFT  
+
+EnDispatch 委托代销发货单主表 
+
+EnDispatchs 委托代销发货单子表 
+
+exch 《汇率表》 
+
+ExpenseItem 销售费用项目 
+
+ExpenseVouch 代垫费用主表 
+
+ExpenseVouchs 代垫费用子表 
+
+fa_AssetAttached 17_附属设备 
+
+fa_AssetTypes 06_资产类别 
+
+fa_Cards 16_卡片 
+
+fa_CardsSheets 34_卡片Sheets表 
+
+fa_Vouchers 20_变动单 
+
+fa_WorkLoad 18_工作量 
+
+fa_ZWVouchers 《外部凭证临时表》 
+
+FD_AccDef 账户定义表 
+
+FD_AccSet 账户设置表 
+
+FD_AccSum 累积类账户总账表 
+
+FD_AccUnit 开户单位定义表 
+
+FD_CadAcr 结息日结转利息单据表 
+
+FD_CadSet 结息日设置表 
+
+FD_CadSets 结息日设置子表 
+
+FD_Class 单据类别表 
+
+FD_CreAcrRcp 贷款利息还款单据表 
+
+FD_Cred 贷款表 
+
+FD_Dzd 对账单
+
+FD_DzdUnit 对账单单位
+
+FD_Fetch 取款表 
+
+FD_Hasten 催款单
+
+FD_Intra 利率设置表 
+
+FD_Intras 利率设置子表 
+
+FD_Item 项目大类定义表 
+
+FD_Items 项目
+
+定义表 
+
+FD_Itemss 项目科目、项目账户表 
+
+FD_Option 选项 
+
+FD_Return 还款表 
+
+FD_Sav 存款表 
+
+FD_SettAcc 结算表 
+
+FD_UnwAcrRcp 拆借利息还款单据表 
+
+FD_UnwDeb 内部拆借表 
+
+FD_UnwRet 内部拆借还款表 
+
+FD_Vouch 凭证借贷方科目定义表 
+
+fitem 《项目大类》 
+
+fitemgrademode 《项目分类定义模版》 
+
+fitemss00  
+
+fitemss00class  
+
+fitemss01  
+
+fitemss01class  
+
+fitemss02  
+
+fitemss02class  
+
+fitemstructure 《项目结构定义》 
+
+fitemstrumode 《项目目录定义模版》 
+
+foreigncurrency 《币种表》 
+
+foreigncurrency_1 《币种表》 
+
+GL_accass 《辅助总账》 
+
+GL_accsum 《科目总账》 
+
+GL_accvouch 《凭证及明细账》 
+
+GL_bage 《往来账龄区间定义》 
+
+GL_bautotran 《自动转账定义》 
+
+GL_bdigest 《常用摘要表》 
+
+GL_bfreq 《常用凭证》 
+
+GL_bmulti 《多栏定义》 
+
+GL_btext 《往来函证信息》 
+
+GL_mccontrol 《科目并发控制表》 
+
+GL_mcodeauth 《科目权限表》 
+
+GL_mcodeused 《科目常用项》 
+
+GL_mend 《账套结账状态表》 
+
+GL_merror 《对账出错信息》 
+
+GL_mitemused 《项目常用项》 
+
+GL_mpostcond 《最近一次记账凭证》 
+
+GL_msysname 《系统名称对照表》 
+
+GL_mvcontrol 《凭证并发控制表》 
+
+GL_mvocontrol 《外部凭证并发控制表》 
+
+GL_myaccount 《我的账簿》 
+
+GL_mybooktype 《账簿套打格式》 
+
+GL_myoutput 《输出栏目》 
+
+GL_vouchother 《外部凭证临时表》 
+
+GradeDef 编码规则表 
+
+IA_HeadSet 存货科目设置表 
+
+IA_InvTData 存货临时表 
+
+IA_MoneyPlan 存货核算资金占用规划表 
+
+IA_QueCondition 查询条件 
+
+IA_Subsidiary 存货核算存货明细账 
+
+IA_Summary 存货核算存货总账 
+
+IA_ValuationAss 存货核算计价辅助数据表 
+
+Inventory 存货目录 
+
+Inventory_1 存货目录 
+
+Inventory_2 存货目录 
+
+InventoryClass 存货分类体系 
+
+InvoiceItem 单据项目定义 
+
+InvoiceItem_ 单据项目定义 
+
+InvoiceItem_Ap 单据项目定义 
+
+InvoiceItem_sal 单据项目定义 
+
+InvoiceItem_salPRN 单据项目定义 
+
+InvoiceItema 单据项目定义 
+
+ItemDef 用户可选择项目表 
+
+JustInVouch 出入库调整单主表 
+
+JustInVouchs 出入库调整单子表 
+
+KCHSItem 单据项目定义 
+
+LockVouch 单据锁定表 
+
+MainBatch 批次主文件 
+
+MatchVouch 限额领料单主表 
+
+MatchVouchs 限额领料单子表 
+
+MaxVouch 最大单号表 
+
+NowReceipt 现收款表 
+
+OverStockVouch 呆滞积压处理单主表 
+
+OverStockVouchs 呆滞积压处理单子表 
+
+PayCondition 付款条件 
+
+Person 职员档案 
+
+po 采购定单定义 
+
+PO_Podetails 采购定单（明细）
+
+PO_Pomain 采购定单（主表） 
+
+PO_Quodetails 询／报价单（明细） 
+
+PO_Quomain 询／报价单（主表）
+
+PO_VendorProcucts 供应商产品
+
+PP_IMRPdetails 独立需求计划（明细）
+
+PP_IMRPmain 独立需求计划（主表）
+
+PP_MPSdetails 生产计划（明细）
+
+PP_MPSmain 生产计划（主表）
+
+PP_period 计划周期 
+
+PP
+
+_PPCDetails 采购计划（明细）
+
+PP_PPCmain 采购计划（主表）
+
+PP_PU 采购计划-采购入库对照表 
+
+PP_RMRPdetails 相关需求计划（明细）
+
+PP_RMRPmain 相关需求计划（主表）
+
+PriceJustify 调价记录表 
+
+print 《纸型预置》 
+
+PrintDef 《表格头尾项目定义》 
+
+ProductStructure 产品结构主表 
+
+ProductStructures 产品结构子表 
+
+PS 采购结算单显示定义 
+
+PSN_PurBill  
+
+PU_LeftSum 采购余额一览表
+
+PurBillVouch 采购发票主表 
+
+PurBillVouchs 采购发票子表 
+
+PurchaseType 采购类型 
+
+PurQueryCon 条件保存(采购) 
+
+PurQueryList 自定义表(采购) 
+
+PurSettleVouch 采购结算单主表 
+
+PurSettleVouchs 采购结算单子表 
+
+QuotedPriceVouch 报价单主表 
+
+QuotedPriceVouchs 报价单子表 
+
+Rd_Style 收发类别 
+
+RdRecord 收发记录主表 
+
+RdRecords 收发记录子表 
+
+RP_bankrecp 《银行对账单(银行日记账)》 
+
+RP_cheque 《支票登记簿》 
+
+Rpt_FldDEF 报表查询项目定义 
+
+Rpt_FltDEF 筛选条件定义 
+
+Rpt_Folder 账夹管理
+
+Rpt_GlbDEF 报表查询定义 
+
+RPT_GRPDEF 分组定义 
+
+RPT_ItmDEF 报表单元选项 
+
+Rpt_RelDEF 关系定义 
+
+SA_Account 销售总账 
+
+SA_SalePlan 销售计划表 
+
+SA_WrapLease 包装物租借表 
+
+SaleBillVouch 销售发票主表 
+
+SaleBillVouchs 销售发票子表 
+
+SalePayVouch 销售支出单主表 
+
+SalePayVouchs 销售支出单子表 
+
+SalePrice 销售价目表 
+
+SaleRelation 销售关联表 
+
+Sales_Control 销售菜单表 
+
+SaleType 销售类型 
+
+ScrapVouch 报废单主表 
+
+ScrapVouchs 报废单子表 
+
+SettleStyle 结算方式 
+
+ShippingChoice 发运方式表 
+
+SO_SODetails 销售订单子表 
+
+SO_SOMain 销售订单主表 
+
+SO_SOText 销售订单合同文本 
+
+SRelations 表间关系表 
+
+ST_TotalAccount 库存总账 
+
+TableName 表名目录表 
+
+TableRelation 表间关联描述 
+
+TransVouch 转库单主表 
+
+TransVouchs 转库单子表 
+
+UserDef 自定义项定义表 
+
+UserDefine 自定义项数值表 
+
+Vendor 供应商档案 
+
+VendorClass 供应商分类体系 
+
+Vouchers 单据定义 
+
+VouchFormat 单据格式主表 
+
+VouchFormats 单据格式子表 
+
+VouchList 单据列表定义表 
+
+VouchNum  
+
+VouchType 单据类型表 
+
+WA_account 工资类别管理表 
+
+WA_Bank 银行设置表 
+
+WA_Bank_Set 银行格式设置表 
+
+WA_BankName 银行名称设置表 
+
+WA_BankPar 银行代发参数表 
+
+WA_BankTop 银行代发首末行定义表 
+
+WA_Currency 工资汇率表 
+
+WA_dept 各工资类别的部门表 
+
+WA_FilterExpList 过滤项目表 
+
+WA_FilterName 过滤器名称表 
+
+WA_formula 计算公式设置表 
+
+WA_FT_KM 工资分摊科目比例表 
+
+WA_FT_Sum 工资分摊总额参数表 
+
+WA_FTDept 工资分摊部门表 
+
+WA_FTName 分摊计提名称表 
+
+WA_grade 人员类别表 
+
+WA_GZBItemDept 表项目组成表（部门） 
+
+WA_GZBItemGrd 表项目组成表（类别） 
+
+WA_GZBItemTitle 表项目组成表（栏目） 
+
+WA_GZBName 表名称表 
+
+WA_GZData 工资数据表 
+
+WA_GZFT 工资分摊表 
+
+W
+
+A_GZHZB 工资汇总表
+
+WA_GZItem 各工资类别工资项目设置表
+
+WA_GZNameList 工资项目参照表
+
+WA_GZtblset 工资项目设置表
+
+WA_JKItemSet 数据接口设置表 
+
+WA_JKSet 数据接口文件格式表 
+
+WA_psn 人员表 
+
+WA_PsnMsg 人员附加信息表 
+
+WA_SDS 所得税数据表 
+
+WA_SDS_p 所得税设置表 
+
+WA_SDS_SL 所得税税率表 
+
+WA_SelectMoney 票面额设置表 
+
+WA_State 数据处理状态表 
+
+Warehouse 仓库档案   
+
+
+        
+    

@@ -4,6 +4,10 @@
 
 反向代理，负载均衡，代理缓存，限流
 
+http://nginx.org/en/docs/
+bloghttps://www.nginx.com/blog/
+
+Tengine
 
 章亦春
 lua

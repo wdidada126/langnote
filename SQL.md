@@ -1,11 +1,16 @@
 # SQL
 
+SQL92
+SQL99
+
+
+
 [自己实现一个SQL解析引擎](https://blog.csdn.net/kxjrzyk/article/details/79341657)
 
 [SQL中Truncate的用法](https://www.cnblogs.com/zhoufangcheng04050227/p/7991759.html)
 
 DQL、DML、DDL、DCL、TCL和MySQL的部分DAL
-<<<<<<< HEAD
+
 
 
 
@@ -51,5 +56,3 @@ TCL语句 : 事物控制语句
   - Commit：提交，确认已经进行的数据改变
   - RollBack：回滚，取消已经进行的数据改变
   - SavePoint：保存点，使当前的事务可以回退到指定的保存点，便于取消部分改变
-=======
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec

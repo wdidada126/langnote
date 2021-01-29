@@ -1,12 +1,11 @@
 # jps
 
+jps -lm
+
 jps -v
 jps -lv
 
-
-
 jps -v
-
 
 jarsigner
 Signs and verifies Java Archive (JAR) files.
@@ -63,7 +62,5 @@ Signs and verifies Java Archive (JAR) files.
   [-providerArg <参数>]]... 主类文件和构造器参数
 
 [-strict]                   将警告视为错误
-
-
 
 Java Flight Recorder and Java Mission Control together create a complete tool chain to continuously collect low level and detailed runtime information enabling after-the-fact incident analysis. 

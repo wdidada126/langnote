@@ -59,7 +59,6 @@ noneMatch
 
 #### Chap. 5 使用流
 
-
 IntStream
 DoubleStream
 LongStream
@@ -79,10 +78,48 @@ LongStream
 
 java.util.Spliterator
 
-#### Chap. 8
+第三部分 高效Java 8编程
+
+#### Chap. 8 重构、测试和调试
 
 java.util.Optional
 com.google.common.base.Optional
 
 #### Chap. 9 default method
-d
+默认方法
+
+
+
+
+
+第10章　用Optional取代null
+
+
+
+第11章　CompletableFuture：组合式异步编程
+
+
+
+第12章　新的日期和时间API
+
+
+
+第四部分 超越Java 8
+第13章　函数式的思考
+
+
+
+
+
+第14章　函数式编程的技巧
+
+
+
+第15章　面向对象和函数式编程的混合：Java 8和Scala的比较
+
+
+
+第16章　结论以及Java的未来
+
+
+

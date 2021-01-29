@@ -1,6 +1,6 @@
 # 高性能MySQL实战
 
-
+拉钩教育
 
 周彦伟
 
@@ -26,7 +26,7 @@
 
 
 
-![db_type](..\imgs\lagou_edu\db_type.png)
+![db_type](../imgs/lagou_edu/db_type.png)
 
 
 
@@ -62,7 +62,7 @@ mysql隔离级别
 
 
 
-ur rc rr s
+ru rc rr s
 
 
 
@@ -88,28 +88,22 @@ SERIALIZABLE
 
 
 
-MVCC 实现原理
+MVCC实现原理
 
-前文多次提到了 MVCC 这个概念，这里我们来讲解 MVCC 的实现原理。MySQL InnoDB 存储引擎，实现的是基于多版本的并发控制协议——MVCC，而不是基于锁的并发控制。
+前文多次提到了MVCC这个概念，这里我们来讲解MVCC的实现原理。MySQL InnoDB存储引擎，实现的是基于多版本的并发控制协议——MVCC，而不是基于锁的并发控制。
 
  
 
-MVCC 最大的好处是读不加锁，读写不冲突。在读多写少的 OLTP（On-Line Transaction Processing）应用中，读写不冲突是非常重要的，极大的提高了系统的并发性能，这也是为什么现阶段几乎所有的 RDBMS（Relational Database Management System），都支持 MVCC 的原因。 
+MVCC最大的好处是读不加锁，读写不冲突。在读多写少的OLTP（On-Line Transaction Processing）应用中，读写不冲突是非常重要的，极大的提高了系统的并发性能，这也是为什么现阶段几乎所有的RDBMS（Relational Database Management System），都支持MVCC的原因。 
 
 
 
 第03讲：高性能数据库表该如何设计？
 
-
-
 范式与反范式
 
-
-
 本节课主要讲解一些高性能表设计的规则和案例。
-
 以高性能为目标，库表设计以范式为主，根据特殊业务场景使用反范式，允许必要的空间换时间。
-
 规范数据库的使用原则，统一规范命名，减少性能隐患，减少隐式转换。
 
 高性能表设计的原则：合适的字段、合适的长度、NOT NULL。

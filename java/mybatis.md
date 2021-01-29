@@ -1,5 +1,13 @@
 # mybatis
 
+mybatis 动态sql bind
+https://mybatis.org/mybatis-3/dynamic-sql.html
+https://blog.csdn.net/u010002184/article/details/79378835
+https://blog.csdn.net/yangshangwei/article/details/80073978
+<select id="selectBlogsLike" resultType="Blog">   <bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />   SELECT * FROM BLOG   WHERE title LIKE #{pattern} </select>
+
+
+
 跨表的数据 分页 union
 
 https://blog.csdn.net/QIU1988YANG/article/details/77247556
@@ -11,17 +19,14 @@ df -hl
 df - report file system disk space usage
 
 ognl，直接获取List Map array中的值，获取对象属性的值，直接绑定
-
 sql，本质是字符串，sql语句，返回的结果/报错信息
-
 select name from table_name where id='1';
-
 sql有1.语句本身，2.参数
-
 参数是java的类String Integer等类型
 sql返回的结果，需要封装成Java类
-
 sql 批量插入数据
+
+
 
 例如：
 CREATE TABLE "websites" (

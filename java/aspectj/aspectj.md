@@ -1,5 +1,16 @@
 # aspectj
 
+而spring 使用了aspectJ注解的一小部分（正如前面所说的，受限于jdk的动态代理，spring只支持方法级别的切面）
+
+只看spring整合aspectj
+
+aspectj pom.xml依赖
+
+AspectJ的几种织入方式，分别是compile-time、post-compile 和 load-time，分别对应着编译期、后编译期、加载期织入
+spring是在运行期进行的织入。
+spring是在运行期进行的织入。
+spring是在运行期进行的织入。
+
 [maven-weave-aspectj](https://github.com/edidada/maven-weave-aspectj)
 
 
@@ -17,7 +28,6 @@ Java5+ 之后 AspectJ 可以写成 Java 类加注解的方式，*.aj 文件一�
 
 
 只要用 `@Aspect` 标识出它是一个 Aspect, 或者也可以完全用 AspectJ 语法，创建 *.aj 文件，里面写 `public aspect MethodStartAspect` 这样的的定义
-
 
 
 

@@ -1,5 +1,12 @@
 # MyBatis Generator
 
+java bean类
+有了
+WithId（）方法 能否去掉
+
+The content of element type "context" must match "(property*,plugin*,commentGenerator?,(connectionFactory|jdbcConnection),javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+)".
+
+
 mbg生成的sql select的Query类
 Criteria
 n. 标准，条件（criterion的复数）

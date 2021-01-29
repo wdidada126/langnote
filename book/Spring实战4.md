@@ -1,10 +1,11 @@
 # Spring实战4
 
+Spring实战（第5版 ）
 
+克雷格·沃斯（Craig Walls）
+Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持者，经常在各种技术会议上发表演讲。
 
 https://book.douban.com/subject/26767354/
-
-
 
 ### Chap.1
 
@@ -17,29 +18,22 @@ POJO 简单老Java对象
 
 
 应用上下文ApplicationContext
-
 Android里面也有Context QT WPF里面
-
 Spring容器 Spring container
-
+WPF MVVM
 
 
 问Spring的应用上下文有几种实现？有什么区别
 
 主要是加载bean的方式不同
-
 1.xml
-
 2.注解
 
 
 
 bean的生命周期
-
 BeanName
-
 BeanFactory
-
 DisposeBean
 
 
@@ -47,16 +41,13 @@ DisposeBean
 
 
 aop
-
 jdbc
-
 Spring EL表达式
 `#{}`
 
 
 
 @componentScan
-
 @Bean
 
 ### Chap . 2
@@ -64,17 +55,13 @@ Spring EL表达式
 
 
 @Autowired注解可以使用哪些地方
-
 field
-
 构造函数？
-
 方法？
 
 
 
 @Autowired 可以对成员变量、方法以及构造函数进行注释
-
 https://www.cnblogs.com/acm-bingzi/p/springAutowired.html
 
 
@@ -82,7 +69,6 @@ https://www.cnblogs.com/acm-bingzi/p/springAutowired.html
 
 
 javax.inject.Inject
-
 javax.inject.Named
 
 

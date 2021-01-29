@@ -1,5 +1,17 @@
 # raft
 
+2pc
+3pc
+共识算法？
+pax
+paxos
+
+图示
+
+[raft中文翻译](https://www.infoq.cn/article/raft-paper/)
+
+
+
 https://blog.csdn.net/LU_ZHAO/article/details/104934220
 
 
@@ -7,21 +19,12 @@ https://blog.csdn.net/LU_ZHAO/article/details/104934220
  [braft]( https://github.com/baidu/braft ) 
 
 
+https://github.com/Tencent/phxpaxos
 
- https://github.com/Tencent/phxpaxos
-
- [腾讯开源的Paxos库PhxPaxos代码解读---Prepare阶段]( https://www.cnblogs.com/lijingshanxi/p/10165802.html ) 
-
+[腾讯开源的Paxos库PhxPaxos代码解读---Prepare阶段]( https://www.cnblogs.com/lijingshanxi/p/10165802.html ) 
 
 
-
-
- https://www.zhihu.com/question/266834707 
-
-
-
-
-
+https://www.zhihu.com/question/266834707 
 作者：我做分布式系统
 
 

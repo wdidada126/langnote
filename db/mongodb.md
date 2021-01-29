@@ -1,5 +1,11 @@
 # mongodb
 
+
+
+mongodb 4.0已经支持事务了
+
+
+
 git remote add origin https://github.com/edidada/mongodb.git
 git push -u origin main
 

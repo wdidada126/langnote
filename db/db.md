@@ -1,6 +1,87 @@
 # db
 
 
+国内四大单机数据库：
+
+武汉达梦DM
+
+人大金仓 Kingbase
+
+南大通用Gbase
+
+神通OSCAR
+
+国产分布式数据库：
+
+蚂蚁金服 OceanBase
+
+腾讯 TDSQL
+
+中兴 GoldenDB
+
+华为 GaussDB200
+
+巨杉 SequoiaDB
+
+易鲸捷 EsgynDB
+
+万里开源 GreatDB
+
+星环科技 KunDB
+
+国产云数据库：
+
+阿里 AnalyticDB
+
+腾讯 CynosDB
+
+华为 HWSQL
+
+百度 TDB
+
+京东云DRDS
+
+金山 KTS
+
+阿里 PolarDB
+
+浪潮 K-DB
+
+东软 OpenBASE
+
+亚信 AntDB
+
+小米 Pegasus
+
+青云 RadonDB
+
+国外单机数据库：
+
+Oracle
+
+Microsoft SQL Server
+
+IBM DB2
+
+MySQL
+
+开源数据库：
+
+MySQL
+
+MariaDB
+
+PostgreSQL
+
+Greenplum
+
+TiDB
+
+另外还有一些高校也在从事数据库的开发，比如人大，南开，华科，华师。前段时间，OceanBase与华师成立联合实验室，探索产学研结合，希望以后能够发挥高校专长，推进数据库国产化进度。
+
+
+
+
 
 MySQL的RSS RSS什么鬼？
 
@@ -153,14 +234,13 @@ IEEE的数据库会议。IEEE的会议一般都比ACM对应会议差一些，ICD
 
 工程实现超高的编程技巧
 
-
 1.能够像haskell那样impure和pure分离.
 2.幂等的设计, 让部分有状态的模块成为metal unit, 同时幂等设计和failstop能够将有效地避bf. 
 3.元编程能力, 降低代码的冗余和耦合, 代码更适合扩展和组合.
 4.超高的系统编程能力.
 5.单测, mock测试设计能力.
 6.漂亮的日志输出. 
-7.会做性能分析, [参考大牛博客](http://link.zhihu.com/?target=http%3A//www.brendangregg.com/).
+7.会做性能分析, [参考大牛博客](http://www.brendangregg.com/).
 8.会使用docker加速自己的开发效率. 
 
 周边涉及
