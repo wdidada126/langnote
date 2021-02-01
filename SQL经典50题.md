@@ -561,7 +561,7 @@ INNER JOIN score sc ON st.`s_id`= sc.`s_id`
 WHERE sc.`c_id` IN (SELECT c_id
                FROM course
                WHERE t_id IN (SELECT t_id
-                              FROM teacher 
+                              FROM teacher
                               WHERE t_name = '张三'
                               ));
 
