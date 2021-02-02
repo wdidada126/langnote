@@ -39,6 +39,8 @@ The package libxml2 is compatible with built-in CMake targets:
 
 
 类似的工具：mac平台brew，linux的apt pkg yum
+vcpkg 支持linux Widnows Mac
+
 
 xxx-dev
 

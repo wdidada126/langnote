@@ -1,7 +1,16 @@
 # mybatis spring
 
+mysql-connector-java
+
+jdk
+sun的包
+
 不是Spring官方发布的
 
+spring xml文件中配置的三个spring-mybatis包中的类
+- PooledDataSource
+- SqlSessionFactoryBean
+- MapperScannerConfigurer
 
 PooledDataSource 
 driver
