@@ -1,5 +1,6 @@
 # mybatis spring
 
+不是Spring官方发布的
 
 
 PooledDataSource 
@@ -14,3 +15,8 @@ configLocation mybatis-config.xml mybatis自身xml配置文件
 
 MapperScannerConfigurer 
 basePackage 配置Java 接口对应的类
+
+
+
+
+
