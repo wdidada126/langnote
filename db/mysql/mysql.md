@@ -1,5 +1,19 @@
 # mysql
 
+mysql doc 5.7 中英文版本
+https://www.docs4dev.com/docs/zh/mysql/5.7/reference/innodb-benefits.html
+
+
+
+mysql 5.0中文翻译
+QQ:362606856
+http://www.deituicms.com/mysql8cn/cn/web.html
+
+
+
+gitbook
+https://github.com/mowangjuanzi/mysql-chinese-doc
+
 https://github.com/shlomi-noach/awesome-mysql
 https://github.com/jobbole/awesome-mysql-cn
 https://github.com/tmcallaghan/iibench-mysql

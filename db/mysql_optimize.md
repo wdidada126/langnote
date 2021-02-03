@@ -1,5 +1,15 @@
 # mysql_optimize
 
+查询的CPU消耗：or>in>union
+
+mysql where in 优化建议
+
+改为union
+
+mybatis xml怎么写？
+https://blog.csdn.net/nangeali/article/details/80767662
+
+
 MySQL深入学习笔记及实战指南
 http://www.notedeep.com/note/38/page/329
 

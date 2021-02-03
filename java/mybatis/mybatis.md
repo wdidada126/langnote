@@ -7,7 +7,7 @@ D:\git\github\LangNote\java\mybatis.md
 
 
 
-mybatis
+MyBatis
 
 jdbc
 连接池
@@ -23,6 +23,7 @@ MyBatis
 2、choose、when、otherwise
 3、trim、where、set
 4、foreach
+bind
 
 MyBatis 动态SQL
 
@@ -34,5 +35,5 @@ https://blog.csdn.net/a18716374124/article/details/79638980
 
 Jdbctemplate如何写动态sql
 
-Restful http 路径
+Restful HTTP 路径
 
