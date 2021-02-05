@@ -1,8 +1,24 @@
 # calcite
 
+```shell
+<dependencies>
+  <dependency>
+    <groupId>org.apache.calcite</groupId>
+    <artifactId>calcite-core</artifactId>
+    <version>1.26.0</version>
+  </dependency>
+</dependencies>
+```
 
 
-[Apache Calcite](https://links.jianshu.com/go?to=https%3A%2F%2Fcalcite.apache.org%2F) 
+
+
+
+写个demo
+
+
+
+[Apache Calcite](https://calcite.apache.org/) 
 是一款开源SQL解析工具, 可以将各种SQL语句解析成抽象语法术AST(Abstract Syntax Tree), 之后通过操作AST就可以把SQL中所要表达的算法与关系体现在具体代码之中。
 
 https://www.jianshu.com/p/2dfbd71b7f0f

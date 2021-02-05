@@ -83,7 +83,7 @@ https://darylliu.github.io/
 
 
 
-### VisionLab-*上海交通大学计算机*视觉*实验室
+### VisionLab-*上海交通大学计算机*视觉实验室
 
 
 

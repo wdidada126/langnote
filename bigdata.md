@@ -8,7 +8,7 @@
 
 开发效率blazor完胜。
 
-
+Blazor 是一个使用 [.NET](https://docs.microsoft.com/zh-cn/dotnet/standard/tour) 生成交互式客户端 Web UI 的框架：
 
 
 

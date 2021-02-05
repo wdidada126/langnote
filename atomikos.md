@@ -1,6 +1,6 @@
 # atomikos
 
-<<<<<<< HEAD
+
 Spring提供了JTA介入方式，但是没有提供JTA实现，目前JTA实现：
 
 Java Open Transaction Manager (JOTM)
@@ -9,10 +9,10 @@ JBoss TS
 
 Bitronix Transaction Manager (BTM)
 
-Atomikos。
-=======
+Atomikos
+
 Spring提供了JTA介入方式，但是没有提供JTA实现，目前JTA实现： Java Open Transaction Manager (JOTM), JBoss TS, Bitronix Transaction Manager (BTM), 和 Atomikos。
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 
 
 
