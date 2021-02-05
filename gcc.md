@@ -1,5 +1,25 @@
 # gcc
 
+https://cbs.centos.org/koji/buildinfo?buildID=31753
+
+devtoolset-9
+
+```shell
+rpm -qa | grep gcc
+devtoolset-7-gcc-7.3.1-5.16.el7.x86_64
+libgcc-4.8.5-44.el7.i686
+gcc-4.8.5-44.el7.x86_64
+devtoolset-8-gcc-8.3.1-3.2.el7.x86_64
+devtoolset-9-gcc-c++-9.1.1-2.6.el7.x86_64
+gcc-gfortran-4.8.5-44.el7.x86_64
+devtoolset-9-gcc-gfortran-9.1.1-2.6.el7.x86_64
+devtoolset-8-gcc-c++-8.3.1-3.2.el7.x86_64
+gcc-c++-4.8.5-44.el7.x86_64
+devtoolset-9-gcc-9.1.1-2.6.el7.x86_64
+libgcc-4.8.5-44.el7.x86_64
+devtoolset-7-gcc-c++-7.3.1-5.16.el7.x86_64
+```
+
 [install gcc 8 on centos](https://stackoverflow.com/questions/55345373/how-to-install-gcc-g-8-on-centos)
 
 ```c
