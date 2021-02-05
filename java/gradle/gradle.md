@@ -1,6 +1,12 @@
 # gradle
 
 
+build.gradle文件有多个
+pom.xml文件有多个
+CmakeLists.txt也有多个
+
+
+
 jar包下载的位置
 Mac系统默认下载到：/Users/(用户名)/.gradle/caches/modules-2/files-2.1
 Windows系统默认下载到：C:\Users\(用户名)\.gradle\caches\modules-2\files-2.1
