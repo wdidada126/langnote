@@ -160,3 +160,13 @@ svn propset svn:ignore -F tempfile PATH
 
 这样一来就跟git差不多了
 https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/help-onepage.html#tsvn-cli-addignore
+
+```shell
+svn propget svn:ignore . > tempfile.txt
+svn propset svn:ignore -F tempfile.txt .
+```
+
+上述命令执行结果
+property 'svn:ignore' set on '.'
+
+
