@@ -162,11 +162,17 @@ svn propset svn:ignore -F tempfile PATH
 https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/help-onepage.html#tsvn-cli-addignore
 
 ```shell
-svn propget svn:ignore . > tempfile.txt
-svn propset svn:ignore -F tempfile.txt .
+svn propget svn:ignore . > .svnignore
+svn propset svn:ignore -F .svnignore .
 ```
 
 上述命令执行结果
 property 'svn:ignore' set on '.'
 
 
+文件，加单引号
+文件夹 不加引号
+
+'d.txt'
+ddd
+dfasdfasd
