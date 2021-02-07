@@ -1,5 +1,15 @@
 # centos rpm
 
+```shell
+rpm -qa | grep mysql
+mysql-community-client-5.6.40-2.el7.x86_64
+mysql-community-release-el7-5.noarch
+mysql-community-common-5.6.40-2.el7.x86_64
+mysql-community-server-5.6.40-2.el7.x86_64
+mysql-community-libs-5.6.40-2.el7.x86_64
+```
+
+
 rpm -qa
 error: rpmdb: BDB0113 Thread/process 13171/140228881938496 failed: BDB1507 Thread died in Berkeley DB library
 error: db5 error(-30973) from dbenv->failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery
@@ -8,9 +18,9 @@ error: cannot open Packages database in /var/lib/rpm
 error: rpmdb: BDB0113 Thread/process 13171/140228881938496 failed: BDB1507 Thread died in Berkeley DB library
 error: db5 error(-30973) from dbenv->failchk: BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery
 error: cannot open Packages database in /var/lib/rpm
-
-
 ```
+
+百度 搞定
 
 
 rpm -ql mysql-community-server-5.7.32-1.el7.x86_64
@@ -306,6 +316,140 @@ rpm -ql mysql-community-devel-5.7.32-1.el7.x86_64
 /usr/share/doc/mysql-community-devel-5.7.32/README
 /usr/share/man/man1/comp_err.1.gz
 /usr/share/man/man1/mysql_config.1.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+rpm -ql mysql-community-server-5.6.40-2.el7.x86_64
+/etc/logrotate.d/mysql
+/etc/my.cnf
+/etc/my.cnf.d
+/usr/bin/innochecksum
+/usr/bin/my_print_defaults
+/usr/bin/myisam_ftdump
+/usr/bin/myisamchk
+/usr/bin/myisamlog
+/usr/bin/myisampack
+/usr/bin/mysql-systemd-start
+/usr/bin/mysql_convert_table_format
+/usr/bin/mysql_fix_extensions
+/usr/bin/mysql_install_db
+/usr/bin/mysql_plugin
+/usr/bin/mysql_secure_installation
+/usr/bin/mysql_tzinfo_to_sql
+/usr/bin/mysql_upgrade
+/usr/bin/mysql_zap
+/usr/bin/mysqlbug
+/usr/bin/mysqld_multi
+/usr/bin/mysqld_safe
+/usr/bin/mysqldumpslow
+/usr/bin/mysqlhotcopy
+/usr/bin/mysqltest
+/usr/bin/perror
+/usr/bin/replace
+/usr/bin/resolve_stack_dump
+/usr/bin/resolveip
+/usr/lib/systemd/system/mysqld.service
+/usr/lib/tmpfiles.d/mysql.conf
+/usr/lib64/mysql/plugin
+/usr/lib64/mysql/plugin/adt_null.so
+/usr/lib64/mysql/plugin/auth.so
+/usr/lib64/mysql/plugin/auth_socket.so
+/usr/lib64/mysql/plugin/auth_test_plugin.so
+/usr/lib64/mysql/plugin/connection_control.so
+/usr/lib64/mysql/plugin/daemon_example.ini
+/usr/lib64/mysql/plugin/debug
+/usr/lib64/mysql/plugin/debug/adt_null.so
+/usr/lib64/mysql/plugin/debug/auth.so
+/usr/lib64/mysql/plugin/debug/auth_socket.so
+/usr/lib64/mysql/plugin/debug/auth_test_plugin.so
+/usr/lib64/mysql/plugin/debug/connection_control.so
+/usr/lib64/mysql/plugin/debug/innodb_engine.so
+/usr/lib64/mysql/plugin/debug/libdaemon_example.so
+/usr/lib64/mysql/plugin/debug/libmemcached.so
+/usr/lib64/mysql/plugin/debug/mypluglib.so
+/usr/lib64/mysql/plugin/debug/mysql_no_login.so
+/usr/lib64/mysql/plugin/debug/qa_auth_client.so
+/usr/lib64/mysql/plugin/debug/qa_auth_interface.so
+/usr/lib64/mysql/plugin/debug/qa_auth_server.so
+/usr/lib64/mysql/plugin/debug/semisync_master.so
+/usr/lib64/mysql/plugin/debug/semisync_slave.so
+/usr/lib64/mysql/plugin/debug/test_udf_services.so
+/usr/lib64/mysql/plugin/debug/validate_password.so
+/usr/lib64/mysql/plugin/innodb_engine.so
+/usr/lib64/mysql/plugin/libdaemon_example.so
+/usr/lib64/mysql/plugin/libmemcached.so
+/usr/lib64/mysql/plugin/mypluglib.so
+/usr/lib64/mysql/plugin/mysql_no_login.so
+/usr/lib64/mysql/plugin/qa_auth_client.so
+/usr/lib64/mysql/plugin/qa_auth_interface.so
+/usr/lib64/mysql/plugin/qa_auth_server.so
+/usr/lib64/mysql/plugin/semisync_master.so
+/usr/lib64/mysql/plugin/semisync_slave.so
+/usr/lib64/mysql/plugin/test_udf_services.so
+/usr/lib64/mysql/plugin/validate_password.so
+/usr/sbin/mysqld
+/usr/sbin/mysqld-debug
+/usr/share/doc/mysql-community-server-5.6.40
+/usr/share/doc/mysql-community-server-5.6.40/COPYING
+/usr/share/doc/mysql-community-server-5.6.40/ChangeLog
+/usr/share/doc/mysql-community-server-5.6.40/INFO_BIN
+/usr/share/doc/mysql-community-server-5.6.40/INFO_SRC
+/usr/share/doc/mysql-community-server-5.6.40/README
+/usr/share/doc/mysql-community-server-5.6.40/my-default.cnf
+/usr/share/man/man1/innochecksum.1.gz
+/usr/share/man/man1/my_print_defaults.1.gz
+/usr/share/man/man1/myisam_ftdump.1.gz
+/usr/share/man/man1/myisamchk.1.gz
+/usr/share/man/man1/myisamlog.1.gz
+/usr/share/man/man1/myisampack.1.gz
+/usr/share/man/man1/mysql.server.1.gz
+/usr/share/man/man1/mysql_convert_table_format.1.gz
+/usr/share/man/man1/mysql_fix_extensions.1.gz
+/usr/share/man/man1/mysql_install_db.1.gz
+/usr/share/man/man1/mysql_plugin.1.gz
+/usr/share/man/man1/mysql_secure_installation.1.gz
+/usr/share/man/man1/mysql_tzinfo_to_sql.1.gz
+/usr/share/man/man1/mysql_upgrade.1.gz
+/usr/share/man/man1/mysql_zap.1.gz
+/usr/share/man/man1/mysqlbug.1.gz
+/usr/share/man/man1/mysqld_multi.1.gz
+/usr/share/man/man1/mysqld_safe.1.gz
+/usr/share/man/man1/mysqldumpslow.1.gz
+/usr/share/man/man1/mysqlhotcopy.1.gz
+/usr/share/man/man1/mysqlman.1.gz
+/usr/share/man/man1/perror.1.gz
+/usr/share/man/man1/replace.1.gz
+/usr/share/man/man1/resolve_stack_dump.1.gz
+/usr/share/man/man1/resolveip.1.gz
+/usr/share/man/man8/mysqld.8.gz
+/usr/share/mysql/SELinux/RHEL4/mysql.fc
+/usr/share/mysql/SELinux/RHEL4/mysql.te
+/usr/share/mysql/dictionary.txt
+/usr/share/mysql/fill_help_tables.sql
+/usr/share/mysql/innodb_memcached_config.sql
+/usr/share/mysql/magic
+/usr/share/mysql/my-default.cnf
+/usr/share/mysql/mysql-log-rotate
+/usr/share/mysql/mysql_security_commands.sql
+/usr/share/mysql/mysql_system_tables.sql
+/usr/share/mysql/mysql_system_tables_data.sql
+/usr/share/mysql/mysql_test_data_timezone.sql
+/var/lib/mysql
+/var/lib/mysql-files
+/var/run/mysqld
 ```
 
 
