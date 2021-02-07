@@ -1,4 +1,4 @@
-# mysql_optimize
+# mysql optimize
 
 
 [记一次mysql优化 not in, not exits, left join 子查询](https://blog.csdn.net/qq_39504351/article/details/100051523)
