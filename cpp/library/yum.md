@@ -137,3 +137,86 @@ package: libodb-mysql.x86_64 2.3.0-1.el7
    provider: glibc.x86_64 2.17-322.el7_9
    provider: glibc.i686 2.17-322.el7_9
 ```
+
+
+```shell
+yum repolist
+Loaded plugins: fastestmirror, langpacks
+Repository epel is listed more than once in the configuration
+Loading mirror speeds from cached hostfile
+ * centos-sclo-rh: mirrors.aliyun.com
+ * centos-sclo-sclo: mirrors.aliyun.com
+repo id                                                                                                  repo name                                                                                        status
+!centos-sclo-rh/x86_64                                                                                   CentOS-7 - SCLo rh                                                                                7,145
+!centos-sclo-sclo/x86_64                                                                                 CentOS-7 - SCLo sclo                                                                                816
+!copr:copr.fedorainfracloud.org:carlwgeorge:ripgrep/x86_64                                               Copr repo for ripgrep owned by carlwgeorge                                                            3
+!docker-ce-stable/x86_64                                                                                 Docker CE Stable - x86_64                                                                           100
+!epel/7/x86_64                                                                                           EPEL for redhat/centos 7 - x86_64                                                                13,518
+!extras/7/x86_64                                                                                         Qcloud centos extras - x86_64                                                                       448
+!kubernetes/x86_64                                                                                       kubernetes                                                                                          624
+!mysql-connectors-community/x86_64                                                                       MySQL Connectors Community                                                                          185
+!mysql-tools-community/x86_64                                                                            MySQL Tools Community                                                                               123
+!mysql57-community/x86_64                                                                                MySQL 5.7 Community Server                                                                          484
+!os/7/x86_64                                                                                             Qcloud centos os - x86_64                                                                        10,072
+!pgdg-common/7/x86_64                                                                                    PostgreSQL common RPMs for RHEL/CentOS 7 - x86_64                                                   387
+!pgdg10/7/x86_64                                                                                         PostgreSQL 10 for RHEL/CentOS 7 - x86_64                                                            843
+!pgdg11/7/x86_64                                                                                         PostgreSQL 11 for RHEL/CentOS 7 - x86_64                                                            892
+!pgdg12/7/x86_64                                                                                         PostgreSQL 12 for RHEL/CentOS 7 - x86_64                                                            462
+!pgdg95/7/x86_64                                                                                         PostgreSQL 9.5 for RHEL/CentOS 7 - x86_64                                                           748
+!pgdg96/7/x86_64                                                                                         PostgreSQL 9.6 for RHEL/CentOS 7 - x86_64                                                           821
+!updates/7/x86_64                                                                                        Qcloud centos updates - x86_64                                                                    1,630
+repolist: 39,301
+```
+
+
+```shell
+yum repolist
+Loaded plugins: fastestmirror
+Repository base is listed more than once in the configuration
+Repository updates is listed more than once in the configuration
+Repository extras is listed more than once in the configuration
+Repository epel is listed more than once in the configuration
+Loading mirror speeds from cached hostfile
+ * webtatic: uk.repo.webtatic.com
+base                                                                                                                                                                                     | 3.6 kB  00:00:00     
+epel                                                                                                                                                                                     | 4.7 kB  00:00:00     
+extras                                                                                                                                                                                   | 2.9 kB  00:00:00     
+https://copr-be.cloud.fedoraproject.org/results/mcepl/vim8/epel-7-x86_64/repodata/repomd.xml: [Errno 14] HTTPS Error 404 - Not Found
+Trying other mirror.
+To address this issue please refer to the below wiki article 
+
+https://wiki.centos.org/yum-errors
+
+If above article doesn't help to resolve this issue please use https://bugs.centos.org/.
+
+mysql-connectors-community                                                                                                                                                               | 2.6 kB  00:00:00     
+mysql-tools-community                                                                                                                                                                    | 2.6 kB  00:00:00     
+mysql56-community                                                                                                                                                                        | 2.6 kB  00:00:00     
+percona-release-noarch                                                                                                                                                                   | 2.9 kB  00:00:00     
+percona-release-x86_64                                                                                                                                                                   | 2.9 kB  00:00:00     
+updates                                                                                                                                                                                  | 2.9 kB  00:00:00     
+webtatic                                                                                                                                                                                 | 3.6 kB  00:00:00     
+zabbix                                                                                                                                                                                   | 2.9 kB  00:00:00     
+zabbix-non-supported                                                                                                                                                                     |  951 B  00:00:00     
+(1/4): epel/x86_64/group_gz                                                                                                                                                              |  95 kB  00:00:00     
+(2/4): epel/x86_64/updateinfo                                                                                                                                                            | 1.0 MB  00:00:00     
+(3/4): epel/x86_64/primary_db                                                                                                                                                            | 6.9 MB  00:00:00     
+(4/4): updates/7/x86_64/primary_db                                                                                                                                                       | 5.6 MB  00:00:00     
+repo id                                                                                      repo name                                                                                                    status
+base/7/x86_64                                                                                CentOS-7                                                                                                     10,072
+epel/x86_64                                                                                  Extra Packages for Enterprise Linux 7 - x86_64                                                               13,518
+extras/7/x86_64                                                                              CentOS-7                                                                                                        448
+mysql-connectors-community/x86_64                                                            MySQL Connectors Community                                                                                      185
+mysql-tools-community/x86_64                                                                 MySQL Tools Community                                                                                           123
+mysql56-community/x86_64                                                                     MySQL 5.6 Community Server                                                                                      581
+percona-release-noarch/7                                                                     Percona-Release YUM repository - noarch                                                                          63
+percona-release-x86_64/7/x86_64                                                              Percona-Release YUM repository - x86_64                                                                       2,257
+updates/7/x86_64                                                                             CentOS-7                                                                                                      1,630
+webtatic/x86_64                                                                              Webtatic Repository EL7 - x86_64                                                                                789
+zabbix/x86_64                                                                                Zabbix Official Repository - x86_64                                                                             236
+zabbix-non-supported/x86_64                                                                  Zabbix Official Repository non-supported - x86_64                                                                 4
+repolist: 29,906
+```
+
+
+`yum -y install createrepo`

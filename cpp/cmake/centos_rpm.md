@@ -1,5 +1,68 @@
 # centos rpm
 
+rpm如何处理依赖
+yum安装的时候，可以处理
+
+rpm -ivh的时候，处理不了
+
+RPM是RedHat Package Manager（RedHat软件包管理工具）类似Windows里面的“添加/删除程序”
+
+`yum install rpmdevtools -y`
+
+https://blog.csdn.net/mrbuffoon/article/details/82766664
+rpmdev-setuptree这个命令就是安装rpmdevtools
+rpmdev-setuptree这个命令就是安装rpmdevtools带来的。可以看到运行了这个命令之后，在$HOME家目录下多了一个叫做rpmbuild的文件夹，里边内容如下：
+
+
+默认位置
+
+宏代码
+
+名称
+
+用途
+
+~/rpmbuild/SPECS
+
+%_specdir
+
+Spec 文件目录
+
+保存 RPM 包配置（.spec）文件
+
+~/rpmbuild/SOURCES
+
+%_sourcedir
+
+源代码目录
+
+保存源码包（如 .tar 包）和所有 patch 补丁
+
+~/rpmbuild/BUILD
+%_builddir
+构建目录
+源码包被解压至此，并在该目录的子目录完成编译
+~/rpmbuild/BUILDROOT
+%_buildrootdir
+最终安装目录
+保存 %install 阶段安装的文件
+~/rpmbuild/RPMS
+%_rpmdir
+标准 RPM 包目录
+生成/保存二进制 RPM 包
+~/rpmbuild/SRPMS
+%_srcrpmdir
+源代码 RPM 包目录
+生成/保存源码 RPM 包(SRPM)
+
+
+
+打rpm包。
+
+        以从http://www.linuxfromscratch.org/blfs/view/svn/general/libpng.html下载的libpng-1.6.2为例，针对i386环境打包，编写好对应的libpng.spec文件后，再使用rmpbuild -ba libpng.spec执行第2步中编写的spec文件打包，假如在spec文件中的%package -n 描述有libpng-tools、libpng-runtime、libpng-devel三个包，那么执行完spec文件中的内容后可以在RPMS目录下看到对应的libpng-tools-1.6.2-1.i386.rpm、libpng-runtime-1.6.2-1.i386.rpm、libpng-devel-1.6.2-1.i386.rpm以及在SRPMS下生成libpng.src.rpm二进制源码包。
+
+        5、最后可以使用rpm -ivh libpng-1.6.2-1.i386.rpm在自己的X86机器上安装对应的rpm包。
+
 ```shell
 rpm -qa | grep mysql
 mysql-community-client-5.6.40-2.el7.x86_64

@@ -1,6 +1,6 @@
 # CMake
 
-
+add_test(NAME uuid_generator COMMAND uuid_generator)
 
 理论上只需要find_package()就可以引入一个三方库
 没有最佳实践

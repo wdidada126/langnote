@@ -1,6 +1,10 @@
 # mongodb dev
 
 
+有些工具是用go写的，跨平台
+
+需要使用python3.7以上
+
 This group has been superseded by the new MongoDB Community forums and is now in readonly mode.
 To start or continue discussion, please use https://community.mongodb.com.
 The MongoDB Community forums have been designed based on community feedback and consolidate multiple channels into a central discussion hub. Set up your profile, find friends, and create an intro post in our Welcome category. Browse the discussions already taking place and post questions and topics of your own.
