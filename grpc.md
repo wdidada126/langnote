@@ -2,6 +2,19 @@
 
 
 
+```
+find_package(gRPC CONFIG REQUIRED)
+    # Note: 8 target(s) were omitted.
+    target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
+
+```
+
+vcpkg install grpc
+
+
+
+
+
 2005年开源的
 
 HTTP/2 based RPC

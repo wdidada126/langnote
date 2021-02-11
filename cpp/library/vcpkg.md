@@ -1,6 +1,22 @@
 # vcpkg
 
 
+
+https://docs.microsoft.com/zh-cn/cpp/build/vcpkg?
+
+
+
+安装时，忽略下载cmake，ninja
+
+在该目录下创建downloads,将自行下载的压缩包放入该目录下
+
+```
+sudo cp ninja-linux-1.8.2.zip /usr/local/vcpkg/downloads
+sudo cp cmake-3.14.0-Linux-x86_64.tar.gz /usr/local/vcpkg/downloads
+```
+
+https://blog.csdn.net/cyh5272/article/details/103214932
+
 vcpkg install xxx 安装开源库到本地
 
 cmake配置 clion
