@@ -8,7 +8,7 @@
 
 
 
-池建强
+池建强 创业项目
 
 
 
@@ -42,3 +42,6 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 
 高并发系统设计40问
 
+
+吾爱破解
+极客时间全套：https://cloud.189.cn/t/yIbuMnUFjmYz（访问码：c8hx）

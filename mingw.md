@@ -19,3 +19,9 @@ For bug reporting instructions, please see:
 <http://www.gnu.org/software/gdb/bugs/>.
 
 ```
+
+
+https://www.zhihu.com/question/22137175
+
+对标cl.exe
+

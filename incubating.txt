@@ -1,0 +1,10 @@
+﻿Argo 	KubeEdge
+Buildpacks	Linkerd
+CloudEvents	NATS
+CNI	Notary
+Contour	OpenTracing
+Cortex	Operator Framework
+CRI-O	SPIFFE
+Dragonfly	SPIRE
+Falco	Thanos
+gRPC

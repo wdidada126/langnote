@@ -1,5 +1,20 @@
 # mysql
 
+navicate windows
+mysql server centos 7
+区分大小写
+表明Student student不一样
+
+MVCC 优化查询的
+ReadView
+上一个记录的指针
+事务版本号
+
+已提交的最新版本号
+大小比较
+
+https://baijiahao.baidu.com/s?id=1629409989970483292&wfr=spider&for=pc
+
 共享锁：select * from tableName where ... + lock in share more
 排他锁：select * from tableName where ... + for update
 
