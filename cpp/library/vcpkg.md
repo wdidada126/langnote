@@ -1,6 +1,27 @@
 # vcpkg
 
 
+```shell
+./bootstrap-vcpkg.sh 
+Downloading ninja...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   619  100   619    0     0    148      0  0:00:04  0:00:04 --:--:--   148
+100 77854  100 77854    0     0  12509      0  0:00:06  0:00:06 --:--:--  137k
+Downloading ninja... done.
+Extracting ninja...
+Extracting ninja... done.
+CXX (g++) is too old; please install a newer compiler such as g++-7.
+On Ubuntu try the following:
+  sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  sudo apt-get update -y
+  sudo apt-get install g++-7 -y
+On CentOS try the following:
+  sudo yum install centos-release-scl -y
+  sudo yum install devtoolset-7 -y
+  scl enable devtoolset-7 bash
+```
+
 
 https://docs.microsoft.com/zh-cn/cpp/build/vcpkg?
 

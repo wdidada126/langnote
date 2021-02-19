@@ -1,5 +1,12 @@
 # centos rpm
 
+
+https://pkgs.org/download/libstdc++-devel
+
+
+gcc_rpm2.md
+gcc_rpm.txt
+
 rpm如何处理依赖
 yum安装的时候，可以处理
 
