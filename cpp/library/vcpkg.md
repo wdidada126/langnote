@@ -1,5 +1,25 @@
 # vcpkg
 
+
+
+`wget https://github.com/boostorg/math/archive/boost-1.71.0.tar.gz -O /Users/ibqo/vcpkg/downloads/boostorg-math-boost-1.71.0.tar.gz`
+
+
+
+vcpkg install 流程
+
+下载源代码到downloads/temp
+
+解压
+
+编译
+
+
+
+
+
+
+
 最新版要求gcc 7版本以上
 
 ```shell

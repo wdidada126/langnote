@@ -547,7 +547,7 @@ endif()
 
 
 
-# cmake:环境变量(environment variable)读写和if判断
+cmake:环境变量(environment variable)读写和if判断
 
 
 
@@ -555,7 +555,7 @@ endif()
 
 
 
-# cmake语法-STREQUAL
+cmake语法-STREQUAL
 
  **STREQUAL** 用于比较字符串，相同返回 **true** 。 
 
@@ -980,7 +980,7 @@ macro (do_test arg1 arg2 result)
     PROPERTIES PASS_REGULAR_EXPRESSION ${result})
 endmacro (do_test)
 
-# 使用该宏进行一系列的数据测试
+使用该宏进行一系列的数据测试
 do_test (5 2 "is 25")
 do_test (10 5 "is 100000")
 do_test (2 10 "is 1024")
