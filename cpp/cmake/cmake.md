@@ -1,5 +1,45 @@
 # CMake
 
+
+rpmbuild spec CMake 创建项目的rpm 包
+
+
+
+https://blog.csdn.net/henry860916/article/details/50443574
+https://blog.csdn.net/wudongxu/article/details/6804536
+
+
+
+CMake中包含的三个工具（cmake cpack ctest）
+
+cpack
+
+ctest
+
+
+
+
+
+rpm
+
+deb
+
+包
+
+
+
+类比maven
+
+jar 本质是一压缩格式，winrar可以打开
+
+war
+
+
+
+aar
+
+
+=======
 cmake module模块
 ```shell
 cmake --help-module-list
@@ -313,6 +353,7 @@ E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildt
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\CMakeFiles\3.14.0\CMakeCXXCompiler.cmake
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\CMakeFiles\3.14.0\CMakeCCompiler.cmake
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\cmake_install.cmake
+>>>>>>> 6faa5abd105d9ac215af4c26599be94f269ae80a
 
 
 

@@ -33,6 +33,35 @@ On CentOS try the following:
 ```
 
 
+如何用brew apt yum安装vcpkg
+
+自己打包vcpkg deb rpm包
+
+
+
+Vcpkg新增库简易指南
+
+看vcpkg下的doc文件，有例子
+
+
+
+https://www.jianshu.com/p/9b72a57499c6
+
+
+
+
+
+### Vcpkg的优点
+
+- 自动下载开源库源代码
+- 源码包的缓存管理和版本管理，可以升级版本
+- 轻松编译
+- 依赖关系检查（比如编译libcurl，会自动下载zlib、openssl进行编译）
+- 无缝集成Visual Studio，不需要设置库文件、头文件的所在目录，自动集成。
+- Visual Studio全平台支持，不仅支持Debug/Release、x86/x64编译，还支持UWP、ARM平台的编译。
+
+
+
 https://docs.microsoft.com/zh-cn/cpp/build/vcpkg?
 
 

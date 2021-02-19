@@ -1,0 +1,162 @@
+# cpack
+
+Cpack 打包 二进制 库文件‘
+
+
+
+https://blog.csdn.net/qq_29493353/article/details/90205415
+
+Linux下可以用tar.gz、rpm、zip等格式。
+
+
+
+mac
+
+```shell
+cpack --help
+Usage
+
+  cpack [options]
+
+Options
+  -G <generators>              = Override/define CPACK_GENERATOR
+  -C <Configuration>           = Specify the project configuration
+  -D <var>=<value>             = Set a CPack variable.
+  --config <configFile>        = Specify the config file.
+  --verbose,-V                 = Enable verbose output
+  --trace                      = Put underlying cmake scripts in trace mode.
+  --trace-expand               = Put underlying cmake scripts in expanded
+                                 trace mode.
+  --debug                      = Enable debug output (for CPack developers)
+  -P <packageName>             = Override/define CPACK_PACKAGE_NAME
+  -R <packageVersion>          = Override/define CPACK_PACKAGE_VERSION
+  -B <packageDirectory>        = Override/define CPACK_PACKAGE_DIRECTORY
+  --vendor <vendorName>        = Override/define CPACK_PACKAGE_VENDOR
+  --help,-help,-usage,-h,-H,/? = Print usage information and exit.
+  --version,-version,/V [<f>]  = Print version number and exit.
+  --help-full [<f>]            = Print all help manuals and exit.
+  --help-manual <man> [<f>]    = Print one help manual and exit.
+  --help-manual-list [<f>]     = List help manuals available and exit.
+  --help-command <cmd> [<f>]   = Print help for one command and exit.
+  --help-command-list [<f>]    = List commands with help available and exit.
+  --help-commands [<f>]        = Print cmake-commands manual and exit.
+  --help-module <mod> [<f>]    = Print help for one module and exit.
+  --help-module-list [<f>]     = List modules with help available and exit.
+  --help-modules [<f>]         = Print cmake-modules manual and exit.
+  --help-policy <cmp> [<f>]    = Print help for one policy and exit.
+  --help-policy-list [<f>]     = List policies with help available and exit.
+  --help-policies [<f>]        = Print cmake-policies manual and exit.
+  --help-property <prop> [<f>] = Print help for one property and exit.
+  --help-property-list [<f>]   = List properties with help available and
+                                 exit.
+  --help-properties [<f>]      = Print cmake-properties manual and exit.
+  --help-variable var [<f>]    = Print help for one variable and exit.
+  --help-variable-list [<f>]   = List variables with help available and exit.
+  --help-variables [<f>]       = Print cmake-variables manual and exit.
+
+Generators
+  7Z                           = 7-Zip file format
+  Bundle                       = Mac OSX bundle
+  DragNDrop                    = Mac OSX Drag And Drop
+  External                     = CPack External packages
+  IFW                          = Qt Installer Framework
+  NSIS                         = Null Soft Installer
+  NSIS64                       = Null Soft Installer (64-bit)
+  NuGet                        = NuGet packages
+  OSXX11                       = Mac OSX X11 bundle
+  PackageMaker                 = Mac OSX Package Maker installer
+  STGZ                         = Self extracting Tar GZip compression
+  TBZ2                         = Tar BZip2 compression
+  TGZ                          = Tar GZip compression
+  TXZ                          = Tar XZ compression
+  TZ                           = Tar Compress compression
+  ZIP                          = ZIP file format
+  productbuild                 = Mac OSX pkg
+```
+
+
+
+
+
+centos 7
+
+
+
+```shell
+cpack --help
+cpack version 2.8.12.2
+Usage
+
+  cpack -G <generator> [options]
+
+Options
+  -G <generator>              = Use the specified generator to generate
+                                package.
+  -C <Configuration>          = Specify the project configuration
+  -D <var>=<value>            = Set a CPack variable.
+  --config <config file>      = Specify the config file.
+  --verbose,-V                = enable verbose output
+  --debug                     = enable debug output (for CPack developers)
+  -P <package name>           = override/define CPACK_PACKAGE_NAME
+  -R <package version>        = override/define CPACK_PACKAGE_VERSION
+  -B <package directory>      = override/define CPACK_PACKAGE_DIRECTORY
+  --vendor <vendor name>      = override/define CPACK_PACKAGE_VENDOR
+  --help-command cmd [file]   = Print help for a single command and exit.
+  --help-command-list [file]  = List available commands and exit.
+  --help-commands [file]      = Print help for all commands and exit.
+  --help-variable var [file]  = Print help for a single variable and exit.
+  --help-variable-list [file] = List documented variables and exit.
+  --help-variables [file]     = Print help for all variables and exit.
+  --copyright [file]          = Print the CMake copyright and exit.
+  --help,-help,-usage,-h,-H,/?= Print usage information and exit.
+  --help-full [file]          = Print full help and exit.
+  --help-html [file]          = Print full help in HTML format.
+  --help-man [file]           = Print full help as a UNIX man page and exit.
+  --version,-version,/V [file]= Show program name/version banner and exit.
+
+Generators
+  DEB                         = Debian packages
+  NSIS                        = Null Soft Installer
+  NSIS64                      = Null Soft Installer (64-bit)
+  RPM                         = RPM packages
+  STGZ                        = Self extracting Tar GZip compression
+  TBZ2                        = Tar BZip2 compression
+  TGZ                         = Tar GZip compression
+  TZ                          = Tar Compress compression
+  ZIP                         = ZIP file format
+```
+
+
+
+cpack入门
+
+`cpack -G RPM --verbose`
+
+执行 cmake 命令后, 你会发现当前目录下面多了两个文件 **CPackConfig.cmake** 和 **CPackSourceConfig.cmake**。 编译完成后，执行 `cpack -G RPM` 就可将文件打包成 rpm 包，当前目录下会生成一个 **_CPack_Packages** 目录和一个以 .rpm 为后缀名的文件 **example-1.0.0-Linux.rpm**，**example-1.0.0-Linux.rpm** 就是我们想要的安装包文件。
+
+CPack 是根据用户的配置生成_CPack_Packages/Linux/RPM/SPECS/example.spec 文件，然后让 rpm-build 用。
+
+https://zhuanlan.zhihu.com/p/141956373
+
+用到的配置变量是以 CPACK_RPM_XXX 为前缀。最终通过 **rpm-build** 这个工具去打包，所以需要安装 **rpm-build** 这个工具，可以通过 `sudo yum install -y rpm-build` 安装。
+
+```shell
+# 设置生成的安装包名字
+set(CPACK_PACKAGE_NAME "example")
+# 设置支持指定安装目录的控制为 ON                                   
+set(CPACK_SET_DESTDIR ON)
+# 设置安装到的目录路径
+set(CPACK_INSTALL_PREFIX "/home/vesoft/install")   
+# 这是生成的安装的版本号信息                       
+set(CPACK_PACKAGE_VERSION "1.0.0") 
+# 设置 group 名字                                     
+set(CPACK_RPM_PACKAGE_GROUP "vesoft")      
+# 设置 vendor 名字                             
+set(CPACK_PACKAGE_VENDOR "vesoft")    
+# 设置 license 信息                                  
+set(CPACK_RPM_PACKAGE_LICENSE "Apache 2.0 + Common Clause 1.0")
+include(CPack)
+```
+
+
+
