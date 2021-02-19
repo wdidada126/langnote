@@ -1,6 +1,20 @@
 # termux
 
 
+apt基础上封装pkg，默认执行apt update apt upgradle操作
+
+
+pkg search <query>              搜索包
+pkg install <package>           安装包
+pkg uninstall <package>         卸载包
+pkg reinstall <package>         重新安装包
+pkg update                      更新源
+pkg upgrade                     升级软件包
+pkg list-all                    列出可供安装的所有包
+pkg list-installed              列出已经安装的包
+pkg shoe <package>              显示某个包的详细信息
+pkg files <package>             显示某个包的相关文件夹路径
+
 
 只能在termux中操作ssh登陆相关的文件
 

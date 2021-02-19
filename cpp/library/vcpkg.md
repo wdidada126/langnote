@@ -1,5 +1,14 @@
 # vcpkg
 
+vcpkg install opencv
+
+wget https://github.com/glennrp/libpng/archive/v1.6.37.tar.gz
+
+放到/root/vcpkg/downloads/temp/glennrp-libpng-v1.6.37.tar.gz
+
+
+
+
 最新版要求gcc 7版本以上
 
 ```shell
