@@ -70,16 +70,12 @@ MySQL核心内幕(国人写的).pdf
 MySQL技术内幕InnoDB存储引擎.pdf
 
 
-
+show variables
 
 
 
 
 ### Chap. 1 连接器
-
-
-
-
 
 mysql的内部架构
 
@@ -101,6 +97,8 @@ mysql的内部架构
 myasma 不支持事务
 innodb实现事务
 
+mysql，提到事务，最先想到innodb存储引擎
+
 
 mysql server 服务器层也实现表锁
 
@@ -111,11 +109,12 @@ select ... for update
 
 mysql 事务性数据引擎实现的都不是简单的行级锁，提升并发，使用mvcc
 
-oracle pgsql 都实现了mvcc
 
 
 oracle pgsql 等rdbms都实现了mvcc
 
+
+rdbms和nosql的区别包括事务支持与否
 
 可以认为mvcc是行级锁的一个变种
 mvcc没有规范，不同数据库厂商自己实现
@@ -183,6 +182,10 @@ performance_schema
 
 sysbench
 
+千金良方：MySQL性能优化金字塔法则.pdf
+上有例子
+
+
 
 ### Chap.3 服务器性能剖析
 
@@ -222,15 +225,6 @@ mvcc对应的是lock base version control
 
 
 加了三个字段 隐藏的
-
-
-### 第7章 mysql 高级特性
-
-### 第8章 优化服务器设置
-
-
-### Chap. 9 操作系统和硬件优化
-
 1.DB_TRX_ID：一个6byte的标识，每处理一个事务，其值自动+1
 下面提到的“创建时间”和“删除时间”记录的就是这个DB_TRX_ID的值
 如insert、update、delete操作时，删除操作用1个bit表示。 
@@ -241,6 +235,15 @@ DB_TRX_ID是最重要的一个，可以通过语句“show engine innodb status�
 当由innodb自动产生聚集索引时聚集索引(即没有主键时,因为MYSQL默认聚簇表,会自动生成一个ROWID)
 包括这个DB_ROW_ID的值，
 不然的话聚集索引中不包括这个值,这个用于索引当中。
+
+### 第7章 mysql 高级特性
+
+### 第8章 优化服务器设置
+
+
+### Chap. 9 操作系统和硬件优化
+
+
 
 https://www.cnblogs.com/zzq-include/p/13532019.html
 

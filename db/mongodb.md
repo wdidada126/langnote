@@ -2,6 +2,12 @@
 
 
 
+
+崔鑫，华为云DDS数据库架构师，十二年存储与数据库研发与运维经验。目前在华为云DDS团队领导GaussDB(for Mongo)和DDS的内核创新/研发/运维。
+https://docs.mongoing.com/
+
+
+
 mongodb本身的failover机制，无需使用如MHA之类的方式实现。
 
 Mongodb慢查询笔记 (Mongodb slow query log)

@@ -1,5 +1,48 @@
 # mysql optimize
 
+google query
+mysql server query sql optimize
+
+https://shashwat-creator.medium.com/mysql-query-optimizer-fc158b3de623
+https://www.dnsstuff.com/mysql-optimize-database
+https://www.eversql.com/sql-performance-tuning-tips-for-mysql-query-optimization/
+
+D:\git\gitlab\langnote\MySQL性能调优与架构设计.pdf  对应的mysql版本是5.1 5.2的？
+第八章
+
+8.5 Join 的实现原理及优化思路
+ MySQL 中，只有一种 Join 算法，就是大名鼎鼎的 Nested Loop Joi
+
+high-performance-mysql/9780596101718/ch04.html
+高性能mysql第四章
+
+mysql server query sql optimize
+
+
+
+
+分析如何优化 MySQL Query 之前，我们需要先了解一下 Query 语句优化的基本思路和原则。一
+般来说， Query 语句的优化思路和原则主要提现在以下几个方面：
+1. 优化更需要优化的 Query；
+2. 定位优化对象的性能瓶颈；
+3. 明确的优化目标；
+4. 从 Explain 入手；
+5. 多使用 profile
+6. 永远用小结果集驱动大的结果集；
+7. 尽可能在索引中完成排序；
+8. 只取出自己需要的 Columns；
+9. 仅仅使用最有效的过滤条件；
+10. 尽可能避免复杂的 Join 和子查询
+
+
+要想优化一条 Query，我们就需要清楚的知道这条 Query 的性能瓶颈到底在哪里，是消耗的 CPU
+计算太多，还是需要的的 IO 操作太多
+MySQL 的 Query Profiler 是一个使用非常方便的 Query 诊断分析工具，通过该工具可以获取一条
+Query 在整个执行过程中多种资源的消耗情况，如 CPU， IO， IPC， SWAP 等，以及发生的 PAGE FAULTS，CONTEXT SWITCHE 等等，同时还能得到该 Query 执行过程中 MySQL 所调用的各个函数在源文件中的位
+置。下面我们看看 Query Profiler 的具体用法。
+
+
+
 soar 在测试环境优化没用，因为测试环境表数据量跟开发环境不一样
 数据库 两千万
 测试环境没有这么多
