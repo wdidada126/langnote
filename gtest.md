@@ -1,5 +1,24 @@
 # gtest
 
+vcpkg install gtest
+
+
+
+```
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+
+    add_test(AllTestsInMain main)
+```
+
+
+
+
+
 官方doc
 
 googletest github 仓库

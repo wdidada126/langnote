@@ -1,5 +1,47 @@
 # CMake
 
+rpmbuild spec CMake 创建项目的rpm 包
+
+
+
+https://blog.csdn.net/henry860916/article/details/50443574
+
+https://blog.csdn.net/wudongxu/article/details/6804536
+
+
+
+CMake中包含的三个工具（cmake cpack ctest）
+
+cpack
+
+ctest
+
+
+
+
+
+rpm
+
+deb
+
+包
+
+
+
+类比maven
+
+jar 本质是一压缩格式，winrar可以打开
+
+war
+
+
+
+aar
+
+
+
+
+
 add_test(NAME uuid_generator COMMAND uuid_generator)
 
 理论上只需要find_package()就可以引入一个三方库
