@@ -1,5 +1,6 @@
 # vcpkg
 
+最新版要求gcc 7版本以上
 
 ```shell
 ./bootstrap-vcpkg.sh 

@@ -201,6 +201,29 @@ select timestampdiff(second,@d,now());
 返回整数的单位是？
 
 
+第1种: datediff函数
+datediff函数返回两个日期之间的天数
+语法：DATEDIFF(date1,date2)
+SELECT DATEDIFF('2018-07-01','2018-07-04');
+运行结果:-3
+所以，datediff函数对时间差值的计算方式为date1-date2的差值。
+第2种: timestampdiff函数
+timestampdiff函数日期或日期时间表达式之间的整数差。
+语法：TIMESTAMPDIFF(interval，datetime1，datetime2)，比较的单位interval可以为以下数值
+FRAC_SECOND。表示间隔是毫秒
+SECOND。秒
+MINUTE。分钟
+HOUR。小时
+DAY。天
+WEEK。星期
+MONTH。月
+QUARTER。季度
+YEAR。年
+select TIMESTAMPDIFF(DAY,'2018-07-01 09:00:00','2018-07-04 12:00:00');
+运行结果:3
+所以，timestampdiff函数对日期差值的计算方式为datetime2-datetime1的差值。
+请注意：DATEDIFF，TIMESTAMPDIFF对日期差值的计算方式刚好是相反的。
+
 mysql sql
 select
 where in是否走索引

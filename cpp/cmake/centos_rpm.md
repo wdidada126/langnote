@@ -923,7 +923,8 @@ yum暂存(/var/cache/yum/)的相关参数
 
 列出资源库中特定的可以安装或更新以及已经安装的rpm包
 
-#yum list mozilla#yum list mozilla*
+#yum list mozilla
+#yum list mozilla*
 
 注:可以在rpm包名中使用匹配符,如列出所有以mozilla开头的rpm包
 
@@ -1116,3 +1117,60 @@ aptitude clean 删除下载的包文件
 
 aptitude autoclean 仅删除过期的包文件
 
+
+
+.rpm文件，查看安装后有哪些文件
+
+
+一个rpm包中包bai含那些文件 一个没du有安装过的软zhi件包，使用
+rpm -qlp rpm-filename.rpm
+
+一个dao已经安zhuan装过的软件包，还可以使用
+rpm -ql packet-name
+ 查shu看一个文件属于哪个rpm包， rpm -qf /path/filename如：查看glibc包内的文件 [root@fsc ~]# rpm -ql glibc /etc/gai.conf /etc/ld.so.cache
+
+
+rpm -qlp mysql57-community-release-el7-9.noarch.rpm
+/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+/etc/yum.repos.d/mysql-community-source.repo
+/etc/yum.repos.d/mysql-community.rep
+
+
+
+
+rpm -qlp mongodb-org-server-4.0.21-1.el7.x86_64.rpm
+warning: mongodb-org-server-4.0.21-1.el7.x86_64.rpm: Header V3 RSA/SHA1 Signature, key ID e52529d4: NOKEY
+/etc/mongod.conf
+/lib/systemd/system/mongod.service
+/usr/bin/mongod
+/usr/share/doc/mongodb-org-server-4.0.21
+/usr/share/doc/mongodb-org-server-4.0.21/LICENSE-Community.txt
+/usr/share/doc/mongodb-org-server-4.0.21/MPL-2
+/usr/share/doc/mongodb-org-server-4.0.21/README
+/usr/share/doc/mongodb-org-server-4.0.21/THIRD-PARTY-NOTICES
+/usr/share/man/man1/mongod.1
+/var/lib/mongo
+/var/log/mongodb
+/var/log/mongodb/mongod.log
+/var/run/mongodb
+
+
+
+rpm -qlp mongodb-org-shell-4.4.1-1.el7.x86_64.rpm
+warning: mongodb-org-shell-4.4.1-1.el7.x86_64.rpm: Header V3 RSA/SHA1 Signature, key ID 90cfb1f5: NOKEY
+/usr/bin/mongo
+/usr/share/man/man1/mongo.1
+
+
+rpm -qlp zlib-devel-1.2.3-29.el6.x86_64.rpm
+warning: zlib-devel-1.2.3-29.el6.x86_64.rpm: Header V3 RSA/SHA1 Signature, key ID c105b9de: NOKEY
+/usr/include/zconf.h
+/usr/include/zlib.h
+/usr/lib64/libz.so
+/usr/lib64/pkgconfig/zlib.pc
+/usr/share/doc/zlib-devel-1.2.3
+/usr/share/doc/zlib-devel-1.2.3/README
+/usr/share/doc/zlib-devel-1.2.3/algorithm.txt
+/usr/share/doc/zlib-devel-1.2.3/example.c
+/usr/share/doc/zlib-devel-1.2.3/minigzip.c
+/usr/share/man/man3/zlib.3.gz
