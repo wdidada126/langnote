@@ -1,5 +1,9 @@
 # mysql optimize
 
+soar 在测试环境优化没用，因为测试环境表数据量跟开发环境不一样
+数据库 两千万
+测试环境没有这么多
+
 
 [记一次mysql优化 not in, not exits, left join 子查询](https://blog.csdn.net/qq_39504351/article/details/100051523)
 
