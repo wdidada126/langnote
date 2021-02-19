@@ -1,6 +1,21 @@
 # cpp
 
 
+```shell
+rpm -pql glibc-2.17-222.el7.x86_64.rpm
+/etc/gai.conf
+/etc/ld.so.cache
+/etc/ld.so.conf
+/etc/ld.so.conf.d
+/etc/nsswitch.conf
+/etc/rpc
+```
+
+glibc安装之后才有
+/etc/ld.so.cache
+/etc/ld.so.conf
+/etc/ld.so.conf.d
+
 
 ## 【C++11新特性】 C++11 智能指针之shared_ptr
 
