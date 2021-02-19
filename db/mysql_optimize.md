@@ -43,6 +43,22 @@ Query 在整个执行过程中多种资源的消耗情况，如 CPU， IO， IPC
 
 
 
+
+三种物理连接操作(Nested Loop Join、Merge Join、Hash Join)
+https://blog.csdn.net/u010841296/article/details/89790399
+
+在Mysql的实现中，Nested-Loop Join有3种实现的算法：
+Simple Nested-Loop Join：SNLJ，简单嵌套循环连接
+Index Nested-Loop Join：INLJ，索引嵌套循环连接
+Block Nested-Loop Join：BNLJ，缓存块嵌套循环连接
+在选择Join算法时，会有优先级，理论上会优先判断能否使用INLJ、BNLJ：
+Index Nested-LoopJoin > Block Nested-Loop Join > Simple Nested-Loop Join
+
+
+
+1、简单嵌套循环连接实际上就是简单粗暴的嵌套循环，如果table1有1万条数据，table2有1万条数据，那么数据比较的次数=1万 * 1万 =1亿次，这种查询效率会非常慢。
+2、所以Mysql继续优化，然后衍生出Index Nested-LoopJoin、Block Nested-Loop Join两种NLJ算法。在执行join查询时mysql会根据情况选择两种之一进行join查询。
+
 soar 在测试环境优化没用，因为测试环境表数据量跟开发环境不一样
 数据库 两千万
 测试环境没有这么多

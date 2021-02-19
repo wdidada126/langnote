@@ -2,6 +2,7 @@
 
 
 
+
 `wget https://github.com/boostorg/math/archive/boost-1.71.0.tar.gz -O /Users/ibqo/vcpkg/downloads/boostorg-math-boost-1.71.0.tar.gz`
 
 
@@ -15,6 +16,13 @@ vcpkg install 流程
 编译
 
 
+
+
+vcpkg install opencv
+
+wget https://github.com/glennrp/libpng/archive/v1.6.37.tar.gz
+
+放到/root/vcpkg/downloads/temp/glennrp-libpng-v1.6.37.tar.gz
 
 
 
