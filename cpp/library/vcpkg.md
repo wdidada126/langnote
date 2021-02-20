@@ -1,6 +1,27 @@
 # vcpkg
 
+vcpkg mingw
+https://blog.csdn.net/weixin_40448140/article/details/109111042
 
+vcpkg 打包成rpm deb
+windows mac c/c++库格式
+
+
+
+vcpkg 2020-11这个tag，缓存在
+/root/.cache/vcpkg/archives/cb/
+
+vcpkg 2019版本，缓存在
+
+vcpkg下载github上面的源码包
+
+自定义c++库，vcpkg如何处理
+自定义rust go库，cargo等如何处理
+
+Starting package 30/84: boost-mpl:x64-linux
+Building package boost-mpl[core]:x64-linux...
+Could not locate cached archive: /root/.cache/vcpkg/archives/cb/cb5e93e30070ece9c8c294d8ed275fc74689c054.zip
+-- Downloading https://github.com/boostorg/mpl/archive/boost-1.73.0.tar.gz...
 
 
 `wget https://github.com/boostorg/math/archive/boost-1.71.0.tar.gz -O /Users/ibqo/vcpkg/downloads/boostorg-math-boost-1.71.0.tar.gz`

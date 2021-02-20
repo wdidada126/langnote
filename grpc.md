@@ -1,12 +1,21 @@
 # grpc
 
 
+/root/vcpkg/packages/protobuf_x64-linux/tools/protobuf/protoc --version
+libprotoc 3.10.0
 
+```shell
+ls /root/vcpkg/packages/grpc_x64-linux/lib
+libaddress_sorting.a  libgrpc.a    libgrpc_cronet.a       libgrpc++_error_details.a  libgrpcpp_channelz.a    libgrpc_unsecure.a
+libgpr.a              libgrpc++.a  libgrpc_csharp_ext.so  libgrpc_plugin_support.a   libgrpc++_reflection.a  libgrpc++_unsecure.a
 ```
+
+
+
+```shell
 find_package(gRPC CONFIG REQUIRED)
     # Note: 8 target(s) were omitted.
     target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc_cronet)
-
 ```
 
 vcpkg install grpc

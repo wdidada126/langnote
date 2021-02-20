@@ -1,11 +1,21 @@
 # thrift
 
+java demo
+https://github.com/edidada/ThriftRpcDemo.git 
 
+thrift-0.14.0.exe  
 
 Apache Thrift 小米 谢龙使用
 
 
 
+java maven构建
+重新构建了下，知道了具体原因，才想起还需要配置thrift.exe windows环境
+去官网http://thrift.apache.org/download 下载thrift.exe,然后设置环境变量的 path 变量，把thrift.exe 所在目录加上就行
+最后打开cmd 验证是否成功：thrift -version
+输出版本号信息代表设置成功
+Thrift version 0.9.3
+然后重启IDEA开发工具，重新构建就成功了　
 
 
 .thrift文件
