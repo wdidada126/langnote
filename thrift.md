@@ -2,6 +2,14 @@
 
 
 
+Idea Maven 插件
+
+https://blog.csdn.net/u010900754/article/details/80172671
+
+
+
+
+
 Apache Thrift 小米 谢龙使用
 
 

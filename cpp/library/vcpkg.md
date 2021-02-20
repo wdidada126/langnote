@@ -2,8 +2,176 @@
 
 
 
+mac thrift失败
+
+centos 7 gcc7 folley失败
+
+
+
+
+
+```shell
+./vcpkg/vcpkg install gtest
+The following packages will be built and installed:
+    gtest[core]:x64-osx
+Starting package 1/1: gtest:x64-osx
+Building package gtest[core]:x64-osx...
+-- Using cached /Users/ibqo/vcpkg/downloads/google-googletest-cd17fa2abda2a2e4111cdabd62a87aea16835014.tar.gz
+-- Using source at /Users/ibqo/vcpkg/buildtrees/gtest/src/ea16835014-2505ff1bf1
+-- Configuring x64-osx-dbg
+-- Configuring x64-osx-rel
+-- Building x64-osx-dbg
+-- Building x64-osx-rel
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest_main.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-all.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-death-test.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-filepath.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-internal-inl.h
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-matchers.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-port.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-printers.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-test-part.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/src/gtest-typed-test.cc
+-- Installing: /Users/ibqo/vcpkg/packages/gtest_x64-osx/share/gtest/copyright
+-- Performing post-build validation
+The following files are placed in
+/Users/ibqo/vcpkg/packages/gtest_x64-osx:
+```
+
+
+
+
+
+如果你指的是已有的库需要指定特定版本，请使用. /vcpkg x-history <portname> 来查看当前查询的库的更新记录。并根据版本号选择离下个版本最近的修正版，获取commit Id。再根据commit Id使用git reset命令回退版本至你指定的版本。
+
+最后build就完事啦！
+
+
+
+要是能vcpkg install curl(1.3)[openssl(1.0.2k),sspi] 就牛逼了，或者指定commitid
+
+未来不是没有可能。不过兼容性问题很麻烦。
+
+
+
+
+
+vcpkg查看库依赖
+
+./vcpkg/vcpkg depend-info grpc
+openssl-unix:
+c-ares:
+openssl: openssl-unix
+protobuf:
+zlib:
+grpc: c-ares, openssl, protobuf, zlib
+
+
+
+
+
+编译代码的选项在哪儿？
+
+
+
+triplets/x64-osx.cmake
+
+```shell
+set(VCPKG_TARGET_ARCHITECTURE x64)
+set(VCPKG_CRT_LINKAGE dynamic)
+set(VCPKG_LIBRARY_LINKAGE static)
+
+set(VCPKG_CMAKE_SYSTEM_NAME Darwin)
+
+```
+
+编译成.a静态库
+
+可以编译成动态库吗？
+
+VCPKG_LIBRARY_LINKAGE dynamic
+
+
+
+
+
+
+
+
+
+同一个主机，使用同一个编译器gccg++去编译源代码
+
+go
+
+rust都是这样干的
+
+
+
+mac平台
+
+
+
+zstd_1.4.0-1_x64-osx.list
+
+installed/vcpkg/info/zstd_1.4.0-1_x64-osx.list
+
+installed/x64-osx/
+
+
+
+zstd_1.4.0-1_x64-osx.list内容见zstd_1.4.0-1_x64-osx.list文件
+
+
+
+centos平台
+
+
+
+zstd_1.4.0-1_x64-linux.list
+
+```shell
+x64-linux/
+x64-linux/debug/
+x64-linux/debug/lib/
+x64-linux/debug/lib/libzstdd.a
+x64-linux/debug/lib/pkgconfig/
+x64-linux/debug/lib/pkgconfig/libzstd.pc
+x64-linux/include/
+x64-linux/include/cover.h
+x64-linux/include/zbuff.h
+x64-linux/include/zdict.h
+x64-linux/include/zstd.h
+x64-linux/include/zstd_errors.h
+x64-linux/lib/
+x64-linux/lib/libzstd.a
+x64-linux/lib/pkgconfig/
+x64-linux/lib/pkgconfig/libzstd.pc
+x64-linux/share/
+x64-linux/share/zstd/
+x64-linux/share/zstd/COPYING
+x64-linux/share/zstd/LICENSE
+x64-linux/share/zstd/copyright
+x64-linux/share/zstd/vcpkg_abi_info.txt
+
+```
+
+
+
+
+
+编译好的库文件在packages
+
+
+
 
 `wget https://github.com/boostorg/math/archive/boost-1.71.0.tar.gz -O /Users/ibqo/vcpkg/downloads/boostorg-math-boost-1.71.0.tar.gz`
+
+
+
+vcpkg 编译结果 packages/zstd_x64-linux/lib/lizstd.a
+
+
 
 
 
@@ -55,6 +223,10 @@ On CentOS try the following:
 如何用brew apt yum安装vcpkg
 
 自己打包vcpkg deb rpm包
+
+cpack
+
+
 
 
 
