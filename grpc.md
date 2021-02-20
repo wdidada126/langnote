@@ -1,8 +1,15 @@
 # grpc
+```shell
 
+ls /root/vcpkg/installed/x64-linux/tools/grpc
+grpc_cpp_plugin  grpc_csharp_plugin  grpc_node_plugin  grpc_objective_c_plugin  grpc_php_plugin  grpc_python_plugin  grpc_ruby_plugin
+```
+
+```shell
 
 /root/vcpkg/packages/protobuf_x64-linux/tools/protobuf/protoc --version
 libprotoc 3.10.0
+```
 
 ```shell
 ls /root/vcpkg/packages/grpc_x64-linux/lib
