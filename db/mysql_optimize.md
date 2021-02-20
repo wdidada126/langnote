@@ -1,5 +1,32 @@
 # mysql optimize
 
+
+
+MySQL 8 Query Performance Tuning
+A Systematic Method for Improving Execution Speeds
+
+Biography
+Jesper Wisborg Krogh has worked with MySQL databases since 2006 both as an SQL developer, a database administrator, and for more than eight years as part of the Oracle MySQL Support team. He currently works as a database reliability engineer for Okta. He has spoken at MySQL Connect and Oracle OpenWorld on several occasions, and addition to his books, he regularly blogs on MySQL topics and has authored around 800 documents in the Oracle Knowledge Base. He has contributed to the sys schema and four Oracle Certified Professional (OCP) exams for MySQL 5.6 to 8.0.
+He earned a PhD in computational chemistry before changing to work with MySQL and other software development in 2006. Jesper lives in Sydney, Australia, and enjoys spending time outdoors walking, traveling, and reading. His areas of expertise include MySQL Cluster, MySQL Enterprise Backup, performance tuning, and the Performance and sys schemas.
+
+https://www.amazon.com/dp/1484255836?tag=uuid10-20
+
+
+mysql 官方文档就有优化相关的章节
+http://dev.mysql.com/doc/refman/5.7/en/optimization.html
+
+Query Execution Plan 查询执行计划
+
+
+
+SQL Tuning 2003出版的书籍
+
+
+SQL Server Query Performance Tuning,Fourth Edition
+2014 ms sql server的
+
+
+
 google query
 mysql server query sql optimize
 
@@ -11,7 +38,7 @@ D:\git\gitlab\langnote\MySQL性能调优与架构设计.pdf  对应的mysql版�
 第八章
 
 8.5 Join 的实现原理及优化思路
- MySQL 中，只有一种 Join 算法，就是大名鼎鼎的 Nested Loop Joi
+ MySQL 中，只有一种 Join 算法，就是大名鼎鼎的 Nested Loop Join
 
 high-performance-mysql/9780596101718/ch04.html
 高性能mysql第四章

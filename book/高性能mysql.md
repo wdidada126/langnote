@@ -70,7 +70,8 @@ MySQL核心内幕(国人写的).pdf
 MySQL技术内幕InnoDB存储引擎.pdf
 
 
-show variables
+show variables xxx
+都有哪些变量
 
 
 
