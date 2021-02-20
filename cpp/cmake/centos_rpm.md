@@ -1,5 +1,17 @@
 # centos rpm
 
+可执行程序
+库文件
+头文件
+man文件
+doc文件
+打包成rpm
+rpm-build
+
+.spec
+
+cmake的cpack工具可以打包
+
 
 ```shell
 rpm -pql glibc-2.17-222.el7.x86_64.rpm

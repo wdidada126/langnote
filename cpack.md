@@ -1,5 +1,40 @@
 # cpack
 
+yum install rpm-build -y
+
+
+在cmake build debug文件夹下面
+cpack -G RPM --verbose
+
+对应仓库地址https://github.com/edidada/cmaketest.git 
+
+```shell
+cpack -G RPM --verbose
+CPack: Enable Verbose
+CPack Verbose: Read CPack config file: 
+CPack Verbose: Read CPack configuration file: /root/cmaketest/cmake-build-debug/CPackConfig.cmake
+CPack Verbose: Specified generator: RPM
+CPack Verbose: Use generator: cmCPackRPMGenerator
+CPack Verbose: For project: mylib1name
+CPack: Create package using RPM
+CPack Verbose: Read description file: /root/cmake-3.16.6-Linux-x86_64/share/cmake-3.16/Templates/CPack.GenericDescription.txt
+CPack Verbose: [RPM] requested component grouping = ONE_PER_GROUP
+CPack Verbose: Remove toplevel directory: /root/cmaketest/cmake-build-debug/_CPack_Packages/Linux/RPM
+CPack: Install projects
+CPack: - Run preinstall target for: cmaketest
+CPack: - Install project: cmaketest []
+CPack Verbose: Install configuration: "Debug"
+CPack: Create package
+CPack Verbose: Package files to: /root/cmaketest/cmake-build-debug/_CPack_Packages/Linux/RPM/mylib1name-1.0.0-Linux.rpm
+CPack Verbose: Packaging all groups in one package...(CPACK_COMPONENTS_ALL_[GROUPS_]IN_ONE_PACKAGE is set)
+CPackRPM:Warning: CPACK_SET_DESTDIR is set (=ON) while requesting a relocatable package (CPACK_RPM_PACKAGE_RELOCATABLE is set): this is not supported, the package won't be relocatable.
+CPackRPM: Will use GENERATED spec file: /root/cmaketest/cmake-build-debug/_CPack_Packages/Linux/RPM/SPECS/mylib1name.spec
+CPack Verbose: Copying final package(s) [1]:
+CPack: - package: /root/cmaketest/cmake-build-debug/mylib1name-1.0.0-Linux.rpm generated.
+```
+
+
+
 Cpack 打包 二进制 库文件‘
 
 
@@ -126,6 +161,7 @@ Generators
   ZIP                         = ZIP file format
 ```
 
+ln -s /root/cmake-3.16.6-Linux-x86_64/bin/cpack /usr/bin/cpack
 
 
 cpack入门
