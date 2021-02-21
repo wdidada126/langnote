@@ -10,7 +10,7 @@ https://blog.csdn.net/mango9126/article/details/52289485
 https://zhuanlan.zhihu.com/p/267803605
 https://www.jianshu.com/p/b4529e15c34d
 
-
+CMake菜谱（CMake Cookbook中文版）
 https://www.bookstack.cn/read/CMake-Cookbook/content-chapter11-11.1-chinese.md
 
 yum install rpm-build -y
