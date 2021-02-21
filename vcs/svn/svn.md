@@ -1,5 +1,20 @@
 # svn
 
+SVN使用log,list,cat,diff命令查看特定文件版本信息
+svn diff有三种不同的用法：
+检查本地修改
+比较工作拷贝与版本库
+比较版本库与版本库
+
+https://blog.csdn.net/gb4215287/article/details/52515862
+
+
+svn 列出某个版本号改动的文件
+```shell
+svn log -l4
+svn log -r 57847:57848 -v
+```
+
 
 branches
 tags

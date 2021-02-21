@@ -1,5 +1,18 @@
 # cpack
 
+cpack 打包so .h 文件
+https://note.qidong.name/2019/11/cmake-cpack-deb/
+源码
+https://github.com/edidada/cmake-cpack-demo
+
+https://blog.csdn.net/weixin_30477293/article/details/94942747
+https://blog.csdn.net/mango9126/article/details/52289485
+https://zhuanlan.zhihu.com/p/267803605
+https://www.jianshu.com/p/b4529e15c34d
+
+
+https://www.bookstack.cn/read/CMake-Cookbook/content-chapter11-11.1-chinese.md
+
 yum install rpm-build -y
 
 
