@@ -1,6 +1,25 @@
 # yum
 
 
+CentOS7 配置阿里云yum源,非常之简单
+https://www.cnblogs.com/zgqbky/p/11722032.html
+1.进入yum的文件夹
+命令：cd   /etc/yum.repos.d/
+2.下载wget
+命令：yum -y install wget
+命令：yum install bash-completion          #自动补全软件包
+命令：yum -y install lrzsz
+3.删除yum文件夹所有yum源
+命令：rm -rf    /etc/yum.repos.d/*.repo
+4.利用wget下载阿里云repo文件
+命令：wget  http://mirrors.aliyun.com/repo/Centos-7.repo
+5.执行yum源更新命令
+命令：yum clean all
+命令：yum makecache
+注意：依次执行
+6.看一下yum仓库有多少包
+命令：yum repolist
+
 
 rpm
 yum，自动处理rpm包依赖

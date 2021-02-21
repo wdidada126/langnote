@@ -4,6 +4,8 @@ http://www.gnu.org/software/make/
 
 make 官方
 
+make编译java go c/cpp
+本质是对命令行/shell的封装
 
 
 语法

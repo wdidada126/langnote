@@ -1,6 +1,15 @@
 # vcpkg
 
+C++ ORM框架:SQLPP11教程 使用vcpkg
+https://blog.csdn.net/linyilong3/article/details/100853675
+vcpkg install sqlpp11-connector-sqlite3
+vcpkg install sqlpp11
 
+wget https://github.com/boostorg/asio/archive/boost-1.71.0.tar.gz -O boostorg-asio-boost-1.71.0.tar.gz
+
+
+
+wget https://sqlite.org/2019/sqlite-amalgamation-3300100.zip -O sqlite-amalgamation-3300100.zip
 
 wangle
 folly
