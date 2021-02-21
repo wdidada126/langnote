@@ -88,7 +88,7 @@ https://blog.csdn.net/weixin_37519581/article/details/103838842
 GROUP BY task.plan_mock_id, taskclass.class_id
 多个
 
-	<select id="getMockPlanStuCount" resultType="com.iflytek.jkpt.emscheck.core.model.po.mysql.EmsMockPlan">
+	<select id="getMockPlanStuCount" resultType="com.xxx.yyy.emscheck.core.model.po.mysql.EmsMockPlan">
 		select ctmp.plan_mock_id id,ctmp.ccount completeStuCount, ifnull(ttmp.tcount , 0) totalStuCount from 
 		(
 			select plan_mock_id,sum(complete_stu_count) ccount from ems_test_task
@@ -165,14 +165,14 @@ https://blog.csdn.net/zbajie001/article/details/107332618
 </trim>
 
 
-select ${@com.iflytek.jkpt.ems.common.constants.Constants$PlanType@UNITE_PLAN} AS planType,
+select ${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN} AS planType,
 
-		AND townplan.plan_state ${@com.iflytek.jkpt.ems.common.util.state.PlanStateUtil@getUniteState(status)}
+		AND townplan.plan_state ${@com.xxx.yyy.ems.common.util.state.PlanStateUtil@getUniteState(status)}
 连等于号都不用写
 
 
-	<select id="listPlanSchoolCountExamed" resultType="com.iflytek.jkpt.ems.api.model.common.PlanDetailDTO">
-		<bind name="plan_field_id" value="@com.iflytek.jkpt.ems.core.util.plan.PlanFieldUtil@getTableFieldId(planType)"/>
+	<select id="listPlanSchoolCountExamed" resultType="com.xxx.yyy.ems.api.model.common.PlanDetailDTO">
+		<bind name="plan_field_id" value="@com.xxx.yyy.ems.core.util.plan.PlanFieldUtil@getTableFieldId(planType)"/>
 		select 
 			mockplan.${plan_field_id} planId,
 			mockplan.plan_type planType,
@@ -365,7 +365,7 @@ where planState not in (0, 1, 2, 11);
 
 
 <!-- 评分质量监控 -->
-<select id="getMarkQualityMonitor" resultType="com.iflytek.webService.entitys.LogHumTaskQualityMonitorBean">
+<select id="getMarkQualityMonitor" resultType="com.xxx.webService.entitys.LogHumTaskQualityMonitorBean">
     SELECT
         r.sectionCode sectionCode,
         t.description sectionName,
@@ -382,7 +382,7 @@ where planState not in (0, 1, 2, 11);
     LEFT JOIN log_user u ON r.userAccount = u.userAccount
     LEFT JOIN log_hum_task t ON r.sectionCode = t.sectionCode
     WHERE
-        r.jkptPlanId = #{planId}
+        r.yyyPlanId = #{planId}
     AND r.markStatus = 2
     <choose>
         <when test="roleType != -1 and roleType != null">
@@ -425,7 +425,7 @@ ExamTaskStatMapper.xml
 
 
 
-	<select id="listTableColumn" resultType="com.iflytek.jkpt.manager.core.model.dto.bigdata.ColumnMetaData">
+	<select id="listTableColumn" resultType="com.xxx.yyy.manager.core.model.dto.bigdata.ColumnMetaData">
     	desc ${tableName}
     </select>
 
@@ -489,8 +489,8 @@ order by sum(selftraining_count) desc,province_code,school_id
 
 
 <!--资源储量统计-试题总数-->
-<select id="getItemTotal" parameterType="com.iflytek.jkpt.manager.model.v2.resource.common.ResourceParamDTO"
-        resultType="com.iflytek.jkpt.manager.model.v2.resource.item.ReservesItemPandectDTO">
+<select id="getItemTotal" parameterType="com.xxx.yyy.manager.model.v2.resource.common.ResourceParamDTO"
+        resultType="com.xxx.yyy.manager.model.v2.resource.item.ReservesItemPandectDTO">
     SELECT
     SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count END) totalPhaseItem,
     SUM(CASE WHEN item_classify_code = '0' AND item_type_code = '1201' THEN item_count END) totalItemMaterial,
@@ -508,8 +508,8 @@ order by sum(selftraining_count) desc,province_code,school_id
 
 <!--试题使用与授权统计-试题总数-->
 <select id="getItemAuthAndUseTotal"
-        parameterType="com.iflytek.jkpt.manager.model.v2.resource.common.ResourceParamDTO"
-        resultType="com.iflytek.jkpt.manager.model.v2.resource.item.ItemGrantUsePandectDTO">
+        parameterType="com.xxx.yyy.manager.model.v2.resource.common.ResourceParamDTO"
+        resultType="com.xxx.yyy.manager.model.v2.resource.item.ItemGrantUsePandectDTO">
      SELECT SUM( CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN area_grant END ) totalAreaGrant,
         SUM( CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN not_area_grant END ) totalNotAreaGrant,
         SUM(CASE WHEN item_classify_code = 'all' AND item_type_code = 'all' THEN item_count_use END) totalUse,
@@ -537,7 +537,7 @@ order by sum(selftraining_count) desc,province_code,school_id
 
 
 
-<delete id="deleteCodeSerial" parameterType="com.iflytek.jkpt.product.api.model.dto.ActivationCodeSerialDTO">
+<delete id="deleteCodeSerial" parameterType="com.xxx.yyy.product.api.model.dto.ActivationCodeSerialDTO">
 		delete from p_activationcode_serial where 1=1
 		and (data_id,data_type) in (
 		<foreach collection="list" item="item" separator=",">
@@ -571,7 +571,7 @@ from sps_practice_task
 子节点
 
 
-<select id="listClassworkList" resultType="com.iflytek.jkpt.tss.api.model.task.TssClassWork4TeacherDTO">
+<select id="listClassworkList" resultType="com.xxx.yyy.tss.api.model.task.TssClassWork4TeacherDTO">
     select id taskId,date_format(end_datetime,'%Y-%m-%d %T') endDateTime,state taskState
     from tss_classwork
     where id in
@@ -626,7 +626,7 @@ unix stamp三个函数
 
 
 
-<select id="getClassTaskClasses" resultType="com.iflytek.jkpt.tascollect.model.dto.ems.TaskClassDto">
+<select id="getClassTaskClasses" resultType="com.xxx.yyy.tascollect.model.dto.ems.TaskClassDto">
     SELECT DISTINCT p.id as task_id, class_id, c.class_type as class_type
     from ems_test_task p
                  LEFT JOIN ems_test_task_class c on p.id = c.task_id
@@ -841,7 +841,7 @@ from res_auth_item_detail a
 
 
 <!--更新授权组记录与授权表记录(试题)-->
-<update id="updateAuthItemByGroupId" parameterType="com.iflytek.jkpt.res.core.model.po.mysql.auth.AuthItemParam">
+<update id="updateAuthItemByGroupId" parameterType="com.xxx.yyy.res.core.model.po.mysql.auth.AuthItemParam">
     update res_auth_item rai,res_auth_group rag
     <set>
         <if test="authState != null and authState !=''">
