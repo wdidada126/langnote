@@ -1,4 +1,11 @@
 # maven
+project节点，设置远程仓库地址
+  <repositories>
+    <repository>
+      <id>repo-mirror</id>
+      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
 
 ```shell
 

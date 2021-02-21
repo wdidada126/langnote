@@ -1,5 +1,71 @@
 # mysql optimize
 
+Join关联、in和exsits优化、count(*)查询优化
+https://blog.csdn.net/nmjhehe/article/details/113825736
+
+千万级表JOIN 语句的优化原则
+-- mysql JOIN 语句的优化原则-- mysql JOIN 语句的优化原则
+-- 1.小表驱动大表（EXPLAIN的第一行是驱动表）,WHERE 条件驱动表的筛选j出尽量少的数
+-- 2.where里有筛选条件，而且可以使用索引,并对驱动表晒选出尽量少的行数
+-- 3.非驱动表连接join字段最好是主键索引，无法建立索引的时候，设置足够的Join Buffer Size
+-- 4.尽量避免联表数量，避免尽量少返回字段，避免返回字段有计算，越多，嵌套循环算法越慢，
+-- 5.join连接表的语句不能再用子查询，COUNT(1) 分页统计返回字段要尽量少。
+-- 6.扫描行数必须控制在百万级别，返回行数控制在千级别，且要分页处理.
+-- 7.必须遵循以上原则，否则不用join，改单表查询在拼接，或者用es查询在拼接
+
+-- mysql JOIN 语句study
+-- 1.小表驱动大表（EXPLAIN的第一行是驱动表）,WHERE 条件驱动表的筛选小行数
+-- 2.NestedLoopJoin实际上就是通过驱动表的结果集作为循环基础数据，然后一条一条的通过该结果集中的数据作为过滤条件到下一个表中查询数据，https://blog.csdn.net/qq_27529917/article/details/87904179（细节参考）
+-- 3.a.无order by条件时，根据实际情况，使用left/right/inner join即可，根据explain优化；
+-- 4.b.有order by a.col条件时，所有join必须为left join，且每个join字段都创建索引，同时where条件中只能有a表的条件，即将其它表的数据关联到a中形成一张大表，再对a的全集进行过滤；
+-- 5.通过where预估结果行数，遵循以下规则：https://blog.csdn.net/qq_27529917/article/details/87904179（细节参考）
+--    如果where里没有相应表的筛选条件，无论on里是否有相关条件，默认为全表
+--      如果where里有筛选条件，但是不能使用索引来筛选，那么默认为全表
+--      如果where里有筛选条件，而且可以使用索引，那么会根据索引来预估返回的记录行数
+-- 6.mysql只支持一种join算法：Nested-Loop Join（嵌套循环连接），但Nested-Loop Join有三种变种：https://cloud.tencent.com/developer/article/1373839（细节参考）
+--     6.1非驱动表走主键索引不用回表，最快，
+--     6.2没有所以索引，默认情况下join_buffer_size=256K，在查找的时候MySQL会将所有的需要的列缓存到join buffer当中
+--     6.3对s表进行了rn次访问，对数据库开销大
+-- select *  from  a  left join b on a.id = b.id left join a.id = c.id，这时是怎么顺序进行执行的呢？
+-- 我们得知是a表先和b表进行连接，会生成一张中间临时表，然后这张表的数据再和c表进行连接，最后生成的表的数据就是a left join b left join c 的。
+-- EXPLAIN  ALL, index,  range, ref, eq_ref, const, system, NULL
+
+
+
+学习Mysql的join算法：Index Nested-Loop Join和Block Nested-Loop Join
+https://blog.csdn.net/u010841296/article/details/89790399
+
+在Mysql的实现中，Nested-Loop Join有3种实现的算法：
+
+Simple Nested-Loop Join：SNLJ，简单嵌套循环连接
+Index Nested-Loop Join：INLJ，索引嵌套循环连接
+Block Nested-Loop Join：BNLJ，缓存块嵌套循环连接
+
+简单嵌套循环连接实际上就是简单粗暴的嵌套循环，如果table1有1万条数据，table2有1万条数据，那么数据比较的次数=1万 * 1万 =1亿次，这种查询效率会非常慢。
+只有内层表join的列有索引时，才能用到Index Nested-LoopJoin进行连接。
+原来的匹配次数 = 外层表行数 * 内层表行数
+优化后的匹配次数= 外层表的行数 * 内层表索引的高度
+
+
+Block Nested-Loop Join（减少内层表数据的循环次数）
+1、缓存块嵌套循环连接通过一次性缓存多条数据，把参与查询的列缓存到Join Buffer 里，然后拿join buffer里的数据批量与内层表的数据进行匹配，从而减少了内层循环的次数（遍历一次内层表就可以批量匹配一次Join Buffer里面的外层表数据）。
+2、当不使用Index Nested-Loop Join的时候，默认使用Block Nested-Loop Join。
+什么是Join Buffer？
+（1）Join Buffer会缓存所有参与查询的列而不是只有Join的列。
+（2）可以通过调整join_buffer_size缓存大小
+（3）join_buffer_size的默认值是256K，join_buffer_size的最大值在MySQL 5.1.22版本前是4G-1，而之后的版本才能在64位操作系统下申请大于4G的Join Buffer空间。
+（4）使用Block Nested-Loop Join算法需要开启优化器管理配置的optimizer_switch的设置block_nested_loop为on，默认为开启。
+
+
+如何优化Join速度
+- 用小结果集驱动大结果集，减少外层循环的数据量，从而减少内层循环次数：
+如果小结果集和大结果集连接的列都是索引列，mysql在内连接时也会选择用小结果集驱动大结果集，因为索引查询的成本是比较固定的，这时候外层的循环越少，join的速度便越快。
+- 为匹配的条件增加索引：争取使用INLJ，减少内层表的循环次数
+- 增大join buffer size的大小：当使用BNLJ时，一次缓存的数据越多，那么内层表循环的次数就越少
+- 减少不必要的字段查询：
+（1）当用到BNLJ时，字段越少，join buffer 所缓存的数据就越多，内层表的循环次数就越少；
+（2）当用到INLJ时，如果可以不回表查询，即利用到覆盖索引，则可能可以提示速度。（未经验证，只是一个推论）
+
 
 
 MySQL 8 Query Performance Tuning

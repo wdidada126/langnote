@@ -1,7 +1,10 @@
 # MongoDB
 
 
-
+Bully算法和Raft算法在MongoDB选举中的应用。
+https://www.jianshu.com/p/916e5e443ad7
+https://blog.csdn.net/weixin_32353247/article/details/112045788
+https://www.infoq.cn/article/2014/08/ark-mongodb
 
 崔鑫，华为云DDS数据库架构师，十二年存储与数据库研发与运维经验。目前在华为云DDS团队领导GaussDB(for Mongo)和DDS的内核创新/研发/运维。
 https://docs.mongoing.com/

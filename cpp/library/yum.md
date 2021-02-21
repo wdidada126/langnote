@@ -1,6 +1,25 @@
 # yum
 
 
+yum install createrepo yum-utils -y
+
+Package createrepo-0.9.9-28.el7.noarch already installed and latest version
+Package yum-utils-1.1.31-54.el7_8.noarch already installed and latest version
+
+
+yumdownloader - download RPM packages from Yum repositories
+createrepo - Create repomd (xml-rpm-metadata) repository
+
+
+搭建私有YUM仓库与内网镜像站
+https://www.sohu.com/a/333246091_99923293
+
+
+
+$ sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+$ sudo yum install ripgrep
+
+
 CentOS7 配置阿里云yum源,非常之简单
 https://www.cnblogs.com/zgqbky/p/11722032.html
 1.进入yum的文件夹

@@ -19,6 +19,16 @@ libsodium
 
 
 
+Could not locate cached archive: /root/.cache/vcpkg/archives/6c/6cf9e157da02ea725983db2111fe9a1953d65400.zip
+-- Downloading https://github.com/pocoproject/poco/archive/3fc3e5f5b8462f7666952b43381383a79b8b5d92.tar.gz...
+
+  Package: poco:x64-linux
+  Vcpkg version: 2020.06.15-unknownhash
+
+  Package: poco:x64-linux
+  Vcpkg version: 2019.09.12-unknownhash
+
+
 
 vcpkg mingw
 https://blog.csdn.net/weixin_40448140/article/details/109111042
