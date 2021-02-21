@@ -1,5 +1,16 @@
 # vcpkg
 
+
+
+wangle
+folly
+sqlite3
+fizz
+libsodium
+
+
+
+
 vcpkg mingw
 https://blog.csdn.net/weixin_40448140/article/details/109111042
 
