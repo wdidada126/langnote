@@ -1,9 +1,16 @@
 # mybatis
 
+
+
+mybatis 同时操作多个表，甚至是虚拟表
+
+
+
 mybatis 动态sql bind
 https://mybatis.org/mybatis-3/dynamic-sql.html
 https://blog.csdn.net/u010002184/article/details/79378835
 https://blog.csdn.net/yangshangwei/article/details/80073978
+
 <select id="selectBlogsLike" resultType="Blog">   <bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />   SELECT * FROM BLOG   WHERE title LIKE #{pattern} </select>
 
 
