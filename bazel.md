@@ -1,7 +1,7 @@
 # bazel
 
 
-
+IDEA有bazel插件
 
 Bazel 默认支持多种开发语言，如Java，C++，Javascript, Android
 

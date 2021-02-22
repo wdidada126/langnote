@@ -1,6 +1,7 @@
 # curl log
 
-
+curl -o xxx.file o是小写
+wget -O O是大写
 
 [curl blog](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 
