@@ -1,5 +1,23 @@
 # MongoDB
 
+mongodb 索引简介
+为了方便理解后面的优化思路，先简单介绍 mongodb 的索引，但不会太详细，只会涉及到本次优化中使用到的索引类型。
+
+mongodb 的索引类型分为：
+
+单键索引（Single Field Index）
+复合索引（Compound Index）
+多键索引（Multikey Index）
+地理空间索引（Geospatial Index）
+文本索引（Text Indexes）
+哈希索引（Hashed Indexes）
+
+如果我们想要定义某个索引为唯一索引，可以使用索引的属性来定义，索引的属性有：
+唯一索引
+部分索引
+稀疏索引
+TTL索引
+
 
 Bully算法和Raft算法在MongoDB选举中的应用。
 https://www.jianshu.com/p/916e5e443ad7

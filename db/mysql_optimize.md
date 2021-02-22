@@ -1,5 +1,7 @@
 # mysql optimize
 
+子查询改写为连接
+
 Join关联、in和exsits优化、count(*)查询优化
 https://blog.csdn.net/nmjhehe/article/details/113825736
 

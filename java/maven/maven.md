@@ -1,4 +1,48 @@
 # maven
+
+```shell
+    <resources>
+        <resource>
+            <filtering>true</filtering>
+            <directory>src/main/resources</directory>
+        </resource>
+        <resource>
+            <directory>profiles/${profile.active}</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+    <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+            <filtering>true</filtering>
+        </testResource>
+    </testResources>
+    </build>
+</project>
+```
+
+
+mvn dependency:copy-dependencies
+拷贝项目依赖的jar包到编译目录的lib下面
+<plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-dependency-plugin</artifactId>
+       <version>2.9</version>
+       <configuration>
+           <outputDirectory>${project.build.directory}/lib</outputDirectory>
+           <includeScope>runtime</includeScope>
+       </configuration>
+</plugin>
+
+mvn dependency:copy-dependencies
+maven把依赖包拷贝到lib下
+
+
+标准web工程在eclipse中利用m2eclipse插件添加依赖管理后，在部署过程中没有将依赖的jar包自动拷贝到/WEB-INF/lib中。
+参考了一些朋友的做法手动执行
+mvn dependency:copy-dependencies -DoutputDirectory=src/main/webapp/WEB-INF/lib  -DincludeScope=runtime   
+命令将jar包拷贝到/WEB-INF/lib目录下。
+
 project节点，设置远程仓库地址
   <repositories>
     <repository>

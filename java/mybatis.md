@@ -1,5 +1,28 @@
 # mybatis
 
+修饰xxxMapper.java接口的是import org.springframework.stereotype.Repository;
+@Repository 接口
+
+
+
+mybatis 自定义注解，修饰xxxMapper.java接口 公司用了
+https://www.cnblogs.com/sharpest/p/6097682.html
+http://blog.sina.com.cn/s/blog_14ffae8a60102x5u0.html
+
+spring bean xml文件 配置MapperScannerConfigurer bean的annotationClass属性 
+
+MapperScannerConfigurer markerInterface
+basePackage
+
+
+    <!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xxx.yyy.**.dao"/>
+        <property name="annotationClass" value="com.xxx.yyy.common.annotation.MyBatisRepository"/>
+        <property name="markerInterface" value="com.xxx.yyy.common.dao.BaseDao"/>
+    </bean>
+
+
 
 
 mybatis 同时操作多个表，甚至是虚拟表

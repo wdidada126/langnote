@@ -1,5 +1,15 @@
 # svn
 
+svn查看工程版本库的url地址
+打开cmd，cd到工程目录，使用svn的命令：
+
+`svn info`
+
+
+![demo](../../imgs/svn_info.png)
+
+
+
 SVN使用log,list,cat,diff命令查看特定文件版本信息
 svn diff有三种不同的用法：
 检查本地修改
