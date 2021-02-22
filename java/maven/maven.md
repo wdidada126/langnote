@@ -1,5 +1,27 @@
 # maven
 
+```shell
+    <resources>
+        <resource>
+            <filtering>true</filtering>
+            <directory>src/main/resources</directory>
+        </resource>
+        <resource>
+            <directory>profiles/${profile.active}</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+    <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+            <filtering>true</filtering>
+        </testResource>
+    </testResources>
+    </build>
+</project>
+```
+
+
 mvn dependency:copy-dependencies
 maven把依赖包拷贝到lib下
 
