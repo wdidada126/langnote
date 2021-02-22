@@ -1,5 +1,13 @@
 # maven
 
+mvn dependency:copy-dependencies
+maven把依赖包拷贝到lib下
+
+
+标准web工程在eclipse中利用m2eclipse插件添加依赖管理后，在部署过程中没有将依赖的jar包自动拷贝到/WEB-INF/lib中。
+参考了一些朋友的做法手动执行
+mvn dependency:copy-dependencies -DoutputDirectory=src/main/webapp/WEB-INF/lib  -DincludeScope=runtime   
+命令将jar包拷贝到/WEB-INF/lib目录下。
 
 project节点，设置远程仓库地址
   <repositories>
