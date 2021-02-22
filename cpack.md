@@ -1,5 +1,13 @@
 # cpack
 
+
+
+GitHub mypersonal cmaketest 仓库
+
+打包一个 两个rpm包
+
+
+
 cpack 打包so .h 文件
 https://note.qidong.name/2019/11/cmake-cpack-deb/
 源码

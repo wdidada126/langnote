@@ -1,6 +1,15 @@
 # CMake
 
 
+
+`include_directories(mylib1name PUBLIC include)`
+
+
+
+.h .cc/.cpp分开的 
+
+
+
 rpmbuild spec CMake 创建项目的rpm 包
 
 
