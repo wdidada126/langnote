@@ -23,6 +23,18 @@
 
 
 mvn dependency:copy-dependencies
+拷贝项目依赖的jar包到编译目录的lib下面
+<plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-dependency-plugin</artifactId>
+       <version>2.9</version>
+       <configuration>
+           <outputDirectory>${project.build.directory}/lib</outputDirectory>
+           <includeScope>runtime</includeScope>
+       </configuration>
+</plugin>
+
+mvn dependency:copy-dependencies
 maven把依赖包拷贝到lib下
 
 
