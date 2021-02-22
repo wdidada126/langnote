@@ -19,29 +19,16 @@ https://www.icode9.com/content-4-29375.html
 # 参考文献
 
 1. 《混沌工程：Netflix 系统稳定性之道》：
-
    https://www.oreilly.com/library/view/chaos-engineering/9781491988459/
-
 2. 《How To Run a GameDay》：
-
    https://www.gremlin.com/community/tutorials/how-to-run-a-gameday/
-
 3. Netflix 混沌工程开源项目 - Chaos Monkey：
-
    https://github.com/Netflix/chaosmonkey
-
 4. 阿里巴巴 混沌工程开源项目 - ChaosBlade：
-
    https://github.com/chaosblade-io/chaosblade
-
 5. PingCAP 混沌工程开源项目 - Chaos Mesh：
-
    https://github.com/pingcap/chaos-mesh
-
 6. 分布式一致性测试框架 - Jepsen：
-
    https://jepsen.io/
-
 7. Zhou, Xiang, et al. "Latent error prediction and fault localization for microservice applications by learning from system trace logs." Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering. 2019. ：
-
    https://dl.acm.org/doi/10.1145/3338906.3338961

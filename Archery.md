@@ -1,3 +1,7 @@
 # Archery
 
 https://github.com/hhyo/Archery
+
+
+
+Archery是[archer](https://github.com/jly8866/archer)的分支项目，定位于SQL审核查询平台，旨在提升DBA的工作效率，支持多数据库的SQL上线和查询，同时支持丰富的MySQL运维功能，所有功能都兼容手机端操作
