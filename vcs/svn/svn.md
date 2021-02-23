@@ -1,6 +1,12 @@
 # svn
 
 
+乌龟svn 查看某次提交更新了
+直接仓库远程 查看更新记录
+跟sourcetree一样
+
+svn log --search djshi3 -l 50
+
 svn log --search fjwang2 -l 50 > fjwang2.txt
 svn diff -r 57790:57792  --summarize
 
@@ -13,6 +19,29 @@ svn log --search lzz -l 50
 1.8以前版本
 https://blog.csdn.net/qq_36748278/article/details/82842345
 linux 配合sed等其他命令行工具
+
+
+```shell
+svn --version
+svn, version 1.7.14 (r1542130)
+   compiled Sep 30 2020, 17:44:04
+
+Copyright (C) 2013 The Apache Software Foundation.
+This software consists of contributions made by many people; see the NOTICE
+file for more information.
+Subversion is open source software, see http://subversion.apache.org/
+
+The following repository access (RA) modules are available:
+
+* ra_neon : Module for accessing a repository via WebDAV protocol using Neon.
+  - handles 'http' scheme
+  - handles 'https' scheme
+* ra_svn : Module for accessing a repository using the svn network protocol.
+  - with Cyrus SASL authentication
+  - handles 'svn' scheme
+* ra_local : Module for accessing a repository on local disk.
+  - handles 'file' scheme
+```
 
 ```shell
 svn --version

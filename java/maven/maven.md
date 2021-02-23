@@ -1,5 +1,11 @@
 # maven
 
+
+settings.xml
+和pom.xml设置jdk版本
+两种方式
+https://www.cnblogs.com/jiefu/p/10968447.html
+
 ```shell
     <resources>
         <resource>

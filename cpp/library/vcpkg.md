@@ -101,7 +101,6 @@ The following files are placed in
 
 
 要是能vcpkg install curl(1.3)[openssl(1.0.2k),sspi] 就牛逼了，或者指定commitid
-
 未来不是没有可能。不过兼容性问题很麻烦。
 
 

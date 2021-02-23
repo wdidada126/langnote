@@ -1,5 +1,7 @@
 # MongoDB
 
+https://www.jianshu.com/p/e62405f72163
+
 mongodb 索引简介
 为了方便理解后面的优化思路，先简单介绍 mongodb 的索引，但不会太详细，只会涉及到本次优化中使用到的索引类型。
 
