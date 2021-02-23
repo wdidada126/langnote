@@ -1,5 +1,11 @@
 # shardingsphere
 
+
+
+amoeba 竞品
+
+
+
 DBCP，C3P0，Druid, HikariCP 数据库连接池
 
 支持读写分离

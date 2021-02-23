@@ -23,7 +23,7 @@ CMake中包含的三个工具（cmake cpack ctest）
 
 cpack
 
-ctest
+ctest ctest连接gtest boost.test
 
 
 
