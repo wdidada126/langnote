@@ -1,5 +1,57 @@
 # svn
 
+
+svn log --search fjwang2 -l 50 > fjwang2.txt
+svn diff -r 57790:57792  --summarize
+
+1.8 版本和以后版本
+svn client 1.8 之后提供了一个选项 --search
+
+svn log --search lzz -l 50
+
+
+1.8以前版本
+https://blog.csdn.net/qq_36748278/article/details/82842345
+linux 配合sed等其他命令行工具
+
+```shell
+svn --version
+svn, version 1.14.0 (r1876290)
+   compiled May 24 2020, 17:07:49 on x86-microsoft-windows
+
+Copyright (C) 2020 The Apache Software Foundation.
+This software consists of contributions made by many people;
+see the NOTICE file for more information.
+Subversion is open source software, see http://subversion.apache.org/
+
+The following repository access (RA) modules are available:
+
+* ra_svn : Module for accessing a repository using the svn network protocol.
+  - with Cyrus SASL authentication
+  - handles 'svn' scheme
+* ra_local : Module for accessing a repository on local disk.
+  - handles 'file' scheme
+* ra_serf : Module for accessing a repository via WebDAV protocol using serf.
+  - using serf 1.3.9 (compiled with 1.3.9)
+  - handles 'http' scheme
+  - handles 'https' scheme
+
+The following authentication credential caches are available:
+
+* Wincrypt cache in C:\Users\chengwu2\AppData\Roaming\Subversion
+
+
+
+svn diff -r 57848:57856  --summarize
+M       cuser-service-core\src\main\java\com\xxx\yyy\cuser\core\service\impl\xxxxx.java
+M       cuser-service-core\src\main\java\com\xxx\yyy\cuser\core\service\impl\xxxxx.java
+
+```
+
+svn根据提交者筛选
+
+`svn diff -r 57848:57856 > cuser_diff.txt`
+
 svn查看工程版本库的url地址
 打开cmd，cd到工程目录，使用svn的命令：
 

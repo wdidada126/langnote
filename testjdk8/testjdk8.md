@@ -1,6 +1,19 @@
 # testjdk8
 
 
+java8中map新增方法详解
+java8中Stream的使用
+java8中Collection新增方法详解
+java8中Collectors的方法使用实例
+java8中常用函数式接口
+java8中的方法引用和构造函数引用
+java8中的Collectors.groupingBy用法
+java8中的Optional用法
+java8中的日期和时间API
+
+
+java8中的Collectors.groupingBy用法
+https://blog.csdn.net/u014231523/article/details/102535902
 
 - CyclicBarrierDemo
 
