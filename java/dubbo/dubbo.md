@@ -1,6 +1,29 @@
 # Dubbo
 
 
+
+dubbo
+
+
+
+Filter invoke invoketion
+
+
+
+获取调用方参数
+
+maven 多module，注意jar包引用情况，idea 整个项目的依赖包，不是单个module的依赖包
+
+
+
+dubbo main函数启动，不依赖servlet容器
+
+
+
+
+
+
+
 http://dubbo.apache.org/zh/docs/v2.7/dev/impls/protocol/
 
 - spring xsd
