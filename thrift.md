@@ -1,5 +1,15 @@
 # thrift
 
+
+
+Mac vcpkg install thrift
+
+bison 2.3不行，版本太低
+
+
+
+
+
 java demo
 https://github.com/edidada/ThriftRpcDemo.git 
 
