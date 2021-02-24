@@ -1,0 +1,3 @@
+# snapd
+
+https://snapcraft.io/

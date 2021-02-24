@@ -1,6 +1,11 @@
 # redis
 
+图形客户端 windows
+https://github.com/cinience/RedisStudio/releases  2015最新更新
 
+2014
+https://github.com/uglide/RedisDesktopManager/releases
+https://www.cnblogs.com/zxtceq/p/7676862.html
 
 常用的消息队列有RabbitMQ,ActiveMQ，个人觉得这种消息队列太大太重，本文介绍下基于redis的轻量级消息队列服务。 
 
