@@ -1,5 +1,33 @@
 # Git
 
+
+
+```shell
+git branch 0a
+192:LangNote ibqo$ git branch -a
+  0a
+* master
+  remotes/b/master
+  remotes/origin/master
+```
+
+
+
+
+
+```shell
+git branch -d 0a
+Deleted branch 0a (was 99c7b17).
+192:LangNote ibqo$ git branch -a
+* master
+  remotes/b/master
+  remotes/origin/master
+```
+
+
+
+
+
 git 回退到某个commit
 回退命令:
 $ git reset --hard HEAD^ 回退到上个版本

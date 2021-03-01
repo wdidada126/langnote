@@ -1,5 +1,19 @@
 # redis
 
+
+
+
+
+
+
+从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
+
+ redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
+
+
+
+
+
 图形客户端 windows
 https://github.com/cinience/RedisStudio/releases  2015最新更新
 
