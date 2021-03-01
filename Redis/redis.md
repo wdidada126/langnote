@@ -6,10 +6,225 @@
 
 
 
+
 从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
 
  redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
 
+
+3.2.12
+4.0.8
+
+https://centos.pkgs.org/7/epel-x86_64/redis-3.2.12-2.el7.x86_64.rpm.html
+
+/etc/redis-sentinel.conf
+/etc/redis.conf
+
+
+
+centos 7 安装redis yum
+```shell
+yum install redis -y
+Loaded plugins: fastestmirror, langpacks
+Repository epel is listed more than once in the configuration
+Determining fastest mirrors
+ * centos-sclo-rh: mirrors.aliyun.com
+ * centos-sclo-sclo: mirrors.aliyun.com
+centos-sclo-rh                                                                                                                             | 3.0 kB  00:00:00     
+centos-sclo-sclo                                                                                                                           | 3.0 kB  00:00:00     
+copr:copr.fedorainfracloud.org:carlwgeorge:ripgrep                                                                                         | 3.3 kB  00:00:00     
+docker-ce-stable                                                                                                                           | 3.5 kB  00:00:00     
+epel                                                                                                                                       | 4.7 kB  00:00:00     
+extras                                                                                                                                     | 2.9 kB  00:00:00     
+ius                                                                                                                                        | 1.3 kB  00:00:00     
+kubernetes                                                                                                                                 | 2.9 kB  00:00:00     
+mysql-connectors-community                                                                                                                 | 2.6 kB  00:00:00     
+mysql-tools-community                                                                                                                      | 2.6 kB  00:00:00     
+mysql57-community                                                                                                                          | 2.6 kB  00:00:00     
+os                                                                                                                                         | 3.6 kB  00:00:00     
+pgdg-common                                                                                                                                | 2.9 kB  00:00:00     
+pgdg10                                                                                                                                     | 3.6 kB  00:00:00     
+pgdg11                                                                                                                                     | 3.6 kB  00:00:00     
+pgdg12                                                                                                                                     | 3.6 kB  00:00:00     
+pgdg95                                                                                                                                     | 3.6 kB  00:00:00     
+pgdg96                                                                                                                                     | 3.6 kB  00:00:00     
+updates                                                                                                                                    | 2.9 kB  00:00:00     
+wandisco-git                                                                                                                               | 2.9 kB  00:00:00     
+(1/12): extras/7/x86_64/primary_db                                                                                                         | 225 kB  00:00:00     
+(2/12): epel/7/x86_64/updateinfo                                                                                                           | 1.0 MB  00:00:00     
+(3/12): epel/7/x86_64/primary_db                                                                                                           | 6.9 MB  00:00:00     
+(4/12): docker-ce-stable/x86_64/primary_db                                                                                                 |  56 kB  00:00:01     
+(5/12): ius/x86_64/primary                                                                                                                 | 104 kB  00:00:02     
+(6/12): kubernetes/x86_64/primary_db                                                                                                       | 164 kB  00:00:03     
+(7/12): pgdg-common/7/x86_64/primary_db                                                                                                    | 155 kB  00:00:03     
+(8/12): updates/7/x86_64/primary_db                                                                                                        | 5.6 MB  00:00:00     
+(9/12): pgdg11/7/x86_64/primary_db                                                                                                         | 318 kB  00:00:03     
+(10/12): pgdg12/7/x86_64/primary_db                                                                                                        | 180 kB  00:00:03     
+(11/12): pgdg96/7/x86_64/primary_db                                                                                                        | 298 kB  00:00:03     
+(12/12): pgdg10/7/x86_64/primary_db                                                                                                        | 305 kB  00:00:07     
+ius                                                                                                                                                       460/460
+Resolving Dependencies
+--> Running transaction check
+---> Package redis.x86_64 0:3.2.12-2.el7 will be installed
+--> Processing Dependency: libjemalloc.so.1()(64bit) for package: redis-3.2.12-2.el7.x86_64
+--> Running transaction check
+---> Package jemalloc.x86_64 0:3.6.0-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================================
+ Package                                Arch                                 Version                                     Repository                          Size
+==================================================================================================================================================================
+Installing:
+ redis                                  x86_64                               3.2.12-2.el7                                epel                               544 k
+Installing for dependencies:
+ jemalloc                               x86_64                               3.6.0-1.el7                                 epel                               105 k
+
+Transaction Summary
+==================================================================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 648 k
+Installed size: 1.7 M
+Downloading packages:
+(1/2): jemalloc-3.6.0-1.el7.x86_64.rpm                                                                                                     | 105 kB  00:00:00     
+(2/2): redis-3.2.12-2.el7.x86_64.rpm                                                                                                       | 544 kB  00:00:00     
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                             2.7 MB/s | 648 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+  Installing : jemalloc-3.6.0-1.el7.x86_64                                                                                                                    1/2 
+  Installing : redis-3.2.12-2.el7.x86_64                                                                                                                      2/2 
+  Verifying  : redis-3.2.12-2.el7.x86_64                                                                                                                      1/2 
+  Verifying  : jemalloc-3.6.0-1.el7.x86_64                                                                                                                    2/2 
+
+Installed:
+  redis.x86_64 0:3.2.12-2.el7                                                                                                                                     
+
+Dependency Installed:
+  jemalloc.x86_64 0:3.6.0-1.el7                                                                                                                                   
+
+Complete!
+```
+
+
+systemctl status redis
+
+
+
+查看端口
+netstat -lnp|grep 6379
+
+
+先执行命令 yum install net-tools 和 yum search ifconfig下载依赖插件
+
+
+设置开机自启动
+systemctl enable redis
+
+systemctl start redis
+
+
+journalctl -xe
+
+
+journalctl - Query the systemd journal
+
+
+
+```shell
+journalctl -xe
+Mar 01 16:30:01 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Started Session 48461 of user root.
+-- Subject: Unit session-48461.scope has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit session-48461.scope has finished starting up.
+-- 
+-- The start-up result is done.
+Mar 01 16:30:01 iZ2ze9f7g12pq4tby7ewz2Z CROND[8736]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Mar 01 16:30:01 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Starting Session 48461 of user root.
+-- Subject: Unit session-48461.scope has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit session-48461.scope has begun starting up.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z polkitd[460]: Registered Authentication Agent for unix-process:9427:2404043761 (system bus name :1.96973 [/usr/bin/pkttyag
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Starting Redis persistent key-value database...
+-- Subject: Unit redis.service has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit redis.service has begun starting up.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: *** FATAL CONFIG FILE ERROR ***
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: Reading the configuration file, at line 163
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: >>> 'logfile /var/log/redis/redis.log'
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: Can't open the log file: Permission denied
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service: main process exited, code=exited, status=1/FAILURE
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-shutdown[9434]: Could not connect to Redis at 127.0.0.1:6379: Connection refused
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service: control process exited, code=exited status=1
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Failed to start Redis persistent key-value database.
+-- Subject: Unit redis.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit redis.service has failed.
+-- 
+-- The result is failed.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Unit redis.service entered failed state.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z polkitd[460]: Unregistered Authentication Agent for unix-process:9427:2404043761 (system bus name :1.96973, object path /o
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service failed.
+[root@iZ2ze9f7g12pq4tby7ewz2Z redis]# man journalctl
+[root@iZ2ze9f7g12pq4tby7ewz2Z redis]# journalctl -xe
+-- Subject: Unit session-48461.scope has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit session-48461.scope has finished starting up.
+-- 
+-- The start-up result is done.
+Mar 01 16:30:01 iZ2ze9f7g12pq4tby7ewz2Z CROND[8736]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Mar 01 16:30:01 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Starting Session 48461 of user root.
+-- Subject: Unit session-48461.scope has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit session-48461.scope has begun starting up.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z polkitd[460]: Registered Authentication Agent for unix-process:9427:2404043761 (system bus name :1.96973 [/usr/bin/pkttyag
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Starting Redis persistent key-value database...
+-- Subject: Unit redis.service has begun start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit redis.service has begun starting up.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: *** FATAL CONFIG FILE ERROR ***
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: Reading the configuration file, at line 163
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: >>> 'logfile /var/log/redis/redis.log'
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-server[9433]: Can't open the log file: Permission denied
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service: main process exited, code=exited, status=1/FAILURE
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z redis-shutdown[9434]: Could not connect to Redis at 127.0.0.1:6379: Connection refused
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service: control process exited, code=exited status=1
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Failed to start Redis persistent key-value database.
+-- Subject: Unit redis.service has failed
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit redis.service has failed.
+-- 
+-- The result is failed.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Unit redis.service entered failed state.
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z polkitd[460]: Unregistered Authentication Agent for unix-process:9427:2404043761 (system bus name :1.96973, object path /o
+Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service failed.
+```
+
+
+google search
+
+windows redis ui client sentinel
 
 
 
@@ -20,6 +235,19 @@ https://github.com/cinience/RedisStudio/releases  2015最新更新
 2014
 https://github.com/uglide/RedisDesktopManager/releases
 https://www.cnblogs.com/zxtceq/p/7676862.html
+
+
+redisinsight redislab提供的
+
+https://docs.redislabs.com/latest/ri/installing/install-redis-desktop/
+
+redisinsight-win.msi
+http://localhost:8001/  ui是网页的
+
+AnotherRedisDesktopManager 国人维护的
+https://gitee.com/qishibo/AnotherRedisDesktopManager/releases
+https://github.com/qishibo/AnotherRedisDesktopManager
+
 
 常用的消息队列有RabbitMQ,ActiveMQ，个人觉得这种消息队列太大太重，本文介绍下基于redis的轻量级消息队列服务。 
 
