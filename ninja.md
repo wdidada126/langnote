@@ -1,5 +1,7 @@
 # ninja
 
+yum install cmake -y
+yum install ninja-build -y
 
 类似于make
 编译速度快

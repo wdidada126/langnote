@@ -2,6 +2,11 @@
 
 
 
+/proc/meminfo
+
+/proc/cpuinfo
+
+
 ```shell
 sed -i "s/192.168.2.131/123.12.12.12/g" `grep 192.168.2.131 -rl ./*`
 sed -i "s/3.0.0-beta/3.0.0-canary/g" `grep 3.0.0-beta -rl ./*`
