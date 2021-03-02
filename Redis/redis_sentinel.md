@@ -1,5 +1,18 @@
 # redis_sentinel
 
+https://www.jianshu.com/p/0e6fa34d07ad
+cp /etc/redis-sentinel.conf  /etc/redis-sentinel_26380.conf
+
+port 26380
+
+mymaster password
+pidfile
+logfile
+mymaster ip 端口
+
+redis-sentinel /etc/redis-sentinel.conf &
+redis-sentinel /etc/redis-sentinel_26380.conf &
+
 sentinel配置之后，jedis，rediscli,图形工具连接sentinel的ip和端口，不是连接redis-server的
 
 https://www.cnblogs.com/kevingrace/p/9004460.html

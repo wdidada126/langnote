@@ -1,5 +1,17 @@
 # Git
 
+
+https://centos.pkgs.org/7/endpoint-x86_64/git-2.23.0-1.ep7.x86_64.rpm.html
+
+https://packages.endpoint.com/rhel/7/os/x86_64/git-2.23.0-1.ep7.x86_64.rpm
+
+
+git centos 7新版本安装
+	
+
+yum search git
+yum remove -y git | yum -y install git2u
+
 git 回退到某个commit
 回退命令:
 $ git reset --hard HEAD^ 回退到上个版本

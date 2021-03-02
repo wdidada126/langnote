@@ -1,6 +1,12 @@
 # yum
 
 
+/var/cache/yum/x86_64/7/ rpm文件缓存
+
+
+yum 自动安装依赖
+
+
 yum install createrepo yum-utils -y
 
 Package createrepo-0.9.9-28.el7.noarch already installed and latest version
