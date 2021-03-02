@@ -1,6 +1,7 @@
 # redis
 
 
+
 #### sentinel
 
 /etc/redis-sentinel.conf
@@ -271,6 +272,19 @@ redis 5
 
 windows 微软维护 3.0
 
+
+
+
+
+
+
+
+从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
+
+ redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
+
+
+
 3.2.12
 4.0.8
 
@@ -482,7 +496,7 @@ Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Failed to start Redis persis
 Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: Unit redis.service entered failed state.
 Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z polkitd[460]: Unregistered Authentication Agent for unix-process:9427:2404043761 (system bus name :1.96973, object path /o
 Mar 01 16:35:30 iZ2ze9f7g12pq4tby7ewz2Z systemd[1]: redis.service failed.
-```	
+```
 
 
 google search

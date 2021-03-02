@@ -1,6 +1,7 @@
 # Git
 
 
+
 https://centos.pkgs.org/7/endpoint-x86_64/git-2.23.0-1.ep7.x86_64.rpm.html
 
 https://packages.endpoint.com/rhel/7/os/x86_64/git-2.23.0-1.ep7.x86_64.rpm
@@ -11,6 +12,33 @@ git centos 7新版本安装
 
 yum search git
 yum remove -y git | yum -y install git2u
+
+
+```shell
+git branch 0a
+192:LangNote ibqo$ git branch -a
+  0a
+* master
+  remotes/b/master
+  remotes/origin/master
+```
+
+
+
+
+
+```shell
+git branch -d 0a
+Deleted branch 0a (was 99c7b17).
+192:LangNote ibqo$ git branch -a
+* master
+  remotes/b/master
+  remotes/origin/master
+```
+
+
+
+
 
 git 回退到某个commit
 回退命令:

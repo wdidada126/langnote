@@ -1,5 +1,19 @@
 # MongoDB
 
+
+
+
+
+杨亚洲(专注mongodb及高性能中间件)2020 年 10 月 13 日加入
+
+万亿级mongodb集群性能优化实践
+
+Qcon讲师，滴滴出行专家工程师/OPPO-mongodb负责人，负责数万亿级数据量文档数据库mongodb内核研发、性能优化及运维工作。后续持续分享《MongoDB内核源码设计、性能优化、最佳实践》,https://github.com/y123456yz
+
+
+
+
+
 https://www.jianshu.com/p/e62405f72163
 
 mongodb 索引简介
