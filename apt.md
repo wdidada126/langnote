@@ -1,5 +1,11 @@
 # ubuntu apt
 
+
+echo "deb http://ftp.us.debian.org/debian unstable main contrib non-free" >> /etc/apt/sources.list.d/unstable.list
+apt-get update
+apt-get install -t unstable gcc-5
+
+
 ```shell
 apt-cache depends build-essential
 build-essential

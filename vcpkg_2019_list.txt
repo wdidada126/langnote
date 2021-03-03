@@ -1,0 +1,104 @@
+boost-algorithm:x64-linux                          1.71.0           Boost algorithm module
+boost-any:x64-linux                                1.71.0           Boost any module
+boost-array:x64-linux                              1.71.0           Boost array module
+boost-asio:x64-linux                               1.71.0-1         Boost asio module
+boost-assert:x64-linux                             1.71.0           Boost assert module
+boost-atomic:x64-linux                             1.71.0           Boost atomic module
+boost-bind:x64-linux                               1.71.0           Boost bind module
+boost-build:x64-linux                              1.70.0-1         Boost.Build
+boost-chrono:x64-linux                             1.71.0           Boost chrono module
+boost-compatibility:x64-linux                      1.71.0           Boost compatibility module
+boost-concept-check:x64-linux                      1.71.0           Boost concept_check module
+boost-config:x64-linux                             1.71.0           Boost config module
+boost-container-hash:x64-linux                     1.71.0           Boost container_hash module
+boost-container:x64-linux                          1.71.0           Boost container module
+boost-context:x64-linux                            1.71.0           Boost context module
+boost-conversion:x64-linux                         1.71.0           Boost conversion module
+boost-core:x64-linux                               1.71.0           Boost core module
+boost-coroutine:x64-linux                          1.71.0           Boost coroutine module
+boost-crc:x64-linux                                1.71.0           Boost crc module
+boost-date-time:x64-linux                          1.71.0           Boost date_time module
+boost-detail:x64-linux                             1.71.0           Boost detail module
+boost-dynamic-bitset:x64-linux                     1.71.0           Boost dynamic_bitset module
+boost-endian:x64-linux                             1.71.0           Boost endian module
+boost-exception:x64-linux                          1.71.0           Boost exception module
+boost-filesystem:x64-linux                         1.71.0           Boost filesystem module
+boost-foreach:x64-linux                            1.71.0           Boost foreach module
+boost-function-types:x64-linux                     1.71.0           Boost function_types module
+boost-function:x64-linux                           1.71.0           Boost function module
+boost-functional:x64-linux                         1.71.0           Boost functional module
+boost-fusion:x64-linux                             1.71.0           Boost fusion module
+boost-integer:x64-linux                            1.71.0           Boost integer module
+boost-intrusive:x64-linux                          1.71.0           Boost intrusive module
+boost-io:x64-linux                                 1.71.0           Boost io module
+boost-iostreams:x64-linux                          1.71.0           Boost iostreams module
+boost-iterator:x64-linux                           1.71.0           Boost iterator module
+boost-lambda:x64-linux                             1.71.0           Boost lambda module
+boost-lexical-cast:x64-linux                       1.71.0           Boost lexical_cast module
+boost-locale:x64-linux                             1.71.0           Boost locale module
+boost-math:x64-linux                               1.71.0           Boost math module
+boost-modular-build-helper:x64-linux               1.71.0           
+boost-move:x64-linux                               1.71.0           Boost move module
+boost-mp11:x64-linux                               1.71.0           Boost mp11 module
+boost-mpl:x64-linux                                1.71.0           Boost mpl module
+boost-multi-index:x64-linux                        1.71.0           Boost multi_index module
+boost-multiprecision:x64-linux                     1.71.0           Boost multiprecision module
+boost-numeric-conversion:x64-linux                 1.71.0           Boost numeric_conversion module
+boost-optional:x64-linux                           1.71.0           Boost optional module
+boost-phoenix:x64-linux                            1.71.0           Boost phoenix module
+boost-pool:x64-linux                               1.71.0           Boost pool module
+boost-predef:x64-linux                             1.71.0           Boost predef module
+boost-preprocessor:x64-linux                       1.71.0           Boost preprocessor module
+boost-program-options:x64-linux                    1.71.0           Boost program_options module
+boost-proto:x64-linux                              1.71.0           Boost proto module
+boost-range:x64-linux                              1.71.0           Boost range module
+boost-ratio:x64-linux                              1.71.0           Boost ratio module
+boost-rational:x64-linux                           1.71.0           Boost rational module
+boost-regex:x64-linux                              1.71.0           Boost regex module
+boost-scope-exit:x64-linux                         1.71.0           Boost scope_exit module
+boost-serialization:x64-linux                      1.71.0           Boost serialization module
+boost-smart-ptr:x64-linux                          1.71.0           Boost smart_ptr module
+boost-spirit:x64-linux                             1.71.0           Boost spirit module
+boost-static-assert:x64-linux                      1.71.0           Boost static_assert module
+boost-system:x64-linux                             1.71.0           Boost system module
+boost-thread:x64-linux                             1.71.0           Boost thread module
+boost-throw-exception:x64-linux                    1.71.0           Boost throw_exception module
+boost-tokenizer:x64-linux                          1.71.0           Boost tokenizer module
+boost-tti:x64-linux                                1.71.0           Boost tti module
+boost-tuple:x64-linux                              1.71.0           Boost tuple module
+boost-type-index:x64-linux                         1.71.0           Boost type_index module
+boost-type-traits:x64-linux                        1.71.0           Boost type_traits module
+boost-typeof:x64-linux                             1.71.0           Boost typeof module
+boost-unordered:x64-linux                          1.71.0           Boost unordered module
+boost-utility:x64-linux                            1.71.0           Boost utility module
+boost-variant:x64-linux                            1.71.0           Boost variant module
+boost-vcpkg-helpers:x64-linux                      6                a set of vcpkg-internal scripts used to modulari...
+boost-winapi:x64-linux                             1.71.0           Boost winapi module
+bzip2:x64-linux                                    1.0.6-4          High-quality data compressor.
+c-ares:x64-linux                                   2019-5-2-1       A C library for asynchronous DNS requests
+c-ares:x64-osx                                     2019-5-2-1       A C library for asynchronous DNS requests
+date:x64-linux                                     2019-11-08       A date and time library based on the C++17 <chro...
+double-conversion:x64-linux                        3.1.5            Efficient binary-decimal and decimal-binary conv...
+expat:x64-linux                                    2.2.7            XML parser library written in C
+gflags:x64-linux                                   2.2.2-1          A C++ library that implements commandline flags ...
+glog:x64-linux                                     0.4.0-2          C++ implementation of the Google logging module
+grpc:x64-linux                                     1.23.1-1         An RPC library and framework
+gtest:x64-linux                                    2019-10-09       GoogleTest and GoogleMock testing frameworks.
+libevent:x64-linux                                 2.1.11-1         An event notification library
+libiconv:x64-linux                                 1.15-6           GNU Unicode text conversion
+liblzma:x64-linux                                  5.2.4-2          Compression library with an API similar to that ...
+libpng:x64-linux                                   1.6.37-5         libpng is a library implementing an interface fo...
+libpq:x64-linux                                    9.6.1-8          The official database access API of postgresql
+opengl:x64-linux                                   0.0-5            Open Graphics Library (OpenGL)[3][4][5] is a cro...
+openssl-unix:x64-linux                             1.0.2s-1         OpenSSL is an open source project that provides ...
+openssl:x64-linux                                  1                OpenSSL is an open source project that provides ...
+pcre:x64-linux                                     8.41-4           Perl Compatible Regular Expressions
+poco:x64-linux                                     1.9.2-1          Modern, powerful open source C++ class libraries...
+protobuf:x64-linux                                 3.10.0           Protocol Buffers - Google's data interchange format
+sqlite3:x64-linux                                  3.30.1-1         SQLite is a software library that implements a s...
+sqlpp11-connector-sqlite3:x64-linux                0.29-2           A C++ wrapper for sqlite3 meant to be used in co...
+sqlpp11:x64-linux                                  0.58-3           A type safe embedded domain specific language fo...
+thrift:x64-linux                                   2019-05-07-4     Apache Thrift is a software project spanning a v...
+websocketpp:x64-linux                              0.8.1-1          Library that implements RFC6455 The WebSocket Pr...
+zlib:x64-linux                                     1.2.11-5         A compression library
+zstd:x64-linux                                     1.4.0-1          Zstandard - Fast real-time compression algorithm

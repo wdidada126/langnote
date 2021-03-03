@@ -23,7 +23,7 @@ yumdownloader --resolve(可选，意为下依赖包) --destdir=软件存放位�
 
 
 mkdir -p ~/rpms
-yumdownloader --resolve --destdir=~/rpms cmake
+yumdownloader --resolve --destdir=~/rpms cmake  /用绝对路径
 
 
 yum install --downloadonly --downloaddir=/tmp/rpm perl-IPC-Cmd
@@ -31,6 +31,35 @@ yum install --downloadonly --downloaddir=/tmp/rpm perl-IPC-Cmd
 yumdownloader --resolve --destdir=~/rpms devtoolset-7  错误，需要绝对路径，还是网络等其他原因
 
 
-yumdownloader --resolve --destdir=/root/rpms devtoolset-7
+yumdownloader --resolve --destdir=/root/rpms devtoolset-7 /用绝对路径
 
+
+
+yum search mysql-dev
+Loaded plugins: fastestmirror, langpacks
+Repository epel is listed more than once in the configuration
+Loading mirror speeds from cached hostfile
+ * centos-sclo-rh: mirrors.ustc.edu.cn
+ * centos-sclo-sclo: mirrors.aliyun.com
+=========================================================================== N/S matched: mysql-dev ============================================================================
+libodb-mysql-devel.x86_64 : Development files for libodb-mysql
+rh-mysql57-mysql-devel.x86_64 : Files for development of MySQL applications
+rh-mysql80-mysql-devel.x86_64 : Files for development of MySQL applications
+soci-mysql-devel.x86_64 : MySQL back-end for soci
+
+  Name and summary matches only, use "search all" for everything.
+[root@VM_0_17_centos rpm_odb]# yumdownloader --resolve --destdir=/root/rpm_odb rh-mysql57-mysql-devel
+Loaded plugins: fastestmirror, langpacks
+Repository epel is listed more than once in the configuration
+Loading mirror speeds from cached hostfile
+ * centos-sclo-rh: mirrors.ustc.edu.cn
+ * centos-sclo-sclo: mirrors.aliyun.com
+--> Running transaction check
+---> Package rh-mysql57-mysql-devel.x86_64 0:5.7.24-1.el7 will be installed
+--> Processing Dependency: rh-mysql57-runtime for package: rh-mysql57-mysql-devel-5.7.24-1.el7.x86_64
+--> Running transaction check
+---> Package rh-mysql57-runtime.x86_64 0:2.3-4.el7 will be installed
+--> Finished Dependency Resolution
+(1/2): rh-mysql57-runtime-2.3-4.el7.x86_64.rpm                                                                                                          | 1.2 MB  00:00:00     
+(2/2): rh-mysql57-mysql-devel-5.7.24-1.el7.x86_64.rpm                                                                                                   | 905 kB  00:00:00 
 

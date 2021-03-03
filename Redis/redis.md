@@ -1,5 +1,10 @@
 # redis
 
+rdm windows 自己编译的版本
+
+redis 6支持自定义用户名
+
+
 
 systemctl disable redis.service
 

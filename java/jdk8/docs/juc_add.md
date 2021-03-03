@@ -1,8 +1,130 @@
 # testjuc
 
+
+jucé‡Œé¢çš„å¼‚å¸¸
+
+- BrokenBarrierException
+- CancellationException
+- CompletionException
+
+
+jucé‡Œé¢çš„æ¥å£ ä¸åŒ…æ‹¬atomicåŒ…å’ŒlocksåŒ…
+- BlockingDeque BlockingQueueçš„å­æ¥å£
+- BlockingQueue
+- Callable
+- CompletionService
+- CompletionStage
+- ConcurrentMap
+- ConcurrentNavigableMap
+- Delayed
+- Executor
+- ExecutorService
+- Future
+- RejectedExecutionHandler
+- RunnableFuture
+- RunnableScheduledFuture
+- ScheduledExecutorService
+- ScheduledFuture
+- ThreadFactory
+- TransferQueue
+- 
+- 
+- 
+- 
+- 
+- 
+
+
+
+BiConsumer
+BiFunction
+BinaryOperator
+BiPredicate
+BooleanSupplier
+Consumer
+DoubleBinaryOperator
+DoubleConsumer
+DoubleFunction
+DoublePredicate
+DoubleSupplier
+DoubleTolntFunction
+DoubleToLongFunction
+DoublellnaryOperator
+Function
+IntBinaryOperator
+IntConsumer
+IntFunction
+IntPredicate
+IntSupplier
+IntToDoubleFunction
+IntToLongFunction
+IntUnaryOperator
+LongBinaryOperator
+LongConsumer
+LongFunction
+LongPredicate
+LongSupplier
+LongToDoubleFunction
+LongTolntFunction
+LongUnaryOperator
+ObjDoubleConsumer
+ObjlntConsumer
+ObjLongConsumer
+Predicate
+Supplier
+ToDoubleBiFunction
+ToDoubleFunction
+TolntBiFunction
+TolntFunction
+ToLongBiFunction
+ToLongFunction
+UnaryOperator
+
+
+### juc
+stream
+
+
+Abstractpipeline
+Abstra ctShortCi rcuitTask
+AbstractSpinedBuffer
+AbstractTask
+BaseStream
+Collector
+Collectors
+DistinctOps
+DoublePipeline
+DoubleStream
+FindOps
+ForEachOps
+IntPipeline
+â‚„ IntStream
+LongPipeline
+LongStream
+MatchOps
+Node
+Nodes
+PipelineHelper
+ReduceOps
+ReferencePipeline
+Sink
+SliceOps
+SortedOps
+SpinedBuffer
+Stream
+StreamOpFlag
+Streams
+StreamShape
+StreamSpliterators
+StreamSupport
+TerminalOp
+Terminalsink
+Tripwire
+
+
 [CAS](http://tutorials.jenkov.com/java-concurrency/compare-and-swap.html)
 
-[²Î¿¼²©¿Í](https://blog.csdn.net/zxc123e/article/details/52057289)
+[å‚è€ƒåšå®¢](https://blog.csdn.net/zxc123e/article/details/52057289)
 
 AtomicReference
 - get()
@@ -14,32 +136,32 @@ https://blog.csdn.net/king866/article/details/53945400
 
 https://blog.csdn.net/leehsiao/article/details/51691637
 
-[java.util.concurrent.locks°üÏÂµÄËøÊµÏÖ·ÖÎö](https://www.jianshu.com/p/22dcefce6ef4)
+[java.util.concurrent.locksåŒ…ä¸‹çš„é”å®ç°åˆ†æ](https://www.jianshu.com/p/22dcefce6ef4)
 
 
 
-»ù±¾Àà£ºAtomicInteger¡¢AtomicLong¡¢AtomicBoolean£»
-ÒıÓÃÀàĞÍ£ºAtomicReference¡¢AtomicReferenceµÄABAÊµÀı¡¢AtomicStampedRerence¡¢AtomicMarkableReference£»
-Êı×éÀàĞÍ£ºAtomicIntegerArray¡¢AtomicLongArray¡¢AtomicReferenceArray
-ÊôĞÔÔ­×ÓĞŞ¸ÄÆ÷£¨Updater£©£ºAtomicIntegerFieldUpdater¡¢AtomicLongFieldUpdater¡¢AtomicReferenceFieldUpdater
+1ã€åŸºæœ¬ç±»ï¼šAtomicIntegerã€AtomicLongã€AtomicBooleanï¼›
+2ã€å¼•ç”¨ç±»å‹ï¼šAtomicReferenceã€AtomicReferenceçš„ABAå®ä¾‹ã€AtomicStampedRerenceã€AtomicMarkableReferenceï¼›
+3ã€æ•°ç»„ç±»å‹ï¼šAtomicIntegerArrayã€AtomicLongArrayã€AtomicReferenceArray
+4ã€å±æ€§åŸå­ä¿®æ”¹å™¨ï¼ˆUpdaterï¼‰ï¼šAtomicIntegerFieldUpdaterã€AtomicLongFieldUpdaterã€AtomicReferenceFieldUpdater
 
 
-³éÏóÀàAbstractOwnableSynchronizer¡¢AbstractQueuedLongSynchronizer¡¢AbstractQueuedSynchronizer
-½Ó¿ÚLock¡¢ReadWriteLock¡¢Condition
-³éÏóÀàAbstractOwnableSynchronizer ¸ÃÀàÊÇÖ÷Òª¶¨ÒåÈÃÏß³ÌÒÔ¶ÀÕ¼·½Ê½ÓµÓĞÍ¬²½Æ÷£¬´ËÀàÎª´´½¨ËøºÍÏà¹ØÍ¬²½Æ÷Ìá¹©ÁË»ù´¡£¬Àà±¾Éí²»¹ÜÀí»òÊ¹ÓÃ´ËĞÅÏ¢ ºÜ¼òµ¥µÄÁ½¸ö·½·¨setExclusiveOwnerThread(Thread t)ÉèÖÃµ±Ç°ÓµÓĞ¶ÀÕ¼·ÃÎÊµÄÏß³Ì ºÍgetExclusiveOwnerThread() ·µ»ØÓÉ setExclusiveOwnerThread×îºóÉèÖÃµÄÏß³Ì£»Èç¹û´ÓÎ´ÉèÖÃ£¬Ôò·µ»Ø null¡£
-³éÏóÀàAbstractQueuedSynchronizer ¼Ì³Ğ×ÔAbstractOwnableSynchronizer¸ÃÀàÎªÊµÏÖÒÀÀµÓÚÏÈ½øÏÈ³ö (FIFO) µÈ´ı¶ÓÁĞµÄ×èÈûËøºÍÏà¹ØÍ¬²½Æ÷£¨ĞÅºÅÁ¿¡¢ÊÂ¼ş£¬µÈµÈ£©Ìá¹©Ò»¸ö¿ò¼Ü ºÍÊÇMCSLockµÄÀ©Õ¹¡£¸ÃÀàÓĞ¸öÊôĞÔ private volatile int state; ÊÇThe synchronization state. Í¬²½µÄ×´Ì¬±íÊ¾¡£ÓµÓĞÕı³£µÄsetºÍget·½·¨ºó£¬»¹ÓĞ¸öcompareAndSetState·½·¨£¬ÊÇ»ùÓÚunsafeÀàµÄcompareAndSwapIntÀ´ÊµÏÖµÄ£¬ÓÉ´ËÀàÊµÏÖÍ¬²½¡£
-ÏàËÆµÄAbstractQueuedLongSynchronizerÀàµÄÊôĞÔ¶¨ÒåÊÇprivate volatile long state;¿ÉÒÔ¿´³öÊÇLONGĞÍµÄÊôĞÔÖµ¡£µ÷ÓÃµÄÊÇunsafe.compareAndSwapLong£¬ËùÒÔ¶şÕßµÄÇø±ğ¾Í»ù±¾ÖªµÀÁË£¬ÆäËüÃ»É¶Çø±ğ¡£
+æŠ½è±¡ç±»AbstractOwnableSynchronizerã€AbstractQueuedLongSynchronizerã€AbstractQueuedSynchronizer
+æ¥å£Lockã€ReadWriteLockã€Condition
+æŠ½è±¡ç±»AbstractOwnableSynchronizer è¯¥ç±»æ˜¯ä¸»è¦å®šä¹‰è®©çº¿ç¨‹ä»¥ç‹¬å æ–¹å¼æ‹¥æœ‰åŒæ­¥å™¨ï¼Œæ­¤ç±»ä¸ºåˆ›å»ºé”å’Œç›¸å…³åŒæ­¥å™¨æä¾›äº†åŸºç¡€ï¼Œç±»æœ¬èº«ä¸ç®¡ç†æˆ–ä½¿ç”¨æ­¤ä¿¡æ¯ å¾ˆç®€å•çš„ä¸¤ä¸ªæ–¹æ³•setExclusiveOwnerThread(Thread t)è®¾ç½®å½“å‰æ‹¥æœ‰ç‹¬å è®¿é—®çš„çº¿ç¨‹ å’ŒgetExclusiveOwnerThread() è¿”å›ç”± setExclusiveOwnerThreadæœ€åè®¾ç½®çš„çº¿ç¨‹ï¼›å¦‚æœä»æœªè®¾ç½®ï¼Œåˆ™è¿”å› nullã€‚
+æŠ½è±¡ç±»AbstractQueuedSynchronizer ç»§æ‰¿è‡ªAbstractOwnableSynchronizerè¯¥ç±»ä¸ºå®ç°ä¾èµ–äºå…ˆè¿›å…ˆå‡º (FIFO) ç­‰å¾…é˜Ÿåˆ—çš„é˜»å¡é”å’Œç›¸å…³åŒæ­¥å™¨ï¼ˆä¿¡å·é‡ã€äº‹ä»¶ï¼Œç­‰ç­‰ï¼‰æä¾›ä¸€ä¸ªæ¡†æ¶ å’Œæ˜¯MCSLockçš„æ‰©å±•ã€‚è¯¥ç±»æœ‰ä¸ªå±æ€§ private volatile int state; æ˜¯The synchronization state. åŒæ­¥çš„çŠ¶æ€è¡¨ç¤ºã€‚æ‹¥æœ‰æ­£å¸¸çš„setå’Œgetæ–¹æ³•åï¼Œè¿˜æœ‰ä¸ªcompareAndSetStateæ–¹æ³•ï¼Œæ˜¯åŸºäºunsafeç±»çš„compareAndSwapIntæ¥å®ç°çš„ï¼Œç”±æ­¤ç±»å®ç°åŒæ­¥ã€‚
+ç›¸ä¼¼çš„AbstractQueuedLongSynchronizerç±»çš„å±æ€§å®šä¹‰æ˜¯private volatile long state;å¯ä»¥çœ‹å‡ºæ˜¯LONGå‹çš„å±æ€§å€¼ã€‚è°ƒç”¨çš„æ˜¯unsafe.compareAndSwapLongï¼Œæ‰€ä»¥äºŒè€…çš„åŒºåˆ«å°±åŸºæœ¬çŸ¥é“äº†ï¼Œå…¶å®ƒæ²¡å•¥åŒºåˆ«ã€‚
 
 
-java.util.concurrent.atomic.AtomicIntegerArrayÀàÌá¹©ÁË¿ÉÒÔÒÔÔ­×Ó·½Ê½¶ÁÈ¡ºÍĞ´ÈëµÄµ×²ãintÊı×éµÄ²Ù×÷£¬»¹°üº¬¸ß¼¶Ô­×Ó²Ù×÷¡£ AtomicIntegerArrayÖ§³Ö¶Ôµ×²ãintÊı×é±äÁ¿µÄÔ­×Ó²Ù×÷¡£ Ëü¾ßÓĞ»ñÈ¡ºÍÉèÖÃ·½·¨£¬ÈçÔÚ±äÁ¿ÉÏµÄ¶ÁÈ¡ºÍĞ´Èë¡£ Ò²¾ÍÊÇËµ£¬Ò»¸ö¼¯ºÏÓëÍ¬Ò»±äÁ¿ÉÏµÄÈÎºÎºóĞøgetÏà¹ØÁª¡£ Ô­×ÓcompareAndSet·½·¨Ò²¾ßÓĞÕâĞ©ÄÚ´æÒ»ÖÂĞÔ¹¦ÄÜ¡£
+java.util.concurrent.atomic.AtomicIntegerArrayç±»æä¾›äº†å¯ä»¥ä»¥åŸå­æ–¹å¼è¯»å–å’Œå†™å…¥çš„åº•å±‚intæ•°ç»„çš„æ“ä½œï¼Œè¿˜åŒ…å«é«˜çº§åŸå­æ“ä½œã€‚ AtomicIntegerArrayæ”¯æŒå¯¹åº•å±‚intæ•°ç»„å˜é‡çš„åŸå­æ“ä½œã€‚ å®ƒå…·æœ‰è·å–å’Œè®¾ç½®æ–¹æ³•ï¼Œå¦‚åœ¨å˜é‡ä¸Šçš„è¯»å–å’Œå†™å…¥ã€‚ ä¹Ÿå°±æ˜¯è¯´ï¼Œä¸€ä¸ªé›†åˆä¸åŒä¸€å˜é‡ä¸Šçš„ä»»ä½•åç»­getç›¸å…³è”ã€‚ åŸå­compareAndSetæ–¹æ³•ä¹Ÿå…·æœ‰è¿™äº›å†…å­˜ä¸€è‡´æ€§åŠŸèƒ½ã€‚
 
-[AtomicIntegerArray²Î¿¼²©ÎÄ](https://www.yiibai.com/java_concurrency/concurrency_atomicintegerarray.html)
+[AtomicIntegerArrayå‚è€ƒåšæ–‡](https://www.yiibai.com/java_concurrency/concurrency_atomicintegerarray.html)
 
-[Atomic°üÖ®FieldUpdaterÉî¶È½âÎö](https://juejin.im/entry/59c5e85a5188257e826787d1)
-[AtomicReferenceFieldUpdater Ê¹ÓÃ](https://czj4451.iteye.com/blog/2152041)
+[AtomicåŒ…ä¹‹FieldUpdateræ·±åº¦è§£æ](https://juejin.im/entry/59c5e85a5188257e826787d1)
+[AtomicReferenceFieldUpdater ä½¿ç”¨](https://czj4451.iteye.com/blog/2152041)
 
 AbstractExecutorService
-ÒÑÖª×ÓÀà
+å·²çŸ¥å­ç±»
 - Executors.DelegatedExecutorService
 - ThreadPoolExecutor
 
@@ -78,77 +200,77 @@ public class MyAbstractExecutorService extends AbstractExecutorService {
 }
 ```
 
-[BlockingQueueµÄÊ¹ÓÃ](https://www.cnblogs.com/liuling/p/2013-8-20-01.html)
+[BlockingQueueçš„ä½¿ç”¨](https://www.cnblogs.com/liuling/p/2013-8-20-01.html)
 
- 1.BlockingQueue¶¨ÒåµÄ³£ÓÃ·½·¨ÈçÏÂ: 
-        1)add(anObject):°ÑanObject¼Óµ½BlockingQueueÀï,¼´Èç¹ûBlockingQueue¿ÉÒÔÈİÄÉ,Ôò·µ»Øtrue,·ñÔò±¨Òì³£ 
-        2)offer(anObject):±íÊ¾Èç¹û¿ÉÄÜµÄ»°,½«anObject¼Óµ½BlockingQueueÀï,¼´Èç¹ûBlockingQueue¿ÉÒÔÈİÄÉ,Ôò·µ»Øtrue,·ñÔò·µ»Øfalse. 
-        3)put(anObject):°ÑanObject¼Óµ½BlockingQueueÀï,Èç¹ûBlockQueueÃ»ÓĞ¿Õ¼ä,Ôòµ÷ÓÃ´Ë·½·¨µÄÏß³Ì±»×è¶ÏÖ±µ½BlockingQueueÀïÃæÓĞ¿Õ¼äÔÙ¼ÌĞø. 
-        4)poll(time):È¡×ßBlockingQueueÀïÅÅÔÚÊ×Î»µÄ¶ÔÏó,Èô²»ÄÜÁ¢¼´È¡³ö,Ôò¿ÉÒÔµÈtime²ÎÊı¹æ¶¨µÄÊ±¼ä,È¡²»µ½Ê±·µ»Ønull 
-        5)take():È¡×ßBlockingQueueÀïÅÅÔÚÊ×Î»µÄ¶ÔÏó,ÈôBlockingQueueÎª¿Õ,×è¶Ï½øÈëµÈ´ı×´Ì¬Ö±µ½BlockingÓĞĞÂµÄ¶ÔÏó±»¼ÓÈëÎªÖ¹ 
-2.BlockingQueueÓĞËÄ¸ö¾ßÌåµÄÊµÏÖÀà,¸ù¾İ²»Í¬ĞèÇó,Ñ¡Ôñ²»Í¬µÄÊµÏÖÀà 
-        1)ArrayBlockingQueue:¹æ¶¨´óĞ¡µÄBlockingQueue,Æä¹¹Ôìº¯Êı±ØĞë´øÒ»¸öint²ÎÊıÀ´Ö¸Ã÷Æä´óĞ¡.ÆäËùº¬µÄ¶ÔÏóÊÇÒÔFIFO(ÏÈÈëÏÈ³ö)Ë³ĞòÅÅĞòµÄ. 
-        2)LinkedBlockingQueue:´óĞ¡²»¶¨µÄBlockingQueue,ÈôÆä¹¹Ôìº¯Êı´øÒ»¸ö¹æ¶¨´óĞ¡µÄ²ÎÊı,Éú³ÉµÄBlockingQueueÓĞ´óĞ¡ÏŞÖÆ,Èô²»´ø´óĞ¡²ÎÊı,ËùÉú³ÉµÄBlockingQueueµÄ´óĞ¡ÓÉInteger.MAX_VALUEÀ´¾ö¶¨.ÆäËùº¬µÄ¶ÔÏóÊÇÒÔFIFO(ÏÈÈëÏÈ³ö)Ë³ĞòÅÅĞòµÄ 
-        3)PriorityBlockingQueue:ÀàËÆÓÚLinkedBlockQueue,µ«ÆäËùº¬¶ÔÏóµÄÅÅĞò²»ÊÇFIFO,¶øÊÇÒÀ¾İ¶ÔÏóµÄ×ÔÈ»ÅÅĞòË³Ğò»òÕßÊÇ¹¹Ôìº¯ÊıµÄComparator¾ö¶¨µÄË³Ğò. 
-        4)SynchronousQueue:ÌØÊâµÄBlockingQueue,¶ÔÆäµÄ²Ù×÷±ØĞëÊÇ·ÅºÍÈ¡½»ÌæÍê³ÉµÄ. 
-3.LinkedBlockingQueueºÍArrayBlockingQueue±È½ÏÆğÀ´,ËüÃÇ±³ºóËùÓÃµÄÊı¾İ½á¹¹²»Ò»Ñù,µ¼ÖÂLinkedBlockingQueueµÄÊı¾İÍÌÍÂÁ¿Òª´óÓÚArrayBlockingQueue,µ«ÔÚÏß³ÌÊıÁ¿ºÜ´óÊ±ÆäĞÔÄÜµÄ¿ÉÔ¤¼ûĞÔµÍÓÚArrayBlockingQueue.      
+ 1.BlockingQueueå®šä¹‰çš„å¸¸ç”¨æ–¹æ³•å¦‚ä¸‹: 
+        1)add(anObject):æŠŠanObjectåŠ åˆ°BlockingQueueé‡Œ,å³å¦‚æœBlockingQueueå¯ä»¥å®¹çº³,åˆ™è¿”å›true,å¦åˆ™æŠ¥å¼‚å¸¸ 
+        2)offer(anObject):è¡¨ç¤ºå¦‚æœå¯èƒ½çš„è¯,å°†anObjectåŠ åˆ°BlockingQueueé‡Œ,å³å¦‚æœBlockingQueueå¯ä»¥å®¹çº³,åˆ™è¿”å›true,å¦åˆ™è¿”å›false. 
+        3)put(anObject):æŠŠanObjectåŠ åˆ°BlockingQueueé‡Œ,å¦‚æœBlockQueueæ²¡æœ‰ç©ºé—´,åˆ™è°ƒç”¨æ­¤æ–¹æ³•çš„çº¿ç¨‹è¢«é˜»æ–­ç›´åˆ°BlockingQueueé‡Œé¢æœ‰ç©ºé—´å†ç»§ç»­. 
+        4)poll(time):å–èµ°BlockingQueueé‡Œæ’åœ¨é¦–ä½çš„å¯¹è±¡,è‹¥ä¸èƒ½ç«‹å³å–å‡º,åˆ™å¯ä»¥ç­‰timeå‚æ•°è§„å®šçš„æ—¶é—´,å–ä¸åˆ°æ—¶è¿”å›null 
+        5)take():å–èµ°BlockingQueueé‡Œæ’åœ¨é¦–ä½çš„å¯¹è±¡,è‹¥BlockingQueueä¸ºç©º,é˜»æ–­è¿›å…¥ç­‰å¾…çŠ¶æ€ç›´åˆ°Blockingæœ‰æ–°çš„å¯¹è±¡è¢«åŠ å…¥ä¸ºæ­¢ 
+2.BlockingQueueæœ‰å››ä¸ªå…·ä½“çš„å®ç°ç±»,æ ¹æ®ä¸åŒéœ€æ±‚,é€‰æ‹©ä¸åŒçš„å®ç°ç±» 
+        1)ArrayBlockingQueue:è§„å®šå¤§å°çš„BlockingQueue,å…¶æ„é€ å‡½æ•°å¿…é¡»å¸¦ä¸€ä¸ªintå‚æ•°æ¥æŒ‡æ˜å…¶å¤§å°.å…¶æ‰€å«çš„å¯¹è±¡æ˜¯ä»¥FIFO(å…ˆå…¥å…ˆå‡º)é¡ºåºæ’åºçš„. 
+        2)LinkedBlockingQueue:å¤§å°ä¸å®šçš„BlockingQueue,è‹¥å…¶æ„é€ å‡½æ•°å¸¦ä¸€ä¸ªè§„å®šå¤§å°çš„å‚æ•°,ç”Ÿæˆçš„BlockingQueueæœ‰å¤§å°é™åˆ¶,è‹¥ä¸å¸¦å¤§å°å‚æ•°,æ‰€ç”Ÿæˆçš„BlockingQueueçš„å¤§å°ç”±Integer.MAX_VALUEæ¥å†³å®š.å…¶æ‰€å«çš„å¯¹è±¡æ˜¯ä»¥FIFO(å…ˆå…¥å…ˆå‡º)é¡ºåºæ’åºçš„ 
+        3)PriorityBlockingQueue:ç±»ä¼¼äºLinkedBlockQueue,ä½†å…¶æ‰€å«å¯¹è±¡çš„æ’åºä¸æ˜¯FIFO,è€Œæ˜¯ä¾æ®å¯¹è±¡çš„è‡ªç„¶æ’åºé¡ºåºæˆ–è€…æ˜¯æ„é€ å‡½æ•°çš„Comparatorå†³å®šçš„é¡ºåº. 
+        4)SynchronousQueue:ç‰¹æ®Šçš„BlockingQueue,å¯¹å…¶çš„æ“ä½œå¿…é¡»æ˜¯æ”¾å’Œå–äº¤æ›¿å®Œæˆçš„. 
+3.LinkedBlockingQueueå’ŒArrayBlockingQueueæ¯”è¾ƒèµ·æ¥,å®ƒä»¬èƒŒåæ‰€ç”¨çš„æ•°æ®ç»“æ„ä¸ä¸€æ ·,å¯¼è‡´LinkedBlockingQueueçš„æ•°æ®ååé‡è¦å¤§äºArrayBlockingQueue,ä½†åœ¨çº¿ç¨‹æ•°é‡å¾ˆå¤§æ—¶å…¶æ€§èƒ½çš„å¯é¢„è§æ€§ä½äºArrayBlockingQueue.      
 
 
 void put(E e) throws InterruptedException
 E take() throws InterruptedException
 int size()
 
-[Java¶àÏß³Ì-¹¤¾ßÆª-BlockingQueue](https://www.cnblogs.com/jackyuj/archive/2010/11/24/1886553.html)
+[Javaå¤šçº¿ç¨‹-å·¥å…·ç¯‡-BlockingQueue](https://www.cnblogs.com/jackyuj/archive/2010/11/24/1886553.html)
 
 
 ## CompletionService 
 
-[Java²¢·¢×¨Ìâ ´ø·µ»Ø½á¹ûµÄÅúÁ¿ÈÎÎñÖ´ĞĞ CompletionService ExecutorService.invokeAll](https://blog.csdn.net/lmj623565791/article/details/27250059)
+[Javaå¹¶å‘ä¸“é¢˜ å¸¦è¿”å›ç»“æœçš„æ‰¹é‡ä»»åŠ¡æ‰§è¡Œ CompletionService ExecutorService.invokeAll](https://blog.csdn.net/lmj623565791/article/details/27250059)
 
-ÒÑÖª×ÓÀà
+å·²çŸ¥å­ç±»
 - ExecutorCompletionService
 
 		/**
-		 * ÄÚ²¿Î¬»¤11¸öÏß³ÌµÄÏß³Ì³Ø
+		 * å†…éƒ¨ç»´æŠ¤11ä¸ªçº¿ç¨‹çš„çº¿ç¨‹æ± 
 		 */
 		ExecutorService exec = Executors.newFixedThreadPool(11);
 		/**
-		 * ÈİÁ¿Îª10µÄ×èÈû¶ÓÁĞ
+		 * å®¹é‡ä¸º10çš„é˜»å¡é˜Ÿåˆ—
 		 */
 		final BlockingQueue<Future<Integer>> queue = new LinkedBlockingDeque<Future<Integer>>(
 				10);
-		//ÊµÀı»¯CompletionService
+		//å®ä¾‹åŒ–CompletionService
 		final CompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(
 				exec, queue);
 
-ConcurrentLinkedQueue Ê¹ÓÃÀı×Ó
-²¢·¢¶ÓÁĞConcurrentLinkedQueueÓë×èÈû¶ÓÁĞLinkedBlockingQueueµÄÇø±ğ
+ConcurrentLinkedQueue ä½¿ç”¨ä¾‹å­
+å¹¶å‘é˜Ÿåˆ—ConcurrentLinkedQueueä¸é˜»å¡é˜Ÿåˆ—LinkedBlockingQueueçš„åŒºåˆ«
 https://my.oschina.net/go4it/blog/1532435
 https://www.infoq.cn/article/ConcurrentLinkedQueue
 
-¶Ô±È
-| queue | ×èÈûÓë·ñ | ÊÇ·ñÓĞ½ç | Ïß³Ì°²È«±£ÕÏ | ÊÊÓÃ³¡¾° | ×¢ÒâÊÂÏî |
+å¯¹æ¯”
+| queue | é˜»å¡ä¸å¦ | æ˜¯å¦æœ‰ç•Œ | çº¿ç¨‹å®‰å…¨ä¿éšœ | é€‚ç”¨åœºæ™¯ | æ³¨æ„äº‹é¡¹ |
 |-------|---------|---------| -----------| --------| --------|
-|ArrayBlockingQueue | ×èÈû | ÓĞ½ç| Ò»°ÑÈ«¾ÖËø | Éú²úÏû·ÑÄ£ĞÍ£¬Æ½ºâÁ½±ß´¦ÀíËÙ¶È | -- |
-|LinkedBlockingQueue | ×èÈû | ¿ÉÅäÖÃ | ´æÈ¡²ÉÓÃ2°ÑËø | Éú²úÏû·ÑÄ£ĞÍ£¬Æ½ºâÁ½±ß´¦ÀíËÙ¶È | ÎŞ½çµÄÊ±ºò×¢ÒâÄÚ´æÒç³öÎÊÌâ |
-|ConcurrentLinkedQueue | ·Ç×èÈû | ÎŞ½ç | CAS | ¶ÔÈ«¾ÖµÄ¼¯ºÏ½øĞĞ²Ù×÷µÄ³¡¾° | size() ÊÇÒª±éÀúÒ»±é¼¯ºÏ£¬É÷ÓÃ |
+|ArrayBlockingQueue | é˜»å¡ | æœ‰ç•Œ| ä¸€æŠŠå…¨å±€é” | ç”Ÿäº§æ¶ˆè´¹æ¨¡å‹ï¼Œå¹³è¡¡ä¸¤è¾¹å¤„ç†é€Ÿåº¦ | -- |
+|LinkedBlockingQueue | é˜»å¡ | å¯é…ç½® | å­˜å–é‡‡ç”¨2æŠŠé” | ç”Ÿäº§æ¶ˆè´¹æ¨¡å‹ï¼Œå¹³è¡¡ä¸¤è¾¹å¤„ç†é€Ÿåº¦ | æ— ç•Œçš„æ—¶å€™æ³¨æ„å†…å­˜æº¢å‡ºé—®é¢˜ |
+|ConcurrentLinkedQueue | éé˜»å¡ | æ— ç•Œ | CAS | å¯¹å…¨å±€çš„é›†åˆè¿›è¡Œæ“ä½œçš„åœºæ™¯ | size() æ˜¯è¦éå†ä¸€éé›†åˆï¼Œæ…ç”¨ |
 
-Java Ïß³Ì³Ø ¾Ü¾ø²ßÂÔ RejectedExecutionHandler½éÉÜ
+Java çº¿ç¨‹æ±  æ‹’ç»ç­–ç•¥ RejectedExecutionHandlerä»‹ç»
 https://blog.csdn.net/u010723709/article/details/50377543
 https://blog.csdn.net/qq_28740207/article/details/73087442
 
-ÏÂÃæÌá¹©ÁËËÄÖÖÔ¤¶¨ÒåµÄ´¦Àí³ÌĞò²ßÂÔ£º
-(1) Ä¬ÈÏµÄThreadPoolExecutor.AbortPolicy   ´¦Àí³ÌĞòÔâµ½¾Ü¾ø½«Å×³öÔËĞĞÊ±RejectedExecutionException;
-(2) ThreadPoolExecutor.CallerRunsPolicy Ïß³Ìµ÷ÓÃÔËĞĞ¸ÃÈÎÎñµÄ execute ±¾Éí¡£´Ë²ßÂÔÌá¹©¼òµ¥µÄ·´À¡¿ØÖÆ»úÖÆ£¬ÄÜ¹»¼õ»ºĞÂÈÎÎñµÄÌá½»ËÙ¶È
-(3) ThreadPoolExecutor.DiscardPolicy  ²»ÄÜÖ´ĞĞµÄÈÎÎñ½«±»É¾³ı;
-(4) ThreadPoolExecutor.DiscardOldestPolicy  Èç¹ûÖ´ĞĞ³ÌĞòÉĞÎ´¹Ø±Õ£¬ÔòÎ»ÓÚ¹¤×÷¶ÓÁĞÍ·²¿µÄÈÎÎñ½«±»É¾³ı£¬È»ºóÖØÊÔÖ´ĞĞ³ÌĞò£¨Èç¹ûÔÙ´ÎÊ§°Ü£¬ÔòÖØ¸´´Ë¹ı³Ì£©¡£
+ä¸‹é¢æä¾›äº†å››ç§é¢„å®šä¹‰çš„å¤„ç†ç¨‹åºç­–ç•¥ï¼š
+(1) é»˜è®¤çš„ThreadPoolExecutor.AbortPolicy   å¤„ç†ç¨‹åºé­åˆ°æ‹’ç»å°†æŠ›å‡ºè¿è¡Œæ—¶RejectedExecutionException;
+(2) ThreadPoolExecutor.CallerRunsPolicy çº¿ç¨‹è°ƒç”¨è¿è¡Œè¯¥ä»»åŠ¡çš„ execute æœ¬èº«ã€‚æ­¤ç­–ç•¥æä¾›ç®€å•çš„åé¦ˆæ§åˆ¶æœºåˆ¶ï¼Œèƒ½å¤Ÿå‡ç¼“æ–°ä»»åŠ¡çš„æäº¤é€Ÿåº¦
+(3) ThreadPoolExecutor.DiscardPolicy  ä¸èƒ½æ‰§è¡Œçš„ä»»åŠ¡å°†è¢«åˆ é™¤;
+(4) ThreadPoolExecutor.DiscardOldestPolicy  å¦‚æœæ‰§è¡Œç¨‹åºå°šæœªå…³é—­ï¼Œåˆ™ä½äºå·¥ä½œé˜Ÿåˆ—å¤´éƒ¨çš„ä»»åŠ¡å°†è¢«åˆ é™¤ï¼Œç„¶åé‡è¯•æ‰§è¡Œç¨‹åºï¼ˆå¦‚æœå†æ¬¡å¤±è´¥ï¼Œåˆ™é‡å¤æ­¤è¿‡ç¨‹ï¼‰ã€‚
 
 
 
-°Ù¶ÈÄÔÍ¼
+ç™¾åº¦è„‘å›¾
 
 
-## guavaÔ´Âë·ÖÎö
+## guavaæºç åˆ†æ
 
 https://github.com/google/guava/wiki
 https://crossoverjie.top/2018/06/13/guava/guava-cache/
@@ -160,22 +282,22 @@ https://blog.csdn.net/Lili429/article/details/79236819
 
 RateLimiter
 
-³£ÓÃµÄÏŞÁ÷Ëã·¨ÓĞÁ½ÖÖ£ºÂ©Í°Ëã·¨ºÍÁîÅÆÍ°Ëã·¨¡£
-Â©Í°Ëã·¨Ë¼Â·ºÜ¼òµ¥£¬Ë®£¨ÇëÇó£©ÏÈ½øÈëµ½Â©Í°Àï£¬Â©Í°ÒÔÒ»¶¨µÄËÙ¶È³öË®£¬µ±Ë®Á÷ÈëËÙ¶È¹ı´ó»áÖ±½ÓÒç³ö£¬¿ÉÒÔ¿´³öÂ©Í°Ëã·¨ÄÜÇ¿ĞĞÏŞÖÆÊı¾İµÄ´«ÊäËÙÂÊ¡£
-¶ÔÓÚºÜ¶àÓ¦ÓÃ³¡¾°À´Ëµ£¬³ıÁËÒªÇóÄÜ¹»ÏŞÖÆÊı¾İµÄÆ½¾ù´«ÊäËÙÂÊÍâ£¬»¹ÒªÇóÔÊĞíÄ³ÖÖ³Ì¶ÈµÄÍ»·¢´«Êä¡£ÕâÊ±ºòÂ©Í°Ëã·¨¿ÉÄÜ¾Í²»ºÏÊÊÁË£¬ÁîÅÆÍ°Ëã·¨¸üÎªÊÊºÏ¡£
-ÁîÅÆÍ°Ëã·¨µÄÔ­ÀíÊÇÏµÍ³»áÒÔÒ»¸öºã¶¨µÄËÙ¶ÈÍùÍ°Àï·ÅÈëÁîÅÆ£¬¶øÈç¹ûÇëÇóĞèÒª±»´¦Àí£¬ÔòĞèÒªÏÈ´ÓÍ°Àï»ñÈ¡Ò»¸öÁîÅÆ£¬µ±Í°ÀïÃ»ÓĞÁîÅÆ¿ÉÈ¡Ê±£¬Ôò¾Ü¾ø·şÎñ¡£
+å¸¸ç”¨çš„é™æµç®—æ³•æœ‰ä¸¤ç§ï¼šæ¼æ¡¶ç®—æ³•å’Œä»¤ç‰Œæ¡¶ç®—æ³•ã€‚
+æ¼æ¡¶ç®—æ³•æ€è·¯å¾ˆç®€å•ï¼Œæ°´ï¼ˆè¯·æ±‚ï¼‰å…ˆè¿›å…¥åˆ°æ¼æ¡¶é‡Œï¼Œæ¼æ¡¶ä»¥ä¸€å®šçš„é€Ÿåº¦å‡ºæ°´ï¼Œå½“æ°´æµå…¥é€Ÿåº¦è¿‡å¤§ä¼šç›´æ¥æº¢å‡ºï¼Œå¯ä»¥çœ‹å‡ºæ¼æ¡¶ç®—æ³•èƒ½å¼ºè¡Œé™åˆ¶æ•°æ®çš„ä¼ è¾“é€Ÿç‡ã€‚
+å¯¹äºå¾ˆå¤šåº”ç”¨åœºæ™¯æ¥è¯´ï¼Œé™¤äº†è¦æ±‚èƒ½å¤Ÿé™åˆ¶æ•°æ®çš„å¹³å‡ä¼ è¾“é€Ÿç‡å¤–ï¼Œè¿˜è¦æ±‚å…è®¸æŸç§ç¨‹åº¦çš„çªå‘ä¼ è¾“ã€‚è¿™æ—¶å€™æ¼æ¡¶ç®—æ³•å¯èƒ½å°±ä¸åˆé€‚äº†ï¼Œä»¤ç‰Œæ¡¶ç®—æ³•æ›´ä¸ºé€‚åˆã€‚
+ä»¤ç‰Œæ¡¶ç®—æ³•çš„åŸç†æ˜¯ç³»ç»Ÿä¼šä»¥ä¸€ä¸ªæ’å®šçš„é€Ÿåº¦å¾€æ¡¶é‡Œæ”¾å…¥ä»¤ç‰Œï¼Œè€Œå¦‚æœè¯·æ±‚éœ€è¦è¢«å¤„ç†ï¼Œåˆ™éœ€è¦å…ˆä»æ¡¶é‡Œè·å–ä¸€ä¸ªä»¤ç‰Œï¼Œå½“æ¡¶é‡Œæ²¡æœ‰ä»¤ç‰Œå¯å–æ—¶ï¼Œåˆ™æ‹’ç»æœåŠ¡ã€‚
 
-guavaÒ²ÓĞ×¢½â
+guavaä¹Ÿæœ‰æ³¨è§£
 - acquire()
 - reserve()
 - reserveEarliestAvailable()
 
-RateLimiterÍ¨³£ÓÃÓÚÏŞÖÆ·ÃÎÊÄ³Ğ©ÎïÀí»òÂß¼­×ÊÔ´µÄËÙÂÊ¡£ÕâÓëjdk²¢·¢°üÖĞµÄSemaphoreÏà·´£¬ËüÏŞÖÆ²¢·¢·ÃÎÊµÄÊıÁ¿¶ø²»ÊÇËÙÂÊ(×¢Òâ£¬²¢·¢ºÍËÙÂÊÊÇÃÜÇĞÏà¹ØµÄ)¡£
+RateLimiteré€šå¸¸ç”¨äºé™åˆ¶è®¿é—®æŸäº›ç‰©ç†æˆ–é€»è¾‘èµ„æºçš„é€Ÿç‡ã€‚è¿™ä¸jdkå¹¶å‘åŒ…ä¸­çš„Semaphoreç›¸åï¼Œå®ƒé™åˆ¶å¹¶å‘è®¿é—®çš„æ•°é‡è€Œä¸æ˜¯é€Ÿç‡(æ³¨æ„ï¼Œå¹¶å‘å’Œé€Ÿç‡æ˜¯å¯†åˆ‡ç›¸å…³çš„)ã€‚
 
 
-https://github.com/LitePalFramework/LitePal ×¢½â
+https://github.com/LitePalFramework/LitePal æ³¨è§£
 
- Map | Corresponding Multiset | Supports null elements ¡ª¡ª¡ª¡ª¡ª¡ª|¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª-|¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª HashMap | HashMultiset |
+ Map | Corresponding Multiset | Supports null elements â€”â€”â€”â€”â€”â€”|â€”â€”â€”â€”â€”â€”â€”â€”-|â€”â€”â€”â€”â€”â€”â€”â€”â€” HashMap | HashMultiset |
  Yes TreeMap | TreeMultiset | Yes (if the comparator does) LinkedHashMap | LinkedHashMultiset |
  Yes ConcurrentHashMap | ConcurrentHashMultiset | No ImmutableMap | ImmutableMultiset | No
 
@@ -185,17 +307,18 @@ collections, caching, primitives support, concurrency libraries, common annotati
 https://blog.csdn.net/aya19880214/article/details/50549979
 
 
-ExecutorCompletionService¹¹Ôìº¯Êı
+ExecutorCompletionServiceæ„é€ å‡½æ•°
 public ExecutorCompletionService(Executor executor)
 
 
-×¢½âµÄ´¦Àí£º
-¿ÉÒÔÓÃClass FieldÀ´ÅĞ¶Ï×¢½â
+æ³¨è§£çš„å¤„ç†ï¼š
+å¯ä»¥ç”¨Class Fieldæ¥åˆ¤æ–­æ³¨è§£
 
-Field
+java.lang.reflect.Field
 public boolean isAnnotationPresent
+java.lang.reflect.Parameter
 
-Ê¹ÓÃ@interface×Ô¶¨Òå×¢½âÊ±£¬×Ô¶¯¼Ì³ĞÁËjava.lang.annotation.Annotation½Ó¿Ú¡£
+ä½¿ç”¨@interfaceè‡ªå®šä¹‰æ³¨è§£æ—¶ï¼Œè‡ªåŠ¨ç»§æ‰¿äº†java.lang.annotation.Annotationæ¥å£ã€‚
 
 
 
@@ -204,27 +327,27 @@ public abstract boolean compareAndSet(T obj, V expect, V update);
 
 
 AtomicBoolean
-public AtomicBoolean()
-public AtomicBoolean(boolean initialValue)
-public final boolean get()
-public final void set(boolean newValue)
-public final boolean getAndSet(boolean newValue)
-public final boolean compareAndSet(boolean expect, boolean update)
+- public AtomicBoolean()
+- public AtomicBoolean(boolean initialValue)
+- public final boolean get()
+- public final void set(boolean newValue)
+- public final boolean getAndSet(boolean newValue)
+- public final boolean compareAndSet(boolean expect, boolean update)
 
 
 AtomicIntegerArray
-public final int length()
-public final void set(int i, int newValue)
-public final int get(int i)
-public final int incrementAndGet(int i)
-public final boolean compareAndSet(int i, int expect, int update)
+- public final int length()
+- public final void set(int i, int newValue)
+- public final int get(int i)
+- public final int incrementAndGet(int i)
+- public final boolean compareAndSet(int i, int expect, int update)
 
 
 
-public AtomicReference()
-public AtomicReference(V initialValue)
-public final void set(V newValue)
-public final boolean compareAndSet(V expect, V update)
+- public AtomicReference()
+- public AtomicReference(V initialValue)
+- public final void set(V newValue)
+- public final boolean compareAndSet(V expect, V update)
 
 
 

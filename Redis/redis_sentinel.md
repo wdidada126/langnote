@@ -1,5 +1,9 @@
 # redis_sentinel
 
+http://ifeve.com/spring-boot-%e5%a6%82%e4%bd%95%e5%bf%ab%e9%80%9f%e9%9b%86%e6%88%90-redis-%e5%93%a8%e5%85%b5%ef%bc%9f/
+没有 Redis Sentinel 架构之前，如果主节点挂了，需要运维人员手动进行主从切换，然后更新所有用到的 Redis IP 地址参数再重新启动系统，所有恢复操作都需要人为干预，如果半夜挂了，如果系统很多，如果某个操作搞错了，等等，这对运维人员来说简直就是恶梦。
+有了 Redis Sentinel，主从节点故障都是自动化切换，应用程序参数什么也不用改，对于客户端来说都是透明无缝切换的，运维人员再也不用担惊受怕了。
+
 https://www.jianshu.com/p/0e6fa34d07ad
 cp /etc/redis-sentinel.conf  /etc/redis-sentinel_26380.conf
 

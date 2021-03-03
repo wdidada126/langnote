@@ -5,6 +5,7 @@ mha4mysql-manager
 https://github.com/yoshinorim/mha4mysql-manager
 
 
+https://www.cnblogs.com/xiaolang666/p/13958563.html
 
 https://www.cnblogs.com/--smile/p/11475380.html
 

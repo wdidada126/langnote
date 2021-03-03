@@ -1,0 +1,70 @@
+abseil:x64-linux                                   2020-03-03#8     an open-source collection designed to augment th...
+boost-algorithm:x64-linux                          1.73.0           Boost algorithm module
+boost-any:x64-linux                                1.73.0           Boost any module
+boost-array:x64-linux                              1.73.0           Boost array module
+boost-assert:x64-linux                             1.73.0           Boost assert module
+boost-atomic:x64-linux                             1.73.0           Boost atomic module
+boost-bind:x64-linux                               1.73.0           Boost bind module
+boost-build:x64-linux                              1.73.0#4         Boost.Build
+boost-chrono:x64-linux                             1.73.0           Boost chrono module
+boost-compatibility:x64-linux                      1.73.0           Boost compatibility module
+boost-concept-check:x64-linux                      1.73.0           Boost concept_check module
+boost-config:x64-linux                             1.73.0           Boost config module
+boost-container-hash:x64-linux                     1.73.0           Boost container_hash module
+boost-container:x64-linux                          1.73.0           Boost container module
+boost-conversion:x64-linux                         1.73.0           Boost conversion module
+boost-core:x64-linux                               1.73.0           Boost core module
+boost-detail:x64-linux                             1.73.0           Boost detail module
+boost-exception:x64-linux                          1.73.0           Boost exception module
+boost-function-types:x64-linux                     1.73.0           Boost function_types module
+boost-function:x64-linux                           1.73.0           Boost function module
+boost-functional:x64-linux                         1.73.0           Boost functional module
+boost-fusion:x64-linux                             1.73.0           Boost fusion module
+boost-integer:x64-linux                            1.73.0           Boost integer module
+boost-intrusive:x64-linux                          1.73.0           Boost intrusive module
+boost-io:x64-linux                                 1.73.0           Boost io module
+boost-iterator:x64-linux                           1.73.0           Boost iterator module
+boost-lambda:x64-linux                             1.73.0           Boost lambda module
+boost-lexical-cast:x64-linux                       1.73.0           Boost lexical_cast module
+boost-modular-build-helper:x64-linux               1.73.0#6         
+boost-move:x64-linux                               1.73.0           Boost move module
+boost-mp11:x64-linux                               1.73.0           Boost mp11 module
+boost-mpl:x64-linux                                1.73.0           Boost mpl module
+boost-numeric-conversion:x64-linux                 1.73.0           Boost numeric_conversion module
+boost-optional:x64-linux                           1.73.0           Boost optional module
+boost-pool:x64-linux                               1.73.0           Boost pool module
+boost-predef:x64-linux                             1.73.0           Boost predef module
+boost-preprocessor:x64-linux                       1.73.0           Boost preprocessor module
+boost-range:x64-linux                              1.73.0           Boost range module
+boost-ratio:x64-linux                              1.73.0           Boost ratio module
+boost-rational:x64-linux                           1.73.0           Boost rational module
+boost-regex:x64-linux                              1.73.0           Boost regex module
+boost-smart-ptr:x64-linux                          1.73.0           Boost smart_ptr module
+boost-static-assert:x64-linux                      1.73.0           Boost static_assert module
+boost-system:x64-linux                             1.73.0           Boost system module
+boost-throw-exception:x64-linux                    1.73.0           Boost throw_exception module
+boost-tuple:x64-linux                              1.73.0           Boost tuple module
+boost-type-index:x64-linux                         1.73.0           Boost type_index module
+boost-type-traits:x64-linux                        1.73.0           Boost type_traits module
+boost-typeof:x64-linux                             1.73.0           Boost typeof module
+boost-uninstall:x64-linux                          1.73.0           boost uninstall port
+boost-unordered:x64-linux                          1.73.0           Boost unordered module
+boost-utility:x64-linux                            1.73.0           Boost utility module
+boost-vcpkg-helpers:x64-linux                      7#1              a set of vcpkg-internal scripts used to modulari...
+boost-winapi:x64-linux                             1.73.0           Boost winapi module
+c-ares:x64-linux                                   2019-5-2-1       A C library for asynchronous DNS requests
+expat:x64-linux                                    2020-08-18       XML parser library written in C
+grpc:x64-linux                                     1.33.1           An RPC library and framework
+gtest:x64-linux                                    1.10.0#2         GoogleTest and GoogleMock testing frameworks.
+libpng:x64-linux                                   1.6.37#12        libpng is a library implementing an interface fo...
+libpq:x64-linux                                    12.2#8           The official database access API of postgresql
+libpq[openssl]:x64-linux                                            support for encrypted client connections and ran...
+libpq[zlib]:x64-linux                                               Use zlib (else --without-zlib)
+openssl-unix:x64-linux                             1.1.1h           OpenSSL is an open source project that provides ...
+openssl:x64-linux                                  1.1.1g#1         OpenSSL is an open source project that provides ...
+pcre:x64-linux                                     8.44#8           Perl Compatible Regular Expressions
+protobuf:x64-linux                                 3.13.0#2         Protocol Buffers - Google's data interchange format
+re2:x64-linux                                      2020-10-01       RE2 is a fast, safe, thread-friendly alternative...
+sqlite3:x64-linux                                  3.33.0           SQLite is a software library that implements a s...
+upb:x64-linux                                      2020-08-19       μpb (often written 'upb') is a small protobuf i...
+zlib:x64-linux                                     1.2.11#9         A compression library

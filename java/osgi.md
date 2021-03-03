@@ -1,5 +1,9 @@
 # OSGI
 
+Java9 官方的模块化
+https://www.cnblogs.com/boboooo/p/8057680.html
+
+
 [使用Equinox开发OSGi应用程序](https://www.ibm.com/developerworks/cn/education/opensource/os-eclipse-osgi/index.html)
 
 
@@ -57,3 +61,7 @@ Equinox是OSGI的一种框架(容器)
 
 Maven与OSGi天生就是冤家：Maven通过pom.xml描述一个产物的全部，而OSGi将这项工作交给了MANIFEST.MF。
 
+
+OSGi技术的影响同时也延伸到了Java社区，JSR–232提案的通过说明OSGi技术已经被Java ME领域所认可，而 JSR–291提案则奠定了OSGi技术在Java SE和Java EE领域标准模块化规范的地位
+
+osgi已经被Java官方抵制？
