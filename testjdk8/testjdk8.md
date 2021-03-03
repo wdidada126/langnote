@@ -1,6 +1,12 @@
 # testjdk8
 
 
+testjdk8项目cn.wdidada.lambda.Lambda2
+Java 8 动态类型语言Lambda表达式实现原理分析
+https://blog.csdn.net/raintungli/article/details/54910152
+Java的调用函数的四大指令（invokevirtual、invokespecial、invokestatic、invokeinterface)，通常方法的符号引用在静态类型语言编译时就能产生，而动态类型语言只有在运行期才能确定接收者类型，改变四大指令的语意对java的版本有很大的影响，所以在JSR 292 《Supporting Dynamically Typed Languages on the Java Platform》添加了一个新的指令
+
+
 java8中map新增方法详解
 java8中Stream的使用
 java8中Collection新增方法详解
