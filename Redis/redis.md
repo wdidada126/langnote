@@ -1,6 +1,9 @@
 # redis
 
 
+systemctl disable redis.service
+
+https://forum.redislabs.com/
 
 #### sentinel
 
