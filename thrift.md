@@ -4,6 +4,12 @@
 
 Mac vcpkg install thrift
 
+需要flex
+
+bison
+
+yum install flex bison -y
+
 bison 2.3不行，版本太低
 
 

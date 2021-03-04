@@ -1,5 +1,14 @@
 # yum
 
+```
+yum whatprovides libmysqlclient*
+```
+
+http://www.cocoachina.com/articles/63213
+
+
+
+
 
 /var/cache/yum/x86_64/7/ rpm文件缓存
 

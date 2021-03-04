@@ -31,7 +31,7 @@ curl https://setup.ius.io | sh
 yum search git
 
 yum -y install centos-release-scl
-yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils devtoolset-7-gdb
+yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils devtoolset-7-gdb devtoolset-7-build git222
 scl enable devtoolset-7 bash
 
 devtoolset-7-build
@@ -97,3 +97,57 @@ https://www.cnblogs.com/network-ren/p/12448929.html
 yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
 yum -y install postgresql10 postgresql10-server
+
+```
+[root@leryltdllllwew9a ~]# grep 'temporary password' /var/log/mysqld.log
+2021-03-04T07:45:21.664807Z 1 [Note] A temporary password is generated for root@localhost: -&e2x-rp7o?J
+[root@leryltdllllwew9a ~]# mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.33
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+```
+
+`alter user 'root'@'localhost' identified by '5%Edidadas';`
+
+
+
+
+
+https://blog.csdn.net/memory6364/article/details/82426052
+
+
+
+接触mysql对于root账户的IP访问限制
+
+
+
+```
+grant all on . to ‘root@%’ identified by ‘5%Edidadas’;
+flush privileges;
+```
+
+GRANT ALL PRIVILEGES ON *.* TO ‘root@%’ identified by ‘5%Edidadas’;
+
+
+
+不对
+
+`alter user 'root'@'%' identified by '5%Edidadas';`
+
+
+
+
+
+grant all privileges on \*.* to root@'%' identified by ‘5%Edidadas’
