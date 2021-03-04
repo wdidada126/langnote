@@ -4,7 +4,7 @@
 https://blog.csdn.net/thewindrisesll/article/details/89044531
 sudo yum install devtoolset-7
 yum -y install centos-release-scl
-yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils
+yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils devtoolset-7-gdb
 scl enable devtoolset-7 bash
 
 开机就设置gcc为gcc7
