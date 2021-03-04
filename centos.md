@@ -34,7 +34,7 @@ yum -y install centos-release-scl
 yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils devtoolset-7-gdb
 scl enable devtoolset-7 bash
 
-
+devtoolset-7-build
 
 yum install tcpdump git222 lsof lrzsz wget centos-release-scl -y
 
@@ -90,3 +90,10 @@ Installing for dependencies:
  perl-threads                           x86_64                 1.87-4.el7                            base                     49 k
  perl-threads-shared                    x86_64                 1.43-6.el7                            base                     39 k
 ```
+
+
+https://www.cnblogs.com/network-ren/p/12448929.html
+
+yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+yum -y install postgresql10 postgresql10-server
