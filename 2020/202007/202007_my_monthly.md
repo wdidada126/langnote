@@ -1,14 +1,14 @@
 # 202007 my monthly
 
-
+手摔了，有点疼，热敷？
 
 db
 
 分布式
 
-java
+java seata 
 
-service mesh
+service mesh kuma
 
 四大重点
 

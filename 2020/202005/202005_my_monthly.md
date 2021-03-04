@@ -2,6 +2,14 @@
 
 
 
+
+
+没怎么学习java
+
+
+
+
+
 五一长假
 
 学习效率
@@ -12,7 +20,7 @@
 Docker调试 非跨平台代码
 
 
-grpc
+grpc  腾讯云编译
 
 java c++
 
@@ -34,7 +42,7 @@ ms sqlserver安装
 
 
 
-ubuntu 16 gtk进不去，报错
+ubuntu 16 gtk进不去，报错 mdzz
 
 clean files blocks
 
