@@ -2,6 +2,12 @@
 
 
 
+设置版本号
+
+https://blog.csdn.net/lianshaohua/article/details/107980612
+
+
+
 `include_directories(mylib1name PUBLIC include)`
 
 

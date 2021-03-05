@@ -1,6 +1,14 @@
 # cpp
 
 
+
+`# define micro`
+
+语法 宏定义 开关
+
+
+
+
 ```shell
 rpm -pql glibc-2.17-222.el7.x86_64.rpm
 /etc/gai.conf
