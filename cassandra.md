@@ -14,8 +14,13 @@ java写的
 
 用了antlr
 
+全球跨集群部署
+
+nosql评测
+https://www.datastax.com/products/compare/nosql-performance-benchmarks?spm=a2c4e.10696291.0.0.244f19a4wV7yvT
 
 
+https://github.com/jeffreyscarpenter/cassandra-guide
 
 
 https://cassandra.apache.org/
@@ -30,3 +35,4 @@ https://blog.csdn.net/kobejayandy/article/details/12392609
 
 
 
+https://zhuanlan.zhihu.com/p/78255146

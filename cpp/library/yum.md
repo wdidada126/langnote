@@ -1,5 +1,8 @@
 # yum
 
+
+yum --enablerepo=remi install redis -y
+
 ```
 yum whatprovides libmysqlclient*
 ```

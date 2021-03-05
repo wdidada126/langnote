@@ -1,15 +1,22 @@
 # ld
 
 
+1. 可执行文件中自带的编译时写入的RPATH、RUNPATH
+2. LD_LIBRARY_PATH 指定的地方
+3. ldconfig 指定的地方：根据/etc/ld.so.cache查找
+4. /lib
+5. /usr/lib
+
+/etc/ld.so.cache是一个二进制文件
+https://blog.csdn.net/liu35937266/article/details/79488797
+
 echo $LD_LIBRARY_PATH
 /opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib:/opt/rh/devtoolset-7/root/usr/lib64/dyninst:/opt/rh/devtoolset-7/root/usr/lib/dyninst:/opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib
 
 
 export LD_LIBRARY_PATH=(共享库目录):$LD_LIBRARY_PATH
 
-
-/usr/lib
-
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib64:/usr/lib64/mysql
 
 echo /usr/local/jemalloc/lib >> /etc/ld.so.conf
 ldconfig
