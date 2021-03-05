@@ -1,5 +1,25 @@
 # CMake
 
+- 多文件夹 maven也支持
+- 设定名称 版本 是库还是程序
+- 引用依赖 find
+- 执行本地命令 protoc maven是通过插件实现的
+
+
+
+cmake新建一个项目，mysqlclient pthread
+
+libmysqlclient.so.20
+vertx-core-3.8.5.jar
+
+pom.xml
+CMakeLists.txt
+
+project(cmaketest VERSION 1.0.0 LANGUAGES C CXX)
+
+
+maven标记一个项目groupId architect artifactId version
+
 
 
 `include_directories(mylib1name PUBLIC include)`

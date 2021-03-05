@@ -1,6 +1,92 @@
 # Java标准库
 
 
+java 命令行程序
+```shell
+java -h
+用法: java [-options] class [args...]
+           (执行类)
+   或  java [-options] -jar jarfile [args...]
+           (执行 jar 文件)
+其中选项包括:
+    -d32          使用 32 位数据模型 (如果可用)
+    -d64          使用 64 位数据模型 (如果可用)
+    -client       选择 "client" VM
+    -server       选择 "server" VM
+                  默认 VM 是 client.
+
+    -cp <目录和 zip/jar 文件的类搜索路径>
+    -classpath <目录和 zip/jar 文件的类搜索路径>
+                  用 ; 分隔的目录, JAR 档案
+                  和 ZIP 档案列表, 用于搜索类文件。
+    -D<名称>=<值>
+                  设置系统属性
+    -verbose:[class|gc|jni]
+                  启用详细输出
+    -version      输出产品版本并退出
+    -version:<值>
+                  警告: 此功能已过时, 将在
+                  未来发行版中删除。
+                  需要指定的版本才能运行
+    -showversion  输出产品版本并继续
+    -jre-restrict-search | -no-jre-restrict-search
+                  警告: 此功能已过时, 将在
+                  未来发行版中删除。
+                  在版本搜索中包括/排除用户专用 JRE
+    -? -help      输出此帮助消息
+    -X            输出非标准选项的帮助
+    -ea[:<packagename>...|:<classname>]
+    -enableassertions[:<packagename>...|:<classname>]
+                  按指定的粒度启用断言
+    -da[:<packagename>...|:<classname>]
+    -disableassertions[:<packagename>...|:<classname>]
+                  禁用具有指定粒度的断言
+    -esa | -enablesystemassertions
+                  启用系统断言
+    -dsa | -disablesystemassertions
+                  禁用系统断言
+    -agentlib:<libname>[=<选项>]
+                  加载本机代理库 <libname>, 例如 -agentlib:hprof
+                  另请参阅 -agentlib:jdwp=help 和 -agentlib:hprof=help
+    -agentpath:<pathname>[=<选项>]
+                  按完整路径名加载本机代理库
+    -javaagent:<jarpath>[=<选项>]
+                  加载 Java 编程语言代理, 请参阅 java.lang.instrument
+    -splash:<imagepath>
+                  使用指定的图像显示启动屏幕
+有关详细信息, 请参阅 http://www.oracle.com/technetwork/java/javase/documentation/index.html。
+```
+
+
+
+```
+jps -v
+5808 TokenServerStart -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+
+
+10961 StartupMain -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+26131 StartupMain -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+17748 StartupMain -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Xss256k -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+30824 QuorumPeerMain -Dzookeeper.log.dir=. -Dzookeeper.root.logger=INFO,CONSOLE -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false
+23065 StartupMain -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+25515 ResDataStartup -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx22g -Xms22g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+10491 OrderServerStart -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Xss256k -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+18284 SpsServerStart -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Dfastjson.parser.safeMode=true -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+19005 Jps -Denv.class.path=.:/lib/dt.jar:/lib/tools.jar -Dapplication.home=/data/yyy40/lib/java/jdk1.8.0_181 -Xms8m
+18479 DataStatisticsApplication -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Xmx2g -Xms2g -Xmn256m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70
+```
+
+观察zk car tomcat jetty idea
+
+
+
+jvm参数有哪些，在哪儿输入的？
+
+-Xms
+
+-X -D输入jvm参数
+
+
 getResourceAsStream返回NULL
 
 A.class.getResourceAsStream("/config.properties")
