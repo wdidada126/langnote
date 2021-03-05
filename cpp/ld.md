@@ -1,6 +1,15 @@
 # ld
 
 
+echo $LD_LIBRARY_PATH
+/opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib:/opt/rh/devtoolset-7/root/usr/lib64/dyninst:/opt/rh/devtoolset-7/root/usr/lib/dyninst:/opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib
+
+
+export LD_LIBRARY_PATH=(共享库目录):$LD_LIBRARY_PATH
+
+
+/usr/lib
+
 
 echo /usr/local/jemalloc/lib >> /etc/ld.so.conf
 ldconfig
