@@ -1,5 +1,59 @@
 # rapidjson
 
+```shell
+repoquery -ql rapidjson-devel
+/usr/include/rapidjson
+/usr/include/rapidjson/allocators.h
+/usr/include/rapidjson/document.h
+/usr/include/rapidjson/encodedstream.h
+/usr/include/rapidjson/encodings.h
+/usr/include/rapidjson/error
+/usr/include/rapidjson/error/en.h
+/usr/include/rapidjson/error/error.h
+/usr/include/rapidjson/filereadstream.h
+/usr/include/rapidjson/filewritestream.h
+/usr/include/rapidjson/fwd.h
+/usr/include/rapidjson/internal
+/usr/include/rapidjson/internal/biginteger.h
+/usr/include/rapidjson/internal/diyfp.h
+/usr/include/rapidjson/internal/dtoa.h
+/usr/include/rapidjson/internal/ieee754.h
+/usr/include/rapidjson/internal/itoa.h
+/usr/include/rapidjson/internal/meta.h
+/usr/include/rapidjson/internal/pow10.h
+/usr/include/rapidjson/internal/regex.h
+/usr/include/rapidjson/internal/stack.h
+/usr/include/rapidjson/internal/strfunc.h
+/usr/include/rapidjson/internal/strtod.h
+/usr/include/rapidjson/internal/swap.h
+/usr/include/rapidjson/istreamwrapper.h
+/usr/include/rapidjson/memorybuffer.h
+/usr/include/rapidjson/memorystream.h
+/usr/include/rapidjson/msinttypes
+/usr/include/rapidjson/msinttypes/inttypes.h
+/usr/include/rapidjson/msinttypes/stdint.h
+/usr/include/rapidjson/ostreamwrapper.h
+/usr/include/rapidjson/pointer.h
+/usr/include/rapidjson/prettywriter.h
+/usr/include/rapidjson/rapidjson.h
+/usr/include/rapidjson/reader.h
+/usr/include/rapidjson/schema.h
+/usr/include/rapidjson/stream.h
+/usr/include/rapidjson/stringbuffer.h
+/usr/include/rapidjson/writer.h
+/usr/share/cmake
+/usr/share/cmake/RapidJSON
+/usr/share/cmake/RapidJSON/RapidJSONConfig.cmake
+/usr/share/cmake/RapidJSON/RapidJSONConfigVersion.cmake
+/usr/share/doc/rapidjson-1.1.0
+/usr/share/doc/rapidjson-1.1.0/CHANGELOG.md
+/usr/share/doc/rapidjson-1.1.0/readme.md
+/usr/share/doc/rapidjson-1.1.0/readme.zh-cn.md
+/usr/share/licenses/rapidjson-devel-1.1.0
+/usr/share/licenses/rapidjson-devel-1.1.0/license.txt
+/usr/share/pkgconfig/RapidJSON.pc
+```
+
 [官网中文文档](http://rapidjson.org/zh-cn/)
 
  

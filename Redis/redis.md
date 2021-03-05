@@ -1,5 +1,22 @@
 # redis
 
+remote dictionary service 首字母缩写
+
+
+redis最新版安装 centos平台
+https://computingforgeeks.com/how-to-install-latest-redis-on-centos-7/
+
+yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum --enablerepo=remi install redis -y
+
+
+Redis协议里有大量冗余的回车换行符，但是这不影响它成为互联网技术领域非常受欢迎的一个文本协议。有很多开源项目使用阻SP作为它的通讯协议
+
+
+- Redis深度历险 书籍
+- 
+ltamar Haber
+
 rdm windows 自己编译的版本
 
 redis 6支持自定义用户名

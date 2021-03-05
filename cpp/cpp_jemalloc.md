@@ -1,5 +1,28 @@
 # jemalloc
 
+
+https://github.com/jemalloc/jemalloc
+最新版
+5.2.1 20210305
+
+
+
+http://jemalloc.net/
+
+centos 7
+
+jemalloc-devel.x86_64 0:3.6.0-1.el7
+
+https://centos.pkgs.org/7/epel-x86_64/jemalloc-devel-3.6.0-1.el7.x86_64.rpm.html
+
+```shell
+repoquery -ql jemalloc-devel
+/usr/include/jemalloc
+/usr/include/jemalloc/jemalloc.h
+/usr/lib64/libjemalloc.so
+/usr/share/man/man3/jemalloc.3.gz
+```
+
 https://www.jianshu.com/p/41852483e4a1
 
 

@@ -1,5 +1,7 @@
 # tcpdump
 
+yum install tcpdump -y
+
 [Linux 网络分析必备技能：tcpdump 实战详解](https://mp.weixin.qq.com/s/vzNgYRZigR1Buay17gcfrg)
 
 tcpdump -i -s 0 

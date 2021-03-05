@@ -1,7 +1,64 @@
 # ld
 
 
+1. 可执行文件中自带的编译时写入的RPATH、RUNPATH
+2. LD_LIBRARY_PATH 指定的地方
+3. ldconfig 指定的地方：根据/etc/ld.so.cache查找
+4. /lib
+5. /usr/lib
+
+/etc/ld.so.cache是一个二进制文件
+https://blog.csdn.net/liu35937266/article/details/79488797
+
+echo $LD_LIBRARY_PATH
+/opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib:/opt/rh/devtoolset-7/root/usr/lib64/dyninst:/opt/rh/devtoolset-7/root/usr/lib/dyninst:/opt/rh/devtoolset-7/root/usr/lib64:/opt/rh/devtoolset-7/root/usr/lib
+
+
+export LD_LIBRARY_PATH=(共享库目录):$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib64:/usr/lib64/mysql
 
 echo /usr/local/jemalloc/lib >> /etc/ld.so.conf
 ldconfig
+
+
+```shell
+[root@leryltdllllwew9a pkgconfig]# cat mysqlclient.pc 
+# Copyright (c) 2015, 2016, Oracle and/or its affiliates. All rights reserved.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License, version 2.0,
+# as published by the Free Software Foundation.
+#
+# This program is also distributed with certain software (including
+# but not limited to OpenSSL) that is licensed under separate terms,
+# as designated in a particular file or component or in included license
+# documentation.  The authors of MySQL hereby grant you an additional
+# permission to link the program and your derivative works with the
+# separately licensed software that they have included with MySQL.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License, version 2.0, for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+prefix=/usr
+includedir=${prefix}/include/mysql
+libdir=${prefix}/lib64/mysql
+
+Name: mysqlclient
+Description: MySQL client library
+Version: 20.3.20
+Cflags: -I${includedir} -m64 
+Libs: -L${libdir} -lmysqlclient
+Libs.private:  -lpthread -lm -lrt -ldl
+Requires.private: 
+[root@leryltdllllwew9a pkgconfig]# pwd
+/usr/lib64/pkgconfig
+
+```
 

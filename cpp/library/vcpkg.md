@@ -1,5 +1,8 @@
 # vcpkg
 
+
+`cmake -DCMAKE_TOOLCHAIN_FILE=/root/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
+
 C++ ORM框架:SQLPP11教程 使用vcpkg
 https://blog.csdn.net/linyilong3/article/details/100853675
 vcpkg install sqlpp11-connector-sqlite3
