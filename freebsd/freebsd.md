@@ -1,5 +1,10 @@
 # freebsd
 
+posix
+
+https://www.zhihu.com/question/371031409
+
+
 
 FreeBSD系统下默认是不允许root用户直接通过ssh连接到服务器的，在安装FreeBSD系统时要创建一个额外的用户，切忌一定要把这个用户加 入到wheel组中（如果不加入到这个组中的话就无法ssh），也可以安装完系统后创建用户，并把这个用户加入wheel组。
 
