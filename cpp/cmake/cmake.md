@@ -1,5 +1,15 @@
 # CMake
 
+cmake 添加头文件目录
+https://www.cnblogs.com/binbinjx/p/5626916.html
+添加头文件目录INCLUDE_DIRECTORIES
+语法：
+include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
+它相当于g++选项中的-I参数的作用，也相当于环境变量中增加路径到CPLUS_INCLUDE_PATH变量的作用。
+
+include_directories(../../../thirdparty/comm/include)
+
+
 - 多文件夹 maven也支持
 - 设定名称 版本 是库还是程序
 - 引用依赖 find

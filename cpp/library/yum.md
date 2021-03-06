@@ -1,5 +1,7 @@
 # yum
 
+`yum info clang`
+`yum repolist`
 
 yum --enablerepo=remi install redis -y
 
