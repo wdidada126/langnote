@@ -1,11 +1,18 @@
 # cpp prime
 
+
+&
+*
+
+
 cpp
 
 5 中文版
 
 https://book.douban.com/subject/25708312/
 
+源码 需翻墙
+https://www.informit.com/store/c-plus-plus-primer-9780321714114
 
 
 # 《C++ Primer》第五版中文版习题答案
@@ -64,7 +71,8 @@ https://blog.csdn.net/qq_22660775/article/details/89336997
 
 chap 7
 
-委托构造函数
+委托构造函数delegating constructor
+构造函数重载
 
 第Ⅱ部 C++标准库
 
@@ -73,8 +81,16 @@ chap 7
 
 
 chap 11 关联容器
+8个关联容器
+map
+set
+multimap
+multiset
 
-
+unordered_map
+unordered_set
+unordered_multimap
+unordered_multiset
 
 pair类型
 
@@ -99,7 +115,7 @@ weak_ptr
 chap 16
 
 std::move
-
+右值引用
 
 
 第Ⅳ部分 高级主题
