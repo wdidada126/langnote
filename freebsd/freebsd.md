@@ -1,5 +1,7 @@
 # freebsd
 
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
 posix
 
 https://www.zhihu.com/question/371031409
