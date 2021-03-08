@@ -1,5 +1,12 @@
 # aix
 
+
+java zgc
+https://www.codercto.com/a/114687.html
+
+java Aix
+https://www.ibm.com/support/pages/java-sdk-downloads
+
 2005年6月14日，Sun公司将正在开发中的Solaris 11的源代码以CDDL许可开放，这一开放版本就是OpenSolaris
 https://www.oracle.com/solaris/solaris11/downloads/solaris-downloads.html
 

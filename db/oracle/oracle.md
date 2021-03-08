@@ -1,5 +1,15 @@
 # oracle
 
+Oracle Database Express Edition (XE) Release 18.4.0.0.0 (18c)
+https://www.oracle.com/database/technologies/xe-downloads.html
+
+Linux on System z (64-bit)
+HP-UX ia64
+IBM AIX power
+Oracle Solaris (SPARC systems, 64-bit)
+Linux x86-64
+Microsoft Windows x64 (64-bit)
+
 20191212 搞Oracle 12
 
 jdbc:oracle:thin:@192.168.3.98:1521:orcl
