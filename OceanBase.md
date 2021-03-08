@@ -1,5 +1,13 @@
 # OceanBase
 
+
+OceanBase | 试用版安装初体验
+https://blog.csdn.net/daiyejava/article/details/109379738
+
+ob docker centos 7
+https://www.oceanbase.com/docs/oceanbase-database-trial/oceanbase-database-trial/V2.2.50/fbgwds
+
+
 https://www.zhihu.com/question/19841579/answer/131853733
 
 为什么OceanBase架构特别适合双十一

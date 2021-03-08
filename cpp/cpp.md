@@ -1,6 +1,9 @@
 # cpp
 
 
+cpp 内存模型
+
+https://www.cnblogs.com/alexcool/articles/9241548.html
 
 `# define micro`
 
