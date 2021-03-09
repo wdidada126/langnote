@@ -1,6 +1,28 @@
 # aix
 
 
+国内云 浪潮只卖aix服务
+
+
+aix 有权限的下载，没权限下载不了
+https://www.ibm.com/support/pages/handling-aix-fileset-requisite-issues
+
+qemu aix aix_v7.2_install_7200-03-01-1838_flash_92018.iso flash版本下载，不是dvd版本
+
+
+安装aix 体验下
+AIX中 |SMIT/SMITTY| 的使用
+https://blog.csdn.net/chengqi5791/article/details/100700525
+
+
+AIX概述
+AIX 是一个用于 K1 Power Systems 中构建的 POWER 处理器架构的企业级 UNIX 操作系统 （OS）。如今，全球性企业必须依靠安全的高可用性基础架构，才能快速适应不断变化的业务需求。AIX 不仅可以提供上述功能及其他功能，还能实现关键业务型数据所需的高性能、可靠性和安全性。
+
+aix 云服务
+
+https://www.inspurpower.com/o_product/showproduct.php?id=54
+
+
 java zgc
 https://www.codercto.com/a/114687.html
 
