@@ -1,8 +1,13 @@
 # mysql
 
+
+MySQL查看和修改事务隔离级别
+http://c.biancheng.net/view/7266.html
+
+
 mysql doc 5.7 中英文版本
 https://www.docs4dev.com/docs/zh/mysql/5.7/reference/innodb-benefits.html
-
+没找到索引相关的，看英文原文
 
 
 mysql 5.0中文翻译

@@ -1,5 +1,20 @@
 # cryptopp
 
+
+
+Crypto++ 看编译器
+The current version of Crypto++ supports the following compilers:
+
+Visual Studio 2003 - 2017
+GCC 3.3 - 9.0
+Apple Clang 4.3 - 9.0
+LLVM Clang 2.9 - 7.0
+C++Builder 2013
+Intel C++ Compiler 9 - 16.0
+Sun Studio 12u1 - 12.6
+IBM XL C/C++ 10.0 - 13.1
+
+
 apt-cache apknames | grep -i crypto++
 
 sudo apt-get install libcrypto++*
