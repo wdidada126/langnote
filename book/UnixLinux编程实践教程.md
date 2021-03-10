@@ -10,6 +10,18 @@ Unix Linux编程实践教程
 
 
 
+目前[三种主流的web服务](http://www.zelinonline.com/news_detail.asp?id=1692)实现方法： 
+
+[REST](http://baike.baidu.com/view/1077487.htm)（新型）：表象化状态转变 (软件[架构](http://lib.csdn.net/base/16)风格）RESTEasy、Wink、CXF、Axis2…….
+
+[SOAP](http://www.baike.com/wiki/SOAP)（比较成熟）：简单对象访问协议 Xfire、Axis2、CXF、Axis1
+
+[XML-RPC](http://baike.baidu.com/view/643379.htm)（淘汰）：远程过程调用协议（慢慢被soap 所取代）
+
+
+
+
+
 线程
 Java接口
 

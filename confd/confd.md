@@ -6,8 +6,6 @@ Manage local application configuration files using templates and data from etcd 
 
 
 
-<<<<<<< HEAD
-
 
 配置管理器
 
@@ -15,8 +13,7 @@ Manage local application configuration files using templates and data from etcd 
 
 
 
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
 `confd` is a lightweight configuration management tool focused on:
 
 - keeping local configuration files up-to-date using data stored in [etcd](https://github.com/coreos/etcd), [consul](http://consul.io/), [dynamodb](http://aws.amazon.com/dynamodb/), [redis](http://redis.io/), [vault](https://vaultproject.io/), [zookeeper](https://zookeeper.apache.org/), [aws ssm parameter store](https://aws.amazon.com/ec2/systems-manager/) or env vars and processing [template resources](https://github.com/kelseyhightower/confd/blob/master/docs/template-resources.md).

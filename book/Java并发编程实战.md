@@ -13,7 +13,7 @@ javax.annotation.concurrent.ThreadSafe
 
 
 
-看不懂，现在看懂了
+之前看不懂，现在看懂了
 
 
 
@@ -82,7 +82,7 @@ shutdownNow的局限性
 
 ### 第8章 线程池的使用
 
-
+线程池参数
 
 ### 第9章 图形用户界面应用程序
 

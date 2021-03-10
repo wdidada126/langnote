@@ -2,9 +2,13 @@
 
 
 
-redis cluster 是gossip
+redis cluster 是gossip？
 
 sentinal
+
+
+
+redis用到了gossip
 
 
 
