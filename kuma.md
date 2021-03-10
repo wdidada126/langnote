@@ -1,5 +1,7 @@
 # kuma
 
+跟istio是精品
+
 
 
 https://github.com/Kong/kuma

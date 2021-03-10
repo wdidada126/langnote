@@ -1,5 +1,8 @@
 # git_submodule
 
+
+git submodule update --init
+
 https://www.cnblogs.com/kylinfish/articles/6012968.html
 
 开发过程中，经常会有一些通用的部分希望抽取出来做成一个公共库来提供给别的工程来使用，而公共代码库的版本管理是个麻烦的事情。今天无意中发现了git的git submodule命令，之前的问题迎刃而解了。

@@ -1,8 +1,7 @@
 # snappy
 
+srpc 用到了
+lz4
 
 https://github.com/google/snappy
-
-compressor/decompressor
-
-cmake generetor
+压缩库

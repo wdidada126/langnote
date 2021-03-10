@@ -1,5 +1,7 @@
 # etcd
 
+key-value merory db
+
 etcd在高并发场景下比zk好
 
 [Etcd，Zookeeper，Consul 比较](https://blog.csdn.net/lingzhiwangcn/article/details/78853137)
