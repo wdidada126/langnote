@@ -1,5 +1,41 @@
 # centos rpm
 
+
+```shell
+[root@10-23-29-39 build]# rpm -ql jsoncpp
+jsoncpp        jsoncpp-devel  
+[root@10-23-29-39 build]# rpm -ql jsoncpp
+/usr/lib64/libjsoncpp.so.0
+/usr/lib64/libjsoncpp.so.0.10.5
+/usr/share/doc/jsoncpp
+/usr/share/doc/jsoncpp/README.md
+/usr/share/licenses/jsoncpp-0.10.5
+/usr/share/licenses/jsoncpp-0.10.5/AUTHORS
+/usr/share/licenses/jsoncpp-0.10.5/LICENSE
+[root@10-23-29-39 build]# rpm -ql jsoncpp-devel
+/usr/include/jsoncpp
+/usr/include/jsoncpp/json
+/usr/include/jsoncpp/json/assertions.h
+/usr/include/jsoncpp/json/autolink.h
+/usr/include/jsoncpp/json/config.h
+/usr/include/jsoncpp/json/features.h
+/usr/include/jsoncpp/json/forwards.h
+/usr/include/jsoncpp/json/json.h
+/usr/include/jsoncpp/json/reader.h
+/usr/include/jsoncpp/json/value.h
+/usr/include/jsoncpp/json/version.h
+/usr/include/jsoncpp/json/writer.h
+/usr/lib64/cmake
+/usr/lib64/cmake/jsoncpp
+/usr/lib64/cmake/jsoncpp/jsoncppConfig-release.cmake
+/usr/lib64/cmake/jsoncpp/jsoncppConfig.cmake
+/usr/lib64/libjsoncpp.so
+/usr/lib64/pkgconfig/jsoncpp.pc
+/usr/share/doc/jsoncpp
+/usr/share/doc/jsoncpp/NEWS.txt
+
+```
+
 rpm跟jar类比
 
 go rust编写的程序可以打包成rpm吗？

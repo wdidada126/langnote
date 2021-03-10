@@ -1,4 +1,38 @@
 # gcc
+安装autoconf和automake
+yum -y install gcc automake autoconf libtool make
+
+安装g++:
+yum install gcc gcc-c++
+
+yum install glibc-static libstdc++-static -y
+
+
+2020年5月7日发布 GCC 10.1.1
+clang 12
+
+```shell
+yum install gcc-c++
+Dependencies Resolved
+
+=========================================================
+ Package     Arch       Version           Repository
+                                                    Size
+=========================================================
+Installing:
+ gcc-c++     x86_64     4.8.5-44.el7      base     7.2 M
+Installing for dependencies:
+ cpp         x86_64     4.8.5-44.el7      base     5.9 M
+ gcc         x86_64     4.8.5-44.el7      base      16 M
+
+Transaction Summary
+=========================================================
+Install  1 Package (+2 Dependent packages)
+
+Total download size: 29 M
+Installed size: 69 M
+Is this ok [y/d/N]:
+```
 
 
 UNIX系统的内核主要由C语言编写
