@@ -1,4 +1,57 @@
 # gcc
+安装autoconf和automake
+yum -y install gcc automake autoconf libtool make
+
+安装g++:
+yum install gcc gcc-c++
+
+yum install glibc-static libstdc++-static -y
+
+
+2020年5月7日发布 GCC 10.1.1
+clang 12
+
+```shell
+yum install gcc-c++
+Dependencies Resolved
+
+=========================================================
+ Package     Arch       Version           Repository
+                                                    Size
+=========================================================
+Installing:
+ gcc-c++     x86_64     4.8.5-44.el7      base     7.2 M
+Installing for dependencies:
+ cpp         x86_64     4.8.5-44.el7      base     5.9 M
+ gcc         x86_64     4.8.5-44.el7      base      16 M
+
+Transaction Summary
+=========================================================
+Install  1 Package (+2 Dependent packages)
+
+Total download size: 29 M
+Installed size: 69 M
+Is this ok [y/d/N]:
+```
+
+
+UNIX系统的内核主要由C语言编写
+在AIX下进行C编程，最通用的编辑器为vi/vim
+选择编译器：常用的是GNU C/C++编译器 GCC (开源的跨平台编译器套件)；XLC(AIX的商业版本编译器)
+选择调试器：应用最广泛的调试器是gdb (UNIX下用dbx）
+程序维护工具：make是Linux/Unix下常用的程序维护工具
+AIX需要首先安装Linux RPM格式支持，才能安装gccRPM for AIX软件包
+
+xlc++ 和 g++
+AIX上使用的是xlc++编译器，Linux上使用的是g++编译器。
+
+对C标准中没有严格定义的行为，两个编译器的处理方式不一定相同，代码在两个平台运行会有不一样的表现。导致在一个平台运行正常，另一个平台可能就是bug了。
+https://www.bilibili.com/read/cv7849739/
+
+
+
+https://blog.csdn.net/tglg/article/details/4041019
+
 
 https://cbs.centos.org/koji/buildinfo?buildID=31753
 

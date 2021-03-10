@@ -1,5 +1,12 @@
 # devtoolset
 
+```shell
+rpm -ql devtoolset-7-
+devtoolset-7-binutils         devtoolset-7-gdb
+devtoolset-7-build            devtoolset-7-libstdc++-devel
+devtoolset-7-gcc              devtoolset-7-runtime
+devtoolset-7-gcc-c++
+```
 
 https://blog.csdn.net/thewindrisesll/article/details/89044531
 sudo yum install devtoolset-7

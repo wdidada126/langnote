@@ -1,10 +1,49 @@
 # make
 
+多看官网文档
+
+srpc GNUmakefile
+
+g++ xxx.cc -o xxx
+
+make
+
+xxx : xxx.cc
+	g++ xxx.cc -o xxx
+
+
+Make命令教程
+http://www.ruanyifeng.com/blog/2015/02/make.html
+
+make -f xxxfile
+make默认会找makefile来进行build操作
+
+Makefile文件由一系列规则（rules）构成。每条规则的形式如下。
+
+
+<target> : <prerequisites> 
+[tab]  <commands>
+上面第一行冒号前面的部分，叫做"目标"（target），冒号后面的部分叫做"前置条件"（prerequisites）；第二行必须由一个tab键起首，后面跟着"命令"（commands）。
+
+"目标"是必需的，不可省略；"前置条件"和"命令"都是可选的，但是两者之中必须至少存在一个。
+
+.PHONY 明确表示伪目标
+
+
+内置变量（Implicit Variables）
+Make命令提供一系列内置变量，比如，$(CC) 指向当前使用的编译器，$(MAKE) 指向当前使用的Make工具。这主要是为了跨平台的兼容性
+
+
+Makefile提供了许多内置函数
+http://www.gnu.org/software/make/manual/html_node/Functions.html
+cmake也有内置函数
+
+
 http://www.gnu.org/software/make/
 
 make 官方
 
-make编译java go c/cpp
+make编译java go c/cpp nodejs
 本质是对命令行/shell的封装
 
 
@@ -49,7 +88,7 @@ MinGW32只能编译32位程序，要想编译64位，需要安装MinGW-w64，参
 
 
 windows下cmake是否也是生成make执行的makefile文件来执行
-
+是
 
 
 

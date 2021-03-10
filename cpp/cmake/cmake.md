@@ -1,5 +1,10 @@
 # CMake
 
+添加子文件夹的函数时
+add_subdirectory
+不是 add_includexxx
+
+
 cmake 添加头文件目录
 https://www.cnblogs.com/binbinjx/p/5626916.html
 添加头文件目录INCLUDE_DIRECTORIES

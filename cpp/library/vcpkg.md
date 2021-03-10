@@ -1,5 +1,8 @@
 # vcpkg
 
+vcpkg search apache
+rbmq的cpp库
+
 
 `cmake -DCMAKE_TOOLCHAIN_FILE=/root/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
 

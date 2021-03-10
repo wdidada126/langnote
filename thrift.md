@@ -1,6 +1,17 @@
 # thrift
 
 
+滴滴用thrift
+benchmark-thrift
+thrift-mock
+https://github.com/didi/thrift-mock
+https://github.com/didi/benchmark-thrift
+
+
+benchmark-thrift 是一款测试Thrift应用程序性能的工具，开箱即用，高效简单。
+thrift-mock 是一款轻量级的 Java 测试工具，用来模拟 thrift 服务。通过它可以轻松的将依赖的 thrift 服务接口进行 mock，获得指定的接口返回，从而极大的提升了联调、测试阶段的开发效率。
+
+
 
 Mac vcpkg install thrift
 

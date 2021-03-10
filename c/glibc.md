@@ -1,5 +1,6 @@
 # glibc
 
+glibc.sh
 
 代码学习意义不大
 

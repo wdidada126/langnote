@@ -1,6 +1,12 @@
 # clion
 
+2021版本支持make
+https://www.jetbrains.com/help/clion/makefiles-support.html
+选中makefile
+gnumakefile
+右键
 
+clean一下
 
 cmake
 

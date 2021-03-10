@@ -1,5 +1,72 @@
 # jvm
 
+
+jvm参数
+-X
+-Xms
+
+-D
+
+system.getProperties
+
+
+```java
+Properties props=System.getProperties(); //系统属性
+    System.out.println("Java的运行环境版本："+props.getProperty("java.version"));
+     System.out.println("Java的运行环境供应商："+props.getProperty("java.vendor"));
+     System.out.println("Java供应商的URL："+props.getProperty("java.vendor.url"));
+     System.out.println("Java的安装路径："+props.getProperty("java.home"));
+     System.out.println("Java的虚拟机规范版本："+props.getProperty("java.vm.specification.version"));
+     System.out.println("Java的虚拟机规范供应商："+props.getProperty("java.vm.specification.vendor"));
+     System.out.println("Java的虚拟机规范名称："+props.getProperty("java.vm.specification.name"));
+     System.out.println("Java的虚拟机实现版本："+props.getProperty("java.vm.version"));
+     System.out.println("Java的虚拟机实现供应商："+props.getProperty("java.vm.vendor"));
+     System.out.println("Java的虚拟机实现名称："+props.getProperty("java.vm.name"));
+     System.out.println("Java运行时环境规范版本："+props.getProperty("java.specification.version"));
+     System.out.println("Java运行时环境规范供应商："+props.getProperty("java.specification.vender"));
+     System.out.println("Java运行时环境规范名称："+props.getProperty("java.specification.name"));
+     System.out.println("Java的类格式版本号："+props.getProperty("java.class.version"));
+     System.out.println("Java的类路径："+props.getProperty("java.class.path"));
+     System.out.println("加载库时搜索的路径列表："+props.getProperty("java.library.path"));
+     System.out.println("默认的临时文件路径："+props.getProperty("java.io.tmpdir"));
+     System.out.println("一个或多个扩展目录的路径："+props.getProperty("java.ext.dirs"));
+     System.out.println("操作系统的名称："+props.getProperty("os.name"));
+     System.out.println("操作系统的构架："+props.getProperty("os.arch"));
+     System.out.println("操作系统的版本："+props.getProperty("os.version"));
+     System.out.println("文件分隔符："+props.getProperty("file.separator"));  //在 unix 系统中是＂／＂
+     System.out.println("路径分隔符："+props.getProperty("path.separator"));  //在 unix 系统中是＂:＂
+     System.out.println("行分隔符："+props.getProperty("line.separator"));  //在 unix 系统中是＂/n＂
+    System.out.println("用户的账户名称："+props.getProperty("user.name"));
+     System.out.println("用户的主目录："+props.getProperty("user.home"));
+     System.out.println("用户的当前工作目录："+props.getProperty("user.dir"));
+```
+
+
+- jvm 内存区域 是否线程私有 
+- 类加载机制
+
+
+heap young old
+young e s1 s2
+
+直接内存
+
+类加载过程
+1）Loading（载入）
+2）Verification（验证）
+3）Preparation（准备）
+4）Resolution（解析）
+5）Initialization（初始化）
+
+
+类加载器
+1）启动类加载器（Bootstrap Class-Loader），加载 jre/lib 包下面的 jar 文件，比如说常见的 rt.jar。
+2）扩展类加载器（Extension or Ext Class-Loader），加载 jre/lib/ext 包下面的 jar 文件。
+3）应用类加载器（Application or App Clas-Loader），根据程序的类路径（classpath）来加载 Java 类。
+
+双亲委派模型
+
+
 验证
 验证主要是为了保证类和接口的二进制表示的结构正确性。
 
@@ -116,7 +183,7 @@ Statement 对象用于将 SQL 语句发送到数据库中。实际上有三种 S
 
 
 
-jvm是宇宙第一虚拟机。gc，monitor，还有动态性都已经很成熟了，围绕着jvm还有一群设计精良的语言：java，scala。这些组成了庞大的生态系统：spark，kafka，ssh，ibatis，tomcat，play，netty，akka等等。现代系统，只要是打算用虚拟机的，性能最好+招聘成本最低毫无疑问是java，各种监测工具，甚至允许运行期改动子节码立即生效找错。osgi的引入甚至将oo的结构提升到前所未有的层次，这些都不是号称有模块化功能的语言（node）可以比的。大数据你绕不开spark。。。。。等等。所以何来java没人用之说？至于swing，在商业上叫产品完整性。作为一个dk所必需要有的完整和体系。
+jvm是宇宙第一虚拟机。gc，monitor，还有动态性都已经很成熟了，围绕着jvm还有一群设计精良的语言：java，scala。这些组成了庞大的生态系统：spark，kafka，ssh，ibatis，tomcat，play，netty，akka等等。现代系统，只要是打算用虚拟机的，性能最好+招聘成本最低毫无疑问是java，各种监测工具，甚至允许运行期改动子节码立即生效找错。osgi的引入甚至将oo的结构提升到前所未有的层次，这些都不是号称有模块化功能的语言（node）可以比的。大数据你绕不开spark。等等。所以何来java没人用之说？至于swing，在商业上叫产品完整性。作为一个dk所必需要有的完整和体系。
 
 Oracle JDK是Oracle公司给出的JAVASE参考实现,同理GlassFish是Oralce给出的JAVAEE参考实现
 
@@ -152,11 +219,9 @@ https://www.jianshu.com/p/4e4fd0dd5d25
 
 
 
-<<<<<<< HEAD
+
 阿里巴巴即将重磅开源OpenJDK长期支持版本Alibaba Dragonwell
-=======
-**阿里巴巴即将重磅开源** **OpenJDK** **长期支持版本** **Alibaba Dragonwell**
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
+
 
 AWS 开源的 OpenJDK 长期支持版本 Corretto 项目
 
@@ -171,7 +236,7 @@ Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; sup
 
 你假笨
 
-<<<<<<< HEAD
+
 [JVM 源码解读之 CMS GC 触发条件](https://mp.weixin.qq.com/s?__biz=MzUyMDE1ODQ3NQ==&mid=2247483851&idx=1&sn=8cb444039449848531b7ca72c396e07e&chksm=f9efedafce9864b9dbb645863d7d3c8b34e83888d07e175dd9c931576db2ecc0aa90835fcf50&mpshare=1&scene=1&srcid=&key=934cca182998c288c821744645ddf2abe9f1f1754543521660280cc6fdf86d21a8632a2a4e54ea2201159f76f65ca38dbc010a875d1e7f100a58d6a615b9869a72278ab94abf6a2dae104bedaaca154d&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=7KLf9b9yLXLeuk0HnBlu%2BN9tmKg%2BEfXwrAWUCAPR0nEEjSroYcrsrBNjoMJYurWr)
 
 涤生的博客
@@ -211,11 +276,5 @@ Java内存区域
 寄存器
 
 线程私有的划分
-=======
-<<<<<<< HEAD
-[JVM 源码解读之 CMS GC 触发条件](https://mp.weixin.qq.com/s?__biz=MzUyMDE1ODQ3NQ==&mid=2247483851&idx=1&sn=8cb444039449848531b7ca72c396e07e&chksm=f9efedafce9864b9dbb645863d7d3c8b34e83888d07e175dd9c931576db2ecc0aa90835fcf50&mpshare=1&scene=1&srcid=&key=934cca182998c288c821744645ddf2abe9f1f1754543521660280cc6fdf86d21a8632a2a4e54ea2201159f76f65ca38dbc010a875d1e7f100a58d6a615b9869a72278ab94abf6a2dae104bedaaca154d&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=7KLf9b9yLXLeuk0HnBlu%2BN9tmKg%2BEfXwrAWUCAPR0nEEjSroYcrsrBNjoMJYurWr)
-=======
-https://mp.weixin.qq.com/s?__biz=MzUyMDE1ODQ3NQ==&mid=2247483851&idx=1&sn=8cb444039449848531b7ca72c396e07e&chksm=f9efedafce9864b9dbb645863d7d3c8b34e83888d07e175dd9c931576db2ecc0aa90835fcf50&mpshare=1&scene=1&srcid=&key=934cca182998c288c821744645ddf2abe9f1f1754543521660280cc6fdf86d21a8632a2a4e54ea2201159f76f65ca38dbc010a875d1e7f100a58d6a615b9869a72278ab94abf6a2dae104bedaaca154d&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=7KLf9b9yLXLeuk0HnBlu%2BN9tmKg%2BEfXwrAWUCAPR0nEEjSroYcrsrBNjoMJYurWr
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 
->>>>>>> a37e32040eec40d601569c731c313a398efb2dec
+

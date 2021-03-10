@@ -2,11 +2,17 @@
 Rust
 x86_64_unkonwn_freebsd
 
+
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
+posix
+
 freebsd 安装方式 iso虚拟机
 https://download.freebsd.org/ftp/releases/VM-IMAGES/11.4-RELEASE/amd64/Latest/FreeBSD-11.4-RELEASE-amd64.vmdk.xz
 FreeBSD-11.4-RELEASE-amd64.vmdk.xz
 
 posix?
+
 
 https://www.zhihu.com/question/371031409
 

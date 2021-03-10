@@ -1,5 +1,8 @@
 # docker
 
+docker mac windows都是虚拟机
+linux使用了cgroup namespace
+
 
          shutdown -h 10          #计算机将于10分钟后关闭，且会显示在登录用户的当前屏幕中
 
