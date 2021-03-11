@@ -1,5 +1,11 @@
 # devtoolset
 
+
+
+Gcc 10 cetnos平台 2021年1月开放
+
+
+
 ```
 rpm -ql devtoolset-7-gcc-c++
 /opt/rh/devtoolset-7/root/usr/bin/c++

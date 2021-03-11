@@ -24,7 +24,7 @@ https://github.com/gyuho/learn
 
 
 
-刘奇 刘奇，PingCAP 联合创始人兼 CEO，先后创建了 TiDB、TIKV、Codis 等知名开源项目。曾任豌豆荚，京东资深系统架构师，同时也是知名的 Go 语言和 Redis 专家。现从事开源的分布式 NewSQL 数据库 TiDB（受Google F1启发）的开发。擅长高并发、大规模、分布式数据库
+刘奇 ，PingCAP 联合创始人兼 CEO，先后创建了 TiDB、TIKV、Codis 等知名开源项目。曾任豌豆荚，京东资深系统架构师，同时也是知名的 Go 语言和 Redis 专家。现从事开源的分布式 NewSQL 数据库 TiDB（受Google F1启发）的开发。擅长高并发、大规模、分布式数据库
 
 维护过豌豆荚的 mysql sharding 集群
 在Infra领域，我们(tidb)就是新的巨头。

@@ -2,6 +2,10 @@
 
 
 
+
+
+vitess 竞品
+
 amoeba 竞品
 dble https://github.com/actiontech/dble
 mycat

@@ -1,1 +1,3 @@
-addr2line
+# addr2line
+
+binutils

@@ -1,5 +1,11 @@
 # openwrt
 
+
+
+openwrt这种网络设备，是不是对硬盘空间消耗不大？
+
+
+
 ```
 ifconfig
 br-lan    Link encap:Ethernet  HWaddr F2:B4:29:7E:31:66  

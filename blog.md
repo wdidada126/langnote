@@ -26,6 +26,12 @@ https://ninehills.github.io/
 
 
 
+
+
+[后端技术 by Tim Yang](https://timyang.net/)
+
+Tim's blog, 关于架构、互联网技术、分布式、服务化、NoSQL等
+
 https://timyang.net/
 
 
@@ -39,7 +45,7 @@ https://timyang.net/
 美国项目管理师协会PMI认证的PMP、PgMP项目集管理专业人士；
 英国商务部OGC认证的MSP项目群管理专业人士；
 IT金融领域工作近15年，目前从事银行IT项目群管理及业务咨询工作。
-
+https://www.sohu.com/a/360016922_196875
 微信
 
 
@@ -83,7 +89,7 @@ https://darylliu.github.io/
 
 
 
-### VisionLab-*上海交通大学计算机*视觉实验室
+### VisionLab-上海交通大学计算机视觉实验室
 
 
 

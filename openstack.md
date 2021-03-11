@@ -1,1 +1,8 @@
 # openstack
+
+
+
+
+
+vmvare
+

@@ -12,3 +12,9 @@ D	The Dependency Inversion Principle	依赖倒置原则
 
 https://blog.csdn.net/ethanwhite/article/details/53502315
 
+
+
+
+
+跟设计模式是一体的
+
