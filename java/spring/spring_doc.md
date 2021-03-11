@@ -80,7 +80,7 @@ SmartLifecycle
 
 Lifecycle
 
-Chap. 17
+## Chap. 17
 bean继承
 
 
@@ -88,7 +88,7 @@ bean继承
 Bean
 parent
 
-Chap.18 bean的其他定义方式
+## Chap.18 bean的其他定义方式
 
 beanpostprocessor
 beanfactorypostprocessor
