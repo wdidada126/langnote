@@ -1,5 +1,10 @@
 # yum
 
+腾讯
+搭建rpm包管理平台
+一般库是最新版
+
+
 yum -y install libstdc++-4.8.5-28.el7.x86_64
 https://www.cnblogs.com/effortsing/p/10363921.html
 原因及办法：我第一次安装成了el8的mysql-server，卸载之后，yum没有clean。

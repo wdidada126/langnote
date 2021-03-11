@@ -1,5 +1,11 @@
 # centos rpm
 
+打包rpm包的时候，如何描述依赖
+
+rpm包默认依赖哪些包？
+如何查看一个rpm包依赖哪些包
+https://www.jianshu.com/p/bdb5b7de6ec0
+
 
 ```shell
 [root@10-23-29-39 build]# rpm -ql jsoncpp
