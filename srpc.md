@@ -1,5 +1,14 @@
 # srpc
 
+
+centos 8
+protobuf-devel-3.5.0-13.el8.x86_64.rpm
+
+centos 7
+protobuf-devel-2.5.0-8.el7.x86_64.rpm
+
+
+
 https://github.com/sogou/srpc
 
 https://gitee.com/mirrors/srpc

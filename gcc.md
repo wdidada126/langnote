@@ -24,6 +24,8 @@ cd gcc-5.4.0
 mkdir build
 cd build
 ../condigure --enable-checking=release --enable-languages=c,c++ --disable-multlib
+../condigure --enable-checking=release --enable-languages=c,c++ --disable-multlib
+../condigure --enable-checking=release --enable-languages=c,c++ --disable-multlib
 configure: error: I suspect your system does not have 32-bit development libraries (libc and headers). If you have them, rerun configure with --enable-multilib. If you do not have them, and want to build a 64-bit-only compiler, rerun configure with --disable-multilib.
 
 

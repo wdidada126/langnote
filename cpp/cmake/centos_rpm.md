@@ -1,5 +1,47 @@
 # centos rpm
 
+rpm包，查看信息
+https://www.cnblogs.com/cslzzl/p/7253719.html
+
+
+```shell
+rpm -qpR protobuf-compiler-3.11.2-2.el8.x86_64.rpm
+emacs-filesystem >= 26.1
+ld-linux-x86-64.so.2()(64bit)
+ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+libc.so.6()(64bit)
+libc.so.6(GLIBC_2.14)(64bit)
+libc.so.6(GLIBC_2.15)(64bit)
+libc.so.6(GLIBC_2.2.5)(64bit)
+libc.so.6(GLIBC_2.4)(64bit)
+libgcc_s.so.1()(64bit)
+libgcc_s.so.1(GCC_3.0)(64bit)
+libm.so.6()(64bit)
+libprotobuf.so.22()(64bit)
+libprotoc.so.22()(64bit)
+libpthread.so.0()(64bit)
+libpthread.so.0(GLIBC_2.2.5)(64bit)
+libstdc++.so.6()(64bit)
+libstdc++.so.6(CXXABI_1.3)(64bit)
+libstdc++.so.6(CXXABI_1.3.5)(64bit)
+libstdc++.so.6(CXXABI_1.3.8)(64bit)
+libstdc++.so.6(CXXABI_1.3.9)(64bit)
+libstdc++.so.6(GLIBCXX_3.4)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.18)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.20)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.21)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+libz.so.1()(64bit)
+protobuf = 3.11.2-2.el8
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(FileDigests) <= 4.6.0-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+rpmlib(PayloadIsXz) <= 5.2-1
+rtld(GNU_HASH)
+```
+
+
 打包rpm包的时候，如何描述依赖
 
 rpm包默认依赖哪些包？
