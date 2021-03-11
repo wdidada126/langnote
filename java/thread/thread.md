@@ -4,11 +4,10 @@
 
 
 
-<<<<<<< HEAD
 如何开启多进行
 
 Runtime.exec()
-=======
+
 Callable
 
 
@@ -31,4 +30,3 @@ https://www.cnblogs.com/1693977889zz/p/11111568.html
 
 https://blog.csdn.net/puppylpg/article/details/80433271
 
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

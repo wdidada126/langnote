@@ -16,5 +16,7 @@ java标准库api不好用
 
 
 
-写unit test
+写unit test 用testng
+
+Java标准库api也要用啊
 
