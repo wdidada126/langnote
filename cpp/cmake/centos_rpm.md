@@ -4,7 +4,87 @@
 
 rpm包默认依赖哪些包？
 如何查看一个rpm包依赖哪些包
-https://www.jianshu.com/p/bdb5b7de6ec0
+
+看依赖哪些
+```
+rpm -qR wget
+/bin/sh
+/bin/sh
+/sbin/install-info
+/sbin/install-info
+config(wget) = 1.14-18.el7_6.1
+libc.so.6()(64bit)
+libc.so.6(GLIBC_2.11)(64bit)
+libc.so.6(GLIBC_2.14)(64bit)
+libc.so.6(GLIBC_2.15)(64bit)
+libc.so.6(GLIBC_2.17)(64bit)
+libc.so.6(GLIBC_2.2.5)(64bit)
+libc.so.6(GLIBC_2.3)(64bit)
+libc.so.6(GLIBC_2.3.4)(64bit)
+libc.so.6(GLIBC_2.4)(64bit)
+libc.so.6(GLIBC_2.8)(64bit)
+libcrypto.so.10()(64bit)
+libcrypto.so.10(libcrypto.so.10)(64bit)
+libdl.so.2()(64bit)
+libidn.so.11()(64bit)
+libidn.so.11(LIBIDN_1.0)(64bit)
+libpcre.so.1()(64bit)
+libssl.so.10()(64bit)
+libssl.so.10(libssl.so.10)(64bit)
+libuuid.so.1()(64bit)
+libuuid.so.1(UUID_1.0)(64bit)
+libz.so.1()(64bit)
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(FileDigests) <= 4.6.0-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+rtld(GNU_HASH)
+rpmlib(PayloadIsXz) <= 5.2-1
+```
+
+看依赖顺序
+```
+yum deplist wget
+Loaded plugins: fastestmirror, replace
+Loading mirror speeds from cached hostfile
+ * base: mirrors.aliyun.com
+ * centos-sclo-rh: mirrors.aliyun.com
+ * centos-sclo-sclo: mirrors.aliyun.com
+ * epel: mirrors.bfsu.edu.cn
+ * extras: mirrors.aliyun.com
+ * updates: mirrors.aliyun.com
+package: wget.x86_64 1.14-18.el7_6.1
+  dependency: /bin/sh
+   provider: bash.x86_64 4.2.46-34.el7
+  dependency: /sbin/install-info
+   provider: info.x86_64 5.1-5.el7
+  dependency: libc.so.6(GLIBC_2.17)(64bit)
+   provider: glibc.x86_64 2.17-323.el7_9
+  dependency: libcrypto.so.10()(64bit)
+   provider: openssl-libs.x86_64 1:1.0.2k-21.el7_9
+  dependency: libcrypto.so.10(libcrypto.so.10)(64bit)
+   provider: openssl-libs.x86_64 1:1.0.2k-21.el7_9
+  dependency: libdl.so.2()(64bit)
+   provider: glibc.x86_64 2.17-323.el7_9
+  dependency: libidn.so.11()(64bit)
+   provider: libidn.x86_64 1.28-4.el7
+  dependency: libidn.so.11(LIBIDN_1.0)(64bit)
+   provider: libidn.x86_64 1.28-4.el7
+  dependency: libpcre.so.1()(64bit)
+   provider: pcre.x86_64 8.32-17.el7
+  dependency: libssl.so.10()(64bit)
+   provider: openssl-libs.x86_64 1:1.0.2k-21.el7_9
+  dependency: libssl.so.10(libssl.so.10)(64bit)
+   provider: openssl-libs.x86_64 1:1.0.2k-21.el7_9
+  dependency: libuuid.so.1()(64bit)
+   provider: libuuid.x86_64 2.23.2-65.el7_9.1
+  dependency: libuuid.so.1(UUID_1.0)(64bit)
+   provider: libuuid.x86_64 2.23.2-65.el7_9.1
+  dependency: libz.so.1()(64bit)
+   provider: zlib.x86_64 1.2.7-19.el7_9
+  dependency: rtld(GNU_HASH)
+   provider: glibc.x86_64 2.17-323.el7_9
+   provider: glibc.i686 2.17-323.el7_9
+```
 
 
 ```shell
