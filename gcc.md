@@ -1,4 +1,12 @@
 # gcc
+
+gcc各版本历史
+http://ftp.gnu.org/gnu/gcc/
+
+libstdc++.so.6 'GLIBCXX 3.4.21'not found的问题
+https://www.cnblogs.com/stelliformzm/p/12805826.html
+
+
 安装autoconf和automake
 yum -y install gcc automake autoconf libtool make
 

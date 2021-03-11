@@ -13,7 +13,11 @@ BeanPostProcess 实现propertity定义
 对应Spring 2.5
 Java 5还没有普及
 
-### Chap. 2
+1 Spring框架的由来
+
+
+
+### Chap. 2 IoC的基本概念
 
 依赖控制反转
 本来应该new Object()的，现在直接获取@Autowired。
@@ -23,10 +27,10 @@ IoC注入的三种方式
 2、构造方法注入
 3、setting方法注入
 
-### Chap. 3
+### Chap. 3 掌管大局的IoC Service Provider
 IoC Service Provider
 
-### Chap. 4
+### Chap. 4 Spring的IoC容器之BeanFactory
 4.3
 Scope 自定义scope
 默认single prototype是硬编码到代码中，其他的request是可以配置的
@@ -40,21 +44,25 @@ org.springframework.beans.factory.config.Scope
 
 Spring ioc其他框架封装 aop 三个？？
 
-### Chap. 5
+### Chap. 5 Spring IoC容器ApplicationContext
 ResourceLoader
 MessageSource
 
-### Chap. 7
+第6章 Spring IoC容器之扩展篇
+
+
+
+### Chap. 7 一起来看AOP
 aop
 
 Servlet Filtter就是around切点
 
-### Chap. 8
+### Chap. 8 Spring AOP概述及其实现机制
 代理模式
 动态代理
 动态字节码生成
 
-### Chap. 9
+### Chap. 9 Spring AOP一世
 ThrowAdvice
 MethodAdvice
 DyamicIntroduceAdvice
@@ -65,7 +73,7 @@ PointAdvisor可以应用于类，也可以应用于方法等
 9.4.3 Ordered的作用
 org.springframework.core.Ordered
 
-### Chap. 10
+### Chap. 10 Spring AOP二世
 
 方案1. BeanNameAutoProxyCreator
 方案2. DefaultAdvisorAutoProxyCreator

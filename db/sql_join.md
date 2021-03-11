@@ -12,5 +12,13 @@ join on 在where前面
 
 
 
-join之后可以看过一个表
+join之后的结果可以看过一个表
+
+
+
+A join B
+
+还是
+
+B join A
 
