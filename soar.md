@@ -163,7 +163,7 @@ Usage of E:\soar0.11.0\soar.exe:
   -min-cardinality float
         MinCardinality，索引列散粒度最低阈值，散粒度低于该值的列不添加索引，建议范围0.0 ~ 100.0
   -online-dsn string
-        OnlineDSN, 线上环境数据库配置, username:password@tcp(ip:port)/schema (default "jkpt_dev:jkpt@mysql2020@tcp(172.31.195.227:3306)/jkpt_ms_product?charset=utf8")
+        OnlineDSN, 线上环境数据库配置, username:password@tcp(ip:port)/schema (default "xxx_dev:xxx@mysql2020@tcp(172.31.195.227:3306)/xxx_ms_product?charset=utf8")
   -only-syntax-check
         OnlySyntaxCheck, 只做语法检查不输出优化建议
   -print-config
