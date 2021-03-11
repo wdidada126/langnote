@@ -5,19 +5,19 @@ linux使用了cgroup namespace
 
 
          shutdown -h 10          #计算机将于10分钟后关闭，且会显示在登录用户的当前屏幕中
-
+    
          shutdown -h now       #计算机会立刻关机
-
+    
          shutdown -h 22:22     #计算机会在这个时刻关机
-
+    
          shutdown -r now        #计算机会立刻重启
-
+    
          shutdown -r +10         #计算机会将于10分钟后重启
-
+    
          reboot                           #重启
-
+    
          halt                                #关机
-
+    
          当然你如果是centos6.5学过来的，init 0与init 6一样在centos7适用。
 
 docker wordpress
@@ -105,6 +105,12 @@ docker可以根据现有的镜像打包新的镜像
 cpp程序 可以直接根据操作系统打包镜像
 
 
+
+
+
+docker import export
+
+load
 
 
 

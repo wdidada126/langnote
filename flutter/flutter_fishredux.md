@@ -6,7 +6,7 @@ https://github.com/alibaba/fish-redux
 
 
 
-重点你
+重点
 
 组件化
 

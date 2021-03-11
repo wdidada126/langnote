@@ -79,7 +79,6 @@ He earned a PhD in computational chemistry before changing to work with MySQL an
 
 https://www.amazon.com/dp/1484255836?tag=uuid10-20
 
-
 mysql 官方文档就有优化相关的章节
 http://dev.mysql.com/doc/refman/5.7/en/optimization.html
 
@@ -457,3 +456,90 @@ LONGTEXT    | 4,294,967,295（2 32 -1）个字节= 4个GiB
 
 
 https://cloud.tencent.com/developer/ask/26839
+
+
+
+
+
+软件层面 硬件层面
+
+存储引擎选择是否正确
+
+压缩表数据
+
+Compression is available for all kinds of workloads with `InnoDB` tables, and for read-only `MyISAM` tables.
+
+
+
+各种缓存大小是否设置正确
+
+join cache
+
+The main memory areas to configure are the `InnoDB` buffer pool, the `MyISAM` key cache, and the MySQL query cache.
+
+
+
+
+
+bottleneck 瓶颈
+
+[`NDB`](https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster.html) storage engine
+
+
+
+range 优化
+
+https://blog.csdn.net/weixin_39805119/article/details/113318763
+
+RangeAccess使用单个索引的方式来检索包含在一个或多个索引值区间内的表行的子集。它也适用于单列或复合(组合)索引...
+
+
+
+IN，恐怖如斯，在 IN中每个内容就会视为一个 OR，如果有多个IN，那么该占用的指数是乘积(M×N)
+
+
+
+
+
+sort-union algorithm
+
+union algorithm
+
+
+
+icp 索引下推
+
+SET optimizer_switch = 'index_condition_pushdown=off'; SET optimizer_switch = 'index_condition_pushdown=on';
+
+
+
+
+
+优化 硬件优化
+
+软件优化
+
+
+
+不同的存储引擎
+
+
+
+8 ndb
+
+5.6 5.6
+
+select where条件 范围查询 索引下推  join优化 is null， order by group by，distinct limit  子查询 
+
+insert
+
+update
+
+delete
+
+
+
+看不下去了
+
+
+

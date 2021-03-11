@@ -16,7 +16,7 @@ maven 多module，注意jar包引用情况，idea 整个项目的依赖包，不
 
 
 
-dubbo main函数启动，不依赖servlet容器
+dubbo main函数启动，不依赖servlet容器 Spring容器
 
 
 

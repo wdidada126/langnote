@@ -73,14 +73,15 @@ Aix/Unix下面开发
 
 https://www.ibm.com/support/knowledgecenter/ssw_aix_72/aixkvm/aixkvm_kickoff.html
 
-boost支持aix
+boost支持Aix
+
+Crypto++ 某加密库 支持Aix
 
 IBM XL C/C++ for AIX
 使用高级编译技术来优化 Power Systems 上的应用性能
 https://blog.csdn.net/benpaobagzb/article/details/50814595
 
 https://www.ibm.com/support/pages/xl-cc-aix-documentation-library
-
 
 16
 13

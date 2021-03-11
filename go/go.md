@@ -15,6 +15,12 @@ https://golang.google.cn/
 
 
 
+java跟go很像的方案是actor，也就是akka，但并没有协程漂亮，这也没办法，因为java没法像c一样可以随意修改自己的栈空间
+
+
+
+
+
 https://github.com/duanxr/cvc
 
 
