@@ -14,5 +14,9 @@ dubbo内置的注册中心实现方式有四种，这是第一种，也是dubbo�
 
 
 
+nacos
+
+
+
 [Dubbo注册中心](https://segmentfault.com/blog/dubboanalysis?page=3)
 

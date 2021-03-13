@@ -221,3 +221,20 @@ https://www.zhihu.com/question/389403695/answer/1171102356
 
 
 [什么样的系统 ](https://www.zhihu.com/question/384102981/answer/1119478764)
+
+
+
+
+
+zk book
+
+
+
+- [ZooKeeper:分布式过程协同技术详解 : 分布式过程协同技术详解](https://book.douban.com/subject/26766807/)
+
+- [从Paxos到Zookeeper : 分布式一致性原理与实践](https://book.douban.com/subject/26292004/)
+
+
+
+- [Netty、Redis、Zookeeper高并发实战](https://book.douban.com/subject/34801361/)
+

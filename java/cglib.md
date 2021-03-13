@@ -1,7 +1,7 @@
 # cglib
 
 
-![cglib 例子](cglib_alone.png)
+![cglib 例子](../imgs/cglib_alone.png)
 
 github repo
 

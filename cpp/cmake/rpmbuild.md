@@ -1,5 +1,6 @@
 # rpmbuild
 
+- yum install rpm-build -y
 编写spec文件
 
 https://studygolang.com/articles/12731

@@ -1,6 +1,9 @@
 # Git
 
 
+免密登录 ssh key
+
+freebsd 免密登录
 
 https://centos.pkgs.org/7/endpoint-x86_64/git-2.23.0-1.ep7.x86_64.rpm.html
 

@@ -6,6 +6,16 @@
 
 
 
+![java 类加载过程](../imgs/java_class_load.png)
+
+
+
+load
+
+link
+
+
+
 **Bootstrap ClassLoader**  负责加载java基础类，主要是 %JRE_HOME/lib/ 目录下的rt.jar、resources.jar、charsets.jar和class等
 **Extension ClassLoader**   负责加载java扩展类，主要是 %JRE_HOME/lib/ext 目录下的jar和class
 **App ClassLoader**     负责加载当前java应用的classpath中的所有类。

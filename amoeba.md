@@ -1,6 +1,6 @@
 # amoeba
 
-
+https://github.com/vispractice/Amoeba-Plus-For-MySQL
 
 
 
@@ -16,7 +16,7 @@ Amoeba(变形虫)项目,该开源框架于2008年 开始发布一款 Amoeba for 
 
 
 
-vip 互为主备
+vip 互为主备 mmm
 
 
 

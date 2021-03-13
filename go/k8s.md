@@ -3,8 +3,7 @@
 master
 node
 
-master有4个节点 etcd 定时 restful api
-控制
+master有4个节点 etcd、定时、restful api、控制
 
 Kubernetes权威指南：从Docker到Kubernetes实践全接触（第4版）
 Kubernetes in Action, Second Edition

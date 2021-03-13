@@ -51,6 +51,10 @@ https://zhuanlan.zhihu.com/yinghangruanjian
 
 
 
+翼支付 支付 接口不是十分规范 内部用
+
+
+
 缓存
 
 指令聚集原则

@@ -56,8 +56,6 @@ COPS算法
 
 保序系统的集群
 
-
-
 对应英文：Clusters of Order Preserving System
 
 https://www.jdon.com/artichect/cops.html

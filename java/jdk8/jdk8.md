@@ -1,7 +1,7 @@
 # jdk8
 
 
-![xpath class](imgs/xpath.png)
+![xpath class](../../imgs/xpath.png)
 
 I interface
 

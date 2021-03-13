@@ -27,3 +27,8 @@ brew是安装mac应用的
 
 mac用pod
 cocoapods
+
+
+
+构建工具
+

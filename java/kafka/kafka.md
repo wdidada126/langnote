@@ -79,11 +79,10 @@ kafka自身，待Main函数，有api Scala写的
 apache-kafka
 spring-kafka
 
-<<<<<<< HEAD
+
 kafka broker  代理
-=======
-kafka brokeer
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
+
 一对多（包含一对一）
 多对一
 

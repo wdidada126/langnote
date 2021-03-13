@@ -1,6 +1,6 @@
 # rancher
 
 suse收购了
-讯飞用
+某语音公司用
 
 cloudstack

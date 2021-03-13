@@ -12,7 +12,17 @@ clustered index
 
 
 
-MySQL里主键就是聚集索引
+MySQL里主键就是聚集索引。
+
+
+
+非聚集索引
+
+
+
+
+
+
 
 
 

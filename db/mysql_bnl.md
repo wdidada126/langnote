@@ -1,6 +1,13 @@
 # mysql bnl
 
 MySQL Block Nested-Loop Join(BNL)
+
+
+
+官网有相关的文章
+
+
+
 https://www.cnblogs.com/vadim/p/7403728.html
 
 优化器管理参数optimizer_switch

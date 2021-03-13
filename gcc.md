@@ -1,4 +1,36 @@
 # gcc
+
+configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
+需要依赖 mpc，mpfr，gmp包，
+GCC 源码里自带脚本可以轻松下载依赖包。
+./contrib/download_prerequisites
+
+
+
+Redis里面有ruby脚本
+
+gcc各版本历史
+http://ftp.gnu.org/gnu/gcc/
+
+libstdc++.so.6 'GLIBCXX 3.4.21'not found的问题
+https://www.cnblogs.com/stelliformzm/p/12805826.html
+
+
+
+http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/　
+tar -xvf gcc-5.4.0.tar.bz2
+cd gcc-5.4.0
+./contrib/download_prerequisits
+mkdir build
+cd build
+../configure --enable-checking=release --enable-languages=c,c++ --disable-multlib
+../configure --enable-checking=release --enable-languages=c,c++ --disable-multlib
+../configure --enable-checking=release --enable-languages=c,c++ --disable-multlib
+configure: error: I suspect your system does not have 32-bit development libraries (libc and headers). If you have them, rerun configure with --enable-multilib. If you do not have them, and want to build a 64-bit-only compiler, rerun configure with --disable-multilib.
+
+
+
+
 安装autoconf和automake
 yum -y install gcc automake autoconf libtool make
 

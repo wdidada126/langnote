@@ -18,7 +18,6 @@ JSR-175的全文标题是 A Metadata Facility for the Java Programming Language 
 
 [JSR-330标准注解](https://maxwell.gitbook.io/way-to-architect/java-yu-yan/zhu-jie/chang-yong-zhu-jie/jsr-330biao-zhun-zhu-jie)
 
-<<<<<<< HEAD
+
 JCache (JSR-107)
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+

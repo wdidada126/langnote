@@ -1,5 +1,21 @@
 # SSM框架集合
 
+
+
+
+
+[Java EE互联网轻量级框架整合开发](https://book.douban.com/subject/27090950/)
+
+
+
+第1章 认识SSM框架和Redis
+
+
+
+第2章 Java设计模式
+
+
+
 ## Chap. 3 认识MyBatis核心组件
 
 - SqlSessionFactoryBuilder
@@ -48,4 +64,93 @@ SqlSession的作用：
 
 
 
-## Chap.4 
+## Chap.4 MyBatis配置
+
+1
+
+
+
+第5章 映射器
+
+
+
+2
+
+
+
+第6章 动态SQL
+
+
+
+3
+
+
+
+第8章 插件
+
+
+
+9
+
+
+
+第9章 Spring IoC的概念
+
+
+
+10
+
+
+
+第10章 装配Spring Bean
+
+
+
+第11章 面向切面编程
+
+
+
+第12章 Spring和数据库编程
+
+
+
+第13章 深入Spring数据库事务管理
+
+
+
+第14章 Spring MVC的初始化和流程
+
+
+
+第15章 深入Spring MVC组件开发
+
+
+
+第16章 Spring MVC高级应用
+
+
+
+第17章 Redis概述
+
+
+
+第18章 Redis数据结构常用命令
+
+
+
+第19章 Redis的一些常用技术
+
+
+
+第20章 Redis配置
+
+
+
+第21章 Spring缓存机制和Redis的结合
+
+
+
+第22章 高并发业务
+
+
+

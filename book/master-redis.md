@@ -6,3 +6,7 @@ https://github.com/packtpublishing/mastering-redis
 
 深入理解Redis
 https://book.douban.com/subject/27038398/
+
+
+
+Redis探险

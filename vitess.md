@@ -39,3 +39,13 @@ https://zhuanlan.zhihu.com/p/50608438
 
 
 https://zhuanlan.zhihu.com/p/26676711
+
+
+
+
+
+vitess支持分库分表吗？
+
+支持，需要做实验测试
+
+https://blog.csdn.net/weixin_41715077/article/details/103480970

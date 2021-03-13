@@ -69,7 +69,7 @@ Pointcut is not well-formed: expecting 'identifier' at character position 0
 
 Spring 切面必须是Java Bean？
 MyPersonalAnnotationAspect不加Component注解就不会生效
-<<<<<<< HEAD
+
 
 
 
@@ -92,5 +92,4 @@ MyPersonalAnnotationAspect不加Component注解就不会生效
 　　　　（5）遍历BeanFactory，找出方法上有@通知注解的bean，为这些bean生成代理类对象（步骤：MyProxy3.getProxyInstance(Object obj)）
 
 　　　　（6）用代理类的实例去替代BeanFactory中的被代理类的实例
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
