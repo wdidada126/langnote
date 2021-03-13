@@ -1,5 +1,22 @@
 # mybatis
 
+
+
+Insert 返回自增id
+
+两种方式
+
+[mybatis 自增id](https://blog.51cto.com/xtceetg/1957557)
+
+1、
+        useGeneratedKeys="true" keyProperty="id"
+2、
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+
+
 修饰xxxMapper.java接口的是import org.springframework.stereotype.Repository;
 @Repository 接口
 
