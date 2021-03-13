@@ -1,5 +1,13 @@
 # protobuf
 
+```shell
+rpm -ivh protobuf-3.11.2-2.el8.x86_64.rpm 
+error: Failed dependencies:
+	libstdc++.so.6(CXXABI_1.3.8)(64bit) is needed by protobuf-3.11.2-2.el8.x86_64
+	libstdc++.so.6(CXXABI_1.3.9)(64bit) is needed by protobuf-3.11.2-2.el8.x86_64
+	libstdc++.so.6(GLIBCXX_3.4.20)(64bit) is needed by protobuf-3.11.2-2.el8.x86_64
+	libstdc++.so.6(GLIBCXX_3.4.21)(64bit) is needed by protobuf-3.11.2-2.el8.x86_64
+```
 
 
 base http
