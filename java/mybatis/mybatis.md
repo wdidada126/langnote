@@ -9,6 +9,7 @@ D:\git\github\LangNote\java\mybatis.md
 
 MyBatis
 
+依赖mysql-connector-java这个jar
 jdbc
 连接池
 
