@@ -1,5 +1,11 @@
 # Mysql高级-day01
 
+https://my.oschina.net/u/4866466/blog/4827431
+
+b站视频
+
+
+
 ### MySQL高级课程简介
 
 | 序号 | Day01              | Day02       | Day03          | Day04          |
