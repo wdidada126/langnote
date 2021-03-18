@@ -1,5 +1,8 @@
 # xpath
 
+xpath之于XML 就好比SQL 语言之于数据库。
+
+
 W3C 标准
 万维网联盟（外语缩写：W3C）标准不是某一个标准，而是一系列标准的集合。
 网页主要由三部分组成：结构（Structure）、表现（Presentation）和行为（Behavior）。

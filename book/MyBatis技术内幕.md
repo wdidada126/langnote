@@ -46,6 +46,7 @@ XPath 使用路径表达式在 XML 文档中进行导航
 XPath 包含一个标准函数库
 XPath 是 XSLT 中的主要元素
 XPath 是一个 W3C 标准
+爬虫用xpath
 
 
 XPath 可用来在 XML 文档中对元素和属性进行遍历
@@ -74,11 +75,25 @@ XMLMapperBuilder的parse方法
 [mybatis 源码分析之 解析mapper.xml文件](https://blog.csdn.net/m0_37948170/article/details/104923608)
 https://blog.csdn.net/flashflight/article/details/43926091
 
+第2 章介绍My Batis 基础支持层中各个模块的功能， 其中包括数据源模块、事务管理模块、
+缓存模块、binding 模块、反射模块、类型转换模块、日志模块、资源加载模块和解析器模块。
+这些模块相对独立，读者在实践中如果遇到类似的需求，可以直接参考MyBatis 的实现。
+
+
+适配器模式
+
+装饰器模式
+
+
+第3 章介绍MyBatis 核心处理层的主要功能， 其中包括My Batis 初始化过程、动态SQL 的
+解析过程、结果集的映射原理、SQL 语句的参数绑定、KeyGenerator 、StatementHandler 以及
+Executor 等组件的实现原理。同时，还介绍了MyBatis 接口层的设计原理。
+
 #### 第3章　核心处理层
 
 OGNL表达式简介
 
-对象导航图语言（Object Graph Navigation Language），简称*OGNL*，是应用于Java中的一个开源的表达式语言（Expression Language）
+对象导航图语言（Object Graph Navigation Language），简称OGNL，是应用于Java中的一个开源的表达式语言（Expression Language）
 
 
 

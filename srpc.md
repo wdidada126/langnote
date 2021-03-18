@@ -1,5 +1,6 @@
 # srpc
 
+cmake组织的
 
 centos 8
 protobuf-devel-3.5.0-13.el8.x86_64.rpm
@@ -12,10 +13,16 @@ protobuf-devel-2.5.0-8.el7.x86_64.rpm
 https://github.com/sogou/srpc
 
 https://gitee.com/mirrors/srpc
+centos 8
+yum install dnf-plugins-core
+yum config-manager --set-enabled powertools
+yum config-manager --set-enabled PowerTools
+dnf repolist all
 
+sudo make install > install_xxx.txt
 ```shell
-yum update
-yum install protobuf-devel -y
+yum update -y
+yum install git make cmake gcc gdb gcc-c++ openssl-devel protobuf-devel -y
 git clone https://gitee.com/mirrors/srpc.git
 cd srpc
 git submodule update --init --recursive

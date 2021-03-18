@@ -1,5 +1,10 @@
 # LFS（英文 Linux From Scratch 的缩写）
 
+LFS-BOOK-8.3.pdf
+https://lctt.github.io/LFS-BOOK/
+http://www.linuxfromscratch.org/lfs/
+
+
 中文释意为“从零开始构建的 Linux”
 
 https://zhuanlan.zhihu.com/p/51992113

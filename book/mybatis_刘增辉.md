@@ -1,6 +1,13 @@
 # MyBatis从入门到精通
 
 
+![mybatis](imgs/mybatis_architect.png)
+
+
+参数映射
+sql解析
+sql执行
+处理结果映射
 
 https://book.douban.com/subject/27074809/
 
@@ -12,7 +19,34 @@ mybatis版本3.5
 [Mapper.xml中的命名空间及命名解析](https://blog.csdn.net/weixin_36210698/article/details/82992771)
 
 
+mybatis 基础上的其他框架
+pagehelper
+tk-mybatis
 
+Mybatis架构图
+xml解析
+自带数据连接池
+
+动态代理生成类
+插件体系
+
+缓存 数据源 执行器 日志 反射 脚本 会话 事务
+
+
+jdk自带的api
+mysql-connector-java的api
+mybatis的api
+jdbc-templete的api
+区别
+
+
+MyBatis java api doc
+https://mybatis.org/mybatis-3/zh/apidocs/index.html
+
+mybatis-spring架构图
+
+
+mybatis 设计模式
 
 
 命名空间
@@ -23,13 +57,14 @@ xml
 
 mybatis-config.xml
 
+配置项 有严格的顺序
 
 
 事务
 
 
 
-mybatis-spring
+mybatis-spring 用，主要用这个
 
 
 
@@ -135,6 +170,7 @@ MyBatis Generator
 负面的观点：xml或者注解太啰嗦，hibinate更加智能化
 c++ odb 目前不支持一个表多次操作？
 
+mybatis 自己写sql 方便优化 h生成sql，不方便优化
 
 
 ## Chap. 2 XML方式
@@ -176,11 +212,51 @@ provider
 
 ### Chap. 4 MyBatis动态SQL
 
+select中 wehre if
+防止判断条件为null
+
+if test后面是ongl表达式
+== != null 适用于所有类型数据
+== != '' 仅仅是String
+
+
+<where>
+  <set>
+
+where 和set 标签的功能都可以用trim 标签来实现，并且在底层就是通过
+TrimSqlNode 实现的。
+where 和set 标签的功能都可以用trim 标签来实现，并且在底层就是通过
+TrimSqlNode 实现的。
+where 和set 标签的功能都可以用trim 标签来实现，并且在底层就是通过
+TrimSqlNode 实现的。
+
+foreach批量插入
+in
+动态update  map数据
+
+4.7 ongl用法 重点 
+
+
+
+MyBatis 常用的OGNL 表达式如下。
+1. el or e2
+2. el and e2
+3. el == e2 或el eq e2
+4 . el ! = e2 或el neq e2
+5. el lt e2 ：小于
+6. el lte e2 ：小于等于，其他表示为gt （大于）、gte （大于等于）
+7. el + e2 、e l 食e2 、e 1/e2 、e 1 - e2 、e l 宅e2
+8. ! e 或not e ：非，取反
+9. e.method(args ） ： 调用对象方法
+JO. e.property ： 对象属性值
+11. el[ e2 ］ ： 按索引取值（ List 、数组和Map)
+12. @class@method(args ）：调用类的静态方法
+13. @class@f 工eld ：调用类的静态字段值
 
 
 
 
-
+bind concat
 
 ## Chap. 5 Mybatis生成器
 

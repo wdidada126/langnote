@@ -2,6 +2,7 @@
 
 remote dictionary service 首字母缩写
 
+codis
 
 redis最新版安装 centos平台
 https://computingforgeeks.com/how-to-install-latest-redis-on-centos-7/
@@ -14,9 +15,12 @@ Redis协议里有大量冗余的回车换行符，但是这不影响它成为互
 
 
 - Redis深度历险 书籍
-- 
+- Redis实战
+- Redis权威指南
+
 ltamar Haber
 
+Redis图形客户端
 rdm windows 自己编译的版本
 
 redis 6支持自定义用户名
@@ -421,6 +425,7 @@ systemctl status redis
 查看端口
 netstat -lnp|grep 6379
 
+26379 redis-sentinel
 
 先执行命令 yum install net-tools 和 yum search ifconfig下载依赖插件
 
@@ -722,13 +727,9 @@ redis防穿透设计
 
 
 补充一点，对于每次都查询key不同的数据，如果缓存中不存在数据，则每次查询都会落到DB上面，仍然会造成缓存穿透。
-
 对于这种情况，可以考虑进一步增强健壮性。
-
 方法一：判断key是否存在。比如说先把key放在缓存中，存在再去查数据。缺点是数据量一旦比较大，代价很高，而且新增了key还要维护这个集合。
-
 方法二：依照某种规则设计key，查询之前根据规则校验key的合法性，如果不合法直接返回。
-
 可以引入布隆过滤器配合解决缓存穿透的问题
 
 
@@ -747,29 +748,19 @@ Redis防穿透设计
 
 
 redis
-
 序列化到磁盘的时候 超时
 
 
 
 在使用redis-cluster集群的时候，禁用主节点的持久化有没有啥风险
-
 现在发现主节点做持久化，fork子进程的时候，会阻塞
-
 抢购的时候就出事了
-
 只有抢购接口能用这个集群吗
-
 不是所有的都用，集群里面都是缓存数据
-
 噢，开的aof？
-
 rdb
 
 每次刷盘都会fork啊这是，很多应用都去一个集群挤，可能数据量就大了，而且还用的是 rdb，每次都要刷完整快照，超过百兆那个延迟可能就受不了，我理解耗时在fork操作，后面刷盘是子进程做的，主进程查询依然不受影响，这个理解有没有啥问题，老哥，不是的，fork的时候子进程要拿到当前redis数据库的状态，这个数据复制是需要时间的，而且你会看到内存暴增，因为大概是两倍的用量，一个物理机可以考虑多redis进程，用不同端口，分应用连接，管理下就好了。这样可以rdb 和 aof 分开用
-
-
-
 fork的时候还需要复制数据，我们都是一台机器一个redis实例，资源可以浪费，服务不能挂，反正就多几个实例吧，之前在哪看的来着，有大手子建议redis一个实例内存占用限到2g，然后起多实例用...还有一个，fork复制的时候，是复制全量数据吗，rdb 是啊，全量快照，还是类似做分页，标记dirty页，然后复制dirty页
 
 
@@ -789,20 +780,20 @@ https://github.com/antirez/redis/tree/6.0
 
 
 
-**一、对用户使用有直接影响的功能**
+一、对用户使用有直接影响的功能
 
 1. ACL用户权限控制功能
 2. RESP3：新的 Redis 通信协议
 3. Cluster 管理工具
 4. SSL 支持
 
-**二、Redis 内部的优化**
+二、Redis 内部的优化
 
 1. IO多线程支持
 2. 新的Module API
 3. 新的 Expire 算法
 
-**三、外部工具**
+三、外部工具
 
 1. Redis Cluster Proxy
 2. Disque
@@ -814,7 +805,6 @@ https://github.com/antirez/redis/tree/6.0
 
 
 问：如何熟悉Redis
-
 先学会用   然后会用了自然想去了解细节
 
 
@@ -1203,57 +1193,31 @@ aof_last_cow_size:0
 
 
 # Stats
-
 total_connections_received:1
-
 total_commands_processed:1
-
 instantaneous_ops_per_sec:0
-
 total_net_input_bytes:31
-
 total_net_output_bytes:10163
-
 instantaneous_input_kbps:0.00
-
 instantaneous_output_kbps:0.00
-
 rejected_connections:0
-
 sync_full:0
-
 sync_partial_ok:0
-
 sync_partial_err:0
-
 expired_keys:0
-
 expired_stale_perc:0.00
-
 expired_time_cap_reached_count:0
-
 evicted_keys:0
-
 keyspace_hits:0
-
 keyspace_misses:0
-
 pubsub_channels:0
-
 pubsub_patterns:0
-
 latest_fork_usec:0
-
 migrate_cached_sockets:0
-
 slave_expires_tracked_keys:0
-
 active_defrag_hits:0
-
 active_defrag_misses:0
-
 active_defrag_key_hits:0
-
 active_defrag_key_misses:0
 
 
@@ -1305,6 +1269,7 @@ cluster_enabled:0
 db0:keys=7,expires=0,avg_ttl=0
 
 
+```
 
 
 
@@ -1333,5 +1298,4 @@ MemAdmin
 https://www.cnblogs.com/dinglang/p/6117309.html
 
 
-```
 
