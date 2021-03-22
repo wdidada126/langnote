@@ -6,6 +6,10 @@ b站视频
 
 
 
+https://www.bilibili.com/video/BV1UQ4y1P7Xr?p=38
+
+
+
 ### MySQL高级课程简介
 
 | 序号 | Day01              | Day02       | Day03          | Day04          |
