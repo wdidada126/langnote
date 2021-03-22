@@ -153,6 +153,12 @@ MySQL官方对索引的定义为：索引（index）是帮助MySQL高效获取�
 
 
 
+r-tree 索引 xx索引 myasam navicate 找不到
+
+
+
+
+
 ##### 2.3.1 BTREE 结构
 
 BTree又叫多路平衡搜索树，一颗m叉的BTree特性如下：
