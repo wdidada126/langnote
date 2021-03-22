@@ -62,13 +62,13 @@ Stop The World
 
 Cms
 
-Paslnew
+Parnew
 
 垃圾回收，单线程
 
 gc.log
 
-
+https://blog.csdn.net/qq_32641659/article/details/88030753
 
 
 
