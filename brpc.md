@@ -1,5 +1,13 @@
 # brpc
 
+
+
+
+
+git checkout 0.9.7
+
+https://github.com/apache/incubator-brpc/blob/master/docs/cn/getting_started.md
+
 brpc交流QQ群，committer在
 498837325
 

@@ -1,5 +1,13 @@
 # srpc
 
+ucloud安装了 编译好了
+
+git clone 
+
+git submode
+
+
+
 cmake组织的
 
 centos 8
@@ -59,3 +67,24 @@ GLIBCXX_DEBUG_MESSAGE_LENGTH
 
 libstdc++ glibc
 https://www.cnblogs.com/tongongV/p/11014581.html
+
+
+
+
+
+源码下载gcc5。4 
+
+重新安装
+
+软连接替换
+
+
+
+protobuf rpm包强制安装
+
+
+
+--nodeps --force
+
+
+
