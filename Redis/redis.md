@@ -1,5 +1,13 @@
 # redis
 
+
+
+Redis 延迟 面试题 纯技术的
+
+https://zhuanlan.zhihu.com/p/108212058
+
+
+
 remote dictionary service 首字母缩写
 
 codis

@@ -2,12 +2,16 @@
 
 erp开源电商系统
 
-### github repo
+github repo
 以前ant编译，拷贝jar包
 现在 gradle
 在build.gradle上添加jar包引用
 
 https://github.com/apache/ofbiz-framework
+
+
+
+
 
 ```powershell
 ./init-gradle-wrapper
