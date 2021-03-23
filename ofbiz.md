@@ -11,6 +11,15 @@ https://github.com/apache/ofbiz-framework
 
 
 
+\framework\entity\config\entityengine.xml 中更改为本地mysql配置
+
+四个数据库
+
+ofbiz
+ofbiz_odbc
+ofbizolap
+ofbiztenant
+
 
 
 ```powershell
@@ -41,7 +50,7 @@ https://cwiki.apache.org/confluence/display/OFBIZ/How+to+migrate+OFBiz+from+Derb
 
 https://localhost:8443/catalog/control/main
 
-登陆 用户名/密码  admin ofbiz(一样的)
+登陆 用户名/密码  admin ofbiz
 
 https://blog.csdn.net/qq_38802742/article/details/89397510
 
