@@ -2,6 +2,20 @@
 
 
 
+mybatis session类 api
+
+需要手动commit
+
+github仓库 不然插入数据失败
+
+
+
+支持多表join
+
+
+
+
+
 Insert 返回自增id
 
 两种方式
