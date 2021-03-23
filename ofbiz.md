@@ -11,7 +11,15 @@ https://github.com/apache/ofbiz-framework
 
 
 
-\framework\entity\config\entityengine.xml 中更改为本地mysql配置
+\framework\entity\config\entityengine.xml中更改为本地mysql配置
+
+
+
+`vim framework/entity/config/entityengine.xml`
+
+
+
+
 
 四个数据库
 
@@ -27,6 +35,12 @@ ofbiztenant
 ./gradlew cleanAll loadAll
 ./gradlew ofbiz
 ```
+
+
+
+./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
+
+
 
 local mysql
 如何查看mysql运行的sql语句

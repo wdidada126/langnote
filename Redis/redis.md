@@ -2,9 +2,21 @@
 
 
 
+redis深度探险
+
+布隆过滤器
+
+管道
+
+事务
+
+
+
 Redis 延迟 面试题 纯技术的
 
 https://zhuanlan.zhihu.com/p/108212058
+
+延迟（Latency）是指从客户端发送命令到客户端接收到命令返回值的时间间隔。所以我们先来看一下 Redis 一条命令执行的步骤，其中每个步骤出问题都可能导致高延迟。
 
 
 
@@ -52,13 +64,13 @@ https://segmentfault.com/a/1190000006619753
 slave of节点需要配置master密码
 https://blog.csdn.net/weixin_30949361/article/details/95011761
 
-# Lua 脚本的最大执行时间，毫秒为单位
+Lua 脚本的最大执行时间，毫秒为单位
 lua-time-limit 5000
 
-# Redis慢查询日志可以记录超过指定时间的查询
+Redis慢查询日志可以记录超过指定时间的查询
 slowlog-log-slower-than 10000
 
-# 这个长度没有限制。只是要主要会消耗内存。你可以通过 SLOWLOG RESET 来回收内存。
+这个长度没有限制。只是要主要会消耗内存。你可以通过 SLOWLOG RESET 来回收内存。
 slowlog-max-len 128
 
 
