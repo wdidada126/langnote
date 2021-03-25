@@ -386,6 +386,16 @@ Innodb_*** :  这几个参数只是针对InnoDB 存储引擎的，累加的算�
 
 
 
+
+
+```
+show status like 'Slow_queries';
+show status like 'Uptime';
+show status like 'Connections';
+```
+
+
+
 #### 3.2 定位低效率执行SQL
 
 可以通过以下两种方式定位执行效率较低的 SQL 语句。

@@ -5,6 +5,21 @@
 
 
 
+
+
+Stream 面试题
+
+https://blog.csdn.net/m0_47379359/article/details/106526551
+
+```shell
+list.stream()
+            .filter(s ‐> s.startsWith("张"))
+            .filter(s ‐> s.length() == 3)
+            .forEach(System.out::println);
+```
+
+
+
 Java.util.function包
 
 

@@ -21,11 +21,11 @@ yum list installed
 
 
 
-https://blog.csdn.net/rentian1/article/details/93768557
+[使用yum查看安装了哪些软件包、某软件包是否已经安装？](https://blog.csdn.net/rentian1/article/details/93768557)
 
 
 
-https://blog.csdn.net/weixin_38601833/article/details/98628078
+[yum 查看安装的包 包含了哪些文件](https://blog.csdn.net/weixin_38601833/article/details/98628078)
 
 
 
@@ -113,7 +113,7 @@ https://github.com/Jaskey/ConsistentHash
 
 pg vs mysql
 
-netbsd 高贵 不影响工业界需求
+netbsd 高贵 不响应工业界需求
 
 
 
