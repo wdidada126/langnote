@@ -69,7 +69,7 @@ remove()
 [java并发-独占锁与共享锁](https://blog.csdn.net/wojiushiwo945you/article/details/42292999)
 
 锁的独占与共享
-<<<<<<< HEAD
+
 java并发包提供的加锁模式分为独占锁和共享锁，独占锁模式下，每次只能有一个线程能持有锁，ReentrantLock就是以独占方式实现的互斥锁。
 
 共享锁，则允许多个线程同时获取锁，并发访问共享资源，如：ReadWriteLock。
@@ -114,6 +114,3 @@ SEVERE-WARNING-INFO-CONFIG-FINE-FINER-FINEST
 调用方法
 severe()-warning()-info()-config()-fine()-finer()-finest()
 含意 严重 警告 信息 配置 良好 较好 最好
-
-
-

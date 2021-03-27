@@ -8,6 +8,8 @@ https://docs.oracle.com/javase/specs/
 
 jvm 指令集 如何练习
 
+有对应的虚拟机
+
 
 
 https://blog.csdn.net/kisimple/article/details/44727147
