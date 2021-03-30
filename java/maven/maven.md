@@ -892,3 +892,8 @@ mvn install:install-file -DgroupId=org.apache.shardingsphere.example -DartifactI
 mvn -f pom.xml compile exec:java -Dexec.classpathScope=compile  -Dexec.mainClass="org.apache.shardingsphere.example.orchestration.spring.namespace.ExampleMain"
 ```
 
+
+mvn 设置jvm参数
+在系统的环境变量中，设置M2_OPTS，用以存放JVM的参数，具体设置的步骤，参数示例如下：
+MAVEN_OPTS=-Xms256m -Xmx768m -XX:PermSize=128m -XX:MaxPermSize=256M
+
