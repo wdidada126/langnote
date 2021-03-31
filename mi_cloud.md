@@ -5,7 +5,7 @@
 
 psql COPY指令 
 
-COPY table_name form local_system_file 
+COPY table_name form local_system_file
 
 失败
 

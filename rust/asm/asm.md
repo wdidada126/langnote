@@ -1,5 +1,27 @@
 # asm
 
+Mac OS X版本的sublime text 3安装汇编语言语法支持
+
+/Users/${user}/Library/Application Support/Sublime Text 3/Packages
+
+https://blog.csdn.net/qq_43678568/article/details/84071366
+
+
+
+汇编语言的编程艺术(第2版)
+
+
+
+VSCode + 插件（x86 and x86_64 Assembly）
+
+
+
+
+
+
+
+
+
 现代的CPU/GPU把指令再分解成微指令
 
 操作系统用到的汇编其实和CPU密切相关，什么实模式、保护模式， GDT, LDT，数据段，代码段......这些Intel CPU的概念如果没搞明白， 根本不可能读懂操作系统的启动过程。
