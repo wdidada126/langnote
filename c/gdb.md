@@ -39,5 +39,28 @@ clion gdb界面 输入disas
 
 https://www.cnblogs.com/Forever-Kenlen-Ja/p/8631663.html
 
-![clion gdb disas](imgs/clion_gdb_disas.png)
+![clion gdb disas](../imgs/clion_gdb_disas.png)
+
+
+
+
+
+
+
+[使用 GDB 对程序进行汇编级调试](http://www.cnblogs.com/diylab/archive/2009/07/16/1524483.html)
+
+
+
+ 下断点
+ (gdb) b *0x0804ce2b
+  b 表示 break
+
+ 单步步过
+ (gdb) ni  (next instruction)
+ 单步步入 
+ (gdb) si  ( step instruction )
+ 继续执行
+ ( gdb )c
+
+ 执行到返回
 

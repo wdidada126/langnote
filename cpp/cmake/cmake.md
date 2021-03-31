@@ -1,5 +1,17 @@
 # CMake
 
+
+
+```
+gcc test.c -g
+```
+
+
+
+cmakefiles.txt如何配置
+
+
+
 添加子文件夹的函数时
 add_subdirectory
 不是 add_includexxx
