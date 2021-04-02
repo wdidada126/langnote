@@ -1,5 +1,7 @@
 # jsr
 
+Java并发编程的艺术
+
 JSR是Java Specification Requests的缩写，意思是Java 规范提案。是指向JCP(Java Community Process)提出新增一个标准化技术规范的正式请求。任何人都可以提交JSR，以向Java平台增添新的API和服务。JSR已成为Java界的一个重要标准。而决定规范提案是否通过，则是需要由一些Java界大牛（这些大牛来自于各大公司、各个领域）组成的评审委员会审核通过。
 在这众多规范中，有一些规范，可能会有不同的提供商、组织来实现。例如JDBC的规范，各个数据库提供商来实现。根据Jsp/Servlet规范，产生了各个Web 服务器。
 DI规范，各种DI框架都会遵守。JAX-WS、JAX-RS规范，各个WebService框架都会遵守。
@@ -21,3 +23,4 @@ JSR-175的全文标题是 A Metadata Facility for the Java Programming Language 
 
 JCache (JSR-107)
 
+翻译的不错.大部分内容来自于jsr-133和Doug Lea的jsr-133 Cookbook,如果想深入研究这方面的问题,推荐仔细研究一下上面的两个文献和本书里提及到的引用文献(当然还有Lea的另外两本书),本书文献的引用只提及于书的正文,末尾并没有参考文献.也许是书名的"著"导致的这个问题.
