@@ -36,3 +36,30 @@ apt get 原理
 
 https://www.cnblogs.com/kex1n/p/5845782.html
 
+
+
+
+
+### yum
+
+
+
+yum install
+
+List
+
+
+
+### debian
+
+
+
+
+
+get
+
+
+
+
+
+### term android

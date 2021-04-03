@@ -1,5 +1,49 @@
 # asm
 
+
+
+
+
+NASM汇编语言编译器
+
+https://www.nasm.us/
+
+开源
+
+https://blog.csdn.net/liigo/article/details/80680929
+
+Microsoft Macro Assembler 8.0 (MASM) 
+
+Microsoft Macro Assembler 8.0 (MASM) 是一个利用 x86 汇编语言程序并产生相应的二进制文件的工具。用 MASM 生成的汇编语言程序可以使用 Visual C++ 2005 Express 版进行编辑和调试。本软件包需要在计算机上先行安装 Visual C++ 2005 Express 版。
+
+
+
+javap 查看字节码
+
+jclasslib IDEA插件
+
+hsdis/使用hsdis查看jit生成的汇编代码
+
+查看Java代码对应的汇编指令
+
+https://blog.csdn.net/xiaojia1100/article/details/105387566
+
+-server -Xcomp -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:CompileCommand=compileonly,*App.main  
+
+是JVM直接提供的，在JVM里需要使用插件的方式，Kenai项目则提供了这个插件
+下载：https://kenai.com/projects/base-hsdis/downloads https://github.com/liuzhengyang/hsdis
+找到对应的指令集，操作系统所对应的so文件下载，好像不支持windows
+
+https://blog.csdn.net/raintungli/article/details/9832783
+
+
+
+Clion怎么查看反编译的汇编代码
+
+https://github.com/lurumdare/awesome-asm
+
+
+
 Mac OS X版本的sublime text 3安装汇编语言语法支持
 
 /Users/${user}/Library/Application Support/Sublime Text 3/Packages
@@ -134,3 +178,14 @@ https://blog.csdn.net/chunxiaqiudong5/article/details/95937826
 
 嵌入式
 
+
+
+
+
+为何 x86 汇编会有两种语法，Intel 和 AT&T
+
+Intel 语法是 Intel 自己发明的
+
+貌似是 AT&T 想要定义一个跨平台的汇编语法，所以就无视 Intel 语法强制采用自家的语法了
+
+能跑在对方的cpu上吗？

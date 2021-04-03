@@ -6,3 +6,4 @@ LMDB的全称是Lightning Memory-Mapped Database(快如闪电的内存映射数�
 
 
 
+跟h2类似？

@@ -5,6 +5,22 @@
 一般库是最新版
 
 
+
+
+
+yum list installed
+
+
+
+[使用yum查看安装了哪些软件包、某软件包是否已经安装？](https://blog.csdn.net/rentian1/article/details/93768557)
+
+
+
+[yum 查看安装的包 包含了哪些文件](https://blog.csdn.net/weixin_38601833/article/details/98628078)
+
+
+
+
 yum -y install libstdc++-4.8.5-28.el7.x86_64
 https://www.cnblogs.com/effortsing/p/10363921.html
 原因及办法：我第一次安装成了el8的mysql-server，卸载之后，yum没有clean。
