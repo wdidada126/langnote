@@ -1,5 +1,93 @@
 # oracle
 
+
+Oracle 12C 创建用户以c##开头
+https://blog.csdn.net/songpeiying/article/details/82894922
+
+
+```sql
+create table C##TEST01.Users(id  number(3) primary key,name varchar2(20),email varchar2(20),country varchar2(20),password varchar2(20));
+INSERT INTO C##TEST01.Users (id, name, email, country, password) VALUES (1, 'Pankaj', 'pankaj@apple.com', 'India', 'pankaj123');
+INSERT INTO C##TEST01.Users (id, name, email, country, password) VALUES (4, 'David', 'david@gmail.com', 'USA', 'david123');
+INSERT INTO C##TEST01.Users (id, name, email, country, password) VALUES (5, 'Raman', 'raman@google.com', 'UK', 'raman123');
+commit;
+```
+
+
+
+### book
+
+- Oracle Database 12c完全参考手册  第7版.pdf
+
+表navicate上
+所有者
+表空间
+
+
+https://github.com/edidada/testoracle
+
+lsnrctl status
+tnsping orcl
+
+D:\Oracle\DataBase\app\edidada\product\12.1.0\dbhome_1\NETWORK\ADMIN
+路径下三个文件sqlnet.ora listener.ora tnsnames.ora
+
+
+oracle数据库tns配置方法详解
+https://www.jb51.net/article/44668.htm
+TNS是Oracle Net的一部分，专门用来管理和配置Oracle数据库和客户端连接的一个工具，在大多数情况下客户端和数据库要通讯，必须配置TNS，当然在少数情况下，不用配置TNS也可以连接Oracle数据库，比如通过JDBC。如果通过TNS连接Oracle，那么客户端必须安装Oracle client程序。
+
+
+使用tcp.validnode_checking允许、限制机器访问数据库
+https://www.cnblogs.com/lcword/p/8232066.html
+
+https://blog.csdn.net/demonson/article/details/39506215
+
+tnsping 192.168.0.104
+TNS Ping Utility for 64-bit Windows: Version 12.1.0.2.0 - Production on 02-4月 -2021 21:37:09
+Copyright (c) 1997, 2014, Oracle.  All rights reserved.
+已使用的参数文件:
+D:\Oracle\DataBase\app\edidada\product\12.1.0\dbhome_1\network\admin\sqlnet.ora
+已使用 EZCONNECT 适配器来解析别名
+尝试连接 (DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=))(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.104)(PORT=1521)))
+TNS-12541: TNS: 无监听程序
+
+
+windows 防火墙开放端口访问
+https://blog.csdn.net/weixin_43465312/article/details/102510619
+
+
+刚装的Oracle 12c  访问 https://localhost:5500/em/login 使用 system 登录 报错 （权限/口令错误）
+
+右键计算机 ->管理 -> 服务 ，右击名称 输入O 弹出以O开头的服务名称 ,找到 OracleJobSchedulerORCL
+启动它。 再登录就OK了。
+
+
+
+
+https://localhost:5500/em
+
+
+
+在环境变量中把ORACLE_HOME 设置成D:\Oracle\DataBase\app\edidada\product\12.1.0\dbhome_1
+
+netstat -an
+
+
+
+windows服务
+OracleOraDB12Home2TNSListener
+
+
+如何实现Oracle的监听（listener）多个IP地址
+https://blog.csdn.net/funnyfu0101/article/details/51029674
+
+oracle工具
+oracle net namager
+
+
+https://blog.csdn.net/weixin_29888579/article/details/114017404
+
 Oracle Database Express Edition (XE) Release 18.4.0.0.0 (18c)
 https://www.oracle.com/database/technologies/xe-downloads.html
 
