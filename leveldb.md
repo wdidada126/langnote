@@ -20,3 +20,8 @@ leveldb 和 rocksdb 性能对比
 
 https://www.jianshu.com/p/7acdab85c722
 
+
+
+单个文件
+
+cpp写过demo

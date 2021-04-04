@@ -17,15 +17,7 @@ pg sql server 10，考虑是否是版本不兼容
 
 
 
-yum list installed
 
-
-
-[使用yum查看安装了哪些软件包、某软件包是否已经安装？](https://blog.csdn.net/rentian1/article/details/93768557)
-
-
-
-[yum 查看安装的包 包含了哪些文件](https://blog.csdn.net/weixin_38601833/article/details/98628078)
 
 
 

@@ -1,7 +1,7 @@
 # k8s
 
 master
-node
+node. 对 分两类
 
 master有4个节点 etcd、定时、restful api、控制
 
@@ -17,6 +17,14 @@ yum centos 7安装
 
 如果说docker中的tomcat挂掉了，自动重启一台
 如果一个os节点挂掉
+
+
+
+
+
+
+
+阿里巴巴用k8s
 
 
 
