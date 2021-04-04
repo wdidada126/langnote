@@ -1,6 +1,12 @@
 # oracle
 
 
+ui工具 oracle develop 自带的
+
+自增 存储过程
+int 没有 只有number
+datetime -> date
+
 Oracle 12C 创建用户以c##开头
 https://blog.csdn.net/songpeiying/article/details/82894922
 
