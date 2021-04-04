@@ -19,7 +19,8 @@ windows 破解版导出sql文件有问题
 https://blog.csdn.net/weixin_42179326/article/details/80399400
 
 
-PowerDesigner 16
+PowerDesigner 16 64bit
+http://www.xue51.com/soft/10174.html
 https://www.onlinedown.net/soft/577763.htm
 
 

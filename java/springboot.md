@@ -1,6 +1,18 @@
 # Spring Boot
 
 
+springboot 命令行运行
+mvn package
+java -jar
+
+Spring Boot
+配置mybatis
+
+mybatis有三样 mybatis.xml Java接口 xxxMapper.xml文件
+Application 上配置 @MapperSacn() 配置Java接口报名
+application.yml 配置两个 一个是jdbc url 一个是xxxMapper.xml文件位置
+
+
 
 Springboot中的@EnableAsync和@Async的作用和基本用法
 
