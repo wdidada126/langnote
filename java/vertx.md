@@ -1,9 +1,12 @@
 # Vert.x框架
 
 
+http://vertxchina.github.io/vertx-translation-chinese/
+https://www.zhihu.com/question/277219881
+https://blog.teemo.co/vertx-in-production-d5ca9e89d7c6
 
 跟Spring Cloud对比的
-
+https://quarkus.io/
 
 
 vert.x actor

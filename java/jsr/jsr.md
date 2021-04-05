@@ -1,5 +1,8 @@
 # jsr
 
+
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
 Java并发编程的艺术
 
 JSR是Java Specification Requests的缩写，意思是Java 规范提案。是指向JCP(Java Community Process)提出新增一个标准化技术规范的正式请求。任何人都可以提交JSR，以向Java平台增添新的API和服务。JSR已成为Java界的一个重要标准。而决定规范提案是否通过，则是需要由一些Java界大牛（这些大牛来自于各大公司、各个领域）组成的评审委员会审核通过。

@@ -1,5 +1,8 @@
 # lwip
 
+vs调试
+
+
 lwip应用场景？ 单片机 没有操作系统
 
 linux kernel实现了tcp ip协议栈
@@ -8,6 +11,8 @@ linux kernel实现了tcp ip协议栈
 
 QQ群
 224362301
+群主博客
+http://blog.sina.com.cn/s/blog_62a85b950102xdjx.html
 
 嵌入式网络那些事：LwIP协议深度剖析与实战演练 书籍
 
