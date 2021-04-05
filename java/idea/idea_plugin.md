@@ -1,4 +1,4 @@
-# plugin 
+# idea plugin 
 
 mybatis 三剑客
 

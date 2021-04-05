@@ -3,8 +3,12 @@
 
 
 dubbo
+lb 负载均衡
+https://www.cnblogs.com/wyq178/p/9822731.html
 
 
+dubbo xml配置项
+https://blog.csdn.net/niugang0920/article/details/81975421
 
 Filter invoke invoketion
 

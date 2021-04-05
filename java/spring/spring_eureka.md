@@ -22,3 +22,6 @@ https://github.com/Netflix/eureka/wiki/Eureka-REST-operations
 这个链接里有点老，当前版本的urll改成了以eureka/apps开头
 默认是采用xml协议，如果想要json协议的，在http请求头中加入配置
 
+
+
+
