@@ -17,11 +17,8 @@ ab进行app接口的压测：
 将需要压测的接口，用  " " ;
 
 7.ab进行post传参的压测
-
  ab -n 400 -c20  -p  parm.txt  -T "application/x-www-form-urlencoded" http://localhost:3000/login
-
 将 parm.txt放在和ab.exe相同的文件夹中，parm.txt中存放的是需要post格式传递的参数。
-
 -T ：post请求的head头。
 
  
@@ -31,7 +28,7 @@ ab -n 400 -c20  "http://118.182.97.157:8090/blog/getBlogDetail/84"
 ab -n 400 -c20  "http://127.0.0.1:8080/blog/getBlogList"
 
 
- ab - Apache HTTP server benchmarking tool
+ab - Apache HTTP server benchmarking tool
 
 
 This is ApacheBench, Version 2.3 <$Revision: 1430300 $>

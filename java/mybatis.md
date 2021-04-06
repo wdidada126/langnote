@@ -1,6 +1,9 @@
 # mybatis
 
 
+mybatis 预编译代码
+https://blog.csdn.net/weixin_34452850/article/details/88991943
+
 
 mybatis session类 api
 

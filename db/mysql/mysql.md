@@ -8,9 +8,7 @@ flexAsynch
 
 05 如何设计高性能的索引
 
-ICP（index condition pushdown）
-
-https://blog.csdn.net/bruce_6/article/details/84997708
+icp 索引下推
 
 
 

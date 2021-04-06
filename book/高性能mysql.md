@@ -226,9 +226,7 @@ mvcc对应的是lock base version control
 
 
 mvcc 加了三个隐藏的字段 
-
 事务id roll指针 行id
-
 1.DB_TRX_ID：一个6byte的标识，每处理一个事务，其值自动+1
 下面提到的“创建时间”和“删除时间”记录的就是这个DB_TRX_ID的值
 如insert、update、delete操作时，删除操作用1个bit表示。 
