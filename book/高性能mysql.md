@@ -162,7 +162,7 @@ b.frm ：描述表结构文件，字段长度等
 
 
 
-# mysql之 共享表空间与独立表空间
+### mysql之 共享表空间与独立表空间
 
 https://blog.csdn.net/zhang123456456/article/details/72802056
 
@@ -205,7 +205,7 @@ https://github.com/akopytov/sysbench
 
 ### Chap. 5 index
 
-
+hint表达式可以指定索引
 
 前缀索引和索引选择性
 
@@ -225,7 +225,10 @@ MVCC 不是mvvc，mvvc是前端的概念
 mvcc对应的是lock base version control
 
 
-加了三个字段 隐藏的
+mvcc 加了三个隐藏的字段 
+
+事务id roll指针 行id
+
 1.DB_TRX_ID：一个6byte的标识，每处理一个事务，其值自动+1
 下面提到的“创建时间”和“删除时间”记录的就是这个DB_TRX_ID的值
 如insert、update、delete操作时，删除操作用1个bit表示。 

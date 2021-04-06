@@ -212,6 +212,10 @@ Product License: Community Engine
 
 
 
+docker 对容器的管理和操作基本都是通过 containerd 完成的
+
+
+
 ### overlay
 
 
@@ -263,5 +267,42 @@ Runc                           /usr/bin/docker-runc
 
 
 
+[第一本Docker书（修订版）](https://book.douban.com/subject/26780404/)
 
 
+
+
+
+[kubernetes权威指南 : 从Docker到Kubernetes实践全接触（第2版）](https://book.douban.com/subject/26902153/)
+
+
+
+
+
+[Docker——容器与容器云（第2版）](https://book.douban.com/subject/26894736/)
+
+浙江大学SEL实验室
+
+[Spring Cloud与Docker微服务架构实战](https://book.douban.com/subject/27028228/)
+
+
+
+[Docker——容器与容器云](https://book.douban.com/subject/26593175/)
+
+
+
+[Docker进阶与实战](https://book.douban.com/subject/26701218/)
+
+华为Docker实践小组 
+
+
+
+
+
+[Docker源码分析](https://book.douban.com/subject/26581184/)
+
+
+
+
+
+[Docker开发实践](https://book.douban.com/subject/26432893/)

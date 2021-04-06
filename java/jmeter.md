@@ -3,6 +3,36 @@
 jmeter测试dubbo
 
 
+
+ 命令介绍
+jmeter -n -t <testplan filename> -l <listener filename>
+示例： jmeter -n -t testplan.jmx -l test.jtl
+
+示例含义：则表示以命令行模式运行testplan.jmx文件，输出的日志文件为test.jtl
+参数介绍
+这里是我们使用非 GUI 模式运行测试脚本时可以使用的一些命令，Jmeter官网用户手册介绍如下：
+-h, –help -> prints usage information and exit
+-n, –nongui -> run JMeter in nongui mode
+-t, –testfile <argument> -> the jmeter test(.jmx) file to run
+-l, –logfile <argument> -> the file to log samples to
+-r, –runremote -> Start remote servers (as defined in remote_hosts)
+-H, –proxyHost <argument> -> Set a proxy server for JMeter to use
+-P, –proxyPort <argument> -> Set proxy server port for JMeter to use
+具体的含义如下：
+-h 帮助 -> 打印出有用的信息并退出
+-n 非 GUI 模式 -> 在非 GUI 模式下运行 JMeter
+-t 测试文件 -> 要运行的 JMeter 测试脚本文件
+-l 日志文件 -> 记录结果的文件
+-r 远程执行 -> 在Jmter.properties文件中指定的所有远程服务器
+-H 代理主机 -> 设置 JMeter 使用的代理主机
+-P 代理端口 -> 设置 JMeter 使用的代理主机的端口号
+例如：jmeter -n -t test1.jmx -l logfile1.jtl -H 192.168.1.1 -P 8080
+
+
+
+jmeter命令行执行压力测试 百度搜索
+
+
 1、jmeter插件
 2、自定义脚本
 

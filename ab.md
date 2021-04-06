@@ -1,5 +1,16 @@
 # ab
 
+
+ab常用参数的介绍：
+-n ：总共的请求执行数，缺省是1；
+-c： 并发数，缺省是1；
+-t：测试所进行的总时间，秒为单位，缺省50000s
+-p：POST时的数据文件
+-w: 以HTML表的格式输出结果
+执行测试用例：ab -n 40000 -c 20 -w  "http://118.182.97.157:8090/blog/getBlogDetail/84"  >> ~/miss.html
+
+
+
 ab进行app接口的压测：
 
  ab -n 400 -c20  "http://www.xxx.com/api.php?sig=......"；
@@ -15,7 +26,9 @@ ab进行app接口的压测：
 
  
 
- ab -n 400 -c20  "http://127.0.0.1:8080/blog/getBlogList"
+
+ab -n 400 -c20  "http://118.182.97.157:8090/blog/getBlogDetail/84"
+ab -n 400 -c20  "http://127.0.0.1:8080/blog/getBlogList"
 
 
  ab - Apache HTTP server benchmarking tool
@@ -125,3 +138,56 @@ Percentage of the requests served within a certain time (ms)
   99%   1172
  100%   3148 (longest request)
  
+
+
+ ```shell
+ ab -n 400 -c20  "http://118.182.97.157:8090/blog/getBlogDetail/84"
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 118.182.97.157 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Finished 400 requests
+
+
+Server Software:        
+Server Hostname:        118.182.97.157
+Server Port:            8090
+
+Document Path:          /blog/getBlogDetail/84
+Document Length:        375 bytes
+
+Concurrency Level:      20
+Time taken for tests:   8.152 seconds
+Complete requests:      400
+Failed requests:        0
+Write errors:           0
+Total transferred:      203600 bytes
+HTML transferred:       150000 bytes
+Requests per second:    49.07 [#/sec] (mean)
+Time per request:       407.588 [ms] (mean)
+Time per request:       20.379 [ms] (mean, across all concurrent requests)
+Transfer rate:          24.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       27   36  70.8     31    1036
+Processing:   114  333 250.1    254    2306
+Waiting:      114  329 246.8    254    2306
+Total:        144  369 259.1    285    2339
+
+Percentage of the requests served within a certain time (ms)
+  50%    285
+  66%    318
+  75%    412
+  80%    487
+  90%    683
+  95%    935
+  98%   1307
+  99%   1407
+ 100%   2339 (longest request)
+```

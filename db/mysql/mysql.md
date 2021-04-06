@@ -17,6 +17,34 @@ https://blog.csdn.net/bruce_6/article/details/84997708
 MySQL查看和修改事务隔离级别
 http://c.biancheng.net/view/7266.html
 
+银行 建议隔离级别 RC
+默认 RR
+引擎是innodb
+
+
+查看活跃连接数
+https://www.cnblogs.com/caoshousong/p/10845396.html
+
+show processlist;
++------+------+----------------------+---------+---------+------+----------+------------------+
+| Id   | User | Host                 | db      | Command | Time | State    | Info             |
++------+------+----------------------+---------+---------+------+----------+------------------+
+| 6288 | root | 58.243.43.2:14387    | db_blog | Sleep   | 1852 |          | NULL             |
+| 6289 | root | 58.243.43.2:14388    | db_blog | Sleep   | 1852 |          | NULL             |
+| 6290 | root | 118.182.97.157:33162 | db_blog | Sleep   |    0 |          | NULL             |
+| 6291 | root | 118.182.97.157:33164 | db_blog | Sleep   |    0 |          | NULL             |
+| 6292 | root | 118.182.97.157:33166 | db_blog | Sleep   |    0 |          | NULL             |
+| 6293 | root | 118.182.97.157:33168 | db_blog | Sleep   |    0 |          | NULL             |
+| 6294 | root | 118.182.97.157:33170 | db_blog | Sleep   |    1 |          | NULL             |
+| 6295 | root | 118.182.97.157:33172 | db_blog | Sleep   |    0 |          | NULL             |
+| 6296 | root | 118.182.97.157:33176 | db_blog | Sleep   |    0 |          | NULL             |
+| 6297 | root | 118.182.97.157:33178 | db_blog | Sleep   |    0 |          | NULL             |
+| 6298 | root | 118.182.97.157:33180 | db_blog | Sleep   |    0 |          | NULL             |
+| 6299 | root | 118.182.97.157:33182 | db_blog | Sleep   |    0 |          | NULL             |
+| 6300 | root | 58.243.43.2:14391    | db_blog | Query   |    0 | starting | show processlist |
+| 6301 | root | 58.243.43.2:14392    | NULL    | Sleep   |  136 |          | NULL             |
++------+------+----------------------+---------+---------+------+----------+------------------+
+14 rows in set (0.12 sec)
 
 mysql doc 5.7 中英文版本
 https://www.docs4dev.com/docs/zh/mysql/5.7/reference/innodb-benefits.html
