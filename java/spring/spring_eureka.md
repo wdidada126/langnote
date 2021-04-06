@@ -1,5 +1,38 @@
 # spring eureka
 
+mvn install:install-file -Dfile=itext-2.1.7.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7 -Dpackaging=jar
+
+
+
+mvn install:install-file -Dfile=itext-2.1.7.js2.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7.js6 -Dpackaging=jar
+
+
+
+
+
+mvn install:install-file -Dfile=iTextAsian-1.0.jar -DgroupId=com.lowagie -DartifactId=itextasian -Dversion=1.0 -Dpackaging=jar
+
+olap4j-0.9.7.309-JS-3.jar
+
+mvn install:install-file -Dfile=olap4j-0.9.7.309-JS-3.jar -DgroupId=org.olap4j -DartifactId=olap4j -Dversion=0.9.7.309-JS-3 -Dpackaging=jar
+
+RENEW
+
+CANCEL
+
+appID is the name of the application and instanceID is the unique id associated with the instance. 
+POST /eureka/v2/apps/appID	
+DELETE /eureka/v2/apps/appID/instanceID	
+GET /eureka/v2/apps	
+DELETE /eureka/v2/apps/appID/instanceID/status?value=UP
+PUT /eureka/v2/apps/appID/instanceID/metadata?key=value	
+GET /eureka/v2/vips/vipAddress	
+
+
+https://github.com/Netflix/eureka/wiki/Eureka-REST-operations
+
+
+
 Spring cloud
 Eureka
 1.9版本

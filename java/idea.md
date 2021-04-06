@@ -184,7 +184,13 @@ Ctrl+H 查看类继承关系
 idea Spring项目，配置bean的时候，Java代码可以跳转到xml文件
 
 
-# IDEA配置变异
+#### IDEA配置变异
 
 ar
 含义
+
+
+
+
+
+断点 idea条件 idea选中断点 右键
