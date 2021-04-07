@@ -1,5 +1,9 @@
 # Jasmin
 
+assember 
+
+JasminXT has been defined for the tinapoc project. The purpose of the tinapoc project is to create a reliable Java reverse engineering toolkit. See the tinapoc homepage for more information
+
 
 ; 注释
 
