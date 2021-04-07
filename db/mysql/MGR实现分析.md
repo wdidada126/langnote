@@ -1,5 +1,13 @@
 # mgr
 
+MySQL5.7新特性--官方高可用方案MGR介绍
+
+mysql组复制
+
+
+MGR简介
+MySQL Group Replication（下简称：MGR）是MySQL官方推出的一种基于Paxos协议的状态机复制。在MGR出现之前，用户常见的MySQL高可用方式，无论怎么变化架构，本质就是Master-Slave架构。MySQL 5.7版本开始支持无损半同步复制（lossless semi-sync replication），从而进一步提示数据复制的强一致性。
+
 
 
 MGR实现分析 - 成员管理与故障恢复实现

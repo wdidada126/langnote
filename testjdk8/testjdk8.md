@@ -8,7 +8,7 @@ Java的调用函数的四大指令（invokevirtual、invokespecial、invokestati
 
 
 java8中map新增方法详解
-java8中Stream的使用
+java8中Stream的使用   20210406评注：面试题
 java8中Collection新增方法详解
 java8中Collectors的方法使用实例
 java8中常用函数式接口
@@ -16,6 +16,129 @@ java8中的方法引用和构造函数引用
 java8中的Collectors.groupingBy用法
 java8中的Optional用法
 java8中的日期和时间API
+
+
+```shell
+D:\git\github\testjdk8>jps
+12880 RemoteMavenServer36
+75520 Run_13
+76148 Jps
+66872
+12124 jar
+
+D:\git\github\testjdk8>jstack 75520
+2021-04-06 19:25:00
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.231-b11 mixed mode):
+
+"DestroyJavaVM" #13 prio=5 os_prio=0 tid=0x0000000002743800 nid=0x12d28 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Thread-1" #12 prio=5 os_prio=0 tid=0x000000001d30d800 nid=0xd560 waiting for monitor entry [0x000000001df9f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at cn.wdidada.deadlock.Run_13$DealThread.run(Run_13.java:49)
+        - waiting to lock <0x000000076b437618> (a java.lang.Object)
+        - locked <0x000000076b437628> (a java.lang.Object)
+        at java.lang.Thread.run(Thread.java:748)
+
+"Thread-0" #11 prio=5 os_prio=0 tid=0x000000001d30b000 nid=0x132dc waiting for monitor entry [0x000000001de9e000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at cn.wdidada.deadlock.Run_13$DealThread.run(Run_13.java:36)
+        - waiting to lock <0x000000076b437628> (a java.lang.Object)
+        - locked <0x000000076b437618> (a java.lang.Object)
+        at java.lang.Thread.run(Thread.java:748)
+
+"Service Thread" #10 daemon prio=9 os_prio=0 tid=0x000000001d2a3800 nid=0x12dd4 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread2" #9 daemon prio=9 os_prio=2 tid=0x000000001d29e000 nid=0xd834 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #8 daemon prio=9 os_prio=2 tid=0x000000001d245000 nid=0x13170 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #7 daemon prio=9 os_prio=2 tid=0x000000001d244000 nid=0x10b64 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Ctrl-Break" #6 daemon prio=5 os_prio=0 tid=0x000000001d22a000 nid=0x130a0 runnable [0x000000001d89e000]
+   java.lang.Thread.State: RUNNABLE
+        at java.net.SocketInputStream.socketRead0(Native Method)
+        at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+        at java.net.SocketInputStream.read(SocketInputStream.java:171)
+        at java.net.SocketInputStream.read(SocketInputStream.java:141)
+        at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+        at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+        at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+        - locked <0x000000076b307568> (a java.io.InputStreamReader)
+        at java.io.InputStreamReader.read(InputStreamReader.java:184)
+        at java.io.BufferedReader.fill(BufferedReader.java:161)
+        at java.io.BufferedReader.readLine(BufferedReader.java:324)
+        - locked <0x000000076b307568> (a java.io.InputStreamReader)
+        at java.io.BufferedReader.readLine(BufferedReader.java:389)
+        at com.intellij.rt.execution.application.AppMainV2$1.run(AppMainV2.java:61)
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x000000001be60000 nid=0x12fc0 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x000000001d1b0800 nid=0xb7b8 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x0000000002837000 nid=0x12b18 in Object.wait() [0x000000001d19e000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076b188ed8> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+        - locked <0x000000076b188ed8> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+        at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:216)
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x0000000002834000 nid=0x131c4 in Object.wait() [0x000000001d09f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076b186c00> (a java.lang.ref.Reference$Lock)
+        at java.lang.Object.wait(Object.java:502)
+        at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+        - locked <0x000000076b186c00> (a java.lang.ref.Reference$Lock)
+        at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+"VM Thread" os_prio=2 tid=0x000000001be17000 nid=0x13168 runnable
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x0000000002759800 nid=0x126e4 runnable
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x000000000275b000 nid=0x1316c runnable
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x000000000275c800 nid=0x12938 runnable
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x000000000275e000 nid=0xcefc runnable
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001d2d6000 nid=0x130c0 waiting on condition
+
+JNI global references: 12
+
+
+Found one Java-level deadlock:
+=============================
+"Thread-1":
+  waiting to lock monitor 0x000000001be406d8 (object 0x000000076b437618, a java.lang.Object),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting to lock monitor 0x000000001be3dce8 (object 0x000000076b437628, a java.lang.Object),
+  which is held by "Thread-1"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-1":
+        at cn.wdidada.deadlock.Run_13$DealThread.run(Run_13.java:49)
+        - waiting to lock <0x000000076b437618> (a java.lang.Object)
+        - locked <0x000000076b437628> (a java.lang.Object)
+        at java.lang.Thread.run(Thread.java:748)
+"Thread-0":
+        at cn.wdidada.deadlock.Run_13$DealThread.run(Run_13.java:36)
+        - waiting to lock <0x000000076b437628> (a java.lang.Object)
+        - locked <0x000000076b437618> (a java.lang.Object)
+        at java.lang.Thread.run(Thread.java:748)
+
+Found 1 deadlock.
+```
 
 
 java8中的Collectors.groupingBy用法

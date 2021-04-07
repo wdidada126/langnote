@@ -1,5 +1,6 @@
 # MySQL必知必会
 
+% _字符串开头like，不走索引
 
 B+树
 MAX.Degree,即一个节点存储的最大节点数
@@ -9,6 +10,7 @@ https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html
 旧金山大学
 
 问题：mysql支持哪些数据类型
+禁用timestamp
 
 mysql隔离级别
 产生的问题
@@ -24,9 +26,9 @@ Serial
 
 [MySQL必知必会](https://book.douban.com/subject/3354490/)
 
-### Chap. 2 
+### Chap. 2 mysql简介
 
-MySQL Workbench
+MySQL Workbench  20210406评注：navicate powerdesign
 
 ### Chap. 3  使用MySQL
 
@@ -42,4 +44,42 @@ max
 min
 sum
 
+### Chap.  4 select
+
+
+### Chap.  5 order by
+
+### Chap.  6  where
+
+### Chap.  7  where and or in not in
+
+### Chap.  8 like %% _
+
+### Chap.  9 re
+
+### Chap.  10 concat trim
+文本 日期 数值 处理函数
+
+
 ### Chap. 11 子查询
+
+### Chap. 12 aggreate function
+
+
+### Chap. 13 group by
+
+
+### Chap. 14 sub select
+三层嵌套子查询 in
+
+
+### Chap. 15 join
+
+
+### Chap. 16 advance join
+
+
+### Chap. 17 union
+
+
+### Chap. 18  全文检索

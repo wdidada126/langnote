@@ -1,29 +1,24 @@
 # gc
 
 - GC算法
-
 　　　 引用计数法（无法解决循环引用的问题，不被java采纳）
-
   　　根搜索算法
-
   　　现代虚拟机中的垃圾搜集算法：
-
 　　　　　　标记-清除
-
 　　　　　　复制算法（新生代）
-
 　　　　　　标记-压缩（老年代）
-
   　　分代收集
 
 
 
 Java虚拟机详解04----GC算法和种类
-
 https://www.cnblogs.com/qianguyihao/p/4744233.html
 
 
 
+
+jdk7 cms g1 笨神 内存70G 反射原理
+https://www.sohu.com/a/124124072_494943
 
 
 https://www.jianshu.com/p/43c1b262d36b
