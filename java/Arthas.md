@@ -1,5 +1,86 @@
 # Arthas
 
+
+
+可以查看线程
+
+类加载器
+
+
+
+内存占用
+
+[Linux下查看某一进程所占用内存的方法](https://www.cnblogs.com/xuanbjut/p/11564744.html)
+
+jps 获取进程id
+
+top -p 2913
+ps -aux | grep kafka 第5个数据
+还可以查看进程的status文件： cat /proc/2913/status 
+
+　VmRSS对应的值就是物理内存占用，大约为943M和刚才一致
+
+　　另外还可以通过 top 命令动态查看内存占用
+
+　　通过： ps aux | sort -k4,4nr | head -n 10 查看内存占用前10名的程序
+
+```
+jps
+23427 ofbiz.jar
+[root@10-23-29-39 ~]# cat /proc/23427/status
+Name:	java
+Umask:	0022
+State:	S (sleeping)
+Tgid:	23427
+Ngid:	0
+Pid:	23427
+PPid:	1
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	1024
+Groups:	0 
+VmPeak:	 2918864 kB
+VmSize:	 2751656 kB
+VmLck:	       0 kB
+VmPin:	    2856 kB
+VmHWM:	  655844 kB
+VmRSS:	  534164 kB
+RssAnon:	  528228 kB
+RssFile:	    5936 kB
+RssShmem:	       0 kB
+VmData:	 2544788 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	   20368 kB
+VmPTE:	    1568 kB
+VmSwap:	    7596 kB
+Threads:	90
+SigQ:	0/7322
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000000000000
+SigCgt:	2000000185005ccf
+CapInh:	0000000000000000
+CapPrm:	0000001fffffffff
+CapEff:	0000001fffffffff
+CapBnd:	0000001fffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Speculation_Store_Bypass:	vulnerable
+Cpus_allowed:	ffffffff,ffffffff,ffffffff,ffffffff
+Cpus_allowed_list:	0-127
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	10
+nonvoluntary_ctxt_switches:	0
+```
+
+
+
+
 http://arthas.gitee.io/
 
 [阿里开源 java 项目内存监控工具 arthas](https://blog.csdn.net/ningmengban/article/details/109697024)
@@ -12,11 +93,59 @@ https://www.oschina.net/p/arthas
 
 注意账户
 
+Whom
+
 arthas@23427
 
 
 
+重复进入arthas
 
+```
+java -jar arthas-boot.jar
+[INFO] arthas-boot version: 3.5.0
+[INFO] Process 23427 already using port 3658
+[INFO] Process 23427 already using port 8563
+[INFO] Found existing java process, please choose one and input the serial number of the process, eg : 1. Then hit ENTER.
+* [1]: 23427 build/libs/ofbiz.jar
+1
+[INFO] arthas home: /root/.arthas/lib/3.5.0/arthas
+[INFO] The target process already listen port 3658, skip attach.
+[INFO] arthas-client connect 127.0.0.1 3658
+  ,---.  ,------. ,--------.,--.  ,--.  ,---.   ,---.                           
+ /  O  \ |  .--. ''--.  .--'|  '--'  | /  O  \ '   .-'                          
+|  .-.  ||  '--'.'   |  |   |  .--.  ||  .-.  |`.  `-.                          
+|  | |  ||  |\  \    |  |   |  |  |  ||  | |  |.-'    |                         
+`--' `--'`--' '--'   `--'   `--'  `--'`--' `--'`-----'     
+```
+
+
+
+```
+[root@10-23-29-39 arthas]# ll
+total 13480
+-rw-r--r-- 1 root root     8450 Mar 30 08:13 arthas-agent.jar
+-rw-r--r-- 1 root root   140961 Mar 30 08:13 arthas-boot.jar
+-rw-r--r-- 1 root root   430306 Mar 30 08:13 arthas-client.jar
+-rw-r--r-- 1 root root 13129766 Mar 30 08:13 arthas-core.jar
+-rw-r--r-- 1 root root     4497 Mar 30 08:13 arthas-demo.jar
+-rw-r--r-- 1 root root      402 Mar 30 08:13 arthas.properties
+-rw-r--r-- 1 root root     8903 Mar 30 08:13 arthas-spy.jar
+-rw-r--r-- 1 root root     3091 Mar 30 08:13 as.bat
+-rw-r--r-- 1 root root     7744 Mar 30 08:13 as-service.bat
+-rw-r--r-- 1 root root    32805 Mar 30 08:13 as.sh
+drwxr-xr-x 2 root root      156 Mar 30 08:13 async-profiler
+-rw-r--r-- 1 root root      635 Mar 30 08:13 install-local.sh
+-rw-r--r-- 1 root root     2020 Mar 30 08:13 logback.xml
+[root@10-23-29-39 arthas]# pwd
+/root/.arthas/lib/3.5.0/arthas
+```
+
+
+
+
+
+ucloud云服务器实践
 
 ```shell
 java -jar arthas-boot.jar
@@ -131,3 +260,36 @@ java    47863 root   20u  IPv6 8905942      0t0  TCP localhost:47758->localhost:
 - quit——退出当前 Arthas 客户端，其他 Arthas 客户端不受影响
 - stop——关闭 Arthas 服务端，所有 Arthas 客户端全部退出
 - [keymap](https://arthas.gitee.io/keymap.html)——Arthas快捷键列表及自定义快捷键
+
+
+
+```
+[arthas@23427]$ thread
+Threads Total: 89, NEW: 0, RUNNABLE: 21, BLOCKED: 0, WAITING: 34, TIMED_WAITING:
+ 29, TERMINATED: 0, Internal threads: 5                                         
+ID NAME                GROUP     PRIORI STATE  %CPU  DELTA_ TIME   INTER DAEMON 
+-1 C2 CompilerThread0  -         -1     -      11.56 0.023  1:55.1 false true   
+-1 C1 CompilerThread1  -         -1     -      0.73  0.001  0:26.9 false true   
+11 arthas-command-exec system    5      RUNNAB 0.71  0.001  0:0.27 false true   
+56 http-nio-8080-exec- main      5      TIMED_ 0.18  0.000  2:2.20 false true   
+-1 Service Thread      -         -1     -      0.1   0.000  0:0.50 false true   
+-1 VM Periodic Task Th -         -1     -      0.04  0.000  7:52.5 false true   
+65 http-nio-8080-Clien main      5      RUNNAB 0.02  0.000  7:48.3 false true   
+20 Abandoned connectio Delegator 5      TIMED_ 0.02  0.000  4:29.3 false true   
+41 Catalina-utility-1  main      1      TIMED_ 0.02  0.000  1:41.7 false false  
+28 http-nio-8080-Block main      5      RUNNAB 0.0   0.000  2:40.5 false true   
+42 Catalina-utility-2  main      1      WAITIN 0.0   0.000  1:40.9 false false  
+2  Reference Handler   system    10     WAITIN 0.0   0.000  0:0.15 false true   
+3  Finalizer           system    8      WAITIN 0.0   0.000  0:0.15 false true   
+4  Signal Dispatcher   system    9      RUNNAB 0.0   0.000  0:0.00 false true   
+93 Attach Listener     system    9      RUNNAB 0.0   0.000  0:0.02 false true   
+10 arthas-timer        system    9      WAITIN 0.0   0.000  0:0.00 false true   
+10 arthas-NettyHttpTel system    5      RUNNAB 0.0   0.000  0:0.04 false true   
+10 arthas-NettyWebsock system    5      RUNNAB 0.0   0.000  0:0.00 false true   
+10 arthas-NettyWebsock system    5      RUNNAB 0.0   0.000  0:0.00 false true   
+10 arthas-shell-server system    9      TIMED_ 0.0   0.000  0:1.32 false true   
+10 arthas-session-mana system    9      TIMED_ 0.0   0.000  0:0.54 false true 
+```
+
+
+
