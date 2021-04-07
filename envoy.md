@@ -6,7 +6,13 @@ c++写的
 
 
 
+#### 竟品分析
+
 跟nginx对比
+
+haproxy
+
+上述有社区版本和企业版本
 
 
 
@@ -16,7 +22,7 @@ https://www.sohu.com/a/244966023_268033
 
 
 
-
+#### 官方渠道
 
 https://www.envoyproxy.io/
 
@@ -27,4 +33,16 @@ envoy
 centos 7安装
 
 
+
+glibc
+
+libstdc++
+
+ctyun安装成功
+
+```
+sudo yum install yum-utils -y
+sudo yum-config-manager --add-repo https://getenvoy.io/linux/centos/tetrate-getenvoy.repo
+sudo yum install getenvoy-envoy  -y
+```
 
