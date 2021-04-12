@@ -1,6 +1,13 @@
 # IDEA
 
 
+反向类图 时序图
+一、检查UML类图插件是否开启
+idea默认已经集成了该功能，只是默认没打开，我们要手动打开它，参考下图：
+File——Settings——Plugins——UML Support：
+https://blog.csdn.net/zj420964597/article/details/87856758
+
+
 Java OO
 Ctrl - H 查看类继承关系
 Ctrl - N 查找类

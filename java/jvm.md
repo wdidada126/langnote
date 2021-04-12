@@ -1,6 +1,23 @@
 # jvm
 
 
+jvm专题 G1 String对象去重
+-XX:StringTableSite=10
+
+在jdk1.6中StringTable是固定的，就是1009的长度，所以如果常量池中的字符串过多就会导致效率下降很快。StringTableSize设置没有要求。
+在jdk1.7中，StringTable的长度默认值是60013
+Jdk1.8开始，设置StringTable的长度的话，1009是可设置的最小值。如果设置的比1009小，会出现以下错误：
+
+```shell
+jinfo -flag StringTableSize 91008
+-XX:StringTableSize=60013
+```
+https://www.cnblogs.com/qiu-hua/p/13226719.html
+
+
+jvm专题
+https://www.cnblogs.com/qiu-hua/category/1890548.html
+
 jvm参数
 -X
 -Xms

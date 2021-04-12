@@ -1,5 +1,7 @@
 # docker
 
+docker network create hadoop
+
 docker mac windows都是虚拟机
 linux使用了cgroup namespace
 

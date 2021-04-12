@@ -1,6 +1,9 @@
 # antlr
 
 
+MySqlParser.g4 
+sql必须大写
+
 
 重视对官方提供的antlr语法 github 的学习https://github.com/antlr/grammars-v4
 

@@ -2,10 +2,16 @@
 
 
 
-cd /root/apache-ofbiz-17.12.05/
 
+运行日志
+D:\git\github\apache-ofbiz-17.12.05\runtime\logs\ofbiz-2021-04-07-1.log
+
+
+cd /root/apache-ofbiz-17.12.05/
 java -jar build/libs/ofbiz.jar & > ofbiz.log 2>&1 &
 
+启动是这个，上面的java -jar是初始化数据的
+./gradlew ofbiz
 
 
 ```sql
@@ -72,11 +78,15 @@ ofbiztenant
 ./gradlew ofbiz
 ```
 
+```cmd
+gradlew ofbiz
+```
 
 
 ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
 
-
+desc mysql.general_log;
+select argument from mysql.general_log order by event_time desc limit 100;
 
 local mysql
 如何查看mysql运行的sql语句
@@ -114,17 +124,15 @@ https://ofbiz.apache.org/mailing-lists.html
 
 
 ```sql
-INSERT INTO SERVER_HIT (VISIT_ID, CONTENT_ID, HIT_START_DATE_TIME, HIT_TYPE_ID, NUM_OF_BYTES, RUNNING_TIME_MILLIS, USER_LOGIN_ID, STATUS_ID, REQUEST_URL, REFERRER_URL, SERVER_IP_ADDRESS, SERVER_HOST_NAME, INTERNAL_CONTENT_ID, PARTY_ID, ID_BY_IP_CONTACT_MECH_ID, REF_BY_WEB_CONTACT_MECH_ID) VALUES ('10707', 'accounting.LookupBillingAccount', '2021-04-07 12:55:05.271', 'REQUEST', null, 437, 'admin', null, 'https://106.75.209.6:8443/accounting/control/LookupBillingAccount', 'https://106.75.209.6:8443/accounting/control/createInvoice', '127.0.0.1', '10-23-29-39', null, null, null, null)
-
-
-
-INSERT INTO SERVER_HIT (VISIT_ID, CONTENT_ID, HIT_START_DATE_TIME, HIT_TYPE_ID, NUM_OF_BYTES, RUNNING_TIME_MILLIS, USER_LOGIN_ID, STATUS_ID, REQUEST_URL, REFERRER_URL, SERVER_IP_ADDRESS, SERVER_HOST_NAME, INTERNAL_CONTENT_ID, PARTY_ID, ID_BY_IP_CONTACT_MECH_ID, REF_BY_WEB_CONTACT_MECH_ID) VALUES ('10707', 'accounting.LookupBillingAccount', '2021-04-07 12:55:05.271', 'REQUEST', null, 437, 'admin', null, 'https://106.75.209.6:8443/accounting/control/LookupBillingAccount', 'https://106.75.209.6:8443/accounting/control/createInvoice', '127.0.0.1', '10-23-29-39', null, null, null, null) 
-
+INSERT INTO SERVER_HIT (VISIT_ID, CONTENT_ID, HIT_START_DATE_TIME, HIT_TYPE_ID, NUM_OF_BYTES, RUNNING_TIME_MILLIS, USER_LOGIN_ID, STATUS_ID, REQUEST_URL, REFERRER_URL, SERVER_IP_ADDRESS, SERVER_HOST_NAME, INTERNAL_CONTENT_ID, PARTY_ID, ID_BY_IP_CONTACT_MECH_ID, REF_BY_WEB_CONTACT_MECH_ID) VALUES ('10707', 'accounting.LookupBillingAccount', '2021-04-07 12:55:05.271', 'REQUEST', null, 437, 'admin', null, 'https://106.75.209.6:8443/accounting/control/LookupBillingAccount', 'https://106.75.209.6:8443/accounting/control/createInvoice', '127.0.0.1', '10-23-29-39', null, null, null, null);
+INSERT INTO SERVER_HIT (VISIT_ID, CONTENT_ID, HIT_START_DATE_TIME, HIT_TYPE_ID, NUM_OF_BYTES, RUNNING_TIME_MILLIS, USER_LOGIN_ID, STATUS_ID, REQUEST_URL, REFERRER_URL, SERVER_IP_ADDRESS, SERVER_HOST_NAME, INTERNAL_CONTENT_ID, PARTY_ID, ID_BY_IP_CONTACT_MECH_ID, REF_BY_WEB_CONTACT_MECH_ID) VALUES ('10707', 'accounting.LookupBillingAccount', '2021-04-07 12:55:05.271', 'REQUEST', null, 437, 'admin', null, 'https://106.75.209.6:8443/accounting/control/LookupBillingAccount', 'https://106.75.209.6:8443/accounting/control/createInvoice', '127.0.0.1', '10-23-29-39', null, null, null, null);
 SELECT COUNT(1)  FROM JOB_MANAGER_LOCK WHERE ((((THRU_DATE IS NULL OR THRU_DATE > '2021-04-07 12:55:19.607') AND (FROM_DATE IS NULL OR FROM_DATE <= '2021-04-07 12:55:19.607')) AND (INSTANCE_ID = 'ofbiz1' OR INSTANCE_ID = '_NA_')));
-
 SELECT JOB_ID, JOB_NAME, RUN_TIME, POOL_ID, STATUS_ID, PARENT_JOB_ID, PREVIOUS_JOB_ID, SERVICE_NAME, LOADER_NAME, MAX_RETRY, CURRENT_RETRY_COUNT, AUTH_USER_LOGIN_ID, RUN_AS_USER, RUNTIME_DATA_ID, RECURRENCE_INFO_ID, TEMP_EXPR_ID, CURRENT_RECURRENCE_COUNT, MAX_RECURRENCE_COUNT, RUN_BY_INSTANCE_ID, START_DATE_TIME, FINISH_DATE_TIME, CANCEL_DATE_TIME, JOB_RESULT, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP FROM JOB_SANDBOX WHERE ((RUN_BY_INSTANCE_ID = 'ofbiz1' AND ((CANCEL_DATE_TIME IS NOT NULL AND CANCEL_DATE_TIME < '2021-04-03 12:55:20.153') OR (FINISH_DATE_TIME IS NOT NULL AND FINISH_DATE_TIME < '2021-04-03 12:55:20.153')))) ORDER BY JOB_ID ASC;
 ```
 
+
+
+G:\gradle\cache\caches\modules-2\files-2.1\apache-xerces\xercesImpl\2.9.1\7bc7e49ddfe4fb5f193ed37ecc96c12292c8ceb6\xercesImpl-2.9.1.jar
 
 
 mysql查询缓存
