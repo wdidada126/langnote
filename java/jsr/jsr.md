@@ -1,5 +1,7 @@
 # jsr
 
+JSR-51
+java.nio.channels.spi.SelectorProvider
 
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 

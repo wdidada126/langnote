@@ -1,0 +1,56 @@
+[root@leryltdllllwew9a SendIP-2.6]# make install /usr/bin/sendip
+gcc -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\"   -c -o csum.o csum.c
+gcc -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\"   -c -o compact.o compact.c
+gcc -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\"   -c -o sendip.o sendip.c
+gcc -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\"   -c -o gnugetopt.o gnugetopt.c
+gcc -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\"   -c -o gnugetopt1.o gnugetopt1.c
+sh -c "if [ `uname` = Linux ] ; then \
+gcc -o sendip -g  -rdynamic -ldl -lm -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\" sendip.o gnugetopt.o gnugetopt1.o compact.o ; \
+elif [ `uname` = SunOS ] ; then \
+gcc -o sendip -g -lsocket -lnsl -lm -ldl -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\" sendip.o gnugetopt.o gnugetopt1.o compact.o ;\
+else \
+gcc -o sendip -g -rdynamic -lm -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\" sendip.o gnugetopt.o gnugetopt1.o compact.o ; \
+fi"
+gcc -o ipv4.so -fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings -Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align -DSENDIP_LIBS=\"/usr/local/lib/sendip\" -shared ipv4.c csum.o compact.o
+ipv4.c: In function ‘do_opt’:
+ipv4.c:212:12: error: pointer targets in passing argument 1 of ‘sprintf’ differ in signedness [-Werror=pointer-sign]
+    sprintf(data,"0x%s",arg);
+            ^~~~
+In file included from sendip_module.h:4:0,
+                 from ipv4.c:21:
+/usr/include/stdio.h:364:12: note: expected ‘char * restrict’ but argument is of type ‘u_int8_t * {aka unsigned char *}’
+ extern int sprintf (char *__restrict __s,
+            ^~~~~~~
+ipv4.c:213:25: error: pointer targets in passing argument 1 of ‘compact_string’ differ in signedness [-Werror=pointer-sign]
+    len = compact_string(data);
+                         ^~~~
+In file included from ipv4.c:21:0:
+sendip_module.h:41:12: note: expected ‘char *’ but argument is of type ‘u_int8_t * {aka unsigned char *}’
+ extern int compact_string(char *data_out);
+            ^~~~~~~~~~~~~~
+ipv4.c:240:27: error: pointer targets in passing argument 5 of ‘addoption’ differ in signedness [-Werror=pointer-sign]
+     addoption(0,0,7,len+2,data,pack);
+                           ^~~~
+ipv4.c:81:13: note: expected ‘u_int8_t * {aka unsigned char *}’ but argument is of type ‘char *’
+ static void addoption(u_int8_t copy, u_int8_t class, u_int8_t num,
+             ^~~~~~~~~
+ipv4.c:355:36: error: pointer targets in passing argument 5 of ‘addoption’ differ in signedness [-Werror=pointer-sign]
+    addoption(0,2,4,data_out-data+2,data,pack);
+                                    ^~~~
+ipv4.c:81:13: note: expected ‘u_int8_t * {aka unsigned char *}’ but argument is of type ‘char *’
+ static void addoption(u_int8_t copy, u_int8_t class, u_int8_t num,
+             ^~~~~~~~~
+ipv4.c:380:27: error: pointer targets in passing argument 5 of ‘addoption’ differ in signedness [-Werror=pointer-sign]
+     addoption(1,0,3,len+2,data,pack);
+                           ^~~~
+ipv4.c:81:13: note: expected ‘u_int8_t * {aka unsigned char *}’ but argument is of type ‘char *’
+ static void addoption(u_int8_t copy, u_int8_t class, u_int8_t num,
+             ^~~~~~~~~
+ipv4.c:402:27: error: pointer targets in passing argument 5 of ‘addoption’ differ in signedness [-Werror=pointer-sign]
+     addoption(1,0,9,len+2,data,pack);
+                           ^~~~
+ipv4.c:81:13: note: expected ‘u_int8_t * {aka unsigned char *}’ but argument is of type ‘char *’
+ static void addoption(u_int8_t copy, u_int8_t class, u_int8_t num,
+             ^~~~~~~~~
+cc1: all warnings being treated as errors
+make: *** [ipv4.so] Error 1
