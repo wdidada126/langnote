@@ -1,5 +1,8 @@
 # docker
 
+[docker](https://jingyan.baidu.com/article/aa6a2c142dc2774c4c19c4ca.html)
+C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx
+
 docker network create hadoop
 
 docker mac windows都是虚拟机
@@ -308,3 +311,18 @@ Runc                           /usr/bin/docker-runc
 
 
 [Docker开发实践](https://book.douban.com/subject/26432893/)
+
+
+[Docker容器绑定外部IP和端口](https://www.cnblogs.com/linjiqin/p/8670798.html)
+
+
+docker run -d -P myfirstapp python app.py 
+
+docker run -d -p 9118:8080 edidada/spring-cloud-eureka
+
+
+`docker exec -it cfb02f1a32c9  /bin/bash`
+
+
+
+https://www.cnblogs.com/quanbisen/p/11483118.html

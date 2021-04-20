@@ -1,5 +1,58 @@
 # maven
 
+mvn clean install -s settings.xml -U -DskipTests -Dmaven.repo.local=/tmp/repo
+
+
+ mirror就是镜像，主要提供一个方便地切换远程仓库地址的途径。比如，上班的时候在公司，用电信的网络，连的是电信的仓库。回到家后，是网通的网络，我想连网通的仓库，就可以通过mirror配置，统一把我工程里的仓库地址都改成联通的，而不用到具体工程配置文件里一个一个地改地址。
+mirror的配置在.m2/settings.xml里。如：
+
+  <mirrors>
+    <mirror>
+      <id>UK</id>
+      <name>UK Central</name>
+      <url>http://uk.maven.org/maven2</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+这样的话，就会给上面id为central的远程仓库做了个镜像。以后向central这个仓库发的请求都会发到http://uk.maven.org/maven2而不是http://repo1.maven.org/maven2了。
+<mirrorOf>central</mirrorOf>里是要替代的仓库的id。如果填*，就会替代所有仓库。
+    
+
+### verify settings.xml
+
+mvn help:effective-settings
+
+### docker maven
+
+```xml
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <!-- 镜像名称 -->
+                    <imageName>${docker.image.prefix}/spring-cloud-eureka</imageName>
+                    <!-- 依赖java镜像 -->
+                    <baseImage>java</baseImage>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <dockerHost>http://127.0.0.1:2375</dockerHost>
+                    <!--<dockerCertPath>C:\Users\edidada\.docker\machine\machines\default</dockerCertPath>-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+```
+
 complie是默认值，表示在build,test,runtime阶段的classpath下都有依赖关系。
 test表示只在test阶段有依赖关系，例如junit
 provided表示在build,test阶段都有依赖，在runtime时并不输出依赖关系而是由容器提供，例如web war包都不包括servlet-api.jar，而是由tomcat等容器来提供

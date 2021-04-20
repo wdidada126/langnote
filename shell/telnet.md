@@ -1,5 +1,13 @@
 # telnet
 
+
+yum list telnet*
+yum install telnet
+yum install telnet-server
+
+dubbo
+telnet 127.0.0.1 20880
+
 当你用Telnet登录进入远程计算机系统时，你事实上启动了两个程序，一个?叫Telnet客户程序，它运行在你的本地机上；另一个叫Telnet服务器程序，它运?行在你要登录的远程计算机上。本地机上的客户程序要完成如下功能：?
 1 、建立与服务器的TCP 联接；?
 2 、从键盘上接收你输入的字符；?
