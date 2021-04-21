@@ -1,5 +1,9 @@
 # telnet
 
+站长工具，检测公网ip主机特定端口是否开放
+
+nmap.org
+nmap
 
 yum list telnet*
 yum install telnet
