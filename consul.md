@@ -1,5 +1,49 @@
 # consul
 
+==> Multiple private IPv4 addresses found. Please configure one with 'bind' and/or 'advertise'.
+https://blog.csdn.net/xujiamin0022016/article/details/106822637
+
+
+[root@10-23-29-39 ucloudscripts]# systemctl start consul
+Warning: consul.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+
+
+
+[root@10-23-29-39 ucloudscripts]# /usr/bin/consul agent  -server -ui -client 0.0.0.0 -bind 10.23.29.39 -config-dir=/etc/consul.d/
+==> Starting Consul agent...
+           Version: '1.9.5'
+           Node ID: '121a0330-e98a-b5ea-39fa-dcfbc2a841ed'
+         Node name: '10-23-29-39'
+        Datacenter: 'dc1' (Segment: '<all>')
+            Server: true (Bootstrap: false)
+       Client Addr: [0.0.0.0] (HTTP: 8500, HTTPS: -1, gRPC: -1, DNS: 8600)
+      Cluster Addr: 10.23.29.39 (LAN: 8301, WAN: 8302)
+           Encrypt: Gossip: false, TLS-Outgoing: false, TLS-Incoming: false, Auto-Encrypt-TLS: false
+
+==> Log data will now stream in as it occurs:
+
+    2021-04-21T22:40:01.677+0800 [WARN]  agent: The 'ui' field is deprecated. Use the 'ui_config.enabled' field instead.
+    2021-04-21T22:40:01.688+0800 [WARN]  agent.auto_config: The 'ui' field is deprecated. Use the 'ui_config.enabled' field instead.
+    2021-04-21T22:40:01.705+0800 [INFO]  agent.server.raft: initial configuration: index=0 servers=[]
+    2021-04-21T22:40:01.706+0800 [INFO]  agent.server.serf.wan: serf: EventMemberJoin: 10-23-29-39.dc1 10.23.29.39
+    2021-04-21T22:40:01.706+0800 [INFO]  agent.server.serf.lan: serf: EventMemberJoin: 10-23-29-39 10.23.29.39
+    2021-04-21T22:40:01.706+0800 [INFO]  agent.router: Initializing LAN area manager
+    2021-04-21T22:40:01.707+0800 [INFO]  agent: Started DNS server: address=0.0.0.0:8600 network=udp
+    2021-04-21T22:40:01.707+0800 [INFO]  agent.server.raft: entering follower state: follower="Node at 10.23.29.39:8300 [Follower]" leader=
+    2021-04-21T22:40:01.707+0800 [INFO]  agent.server: Adding LAN server: server="10-23-29-39 (Addr: tcp/10.23.29.39:8300) (DC: dc1)"
+    2021-04-21T22:40:01.707+0800 [INFO]  agent.server: Handled event for server in area: event=member-join server=10-23-29-39.dc1 area=wan
+    2021-04-21T22:40:01.708+0800 [INFO]  agent: Started DNS server: address=0.0.0.0:8600 network=tcp
+    2021-04-21T22:40:01.708+0800 [INFO]  agent: Starting server: address=[::]:8500 network=tcp protocol=http
+    2021-04-21T22:40:01.708+0800 [WARN]  agent: DEPRECATED Backwards compatibility with pre-1.9 metrics enabled. These metrics will be removed in a future version of Consul. Set `telemetry { disable_compat_1.9 = true }` to disable them.
+    2021-04-21T22:40:01.708+0800 [INFO]  agent: started state syncer
+==> Consul agent running!
+    2021-04-21T22:40:08.514+0800 [WARN]  agent.server.raft: no known peers, aborting election
+    2021-04-21T22:40:08.730+0800 [ERROR] agent.anti_entropy: failed to sync remote state: error="No cluster leader"
+
+
+
+https://blog.csdn.net/chenchong08/article/details/77885989
 
 consul UI用127可以访问，指定ip无法访问
 ./consul agent -dev    只能127.0.0.1可以访问
@@ -350,3 +394,11 @@ PS C:\Users\edidada> consul agent -dev -ui
     2021-04-20T17:53:23.908+0800 [INFO]  agent: Endpoints down
     2021-04-20T17:53:23.912+0800 [INFO]  agent: Exit code: code=0
 ```
+
+
+### spring cloud
+
+consul有两个功能，一个是consul作为注册中心，另一个是consul作为配置中心。
+https://www.cnblogs.com/linjiqin/p/9718223.html
+
+根据上面的博客写个demo
