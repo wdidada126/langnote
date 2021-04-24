@@ -1,6 +1,20 @@
 # jdbc
 
 
+JDBC 用CallableStatement接口操作存储过程 输入输出有参数
+https://blog.csdn.net/u014453898/article/details/79043264
+
+mysql> create procedure sp_name () select * from t;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> call sp_name();
+Empty set
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+
+
 
 Java必备的 15 个框架，推荐看下。
 

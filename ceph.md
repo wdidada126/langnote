@@ -1,5 +1,46 @@
 # ceph
 
+apt的工作环境
+
+sudo apt-get install `cat doc_deps.deb.txt`
+doc_deps.deb.txt
+
+
+git
+gcc
+python3-dev
+python3-pip
+python3-virtualenv
+virtualenv
+doxygen
+ditaa
+libxml2-dev
+libxslt1-dev
+graphviz
+ant
+zlib1g-dev
+cython3
+
+
+Ceph - a scalable distributed storage system
+
+https://github.com/ceph/ceph
+
+C++
+65.1%
+Python
+12.8%
+Raku
+6.8%
+C
+5.7%
+TypeScript
+3.6%
+Shell
+3.1%
+Other
+2.9%
+
 分布式存储
 
 hadoop也算分布式存储，不过主要用途是大数据，所以严格来说，分布式存储目前最广泛的就是ceph了

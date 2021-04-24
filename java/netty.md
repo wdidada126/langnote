@@ -114,3 +114,23 @@ Reactor模式
 Netty实现http
 
 [netty核心解析](https://blog.csdn.net/qq_32370913/article/details/105408027)
+
+
+### netty 日志
+
+```shell
+2021-04-12 21:19:50.087 [main] DEBUG i.n.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+```
+
+[netty 打印 log 日志](https://blog.csdn.net/weixin_40516936/article/details/80181890)
+
+Netty是一个简化Java NIO编程的网络框架。就像人要吃饭一样，框架也要打日志。
+Netty不像大多数框架，默认支持某一种日志实现。相反，Netty本身实现了一套日志机制，但这套日志机制并不会真正去打日志。相反，Netty自身的日志机制更像一个日志包装层。
+
+先检查是否有slf4j，如果没有则检查是否有Log4j，如果上面两个都没有，则默认使用JDK自带的日志框架JDK Logging。
+JDK的Logging就不用费事去检测了，直接拿来用了，因为它是JDK自带的。
+
+io.netty.bootstrap.Bootstrap
+源码：
+`private static final InternalLogger logger = InternalLoggerFactory.getInstance(Bootstrap.class);`
+

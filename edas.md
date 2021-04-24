@@ -1,6 +1,13 @@
 # edas
 
+企业级分布式应用服务
 
+5个以内不收费
+https://help.aliyun.com/document_detail/44682.html?spm=a2...6.559.34236467HdMDMh
+
+在ECS实例上部署应用。每个ECS实例上只能部署一个应用。
+
+ecs部署/k8s部署
 
 企业级分布式应用服务 EDAS 3.0
 
@@ -9,3 +16,11 @@
 
 
 左萧龙 主业
+
+
+Pandora版本问题
+
+Pandora 阿里云
+是个容器?
+
+

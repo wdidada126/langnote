@@ -1,6 +1,12 @@
 # jsr
 
 
+jsr305
+https://blog.csdn.net/JonasErosonAtsea/article/details/76038676
+
+JSR-51
+java.nio.channels.spi.SelectorProvider
+
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 
 Java并发编程的艺术

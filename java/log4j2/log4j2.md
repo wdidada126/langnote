@@ -1,5 +1,11 @@
 # log4j2
 
+
+Log4j2感觉就是SLF4J+Logback。log4j-api等价于SLF4J，log4j-core等价于Logback。
+
+源码分析
+https://www.jianshu.com/p/0c882ced0bf5
+
 https://issues.apache.org/jira/projects/LOG4J2/issues/LOG4J2-2901?filter=allopenissues
 
 SLF4J: Class path contains multiple SLF4J bindings.

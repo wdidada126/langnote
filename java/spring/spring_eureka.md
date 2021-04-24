@@ -1,5 +1,12 @@
 # spring eureka
 
+
+tsf从 Eureka 迁移
+已经接入 Eureka 服务注册与发现的应用，只需要修改pom.xml依赖，就可以将服务接入 TSF 服务注册发现中心。
+在工程根目录的 pom.xml 中增加spring-cloud-tsf-dependencies的 parent。参考上文中的 Demo 工程。
+在单个 Spring Cloud 应用的pom.xml中，将spring-cloud-starter-eureka替换成spring-cloud-tsf-consul-discovery。
+
+
 mvn install:install-file -Dfile=itext-2.1.7.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7 -Dpackaging=jar
 
 
