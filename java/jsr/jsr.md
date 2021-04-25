@@ -1,6 +1,15 @@
 # jsr
 
 
+
+
+
+ Java Rule Engine API（JSR 94）
+
+- drtools与 Java Rule Engine API（JSR 94）兼容
+
+
+
 jsr305
 https://blog.csdn.net/JonasErosonAtsea/article/details/76038676
 

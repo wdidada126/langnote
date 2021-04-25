@@ -10,7 +10,7 @@ https://blog.csdn.net/shuaicihai/article/details/56036007
 test tool: soapui
 
 
-
+区块链 拜占庭将军问题 笔记2-理解 Quorum 概念
 https://zhuanlan.zhihu.com/p/104700455
 
 
@@ -26,7 +26,7 @@ http://cxf.apache.org/docs/writing-a-service-with-spring.html
 
 
 
-
+# Spring和CXF整合发布WebService(服务端、客户端)
 
 https://blog.csdn.net/yhahaha_/article/details/81395397
 
@@ -59,6 +59,8 @@ SOAP 的一个简单例子：假设，有一个房价的数据库，SOAP 消息�
 
 
 [概念——SOAP（简单对象访问协议）](https://www.cnblogs.com/liuning8023/archive/2012/07/28/2613620.html)
+
+而soap是简单对象访问协议，而soap绑定服务的时候可以是http smtp ftp等任意一种，貌似还可以绑定jms ejb..
 
 
 
