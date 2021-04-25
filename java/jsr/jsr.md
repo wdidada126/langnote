@@ -4,6 +4,12 @@
 jsr305
 https://blog.csdn.net/JonasErosonAtsea/article/details/76038676
 
+websocket
+https://www.oracle.com/technical-resources/articles/java/jsr356.html
+
+
+https://jax-rs-spec.java.net/nonav/2.0/apidocs/index.html
+
 JSR-51
 java.nio.channels.spi.SelectorProvider
 

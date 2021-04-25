@@ -3,6 +3,8 @@
 github repo
 
 
+https://blog.csdn.net/shuaicihai/article/details/56036007
+
 本质是HTTP
 
 test tool: soapui

@@ -1,5 +1,11 @@
 # Dubbo
 
+支持grpc protobuf
+https://zhuanlan.zhihu.com/p/101921347
+
+@Spi
+@Adapter
+
 spring boot starter
 
 doc
