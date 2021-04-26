@@ -52,3 +52,13 @@ JPAAppender
 As of Log4j 2.11.0, JPA support has moved from the existing module logj-core to the new module log4j-jpa
 
 
+### jdni spi关系
+
+
+概念JNDI（Java naming and directory interface）Java命名和目录接口。做什么的是一个应用程序设计的API,为开发人员提供查找和访问各种命名和目录服务的通用、统一的接口，类似JDBC构建在抽象层上。现在JNDI已经成J2EE的标准之一，所有的J2EE容器都必须提供一个JNDI服务。怎么做的JNDI主要有两部分组成：应用程序编程接口（API）和服务供应商接口(SPI)。应用程序编程接口提供了Java应用程序访问各种命名和目录服务的功能，服务供应商接口提供了任意一种服务的供应商使用的功能。所有实现API,SPI即完成了JNDI一个实例。代码示例：try{
+Context cntxt = new InitialContext();
+DataSource ds = (DataSource) cntxt.lookup("jdbc/dpt"); //API
+}
+catch(NamingException ne){
+...
+}上述代码意思是，通过JNDI这个J2EE标准，获取DataSource的java类。其中，lookup这个函数就是API。实现lookup函数就是SPI。注释J2EE容器指为J2EE应用程序组件提供运行时环境支持一个程序。分1）web容器，比如tomcat。2）EJB容器。EJB(EnterPrise Java Bean)企业Bean。分会话Bean、实体Bean、消息驱动Bean。

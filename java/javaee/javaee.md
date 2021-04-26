@@ -1,5 +1,7 @@
 # javaee
 
+jakartaee.md
+
 `lusrmgr.msc`
 
 查看windows系统用户
@@ -17,7 +19,7 @@ DO BO VO是JavaEE的规范？
 
 [java ee规范中文](https://blog.csdn.net/u012410733/article/details/72567195)
 
-java ee包括servlet jdbc ejb ws等等
+java ee包括servlet jdbc ejb ws jms json xml等等
 
 ```
 
@@ -44,7 +46,7 @@ https://blog.csdn.net/Neuf_Soleil/article/details/80962686
 
 
 Jakarta EE
-
+tomcatee 实现 api doc
 
 
 狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。

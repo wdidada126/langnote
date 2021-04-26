@@ -87,6 +87,7 @@ windows卡不开
 https://cloud.tencent.com/document/product/649/16620
 
 https://github.com/hashicorp/consul
+不是https://github.com/consul/consul
 go语言写的
 
 

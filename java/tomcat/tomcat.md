@@ -1,7 +1,23 @@
 # Tomcat
 
 
-Tomcat双亲委派模型
+servlet 单例多线程
+
+servlet类 不能有经常更改的属性
+
+因为servlet不是线程安全的
+
+
+tomcat 有线程池
+
+
+tomcat netty实现http协议 server端 对比
+
+http://openejb.apache.org/latest/examples/
+http://tomee.apache.org/jakartaee-8.0/javadoc/
+
+
+Tomcat双亲委派模型 重点 类加载器 需要整理进anki
 https://zhuanlan.zhihu.com/p/347776927
 
 
