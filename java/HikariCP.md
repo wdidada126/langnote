@@ -1,5 +1,49 @@
 # HikariCP
 
+
+
+
+maven jdk8
+
+jdk 6 7 9坐标不同
+
+    <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>2.6.2</version>
+    </dependency>
+
+https://github.com/brettwooldridge/HikariCP
+
+
+```java
+    String url = "jdbc:mysql://127.0.0.1:3306/stockmarket?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+
+    HikariConfig config = new HikariConfig();
+    config.setJdbcUrl(url);
+    config.setUsername("root");
+    config.setPassword("5%Edidada");
+    config.addDataSourceProperty("cachePrepStmts", "true");
+    config.addDataSourceProperty("prepStmtCacheSize", "250");
+    config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
+    HikariDataSource dataSource = new HikariDataSource(config);
+    Connection connection = dataSource.getConnection();
+```
+
+
+
+
+com.zaxxer.hikari.pool.HikariPool#getConnection(long)
+com.zaxxer.hikari.pool.PoolEntry#createProxyConnection
+com.zaxxer.hikari.pool.ProxyFactory#getProxyConnection
+com.zaxxer.hikari.pool.HikariProxyConnection
+
+java.sql.Connection
+  ProxyConnection (com.zaxxer.hikari.pool)
+      HikariProxyConnection (com.zaxxer.hikari.pool)
+
+
 使用FastList替代ArrayList
 
 ```java
@@ -376,7 +420,11 @@ public final class FastList<T> implements List<T>, RandomAccess, Serializable
 
 ```
 
+- Druid
+- dbcp
+- c3p0
 
+https://blog.csdn.net/weixin_40751299/article/details/81609332
 
 
 
