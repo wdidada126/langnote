@@ -1,6 +1,21 @@
 # jvm
 
 
+-Djava.security.manager
+-Djava.security.policy=/home/h/my.policy
+
+
+
+grant codeBase  "file:/home/h/client/*"   {
+     permission java.io.FilePermission  "/1.txt","read";
+ };
+
+
+
+
+TestClient github repo
+
+
 jvm专题 G1 String对象去重
 -XX:StringTableSite=10
 

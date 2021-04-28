@@ -1,9 +1,247 @@
 # mybatis
 
 
+mybatis api doc
+https://mybatis.org/mybatis-3/apidocs/index.html
+
+package  org.apache.ibatis
+
+SqlSession session子包
+- 	close()
+- 	commit()
+
+增删改查
+	insert(String statement)
+	insert(String statement, Object parameter)
+	delete(String statement)
+	delete(String statement, Object parameter)
+	update(String statement)
+	update(String statement, Object parameter)
+	selectOne(String statement)
+	selectOne(String statement, Object parameter)
+	select(String statement, ResultHandler handler)
+	selectCursor(String statement, Object parameter, RowBounds rowBounds)
+	selectList(String statement)
+	selectList(String statement, Object parameter)
+	selectList(String statement, Object parameter, RowBounds rowBounds)
+
+
+SqlSessionFactory
+子类
+	DefaultSqlSessionFactory, SqlSessionManager
+	getConfiguration()
+	openSession()
+
+
+
+Configuration session包
+跟mybatis-config.xml
+
+
+RowBounds
+行相关的 sql limit
+	NO_ROW_OFFSET
+	NO_ROW_LIMIT
+	DEFAULT
+
+
+SqlSessionFactoryBuilder
+
+build(Configuration config)
+build(InputStream inputStream)
+build(Reader reader) 
+
+
+org.apache.ibatis.session.defaults
+
+DefaultSqlSession
+DefaultSqlSession.StrictMap<V>
+DefaultSqlSessionFactory
+
+org.apache.ibatis.transaction
+Transaction接口
+JdbcTransaction, ManagedTransaction
+commit()
+getConnection()
+getTimeout()
+rollback()
+
+
+JdbcTransaction
+JdbcTransactionFactory
+
+ManagedTransaction
+ManagedTransactionFactory
+
+
+org.apache.ibatis.type
+
+TypeHandler
+
+
+ArrayTypeHandler, BaseTypeHandler, BigIntegerTypeHandler, BlobByteObjectArrayTypeHandler, BlobInputStreamTypeHandler, BlobTypeHandler, ByteArrayTypeHandler, ByteObjectArrayTypeHandler,  , ClobReaderTypeHandler, ClobTypeHandler, DateOnlyTypeHandler, DateTypeHandler, EnumOrdinalTypeHandler, EnumTypeHandler, InstantTypeHandler, , JapaneseDateTypeHandler, LocalDateTimeTypeHandler, LocalDateTypeHandler, LocalTimeTypeHandler, LongTypeHandler, MonthTypeHandler, NClobTypeHandler, NStringTypeHandler, ObjectTypeHandler, OffsetDateTimeTypeHandler, OffsetTimeTypeHandler, , SqlDateTypeHandler, SqlTimestampTypeHandler, SqlTimeTypeHandler, SqlxmlTypeHandler, TimeOnlyTypeHandler, UnknownTypeHandler, YearMonthTypeHandler, YearTypeHandler, ZonedDateTimeTypeHandler
+
+
+BigDecimalTypeHandler
+BooleanTypeHandler,
+ByteTypeHandler,
+IntegerTypeHandler
+ShortTypeHandler
+CharacterTypeHandler
+DoubleTypeHandler
+FloatTypeHandler
+StringTypeHandler
+
+
+
+
+getResult(CallableStatement cs, int columnIndex)
+getResult(ResultSet rs, int columnIndex)
+getResult(ResultSet rs, String columnName)
+setParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType)
+
+
+
+JdbcType
+
+ARRAY 
+BIGINT 
+BINARY 
+BIT 
+BLOB 
+BOOLEAN 
+CHAR 
+CLOB 
+CURSOR 
+DATALINK 
+DATE 
+DATETIMEOFFSET 
+DECIMAL 
+DISTINCT 
+DOUBLE 
+FLOAT 
+INTEGER 
+JAVA_OBJECT 
+LONGNVARCHAR 
+LONGVARBINARY 
+LONGVARCHAR 
+NCHAR 
+NCLOB 
+NULL 
+NUMERIC 
+NVARCHAR 
+OTHER 
+REAL 
+REF 
+ROWID 
+SMALLINT 
+SQLXML 
+STRUCT 
+TIME 
+TIME_WITH_TIMEZONE 
+TIMESTAMP 
+TIMESTAMP_WITH_TIMEZONE 
+TINYINT 
+UNDEFINED 
+VARBINARY 
+VARCHAR
+
+
+
+MapUtil
+computeIfAbsent(Map<K,V> map, K key, Function<K,V> mappingFunction)
+entry(K key, V value)
+
+
+
+
+org.apache.ibatis.scripting.xmltags
+
+SqlNode
+ChooseSqlNode, ForEachSqlNode, IfSqlNode, MixedSqlNode, SetSqlNode, StaticTextSqlNode, TextSqlNode, TrimSqlNode, VarDeclSqlNode, WhereSqlNode
+
+apply(DynamicContext context) 
+
+
+
+TextSqlNode表示的是包含${}占位符的动态SQL节点。它的接口实现方法如下
+
+@Override
+public boolean apply(DynamicContext context) {
+  //将动态SQL（带${}占位符的SQL）解析成完成SQL语句的解析器，即将${}占位符替换成实际的变量值
+  GenericTokenParser parser = createParser(new BindingTokenParser(context, injectionFilter));
+  //将解析后的SQL片段添加到DynamicContext中
+  context.appendSql(parser.parse(text));
+  return true;
+}
+
+MixedSqlNode是树枝，TextSqlNode是树叶
+https://blog.csdn.net/weixin_34240657/article/details/92407778
+
 mybatis 预编译代码
 https://blog.csdn.net/weixin_34452850/article/details/88991943
+MixedSqlNode会遍历调用内部各个sqlNode的apply方法。
 
+StaticTextSqlNode直接append sql文本。
+
+TrimSqlNode的apply方法也是调用属性contents(一般都是MixedSqlNode)的apply方法，按照实例也就是7个SqlNode，都是StaticTextSqlNode和IfSqlNode。 最后会使用FilteredDynamicContext过滤掉prefix和suffix。
+
+
+org.apache.ibatis.scripting
+LanguageDriver
+
+RawLanguageDriver, XMLLanguageDriver
+
+createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql)
+createSqlSource(Configuration configuration, String script, Class<?> parameterType)
+createSqlSource(Configuration configuration, XNode script, Class<?> parameterType)
+
+
+org.apache.ibatis.scripting.LanguageDriverRegistry
+getDefaultDriver() 
+getDefaultDriverClass() 
+getDriver(Class<? extends LanguageDriver> cls)
+register(Class<? extends LanguageDriver> cls) 
+register(Class<? extends LanguageDriver> cls) 
+
+org.apache.ibatis.binding
+MapperMethod
+MapperProxy<T>
+	MapperProxyFactory<T>
+MapperRegistry
+
+
+
+org.apache.ibatis.builder
+BaseBuilder
+CacheRefResolver
+MapperBuilderAssistant
+ParameterExpression
+ResultMapResolver
+SqlSourceBuilder
+StaticSqlSource
+
+
+
+org.apache.ibatis.builder.annotation
+
+ProviderMethodResolver
+Classes有
+MapperAnnotationBuilder
+MethodResolver
+ProviderContext
+ProviderSqlSource
+
+
+MyBatis mapper 注解过程中通过 LanguageDriver 实现动态 SQL
+https://blog.csdn.net/w_yunlong/article/details/79201509
+
+RawLanguageDriver, XMLLanguageDriver
+
+XMLScriptBuilder自带处理节点的方法parseDynamicTags生成需要的MixedSqlNode，而在parseDynamicTags方法内部可能会调用内部类WhereHandler、IfHandler的handleNode方法生成对应的SqlNode，而在这些handleNode方法中第一步就是调用parseDynamicTags去生成MixedSqlNode，根据MixedSqlNode生成对应的SqlNode。通过这种递归实现了节点多层嵌套的解析。
+https://www.163.com/dy/article/FSRBMFNB0531CIYN.html
+https://www.cnblogs.com/zhjh256/p/8512392.html
+https://www.cnblogs.com/fangjian0423/p/mybaits-dynamic-sql-analysis.html
 
 mybatis session类 api
 
@@ -502,4 +740,6 @@ git@github.com:edidada/ssm.git
 
 
 tk.mapper
+
+### OGNL
 

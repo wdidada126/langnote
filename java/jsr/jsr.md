@@ -4,6 +4,11 @@
 
 
 
+
+JSR-51
+
+
+
  Java Rule Engine API（JSR 94）
 
 - drtools与 Java Rule Engine API（JSR 94）兼容
@@ -12,6 +17,10 @@
 
 jsr305
 https://blog.csdn.net/JonasErosonAtsea/article/details/76038676
+
+
+JSR-000356 JavaTM API for WebSocket (Maintenance Release)
+https://jcp.org/aboutJava/communityprocess/mrel/jsr356/index.html
 
 websocket
 https://www.oracle.com/technical-resources/articles/java/jsr356.html
