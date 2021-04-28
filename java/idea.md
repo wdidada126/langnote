@@ -201,3 +201,11 @@ ar
 
 
 断点 idea条件 idea选中断点 右键
+
+
+
+idea mac ctrl o
+
+Win ctrl n 查找类
+
+https://www.jianshu.com/p/9812be1f746d
