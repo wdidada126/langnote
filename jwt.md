@@ -1,5 +1,17 @@
 # jwt
 
+
+https://github.com/Thalhammer/jwt-cpp
+
+
+jwtdemo git repo
+
+HMSC	RSA	ECDSA	PSS	EdDSA
+HS256	RS256	ES256	PS256	Ed25519
+HS384	RS384	ES384	PS384	Ed448
+HS512	RS512	ES512	PS512	
+
+
 https://stackoverflow.com/questions/26881296/spring-security-oauth2-full-authentication-is-required-to-access-this-resource
 
 https://segmentfault.com/q/1010000019185053/a-1020000019185166

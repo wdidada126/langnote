@@ -6,6 +6,12 @@ Jdk api doc
 
 Javadoc 看 记忆
 
+CompletableFuture 1.8的类
+CompletableFutureTest 
+
+Stream
+
+Streams
 
 
 java对象中primitive类型变量可以通过不提供set方法保证不被修改，但对象的List成员在提供get方法后，就可以随意add、remove改变其结构，这不是希望的结果。网上看了下，发现Collections的静态方法unmodifiableList可以达到目的。方法原型为：public static <T> List<T> unmodifiableList(List<? extends T> list);用法也很简单，传入一个List实例la，返回这个list的只读视图lb，类型依然是List。之后对lb进行add、remove等改变其内容的操作将导致编译不通过。

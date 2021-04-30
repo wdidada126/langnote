@@ -1,5 +1,7 @@
 # otter
 
+3年没维护了
+
 Otter是由阿里提供的基于数据库增量日志解析，准实时同步到本机房或异地机房MySQL数据库的一个分布式数据库同步系统，工作原理如下：
 ![otter architect](imgs/otter_architect.png)
 

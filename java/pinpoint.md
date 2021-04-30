@@ -1,14 +1,24 @@
 # pinpoint
 
-
+架构
+HBase (用于存储数据)
+Pinpoint Collector (信息的收集者，部署在tomcat中)
+Pinpoint Web (提供WEB_UI界面，部署在tomcat中)
+Pinpoint Agent (附加到 java 应用来做采样)
 
 韩国人开发的
 
 *Naver*公司(*Naver* Corporation)是一家韩国互联网内容服务运营商
 
-http://naver.github.io/pinpoint/
+http://naver.github.io/pinpoint/ 这个网页不存在了
 
+https://www.oschina.net/p/pinpoint
+Pinpoint 应用性能管理工具
 
+Java 开发的 编程语言
+https://github.com/pinpoint-apm/pinpoint
+
+中文资料：https://legacy.gitbook.com/book/skyao/learning-pinpoint/details
 
 [pinpoint插件开发之二：从零开始新建一个插件](https://blog.csdn.net/boling_cavalry/article/details/78568073)
 
