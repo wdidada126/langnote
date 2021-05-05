@@ -1,6 +1,8 @@
 # java spi
 
 
+jndi spi关系
+
 
 [高级开发必须理解的Java中SPI机制](https://www.jianshu.com/p/46b42f7f593c)
 

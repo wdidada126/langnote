@@ -1,5 +1,55 @@
 # jndi
 
+https://docs.oracle.com/javase/jndi/docs.html
+https://docs.oracle.com/javase/jndi/tutorial/getStarted/concepts/directory.html
+
+
+存储配置数据的地方
+ldap.md
+
+JavaEE规范学习（一）--- JNDI-阿里云开发者社区.mht
+https://developer.aliyun.com/article/50622
+
+JNDIUtil.java
+
+```java
+package com.learn.utils;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class JNDIUtil {
+
+    private static DataSource ds;
+
+    static {
+        // 读取数据源
+        try {
+            Context context = new InitialContext();
+            ds = (DataSource) context.lookup("java:comp/env/jdbc/mvc_db");
+
+
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Connection getConnection() throws SQLException {
+        return ds.getConnection();
+    }
+
+}
+
+```
+
+现在JNDI已经成为J2EE的标准之一，所有的J2EE容器都必须提供一个JNDI的服务。
+
+tomcat 数据源
+https://blog.csdn.net/cunchi4221/article/details/107478089
 jndi 例子
 
 testjdni

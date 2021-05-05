@@ -1,5 +1,12 @@
 # maven
 
+
+mvn dependency:resolve -Dclassifier=sources
+
+下载源码 maven
+idea windows下载jar包源码失败
+
+
 mvn clean install -s settings.xml -U -DskipTests -Dmaven.repo.local=/tmp/repo
 
 

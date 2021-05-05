@@ -1,6 +1,66 @@
 # JTA
 
 
+atomikos
+
+在上面JTA实现多数据源的事务管理，使用方式还是相对简单，通过两阶段的提交，可以同时管理多个数据源的事务。但是暴露出的问题也非常明显，就是比较严重的性能问题,由于同时操作多个数据源,如果其中一个数据源获取数据的时间过长,会导致整个请求都非常的长,事务时间太长,锁数据的时间就会太长，自然就会导致低性能和低吞吐量。
+
+因此在实际开发过程中，对性能要求比较高的系统很少使用JTA组件做事务管理。作为一个轻量级的分布式事务解决方案，在小的系统中还是值得推荐尝试的。
+
+最后作为Java下的API，原理和用法还是值得学习一下，开阔眼界和思路。
+
+*JTA*，即Java Transaction API，*JTA*允许应用程序执行分布式事务处理——在两个或多个网络计算机资源上访问并且更新数据。JDBC驱动程序的*JTA*支持极大地增强了数据访问能力。
+
+
+
+<dependency>
+    <groupId>javax.transaction</groupId>
+    <artifactId>jta</artifactId>
+    <version>1.1</version>
+</dependency>
+
+
+
+![java_spring_tx](imgs/java_spring_tx.png)
+
+
+
+https://blog.csdn.net/qingmuluoyang/article/details/82961801
+
+
+
+https://blog.csdn.net/weixin_30409927/article/details/105438267
+
+
+
+
+
+java.tranzaction.UserTransaction
+
+
+
+javax.persistence.EntityManager
+javax.persistence.EntityManagerFactory
+javax.persistence.EntityTransaction
+javax.persistence.Persistence
+
+
+
+<dependency>
+    <groupId>javax.persistence</groupId>
+    <artifactId>javax.persistence-api</artifactId>
+    <version>2.2</version>
+</dependency>
+
+
+
+
+
+<dependency>
+    <groupId>javax.persistence</groupId>
+    <artifactId>persistence-api</artifactId>
+    <version>1.0.2</version>
+</dependency>
 
 Java Transaction API，简称JTA
 

@@ -9,3 +9,13 @@ activemq-cpp
 git clone https://gitbox.apache.org/repos/asf/activemq-cpp.git
 cd activemq-cpp
 git checkout tags/3.9.5
+
+http://127.0.0.1:8161/
+
+
+61616
+
+activeMQ默认配置下启动会启动8161和61616两个端口，其中8161是mq自带的管理后台的端口，61616是mq服务默认端口 。
+8161是后台管理系统，61616是给java用的tcp端口。
+
+https://blog.csdn.net/u010994966/article/details/77895374

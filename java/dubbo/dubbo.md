@@ -50,7 +50,31 @@ http是url port 等等
 dubbo是zk ip port，直连，底层Netty，dubbo协议
 一个Java接口，通过方法参数传参。
 
+dubbo多了接口发现，接口下线
 
+http使用nginx做发在均衡，dubbo自带负载均衡
+
+http feign做序列化
+
+dubbo自带
+
+
+
+### dubbo cxf
+
+
+
+dubbo 协议
+rest 协议
+基于标准的Java REST API——JAX-RS 2.0（Java API for RESTful Web Services的简写）实现的REST调用支持
+http 协议
+hessian 协议
+redis 协议
+thrift 协议
+gRPC 协议
+memcached 协议
+rmi 协议
+webservice 协议
 
 
 
@@ -272,7 +296,7 @@ thrift grpc tars有没有？
 
 
 
-#### 
+#### rc
 
 zookeeper是注册中心
 

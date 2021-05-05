@@ -1,8 +1,11 @@
 # cxf
 
+
+WebService 有两个"标准"：
+JAX-WS也就是传统的基于 SOAP 协议的 WebService. 可以基于多种协议（HTTP、TCP 等），一般使用 CXF 或 Axis2 来进行开发。
+JAX-RS这就是你说的 Restful 风格的 WebService，限定于 HTTP 协议，一般使用 Restlet 或者 Jersey 来进行开发，SpringMVC 也提供了原生的支持（但 Spring MVC 目前并没有实现 JAX-RS，也不打算实现）
+
 github repo
-
-
 https://blog.csdn.net/shuaicihai/article/details/56036007
 
 本质是HTTP

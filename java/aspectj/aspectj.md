@@ -123,13 +123,30 @@ AspectJ是一个面向切面的AOP框架，AOP的织入方式分为编译期织�
 
 
 
-https://blog.csdn.net/u012477420/article/details/71981950
+[AspectJ使用示例](https://blog.csdn.net/u012477420/article/details/71981950)
 
 
 
 aspectj vs Spring AOP
 
 [比较Spring AOP与AspectJ](https://juejin.im/post/5a695b3cf265da3e47449471)
+
+
+
+简而言之，Spring AOP和AspectJ有不同的目标。
+ Spring AOP旨在通过Spring IoC提供一个简单的AOP实现，以解决编码人员面临的最常出现的问题。这并不是完整的AOP解决方案，它只能用于Spring容器管理的beans。
+
+另一方面，AspectJ是最原始的AOP实现技术，提供了完整的AOP解决方案。AspectJ更为健壮，相对于Spring AOP也显得更为复杂。值得注意的是，AspectJ能够被应用于所有的领域对象。
+
+Spring AOP 是一个基于代理的AOP框架。这意味着，要实现目标对象的切面，将会创建目标对象的代理类。这可以通过下面两种方式实现：
+
+- JDK动态代理：Spring AOP的首选方法。 每当目标对象实现一个接口时，就会使用JDK动态代理。
+- CGLIB代理：如果目标对象没有实现接口，则可以使用CGLIB代理。
+
+
+
+
+
 
 [Aspectj中call与execution区别，织入代码位置不同](https://blog.csdn.net/Dax1n/article/details/81944975)
 
@@ -171,23 +188,16 @@ ajc编译器
 
 
 
-
-https://www.jianshu.com/p/f9acae180f81
-
+[AspectJ 入门](https://www.jianshu.com/p/f9acae180f81)
 
 
 
 
-
-
-https://www.jianshu.com/p/f9acae180f81
 
 
 https://www.eclipse.org/aspectj/doc/released/progguide/examples-howto.html
 
 
 
-AspectJ在Spring中的使用
-
-https://www.jianshu.com/p/958af6a90477
+[AspectJ在Spring中的使](https://www.jianshu.com/p/958af6a90477)
 
