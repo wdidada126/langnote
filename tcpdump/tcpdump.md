@@ -1,12 +1,20 @@
 # tcpdump
 
+如何为Tcpdump指定主机，端口和协议
+https://blog.csdn.net/cunjiu9486/article/details/109075736
+
+tcpdump tcp port 8500 -n -X -s 0
+抓包http，显示数据内容 测试显示不全
+
+tcpdump tcp port 8500 -n -s 0 -w /tmp/tcp.cap
+
 yum install tcpdump -y
 
 [Linux 网络分析必备技能：tcpdump 实战详解](https://mp.weixin.qq.com/s/vzNgYRZigR1Buay17gcfrg)
 
 tcpdump -i -s 0 
 
-
+tcpdump -X -ni eth0 src host 36.7.110.63 dst port 8500
 
 centos 6 7
 

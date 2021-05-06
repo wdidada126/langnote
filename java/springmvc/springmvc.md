@@ -270,4 +270,85 @@ handleradaptor
 moduleAndview
 
 
+springweb
 
+- RestTemplate
+- AsyncRestTemplate
+
+自带http客户端
+
+
+spring 源码分析 CommonsMultipartFile 如何base64解码
+https://blog.csdn.net/qq_41615095/article/details/80781933
+https://blog.csdn.net/weixin_42319989/article/details/102504418
+
+
+
+精尽Spring MVC源码分析 - MultipartResolver 组件
+https://www.cnblogs.com/lifullmoon/p/14136982.html
+
+
+```java
+public interface MultipartResolver {
+    /**
+     * 是否为 multipart 请求
+     */
+    boolean isMultipart(HttpServletRequest request);
+    /**
+     * 将 HttpServletRequest 请求封装成 MultipartHttpServletRequest 对象
+     */
+    MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException;
+
+    /**
+     * 清理处理 multipart 产生的资源，例如临时文件
+     */
+    void cleanupMultipart(MultipartHttpServletRequest request);
+}
+```
+
+```java
+public interface MultipartRequest {
+    Iterator<String> getFileNames();
+    MultipartFile getFile(String name);
+    List<MultipartFile> getFiles(String name);
+    Map<String, MultipartFile> getFileMap();
+    MultiValueMap<String, MultipartFile> getMultiFileMap();
+    String getMultipartContentType(String paramOrFileName);
+}
+```
+
+
+
+org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.StandardMultipartFile#transferTo
+
+
+
+    at org.springframework.http.client.SimpleBufferingClientHttpRequest.executeInternal(SimpleBufferingClientHttpRequest.java:78)
+    at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+    at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:53)
+    at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:652)
+
+
+RestTemplate 可以使用Netty实现
+
+```java
+    Bootstrap bootstrap = new Bootstrap();
+    bootstrap.group(this.eventLoopGroup).channel(NioSocketChannel.class)
+            .handler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                protected void initChannel(SocketChannel channel) throws Exception {
+                    configureChannel(channel.config());
+                    ChannelPipeline pipeline = channel.pipeline();
+                    if (isSecure) {
+                        Assert.notNull(sslContext, "sslContext should not be null");
+                        pipeline.addLast(sslContext.newHandler(channel.alloc(), uri.getHost(), uri.getPort()));
+                    }
+                    pipeline.addLast(new HttpClientCodec());
+                    pipeline.addLast(new HttpObjectAggregator(maxResponseSize));
+                    if (readTimeout > 0) {
+                        pipeline.addLast(new ReadTimeoutHandler(readTimeout,
+                                TimeUnit.MILLISECONDS));
+                    }
+                }
+            });
+```

@@ -1,5 +1,11 @@
 # consul
 
+github repo
+https://github.com/edidada/testconsul
+
+curl http://127.0.0.1:8500/v1/catalog/services
+
+
 ==> Multiple private IPv4 addresses found. Please configure one with 'bind' and/or 'advertise'.
 https://blog.csdn.net/xujiamin0022016/article/details/106822637
 
