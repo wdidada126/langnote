@@ -1,5 +1,138 @@
 # testjdk8
 
+jdk8 new api
+
+jdk8新特性之一Lambda表达式
+jdk8新特性之二方法引用
+jdk8新特性之三函数式接口
+jdk8新特性之四默认方法
+jdk8新特性之五Stream API
+jdk8新特性之六Optional类
+jdk8新特性之七Nashorn JavaScript
+jdk8新特性之八日期时间API
+jdk8新特性之九Base64
+
+java.util.Base64
+
+
+[java8教程--类ValueRange用法](http://www.1024sky.cn/blog/article/5327)
+
+
+jdk8 更新日志
+https://www.java.com/zh-CN/download/help/release_changes.html
+
+JDK7 AIO 入门（一）------AsynchronousFileChannel
+https://blog.csdn.net/wang252949/article/details/78678215
+java.nio.channels.Selector 用法
+[Java NIO之Selector（选择器）](https://www.cnblogs.com/snailclimb/p/9086334.html)
+写进testjdk8
+
+
+java.nio.channels.spi.SelectorProvider#provider
+
+
+```shell
+    public static SelectorProvider provider() {
+        synchronized (lock) {
+            if (provider != null)
+                return provider;
+            return AccessController.doPrivileged(
+                new PrivilegedAction<SelectorProvider>() {
+                    public SelectorProvider run() {
+                            if (loadProviderFromProperty())
+                                return provider;
+                            if (loadProviderAsService())
+                                return provider;
+                            provider = sun.nio.ch.DefaultSelectorProvider.create();
+                            return provider;
+                        }
+                    });
+        }
+    }
+```
+
+
+java.nio.channels.spi.SelectorProvider#loadProviderAsService
+
+```java
+        ServiceLoader<SelectorProvider> sl =
+            ServiceLoader.load(SelectorProvider.class,
+                               ClassLoader.getSystemClassLoader());
+```
+
+
+Selector (java.nio.channels)
+    AbstractSelector (java.nio.channels.spi)
+        SelectorImpl (sun.nio.ch)
+            WindowsSelectorImpl (sun.nio.ch)
+
+
+java.nio.ByteBuffer用法小结
+https://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html
+https://blog.csdn.net/mrliuzhao/article/details/89453082
+
+AsynchronousByteChannel 接口 有read write方法
+
+AsynchronousChannel 接口 有close方法
+
+Channel
+
+public boolean isOpen();
+public void close() throws IOException;
+
+
+AsynchronousChannelGroup
+
+
+ScatteringByteChannel是一个接口，对应的File流、TCP、UDP及管道有四个实现，FileChannel、DatagramChannel、SocketChannel及Pipe.SourceChannel
+https://blog.csdn.net/u010659877/article/details/108983748
+
+
+JDK7新特性：MulticastChannel实现非阻塞式组播通信
+https://blog.csdn.net/code727/article/details/84419381
+
+
+FileChannel
+java.io.FileInputStream#getChannel
+
+java.nio.channels.FileChannel#transferTo
+
+
+
+java.nio.channels.FileChannel#write(java.nio.ByteBuffer)
+
+java.nio.channels.FileChannel#read(java.nio.ByteBuffer)
+
+
+java.nio.channels.FileLock#isValid()
+
+java.nio.channels.FileLock#release()
+
+java.nio.channels.FileChannel#tryLock()
+
+
+JSR-51
+
+AbstractInterruptibleChannel (java.nio.channels.spi)
+    SelectableChannel (java.nio.channels)
+        AbstractSelectableChannel (java.nio.channels.spi)
+            SctpMultiChannel (com.sun.nio.sctp)
+                SctpMultiChannelImpl (sun.nio.ch.sctp)
+            SocketChannel (java.nio.channels)
+                SocketChannelImpl (sun.nio.ch)
+            SctpChannel (com.sun.nio.sctp)
+                SctpChannelImpl (sun.nio.ch.sctp)
+            SctpServerChannel (com.sun.nio.sctp)
+                SctpServerChannelImpl (sun.nio.ch.sctp)
+            SinkChannel in Pipe (java.nio.channels)
+                SinkChannelImpl (sun.nio.ch)
+            DatagramChannel (java.nio.channels)
+                DatagramChannelImpl (sun.nio.ch)
+            SourceChannel in Pipe (java.nio.channels)
+                SourceChannelImpl (sun.nio.ch)
+            ServerSocketChannel (java.nio.channels)
+                ServerSocketChannelImpl (sun.nio.ch)
+
 
 
 Jdk api doc

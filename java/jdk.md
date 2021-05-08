@@ -1,6 +1,10 @@
 # jdk
 
 
+jdk SelectorProvider
+spi
+
+
 
 jsr
 
@@ -24,7 +28,7 @@ java为何要设计Cloneable这个接口clone这个方法很奇怪，它在Objec
 
 
 
-**Cloneable 本身就是个比较鸡肋的接口，尽量避免使用。**
+Cloneable 本身就是个比较鸡肋的接口，尽量避免使用。
 
 
 
