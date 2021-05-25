@@ -1,5 +1,7 @@
 # docker
 
+docker linux上是正宗的，Windows macos上是vm
+
 [docker](https://jingyan.baidu.com/article/aa6a2c142dc2774c4c19c4ca.html)
 C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx
 

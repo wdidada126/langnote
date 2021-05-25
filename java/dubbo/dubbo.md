@@ -12,6 +12,13 @@ doc
 https://dubbo.apache.org/zh/docs/v2.7/dev/source/dubbo-spi/
 
 
+dubbo 注册中心支持redis zk nacos
+负载均衡算法支持
+网络协议支持
+
+Dubbo 如何测试
+类比http测试 ip 端口 发送报文
+
 dubbo
 lb 负载均衡
 https://www.cnblogs.com/wyq178/p/9822731.html

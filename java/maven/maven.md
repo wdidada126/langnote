@@ -3,6 +3,8 @@
 
 mvn dependency:resolve -Dclassifier=sources
 
+mvn dependency:tree
+
 下载源码 maven
 idea windows下载jar包源码失败
 
@@ -658,6 +660,7 @@ Maven对settings.xml配置的官方说明文档。http://maven.apache.org/settin
 Maven对password进行加密配置的说明文档。http://maven.apache.org/guides/mini/guide-encryption.html
 
 [maven跳过单元测试-maven.test.skip和skipTests的区别](https://blog.csdn.net/arkblue/article/details/50974957)
+mvn package -Dmaven.test.skip=true
 
 ## plugin
 

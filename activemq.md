@@ -1,5 +1,14 @@
 # activemq
 
+
+编程语言java
+https://github.com/apache/activemq
+
+https://activemq.apache.org/maven/apidocs/
+https://activemq.apache.org/components/classic/documentation
+https://activemq.apache.org/
+
+
 activemq-cpp
 
 
@@ -19,3 +28,6 @@ activeMQ默认配置下启动会启动8161和61616两个端口，其中8161是mq
 8161是后台管理系统，61616是给java用的tcp端口。
 
 https://blog.csdn.net/u010994966/article/details/77895374
+
+ActiveMQ "Classic"  JMS 1.1
+ActiveMQ Artemis    JMS 2.0

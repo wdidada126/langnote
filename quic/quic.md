@@ -6,7 +6,9 @@ Quick UDP Internet Connections
 msquic
 
 https://github.com/microsoft/msquic
-
+lsquic
+https://github.com/litespeedtech/lsquic-client
+vcpkg install lsquic
 
 
 quic 基于udp，是传输层？协议

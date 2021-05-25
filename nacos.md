@@ -36,3 +36,57 @@ startup.cmd
 2020-04-29 16:51:23,165 INFO Completed initialization in 20 ms
 ```
 
+
+### nacos api
+
+服务注册&发现和配置管理
+服务注册
+curl -X POST 'http://127.0.0.1:8848/nacos/v1/ns/instance?serviceName=nacos.naming.serviceName&ip=20.18.7.10&port=8080'
+
+服务发现
+curl -X GET 'http://127.0.0.1:8848/nacos/v1/ns/instance/list?serviceName=nacos.naming.serviceName'
+
+发布配置
+curl -X POST "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&group=test&content=HelloWorld"
+
+获取配置
+curl -X GET "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&group=test"
+
+name service
+config service
+
+startup.cmd -m standalone
+
+
+
+nacos 分布式部署 如何解决分布式一致性问题
+
+Nacos如何实现Raft算法与Raft协议原理详解
+https://blog.csdn.net/qq_34820803/article/details/107978204
+
+
+https://my.oschina.net/u/3232343/blog/4347715
+
+spring-cloud-starter-alibaba-nacos-config
+spring-cloud-starter-alibaba-nacos-discovery
+
+通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-config 实现配置的动态变更。
+通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现服务的注册与发现。
+
+
+通过 Nacos Server 和 nacos-config-spring-boot-starter 实现配置的动态变更；
+通过 Nacos Server 和 nacos-discovery-spring-boot-starter 实现服务的注册与发现。
+
+
+
+
+最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：
+
+专门针对Java语言的：Kryo，FST等等
+跨语言的：Protostuff，ProtoBuf，Thrift，Avro，MsgPack等等
+
+
+
+ldap
+https://docs.spring.io/spring-ldap/docs/1.3.2.RELEASE/reference/html/
+

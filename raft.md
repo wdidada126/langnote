@@ -21,7 +21,8 @@ https://blog.csdn.net/LU_ZHAO/article/details/104934220
 
 
  [braft]( https://github.com/baidu/braft ) 
-
+SOFAJRaft
+https://gitee.com/sofastack/sofa-jraft
 
 https://github.com/Tencent/phxpaxos
 

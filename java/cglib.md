@@ -29,8 +29,9 @@ filter method1
 mmmmmmmmm
 ```
 
-- TestInterfaceMaker
-- CglibProxy
+- TestCglib
+- TestCglibFilter
+- GCLibTest
 
 ```shell script
 Cglib动态代理，监听开始！
@@ -67,19 +68,21 @@ net.sf.cglib.proxy.Enhancer
 
 ```java
 new Enhancer()
+setSuperclass()
 net.sf.cglib.proxy.Enhancer#create(java.lang.Class, java.lang.Class[], net.sf.cglib.proxy.Callback)
 net.sf.cglib.proxy.Enhancer#setCallbacks
 
 net.sf.cglib.proxy.Enhancer#setCallbackFilter
 ```
 
-net.sf.cglib.proxy.MethodInterceptor
+net.sf.cglib.proxy.MethodInterceptor 等同于InvocationHandler
 
 ```java
 public Object intercept(Object obj, Method method, Object[] params,
                         MethodProxy proxy)
 ```
-
+MethodProxy
+public Object invokeSuper(Object obj, Object[] args)
 
 
 net.sf.cglib.proxy.CallbackFilter

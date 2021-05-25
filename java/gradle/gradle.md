@@ -1,5 +1,7 @@
 # gradle
 
+spring ldap 构建系统用gradle，运行失败
+
 grovvy
 
 gradle配置项，有json字符串格式的

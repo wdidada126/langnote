@@ -7,3 +7,6 @@ https://www.cnblogs.com/wilburxu/p/9174353.html
 
 LDAP是一种通讯协议
 https://www.jianshu.com/p/7e4d99f6baaf
+
+适合读多写少场景
+

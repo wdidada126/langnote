@@ -19,3 +19,8 @@ org.springframework.jdbc.datasource.DataSourceTransactionManager
 
     @Transactional(propagation=Propagation.REQUIRED , isolation = Isolation.DEFAULT)
 
+
+
+TransactionManager rdmbs
+jms
+
