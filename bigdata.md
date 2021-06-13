@@ -43,3 +43,10 @@ bigdata.png
 4. 某著名页游运营大数据分析系统
 5. 精准广告推送DMP系统
 6. 共享单车数据分析系统
+
+
+spark
+kafka
+flume
+zk
+sckla

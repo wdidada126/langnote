@@ -1,6 +1,9 @@
 # raft
 
 
+https://www.bilibili.com/video/BV1CK4y127Lj
+
+
 https://github.com/RedisLabs/redisraft
 
 

@@ -6,6 +6,17 @@ SysBench
 flexAsynch
 
 
+mysql支持的数据类型 json
+text
+varchar
+date
+timestamp
+
+
+https://dev.mysql.com/doc/refman/5.7/en/json.html
+
+
+
 05 如何设计高性能的索引
 
 icp 索引下推

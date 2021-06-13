@@ -62,10 +62,17 @@ LinkedIn三人小组离职创立Confluent，已获690万美元融资
 
 https://blog.csdn.net/icycode/article/details/80034774
 
+
+kfuka ui
+https://github.com/linxin26/kafka-monitor
+
+
+
 个人kafka测试代码
 bitbucket.org/sandisks/kafkatest
 
 kafka集群依赖zk
+最新版本不依赖
 
 kafka
 maven包

@@ -1,5 +1,30 @@
 # mybatis
 
+https://blog.csdn.net/wrs120/article/details/82530653
+
+```xml
+org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 4
+
+    at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+    at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+    at com.sun.proxy.$Proxy68.selectOne(Unknown Source)
+    at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166)
+```
+
+```xml
+　　<update>
+　　　　update user 
+　　　　<set>
+　　　　　　<if test="name != null and name.length()>0">name = #{name},</if>
+　　　　　　<if test="gender != null and gender.length()>0">gender = #{gender},</if>
+　　　　</set>
+　　　　where id = #{id}
+　　</update>
+```
+
+mybatis动态SQL中的set标签的使用
+https://www.cnblogs.com/qiankun-site/p/5758383.html
+
 
 mybatis api doc
 https://mybatis.org/mybatis-3/apidocs/index.html
