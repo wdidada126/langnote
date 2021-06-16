@@ -32,6 +32,18 @@ http://ifeve.com/amdahls-law/
 
 AtomicInteger内部是通过jni调用了特定平台的cas指令
 
+intel平台的cas指令
+
+arm
+
+power
+
+amd
+
+还是x86？
+
+
+
 原子类，需要看java标准库源码
 
 https://github.com/edidada/testcasslution

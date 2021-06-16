@@ -1,5 +1,24 @@
 # http
 
+
+HTTP origin refer
+
+1. Host
+描述请求将被发送的目的地，包括，且仅仅包括域名和端口号。
+在任何类型请求中，request都会包含此header信息。
+2. Origin
+用来说明请求从哪里发起的，包括，且仅仅包括协议和域名。
+这个参数一般只存在于CORS跨域请求中，可以看到response有对应的header：Access-Control-Allow-Origin。
+3. Referer
+告知服务器请求的原始资源的URI，其用于所有类型的请求，并且包括：协议+域名+查询参数（注意，不包含锚点信息）。
+因为原始的URI中的查询参数可能包含ID或密码等敏感信息，如果写入referer，则可能导致信息泄露。
+————————————————
+版权声明：本文为CSDN博主「皮皮灬虾」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_41791345/article/details/79546540
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
+
 [Http请求中Content-Type](https://www.cnblogs.com/klb561/p/10090540.html)
 
 [ietf http 2.0 翻译](https://blog.csdn.net/violet_chengxiao/article/details/45335905)

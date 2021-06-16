@@ -2,6 +2,10 @@
 
 json规范，需要读一下
 
+
+
+[Jackson实现序列化和反序列化](https://blog.csdn.net/wus_shang/article/details/79286544)
+
 Spring用
 Jackson是一个 Java 的用来处理 JSON 格式数据的类库，性能非常好。
 
