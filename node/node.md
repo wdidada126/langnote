@@ -16,4 +16,17 @@ npm config set cache "D:\devtools\node\node_cache"
 
 https://www.jianshu.com/p/dadd0d5354d6
 
+nodejs新建项目
 
+mkdir -p testnodeproject
+cd/d testnodeproject
+npm init -y
+npm install -y
+
+node src/main.js
+
+ts
+tsc命令行
+
+tsc xxx.ts
+产生xxx.js

@@ -61,7 +61,7 @@ systemctl disable redis.service
 
 https://forum.redislabs.com/
 
-#### sentinel
+#### sentinel 2.8支持
 
 /etc/redis-sentinel.conf
 

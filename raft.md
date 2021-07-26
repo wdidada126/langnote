@@ -15,11 +15,12 @@ paxos
 
 图示
 
-[raft中文翻译](https://www.infoq.cn/article/raft-paper/)
+[raft论文中文翻译](https://www.infoq.cn/article/raft-paper/)
 
 
 
-https://blog.csdn.net/LU_ZHAO/article/details/104934220
+[Raft 分布式系统 一致性协议](https://blog.csdn.net/LU_ZHAO/article/details/104934220)
+time out信号
 
 
 
@@ -66,7 +67,7 @@ https://www.zhihu.com/question/266834707
 
 - Leader election.
 - Replication and recovery.
-- Snapshot and log compaction.
+- Snapshot and log compaction.      日志压缩
 - Membership management.
 - Fully concurrent replication.
 - Fault tolerance.
