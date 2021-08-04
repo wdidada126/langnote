@@ -1,9 +1,6 @@
 # shardingsphere
 
 
-
-
-
 vitess 竞品
 
 amoeba 竞品
@@ -11,7 +8,7 @@ dble https://github.com/actiontech/dble
 mycat
 sqlproxy https://github.com/sysown/proxysql
 https://www.cnblogs.com/f-ck-need-u/p/9300829.html
-
+cobar 阿里巴巴
 
 DBCP，C3P0，Druid, HikariCP 数据库连接池
 

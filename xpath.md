@@ -2,6 +2,11 @@
 
 xpath之于XML 就好比SQL 语言之于数据库。
 
+xpath chrome插件
+
+https://github.com/google/xpaf
+
+XPath Helper：chrome爬虫网页解析工具
 
 W3C 标准
 万维网联盟（外语缩写：W3C）标准不是某一个标准，而是一系列标准的集合。
@@ -23,3 +28,16 @@ https://www.w3.org/TR/xpath/
 3.0
 2.0 (Second Edition)
 1.0
+
+
+https://www.w3school.com.cn/xpath/xpath_syntax.asp
+
+
+| 表达式   | 描述                                                       |
+| -------- | ---------------------------------------------------------- |
+| nodename | 选取此节点的所有子节点。                                   |
+| /        | 从根节点选取。                                             |
+| //       | 从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。 |
+| .        | 选取当前节点。                                             |
+| ..       | 选取当前节点的父节点。                                     |
+| @        | 选取属性。                                                 |
