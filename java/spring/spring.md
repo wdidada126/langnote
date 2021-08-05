@@ -1,5 +1,11 @@
 # Spring
 
+问： ${jdbc.url}
+注入失败 如何排错
+
+打印spring ioc中所有的数据
+String类型的
+
 springframework
 https://docs.spring.io/spring-framework/docs/5.2.14.RELEASE/javadoc-api/
 

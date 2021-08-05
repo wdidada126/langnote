@@ -1,5 +1,9 @@
 # xpath
 
+chrome xpath helper 选中节点 -> copy > copy xpath
+https://blog.csdn.net/love666666shen/article/details/72613143
+
+
 xpath之于XML 就好比SQL 语言之于数据库。
 
 xpath chrome插件
