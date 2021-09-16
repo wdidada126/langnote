@@ -3,6 +3,8 @@
 
 ui工具 oracle develop 自带的
 
+idea datasource
+
 自增 存储过程
 int 没有 只有number
 datetime -> date
@@ -130,7 +132,7 @@ https://www.cnblogs.com/qingxinblog/p/4043173.html
 
 
 Oracle 服务名/实例名，Service_name 和Sid的区别
-
+Service Name
 
 Service_name 和Sid的区别
 Service_name：该参数是由oracle8i引进的。
@@ -196,7 +198,7 @@ sysoper
 
 https://www.cnblogs.com/sunnyliu357/articles/2301738.html
 
-
+orcl or（a cl（e 去掉 a e
 
 Oracle RAC
 
@@ -652,4 +654,6 @@ username/pwd
 连接指定是数据库
 
 
+### fucntion
+sysdate
 

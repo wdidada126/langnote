@@ -2,6 +2,15 @@
 
 testshiro gitee repo
 
+shrio springboot
+
+web
+认证
+Authrization
+
+token
+jwt
+auth0.
 
 Shiro的AOP横切模式-注解权限控制
 https://www.cnblogs.com/BINGJJFLY/p/9066524.html

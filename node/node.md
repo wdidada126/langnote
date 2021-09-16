@@ -1,5 +1,7 @@
 # node
 
+vscode调试Node.js指南
+node --inspect
 
 node.js和typescript什么关系呢？
 js的语言部分（包括语法以及基础类型和函数），叫做ecmascript，下称es
@@ -61,3 +63,5 @@ tsc xxx.ts
 产生xxx.js
 
 http://nodejs.cn/api/async_hooks.html
+
+node 环境变量

@@ -17,6 +17,9 @@ https://docs.python.org/zh-cn/3.6/download.html
 python 元编程 metaclass
 python基本数据结构
 dict
+triple
+List
+
 
 python元编程详解
 https://www.jianshu.com/p/644d309b504e
@@ -63,7 +66,15 @@ python3
 
 yum -y install python3
 
+pip show socketio
+查看安装的socketio版本信息
 
+setuptools
+
+whl
+pytl打包工具
+
+pkg打包www
 
 IUS软件源
 
