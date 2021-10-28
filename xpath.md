@@ -5,6 +5,7 @@ https://blog.csdn.net/love666666shen/article/details/72613143
 
 
 xpath之于XML 就好比SQL 语言之于数据库。
+ognl之于java Object
 
 xpath chrome插件
 
