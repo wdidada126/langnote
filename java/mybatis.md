@@ -1,5 +1,47 @@
 # mybatis
 
+
+
+mybatis Insert
+
+public String Id
+
+Get/set
+
+
+
+<insert values(#Id)
+
+报错
+
+
+
+mybatis 源码 类
+
+
+
+MapperProxy
+
+
+
+ognl
+
+Java类 xml文件 映射 填充sql
+
+
+
+<trim
+
+<foreach
+
+
+
+jdbcTemplate
+
+
+
+
+
 https://blog.csdn.net/wrs120/article/details/82530653
 
 ```xml

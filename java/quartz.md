@@ -14,4 +14,25 @@ https://mvnrepository.com/artifact/opensymphony
 
 quartzdemo gitee repo
 
+https://gitee.com/edidada/quartzdemo
+
+
+
+#  
+
+quartz
+
+
+
+spring-context-support 三块 cache mail schedule
+
+
+
+Cron表达式 什么时候
+
+Job 做什么
+
+元数据存哪儿？
+
+
 
