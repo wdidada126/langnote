@@ -2,6 +2,34 @@
 
 
 
+
+
+mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
+
+mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
+
+mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑. 总体说来mybatis 动态SQL 语句主要有以下几类:
+
+1. if 语句 (简单的条件判断)
+
+2. choose (when,otherwize) ,相当于java 语言中的 switch ,与 jstl 中的choose 很类似.
+
+3. trim (对包含的内容加上 prefix,或者 suffix 等，前缀，后缀)
+
+4. where (主要是用来简化sql语句中where条件判断的，能智能的处理 and or ,不必担心多余导致语法错误)
+
+5. set (主要用于更新时)
+
+6. foreach (在实现 mybatis in 语句查询时特别有用)
+
+
+
+Include sql if
+
+
+
+
+
 mybatis Insert
 
 public String Id
@@ -92,7 +120,6 @@ SqlSession session子包
 	selectList(String statement, Object parameter)
 	selectList(String statement, Object parameter, RowBounds rowBounds)
 
-
 SqlSessionFactory
 子类
 	DefaultSqlSessionFactory, SqlSessionManager
@@ -158,7 +185,6 @@ CharacterTypeHandler
 DoubleTypeHandler
 FloatTypeHandler
 StringTypeHandler
-
 
 
 
@@ -243,6 +269,13 @@ public boolean apply(DynamicContext context) {
 }
 
 MixedSqlNode是树枝，TextSqlNode是树叶
+
+MixedSqlNode是树枝，TextSqlNode是树叶
+
+MixedSqlNode是树枝，TextSqlNode是树叶
+
+
+
 https://blog.csdn.net/weixin_34240657/article/details/92407778
 
 mybatis 预编译代码
@@ -456,7 +489,6 @@ SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, InitializingBea
 ![四大金刚 mybatis plugin](../imges/mybatis_plugin.png)
 
 http://www.mybatis.cn/archives/685.html
-
 
 Spring源码深度分析
 第9章
