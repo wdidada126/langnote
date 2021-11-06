@@ -4,6 +4,18 @@ testshiro gitee repo
 
 shrio springboot
 
+
+
+shiro authc和user的区别
+前者是认证过，后者是登录过，如果开启了Readmemberme功能的话，后者也是可以通过的，而前者通过不了。
+
+
+需要写一个user权限接口的例子
+
+
+
+
+
 web
 认证
 Authrization

@@ -12,6 +12,10 @@ https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2
 
 
 
+oauth2协议中文翻译
+
+http://ifeve.com/oauth2-tutorial-all/
+
 
 
 oauth
