@@ -2,6 +2,20 @@
 
 docker linux上是正宗的，Windows macos上是vm
 
+
+
+docker run xxx 从镜像中启动一个容器实例
+
+
+
+docker ps 运行的container
+
+docker ps -a 所有container
+
+Docker start
+
+
+
 [docker](https://jingyan.baidu.com/article/aa6a2c142dc2774c4c19c4ca.html)
 C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx
 
