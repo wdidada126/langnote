@@ -7,7 +7,21 @@ Massively Parallel Postgres for Analytics
 Experience Greenplum Database, an open-source massively parallel data platform for analytics, machine learning and AI 
 
 
+
+支持存储过程debug
+
+
+
+sp（存储过程的作用
+
+编程，避免大量的sql中间数据在网络上传输
+
+
+
+
+
 ### windows 10 安装版本
+
 PostgreSQL 10.8
 [PostgreSQL查看版本信息](https://blog.csdn.net/kmblack1/article/details/78721653)
 

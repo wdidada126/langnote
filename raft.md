@@ -6,7 +6,6 @@ https://www.bilibili.com/video/BV1CK4y127Lj
 
 https://github.com/RedisLabs/redisraft
 
-
 2pc
 3pc
 共识算法？
@@ -24,6 +23,12 @@ time out信号
 
 
 
+raft动画
+
+http://thesecretlivesofdata.com/raft/
+
+
+
  [braft]( https://github.com/baidu/braft ) 
 SOFAJRaft
 https://gitee.com/sofastack/sofa-jraft
@@ -31,7 +36,6 @@ https://gitee.com/sofastack/sofa-jraft
 https://github.com/Tencent/phxpaxos
 
 [腾讯开源的Paxos库PhxPaxos代码解读---Prepare阶段]( https://www.cnblogs.com/lijingshanxi/p/10165802.html ) 
-
 
 https://www.zhihu.com/question/266834707 
 作者：我做分布式系统
@@ -44,7 +48,7 @@ https://www.zhihu.com/question/266834707
 
 - 没有WAN高延迟环境数据，没有读的性能，没有延迟数据。实测的是log从propose到commit的性能，这不是通常的做法。文档提到类似的库粗糙不适合支持大量raft实例，但文档和benchmark中都看不到多个raft实例的实测性能或者具体设计。
 - 作者提到了多组，但这库并不带调度、管理、监控修复多组raft的组件。没看代码，也不确定多组，比如数千组的时候，线程模型是怎么样。
-- 22万qps的单组性能不算高，且测的方法只测到commit。损失单组为多组优化的系统，也应该能跑类似成绩。**后台服务跑分不是目的，但跑分从一个侧面体现系统从设计到实现的质量。**
+- 22万qps的单组性能不算高，且测的方法只测到commit。损失单组为多组优化的系统，也应该能跑类似成绩。后台服务跑分不是目的，但跑分从一个侧面体现系统从设计到实现的质量。
 - 作者认为batching是跑分的手段，是等特定的时间间隔、或等N个proposal然后合并处理，是显著的延迟换吞吐。显然，事实不是这样。请参考etcd raft的batching做法。
 - 测试方法没有在文档中提到。和一般项目不同，共识库必须有近乎严酷加无聊的测试。代码中看到有内空的jepsen目录。Jepsen是系统成熟的必要非充分条件，因为它伸展不开，建议类似jepsen的测试，跑百万数量级的raft组，注入数亿规模随机异常事件，然后测linearizability。test目录有少许测试，测试的规模较小，自己的raft库测试代码就2万行，超过braft整个库大小。测试代码规模差数倍，说明问题的。
 - 单语言支持，不带其它语言的binding。
@@ -118,6 +122,12 @@ https://zhuanlan.zhihu.com/p/27207160
 有一个raft的在线动画演示，可以点击节点控制宕机和重启
 
 https://raft.github.io/
+
+
+
+
+
+Asymmetric 不对称; 不对等的;
 
 
 
