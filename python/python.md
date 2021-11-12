@@ -11,6 +11,16 @@
 
 
 
+
+
+解决TypeError:'twophase' is an invalid keyword argumet for this function（附：pandas连接oracle）
+
+https://blog.csdn.net/DYyunzhongxian/article/details/102521288/
+
+
+
+
+
 报错内容：TypeError: expected bytes-like object, not str
 
 例：

@@ -2,6 +2,8 @@
 
 
 
+[springboot打印mybatis的sql语句](https://blog.csdn.net/qq_41345773/article/details/90178017)
+
 
 
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
