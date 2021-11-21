@@ -107,3 +107,5 @@ pip install pyautogui
 
 https://gitee.com/edidada/mytestpro-master
 
+
+- selenium2自动化测试指南

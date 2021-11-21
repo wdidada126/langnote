@@ -56,3 +56,6 @@ javascript { "sub": "1234567890", "name": "John Doe", "admin": true }
 注意，JWT 默认是不加密的，任何人都可以读到，所以不要把秘密信息放在这个部分。
 这个 JSON 对象也要使用 Base64URL 算法转成字符串。
 
+https://github.com/auth0/java-jwt
+
+https://jwt.io/libraries?language=Java
