@@ -1,6 +1,25 @@
 # http
 
 
+
+Content-disposition 是 MIME 协议的扩展，MIME 协议指示 MIME 用户代理如何显示附加的文件。Content-disposition其实可以控制用户请求所得的内容存为一个文件的时候提供一个默认的文件名，文件直接在浏览器上显示或者在访问时弹出文件下载对话框。
+格式说明： content-disposition = "Content-Disposition" ":" disposition-type *( ";" disposition-parm ) 
+字段说明：Content-Disposition为属性名disposition-type是以什么方式下载，如attachment为以附件方式下载disposition-parm为默认保存时的文件名服务端向客户端游览器发送文件时，如果是浏览器支持的文件类型，一般会默认使用浏览器打开，比如txt、jpg等，会直接在浏览器中显示，如果需要提示用户保存，就要利用Content-Disposition进行一下处理，关键在于一定要加上attachment：
+
+
+
+```java
+        response.setHeader("Content-Type", "application/octet-stream");
+        response.setHeader("Content-Disposition","attachment;filename="+s);
+```
+
+
+
+在电脑领域里，一个octet是指八个比特（bit）为一组的单位，中文称作八字节。
+octet-stream指任意类型的二进制流数据。
+
+
+
 HTTP origin refer
 
 1. Host
@@ -12,9 +31,6 @@ HTTP origin refer
 3. Referer
 告知服务器请求的原始资源的URI，其用于所有类型的请求，并且包括：协议+域名+查询参数（注意，不包含锚点信息）。
 因为原始的URI中的查询参数可能包含ID或密码等敏感信息，如果写入referer，则可能导致信息泄露。
-————————————————
-版权声明：本文为CSDN博主「皮皮灬虾」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_41791345/article/details/79546540
 
 
 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS

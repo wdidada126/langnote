@@ -1,10 +1,25 @@
 # jwt
 
+Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：`=`被省略、`+`替换成`-`，`/`替换成`_` 。这就是 Base64URL 算法。
+
+http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html
+
+
 
 https://github.com/Thalhammer/jwt-cpp
 
 
-jwtdemo git repo
+
+Python 生成 JWT(json web token) 及 解析方式
+https://www.cnblogs.com/lowmanisbusy/p/10930856.html
+itsdangerous
+
+https://gitee.com/edidada/itsdangerous-test
+
+
+jwtdemo git repo java
+
+跨语言incode/decode
 
 HMSC	RSA	ECDSA	PSS	EdDSA
 HS256	RS256	ES256	PS256	Ed25519
@@ -21,7 +36,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsI.eyJpc3MiOiJodHRwczotcGxlL.mFrs3Zo8ea
 HTTP头
 Authorization: Bearer 
 
-
 没有什么为什么，这就是JWT定义的规范: https://jwt.io/introduction/
 建议详读上述官方文档。Bearer代表Authorization头定义的schema，https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Authentication_schemes
 
@@ -36,10 +50,10 @@ Signature（签名）
 
 Header
 Header 部分是一个 JSON 对象，描述 JWT 的元数据，通常是下面的样子。
-`javascript { "alg": "HS256", "typ": "JWT" }`
+`{ "alg": "HS256", "typ": "JWT" }`
 上面代码中，alg属性表示签名的算法（algorithm），默认是 HMAC SHA256（写成 HS256）；typ属性表示这个令牌（token）的类型（type），JWT 令牌统一写为JWT。
 
-最后，将上面的 JSON 对象使用 Base64URL 算法（详见后文）转成字符串。
+最后，将上面的 JSON 对象使用 Base64URL 算法转成字符串。
 
 payload可以自定义用户数据
 
@@ -52,10 +66,54 @@ nbf (Not Before)：生效时间
 iat (Issued At)：签发时间
 jti (JWT ID)：编号
 除了官方字段，你还可以在这个部分定义私有字段，下面就是一个例子。
-javascript { "sub": "1234567890", "name": "John Doe", "admin": true }
+`{ "sub": "1234567890", "name": "John Doe", "admin": true }`
 注意，JWT 默认是不加密的，任何人都可以读到，所以不要把秘密信息放在这个部分。
 这个 JSON 对象也要使用 Base64URL 算法转成字符串。
 
 https://github.com/auth0/java-jwt
 
 https://jwt.io/libraries?language=Java
+
+
+
+
+jwt字符串生成 逆向
+字符串过期时间 加盐 算法（
+
+字符串例子
+eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJwYXlsb2FkIjoie1wibmFtZVwiOlwi5byg5LiJXCIsXCJhZ2VcIjpcIjIwXCJ9IiwiZXhwIjoxNjE5Njc3MjU1fQ.OEmfLC4_5qNv_q7wf0-ASMLjk34XeoBkpQaW4xIntY0
+
+有两个符号 .
+
+```shell
+com.auth0.jwt.exceptions.TokenExpiredException: The Token has expired on Thu Apr 29 14:20:55 CST 2021.
+	at com.auth0.jwt.JWTVerifier.assertDateIsFuture(JWTVerifier.java:441)
+	at com.auth0.jwt.JWTVerifier.assertValidDateClaim(JWTVerifier.java:432)
+	at com.auth0.jwt.JWTVerifier.verifyClaims(JWTVerifier.java:373)
+	at com.auth0.jwt.JWTVerifier.verify(JWTVerifier.java:355)
+	at cn.wdidada.test.jwtdemo.JWTKit.unsign(JWTKit.java:57)
+	at cn.wdidada.test.jwtdemo.JWTKit.main(JWTKit.java:79)
+```
+
+
+eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJwYXlsb2FkIjoie1wibmFtZVwiOlwi5byg5LiJXCIsXCJhZ2VcIjpcIjIwXCJ9IiwiZXhwIjo2MTU4MDQ0ODAwMH0.FGjDDAn6PvJdJRBUXbIFqKvEg48wOnsdbHCkdIZd_fA
+
+
+no suitable constructor found, can not deserialize from Object value (missing default constructor or
+
+User 是内部类
+
+
+
+
+
+
+
+https://www.codenong.com/cs106759642/
+
+
+
+https://www.cnblogs.com/shihaiming/p/9565835.html
+
+
+

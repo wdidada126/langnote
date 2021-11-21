@@ -19,3 +19,10 @@ https://www.laruence.com/
 
 
 有没有小伙伴有兴趣一起交流呀 像支持 swoole 的一些流行框架 hyperf, thinkphp, PhalApi 貌似差不多都是用这种模式套
+
+
+
+php，动态网页技术
+
+asp jsp之类的，后来扩展了
+

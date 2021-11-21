@@ -1,5 +1,20 @@
 # Spring
 
+
+
+spring profile properties
+
+```xml
+<profile
+         activeDefault true
+```
+
+
+
+
+
+
+
 问： ${jdbc.url}
 注入失败 如何排错
 

@@ -2,7 +2,7 @@
 
 pip
 
-有python2 3的区别
+有python2 3的区别，属于破坏性升级
 
 pip3
 

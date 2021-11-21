@@ -1,5 +1,37 @@
 # cors
 
+
+
+
+
+跨域问题的解决
+JSONP： 这种解决跨域问题的方式前后端都需要有改动，在此不做介绍。
+CORS： 一个W3C标准，全程跨域资源共享 (Cross-Origin Resource Sharing)，本文也主要讲解该种解决方式。
+
+
+
+
+
+CORS（Cross-Origin Resource Sharing）跨域资源共享
+
+
+
+前端部署在ip为A的主机上
+
+后端http api部署在ip为B的主机上
+
+
+
+浏览器在访问前端项目时，访问B的api，需要设置B接口开放cors
+
+
+
+@CrossOrigin
+
+https://zhuanlan.zhihu.com/p/66789473
+
+
+
 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
 https://www.cnblogs.com/hustskyking/archive/2013/04/09/CDS_access_contorl_allow_origin.html
 

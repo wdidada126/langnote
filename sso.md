@@ -2,6 +2,8 @@
 Single Sign On,单点登录
 spring-security + oauth2
 
+不建议使用oauth2实现sso
+
 
 
 jwt规范
@@ -22,3 +24,9 @@ Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDkzODA5NzUsInVzZXJfbmFt
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Authentication_schemes
 
 https://www.jianshu.com/p/64f2ee59acd9
+
+
+
+cas实现sso
+
+https://zhuanlan.zhihu.com/p/25007591

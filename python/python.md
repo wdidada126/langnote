@@ -11,6 +11,35 @@
 
 Python-Advanced-Program
 
+
+
+
+解决TypeError:'twophase' is an invalid keyword argumet for this function（附：pandas连接oracle）
+
+https://blog.csdn.net/DYyunzhongxian/article/details/102521288/
+
+
+
+
+
+报错内容：TypeError: expected bytes-like object, not str
+
+例：
+
+```python
+a = base64.b64encode(temp)
+```
+
+改为：
+
+```python
+a = base64.b64encode(bytes(temp, 'utf-8'))
+```
+
+
+
+
+
 python-3.6.14-docs-pdf-a4.zip
 https://docs.python.org/zh-cn/3.6/download.html
 可以选择语言
@@ -349,3 +378,9 @@ setdlopenflags() -- set the flags to be used for dlopen() calls
 setprofile() -- set the global profiling function
 setrecursionlimit() -- set the max recursion depth for the interpreter
 settrace() -- set the global debug tracing function
+
+
+
+python name __filter__
+
+https://blog.csdn.net/weixin_35684521/article/details/81396434

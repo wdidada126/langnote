@@ -1,5 +1,14 @@
 # drools
 
+#### 基础语法
+
+
+
+黑马博学谷2020年最新Java项目Drools业务规则管理系统（BRMS）
+
+
+https://github.com/HappySnailSunshine/JavaInterview/blob/master/docs/Drools.md
+
 
 
 https://www.drools.org/
@@ -97,3 +106,94 @@ rule
 
 https://zhuanlan.zhihu.com/p/140916822
 金融风控
+
+
+
+
+
+支付系统账务系统 《支付系统架构》
+
+https://blog.csdn.net/zghmnb/article/details/62892835
+
+
+
+一个简单的使用demo，这里我们主要用到Drools Expert 部分。
+
+业务场景：模拟清算对账
+输入数据源：零花钱流水对账数据、快钱渠道对账数据，执行业务规则，输出平账数据、对账差异数据
+
+零花钱流水对账数据实体类
+
+precheck.drl
+
+```drl
+package rules;
+dialect  "java"
+import com.shinyleo.drools.mode.AccountOrder;
+import com.shinyleo.drools.mode.BIll99Order;
+
+global java.util.List successCheckList;
+
+
+//元数据定义
+declare SuccessData
+   orderId :Long
+   checkresult:String
+   checkStatus:int
+    amount:Long
+    status:int
+end
+
+
+
+rule "precheck"
+    salience 100
+    when
+       $accountOrder : AccountOrder(checkStatus == 0 ,$transAmount:transAmount,$orderId:orderId,$status:orderStatus)
+       $bill99Order : BIll99Order(checkStatus == 0,outerOrderId == $orderId,amount == $transAmount,orderStatus == $status)
+    then
+      System.out.println("-----start rules-----" + $accountOrder.getOrderId());
+      $accountOrder.setCheckStatus(1); //标记为对平
+      $bill99Order.setCheckStatus(1);
+      update($accountOrder);
+      update($bill99Order);
+      //获取平账数据
+      SuccessData successData = new SuccessData();
+      successData.setAmount($transAmount);
+      successData.setCheckresult("平账");
+      successData.setOrderId($orderId);
+      //insertLogical(successData);
+      insert(successData);
+      //返回
+      successCheckList.add(successData);
+end
+
+rule "successData"
+  when
+      SuccessData(checkStatus == 1);
+  then
+     System.out.println("success increase 1 ..." );
+end
+
+query "successList"
+   // 找出对平的数据
+   successData:AccountOrder(checkStatus == 1)
+end
+
+query "errorList"
+   // 找出还未对平的数据
+   errorData:AccountOrder(checkStatus == 0)
+
+end
+
+query "queryOrder" (int $status,Long $orderId)
+   // 找出还未对平的数据
+   queryOrder:AccountOrder(checkStatus == $status,orderId == $orderId)
+end
+```
+
+
+
+
+
+https://gitee.com/dream21th/drools-study/tree/master/drools-springboot
