@@ -9,6 +9,7 @@
 - Python源码剖析
 - Python核心编程（第二版）
 
+Python-Advanced-Program
 
 
 
@@ -43,7 +44,7 @@ python-3.6.14-docs-pdf-a4.zip
 https://docs.python.org/zh-cn/3.6/download.html
 可以选择语言
 
-python 元编程 metaclass
+python 元编程 metaclass type
 python基本数据结构
 dict
 triple
@@ -52,6 +53,12 @@ list
 
 python元编程详解
 https://www.jianshu.com/p/644d309b504e
+下面这些框架就很好的使用到了元类，他们帮助你在编程过程中，书写更少的代码。
+
+Django
+SQLAlchemy
+Flask
+Theano
 
 
 [python log to file](https://www.cnblogs.com/nancyzhu/p/8551506.html)
