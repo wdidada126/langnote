@@ -96,3 +96,65 @@ document.querySelector.onclick @ index.html?_ijt=5g36ilo5uvnhh4q7l0drfehvda:23
 跨port也不行
 Access to XMLHttpRequest at 'http://localhost:8080/testajax/TestInterface.do?test' from origin 'http://localhost:63343' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
+
+
+
+
+问题：springmvc如何解决cors问题
+
+SpringMVC + Cors 解决跨域问题
+https://blog.csdn.net/No_be_IT_movers/article/details/81003907
+
+配置fliter option请求一律返回200
+
+
+
+springboot cors
+
+https://www.cnblogs.com/yuansc/p/9076604.html
+
+
+
+
+
+
+
+有Origin这个http head的才是cors请求？
+
+
+
+至此@CrossOrigin的使命就完成了，说白了就是用拦截器给response添加响应头信息而已
+
+https://blog.csdn.net/weixin_33691817/article/details/92392464
+
+
+
+
+
+url同源判断工具
+
+
+
+CORS 简介
+为了解决浏览器同源问题，W3C 提出了跨源资源共享，即 CORS(Cross-Origin Resource Sharing)。
+
+CORS 做到了如下两点：
+
+不破坏即有规则
+服务器实现了 CORS 接口，就可以跨源通信
+基于这两点，CORS 将请求分为两类：简单请求和非简单请求。
+
+服务器收到请求时，需要分别对 Origin、Access-Control-Request-Method、Access-Control-Request-Headers 进行验证，验证通过后，会在返回 HTTP头信息中添加 ：
+
+Access-Control-Allow-Origin: http://www.examples.com
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: X-Custom-Header
+Access-Control-Allow-Credentials: true
+Access-Control-Max-Age: 1728000
+
+
+
+
+
+WebMvcConfigurerAdapter类
+@CrossOrigin(origins = {"http://localhost:9000", "null"})

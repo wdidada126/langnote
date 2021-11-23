@@ -2,6 +2,19 @@
 
 
 
+Set-Cookie
+
+返回响应头
+
+
+
+Content-Type application/octet-stream
+
+
+application/imgs?
+
+
+
 Content-disposition 是 MIME 协议的扩展，MIME 协议指示 MIME 用户代理如何显示附加的文件。Content-disposition其实可以控制用户请求所得的内容存为一个文件的时候提供一个默认的文件名，文件直接在浏览器上显示或者在访问时弹出文件下载对话框。
 格式说明： content-disposition = "Content-Disposition" ":" disposition-type *( ";" disposition-parm ) 
 字段说明：Content-Disposition为属性名disposition-type是以什么方式下载，如attachment为以附件方式下载disposition-parm为默认保存时的文件名服务端向客户端游览器发送文件时，如果是浏览器支持的文件类型，一般会默认使用浏览器打开，比如txt、jpg等，会直接在浏览器中显示，如果需要提示用户保存，就要利用Content-Disposition进行一下处理，关键在于一定要加上attachment：
