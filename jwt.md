@@ -1,5 +1,11 @@
 # jwt
 
+
+
+token，是一个字符串
+
+
+
 Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：`=`被省略、`+`替换成`-`，`/`替换成`_` 。这就是 Base64URL 算法。
 
 http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html
@@ -117,3 +123,6 @@ https://www.cnblogs.com/shihaiming/p/9565835.html
 
 
 
+典型用法
+
+实用场景
