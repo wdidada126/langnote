@@ -19,7 +19,6 @@ dubbo netty
 
 DirectByteBuf
 
-
 ByteBuf
 ByteBuffer
 
@@ -155,14 +154,15 @@ ChannelFuture register(ChannelPromise promise)
 
 AbstractEventLoop, AbstractEventLoopGroup, DefaultEventLoop, DefaultEventLoopGroup, EpollEventLoopGroup, KQueueEventLoopGroup, LocalEventLoopGroup, MultithreadEventLoopGroup, NioEventLoop, NioEventLoopGroup, OioEventLoopGroup, SingleThreadEventLoop, ThreadPerChannelEventLoop, ThreadPerChannelEventLoopGroup
 
-
 Boss/workers线程池
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);//线程池
         EventLoopGroup workerGroup = new NioEventLoopGroup();//线程池
 
-        try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
+```java
+    try {
+        ServerBootstrap b = new ServerBootstrap();
+        b.group(bossGroup, workerGroup)
+```
 
 
 在netty的架构这块我们使用一种bossGroup加workerGroup的方式，bossGroup只负责请求的转发，workerGroup是具体的数据处理，其实netty整个框架使用的是Reactor(响应器)的设计模式。
@@ -170,10 +170,8 @@ Boss/workers线程池
 boss parent
 work children
 
-
 EventLoop是Netty Server用于处理IO事件的事件轮询处理器，职责上类似于Redis的eventLoop，EventLoop通常是由EventLoopGroup来管理的，EventLoopGroup负责调度指派EventLoop，而EventLoop负责具体的执行。
 https://segmentfault.com/a/1190000038227963
-
 
 可以这么说，ServerBootstrap监听的一个端口对应一个boss线程，它们一一对应。比如你需要netty监听80和443端口，那么就会有两个boss线程分别负责处理来自两个端口的socket请求。在boss线程接受了socket连接求后，会产生一个channel（一个打开的socket对应一个打开的channel），并把这个channel交给ServerBootstrap初始化时指定的ServerSocketChannelFactory来处理，boss线程则继续处理socket的请求。
 ————————————————
@@ -185,7 +183,6 @@ https://segmentfault.com/a/1190000038227963
 io.netty.channel.ChannelInboundHandlerAdapter 继承 ChannelHandlerAdapter类
 
 AbstractRemoteAddressFilter, ApplicationProtocolNegotiationHandler, ByteToMessageDecoder, ChannelDuplexHandler, ChannelInitializer, HttpServerExpectContinueHandler, InboundHttpToHttp2Adapter, MessageToMessageDecoder, OcspClientHandler, SimpleChannelInboundHandler, SimpleUserEventChannelHandler, SslMasterKeyHandler, Utf8FrameValidator
-
 
 ChannelHandlerAdapter
 方法
@@ -214,7 +211,6 @@ SelectorProvider (java.nio.channels.spi)
     SelectorProviderUDT (com.barchart.udt.nio)
     SelectorProviderImpl (sun.nio.ch)
         WindowsSelectorProvider (sun.nio.ch)
-
 
 MultithreadEventLoopGroup
     private static final int DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));

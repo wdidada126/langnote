@@ -1,7 +1,10 @@
 # mysql-connector-java
 
-### log
+很多时候忘记引入pom，会报错
 
+
+### log
+d
 
 ### 使用方式
 Class.forName("com.mysql.jdbc.Driver");
@@ -11,7 +14,7 @@ DataSource.getConnection
 
 
 ### Connection池
-
+d
 
 ### sql类
 
@@ -31,10 +34,11 @@ Connection
 
 JDBC4Connection com.mysql.jdbc.JDBC4Connection
 
-Stataement
-CallStatuemnt
-
+Statement
+CallStatuemnt sp（存储过程
+PrepareStatement
 ResultSet
+
 
 
 getString
@@ -82,9 +86,11 @@ AbandonedConnectionCleanupThread Class.forName()
 
 
 
-                Constructor<?> jdbc4proxy = Class.forName("com.mysql.fabric.jdbc.JDBC4FabricMySQLConnectionProxy")
-                        .getConstructor(new Class[] { Properties.class });
-                return (Connection) com.mysql.jdbc.Util.handleNewInstance(jdbc4proxy, new Object[] { parsedProps }, null);
+```java
+            Constructor<?> jdbc4proxy = Class.forName("com.mysql.fabric.jdbc.JDBC4FabricMySQLConnectionProxy")
+                    .getConstructor(new Class[] { Properties.class });
+            return (Connection) com.mysql.jdbc.Util.handleNewInstance(jdbc4proxy, new Object[] { parsedProps }, null);
+```
 
 
 
@@ -102,3 +108,8 @@ r2dbc jdbc异步版本
         Connection connection = dataSource.getConnection();
 
 ```
+
+
+
+
+
