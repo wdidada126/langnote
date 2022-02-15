@@ -9,8 +9,24 @@ idea datasource
 int 没有 只有number
 datetime -> date
 
+
+
+问题：Oracle数据库创建数据库
+
+方式之一：Database Configuration Assistant创建数据库
+
 Oracle 12C 创建用户以c##开头
 https://blog.csdn.net/songpeiying/article/details/82894922
+
+Oracle 12C引入了CDB（Container Database数据库容器）与PDB（Pluggable Database插拔数据库）的新特性
+
+
+
+Common User是指在每个容器中都存在的用户
+
+
+
+
 
 
 ```sql
@@ -611,9 +627,11 @@ https://www.cnblogs.com/sunsiyuan/p/8485418.html
 
 Oracle 12c视频教程
 
-https://www.bilibili.com/video/BV1d54y197n3?p=10
+[【千锋涛哥】最适合小白入门的Oracle 12c 教程](https://www.bilibili.com/video/BV1d54y197n3?p=10)
 
+Oracle实例
 
+Oracle数据库管理软件运行时占用内存，生成的进程
 
 
 
@@ -671,3 +689,34 @@ username/pwd
 ### fucntion
 sysdate
 
+
+
+
+
+oracle表空间
+
+https://www.cnblogs.com/fnng/archive/2012/08/12/2634485.html
+
+
+
+
+
+navicate 15 查看表空间
+
+undo表空间
+
+temperary表空间    Temporary  Tablespaces
+
+
+
+
+
+oracle 12c自带表空间有哪些？
+
+
+
+
+
+​     在Oracle 12C之前，实例与数据库是一对一或一对多的关系（RAC）：即一个实例只能与一个数据库相关联，数据库可以被多个实例所加载。而实例与数据库不可能是一对多的关系。
+
+​     当进入Oracle 12C后，实例与数据库可以是一对多的关系。
