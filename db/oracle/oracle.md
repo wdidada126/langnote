@@ -23,6 +23,12 @@ commit;
 
 
 
+![c## or C## ](oracle_users.jpeg)
+
+
+
+
+
 ### book
 
 - Oracle Database 12c完全参考手册  第7版.pdf
@@ -230,6 +236,12 @@ IBM Aix
 HP Unix
 
 
+
+oracle 12 c，其中c表示cloud
+
+
+
+Oracle Database 19*c*
 
 
 
