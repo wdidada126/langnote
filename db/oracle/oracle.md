@@ -1,7 +1,7 @@
 # oracle
 
 
-ui工具 oracle develop 自带的
+ui工具 oracle developer 自带的
 
 idea datasource
 
@@ -9,6 +9,11 @@ idea datasource
 int 没有 只有number
 datetime -> date
 
+
+
+oracle 12c 2013年6月发布
+
+Oracle Database 19c 
 
 
 问题：Oracle数据库创建数据库
@@ -48,6 +53,7 @@ commit;
 ### book
 
 - Oracle Database 12c完全参考手册  第7版.pdf
+- Oracle 12c数据库应用与开发 https://www.zhihu.com/pub/reader/119582341/chapter/1183441714831908864
 
 表navicate上
 所有者
