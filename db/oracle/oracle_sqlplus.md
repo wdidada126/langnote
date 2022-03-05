@@ -4,7 +4,7 @@
 
 用户名 sys
 
-密码
+密码5Edidada
 
 
 
@@ -27,4 +27,18 @@ oracle默认数据库是orcl
 
 
 sqlplus username/password as sysdba;
+
+
+
+##### sqlplus 执行sql语句
+
+1
+
+2
+
+3
+
+4
+
+5
 

@@ -726,3 +726,25 @@ oracle 12c自带表空间有哪些？
 ​     在Oracle 12C之前，实例与数据库是一对一或一对多的关系（RAC）：即一个实例只能与一个数据库相关联，数据库可以被多个实例所加载。而实例与数据库不可能是一对多的关系。
 
 ​     当进入Oracle 12C后，实例与数据库可以是一对多的关系。
+
+
+
+
+
+ORA-12514: TNS:listener does not currently know of service requested in connect descriptor
+
+[oracle 新建数据库dd连接不上](https://stackoverflow.com/questions/10786782/ora-12514-tnslistener-does-not-currently-know-of-service-requested-in-connect-d)
+
+
+
+需要切换service name
+
+默认service name是orcl
+
+
+
+
+
+```sql
+select value from v$parameter where name='dd'
+```
