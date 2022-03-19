@@ -3,11 +3,17 @@
 
 反向类图 时序图
 一、检查UML类图插件是否开启
-idea默认已经集成了该功能，只是默认没打开，我们要手动打开它，参考下图：
+IDEA默认已经集成了该功能，只是默认没打开，我们要手动打开它，参考下图：
 File——Settings——Plugins——UML Support：
 https://blog.csdn.net/zj420964597/article/details/87856758
 
+idea所有操作系统版本通用的
+idea设置新建类模板
 
+IDEA创建类模板和方法模板（超详细）
+https://blog.csdn.net/sdut406/article/details/81750858
+
+### Windows版本IDEA
 Java OO
 Ctrl - H 查看类继承关系
 Ctrl - N 查找类
@@ -17,7 +23,7 @@ Alt - 7 查看当前类所有的方法
 ![exception capture](../imgs/20201117214347.png)
 
 
-MAC 查找接口的实现类：
+### MAC版本IDEA查找接口的实现类：
 IDEA 风格 ctrl+h
 windows
 
@@ -43,14 +49,14 @@ https://blog.csdn.net/fanrenxiang/article/details/80497977
 [IntelliJ IDEA 设置编码为utf-8编码](https://blog.csdn.net/m0_38132361/article/details/80628203)
 
 
-[idea可以添加jetty tomcat等容器的servlet等jar包](https://blog.csdn.net/u013393958/article/details/78329192)
+[IDEA可以添加jetty tomcat等容器的servlet等jar包](https://blog.csdn.net/u013393958/article/details/78329192)
 
 
 https://www.iteye.com/blog/baowp-1989575
 
 #### IDEA debug时，可以改变变量的值
 
-mac windows下的idea快捷键不同
+mac windows下的IDEA快捷键不同
 
 [IDEA Debug模式下改变各类型变量值](https://blog.csdn.net/Peng_Hong_fu/article/details/79994860)
 
@@ -58,13 +64,13 @@ Ctrl P
 
 copy reference 复制类的全路径
 
-[idea中右侧出现hidden字样的处理方法](https://blog.csdn.net/budaoweng0609/article/details/87860205)
+[IDEA中右侧出现hidden字样的处理方法](https://blog.csdn.net/budaoweng0609/article/details/87860205)
 
 [IDEA中修改文件的默认打开方式](https://blog.csdn.net/u010814849/article/details/77675532)
 
-[如何在idea中高效地使用和查找TODO标签](https://jingyan.baidu.com/article/ff42efa9c25811c19e2202ef.html)
+[如何在IDEA中高效地使用和查找TODO标签](https://jingyan.baidu.com/article/ff42efa9c25811c19e2202ef.html)
 
-[idea maven 无法下载源码](https://blog.csdn.net/weixin_33709590/article/details/92383254)
+[IDEA maven 无法下载源码](https://blog.csdn.net/weixin_33709590/article/details/92383254)
 
 `mvn dependency:resolve -Dclassifier=sources`
 
@@ -78,7 +84,7 @@ IntelliJ IDEA中用快捷键自动创建测类的默认按键为：
 
 ctrl+shift+t  --> create new test
 
-https://stackoverflow.com/questions/42966889/intellij-idea-tells-me-errorjava-compilation-failed-internal-java-compiler-e
+https://stackoverflow.com/questions/42966889/intellij-IDEA-tells-me-errorjava-compilation-failed-internal-java-compiler-e
 
 https://jingyan.baidu.com/article/29697b9163ac7dab20de3cbf.html
 
@@ -137,17 +143,17 @@ failed: Unable to find main class -> [Help 1]
 
 submodule中添加main方法
 
-一般的编辑器中关闭当前文件快捷键为ctrl+w，而idea中默认为Ctrl+F4，用起来很不顺手。
+一般的编辑器中关闭当前文件快捷键为ctrl+w，而IDEA中默认为Ctrl+F4，用起来很不顺手。
 
-idea class diagrm
+IDEA class diagrm
 
 https://blog.csdn.net/hy_coming/article/details/80741717
 
-在idea中添加try/catch的快捷键 
+在IDEA中添加try/catch的快捷键 
 ctrl+alt+t 
 选中想被try/catch包围的语句，同时按下ctrl+alt+t， 
 
-idea 生成javadoc步骤：
+IDEA 生成javadoc步骤：
 
 菜单
 Tools
@@ -161,7 +167,7 @@ Other command line arguments:`-encoding UTF-8 `
 
 [IDEA Error:java: Compilation failed: internal java compiler error](https://www.cnblogs.com/comeluder/p/8215317.html)
 
-Intellij Idea单元测试覆盖率插件JaCoCo的使用
+Intellij IDEA单元测试覆盖率插件JaCoCo的使用
 
 IDEA中maven可以新建submodule，而不是新建Project
 
@@ -188,7 +194,7 @@ alt + 7 （可以查看类的字段、属性、方法，是否继承等）
 
 Ctrl+H 查看类继承关系
 
-idea Spring项目，配置bean的时候，Java代码可以跳转到xml文件
+IDEA Spring项目，配置bean的时候，Java代码可以跳转到xml文件
 
 
 #### IDEA配置变异
@@ -200,11 +206,11 @@ ar
 
 
 
-断点 idea条件 idea选中断点 右键
+断点 IDEA条件 IDEA选中断点 右键
 
 
 
-idea mac ctrl o
+IDEA mac ctrl o
 
 Win ctrl n 查找类
 

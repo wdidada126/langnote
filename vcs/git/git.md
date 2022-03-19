@@ -1,6 +1,28 @@
 # Git
 
 
+git 锁分支，不能新提交
+多分支合并
+
+本地a分支 直接合并b分支
+pull = fetch + merge
+
+
+git fetch 和git pull 的差别
+
+git fetch 相当于是从远程获取最新到本地，不会自动merge
+git fetch orgin master //将远程仓库的master分支下载到本地当前branch中
+git log -p master ..origin/master //比较本地的master分支和origin/master分支的差别
+git merge origin/master //进行合并
+git pull：相当于是从远程获取最新版本并merge到本地
+git pull origin master
+git pull <远程主机名> <远程分支名>:<本地分支名>
+
+https://www.jianshu.com/p/b00fea3ba207
+
+
+
+
 免密登录 ssh key
 
 freebsd 免密登录

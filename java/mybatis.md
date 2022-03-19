@@ -1,8 +1,22 @@
 # mybatis
 
 
+MyBatisCodeHelperPro idea插件
+
 
 [springboot打印mybatis的sql语句](https://blog.csdn.net/qq_41345773/article/details/90178017)
+
+https://www.cnblogs.com/huxiaoguang/p/10808967.html
+在Mybatis已经整合到springBoot框架的情况下，只需要在配置文件中简单配置就能实现打印SQL日志功能。
+如果使用的是application.properties文件，加入如下配置：
+#开启logging myabtis语句打印
+logging.level.main.blog.mapper=debug
+如果使用的是application.yml文件，加入如下配置：
+#开启logging myabtis语句打印
+logging:
+  level:
+    main.blog.mapper: trace
+
 
 
 
