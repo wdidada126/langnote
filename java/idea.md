@@ -22,6 +22,10 @@ Alt - 7 查看当前类所有的方法
 
 ![exception capture](../imgs/20201117214347.png)
 
+### git冲突解决
+
+IDEA解决git冲突
+先执行'git add'命令
 
 ### MAC版本IDEA查找接口的实现类：
 IDEA 风格 ctrl+h
