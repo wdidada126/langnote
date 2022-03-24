@@ -72,4 +72,3 @@ Exception in thread "main" org.apache.ibatis.exceptions.PersistenceException:
 增删改查单元测试 内存数据库h2
 集成测试
 
-

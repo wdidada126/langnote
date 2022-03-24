@@ -20,6 +20,20 @@ logging:
 
 
 
+[Mybatis 常用注解中的 SQL 注入](https://xie.infoq.cn/article/faf450b18559278a0ec051661)
+
+
+
+- @SelectProvider
+
+- @InsertProvider
+
+- @UpdateProvider
+
+- @DeleteProvider
+
+  
+
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
 
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
