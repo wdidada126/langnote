@@ -61,3 +61,6 @@ Writing to C:\Users\edidada\AppData\Roaming\pip\pip.ini
 
 pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
 
+
+pip安装特定版本
+pip install autobahn==21.3.1
