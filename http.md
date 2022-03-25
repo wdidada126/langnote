@@ -2,6 +2,10 @@
 
 
 
+### http rfc
+apache http client
+https://hc.apache.org/httpcomponents-client-5.1.x/index.html
+
 Set-Cookie
 
 返回响应头

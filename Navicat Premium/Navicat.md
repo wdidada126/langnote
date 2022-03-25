@@ -1,5 +1,8 @@
 # 激活
 
+### navicat美化SQL
+选择一个数据库，点击“查询”，“美化SQL”
+
 
 激活 Mac 版Navicat Premium 12.1.15
 https://www.jianshu.com/p/54c2a8c62ee5

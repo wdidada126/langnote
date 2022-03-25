@@ -221,11 +221,20 @@ https://blog.csdn.net/intelrain/article/details/80451120
 mysql 日志 查看select的结果
 
 
+MYSQL-DBA书籍推荐
 https://blog.csdn.net/qq_35254185/article/details/95341993
 
 
-
+MySQL查询日志介绍
 https://www.cnblogs.com/kerrycode/p/7130403.html
+
+desc mysql.general_log;
+select * from mysql.general_log order by event_time desc limit 0,11;
+
+Available parameters are [collection, list]
+决解Mybatis传递List集合报错 Available parameters are [collection, list]
+https://blog.csdn.net/sinat_28978689/article/details/79406832
+
 
 只有输入的sql，没有查询到的结果	
 
