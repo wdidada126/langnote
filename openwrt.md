@@ -1,6 +1,6 @@
 # openwrt
 
-
+### openwrt设置静态ip
 
 openwrt这种网络设备，是不是对硬盘空间消耗不大？
 
