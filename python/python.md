@@ -9,6 +9,16 @@
 - Python源码剖析
 - Python核心编程（第二版）
 
+
+
+[【Python 训练营】Python 每日一练 ---- 第 31 天: k 倍区间](https://xie.infoq.cn/article/87f2f8859c800d72c2275b731)
+
+[python 方法——defaultdict 详解](https://xie.infoq.cn/article/6d7ec0675e2c673985a5ba5ec)
+
+
+
+
+
 Python-Advanced-Program
 
 

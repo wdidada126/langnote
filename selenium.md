@@ -1,6 +1,6 @@
 # selenium
 
-
+[python 包之 selenium 自动化使用教程](https://xie.infoq.cn/article/b2c5d786fded71894e1f69ce8)
 
 tbody selenium
 
