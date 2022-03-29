@@ -2,8 +2,7 @@
 
 https://github.com/oceanbase/oceanbase
 
-数据不一致 问题
-
+据说在某个客户那里，出现了数据不一致 问题
 
 OceanBase | 试用版安装初体验
 https://blog.csdn.net/daiyejava/article/details/109379738

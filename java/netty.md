@@ -223,3 +223,11 @@ io.netty.channel.ChannelFuture io.netty.channel.MultithreadEventLoopGroup#regist
 
 ChannelPromise
 
+
+
+
+
+[抓到 Netty 一个隐藏很深的内存泄露 Bug | 详解 Recycler 对象池的精妙设计与实现](https://xie.infoq.cn/article/ea5c220d79a131a2fbe57f142)
+
+
+

@@ -872,3 +872,11 @@ tk.mapper
 
 ### OGNL
 
+
+
+
+
+[Mybatis 中的 SQL 节点的解析](https://xie.infoq.cn/article/026dd91a93ea90ee8900ff9bc)
+
+
+
