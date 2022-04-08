@@ -1,12 +1,17 @@
 # mybatis
 
 
+mybatis xml文件 有哪些子节点，可以在IDEA中查看到，IDEA中有智能提示
+
+一个mybatis节点，可以执行多条sql语句
+
 MyBatisCodeHelperPro idea插件
 
 
 [springboot打印mybatis的sql语句](https://blog.csdn.net/qq_41345773/article/details/90178017)
 
-https://www.cnblogs.com/huxiaoguang/p/10808967.html
+[Spring Boot 打印mybatis sql日志信息](https://www.cnblogs.com/huxiaoguang/p/10808967.html)
+
 在Mybatis已经整合到springBoot框架的情况下，只需要在配置文件中简单配置就能实现打印SQL日志功能。
 如果使用的是application.properties文件，加入如下配置：
 #开启logging myabtis语句打印

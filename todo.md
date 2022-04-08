@@ -1,14 +1,14 @@
 # todo
 
-git 连接多个远程仓库，如何同步？
+git连接多个远程仓库，如何同步？
 
 upstream
 
- 「小马哥技术周报」 https://douyu.com/mercyblitz 
+「小马哥技术周报」 https://douyu.com/mercyblitz 
 
 
 
- https://github.com/mercyblitz/tech-weekly 
+https://github.com/mercyblitz/tech-weekly 
 
 
 
@@ -17,3 +17,5 @@ upstream
 
 
 oca考试及ocp考试指南
+
+

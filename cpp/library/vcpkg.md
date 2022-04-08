@@ -1,5 +1,8 @@
 # vcpkg
 
+vcpkg编译下载的库报错，解决思路：
+编译器版本，支持c++14? c++17?
+
 vcpkg search apache
 rbmq的cpp库
 
@@ -422,7 +425,7 @@ vcpkg integrate project
 Created nupkg: D:\vcpkg\scripts\buildsystems\vcpkg.D.vcpkg.1.0.0.nupkg
 
 With a project open, go to Tools->NuGet Package Manager->Package Manager Console and paste:
-    Install-Package vcpkg.D.vcpkg -Source "D:\vcpkg\scripts\buildsystems"
+ 
 
 
 
@@ -516,6 +519,7 @@ The package gtest is compatible with built-in CMake targets:
 点击“确定”，关闭设置对话框。
 到此，全局性的设置已经完成，以后不必再重复设置了。
 4.4.3. 工程配置
-用Visual Studio 打开一个工程或解决方案。右键点击需要设置的工程，选择“管理NuGet程序包”。在右上角的“程序包源”中选择刚刚设置的“vcpkg”。这样在“浏览”选项卡中就可以看到“vcpkg.H.Repos.vcpkg”。点击最右侧的“安装”。这样就可以集成到某个工程了。
+用Visual Studio打开一个工程或解决方案。右键点击需要设置的工程，选择“管理NuGet程序包”。在右上角的“程序包源”中选择刚刚设置的“vcpkg”。这样在“浏览”选项卡中就可以看到“vcpkg.H.Repos.vcpkg”。点击最右侧的“安装”。这样就可以集成到某个工程了。
+
 
 

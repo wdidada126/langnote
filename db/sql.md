@@ -1,5 +1,33 @@
 # SQL
 
+
+sql子查询的例子
+1、单行子查询
+        select ename,deptno,sal
+        from emp
+        where deptno=(select deptno from dept where loc='NEW YORK')；
+
+     2、多行子查询
+        SELECT ename,job,sal
+        FROM EMP
+        WHERE deptno in ( SELECT deptno FROM dept WHERE dname LIKE 'A%')；
+
+     3、多列子查询
+        SELECT deptno,ename,job,sal
+        FROM EMP
+        WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
+
+     4、内联视图子查询
+       (1)SELECT ename,job,sal,rownum
+          FROM (SELECT ename,job,sal FROM EMP ORDER BY sal)；
+       (2)SELECT ename,job,sal,rownum
+          FROM ( SELECT ename,job,sal FROM EMP ORDER BY sal)
+          WHERE rownum<=5；
+ 
+     5、在HAVING子句中使用子查询
+        SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
+
+
 SQL92
 SQL99
 03

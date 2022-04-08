@@ -1,5 +1,9 @@
 # pip
 
+
+
+https://www.runoob.com/w3cnote/python-pip-install-usage.html
+
 pip
 
 有python2 3的区别，属于破坏性升级

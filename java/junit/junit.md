@@ -1,5 +1,14 @@
 # junit
 
+使用Java JUnit框架里的@SuiteClasses注解管理测试用例
+http://blog.itpub.net/24475491/viewspace-2703835/
+
+
+
+JUnit4---Hamcrest匹配器常用方法总结
+https://www.cnblogs.com/jpfss/p/10955939.html
+
+
 ```java
 Class SpringJUnit4ClassRunner
 java.lang.Object
