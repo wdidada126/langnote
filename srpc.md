@@ -8,6 +8,8 @@ git submode
 
 
 
+https://gitee.com/sogou/srpc
+
 cmake组织的
 
 centos 8
@@ -38,7 +40,7 @@ make
 sudo make install
 ```
 
-protobuf 不能时2.x 最好是3.x
+protobuf 不能是2.x 最好是3.x
 protobuf3需要gcc 高版本，安装的gcc4.8不行
         libstdc++.so.6(GLIBCXX_3.4.21) is needed by protobuf3
 
@@ -72,7 +74,7 @@ https://www.cnblogs.com/tongongV/p/11014581.html
 
 
 
-源码下载gcc5。4 
+源码下载gcc5.4 
 
 重新安装
 

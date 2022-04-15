@@ -1,5 +1,8 @@
 # glibc
 
+
+strings /usr/lib64/libstdc++.so.6 | grep GLIBC
+
 ```
 rpm -ql glibc
 /etc/gai.conf
@@ -349,7 +352,7 @@ glibc.sh
 
 ```shell
 
-git clone ***
+git clone https://github.com/bminor/glibc.git
 
 ```
 
@@ -380,5 +383,6 @@ musl
 openwrt LEDE默认使用Musl-libc
 uClibc 一个小型的C语言标准库，主要用于嵌入式。
 
-glibc，uClibc，eglibc都是C语言函数库： 1. uClibc是嵌入式系统中用的，glibc是桌面系统用的 2. eglibc也是嵌入式系统中用的，是glibc的嵌入式版本，和glibc在源码和二进制上兼容。
+glibc，uClibc，eglibc都是C语言函数库： 1. uClibc是嵌入式系统中用的，glibc是桌面系统用的
+2. eglibc也是嵌入式系统中用的，是glibc的嵌入式版本，和glibc在源码和二进制上兼容。
 

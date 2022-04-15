@@ -1,6 +1,9 @@
 # maven
 
 
+mvn参考 yum apt，联网下载库文件
+分发库文件
+
 mvn dependency:resolve -Dclassifier=sources
 
 mvn dependency:tree

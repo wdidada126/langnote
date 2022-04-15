@@ -18,6 +18,8 @@ https://github.com/google/bazel/blob/master/src/main/java/BUILD
 https://github.com/google/bazel/blob/master/src/test/java/BUILD
 
 
+### 安装
+ yum install bazel4 -y
 
 
 

@@ -1,5 +1,29 @@
 # gcc
 
+cc1plus
+xg++
+
+
+Killed signal terminated program
+云服务器内存不够，导致gcc编译失败
+https://www.jianshu.com/p/a4ad05a51456
+
+
+https://www.zhihu.com/question/20940822
+
+gcc手动安装最新版
+更新动态库
+#查看当前的动态库
+strings /usr/lib64/libstdc++.so.6 | grep CXXABI
+rm -f /usr/lib64/libstdc++.so.6
+ln -s /usr/local/lib64/libstdc++.so.6.0.29 /usr/lib64/libstdc++.so.6
+#查看更新后的动态库
+strings /usr/lib64/libstdc++.so.6 | grep CXXABI
+# 安装后的动态库会位于/usr/local/lib64目录下，
+#其他版本在该目录下寻找对应的动态库libstdc++.so.6.X.XX
+
+https://blog.csdn.net/qq_41054313/article/details/119453611
+
 configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
 需要依赖 mpc，mpfr，gmp包，
 GCC 源码里自带脚本可以轻松下载依赖包。

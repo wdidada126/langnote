@@ -9,6 +9,8 @@ head only
 [ spdlog ]( https://github.com/gabime/spdlog)
 
 
+centos 系统命令 repoquery
+dpkg -l
 ```shell
 [root@leryltdllllwew9a ~]# repoquery -ql spdlog-devel
 /usr/include/spdlog

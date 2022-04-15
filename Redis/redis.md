@@ -1,5 +1,6 @@
 # redis
 
+
 redisinsight 最好用的redis图形工具
 
 https://spring.io/projects/spring-data-redis
@@ -344,7 +345,7 @@ windows 微软维护 3.0
 
 从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
 
- redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
+redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
 
 
 
@@ -1328,8 +1329,17 @@ Redis几个重要的健康指标 zotero
 MemAdmin
 
 通过一些开源的第三方工具对整个memcached集群进行监控，显示会更直观
-
 https://www.cnblogs.com/dinglang/p/6117309.html
 
 
+redis 编译环境
+redis 核心维护者沟通渠道
 
+https://redis.io/community/
+
+
+https://groups.google.com/g/redis-db/c/tFldUlOt8D8/m/HrZAfUB0AgAJ
+
+
+
+https://blog.csdn.net/gig886/article/details/123231156
