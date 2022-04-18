@@ -1,5 +1,9 @@
 # rust
 
+
+「Rust日报」2019每周精选 • 第九期
+
+
 rust
 base64编码
 
@@ -202,7 +206,6 @@ optimize
 
 http://smallcultfollowing.com/babysteps/blog/2015/12/18/rayon-data-parallelism-in-rust/
 
-<<<<<<< HEAD
 Rayon: data parallelism in Rust
 
 
@@ -216,6 +219,7 @@ https://github.com/rustcc/awesome-rust
 
 
 https://github.com/rajasekarv/vega
-=======
 # Rayon: data parallelism in Rust
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
+
+安装Windows环境
+https://www.cnblogs.com/qq67579722/p/12897819.html

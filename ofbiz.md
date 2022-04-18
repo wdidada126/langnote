@@ -10,6 +10,12 @@ D:\git\github\apache-ofbiz-17.12.05\runtime\logs\ofbiz-2021-04-07-1.log
 cd /root/apache-ofbiz-17.12.05/
 java -jar build/libs/ofbiz.jar & > ofbiz.log 2>&1 &
 
+
+cd/d D:\git\github\apache-ofbiz-17.12.05
+java -jar build/libs/ofbiz.jar
+
+
+
 启动是这个，上面的java -jar是初始化数据的
 ./gradlew ofbiz
 
@@ -112,6 +118,7 @@ https://localhost:8443/catalog/control/main
 
 登陆 用户名/密码  admin ofbiz  密码改了 5%Edidada
 
+新手干货 Apache Ofbiz介绍+安装到使用
 https://blog.csdn.net/qq_38802742/article/details/89397510
 
 
@@ -143,7 +150,73 @@ https://www.cnblogs.com/coshaho/p/7192343.html
 
 
 
-Of biz Mac idea 命令行编译失败
+Ofbiz Mac idea 命令行编译失败
+
+
+
+```sql
+INSERT INTO SERVER_HIT (VISIT_ID, CONTENT_ID, HIT_START_DATE_TIME, HIT_TYPE_ID, NUM_OF_BYTES, RUNNING_TIME_MILLIS, USER_LOGIN_ID, STATUS_ID, REQUEST_URL, REFERRER_URL, SERVER_IP_ADDRESS, SERVER_HOST_NAME, INTERNAL_CONTENT_ID, PARTY_ID, ID_BY_IP_CONTACT_MECH_ID, REF_BY_WEB_CONTACT_MECH_ID) VALUES ('10901', 'catalog.LookupProduct', '2022-03-26 09:27:59.213', 'REQUEST', null, 1971, 'admin', null, 'https://localhost:8443/catalog/control/LookupProduct', 'https://localhost:8443/catalog/control/createProduct', '192.168.45.198', 'Wdidada', null, null, null, null)
+```
+
+ofbiz_new_project.png
+
+```sql
+SELECT
+	ULSGPV.USER_LOGIN_ID,
+	ULSGPV.FROM_DATE,
+	ULSGPV.GROUP_ID,
+	ULSGPV.THRU_DATE,
+	PV.VIEW_NAME_ID,
+	PV.MAX_HITS_DURATION,
+	PV.TARPIT_DURATION,
+	PV.MAX_HITS 
+FROM
+	USER_LOGIN_SECURITY_GROUP ULSGPV
+	INNER JOIN PROTECTED_VIEW PV ON ULSGPV.GROUP_ID = PV.GROUP_ID 
+WHERE
+	((
+			ULSGPV.USER_LOGIN_ID = 'admin' 
+		AND PV.VIEW_NAME_ID = 'LookupProduct' 
+	))
+```
+
+
+```sql
+SELECT
+	VISIT_ID,
+	VISITOR_ID,
+	USER_LOGIN_ID,
+	USER_CREATED,
+	SESSION_ID,
+	SERVER_IP_ADDRESS,
+	SERVER_HOST_NAME,
+	WEBAPP_NAME,
+	INITIAL_LOCALE,
+	INITIAL_REQUEST,
+	INITIAL_REFERRER,
+	INITIAL_USER_AGENT,
+	USER_AGENT_ID,
+	CLIENT_IP_ADDRESS,
+	CLIENT_HOST_NAME,
+	CLIENT_USER,
+	CLIENT_IP_ISP_NAME,
+	CLIENT_IP_POSTAL_CODE,
+	COOKIE,
+	FROM_DATE,
+	THRU_DATE,
+	CLIENT_IP_STATE_PROV_GEO_ID,
+	CLIENT_IP_COUNTRY_GEO_ID,
+	CONTACT_MECH_ID,
+	PARTY_ID,
+	ROLE_TYPE_ID 
+FROM
+	VISIT 
+WHERE
+	((
+		VISIT_ID = '10901' 
+	))
+```
+
 
 
 
