@@ -1,5 +1,10 @@
 # build
 
+cpp stl成为规范，cpp已经大面积应用了
+stl容器类不是线程安全的
+
+
+
 
 srpc
 brpc .a 静态库
@@ -10,6 +15,8 @@ cpp依赖
 
 git submodule
 https://www.jianshu.com/p/e27a978ddb88
+
+默认下载最新版代码
 
 pistache
 
@@ -150,5 +157,5 @@ Description : This package contains a tree of files which can be used as
 
 
 
-d
+
 

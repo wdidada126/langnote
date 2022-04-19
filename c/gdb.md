@@ -1,5 +1,7 @@
 # gdb
 
+
+
 [GDB的基本工作原理](https://blog.csdn.net/weiwangchao_/article/details/11884639)
 
 那么，gdb到底是凭什么接管的一个进程的执行呢？其实，很简单，通过一个系统调用：ptrace。ptrace系统调用的原型如下：

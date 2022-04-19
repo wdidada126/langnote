@@ -2,6 +2,28 @@
 
 
 
+### 使用cmake组织的开源项目
+
+- mysql
+
+
+https://github.com/edidada/mysql-5.6.26/blob/master/CMakeLists.txt
+
+### cmake命令
+
+aux_source_directory 命令
+aux_source_directory(<dir> <variable>)
+
+add_subdirectory
+add_executable
+target_link_libraries
+option
+
+
+让 CMake 支持 gdb 的设置也很容易，只需要指定 Debug 模式下开启 -g 选项：
+
+
+
 cmake 中文互联网有一堆老版本cmake的教程
 
 查找三方库

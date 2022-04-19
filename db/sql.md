@@ -1,29 +1,69 @@
 # SQL
 
+[某音春招数据分析岗真题详解](https://www.zhihu.com/column/c_1352655958959734784)
+
+题目（1）有用户表行为记录表t_act_records表，包含两个字段：uid（用户ID），imp_date（日期）1. 计算2020年每个月，每个用户连续签到的最多天数2. 计算2020年每个月，连续2天都有登陆的用户名单3. 计算2020年每个月，连续5天都有登陆的用户数难度：★★★★★<1> 计算2020年每个月，每个用户连续签到的最多天数考点：1. 连续时间问题；2. 时间限定；3. 聚类第一步：从时间上限定出2020年数据where imp_date between 20200101 and 20201231第二步：解决连续时间问题排序：row_number() over (partition by month(imp_date), uid) as rank 相减：date_diff(imp_date, rank) as sign 第三步：按月聚类求出最大连续签到天数组装构成答案select month
+    ,uid
+    ,max(cnt) 
+from (
+        select month(imp_date) as month
+            ,imp_date
+            ,uid
+            ,date_sub(imp_date, rank) as sign
+            ,count(1) as cnt
+        from(
+                select uid
+                    ,imp_date
+                    ,row_number() over (partition by month(imp_date), uid order by imp_date) as rank 
+                from t_act_records
+                where imp_date between 20200101 and 20201231
+            )
+            group by month(imp_date)
+                ,imp_date
+                ,uid
+                ,date_sub(imp_date, rank)
+        )
+group by month
+    ,uid
+
+<2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案select month(imp_date) as month
+    ,uid
+from ( 
+        select uid
+            ,imp_date
+            ,date_sub(imp_date, rank) as diff
+        from(
+                select uid
+                    ,imp_date
+                    ,row_number() over (partition by month(imp_date), uid) as rank 
+                from t_act_records
+                where imp_date between 20200101 and 20201231
+            )
+    )
+group by month(imp_date)
+    ,uid
+having count(diff)>=2;
+
 
 sql子查询的例子
 1、单行子查询
         select ename,deptno,sal
         from emp
         where deptno=(select deptno from dept where loc='NEW YORK')；
-
      2、多行子查询
         SELECT ename,job,sal
         FROM EMP
         WHERE deptno in ( SELECT deptno FROM dept WHERE dname LIKE 'A%')；
-
      3、多列子查询
         SELECT deptno,ename,job,sal
         FROM EMP
         WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
-
      4、内联视图子查询
        (1)SELECT ename,job,sal,rownum
           FROM (SELECT ename,job,sal FROM EMP ORDER BY sal)；
        (2)SELECT ename,job,sal,rownum
           FROM ( SELECT ename,job,sal FROM EMP ORDER BY sal)
           WHERE rownum<=5；
- 
      5、在HAVING子句中使用子查询
         SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
 
