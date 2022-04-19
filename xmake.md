@@ -1,5 +1,94 @@
 # xmake
 
+安装
+非root用户
+
+[wdidada@10-23-29-39 ~]$ xrepo install  zlib tbox
+note: install or modify (m) these packages (pass -y to skip confirm)?
+in xmake-repo:
+  -> zlib v1.2.12 
+  -> tbox v1.6.7 
+please input: y (y/n/m)
+n
+error: packages(zlib, tbox): must be installed!
+error: execv(xmake require -j 2 --extra={system=false} zlib tbox) failed(255)
+[wdidada@10-23-29-39 ~]$ xrepo install  zlib tbox
+note: install or modify (m) these packages (pass -y to skip confirm)?
+in xmake-repo:
+  -> zlib v1.2.12 
+  -> tbox v1.6.7 
+please input: y (y/n/m)
+m
+note: select the following 3rd packages
+  1. pacman::zlib -> zlib v1.2.12 
+  2. apt::zlib1g-dev -> zlib v1.2.12 
+please input number list: n (1,2,..)
+2
+note: install or modify (m) these packages (pass -y to skip confirm)?
+in xmake-repo:
+  -> tbox v1.6.7 
+in apt:
+  -> apt::zlib1g-dev latest 
+please input: y (y/n/m)
+y
+  => install apt::zlib1g-dev latest .. failed
+
+apt not found!
+if you want to get more verbose errors, please see:
+  -> /dev/shm/.xmake1000/220419/xrepo/working/build/.packages/a/apt_zlib1g-dev/latest/cache/installdir.failed/logs/install.txt
+error: install failed!
+error: execv(xmake require -j 2 --extra={system=false} zlib tbox) failed(255)
+[wdidada@10-23-29-39 ~]$ xrepo install  zlib tbox
+note: install or modify (m) these packages (pass -y to skip confirm)?
+in xmake-repo:
+  -> zlib v1.2.12 
+  -> tbox v1.6.7 
+please input: y (y/n/m)
+y
+  => download https://github.com/tboox/tbox/archive/v1.6.7.tar.gz .. ok
+  => download https://github.com/madler/zlib/archive/v1.2.12.tar.gz .. ok
+  => install zlib v1.2.12 .. ok              
+  => install tbox v1.6.7 .. ok     
+[wdidada@10-23-29-39 ~]$ xrepo search grpc
+The package names:
+[wdidada@10-23-29-39 ~]$ xrepo search poco
+The package names:
+    poco: 
+      -> poco-1.11.1: The POCO C++ Libraries are powerful cross-platform C++ libraries for building network- and internet-based applications that run on desktop, server, mobile, IoT, and embedded systems. (in xmake-repo)
+[wdidada@10-23-29-39 ~]$ xrepo install poco
+note: install or modify (m) these packages (pass -y to skip confirm)?
+in xmake-repo:
+  -> poco 1.11.1 
+please input: y (y/n/m)
+y
+  => download https://github.com/pocoproject/poco/archive/refs/tags/poco-1.11.1-release.tar.gz .. ok
+  => install poco 1.11.1 .. failed 
+
+CMake Error at XML/CMakeLists.txt:23 (find_package):
+  Could not find a package configuration file provided by "EXPAT" with any of
+  the following names:
+    EXPATConfig.cmake
+    expat-config.cmake
+  Add the installation prefix of "EXPAT" to CMAKE_PREFIX_PATH or set
+  "EXPAT_DIR" to a directory containing one of the above files.  If "EXPAT"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+evtoolset-7/root/usr/bin/c++
+-- Check for working CXX compiler: /opt/rh/devtoolset-7/root/usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Checking for C++14 compiler
+-- Checking for C++14 compiler - available
+if you want to get more verbose errors, please see:
+  -> /home/wdidada/.xmake/cache/packages/2204/p/poco/1.11.1/installdir.failed/logs/install.txt
+error: install failed!
+error: execv(xmake require -j 2 --extra={system=false} poco) failed(255
+
+
+
+
 例子
 https://gitee.com/edidada/great-project
 
@@ -28,4 +117,81 @@ Nimble for nimlang (nimble::zip >1.3)
 入门教程
 https://www.lanqiao.cn/courses/2764
 https://zhuanlan.zhihu.com/p/412503965
+
+
+
+add_rules("mode.debug", "mode.release")
+
+target("great-project")
+    set_kind("binary")
+    add_files("src/*.cpp")
+
+--
+-- If you want to known more usage about xmake, please see https://xmake.io
+--
+-- ## FAQ
+--
+-- You can enter the project directory firstly before building project.
+--
+--   $ cd projectdir
+--
+-- 1. How to build project?
+--
+--   $ xmake
+--
+-- 2. How to configure project?
+--
+--   $ xmake f -p [macosx|linux|iphoneos ..] -a [x86_64|i386|arm64 ..] -m [debug|release]
+--
+-- 3. Where is the build output directory?
+--
+--   The default output directory is `./build` and you can configure the output directory.
+--
+--   $ xmake f -o outputdir
+--   $ xmake
+--
+-- 4. How to run and debug target after building project?
+--
+--   $ xmake run [targetname]
+--   $ xmake run -d [targetname]
+--
+-- 5. How to install target to the system directory or other output directory?
+--
+--   $ xmake install
+--   $ xmake install -o installdir
+--
+-- 6. Add some frequently-used compilation flags in xmake.lua
+--
+-- @code
+--    -- add debug and release modes
+--    add_rules("mode.debug", "mode.release")
+--
+--    -- add macro defination
+--    add_defines("NDEBUG", "_GNU_SOURCE=1")
+--
+--    -- set warning all as error
+--    set_warnings("all", "error")
+--
+--    -- set language: c99, c++11
+--    set_languages("c99", "c++11")
+--
+--    -- set optimization: none, faster, fastest, smallest
+--    set_optimize("fastest")
+--
+--    -- add include search directories
+--    add_includedirs("/usr/include", "/usr/local/include")
+--
+--    -- add link libraries and search directories
+--    add_links("tbox")
+--    add_linkdirs("/usr/local/lib", "/usr/lib")
+--
+--    -- add system link libraries
+--    add_syslinks("z", "pthread")
+--
+--    -- add compilation and link flags
+--    add_cxflags("-stdnolib", "-fno-strict-aliasing")
+--    add_ldflags("-L/usr/local/lib", "-lpthread", {force = true})
+--
+-- @endcode
+--
 

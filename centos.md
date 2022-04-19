@@ -154,3 +154,14 @@ GRANT ALL PRIVILEGES ON *.* TO ‘root@%’ identified by ‘5%Edidadas’;
 
 
 grant all privileges on \*.* to root@'%' identified by ‘5%Edidadas’
+
+
+centos 7添加用户并授权
+
+wdidada is not in the sudoers file.  This incident will be reported.
+
+
+http://t.zoukankan.com/geoffreygao-p-12238231.html
+
+chmod -v u+w /etc/sudoers
+chmod -v u-w /etc/sudoers
