@@ -1,5 +1,6 @@
 # yum
 
+yum whatprovides autoconf automake
 
 /etc/yum.repos.d/
 

@@ -1,5 +1,18 @@
 # bash
 
+### 检测环境变量
+
+compile.sh
+
+### 判断语句
+
+if
+
+fi
+
+
+
+
 升级gclic
 
 ```shell

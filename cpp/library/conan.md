@@ -26,4 +26,14 @@ conan inspect poco/1.9.4
 @很重要，有这个后缀才conan install才会把输入参数当做一个包名，如果没有@,conan install 会把 cjson/1.7.13当做一个路径
 
 
+************************* WARNING: GCC OLD ABI COMPATIBILITY ***********************
+ 
+Conan detected a GCC version > 5 but has adjusted the 'compiler.libcxx' setting to
+'libstdc++' for backwards compatibility.
+Your compiler is likely using the new CXX11 ABI by default (libstdc++11).
+If you want Conan to use the new ABI for the default profile, run:
+    $ conan profile update settings.compiler.libcxx=libstdc++11 default
+Or edit '/home/wdidada/.conan/profiles/default' and set compiler.libcxx=libstdc++11
+************************************************************************************
+
 
