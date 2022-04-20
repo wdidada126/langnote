@@ -3,6 +3,15 @@
 安装
 非root用户
 
+- xmake
+- xrepo
+
+
+
+xrepo自动下载依赖
+
+xmake install xxx -y
+
 [wdidada@10-23-29-39 ~]$ xrepo install  zlib tbox
 note: install or modify (m) these packages (pass -y to skip confirm)?
 in xmake-repo:
@@ -194,4 +203,39 @@ target("great-project")
 --
 -- @endcode
 --
+
+[Xmake和C/C++包管理](https://tboox.org/cn/2022/03/12/xmake-and-package-management/)
+
+集成一个内置依赖包只需要几行配置：
+
+add_requires("zlib 1.2.11")
+target("test")
+    add_files("src/*.c")
+    add_packages("zlib")
+集成一个 vcpkg 包，仅仅只需要加上对应的包管理器命名空间，集成方式完全相同：
+
+add_requires("vcpkg::zlib 1.2.11")
+target("test")
+    add_files("src/*.c")
+    add_packages("vcpkg::zlib")
+集成一个 conan 包，或者 conda, homebrew, pacman, apt, clib 等第三方包，也只需要改成 conan::zlib 就行了，用户可以随意切换包源。
+
+另外，Xmake 会自动帮你调用 vcpkg/conan install 安装命令去安装依赖包，然后集成它们，不需要用户做任何其他事情，仅仅只需要执行 xmake 一键编译。
+
+目前 Xmake 支持的包源有以下这些：
+
+Official package repository xmake-repo (tbox >1.6.1)
+Official package manager Xrepo
+User-built repositories
+Conan (conan::openssl/1.1.1g)
+Conda (conda::libpng 1.3.67)
+Vcpkg (vcpkg:ffmpeg)
+Homebrew/Linuxbrew (brew::pcre2/libpcre2-8)
+Pacman on archlinux/msys2 (pacman::libcurl)
+Apt on ubuntu/debian (apt::zlib1g-dev)
+Clib (clib::clibs/bytes@0.0.4)
+Dub (dub::log 0.4.3)
+Portage on Gentoo/Linux (portage::libhandy)
+Nimble for nimlang (nimble::zip >1.3)
+Cargo for rust (cargo::base64 0.13.0)
 
