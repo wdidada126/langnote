@@ -242,4 +242,3 @@ Cargo for rust (cargo::base64 0.13.0)
 
 
 通过 Xmake 和 xmake-idea 插件，我们可以很方便的在 Clion/Intellji IDEA 中跨平台开发 C/C++ 程序。由于目前插件本身还不支持调试，但是我们在 Clion 中还是可以借助生成 CMakeLists.txt 来变相支持断点调试，Intelligense。
-

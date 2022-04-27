@@ -68,7 +68,15 @@ nio编程Server端
 
             selector = Selector.open();
             socketChannel.register(selector, SelectionKey.OP_CONNECT);
-
 ```
 
 java.nio.channels.Pipe  一组channel
+
+
+Selector
+
+java nio与OS并发库
+linux epoll
+Windows iocp
+
+
