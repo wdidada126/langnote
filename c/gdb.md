@@ -1,6 +1,49 @@
 # gdb
 
+问：g++ 生成gdb调试信息
+答：
+
 [GDB的基本工作原理](https://blog.csdn.net/weiwangchao_/article/details/11884639)
+
+1. 背景
+程序的发布方式有两种，debug模式和release模式
+debug 通常称为调试版本，它包含调试信息，并且不作任何优化，便于程序员调试程序。
+Release 称为发布版本，它往往是进行了各种优化，使得程序在代码大小和运行速度上都是最优的，以便用户很好地使用。
+Linux gcc/g++编译出来的二进制程序，默认是release模式
+因此要使用gdb调试，必须在源代码生成二进制程序的时候, 加上 -g 选项
+2. gdb调试界面命令汇总
+进入：gdb binFile
+退出：ctrl + d 或 quit/q
+
+调试命令：
+
+l(list) 行号：显示binFile源代码，接着上次的位置往下列，每次列10行。
+l(list) 函数名：列出某个函数的源代码。
+r(run)：运行程序。
+n(next）：逐过程执行(不会进入函数内部)。
+s(step)：逐语句执行
+b(break) 行号：在某一行设置断点
+b(break) 函数名：在某个函数开头设置断点
+i b(info break) ：查看断点信息。
+disable 断点号：禁用断点
+enable 断点号：启用断点
+p(print)：打印表达式的值，通过表达式可以修改变量的值或者调用函数
+p 变量：打印变量的值。
+bt/where：当前函数的调用堆栈，显示的结果由下至上为函数的调用顺序
+f(floor) 函数序号：显示某一正在调用的函数的临时变量的信息。
+finish：执行到当前函数返回，然后停下来等待命令
+set var：修改变量的值
+c(continue)：从当前位置开始连续而非单步执行程序
+delete breakpoints：删除所有断点
+delete breakpoints n：删除序号为n的断点
+i(info) breakpoints：参看当前设置了哪些断点
+display 变量名：跟踪查看一个变量，每次停下来都显示它的值
+undisplay：取消对先前设置的那些变量的跟踪
+until X(行号)：跳至X行
+breaktrace(或bt)：查看各级函数调用及参数
+info（i) locals：查看当前栈帧局部变量的值
+q(quit)：退出gdb
+
 
 那么，gdb到底是凭什么接管的一个进程的执行呢？其实，很简单，通过一个系统调用：ptrace。ptrace系统调用的原型如下：
 
@@ -44,10 +87,7 @@ https://www.cnblogs.com/Forever-Kenlen-Ja/p/8631663.html
 
 
 
-
-
-
-[使用 GDB 对程序进行汇编级调试](http://www.cnblogs.com/diylab/archive/2009/07/16/1524483.html)
+[使用GDB对程序进行汇编级调试](http://www.cnblogs.com/diylab/archive/2009/07/16/1524483.html)
 
 
 

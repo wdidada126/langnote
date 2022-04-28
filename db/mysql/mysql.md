@@ -1,5 +1,9 @@
 # mysql
 
+### mysql 源码编译
+ubuntu 16
+centos 7/8
+
 MySQL Benchmark Tool
 DBT2
 SysBench

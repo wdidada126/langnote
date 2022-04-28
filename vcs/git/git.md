@@ -1,5 +1,7 @@
 # Git
 
+[如何使用.gitignore忽略Git中的文件和目录](https://blog.csdn.net/Q1761991696/article/details/123572766)
+
 问：IDEA解决git冲突
 答：先执行'git add'命令
 

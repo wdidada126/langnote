@@ -1,6 +1,7 @@
 # mybatis
 
 
+[Java、Mysql、MyBatis 中枚举 enum 的使用](https://blog.csdn.net/JoeBlackzqq/article/details/90216582)
 
 
 D:\git\github\LangNote\java\mybatis.md

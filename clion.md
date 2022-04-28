@@ -1,6 +1,12 @@
 # clion
 
+
+
 2021版本支持make
+https://blog.csdn.net/qiuyeyijian/article/details/109267543
+
+Windows 只支持Makefile，makefile
+
 https://www.jetbrains.com/help/clion/makefiles-support.html
 选中makefile
 gnumakefile
@@ -19,11 +25,8 @@ cmake
 常见例子举例：
 
 1.zeroC ICE，拥有自己的网络通信框架 + ICE 调用控制协议和对象序列化协议,同时也涵盖了服务组件的抽象部署等功能。
-
 2.thrift，有自己的网络通信框架+thrift 对象序列化协议+thrift 调用控制协议
-
 3.probuff，只是 对象序列化协议
-
 4.XMLRPC ，jsonRPC，常见的语境是利用HTTP协议作为调用控制协议,XML 和 JSON 作为对象序列化之后的格式。
 
 

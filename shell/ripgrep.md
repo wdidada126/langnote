@@ -1,5 +1,9 @@
 # ripgrep
+后端llvm
 
+rg能检索word中的内容吗？
+
+https://github.com/BurntSushi/ripgrep
 rust_README.md
 可以学习不同linux Unix系统的包管理工具
 

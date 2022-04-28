@@ -2,7 +2,7 @@
 
 
 
-Gcc 10 cetnos平台 2021年1月开放
+Gcc 10 centos平台 2021年1月开放
 
 
 

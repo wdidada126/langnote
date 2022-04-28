@@ -2,6 +2,16 @@
 
 高清PDF和源码
 
+lex与yacc.pdf
+
+Lex与Yacc第二版高清版.pdf
+
+
+
+https://book.douban.com/subject/1105363/
+
+
+
 ### note
 
 - 如何在linux系统上安装lex，并运行示例程序
@@ -12,13 +22,13 @@
 
 
 ```shell
-yum install byacc
-yum install flex
+yum install byacc -y
+yum install flex -y
 ```
 
 ubuntu使用flex和bison来代替lex和yacc
 
-sudo apt-get install flex biso
+sudo apt-get install flex biso -y
 
 运行
 
@@ -41,6 +51,12 @@ lex ch1-02.l
 gcc lex.yy.c -o example -ll
 
 ```
+
+
+### Chap. 1
+
+
+
 lex yacc文件分为三个部分
 哪三个部分？
 
@@ -51,3 +67,13 @@ lex yacc文件分为三个部分
 
 
 
+
+```
+
+
+
+### Chap. 2
+
+
+
+1

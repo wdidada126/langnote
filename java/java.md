@@ -1,5 +1,11 @@
 # Java标准库
 
+map foreach
+
+(k,v) -> {
+  
+}
+
 
 java 命令行程序
 ```shell

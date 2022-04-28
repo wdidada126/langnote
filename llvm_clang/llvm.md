@@ -1,6 +1,11 @@
 # llvm
 
 
+LLVM编译器实战教程 第二版
+
+一步步掌握LLVM
+https://www.zhihu.com/column/c_1250484713606819840
+
 Swift官方就是用llvm，在LLVM IR上面也有一层SIR的东西。毕竟两个的爹都是Apple。感觉llvm以后要一统江湖啊，原先每个编译器企业自己做技术栈，以后估计都要整合到llvm的框架里了。
 
 http://releases.llvm.org/8.0.0/docs/CMake.html
