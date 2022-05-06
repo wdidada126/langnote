@@ -1,5 +1,14 @@
 # cpp
 
+### 代码检查工具
+java snoar
+
+mac命令行编译c cpp代码
+
+gcc c
+g++ c++代码
+
+g++ -llibstdc++ 之类的代码，不然报错
 
 问：set list区别
 

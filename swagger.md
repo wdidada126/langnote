@@ -8,3 +8,5 @@
 再见丑陋的 SwaggerUI，这款开源的API文档生成神器界面更炫酷，逼格更高！
 原文链接： https://xie.infoq.cn/article/7dcb5b517285456c904f9d0e2
 
+@Api
+@ApiOperaton

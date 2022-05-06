@@ -1,5 +1,14 @@
 # gcc
 
+### gcc vs g++
+
+gcc编译c代码
+g++编译c++代码
+
+### gcc代码如何组织
+git
+cmake
+
 cc1plus
 xg++
 
