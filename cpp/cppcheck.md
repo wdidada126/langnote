@@ -6,3 +6,4 @@ You can install Cppcheck with yum/apt/brew/etc.
 
 http://cppcheck.sourceforge.net/
 https://github.com/danmar/cppcheck
+
