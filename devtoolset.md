@@ -170,12 +170,13 @@ yum -y install centos-release-scl
 yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils devtoolset-7-gdb
 scl enable devtoolset-7 bash
 
+sudo yum remove devtoolset-7*
+
 开机就设置gcc为gcc7
 需要注意的是scl命令启用只是临时的，退出shell或重启就会恢复原系统gcc版本。
 如果要长期使用gcc 7.3的话：
 
-echo “	” >>/etc/profile
-
+echo "source /opt/rh/devtoolset-7/enable" >>/etc/profil
 
 yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-binutils
 
@@ -208,3 +209,4 @@ devtoolset-7
 devtoolset-8
 devtoolset-9
 
+scl enable devtoolset-9 bash

@@ -11,7 +11,7 @@ vcpkg search apache
 rbmq的cpp库
 
 
-`cmake -DCMAKE_TOOLCHAIN_FILE=/root/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
+`cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
 
 
 CMake给交叉编译预留了一个很好的变量即CMAKE_TOOLCHAIN_FILE,它定义了一个文件的路径，这个文件即toolChain,里面set了一系列你需要改变的变量和属性，包括C_COMPILER,CXX_COMPILER。CMake为了不让用户每次交叉编译都要重新输入这些命令，因此它带来toolChain机制，简而言之就是一个cmake脚本，内嵌了你需要改变以及需要set的所有交叉环境的设置。
@@ -80,10 +80,8 @@ add_link_options
 
 添加链接参数
 
-作者：罗蓁蓁
-链接：https://www.jianshu.com/p/03a0ba0578ad
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://www.jianshu.com/p/03a0ba0578ad
+
 
 C++ ORM框架:SQLPP11教程 使用vcpkg
 https://blog.csdn.net/linyilong3/article/details/100853675
