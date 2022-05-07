@@ -31,16 +31,16 @@ m
 note: select the following 3rd packages
   1. pacman::zlib -> zlib v1.2.12 
   2. apt::zlib1g-dev -> zlib v1.2.12 
-please input number list: n (1,2,..)
-2
-note: install or modify (m) these packages (pass -y to skip confirm)?
-in xmake-repo:
-  -> tbox v1.6.7 
-in apt:
-  -> apt::zlib1g-dev latest 
-please input: y (y/n/m)
-y
-  => install apt::zlib1g-dev latest .. failed
+  please input number list: n (1,2,..)
+  2
+  note: install or modify (m) these packages (pass -y to skip confirm)?
+  in xmake-repo:
+    -> tbox v1.6.7 
+  in apt:
+    -> apt::zlib1g-dev latest 
+  please input: y (y/n/m)
+  y
+    => install apt::zlib1g-dev latest .. failed
 
 apt not found!
 if you want to get more verbose errors, please see:
@@ -135,7 +135,7 @@ target("great-project")
     set_kind("binary")
     add_files("src/*.cpp")
 
---
+
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
 -- ## FAQ

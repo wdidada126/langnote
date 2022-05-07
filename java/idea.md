@@ -1,6 +1,5 @@
 # IDEA
 
-
 反向类图 时序图
 一、检查UML类图插件是否开启
 IDEA默认已经集成了该功能，只是默认没打开，我们要手动打开它，参考下图：
@@ -59,6 +58,10 @@ https://blog.csdn.net/fanrenxiang/article/details/80497977
 https://www.iteye.com/blog/baowp-1989575
 
 #### IDEA debug时，可以改变变量的值
+
+Mac 回到上一次光标的位置
+
+Alt command 箭头
 
 mac windows下的IDEA快捷键不同
 
@@ -214,7 +217,7 @@ ar
 
 
 
-IDEA mac ctrl o
+IDEA mac ctrl o或者Shift Ctrl F
 
 Win ctrl n 查找类
 

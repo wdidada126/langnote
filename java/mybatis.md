@@ -14,14 +14,16 @@ MyBatisCodeHelperPro idea插件
 
 在Mybatis已经整合到springBoot框架的情况下，只需要在配置文件中简单配置就能实现打印SQL日志功能。
 如果使用的是application.properties文件，加入如下配置：
-#开启logging myabtis语句打印
+
+
+
 logging.level.main.blog.mapper=debug
 如果使用的是application.yml文件，加入如下配置：
+
 #开启logging myabtis语句打印
 logging:
   level:
     main.blog.mapper: trace
-
 
 
 
@@ -55,7 +57,7 @@ mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语
 
 5. set (主要用于更新时)
 
-6. foreach (在实现 mybatis in 语句查询时特别有用)
+6. foreach (在实现 mybatis in 语句查询时特别有用 批量插入的时候有用)
 
 
 
@@ -105,7 +107,7 @@ jdbcTemplate
 
 
 
-https://blog.csdn.net/wrs120/article/details/82530653
+[【MyBatis】 动态SQL——模糊查询 LIKE](https://blog.csdn.net/wrs120/article/details/82530653)
 
 ```xml
 org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 4
