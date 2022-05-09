@@ -1,5 +1,8 @@
 # postgresql
 
+### pg scheme
+pg数据库下面有模式(scheme)，模式下面有表
+
 [PostgreSQL 在国内公司应用](https://www.zhihu.com/question/19685185)
 
 Greenplum开源
@@ -56,20 +59,44 @@ https://www.postgresql.org/download/linux/redhat/
 
 
 postgresql权限管理，如何添加一个网段的ssl访问权限？
+配置参考文档：https://www.jianshu.com/p/21d25c0d6ab4
+
+
 
 180.167.0.0/16
+PostgreSQL安装后默认只能localhost:5432访问
 
 
-
+本机登录
+su - postgres
 qsql -U postgres ？？？
 
 
 
+核心的登录命令
+psql "postgresql://[用户名]:[密码]@[服务器地址]:[端口]/[数据库名称]"
+示例：psql postgresql://postgres:123456@192.168.51.17:5432/database
+
+https://www.jianshu.com/p/823702d6643e
+psql -Upostgres -h 118.182.97.157 -p 5432 -d postgres
+psql -Upostgres -h 118.182.97.157 sonarqube
+CREATE DATABASE sonarqube;
+\q
+
 命令行方式登录PostgreSQL
 
+配置文件
+/var/lib/pgsql/10/data/pg_hba.conf
+
+### pgsql 创建数据库
+navicate图形界面创建数据库？ 登录，进命令行 CREATE DATABASE dbname;
 
 
-**PostgreSQL 数据库内核分析**
+PostgreSQL 创建数据库
+https://www.runoob.com/postgresql/postgresql-create-database.html
+
+
+PostgreSQL 数据库内核分析
 
 https://book.douban.com/subject/6971366/
 
@@ -80,3 +107,18 @@ https://book.douban.com/subject/6971366/
 适合刚开始研读PG源代码的朋友
 
 数据库执行计划用到了动态规划和图论等相关知识
+
+开源数据库中，对空间地理数据支持比较好的要数PG的插件Postgi
+
+
+
+
+
+Oracle ACE
+
+第九届PostgreSQL中国技术大会
+
+张文升
+著有书籍《PostgreSQL实战》
+《PostgreSQL指南：内幕探索》
+

@@ -18,7 +18,14 @@ https://docs.sonarqube.org/pages/viewpage.action?pageId=7996665
 [代码质量管理平台SonarQube的安装、配置与使用](https://www.cnblogs.com/qiumingcheng/p/7253917.html)
 
 
+### sonar集成自定义规则
 
+下载p3c插件：https://github.com/caowenliang/sonar-pmd-p3c  （此插件兼容 sonarQube 7.7+ 以上版本，包括目前最新版8.4.2）
+执行以下命令：
+cd sonar-pmd-p3c
+mvn clean install -Dmaven.test.skip=true
+ 将生成的 sonar-pmd-plugin-3.2.1.jar 包丢到sonarQube的插件目录 /extensions/plugins 即可，然后重新启动服务
+https://blog.csdn.net/lu1171901273/article/details/121225962
 
 
 travis 结合?
@@ -157,3 +164,35 @@ Found 0 issues
 Using connection '106.75.209.6' for project 'dsfasdfasd'
 Analysing 'A.java'...
 Found 0 issues
+
+
+
+
+启动sonarqube报错
+
+
+#完整报错：
+ERROR: [1] bootstrap checks failed. You must address the points described in the following [1] lines before starting Elasticsearch.
+bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/logs/sonarqube.log
+ 
+原因：由于 SonarQube 使用嵌入式 Elasticsearch，请确保您的 Docker 主机配置符合Elasticsearch 生产模式要求和文件描述符配置。
+解决：在 Linux 上，您可以通过在主机上以 root 身份运行以下命令来设置当前会话的推荐值：（调整系统参数）
+　　sysctl -w vm.max_map_count=262144
+　　sysctl -w fs.file-max=65536
+　　ulimit -n 65536
+　　ulimit -u 4096
+
+admin
+5Edidada
+
+mvn clean verify sonar:sonar -Dsonar.projectKey=mytestsonarproject -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=9d7d2b7f76ef5353c4834875e6683912cc921daf
+
+
+ An API incompatibility was encountered while
+ executing org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar: java.lang.UnsupportedClassVersionError: org/sonar/batch/bootstrapper
+/EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime
+ only recognizes class file versions up to 52.0
+
+
+需要将JDK版本更换至 Java 11

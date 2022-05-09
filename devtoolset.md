@@ -178,7 +178,7 @@ sudo yum remove devtoolset-7*
 
 echo "source /opt/rh/devtoolset-7/enable" >>/etc/profil
 
-yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-binutils
+yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-binutils devtoolset-8-gdb
 
 yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils
 
