@@ -13,7 +13,7 @@ IDEA Preview
 
 
 
-Lexi
+Lex
 
 token
 

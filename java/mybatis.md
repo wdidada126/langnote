@@ -1,5 +1,8 @@
 # mybatis
 
+使用mybatis的开源项目：
+- sonar
+
 
 mybatis xml文件 有哪些子节点，可以在IDEA中查看到，IDEA中有智能提示
 

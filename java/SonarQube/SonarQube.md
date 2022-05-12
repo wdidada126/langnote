@@ -1,6 +1,8 @@
 # Sonar
 
 
+AuthorizationDaoTest 单元测试
+
 1. 默认支持代码文本格式全为 UTF-8，其他编码可能会产生乱码；
 2. 目前支持 C#、C++、Go、Groovy、Java、JavaScript、Lua、PHP、Python、Ruby、TypeScript、Web、XML；
 3. 仅保存最近一次分析结果；
