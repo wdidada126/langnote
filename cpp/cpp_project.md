@@ -15,9 +15,9 @@
 |           | git            | https://github.com/edidada/mysqlcapiinlinux | mysqlclient |           |
 |           | git            | https://github.com/edidada/testlibuv        | libuv       |           |
 | cmake     | git            | https://github.com/edidada/testleveldb      | leveldb     |           |
-|           |                |                                             |             |           |
-|           |                |                                             |             |           |
-|           |                |                                             |             |           |
+|           |                |                                             | odb         |           |
+|           |                |                                             | pistache    |           |
+|           |                |                                             | gtest       |           |
 |           |                |                                             |             |           |
 |           |                |                                             |             |           |
 |           |                |                                             |             |           |

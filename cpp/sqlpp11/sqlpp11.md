@@ -6,5 +6,6 @@
 
  A type safe SQL template library for C++ 
 
-
+vcpkg install sqlpp11-connector-sqlite3
+vcpkg install sqlpp11
 

@@ -11,3 +11,5 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 bison 2.3 mac系统
 
+yum install bison -y
+

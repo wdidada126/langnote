@@ -1,5 +1,7 @@
 # 生成密钥
 
+ssh-keygen -t ed25519 -C "1664884095@qq.com"
+
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab

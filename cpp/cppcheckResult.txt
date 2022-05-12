@@ -1,0 +1,279 @@
+[1mblog/service/article/BlogToWriteServiceImpl.h:13:10: [31mstyle:[39m The function 'toBlogWrite' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool toBlogWrite(BlogWriteInfo);
+         ^
+[1mblog/service/article/BlogToWriteService.h:12:18: [2mnote:[0m Virtual function in base class
+    virtual bool toBlogWrite(BlogWriteInfo) = 0;
+                 ^
+[1mblog/service/article/BlogToWriteServiceImpl.h:13:10: [2mnote:[0m Function in derived class
+    bool toBlogWrite(BlogWriteInfo);
+         ^
+[1mblog/control/info/BlogToWrite.cpp:55:57: [31merror:[39m Uninitialized struct member: blogWriteInfo.id [uninitStructMember][0m
+    bool write_result = blogToWriteService->toBlogWrite(blogWriteInfo);
+                                                        ^
+[1mblog/control/info/BlogToWrite.cpp:55:57: [31merror:[39m Uninitialized variable: blogWriteInfo.id [uninitvar][0m
+    bool write_result = blogToWriteService->toBlogWrite(blogWriteInfo);
+                                                        ^
+[1mblog/service/article/CountArticlePerMonthImpl.h:13:28: [31mstyle:[39m The function 'getCountInfo' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    list<articlemonthinfo> getCountInfo(int page);
+                           ^
+[1mblog/service/article/CountArticlePerMonth.h:13:36: [2mnote:[0m Virtual function in base class
+    virtual list<articlemonthinfo> getCountInfo(int page) = 0;
+                                   ^
+[1mblog/service/article/CountArticlePerMonthImpl.h:13:28: [2mnote:[0m Function in derived class
+    list<articlemonthinfo> getCountInfo(int page);
+                           ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStrImpl.h:17:12: [31mstyle:[39m The function 'convertToJsonString' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    string convertToJsonString(list<BlogInfo>);
+           ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStr.h:17:20: [2mnote:[0m Virtual function in base class
+    virtual string convertToJsonString(list<BlogInfo>) = 0;
+                   ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStrImpl.h:17:12: [2mnote:[0m Function in derived class
+    string convertToJsonString(list<BlogInfo>);
+           ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStrImpl.h:18:12: [31mstyle:[39m The function 'convertArticleToJsonString' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    string convertArticleToJsonString(list<articlemonthinfo> articlemonthinfo);
+           ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStr.h:18:20: [2mnote:[0m Virtual function in base class
+    virtual string convertArticleToJsonString(list<articlemonthinfo> articlemonthinfo_list) = 0;
+                   ^
+[1mblog/convert/jsonstring/blogs/InfoListJsonStrImpl.h:18:12: [2mnote:[0m Function in derived class
+    string convertArticleToJsonString(list<articlemonthinfo> articlemonthinfo);
+           ^
+[1mblog/dao/BlogInfoDaoImpl.h:12:20: [31mstyle:[39m The function 'getInPage' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    list<BlogInfo> getInPage(int page);
+                   ^
+[1mblog/dao/BlogInfoDao.h:15:28: [2mnote:[0m Virtual function in base class
+    virtual list<BlogInfo> getInPage(int page) = 0;
+                           ^
+[1mblog/dao/BlogInfoDaoImpl.h:12:20: [2mnote:[0m Function in derived class
+    list<BlogInfo> getInPage(int page);
+                   ^
+[1mblog/dao/BlogInfoDaoImpl.cpp:12:19: [31mstyle:[39m Variable 'exeResult' is assigned a value that is never used. [unreadVariable][0m
+    bool exeResult=DBInterface::getDBInstance()->getBlogListFromPage(page,& r);
+                  ^
+[1mblog/service/article/InfoServiceImpl.h:11:20: [31mstyle:[39m The function 'getInPage' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    list<BlogInfo> getInPage(int page);
+                   ^
+[1mblog/service/article/InfoService.h:17:28: [2mnote:[0m Virtual function in base class
+    virtual list<BlogInfo> getInPage(int page) = 0;
+                           ^
+[1mblog/service/article/InfoServiceImpl.h:11:20: [2mnote:[0m Function in derived class
+    list<BlogInfo> getInPage(int page);
+                   ^
+[1mblog/dao/article/CountArticlePerMonthDaoImpl.h:13:28: [31mstyle:[39m The function 'getCountInfo' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    list<articlemonthinfo> getCountInfo(int page);
+                           ^
+[1mblog/dao/article/CountArticlePerMonthDao.h:13:36: [2mnote:[0m Virtual function in base class
+    virtual list<articlemonthinfo> getCountInfo(int page) = 0;
+                                   ^
+[1mblog/dao/article/CountArticlePerMonthDaoImpl.h:13:28: [2mnote:[0m Function in derived class
+    list<articlemonthinfo> getCountInfo(int page);
+                           ^
+[1mblog/dao/article/CountArticlePerMonthDaoImpl.cpp:10:17: [31mstyle:[39m Variable 'result' is assigned a value that is never used. [unreadVariable][0m
+    bool result = DBInterface::getDBInstance()->getArticleMonthInfo(page,& r);
+                ^
+[1mblog/dao/article/WriteBlogDaoImpl.h:13:10: [31mstyle:[39m The function 'writeBlog' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool writeBlog(BlogWriteInfo blogWriteInfo);
+         ^
+[1mblog/dao/article/WriteBlogDao.h:12:18: [2mnote:[0m Virtual function in base class
+    virtual bool writeBlog(BlogWriteInfo blogWriteInfo) = 0;
+                 ^
+[1mblog/dao/article/WriteBlogDaoImpl.h:13:10: [2mnote:[0m Function in derived class
+    bool writeBlog(BlogWriteInfo blogWriteInfo);
+         ^
+[1mblog/service/article/BlogToWriteServiceImpl.cpp:9:56: [31mperformance:[39m Function parameter 'blogWriteInfo' should be passed by const reference. [passedByValue][0m
+bool BlogToWriteServiceImpl::toBlogWrite(BlogWriteInfo blogWriteInfo){
+                                                       ^
+[1mblog/dao/article/WriteBlogDaoImpl.cpp:9:10: [31merror:[39m Found a exit path from function with non-void return type that has missing return statement [missingReturn][0m
+    bool writeResult = DBInterface::getDBInstance()->writeBlog(blogWriteInfo);
+         ^
+[1mblog/dao/article/WriteBlogDaoImpl.cpp:8:48: [31mperformance:[39m Function parameter 'blogWriteInfo' should be passed by const reference. [passedByValue][0m
+bool WriteBlogDaoImpl::writeBlog(BlogWriteInfo blogWriteInfo) {
+                                               ^
+[1mblog/dao/article/WriteBlogDaoImpl.cpp:9:22: [31mstyle:[39m Variable 'writeResult' is assigned a value that is never used. [unreadVariable][0m
+    bool writeResult = DBInterface::getDBInstance()->writeBlog(blogWriteInfo);
+                     ^
+[1mblog/service/account/LoginJsonForm.cpp:65:8: [31mstyle:[39m Condition '!userInfoObject.empty()' is always true [knownConditionTrueFalse][0m
+    if(!userInfoObject.empty())
+       ^
+[1mblog/service/account/LoginJsonForm.cpp:20:38: [31mperformance:[39m Function parameter 'username' should be passed by const reference. [passedByValue][0m
+void LoginJsonForm::makejsons(string username,string & jsonResult)
+                                     ^
+[1minclude/handler/HelloHandler.h:15:5: [31merror:[39m There is an unknown macro here somewhere. Configuration is required. If HTTP_PROTOTYPE is a macro then please configure it. [unknownMacro][0m
+    HTTP_PROTOTYPE(HelloHandler)
+    ^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdC/CMakeCCompilerId.c:0:0: [31minformation:[39m Too many #ifdef configurations - cppcheck only checks 12 of 104 configurations. Use --force to check all configurations. [toomanyconfigs][0m
+
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:0:0: [31minformation:[39m Too many #ifdef configurations - cppcheck only checks 12 of 99 configurations. Use --force to check all configurations. [toomanyconfigs][0m
+
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdC/CMakeCCompilerId.c:558:0: [31minformation:[39m Skipping configuration 'SDCC;__SDCC_VERSION_MAJOR' since the value of '__SDCC_VERSION_MAJOR' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  COMPILER_VERSION_MAJOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdC/CMakeCCompilerId.c:558:0: [31minformation:[39m Skipping configuration 'SDCC;__SDCC_VERSION_MAJOR;__SDCC_VERSION_MAJOR' since the value of '__SDCC_VERSION_MAJOR' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  COMPILER_VERSION_MAJOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:543:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  COMPILER_VERSION_MAJOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:545:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  '.', COMPILER_VERSION_MINOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:547:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+   '.', COMPILER_VERSION_PATCH,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:543:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  COMPILER_VERSION_MAJOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:545:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+  '.', COMPILER_VERSION_MINOR,
+^
+[1mbuild/CMakeFiles/3.14.0/CompilerIdCXX/CMakeCXXCompilerId.cpp:547:0: [31minformation:[39m Skipping configuration '_COMPILER_VERSION;_SGI_COMPILER_VERSION;_SGI_COMPILER_VERSION' since the value of '_SGI_COMPILER_VERSION' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked][0m
+   '.', COMPILER_VERSION_PATCH,
+^
+[1mdb/DBInterfaceODB.cpp:0:0: [31minformation:[39m This file is not analyzed. Cppcheck failed to extract a valid configuration. Use -v for more details. [noValidConfiguration][0m
+
+^
+[1mlog/Log4cppUtil.cpp:24:5: [31mperformance:[39m Variable 'initFileName' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList][0m
+    initFileName = logconfig;
+    ^
+[1mlog/Log4cppUtil.h:28:5: [31mstyle:[39m Class 'Log4cppUtil' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    Log4cppUtil(string logconfig);//TODO:add setting log configure filename.
+    ^
+[1mlog/Log4cppUtil.cpp:21:33: [31mperformance:[39m Function parameter 'logconfig' should be passed by const reference. [passedByValue][0m
+Log4cppUtil::Log4cppUtil(string logconfig):
+                                ^
+[1mdb/DBInterfaceC.cpp:61:1: [31merror:[39m Found a exit path from function with non-void return type that has missing return statement [missingReturn][0m
+}
+^
+[1mdb/DBInterfaceC.cpp:22:15: [31mwarning:[39m Member variable 'DBInterfaceC::result' is not initialized in the constructor. [uninitMemberVar][0m
+DBInterfaceC::DBInterfaceC()
+              ^
+[1mdb/DBInterfaceC.h:13:10: [31mstyle:[39m The function 'initDBs' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool initDBs(int argc, char* argv[]);
+         ^
+[1mdb/DBInterface.h:19:18: [2mnote:[0m Virtual function in base class
+    virtual bool initDBs(int argc, char* argv[]) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:13:10: [2mnote:[0m Function in derived class
+    bool initDBs(int argc, char* argv[]);
+         ^
+[1mdb/DBInterfaceC.h:14:10: [31mstyle:[39m The function 'initDB' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool initDB(string host,string user,string pwd,string db_name); //连接mysql
+         ^
+[1mdb/DBInterface.h:20:18: [2mnote:[0m Virtual function in base class
+    virtual bool initDB(string host,string user,string pwd,string db_name) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:14:10: [2mnote:[0m Function in derived class
+    bool initDB(string host,string user,string pwd,string db_name); //连接mysql
+         ^
+[1mdb/DBInterfaceC.h:15:10: [31mstyle:[39m The function 'exeSQL' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool exeSQL(string sql);   //执行sql语句
+         ^
+[1mdb/DBInterface.h:21:18: [2mnote:[0m Virtual function in base class
+    virtual bool exeSQL(string sql) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:15:10: [2mnote:[0m Function in derived class
+    bool exeSQL(string sql);   //执行sql语句
+         ^
+[1mdb/DBInterfaceC.h:16:10: [31mstyle:[39m The function 'getUserPasswd' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool getUserPasswd(string sql,string username,list<Blog> * r);
+         ^
+[1mdb/DBInterface.h:22:18: [2mnote:[0m Virtual function in base class
+    virtual bool getUserPasswd(string sql,string username,list<Blog> * r) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:16:10: [2mnote:[0m Function in derived class
+    bool getUserPasswd(string sql,string username,list<Blog> * r);
+         ^
+[1mdb/DBInterfaceC.h:17:10: [31mstyle:[39m The function 'getBlogListFromPage' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool getBlogListFromPage(int page,list<BlogInfo>  * result);
+         ^
+[1mdb/DBInterface.h:23:18: [2mnote:[0m Virtual function in base class
+    virtual bool getBlogListFromPage(int page,list<BlogInfo>  * result) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:17:10: [2mnote:[0m Function in derived class
+    bool getBlogListFromPage(int page,list<BlogInfo>  * result);
+         ^
+[1mdb/DBInterfaceC.h:18:10: [31mstyle:[39m The function 'writeBlog' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool writeBlog(BlogWriteInfo blogWriteInfo);
+         ^
+[1mdb/DBInterface.h:24:18: [2mnote:[0m Virtual function in base class
+    virtual bool writeBlog(BlogWriteInfo blogWriteInfo) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:18:10: [2mnote:[0m Function in derived class
+    bool writeBlog(BlogWriteInfo blogWriteInfo);
+         ^
+[1mdb/DBInterfaceC.h:19:10: [31mstyle:[39m The function 'getArticleMonthInfo' overrides a function in a base class but is not marked with a 'override' specifier. [missingOverride][0m
+    bool getArticleMonthInfo(int page,list<articlemonthinfo> * article_month_infos);
+         ^
+[1mdb/DBInterface.h:25:18: [2mnote:[0m Virtual function in base class
+    virtual bool getArticleMonthInfo(int page,list<articlemonthinfo> * article_month_infos) = 0;
+                 ^
+[1mdb/DBInterfaceC.h:19:10: [2mnote:[0m Function in derived class
+    bool getArticleMonthInfo(int page,list<articlemonthinfo> * article_month_infos);
+         ^
+[1mdb/DBInterfaceC.cpp:44:34: [31mperformance:[39m Function parameter 'host' should be passed by const reference. [passedByValue][0m
+bool DBInterfaceC::initDB(string host,string user,string passwd,string db_name)
+                                 ^
+[1mdb/DBInterfaceC.cpp:44:46: [31mperformance:[39m Function parameter 'user' should be passed by const reference. [passedByValue][0m
+bool DBInterfaceC::initDB(string host,string user,string passwd,string db_name)
+                                             ^
+[1mdb/DBInterfaceC.cpp:44:58: [31mperformance:[39m Function parameter 'passwd' should be passed by const reference. [passedByValue][0m
+bool DBInterfaceC::initDB(string host,string user,string passwd,string db_name)
+                                                         ^
+[1mdb/DBInterfaceC.cpp:44:72: [31mperformance:[39m Function parameter 'db_name' should be passed by const reference. [passedByValue][0m
+bool DBInterfaceC::initDB(string host,string user,string passwd,string db_name)
+                                                                       ^
+[1mdb/DBInterfaceC.cpp:63:34: [31mperformance:[39m Function parameter 'sql' should be passed by const reference. [passedByValue][0m
+bool DBInterfaceC::exeSQL(string sql)
+                                 ^
+[1mdb/DBInterfaceC.cpp:97:30: [31mstyle:[39m Variable 'num_rows' is assigned a value that is never used. [unreadVariable][0m
+                int num_rows = mysql_affected_rows(mysql);  //返回update,insert,delete影响的行数
+                             ^
+[1mblog/service/core/CoreService.h:21:5: [31mstyle:[39m Class 'CoreService' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    CoreService(Address addr);
+    ^
+[1munittest/basic/Convert.cpp:7:31: [31mperformance:[39m Function parameter 'str' should be passed by const reference. [passedByValue][0m
+int convertStringToInt(string str){
+                              ^
+[1mdb/DBInterfaceC.cpp:151:26: [31mstyle:[39m Variable 'num_rows' is assigned a value that is never used. [unreadVariable][0m
+            int num_rows = mysql_affected_rows(mysql);
+                         ^
+[1mdb/DBInterfaceC.cpp:208:26: [31mstyle:[39m Variable 'num_rows' is assigned a value that is never used. [unreadVariable][0m
+            int num_rows = mysql_affected_rows(mysql);  //返回update,insert,delete影响的行数
+                         ^
+[1mdb/DBInterfaceC.cpp:288:26: [31mstyle:[39m Variable 'num_rows' is assigned a value that is never used. [unreadVariable][0m
+            int num_rows = mysql_affected_rows(mysql);
+                         ^
+[1munittest/sample1_unittest.cc:14:5: [31merror:[39m syntax error [syntaxError][0m
+    TEST(FactorialTest, Zero) {
+    ^
+[1munittest/mysqcapi/testmysqlppthread.cpp:157:26: [31mstyle:[39m Parameter 'argv' can be declared with const [constParameter][0m
+int main(int argc, char *argv[])
+                         ^
+[1munittest/stringutilstest.cpp:17:11: [31mstyle:[39m Unused variable: p [unusedVariable][0m
+    char *p;
+          ^
+[1munittest/mysqcapi/testmysqlppthread.cpp:24:5: [31mstyle:[39m Class 'SimpleConnectionPool' has a constructor with 1 argument that is not explicit. [noExplicitConstructor][0m
+    SimpleConnectionPool(mysqlpp::examples::CommandLine& cl) :
+    ^
+[1mutils/crypto/MD5Utils.cpp:7:32: [31mperformance:[39m Function parameter 'str' should be passed by const reference. [passedByValue][0m
+string MD5Utils::getMD5(string str) {
+                               ^
+[1mutils/stringutils/StringUtils.cpp:43:12: [31merror:[39m Returning pointer to local variable 's' that will be invalid when returning. [returnDanglingLifetime][0m
+    return s;
+           ^
+[1mutils/stringutils/StringUtils.cpp:40:9: [2mnote:[0m Array decayed to pointer here.
+        s[i++]=ptr;
+        ^
+[1mutils/stringutils/StringUtils.cpp:35:11: [2mnote:[0m Variable created here.
+    char* s[i];
+          ^
+[1mutils/stringutils/StringUtils.cpp:43:12: [2mnote:[0m Returning pointer to local variable 's' that will be invalid when returning.
+    return s;
+           ^
+[1mutils/urlcode/UrlCodeUtils.cpp:19:12: [31merror:[39m Uninitialized variable: y [uninitvar][0m
+    return y;
+           ^

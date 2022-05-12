@@ -132,7 +132,7 @@ https://blog.csdn.net/memory6364/article/details/82426052
 
 
 
-接触mysql对于root账户的IP访问限制
+解除mysql对于root账户的IP访问限制
 
 
 
@@ -157,11 +157,32 @@ grant all privileges on \*.* to root@'%' identified by ‘5%Edidadas’
 
 
 centos 7添加用户并授权
-
+adduser wdidada
+passwd wdidada
 wdidada is not in the sudoers file.  This incident will be reported.
 
 
 http://t.zoukankan.com/geoffreygao-p-12238231.html
 
 chmod -v u+w /etc/sudoers
+
+给该用户添加root权限
+
+1、切换到root(#su)
+
+2、#chmod -v u+w /etc/sudoers 为sudoers添加可写权限
+
+3、输入vim /etc/sudoers,进入命令模式,按Insert,进入编辑模式
+
+4、在 sudoers 文件添加新用户信息到 ## Allow root to run any commands anywhere 下，修改后的效果为
+
+## Allow root to run any commands anywher
+      root   ALL=(ALL)    ALL
+      xxx    ALL=(ALL)    ALL #xxx为新增用户
+
+5、保存：按Esc 后 输入 :wq 保存并退出
+
+6、取消 sudoers 文件可写权限     # chmod -v u-w /etc/sudoers
+
+
 chmod -v u-w /etc/sudoers
