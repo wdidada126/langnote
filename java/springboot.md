@@ -2,8 +2,28 @@
 
 
 springboot 命令行运行
+需要配置maven插件
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+
+### spring-boot-maven-plugin
+build-info：生成项目的构建信息文件 build-info.properties
+repackage：这个是默认 goal，在 mvn package 执行之后，这个命令再次打包生成可执行的 jar，同时将 mvn package 生成的 jar 重命名为 *.origin
+run：这个可以用来运行 Spring Boot 应用
+start：这个在 mvn integration-test 阶段，进行 Spring Boot 应用生命周期的管理
+stop：这个在 mvn integration-test 阶段，进行 Spring Boot 应用生命周期的管理
+
+
 mvn package
 java -jar
+
+
+
+
 
 Spring Boot
 配置mybatis

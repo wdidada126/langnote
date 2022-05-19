@@ -1,5 +1,13 @@
 # feign
 
+FeignException
+
+FeignClient使用@RequestLine注解, 而未配置feign自带契约Contract时, @Headers不会起作用, 而且启动项目会报错:
+Method xxx not annotated with HTTP method type (ex. GET, POST)
+原文链接：https://blog.csdn.net/hkk666123/article/details/113964715
+
+
+
 tutorials\feign
 
 一个Java接口
@@ -19,6 +27,10 @@ bin
 
 
 
+io.github.openfeign
+
+
+
 Feign、OpenFeign及SpringCloud Feign的区别
 
 Feign是Spring Cloud组件中一个轻量级RESTful的HTTP服务客户端，Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。Feign的使用方式是：使用Feign的注解定义接口，调用接口，就可以调用服务注册中心的服务。
@@ -35,3 +47,29 @@ Spring Cloud OpenFeign是一个声明式的HTTP客户端，它简化了HTTP客�
 https://gitee.com/edidada/openfeigndemo
 
 https://gitee.com/edidada/springboothttpserver
+
+
+https://github.com/OpenFeign/feign
+https://gitee.com/edidada/openfeigndemo
+
+https://gitee.com/edidada/springboothttpserver
+
+doc
+https://github.com/spring-cloud/spring-cloud-openfeign
+
+https://cloud.spring.io/spring-cloud-openfeign/reference/html/
+
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'com.example.openfeigndemo.StoreClientTest': Unsatisfied dependency expressed through field 'storeClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.example.openfeigndemo.httprpc.StoreClient': Unexpected exception during bean creation; nested exception is java.lang.IllegalStateException: No Feign Client for loadBalancing defined. Did you forget to include spring-cloud-starter-netflix-ribbon or spring-cloud-starter-loadbalancer?
+
+
+README_feign.md
+
+
+github.com/openfeign/feign-form
+
+
+POST 传输文件
+
+openfeign_form_README.md
+

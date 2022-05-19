@@ -1,5 +1,15 @@
 # gradle
 
+
+要使用 ANTLR 插件，请在构建脚本中包含以下语句：
+示例 40.1. 使用 ANTLR 插件
+build.gradle
+apply plugin: 'antlr'
+
+
+文档中文翻译
+https://github.com/msdx/gradledoc
+
 spring ldap 构建系统用gradle，运行失败
 
 grovvy

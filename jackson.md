@@ -1,5 +1,15 @@
 # jackson
 
+springmvc默认的json序列化 反序列化工具
+
+https://gitee.com/edidada/testjackson
+http接口入参 出参 json格式的，用这个
+日期参数，加上@JsonFormat @DateTimeFormat
+注解@JsonFormat:主要是控制后台到前台的时间格式
+注解@DateTimeFormat:主要是限制前台到后台的时间格式
+
+
+
 json规范，需要读一下
 
 
@@ -18,15 +28,33 @@ http://wiki.fasterxml.com/JacksonDownload
 - jackson-core
 - jackson-databind
 
+```xml
+<!--Jackson包-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+```
+
 
 com.fasterxml.jackson.databind.ObjectMapper
 ObjectMapper
 
 readValue()
-writeValueAsString()
+writeValueAsString()               com.fasterxml.jackson.databind.ObjectMapper#writeValueAsString
 
 
-https://github.com/FasterXML/jackson-core/
 
 https://blog.csdn.net/qq_43872529/article/details/104176433
 

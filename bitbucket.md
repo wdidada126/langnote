@@ -1,6 +1,6 @@
 # bitbucket
 
-
+token对http/https开启
 
 `whoami`
 

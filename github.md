@@ -1,6 +1,8 @@
 # github
 
 
+github添加token，http/https有效，git直接访问
+
 
 github topic
 

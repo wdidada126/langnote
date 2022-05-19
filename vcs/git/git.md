@@ -1,5 +1,25 @@
 # Git
 
+
+
+https://juejin.cn/post/6844904005773213704
+
+
+远程仓库新建有分支
+本地仓库分支已经存在
+
+报错信息
+
+实验计划:
+
+本地仓库A，新建master，提交到远程仓库
+
+从远程仓库复制一份，新建分支dev，提交到远程仓库，本地仓库称为B
+
+仓库A新建dev分支，git pull一下
+
+
+
 [如何使用.gitignore忽略Git中的文件和目录](https://blog.csdn.net/Q1761991696/article/details/123572766)
 
 问：IDEA解决git冲突

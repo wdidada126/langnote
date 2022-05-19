@@ -1,6 +1,12 @@
 # thrift
 
 
+idea maven thrift
+https://blog.csdn.net/weixin_38370441/article/details/121007996
+
+protobuf插件 自动下载可执行工具
+thirft需要自己下载
+
 滴滴用thrift
 benchmark-thrift
 thrift-mock
