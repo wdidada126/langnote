@@ -36,6 +36,13 @@ travis 结合?
 
 ![sonar架构图](../../imgs/sonar架构图.jpg)
 
+
+Sonar 可以集成不同的测试工具，代码分析工具，以及持续集成工具，比如pmd-cpd、checkstyle、findbugs、Jenkins。sonar最大的特点就是插件化，可以根据不同的场景需求进行插件化安装，以Java代码检测为，但同时可以检测Python、C++等多种语言。
+
+
+
+
+
 Sonar可以集成不同的测试工具，代码分析工具，以及持续集成工具，比如pmd-cpd、checkstyle、findbugs、Jenkins。sonar最大的特点就是插件化，可以根据不同的场景需求进行插件化安装，以Java代码检测为，但同时可以检测Python、C++等多种语言。
 
 
@@ -66,7 +73,7 @@ JAVA_HOME=/devtools/java/java11/jdk-11.0.14
 PATH=$JAVA_HOME/bin:$PATH
 CLASSPATH=$JAVA_HOME/lib
 export JAVA_HOME CLASSPATH PATH
- 
+
 # Java8环境变量配置
 JAVA_HOME=/devtools/java/java8/jdk1.8.0_321
 PATH=$PATH:$JAVA_HOME/bin
@@ -112,7 +119,7 @@ idea sonalint插件
 	https://blog.csdn.net/zengmingen/article/details/106473012
 
 pom.xml增加
-
+```xml
     <build>
         <plugins>
             <plugin>
@@ -126,7 +133,7 @@ pom.xml增加
             </plugin>
         </plugins>
     </build>
-
+```
 
 idea maven插件 sonar执行
 
@@ -173,11 +180,11 @@ Found 0 issues
 启动sonarqube报错
 
 
-#完整报错：
+### 完整报错：
 ERROR: [1] bootstrap checks failed. You must address the points described in the following [1] lines before starting Elasticsearch.
 bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/logs/sonarqube.log
- 
+
 原因：由于 SonarQube 使用嵌入式 Elasticsearch，请确保您的 Docker 主机配置符合Elasticsearch 生产模式要求和文件描述符配置。
 解决：在 Linux 上，您可以通过在主机上以 root 身份运行以下命令来设置当前会话的推荐值：（调整系统参数）
 　　sysctl -w vm.max_map_count=262144
