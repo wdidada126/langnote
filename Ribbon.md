@@ -29,3 +29,8 @@ https://github.com/Netflix/ribbon
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
+
+spring starter ribbon源码核心类分析
+https://blog.csdn.net/catoop/article/details/109668616
+
+

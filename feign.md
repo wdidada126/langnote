@@ -1,5 +1,30 @@
 # feign
 
+
+16:11:16.408 [main] INFO  org.springframework.cloud.openfeign.FeignClientFactoryBean : [378] - For '' URL not provided. Will try picking an instance via load-balancing. 
+16:11:17.046 [main] INFO  org.springframework.cloud.openfeign.FeignClientFactoryBean : [378] - For '' URL not provided. Will try picking an instance via load-balancing.
+
+
+### ribbon
+spring cloud feign添加ribbon
+1、引入pom依赖
+
+2、设置负载ip列表
+loadblanceclient2.ribbon.listOfServers=http://localhost:9001, http://localhost:9002
+
+3、设置注解的name或value
+@FeignClient(value = "loadblanceclient2"
+        ,configuration = {LoadBlanceRequestInterceptor.class}
+)
+
+
+
+spring cloud feign打印日志 没有生效
+
+打印日志，暂时用插值器替换
+
+feign 插值器
+
 FeignException
 
 FeignClient使用@RequestLine注解, 而未配置feign自带契约Contract时, @Headers不会起作用, 而且启动项目会报错:
@@ -18,7 +43,7 @@ import feign.Param;
 import feign.RequestLine;
 
 http协议
-get路径参数
+get 路径参数
 http body
 form-data
 urlencoded

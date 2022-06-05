@@ -1,6 +1,6 @@
 # lwip
 
-vs调试
+windows编译 vs调试
 
 
 lwip应用场景？ 单片机 没有操作系统
@@ -22,9 +22,19 @@ LwIP应用开发实战指南：基于STM32（书籍）
 本书将深入分析网络协议栈的原理与实现过程，涉及ARP、IP、ICMP、TCP、UDP、HTTP、MQTT等协议，还将深入讲解LwIP中内存管理、pbuf数据包、网卡接口管理的原理与实现，并详细介绍LwIP的移植过程，读者可以将其移植到无操作系统/有操作系统的环境中使用。
 
 
-VS调试
 
 
 
 记忆tcp状态图
+
+repo
+https://github.com/lwip-tcpip/lwip
+
+Reading Adam's papers, the files in docs/, browsing the source code
+documentation and browsing the mailing list archives is a good way to
+become familiar with the design of lwIP.
+
+https://www.nongnu.org/lwip/2_1_x/index.html
+
+https://lwip.fandom.com/wiki/LwIP_Wiki
 

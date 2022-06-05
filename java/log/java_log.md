@@ -1,5 +1,9 @@
 # java log
 
+
+feign库使用java se的日志类
+import java.util.logging.Logger;
+
 首先要区分是实现还是门面
 
 还有桥接器 ！！！
