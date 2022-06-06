@@ -46,4 +46,8 @@ Vue-router
 Vue http接口 根据url映射不同的网址
 
 
+### 传参
+
+跨页面传参 route
+一个页面不同模块传参 props
 
