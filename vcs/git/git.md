@@ -1,5 +1,14 @@
 # Git
 
+1.git删除远程分支 git push origin --delete [branch_name]
+2.删除本地分支区别 git branch -d 会在删除前检查merge状态(其与上游分支或者与head)。 git b...
+3.git查看分支: 查看本地分支 git branch 查看远程分支 git b...
+4.git删除分支: 删除本地分支 git branch -d 本地分支名 删除远程分支 
+
+
+git reset vs恢复
+那我们学到了什么？ 好吧，当我们git reset到先前的提交并推送到远程存储库时，不会发布任何撤消提交的痕迹。 这与git revert形成了鲜明的对比，在git revert中，revert命令本身会创建一个新的提交，并且不会丢失过去的提交历史。 因此，如果您想使用Git 撤消先前的提交 ，则reset是使用而不是还原的正确Git命令。
+
 
 
 https://juejin.cn/post/6844904005773213704

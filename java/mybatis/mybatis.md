@@ -1,6 +1,16 @@
 # mybatis
 
 
+idea插件 mybatisprohelper
+
+mybatis，如何生成sql
+
+
+https://blog.csdn.net/goligu/article/details/124878614
+
+org.apache.ibatis.scripting.xmltags.XMLScriptBuilder#parseDynamicTags
+
+
 [Java、Mysql、MyBatis 中枚举 enum 的使用](https://blog.csdn.net/JoeBlackzqq/article/details/90216582)
 
 

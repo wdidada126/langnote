@@ -1,5 +1,9 @@
 # vue
 
+
+data()中定义的变量，在methods中使用，需要用
+
+
 没有完全遵循MVVM模型
 
 data:
