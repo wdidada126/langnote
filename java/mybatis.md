@@ -449,7 +449,6 @@ https://blog.csdn.net/yangshangwei/article/details/80073978
 <select id="selectBlogsLike" resultType="Blog">   <bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />   SELECT * FROM BLOG   WHERE title LIKE #{pattern} </select>
 
 
-
 跨表的数据 分页 union
 
 https://blog.csdn.net/QIU1988YANG/article/details/77247556
