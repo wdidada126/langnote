@@ -1,5 +1,9 @@
 # vue
 
+```js
+JSON.stringify(row)
+let params = JSON.parse(this.$route.query.params)
+```
 
 data()中定义的变量，在methods中使用，需要用
 
