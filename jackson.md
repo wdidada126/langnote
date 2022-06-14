@@ -5,8 +5,8 @@ springmvc默认的json序列化 反序列化工具
 https://gitee.com/edidada/testjackson
 http接口入参 出参 json格式的，用这个
 日期参数，加上@JsonFormat @DateTimeFormat
-注解@JsonFormat:主要是控制后台到前台的时间格式
-注解@DateTimeFormat:主要是限制前台到后台的时间格式
+注解@DateTimeFormat:主要是控制后台到前台的时间格式
+注解@JsonFormat:主要是限制前台到后台的时间格式
 
 
 
