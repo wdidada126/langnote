@@ -56,7 +56,7 @@ CPack: - package: /root/cmaketest/cmake-build-debug/mylib1name-1.0.0-Linux.rpm g
 
 
 
-Cpack 打包 二进制 库文件‘
+Cpack 打包 二进制 库文件
 
 
 
@@ -190,13 +190,9 @@ cpack入门
 `cpack -G RPM --verbose`
 
 执行 cmake 命令后, 你会发现当前目录下面多了两个文件 **CPackConfig.cmake** 和 **CPackSourceConfig.cmake**。 编译完成后，执行 `cpack -G RPM` 就可将文件打包成 rpm 包，当前目录下会生成一个 **_CPack_Packages** 目录和一个以 .rpm 为后缀名的文件 **example-1.0.0-Linux.rpm**，**example-1.0.0-Linux.rpm** 就是我们想要的安装包文件。
-
 CPack 是根据用户的配置生成_CPack_Packages/Linux/RPM/SPECS/example.spec 文件，然后让 rpm-build 用。
-
 https://zhuanlan.zhihu.com/p/141956373
-
 用到的配置变量是以 CPACK_RPM_XXX 为前缀。最终通过 **rpm-build** 这个工具去打包，所以需要安装 **rpm-build** 这个工具，可以通过 `sudo yum install -y rpm-build` 安装。
-
 ```shell
 # 设置生成的安装包名字
 set(CPACK_PACKAGE_NAME "example")
