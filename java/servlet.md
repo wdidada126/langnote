@@ -156,11 +156,35 @@ javax.servlet.RequestDispatcher
 
 
 
+
+javax.servlet.http.HttpServletRequestWrapper
+请求包装器 自定义继承这个类
+
+
+
 ```java
-void forward(ServletRequest var1, ServletResponse var2)
+void forward(ServletRequest request, ServletResponse response)
 ```
 
 ```java
-void include(ServletRequest var1, ServletResponse var2)
+void include(ServletRequest request, ServletResponse response)
 ```
+
+### servlet与Spring Boot
+
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+
+
+InterceptorRegistry
+public InterceptorRegistration addInterceptor(HandlerInterceptor interceptor)
+
+
+http插值器
+org.springframework.web.servlet.HandlerInterceptor
+
+
+### servlet与springmvc
+
 
