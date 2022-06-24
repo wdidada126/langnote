@@ -1,5 +1,14 @@
 # feign
 
+### feign body中自动填充参数
+
+{
+        head:{}
+        body:{}
+}
+
+head部分自动填充
+
 
 16:11:16.408 [main] INFO  org.springframework.cloud.openfeign.FeignClientFactoryBean : [378] - For '' URL not provided. Will try picking an instance via load-balancing. 
 16:11:17.046 [main] INFO  org.springframework.cloud.openfeign.FeignClientFactoryBean : [378] - For '' URL not provided. Will try picking an instance via load-balancing.

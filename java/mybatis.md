@@ -1,5 +1,21 @@
 # mybatis
 
+
+### mybatis like
+sql注入
+https://www.jb51.net/article/232026.htm
+
+
+
+Mybatis中Like 的使用方式以及一些注意点
+
+
+      select * from t_user where name like '%${name}%'   SQL注入风险
+
+
+      select * from t_user where name like concat('%',#{name,jdbcType=VARCHAR},'%')
+
+
 使用mybatis的开源项目：
 - sonar
 
