@@ -1,5 +1,17 @@
 # Git
 
+### git多分支合并
+
+场景a b分支
+
+a分支改变
+b分支 改变 提交
+
+a分支 merge b
+a分支之前的改动直接提交
+
+testgit 仓库
+
 
 git revert和reset
 
