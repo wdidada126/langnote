@@ -72,6 +72,7 @@ https://blog.csdn.net/qq_35872456/article/details/96295943
     List<User> users = null;
     try {
         users = mapper.readValue(json, new TypeReference<List<User>>(){});
+        mapper.writeValueAsString(users);
     }catch (IOException e){
         throw new RuntimeException(e);
     }
