@@ -1,5 +1,13 @@
 # Poco
 
+
+
+SMTP
+
+
+
+
+
 适合嵌入式设备
 
 https://pocoproject.org/
@@ -23,3 +31,4 @@ Dependency Installed:
   poco-json.x86_64 0:1.6.1-3.el7        poco-mongodb.x86_64 0:1.6.1-3.el7             poco-mysql.x86_64 0:1.6.1-3.el7         poco-net.x86_64 0:1.6.1-3.el7          poco-netssl.x86_64 0:1.6.1-3.el7           
   poco-odbc.x86_64 0:1.6.1-3.el7        poco-pagecompiler.x86_64 0:1.6.1-3.el7        poco-sqlite.x86_64 0:1.6.1-3.el7        poco-util.x86_64 0:1.6.1-3.el7         poco-xml.x86_64 0:1.6.1-3.el7              
   poco-zip.x86_64 0:1.6.1-3.el7 
+
