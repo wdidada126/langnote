@@ -1,6 +1,6 @@
 # MIT 6.824: Distributed Systems
 
-mit计算机课程
+mit计算机课程 研究生的
 
 
 
