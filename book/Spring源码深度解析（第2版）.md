@@ -297,6 +297,7 @@ InputStream getInputStream() throws IOException;
 
 
 Resource
+对应src/main/resource 文件夹
 
 org.springframework.core.io.Resource
 
@@ -353,6 +354,8 @@ ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使
 
 
 DocumentLoader
+Spring4.3.x 浅析xml配置的解析过程（3）——使用DocumentLoader创建Document对象
+
 
 org.springframework.beans.factory.xml.DocumentLoader
 
@@ -360,8 +363,21 @@ Document loadDocument()
 
 子类：DefaultDocumentLoader
 
+DefaultDocumentLoader是DocumentLoader的实现类
+
+在 XmlBeanDefinitionReader.doLoadDocument() 方法中做了两件事情，一是调用 getValidationModeForResource() 获取 XML 的验证模式，二是调用 DocumentLoader.loadDocument() 获取 Document 对象。
+
+解析Docuemnt转换为BeanDefinition
+资源resource 转换为Document的流程 在XmlBeanDefinitionReader 类的doLoadBeanDefinitions()方法
+
+//将对应资源转换为Document对象
+Document doc = doLoadDocument(inputSource, resource);
+//解析doc中的属性转换为BeanDefinition对象 并注册在spring容器中
+return registerBeanDefinitions(doc, resource);
+registerBeanDefinitions(doc,resource)则对应接下来的主题解析document对象 并将其转换为BeanDefinitions()
 
 
+BeanDefinition的实现类用于描述Spring中的一个应该被实例化的bean的各种性质，包括bean的属性值，构造函数，方法等信息，除此之外，还额外描述bean在Spring容器中的作用域，bean名称等信息。
 
 
 
@@ -445,4 +461,24 @@ PropertyValues
 
 
 BeanPostProcessor
+
+
+
+
+### 自己补充的部分
+
+ApplicationContext
+
+可以获取bean name
+
+```java
+        String[] names = applicationContext.getBeanDefinitionNames();
+        for (String name : names) {
+            System.out.println(">>>>>>" + name);
+        }
+        System.out.println("------\nBean 总计:" + applicationContext.getBeanDefinitionCount());
+```
+
+横向对比
+guice这种ioc框架，如何打印容器中的数据
 
