@@ -234,7 +234,7 @@ jms 不适合互联网业务
 
 
 
-从getbean看起
+从getBean看起
 
 AbstractBeanFactory.getBean()
 
