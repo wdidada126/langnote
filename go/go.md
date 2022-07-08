@@ -1,6 +1,116 @@
 # go
 
 
+go 会自动生成一个 go.sum 文件来记录 dependency tree
+
+
+
+go env
+set GO111MODULE=on
+set GOARCH=amd64
+set GOBIN=
+set GOCACHE=C:\Users\edidada\AppData\Local\go-build
+set GOENV=C:\Users\edidada\AppData\Roaming\go\env
+set GOEXE=.exe
+set GOFLAGS=
+set GOHOSTARCH=amd64
+set GOHOSTOS=windows
+set GOINSECURE=
+set GONOPROXY=
+set GONOSUMDB=
+set GOOS=windows
+set GOPATH=C:\Users\edidada\go
+set GOPRIVATE=
+set GOPROXY=https://goproxy.cn
+set GOROOT=D:\Go14
+set GOSUMDB=sum.golang.org
+set GOTMPDIR=
+set GOTOOLDIR=D:\Go14\pkg\tool\windows_amd64
+set GCCGO=gccgo
+set AR=ar
+set CC=gcc
+set CXX=g++
+set CGO_ENABLED=1
+set GOMOD=NUL
+set CGO_CFLAGS=-g -O2
+set CGO_CPPFLAGS=
+set CGO_CXXFLAGS=-g -O2
+set CGO_FFLAGS=-g -O2
+set CGO_LDFLAGS=-g -O2
+set PKG_CONFIG=pkg-config
+set GOGCCFLAGS=-m64 -mthreads -fmessage-length=0 -fdebug-prefix-map=C:\Users\edidada\AppData\Local\Temp\go-build842397178=/tmp/go-build -gno-record-gcc-switches
+
+
+go国内镜像 七牛云
+
+go env
+在这堆中看到这个GOPROXY，这个就是镜像的位置，默认为https://proxy.golang.org
+
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn/
+
+
+
+ 呼出命令行（快捷键 Win + R），输入cmd，执行下方两行命令
+go env -w GO111MODULE=on
+
+go env -w GOPROXY=https://goproxy.cn,direct
+
+
+https://www.cnblogs.com/jokingremarks/p/15095304.html
+
+
+## go mod
+
+go mod介绍
+
+go modules 是 golang 1.11 新加的特性。现在1.12 已经发布了，是时候用起来了。Modules官方定义为：
+
+模块是相关Go包的集合。modules是源代码交换和版本控制的单元。go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于GOPATH的方法来指定在给定构建中使用哪些源文件。
+
+go mod官方自带的构建工具
+
+
+
+例子：github.com/edidada/testmemberlist
+
+go mod 
+
+- download
+- edit
+- graph
+- init
+- tidy
+- vendor
+- verify
+- why
+
+
+go help mod
+Go mod provides access to operations on modules.
+
+Note that support for modules is built into all the go commands,
+not just 'go mod'. For example, day-to-day adding, removing, upgrading,
+and downgrading of dependencies should be done using 'go get'.
+See 'go help modules' for an overview of module functionality.
+
+Usage:
+
+        go mod <command> [arguments]
+
+The commands are:
+
+        download    download modules to local cache
+        edit        edit go.mod from tools or scripts
+        graph       print module requirement graph
+        init        initialize new module in current directory
+        tidy        add missing and remove unused modules
+        vendor      make vendored copy of dependencies
+        verify      verify dependencies have expected content
+        why         explain why packages or modules are needed
+
+Use "go help mod <command>" for more information about a command.
+
 
 https://golang.google.cn/
 
