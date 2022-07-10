@@ -11,3 +11,7 @@ select，poll，epoll本质上都是同步I/O，因为他们都需要在读写�
 
 
 [epoll使用详解（精髓）](https://www.cnblogs.com/fnlingnzb-learner/p/5835573.html)
+
+有例子
+
+https://gitee.com/edidada/epollhttp
