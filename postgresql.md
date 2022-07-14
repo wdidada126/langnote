@@ -43,6 +43,11 @@ https://www.postgresql.org/docs/10/index.html
 
 开发语言 c
 
+sql解析 flex bison
+
+source repo
+https://github.com/postgres/postgres
+
 
 
 maillist
@@ -121,4 +126,18 @@ Oracle ACE
 张文升
 著有书籍《PostgreSQL实战》
 《PostgreSQL指南：内幕探索》
+
+
+
+/postgres# find . -name "*.y"
+./contrib/cube/cubeparse.y
+./contrib/seg/segparse.y
+./src/test/isolation/specparse.y
+./src/backend/replication/repl_gram.y
+./src/backend/replication/syncrep_gram.y
+./src/backend/utils/adt/jsonpath_gram.y
+./src/backend/bootstrap/bootparse.y
+./src/backend/parser/gram.y
+./src/bin/pgbench/exprparse.y
+./src/pl/plpgsql/src/pl_gram.y
 
