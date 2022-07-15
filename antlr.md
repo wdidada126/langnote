@@ -1,5 +1,10 @@
 # antlr
 
+词法分析
+语法分析
+
+对应.g4文件的两部分
+
 
 MySqlParser.g4 
 sql必须大写
