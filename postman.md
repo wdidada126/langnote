@@ -1,5 +1,8 @@
 # postman
 
+postman 设置变量
+https://www.cnblogs.com/ananmy/p/13062033.html
+
 
 
 ![avatar](imgs/postman_datatype.png)
