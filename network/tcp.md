@@ -55,9 +55,14 @@ serverSocket接口连接后，不等待连接上，又去接收新的连接，�
 在这里，socket等待直到读取到数据为止，即是同步。
 
 socket不等待读取到数据，而去做别的事，当数据准备好后，会通知socket数据已经准备好了，这就是异步。
-————————————————
-版权声明：本文为CSDN博主「panda-star」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+
 原文链接：https://blog.csdn.net/chinabestchina/article/details/78278054
 
+### tcp实验
+
+CS144
+
+https://kiprey.github.io/2021/11/cs144-lab4/
 
 
+stanford

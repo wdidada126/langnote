@@ -10,15 +10,16 @@
 
 
 
-**如何设计并实现一个 DBMS**
+如何设计并实现一个 DBMS
 
-
+Go语言有很多kv形式的DB
+https://github.com/boltdb/bolt
 
 https://www.zhihu.com/question/25405073/answer/36693843
 
 
 
-**程序员刷leetcode经常陷入刷了忘忘了刷**
+程序员刷leetcode经常陷入刷了忘忘了刷
 
 
 
