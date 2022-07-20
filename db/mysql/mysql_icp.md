@@ -1,5 +1,12 @@
 # mysql_icp
 
+索引下推（index condition pushdown ）简称ICP，在Mysql5.6的版本上推出，用于优化查询。 在不使用ICP的情况下，在使用非主键索引（又叫普通索引或者二级索引）进行查询时，存储引擎通过索引检索到数据，然后返回给MySQL服务器，服务器然后判断数据是否符合条件。
+
+ICP（Index Condition Pushdown）是在MySQL 5.6版本上推出的查询优化策略，把本来由Server层做的索引条件检查下推给存储引擎层来做，以降低回表和访问存储引擎的次数，提高查询效率。
+https://www.jianshu.com/p/31ceadace535
+
+
+
 ICP（index condition pushdown）
 索引下推
 索引条件下推（ICP：index condition pushdown）是 MySQL 中一个常用的优化，尤其是当 MySQL 需要从一张表里检索数据时。
