@@ -1,4 +1,4 @@
-# clion
+# Clion
 
 
 
@@ -79,3 +79,18 @@ https://www.zhihu.com/question/56763641/answer/1016947765
 
 
 ThoughtWorks
+
+
+### 快捷键
+双击两次shift
+
+搜索queue
+
+https://gitee.com/edidada/clh-queue
+
+
+https://icode.best/i/42074744400777
+
+1. 最常用的技巧：全局搜索。
+按住shift 二次即可。同时，也可以使用正则表达式
+
