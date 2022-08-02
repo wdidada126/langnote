@@ -13,3 +13,10 @@ bison 2.3 mac系统
 
 yum install bison -y
 
+### api doc
+
+Win 电脑bison.pdf 英文版，找中文版
+
+https://www.gnu.org/software/bison/manual/bison.html#C_002b_002b-Parsers 谷歌翻译
+
+https://www.gnu.org/software/bison/manual/bison.html
