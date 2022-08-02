@@ -1,5 +1,12 @@
 # activiti
 
+
+
+checkstyle-rules.xml
+
+使用版本 6
+https://www.activiti.org/userguide/
+
 最新版 7
 https://github.com/Activiti/Activiti
 https://stackoverflow.com/questions/tagged/activiti
