@@ -8,3 +8,17 @@ visual studio code根据文件名查找 快捷键
 Vscode 快速格式化代码: shift+alt+f
 
 
+### 查看单个文件某一行是谁提交的
+
+git提交记录查看
+
+gitlens插件
+
+https://blog.csdn.net/qq_37899792/article/details/118090971
+
+
+### c++程序远程调试
+remote-ssh，让vscode能够远程登陆远程开发机(我们的开发、编译、部署、调试都在这个环境中)
+clangd: 一款优秀的c++插件，功能完备，支持重构，跳转，自动补全等功能
+CodeLLDB: vscode调试器插件
+https://zhuanlan.zhihu.com/p/441253031

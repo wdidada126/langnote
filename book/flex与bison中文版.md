@@ -1,7 +1,17 @@
 # flex与bison中文版
 
+有第二版
+
+本书的 flex reference 和 bison reference 以及后续章节可仔细阅读，前面章节的例子有点粗浅，过于简单。比如，关于 SQL 的解析，可以参看一下 postgreSQL 的源码，其 SQL 解析用的就是 flex/bison。
+
+ftp:///pub/file/flexbison.zip
+
+可以下载，用FileZilla直接不用用户名密码下载
+
+
 bison 跟anltr的g4差不多
 
+第一版的
 
 flex的规则文件以.l为后缀名，生成的文件为lex.yy.c
 

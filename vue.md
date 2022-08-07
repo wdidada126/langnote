@@ -1,5 +1,10 @@
 # vue
 
+### 
+
+v-show 不显示
+v-if   不加载
+
 vue iview自定义Modal弹窗内容的使用
 
 ```js

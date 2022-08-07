@@ -13,3 +13,8 @@ Spring Boot
 
 https://gitee.com/free/Mybatis_PageHelper
 
+PageHelper.startPage().doSelectPageInfo(() -> {
+	mapper.get();
+})
+
+链式调用
