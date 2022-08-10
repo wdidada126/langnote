@@ -1,5 +1,12 @@
 # person
 
+
+http://wyw.dcweb.cn/index.htm
+吴咏炜
+
+I am Chinese, and my full name in Chinese is 吴咏炜 (Wu Yongwei). Eastern names usually go with family name first, so my given name is ‘Yongwei’. I have been a programmer for more than 30 years, and am mostly interested in writing code that is reliable, reusable, efficient, and cross-platform. You can check out my GitHub repositories for my open-source contributions.
+
+
 http://blog.codinglabs.org/
 
 

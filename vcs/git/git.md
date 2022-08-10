@@ -1,6 +1,12 @@
 # Git
 
 ### 查看
+
+查看某个人的git提交记录
+git log --author="author"
+
+
+
 git查看本地有多少个commit没有提交到远程仓库
 
 git status 只能查看到本地当前有多少个提交还未推送，但看不到具体是哪些提交
