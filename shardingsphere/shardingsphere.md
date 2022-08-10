@@ -1,5 +1,7 @@
 # shardingsphere
 
+### 缺点
+太重了，引用了好多的jar包
 
 vitess 竞品
 

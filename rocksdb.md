@@ -20,3 +20,18 @@ FractalTree	分型树
 
 Facebook Database Engineering Team
 
+http://rocksdb.org/
+
+http://rocksdb.org/docs/getting-started.html
+
+C++写的，Java有库
+
+
+<dependency>
+    <groupId>org.rocksdb</groupId>
+    <artifactId>rocksdbjni</artifactId>
+    <version>6.6.4</version>
+</dependency>
+https://wanghenshui.github.io/rocksdb-doc-cn/doc/RocksJava-Basics.html
+
+vcpkg Win 10可以一键安装c++库
