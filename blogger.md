@@ -1,5 +1,11 @@
 # person
 
+黄健宏
+IT 技术图书作者与译者，个人网站 huangz.me
+https://weibo.com/u/3219474004
+
+Robert Sedgewick
+https://sedgewick.io/?continueFlag=2aecf977d3f96a96f564cd26bb01f3c3
 
 http://wyw.dcweb.cn/index.htm
 吴咏炜
