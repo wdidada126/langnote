@@ -10,3 +10,9 @@
 
 @Api
 @ApiOperaton
+
+
+里面有curl命令行
+
+curl -X POST -H "" -H "" -d "{}"
+
