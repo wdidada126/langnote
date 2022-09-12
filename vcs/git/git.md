@@ -1,5 +1,10 @@
 # Git
 
+git add -A
+git add .
+相同点 不同点
+
+
 ### 查看
 
 查看某个人的git提交记录

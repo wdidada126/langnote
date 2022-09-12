@@ -1,6 +1,6 @@
 # gossip
 
-
+https://zhuanlan.zhihu.com/p/457098784
 
 Gossip最终一致性算法，适用于去中心化，容忍时延，读多写少的分布式集群场景。
 
