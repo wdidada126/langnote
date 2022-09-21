@@ -1,5 +1,8 @@
 # Git
 
+git log --author="xxx"
+
+
 git add -A
 git add .
 相同点 不同点
