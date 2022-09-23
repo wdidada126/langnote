@@ -1,5 +1,12 @@
 # python
 
+### Python学习路径
+python方向 人工智能
+爬虫
+自动化
+Web
+科学计算
+
 
 - Python编程 从入门到实践（第2版）
 - 利用Python进行数据分析
