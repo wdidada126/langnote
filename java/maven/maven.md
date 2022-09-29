@@ -9,6 +9,10 @@ verify - run any checks on results of integration tests to ensure quality criter
 install - install the package into the local repository, for use as a dependency in other projects locally
 deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 
+mvn install:install-file -DgroupId=com.abc -DartifactId=mavenTest -Dversion=1.0.0 -Dpackaging=jar -Dfile=C:\myfile\test.jar
+
+mvn install:install-file -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpackaging=jar -Dfile=QRCode.jar
+
 
 mvn参考 yum apt，联网下载库文件
 分发库文件
