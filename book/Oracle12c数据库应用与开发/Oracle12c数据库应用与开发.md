@@ -1,24 +1,55 @@
-# Oracle 12c数据库应用与开发
+# Oracle12c数据库应用与开发
 
+12c
+c是cloud的缩写
 
+重点看第7章
 
+https://book.douban.com/subject/30708610/
+
+https://www.zhihu.com/pub/reader/119582341/chapter/1183442066088026112
 中原学院 老师授课教材
 
 
 
 源代码在此文件相同目录下
+Oracle12c数据库应用与开发资源.zip
 
 
 
+容器数据库
+可插拔数据库
+
+C## 开头
+
+导入数据
+
+sqlldr MYSHOP/5Edidada@192.168.1.158:1521/TEST control=C:\Users\edidada\Desktop\data\input_login.ctl log=C:\Users\edidada\Desktop\data\input_test.log bad=C:\Users\edidada\Desktop\data\input_test.bad
 
 
-C##
+sqlldr MYSHOP/5Edidada@192.168.1.158:1521/TEST control=C:\Users\edidada\Desktop\data\input_course.ctl log=C:\Users\edidada\Desktop\data\input_test.log bad=C:\Users\edidada\Desktop\data\input_test.bad
 
+sqlldr MYSHOP/5Edidada@192.168.1.158:1521/TEST control=C:\Users\edidada\Desktop\data\input_student.ctl log=C:\Users\edidada\Desktop\data\input_test.log bad=C:\Users\edidada\Desktop\data\input_test.bad
+
+sqlldr MYSHOP/5Edidada@192.168.1.158:1521/TEST control=C:\Users\edidada\Desktop\data\input_sc.ctl log=C:\Users\edidada\Desktop\data\input_test.log bad=C:\Users\edidada\Desktop\data\input_test.bad
+
+
+
+sqlldr icrm/icrm@18.20.20.20:1521/crmdb 
+data = '/home/lee/dapai.dat'  #数据文件目录
+bad = /home/lee/adpai.bad   #错误数据存放
+control = /home/lee/adpai.ctl # 控制文件
+direct = y  #这块需要特别注意，根据实际业务场景使用，不要随便使用
+log = /home/lee/adpai.log    #日志文件
+errors = 100000
 
 
 是user，同一个数据库，不同的it项目访问，一个项目对应一个用户
 
 
+表在scheme下面
+
+user和scheme同名
 
 ## Chap. 1 Oracle 12c和云计算
 

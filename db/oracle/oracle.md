@@ -1,5 +1,71 @@
 # oracle
 
+### Oracle新建表
+
+先选择数据库
+数据库操作可以用Database Configuration Assistant
+
+选择或者新建表空间
+
+默认表空间
+TEMP
+USER
+
+
+
+```sql
+CREATE TABLE "tb_user" (
+  "ID" NUMBER(24,0) VISIBLE NOT NULL,
+  "user_name" VARCHAR2(255 BYTE) VISIBLE,
+  "password" VARCHAR2(255 BYTE) VISIBLE,
+  "name" VARCHAR2(255 BYTE) VISIBLE,
+  "age" NUMBER(3,0) VISIBLE,
+  "sex" NUMBER(3,0) VISIBLE,
+  "birthday" DATE VISIBLE,
+  "created" DATE VISIBLE,
+  "updated" DATE VISIBLE
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+```
+
+执行之后表不存在？
+存在，但是查看的慢
+
+https://blog.csdn.net/weixin_39559750/article/details/111490430
+
+
+### Oracle Java代码仓库
+
+https://gitee.com/edidada/testoracle
+
+
+### Oracle Win 10电脑关闭和启动
+https://blog.csdn.net/weixin_44291381/article/details/125160942
+
+listener.ora tnsnames.ora
+这两个文件ip修改
+
+OracleOraDB12Home2TNSListener
+OracleServiceDD
+OracleServiceORCL
+这个服务
+
+备注：TNSListener 这个服务没启动，连接不上
+
 
 Oracle ASM神书《拨云见日 解密Oracle ASM内核》
 
