@@ -1,6 +1,8 @@
 # Sonar
 
 
+https://github.com/SonarSource/sonarqube
+
 AuthorizationDaoTest 单元测试
 
 1. 默认支持代码文本格式全为 UTF-8，其他编码可能会产生乱码；
