@@ -1,6 +1,11 @@
 # mybatis
 
 
+
+### Mybatis开启日志打印
+
+https://blog.csdn.net/qq_41482600/article/details/126864628
+
 ### mybatis like
 sql注入
 https://www.jb51.net/article/232026.htm

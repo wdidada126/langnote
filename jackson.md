@@ -52,7 +52,7 @@ com.fasterxml.jackson.databind.ObjectMapper
 ObjectMapper
 
 readValue()
-writeValueAsString()               com.fasterxml.jackson.databind.ObjectMapper#writeValueAsString
+String writeValueAsString()               com.fasterxml.jackson.databind.ObjectMapper#writeValueAsString
 
 
 

@@ -1,5 +1,28 @@
 # openwrt
 
+OpenWrt Shadowsocks 安装&配置指南
+https://linhongbo.com/posts/shadowsocks-on-openwrt/
+
+
+http://douxinchun.github.io/blog/20210302/install-shadowsocks-on-openwrt.html
+
+切换中科大源
+http://mirrors.ustc.edu.cn/help/openwrt.html
+
+
+src/gz openwrt_core http://mirrors.ustc.edu.cn/lede/releases/19.07.3/targets/ramips/mt7620/packages
+src/gz openwrt_base http://mirrors.ustc.edu.cn/lede/releases/19.07.3/packages/mipsel_24kc/base
+src/gz openwrt_luci http://mirrors.ustc.edu.cn/lede/releases/19.07.3/packages/mipsel_24kc/luci
+src/gz openwrt_packages http://mirrors.ustc.edu.cn/lede/releases/19.07.3/packages/mipsel_24kc/packages
+src/gz openwrt_routing http://mirrors.ustc.edu.cn/lede/releases/19.07.3/packages/mipsel_24kc/routing
+src/gz openwrt_telephony http://mirrors.ustc.edu.cn/lede/releases/19.07.3/packages/mipsel_24kc/telephony
+
+
+https://openwrt.org/
+
+lede
+https://github.com/lede-project/source
+
 ### openwrt设置静态ip
 
 openwrt这种网络设备，是不是对硬盘空间消耗不大？
@@ -87,7 +110,7 @@ https://blog.csdn.net/csdn__lc/article/details/61451417
 小米路由器上有txt文件
 
 
-
+家用路由器Lan口之间的设备工作在IP层还是数据链路层？
 https://www.zhihu.com/question/354935688
 
 
