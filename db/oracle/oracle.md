@@ -1,5 +1,30 @@
 # oracle
 
+
+### oracle 11g docker安装
+
+dell刀片服务器
+
+docker镜像
+
+登录服务器
+oracle
+
+root
+
+
+设置环境变量
+
+sqlplus登录
+
+sys system默认密码无
+
+新建账户wdidada
+
+
+wdidada账户 lock解除
+
+
 ### Oracle新建表
 
 先选择数据库
