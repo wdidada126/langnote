@@ -39,6 +39,12 @@ GCC 源码里自带脚本可以轻松下载依赖包。
 ./contrib/download_prerequisites
 
 
+以上软件各版本源码在https://ftp.gnu.org/gnu/链接中可下载
+
+
+https://muzing.top/posts/16a16b69/
+
+
 
 Redis里面有ruby脚本
 

@@ -1,5 +1,105 @@
 # mysql
 
+
+
+
+关系数据库事务四大特性
+
+ACID
+
+原子性
+
+一致性
+
+隔离性
+
+持久性
+
+隔离级别
+
+读未提交 RU
+
+读已提交 RC
+
+可重复读 RR
+
+串行化 S
+
+现象
+
+脏读。读到的是另一个事物未提交的事物
+
+不可重复读
+
+幻读
+
+
+
+
+
+MySQL是server和engine分离的
+
+Driv的engine是？
+
+Cluster index
+
+Unclusrer index
+
+covering index 覆盖索引
+
+https://blog.csdn.net/yinni11/article/details/81812309
+
+https://www.hollischuang.com/archives/3818
+
+
+
+最左匹配
+
+
+
+select where 的and条件 mysql会优化
+
+
+
+
+
+
+
+
+
+MYSQL binlog优化几点思考
+
+https://zhuanlan.zhihu.com/p/147459036
+
+https://www.jianshu.com/p/7384d6e09048
+
+
+
+WAL机制
+
+redo log顺序追加写入。事务提交时，只需要保证事务的redo log落盘即可，通过redo log的顺序写代替页面的随机写提升数据库系统的性能。
+
+
+
+问题1：如何解决事务提交时flush redo log带来的性能损失
+
+Redo log组提交技术
+
+问题2：binlog和引擎层事务提交的顺序问题
+
+内部XA事务
+
+
+
+
+
+my.cnf配置
+
+log_bin
+
+bin_alive 大致 
+
+
 ### mysql 源码编译
 ubuntu 16
 centos 7/8

@@ -1,5 +1,11 @@
 # docker
 
+docker exec -it /bin/bash
+
+
+tars也使用docker部署了
+
+
 docker linux上是正宗的，Windows macos上是vm
 
 

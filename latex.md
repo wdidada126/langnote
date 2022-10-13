@@ -58,3 +58,11 @@ TeX Live 是 TUG (TeX User Group) 维护和发布的 TeX 系统，可说是「�
 
 latex入门 刘海洋 pdf
 
+### overleaf的中文设置
+https://www.overleaf.com/learn/latex/Chinese
+
+文档类型
+TeX有多种文档类型可选，笔者较常用的有如下几种类型：
+
+对于英文，可以用book、article和beamer；
+对于中文，可以用ctexbook、ctexart和ctexbeamer，这些类型自带了对中文的支持。
