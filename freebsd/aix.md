@@ -1,6 +1,18 @@
 # aix
 
 
+
+1986年的AIX Version 1到2010年的AIX Version 7
+
+https://www.cnblogs.com/mzline/p/15637418.html
+
+AIX 全名为（Advanced Interactive Executive），它是IBM 公司的UNIX操作系统，整个系统的设计从网络、主机硬件系统，到操作系统完全遵守开放系统的原则。
+
+https://blog.csdn.net/dengweidan3299/article/details/102230245
+https://www.cnblogs.com/SuperXJ/archive/2012/08/16/2641890.html
+
+
+
 国内云 浪潮只卖aix服务
 
 

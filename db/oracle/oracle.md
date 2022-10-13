@@ -3,6 +3,13 @@
 
 ### oracle 11g docker安装
 
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+
+
+registry.aliyuncs.com/helowin/oracle_11g
+
+https://www.cnblogs.com/OliverQin/p/9765808.html
+
 dell刀片服务器
 
 docker镜像
@@ -23,6 +30,11 @@ sys system默认密码无
 
 
 wdidada账户 lock解除
+alter user wdidada account unlock;
+alter user wdidada identified by wdidada;
+alter user sys identified by sys;
+alter user system identified by system;
+https://www.jb51.net/article/118365.htm
 
 
 ### Oracle新建表

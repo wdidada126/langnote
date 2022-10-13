@@ -1,5 +1,21 @@
 # Git
 
+
+提示：使用 'master' 作为初始分支的名称。这个默认分支名称可能会更改。要在新仓库中
+提示：配置使用初始分支名，并消除这条警告，请执行：
+提示：
+提示： git config --global init.defaultBranch <名称>
+提示：
+提示：除了 'master' 之外，通常选定的名字有 'main'、'trunk' 和 'development'。
+提示：可以通过以下命令重命名刚创建的分支：
+提示：
+提示： git branch -m <name>
+
+
+
+
+
+
 git log --author="xxx"
 
 
@@ -201,7 +217,7 @@ $ git reset --hard HEAD~3 回退到前3次提交之前,以此类推,回退到n�
 $ git reset --hard commit_id 退到/进到 指定commit的..
 
 
-git config  user.name "Edidada Tom"
+git config  user.name "Wdidada Tom In Dell R630"
 git config  user.email "sandisks555@gmail.com"
 
 [How to “git clone” including submodules](https://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)
