@@ -4,7 +4,7 @@
 
 讲的浅
 
-
+介绍了MySQL的Server层，重点介绍了宏观架构，对于刚开始学习MySQL源码的人，相信会有很大的帮助
 
 [深入理解MySQL核心技术](https://book.douban.com/subject/4022870/)
 
@@ -69,6 +69,6 @@ optimise？
 
 第10章 存储引擎
 
-
+mysql 官网上有介绍存储引擎的
 
 cvs
