@@ -1,6 +1,9 @@
 # go
 
 
+### 使用Go的地区
+美国 日本 中国
+
 go 会自动生成一个 go.sum 文件来记录 dependency tree
 
 

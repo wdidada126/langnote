@@ -1,6 +1,8 @@
 # openwrt
 
 
+lede编译
+https://github.com/coolsnowwolf/lede
 
 路由器无法连接 raw.githubusercontent.com
 解决办法
