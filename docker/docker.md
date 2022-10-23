@@ -1,5 +1,15 @@
 # docker
 
+镜像重新命名
+docker tag 3fa112fd3642 oracle:11g
+
+
+docker exec -it /bin/bash
+
+
+tars也使用docker部署了
+
+
 docker linux上是正宗的，Windows macos上是vm
 
 

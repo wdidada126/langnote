@@ -1,5 +1,11 @@
 # ms sql server
 
+### docker
+
+https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker
+
+
+https://www.jianshu.com/p/f57297abf820
 
 
 SQLServer中一些查看表信息的sql语句

@@ -161,6 +161,11 @@ $ sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/car
 $ sudo yum install ripgrep
 
 
+
+https://blog.csdn.net/danykk/article/details/80137806
+
+
+
 CentOS7 配置阿里云yum源,非常之简单
 https://www.cnblogs.com/zgqbky/p/11722032.html
 1.进入yum的文件夹

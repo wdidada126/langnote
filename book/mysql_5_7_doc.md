@@ -13,6 +13,8 @@ USE，比如 QUIT ，不需要分号
 drop database databasenames;
 ```
 
+清空数据库的数据
+
 
 
 ```mysql
