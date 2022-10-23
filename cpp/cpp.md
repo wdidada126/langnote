@@ -1,5 +1,9 @@
 # cpp
 
+
+融汇 C++ Core Guidelines、SEI CERT、MISRA 等权威规范体系
+
+
 ### 代码检查工具
 java snoar
 
