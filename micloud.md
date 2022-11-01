@@ -4,23 +4,7 @@
 
 
 
-多大个事啊？你见过地方街道派工作人员挨家挨户上门给上万业主发警告信警告业主不得继续维权不得在网上投诉，否则网络非法外之地的吗的吗？并且街道出面派人上门填表动用维修基金。
 
-经济上/老公实力：女人之间的高手对决
-富太太：你这样的经济条件太好了，没有什么可烦恼的，你老公太厉害了，你只要当个阔太太就行了。有钱能够解决90%以上的问题，我要有你一半的条件，做梦都要笑醒。
-经济一般：你看你过得比一般人都强多了，要什么有什么，虽然有压力，但是有奔头啊，比上不足比下很有余，已经非常好了。
-条件很差，重点打感情牌：你看你虽然经济一般，但都是暂时的，有个潜力股的老公是最重要的，要不了几年，你的好日子就要到来。
-
-
-
-
-
-
-漂亮的照片给男朋友
-好东西要一起分享 小时候没人教你吗
-
-简历这种东西是扬长避短的
-女孩子的照片也是
 
 open jdk路过，里面的makefile都自成体系的另外形成了一整完整的编译调试系统，而且有一个专门的邮件组build-dev专门用来处理编译相关的问题。 虽然比较古老这的确是一个绕不开的话题
 
@@ -28,18 +12,7 @@ open jdk路过，里面的makefile都自成体系的另外形成了一整完整�
 
 
 
-天津滨海新区 河北 重工业
-淮南 铜陵
-矿产 石油 化工
-航天工业
-服饰
-媒体
-视频
-金融
-能源 光伏
-教科文卫
-电力 国家电网
-家电 电子产品
+
 class jvm 读写 kotlin grovvy kafka android app develop
 编译原理
 字节码 加载 链接 初始化
@@ -1006,7 +979,6 @@ key列显示的是当前表实际使用的索引，如果没有选择索引，�
 key_len列显示MySQL决定使用的键长度。如果KEY键是NULL，则长度为NULL。**在不损失精确性的情况下，长度越短越好** key len的长度还和字符集有关,latin1一个字符占用1个字节,gbk一个字符占用2个字节,utf8一个字符占用3个字节。 key_len的计算法方法：
 
 <figure class="md-table-fig" cid="n86" mdtype="table">列类型KEY_LEN备注id intkey_len = 4+1int为4bytes,允许为NULL,加1byteid bigint not nullkey_len=8bigint为8bytesuser char(30) utf8key_len=30*3+1utf8每个字符为3bytes,允许为NULL,加1byteuser varchar(30) not null utf8key_len=30*3+2utf8每个字符为3bytes,变长数据类型,加2bytesuser varchar(30) utf8key_len=30*3+2+1utf8每个字符为3bytes,允许为NULL,加1byte,变长数据类型,加2bytesdetail text(10) utf8key_len=30*3+2+1TEXT截取部分,被视为动态列类型。</figure>
-
 Ps: **key_len只指示了where中用于条件过滤时被选中的索引列，是不包含order by/group by这一部分被选中的索引列**
 
 8、ref
