@@ -38,9 +38,9 @@ Mpp xxx架构
 
 https://greenplum.org
 
-**什么是MPP数据库？（Massively Parallel Processing）**
+什么是MPP数据库？（Massively Parallel Processing）
 
-**大量并行处理**
+大量并行处理
 
 MPP架构是将任务并行的分散到多个服务器和节点上，在每个节点上计算完成后，将各自部分的结果汇总在一起得到最终的结果。采用MPP架构的数据库称为MPP数据库。
 

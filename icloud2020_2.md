@@ -114,7 +114,7 @@ http://www.udaxia.com/upqd/10154.html
 
 
 
-**论Ubuntu根目录扩容的一种方法**
+论Ubuntu根目录扩容的一种方法
 
 https://www.jianshu.com/p/e4dcb744b3a1
 

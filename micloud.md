@@ -444,19 +444,23 @@ iaas
 
 https://www.yourtechdiet.com/blogs/open-source-iaas-platforms/
 
-**OpenStack**
 
-**Eucalyptus**
 
-**CloudStack**
+OpenStack
 
-**CloudForms**
+Eucalyptus
 
-**OpenQRM**
+CloudStack
 
-**oVirt**
+CloudForms
 
-**Nimbus**
+OpenQRM
+
+oVirt
+
+Nimbus
+
+
 
 
 
@@ -506,23 +510,7 @@ Containerd
 
 
 
-今年57岁的许章润是中国知名法学家，曾兼任自由派民间研究机构天则经济研究所特约研究员。2005年被评为“全国十大杰出青年法学家”。
 
-近几年，许章润发表多篇文章及公开演讲，分析中国历史及现状，抨击中共极权。2018年7月，发表文章《我们当下的恐惧与期待》，提出数项担忧与建议，引发巨大回响。2019年3月，清华大学暂停许章润的教学和学术工作。2020年5月21日，他发表文章《世界文明大洋上的中国孤舟——全球体系背景下新冠疫情的政治观与文明论》，分析了中国在疫情下暴露的种种问题，呼吁制度改革。
-
-他将其中六文集结出书，因成稿于戊戌年间，故称《戊戌六章》。
-
-
-
-大约一周后的7月15日，金融壹帐通的联席总经理邱寒将正式离职。金融壹帐通于一个月前在纽约证券交易所发布了相关公告。
-
-此前，该公司的法务总监唐明思、首席风控官高帆、首席战略官戴可都已经相继离职。
-
-另有市场传闻，该公司的投资一帐通原CEO黄绍宇、首席财务总监刘晖、CFO罗伟杰也已经离职，但金融壹帐通方面予以否认。如果刘晖和罗伟杰离职的消息属实，这两人如果离职，意味着该公司财务部门的高管空缺。
-
-另外，今年上半年金融壹帐通对中层和普通员工大规模裁员，裁员比例大约30%，留下来的高管和员工均被降薪，一般降薪30%以上。知情人士表示，此次裁员过程中曾发生补偿方面的纠纷。
-
-平安是中国第二家被批准设立的保险公司
 
 
 
@@ -698,7 +686,7 @@ https://ionutbalosin.com/2020/01/hotspot-jvm-performance-tuning-guidelines/
 
 Comware软件平台支持丰富的广域网链路特性，包括PPP、HDLC、ATM、X.25、FR、ISDN、DLSw、透明网桥等系列协议和技术。
 
-**PPP****协议**
+PPP协议
 
 PPP包含一整套的协议，包括链路控制协议（LCP）、网络层控制协议（NCP）和验证协议（PAP和CHAP）等。
 
@@ -706,17 +694,17 @@ PPP包含一整套的协议，包括链路控制协议（LCP）、网络层控�
 
 支持PPPoE：PPPoE是PPP over Ethernet的简称，它利用以太网将大量主机组成网络，通过一个远端接入设备连入因特网，并对接入的主机实现控制和计费功能，极高的性能价格比使PPPoE在包括小区组网建设等一系列应用中被广泛采用。
 
-**HDLC****协议**
+HDLC协议
 
 Comware软件平台支持HDLC协议封装，可与市场上流行设备的HDLC协议互通。
 
 HDLC（High-level Data Link Control，高级数据链路控制）是一种面向比特的链路层协议。其最大特点是不需要规定数据必须是字符集，对任何一种比特流，均可以实现透明的传输。
 
-**ISDN****协议**
+ISDN协议
 
 Comware软件平台支持ISDN和QSIG。支持Q921和Q931协议。ISDN支持基本速率接口（BRI）和基群速率接口（PRI）。BRI带宽为2B+D，PRI带宽为30B+D或23B+D。
 
-**ATM****协议族**
+ATM协议族
 
 Comware软件平台支持ATM系列协议，支持永久虚电路（Permanent Virtual Circuit，PVC），并且支持IPoA、PPPoA、IPoEoA以及PPPoEoA这四种应用方式。
 
@@ -748,13 +736,13 @@ Comware软件平台支持多链路帧中继（Multilink Frame Relay，简写为M
 
 多链路帧中继特性提供一种逻辑接口：MFR接口，由多个帧中继物理链路捆绑而成，从而可以在帧中继网络上提供高速率、大带宽的链路。
 
-**透明网桥技术**
+透明网桥技术
 
 网桥是一种在数据链路层连接局域网并在其间传递数据的网络设备。在一些小型网络尤其是比较分散的网络中，使用网桥可以减少网络维护成本，网络终端用户也不需要对设备进行特别设置，网络连接就像是HUB一样。
 
 Comware软件平台支持透明网桥（Transparent Bridging）。这种网桥用于连接物理介质类型相同的局域网，它主要应用在以太网环境中。透明网桥通常都保存一张网桥表，该网桥表记录目的MAC地址与接口之间的对应关系。
 
-**DLSw****协议**
+DLSw协议
 
 SNA（System Network Architecture，系统网络结构体系）是IBM在20世纪70年代推出的与OSI参考模型对应的网络协议。要实现SNA协议跨广域网传输，解决方案之一就是DLSw技术。
 
@@ -930,7 +918,7 @@ table用来表示输出行所引用的表名
 
 4、type（重要）
 
-type表示访问类型，下面依次解释各种类型，类型由**最好到最差**
+type表示访问类型，下面依次解释各种类型，类型由最好到最差
 
 system：表仅有一行，是const类型的一个特例
 
@@ -976,10 +964,10 @@ key列显示的是当前表实际使用的索引，如果没有选择索引，�
 
 7、key_len
 
-key_len列显示MySQL决定使用的键长度。如果KEY键是NULL，则长度为NULL。**在不损失精确性的情况下，长度越短越好** key len的长度还和字符集有关,latin1一个字符占用1个字节,gbk一个字符占用2个字节,utf8一个字符占用3个字节。 key_len的计算法方法：
+key_len列显示MySQL决定使用的键长度。如果KEY键是NULL，则长度为NULL。在不损失精确性的情况下，长度越短越好 key len的长度还和字符集有关,latin1一个字符占用1个字节,gbk一个字符占用2个字节,utf8一个字符占用3个字节。 key_len的计算法方法：
 
 <figure class="md-table-fig" cid="n86" mdtype="table">列类型KEY_LEN备注id intkey_len = 4+1int为4bytes,允许为NULL,加1byteid bigint not nullkey_len=8bigint为8bytesuser char(30) utf8key_len=30*3+1utf8每个字符为3bytes,允许为NULL,加1byteuser varchar(30) not null utf8key_len=30*3+2utf8每个字符为3bytes,变长数据类型,加2bytesuser varchar(30) utf8key_len=30*3+2+1utf8每个字符为3bytes,允许为NULL,加1byte,变长数据类型,加2bytesdetail text(10) utf8key_len=30*3+2+1TEXT截取部分,被视为动态列类型。</figure>
-Ps: **key_len只指示了where中用于条件过滤时被选中的索引列，是不包含order by/group by这一部分被选中的索引列**
+Ps: key_len只指示了where中用于条件过滤时被选中的索引列，是不包含order by/group by这一部分被选中的索引列
 
 8、ref
 
@@ -991,11 +979,11 @@ rows列显示的是mysql解析器认为执行此SQL时必须扫描的行数。�
 
 10、filtered
 
-此参数为**mysql 5.7 新加参数**，指的是返回结果的行数所占需要读到的行（rows的值）的比例 对于使用join时，前一个表的结果集大小直接影响了循环的行数
+此参数为mysql 5.7 新加参数，指的是返回结果的行数所占需要读到的行（rows的值）的比例 对于使用join时，前一个表的结果集大小直接影响了循环的行数
 
 11、extra（重要）
 
-**extra表示不在其他列并且也很重要的额外信息**
+extra表示不在其他列并且也很重要的额外信息
 
 using index using index 该值表示这个SQL语句使用了覆盖索引（覆盖索引是指可以直接在索引列中得到想要的结果，而不用去回表），此时效率最高
 
@@ -1439,7 +1427,7 @@ docker 启动日志
 
 service docker status
 
-\* Docker is not running
+Docker is not running
 
 
 
