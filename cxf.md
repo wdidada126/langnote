@@ -1,5 +1,6 @@
 # cxf
 
+是esb
 
 WebService 有两个"标准"：
 JAX-WS也就是传统的基于 SOAP 协议的 WebService. 可以基于多种协议（HTTP、TCP 等），一般使用 CXF 或 Axis2 来进行开发。
@@ -19,7 +20,6 @@ https://zhuanlan.zhihu.com/p/104700455
 
 
 Soap
-
 https://blog.csdn.net/chen_long_yue/article/details/90411006
 
 
@@ -29,7 +29,7 @@ http://cxf.apache.org/docs/writing-a-service-with-spring.html
 
 
 
-# Spring和CXF整合发布WebService(服务端、客户端)
+#### Spring和CXF整合发布WebService(服务端、客户端)
 
 https://blog.csdn.net/yhahaha_/article/details/81395397
 
@@ -67,7 +67,7 @@ SOAP 的一个简单例子：假设，有一个房价的数据库，SOAP 消息�
 
 
 
-cxf.png
+![cxf图片](./imgs/cxf.png)
 
 
 

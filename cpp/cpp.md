@@ -1,6 +1,12 @@
 # cpp
 
 
+模板元编程
+
+cpp框架会使用各种cpp语言特性
+
+98年增加stl
+
 融汇 C++ Core Guidelines、SEI CERT、MISRA 等权威规范体系
 
 
