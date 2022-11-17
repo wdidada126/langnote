@@ -1,6 +1,9 @@
 # os
 
 
+哈工大linux 0.11实验配置
+https://gitee.com/edidada/oslab
+
 
 操作系统，中断驱动的内核
 
