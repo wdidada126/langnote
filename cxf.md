@@ -1,5 +1,9 @@
 # cxf
 
+
+Apache CXF一个开源的Service框架，它实现了JCP与Web Service中一些重要标准。CXF简化了构造，集成，面 向服务架构(SOA)业务组件与技术的灵活复用。在CXF中，Service使用WSDL标准定义并能够使用各种不同的消息 格式(或binding)和网络协议(transports)包括SOAP、XML（通过HTTP或JMS）进行访问。CXF同样支持多种model 如：JAX-WS，JBI，SCA和CORBA service。CXF设计成可灵活部署到各种容器中包括Spring-based，JBI，SCA， Servlet和J2EE容器。
+
+
 是esb
 
 WebService 有两个"标准"：
