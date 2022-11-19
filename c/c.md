@@ -1,5 +1,10 @@
 # c
 
+
+大一C语言怎么快速入门
+https://www.zhihu.com/question/273547272/answer/1992791314
+
+
 C/C++跨平台的的预编译宏
 https://blog.csdn.net/earbao/article/details/53307432
 
