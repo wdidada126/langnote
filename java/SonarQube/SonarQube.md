@@ -12,6 +12,25 @@ AuthorizationDaoTest 单元测试
 
 
 
+
+https://github.com/SonarSource/sonarqube/tree/8.9.6.50800
+
+
+
+sonarqube不支持Oracle？
+sonar
+从Sonar7.9版本，不再支持Mysql
+sonar tls
+sonar_scanner
+
+https://zhuanlan.zhihu.com/p/45411597
+https://zhuanlan.zhihu.com/p/37561538
+https://www.zhihu.com/answer/2472177310
+
+
+
+
+
 SonarQube是管理代码质量一个开放平台,可以快速的定位代码中潜在的或者明显的错误
 
 https://docs.sonarqube.org/latest/setup/get-started-2-minutes/

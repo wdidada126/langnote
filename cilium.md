@@ -22,3 +22,9 @@ Cilium的基础是一种名为BPF的新Linux内核技术，它可以在Linux本�
 
 https://cilium.slack.com/
 
+
+
+Cilium 是一个用于容器网络领域的开源项目，主要是面向容器而使用，用于提供并透明地保护应用程序工作负载（如应用程序容器或进程）之间的网络连接和负载均衡。
+Cilium 在第 3/4 层运行，以提供传统的网络和安全服务，还在第 7 层运行，以保护现代应用协议（如 HTTP, gRPC 和 Kafka）的使用。 Cilium 被集成到常见的容器编排框架中，如 Kubernetes 和 Mesos。
+Cilium 的底层基础是 BPF，Cilium 的工作模式是生成内核级别的 BPF 程序与容器直接交互。区别于为容器创建 overlay 网络，Cilium 允许每个容器分配一个 IPv6 地址（或者 IPv4 地址），使用容器标签而不是网络路由规则去完成容器间的网络隔离。它还包含创建并实施 Cilium 规则的编排系统的整合。
+

@@ -1,6 +1,11 @@
 # cxf
 
 
+Apache CXF一个开源的Service框架，它实现了JCP与Web Service中一些重要标准。CXF简化了构造，集成，面 向服务架构(SOA)业务组件与技术的灵活复用。在CXF中，Service使用WSDL标准定义并能够使用各种不同的消息 格式(或binding)和网络协议(transports)包括SOAP、XML（通过HTTP或JMS）进行访问。CXF同样支持多种model 如：JAX-WS，JBI，SCA和CORBA service。CXF设计成可灵活部署到各种容器中包括Spring-based，JBI，SCA， Servlet和J2EE容器。
+
+
+是esb
+
 WebService 有两个"标准"：
 JAX-WS也就是传统的基于 SOAP 协议的 WebService. 可以基于多种协议（HTTP、TCP 等），一般使用 CXF 或 Axis2 来进行开发。
 JAX-RS这就是你说的 Restful 风格的 WebService，限定于 HTTP 协议，一般使用 Restlet 或者 Jersey 来进行开发，SpringMVC 也提供了原生的支持（但 Spring MVC 目前并没有实现 JAX-RS，也不打算实现）
@@ -19,7 +24,6 @@ https://zhuanlan.zhihu.com/p/104700455
 
 
 Soap
-
 https://blog.csdn.net/chen_long_yue/article/details/90411006
 
 
@@ -29,7 +33,7 @@ http://cxf.apache.org/docs/writing-a-service-with-spring.html
 
 
 
-# Spring和CXF整合发布WebService(服务端、客户端)
+#### Spring和CXF整合发布WebService(服务端、客户端)
 
 https://blog.csdn.net/yhahaha_/article/details/81395397
 
@@ -67,7 +71,7 @@ SOAP 的一个简单例子：假设，有一个房价的数据库，SOAP 消息�
 
 
 
-cxf.png
+![cxf图片](./imgs/cxf.png)
 
 
 
