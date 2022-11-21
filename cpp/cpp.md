@@ -1,6 +1,17 @@
 # cpp
 
 
+https://zh.cppreference.com/w/cpp/language/namespace
+
+
+在线编译器
+https://coliru.stacked-crooked.com/
+
+### namespace
+
+https://www.cnblogs.com/zhoug2020/p/5972439.html
+
+
 模板元编程
 
 cpp框架会使用各种cpp语言特性
