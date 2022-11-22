@@ -1,8 +1,245 @@
 # cpp
 
 
+https://www.cnblogs.com/fnlingnzb-learner/p/7040726.html
+
+linux是c语言写的，linux系统调用也是c语言？
+
+Linux编程中C语言头文件位置
+https://blog.csdn.net/weixin_43083491/article/details/107867222
+
+
+Windows中C语言中的头文件一般分为两类，一类是标准库头文件，一类是用户自定义头文件。
+1、标准库头文件，不同的编译器都不相同。
+Vc6.0一般在安装目录下的\VC98\INCLUDE目录，比如C:\Program Files (x86)\Microsoft Visual Studio\VC98\INCLUDE。
+Vs一般在位于$VSPATH\VC\include路径下面。
+gcc一般默认在 /usr/include目录下。
+2、用户自定义头文件，存储位置有用户自定义。
+
+
+Mac中
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/bits
+
+1.Linux中一些头文件的作用：
+
+#include <assert.h>       //ANSI C。提供断言，assert(表达式) 
+#include <glib.h>           //GCC。GTK，GNOME的基础库，提供很多有用的函数，如有数据结构操作函数 
+#include <dirent.h>        //GCC。文件夹操作函数 
+#include <ctype.h>        //ANSI C。字符测试函数。isdigit(),islower()等 
+#include <errno.h>        //ANSI C。查看错误代码errno是调试程序的一个重要方法 
+#include <getopt.h>     //处理命令行参数 
+2.linux常用头文件如下：
+
+//POSIX标准定义的头文件 
+#include <dirent.h>        //目录项 
+#include <fcntl.h>         //文件控制 
+#include <fnmatch.h>       //文件名匹配类型 
+#include <glob.h>          //路径名模式匹配类型 
+#include <grp.h>           //组文件 
+#include <netdb.h>         //网络数据库操作 
+#include <pwd.h>           //口令文件 
+#include <regex.h>           //正则表达式 
+#include <tar.h>           //TAR归档值 
+#include <termios.h>       //终端I/O 
+#include <unistd.h>        //符号常量 
+#include <utime.h>         //文件时间 
+#include <wordexp.h>       //字符扩展类型 
+//————————- 
+#include <arpa/inet.h>     //INTERNET定义 
+#include <net/if.h>        //套接字本地接口 
+#include <netinet/in.h>    //INTERNET地址族 
+#include <netinet/tcp.h>   //传输控制协议定义 
+//————————- 
+#include <sys/mman.h>      //内存管理声明 
+#include <sys/select.h>    //Select函数 
+#include <sys/socket.h>    //套接字借口 
+#include <sys/stat.h>      //文件状态 
+#include <sys/times.h>     //进程时间 
+#include <sys/types.h>     //基本系统数据类型 
+#include <sys/un.h>        //UNIX域套接字定义 
+#include <sys/utsname.h>   //系统名 
+#include <sys/wait.h>      //进程控制 
+//—————————— 
+//POSIX定义的XSI扩展头文件 
+#include <cpio.h>          //cpio归档值 
+#include <dlfcn.h>         //动态链接 
+#include <fmtmsg.h>        //消息显示结构 
+#include <ftw.h>           //文件树漫游 
+#include <iconv.h>         //代码集转换使用程序 
+#include <langinfo.h>      //语言信息常量 
+#include <libgen.h>        //模式匹配函数定义 
+#include <monetary.h>      //货币类型 
+#include <ndbm.h>          //数据库操作 
+#include <nl_types.h>      //消息类别 
+#include <poll.h>          //轮询函数 
+#include <search.h>        //搜索表 
+#include <strings.h>       //字符串操作 
+#include <syslog.h>        //系统出错日志记录 
+#include <ucontext.h>      //用户上下文 
+#include <ulimit.h>        //用户限制 
+#include <utmpx.h>         //用户帐户数据库 
+//—————————– 
+#include <sys/ipc.h>       //IPC(命名管道) 
+#include <sys/msg.h>       //消息队列 
+#include <sys/resource.h>  //资源操作 
+#include <sys/sem.h>       //信号量 
+#include <sys/shm.h>       //共享存储 
+#include <sys/statvfs.h>   //文件系统信息 
+#include <sys/time.h>      //时间类型 
+#include <sys/timeb.h>     //附加的日期和时间定义 
+#include <sys/uio.h>       //矢量I/O操作 
+//—————————— 
+//POSIX定义的可选头文件 
+#include <aio.h>           //异步I/O 
+#include <mqueue.h>        //消息队列 
+#include <pthread.h>       //线程 
+#include <sched.h>         //执行调度 
+#include <semaphore.h>     //信号量 
+#include <spawn.h>         //实时spawn接口 
+#include <stropts.h>       //XSI STREAMS接口 
+#include <trace.h>         //事件跟踪 
+3.C/C++头文件一览：
+
+//C 
+#include <assert.h>　　　　//设定插入点 
+#include <ctype.h>　　　　 //字符处理 
+#include <errno.h>　　　　 //定义错误码 
+#include <float.h>　　　　 //浮点数处理 
+#include <iso646.h>        //对应各种运算符的宏 
+#include <limits.h>　　　　//定义各种数据类型最值的常量 
+#include <locale.h>　　　　//定义本地化C函数 
+#include <math.h>　　　　　//定义数学函数 
+#include <setjmp.h>        //异常处理支持 
+#include <signal.h>        //信号机制支持 
+#include <stdarg.h>        //不定参数列表支持 
+#include <stddef.h>        //常用常量 
+#include <stdio.h>　　　　 //定义输入／输出函数 
+#include <stdlib.h>　　　　//定义杂项函数及内存分配函数 
+#include <string.h>　　　　//字符串处理 
+#include <time.h>　　　　　//定义关于时间的函数 
+#include <wchar.h>　　　　 //宽字符处理及输入／输出 
+#include <wctype.h>　　　　//宽字符分类 
+ 
+//传统C++ 
+#include <fstream.h>　　　 //改用<fstream> 
+#include <iomanip.h>　　　 //改用<iomainip> 
+#include <iostream.h>　　　//改用<iostream> 
+#include <strstrea.h>　　　//该类不再支持，改用<sstream>中的stringstream 
+//———————————————————————————————— 
+ 
+//标准C++ 
+#include <algorithm>　　　 //STL 通用算法 
+#include <bitset>　　　　　//STL 位集容器 
+#include <cctype>          //字符处理 
+#include <cerrno> 　　　　 //定义错误码 
+#include <cfloat>　　　　 //浮点数处理 
+#include <ciso646>         //对应各种运算符的宏 
+#include <climits> 　　　　//定义各种数据类型最值的常量 
+#include <clocale> 　　　　//定义本地化函数 
+#include <cmath> 　　　　　//定义数学函数 
+#include <complex>　　　　 //复数类 
+#include <csignal>         //信号机制支持 
+#include <csetjmp>         //异常处理支持 
+#include <cstdarg>         //不定参数列表支持 
+#include <cstddef>         //常用常量 
+#include <cstdio> 　　　　 //定义输入／输出函数 
+#include <cstdlib> 　　　　//定义杂项函数及内存分配函数 
+#include <cstring> 　　　　//字符串处理 
+#include <ctime> 　　　　　//定义关于时间的函数 
+#include <cwchar> 　　　　 //宽字符处理及输入／输出 
+#include <cwctype> 　　　　//宽字符分类 
+#include <deque>　　　　　 //STL 双端队列容器 
+#include <exception>　　　 //异常处理类 
+#include <fstream> 　　　  //文件输入／输出 
+#include <functional>　　　//STL 定义运算函数（代替运算符） 
+#include <limits> 　　　　 //定义各种数据类型最值常量 
+#include <list>　　　　　　//STL 线性列表容器 
+#include <locale>          //本地化特定信息 
+#include <map>　　　　　　 //STL 映射容器 
+#include <memory>          //STL通过分配器进行的内存分配 
+#include <new>             //动态内存分配 
+#include <numeric>         //STL常用的数字操作 
+#include <iomanip> 　　　  //参数化输入／输出 
+#include <ios>　　　　　　 //基本输入／输出支持 
+#include <iosfwd>　　　　　//输入／输出系统使用的前置声明 
+#include <iostream> 　　 　//数据流输入／输出 
+#include <istream>　　　　 //基本输入流 
+#include <iterator>        //STL迭代器 
+#include <ostream>　　　　 //基本输出流 
+#include <queue>　　　　　 //STL 队列容器 
+#include <set>　　　　　　 //STL 集合容器 
+#include <sstream>　　　　 //基于字符串的流 
+#include <stack>　　　　　 //STL 堆栈容器 
+#include <stdexcept>　　　 //标准异常类 
+#include <streambuf>　　　 //底层输入／输出支持 
+#include <string>　　　　　//字符串类 
+#include <typeinfo>        //运行期间类型信息 
+#include <utility>　　　　 //STL 通用模板类 
+#include <valarray>        //对包含值的数组的操作 
+#include <vector>　　　　　//STL 动态数组容器 
+//———————————————————————————————— 
+ 
+//C99增加的部分 
+#include <complex.h>　　 //复数处理 
+#include <fenv.h>　　　　//浮点环境 
+#include <inttypes.h>　　//整数格式转换 
+#include <stdbool.h>　　 //布尔环境 
+#include <stdint.h>　　　//整型环境 
+#include <tgmath.h>　　　//通用类型数学宏 
+
+
+### msvc标准库
+https://learn.microsoft.com/zh-cn/cpp/standard-library/cpp-standard-library-header-files?source=recommendations&view=msvc-170
+
+
+类别	标头
+算法	<algorithm>, <cstdlib>, <numeric>
+原子操作	<atomic>11
+C 库包装器	<cassert>、<ccomplex>11 a b、<cctype>、<cerrno>、<cfenv>11、<cfloat>、<cinttypes>11、<ciso646>b、<climits>、<clocale>、<cmath>、<csetjmp>、<csignal>、<cstdalign>11 a b、<cstdarg>、<cstdbool>11 a b、<cstddef>、<cstdint>11、<cstdio>、<cstdlib>、<cstring>、<ctgmath>11 a b、<ctime>、<cuchar>11、<cwchar>、<cwctype>
+概念	<concepts>20
+容器	
+序列容器	<array>11、<deque>、<forward_list>11、<list>、<vector>
+有序的关联容器	<map>, <set>
+无序的关联容器	<unordered_map>11、<unordered_set>11
+容器适配器	<queue>, <stack>
+容器视图	<span>20
+错误和异常处理	<cassert>、<exception>、<stdexcept>、<system_error>11
+常规实用工具	<any>17、<bit>20、<bitset>、<cstdlib>、<execution>17、<functional>、<memory>、<memory_resource>17、<optional>17、<ratio>11、<scoped_allocator>11、<tuple>11、<type_traits>11、<typeindex>11、<utility>、<variant>17
+I/O 和格式设置	<cinttypes>11、<cstdio>、<filesystem>17、<fstream>、<iomanip>、<ios>、<iosfwd>、<iostream>、<istream>、<ostream>、<sstream>、<streambuf>、<strstream>c、<syncstream>20
+迭代器	<iterator>
+语言支持	<cfloat>、<climits>、<codecvt>11 a、<compare>20、<contract>20、<coroutine>20、<csetjmp>、<csignal>、<cstdarg>、<cstddef>、<cstdint>11、<cstdlib>、<exception>、<initializer_list>11、<limits>、<new>、<typeinfo>、<version>20
+本地化	<clocale>、<codecvt>11 a、<cvt/wbuffer>、<cvt/wstring>、<locale>
+数学和数字	<bit>20、<cfenv>11、<cmath>、<complex>、<cstdlib>、<limits>、<numeric>、<random>11、<ratio>11、<valarray>
+内存管理	<allocators>、<memory>、<memory_resource>17、<new>、<scoped_allocator>11
+多线程处理	<atomic>11、<condition_variable>11、<future>11、<mutex>11、<shared_mutex>14、<thread>11
+范围	<ranges>20
+正则表达式	<regex>11
+字符串和字符数据	<charconv>17、<cctype>、<cstdlib>、<cstring>、<cuchar>11、<cwchar>、<cwctype>、<regex>11、<string>、<string_view>17
+时间	<chrono>11、<ctime>
+
+
+有一本书 c++标准库2
+Nicolai M.Josuttis
+http://www.josuttis.com/
+
+
+
 https://zh.cppreference.com/w/cpp/language/namespace
 
+
+c++ set使用过后需要delete吗？
+new分配的内存在堆上，必须程序员自己用delete，而局部变量和函数参数分配的内存在堆栈上，自动释放，由系统完成。
+
+
+delete和delete[]的使用规范
+对于每个由new操作符号创建的基本数据类型的对象,都需要由一个delete去进行内存回收,这是每个C++程序猿在使用堆时的基本操守。
+对于new []操作符动创建的基本数据类型的数组(元素是基本数据类型),只需执行delete[]操作符一次性回收内存。
+根据RAII原则，在类的构造函数中由new初始化的指针类型的属性,同时在必须在其解构函数中具有对应的delete操作,这个对于new[]和delete[]也同样使用。
+
+作者：铁甲万能狗
+链接：https://www.jianshu.com/p/b87329ceca4d
+https://www.cnblogs.com/1zhk/articles/5028743.html
+https://www.cnblogs.com/chinsonliu/p/3603168.html
 
 在线编译器
 https://coliru.stacked-crooked.com/

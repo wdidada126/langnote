@@ -1,5 +1,10 @@
 # Git
 
+本地main，远程master分支
+git push --set-upstream origin main
+
+--set-upstream 远程不存在，在远程创建分支
+
 
 提示：使用 'master' 作为初始分支的名称。这个默认分支名称可能会更改。要在新仓库中
 提示：配置使用初始分支名，并消除这条警告，请执行：

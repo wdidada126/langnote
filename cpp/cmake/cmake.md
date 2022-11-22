@@ -2,6 +2,11 @@
 
 
 
+学习cmake的材料
+https://gitee.com/edidada/test-open-xlsx
+ test-open-xlsx/ OpenXLSX / CMakeLists.txt 
+ 
+
 ### 使用cmake组织的开源项目
 
 - mysql

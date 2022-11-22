@@ -2,6 +2,30 @@
 
 vcpkg install gtest
 
+### GTest
+
+- GTEST_API_
+- TEST
+- EXPECT_EQ
+- 
+
+```c
+testing::InitGoogleTest(&argc, argv);
+```
+
+```c
+RUN_ALL_TESTS()
+```
+
+### vcpkg安装的库
+头文件在vcpkg/installed/x64-linux/include
+
+[wdidada@10-23-29-39 include]$ cd gtest/
+[wdidada@10-23-29-39 gtest]$ ls
+gtest-death-test.h  gtest-message.h     gtest-printers.h  gtest-test-part.h
+gtest.h             gtest-param-test.h  gtest_prod.h      gtest-typed-test.h
+gtest-matchers.h    gtest_pred_impl.h   gtest-spi.h       internal
+[wdidada@10-23-29-39 gtest]$ pwd
 
 
 ```
