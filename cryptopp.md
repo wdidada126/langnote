@@ -20,7 +20,7 @@ apt-cache apknames | grep -i crypto++
 sudo apt-get install libcrypto++*
 
 https://blog.csdn.net/vingstar/article/details/10146899
-
+http://www.cryptopp.com/wiki/Linux
 
 cpp语言加密库
 
@@ -162,3 +162,4 @@ repoquery -ql cryptopp-devel
 /usr/lib64/libcryptopp.so
 /usr/lib64/pkgconfig/cryptopp.pc
 ```
+

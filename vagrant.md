@@ -1,8 +1,9 @@
-# **vagrant**
+# vagrant
 
 
+https://developer.hashicorp.com/vagrant
 
-Vagrant 可以管理 VirtualBox，实现快速配置创建虚拟机
+Vagrant可以管理VirtualBox，实现快速配置创建虚拟机
 
 
 
