@@ -1,6 +1,26 @@
 # visual studio
 
 
+VS可以连接远程服务器调试，还要啥Clion啊
+
+测试了下，远程服务器新安装库，在本地vs上提示找不到头文件
+
+
+使用VS编写Linux程序，可以将VS连接到Linux上，却出现了VS IDE中找不到
+#include <sys/socket.h>这类系统头文件的情况，可以将Linux中 /usr/include/ 目录 手动拷贝到windows的
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VC\Linux\include\usr\ 位置
+
+https://blog.csdn.net/weixin_43327696/article/details/106463764
+
+D:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\Linux\include\usr\include
+
+
+vs配置头文件和库目录
+https://blog.csdn.net/y24283648/article/details/109517407
+
+
+https://blog.csdn.net/weixin_44144762/article/details/127467173
+
 MSVC 没有完整支持 20 年前的 C99 标准。你看下是否适合吧。MSVC 实现的标准 C 功能有：完整的 C94 （ C89 + 后续宽字符支持）不完整的 C99 语核（缺复合字面量、非常量长度数组、 T [static N] 函数参数等）少数 C11 中标准化的扩展（如匿名 struct/union 成员）C99 标准库包含于 C++ 的 C11 标准库部分（有少量缺失）与 C11 标准略有区别的 _s 系列函数基本上还是不要把 MSVC 当成用 C 开发的东西了。如果需要 VS 的话可以考虑 Visual Studio + Clang 。
 
 vla

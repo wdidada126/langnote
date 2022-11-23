@@ -3,8 +3,9 @@
 yum install cmake -y
 yum install ninja-build -y
 
-类似于make
-编译速度快
+类似于make，编译速度快
+
+cmake生成build.ninja
 
 chrome source code
 
