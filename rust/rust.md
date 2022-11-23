@@ -18,16 +18,16 @@ rust写os
 
 美国弗吉尼亚大学计算机OS课程的作业便要求是用Rust语言来完成的。在不带运行时的情况下Rust内存管理虽然是自动的但并不依赖垃圾收集器，这也是本文后续要介绍的。
 
-### 从零开始写 **OS**
+### 从零开始写 OS
 
-超级详细的 **rust** **OS** 编写教程，作者是清华大学陈渝教授的学生
+超级详细的 rust OS 编写教程，作者是清华大学陈渝教授的学生
 
 https://learningos.github.io/rcore_step_by_step_webdoc/
 
 
 
 
-
+rustup update
 
 
 实验楼rust教程
@@ -226,3 +226,26 @@ https://github.com/rajasekarv/vega
 
 安装Windows环境
 https://www.cnblogs.com/qq67579722/p/12897819.html
+
+
+### Rust toolschan
+- stable-x86_64-pc-windows-msvc
+- stable-x86_64-pc-windows-gnu updated
+
+国内代理
+
+下载库文件设置位置，不能放c盘
+
+C:\Users\edidada\.rustup
+2G多的磁盘占用
+
+ 'cargo'
+ 'clippy'
+ 'llvm-tools-preview'
+ 'rls'
+ 'rust-analysis'
+ 'rust-docs'
+ 'rust-src'
+ 'rust-std'
+ 'rustc'
+ 'rustfmt'

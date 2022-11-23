@@ -21,4 +21,10 @@ https://blog.csdn.net/qq_37899792/article/details/118090971
 remote-ssh，让vscode能够远程登陆远程开发机(我们的开发、编译、部署、调试都在这个环境中)
 clangd: 一款优秀的c++插件，功能完备，支持重构，跳转，自动补全等功能
 CodeLLDB: vscode调试器插件
-https://zhuanlan.zhihu.com/p/441253031
+https://zhuanlan.zhihu.com/p/441253031	
+
+
+vsc remote ssh
+
+
+clangd插件，好用

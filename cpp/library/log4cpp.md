@@ -1,5 +1,24 @@
 # log4cpp
 
+不支持c++ 17？
+
+cd log4cpp-source;
+git apply 0001-Corrections-for-c-17.patch;
+git commit . -m 'Making corrections for c++ 17';
+参考网址
+https://sourceforge.net/p/log4cpp/bugs/147/
+
+
+使用这个https://github.com/mjbots/log4cpp
+
+
+sudo yum install log4cpp-devel -y
+
+log4cpp-1.1.1-1.el7.x86_64 already installed and latest version
+
+https://log4cpp.sourceforge.net/
+
+
 ```shell
 repoquery -ql log4cpp-devel
 /usr/bin/log4cpp-config
@@ -129,4 +148,37 @@ repoquery -ql log4cpp-devel
 /usr/share/man/man3/log4cpp::threading::ThreadLocalDataHolder.3.gz
 /usr/share/man/man3/log4cpp::width.3.gz
 
+```
+
+
+
+
+### log4cpp-1.1.3.tar.gz
+
+yum -y  install  libtool
+chmod +x autogen
+./autogen
+chmod +x configure
+./configure
+make
+
+sudo make install
+
+/usr/local/
+/usr/local/lib/pkgconfig/log4cpp.pc
+/usr/local/lib/
+
+liblog4cpp.a  liblog4cpp.la  liblog4cpp.so  liblog4cpp.so.5  liblog4cpp.so.5.0.6
+
+
+```shell
+[wdidada@10-23-29-39 log4cpp]$ ls
+AbortAppender.hh      BufferingAppender.hh  Configurator.hh              FileAppender.hh          Layout.hh          NTEventLogAppender.hh  PropertyConfigurator.hh  SyslogAppender.hh
+Appender.hh           Category.hh           config-win32.h               Filter.hh                LayoutsFactory.hh  OstreamAppender.hh     RemoteSyslogAppender.hh  threading
+AppendersFactory.hh   CategoryStream.hh     convenience.h                FixedContextCategory.hh  LevelEvaluator.hh  PassThroughLayout.hh   RollingFileAppender.hh   TimeStamp.hh
+AppenderSkeleton.hh   config.h              DailyRollingFileAppender.hh  HierarchyMaintainer.hh   LoggingEvent.hh    PatternLayout.hh       SimpleConfigurator.hh    TriggeringEventEvaluatorFactory.hh
+BasicConfigurator.hh  config-MinGW32.h      Export.hh                    IdsaAppender.hh          Manipulator.hh     Portability.hh         SimpleLayout.hh          TriggeringEventEvaluator.hh
+BasicLayout.hh        config-openvms.h      FactoryParams.hh             LayoutAppender.hh        NDC.hh             Priority.hh            StringQueueAppender.hh   Win32DebugAppender.hh
+[wdidada@10-23-29-39 log4cpp]$ pwd
+/usr/local/include/log4cpp
 ```

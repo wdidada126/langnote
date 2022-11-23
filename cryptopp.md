@@ -1,6 +1,8 @@
 # cryptopp
 
+https://www.cryptopp.com
 
+https://github.com/weidai11/cryptopp
 
 Crypto++ 看编译器
 The current version of Crypto++ supports the following compilers:
@@ -162,4 +164,21 @@ repoquery -ql cryptopp-devel
 /usr/lib64/libcryptopp.so
 /usr/lib64/pkgconfig/cryptopp.pc
 ```
+
+
+
+Package cryptopp-devel-5.6.2-10.el7.x86_64 already installed and latest version
+
+https://github.com/weidai11/cryptopp
+https://cryptopp.com/
+
+git clone git@github.com:weidai11/cryptopp.git
+cd cryptopp/
+git checkout CRYPTOPP_8_7_0
+make
+sudo make install
+
+
+doc
+https://cryptopp.com/docs/ref/class_weak_1_1_m_d5.html
 

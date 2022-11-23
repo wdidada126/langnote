@@ -1,15 +1,13 @@
 # odb
 
+The ODB system consists of several packages. The essential packages are the ODB compiler (odb), the common runtime library (libodb), and the database-specific runtime library (libodb-<database>). For example, if you are planning to use MySQL, then the set of packages that you will need would be: odb, libodb, and libodb-mysql.
+https://www.codesynthesis.com/products/odb/download.xhtml
 
 
 yum包
 
-libiodbc.i686 : iODBC Driver Manager
-libiodbc.x86_64 : iODBC Driver Manager
-libiodbc-devel.i686 : Header files and libraries for iODBC development
-libiodbc-devel.x86_64 : Header files and libraries for iODBC development
-libmodbus.x86_64 : A Modbus library
-libmodbus-devel.x86_64 : Development files for libmodbus
+yum search libodb
+
 libodb.x86_64 : Common ODB runtime library from Code Synthesis
 libodb-boost.x86_64 : Boost ODB runtime library from Code Synthesis
 libodb-boost-devel.x86_64 : Development files for libodb-boost

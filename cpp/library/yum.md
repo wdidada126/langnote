@@ -39,6 +39,7 @@ yum list installed
 poco-devel
 1.6.1
 
+```
 [wdidada@10-23-29-39 ~]$ repoquery -ql poco-devel.x86_64
 /usr/include/Poco
 /usr/include/Poco/ASCIIEncoding.h
@@ -109,6 +110,8 @@ poco-devel
 /usr/lib64/libPocoXMLd.so
 /usr/lib64/libPocoZip.so
 /usr/lib64/libPocoZipd.so
+
+```
 
 yum -y install libstdc++-4.8.5-28.el7.x86_64
 https://www.cnblogs.com/effortsing/p/10363921.html

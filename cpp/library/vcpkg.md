@@ -1,13 +1,16 @@
 # vcpkg
 
-### windows vs安装后报错
+### windows vs 2022安装后报错
 找不到完整的构建工具
 ./vcpkg install grpc
 Could not locate a complete toolset.
 The following paths were examined:
-    D:\Program Files\Microsoft Visual Studio\2022
+D:\Program Files\Microsoft Visual Studio\2022
 
     
+解决办法，更新vcpkg到最新版本，因为版本不兼容
+
+
 
 库作者如何添加自己的库到本地的vcpkg
 

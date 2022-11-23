@@ -110,6 +110,31 @@ add_subdirectory
 不是 add_includexxx
 
 
+
+`cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
+
+-DCMAKE_TOOLCHAIN_FILE
+
+CMAKE_TOOLCHAIN_FILE
+absolute or relative path to a cmake script which sets up all the toolchain related variables mentioned above
+
+CMAKE给交叉编译预留了一个变量CMAKE_TOOLCHAIN_FILE，它定义了一个.cmake文件的路径，该文件里面设置了一系列CMAKE变量和属性，比如C_COMPILER，CXX_COMPILER等。.cmake文件的好处是一次编写多次使用，不同平台架构的交叉编译工具链可以编写一个独立的toolchain.cmake文件，而工程的CMakeLists.txt可以编写为通用格式，对工具链不可见。cmake脚本可以如下形式：
+
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchains/ndk64-toolchain.cmake .. && make
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/ndk32-toolchain.cmake .. && make
+toolchain.cmake demo
+set(CMAKE_SYSTEM_NAME Android)
+set(CMAKE_ANDROID_API 21)
+set(CMAKE_ANDROID_ARCH_ABI aarch64)
+set(CMAKE_ANDROID_STL_TYPE gnustl_static)
+set(TOOLCHAIN_PATH /opt/sdk/android-aarch64)# 
+set(ANDROID_LIB_PATH ${TOOLCHAIN_PATH}/sysroot/usr/lib)
+set(CMAKE_C_COMPILER ${TOOLCHAIN_PATH}/bin/aarch64-linux-android-gcc)
+set(CMAKE_C_FLAGS "-D__ANDROID_API__=21  -fno-exceptions -O2 -fpie -fpic -fPIE -fPIC -pie -lm -Wl,-llog" CACHE STRING "" FORCE)
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PATH}/bin/aarch64-linux-android-g++)set(CMAKE_CXX_FLAGS 
+
+
+
 cmake 添加头文件目录
 https://www.cnblogs.com/binbinjx/p/5626916.html
 添加头文件目录INCLUDE_DIRECTORIES
