@@ -1,5 +1,8 @@
 # CMake
 
+https://gitee.com/edidada/cmake_library_install
+https://cmake.org/cmake/help/v3.16/manual/cmake-buildsystem.7.html
+
 
 
 学习cmake的材料
