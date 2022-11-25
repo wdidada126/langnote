@@ -1,5 +1,9 @@
 # CMake
 
+cmake引用conan管理的库
+
+
+
 https://gitee.com/edidada/cmake_library_install
 https://cmake.org/cmake/help/v3.16/manual/cmake-buildsystem.7.html
 

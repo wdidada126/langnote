@@ -1,7 +1,16 @@
 # conan
 
+conan可以支持cmake autotools
+qmake
+msbuild
+跨平台
+
+nget支持windows
+
 Conan_examples
-https://github.com/edidada/Conan_examples
+https://github.com/conan-io/examples
+
+https://gitee.com/edidada/estconan
 
 pip install conan
 pip3 install conan
@@ -20,6 +29,11 @@ conan search grpc -r conancenter
 编译
 
 conan install .
+
+conan install -c conxxx.txt
+
+
+conan remote add/remove xxx
 
 安装
 
