@@ -51,12 +51,13 @@ grpc与spring
 grpc-client-spring-boot-starter
 grpc-server-spring-boot-starter
 
-https://blog.csdn.net/qq_25112523/article/details/84889951
+[springboot 集成 grpc 和 protobuf（二） | 在实际项目中使用 grpc 和 protobuf](https://blog.csdn.net/qq_25112523/article/details/84889951)
 
 
-[grpctest](bitbucket.org/sandisks/grpctest)
-
-
+- [grpctest example](bitbucket.org/sandisks/grpctest)
+- [spring grpc java](https://github.com/edidada/grpc-springboot-lin)
+- [grpc-cpp-vcpkg](https://gitee.com/edidada/grpc-cpp-vcpkg)
+- [testcppgrcpconan](https://gitee.com/edidada/testcppgrcpconan)
 
 gprc java go c++互相调用
 

@@ -1,5 +1,8 @@
 # jemalloc
 
+内存池
+可以去看ptmalloc的源码，或者去网上找ptmalloc的详解。引申tcmalloc、jemalloc
+
 
 https://github.com/jemalloc/jemalloc
 最新版

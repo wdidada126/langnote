@@ -1,5 +1,14 @@
 # llvm
 
+brew install llvm
+
+If you need to have llvm first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> /Users/ibqo/.bash_profile
+
+For compilers to find llvm you may need to set:
+  export LDFLAGS="-L/usr/local/opt/llvm/lib"
+  export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
 
 LLVM编译器实战教程 第二版
 
