@@ -1,4 +1,6 @@
 # CMake
+grpc使用cmake
+grpc_build_log.txt
 
 ```shell
 wdidada@wdidada-E550:~/CLionProjects/snappy-1.1.8/cmake-build-release$ sudo make install
