@@ -1,5 +1,13 @@
 # CMake
 
+cmake -B build -S
+
+cmake --install
+cmake --build
+
+
+cmake 2
+cmake 3 现代cmake
 
 ### cmake指令伴随一个项目的生命周期
 Generate a Project Buildsystem
@@ -107,6 +115,7 @@ brpc
 cmake组织
 
 新近文件夹，新建CMakeFile.txt
+
 
 
 ```shell
