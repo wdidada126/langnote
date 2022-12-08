@@ -1,15 +1,26 @@
 # Linux高级程序设计(第2版)
 
+https://gitee.com/edidada/linuxadvancec
+
+本书以Linux操作系统（内核为2.6版本）为开发平台、GCC 4.0/GDB 6.3为开发调试环境，详细介绍了Linux系统下编程环境及编程工具、文件管理（文件类型、ANSI以及POSIX标准下文件读写操作）、进程管理（创建、退出、执行、等待、属性控制）、进程间通信（管道、消息队列、共享内存）、进程间同步机制（信号量）、进程间异步机制（信号）、线程管理（创建、退出、取消等以及属性控制）、线程间同步（互斥锁、读写锁、条件变量）以及网络基本编程、高级应用等内容。
+
+本书内容丰富、紧扣应用，适合从事Linux下C应用编程的人员阅读，也适合从事嵌入式Linux开发的人员阅读。
 
 
 pdf windows电脑上有
-
+ppt和代码 Linux高级程序设计2资源.zip
 豆瓣评价，有一些负面的信息，可以参考。
 
 杨宗德
 
 https://book.douban.com/subject/2364656/
+第二版 2008年
+2012年第三版
 
+介绍linux环境下c应用程序编程的
+
+文件操作
+进程/线程通信
 
 
 涉及到系统编程的，没有使用图形工具
@@ -32,7 +43,7 @@ apt yum安装开发库也没介绍
 
 
 
-#### Chap. 1
+#### Chap. 1 Linux c开发环境
 
 c 头文件
 
@@ -62,7 +73,7 @@ find
 
 
 
-#### Chap. 2 c语言开发环境
+#### Chap. 2 Linux c语言开发工具
 
 make
 
@@ -76,15 +87,19 @@ vim/source insight  /免费的VSCode装完clangd等插件，吊打SI
 
 
 
-Chap. 3
+Chap. 3 进程存储管理 跟Chap7对比
+mcheck
+https://www.cnblogs.com/cyssmile/p/14003900.html
+Valgrind
+见md文件
 
-Chap. 4
+Chap. 4 ansi c文件管理
 
-Chap. 5
+Chap. 5 posix c文件管理
 
-Chap. 6
+Chap. 6 普通文件管理
 
-Chap. 7
+Chap. 7 进程管理与开发
 
 
 
@@ -111,7 +126,7 @@ __pid_t int
 在子进程中返回0
 失败，在父进程中返回 -1，错误原因存储在errorno中
 
-22222222222222
+
 
 [PCB](http://blog.csdn.net/wyzxg/article/details/4024340)
 
@@ -121,13 +136,17 @@ __pid_t int
 
 
 
-Chap. 10
+Chap. 10 多线程编程
 
-Chap. 11
+Chap. 11 线程同步机制
 
-Chap. 12
+- 
+- 
+- 
 
-Chap. 13
+Chap. 12 socket
+
+Chap. 13 网络编程工具
 
 tcpdump
 

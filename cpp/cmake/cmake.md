@@ -1,4 +1,24 @@
 # CMake
+grpc使用cmake
+grpc_build_log.txt
+
+```shell
+wdidada@wdidada-E550:~/CLionProjects/snappy-1.1.8/cmake-build-release$ sudo make install
+[sudo] wdidada 的密码： 
+[ 62%] Built target snappy
+[100%] Built target snappy_unittest
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /usr/local/lib/libsnappy.a
+-- Installing: /usr/local/include/snappy-c.h
+-- Installing: /usr/local/include/snappy-sinksource.h
+-- Installing: /usr/local/include/snappy.h
+-- Installing: /usr/local/include/snappy-stubs-public.h
+-- Installing: /usr/local/lib/cmake/Snappy/SnappyTargets.cmake
+-- Installing: /usr/local/lib/cmake/Snappy/SnappyTargets-release.cmake
+-- Installing: /usr/local/lib/cmake/Snappy/SnappyConfig.cmake
+-- Installing: /usr/local/lib/cmake/Snappy/SnappyConfigVersion.cmake
+```
 
 cmake -B build -S
 
