@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2019 Arthur de Araújo Farias
+# 
+# SPDX-License-Identifier: Apache-2.0
+
+OUTPUT_DIRECTORY       = /home/wdidada/projects/pistache/build/docs/docs/
+INPUT                  = /home/wdidada/projects/pistache/README.md /home/wdidada/projects/pistache/src/ /home/wdidada/projects/pistache/include/ /home/wdidada/projects/pistache/examples/ /home/wdidada/projects/pistache/docs/
+USE_MDFILE_AS_MAINPAGE = /home/wdidada/projects/pistache/README.md
+EXCLUDE_PATTERNS       = */.git/*
+EXCLUDE_PATTERNS      += */subprojects/*
+EXCLUDE_PATTERNS      += */tests/*
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = pistache
+TYPEDEF_HIDES_STRUCT   = YES
+EXTRACT_ALL            = YES
+EXTRACT_LOCAL_CLASSES  = YES
+SHOW_INCLUDE_FILES     = YES
+INLINE_INFO            = YES
+SORT_MEMBER_DOCS       = YES
+GENERATE_TODOLIST      = YES
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST = YES
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+INPUT_ENCODING         = UTF-8
+RECURSIVE              = YES

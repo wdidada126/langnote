@@ -1,4 +1,68 @@
 # CMake
+
+
+
+
+https://github.com/parallel101/course/blob/master/11/01_source/00/CMakeLists.txt
+
+
+### cmake
+
+cmake总文档
+https://cmake.org/cmake/help/v3.25/genindex.html
+
+project(Snappy VERSION 1.1.8 LANGUAGES C CXX)
+
+option()
+
+https://cmake.org/cmake/help/latest/command/option.html
+
+CMake之Option使用简介
+https://blog.csdn.net/lhl_blog/article/details/123553686
+
+
+message()
+https://cmake.org/cmake/help/latest/command/message.html
+
+
+include(TestBigEndian)
+test_big_endian(SNAPPY_IS_BIG_ENDIAN)
+
+include(CheckIncludeFile)
+check_include_file("byteswap.h" HAVE_BYTESWAP_H)
+
+include(CheckLibraryExists)
+check_library_exists(z zlibVersion "" HAVE_LIBZ)
+
+
+
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("/arch:AVX" HAVE_VISUAL_STUDIO_ARCH_AVX)
+
+
+
+https://cmake.org/cmake/help/latest/command/include.html
+
+
+cmake变量
+CMAKE_CXX_FLAGS
+
+${PROJECT_VERSION}
+
+${PROJECT_VERSION_MAJOR}
+
+${PROJECT_SOURCE_DIR}
+
+
+${PROJECT_BINARY_DIR}
+
+${PROJECT_SOURCE_DIR}
+
+https://cmake.org/cmake/help/v3.25/variable/PROJECT_BINARY_DIR.html#variable:PROJECT_BINARY_DIR
+
+
+
+
 grpc使用cmake
 grpc_build_log.txt
 
