@@ -1,5 +1,18 @@
 # IDEA
 
+
+
+understand查看大型项目，生成调用链
+
+idea查看函数调用链
+IDEA完整的调用链显示
+idea时序图显示完整方法调用链
+安装插件 - SequenceDiagram
+https://vanco.github.io/SequencePlugin/
+
+选中需要生成调用链的方法，右键，选中“Sequence Diagram”
+
+
 反向类图 时序图
 一、检查UML类图插件是否开启
 IDEA默认已经集成了该功能，只是默认没打开，我们要手动打开它，参考下图：
