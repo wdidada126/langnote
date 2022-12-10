@@ -32,3 +32,16 @@ https://gitlab.gnome.org/GNOME/glib/-/releases
 
 就是用meson组织的
 
+### pistache
+
+```shell
+cd pistache
+meson setup build \
+    --buildtype=release \
+    -DPISTACHE_USE_SSL=true \
+    -DPISTACHE_BUILD_EXAMPLES=true \
+    -DPISTACHE_BUILD_TESTS=true \
+    -DPISTACHE_BUILD_DOCS=true \
+    --prefix="$PWD/prefix"
+meson install -C build
+```
