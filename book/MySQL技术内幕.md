@@ -1,6 +1,6 @@
-# MySQL技术内幕
+# MySQL技术内幕 InnoDB存储引擎(第2版)
 
-https://book.douban.com/subject/24708143/ InnoDB存储引擎(第2版) 姜承尧
+https://book.douban.com/subject/24708143/ 姜承尧
 
 第5章 索引与算法 183
 5.1 InnoDB存储引擎索引概述 183
@@ -141,7 +141,7 @@ https://book.douban.com/subject/26436525/ 外国人写的
 
 
 
-[承尧](https://book.douban.com/search/姜承尧)
+[姜承尧](https://book.douban.com/search/姜承尧)
 
 mysql 命令行工具使用
 
@@ -155,6 +155,8 @@ select now(),user(),version()\G
 
 \G 竖直显示
 
+## Chap. 6
+Phantom Problem 幻读
 
 
 ## Chap. 7
