@@ -1,23 +1,57 @@
 # antlr
 
+
+### 编译原理
+
+词法分析 lex
+语法分析
+
+lr vs ll
+
 中科大
 
-ll 0
-ll k
+ll(0)
+ll(k)
+
+
+antlr有两个部分
+lex 语法分析
+
+.g4文件 
+
+Lexer命令 command
+https://github.com/antlr/antlr4/blob/master/doc/lexer-rules.md
+
+- skip
+- type
+
+
+- skip    A 'skip' command tells the lexer to get another token and throw out the current text.
+- more
+- popMode
+- mode( x )
+- pushMode( x )
+- type( x )
+- channel( x )
+
+
 
 ANTLR(ANTLR(ANother Tool for Language Recognition)是自上而下分析器的自动生成器，http://www.antlr.org/，ANTLR3支持LL(*)文法及分析技术，ANTLR4支持Adaptive LL(*)文法及分析技术。本视频是2022秋季中国科大《编译原理和技术(H)》的讲课视频。
 
 https://www.bilibili.com/video/BV1AR4y1o78H/
-
+03-parsing-part3-antlr.pdf
 张煜
 yuzhang@ustc.edu.cn
-
 计算机科学与技术学院
 
 
+原理
+ANTLR3：LL(*)
+ANTLR4：Adaptive LL(*)
 
-词法分析
-语法分析
+
+词法分析  lex
+语法分析 parse
 
 对应.g4文件的两部分
 

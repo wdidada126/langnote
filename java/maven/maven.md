@@ -1,5 +1,9 @@
 # maven
 
+
+java -agent xxx -classpath yyy com.zzz.Main
+
+
 ### mvnw
 
 https://maven.apache.org/archetype/maven-archetype-plugin/usage.html
