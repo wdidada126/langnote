@@ -1,5 +1,226 @@
 # maven
 
+
+java -agent xxx -classpath yyy com.zzz.Main
+
+
+### mvnw
+
+https://maven.apache.org/archetype/maven-archetype-plugin/usage.html
+
+
+
+https://github.com/edidada/testmaven
+
+
+mvn -h
+
+usage: mvn [options] [<goal(s)>] [<phase(s)>]
+
+Options:
+ -am,--also-make                        If project list is specified, also
+                                        build projects required by the
+                                        list
+ -amd,--also-make-dependents            If project list is specified, also
+                                        build projects that depend on
+                                        projects on the list
+ -B,--batch-mode                        Run in non-interactive (batch)
+                                        mode (disables output color)
+ -b,--builder <arg>                     The id of the build strategy to
+                                        use
+ -C,--strict-checksums                  Fail the build if checksums don't
+                                        match
+ -c,--lax-checksums                     Warn if checksums don't match
+ -cpu,--check-plugin-updates            Ineffective, only kept for
+                                        backward compatibility
+ -D,--define <arg>                      Define a system property
+ -e,--errors                            Produce execution error messages
+ -emp,--encrypt-master-password <arg>   Encrypt master security password
+ -ep,--encrypt-password <arg>           Encrypt server password
+ -f,--file <arg>                        Force the use of an alternate POM
+                                        file (or directory with pom.xml)
+ -fae,--fail-at-end                     Only fail the build afterwards;
+                                        allow all non-impacted builds to
+                                        continue
+ -ff,--fail-fast                        Stop at first failure in
+                                        reactorized builds
+ -fn,--fail-never                       NEVER fail the build, regardless
+                                        of project result
+ -gs,--global-settings <arg>            Alternate path for the global
+                                        settings file
+ -gt,--global-toolchains <arg>          Alternate path for the global
+                                        toolchains file
+ -h,--help                              Display help information
+ -l,--log-file <arg>                    Log file where all build output
+                                        will go (disables output color)
+ -llr,--legacy-local-repository         Use Maven 2 Legacy Local
+                                        Repository behaviour, ie no use of
+                                        _remote.repositories. Can also be
+                                        activated by using
+                                        -Dmaven.legacyLocalRepo=true
+ -N,--non-recursive                     Do not recurse into sub-projects
+ -npr,--no-plugin-registry              Ineffective, only kept for
+                                        backward compatibility
+ -npu,--no-plugin-updates               Ineffective, only kept for
+                                        backward compatibility
+ -nsu,--no-snapshot-updates             Suppress SNAPSHOT updates
+ -ntp,--no-transfer-progress            Do not display transfer progress
+                                        when downloading or uploading
+ -o,--offline                           Work offline
+ -P,--activate-profiles <arg>           Comma-delimited list of profiles
+                                        to activate
+ -pl,--projects <arg>                   Comma-delimited list of specified
+                                        reactor projects to build instead
+                                        of all projects. A project can be
+                                        specified by [groupId]:artifactId
+                                        or by its relative path
+ -q,--quiet                             Quiet output - only show errors
+ -rf,--resume-from <arg>                Resume reactor from specified
+                                        project
+ -s,--settings <arg>                    Alternate path for the user
+                                        settings file
+ -t,--toolchains <arg>                  Alternate path for the user
+                                        toolchains file
+ -T,--threads <arg>                     Thread count, for instance 2.0C
+                                        where C is core multiplied
+ -U,--update-snapshots                  Forces a check for missing
+                                        releases and updated snapshots on
+                                        remote repositories
+ -up,--update-plugins                   Ineffective, only kept for
+                                        backward compatibility
+ -v,--version                           Display version information
+ -V,--show-version                      Display version information
+                                        WITHOUT stopping build
+ -X,--debug                             Produce execution debug output
+
+D:\git\github\testmaven> mvn -v
+Apache Maven 3.6.1 (d66c9c0b3152b2e69ee9bac180bb8fcc8e6af555; 2019-04-05T03:00:29+08:00)
+Maven home: D:\apache-maven-3.6.1\bin\..
+Java version: 11.0.4, vendor: Oracle Corporation, runtime: D:\Java\jdk-11.0.4
+Default locale: zh_CN, platform encoding: GBK
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+mvn goals pharses
+
+
+maven仓库
+org/apache/maven/plugins子文件夹
+
+比如说clean的这个
+https://github.com/apache/maven-clean-plugin/tree/master/src/main/java/org/apache/maven/plugins/clean
+
+
+Plugin  
+- Core plugins  
+- Packaging types/tools 
+- Reporting plugins 
+
+
+maven内置plugin
+https://maven.apache.org/plugins/maven-install-plugin/plugins.html
+
+
+在idea的图形界面上
+maven plugin有各个插件的指令
+
+### Archetype
+In short, Archetype is a Maven project templating toolki
+https://maven.apache.org/archetype/index.html
+
+
+`mvn archetype:generate`
+
+https://maven.apache.org/archetype/maven-archetype-plugin/index.html
+
+mvn命令行设置项
+https://maven.apache.org/configure.html
+
+支持的IDE
+Apache NetBeans
+Eclipse IDE
+JetBrains IntelliJ IDEA
+
+下面是执行 mvn clean install 产生的执行日志，通过日志可以看到每个步骤都显示 plugin 名称，版本号，生命周期阶段，执行操作等。
+
+ Maven 默认插件
+已知 Maven 使用 plugin 来执行实际操作的，在默认情况下，Maven 会绑定以下几个插件来完成基本操作。
+
+plugin  function    life cycle phase
+maven-clean-plugin  清理上一次执行创建的目标文件  clean
+maven-resources-plugin  清理上一次执行创建的目标文件  resources,testResources
+maven-compiler-plugin   编译源文件和测试源文件 compile,testCompile
+maven-surefire-plugin   执行测试文件  test
+maven-jar-plugin    创建 jar  jar
+maven-install-plugin    安装 jar，将创建生成的 jar 拷贝到 .m2/repository 下面 install
+maven-deploy-plugin 发布 jar  deploy
+
+
+maven-clean-plugin:2.5:clean (default-clean)
+maven-resources-plugin:2.6:resources (default-resources)
+maven-compiler-plugin:3.1:compile (default-compile)
+maven-resources-plugin:2.6:testResources (default-testResources)
+maven-compiler-plugin:3.1:testCompile (default-testCompile)
+maven-surefire-plugin:2.12.4:test (default-test)
+maven-jar-plugin:2.4:jar (default-jar)
+maven-install-plugin:2.4:install (default-install)
+
+
+mvn archetype:generate
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.2:generate
+
+1、本地存在的公共模板查看
+mvn archetype:generate 或 mvn org.apache.maven.plugins:maven-archetype-plugin:2.2:generate
+
+2、本地不存在的公共模板使用
+mvn archetype:generate \
+ -DgroupId=com.alibaba.webx \
+ -DartifactId=tutorial1 \
+ -Dversion=1.0-SNAPSHOT \
+ -Dpackage=com.alibaba.webx.tutorial1 \
+ -DarchetypeArtifactId=archetype-webx-quickstart \
+ -DarchetypeGroupId=com.alibaba.citrus.sample \
+ -DarchetypeVersion=1.8 \
+ -DinteractiveMode=false
+
+
+3、查看本地私有模板
+mvn archetype:generate -DarchetypeCatalog=local
+
+
+4、制作私有模板
+复制代码
+1、进入需要制作成模板的项目的根目录下
+ 　　mvn archetype:create-from-project  生成模板信息
+2、将生成target/generated-sources/archetype的信息，可进行调整
+　　 mvn clean install –DskipTests     安装模板到maven
+3、本地使用私有模板
+　　 mvn archetype:generate -DarchetypeCatalog=local
+注意：
+　　mvn eclipse:eclipse 将代码转化为eclipse项目
+　　mvn eclipse:clean 清除eclipse相关信息
+复制代码
+ 
+
+5、maven常用命令，红色跳过是固定的
+复制代码
+mvn clean        　　　　　　　　清除生成文件
+mvn compile      　　　　　　　　编译代码
+mvn test-compile 　　　　　　　　编译测试代码
+mvn test         　　　　　　　　运行测试mvn package -DskipTests 　　　　项目打包并不执行测试代码，生成target目录，编译、测试代码，生成测试报告，生成jar/war文件
+mvn install 　　　　　　　　　　 将项目打包并将生成的jar包安装到maven本地库中
+mvn install -Dmaven.test.skip=true  安装跳过测试
+mvn jar:jar 　　　　　　　　　　 只打jar包，其余的插件不执行
+mvn -version/-v               显示版本信息
+mvn archetype:generate        创建mvn项目
+mvn jetty:run                 运行项目于jetty上
+mvn tomcat:run                运行项目于tomcat上
+mvn clean install　　　　　　　 删除再编译
+mvn install -X　　　　　　　　  想要查看完整的依赖踪迹，包含那些因为冲突或者其它原因而被拒绝引入的构件，打开 Maven 的调试标记运行
+
+
+mvn install文档
+https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html
+
 maven生命周期
 validate - validate the project is correct and all necessary information is available
 compile - compile the source code of the project

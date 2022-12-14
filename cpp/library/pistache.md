@@ -1,6 +1,20 @@
 # Pistache
 
-https://pistacheio.github.io/pistache/
+sudo add-apt-repository ppa:pistache+team/stable
+sudo apt update
+sudo apt install libpistache-dev
+
+ubuntu github codespace尝试了，安装不了
+
+
+### head files
+#include <pistache/pistache.h>
+#include <pistache/endpoint.h>
+
+https://pistacheio.github.io/pistache/docs/
+
+
+
 
 貌似要c++17了
 

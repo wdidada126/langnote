@@ -1,5 +1,23 @@
 # Git
 
+
+1. 如果你的GIT设置了多个remote地址，在不同的remote间pull方法为：
+$ git pull <remote_name> <branch_name>
+2. 每次都需要输入 remote name 和 branch name 比较麻烦，我们可以将某个remote 设置为默认
+设置方法：
+$ git config branch.master.remote <remote origin>
+$ git config branch.master.merge refs/heads/master
+3. 也可以直接通过修改git的配置文件进行设置。(工程所在.git目录)
+$ vi .git/config
+4. 如果需要对所有的项目都进行设置可以使用 --global 参数，进行设置
+————————————————
+版权声明：本文为CSDN博主「Andy_Dou」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/Andy_Dou/article/details/84602414
+
+
+
+
+
 本地main，远程master分支
 git push --set-upstream origin main
 

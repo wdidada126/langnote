@@ -1,5 +1,16 @@
 # grpc
 
+windows
+vcpkg install grpc
+1.48.0
+
+grpc命名空间详解
+
+https://grpc.github.io/grpc/cpp/dir_9da1417219d37d29f30953e77a197f19.html
+
+
+头文件
+https://grpc.github.io/grpc/cpp/files.html
 
 protobuf传输协议
 

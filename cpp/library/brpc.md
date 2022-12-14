@@ -1,7 +1,7 @@
 # brpc
 
 
-
+cmake -B build && cmake --build build -j6
 
 
 git checkout 0.9.7

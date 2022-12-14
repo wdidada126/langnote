@@ -1,5 +1,6 @@
 # go
 
+https://golang.google.cn/
 
 Go是更好的c
 

@@ -16,6 +16,11 @@ websocket
 dubbo netty
 
 
+### jar包
+
+- 
+
+### 核心类
 
 DirectByteBuf
 
@@ -174,9 +179,7 @@ EventLoop是Netty Server用于处理IO事件的事件轮询处理器，职责上
 https://segmentfault.com/a/1190000038227963
 
 可以这么说，ServerBootstrap监听的一个端口对应一个boss线程，它们一一对应。比如你需要netty监听80和443端口，那么就会有两个boss线程分别负责处理来自两个端口的socket请求。在boss线程接受了socket连接求后，会产生一个channel（一个打开的socket对应一个打开的channel），并把这个channel交给ServerBootstrap初始化时指定的ServerSocketChannelFactory来处理，boss线程则继续处理socket的请求。
-————————————————
-版权声明：本文为CSDN博主「liao49」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/liao49/article/details/84397668
+https://blog.csdn.net/liao49/article/details/84397668
 
 
 
@@ -221,10 +224,10 @@ EventLoopGroup是一组EventLoop的抽象，由于Netty对Reactor模式进行了
 io.netty.channel.ChannelFuture io.netty.channel.MultithreadEventLoopGroup#register(io.netty.channel.Channel)
 
 
-ChannelPromise
+ChannelPromise接口
+https://jiuaidu.com/jianzhan/985094/
 
-
-
+DefaultChannelPromise实现类
 
 
 [抓到 Netty 一个隐藏很深的内存泄露 Bug | 详解 Recycler 对象池的精妙设计与实现](https://xie.infoq.cn/article/ea5c220d79a131a2fbe57f142)
