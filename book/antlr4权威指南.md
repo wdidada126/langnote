@@ -1,6 +1,33 @@
 # antlr4权威指南
 
 
+参考文档
+https://github.com/edidada/hand_in_hand_with_antlr
+
+### 图形工具
+
+TestRig这个java程序
+-tokens 打印词法分析的程序
+
+在线调试工具
+http://lab.antlr.org/
+如何调试多个.g .g4文件
+
+antlrworks2 基于netbeans的ide
+https://tunnelvisionlabs.com/downloads/antlr/2013-07-21-antlrworks-2.1.zip
+https://github.com/antlr/antlrworks
+
+https://blog.csdn.net/u014454538/article/details/86351781
+
+vsc插件
+vs插件
+
+
+问题：
+github上的lexiual.rule
+parser.rule是干啥的？
+
+-- skip？
 
 
 https://book.douban.com/subject/27082372/       中文版
@@ -15,11 +42,15 @@ Twitter搜索使用ANTLR进行语法分析，每天处理超过20亿次查询；
 
 
 
-https://book.douban.com/subject/27082372/
 
 
 
 
+
+antlr4 vs antlr3
+
+antlr4 访问者模式 flex、bison需要在.i .y中嵌入c c++代码
+antlr4不用
 
 antlr4 java版本的lex和yacc
 
@@ -59,7 +90,7 @@ http://cs.au.dk/~amoeller/RegAut/JavaBNF.html
 
 .g4格式的文件
 
-无论是用antr自带的工具还是idea的插件 .g4 -->> *.java
+无论是用antr自带的工具antlrworks2还是idea的插件 .g4 -->> *.java
 
 解析json
 
@@ -76,6 +107,8 @@ StringTemplate is a java template engine (with ports for C#, Objective-C, JavaSc
 Antlr如何解析json g4文件格式
 
 json分为array object
+
+json rfc
 
 生成Java代码
 PHP代码
@@ -146,6 +179,26 @@ right recursive
 
 
 
+Antlr核心标记 
+
+？
+
+|
+
+
+
++ ​          + 一次或多次
+
+
+
+RE里面或者 出现一次或多次
+
+零次或多次
+
+通配符
+
+a-z
+
 
 
 
@@ -168,4 +221,40 @@ Process finished with exit code 0
 
 
 ```
+
+#### Chap. 6 第6章 探索真实的语法世界
+csv
+json
+dot
+cymbol
+R
+
+
+第7章 将语法和程序的逻辑代码解耦
+XXXVistor.java
+
+
+第8章 构建真实的语言类应用程序
+生成xml
+
+
+第三部分　高级特性
+第9章 错误报告与恢复
+
+
+
+Chap 15
+antlr注释
+
+关键词
+
+
+避免使用if
+避免使用特定语言中的关键字
+
+
+词法分析 大写
+
+语法分析 小写
+
 

@@ -9,6 +9,7 @@
 make
 
 
+redis的makefile值得学习，有make uninstall
 
 https://www.gnu.org/software/make/manual/make.pdf
 

@@ -1,6 +1,12 @@
 # redis
 
 
+https://github.com/redis/redis/tree/7.0
+支持Linux Unix freeBSD openBSD
+makefile
+
+
+
 redisinsight 最好用的redis图形工具
 
 https://spring.io/projects/spring-data-redis
@@ -52,6 +58,7 @@ Redis协议里有大量冗余的回车换行符，但是这不影响它成为互
 - Redis深度历险 书籍
 - Redis实战
 - Redis权威指南
+- Redis设计与实现
 
 ltamar Haber
 
@@ -809,6 +816,23 @@ redis 某某公司是用sentinel，没上cluster
 
 2020 Redis 6
 
+2021 Redis 7
+
+git clone https://github.com/redis/redis.git
+cd redis
+git checkout 7.0
+make -j4 2>&1 | tee out.txt
+
+不支持doxygen，c项目，没有函数列表
+makefile 组织的
+
+新增单元测试
+测试动态字符串 跳表
+
+
+ansi c
+
+https://github.com/redis/redis/issues/11630
 
 
 https://github.com/antirez/redis/tree/6.0
@@ -1343,3 +1367,8 @@ https://groups.google.com/g/redis-db/c/tFldUlOt8D8/m/HrZAfUB0AgAJ
 
 
 https://blog.csdn.net/gig886/article/details/123231156
+
+
+### 客户端
+redisson.md
+

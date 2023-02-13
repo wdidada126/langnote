@@ -1,5 +1,7 @@
 # SQLAdvisor
 
+类似的工具：p6spy
+
 
 有同学已经编译了docker镜像，启动一个容器
 docker run -d --name=sqladvisor ppabc/sqladvisor
