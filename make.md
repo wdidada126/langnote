@@ -1,5 +1,6 @@
 # make
 
+make -j4 2>&1 | tee out.txt
 
 
 多看官网文档

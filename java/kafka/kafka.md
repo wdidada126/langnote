@@ -67,22 +67,18 @@ Kafka Stream的特点如下：
 [MQ(消息队列)常见的应用场景解析](https://zhuanlan.zhihu.com/p/35998206)
 
 #### MQ特点
-
 1. 先进先出
-
 2. 发布订阅
-
 3. 持久化
-
 4. 分布式
 
 #### 应用场景
 
-      1. 应用解耦（异步）
-      2. 通知 一对一 一堆多
-      3. 限流 流量削峰
-      4. 数据分发
-   5. 分布式事务
+1. 应用解耦（异步）
+2. 通知 一对一 一堆多
+3. 限流 流量削峰
+4. 数据分发
+5. 分布式事务
 
 
 
@@ -91,7 +87,7 @@ LinkedIn三人小组离职创立Confluent，已获690万美元融资
 
 11月7日消息，LinkedIn 有个三人小组出来创业了——正是当时开发出 Apache Kafka 实时信息列队技术的团队成员，基于这项技术 Jay Kreps 带头创立了新公司Confluent，致力于为各行各业的公司提供实时数处理服务解决方案，其他两位成员是 Neha Narkhede 和 Jun Rao。该公司已获 Benchmark、LinkedIn、Data Collective 690 万美金融资。
 
-　　不同于传统的企业信息列队系统，Kafka 是以近乎实时的方式处理流经一个公司的所有数据，目前已经为 LinkedIn，Netflix，Uber 和 Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
+　　不同于传统的企业信息列队系统，Kafka是以近乎实时的方式处理流经一个公司的所有数据，目前已经为LinkedIn，Netflix，Uber和Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
 
 
 
@@ -104,6 +100,9 @@ https://github.com/linxin26/kafka-monitor
 
 个人kafka测试代码
 bitbucket.org/sandisks/kafkatest
+
+maven kafka-client
+org.apache.kafka.common.serialization.Serializer
 
 kafka集群依赖zk
 最新版本不依赖
@@ -164,7 +163,8 @@ scala写的
 
 ### 面试题
 
-
+Kafka 消息分发时间配置参数(Message Delivery Time)
+默认情况下，Kafka会使用生产者提供的时间戳。
 
 如何保证接受消息有序？
 
