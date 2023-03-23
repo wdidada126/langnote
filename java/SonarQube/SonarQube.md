@@ -1,9 +1,86 @@
-# Sonar
+# SonarQube
+
+没有代码标准
+sonar可以通过PMD,CheckStyle,Findbugs等等代码规则检测工具规范代码编写
+
+
+pmd 使用笔记
+pmd是一块开源的代码静态分析工具，使用java编写，可以自定义规则来进行自己想要的分析。pmd可以单独使用，也可以作为idea、eclipse的插件使用。它的规则分为xpath规则，和java规则。https://pmd.github.io/
+
+pmd内部工作机制比较简单，大概分为以下几个主要步骤。
+
+1、使用是通过dir参数指定要分析的源码目录，pmd会将要分析的源码文件全部解析成抽象语法树。
+2、遍历每一个文件，为每个文件的分析创建一个线程对象pmdrunable放到线程池。
+3、针对每个文件根据文件类型，应用指定的规则集里每一条规则。
+4、规则里可以根据自己关心的语法树节点类型进行分析处理，比较方便的是支持xpath的方式进行节点查找。
+
+
+不足之处：
+pmd将每个文件独立进行规则匹配，无法做到跨文件的关联分析，或者跨文件的数据流跟踪。
+pmd目前主要支持的语言就是java，其他的还有xml、js、velocity模版。一些比较流行的语言比如 PHP go 等是不支持的。 
+改进思路：
+
+在进行规则匹配之前加入预处理功能，把所有文件进行预处理分析，比如每个类对其他类的方法的调用关系，将分析结果放到context里，后边的规则可以取出来用。
+
+idea插件，pmd的idea插件目前还有些问题，不能满足需求，可能需要自己重新开发了。
+
+安装后路径在
+/Users/fsq/Library/Application Support/IdeaIC2017.2/PMD-Intellij/    mac
+C:\Users\Administrator\.IdeaIC2017.3\system\plugins\PMD-Intellij\   windows
+源码地址 https://github.com/amitdev/PMD-Intellij  ，自定义的规则，打包到jar文件后放在这个目录，重启idea即可生效。
+
+自定义规则：
+
+pmd将不同的规则放在不同的模块中，比如java的规则在 pmd-java模块中，如果想实现自己的java规则可以将自己的规则放在 pmd-java 模块的代码中，并配置到对应的 xml规则集里，然后将 pmd-java模块重新打包成jar文件，替换掉pmd中的 pmd-java的jar包即可。
+
+
+
+sonar-pmd是sonar官方的支持pmd的插件，但是还不支持p3c，需要在pmd插件源码中添加p3c支持(p3c是阿里在pmd基础上根据阿里巴巴开发手册实现了其中的49开发规则)。
+
+https://github.com/jborgers/sonar-pmd
+
+
+
+https://github.com/mrprince/sonar-p3c-pmd/wiki/Install
+
+
+Install puglin
+put generate sonar-pmd-plugin-2.6.jar into extensions\plugins
+run bin\linux-x86-64\sonar.sh
+3.Config
+Add new Quality Profiles - "p3c", click "Activate More" button, search keyword "[p3c]", active all rules.
+
+
+tls版本 7.9
+8.9
+
+
+7/8版本都需要java 11
+
+中文语言包下载地址：https://github.com/SonarQubeCommunity/sonar-l10n-zh/tags 。找到自己版本对应的中文包。
+
+
+插件是java写的
+
+
+docker run -d --name sonar -p 9090:9000
+ -e ALLOW_EMPTY_PASSWORD=yes
+ -e SONARQUBE_DATABASE_USER=sonar
+ -e SONARQUBE_DATABASE_NAME=sonar
+ -e SONARQUBE_DATABASE_PASSWORD=sonar
+ -e SONARQUBE_JDBC_URL="jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false" 
+
+
+### docker镜像
+
+sonar-pmd是sonar官方的支持pmd的插件，但是还不支持p3c，需要在pmd插件源码中添加p3c支持(p3c是阿里在pmd基础上根据阿里开发手册实现了其中的49开发规则)。
+
+源码下载地址：https://github.com/mrprince/sonar-p3c-pmd 此源码工程已经添加了P3C支持，直接mvn package打包即可。此源码工程已经在pmd插件的默认268条规则上添加了阿里的48条规则，少了一条AvoidManuallyCreateThreadRule．打好jar包后拷贝到sonar的plugins目录下：
 
 
 https://github.com/SonarSource/sonarqube
 
-AuthorizationDaoTest 单元测试
+AuthorizationDaoTest单元测试
 
 1. 默认支持代码文本格式全为 UTF-8，其他编码可能会产生乱码；
 2. 目前支持 C#、C++、Go、Groovy、Java、JavaScript、Lua、PHP、Python、Ruby、TypeScript、Web、XML；
@@ -64,7 +141,6 @@ Sonar 可以集成不同的测试工具，代码分析工具，以及持续集�
 
 
 
-Sonar可以集成不同的测试工具，代码分析工具，以及持续集成工具，比如pmd-cpd、checkstyle、findbugs、Jenkins。sonar最大的特点就是插件化，可以根据不同的场景需求进行插件化安装，以Java代码检测为，但同时可以检测Python、C++等多种语言。
 
 
 sonarqube-9

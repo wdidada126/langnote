@@ -36,23 +36,20 @@ ByteBuf又分为两种，DirectByteBuf和HeapByteBuf。简而言之就是一种�
 
 
 
-[netty之DirectByteBuf 和 HeapByteBuf浅谈](https://www.jianshu.com/p/5f029d89a605)
+[netty之DirectByteBuf和HeapByteBuf浅谈](https://www.jianshu.com/p/5f029d89a605)
 
 直接内存的好处就是利用的是native库，读写快速。但是它不在虚拟机的管理范围之内，这部分内存只有在进行full gc时才会进行回收，而他的容量如果没有明确限制，随着数据的不断读写势必造成内存中可利用的空间不断变小。所以netty做了引用计数机制来处理direct memory上的数据。
 
 
 
 
-
+### netty版本
 netty3是jboss的
-
 netty4是io.netty的
 
 
 
 https://github.com/edidada/Netty-study
-
-
 
 https://github.com/edidada/testnetty
 
@@ -122,6 +119,7 @@ Netty实现http
 
 [netty核心解析](https://blog.csdn.net/qq_32370913/article/details/105408027)
 
+netty可以用作客户端client
 
 ### netty 日志
 
