@@ -1,6 +1,10 @@
 # jvm
 
 
+```java
+9672 kafka.Kafka -Xmx1G -Xms1G -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dkafka.logs.dir=/logs -Dlog4j.configuration=file:D:\Program\kafka_2.11-1.0.0\bin\windows\../../config/log4j.properties
+```
+
 -Djava.security.manager
 -Djava.security.policy=/home/h/my.policy
 

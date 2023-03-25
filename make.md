@@ -1,5 +1,6 @@
 # make
 
+make -j4 2>&1 | tee out.txt
 
 
 多看官网文档
@@ -9,6 +10,7 @@
 make
 
 
+redis的makefile值得学习，有make uninstall
 
 https://www.gnu.org/software/make/manual/make.pdf
 

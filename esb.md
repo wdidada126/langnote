@@ -1,6 +1,9 @@
 # esb
 
 
+https://github.com/jeffreyning/nhEsb
+https://gitee.com/mirrors/nhEsb
+
 
 [几种ESB（企业服务总线）介绍](https://blog.csdn.net/yinni11/article/details/81070062)
 
@@ -10,13 +13,12 @@
 [CXF简单例子](https://blog.csdn.net/JXH118/article/details/83284346)
 
 
-
 著名的非开源 ESB 产品，诸如 WebSphere，Tibco，Sonic 等
 https://www.infoq.cn/article/ESB-Tijs-Rademakers-Jos-Dirksen
 
 Mule ESB（MuleSoft）
 Talend ESB
-Apache ServiceMix和Camel （Apache）
+Apache ServiceMix和Camel （Apache）   https://servicemix.apache.org/docs/7.x/quickstart/index.html
 WSO2 ESB（WSO2）
 OpenESB（Sun/Oracle）
 JBoss ESB（JBoss）
@@ -33,3 +35,4 @@ ServiceMix：对于Talend ESB部分能力也基于Camel，而对于ServiceMix则
 
 
 
+如同Apache ServiceMix一样,Open ESB也实现了JBI规范

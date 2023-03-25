@@ -13,6 +13,8 @@ muduo据说可以用 Doxygen
 sudo apt-get install doxygen
 sudo apt-get install doxygen-gui
 
+sudo yum install doxygen -y
+
 GENERATE_LATEX 是否输出latex
 
 doxygen -g <config-file>
@@ -23,6 +25,7 @@ doxygen -g <config-file>
 doxygen Doxyfile
 生成html latex
 
+GENERATE_LATEX改成 NO
 
 ### 实验1
 https://github.com/edidada/testconan

@@ -1,6 +1,12 @@
 # redis
 
 
+https://github.com/redis/redis/tree/7.0
+支持Linux Unix freeBSD openBSD
+makefile
+
+
+
 redisinsight 最好用的redis图形工具
 
 https://spring.io/projects/spring-data-redis
@@ -52,6 +58,7 @@ Redis协议里有大量冗余的回车换行符，但是这不影响它成为互
 - Redis深度历险 书籍
 - Redis实战
 - Redis权威指南
+- Redis设计与实现
 
 ltamar Haber
 
@@ -151,11 +158,29 @@ MONITOR monitor
 
 CONFIG get requirepass
 
+常用数据类型 5种
 String（字符串）
 Hash（哈希）
 List（列表）
 Set（集合）
 zset(sorted set：有序集合)
+
+
+
+Redis数据结构(9种)
+String：二进制安全的字符串
+Lists：安插入顺序排序的字符串元素集合。基本是链表。
+Sets：无序不重复集合。
+Sorted sets(zset)：里面的元素总是通过score进行排序。有序集合。
+Hashes：键值都是字符串的哈希表。
+Bit arrays：位集合（可以实现类似布隆过滤器的功能结构）
+HyperLogLog：是用来做基数统计的算法。用于估计一个set中元素数量的概率性的数据结构。
+Geospatial Indexes：地理空间索引
+Streams：流信息
+
+https://blog.csdn.net/chenhailonghp/article/details/105388802
+
+
 
 add sadd zadd
 
@@ -626,7 +651,7 @@ Redid lua是原子操作，要么全执行，要么全部不执行，执行到�
 
 WAL
 
-因此业界常用的解决方案通常是借助于一个第三方组件并利用它自身的排他性来达到多进程的互斥。如：  基于 DB 的唯一索引。  基于 ZK 的临时有序节点。  基于 Redis 的 NX EX 参数。
+因此业界常用的解决方案通常是借助于一个第三方组件并利用它自身的排他性来达到多进程的互斥。如：  基于 DB 的唯一索引。  基于 ZK 的临时有序节点。  基于 Redis 的NX EX参数。
 
 基于 Redis 的分布式锁、日志系统、消息队列、数据清洗等，各种各样的功能不断上线，从而引发各种各样的问题。运维天天疲于奔命，到处处理着 Redis 堵塞、网卡打爆、连接数爆表……”
 
@@ -809,6 +834,23 @@ redis 某某公司是用sentinel，没上cluster
 
 2020 Redis 6
 
+2021 Redis 7
+
+git clone https://github.com/redis/redis.git
+cd redis
+git checkout 7.0
+make -j4 2>&1 | tee out.txt
+
+不支持doxygen，c项目，没有函数列表
+makefile 组织的
+
+新增单元测试
+测试动态字符串 跳表
+
+
+ansi c写的
+
+https://github.com/redis/redis/issues/11630
 
 
 https://github.com/antirez/redis/tree/6.0
@@ -1343,3 +1385,8 @@ https://groups.google.com/g/redis-db/c/tFldUlOt8D8/m/HrZAfUB0AgAJ
 
 
 https://blog.csdn.net/gig886/article/details/123231156
+
+
+### 客户端
+redisson.md
+

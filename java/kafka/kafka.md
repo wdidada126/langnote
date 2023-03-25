@@ -6,6 +6,41 @@ kafka stream
 
 
 
+- 深入理解Kafka与Pulsar
+- Kafka权威指南（第2版）
+
+
+
+主题 topic
+
+分区
+
+
+
+message是分区内有序
+
+
+
+broker，发布消息的中心点
+
+broker是kafka集群中的一个节点
+
+
+
+### kafka配置项
+
+
+
+acks 定义了集群中多少个broker确认才能确定消息写入是成功的
+
+
+
+### kafka可执行程序
+
+
+
+xxx.sh --topic 
+
 
 
 Kafka Stream是Apache Kafka从0.10版本引入的一个新Feature。它是提供了对存储于Kafka内的数据进行流式处理和分析的功能。
@@ -32,22 +67,18 @@ Kafka Stream的特点如下：
 [MQ(消息队列)常见的应用场景解析](https://zhuanlan.zhihu.com/p/35998206)
 
 #### MQ特点
-
 1. 先进先出
-
 2. 发布订阅
-
 3. 持久化
-
 4. 分布式
 
 #### 应用场景
 
-      1. 应用解耦（异步）
-      2. 通知 一对一 一堆多
-      3. 限流 流量削峰
-      4. 数据分发
-   5. 分布式事务
+1. 应用解耦（异步）
+2. 通知 一对一 一堆多
+3. 限流 流量削峰
+4. 数据分发
+5. 分布式事务
 
 
 
@@ -56,20 +87,22 @@ LinkedIn三人小组离职创立Confluent，已获690万美元融资
 
 11月7日消息，LinkedIn 有个三人小组出来创业了——正是当时开发出 Apache Kafka 实时信息列队技术的团队成员，基于这项技术 Jay Kreps 带头创立了新公司Confluent，致力于为各行各业的公司提供实时数处理服务解决方案，其他两位成员是 Neha Narkhede 和 Jun Rao。该公司已获 Benchmark、LinkedIn、Data Collective 690 万美金融资。
 
-　　不同于传统的企业信息列队系统，Kafka 是以近乎实时的方式处理流经一个公司的所有数据，目前已经为 LinkedIn，Netflix，Uber 和 Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
+　　不同于传统的企业信息列队系统，Kafka是以近乎实时的方式处理流经一个公司的所有数据，目前已经为LinkedIn，Netflix，Uber和Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
 
 
 
 https://blog.csdn.net/icycode/article/details/80034774
 
-
-kfuka ui
+kafka ui
 https://github.com/linxin26/kafka-monitor
 
 
 
 个人kafka测试代码
 bitbucket.org/sandisks/kafkatest
+
+maven kafka-client
+org.apache.kafka.common.serialization.Serializer
 
 kafka集群依赖zk
 最新版本不依赖
@@ -84,7 +117,6 @@ spring-kafka
 
 
 kafka broker  代理
-
 
 一对多（包含一对一）
 多对一
@@ -129,7 +161,17 @@ https://spark.apache.org/docs/0.9.1/scala-programming-guide.html
 scala写的
 现在有java版本吗？目前没有
 
-面试题
+### 面试题
+
+Kafka 消息分发时间配置参数(Message Delivery Time)
+默认情况下，Kafka会使用生产者提供的时间戳。
+
+如何保证接受消息有序？
+
+答：在同一个分区里面接受消息就可以了。一个主题只设置一个消息
+
+
+
 订阅开发者邮箱
 
 MQ解耦
@@ -153,7 +195,6 @@ MQ解耦
 
 [Kafka史上最详细原理总结](https://zhuanlan.zhihu.com/p/79579389)
 
-
 kafka 0.11 2018
 更新历史
 https://kafka.apache.org/downloads
@@ -163,6 +204,56 @@ https://kafka.apache.org/downloads
 
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2019/11/14     10:40                windows
+-a----        2017/10/27     23:56           1335 connect-distributed.sh
+-a----        2017/10/27     23:56           1332 connect-standalone.sh
+-a----        2017/10/27     23:56            861 kafka-acls.sh
+-a----        2017/10/27     23:56            873 kafka-broker-api-versions.sh
+-a----        2017/10/27     23:56            864 kafka-configs.sh
+-a----        2017/10/27     23:56            945 kafka-console-consumer.sh
+-a----        2017/10/27     23:56            944 kafka-console-producer.sh
+-a----        2017/10/27     23:56            871 kafka-consumer-groups.sh
+-a----        2017/10/27     23:56            948 kafka-consumer-perf-test.sh
+-a----        2017/10/27     23:56            869 kafka-delete-records.sh
+-a----        2017/10/27     23:56            863 kafka-log-dirs.sh
+-a----        2017/10/27     23:56            862 kafka-mirror-maker.sh
+-a----        2017/10/27     23:56            886 kafka-preferred-replica-election.sh
+-a----        2017/10/27     23:56            959 kafka-producer-perf-test.sh
+-a----        2017/10/27     23:56            874 kafka-reassign-partitions.sh
+-a----        2017/10/27     23:56            868 kafka-replay-log-producer.sh
+-a----        2017/10/27     23:56            874 kafka-replica-verification.sh
+-a----        2017/10/27     23:56           7579 kafka-run-class.sh
+-a----        2017/10/27     23:56           1376 kafka-server-start.sh
+-a----        2017/10/27     23:56            975 kafka-server-stop.sh
+-a----        2017/10/27     23:56            870 kafka-simple-consumer-shell.sh
+-a----        2017/10/27     23:56            945 kafka-streams-application-reset.sh
+-a----        2017/10/27     23:56            863 kafka-topics.sh
+-a----        2017/10/27     23:56            958 kafka-verifiable-consumer.sh
+-a----        2017/10/27     23:56            958 kafka-verifiable-producer.sh
+-a----        2017/10/27     23:56           1722 trogdor.sh
+-a----        2017/10/27     23:56            867 zookeeper-security-migration.sh
+-a----        2017/10/27     23:56           1393 zookeeper-server-start.sh
+-a----        2017/10/27     23:56            978 zookeeper-server-stop.sh
+-a----        2017/10/27     23:56            968 zookeeper-shell.sh
+```
+
+
+
+```shell
+cd D:\Program\kafka_2.11-1.0.0
+D:\Program\kafka_2.11-1.0.0> .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+cd D:\Program\kafka_2.11-1.0.0
+.\bin\windows\kafka-server-start.bat config\server.properties
+
+
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
+>dfads
+>fasdfsa
+>fdsafas
+>终止批处理操作吗(Y/N)? Y
 ```
 
 
@@ -206,3 +297,18 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 #### kafka分区数量的判定
 
  https://blog.csdn.net/qq_36066039/article/details/88399091 
+
+
+
+
+
+### kafka应用场景
+
+
+
+大数据
+
+
+
+linkin
+

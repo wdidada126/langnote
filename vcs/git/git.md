@@ -1,6 +1,8 @@
 # Git
 
 
+git remote set-url gitremote https://github.com/wimoor-erp/wimoor.git
+
 1. 如果你的GIT设置了多个remote地址，在不同的remote间pull方法为：
 $ git pull <remote_name> <branch_name>
 2. 每次都需要输入 remote name 和 branch name 比较麻烦，我们可以将某个remote 设置为默认
