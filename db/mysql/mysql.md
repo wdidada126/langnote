@@ -14,6 +14,15 @@ ACID
 
 
 隔离级别
+在MySQL 中,可以通过
+`
+show variables like '%tx_isolation%'
+`
+或
+`
+select @@tx_isolation;
+`
+语句来查看当前事务隔离级别。
 
 读未提交 RU
 读已提交 RC
@@ -24,11 +33,71 @@ ACID
 
 脏读。读到的是另一个事物未提交的事物
 
-不可重复读
+不可重复读  不可重复读，是指在数据库访问中，一个事务范围内两个相同的查询却返回了不同数据。
 
 幻读
+幻读（Phantom Read），是指当事务不是独立执行时发生的一种现象。
+幻读问题在 “当前读” 下才会出现。
 
 
+
+什么是当前读、什么是快照读。
+快照读：读取快照中的数据，不需要进行加锁。看到快照这两个字，各位肯定马上就想到 MVCC 了，是这样，MVCC 作用于读取已提交和可重复读（默认）这两个隔离级别，这俩隔离级别下的普通 select 操作就是快照读。
+
+当前读：读取的是最新版本的数据, 并且对读取的记录加锁, 阻塞其他事务同时改动相同记录，避免出现安全问题。
+
+除了读取已提交和可重复读这俩隔离级别下的普通 select 操作，其余操作都是当前读：
+
+```sql
+select...lock in share mode (共享读锁)
+select...for update
+update, delete, insert
+```
+
+
+mysql脏读和幻读区别
+Mysql之脏读、不可重复读、幻读的区别
+数据库在在高并发时，事物会出现三种异常问题。
+
+脏读：在事物还没有提交前，修改的数据可以被其他事物所看到。
+不可重复读：在一个事物中使用相同的条件查询一条数据，前后两次查询所得到的数据不同，这是因为同时其他事物对这条数据进行了修改（已提交事物），第二次查询返回了其他事物修改的数据。
+幻读：在一个事物A中使用相同的条件查询了多条数据，同时其他事物添加或删除了符合事物A中查询条件的数据，这时候当事物A再次查询时候会发现数据多了或者少了，与前一次查询的结果不相同。
+注意：不可重复读与幻读很容易搞混，他们的区别在于：
+
+不可重复读：是同一条记录（一条数据）的内容被其他事物修改了，关注的是update、delete操作一条数据的操作.
+幻读：是查询某个范围（多条数据）的数据行变多或变少了，在于insert、delete的操作。
+
+修改隔离级别
+有两种方法可以改变当前会话的隔离级别
+
+SET session TRANSACTION ISOLATION LEVEL Serializable;
+SET @@tx_isolation='read-committed';
+参数可以为：
+
+Read uncommitted
+Read committed
+Repeatable Read
+Serializable
+查看当前会话的隔离级别
+
+select @@tx_isolation;
+https://www.jianshu.com/p/fb312164f03d
+
+
+
+
+### 共享锁
+select a from t where id = 1 lock in share mode;
+### 排他锁
+select a from t where id = 1 for update;
+
+
+可以认为 多版本并发控制（MVCC） 是行级锁的一个变种
+MySQL中的MDL锁
+S 锁和 X 锁。
+
+S锁，英文为Shared Lock，中文译作共享锁，有时候我们也称之为读锁，即Read Lock。S 锁之间是共享的，或者说是互不阻塞的。
+X锁，英文为Exclusive Lock，中文译作排他锁，有时候我们也称之为写锁，即Write Lock。如同它的名字，X锁是具有排他性的，即一个写锁会阻塞其他的X锁和S锁。
 
 
 

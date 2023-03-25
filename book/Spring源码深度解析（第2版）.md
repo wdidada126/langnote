@@ -25,21 +25,17 @@ https://www.cnblogs.com/xrq730/p/6285358.html
 
 
 Resource接口详解
-
 继承自InputStreamSource
 
-
+ResourceLoader
 
 bean
 
 根据《spring技术内幕》
 
 ioc容器初始化过程分为三个步骤
-
 1、Resource定位
-
 2、载入（BeanDefinition）
-
 3、注册BeanDefinition
 
 

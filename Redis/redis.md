@@ -1,5 +1,9 @@
 # redis
 
+小林图解redis系列
+https://xiaolincoding.com/redis/
+
+
 
 redis源代码阅读
 https://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html
@@ -62,6 +66,7 @@ Redis协议里有大量冗余的回车换行符，但是这不影响它成为互
 - Redis实战
 - Redis权威指南
 - Redis设计与实现
+- Redis5设计与源码分析
 
 ltamar Haber
 
