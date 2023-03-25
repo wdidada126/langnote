@@ -1,7 +1,7 @@
-# lex 
+# lex
+lex使用正则表达式
 
-https://www.cnblogs.com/rednodel/p/4500388.html
-
+lex vs flex
 
 
 ###### [通过实例深入理解lec和yacc](https://www.cnblogs.com/rednodel/p/4500388.html)
