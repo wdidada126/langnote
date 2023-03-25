@@ -1,6 +1,12 @@
 # mybatis
+### mybatis调用流程
+一个完整的Sql命令，其执行的完整流程图如下：
 
+![mybatis_process](..\imgs\mybatis_process.jpg)
 
+MapperRegistry
+  MapperProxyFactory
+    MapperProxy
 
 ### Mybatis开启日志打印
 
@@ -110,7 +116,18 @@ mybatis 源码 类
 
 
 MapperProxy
+MapperProxy<T> implements InvocationHandler
 
+InvocationHandler
+public Object invoke(Object proxy, Method method, Object[] args)
+        throws Throwable;
+
+动态代理(接口级别代理)
+动态代理又叫JDK动态代理是实现JDK里的InvocationHandler接口的invoke方法，但注意的是代理的是接口，也就是你的业务类必须要实现接口，通过Proxy里的newProxyInstance得到代理对象。
+JDK动态代理是基于反射的,效率比较低。
+动态代理不知道要代理什么东西，只有在运行时才知道。
+
+java.lang.reflect.Proxy#newProxyInstance(java.lang.ClassLoader, java.lang.Class<?>[], java.lang.reflect.InvocationHandler)
 
 
 ognl
@@ -365,15 +382,27 @@ getDriver(Class<? extends LanguageDriver> cls)
 register(Class<? extends LanguageDriver> cls) 
 register(Class<? extends LanguageDriver> cls) 
 
-org.apache.ibatis.binding
+org.apache.ibatis.binding包
 MapperMethod
 MapperProxy<T>
 	MapperProxyFactory<T>
 MapperRegistry
 
+MapperMethod
+MapperMethod只有2个成员域,都是静态内部类,所以
+MapperMethod ≈ SqlCommand + MethodSignature
+MapperProxy是Mapper的动态代理实现,他的invoke方法会调用MapperMethod的execute方法.
+MapperMethod这个类的作用就是把你自定义的Mapper里的方法和参数翻译成sqlSession里定义的那些selectOne呀selectMany等等方法.这样当调用你自定义的方法的时候MethodProxy就能够执行sqlSession对应的方法了.
 
+| MapperMethod操作 | sqlSession方法名                                             |
+| ---------------- | ------------------------------------------------------------ |
+| INSERT           | sqlSession.insert()                                          |
+| UPDATE           | sqlSession.update()                                          |
+| DELETE           | sqlSession.delete()                                          |
+| FLUSH            | sqlSession.flushStatements()                                 |
+| SELECT           | executeWithResultHandler(sqlSession, args) executeForMany(sqlSession, args) method.returnsMap() executeForCursor() sqlSession.selectOne(command.getName(), param) |
 
-org.apache.ibatis.builder
+org.apache.ibatis.builder包
 BaseBuilder
 CacheRefResolver
 MapperBuilderAssistant
@@ -384,7 +413,7 @@ StaticSqlSource
 
 
 
-org.apache.ibatis.builder.annotation
+org.apache.ibatis.builder.annotation包
 
 ProviderMethodResolver
 Classes有
@@ -468,8 +497,6 @@ https://blog.csdn.net/u010002184/article/details/79378835
 https://blog.csdn.net/yangshangwei/article/details/80073978
 
 <select id="selectBlogsLike" resultType="Blog">   <bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />   SELECT * FROM BLOG   WHERE title LIKE #{pattern} </select>
-
-
 跨表的数据 分页 union
 
 https://blog.csdn.net/QIU1988YANG/article/details/77247556

@@ -1,6 +1,9 @@
 # redis
 
 
+redis源代码阅读
+https://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html
+
 https://github.com/redis/redis/tree/7.0
 支持Linux Unix freeBSD openBSD
 makefile
@@ -651,7 +654,7 @@ Redid lua是原子操作，要么全执行，要么全部不执行，执行到�
 
 WAL
 
-因此业界常用的解决方案通常是借助于一个第三方组件并利用它自身的排他性来达到多进程的互斥。如：  基于 DB 的唯一索引。  基于 ZK 的临时有序节点。  基于 Redis 的NX EX参数。
+因此业界常用的解决方案通常是借助于一个第三方组件并利用它自身的排他性来达到多进程的互斥。如：基于DB的唯一索引。基于ZK的临时有序节点。基于Redis的NX EX参数。
 
 基于 Redis 的分布式锁、日志系统、消息队列、数据清洗等，各种各样的功能不断上线，从而引发各种各样的问题。运维天天疲于奔命，到处处理着 Redis 堵塞、网卡打爆、连接数爆表……”
 
@@ -703,17 +706,11 @@ aof
 
 
 
- https://blog.csdn.net/she_lock/article/details/103859781 
+https://blog.csdn.net/she_lock/article/details/103859781 
 
+https://blog.csdn.net/breaksoftware/article/details/53393191 
 
-
- https://blog.csdn.net/breaksoftware/article/details/53393191 
-
-
-
- https://blog.csdn.net/breaksoftware/category_9272302.html 
-
-
+https://blog.csdn.net/breaksoftware/category_9272302.html 
 
 https://www.runoob.com/redis/redis-tutorial.html
 
@@ -882,7 +879,7 @@ https://github.com/antirez/redis/tree/6.0
 
 
 问：如何熟悉Redis
-先学会用   然后会用了自然想去了解细节
+先学会用，然后会用了自然想去了解细节
 
 
 
@@ -1236,35 +1233,20 @@ lazyfree_pending_objects:0
 # Persistence
 
 loading:0
-
 rdb_changes_since_last_save:0
-
 rdb_bgsave_in_progress:0
-
 rdb_last_save_time:1598237244
-
 rdb_last_bgsave_status:ok
-
 rdb_last_bgsave_time_sec:-1
-
 rdb_current_bgsave_time_sec:-1
-
 rdb_last_cow_size:0
-
 aof_enabled:0
-
 aof_rewrite_in_progress:0
-
 aof_rewrite_scheduled:0
-
 aof_last_rewrite_time_sec:-1
-
 aof_current_rewrite_time_sec:-1
-
 aof_last_bgrewrite_status:ok
-
 aof_last_write_status:ok
-
 aof_last_cow_size:0
 
 
@@ -1300,25 +1282,15 @@ active_defrag_key_misses:0
 
 
 # Replication
-
 role:master
-
 connected_slaves:0
-
 master_replid:86b3b60425334c899af4f9ea85a9891c7c17f777
-
 master_replid2:0000000000000000000000000000000000000000
-
 master_repl_offset:0
-
 second_repl_offset:-1
-
 repl_backlog_active:0
-
 repl_backlog_size:1048576
-
 repl_backlog_first_byte_offset:0
-
 repl_backlog_histlen:0
 
 
