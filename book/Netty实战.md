@@ -21,6 +21,8 @@ https://book.douban.com/subject/26373138/
 
 https://github.com/edidada/Netty-study
 
+netty版本
+4.1.17.Final
 
 
 Shujifenwei四篇

@@ -1,11 +1,15 @@
 # netty
 
 - api doc
-- 书籍netty实战
+- 书籍
+
+
+- netty实战
 - netty权威指南
 - 闪电侠netty源码课
 - [netty 4 guide](https://github.com/waylau/netty-4-user-guide)
 - netty-example
+
 
 应用场景：
 

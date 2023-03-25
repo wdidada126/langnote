@@ -159,3 +159,10 @@ gradle tasks
 
 java -cp build/classes/main/ cn.wdidada.easyexceltest.EasyexcelApp
 java -jar build/libs/GradleWorkSpace-0.1.jar
+
+
+### spring是gradle组织的，如何发布jar包到本电脑上的maven仓库？
+
+参考gradle实战 这本书
+
+gradle 发布 maven 仓库

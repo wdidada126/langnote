@@ -10,14 +10,33 @@ Spring 5
 
 
 
-Spring源码深度解析 书籍
+Spring源码深度解析 书籍 第二版 2019年出版的
 
 
 
-http://www.importnew.com/27469.html
+Could not determine java version from '11.0.4'.
+更换 JAVA_HOME环境变量改成java8的
+
+
+spring5源码下载不了plugin jar包
+报错信息
+Could not GET 'https://repo.spring.io/plugins-release
+
+解决方案
+https://juejin.cn/post/7067505778353143815
 
 
 
+set https_proxy=http://127.0.0.1:7890
+set http_proxy=http://127.0.0.1:7890
+
+
+cd/d D:\git\gitlab\spring-framework-5.0.x
+gradlew build -x test
+
+
+
+【Spring源码分析】Bean加载流程概览
 https://www.cnblogs.com/xrq730/p/6285358.html
 
 
@@ -87,9 +106,7 @@ XmlValidationModeDetector的hasDoctype()方法
 
 
 返回XmlBeanDefinitionReader的doLoadBeanDefinitions()方法来分析
-
 DefaultDocumentLoader的loadDocument()方法
-
 从原理上讲就是sax解析
 
 
@@ -105,7 +122,6 @@ EntityResolver接口的实现类DelegatingEntityResolver
 DelegatingEntityResolver类对dtd和xsd格式的xml文件分别调用
 
 BeansDtdResolver
-
 PluggableSchemaResolver
 
 
@@ -125,15 +141,12 @@ XmlBeanDefinitionReader的registerBeanDefinitions()
 BeanDefinitionDocumentReader接口的实现类DefaultBeanDefinitionDocumentReader依次调用
 
 1、registerBeanDefinitions(Document, XmlReaderContext)方法   ----提取root对象 再次注册
-
 2、doRegisterBeanDefinitions()方法
 
 
 
 其中doRegisterBeanDefinitions()方法
-
 1、处理profile属性
-
 2、调用parseBeanDefinitions()方法
 
 
@@ -161,29 +174,17 @@ parseBeanDefinitions()方法
 
 
 bean的属性
-
 scope
-
 singleton
-
 abstract
-
 lazy-init
-
 autowire
-
 dependency-check
-
 depends-on
-
 primay
-
 init-method
-
 destroy-method
-
 factory-method
-
 factory-bean
 
 
@@ -195,11 +196,8 @@ factory-bean
 BeanDefinition接口的子类
 
 RootBeanDefinition
-
 ChildBeanDefinition
-
 GenericBeanDefinition
-
 AbstractBeanDefinition
 
 
@@ -243,6 +241,14 @@ Spring源码学习--BeanDefinitionHolder
 https://blog.csdn.net/qq924862077/article/details/73558848
 
 
+BeanDefinitionHolder，简单来说其就是一个BeanDefinition的持有者，其定义了一下变量，并对以下变量提供get和set操作。
+
+private final BeanDefinition beanDefinition;
+private final String beanName;
+private final String[] aliases;
+
+
+
 
 org.springframework.beans.factory.config.BeanDefinitionHolder;
 
@@ -274,6 +280,26 @@ http://elim.iteye.com/blog/2016305
 
 是对String path和classloader的封装
 
+Resource简介
+在Spring内部，针对于资源文件有一个统一的接口Resource表示。其主要实现类有ClassPathResource、FileSystemResource、UrlResource、ByteArrayResource、ServletContextResource和InputStreamResource。Resource接口中主要定义有以下方法：
+
+- exists()：用于判断对应的资源是否真的存在。
+- isReadable()：用于判断对应资源的内容是否可读。需要注意的是当其结果为true的时候，其内容未必真的可读，但如果返回false，则其内容必定不可读。
+- isOpen()：用于判断当前资源是否代表一个已打开的输入流，如果结果为true，则表示当前资源的输入流不可多次读取，而且在读取以后需要对它进行关闭，以防止内存泄露。该方法主要针对于InputStreamResource，实现类中只有它的返回结果为true，其他都为false。
+- getURL()：返回当前资源对应的URL。如果当前资源不能解析为一个URL则会抛出异常。如ByteArrayResource就不能解析为一个URL。
+- getFile()：返回当前资源对应的File。如果当前资源不能以绝对路径解析为一个File则会抛出异常。如ByteArrayResource就不能解析为一个File。
+- getInputStream()：获取当前资源代表的输入流。除了InputStreamResource以外，其它Resource实现类每次调用getInputStream()方法都将返回一个全新的InputStream。
+
+ 
+
+ClassPathResource可用来获取类路径下的资源文件。假设我们有一个资源文件test.txt在类路径下，我们就可以通过给定对应资源文件在类路径下的路径path来获取它，new ClassPathResource(“test.txt”)。
+FileSystemResource可用来获取文件系统里面的资源。我们可以通过对应资源文件的文件路径来构建一个FileSystemResource。FileSystemResource还可以往对应的资源文件里面写内容，当然前提是当前资源文件是可写的，这可以通过其isWritable()方法来判断。FileSystemResource对外开放了对应资源文件的输出流，可以通过getOutputStream()方法获取到。
+UrlResource可用来代表URL对应的资源，它对URL做了一个简单的封装。通过给定一个URL地址，我们就能构建一个UrlResource。
+ByteArrayResource是针对于字节数组封装的资源，它的构建需要一个字节数组。
+ServletContextResource是针对于ServletContext封装的资源，用于访问ServletContext环境下的资源。ServletContextResource持有一个ServletContext的引用，其底层是通过ServletContext的getResource()方法和getResourceAsStream()方法来获取资源的。
+InputStreamResource是针对于输入流封装的资源，它的构建需要一个输入流。
+
+在Spring里面还定义有一个ResourceLoader接口，该接口中只定义了一个用于获取Resource的getResource(String location)方法。它的实现类有很多，这里我们先挑一个DefaultResourceLoader来讲。
 
 
 
@@ -332,13 +358,9 @@ https://blog.csdn.net/ilovejava_2010/article/details/7953582
 
 
 1、BeanNameAware，可以在Bean中得到它在IOC容器中的Bean的实例的名字。
-
 2、BeanFactoryAware，可以在Bean中得到Bean所在的IOC容器，从而直接在Bean中使用IOC容器的服务。
-
 3、ApplicationContextAware，可以在Bean中得到Bean所在的应用上下文，从而直接在Bean中使用上下文的服务。
-
 4、MessageSourceAware，在Bean中可以得到消息源。
-
 5、ApplicationEventPublisherAware，在bean中可以得到应用上下文的事件发布器，从而可以在Bean中发布应用上下文的事件。
 
 ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使用ResourceLoader加载外部对应的Resource资源。
@@ -478,3 +500,23 @@ ApplicationContext
 横向对比
 guice这种ioc框架，如何打印容器中的数据
 
+
+
+
+
+| **对象名**                  | **类  型**                     | **作  用**                                                   | **归属类**                                  |
+| --------------------------- | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------- |
+| configResources             | Resource[]                     | 配置文件资源对象数组                                         | ClassPathXmlApplicationContext              |
+| configLocations             | String[]                       | 配置文件字符串数组，存储配置文件路径                         | AbstractRefreshableConfigApplicationContext |
+| beanFactory                 | DefaultListableBeanFactory     | 上下文使用的Bean工厂                                         | AbstractRefreshableApplicationContext       |
+| beanFactoryMonitor          | Object                         | Bean工厂使用的同步监视器                                     | AbstractRefreshableApplicationContext       |
+| id                          | String                         | 上下文使用的唯一Id，标识此ApplicationContext                 | AbstractApplicationContext                  |
+| parent                      | ApplicationContext             | 父级ApplicationContext                                       | AbstractApplicationContext                  |
+| beanFactoryPostProcessors   | List<BeanFactoryPostProcessor> | 存储BeanFactoryPostProcessor接口，Spring提供的一个扩展点     | AbstractApplicationContext                  |
+| startupShutdownMonitor      | Object                         | refresh方法和destory方法公用的一个监视器，避免两个方法同时执行 | AbstractApplicationContext                  |
+| shutdownHook                | Thread                         | Spring提供的一个钩子，JVM停止执行时会运行Thread里面的方法    | AbstractApplicationContext                  |
+| resourcePatternResolver     | ResourcePatternResolver        | 上下文使用的资源格式解析器                                   | AbstractApplicationContext                  |
+| lifecycleProcessor          | LifecycleProcessor             | 用于管理Bean生命周期的生命周期处理器接口                     | AbstractApplicationContext                  |
+| messageSource               | MessageSource                  | 用于实现国际化的一个接口                                     | AbstractApplicationContext                  |
+| applicationEventMulticaster | ApplicationEventMulticaster    | Spring提供的事件管理机制中的事件多播器接口                   | AbstractApplicationContext                  |
+| applicationListeners        | Set<ApplicationListener>       | Spring提供的事件管理机制中的应用监听器                       | AbstractApplicationContext                  |
