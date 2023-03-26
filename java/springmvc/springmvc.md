@@ -1,5 +1,154 @@
 # springmvc
 
+2023-03-27 02:05:11.405  WARN 2236 --- [nio-9990-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved exception caused by handler execution: org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+
+
+public String @ResponseBody xxx(){
+
+    return new MyPOLO();
+}
+
+MyPOLO对象如何序列化成json格式的
+
+https://blog.csdn.net/qq_43842093/article/details/124769772
+通过 @RestController 注解实现，此时所有的方法都将会被添加 @ResponseBody 注解
+@ResponseBody 通过各种类型转换器实现数据的转换，如将数据转换为 String、JSON、XML 等格式。并将数据写入到 response body 中。而且它们使用的都是 UTF-8 编码。
+
+MappingJackson2HttpMessageConverter
+MappingJackson2HttpMessageConverter是springboot中默认的Json消息转换器
+https://blog.csdn.net/Heron22/article/details/109512976
+消息转换器创建和生效原理
+springboot Web项目中有两个重要的配置类需要知道。
+一个是springmvc的原生配置类：WebMvcConfigurationSupport
+另一个是springboot为springmvc写的自动配置类：WebMvcAutoConfiguration
+
+
+SpringMVC默认包含一系列的数据转换器，此处不一一列举，就介绍几种常用的：
+MappingJackson2XmlHttpMessageConverter 基于Jackson的XML转换器，能够将对象转换成XML格式的数据
+MappingJackson2HttpMessageConverter 基于 Jackson 的JSON转换器，能够将对象转换成JSON格式的数据
+GsonHttpMessageConverter 基于Gson的JSON转换器，能够将对象转换成JSON格式数据
+因为SpringMVC在项目初始化时，会去扫描系统中的JAR包，然后根据扫描到的JAR包设置默认的转换类型，大概的扫描过程是：
+1）检查系统中是否存在jackson-xml的JAR包，如果存在，就将数据转换类型列表中设置XML类型，以及其对应的转换器
+2）检查系统中是否存在jackson-json的JAR包，如果存在，就在数据转换类型列表中设置JSON类型，以及其对应的转换器
+
+因为是先检测的XML，因此XML排在JSON前面，如果系统两者的JAR包都存在，那么默认情况下数据会被转换成XML格式
+————————————————
+版权声明：本文为CSDN博主「Java后端何哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/CSDN2497242041/article/details/102618226
+
+
+springmvc返回对象或集合
+（1）我们可以通过SpringMVC帮助我们对对象集合进行json字符串的转换并回写
+
+首先，需要在spring-mvc.xml中做出如下配置，配置处理器映射器
+
+    <!--配置处理器映射器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+而后，直接返回对象就可以，即可返回json格式字符串
+
+    @RequestMapping("/quick10")
+    @ResponseBody
+    public User save10()  {
+ 
+        User user = new User();
+        user.setAge(18);
+        user.setName("xiaoming");
+        return user;
+    }
+（2）我们可以利用MVC的注解驱动代码代替上述配置
+在spring-mvc.xml下进行MVC注解驱动
+
+<!--MVC注解驱动-->
+<mvc:annotation-driven/>
+————————————————
+版权声明：本文为CSDN博主「m0_55247145」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_55247145/article/details/120930590
+
+
+
+
+spring-webmvc 这个jar包
+
+handleradapter
+运行时的对象
+RequestMappingHandlerAdapter
+
+
+
+Object handler强制转换成(HandlerMethod) handler
+
+
+九大组件：
+1、HandlerMapping   SimpleUrlHandlerMapping BeanNameUrlHandlerMapping RequestMappingHandlerMapping
+2、HandlerAdapter
+3、HandlerExceptionResolver   DefaultHandlerExceptionResolver
+4、viewResolver
+5、RequestToViewNameTranslator
+6、LocalResolver
+7、ThemeResolver
+8、MultiPartResolver
+9、FlashMapManager
+
+// 初始化 MultipartResolver:主要用来处理文件上传.如果定义过当前类型的bean对象，那么直接获取，如果没有的话，可以为null
+initMultipartResolver(context);
+// 初始化 LocaleResolver:主要用来处理国际化配置,基于URL参数的配置(AcceptHeaderLocaleResolver)，基于session的配置(SessionLocaleResolver)，基于cookie的配置(CookieLocaleResolver)
+initLocaleResolver(context);
+// 初始化 ThemeResolver:主要用来设置主题Theme
+initThemeResolver(context);
+// 初始化 HandlerMapping:映射器，用来将对应的request跟controller进行对应
+initHandlerMappings(context);
+// 初始化 HandlerAdapter:处理适配器，主要包含Http请求处理器适配器，简单控制器处理器适配器，注解方法处理器适配器
+initHandlerAdapters(context);
+// 初始化 HandlerExceptionResolver:基于HandlerExceptionResolver接口的异常处理
+initHandlerExceptionResolvers(context);
+// 初始化 RequestToViewNameTranslator:当controller处理器方法没有返回一个View对象或逻辑视图名称，并且在该方法中没有直接往response的输出流里面写数据的时候，spring将会采用约定好的方式提供一个逻辑视图名称
+initRequestToViewNameTranslator(context);
+// 初始化 ViewResolver: 将ModelAndView选择合适的视图进行渲染的处理器
+initViewResolvers(context);
+// 初始化 FlashMapManager: 提供请求存储属性，可供其他请求使用
+initFlashMapManager(context);
+
+
+
+
+
+SpringMvc定义Controller有三种方式：
+1、注解 @Controller
+2、实现Controller接口
+3、实现HttpRequestHandler
+第二种和第三种实现Controller必须在配置文件中定义bean信息，定义的名称必须加上"/"
+
+org.springframework.web.HttpRequestHandler 接口
+
+ResourceHttpRequestHandler (org.springframework.web.servlet.resource)
+DefaultServletHttpRequestHandler (org.springframework.web.servlet.resource)
+HttpInvokerServiceExporter (org.springframework.remoting.httpinvoker)
+BurlapServiceExporter (org.springframework.remoting.caucho)
+HessianServiceExporter (org.springframework.remoting.caucho)
+
+该HandlerMapping实际使用类为SimpleUrlHandlerMapping
+
+
+
+@Controller修饰的类是如何注册到SimpleUrlHandlerMapping
+https://blog.51cto.com/u_15651175/5545208
+
+
+
+Spring MVC有三种映射策略
+
+| 映射策略            | 实现类                       |
+| ------------------- | ---------------------------- |
+| 简单url映射         | SimpleUrlHandlerMapping      |
+| BeanName映射        | BeanNameUrlHandlerMapping    |
+| @RequestMapping映射 | RequestMappingHandlerMapping |
+
 
 
 - 配置文件applicationContext.xml和xxx-servlet.xml
@@ -103,7 +252,7 @@ https://blog.csdn.net/u013041642/article/details/72611065
 
     @RequestMapping("/")
     public String index(){
-        return "main";//跳转到error页面
+        return "main";//跳转到到main.jsp页面，如果main.jsp不存在，error页面
     }
 	
 	

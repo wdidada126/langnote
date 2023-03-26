@@ -1,5 +1,14 @@
 # Redis 基础
 
+
+help @list
+
+
+list 有序的，按照插入的顺序有序
+
+lpush
+rpush
+
 ## Redis常见的数据结构？
 
 String、Hash、List、Set、SortedSet。

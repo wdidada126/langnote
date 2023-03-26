@@ -1,5 +1,22 @@
 # Spring
 
+### spring vs ejb
+spring更轻量
+
+### ioc
+类似guice
+
+
+### springmvc 跟ioc的关系
+
+servlet的web.xml中必须配置一个监听器
+    <listener>  
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+    </listener>  
+
+ContextLoaderListener 这个类代码就会启动initWebApplicationContext()，具体是XMLWebApplicationContext
+
+
 PropertyValues
 org.springframework.beans.PropertyValue
 spring-beans包里面的

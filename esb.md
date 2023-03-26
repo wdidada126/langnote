@@ -1,6 +1,25 @@
 # esb
 
 
+https://gitee.com/mirrors/WSO2-ESB
+
+wso2 ha
+https://blog.csdn.net/baidu_25117757/article/details/123736178
+
+WSO2 ESB 5.0.0 一些组件的使用教程
+https://blog.csdn.net/baidu_25117757/article/details/127943704
+ws2 develop studio
+https://github.com/wso2/integration-studio/#Installation-and-Run
+https://wso2.com/micro-integrator/integration-studio/
+
+WSO2 ESB 5.0.0 一些组件的使用教程
+https://blog.csdn.net/baidu_25117757/article/details/127943704
+
+
+WSO2 ESB 3.1 linux教程
+https://blog.csdn.net/weixin_45669656/article/details/108798095?spm=1001.2014.3001.5502
+
+
 https://github.com/jeffreyning/nhEsb
 https://gitee.com/mirrors/nhEsb
 

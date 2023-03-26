@@ -1,4 +1,33 @@
 # mybatis
+
+
+org.apache.ibatis.session.SqlSession接口
+
+select()
+insert()
+update()
+delete()
+flush()
+
+select()
+- selectOne
+- selectMap
+- selectList
+- select
+
+mybatis自身实现SqlSession的类
+SqlSessionManager
+DefaultSqlSession
+
+mybatis-spring实现sqlsession的类
+SqlSessionTemplate
+
+SqlSessionTemplateInteceptor 实现了Invocation
+invoke()方法
+
+Proxy.newInstance()
+
+
 ### mybatis调用流程
 一个完整的Sql命令，其执行的完整流程图如下：
 

@@ -11,6 +11,11 @@ testcglib https://github.com/edidada/testcglib
 
 MyBatis使用动态代理
 
+Proxy.newInstance()
+
+Invoke
+invoke()
+
 
 
 spring非接口使用的代理
@@ -75,7 +80,7 @@ net.sf.cglib.proxy.Enhancer#setCallbacks
 net.sf.cglib.proxy.Enhancer#setCallbackFilter
 ```
 
-net.sf.cglib.proxy.MethodInterceptor 等同于InvocationHandler
+net.sf.cglib.proxy.MethodInterceptor 等同于java.lang.reflect.InvocationHandler
 
 ```java
 public Object intercept(Object obj, Method method, Object[] params,
@@ -124,7 +129,7 @@ CGLib不能对声明为final的方法进行代理，因为CGLib原理是动态�
 
 
 
-
+cglib api doc
 http://devdoc.net/javamisc/cglib-3.2.5/
 
 
