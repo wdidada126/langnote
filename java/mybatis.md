@@ -1,5 +1,74 @@
 # mybatis
 ### mybatis调用流程
+
+
+mybatis源码核心类
+https://zhuanlan.zhihu.com/p/613769992
+
+
+SqlSessionFactoryBuilder是构造器，见名知意，它的主要作用便是构造SqlSessionFactory实例，基本流程为根据传入的数据流创建XMLConfigBuilder，生成Configuration对象，然后根据Configuration对象创建默认的SqlSessionFactory实例。
+
+解析mapper.xml时，Mybatis默认XML驱动类为XMLLanguageDriver，它的主要作用是解析select、update、insert、delete节点为完整的SQL语句，也是对应SQL的解析过程，XMLLanguageDriver在解析mapper.xml时，会将解析结果存储至SqlSource的实现类中，SqlSource是一个接口，只定义了一个 getBoundSql() 方法，它控制着动态 SQL 语句解析的整个流程，它会根据从 Mapper.xml 映射文件解析到的 SQL 语句以及执行 SQL 时传入的实参，返回一条可执行的 SQL。它有三个重要的实现类，对应图中写到的RawSqlSource、DynamicSqlSource及StaticSqlSource，其中RawSqlSource处理的是非动态 SQL 语句，DynamicSqlSource处理的是动态 SQL 语句，StaticSqlSource是BoundSql中要存储SQL语句的一个载体，上面RawSqlSource、DynamicSqlSource的SQL语句，最终都会存储到StaticSqlSource实现类中。StaticSqlSource的 getBoundSql() 方法是真正创建 BoundSql 对象的地方， BoundSql 包含了解析之后的 SQL 语句、字段、每个“#{}”占位符的属性信息、实参信息等。这里也重点介绍下Configuration对象，Configuration 的创建会装载一些基本属性，如事务，数据源，缓存，代理，类型处理器等，从这里可以看出 Configuration 也是一个大的容器，来为后面的SQL语句解析和初始化提供保障，也是Mybatis中贯穿全局的存在，后续我们要提到的Mybatis降低全表更新插件，也是基于这个对象来完成。其中解析mapper.xml这步最终作用便是将解析的每一条CRUD语句封装成对应的MappedStatement存放至Configuration中。
+
+
+
+
+XMLLanguageDriver用于对sql脚本进行解析，解析各种标签。
+
+trim TrimHandler
+where WhereHandler
+
+
+XMLScriptBuilder
+
+private void initNodeHandlerMap() {
+    nodeHandlerMap.put("trim", new TrimHandler());
+    nodeHandlerMap.put("where", new WhereHandler());
+    nodeHandlerMap.put("set", new SetHandler());
+    nodeHandlerMap.put("foreach", new ForEachHandler());
+    nodeHandlerMap.put("if", new IfHandler());
+    nodeHandlerMap.put("choose", new ChooseHandler());
+    nodeHandlerMap.put("when", new IfHandler());
+    nodeHandlerMap.put("otherwise", new OtherwiseHandler());
+    nodeHandlerMap.put("bind", new BindHandler());
+  }
+
+https://blog.csdn.net/RenshenLi/article/details/118531540
+
+
+
+
+XMLConfigBuilder：解析mybatis中configLocation属性中的全局xml文件，内部会使用 XMLMapperBuilder 解析各个xml文件。
+XMLMapperBuilder：遍历mybatis中mapperLocations属性中的xml文件中每个节点的Builder，比如user.xml，内部会使用 XMLStatementBuilder 处理xml中的每个节点。
+XMLStatementBuilder：解析xml文件中各个节点，比如select,insert,update,delete节点，内部会使用 XMLScriptBuilder 处理节点的sql部分，遍历产生的数据会丢到Configuration的mappedStatements中。
+XMLScriptBuilder：解析xml中各个节点sql部分的Builder。
+
+
+
+Mybatis动态解析里面有2个核心的类SqlNode、SqlSource、ExpressionEvaluator。Mybatis动态Sql使用分为2个部分：动态Sql解析、动态Sql拼接执行。
+
+
+
+每个SqlNode负责自己那块功能。职责单一。SqlNode的核心方法apply就是通过ExpressionEvaluator来解析OGNL表达式数据的。接下来我们看看Mybatis是如何递归解析动态sql脚本的。
+
+
+
+
+new GenericTokenParser("${", "}", new BindingTokenParser(context, injectionFilter))
+
+
+ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler(configuration, parameterType, additionalParameters);
+//#{}解析器
+GenericTokenParser parser = new GenericTokenParser("#{", "}", handler);
+
+
+
+Mybatis对数据的处理可以分为 用入参动态的拼装sql 和 对sql执行的结果封装成 JavaBean
+
+
+
+
+
 一个完整的Sql命令，其执行的完整流程图如下：
 
 ![mybatis_process](..\imgs\mybatis_process.jpg)
