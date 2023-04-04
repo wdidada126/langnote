@@ -1,5 +1,16 @@
 # activemq
 
+./apache-activemq-5.12.2/bin/activemq console
+
+
+
+
+Tasks provided by the sysv init script:
+    kill            - terminate instance in a drastic way by sending SIGKILL
+    restart         - stop running instance (if there is one), start new instance
+    console         - start broker in foreground, useful for debugging purposes
+    status          - check if activemq process is running
+
 
 编程语言java
 https://github.com/apache/activemq
