@@ -1,4 +1,39 @@
 # mybatis
+
+
+MapperProxy是MyBatis框架中用于实现动态代理的关键类，它是通过JDK动态代理技术实现的，用于将接口与对应的SQL语句绑定在一起，实现接口方法调用时的SQL执行。
+MapperProxy类的主要作用是：
+实现接口的代理对象。当调用接口方法时，MapperProxy代理对象会根据方法名、参数类型等信息，从Configuration对象中获取对应的MappedStatement对象，并执行SQL语句，将查询结果映射成对应的Java对象返回给调用者。
+将Mapper接口方法与MappedStatement对象绑定在一起。当使用SqlSession.getMapper方法获取Mapper接口实例时，MyBatis框架会使用MapperRegistry类将Mapper接口与对应的MapperProxy对象进行绑定，从而实现Mapper接口方法的调用。
+MapperProxy类的源码非常复杂，其核心方法是invoke方法，该方法会根据接口方法的返回值类型，调用对应的SQL执行方法
+在上述代码中，如果接口方法是Object类中的方法，则直接调用对应的方法。如果接口方法是默认方法，则调用invokeDefaultMethod方法执行默认方法。如果接口方法不是Object类中的方法或默认方法，则使用cachedMapperMethod方法从MapperMethodCache中获取对应的MapperMethod对象，然后调用MapperMethod对象的execute方法执行SQL语句，并将查询结果映射成对应的Java对象返回给调用者。
+需要注意的是，MapperProxy类并不会直接执行SQL语句，它会调用MapperMethod对象的execute方法来执行SQL语句。MapperMethod对象包含了SQL语句、SQL参数等信息，用于执行SQL语句并将查询结果映射成Java对象返回给调用者。
+总之，MapperProxy类是MyBatis框架中非常重要的一个类，它实现了接口与SQL语句的绑定，并通过动态代理技术实现了接口方法的调用。了解MapperProxy类的原理和实现方式，对于深入理解MyBatis框架的原理和实现方式非常有帮助。
+
+
+
+
+
+
+
+MapperMethod是MyBatis框架中的一个重要类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。在MyBatis框架中，每个Mapper接口方法都会对应一个MapperMethod对象。
+
+MapperMethod类的源码非常复杂，但是它的核心方法是execute方法，该方法用于执行SQL语句并将查询结果映射成Java对象。下面对MapperMethod类的一些重要属性和方法进行简单介绍：
+
+private final SqlCommand command：表示该MapperMethod对应的SQL语句的信息，包括SQL语句、参数类型、返回值类型等信息。
+
+private final MethodSignature method：表示该MapperMethod对应的Mapper接口方法的信息，包括方法名、参数类型、返回值类型等信息。
+
+public Object execute(SqlSession sqlSession, Object[] args)：该方法用于执行SQL语句并将查询结果映射成Java对象。在该方法中，首先根据SQL语句的类型调用SqlSession对象的对应方法，例如，如果SQL语句是查询语句，则调用SqlSession.selectOne方法；如果SQL语句是插入语句，则调用SqlSession.insert方法等。然后将SQL参数和返回值类型传递给SqlSession对象，执行SQL语句并获取查询结果。最后将查询结果通过TypeHandler进行映射成对应的Java对象，并返回给调用者。
+
+private Object executeForMany(SqlSession sqlSession, Object[] args)：该方法用于执行查询多条记录的SQL语句，并将查询结果映射成List类型的Java对象。该方法会调用SqlSession.selectList方法执行SQL语句，并使用TypeHandler将查询结果映射成List类型的Java对象。
+
+private Object executeForMap(SqlSession sqlSession, Object[] args)：该方法用于执行查询一条记录并将结果映射成Map类型的SQL语句。该方法会调用SqlSession.selectMap方法执行SQL语句，并使用TypeHandler将查询结果映射成Map类型的Java对象。
+
+总之，MapperMethod类是MyBatis框架中非常重要的一个类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。
+
+
+
 ### mybatis调用流程
 
 
