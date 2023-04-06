@@ -1,5 +1,8 @@
 # mybatis
 
+- 通用源码阅读指导书：MyBatis源码详解
+- 
+
 
 idea插件 mybatisprohelper
 
