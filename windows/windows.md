@@ -1,6 +1,14 @@
 # windows 命令行
 
 
+windows关闭ftp服务器的防火墙
+
+直接把所有防火墙全关闭才行
+
+入站出站规则添加21不行，电脑重启之后都不行
+
+
+
 https://blog.csdn.net/caodinke/article/details/45101119
 
 `dir`

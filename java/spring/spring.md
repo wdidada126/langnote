@@ -26,6 +26,7 @@ spring-beans包里面的
     </bean>
 ```
 
+xml文件<property/>节点在java代码中的对象
 
 ### 打印Spring容器所有的Bean名称
 
@@ -73,9 +74,38 @@ spring profile properties
 ```
 
 
+```java
+public class ContextNamespaceHandler extends NamespaceHandlerSupport {
+    public ContextNamespaceHandler() {
+    }
+    public void init() {
+        this.registerBeanDefinitionParser("property-placeholder", new PropertyPlaceholderBeanDefinitionParser());
+        this.registerBeanDefinitionParser("property-override", new PropertyOverrideBeanDefinitionParser());
+        this.registerBeanDefinitionParser("annotation-config", new AnnotationConfigBeanDefinitionParser());
+    //把ComponentScanBeanDefinitionParser加载到map中
+        this.registerBeanDefinitionParser("component-scan", new ComponentScanBeanDefinitionParser());
+        this.registerBeanDefinitionParser("load-time-weaver", new LoadTimeWeaverBeanDefinitionParser());
+        this.registerBeanDefinitionParser("spring-configured", new SpringConfiguredBeanDefinitionParser());
+        this.registerBeanDefinitionParser("mbean-export", new MBeanExportBeanDefinitionParser());
+        this.registerBeanDefinitionParser("mbean-server", new MBeanServerBeanDefinitionParser());
+    }
+}
+```
+中
+
 registerBeanDefinitionParser("component-scan", new ComponentScanBeanDefinitionParser());
 
 在ComponentScanBeanDefinitionParser.java中进行处理
+
+private static final String BASE_PACKAGE_ATTRIBUTE = "base-package";
+
+String[] basePackages = StringUtils.tokenizeToStringArray(element.getAttribute(BASE_PACKAGE_ATTRIBUTE),         ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
+Set<BeanDefinitionHolder> beanDefinitions = scanner.doScan(basePackages);
+
+https://blog.csdn.net/m0_46212601/article/details/122490746
+
+
+https://www.jianshu.com/p/7938a1206fe7
 
 
 

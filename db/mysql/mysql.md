@@ -1,6 +1,22 @@
 # mysql
 
+mysql gtid
+https://www.cnblogs.com/zhang-ding-1314/p/15125188.html
 
+
+
+家人们mysql每天几十万的数据同步，从一个库到另一个库，有没有什么好的方案
+canal也行
+直接kettle
+阿里愚公也是java写的
+
+
+自建mysql数据库主从同步(GTID方式)
+https://www.cnblogs.com/zhang-ding-1314/p/15125188.html
+
+
+
+https://baijiahao.baidu.com/s?id=1741371045827915061
 
 
 关系数据库事务四大特性

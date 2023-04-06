@@ -1,5 +1,19 @@
 # java8
 
+### 书籍
+windows电脑上
+
+https://github.com/edidada/Java8InAction
+
+
+https://github.com/java8/Java8InAction
+
+读书笔记
+
+https://github.com/NGLSL/Java8InAction-ReadingNotes
+https://github.com/edidada/lambda-stream-practice
+
+
 
 [轻松调试Stream](http://www.imooc.com/article/293427)
 
