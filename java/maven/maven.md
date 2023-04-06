@@ -1,7 +1,11 @@
 # maven
 
-
+命令行执行某个程序
 java -agent xxx -classpath yyy com.zzz.Main
+
+
+D:\Java\jdk1.8.0_231\bin\java.exe -Dfile.encoding=UTF-8 -classpath D:\Java\jdk1.8.0_231\jre\lib\charsets.jar;D:\Java\jdk1.8.0_231\jre\lib\deploy.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\access-bridge-64.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\cldrdata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\dnsns.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jaccess.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jfxrt.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\localedata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\nashorn.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunec.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunjce_provider.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunmscapi.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunpkcs11.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\zipfs.jar;D:\Java\jdk1.8.0_231\jre\lib\javaws.jar;D:\Java\jdk1.8.0_231\jre\lib\jce.jar;D:\Java\jdk1.8.0_231\jre\lib\jfr.jar;D:\Java\jdk1.8.0_231\jre\lib\jfxswt.jar;D:\Java\jdk1.8.0_231\jre\lib\jsse.jar;D:\Java\jdk1.8.0_231\jre\lib\management-agent.jar;D:\Java\jdk1.8.0_231\jre\lib\plugin.jar;D:\Java\jdk1.8.0_231\jre\lib\resources.jar;D:\Java\jdk1.8.0_231\jre\lib\rt.jar;E:\git\testoracle\testoraclemybatis\target\classes;D:\mavenrepository\201904\com\oracle\ojdbc7\12.1.0.2.0\ojdbc7-12.1.0.2.0.jar;D:\mavenrepository\201904\org\mybatis\mybatis\3.4.6\mybatis-3.4.6.jar;D:\mavenrepository\201904\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar cn.wdidada.test.testoraclemybatis.TestMyBatis
+
 
 
 ### mvnw
@@ -238,6 +242,7 @@ mvn install:install-file -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpa
 mvn参考 yum apt，联网下载库文件
 分发库文件
 
+下载依赖库源码
 mvn dependency:resolve -Dclassifier=sources
 
 mvn dependency:tree
