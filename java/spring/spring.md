@@ -60,7 +60,37 @@ public class Employee {
 ```
 
 
+### Spring IOC添加取出bean
+@Resource 取出对象
 
+https://blog.csdn.net/ljcgit/article/details/115353149
+如何解决本文最上面出现的问题？
+@Resource中指定name或着type；
+@Qualifier指定bean名称；
+将字段名称修改为指定的bean名称；
+直接修改对象类型。
+只推荐第一种方法。
+
+
+https://www.zhihu.com/question/39356740/answer/1907479772
+
+
+@Autowired和@Resouce的区别
+@Autowired功能虽说非常强大，但是也有些不足之处。比如：比如它跟spring强耦合了，如果换成了JFinal等其他框架，功能就会失效。而@Resource是JSR-250提供的，它是Java标准，绝大部分框架都支持。
+除此之外，有些场景使用@Autowired无法满足的要求，改成@Resource却能解决问题。接下来，我们重点看看@Autowired和@Resource的区别。
+* @Autowired默认按byType自动装配，而@Resource默认byName自动装配。
+* @Autowired只包含一个参数：required，表示是否开启自动准入，默认是true。而@Resource包含七个参数，其中最重要的两个参数是：name 和 type。
+* @Autowired如果要使用byName，需要使用@Qualifier一起配合。而@Resource如果指定了name，则用byName自动装配，如果指定了type，则用byType自动装配。
+* @Autowired能够用在：构造器、方法、参数、成员变量和注解上，而@Resource能用在：类、成员变量和方法上。
+* @Autowired是spring定义的注解，而@Resource是JSR-250定义的注解。
+此外，它们的装配顺序不同。
+@Autowired的装配顺序如下：
+
+
+jsr250的注解
+@PostConstruct 和 @PreDestroy 注释：
+@Resource
+@Resources
 
 spring JDBC API中存在哪些类？
 
@@ -167,9 +197,22 @@ Spring用了注解 反射
 
 https://github.com/seaswalker/spring-analysis
 
-
-```
 ScopedProxyMode
+https://blog.csdn.net/weixin_37689658/article/details/122308798
+```
+
+public enum ScopedProxyMode {
+ 
+   DEFAULT,
+ 
+   NO,
+ 
+   INTERFACES,
+ 
+   TARGET_CLASS
+ 
+}
+
 ```
 
 
@@ -310,7 +353,7 @@ https://blog.csdn.net/zane3/article/details/63253281
 
 
 
-https://blog.csdn.net/GoSaint/article/details/101320827?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+https://blog.csdn.net/GoSaint/article/details/101320827
 
 
 
@@ -337,7 +380,7 @@ spring源码 gradle多模块怎么组织的?
 
 
 xml不能用正则表达式校验 形式语言表达式定理说明的	
-
+xml文件用.dtd校验
 
 
 Spring如何解析XML文件——Spring源码之XML初解析
@@ -400,6 +443,11 @@ systemId: http://www.springframework.or...
 
 
 自己写spring
+
+github.com/edidada/minis
+
+
+
 github.com/edidada/festival
 对应的博客https://juejin.cn/post/6844903492667064334
 
@@ -607,6 +655,18 @@ Caused by: java.lang.NoSuchMethodError: redis.clients.jedis.JedisPool.<init>(Lor
 ```
 
 
+JSR-330标准注解
+Java依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖注入上也使用该规范。JSR-330 规范并未按 JSR 惯例发布规范文档，只发布了规范 API 源码。
+从Spring 3.0开始，Spring开始支持JSR-330标准的注解。这些注解和Spring注解扫描的方式是一直的，开发者只需要引入javax.inject即可。
+<dependency>
+    <groupId>javax.inject</groupId>
+    <artifactId>javax.inject</artifactId>
+    <version>xxx</version>
+</dependency>
+JSR-330中的标准注解与Spring中的注解的对应关系如下：
+
+https://maxwell.gitbook.io/way-to-architect/java-yu-yan/zhu-jie/chang-yong-zhu-jie/jsr-330biao-zhun-zhu-jie
+
 Spring中解析xml配置文件使用的类
 `org.springframework.beans.factory.xml.NamespaceHandler`
 
@@ -799,6 +859,8 @@ Spring注解之@PostConstruct在项目启动时执行指定方法
 Spring @Resource、@Autowired、@Qualifier的注解注入及区别
 https://blog.csdn.net/Baple/article/details/17891755
 
+@Primary
+
 Resources
 https://stackoverflow.com/questions/49791032/how-resources-annotation-works
 
@@ -816,6 +878,19 @@ https://docs.oracle.com/javaee/7/api/javax/annotation/PostConstruct.html
 - 二、通过 util:properties 标签实现配置文件加载
 - 三、通过 @PropertySource 注解实现配置文件加载
 - 四、通过 PropertyPlaceholderConfigurer 类读取配置文件
+
+PropertyPlaceholderConfigurer
+https://blog.csdn.net/weixin_43314519/article/details/109233365
+
+
+PropertyPlaceholderConfigurer 的基本使用
+PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。在XML文件中用${…}替换指定的properties文件中的值。这样的话，只需要对properties文件进 行修改，而不用对xml配置文件进行修改。
+在Spring中，使用PropertyPlaceholderConfigurer可以在XML配置文件中加入外部属性文件
+PropertyPlaceholderConfigurer 引入外部属性文件
+————————————————
+版权声明：本文为CSDN博主「Hi丶ImViper」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_43314519/article/details/109233365
+
 
 [util:properties](https://maidong660.iteye.com/blog/2363666)
 
@@ -913,6 +988,38 @@ applicationContext.xml是整个spring应用所有的，springmvc是属于spring�
 
 Spring bean生命周期，看源码
 
+
+Spring bean的生命周期包括以下阶段：
+
+实例化（Instantiation）：当Spring容器接收到一个请求时，它会根据Bean的定义，实例化一个对象。
+
+属性设置（Population of Properties）：在对象实例化后，Spring容器会为Bean的属性设置值，包括依赖注入等操作。
+
+初始化前（Initialization Before）：在Bean的初始化前，Spring容器会调用实现了InitializingBean接口的afterPropertiesSet方法，或者在XML配置中定义的init-method方法，来进行一些初始化操作。
+
+初始化后（Initialization After）：在Bean的初始化后，Spring容器会调用实现了BeanPostProcessor接口的postProcessBeforeInitialization方法，或者在XML配置中定义的init-method方法，来进行一些初始化操作。
+
+销毁前（Destruction Before）：在Bean的销毁前，Spring容器会调用实现了DisposableBean接口的destroy方法，或者在XML配置中定义的destroy-method方法，来进行一些销毁操作。
+
+销毁后（Destruction After）：在Bean的销毁后，Spring容器会调用实现了BeanPostProcessor接口的postProcessAfterInitialization方法，或者在XML配置中定义的destroy-method方法，来进行一些销毁操作。
+
+以上是Spring Bean的生命周期阶段，开发者可以通过实现相应的接口或者在XML配置中定义相应的方法来进行一些自定义操作。
+
+
+
+
+Spring bean生命周期 看哪个类源码
+
+Spring Bean的生命周期涉及多个类，包括BeanFactory、BeanDefinition、BeanPostProcessor、InitializingBean、DisposableBean等接口以及相关的实现类。
+
+如果要查看Spring Bean的生命周期实现代码，可以先看一下BeanFactory的实现类，例如DefaultListableBeanFactory，其中包括了BeanDefinition的注册、获取、创建、初始化和销毁等操作。
+
+在BeanFactory中，BeanPostProcessor是用来处理Bean初始化前后的操作的接口，可以通过实现该接口来实现一些自定义操作。在DefaultListableBeanFactory中，BeanPostProcessor的实现类包括了AutowiredAnnotationBeanPostProcessor、CommonAnnotationBeanPostProcessor、InitDestroyAnnotationBeanPostProcessor等。
+
+同时，InitializingBean和DisposableBean接口的实现类也包含了Bean的初始化和销毁的操作，可以通过查看这些类的源码了解Spring Bean的生命周期实现。例如，InitializingBean接口的实现类包括了AbstractAutowireCapableBeanFactory、AbstractBeanFactory、AbstractApplicationContext等。
+
+
+
 Spring中的循环依赖.pdf
 三级缓存是通⽤的叫法。
 ⼀级缓存为：singletonObjects
@@ -924,8 +1031,68 @@ earlySingletonObjects⽐singletonObjects多了⼀个early，表示缓存的是�
 什么意思？表示Bean的⽣命周期还没⾛完就把这个Bean放⼊了earlySingletonObjects。
 singletonFactories中缓存的是ObjectFactory，表示对象⼯⼚，⽤来创建某个对象的。
 
+
+三级缓存指的是Spring在创建单例Bean时所使用的三个缓存池，包括singletonObjects、earlySingletonObjects和singletonFactories。
+
+其中，singletonFactories缓存池是第三级缓存，用于存储Bean的工厂对象，即创建Bean的工厂方法。当Spring容器需要创建一个单例Bean时，它首先会尝试从singletonObjects缓存中获取，如果获取不到，就会去earlySingletonObjects缓存中查找。如果earlySingletonObjects缓存中也找不到，则Spring容器会尝试使用singletonFactories缓存中的Bean工厂方法来创建Bean实例。
+
+如果Bean的工厂方法存在于singletonFactories缓存中，说明该Bean正在创建中，此时Spring容器会直接返回Bean工厂方法而不是创建Bean实例。当Bean实例创建成功后，Spring容器会将其存储到singletonObjects缓存中，并清空earlySingletonObjects和singletonFactories缓存。
+
+需要注意的是，singletonFactories缓存中存储的是用于创建Bean实例的工厂方法，而不是Bean实例本身。这是因为如果工厂方法的调用出现问题，可以避免将错误的Bean实例放入singletonObjects缓存中，从而避免影响容器中其他单例Bean的正常使用。
+
+
+
 继承FactoryBean生成bean   不经历spring bean完整周期
 用@Bean注解   经历spring bean完整周期
 
 
+Spring Framework是一个大型的开源框架，它包含了许多不同的模块，每个模块都提供了不同的功能。以下是Spring Framework中一些常见的核心模块及其功能，以及相应的jar包：
+
+Spring Core：提供了Spring框架的核心功能，如IoC和DI容器。核心jar包为spring-core和spring-beans。
+
+Spring Context：扩展了Spring Core模块，提供了更多的IoC容器的功能，如ApplicationContext。核心jar包为spring-context。
+
+Spring AOP：提供了面向切面编程的支持，通过切面可以将业务逻辑模块化。核心jar包为spring-aop和spring-aspects。
+
+Spring DAO：提供了对JDBC和ORM框架的支持，如JdbcTemplate、NamedParameterJdbcTemplate等。核心jar包为spring-jdbc和spring-tx。
+
+Spring ORM：提供了对ORM框架的支持，如Hibernate、JPA、MyBatis等。核心jar包为spring-orm。
+
+Spring Web：提供了对Web应用程序的支持，包括Web MVC框架、Web Socket、Web Servlet等。核心jar包为spring-web和spring-webmvc。
+
+Spring Test：提供了对单元测试和集成测试的支持，包括JUnit和TestNG等测试框架的整合。核心jar包为spring-test。
+
+除了上述的核心模块，Spring Framework还有其他许多的模块，如Spring Security、Spring Integration、Spring Batch、Spring Mobile等，每个模块都提供了不同的功能和特性。对于每个模块所包含的jar包，可以在相应的文档中查找。
+
+
+
+
+
+BeanDefinition的实现类：
+在Spring框架中，BeanDefinition接口的实现类有两个，分别是GenericBeanDefinition和RootBeanDefinition。
+GenericBeanDefinition是BeanDefinition接口的通用实现类，用于描述一个Bean的配置信息。
+RootBeanDefinition继承自GenericBeanDefinition，它是GenericBeanDefinition的子类，用于描述一个根Bean的配置信息，一般用于配置单例Bean。
+BeanDefinitionRegistry接口：
+在Spring框架中，BeanDefinitionRegistry接口是一个重要的接口，用于注册和管理BeanDefinition对象。
+
+
+
+BeanDefinitionRegistry
+在Spring框架中，BeanDefinitionRegistry接口的常用实现类有以下几个：
+
+DefaultListableBeanFactory
+DefaultListableBeanFactory是BeanDefinitionRegistry接口的默认实现类，它是BeanFactory接口的子类，用于管理BeanDefinition对象，并通过BeanFactory接口来管理Bean实例。DefaultListableBeanFactory实现了以下接口：
+
+ConfigurableBeanFactory
+SingletonBeanRegistry
+AliasRegistry
+BeanDefinitionRegistry
+DefaultListableBeanFactory是Spring IoC容器中最常用的实现类，它是基于HashMap来实现BeanDefinition的注册和管理的，同时也支持基于XML和注解的BeanDefinition的注册和管理。
+GenericApplicationContext
+GenericApplicationContext是一个通用的应用上下文实现类，它是BeanDefinitionRegistry接口的实现类，用于管理BeanDefinition对象。它支持基于XML和注解的BeanDefinition的注册和管理，并可以创建和管理Spring IoC容器。
+AnnotationConfigApplicationContext
+AnnotationConfigApplicationContext是一个基于注解的应用上下文实现类，它是BeanDefinitionRegistry接口的实现类，用于管理基于注解的BeanDefinition对象。它支持基于注解的BeanDefinition的注册和管理，并可以创建和管理Spring IoC容器。
+XmlWebApplicationContext
+XmlWebApplicationContext是一个基于XML的Web应用上下文实现类，它是BeanDefinitionRegistry接口的实现类，用于管理基于XML的BeanDefinition对象。它支持基于XML的BeanDefinition的注册和管理，并可以创建和管理Spring IoC容器。
+除了上述几种实现类之外，还有其他一些BeanDefinitionRegistry接口的实现类，如GenericGroovyApplicationContext、ClassPathXmlApplicationContext等。这些实现类的区别在于注册和管理BeanDefinition的方式和创建和管理Spring IoC容器的方式不同。
 

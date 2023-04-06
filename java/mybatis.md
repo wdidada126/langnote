@@ -26,9 +26,109 @@ SqlSessionTemplateInteceptor 实现了Invocation
 invoke()方法
 
 Proxy.newInstance()
+MapperProxy是MyBatis框架中用于实现动态代理的关键类，它是通过JDK动态代理技术实现的，用于将接口与对应的SQL语句绑定在一起，实现接口方法调用时的SQL执行。
+MapperProxy类的主要作用是：
+实现接口的代理对象。当调用接口方法时，MapperProxy代理对象会根据方法名、参数类型等信息，从Configuration对象中获取对应的MappedStatement对象，并执行SQL语句，将查询结果映射成对应的Java对象返回给调用者。
+将Mapper接口方法与MappedStatement对象绑定在一起。当使用SqlSession.getMapper方法获取Mapper接口实例时，MyBatis框架会使用MapperRegistry类将Mapper接口与对应的MapperProxy对象进行绑定，从而实现Mapper接口方法的调用。
+MapperProxy类的源码非常复杂，其核心方法是invoke方法，该方法会根据接口方法的返回值类型，调用对应的SQL执行方法
+在上述代码中，如果接口方法是Object类中的方法，则直接调用对应的方法。如果接口方法是默认方法，则调用invokeDefaultMethod方法执行默认方法。如果接口方法不是Object类中的方法或默认方法，则使用cachedMapperMethod方法从MapperMethodCache中获取对应的MapperMethod对象，然后调用MapperMethod对象的execute方法执行SQL语句，并将查询结果映射成对应的Java对象返回给调用者。
+需要注意的是，MapperProxy类并不会直接执行SQL语句，它会调用MapperMethod对象的execute方法来执行SQL语句。MapperMethod对象包含了SQL语句、SQL参数等信息，用于执行SQL语句并将查询结果映射成Java对象返回给调用者。
+总之，MapperProxy类是MyBatis框架中非常重要的一个类，它实现了接口与SQL语句的绑定，并通过动态代理技术实现了接口方法的调用。了解MapperProxy类的原理和实现方式，对于深入理解MyBatis框架的原理和实现方式非常有帮助。
+
+
+
+
+
+
+
+MapperMethod是MyBatis框架中的一个重要类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。在MyBatis框架中，每个Mapper接口方法都会对应一个MapperMethod对象。
+
+MapperMethod类的源码非常复杂，但是它的核心方法是execute方法，该方法用于执行SQL语句并将查询结果映射成Java对象。下面对MapperMethod类的一些重要属性和方法进行简单介绍：
+
+private final SqlCommand command：表示该MapperMethod对应的SQL语句的信息，包括SQL语句、参数类型、返回值类型等信息。
+
+private final MethodSignature method：表示该MapperMethod对应的Mapper接口方法的信息，包括方法名、参数类型、返回值类型等信息。
+
+public Object execute(SqlSession sqlSession, Object[] args)：该方法用于执行SQL语句并将查询结果映射成Java对象。在该方法中，首先根据SQL语句的类型调用SqlSession对象的对应方法，例如，如果SQL语句是查询语句，则调用SqlSession.selectOne方法；如果SQL语句是插入语句，则调用SqlSession.insert方法等。然后将SQL参数和返回值类型传递给SqlSession对象，执行SQL语句并获取查询结果。最后将查询结果通过TypeHandler进行映射成对应的Java对象，并返回给调用者。
+
+private Object executeForMany(SqlSession sqlSession, Object[] args)：该方法用于执行查询多条记录的SQL语句，并将查询结果映射成List类型的Java对象。该方法会调用SqlSession.selectList方法执行SQL语句，并使用TypeHandler将查询结果映射成List类型的Java对象。
+
+private Object executeForMap(SqlSession sqlSession, Object[] args)：该方法用于执行查询一条记录并将结果映射成Map类型的SQL语句。该方法会调用SqlSession.selectMap方法执行SQL语句，并使用TypeHandler将查询结果映射成Map类型的Java对象。
+
+总之，MapperMethod类是MyBatis框架中非常重要的一个类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。
+
 
 
 ### mybatis调用流程
+
+
+mybatis源码核心类
+https://zhuanlan.zhihu.com/p/613769992
+
+
+SqlSessionFactoryBuilder是构造器，见名知意，它的主要作用便是构造SqlSessionFactory实例，基本流程为根据传入的数据流创建XMLConfigBuilder，生成Configuration对象，然后根据Configuration对象创建默认的SqlSessionFactory实例。
+
+解析mapper.xml时，Mybatis默认XML驱动类为XMLLanguageDriver，它的主要作用是解析select、update、insert、delete节点为完整的SQL语句，也是对应SQL的解析过程，XMLLanguageDriver在解析mapper.xml时，会将解析结果存储至SqlSource的实现类中，SqlSource是一个接口，只定义了一个 getBoundSql() 方法，它控制着动态 SQL 语句解析的整个流程，它会根据从 Mapper.xml 映射文件解析到的 SQL 语句以及执行 SQL 时传入的实参，返回一条可执行的 SQL。它有三个重要的实现类，对应图中写到的RawSqlSource、DynamicSqlSource及StaticSqlSource，其中RawSqlSource处理的是非动态 SQL 语句，DynamicSqlSource处理的是动态 SQL 语句，StaticSqlSource是BoundSql中要存储SQL语句的一个载体，上面RawSqlSource、DynamicSqlSource的SQL语句，最终都会存储到StaticSqlSource实现类中。StaticSqlSource的 getBoundSql() 方法是真正创建 BoundSql 对象的地方， BoundSql 包含了解析之后的 SQL 语句、字段、每个“#{}”占位符的属性信息、实参信息等。这里也重点介绍下Configuration对象，Configuration 的创建会装载一些基本属性，如事务，数据源，缓存，代理，类型处理器等，从这里可以看出 Configuration 也是一个大的容器，来为后面的SQL语句解析和初始化提供保障，也是Mybatis中贯穿全局的存在，后续我们要提到的Mybatis降低全表更新插件，也是基于这个对象来完成。其中解析mapper.xml这步最终作用便是将解析的每一条CRUD语句封装成对应的MappedStatement存放至Configuration中。
+
+
+
+
+XMLLanguageDriver用于对sql脚本进行解析，解析各种标签。
+
+trim TrimHandler
+where WhereHandler
+
+
+XMLScriptBuilder
+
+private void initNodeHandlerMap() {
+    nodeHandlerMap.put("trim", new TrimHandler());
+    nodeHandlerMap.put("where", new WhereHandler());
+    nodeHandlerMap.put("set", new SetHandler());
+    nodeHandlerMap.put("foreach", new ForEachHandler());
+    nodeHandlerMap.put("if", new IfHandler());
+    nodeHandlerMap.put("choose", new ChooseHandler());
+    nodeHandlerMap.put("when", new IfHandler());
+    nodeHandlerMap.put("otherwise", new OtherwiseHandler());
+    nodeHandlerMap.put("bind", new BindHandler());
+  }
+
+https://blog.csdn.net/RenshenLi/article/details/118531540
+
+
+
+
+XMLConfigBuilder：解析mybatis中configLocation属性中的全局xml文件，内部会使用 XMLMapperBuilder 解析各个xml文件。
+XMLMapperBuilder：遍历mybatis中mapperLocations属性中的xml文件中每个节点的Builder，比如user.xml，内部会使用 XMLStatementBuilder 处理xml中的每个节点。
+XMLStatementBuilder：解析xml文件中各个节点，比如select,insert,update,delete节点，内部会使用 XMLScriptBuilder 处理节点的sql部分，遍历产生的数据会丢到Configuration的mappedStatements中。
+XMLScriptBuilder：解析xml中各个节点sql部分的Builder。
+
+
+
+Mybatis动态解析里面有2个核心的类SqlNode、SqlSource、ExpressionEvaluator。Mybatis动态Sql使用分为2个部分：动态Sql解析、动态Sql拼接执行。
+
+
+
+每个SqlNode负责自己那块功能。职责单一。SqlNode的核心方法apply就是通过ExpressionEvaluator来解析OGNL表达式数据的。接下来我们看看Mybatis是如何递归解析动态sql脚本的。
+
+
+
+
+new GenericTokenParser("${", "}", new BindingTokenParser(context, injectionFilter))
+
+
+ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler(configuration, parameterType, additionalParameters);
+//#{}解析器
+GenericTokenParser parser = new GenericTokenParser("#{", "}", handler);
+
+
+
+Mybatis对数据的处理可以分为 用入参动态的拼装sql 和 对sql执行的结果封装成 JavaBean
+
+
+
+
+
 一个完整的Sql命令，其执行的完整流程图如下：
 
 ![mybatis_process](..\imgs\mybatis_process.jpg)
@@ -634,7 +734,7 @@ Chap. 9
 
 一 xml文件（写SQL的）、二 数据库地址用户名密码、三 Java接口、四 接口中使用到的JavaBean类
 
-```
+```xml
     <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
@@ -660,7 +760,6 @@ Chap. 9
 ```
 
 ```java
-
 Exception in thread "main" org.apache.ibatis.binding.BindingException: Type interface com.learn.ssm.chapter4.mapper.RoleMapper is not known to the MapperRegistry.
 	at org.apache.ibatis.binding.MapperRegistry.getMapper(MapperRegistry.java:47)
 	at org.apache.ibatis.session.Configuration.getMapper(Configuration.java:717)
@@ -672,7 +771,6 @@ Exception in thread "main" org.apache.ibatis.binding.BindingException: Type inte
 
 
 ```java
-
 Caused by: java.lang.ClassNotFoundException: com.duanxr.mgb.plugins.IsExistsPlugin
     at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass (SelfFirstStrategy.java:50)
     at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass (ClassRealm.java:271)
@@ -709,8 +807,6 @@ Caused by: java.lang.ClassNotFoundException: com.duanxr.mgb.plugins.IsExistsPlug
     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:225)
     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:406)
     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:347)
-
-
 ```
 
 MyBatis 动态代理库
@@ -751,7 +847,6 @@ suffix：删除子句句尾后，在子句最后边加上单个空格+suffix。
 替换sql字符串首尾
 
 ```java
-
 WHERE a = #{a}
     <trim prefix="AND(" prefixOverrides="OR" suffix=")">
         <if test="b != -1">
@@ -761,11 +856,9 @@ WHERE a = #{a}
             OR c = #{c}
         </if>
     </trim>
-
 ```
 
 ```java
-
 StaticTextSqlNode (org.apache.ibatis.scripting.xmltags)
 MixedSqlNode (org.apache.ibatis.scripting.xmltags)
 TextSqlNode (org.apache.ibatis.scripting.xmltags)
@@ -776,8 +869,6 @@ TrimSqlNode (org.apache.ibatis.scripting.xmltags)
     WhereSqlNode (org.apache.ibatis.scripting.xmltags)
     SetSqlNode (org.apache.ibatis.scripting.xmltags)
 ChooseSqlNode (org.apache.ibatis.scripting.xmltags)
-
-
 ```
 
 
@@ -868,13 +959,9 @@ Java数据类型 MySQL数据库的类型
 ## MyBatis Generator
 
 mybatis 2 3区别
-
 mybatis命名空间？
-
 namespace 接口？
-
 mybatis spring boot starter
-
 要熟悉
 
 mybatis 的连接池
