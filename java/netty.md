@@ -1,5 +1,38 @@
 # netty
 
+
+Netty boss线程池大小不为1时候咋用，干什么用，有这么用过的吗?
+netty 中 bossgroup 线程池 大小为 1吗
+
+netty 中reactor主从多线程模型，bossgroup 线程池大小默认应该为1， 那大于1有没有用呢，具体干什么用。 网上两种说法：1：说是监听多个服务器端口用； 2： Main Reactor Thread Pool(Accept Pool) 做Auth/login/shake-hand/SLA用 这两种说法哪个是正确的？ 如果2是正确的， 有没有具体的代码示例，怎么用的，在addLast那块怎么添加handler? 是跟添加业务线程池一样吗（addLast(EventExcutorGroup group,String name, ChannleHandler handler）?
+
+
+
+bossgroup 对应使用的是主reactor吗？ workgroup对应使用的是从reactor吗
+
+
+bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量是cpu核心数*2还是+1我忘了。所以bossGroup本来就是多线程。一个eventLoop可以处理多个客户端链接，而一个客户端链接只能注册在同一个eventLoop上，这才是netty的实现。什么默认大小应该为1，看看源码，不要章口就莱
+
+作者：太上玄元道君
+ https://www.zhihu.com/question/330317976/answer/723690201
+
+
+
+嗯，看源码了。默认那个我弄错了，nioeventloopgroup，默认是cpu*2。作为服务器端bossgroup线程池,会选取一个线程来作为acceptor获取客户端连接。
+我想请教的是，作为开一个监听端口的服务器端来说，boss线程池其他的线程做什么去了，是不是就没用了(前提是bossgroup没再绑定别的serverbootstrap,服务端只开一个服务端口)。
+外网查了下，stackoverflow上有个说法是多个serverbootstrap共用一个bossgroup线程池时，应该是指服务端开多个端口情况。这个应该仔细研究下源码就能知道了。
+
+
+你后面说的确实没错。server启动一个端口确实只绑定一个boss线程。它是借用了线程池的execute提交一个bind任务新启动一个线程（未到达设置的上限的时候），线程池的初始化是懒加载的，即使你设置boss大小为10，在只绑定一个端口的情况下也只是新启动了一个线程。
+
+而由于select方法是一个死循环，当前线程不会退出，所以我认为boss线程池的最大线程数量等于能绑定的端口数（EpollEventLoopGroup不确定是不是这样，因为以前学习的时候mac不支持epoll，所以当时也没再去测试）。
+
+所以如果你想多线程去accept，那就只能多绑定几个端口了
+
+
+
+
+
 - api doc
 - 书籍
 
@@ -23,6 +56,153 @@ dubbo netty
 ### jar包
 
 - 
+
+
+Java NIO（New I/O）是Java 1.4版本引入的一个新的I/O API，可以用来替换原来的Java I/O API（即Java 1.0到Java 1.3版本所使用的I/O API），提供了异步非阻塞的高效数据传输方式，适用于处理高并发、高吞吐量的应用场景。Java NIO的核心类主要包括以下几种：
+
+Buffer：缓冲区，提供了读写数据的操作，底层使用数组实现。
+Channel：通道，提供了底层传输数据的接口，可以是文件、网络套接字等。
+Selector：选择器，可以轮询多个通道的状态，进行高效的事件驱动型操作。
+Charset：字符集，提供了编码和解码的功能。
+FileChannel：文件通道，用于对文件进行读写操作。
+SocketChannel：套接字通道，用于对TCP连接进行读写操作。
+ServerSocketChannel：服务器套接字通道，用于监听TCP连接请求，并创建相应的SocketChannel。
+DatagramChannel：数据报通道，用于对UDP连接进行读写操作。
+
+
+Netty是一款高性能的网络编程框架，其核心类主要包括：
+
+Channel：表示一个网络连接的实体，类似于Java NIO中的SocketChannel。通过Channel可以读取和写入数据，注册Channel感兴趣的事件，以及获取Channel的配置等信息。
+
+EventLoop：表示一个事件循环，用于处理IO操作和事件通知。一个EventLoop通常绑定到一个或多个Channel，可以处理多个Channel上的IO操作。Netty使用了一种线程模型，即每个EventLoop都绑定到一个线程上，在该线程上运行EventLoop中的任务。
+
+ChannelPipeline：表示一个ChannelHandler的链表，用于处理Channel上的事件。每个Channel都会有一个对应的ChannelPipeline，当Channel上发生事件时，事件会从Pipeline的头部开始依次被ChannelHandler处理。
+
+ChannelHandlerContext：表示ChannelHandler和ChannelPipeline之间的上下文关系。ChannelHandler可以通过ChannelHandlerContext访问到ChannelPipeline和其他ChannelHandler，并调用相关方法。
+
+ChannelHandler：表示一个Channel的处理器，用于处理Channel上的事件。ChannelHandler通常被添加到ChannelPipeline中，并被顺序执行，以完成一系列的业务逻辑处理。
+
+Bootstrap：表示一个用于启动和连接网络连接的辅助类。通过Bootstrap可以配置Channel类型、EventLoop类型、ChannelHandler、连接超时时间等信息。
+
+ServerBootstrap：表示一个用于启动和监听网络连接的辅助类。通过ServerBootstrap可以配置Channel类型、EventLoop类型、ChannelHandler、连接超时时间、端口号等信息，并启动服务器。
+
+ByteBuf：表示一个字节缓冲区，用于在网络中传输数据。ByteBuf支持读写、引用计数、池化等操作，并提供了一些方便的方法，如get/set/read/write等。
+
+
+
+
+SingleThreadEventExecutor
+
+
+
+在 Netty 中，通常会使用两类线程来处理来自客户端的请求，一类是 boss 线程，另一类是 worker 线程。它们各自的作用如下：
+
+boss 线程
+负责监听客户端连接请求，当有新的连接请求时，会创建一个新的 SocketChannel，并将其注册到一个 worker 线程上。
+boss 线程的数量通常设置为 1。
+worker 线程
+负责处理客户端连接请求，处理读写事件，以及执行 ChannelPipeline 中的各个 Handler。
+通常有多个 worker 线程，线程的数量根据实际情况和硬件配置进行调整。
+在 Netty 中，boss 线程和 worker 线程都是 EventLoop 的实例。EventLoop 是 Netty 的核心组件之一，它负责监听并处理 IO 事件，并且提供了定时调度、异步任务执行等能力。
+
+SingleThreadEventExecutor 是 Netty 中的一个抽象类，用于表示只有一个线程的 EventExecutor 实现。它继承了 ScheduledFutureTaskQueue 和 SingleThreadEventLoop 两个类，并提供了线程执行器的基本逻辑实现，包括线程池的创建、任务执行、定时任务处理等等。在 Netty 中，boss 线程和 worker 线程都是基于 SingleThreadEventExecutor 实现的。
+
+
+
+SingleThreadEventExecutor是一个抽象类，它的实现类有以下几个：
+
+NioEventLoop：使用Java NIO实现的EventLoop，它是SingleThreadEventExecutor的子类。
+EpollEventLoop：使用Linux epoll实现的EventLoop，它也是SingleThreadEventExecutor的子类。
+KQueueEventLoop：使用BSD kqueue实现的EventLoop，同样也是SingleThreadEventExecutor的子类。
+
+
+是的，EpollEventLoop是Netty在Linux平台上使用的事件循环实现类。它利用了Linux内核中的Epoll机制来提高网络IO事件的处理效率，相比于传统的Select机制有更好的性能表现。因此，在Linux平台上，Netty默认使用EpollEventLoop来实现事件循环。而在Windows平台上，则使用另外一种实现类，即NioEventLoop。
+
+
+
+```java
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class NioServer {
+    public static void main(String[] args) throws Exception {
+        // 创建一个线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+        // 创建一个 ServerSocketChannel
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+
+        // 绑定端口
+        serverSocketChannel.socket().bind(new InetSocketAddress(8000));
+
+        // 设置非阻塞模式
+        serverSocketChannel.configureBlocking(false);
+
+        System.out.println("NioServer started on port 8000");
+
+        while (true) {
+            // 接受连接
+            SocketChannel socketChannel = serverSocketChannel.accept();
+
+            if (socketChannel != null) {
+                // 打印客户端地址
+                System.out.println("Client connected from " + socketChannel.getRemoteAddress());
+
+                // 创建一个新的客户端处理线程
+                ClientHandler clientHandler = new ClientHandler(socketChannel);
+
+                // 将线程提交到线程池中执行
+                executorService.submit(clientHandler);
+            }
+        }
+    }
+
+    static class ClientHandler implements Runnable {
+        private SocketChannel socketChannel;
+
+        public ClientHandler(SocketChannel socketChannel) {
+            this.socketChannel = socketChannel;
+        }
+
+        @Override
+        public void run() {
+            ByteBuffer buffer = ByteBuffer.allocate(1024);
+            Charset charset = Charset.forName("UTF-8");
+
+            try {
+                while (socketChannel.read(buffer) > 0) {
+                    buffer.flip();
+                    String request = charset.decode(buffer).toString();
+                    System.out.println("Received message from client: " + request);
+
+                    // Echo the request back to the client
+                    socketChannel.write(charset.encode("Echo: " + request));
+
+                    buffer.clear();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    socketChannel.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+```
+
+
+
 
 ### 核心类
 

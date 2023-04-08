@@ -1,6 +1,101 @@
 # Java标准库
 
 
+Java SE中常用的package主要包括以下几个：
+
+java.lang：包含Java语言的核心类，如Object、String、Thread等。
+
+java.util：包含常用的工具类，如集合类（List、Set、Map等）、日期类（Date、Calendar等）、随机数类（Random）、UUID生成器等。
+
+java.io：包含输入输出相关的类，如文件操作类、网络操作类、序列化类等。
+
+java.net：包含网络编程相关的类，如Socket、URL等。
+
+java.awt和javax.swing：分别是抽象窗口工具包和Swing图形用户界面工具包，用于开发图形化界面应用程序。
+
+java.math：用于数学计算的类，如BigDecimal、BigInteger等。
+
+java.sql：用于数据库操作的类，如JDBC相关的类等。
+
+java.nio：用于非阻塞式I/O操作的类，如Buffer、Channel、Selector等。
+
+java.security：用于安全相关的类，如加密、数字签名等。
+
+java.text：用于处理文本的类，如DateFormat、NumberFormat等。
+
+java.time：用于处理时间的类，如LocalDate、LocalDateTime、Duration等。
+
+java.lang.reflect：用于反射操作的类，如Class、Method、Constructor等。
+
+以上是Java SE中常用的package及其作用，可以满足Java程序开发的大部分需求。
+
+
+
+
+
+java.sql包是Java提供的操作关系型数据库的核心API之一，其中包含了许多接口、注解和类。以下是java.sql包中比较重要的接口、注解和类：
+
+接口：
+
+Connection：表示一个数据库连接。
+Statement：用于执行静态 SQL 语句并返回它所生成结果的对象。
+PreparedStatement：是 Statement 的子接口，它表示一个预编译的 SQL 语句的对象。
+CallableStatement：是 PreparedStatement 的子接口，它用于调用存储过程或函数。
+ResultSet：表示一组数据库查询结果。
+ResultSetMetaData：描述 ResultSet 对象的元数据，例如 ResultSet 中包含哪些列等信息。
+DatabaseMetaData：描述数据库的元数据，例如数据库名称、版本号、驱动名称、驱动版本等信息。
+RowSet：是 ResultSet 的子接口，可以使用 RowSet 封装数据并进行序列化。
+Savepoint：表示事务处理中的保存点，可以在该点处回滚事务。
+注解：
+
+SQLType：指定 SQL 类型。
+SQLData：表示自定义 SQL 数据类型的注解。
+类：
+
+DriverManager：提供了连接到数据库的方法。
+Blob：用于操作二进制数据的对象。
+Clob：用于操作字符数据的对象。
+SQLWarning：表示数据库访问期间发生的警告。
+SQLException：表示数据库访问期间发生的异常。
+Types：定义了常用 SQL 数据类型的常量。
+Date：表示 SQL DATE 值。
+Time：表示 SQL TIME 值。
+Timestamp：表示 SQL TIMESTAMP 值。
+这里列举的只是java.sql包中比较重要的一部分接口、注解和类，还有其他的一些接口、注解和类，如果需要深入学习可以查看Java官方文档。
+
+
+
+
+
+Java中的I/O（输入/输出）分为同步和异步两种方式。同步I/O在进行数据读写时，线程需要一直等待I/O操作完成，直到读写完成才能进行其他操作。异步I/O则是在进行数据读写时，线程可以继续执行其他操作，当数据读写完成后再通知线程进行处理。Java中，同步I/O一般采用传统的I/O模型，异步I/O一般采用NIO（New I/O）模型。
+
+BIO（Blocking I/O）模型是同步I/O的一种实现方式，它采用阻塞方式进行数据读写操作。当一个线程进行I/O操作时，如果该操作没有完成，该线程就会被阻塞，等待I/O操作完成后才能进行其他操作。BIO模型适用于单线程或者并发请求数较小的情况，但是在高并发的场景下，BIO模型的效率很低。
+
+NIO（Non-blocking I/O）模型是异步I/O的一种实现方式，它采用事件驱动方式进行数据读写操作。当一个线程进行I/O操作时，如果该操作没有完成，该线程不会被阻塞，而是继续执行其他操作。当数据读写完成后，会通知线程进行处理。NIO模型适用于并发请求数较大的情况，但是NIO模型的编程模型比较复杂。
+
+Java 7引入了NIO.2（Java NIO with Non-blocking I/O (NIO.2)）API，包括文件系统API、异步套接字通道、Socket编程协议升级、多播、缓冲器池等功能，提高了NIO编程的易用性和灵活性，简化了编程模型。Java 8进一步增强了NIO.2 API，包括新的File API、CompletionHandler和CompletionStage等功能，提高了异步编程的效率和易用性。
+
+
+
+
+
+Java 8中常用的函数接口有以下几个：
+
+Predicate<T>：接受一个输入参数，返回一个布尔值结果。
+Consumer<T>：接受一个输入参数，无返回值。
+Function<T, R>：接受一个输入参数，返回一个结果。
+Supplier<T>：无输入参数，返回一个结果。
+UnaryOperator<T>：接受一个参数为类型T，返回值为类型T。
+BinaryOperator<T>：接受两个参数为类型T，返回值为类型T。
+此外，Java 8还引入了一些新的类来支持Lambda表达式，包括：
+
+Optional：一个容器，用于表示可能存在或不存在的值。
+Stream：用于支持集合和数组上的函数式操作。
+CompletableFuture：一个异步计算的容器，可以在计算完成后获取其结果。
+这些函数接口和类为Lambda表达式的使用提供了更多的便利，同时也让Java代码更加简洁和易读。
+
+
+
 
 Condition在Concurrent包中，主要用于替代以前对象Object上的wait()、notify()等方法实现线程间的协作。
 相比wait()、notify()，Condition根据和Lock的结合，可以实现更复杂和精细的线程协同和等待。
