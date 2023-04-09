@@ -1,8 +1,56 @@
 # mybatis
 
+
+SqlSessionFactoryBuilder
+build()方法
+
 - 通用源码阅读指导书：MyBatis源码详解
 - mybatis3源码深度解析
 - 手写MyBatis：渐进式源码实践
+
+
+
+
+类型别名是你的好帮手。使用它们，你就可以不用输入类的全限定名了。比如：
+
+<!-- mybatis-config.xml 中 -->
+<typeAlias type="com.someapp.model.User" alias="User"/>
+
+<!-- SQL 映射 XML 中 -->
+<select id="selectUsers" resultType="User">
+  select id, username, hashedPassword
+  from some_table
+  where id = #{id}
+</select>
+
+
+
+#{}和${}两者含义不同
+
+#会把传入的数据都当成一个字符串来处理，会在传入的数据上面加一个双引号来处理。
+而$则是把传入的数据直接显示在sql语句中，不会添加双引号。
+
+
+
+Mybatis Dynamic SQL
+https://mybatis.org/mybatis-dynamic-sql/docs/introduction.html
+
+
+Mybatis Dynamic SQL 是 Mybatis 团队出的一个框架，兼容 Mybatis3 的生态，但与 Mybatis 最大的不同是：你既不用在 XML 里写 SQL，也不用在 Annotation 里拼接 SQL（用 Java 拼接过复杂字符串的都懂），而是直接以 Java 的方式去写 SQL。
+
+这样会带来以下好处
+
+Typesafe：在编译期就可以确保你的 sql 参数类型和列类型是一致的
+Expressive：这就是要执行的 SQL 的样子
+Flexible：再复杂的 if else、and、or 都能轻松实现
+Mybatis Generator
+Mybatis Generator 也是 Mybatis 团队出的代码自动生成工具，它支持 Mybatis3、Mybatis-Dynamic-SQL 等类型的代码生成。提供了非常多的扩展点和预定义配置项，使得用户可以灵活的自定义生成规则。
+
+并且 Generator 也支持多种生成模式，用户可以根据使用场景自行选择
+
+command 模式：可以通过命令行生成代码
+Maven 插件：直接集成在 Maven 构建工具中
+Java Runtime 模式：通过编写 Java 代码然后运行来生成
 
 
 

@@ -67,7 +67,9 @@ public interface CompletionHandler<V,A> {
 ### Chap. 4
 
 继承ChannelHandlerAdapter，实现业务读写操作
-ChannelHandlerContext
+ChannelHandlerContext   io.netty.channel.ChannelHandlerContext 接口
+
+writeAndFlush(Object o)
 
 
 粘包
@@ -84,5 +86,91 @@ io.netty.handler.codec.string.StringDecoder
 MessageToMessageDecoder
 MessageToByteEncoder
 这两个抽象类
+
+
+### Chap. 5
+
+FixedLengthFrameDecoder
+
+DelimiterBasedFrameDecoder
+
+delimiter 分隔符 定界符
+
+### 6序列化方案
+
+pb
+thrift
+jboss  Marshalling
+
+### 7
+
+io.netty.handler.codec.serialization.ObjectDecoder
+
+ObjectEncoder
+
+第8 章Google Protobuf 编解码
+
+第9 章JBoss Marshalling 编解码
+
+
+
+
+请求方法有多种，各方法的作用如下。
+GET：请求获取Request-URI所标识的资源；
+POST：在Request-URI所标识的资源后附加新的提交数据；
+HEAD：请求获取由Request-URI所标识的资源的响应消息报头；
+PUT：请求服务器存储一个资源，并用Request・URI作为其标识；
+DELETE：请求服务器删除Request-URI所标识的资源；
+TRACE：请求服务器回送收到的请求信息，主要用于测试或诊断：
+CONNECT：保留将来使用；
+OPTIONS：请求查询服务器的性能，或者查询与资源相关的选项和需求。
+
+### 10
+
+http实现文件服务器handler继承抽象类
+SimpleChannelInboundHandler
+
+
+FullHttpRequest
+
+
+			    ChannelPipeline pipeline = ch.pipeline();
+			    pipeline.addLast("http-codec",
+				    new HttpServerCodec());
+			    pipeline.addLast("aggregator",
+				    new HttpObjectAggregator(65536));
+			    ch.pipeline().addLast("http-chunked",
+				    new ChunkedWriteHandler());
+
+public final class HttpServerCodec extends ChannelHandlerAppender
+
+io.netty.handler.codec.http.HttpServerCodec
+
+io.netty.handler.codec.http.HttpObjectAggregator
+
+io.netty.handler.stream.ChunkedWriteHandler
+
+### 11
+ws
+
+
+WebSocketFrame
+
+
+
+
+源码分析篇 Netty 功能介绍和源码分析
+
+第15 章ByteBuf 和相关辅助
+
+16 章Channel 和Unsafe
+
+17 章ChannelPipeline 和ChannelHandler
+
+18 章EventLoop 和EventLoopGroup
+
+19 章Future 和Promise
+
+20 章Netty 架构剖析
 
 

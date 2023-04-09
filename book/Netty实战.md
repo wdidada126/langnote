@@ -1,6 +1,6 @@
 # Netty实战
 
-
+Netty权威指南（第2版）
 https://book.douban.com/subject/26373138/
 
 - - EventLoop—控制流、多线程处理、并发
@@ -31,9 +31,10 @@ Shujifenwei四篇
 
 插值器设计模式
 
+第一部分 Netty的概念及体系结构
 
 
-### Chap. 1
+### Chap. 1  Netty——异步和事件驱动
 
 java.net
 
@@ -69,10 +70,10 @@ BytebufHandler
 ChannelHandler
 ChannelFuture
 ChannelxxxContext
-ChannelPinpile
+ChannelPinpile  责任链模式
 
 ### Chap. 6
-EventLop
+EventLoop
 线程池
 
 ### Chap. 7
@@ -84,11 +85,11 @@ EventLop
 
 解码器
 
-Chap. 8
+### Chap. 8
 
 
 
-Chap. 9
+### Chap. 9
 
 EmbededChannel 单元测试
 
