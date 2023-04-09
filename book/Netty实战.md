@@ -33,7 +33,7 @@ Shujifenwei四篇
 
 第一部分 Netty的概念及体系结构
 
-
+第一部分 Netty的概念及体系结构
 ### Chap. 1  Netty——异步和事件驱动
 
 java.net
@@ -47,7 +47,7 @@ ServerSocker是阻塞的
 nio会有什么问题来着？
 
 
-### Chap. 2
+### Chap. 2 你的第一款Netty应用程序
 NIO
 
 BIO
@@ -58,25 +58,25 @@ epoll
 
 embeded
 
-### Chap. 3
+### Chap. 3 Netty的组件和设计
 e
-### Chap. 4
+### Chap. 4 传输
 Bytebuf
 BytebufHandler
 
 
 
-### Chap. 5
+### Chap. 5 ByteBuf
 ChannelHandler
 ChannelFuture
 ChannelxxxContext
 ChannelPinpile  责任链模式
 
-### Chap. 6
+### Chap. 6 ChannelHandler 和ChannelPipeline
 EventLoop
 线程池
 
-### Chap. 7
+### Chap. 7 EventLoop 和线程模型
 
 
 
@@ -85,13 +85,16 @@ EventLoop
 
 解码器
 
-### Chap. 8
+### Chap. 8 引导
 
 
 
-### Chap. 9
+### Chap. 9 单元测试
 
 EmbededChannel 单元测试
+
+
+## 第二部分 编解码器
 
 ### Chap.10 解码器框架
 
@@ -99,7 +102,7 @@ EmbededChannel 单元测试
 
 
 
-### Chap.11 
+### Chap.11 预置的ChannelHandler和编解码器
 
 http封装
 
@@ -118,4 +121,15 @@ addLast
 addFirst encode decode
 
 ChannelInitianl
+
+第三部分 网络协议
+
+### Chap.12 WebSocket 
+
+### Chap.13 使用UDP 广播事件
+
+## 第四部分 案例研究
+### Chap.14 案例研究，第一部分
+
+### Chap.15 案例研究，第二部分
 

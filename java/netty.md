@@ -19,6 +19,13 @@ https://speakerdeck.com/trustin
 - netty-example
 
 
+Dubbo是如何使用Netty的
+使用netty实现telnet
+
+netty是如何实现http协议的，重点分析下
+
+
+
 应用场景：
 
 pop stmp协议发送邮件

@@ -1,6 +1,9 @@
 # mybatis
 
 
+### mybatis缓存策略
+使用escache三方缓存
+
 SqlSessionFactoryBuilder
 build()方法
 
