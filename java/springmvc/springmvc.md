@@ -1,5 +1,9 @@
 # springmvc
 
+
+DispatcherServlet类的父类是FrameworkServlet。FrameworkServlet是一个抽象类，它实现了Servlet的init()和service()方法，并提供了对Spring应用程序上下文的支持。DispatcherServlet继承了FrameworkServlet，进一步扩展了其功能，实现了Web MVC框架的核心控制器功能。
+
+
 2023-03-27 02:05:11.405  WARN 2236 --- [nio-9990-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved exception caused by handler execution: org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
 
 

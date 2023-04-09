@@ -1,5 +1,12 @@
 # xpath
 
+
+XPath是一种在XML文档中查找信息的语言，它可以用来查询XML文档中的元素、属性、文本等信息。在C++中，可以使用第三方库来实现XPath的解析和查询，例如Xerces-C++和libxml2等库。
+
+下面以Xerces-C++为例，介绍如何在C++中使用XPath。
+
+
+
 chrome xpath helper 选中节点 -> copy > copy xpath
 https://blog.csdn.net/love666666shen/article/details/72613143
 

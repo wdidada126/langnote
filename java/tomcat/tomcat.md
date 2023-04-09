@@ -1,6 +1,15 @@
 # Tomcat
 
 
+
+Coyote的AbstractProcessor类如何处理http body
+
+Coyote是Tomcat中处理HTTP请求的核心组件，而AbstractProcessor是Coyote处理请求的核心类之一，主要负责解析HTTP请求头和请求体，并将其封装成Request对象，传递给Tomcat中的其他组件进行处理。
+在AbstractProcessor中，处理HTTP请求体的方法为parseRequest()，该方法通过获取Content-Length请求头判断请求体的长度，然后根据Content-Type请求头决定请求体的数据格式（如application/x-www-form-urlencoded、multipart/form-data等），最终将请求体中的数据解析并封装到Request对象中。具体实现细节可以参考AbstractProcessor类的源码。
+
+
+
+
 servlet 单例多线程
 
 servlet类 不能有经常更改的属性
