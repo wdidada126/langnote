@@ -6,5 +6,63 @@ windows上有
 
 
 
-https://book.douban.com/subject/26740520/
+https://book.douban.com/subject/26740520/ 第一版
+
+
+
+# Java性能权威指南（第2版） 
+
+
+
+
+
+https://book.douban.com/subject/35867531/
+
+
+
+第 2章　性能测试方法
+
+第3 章　Java 性能工具箱
+
+
+
+
+
+第4 章　使用即时编译器
+
+
+
+第5 章　垃圾回收简介
+
+
+
+第6 章　垃圾回收算法
+
+
+
+第7 章　堆内存最佳实践
+
+
+
+第8 章　原生内存最佳实践
+
+
+
+第9 章　线程和同步性能
+
+
+
+ForkJoinPool
+
+
+
+第 10 章　Java 服务器
+
+
+
+NIO
+
+第 11 章　数据库性能最佳实践
+
+
 

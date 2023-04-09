@@ -1,7 +1,7 @@
 # MyBatis从入门到精通
 
 
-![mybatis](imgs/mybatis_architect.png)
+![mybatis](../imgs/mybatis_architect.png)
 
 
 参数映射
@@ -25,19 +25,19 @@ tk-mybatis
 
 Mybatis架构图
 xml解析
-自带数据连接池
+自带数据连接池      使用dbcp连接池
 
-动态代理生成类
-插件体系
+动态代理生成类  MapperProxy继承Invocation
+插件体系  Plugin劫持StateStatement
 
 缓存 数据源 执行器 日志 反射 脚本 会话 事务
-
 
 jdk自带的api
 mysql-connector-java的api
 mybatis的api
 jdbc-templete的api
 区别
+
 
 
 MyBatis java api doc
@@ -47,7 +47,6 @@ mybatis-spring架构图
 
 
 mybatis 设计模式
-
 
 命名空间
 interface
@@ -109,7 +108,6 @@ bind
 
 需要记忆的点
 
-
 where 元素只会在子元素返回任何内容的情况下才插入 “WHERE” 子句。而且，若子句的开头为 “AND” 或 “OR”，where 元素也会将它们去除。
 <where>
 
@@ -130,7 +128,6 @@ where 元素只会在子元素返回任何内容的情况下才插入 “WHERE�
   where id=#{id}
 </update>
 ```
-
 
 @Update({"<script>",
   "update Author",
@@ -219,7 +216,6 @@ if test后面是ongl表达式
 == != null 适用于所有类型数据
 == != '' 仅仅是String
 
-
 <where>
   <set>
 
@@ -255,8 +251,17 @@ JO. e.property ： 对象属性值
 
 
 
-
 bind concat
+
+
+
+
+
+4.4.2 foreach实现批量插入 预处理 耗时长，开启 Mybatis BATCH模式
+
+
+
+
 
 ## Chap. 5 Mybatis生成器
 
@@ -271,11 +276,21 @@ bind concat
 
 
 
+
+
+使用自定义的类型处理器
+
+
+
+
+
 ### Chap. 7 MyBatis缓存配置
 
 
 
 ### Chap. 8 MyBatis插件开发
+
+重点
 
 
 
@@ -293,3 +308,4 @@ bind concat
 
 ### Chap.11 MyBatis开源项目
 
+git啥的
