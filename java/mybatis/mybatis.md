@@ -1,5 +1,7 @@
 # mybatis
 
+mybatis高效插入
+https://zhuanlan.zhihu.com/p/35305211
 
 ### mybatis缓存策略
 使用escache三方缓存

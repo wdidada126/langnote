@@ -14,6 +14,11 @@ OPTIONS：请求查询服务器的性能，或者查询与资源相关的选项�
 
 
 ### http rfc
+
+好几个rfc文档吧
+鉴权 授权
+
+
 apache http client
 https://hc.apache.org/httpcomponents-client-5.1.x/index.html
 

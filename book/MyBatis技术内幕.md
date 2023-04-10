@@ -84,7 +84,7 @@ XMLMapperEntityResolver
 
 
 
-Property Parser. parse（）方
+PropertyParser. parse()方
 
 
 
