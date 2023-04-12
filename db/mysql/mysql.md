@@ -1,5 +1,9 @@
 # mysql
 
+
+Heal表的大小可通过称为 max_heap_table_size 的 Mysql 配置变量来控制。
+
+
 mysql gtid
 https://www.cnblogs.com/zhang-ding-1314/p/15125188.html
 

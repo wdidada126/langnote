@@ -1038,8 +1038,7 @@ pagerhelper例子
 
 
 
-git@github.com:edidada/ssm.git
-
+https://github.com/edidada/ssm
 
 tk.mapper
 

@@ -1,6 +1,10 @@
 # netty
 
 
+Trustin Lee的作品
+https://twitter.com/trustin
+https://speakerdeck.com/trustin
+
 Netty boss线程池大小不为1时候咋用，干什么用，有这么用过的吗?
 netty 中 bossgroup 线程池 大小为 1吗
 
@@ -39,9 +43,17 @@ bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量
 
 - netty实战
 - netty权威指南
+- Netty原理剖析与实战
 - 闪电侠netty源码课
 - [netty 4 guide](https://github.com/waylau/netty-4-user-guide)
 - netty-example
+
+
+Dubbo是如何使用Netty的
+使用netty实现telnet
+
+netty是如何实现http协议的，重点分析下
+
 
 
 应用场景：
@@ -206,10 +218,22 @@ public class NioServer {
 
 ### 核心类
 
+
+ChannelInboundHandlerAdapter ChannelHandlerAdapter区别
+ChannelInboundHandlerAdapter我们通常会继承此类，覆写上面的channelRead方法，加入自己的逻辑处理。
+
+SimpleChannelInboundHandler是有泛型参数的。
+
 DirectByteBuf
 
-ByteBuf
-ByteBuffer
+ByteBuf    netty的类
+ByteBuffer   java se的类
+
+ （1）   ByteBuffer长度固定，一旦分配完成，它的容量不能动态扩展和收缩，当需要编 码的POJO对象大于ByteBuffer的容量时，会发生索引越界异常；
+  （2）   ByteBuffer只有一个标识位置的指针position,读写的时候需要手工调用flip。和 rewind。等，使用者必须小心谨慎地处理这些API,否则很容易导致程序处理失败；
+  （3）   ByteBuffer的API功能有限，一些高级和实用的特性它不支持，需要使用者自己 编程实现。
+  为了弥补这些不足，Netty提供了自己的ByteBuffer实现-ByteBuf,下面我们一起
+学习ByteBuf的原理和主要功能。
 
 
 ByteBuf又分为两种，DirectByteBuf和HeapByteBuf。简而言之就是一种是分配在Direct Memory上的，一种是分配在Heap Memory上的。
