@@ -1,5 +1,22 @@
 
 
+
+深入理解JUC： 博文系列，不是书籍
+
+第二章：CAS：CompareAndSwap底层原理
+
+https://blog.csdn.net/java_wxid/article/details/97611037
+
+原子变量
+
+三大类
+
+aba问题解决：juc里面的stammpleReference markableReference
+
+
+
+
+
 1.准备
 
 pom.xml 依赖如下：

@@ -1,6 +1,32 @@
 # Java标准库
 
 
+
+Java
+
+STW
+
+Stop The World
+
+垃圾回收
+
+Cms
+
+Parnew
+
+垃圾回收，单线程
+
+gc.log
+
+https://blog.csdn.net/qq_32641659/article/details/88030753
+
+
+
+
+
+
+
+
 P1
 互联网P8架构师的工作内容与能力重点是什么？
 
