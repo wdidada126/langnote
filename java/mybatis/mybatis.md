@@ -44,7 +44,12 @@ MyBatis查询数据的顺序是：
 
 二级缓存 ———> 一级缓存——> 数据库
 
-
+        <dependency>    　　
+            <groupId>org.slf4j</groupId>    　　
+            <artifactId>slf4j-simple</artifactId>    　　
+            <version>1.7.25</version>    　　
+            <scope>compile</scope>
+        </dependency>
 
 使某条Select查询支持二级缓存，你需要保证：
 
