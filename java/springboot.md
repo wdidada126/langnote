@@ -1,6 +1,15 @@
 # Spring Boot
 
 
+Spring Boot 默认使用 Logback 作为日志框架
+
+使用log4j2
+https://developer.aliyun.com/article/757562
+
+
+使用logback
+https://www.jianshu.com/p/3a9e32d9d347
+
 springboot 命令行运行
 需要配置maven插件
             <plugin>

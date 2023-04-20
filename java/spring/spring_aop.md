@@ -1,6 +1,82 @@
 # Spring Aop
 
-https://gitee.com/edidada/springbootwebaop
+https://gitee.com/edidada/spring-aopexample
+https://github.com/edidada/testmybatisspring   spring aop
+
+
+https://gitee.com/edidada/springbootwebaop  spring boot aop实现
+
+### 应用领域
+日志 数据库事务 安全 缓存
+
+
+私有的方法spring的aop是不是不会生效的吗？
+
+Spring AOP默认使用的是JDK动态代理，而JDK动态代理只能代理实现了接口的类，对于没有实现接口的类，Spring AOP会选择使用CGLIB来动态代理。CGLIB是一个强大的高性能的代码生成库，它可以在运行期扩展Java类与实现Java接口。但是，CGLIB不能代理final修饰的方法和类，同时也不能代理static修饰的方法和类。对于private方法，在Spring使用纯Spring AOP（只能拦截public/protected/包）都是无法被拦截的
+
+
+
+
+spring AOP的五种通知 Advice
+1、@Before：
+前置通知，在目标方法执行前执行。
+2、@After ：
+后置通知，在目标方法返回结果之后执行，无论是否出现异常都会执行。
+3、@AfterReturning：
+返回后通知，在目标方法执行后执行，如果出现异常不会执行。
+4、@AfterThrowing：
+异常通知，在目标方法抛出异常后执行。
+5、@Around：
+环绕通知，围绕着方法执行.
+
+
+JoinPoint
+
+poincut
+
+Aspect
+
+Introduce
+
+Weaveing
+
+
+
+@Aspect注解作用
+这个类是一个spring bean
+声明aop
+
+
+D:\git\github\langnote\imgs\spring\spring_aop声明通知方法.PNG
+aspect切点表达式.PNG
+
+java切面.PNG
+
+非侵入xml切面1.PNG
+非侵入xml切面2.PNG
+
+### 相关资料
+
+spring实战4章
+
+https://docs.spring.io/spring-framework/docs/3.0.x/spring-framework-reference/html/aop.html
+
+spring aop没有生效
+
+https://blog.csdn.net/weixin_39681171/article/details/113039439
+
+
+```java
+    @Pointcut("execution(public * cn.wdidada.test.springbootwebaop..*.*(..))")
+```
+
+
+匹配哪些方法
+修饰符 返回值 类名 方法名 参数个数类型
+
+
+
+
 
 创建注解
 创建spring容器类 添加@Aspect注解
@@ -19,7 +95,7 @@ https://gitee.com/edidada/springbootwebaop
     }
 ```
 
-https://gitee.com/edidada/spring-aopexample
+
 
 
 如何强制使用CGLIB实现AOP？
@@ -87,7 +163,7 @@ public class MyPersonalAnnotationAspect {
 
 Pointcut is not well-formed: expecting 'identifier' at character position 0
 
-Spring 切面必须是Java Bean？
+Spring 切面必须是Java Bean？ 对
 MyPersonalAnnotationAspect不加Component注解就不会生效
 
 

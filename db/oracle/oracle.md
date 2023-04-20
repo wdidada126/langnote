@@ -1,6 +1,13 @@
 # oracle
 
 
+
+
+Oracle 返回id
+https://blog.csdn.net/mlsama/article/details/106690730
+
+
+
 ### oracle 11g docker安装
 
 Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
