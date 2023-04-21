@@ -1,4 +1,8 @@
 # oauth
+OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。
+
+http://www.ruanyifeng.com/blog/2019/04/oauth_design.html
+
 
 https://oauth.net/2/
 
@@ -52,10 +56,6 @@ oauth2是一个行业标准的授权协议, 包含一系列流程和标准
 jwt只是指Json web token,  只是一种token的形式
 你可以在使用oauth2流程的时候授权一个jwt形式的token, 也可以使用其它形式的token, bearer token, mac token等等
 你也可以不用oauth2流程, 在自己的授权流程里使用jwt
-作者：步行鸟
-链接：https://www.zhihu.com/question/392620649/answer/1200353618
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 FavOAuth2
 
@@ -99,7 +99,7 @@ FavOAuth2
 
 
 
-spring security实现了oauth2
+oltu、cxf、spring security实现了oauth2
 
 https://blog.csdn.net/u013435893/article/details/79735097
 
@@ -112,9 +112,6 @@ https://blog.csdn.net/u013435893/article/details/79735097
 
 
 不建议基于oatuh2实现sso. ??
-
-
-
 sso可以使用cas实现
 
 

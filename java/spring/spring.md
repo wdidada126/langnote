@@ -1,7 +1,89 @@
 # Spring
 
-PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{ }来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：1。
-已收到消息. PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{ }来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：。
+
+
+https://gitee.com/edidada/summer-framework
+
+廖雪峰 自己写spring
+https://www.liaoxuefeng.com/wiki/1539348902182944
+
+bean生命周期.png
+Spring 容器中的bean的生命周期.png
+
+
+Spring 对bean 进行实例化。
+  Spring 将值和bean的引用注入到bean对应的属性中。
+  如果bean实现了BeanNameAware接口，Spring将bean的ID传递给setBean-Name()  方法。
+  如果bean 实现了BeanFactoryAware接口，Spring将调用setBeanFactory() 方法，将BeanFactory容器实例传入。
+  如果bean实现了ApplicationContextAware接口，Spring将调用setApplicationContext() 方法，将bean所在的应用上下文的引用传入进来。
+  如果bean实现了BeanPostProcessor接口，Spring将调用它们的post-ProcessBeforeInitialization() 方法
+  如果bean实现了InitializingBean接口，Spring将调用它们的after-PropertiesSet()方法。类似的，如果bean使用init-method声明了初始化方法，该方法也会被调用。
+  如果bean实现了BeanPostProcessor接口，Spring将调用它们的post-ProcessAfterInitialization() 方法。
+  此时, bean 已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁。
+  如果bean实现了DisposableBean接口，Spring将调用它的destory()接口方法。同样,如果bean使用destroy-method声明了销毁方法，该方法也会被调用。
+ 
+
+https://www.cnblogs.com/misscai/p/14749225.html
+
+
+### bean属性及子元素使用总结 13属性 6子元素
+
+bean标签
+标签属性
+id
+id是bean的唯一标识符，在spring容器中不可能同时存在两个相同的id；
+class
+类的全限定名（包名+类名），用“.”号连接；
+name
+别名（alias），用法：getBean("name")，支持设置多个别名，之间用英文逗号分割；
+abstract
+设置bean是否为抽象类，默认abstract="false",如果设为true，将不能被实例化；
+autowire-candidate
+默认为true，如果为false，那么该bean不能作为其他bean自动装配的候选者。
+
+autowire
+default（默认）：采用父级标签beans中的default-autowire属性；
+byName：通过属性名称来自动装配，即A类中的B对象名称为name，那么将根据id="name"找到该bean进行装配，A类必须提供setName方法；
+byType：根据属性类型来找到和配置文件中配置的class类型一致的bean来自动装配，如果找到多个类型一致的bean，则抛异常，如果一个都没有找到，则不执行装配操作，也不抛出异常。
+no：不执行自动装配操作，只能用<ref>标签进行装配；
+constructor：根据构造器中参数类型来自动装配，如果找到多个类型一致的bean，则抛异常，如果一个都没有找到，则不执行装配操作，但是抛出异常（这是和byType不一样的地方）。
+“autodetect”（spring3之前有该值，从spring4开始该值被抛弃）:通过Bean类的反省机制（introspection）决定是使用“constructor”还是使用“byType”。
+depends-on
+它的作用是一个bean实例化的过程需要依赖于另一个bean的初始化，也就是说被依赖的bean将会在需要依赖的bean初始化之前加载。多个依赖bean之间用","号分割；
+destroy-method
+它的作用是在销毁bean之前可以执行指定的方法。注意：必须满足scope="singleton"，并且destroy方法参数个数不能超过1，并且参数类型只能为boolean。
+init-method
+它的作用是在创建一个bean之后调用该方法，初始化方法必须是一个无参方法。
+factory-bean和factory-method
+设置了factory-bean属性后，将指定创建bean的工厂类对象，class属性将失效；
+lazy-init
+设置bean对象是否懒加载，如果设为true，则应用第一次用到bean时才实例化对象，否则在初始化spring容器时加载单例bean对象。（非单例不实例化）
+parent
+指定bean的父类，class属性失效。
+primary
+当一个bean出现多个候选者时，设置primary="true"后，则优先使用该bean来自动装配。
+
+scope
+bean的作用范围，它包括
+singleton：单例，指定该bean在spring容器中只有一个对象，所有通过getBean获得的对象都是同一个对象。
+prototype：只要重新获取该bean，都将返回一个不同的对象。
+request：在一次http请求中对应一个bean，类似于servlet
+session：在一次会话中对应一个bean。
+
+
+子标签属性
+<meta>
+<lookup-method>
+<replaced-method>
+<constructor-arg>
+<property>
+<qualifier>
+
+
+
+https://github.com/edidada/SpringExample
+
+PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{}来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：1。已收到消息.PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{ }来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：。
 了解详细信息:
 https://www.cnblogs.com/juniorMa/p/14323883.html
 
