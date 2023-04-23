@@ -1957,10 +1957,24 @@ session.close();
 
 ### MyBatis四大组件之Executor执行器
 
-每一个SqlSession都会拥有一个Executor对象，这个对象负责增删改查的具体操作，我们可以简单的将它理解为 JDBC中Statement 的封装版。
+每一个SqlSession都会拥有一个Executor对象，这个对象负责增删改查的具体操作，我们可以简单的将它理解为JDBC中Statement的封装版。
 https://zhuanlan.zhihu.com/p/80497754
 
 public enum ExecutorType {
   SIMPLE, REUSE, BATCH
 }
+
+
+Mybatis是如何将Mapper接口注册到Spring IoC的
+https://zhuanlan.zhihu.com/p/256425436
+
+mybatis_spring.png
+
+ImportBeanDefinitionRegistrar接口
+
+ImportBeanDefinitionRegistrar是Spring3.1开始引入的一个接口，用来动态注册bean定义的接口。通过@Import方式引入，和ImportSelector用法类似，通常和EnvironmentAware、BeanFactoryAware、BeanClassLoaderAware、ResourceLoaderAware接口一起使用。其作用就是把模糊的概念明确化，把抽象的东西实例化，为本地服务提供更方便的使用或者服务调用。
+
+
+BeanDefinitionRegistryPostProcessor
+BeanDefinitionRegistryPostProcessor是BeanFactoryPostProcessor的子接口,BeanFactoryPostProcessor的作用是在Spring Bean的定义信息已经加载但还没有初始化的时候执行postProcessBeanFactory()来处理一些额外的逻辑，而BeanDefinitionRegistryPostProcessor的作用是在BeanFactoryPostProcessor增加了一个前置处理，当一个Bean实现了该接口后，始化前先执行该接口的postProcessBeanDefinitionRegistry()方法，然后再执行其父类的方法postProcessBeanFactory()。这样就把一个Spring Bean的初始化周期更加细化，让我们在各个阶段有定制它的可能。
 

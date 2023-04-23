@@ -2,6 +2,30 @@
 OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。
 
 http://www.ruanyifeng.com/blog/2019/04/oauth_design.html
+https://datatracker.ietf.org/doc/html/rfc6749
+
+简单说，OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。
+令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。
+（1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。
+（2）令牌可以被数据所有者撤销，会立即失效。以上例而言，屋主可以随时取消快递员的令牌。密码一般不允许被他人撤销。
+（3）令牌有权限范围（scope），比如只能进小区的二号门。对于网络服务来说，只读令牌就比读写令牌更安全。密码一般是完整权限。
+
+也就是说，OAuth 2.0 规定了四种获得令牌的流程。你可以选择最适合自己的那一种，向第三方应用颁发令牌。下面就是这四种授权方式。
+
+授权码（authorization-code）
+隐藏式（implicit）
+密码式（password）：
+客户端凭证（client credentials）
+
+
+
+1、https://b.com/oauth/authorize?response_type=code
+一共有4步，第三步会发送https://b.com/oauth/token?grant_type=authorization_code
+2、https://b.com/oauth/authorize?response_type=token
+3、https://oauth.b.com/token?grant_type=password
+4、https://oauth.b.com/token?grant_type=client_credentials
+
+https://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html
 
 
 https://oauth.net/2/

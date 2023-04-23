@@ -1,5 +1,8 @@
 # cpp
 
+
+https://www.youtube.com/@cppweekly
+
 libxml2
 
 https://www.cnblogs.com/fnlingnzb-learner/p/7040726.html

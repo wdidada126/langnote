@@ -49,3 +49,9 @@ https://blog.csdn.net/Fishermen_sail/article/details/128850396
 总结：一个code授权码，一个token令牌
 
 client_id client_sercurite
+
+
+oltu 简介:
+Apache Oltu是OAuth协议的Java语言实现。它也包含其他oauth 的协议如JWT JWS OpenID ,是apache 基金会提供的开源项目 官网:http://oltu.apache.org/
+https://blog.csdn.net/lipingping951462/article/details/53098866
+

@@ -3,8 +3,30 @@
 
 
 token，是一个字符串
+例子：eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKb2UifQ.1KP0SsvENi7Uz1oQc07aXTL7kpQG5jBNIybqr60AlD4
 
 
+### jwt vs redis+token
+JWT: 生成并发给客户端之后，后台是不用存储，客户端访问时会验证其签名、过期时间等再取出里面的信息（如username），再使用该信息直接查询用户信息完成登录验证。jwt自带签名、过期等校验，后台不用存储，缺陷是一旦下发，服务后台无法拒绝携带该jwt的请求（如踢除用户）；
+token+redis： 是自己生成个32位的key，value为用户信息，访问时判断redis里是否有该token，如果有，则加载该用户信息完成登录。服务需要存储下发的每个token及对应的value，维持其过期时间，好处是随时可以删除某个token，阻断该token继续使用
+JWT 适用场景：无状态的 API：JWT 在无状态的 API 上非常有用，因为服务器不需要存储任何会话信息，这可以轻松地扩展系统。跨域身份验证：由于 JWT 是通过客户端传递的，因此它可以轻松实现跨域身份验证，避免了 CORS 问题。微服务架构：在微服务架构中，各个服务可以相互独立验证 JWT，减少了内部服务通信的复杂性。JWT 不适用场景：需要立即废弃访问权限的场景：由于 JWT 的生命周期无法由服务器控制，因此在需要立即废弃某个用户的访问权限时（例如：踢除用户、安全漏洞等），JWT 不是最佳选择。Token+Redis 适用场景：需要实时控制会话状态的系统：由于服务器存储了每个 token，可以随时废弃或修改某个 token，因此在需要实时控制会话状态的系统中，Token+Redis 更为合适。需要缓存用户信息：在某些系统中，为了减少对数据库的访问，可以将用户信息存储在 Redis 中，这种情况下，Token+Redis 方案更具优势。
+
+https://www.zhihu.com/question/274566992/answer/2994761733
+
+
+
+JWS 也就是 Json Web Signature，是构造 JWT 的基础结构（JWT 其实涵盖了 JWS 和 JWE 两类，其中 JWT 的载荷还可以是嵌套的 JWT
+https://www.cnblogs.com/read-the-spring-and-autumn-annals-in-night/p/12041911.html
+
+
+```java
+     byte[] header = java.util.Base64.getDecoder().decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9");
+     System.out.println(new String(header));
+```
+
+```shell
+{"alg":"HS256","typ":"JWT"}
+```
 
 Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：`=`被省略、`+`替换成`-`，`/`替换成`_` 。这就是 Base64URL 算法。
 
@@ -13,6 +35,11 @@ http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html
 
 
 https://github.com/Thalhammer/jwt-cpp
+
+JJWT是纯Java实现 android的
+https://www.jianshu.com/p/b5e63a859a30
+
+https://github.com/jwtk/jjwt
 
 
 

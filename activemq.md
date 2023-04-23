@@ -1,7 +1,27 @@
 # activemq
 
-./apache-activemq-5.12.2/bin/activemq console
+./apache-activemq-5.12.2/bin/activemq console   windows版本好像不行，mac行
 
+[官方下载地址](http://activemq.apache.org/download.html)
+
+### 安装启动
+- 第一步：把ActiveMQ 的压缩包上传到Linux系统
+- 第二步：解压缩
+- 第三步：启动
+```
+使用bin目录下的activemq命令启动：
+[root@localhost bin]# ./activemq start
+关闭：
+[root@localhost bin]# ./activemq stop
+查看状态：
+[root@localhost bin]# ./activemq status
+
+进入管理后台：http://IP:8161/admin
+用户名：admin
+密码：admin
+```
+
+登录用户名密码可在 `conf/jetty-realm.properties` 文件中修改
 
 
 
@@ -40,5 +60,31 @@ activeMQ默认配置下启动会启动8161和61616两个端口，其中8161是mq
 
 https://blog.csdn.net/u010994966/article/details/77895374
 
-ActiveMQ "Classic"  JMS 1.1
-ActiveMQ Artemis    JMS 2.0
+
+### jar包依赖
+
+geronimo-jms_1.1_spec
+
+没有依赖jsm-api这个jar包
+
+Apache Geronimo所带jar包
+Apache Geronimo是Apache软件基金会的开放源码J2EE服务器
+Apache Geronimo is an open source server runtime that integrates the best open source projects to create Java/OSGi server runtime
+
+
+
+### jsm api
+
+- ObjectMessage
+- TextMessage
+
+
+Queue createQueue(String queueName)
+Topic createTopic(String topicName)
+
+activemq topic queue区别
+
+Topic用于消息订阅 pub sub,属于一对多;Queue用于消息处理,属于一对一。
+
+
+ActiveMQ的Queue与Topic区别.png

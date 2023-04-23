@@ -1,8 +1,9 @@
 # maven
 
 maven搜索
+https://mvnrepository.com/  这个好用
 https://central.sonatype.com/
-
+搜索语法
 g:
 a:
 
