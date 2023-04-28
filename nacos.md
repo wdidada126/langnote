@@ -1,6 +1,7 @@
 # nacos
 
 
+
 https://gitee.com/edidada/nacos-config-example
 
 
@@ -18,7 +19,7 @@ source code
 https://github.com/alibaba/nacos
 Java写的项目
 
-
+用了jraft
 
 
 
@@ -38,21 +39,13 @@ Windows 10电脑，nacos数据源配置成mysql的
 
 ```shell
 2020-04-29 16:51:22,579 INFO Exposing 2 endpoint(s) beneath base path '/actuator'
-
 2020-04-29 16:51:22,653 INFO Initializing ExecutorService 'taskScheduler'
-
 2020-04-29 16:51:22,865 INFO Tomcat started on port(s): 8848 (http) with context path '/nacos'
-
 2020-04-29 16:51:22,897 INFO Nacos logs files: D:\nacos-server-1.2.1\nacos\logs\
-
 2020-04-29 16:51:22,906 INFO Nacos conf files: D:\nacos-server-1.2.1\nacos\conf\
-
 2020-04-29 16:51:22,907 INFO Nacos data files: D:\nacos-server-1.2.1\nacos\data\
-
 2020-04-29 16:51:22,908 INFO Nacos started successfully in stand alone mode.
-
 2020-04-29 16:51:23,128 INFO Initializing Servlet 'dispatcherServlet'
-
 2020-04-29 16:51:23,165 INFO Completed initialization in 20 ms
 ```
 
@@ -244,3 +237,16 @@ public class ParamUtilsMain {
     }
 }
 ```
+
+
+Nacos支持CP+AP模式，即Nacos可以根据配置识别为CP模式或AP模式，默认是AP模式。如果注册Nacos的client节点注册时ephemeral=true，那么Nacos集群对这个client节点的效果就是AP，采用distro协议实现；而注册Nacos的client节点注册时ephemeral=false，那么Nacos集群对这个节点的效果就是CP的，采用raft协议实现。根据client注册时的属性，AP，CP同时混合存在，只是对不同的client节点效果不同。Nacos可以很好的解决不同场景的业务需求。
+协议介绍
+distro协议
+1、阿里自研发
+2、保证cp，保证最终一致性。
+
+Nacos 每个节点是平等的都可以处理写请求，同时把新数据同步到其他节点。
+每个节点只负责部分数据，定时发送自己负责数据的校验值到其他节点来保持数据一致性。
+每个节点独立处理读请求，及时从本地发出响应。
+
+
