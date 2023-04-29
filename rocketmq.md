@@ -2,9 +2,11 @@
 
 github repo https://github.com/edidada/testrocketmq
 
+
 ```java
         System.setProperty("rocketmq.client.logUseSlf4j","true");
 ```
+使用Netty
 
 ```shell
 18:58:40.443 [NettyClientWorkerThread_1] INFO RocketmqRemoting - NETTY CLIENT PIPELINE: CONNECT  UNKNOWN => ocalhost/127.0.0.1:9876
@@ -25,7 +27,6 @@ java写的，如何打印debug日志
 
 [The Design Of Transactional Message](http://rocketmq.apache.org/rocketmq/the-design-of-transactional-message/)
 
-
 Slack
 https://rocketmq.apache.org/about/contact/
 
@@ -37,13 +38,40 @@ http://rocketmq.apache.org/docs/quick-start/
 
 https://github.com/apache/rocketmq/tree/master/docs/cn
 
+重要文档 中文的：
+https://rocketmq.apache.org/zh/docs/4.x/consumer/03pull
 
+
+
+支持JMS
 
 Start Name Server
+
 
 Start Broker
 Send Messages
 Receive Messages
+
+
+4、启动 NameServer。
+
+nohup sh bin/mqnamesrv & .
+
+
+# 查看是否启动成功
+jps
+# 查看启动日志
+tail -f ~/logs/rocketmqlogs/namesrv.log
+5、启动 BrokerServer。
+nohup sh bin/mqbroker -n localhost:9876 & .
+# 查看启动日志
+tail -f ~/logs/rocketmqlogs/broker.log
+6、关闭服务。
+
+sh bin/mqshutdown broker
+sh bin/mqshutdown namesrv
+
+
 
 
 `No route info of this topic, Jodie_topic_1023`
@@ -53,35 +81,76 @@ Receive Messages
 
 
 
-	
+kafka手动创建Topic
+
+https://rocketmq.apache.org/download/
+
+rocketmq-all-5.1.0-bin-release.zip
+
+设置 ROCKETMQ_HOME环境变量
 
 
 ```shell
-cd D:\devtools\rocketmq-all-4.8.0-bin-release
-.\bin\mqadmin.cmd  updateTopic -n localhost:9876  -b localhost:10911  -t Jodie_topic_1023
-```
-
-
-```shell
-cd D:\devtools\rocketmq-all-4.8.0-bin-release
-PS D:\devtools\rocketmq-all-4.8.0-bin-release> .\bin\mqnamesrv.cmd
+cd E:\rocketmq-all-4.8.0-bin-release
+PS E:\rocketmq-all-4.8.0-bin-release> .\bin\mqnamesrv.cmd
 OpenJDK 64-Bit Server VM warning: Using the DefNew young collector with the CMS collector is deprecated and will likely be removed in a future release
 OpenJDK 64-Bit Server VM warning: UseCMSCompactAtFullCollection is deprecated and will likely be removed in a future release.
 The Name Server boot success. serializeType=JSON
 ```
 
 ```shell
-cd D:\devtools\rocketmq-all-4.8.0-bin-release
-PS D:\devtools\rocketmq-all-4.8.0-bin-release> .\bin\mqbroker.cmd -n localhost:9876 autoCreateTopicEnable=true
+cd E:\rocketmq-all-4.8.0-bin-release
+PS E:\rocketmq-all-4.8.0-bin-release> .\bin\mqbroker.cmd -n localhost:9876 autoCreateTopicEnable=true
 The broker[chengwu2, 169.254.244.186:10911] boot success. serializeType=JSON and name server is localhost:9876
+```
+
+```shell
+cd E:\rocketmq-all-4.8.0-bin-release
+.\bin\mqadmin.cmd  updateTopic -n localhost:9876  -b localhost:10911  -t TopicTest
 ```
 
 
 
+### rocketmq 集群功能
+
+消息多个消费组同时消费，如何设置
+
+
+### java sdk
+
+
+
+程序PullConsumerTest报错
+The broker[jinrongtong-MacBook-Pro.local] not exist
+
+
+程序
 
 ```shell
-cd D:\devtools\rocketmq-all-4.8.0-bin-release
-PS D:\devtools\rocketmq-all-4.8.0-bin-release> .\bin\tools.cmd  org.apache.rocketmq.example.quickstart.Producer
+2023-04-22 23:31:38.449 [main] WARN  RocketmqClient - Message{topic='TopicTest', flag=0, properties={UNIQ_KEY=C0A80A0C1C2C18B4AAC27131F1410000, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 48], transactionId='null'}
+2023-04-22 23:31:38.456 [main] WARN  RocketmqClient - sendKernelImpl exception, resend at once, InvokeID: -3075065824097210575, RT: 7ms, Broker: MessageQueue [topic=TopicTest, brokerName=Wdidada, queueId=7]
+org.apache.rocketmq.client.exception.MQBrokerException: CODE: 14  DESC: service not available now. It may be caused by one of the following reasons: the broker's disk is full [CL:  0.99 CQ:  0.99 INDEX:  0.99], messages are put to the slave, message store has been shut down, etc.
+For more information, please visit the url, http://rocketmq.apache.org/docs/faq/
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.processSendResponse(MQClientAPIImpl.java:556)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessageSync(MQClientAPIImpl.java:358)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessage(MQClientAPIImpl.java:340)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessage(MQClientAPIImpl.java:294)
+	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendKernelImpl(DefaultMQProducerImpl.java:761)
+	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:505)
+	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1223)
+	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1173)
+	at org.apache.rocketmq.client.producer.DefaultMQProducer.send(DefaultMQProducer.java:214)
+	at cn.wdidada.test.rocketmq.SyncProducer.dd(SyncProducer.java:48)
+	at cn.wdidada.test.rocketmq.SyncProducer.main(SyncProducer.java:25)
+```
+其实就是因为，C盘报红了。
+
+C盘红的时候commitlog里面是没有东西的，log就没有写进来。
+
+
+```shell
+cd E:\rocketmq-all-4.8.0-bin-release
+PS E:\rocketmq-all-4.8.0-bin-release> .\bin\tools.cmd  org.apache.rocketmq.example.quickstart.Producer
 14:23:04.095 [main] DEBUG i.n.u.i.l.InternalLoggerFactory - Using SLF4J as the default logging framework
 RocketMQLog:WARN No appenders could be found for logger (io.netty.util.internal.PlatformDependent0).
 RocketMQLog:WARN Please initialize the logger system properly.
@@ -1087,7 +1156,7 @@ SendResult [sendStatus=SEND_OK, msgId=7F0000012D204DC639964B2F3D1003E6, offsetMs
 SendResult [sendStatus=SEND_OK, msgId=7F0000012D204DC639964B2F3D1103E7, offsetMsgId=A9FEF4BA00002A9F00000000000317BF, messageQueue=MessageQueue [topic=TopicTest, brokerName=chengwu2, queueId=1], queueOffset=249]
 14:23:07.032 [NettyClientSelector_1] INFO  RocketmqRemoting - closeChannel: close the connection to remote address[169.254.244.186:10911] result: true
 14:23:07.033 [NettyClientSelector_1] INFO  RocketmqRemoting - closeChannel: close the connection to remote address[127.0.0.1:9876] result: true
-PS D:\devtools\rocketmq-all-4.8.0-bin-release>
+PS E:\rocketmq-all-4.8.0-bin-release>
 ```
 
 

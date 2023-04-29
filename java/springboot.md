@@ -1,6 +1,15 @@
 # Spring Boot
 
 
+Spring Boot 默认使用 Logback 作为日志框架
+
+使用log4j2
+https://developer.aliyun.com/article/757562
+
+
+使用logback
+https://www.jianshu.com/p/3a9e32d9d347
+
 springboot 命令行运行
 需要配置maven插件
             <plugin>
@@ -105,11 +114,7 @@ http://blog.didispace.com/books/spring-boot-reference/IV.%20Spring%20Boot%20feat
 
 
 
-<<<<<<< HEAD
-#### Connection to a JNDI DataSource
-=======
 ### Connection to a JNDI DataSource
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 
 If you deploy your Spring Boot application to an Application Server, you might want to configure and manage your DataSource by using your Application Server’s built-in features and access it by using JNDI.
 
@@ -117,7 +122,6 @@ If you deploy your Spring Boot application to an Application Server, you might w
 spring.datasource.jndi-name=java:jboss/datasources/customers
 ```
 
-<<<<<<< HEAD
 
 
 
@@ -127,5 +131,3 @@ spring.datasource.jndi-name=java:jboss/datasources/customers
 B站视频
 
 写SpringBoot starter
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

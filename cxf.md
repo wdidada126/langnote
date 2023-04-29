@@ -1,16 +1,109 @@
 # cxf
 
+官网
+http://cxf.apache.org/docs/writing-a-service-with-spring.html
 
-Apache CXF一个开源的Service框架，它实现了JCP与Web Service中一些重要标准。CXF简化了构造，集成，面 向服务架构(SOA)业务组件与技术的灵活复用。在CXF中，Service使用WSDL标准定义并能够使用各种不同的消息 格式(或binding)和网络协议(transports)包括SOAP、XML（通过HTTP或JMS）进行访问。CXF同样支持多种model 如：JAX-WS，JBI，SCA和CORBA service。CXF设计成可灵活部署到各种容器中包括Spring-based，JBI，SCA， Servlet和J2EE容器。
+api
+https://cxf.apache.org/javadoc/latest-3.5.x/
+
+
+
+Java WebService开源框架CXF详解
+https://www.jb51.net/article/231710.htm
+
+cxf内置Jetty？对，测试环境用，生产环境不建议
+是的，Apache CXF支持内置Jetty。您可以使用CXF的Jetty运行时来运行CXF服务。您可以使用httpj：engine-factory元素配置Jetty运行时，该元素是用于配置应用程序使用的Jetty运行时的根元素。它有一个必需的属性bus，其值是管理正在配置的Jetty实例的总线的名称。该值通常为cxf，这是默认Bus实例的名称。
+
+https://cxf.apache.org/docs/jetty-configuration.html
+
+
+这种方式使用的是CXF内置的服务器jetty非常容易测试和调试，大大提高了开发效率，但是不适合生产环境，所以我们需要会和spring,tomcat结合
+
+
+
+cxf的endpoint是一个http url
+一个service类里面不同方法，是xml不同的节点
+
+举例：
+
+```java
+
+@WebService
+public interface HelloService {
+
+    public String sayHello(String name) ;         //对应<spr:sayHello>
+    public String sayInfo(InVO inVO) ;
+    public OutVO printInfo(InVO inVO) ;         //对应<spr:printInfo>
+
+}
+
+```
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spr="http://springcxf.wdidada.cn/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <spr:sayHello>
+      </spr:sayHello>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spr="http://springcxf.wdidada.cn/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <spr:printInfo>
+         <!--Optional:-->
+         <arg0>
+            <age>1</age>
+            <!--Optional:-->
+            <birthYear>2</birthYear>
+            <!--Optional:-->
+            <name>3</name>
+         </arg0>
+      </spr:printInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+```
+
+
+
+Apache CXF一个开源的Service框架，它实现了JCP与Web Service中一些重要标准。CXF简化了构造，集成，面向服务架构(SOA)业务组件与技术的灵活复用。在CXF中，Service使用WSDL标准定义并能够使用各种不同的消息格式(或binding)和网络协议(transports)包括SOAP、XML（通过HTTP或JMS）进行访问。CXF同样支持多种model 如：JAX-WS，JBI，SCA和CORBA service。CXF设计成可灵活部署到各种容器中包括Spring-based，JBI，SCA， Servlet和J2EE容器。
 
 
 是esb
 
-WebService 有两个"标准"：
-JAX-WS也就是传统的基于 SOAP 协议的 WebService. 可以基于多种协议（HTTP、TCP 等），一般使用 CXF 或 Axis2 来进行开发。
-JAX-RS这就是你说的 Restful 风格的 WebService，限定于 HTTP 协议，一般使用 Restlet 或者 Jersey 来进行开发，SpringMVC 也提供了原生的支持（但 Spring MVC 目前并没有实现 JAX-RS，也不打算实现）
+WebService有两个"标准"：
+JAX-WS也就是传统的基于SOAP协议的WebService. 可以基于多种协议（HTTP、TCP 等），一般使用CXF或Axis2来进行开发。
+JAX-RS这就是你说的Restful风格的WebService，限定于 HTTP 协议，一般使用 Restlet 或者Jersey来进行开发，SpringMVC也提供了原生的支持（但SpringMVC目前并没有实现JAX-RS，也不打算实现）
 
 github repo
+https://github.com/edidada/springcxf
+
+
+可以运行的程序
+HttpClientApp
+HttpURLConnection拼接xml格式的body发送http请求
+
+
+使用cxf内置Jetty测试代码
+JaxWsServer
+
+四月 21, 2023 10:40:02 上午 org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+信息: Creating Service {http://impl.springcxf.wdidada.cn/}HelloServiceImplService from class cn.wdidada.springcxf.HelloService
+四月 21, 2023 10:40:02 上午 org.apache.cxf.endpoint.ServerImpl initDestination
+信息: Setting the server's publish address to be http://localhost:8080/cxf/soap/hello
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+已经成功发布
+
+
+https://blog.csdn.net/li563868273/article/details/51232878
+
 https://blog.csdn.net/shuaicihai/article/details/56036007
 
 本质是HTTP
@@ -53,13 +146,36 @@ webservice是分布式的，基于http的，可以基于七层，四层去做负
 
 接口暴露是通过wsdl的
 
+![cxf 可用服务，相当于接口文档](./imgs/cxf/cxf_service.png)
 
+```xml
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.springcxf.wdidada.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://springcxf.wdidada.cn/" name="HelloServiceImpService" targetNamespace="http://impl.springcxf.wdidada.cn/">
+    <wsdl:import location="http://localhost:8080/springcxf-1.0-SNAPSHOT/service/hello?wsdl=HelloService.wsdl" namespace="http://springcxf.wdidada.cn/"> </wsdl:import>
+    <wsdl:binding name="HelloServiceImpServiceSoapBinding" type="ns1:HelloService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="sayHello">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="sayHello">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="sayHelloResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HelloServiceImpService">
+        <wsdl:port binding="tns:HelloServiceImpServiceSoapBinding" name="HelloServiceImpPort">
+            <soap:address location="http://localhost:8080/springcxf-1.0-SNAPSHOT/service/hello"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+```
 
 SC是通过http协议的
 
+### SOAP
 
-
-SOAP 由 IBM、Microsoft、UserLand 和 DevelopMentor 在 1998 年共同提出，并得到 IBM、Lotus、Compaq 等公司的支持，于 2000 年提交 W3C。目前 SOAP 1.1 版是业界标准，是第二代 XML 协定。第一代的主要代表为 XML-RPC 和 WDDX。
+SOAP由IBM、Microsoft、UserLand和DevelopMentor在1998年共同提出，并得到 IBM、Lotus、Compaq 等公司的支持，于2000年提交W3C。目前SOAP1.1 版是业界标准，是第二代XML协定。第一代的主要代表为XML-RPC和WDDX。
 
 SOAP 的一个简单例子：假设，有一个房价的数据库，SOAP 消息参数中指定房价查询信息，Web 服务点根据该查询信息，返回一个 XML 格式信息，其中包含查询结果（如价格、位置、特点，或者其他信息）。由于 XML 数据是一种结构化文本标准，可以被第三方使用。
 
@@ -71,14 +187,13 @@ SOAP 的一个简单例子：假设，有一个房价的数据库，SOAP 消息�
 
 
 
-![cxf图片](./imgs/cxf.png)
+![cxf图片](./imgs/cxf/cxf.png)
 
 
 
 
 
 webservice简单来说是一个规范，它定义了多个不同平台下不同语言开发的项目之间如何通信。
-
 比如有两个项目，一个是windows系统的C#项目，一个是运行在linux系统中的java项目，那么这两个项目就可以通过实现了webservice规范的技术来实现之间的通信
 
 
@@ -687,9 +802,19 @@ Caused by: com.ctc.wstx.exc.WstxParsingException: Undeclared namespace prefix "s
 
 
 
-c#
-
-
-
+C#使用SOAP调用Web Service
 https://www.cnblogs.com/chenghu/p/5249737.html
+
+
+
+http://localhost:8080/springcxf-1.0-SNAPSHOT/service/hello?wsdl
+
+
+
+
+HttpClient 发送SOAP请求
+status:200
+result: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:sayHelloResponse xmlns:ns2="http://springcxf.wdidada.cn/"><return>大家好，我是ls</return></ns2:sayHelloResponse></soap:Body></soap:Envelope>
+HttpURLConnection 发送SOAP请求
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:sayHelloResponse xmlns:ns2="http://springcxf.wdidada.cn/"><return>大家好，我是ls</return></ns2:sayHelloResponse></soap:Body></soap:Envelope>
 

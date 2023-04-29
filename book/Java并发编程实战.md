@@ -13,8 +13,6 @@ javax.annotation.concurrent.ThreadSafe
 
 
 
-之前看不懂，现在看懂了
-
 
 
 ### 第1章　简介
@@ -60,7 +58,7 @@ https://www.cnblogs.com/east7/p/13893633.html
 
 同步工具类
 Latch FutchTask
-Semaphere
+Semaphere  -> Semaphore
 ConcurrentHashMap
 size()
 isEmpty()方法不一定准确
@@ -97,31 +95,30 @@ maxSize
 线程工厂 ThreadFactory
 拒绝策略 RejectExecutorHandler
 
-
    1、corePoolSize：核心线程数
        * 核心线程会一直存活，及时没有任务需要执行
-       * 当线程数小于核心线程数时，即使有线程空闲，线程池也会优先创建新线程处理
-       * 设置allowCoreThreadTimeout=true（默认false）时，核心线程会超时关闭
-   2、queueCapacity：任务队列容量（阻塞队列）
-       * 当核心线程数达到最大时，新任务会放在队列中排队等待执行
-   3、maxPoolSize：最大线程数
-       * 当线程数>=corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务
-       * 当线程数=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常
-   4、 keepAliveTime：线程空闲时间
-       * 当线程空闲时间达到keepAliveTime时，线程会退出，直到线程数量=corePoolSize
-       * 如果allowCoreThreadTimeout=true，则会直到线程数量=0
-   5、allowCoreThreadTimeout：允许核心线程超时
-   6、rejectedExecutionHandler：任务拒绝处理器
-       * 两种情况会拒绝处理任务：
+              * 当线程数小于核心线程数时，即使有线程空闲，线程池也会优先创建新线程处理
+              * 设置allowCoreThreadTimeout=true（默认false）时，核心线程会超时关闭
+         2、queueCapacity：任务队列容量（阻塞队列）
+                     * 当核心线程数达到最大时，新任务会放在队列中排队等待执行
+            3、maxPoolSize：最大线程数
+                            * 当线程数>=corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务
+                                   * 当线程数=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常
+               4、 keepAliveTime：线程空闲时间
+                                   * 当线程空闲时间达到keepAliveTime时，线程会退出，直到线程数量=corePoolSize
+                                          * 如果allowCoreThreadTimeout=true，则会直到线程数量=0
+                  5、allowCoreThreadTimeout：允许核心线程超时
+                  6、rejectedExecutionHandler：任务拒绝处理器
+                                          * 两种情况会拒绝处理任务：
            - 当线程数已经达到maxPoolSize，切队列已满，会拒绝新任务
            - 当线程池被调用shutdown()后，会等待线程池里的任务执行完毕，再shutdown。如果在调用shutdown()和线程池真正shutdown之间提交任务，会拒绝新任务
-       * 线程池会调用rejectedExecutionHandler来处理这个任务。如果没有设置默认是AbortPolicy，会抛出异常
-       * ThreadPoolExecutor类有几个内部实现类来处理这类情况：
+              * 线程池会调用rejectedExecutionHandler来处理这个任务。如果没有设置默认是AbortPolicy，会抛出异常
+                  * ThreadPoolExecutor类有几个内部实现类来处理这类情况：
            - AbortPolicy 丢弃任务，抛运行时异常
-           - CallerRunsPolicy 执行任务
+           - CallerRunsPolicy 哪个线程提交的任务哪个线程就地执行任务
            - DiscardPolicy 忽视，什么都不会发生
            - DiscardOldestPolicy 从队列中踢出最先进入队列（最后一个执行）的任务
-  7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
+    7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
 
 public ThreadPoolExecutor(int corePoolSize,
 int maximumPoolSize,
@@ -133,6 +130,12 @@ RejectedExecutionHandler handler)
 
 
 ### 第9章 图形用户界面应用程序
+
+
+
+
+
+## 第三部分　活跃性、性能与测试
 
 
 
@@ -264,7 +267,7 @@ Java stack information for the threads listed above:
 Found 1 deadlock.
 ```
 
-### 第11章
+### 第11章 性能与可伸缩性
 
 Amdahl定律
 
@@ -277,24 +280,41 @@ Amdahl定律
 
 
 
-### 第14章
+### 第14章 构建自定义的同步工具
 
-Condiction
+Condiction -> Condition接口
 
 ReentrantLock
-Sephtere
-Countdownlock
+Sephtere    -> Semaphore
+Countdownlock  -> CountDownLatch
 FutureTask
 
 ReentrantReadWriteLock
 
-### 第15章
 
 
-CAS
+
+
+CountDownLatch(int count) 构造方法
+countDownLatch.countDown()//通知线程本任务执行完毕
+countDownLatch.await();//开始暂停，等待其他线程完毕后继续执行
+
+
+
+Condition接口
+
+await()
+
+signal()
+
+
+
+### 第15章 原子变量与非阻塞同步机制
+
+CAS   AtomicInteger Array Reference
 ABA
 
-### 第16章
+### 第16章 Java内存模型
 
 Java内存模型简介
 重排序

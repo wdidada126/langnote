@@ -1,8 +1,69 @@
 # mybatis
 
+mybatis高效插入
+https://zhuanlan.zhihu.com/p/35305211
 
 ### mybatis缓存策略
 使用escache三方缓存
+
+MyBatis提供了两种缓存：一级缓存和二级缓存。其中，一级缓存是SqlSession级别的，也就是说，同一个SqlSession对象调用一个Mapper方法，往往只执行一次SQL，因为使用同一个SqlSession对象调用相同的Mapper方法时，MyBatis会先从它的本地Cache中查找是否有该数据，如果有则直接返回，否则才会去数据库中查询。而二级缓存是Mapper级别的，它可以被多个SqlSession对象共享
+mybatis一级缓存实现类
+
+MyBatis的一级缓存是指在应用运行过程中，一次数据库会话中，执行多次相同的查询，会优先查询缓存中的数据，减少数据库查询次数，提高查询效率。
+MyBatis内部存储缓存使用的是一个HashMap对象，key为 hashCode + sqlId + sql 语句。2 而value值就是从查询出来映射生成的java对象。
+每次查询都会先从缓存区域找，如果找不到就会从数据库查询数据，然后将查询到的数据写入一级缓存中。
+
+https://blog.csdn.net/BruceLiu_code/article/details/119478137
+
+![mybatis1_cache](D:\git\github\langnote\imgs\mybatis\mybatis1_cache.png)
+
+
+CachingExecutor
+
+一级缓存的实现是通过 CachingExecutor 实现的
+
+
+DefaultSqlSession中有一个CacheExecutor
+CachingExecutor 中有一个 SimpleExecutor
+SimpleExecutor 中有一个叫 LocalCache (PerpetualCache类型)
+LocalCache才是真正的存储缓存的地方
+LocalCache 中有一个叫cache （Hashmap <Object,Object>类型的）
+
+
+
+mybatis二级缓存实现类
+
+https://www.cnblogs.com/cxuanBlog/p/11333021.html
+
+https://www.jianshu.com/p/b8fa01332cdd
+
+
+MyBatis的二级缓存是Application级别的缓存，它可以提高对数据库查询的效率，以提高应用的性能。MyBatis自身提供了丰富的，并且功能强大的二级缓存的实现，它拥有一系列的Cache接口装饰者，可以满足各种对缓存操作和更新的策略。开启二级缓存的条件也是比较简单，通过直接在 MyBatis 配置文件中通过 <settings> <setting name = "cacheEnabled" value = "true" /> </settings> 来开启。
+
+MyBatis查询数据的顺序是：
+
+二级缓存 ———> 一级缓存——> 数据库
+
+        <dependency>    　　
+            <groupId>org.slf4j</groupId>    　　
+            <artifactId>slf4j-simple</artifactId>    　　
+            <version>1.7.25</version>    　　
+            <scope>compile</scope>
+        </dependency>
+
+使某条Select查询支持二级缓存，你需要保证：
+
+1. MyBatis支持二级缓存的总开关：全局配置变量参数 cacheEnabled=true
+2. 该select语句所在的Mapper，配置了<cache> 或<cached-ref>节点，并且有效
+3. 该select语句的参数 useCache=true
+
+
+![mybatis2_cache](D:\git\github\langnote\imgs\mybatis\mybatis2_cache.webp)
+
+实现分页的三种方法
+RowBounds
+
+
 
 SqlSessionFactoryBuilder
 build()方法
@@ -1896,10 +1957,24 @@ session.close();
 
 ### MyBatis四大组件之Executor执行器
 
-每一个SqlSession都会拥有一个Executor对象，这个对象负责增删改查的具体操作，我们可以简单的将它理解为 JDBC中Statement 的封装版。
+每一个SqlSession都会拥有一个Executor对象，这个对象负责增删改查的具体操作，我们可以简单的将它理解为JDBC中Statement的封装版。
 https://zhuanlan.zhihu.com/p/80497754
 
 public enum ExecutorType {
   SIMPLE, REUSE, BATCH
 }
+
+
+Mybatis是如何将Mapper接口注册到Spring IoC的
+https://zhuanlan.zhihu.com/p/256425436
+
+mybatis_spring.png
+
+ImportBeanDefinitionRegistrar接口
+
+ImportBeanDefinitionRegistrar是Spring3.1开始引入的一个接口，用来动态注册bean定义的接口。通过@Import方式引入，和ImportSelector用法类似，通常和EnvironmentAware、BeanFactoryAware、BeanClassLoaderAware、ResourceLoaderAware接口一起使用。其作用就是把模糊的概念明确化，把抽象的东西实例化，为本地服务提供更方便的使用或者服务调用。
+
+
+BeanDefinitionRegistryPostProcessor
+BeanDefinitionRegistryPostProcessor是BeanFactoryPostProcessor的子接口,BeanFactoryPostProcessor的作用是在Spring Bean的定义信息已经加载但还没有初始化的时候执行postProcessBeanFactory()来处理一些额外的逻辑，而BeanDefinitionRegistryPostProcessor的作用是在BeanFactoryPostProcessor增加了一个前置处理，当一个Bean实现了该接口后，始化前先执行该接口的postProcessBeanDefinitionRegistry()方法，然后再执行其父类的方法postProcessBeanFactory()。这样就把一个Spring Bean的初始化周期更加细化，让我们在各个阶段有定制它的可能。
 

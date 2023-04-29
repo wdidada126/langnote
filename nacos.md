@@ -1,7 +1,10 @@
 # nacos
 
 
+https://gitee.com/edidada/nacos-config-example
 
+
+官网
 https://nacos.io/zh-cn/
 
 windows
@@ -11,13 +14,23 @@ windows
 startup.cmd
 
 
+source code
+https://github.com/alibaba/nacos
+Java写的项目
+
+
+
+
+
 https://blog.csdn.net/ljl19930522/article/details/124746908
  D：（nacos解压的盘符）
-                                        cd D:\Java\nacos\bin   （nacos中bin文件的目录）
-                                        startup.cmd -m standalone  （cluster是集群启动）
-————————————————
-版权声明：本文为CSDN博主「维涅斯」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/ljl19930522/article/details/124746908
+cd D:\Java\nacos\bin   （nacos中bin文件的目录）
+startup.cmd -m standalone  （cluster是集群启动）
+
+1.41最低要求java8
+
+Windows 10电脑，nacos数据源配置成mysql的
+
 
 [windows下安装nacos](https://blog.csdn.net/q15102780705/article/details/102571353)
 
@@ -86,6 +99,12 @@ spring-cloud-starter-alibaba-nacos-discovery
 
 
 
+http://192.168.56.1:8848/nacos
+
+
+用户名密码默认都是：nacos 不是admin
+
+
 
 最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：
 
@@ -97,3 +116,131 @@ spring-cloud-starter-alibaba-nacos-discovery
 ldap
 https://docs.spring.io/spring-ldap/docs/1.3.2.RELEASE/reference/html/
 
+
+
+
+### nacos源码解析
+
+com.alibaba.cloud.nacos.NacosConfigManager
+
+如何发起http请求，如何接收nacos server的推送
+push pull？
+
+Nacos 配置中心支持 push 和 pull 两种方式来获取配置。
+
+Pull 模式：客户端主动从 Nacos 服务器拉取配置信息。在这种模式下，客户端需要周期性地轮询 Nacos 服务器，以便及时得到配置变化。
+Push 模式：Nacos 服务器将配置信息推送给客户端，客户端需要开启一个长连接并订阅指定的配置集，一旦配置发生变化，Nacos 服务器会立即推送变更信息给客户端。这种模式下客户端只需要在启动时订阅一次，就可以实现实时更新配置。
+推荐使用 push 模式，因为它能够及时地将配置变化推送给客户端，避免了客户端轮询带来的网络和服务器资源浪费。
+
+
+如何查看nacos是pull还是push
+
+如果你想要查看你的 Java Nacos 程序是采用的哪种模式，可以检查你的程序代码中注册监听器的方式。如果使用了 @NacosConfigListener 注解，则是采用了 push 模式。如果是通过轮询访问 Nacos 配置中心的 HTTP 接口或者使用 Nacos 客户端 SDK 进行轮询，则是采用了 pull 模式。
+
+
+spring-cloud-alibaba-nacos-config程序是push还是pull
+spring-cloud-alibaba-nacos-config程序是通过pull方式获取配置的。Nacos配置中心的服务端源码主要在nacos-config项目的ConfigController类，服务端的逻辑要比客户端稍复杂一些，处理长轮询，服务端对外提供的监听接口地址 /v1/cs/configs/listener，这个方法内容不多，顺着 doPollingConfig 往下看。
+https://developer.aliyun.com/article/785050
+
+
+Nacos配置中心的服务端源码主要在nacos-config项目的ConfigController类，服务端的逻辑要比客户端稍复杂一些，这里我们重点看下。
+
+
+com.alibaba.nacos.client.config.NacosConfigService
+
+private final AtomicReference<Map<String, CacheData>> cacheMap = new AtomicReference<Map<String, CacheData>>(new HashMap<>());
+
+
+获取配置
+
+Nacos获取配置数据的逻辑比较简单，先取本地快照文件中的配置，如果本地文件不存在或者内容为空，则再通过HTTP请求从远端拉取对应dataId配置数据，并保存到本地快照中，请求默认重试3次，超时时间3s。
+com.alibaba.nacos.client.config.NacosConfigService#getConfig
+
+
+spring-cloud-alibaba-nacos-config程序默认访问的dataid和group
+spring-cloud-alibaba-nacos-config程序默认访问的dataid和group是由spring.application.name和spring.cloud.nacos.config.group组成的。如果没有明确指定spring.cloud.nacos.config.group配置的情况下，默认使用的是DEFAULT_GROUP。
+https://developer.aliyun.com/article/897341
+
+spring.cloud.nacos.config.name作用是指定要读取的配置文件的Data ID，如果没有指定读取的dataid，那么默认是读取的是微服务名相同的.yml配置节的信息。
+
+支持profile粒度的配置
+spring-cloud-starter-alibaba-nacos-config 在加载配置的时候，不仅仅加载了以 dataid 为 {spring.application.name}.{file-extension:properties} 为前缀的基础配置，还加载了dataid为 {spring.application.name}-{profile}.{file-extension:properties} 的基础配置。在日常开发中如果遇到多套环境下的不同配置，可以通过Spring 提供的 {spring.profiles.active} 这个配置项来配置。
+spring.profiles.active=develop
+profile 的配置文件 大于 默认配置的文件。 并且形成互补
+支持自定义 namespace 的配置
+用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的 Group 或 Data ID 的配置。Namespace 的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等。
+在没有明确指定${spring.cloud.nacos.config.namespace}配置的情况下， 默认使用的是 Nacos 上 Public 这个namespae。如果需要使用自定义的命名空间，可以通过以下配置来实现：
+spring.cloud.nacos.config.namespace=b3404bc0-d7dc-4855-b519-570ed34b62d7
+支持自定义 Group 的配置
+Group是组织配置的维度之一。通过一个有意义的字符串（如 Buy 或 Trade ）对配置集进行分组，从而区分 Data ID 相同的配置集。当您在 Nacos 上创建一个配置时，如果未填写配置分组的名称，则配置分组的名称默认采用DEFAULT_GROUP 。
+配置分组的常见场景：不同的应用或组件使用了相同的配置类型，如 database_url 配置和MQ_topic 配置。
+在没有明确指定 ${spring.cloud.nacos.config.group} 配置的情况下， 默认使用的是 DEFAULT_GROUP 。如果需要自定义自己的 Group，可以通过以下配置来实现：
+spring.cloud.nacos.config.group=DEVELOP_GROUP
+支持自定义扩展的 Data Id 配置
+Data ID 是组织划分配置的维度之一。Data ID 通常用于组织划分系统的配置集。一个系统或者应用可以包含多个配置集，每个配置集都可以被一个有意义的名称标识。Data ID 通常采用类 Java 包（如 com.taobao.tc.refund.log.level）的命名规则保证全局唯一性。此命名规则非强制。
+通过自定义扩展的 Data Id 配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件。
+spring.application.name=opensource-service-provider
+spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+# config external configuration
+# 1、Data Id 在默认的组 DEFAULT_GROUP,不支持配置的动态刷新
+spring.cloud.nacos.config.extension-configs[0].data-id=ext-config-common01.properties
+# 2、Data Id 不在默认的组，不支持动态刷新
+spring.cloud.nacos.config.extension-configs[1].data-id=ext-config-common02.properties
+spring.cloud.nacos.config.extension-configs[1].group=GLOBALE_GROUP
+# 3、Data Id 既不在默认的组，也支持动态刷新
+spring.cloud.nacos.config.extension-configs[2].data-id=ext-config-common03.properties
+spring.cloud.nacos.config.extension-configs[2].group=REFRESH_GROUP
+spring.cloud.nacos.config.extension-configs[2].refresh=true
+可以看到:
+• 通过 spring.cloud.nacos.config.extension-configs[n].data-id 的配置方式来支持多个 Data Id 的配置。
+• 通过 spring.cloud.nacos.config.extension-configs[n].group 的配置方式自定义 Data Id 所在的组，不明确配置的话，默认是 DEFAULT_GROUP。
+• 通过 spring.cloud.nacos.config.extension-configs[n].refresh 的配置方式来控制该 Data Id 在配置变更时，是否支持应用中可动态刷新， 感知到最新的配置值。默认是不支持的。
+多个 Data Id 同时配置时，它的优先级关系是 spring.cloud.nacos.config.extension-configs[n].data-id 其中 n 的值越大，优先级越高。
+spring.cloud.nacos.config.extension-configs[n].data-id 的值必须带文件扩展名，文件扩展名既可支持 properties，又可以支持 yaml/yml。
+此时 spring.cloud.nacos.config.file-extension 的配置对自定义扩展配置的 Data Id 文件扩展名没有影响。
+通过自定义扩展的 Data Id 配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件。
+通过自定义扩展的 Data Id 配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件。
+为了更加清晰的在多个应用间配置共享的 Data Id ，你可以通过以下的方式来配置：
+# 配置支持共享的 Data Id
+spring.cloud.nacos.config.shared-configs[0].data-id=common.yaml
+# 配置 Data Id 所在分组，缺省默认 DEFAULT_GROUP
+spring.cloud.nacos.config.shared-configs[0].group=GROUP_APP1
+# 配置Data Id 在配置变更时，是否动态刷新，缺省默认 false
+spring.cloud.nacos.config.shared-configs[0].refresh=true
+可以看到：
+通过 spring.cloud.nacos.config.shared-configs[n].data-id 来支持多个共享 Data Id 的配置。
+通过 spring.cloud.nacos.config.shared-configs[n].group 来配置自定义 Data Id 所在的组，不明确配置的话，默认是 DEFAULT_GROUP。
+通过 spring.cloud.nacos.config.shared-configs[n].refresh 来控制该Data Id在配置变更时，是否支持应用中动态刷新，默认false。
+配置的优先级
+Spring Cloud Alibaba Nacos Config 目前提供了三种配置能力从 Nacos 拉取相关的配置。
+• A: 通过 spring.cloud.nacos.config.shared-configs[n].data-id 支持多个共享 Data Id 的配置
+• B: 通过 spring.cloud.nacos.config.extension-configs[n].data-id 的方式支持多个扩展 Data Id 的配置
+• C: 通过内部相关规则(应用名、应用名+ Profile )自动生成相关的 Data Id 配置
+当三种方式共同使用时，他们的一个优先级关系是:A < B < C
+完全关闭配置
+通过设置 spring.cloud.nacos.config.enabled = false 来完全关闭 Spring Cloud Nacos Config
+
+
+
+
+spring.cloud.nacos.config项目配置使用properties还是yml根据什么配置项
+在Spring Cloud Alibaba Nacos中，Nacos Config除了支持.properties格式以外，也支持yaml格式。在客户端配置中，可以在bootstrap.properties文件中使用spring.cloud.nacos.config.file-extension属性声明从配置中心中读取的配置文件格式。该配置的缺省值为properties，即默认是读取properties格式的配置文件
+
+
+
+nacos的dataId invalid报错如何解决
+Nacos的dataId invalid报错可能是由于dataId不合法，例如包含了特殊字符或者长度超过了限制。另外，也有可能是由于Nacos server没有正确地配置。
+
+=mytest不行
+测试程序
+
+```java
+import com.alibaba.nacos.client.config.utils.ParamUtils;
+
+public class ParamUtilsMain {
+    public static void main(String[] args) {
+        boolean isvalid = ParamUtils.isValid("mytest");
+        System.out.println(isvalid);
+    }
+}
+```

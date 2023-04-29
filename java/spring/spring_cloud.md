@@ -14,9 +14,16 @@ Finchley版本	兼容Spring Boot 2.0.x，不兼容Spring Boot 1.5.x
 Greenwich版本	兼容Spring Boot 2.1.x
 Hoxtonl版本	兼容Spring Boot 2.2.x
 
-
+SpringBoot与SpringCloud的版本对应详细版
 https://blog.csdn.net/qq32933432/article/details/89375630
- https://blog.csdn.net/forezp/article/details/69788938
+
+
+
+史上最简单的SpringCloud教程 | 第二篇: 服务消费者（rest+ribbon）
+
+https://blog.csdn.net/forezp/article/details/69788938
+
+
 
 
 从Alibaba提供Spring Alibaba来看，国内在Spring使用上还是很强大的

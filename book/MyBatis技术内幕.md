@@ -6,6 +6,8 @@ https://book.douban.com/subject/27087564/
 
 https://www.jb51.net/books/641555.html
 
+Windows电脑上有pdf
+
 源码讲解，不是用法
 
 
@@ -56,6 +58,12 @@ mybatis_xpath
 
 https://mybatis.org/mybatis-3/zh/apidocs/org/apache/ibatis/parsing/XPathParser.html
 
+
+
+见xpath.md
+
+
+
 解析mybatis-config.xml
 还是Mapper.xml
 A:mybatis-config.xml
@@ -70,6 +78,19 @@ https://programtip.com/zh/art-75003
 
 
 
+XPathParser类
+
+XMLMapperEntityResolver
+
+
+
+PropertyParser. parse()方
+
+
+
+
+
+ReflectorFactory 
 
 XMLMapperBuilder的parse方法
 [mybatis 源码分析之 解析mapper.xml文件](https://blog.csdn.net/m0_37948170/article/details/104923608)

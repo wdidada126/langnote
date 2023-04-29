@@ -1,6 +1,10 @@
 # Spring实战4
 
-Spring实战（第5版 ）
+2016-4
+
+Spring实战（第5版 ） 2020
+
+
 
 克雷格·沃斯（Craig Walls）
 Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持者，经常在各种技术会议上发表演讲。
@@ -50,7 +54,7 @@ Spring EL表达式
 @componentScan
 @Bean
 
-### Chap . 2
+### Chap . 2 装配Bean
 
 
 
@@ -130,13 +134,13 @@ xml
 
 
 
-### Chap. 3
+### Chap. 3 高级装配
 
 在3.1版本中，Spring引入了bean profile的功能。要使用profile，你首 先要将所有不同的bean定义整理到一个或多个profile之中，在将应用 部署到每个环境时，要确保对应的profile处于激活（active）的状态
 
 在Spring 4之前，很难实现这种级别的条件化配置，但是Spring 4引入 了一个新的@Conditional注解，它可以用到带有@Bean注解的方 法上。如果给定的条件计算结果为true，就会创建这个bean，否则 的话，这个bean会被忽略。
 
-### Chap. 4
+### Chap. 4 面向切面的Spring
 
 描述切面的常用术语有通知(advice)、切点(pointcut)和连接点(join point)
 
@@ -192,7 +196,15 @@ AOP配置元素            用途
 <aop:declareparents>   以透明的方式为被通知的对象引入额外的接口
 <aop:pointcut>         定义一个切点
 
-## Chap.5
+
+
+## 第２部分　Web中的Spring
+
+
+
+
+
+## Chap.5 构建Spring Web应用程序
 
 
 
@@ -229,15 +241,15 @@ Caused by: org.gradle.internal.resolve.ModuleVersionResolveException: No cached 
 
 https://stackoverflow.com/questions/37747449/no-cached-version-of-com-google-gmsgoogle-services1-x-x-available-for-offline
 
-## Chap. 6
+## Chap. 6 渲染Web视图
 
 
 
-## Chap. 7
+## Chap. 7 Spring MVC的高级技术
 
 SpringMVC
 
-## Chap. 8
+## Chap. 8 使用Spring WebFlow
 
 WebFlux
 
@@ -247,6 +259,81 @@ Part 3
 
 backend
 
-## Chap. 21
+
+
+### 9 保护Web应用
+
+
+
+## 第3部分　后端中的Spring
+### 第10章　通过Spring和JDBC征服数据库
+
+
+
+### 第11章　使用对象-关系映射持久化数据
+
+Hibernate
+
+jpa
+
+### 第12章　使用NoSQL数据库
+
+
+
+MongoDB
+
+
+
+Neo4j
+
+
+
+Redis
+
+
+
+### 第13章　缓存数据
+
+
+
+
+
+### 第14章　保护方法应用
+
+
+
+spring security
+
+## 第4部分　Spring集成
+###  第15章　使用远程服务
+
+
+
+### 第16章　使用Spring MVC创建REST API
+
+
+
+### 第17章　Spring消息
+
+
+
+### 第18章　使用WebSocket和STOMP实现消息功能
+
+
+
+### 第19章　使用Spring发送Email
+
+
+
+### 第20章　使用JMX管理Spring　Bean
+
+
+
+### 第21章　借助Spring Boot简化Spring开发
+
+
+
+
+
 
 

@@ -1,5 +1,15 @@
 # maven
 
+maven搜索
+https://mvnrepository.com/  这个好用
+https://central.sonatype.com/
+搜索语法
+g:
+a:
+
+高级搜索技术
+
+
 命令行执行某个程序
 java -agent xxx -classpath yyy com.zzz.Main
 

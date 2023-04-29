@@ -110,9 +110,95 @@ Phaser java提供   java.util.concurrent.Phaser 1.7
 Exchanger java提供   Exchanger<V>
 
 
+
+
+
+Semaphore用法
+
+https://www.cnblogs.com/panshan-lurenjia/p/16124358.html
+限制线程对资源的并发访问量，比如数据库连接，当访问量超过设定的大小时，线程的执行就会被阻塞或受限。
+
+注意跟CountDownLatch比较，CountDownLatch强调等待
+
+
+构造函数
+Semaphore(int permits)
+
+方法
+- acquire()    获取令牌，获取不到阻塞
+- tryAcquire 不阻塞获取令牌，返回成功或者失败
+- release()
+
+![Semaphore](..\imgs\javase\Semaphore.png)
+
+什么是相位器Phaser
+jdk7中增加了一个用于多阶段同步控制的工具类，它包含了CyclicBarrier和CountDownLatch的相关功能，比它们更强大灵活。
+对Phaser阶段协同器的理解，Phaser适用于多个线程协作的任务，分为多个阶段，每个阶段都可以有任意个参与者，线程可以随时注册并参与某个阶段；当一个阶段中所有任务都成功完成后，Phaser的onAdvance()被调用，然后Phaser释放等待线程，自动进入下个阶段。如此循环，直到Phaser不再包含任何参与者。
+
+https://cloud.tencent.com/developer/article/1908152
+
+
+
+
 ### chapter4 线程执行器
 
 ES
+
+
+
+ScheduledExecutorService 接口
+ScheduledThreadPoolExecutor类
+
+Executor接口
+void execute(Runnable command)
+
+
+
+![ScheduledExecutorService](..\imgs\javase\ScheduledExecutorService.png)
+
+
+
+| 策略                                     | 解释                                           |
+| ---------------------------------------- | ---------------------------------------------- |
+| ThreadPoolExecutor.AbortPolicy()         | 抛出RejectedExecutionException异常。默认策略   |
+| ThreadPoolExecutor.CallerRunsPolicy()    | 由向线程池提交任务的线程来执行该任务           |
+| ThreadPoolExecutor.DiscardPolicy()       | 抛弃当前的任务                                 |
+| ThreadPoolExecutor.DiscardOldestPolicy() | 抛弃最旧的任务（最先提交而没有得到执行的任务） |
+
+public static class AbortPolicy implements RejectedExecutionHandler
+
+
+
+
+
+```java
+RejectedExecutionHandler接口
+java.util.concurrent.RejectedExecutionHandler
+
+    void rejectedExecution(Runnable r, ThreadPoolExecutor executor);
+```
+
+
+
+java.util.concurrent.BlockingQueue接口实现类
+
+
+
+ArrayBlockingQueue (java.util.concurrent)
+DelayedWorkQueue in ScheduledThreadPoolExecutor (java.util.concurrent)
+SynchronousQueue (java.util.concurrent)
+BlockingDeque (java.util.concurrent)
+    LinkedBlockingDeque (java.util.concurrent)
+DelayQueue (java.util.concurrent)
+TransferQueue (java.util.concurrent)
+    LinkedTransferQueue (java.util.concurrent)
+LinkedBlockingQueue (java.util.concurrent)
+PriorityBlockingQueue (java.util.concurrent)
+
+
+
+
+
 
 ### chapter5 Fork/Join框架
 

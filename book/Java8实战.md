@@ -177,19 +177,94 @@ com.google.common.base.Optional
 
 
 
-第10章　用Optional取代null
+### 第10章　用Optional取代null
 
 
 
-第11章　CompletableFuture：组合式异步编程
+### 第11章　CompletableFuture：组合式异步编程
 
 java.util.concurrent.CompletableFuture
 
+Future的局限性，它没法直接对多个任务进行链式、组合等处理，需要借助并发工具类才能完成，实现逻辑比较复杂。
 
 
-第12章　新的日期和时间API
+
+https://blog.csdn.net/sermonlizhi/article/details/123356877
+
+
+
+
+
+![CompletableFuture](..\imgs\javase\CompletableFuture.png)
+
+
+
+
+
+常用方法
+依赖关系
+thenApply()：把前面任务的执行结果，交给后面的Function
+thenCompose()：用来连接两个有依赖关系的任务，结果由第二个任务返回
+and集合关系
+thenCombine()：合并任务，有返回值
+thenAccepetBoth()：两个任务执行完成后，将结果交给thenAccepetBoth处理，无返回值
+runAfterBoth()：两个任务都执行完成后，执行下一步操作(Runnable类型任务)
+or聚合关系
+applyToEither()：两个任务哪个执行的快，就使用哪一个结果，有返回值
+acceptEither()：两个任务哪个执行的快，就消费哪一个结果，无返回值
+runAfterEither()：任意一个任务执行完成，进行下一步操作(Runnable类型任务)
+并行执行
+allOf()：当所有给定的 CompletableFuture 完成时，返回一个新的 CompletableFuture
+anyOf()：当任何一个给定的CompletablFuture完成时，返回一个新的CompletableFuture
+结果处理
+whenComplete：当任务完成时，将使用结果(或 null)和此阶段的异常(或 null如果没有)执行给定操作
+exceptionally：返回一个新的CompletableFuture，当前面的CompletableFuture完成时，它也完成，当它异常完成时，给定函数的异常触发这个CompletableFuture的完成
+
+
+
+CompletableFuture提供了四个静态方法来创建一个异步操作：
+
+public static CompletableFuture<Void> runAsync(Runnable runnable)
+public static CompletableFuture<Void> runAsync(Runnable runnable, Executor executor)
+public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier)
+public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor executor)
+
+
+
+
+
+### 第12章　新的日期和时间API
 面试题
 
+
+
+日期时间都是final的，操作的话返回一个新的对象
+
+
+
+
+
+LocalDate、LocalTime、Instant、Duration以及Period
+
+
+
+TemporalAdjuster接口
+
+
+
+```java
+Temporal adjustInto(Temporal temporal)
+```
+
+
+
+TemporalField
+
+
+
+```java
+public interface Temporal extends TemporalAccessor
+```
 
 第四部分 超越Java 8
 第13章　函数式的思考

@@ -23,3 +23,7 @@ Helping businesses solve automation challenges in distributed, highly-scalable a
 
 天道有常，不为尧存，不为桀亡。
 
+
+https://www.activiti.org/javadocs/
+
+https://www.activiti.org/5.x/userguide/

@@ -1,5 +1,10 @@
 # spring security
 
+Spring Security 提供了诸多的 TokenStore 实现，如存在内存中的 InMemoryTokenStore 、存在数据库中的 JdbcTokenStore、存在 Redis 中的 RedisTokenStore
+
+https://www.jianshu.com/p/64f2ee59acd9
+
+
 https://www.oschina.net/p/spring+security?hmsr=aladdin1e1
 Spring Security 是一个功能强大且高度可定制的身份验证和访问控制框架。它是用于保护基于Spring的应用程序的实际标准。
 
@@ -17,5 +22,12 @@ Servlet API集成
 
 github springsecuritytest
 
+文档不好，不如k8s文档全
+
+新手不知道文档写的啥，需要找培训班视频去入门
+老手觉得没有深入底层，有些问题光看文档没办法解决
+
+
+需要有oauth2基础
 
 
