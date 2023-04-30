@@ -1,4 +1,10 @@
 # oauth
+
+https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?login_hint&prompt=login&response_type=code&redirect_uri=https%3A%2F%2Fauth0.openai.com%2Flogin%2Fcallback&scope=email%20profile&state=ZRFM0n5a9Zaa_gLCLJpjvmhdHT4XVseu&client_id=799222349882-ne3i0s9jdm5s0p7ll2d7tlsi1vc1halt.apps.googleusercontent.com&service=lso&o2v=1&flowName=GeneralOAuthFlow
+
+openai_google_oauth.png
+
+
 OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。
 
 http://www.ruanyifeng.com/blog/2019/04/oauth_design.html

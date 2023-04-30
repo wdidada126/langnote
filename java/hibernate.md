@@ -1,10 +1,10 @@
-# hibernate
+ï»¿# hibernate
 
 jboss
 
-java ee 5¿ªÊ¼µÄ
+java ee 5å¼€å§‹çš„
 
 http://hibernate.org/validator/
 
 
-hibernate Oracle×Ô¶¯½¨±í ÏîÄ¿ github
+hibernate Oracleè‡ªåŠ¨å»ºè¡¨ é¡¹ç›® github

@@ -1,5 +1,16 @@
 # maven
 
+
+Maven 依赖的遍历方式是深度优先遍历
+mvn dependency:tree -Dverbose
+
+比如：A 依赖了 B，同时 B 又依赖了 A。这种循环依赖可能不会直接显现，但是可能会在一个很长的调用关系显现出来，也可能是模块架构的设计不合理。
+我们可以使用 mvn dependency:tree -Dverbose | grep cycle 来判断项目中是否存在「循环依赖」。
+
+
+mvn dependency:tree -Dverbose
+
+
 maven搜索
 https://mvnrepository.com/  这个好用
 https://central.sonatype.com/

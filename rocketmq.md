@@ -3,6 +3,31 @@
 github repo https://github.com/edidada/testrocketmq
 
 
+要在 RocketMQ 消费者中打印消息 ID，你可以使用 MessageExt 对象中的 getMsgId() 方法。这个方法返回消息的唯一 ID，可以用作消息的标识符。以下是一个 Java 代码示例，展示了如何在 RocketMQ 消费者中打印消息 ID：
+
+```java
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.MessageSelector;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.common.message.MessageExt;
+import java.util.List;
+
+public class RocketMQConsumerExample {
+    public static void main(String[] args) throws MQClientException {
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("test-group");
+        consumer.setNamesrvAddr("localhost:9876");
+        consumer.subscribe("test-topic", MessageSelector.bySql("tags in ('tagA', 'tagB')"));
+        consumer.registerMessageListener((List<MessageExt> msgs, ConsumeConcurrentlyContext context) -> {
+            for (MessageExt msg : msgs) {
+                System.out.printf("Message ID: %s, Body: %s%n", msg.getMsgId(), new String(msg.getBody()));
+            }
+            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+        });
+        consumer.start();
+    }
+}
+```
+
 ```java
         System.setProperty("rocketmq.client.logUseSlf4j","true");
 ```
