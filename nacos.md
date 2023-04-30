@@ -194,11 +194,11 @@ spring.cloud.nacos.config.extension-configs[n].data-id 的值必须带文件扩�
 通过自定义扩展的 Data Id 配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件。
 通过自定义扩展的 Data Id 配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件。
 为了更加清晰的在多个应用间配置共享的 Data Id ，你可以通过以下的方式来配置：
-# 配置支持共享的 Data Id
+#### 配置支持共享的 Data Id
 spring.cloud.nacos.config.shared-configs[0].data-id=common.yaml
-# 配置 Data Id 所在分组，缺省默认 DEFAULT_GROUP
+#### 配置 Data Id 所在分组，缺省默认 DEFAULT_GROUP
 spring.cloud.nacos.config.shared-configs[0].group=GROUP_APP1
-# 配置Data Id 在配置变更时，是否动态刷新，缺省默认 false
+#### 配置Data Id 在配置变更时，是否动态刷新，缺省默认 false
 spring.cloud.nacos.config.shared-configs[0].refresh=true
 可以看到：
 通过 spring.cloud.nacos.config.shared-configs[n].data-id 来支持多个共享 Data Id 的配置。

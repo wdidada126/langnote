@@ -287,17 +287,33 @@ Pinpoint Validator是由NAVER（韩国的一个IT公司）提供的一个Java校
 
 Spring MVC使用LocalValidatorFactoryBean类作为Validator的默认实现类
 
+LocalValidatorFactoryBean类源码详细解读
+LocalValidatorFactoryBean继承了SpringValidatorAdapter类，实现了ValidatorFactory、InitializingBean和DisposableBean接口。其中，InitializingBean和DisposableBean接口用于在Spring容器启动和关闭时执行一些初始化和清理操作。
+LocalValidatorFactoryBean声明了多个属性，用于配置ValidatorFactory的行为。其中，mappingLocations和mappingClassNames用于指定校验规则的配置文件位置和类名；ignoreXmlConfiguration用于指定是否忽略XML配置文件；failFast用于指定是否启用快速失败模式；messageInterpolator、traversableResolver、constraintValidatorFactory、parameterNameProvider、hibernateValidatorConfiguration和validationProviderResolver等属性用于指定各种校验器的实现；targetValidatorFactory用于存储创建的ValidatorFactory实例；useFastFail用于指定是否启用快速失败模式。
+
+afterPropertiesSet方法
+afterPropertiesSet方法是InitializingBean接口的方法，用于在属性设置完成后执行一些初始化操作。在这个方法中，首先通过createValidatorFactory方法创建ValidatorFactory实例，然后将其包装成ThreadLocalValidatorFactory实例，并将Validator实例设置到SpringValidatorAdapter中。最后，如果messageInterpolator和traversableResolver不为空，将它们注册为Spring Bean。
+
+createValidatorFactory方法
+createValidatorFactory方法用于创建ValidatorFactory实例。在这个方法中，首先通过getConfiguration方法创建HibernateValidatorConfiguration实例，并通过messageInterpolator、traversableResolver、constraintValidatorFactory、parameterNameProvider等属性配置校验器的实现。然后，通过validationProviderResolver属性配置校验器的提供者。接着，通过failFast属性配置是否启用快速失败模式，通过useFastFail属性配置是否启用快速失败模式。最后，通过configureFromXml方法和configure方法配置校验规则，最终通过buildValidatorFactory方法创建ValidatorFactory实例。
+destroy方法是DisposableBean接口的方法，用于在Spring容器关闭时执行一些清理操作。在这个方法中，首先通过targetValidatorFactoryMonitor对象同步获取targetValidatorFactory实例，并通过unwrap方法获取AutoCloseable接口，最后调用close方法关闭ValidatorFactory实例。
 
 九大组件：
 1、HandlerMapping   SimpleUrlHandlerMapping BeanNameUrlHandlerMapping RequestMappingHandlerMapping
 2、HandlerAdapter
 3、HandlerExceptionResolver   DefaultHandlerExceptionResolver
-4、viewResolver
-5、RequestToViewNameTranslator
+4、ViewResolver
+5、RequestToViewNameTranslator  DefaultRequestToViewNameTranslator
 6、LocalResolver
 7、ThemeResolver
 8、MultiPartResolver
 9、FlashMapManager
+
+ViewResolver是Spring MVC中用于解析逻辑视图名称的接口，它有多个实现类，包括InternalResourceViewResolver和ThymeleafViewResolver等
+
+
+DefaultHandlerExceptionResolver的主要方法是resolveException()，它负责处理抛出的异常，并将其转换为HTTP响应。
+determineStatusCode()方法是DefaultHandlerExceptionResolver的一个私有方法，用于确定抛出的异常应该被转换为哪种HTTP响应码。
 
 // 初始化 MultipartResolver:主要用来处理文件上传.如果定义过当前类型的bean对象，那么直接获取，如果没有的话，可以为null
 initMultipartResolver(context);
@@ -328,6 +344,28 @@ SpringMvc定义Controller有三种方式：
 3、实现HttpRequestHandler
 第二种和第三种实现Controller必须在配置文件中定义bean信息，定义的名称必须加上"/"
 
+实现HttpRequestHandler例子
+HttpRequestHandler是Spring MVC框架中一个处理HTTP请求的接口，它是基于Servlet API的，可以在不使用@Controller注解的情况下处理HTTP请求。下面是一个实现HttpRequestHandler的例子：
+
+public class MyHttpRequestHandler implements HttpRequestHandler {
+
+    @Override
+    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 处理请求逻辑
+        String name = request.getParameter("name");
+        String message = "Hello, " + name + "!";
+        response.getWriter().write(message);
+    }
+
+}
+在这个例子中，我们实现了HttpRequestHandler接口，并重写了其中的handleRequest方法。在handleRequest方法中，我们可以使用HttpServletRequest对象获取请求参数，并使用HttpServletResponse对象设置响应内容。在这里，我们获取了请求中的name参数，并返回一个"Hello, name!"的消息。
+接下来，我们需要将这个处理器注册到Spring MVC框架中。这可以通过在Spring配置文件中配置mvc:resources元素来实现：
+<mvc:resources mapping="/hello" location="/hello" />
+<bean id="myHandler" class="com.example.MyHttpRequestHandler" />
+在这个配置中，我们将/hello请求映射到MyHttpRequestHandler处理器上，并将处理器注册为Spring的一个bean。这样，在收到/hello请求时，Spring将会调用MyHttpRequestHandler的handleRequest方法来处理请求，并返回一个"Hello, name!"的消息。
+
+
+
 org.springframework.web.HttpRequestHandler 接口
 
 ResourceHttpRequestHandler (org.springframework.web.servlet.resource)
@@ -351,7 +389,7 @@ Spring MVC有三种映射策略
 | ------------------- | ---------------------------- |
 | 简单url映射         | SimpleUrlHandlerMapping      |
 | BeanName映射        | BeanNameUrlHandlerMapping    |
-| @RequestMapping映射 | RequestMappingHandlerMapping |
+| @RequestMapping映射 | RequestMappingHandlerMapping/DefaultAnnotationHandlerMapping |
 
 
 
@@ -373,13 +411,6 @@ RequestMappingHandlerMapping：根据Controller方法上的@RequestMapping注解
 其中，RequestMappingHandlerMapping是最常用的HandlerMapping实现类，它支持多种URL请求映射方式，包括基于URL路径、HTTP请求方法、请求参数等方式。
 
 在HandlerMapping的实现中，需要注意的是映射顺序的问题。由于存在多个HandlerMapping实现类，它们可能会产生冲突，导致无法正确地将HTTP请求映射到对应的Controller。因此，在配置HandlerMapping时，需要仔细考虑映射顺序，以保证每个请求都能正确地被处理。
-
-
-
-
-
-
-
 
 
 在Spring MVC中，FrameServlet是整个Spring MVC的入口，它的主要作用是将所有的HTTP请求转发到对应的Controller中进行处理。但是，Spring MVC中的Controller不是一个普通的Java类，而是需要通过IoC容器创建并管理的，也就是说，Spring MVC中的Controller是一个Bean，需要由Spring容器管理。
@@ -427,18 +458,65 @@ https://mp.weixin.qq.com/s/licKK-8n9N6LNWEkTtj-Aw
 
 
 问题：
-
 applicationContext.xml和xxx-servlet.xml的区别
-
 都是bean配置文件，有层级关系
 
 https://www.cnblogs.com/parryyang/p/5783399.html
+在Spring MVC框架中，通常会有两个配置文件：applicationContext.xml和xxx-servlet.xml，它们的作用是不同的。
 
+applicationContext.xml是Spring的核心配置文件，主要用于配置Spring容器中的bean，例如数据源、事务管理器、缓存管理器、消息队列等。这个配置文件通常是全局的，它会被所有的Servlet共享。在这个配置文件中，你可以使用任意的Spring特性来配置你的bean，例如依赖注入、AOP、事件监听器等。
 
+xxx-servlet.xml是Spring MVC框架的配置文件，它主要用于配置与Web相关的bean，例如控制器、视图解析器、拦截器、数据绑定器等。这个配置文件通常是Servlet的局部配置文件，每个Servlet都有自己独立的配置文件。在这个配置文件中，你可以使用Spring MVC特有的特性来配置你的bean，例如@RequestMapping注解、@Controller注解、HandlerMapping、HandlerAdapter等。
+
+通常情况下，你需要在web.xml文件中配置一个DispatcherServlet来处理HTTP请求。在这个配置中，你可以指定xxx-servlet.xml作为这个Servlet的配置文件。
+applicationContext.xml是Spring的核心配置文件，用于全局配置Spring容器中的bean；xxx-servlet.xml是Spring MVC框架的配置文件，用于配置与Web相关的bean。在Web应用程序中，通常会有一个全局的applicationContext.xml文件和多个Servlet的局部配置文件。
 
 20200115 写个servlet 访问不了，相对路径没有映射到SprinhMVC
 
+<mvc:default-servlet-handler/>
+作用
+dler/是Spring MVC提供的一个配置元素，它的作用是将所有的请求映射到Servlet容器中的默认Servlet上。
 
+在Web应用程序中，通常有一个默认Servlet用于处理静态资源，例如HTML、CSS、JavaScript等文件。这个默认Servlet通常是由Servlet容器提供的，例如Tomcat、Jetty等容器。当请求静态资源时，这个默认Servlet会负责将资源发送给客户端。
+
+在Spring MVC框架中，默认情况下，所有的请求都会被映射到DispatcherServlet上，如果请求的资源是静态资源，那么DispatcherServlet会尝试去寻找对应的Controller来处理请求，这样会造成不必要的性能开销。
+
+mvc:default-servlet-handler/就是为了解决这个问题而存在的。当我们配置了这个元素之后，Spring MVC就会将所有的请求都映射到Servlet容器中的默认Servlet上，如果请求的资源是静态资源，那么默认Servlet会负责将资源发送给客户端，而不是DispatcherServlet。
+
+例如，我们可以这样在Spring配置文件中配置mvc:default-servlet-handler/：
+<mvc:default-servlet-handler/>
+这个配置就是将所有的请求映射到Servlet容器中的默认Servlet上，如果请求的资源是静态资源，那么默认Servlet会负责将资源发送给客户端。这样可以提高系统的性能和响应速度。
+
+需要注意的是，mvc:default-servlet-handler/只有在Servlet 3.0及以上版本的容器中才支持。如果你的应用程序运行在Servlet 2.5或更低版本的容器中，那么你需要手动配置一个HandlerMapping来处理静态资源。
+
+在Servlet 2.5或更低版本的容器中，如果你想要使用HandlerMapping来处理静态资源，可以按照以下步骤进行配置：
+
+在Spring配置文件中添加以下配置：
+<bean id="defaultServletHttpRequestHandler" class="org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler" />
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+        <props>
+            <prop key="/**/*.*">defaultServletHttpRequestHandler</prop>
+        </props>
+    </property>
+</bean>
+
+这里我们配置了一个DefaultServletHttpRequestHandler和一个SimpleUrlHandlerMapping。DefaultServletHttpRequestHandler是Spring MVC提供的一个处理静态资源的处理器，它会委托给Servlet容器中的默认Servlet来处理静态资源。SimpleUrlHandlerMapping则是用来将请求映射到DefaultServletHttpRequestHandler处理器上。
+
+在web.xml文件中添加以下配置：
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.gif</url-pattern>
+    <url-pattern>*.ico</url-pattern>
+</servlet-mapping>
+
+这里我们将所有的静态资源请求都映射到Servlet容器中的默认Servlet上。这样，当请求静态资源时，Servlet容器会自动将请求转发给默认Servlet来处理。
+
+需要注意的是，这种方式需要Servlet容器支持Servlet 2.5规范，同时也需要在web.xml文件中配置了默认Servlet。如果你使用的是Servlet 3.0及以上版本的容器，那么可以直接使用mvc:default-servlet-handler/来处理静态资源，无需手动配置HandlerMapping。
 
 1.index.jsp访问不了，增加jstl依赖
 <mvc:default-servlet-handler/>
@@ -498,6 +576,14 @@ DispatchServlet
 
 
 - SpringMVC设置URL是是否包括项目名
+在SpringMVC中，URL是否包括项目名是由Servlet容器的实现决定的。在Web应用程序中，Servlet容器会为每个应用程序分配一个ContextPath，也就是应用程序的上下文路径。当客户端发送请求时，请求的URL中必须包含ContextPath才能访问应用程序中的资源。
+默认情况下，SpringMVC会自动将ContextPath添加到URL中，以确保客户端能够正确地访问应用程序中的资源。例如，如果应用程序的ContextPath为/myapp，那么访问控制器的URL就应该是/myapp/home，而不是/home。
+如果你希望URL中不包含ContextPath，可以在SpringMVC的配置文件中添加以下配置：
+<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="alwaysUseFullPath" value="false"/>
+</bean>
+这里我们配置了一个DefaultAnnotationHandlerMapping，并设置了alwaysUseFullPath属性为false。这个属性的作用是控制URL是否包含ContextPath。如果将这个属性设置为false，那么URL就不会包含ContextPath，访问控制器的URL就可以是/home，而不是/myapp/home。
+需要注意的是，如果你将alwaysUseFullPath属性设置为false，那么客户端就必须手动添加ContextPath才能访问应用程序中的资源。例如，如果应用程序的ContextPath为/myapp，那么访问控制器的URL就应该是/myapp/home，而不是/home。因此，在设置alwaysUseFullPath属性时需要谨慎考虑。
 
 
 SpringMVC接收参数的原理
@@ -505,8 +591,6 @@ SpringMVC接收参数的原理
 https://blog.csdn.net/u013041642/article/details/72611065
 
 ```java
-
-
     @RequestMapping("/")
     public String index(){
         return "main";//跳转到到main.jsp页面，如果main.jsp不存在，error页面
@@ -534,11 +618,8 @@ https://blog.csdn.net/u013041642/article/details/72611065
 
 ```java
 
-<<<<<<< HEAD
 Mapped "{[/healthcheck.html]}" onto public java.lang.Object com.xxx.medium.test.isomerization.proxy.web.MainController.healthCheck()
-=======
 Mapped "{[/healthcheck.html]}" onto public java.lang.Object com.xxxxxx.medium.test.isomerization.proxy.web.MainController.healthCheck()
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 Mapped "{[/healthcheck_test.html]}" onto public java.lang.Object com.xxxxxx.medium.test.isomerization.proxy.web.MainController.healthChecks()
 Mapped "{[/healthcheck_image_extraction.html]}" onto public java.lang.Object com.xxxxxx.medium.test.isomerization.proxy.web.TestImageExtractionController.healthChecks()
 
@@ -573,10 +654,9 @@ https://blog.csdn.net/suifeng3051/article/details/51596511
 @Size	The value of the annotated element must be either a String, a collection, or an array whose length fits within the given range.
 
 ```
+
+Spring MVC配置介绍
 https://blog.csdn.net/suifeng3051/article/details/51596511
-
-
-https://blog.csdn.net/qq_36769100/article/details/71746449
 
 
 
@@ -619,7 +699,6 @@ org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionR
 org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#1
 org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#1
 testPostRowServiceImpl
-
 ```
 
 
@@ -641,7 +720,6 @@ ExceptionHandler
 
 
 Spring异常处理@ExceptionHandler
-
 https://www.cnblogs.com/shuimuzhushui/p/6791600.html
 
 
@@ -655,7 +733,7 @@ org.springframework.web.bind.annotation.CrossOrigin
 Spring Framework 4.2 GA为CORS提供了第一类支持，使您比通常的基于过滤器的解决方案更容易和更强大地配置它。所以springMVC的版本要在4.2或以上版本才支持@CrossOrigin
 
 
-
+注解@CrossOrigin解决跨域问题 
 https://www.cnblogs.com/mmzs/p/9167743.html
 
 
@@ -667,7 +745,7 @@ https://www.cnblogs.com/mmzs/p/9167743.html
 
 
 
-
+SpringMVC：SpringMVC启动初始化过程
 https://segmentfault.com/a/1190000010203210
 
 springmvc
@@ -704,6 +782,10 @@ https://blog.csdn.net/weixin_42319989/article/details/102504418
 精尽Spring MVC源码分析 - MultipartResolver 组件
 https://www.cnblogs.com/lifullmoon/p/14136982.html
 
+在SpringMVC中，MultipartResolver是用来解析HTTP请求中的文件上传的。它可以将上传的文件转换成MultipartFile对象，以方便在控制器中进行处理。SpringMVC提供了两个MultipartResolver的实现类：
+1、CommonsMultipartResolver：基于Apache Commons FileUpload实现的MultipartResolver。需要引入commons-fileupload和commons-io两个依赖。
+2、StandardServletMultipartResolver：基于Servlet 3.0规范实现的MultipartResolver。需要在web.xml中配置multipart-config元素。
+你可以根据实际需求选择其中的一个实现类。
 
 ```java
 public interface MultipartResolver {

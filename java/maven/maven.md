@@ -1,5 +1,6 @@
 # maven
 
+/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/bin/java -Dmaven.multiModuleProjectDirectory=/Users/ibqo/development/IdeaProjects/springmvccurl -Dmaven.home=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3 -Dclassworlds.conf=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin/m2.conf -Dmaven.ext.class.path=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=53261:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8 -classpath /Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds.license:/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar org.codehaus.classworlds.Launcher -Didea.version=2021.2.3 org.apache.maven.plugins:maven-dependency-plugin:3.2.0:copy
 
 Maven 依赖的遍历方式是深度优先遍历
 mvn dependency:tree -Dverbose
@@ -209,7 +210,7 @@ mvn archetype:generate \
 
 
 3、查看本地私有模板
-mvn archetype:generate -DarchetypeCatalog=local
+`mvn archetype:generate -DarchetypeCatalog=local`
 
 
 4、制作私有模板
@@ -247,32 +248,32 @@ mvn install文档
 https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html
 
 maven生命周期
-validate - validate the project is correct and all necessary information is available
-compile - compile the source code of the project
-test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
-package - take the compiled code and package it in its distributable format, such as a JAR.
-verify - run any checks on results of integration tests to ensure quality criteria are met
-install - install the package into the local repository, for use as a dependency in other projects locally
-deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+- validate - validate the project is correct and all necessary information is available
+- compile - compile the source code of the project
+- test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+- package - take the compiled code and package it in its distributable format, such as a JAR.
+- verify - run any checks on results of integration tests to ensure quality criteria are met
+- install - install the package into the local repository, for use as a dependency in other projects locally
+- deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 
-mvn install:install-file -DgroupId=com.abc -DartifactId=mavenTest -Dversion=1.0.0 -Dpackaging=jar -Dfile=C:\myfile\test.jar
+`mvn install:install-file -DgroupId=com.abc -DartifactId=mavenTest -Dversion=1.0.0 -Dpackaging=jar -Dfile=C:\myfile\test.jar`
 
-mvn install:install-file -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpackaging=jar -Dfile=QRCode.jar
+`mvn install:install-file -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpackaging=jar -Dfile=QRCode.jar`
 
 
 mvn参考 yum apt，联网下载库文件
 分发库文件
 
 下载依赖库源码
-mvn dependency:resolve -Dclassifier=sources
+`mvn dependency:resolve -Dclassifier=sources`
 
-mvn dependency:tree
+`mvn dependency:tree`
 
 下载源码 maven
 idea windows下载jar包源码失败
 
 
-mvn clean install -s settings.xml -U -DskipTests -Dmaven.repo.local=/tmp/repo
+`mvn clean install -s settings.xml -U -DskipTests -Dmaven.repo.local=/tmp/repo`
 
 
  mirror就是镜像，主要提供一个方便地切换远程仓库地址的途径。比如，上班的时候在公司，用电信的网络，连的是电信的仓库。回到家后，是网通的网络，我想连网通的仓库，就可以通过mirror配置，统一把我工程里的仓库地址都改成联通的，而不用到具体工程配置文件里一个一个地改地址。
@@ -293,7 +294,7 @@ mirror的配置在.m2/settings.xml里。如：
 
 ### verify settings.xml
 
-mvn help:effective-settings
+`mvn help:effective-settings`
 
 ### docker maven
 
@@ -383,7 +384,8 @@ https://www.cnblogs.com/jiefu/p/10968447.html
 </project>
 ```
 
-
+mvn dependency:copy-dependencies -DoutputDirectory=/path/to/dependencies
+mvn dependency:copy-dependencies -DoutputDirectory=./libs
 mvn dependency:copy-dependencies
 拷贝项目依赖的jar包到编译目录的lib下面
 <plugin>
