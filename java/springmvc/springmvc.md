@@ -1,5 +1,140 @@
 # springmvc
 
+springmvc使用jsr303提供报错信息
+spring validate需要引用的jar包
+在使用 Spring 的数据校验（Validation）功能时，需要引用以下依赖：
+spring-context：Spring 的上下文依赖，包含了 Spring 核心容器的基本功能。
+spring-web：Spring Web MVC 的依赖，包含了 Spring MVC 的基本功能。
+javax.validation:validation-api：JSR 303 规范定义的数据校验 API，Spring 使用该 API 进行数据校验。
+org.hibernate.validator:hibernate-validator：Hibernate Validator 实现了 JSR 303 规范，提供了更丰富的数据校验功能，Spring 也可以使用它进行数据校验。
+在 Maven 中，可以通过以下方式引入这些依赖：
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.14</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.3.14</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>6.2.0.Final</version>
+    </dependency>
+</dependencies>
+```
+
+jsr 303 api
+
+JSR 303 是 Java EE 6 规范中定义的 Bean Validation API，提供了一种声明式的数据校验方式。通过在 Java 对象的字段上添加注解，可以定义该字段的数据校验规则，例如必填、长度限制、正则表达式等。使用 Bean Validation API，可以避免手动编写重复的数据校验逻辑，提高代码的可读性和可维护性。
+JSR 303 API 主要包含以下注解：
+@NotNull：检查对象是否为 null。
+@Size：检查对象是否具有指定的大小。
+@Min：检查对象是否大于等于指定的值。
+@Max：检查对象是否小于等于指定的值。
+@DecimalMin：检查对象是否大于等于指定的值，支持 BigDecimal 和 BigInteger。
+@DecimalMax：检查对象是否小于等于指定的值，支持 BigDecimal 和 BigInteger。
+@Email：检查对象是否为有效的电子邮件地址。
+@Pattern：检查对象是否符合指定的正则表达式。
+@AssertTrue：检查布尔值是否为 true。
+@AssertFalse：检查布尔值是否为 false。
+
+JSR 303 API 还定义了一些用于组合校验规则的注解，例如 @Valid、@GroupSequence、@GroupSequenceProvider 等。
+需要注意的是，JSR 303 API 只定义了校验规则，具体的校验实现需要使用实现了该规范的校验框架，例如 Hibernate Validator、Apache BVal 等。在 Spring 中，可以使用 javax.validation:validation-api 和 org.hibernate.validator:hibernate-validator 依赖实现数据校验。
+
+
+以下是一个使用 JSR 303 API 进行数据校验的示例：
+假设有一个 User 类，包含了 name 和 age 两个字段：
+```java
+public class User {
+
+    @NotNull(message = "姓名不能为空")
+    private String name;
+
+    @Min(value = 18, message = "年龄必须大于等于18岁")
+    @Max(value = 100, message = "年龄必须小于等于100岁")
+    private int age;
+
+    // 省略 getter 和 setter 方法
+}
+```
+在这个类中，使用了 @NotNull 和 @Min、@Max 注解进行数据校验。其中，@NotNull 注解用于检查 name 字段是否为 null，如果为 null 则抛出 message 指定的异常信息；@Min 和 @Max 注解用于检查 age 字段是否在指定的范围内。
+接下来，在使用这个类的地方，可以通过如下方式进行数据校验：
+
+```java
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
+
+public class Main {
+
+    public static void main(String[] args) {
+        User user = new User();
+        user.setName(null);
+        user.setAge(16);
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+
+        for (ConstraintViolation<User> violation : violations) {
+            System.out.println(violation.getMessage());
+        }
+    }
+}
+```
+在这个示例中，首先创建了一个 User 对象，并设置了 name 为 null，age 为 16。接下来，通过 Validation.buildDefaultValidatorFactory() 创建一个 ValidatorFactory 对象，然后调用 factory.getValidator() 获取一个 Validator 对象。最后，调用 validator.validate(user) 对 User 对象进行校验，返回一个 Set 集合，其中包含了校验失败的信息。遍历这个 Set 集合，就可以获取到具体的校验失败信息。
+如果运行这个示例，会输出如下信息：
+姓名不能为空
+年龄必须大于等于18岁
+这是因为 User 对象中的 name 字段为 null，不符合 @NotNull 注解的要求；而 age 字段为 16，小于 @Min 注解指定的最小值 18。
+需要注意的是，这只是一个简单的示例，实际使用中可能需要更复杂的校验规则和更多的注解。此外，可以在类级别或方法级别添加 @Validated 注解来启用数据校验功能，以及自定义校验规则并实现 ConstraintValidator 接口等。
+
+springmvc使用jsr303提供报错信息
+在 Spring MVC 中，可以使用 JSR 303 API 进行数据校验，并将校验结果以错误信息的形式返回给前端页面或客户端。具体实现方式如下：
+在 Spring MVC 的配置文件中开启数据校验功能：
+```xml
+<mvc:annotation-driven validator="validator"/>
+<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+```
+这段代码中，使用 <mvc:annotation-driven> 标签启用数据校验功能，并将 validator 属性指定为 LocalValidatorFactoryBean，它是 Spring 为 JSR 303 API 提供的一个实现类，用于执行数据校验操作。
+在需要进行数据校验的 Controller 方法上添加 @Validated 注解，同时在方法参数中添加 BindingResult 参数，用于接收校验结果：
+```java
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @PostMapping
+    public User addUser(@Valid @RequestBody User user, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new RuntimeException(result.getFieldError().getDefaultMessage());
+        }
+        // 保存用户信息
+    }
+}
+```
+在这个示例中，使用 @Valid 注解标注了 User 类型的 user 参数，表示需要对它进行数据校验。同时，还添加了 BindingResult 参数，用于接收校验结果。如果校验失败，可以通过 result.getFieldError().getDefaultMessage() 方法获取到错误信息，并将其抛出到前端或客户端。
+需要注意的是，如果不使用 BindingResult 参数接收校验结果，Spring MVC 会将校验结果存储在 Model 中，但这样可能会导致错误信息无法正确显示。因此，建议始终使用 BindingResult 参数接收校验结果。
+通过使用 JSR 303 API 和 Spring MVC 的数据校验功能，可以避免手动编写重复的校验逻辑，提高代码的可读性和可维护性。同时，还可以方便地将校验结果以错误信息的形式返回给前端或客户端，提高用户体验。
+
+
+
 
 DispatcherServlet类的父类是FrameworkServlet。FrameworkServlet是一个抽象类，它实现了Servlet的init()和service()方法，并提供了对Spring应用程序上下文的支持。DispatcherServlet继承了FrameworkServlet，进一步扩展了其功能，实现了Web MVC框架的核心控制器功能。
 
@@ -36,6 +171,17 @@ GsonHttpMessageConverter 基于Gson的JSON转换器，能够将对象转换成JS
 2）检查系统中是否存在jackson-json的JAR包，如果存在，就在数据转换类型列表中设置JSON类型，以及其对应的转换器
 
 因为是先检测的XML，因此XML排在JSON前面，如果系统两者的JAR包都存在，那么默认情况下数据会被转换成XML格式
+https://blog.csdn.net/CSDN2497242041/article/details/102618226
+
+
+
+Fastjson的SerializerFeature序列化属性：
+QuoteFieldNames———-输出key时是否使用双引号,默认为true
+WriteMapNullValue——–是否输出值为null的字段,默认为false
+WriteNullNumberAsZero—-数值字段如果为null,输出为0,而非null
+WriteNullListAsEmpty—–List字段如果为null,输出为[],而非null
+WriteNullStringAsEmpty—字符类型字段如果为null,输出为”“,而非null
+WriteNullBooleanAsFalse–Boolean字段如果为null,输出为false,而非null
 ————————————————
 版权声明：本文为CSDN博主「Java后端何哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/CSDN2497242041/article/details/102618226
@@ -70,9 +216,7 @@ springmvc返回对象或集合
 
 <!--MVC注解驱动-->
 <mvc:annotation-driven/>
-————————————————
-版权声明：本文为CSDN博主「m0_55247145」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/m0_55247145/article/details/120930590
+
 
 
 
@@ -84,8 +228,64 @@ handleradapter
 RequestMappingHandlerAdapter
 
 
+RequestMappingHandlerAdapter默认的messageConverters
+
+在 Spring MVC 中，RequestMappingHandlerAdapter 是一个处理器适配器，用于执行处理器方法并将结果转换为 ModelAndView 或 ResponseEntity。RequestMappingHandlerAdapter 默认包含一些常见的消息转换器，用于处理请求和响应的消息体。
+以下是 RequestMappingHandlerAdapter 默认包含的一些消息转换器：
+ByteArrayHttpMessageConverter
+用于处理字节数组格式的消息体，支持的媒体类型为 application/octet-stream。
+StringHttpMessageConverter
+用于处理文本格式的消息体，支持的媒体类型为 text/plain 和 text/html，默认字符集为 ISO-8859-1。
+ResourceHttpMessageConverter
+用于处理 Resource 类型的消息体，支持的媒体类型为 application/octet-stream、image/jpeg、image/gif、image/png 和 application/pdf。
+SourceHttpMessageConverter
+用于处理 Source 类型的消息体，支持的媒体类型为 application/xml 和 text/xml。
+FormHttpMessageConverter
+用于处理表单格式的消息体，支持的媒体类型为 application/x-www-form-urlencoded。
+Jaxb2RootElementHttpMessageConverter
+用于处理基于 JAXB2 的 XML 格式的消息体，支持的媒体类型为 application/xml 和 text/xml。
+MappingJackson2HttpMessageConverter
+用于处理 JSON 格式的消息体，支持的媒体类型为 application/json 和 application/*+json。
+MappingJackson2XmlHttpMessageConverter
+用于处理基于 Jackson 的 XML 格式的消息体，支持的媒体类型为 application/xml、text/xml 和 application/*+xml。
+注意：以上是 RequestMappingHandlerAdapter 默认包含的一些消息转换器，具体的消息转换器列表可能会根据项目的实际情况而有所不同。如果需要自定义消息转换器，可以创建自己的类，并实现 HttpMessageConverter 接口或继承现有的消息转换器类，并将其添加到 RequestMappingHandlerAdapter 的 messageConverters 列表中。
+
 
 Object handler强制转换成(HandlerMethod) handler
+
+在 Spring MVC 中进行数据校验时，可以使用 BindingResult 类来保存校验结果。除了 BindingResult 类本身，Spring 还提供了以下三个 BindingResult 的子类：
+Errors：是 BindingResult 的父类，用于保存所有类型的校验错误信息，包括字段错误、全局错误和对象错误等。
+FieldErrors：用于保存字段级别的校验错误信息，可以通过 getFieldErrors() 方法获取所有字段错误信息，或通过 getFieldError(String field) 方法获取指定字段的错误信息。
+ObjectErrors：用于保存对象级别的校验错误信息，可以通过 getGlobalErrors() 方法获取所有对象错误信息，或通过 getGlobalError(String code) 方法获取指定对象错误信息。
+
+
+JSR 380 规范定义了 Java 中的 Bean Validation API，其中包括了数据校验相关的注解、校验器等内容。该规范于 2017 年发布，是 Java EE 8 的一部分。
+
+Bean Validation API 提供了一套通用的数据校验框架，可以用于对 Java 对象进行数据校验，包括对属性的校验、对方法返回值的校验等。这些校验规则都是通过注解来定义的，例如 @NotNull、@Size、@Pattern 等。
+
+在 Java 中进行数据校验时，可以使用 Bean Validation API 提供的注解来定义校验规则，然后通过校验器对目标对象进行校验。校验结果可以是一个布尔值，也可以是一组校验错误信息。
+
+需要注意的是，虽然 Bean Validation API 是一个 JSR 规范，但是它不是 Java SE 的一部分，需要在应用中显式引入相关的依赖库，例如 Hibernate Validator。
+Hibernate Validator 是一个实现了 Bean Validation API 规范的校验框架，提供了一些额外的功能，例如对集合、Map、数组等复杂类型的校验支持等。Hibernate Validator 6.x 版本实现了 JSR 380 规范，因此可以使用其中定义的所有注解和校验器。
+总之，JSR 380 是 Bean Validation API 规范的版本号，同时也是 Hibernate Validator 实现的版本号。
+
+
+除了Hibernate Validator之外，还有一些其他的实现库也可以用于实现JSR 380规范的数据校验功能，这些库包括：
+
+Apache BVal
+Apache BVal是Apache基金会下的一个开源项目，用于实现Java Bean Validation规范。它提供了JSR 303和JSR 349的实现，支持适用于Java SE和Java EE应用程序的数据校验功能。与Hibernate Validator相比，Apache BVal提供了更加灵活的API和更多的校验器，同时也支持JSR 349规范中新增的校验器。
+
+OWASP ESAPI Validator
+OWASP ESAPI Validator是由OWASP（开放式Web应用安全项目）提供的一个Java校验库，它提供了一组安全的校验规则，用于对输入数据进行校验，以防止应用程序遭受安全攻击。它支持JSR 303规范中定义的注解和校验器，并提供了一些扩展的校验器，例如对XSS攻击和SQL注入攻击的校验器。
+
+Pinpoint Validator
+Pinpoint Validator是由NAVER（韩国的一个IT公司）提供的一个Java校验库，它提供了一组简单易用的校验注解和校验器，支持JSR 303和JSR 349规范。与Hibernate Validator和Apache BVal相比，Pinpoint Validator具有更小的体积和更快的校验速度，适用于对性能要求较高的应用程序进行数据校验。
+
+总之，以上是一些常见的JSR 380规范的实现库，开发人员可以根据具体需求进行选择和使用。无论使用哪个库，都需要遵循JSR 380规范定义的注解和校验器，以确保数据校验的正确性和安全性。
+
+
+
+Spring MVC使用LocalValidatorFactoryBean类作为Validator的默认实现类
 
 
 九大组件：
@@ -165,13 +365,9 @@ Spring MVC有三种映射策略
 HandlerMapping接口定义了一个方法：getHandler(HttpServletRequest request)，该方法返回一个HandlerExecutionChain对象，其中包含了一个Controller对象以及一些HandlerInterceptor对象，这些对象可以协同工作来处理HTTP请求。
 
 在Spring MVC中，常见的HandlerMapping实现类有：
-
 BeanNameUrlHandlerMapping：根据URL路径中的Bean名称来查找对应的Controller。
-
 DefaultAnnotationHandlerMapping：根据Controller中的注解来映射URL请求。
-
 SimpleUrlHandlerMapping：根据URL路径来映射Controller。
-
 RequestMappingHandlerMapping：根据Controller方法上的@RequestMapping注解来映射URL请求。
 
 其中，RequestMappingHandlerMapping是最常用的HandlerMapping实现类，它支持多种URL请求映射方式，包括基于URL路径、HTTP请求方法、请求参数等方式。
@@ -261,9 +457,10 @@ https://www.cnblogs.com/parryyang/p/5783399.html
 
 https://github.com/edidada/springmvccurl
 
-配置了一个http路径失效，配置controler失效？
+20230430 支持返回xml格式的报文
 
-查看有哪些Handler
+
+配置了一个http路径失效，配置controler失效？查看有哪些Handler
 
 ？？？？
 

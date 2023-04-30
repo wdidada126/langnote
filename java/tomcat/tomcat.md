@@ -4,10 +4,30 @@ tomcat哪个版本支持nio
 Tomcat 从版本 6.0 开始支持 NIO（New I/O）模式，但要使用 NIO，需要将 Connector 的 protocol 属性设置为 "org.apache.coyote.http11.Http11NioProtocol"。
 
 在 Tomcat 6.0 中，NIO 是一个可选的协议，需要手动配置。在 Tomcat 7.0 中，NIO 成为了默认的协议，可以通过配置文件进行启用和禁用。
-
 如果您需要使用 NIO，建议使用 Tomcat 7.0 或更高版本，以获得更好的性能和可靠性。此外，还要注意，使用 NIO 需要注意线程安全和内存管理等问题，需要仔细评估和调整系统配置和代码实现。
 
+tomcat 8配置文件设置线程池
+在 Tomcat 8 中，可以通过配置文件设置线程池。Tomcat 8 默认使用的线程池是 org.apache.tomcat.util.threads.ThreadPoolExecutor，但您可以根据需要进行自定义配置。以下是一些示例配置：
+使用默认线程池
+```xml
+<Connector port="8080" protocol="HTTP/1.1" 
+           connectionTimeout="20000" 
+           redirectPort="8443" />
+```
+自定义线程池
+```xml
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443"
+           executor="myThreadPool" />
 
+<Executor name="myThreadPool" 
+          namePrefix="catalina-exec-" 
+          maxThreads="1000" 
+          minSpareThreads="50" 
+          maxIdleTime="60000" 
+          prestartminSpareThreads="true" />
+```
 
 
 Coyote的AbstractProcessor类如何处理http body

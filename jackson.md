@@ -1,5 +1,6 @@
 # jackson
 
+支持json和xml
 springmvc默认的json序列化 反序列化工具
 
 https://gitee.com/edidada/testjackson
@@ -28,6 +29,8 @@ http://wiki.fasterxml.com/JacksonDownload
 - jackson-core
 - jackson-databind
 
+- jackson-dataformat-xml xml格式化的
+
 ```xml
 <!--Jackson包-->
     <dependency>
@@ -55,7 +58,7 @@ readValue()
 String writeValueAsString()               com.fasterxml.jackson.databind.ObjectMapper#writeValueAsString
 
 
-
+ObjectMapper中的writeVaule和writeValueAsString方法之间的关系
 https://blog.csdn.net/qq_43872529/article/details/104176433
 
 
