@@ -7,8 +7,13 @@ https://gitee.com/edidada/summer-framework
 廖雪峰 自己写spring
 https://www.liaoxuefeng.com/wiki/1539348902182944
 
-bean生命周期.png
-Spring 容器中的bean的生命周期.png
+![bean生命周期](D:\git\github\langnote\imgs\spring\bean生命周期.png)
+
+
+
+![Spring 容器中的bean的生命周期](D:\git\github\langnote\imgs\spring\Spring 容器中的bean的生命周期.png)
+
+
 
 
 Spring 对bean 进行实例化。
@@ -21,7 +26,7 @@ Spring 对bean 进行实例化。
   如果bean实现了BeanPostProcessor接口，Spring将调用它们的post-ProcessAfterInitialization() 方法。
   此时, bean 已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁。
   如果bean实现了DisposableBean接口，Spring将调用它的destory()接口方法。同样,如果bean使用destroy-method声明了销毁方法，该方法也会被调用。
- 
+
 
 https://www.cnblogs.com/misscai/p/14749225.html
 
@@ -81,6 +86,12 @@ session：在一次会话中对应一个bean。
 
 
 
+
+
+
+
+
+
 https://github.com/edidada/SpringExample
 
 PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{}来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：1。已收到消息.PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{ }来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：。
@@ -93,7 +104,11 @@ https://www.docs4dev.com/docs/zh/spring-framework/4.3.21.RELEASE/reference/aop.h
 张开涛 跟我学Spring3 系列博客
 跟我学spring 用的是spring3
 
+Spring实战
+
 Spring 3.x企业开发实战
+
+
 
 
 1. 什么是spring?Spring 是个java企业级应用的开源开发框架。Spring主要用来开发Java应用，但是有些扩展是针对构建J2EE平台的web应用。Spring 框架目标是简化Java企业级应用开发，并通过POJO为基础的编程模型促进良好的编程习惯。

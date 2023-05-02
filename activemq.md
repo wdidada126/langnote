@@ -1,6 +1,14 @@
 # activemq
 
-./apache-activemq-5.12.2/bin/activemq console   windows版本好像不行，mac行
+
+
+cd E:\apache-activemq-5.12.2\bin\win64
+
+./InstallService.bat
+
+
+
+./activemq console   windows版本好像不行，mac行
 
 [官方下载地址](http://activemq.apache.org/download.html)
 
