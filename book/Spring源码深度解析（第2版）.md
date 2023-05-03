@@ -746,5 +746,41 @@ WebApplicationContext提供了Web应用程序级别的事件机制，可以在�
 
 
 
+Spring boot自动装配，使用了 spi技术加载的文件是哪个？
+在Spring Boot中，自动装配是通过Spring框架提供的SPI（Service Provider Interface）机制来实现的。具体来说，Spring Boot使用了Java标准库中的`java.util.ServiceLoader`类来加载META-INF/services目录下的服务提供者配置文件。
+
+在Spring Boot中，每个自动配置类都需要在`META-INF/spring.factories`文件中注册为一个服务提供者，以便Spring Boot可以自动扫描并加载这些自动配置类。`spring.factories`文件是一个标准的Java属性文件，它的格式如下：
+
+```xml
+# Auto Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.autoconfig.MyAutoConfiguration,\
+com.example.autoconfig.AnotherAutoConfiguration
+```
+
+在上面的示例中，`EnableAutoConfiguration`是一个服务提供者接口，其值是一个或多个自动配置类的全限定名，用逗号分隔。当Spring Boot启动时，它会加载`spring.factories`文件，并使用`java.util.ServiceLoader`类来加载`EnableAutoConfiguration`服务提供者的实现类，即自动配置类。
+
+总之，Spring Boot使用了SPI技术加载`META-INF/spring.factories`文件中注册的服务提供者，以自动装配应用程序所需的组件和功能。
 
 
+
+
+`org.springframework.boot.autoconfigure.EnableAutoConfiguration`是Spring Boot中的一个注解，用于启用自动配置。它是Spring Boot自动配置机制的核心注解之一，用来自动装配应用程序所需的组件和功能。
+
+使用`@EnableAutoConfiguration`注解时，Spring Boot会自动扫描classpath下的所有依赖，并根据依赖的jar包中META-INF/spring.factories文件中的配置信息，自动装配所需的组件和功能。例如，如果引入了Spring Data JPA依赖，启用了`@EnableAutoConfiguration`注解后，Spring Boot会自动配置JPA相关的Bean，包括`EntityManagerFactory`、`DataSource`等。
+
+`@EnableAutoConfiguration`注解的使用非常简单，只需要在Spring Boot应用程序的主类上添加该注解即可。例如：
+
+```java
+@SpringBootApplication
+@EnableAutoConfiguration
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+在上面的示例中，`@EnableAutoConfiguration`注解启用了自动配置机制，使得Spring Boot可以根据依赖的jar包自动装配所需的组件和功能。同时，`@SpringBootApplication`注解也包含了`@EnableAutoConfiguration`注解，因此在实际开发中通常只需要使用`@SpringBootApplication`注解即可。
+
+总之，`@EnableAutoConfiguration`注解是Spring Boot自动配置机制的核心注解之一，它可以帮助开发人员轻松地实现应用程序的自动装配，提高开发效率和代码质量。

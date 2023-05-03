@@ -1,5 +1,29 @@
 # jackson
 
+
+```java
+package cn.wdidada.springmvccurl.vo;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+public enum Fruit {
+    APPLE,
+    BANANA,
+    ORANGE;
+
+    @JsonCreator
+    public static Fruit fromString(String value) {
+        return valueOf(value.toUpperCase());
+    }
+
+    @JsonValue
+    public String toValue() {
+        return name().toLowerCase();
+    }
+}
+```
+
 支持json和xml
 springmvc默认的json序列化 反序列化工具
 
