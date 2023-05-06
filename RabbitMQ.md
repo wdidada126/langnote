@@ -12,7 +12,7 @@ https://rabbitmq.com/changelog.html
 
 ### 书籍
 
-RabbitMQ实战  高效部署分布式消息队列
+RabbitMQ实战 高效部署分布式消息队列
 
 
 
