@@ -1,5 +1,7 @@
 # RabbitMQ
 
+https://gitee.com/edidada/testrabbitmqspringboot
+
 开发语言？
 
 ### 版本

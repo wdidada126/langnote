@@ -2,6 +2,7 @@
 
 
 ### spring boot使用rocketmq
+https://gitee.com/edidada/testrocketmqspringboot
 
 rocketmq-spring-boot-2.0.4.jar
 org.apache.rocketmq.spring.core.RocketMQTemplate
