@@ -6,9 +6,122 @@ Spring2教案_aop事务.docx
 SpringAOP开发的引入.png
 cglib动态代理的实现原理和步骤.png
 
-https://gitee.com/edidada/spring-aopexample
-https://github.com/edidada/testmybatisspring   spring aop
+https://gitee.com/edidada/spring-aopexample   spring aop
+https://gitee.com/edidada/springexample
 
+A : public class MyServiceImpl implements MyService
+B : public class MyServiceImpl
+
+上面的报错，
+
+```java
+Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.wdidada.test.aop.impl.MyServiceImpl' available
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:353)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:340)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1090)
+	at cn.wdidada.test.aop.TestMyBatisAOPSpring.main(TestMyBatisAOPSpring.java:27)
+```
+
+下面的可以
+
+
+上面为什么报错，因为aop方式是动态代理
+
+internalAutoProxyCreator
+internalAutoProxyCreator是Spring AOP中的一个Bean后置处理器，它的主要作用是自动创建AOP代理对象。
+
+在Spring中，当一个Bean被注册到容器中时，internalAutoProxyCreator会检查该Bean是否需要被代理。如果该Bean需要被代理，并且没有指定具体的代理方式，internalAutoProxyCreator会根据该Bean的类型和配置信息自动选择合适的代理方式，并创建代理对象。代理对象将替代原始对象，成为该Bean在应用中的实际实例。
+internalAutoProxyCreator的具体工作流程如下：
+遍历所有Bean的定义，找到需要被代理的Bean。
+根据代理的目标类型和配置信息，选择合适的代理方式（JDK动态代理或CGLIB代理）。
+创建代理对象，将其注册到Spring容器中。
+将代理对象返回给调用方，替代原始对象成为该Bean在应用中的实际实例。
+需要注意的是，internalAutoProxyCreator只会对满足以下条件的Bean进行代理：
+Bean必须是一个单例（Singleton）。
+Bean必须是一个AOP代理的目标对象（Target Object）。
+Bean必须符合AOP代理的切点条件。
+由于internalAutoProxyCreator是一个Bean后置处理器，它是在Bean实例化之后、初始化之前被调用的。因此，在使用internalAutoProxyCreator时，需要确保代理的目标对象已经被实例化，但还没有被初始化。如果代理的目标对象已经被初始化，internalAutoProxyCreator将无法创建代理对象。
+总的来说，internalAutoProxyCreator是Spring AOP中非常重要的一个组件，它为Spring AOP提供了自动代理的能力，简化了AOP的配置和使用。
+
+
+`AspectJPointcutAdvisor`是Spring AOP中的一个类，用于将AspectJ切点与通知（Advice）关联起来，构成一个切面（Aspect）。它是Spring AOP中切面的基本组成部分之一。
+在Spring AOP中，切面（Aspect）是由切点（Pointcut）和通知（Advice）组成的。切点用于定义需要拦截的方法，而通知用于定义拦截后需要执行的逻辑。`AspectJPointcutAdvisor`的作用就是将切点和通知组合在一起，创建一个切面。
+`AspectJPointcutAdvisor`通过实现`org.springframework.aop.PointcutAdvisor`接口来实现。它包含两个重要的属性：`Pointcut`和`Advice`。`Pointcut`用于定义需要拦截的方法，可以使用AspectJ切点表达式来描述；`Advice`用于定义拦截后需要执行的逻辑，可以是前置通知、后置通知、环绕通知等。
+例如，以下是一个示例，它使用`AspectJPointcutAdvisor`来定义一个切面，拦截`com.example.service.UserService`类的所有方法，并在方法执行前后输出日志信息：
+
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Pointcut("execution(* com.example.service.UserService.*(..))")
+    public void userServicePointcut() {}
+
+    @Around("userServicePointcut()")
+    public Object logMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        Object result = joinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+        String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+        System.out.println(className + "." + methodName + " executed in " + (endTime - startTime) + "ms");
+        return result;
+    }
+
+    @Bean
+    public AspectJPointcutAdvisor userServiceAdvisor() {
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* com.example.service.UserService.*(..))");
+        return new AspectJPointcutAdvisor(pointcut, this::logMethodExecutionTime);
+    }
+}
+```
+
+在上面的示例中，`@Aspect`注解用于声明一个切面类，`@Pointcut`注解用于定义一个切点，它拦截`com.example.service.UserService`类的所有方法。`@Around`注解用于定义一个环绕通知，它拦截`userServicePointcut()`切点，并在方法执行前后输出日志信息。`@Bean`注解用于定义一个Bean，它创建一个`AspectJPointcutAdvisor`对象，将切点和通知组合在一起，形成一个切面。通过这种方式，可以将日志逻辑从业务逻辑中分离出来，以模块化的方式进行管理，提高代码的可维护性和可扩展性。
+需要注意的是，`AspectJPointcutAdvisor`适用于使用AspectJ切点表达式的情况，如果需要使用其他类型的切点，可以使用其他类型的Advisor，例如`NameMatchMethodPointcutAdvisor`、`RegexpMethodPointcutAdvisor`等。
+
+org.springframework.aop.aspectj.AspectJPointcutAdvisor
+
+
+
+
+`AspectJPointcutAdvisor`是Spring AOP中的一个类，用于将AspectJ切点与通知（Advice）关联起来，构成一个切面（Aspect）。它是Spring AOP中切面的基本组成部分之一。
+在Spring AOP中，切面（Aspect）是由切点（Pointcut）和通知（Advice）组成的。切点用于定义需要拦截的方法，而通知用于定义拦截后需要执行的逻辑。`AspectJPointcutAdvisor`的作用就是将切点和通知组合在一起，创建一个切面。
+`AspectJPointcutAdvisor`通过实现`org.springframework.aop.PointcutAdvisor`接口来实现。它包含两个重要的属性：`Pointcut`和`Advice`。`Pointcut`用于定义需要拦截的方法，可以使用AspectJ切点表达式来描述；`Advice`用于定义拦截后需要执行的逻辑，可以是前置通知、后置通知、环绕通知等。
+例如，以下是一个示例，它使用`AspectJPointcutAdvisor`来定义一个切面，拦截`com.example.service.UserService`类的所有方法，并在方法执行前后输出日志信息：
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Pointcut("execution(* com.example.service.UserService.*(..))")
+    public void userServicePointcut() {}
+
+    @Around("userServicePointcut()")
+    public Object logMethodExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        Object result = joinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+        String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+        System.out.println(className + "." + methodName + " executed in " + (endTime - startTime) + "ms");
+        return result;
+    }
+
+    @Bean
+    public AspectJPointcutAdvisor userServiceAdvisor() {
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* com.example.service.UserService.*(..))");
+        return new AspectJPointcutAdvisor(pointcut, this::logMethodExecutionTime);
+    }
+}
+```
+
+在上面的示例中，`@Aspect`注解用于声明一个切面类，`@Pointcut`注解用于定义一个切点，它拦截`com.example.service.UserService`类的所有方法。`@Around`注解用于定义一个环绕通知，它拦截`userServicePointcut()`切点，并在方法执行前后输出日志信息。`@Bean`注解用于定义一个Bean，它创建一个`AspectJPointcutAdvisor`对象，将切点和通知组合在一起，形成一个切面。通过这种方式，可以将日志逻辑从业务逻辑中分离出来，以模块化的方式进行管理，提高代码的可维护性和可扩展性。
+需要注意的是，`AspectJPointcutAdvisor`适用于使用AspectJ切点表达式的情况，如果需要使用其他类型的切点，可以使用其他类型的Advisor，例如`NameMatchMethodPointcutAdvisor`、`RegexpMethodPointcutAdvisor`等。
+
+
+<aop:aspectj-autoproxy proxy-target-class="true"/>
 
 https://gitee.com/edidada/springbootwebaop  spring boot aop实现
 
@@ -51,6 +164,21 @@ Weaveing
 @Aspect注解作用
 这个类是一个spring bean
 声明aop
+@Aspect注解是Spring AOP框架中的一个注解，用于声明一个切面（Aspect）。切面是一种横切逻辑，它可以拦截应用程序中的方法调用，并在方法执行前、执行后或执行异常时执行额外的逻辑。
+
+在使用@Aspect注解时，需要结合其他注解一起使用，以定义切点和增强等相关信息。常用的注解包括：
+
+@Pointcut：用于定义切点，可以将一组方法定义为一个切点。
+@Before：用于在方法执行前执行增强逻辑。
+@After：用于在方法执行后执行增强逻辑。
+@AfterReturning：用于在方法正常返回后执行增强逻辑。
+@AfterThrowing：用于在方法抛出异常后执行增强逻辑。
+
+@Aspect注解修饰的类必须是spring ioc中的bean吗？
+是的，使用@Aspect注解声明的切面类必须是Spring IoC容器中的Bean。这是因为Spring AOP框架是基于Spring IoC容器实现的，它通过在IoC容器中查找切面Bean来创建切面对象，从而实现切面的拦截和增强。
+在使用@Aspect注解时，还需要结合其他注解一起使用，如@Pointcut、@Before、@After、@Around等注解，用于定义切点和增强等相关信息。这些注解都是Spring框架提供的注解，并依赖于Spring IoC容器来实现Bean的创建和管理。
+因此，使用@Aspect注解声明的切面类必须交由Spring IoC容器管理，并且需要在配置文件或通过注解方式将其声明为Bean，才能被Spring框架正确地创建和使用。如果没有将切面类声明为Bean，Spring框架将无法创建切面对象，从而无法实现切面的拦截和增强。
+
 
 
 D:\git\github\langnote\imgs\spring\spring_aop声明通知方法.PNG

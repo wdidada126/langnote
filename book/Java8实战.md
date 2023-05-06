@@ -39,7 +39,8 @@ keyStore
 - java.util.function.Consumer   Consumer<T>                        只有入参，没有出参
 - java.util.function.Function   Function<T, R>    R apply(T t)  有入参，有出参
 - java.util.function.Supplier                      T get()                      没有入参，有出参
-- 
+
+  
 
 BiFunction
 xxxOperator
@@ -161,7 +162,7 @@ String[] ls = new String[]{"age", "eat", "", "tan", "ate", "nat", "bat", "", "ba
 
 java.util.Spliterator
 
-第三部分 高效Java 8编程
+## 第三部分 高效Java 8编程
 
 #### Chap. 8 重构、测试和调试
 
@@ -171,7 +172,7 @@ com.google.common.base.Optional
 怎么报错的？
 
 #### Chap. 9 default method
-默认方法
+接口默认方法
 
 
 
@@ -266,7 +267,7 @@ TemporalField
 public interface Temporal extends TemporalAccessor
 ```
 
-第四部分 超越Java 8
+## 第四部分 超越Java 8
 第13章　函数式的思考
 
 

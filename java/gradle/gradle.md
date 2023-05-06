@@ -1,9 +1,85 @@
 # gradle
 
+
+gradle如何解决依赖冲突
+
+
+
+```grovvy
+task checkDependencyConflict {
+    doLast {
+        configurations.compile.allDependencies.each { dep ->
+            println "Checking dependency: ${dep.name} - ${dep.version}"
+            configurations.compile.incoming.resolutionResult.allDependencies.each { incoming ->
+                if (dep.name.equals(incoming.name) && dep.version != incoming.version) {
+                    println "Dependency conflict detected: ${dep.name} - ${dep.version} and ${incoming.version}"
+                }
+            }
+        }
+    }
+}
+```
+
+Gradle可以使用dependencyInsight任务来检查jar包依赖是否存在冲突。该任务可以列出指定依赖的所有版本以及它们之间的依赖关系，并标识出依赖冲突的地方。
+
+以下是使用dependencyInsight任务检查依赖冲突的示例：
+gradle dependencyInsight --dependency commons-collections
+
+gradle dependencies 打印jar包依赖
+Gradle自带了很多任务，以下是一些常见的任务：
+
+1. `build`：构建项目，包括编译、测试、打包等操作。
+2. `clean`：清除项目构建产物和临时文件。
+3. `assemble`：打包项目，生成可分发的应用程序或库。
+4. `check`：运行所有测试任务，检查项目的正确性和稳定性。
+5. `test`：运行所有测试用例。
+6. `install`：将项目构建产物安装到本地Maven或Ivy仓库。
+7. `dependencies`：列出所有的依赖关系。
+8. `tasks`：列出所有可用的任务。
+9. `help`：显示Gradle帮助信息。
+
+除了上述常用任务，还有一些其他的任务，例如：
+
+1. `init`：生成一个初始的Gradle构建文件。
+2. `wrapper`：生成Gradle Wrapper脚本，用于在没有安装Gradle的机器上执行Gradle构建。
+3. `eclipse`：生成Eclipse项目文件。
+4. `idea`：生成IntelliJ IDEA项目文件。
+5. `publish`：将项目构建产物发布到指定的Maven或Ivy仓库。
+
+需要注意的是，不同的插件可能会定义自己的任务，因此可以通过查看插件文档或使用`tasks`任务来了解所有可用的任务。
+
+总的来说，Gradle自带了很多任务，可以通过这些任务来构建、测试和打包项目，以及管理依赖关系和发布构建产物等。
+
+
 设置环境变量
 - GRADLE_HOME
 - GRADLE_USER_HOME
 
+
+gradle -v
+
+------------------------------------------------------------
+Gradle 5.1.1
+------------------------------------------------------------
+
+Build time:   2019-01-10 23:05:02 UTC
+Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+Kotlin DSL:   1.1.1
+Kotlin:       1.3.11
+Groovy:       2.5.4
+Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+JVM:          1.8.0_231 (Oracle Corporation 25.231-b11)
+OS:           Windows 10 10.0 amd64
+
+
+GRADLE_USER_HOME/cache是Gradle用户目录下的缓存文件夹，用于存储Gradle的本地缓存文件。在这个文件夹中，Gradle会保存已经下载的依赖项和其他构建过程中生成的临时文件。
+具体来说，GRADLE_USER_HOME/cache文件夹包含以下子文件夹：
+caches/modules-2: 该文件夹包含所有已下载的依赖项的jar包和其他文件。Gradle会按照依赖关系和版本号的组合来组织该文件夹中的目录结构。
+caches/transforms-2: 该文件夹包含由Gradle执行的所有转换操作生成的临时文件。例如，当Gradle将Java源代码编译成字节码时，会生成相应的.class文件，并将其保存在该文件夹中。
+caches/file-changes-2: 该文件夹包含Gradle对文件系统中的文件进行监视时生成的临时文件。例如，当Gradle监视项目中的源代码文件时，会生成相应的元数据文件，并将其保存在该文件夹中。
+通过将GRADLE_USER_HOME/cache文件夹设置为共享文件夹，可以让多个Gradle项目共享本地缓存文件，从而提高构建效率。需要注意的是，如果多个项目使用相同的依赖项和版本号，Gradle会重复使用缓存中的文件，从而避免重复下载和构建相同的文件。
+需要注意的是，GRADLE_USER_HOME/cache文件夹是Gradle 6.0及更高版本中的新特性。在旧版本的Gradle中，缓存文件夹位于GRADLE_USER_HOME/.gradle/caches文件夹中。
 
 要使用 ANTLR 插件，请在构建脚本中包含以下语句：
 示例 40.1. 使用 ANTLR 插件
@@ -110,7 +186,6 @@ Windows系统默认下载到：C:\Users\(用户名)\.gradle\caches\modules-2\fil
 
 https://book.douban.com/subject/26649087/
 
-https://book.douban.com/subject/26609447/
 
 gradle组织公司的项目
 

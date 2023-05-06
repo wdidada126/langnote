@@ -818,3 +818,43 @@ result: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><s
 HttpURLConnection 发送SOAP请求
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:sayHelloResponse xmlns:ns2="http://springcxf.wdidada.cn/"><return>大家好，我是ls</return></ns2:sayHelloResponse></soap:Body></soap:Envelope>
 
+
+
+cxf框架如何生成.wsdi文档
+在Apache CXF框架中，可以使用`org.apache.cxf.tools.wsdlto.WSDLToServiceInfo`类来生成`.wsdl`和`.wsdl`对应的`.wsdi`文档。`.wsdi`文档是一种Web服务的元数据文档，它描述了一个Web服务的所有细节，包括服务地址、操作名称、消息格式、参数、返回值等信息。
+以下是使用CXF框架生成`.wsdi`文档的基本步骤：
+1. 创建一个`WSDLToServiceInfo`对象。
+```java
+WSDLToServiceInfo wsdlToServiceInfo = new WSDLToServiceInfo();
+```
+2. 为`WSDLToServiceInfo`对象设置WSDL和服务名称。
+```java
+wsdlToServiceInfo.setWsdlUrl("http://localhost:8080/MyWebService/MyWebService.wsdl");
+wsdlToServiceInfo.setServiceName("{http://www.example.com/MyWebService}MyWebService");
+```
+3. 调用`WSDLToServiceInfo`对象的`loadWSDL()`方法，加载WSDL文件并解析其内容。
+```java
+ServiceInfo serviceInfo = wsdlToServiceInfo.loadWSDL();
+```
+4. 调用`WSDLToServiceInfo`对象的`generateWSDI()`方法，生成`.wsdi`文档。
+```java
+wsdlToServiceInfo.generateWSDI(serviceInfo, "MyWebService.wsdi");
+```
+在上面的代码中，`setWsdlUrl()`方法指定WSDL文件的URL地址，`setServiceName()`方法指定服务名称，`loadWSDL()`方法加载WSDL文件并解析其内容，`generateWSDI()`方法生成`.wsdi`文档。`.wsdi`文档将保存在指定的文件中（这里是`MyWebService.wsdi`）。
+需要注意的是，生成`.wsdi`文档需要使用CXF框架的`rt-wsdl`模块，因此在项目的依赖中需要包含以下依赖项：
+
+```xml
+<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-wsdl</artifactId>
+    <version>${cxf.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+    <version>${cxf.version}</version>
+</dependency>
+```
+
+其中`${cxf.version}`是CXF框架的版本号。
+

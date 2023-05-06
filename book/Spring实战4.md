@@ -4,12 +4,15 @@
 
 Spring实战（第5版 ） 2020
 
+java实现一个功能，首先看spring是否内置支持
 
+spring支持发送邮件，就不用三方库了
 
 克雷格·沃斯（Craig Walls）
 Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持者，经常在各种技术会议上发表演讲。
 
 https://book.douban.com/subject/26767354/
+## 1
 
 ### Chap.1
 
@@ -54,7 +57,7 @@ Spring EL表达式
 @componentScan
 @Bean
 
-### Chap . 2 装配Bean
+### Chap. 2 装配Bean
 
 
 
@@ -65,16 +68,96 @@ field
 
 
 
+
+
+
+
+
+@Autowired注解可以使用哪些地方
+
+@Autowired注解可以用在以下几个地方：
+
+1. 类的成员变量上
+
+@Autowired注解可以用在类的成员变量上，Spring会自动将匹配的Bean注入到该成员变量中。例如：
+
+
+
+```
+@Component
+public class MyService {
+    // 自动注入 MyRepository Bean
+    @Autowired
+    private MyRepository myRepository;
+    ...
+}
+```
+
+2. 构造方法上
+@Autowired注解也可以用在构造方法上，Spring会在创建Bean实例时，自动将匹配的Bean注入到构造方法参数中。例如：
+```
+@Component
+public class MyService {
+    private MyRepository myRepository;
+
+    // 构造方法注入 MyRepository Bean
+    @Autowired
+    public MyService(MyRepository myRepository) {
+        this.myRepository = myRepository;
+    }
+    ...
+}
+```
+
+3. Setter方法上
+@Autowired注解也可以用在Setter方法上，Spring会在创建Bean实例后，自动调用Setter方法，并将匹配的Bean注入到Setter方法参数中。例如：
+```
+@Component
+public class MyService {
+    private MyRepository myRepository;
+
+    // Setter方法注入 MyRepository Bean
+    @Autowired
+    public void setMyRepository(MyRepository myRepository) {
+        this.myRepository = myRepository;
+    }
+    ...
+}
+```
+
+需要注意的是，如果一个类中有多个构造方法或Setter方法，并且这些方法都有@Autowired注解，那么Spring会根据参数类型和名称来匹配Bean进行注入。
+
+另外，还可以使用@Qualifier注解来指定要注入的Bean的名称，例如：
+
+
+
+```
+@Component
+public class MyService {
+    // 指定注入名称为 "myRepository2"
+    @Autowired
+    @Qualifier("myRepository2")
+    private MyRepository myRepository;
+    ...
+}
+```
+
+以上就是@Autowired注解可以使用的地方，使用@Autowired注解可以方便地实现自动装配Bean的功能。
+
+
+
 @Autowired 可以对成员变量、方法以及构造函数进行注释
 https://www.cnblogs.com/acm-bingzi/p/springAutowired.html
 
-
+有多个bean时，配合Qualifier注解使用
+@Autowired
+@Qualifier("myRepository2")
 
 
 
 javax.inject.Inject
 javax.inject.Named
-
+javax.inject.Named是JSR 330中的注解之一，该JSR的全称为"Dependency Injection for Java"。JSR 330定义了一组标准的注解和API，用于支持依赖注入（Dependency Injection，DI）和控制反转（Inversion of Control，IoC）。
 
 
 @Autowired是Spring特有的注解。如果你不愿意在代码中到处使用Spring的特定注解来完成自动装配任务的话，那么你可以考虑将其替换 为@Inject:
@@ -99,7 +182,6 @@ maven依赖如下：
         </dependency>
 
 
-​		
 创建bean的name
 
 xml创建bean时如何确保配置信息正确
@@ -130,15 +212,15 @@ xml
 
 配置命名空间
 
-
-
+Spring中的c命名空间是一种用于设置Bean构造函数参数值的方式。
+在Spring中，p命名空间是一种用于简化XML配置文件中Bean属性设置的方式。通过使用p命名空间，可以直接在XML配置文件中设置Bean的属性值，而无需编写繁琐的<property>标签。
 
 
 ### Chap. 3 高级装配
 
 在3.1版本中，Spring引入了bean profile的功能。要使用profile，你首 先要将所有不同的bean定义整理到一个或多个profile之中，在将应用 部署到每个环境时，要确保对应的profile处于激活（active）的状态
 
-在Spring 4之前，很难实现这种级别的条件化配置，但是Spring 4引入 了一个新的@Conditional注解，它可以用到带有@Bean注解的方 法上。如果给定的条件计算结果为true，就会创建这个bean，否则 的话，这个bean会被忽略。
+在Spring 4之前，很难实现这种级别的条件化配置，但是Spring 4引入 了一个新的@Conditional注解，它可以用到带有@Bean注解的方 法上。如果给定的条件计算结果为true，就会创建这个bean，否则的话，这个bean会被忽略。
 
 ### Chap. 4 面向切面的Spring
 
@@ -204,7 +286,7 @@ AOP配置元素            用途
 
 
 
-## Chap.5 构建Spring Web应用程序
+### Chap.5 构建Spring Web应用程序
 
 
 
@@ -241,15 +323,20 @@ Caused by: org.gradle.internal.resolve.ModuleVersionResolveException: No cached 
 
 https://stackoverflow.com/questions/37747449/no-cached-version-of-com-google-gmsgoogle-services1-x-x-available-for-offline
 
-## Chap. 6 渲染Web视图
+### Chap. 6 渲染Web视图
+jsp
+th
 
 
-
-## Chap. 7 Spring MVC的高级技术
+### Chap. 7 Spring MVC的高级技术
 
 SpringMVC
 
-## Chap. 8 使用Spring WebFlow
+处理异常
+
+java异常等报错 -> http状态码
+
+### Chap. 8 使用Spring WebFlow
 
 WebFlux
 
@@ -314,8 +401,22 @@ spring security
 
 
 ### 第17章　Spring消息
+jms
+amqp
+
+spring-jsm这个jar
+org.springframework.jms.core.JmsOperations
+
+convertAndSend()
+
+https://gitee.com/edidada/spring_jms
+
+ActiveMQ这个中间件
 
 
+<amq:connectionFactory id="connectionFactory" 
+      brokerURL="tcp://localhost:61616" />
+      
 
 ### 第18章　使用WebSocket和STOMP实现消息功能
 
@@ -323,7 +424,10 @@ spring security
 
 ### 第19章　使用Spring发送Email
 
+context-support jar
 
+org.springframework.mail.SimpleMailMessage
+https://gitee.com/edidada/spring_mail
 
 ### 第20章　使用JMX管理Spring　Bean
 

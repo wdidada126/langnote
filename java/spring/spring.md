@@ -1,14 +1,84 @@
 # Spring
 
 
+<init-method>效果跟实现InitializingBean接口是一样的吗？
+
+
+spring ioc中的bean，创建好之后执行特定方法
+
+```java
+public class MyBean implements InitializingBean {
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // 在这里进行初始化操作
+    }
+}
+```
+
+在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 Spring 提供的 `<init-method>` 和 `<destroy-method>` 元素。
+
+1. `<init-method>` 元素：该元素用于指定 Bean 创建完成后要执行的初始化方法。你可以在该方法中进行一些初始化操作，例如初始化成员变量、连接数据库等。例如：
+
+```
+<bean id="myBean" class="com.example.MyBean" init-method="init">
+    <!-- 在这里进行其他配置 -->
+</bean>
+```
+
+在这个例子中，我们定义了一个名为 `myBean` 的 Bean，并使用 `<init-method>` 元素指定了一个名为 `init()` 的方法。在该方法中，我们可以进行一些初始化操作，例如初始化成员变量、连接数据库等。
+
+2. `<destroy-method>` 元素：该元素用于指定 Bean 销毁之前要执行的清理方法。你可以在该方法中进行一些清理操作，例如关闭数据库连接、释放资源等。例如：
+
+```
+<bean id="myBean" class="com.example.MyBean" destroy-method="cleanup">
+    <!-- 在这里进行其他配置 -->
+</bean>
+```
+
+在这个例子中，我们定义了一个名为 `myBean` 的 Bean，并使用 `<destroy-method>` 元素指定了一个名为 `cleanup()` 的方法。在该方法中，我们可以进行一些清理操作，例如关闭数据库连接、释放资源等。
+需要注意的是，使用 `<init-method>` 和 `<destroy-method>` 元素将使你的 Bean 与 Spring 框架产生强耦合。如果你想使你的 Bean 更加独立和可重用，可以使用 Spring 提供的注解来实现。
+例如，你可以使用 `@PostConstruct` 注解来指定一个方法，在 Bean 创建好之后立即执行。例如：
+
+```
+public class MyBean {
+
+    @PostConstruct
+    public void init() {
+        // 在这里进行初始化操作
+    }
+}
+```
+
+在这个例子中，我们定义了一个名为 `MyBean` 的 Bean，并使用 `@PostConstruct` 注解指定了一个名为 `init()` 的方法。在该方法中，我们可以进行一些初始化操作，例如初始化成员变量、连接数据库等。
+类似地，你可以使用 `@PreDestroy` 注解来指定一个方法，在 Bean 销毁之前执行。例如：
+
+```
+public class MyBean {
+
+    @PreDestroy
+    public void cleanup() {
+        // 在这里进行清理操作
+    }
+}
+```
+
+在这个例子中，我们定义了一个名为 `MyBean` 的 Bean，并使用 `@PreDestroy` 注解指定了一个名为 `cleanup()` 的方法。在该方法中，我们可以进行一些清理操作，例如关闭数据库连接、释放资源等。
+总之，在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 `<init-method>` 和 `<destroy-method>` 元素。如果你想使你的 Bean 更加独立和可重用，可以使用 Spring 提供的注解来实现。
+
 
 https://gitee.com/edidada/summer-framework
 
 廖雪峰 自己写spring
 https://www.liaoxuefeng.com/wiki/1539348902182944
 
-bean生命周期.png
-Spring 容器中的bean的生命周期.png
+![bean生命周期](D:\git\github\langnote\imgs\spring\bean生命周期.png)
+
+
+
+![Spring 容器中的bean的生命周期](D:\git\github\langnote\imgs\spring\Spring 容器中的bean的生命周期.png)
+
+
 
 
 Spring 对bean 进行实例化。
@@ -21,7 +91,7 @@ Spring 对bean 进行实例化。
   如果bean实现了BeanPostProcessor接口，Spring将调用它们的post-ProcessAfterInitialization() 方法。
   此时, bean 已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁。
   如果bean实现了DisposableBean接口，Spring将调用它的destory()接口方法。同样,如果bean使用destroy-method声明了销毁方法，该方法也会被调用。
- 
+
 
 https://www.cnblogs.com/misscai/p/14749225.html
 
@@ -81,6 +151,12 @@ session：在一次会话中对应一个bean。
 
 
 
+
+
+
+
+
+
 https://github.com/edidada/SpringExample
 
 PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{}来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：1。已收到消息.PropertyPlaceholderConfigurer是Spring框架中的一个类，它是用来解析properties文件的。在Spring中，我们可以使用${}或#{ }来引用properties文件中的值。这个类就是用来解析这些占位符的。如果你想深入了解这个类的实现，可以参考这篇博客：。
@@ -93,7 +169,11 @@ https://www.docs4dev.com/docs/zh/spring-framework/4.3.21.RELEASE/reference/aop.h
 张开涛 跟我学Spring3 系列博客
 跟我学spring 用的是spring3
 
+Spring实战
+
 Spring 3.x企业开发实战
+
+
 
 
 1. 什么是spring?Spring 是个java企业级应用的开源开发框架。Spring主要用来开发Java应用，但是有些扩展是针对构建J2EE平台的web应用。Spring 框架目标是简化Java企业级应用开发，并通过POJO为基础的编程模型促进良好的编程习惯。

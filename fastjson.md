@@ -2,7 +2,7 @@
 
 https://github.com/alibaba/fastjson/
 
-[test java demo](https://github.com/edidada/testfastjson)	
+[test java demo testfastjson](https://github.com/edidada/testfastjson)	
 
 JSON
 
@@ -27,6 +27,14 @@ WriteNullNumberAsZero—-数值字段如果为null,输出为0,而非null
 WriteNullListAsEmpty—–List字段如果为null,输出为[],而非null
 WriteNullStringAsEmpty—字符类型字段如果为null,输出为”“,而非null
 WriteNullBooleanAsFalse–Boolean字段如果为null,输出为false,而非null
-————————————————
-版权声明：本文为CSDN博主「Java后端何哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/CSDN2497242041/article/details/102618226
+
+https://blog.csdn.net/CSDN2497242041/article/details/102618226
+
+
+### fastjson与springmvc整合
+
+FastJsonHttpMessageConverter类全路径在fastjson-1.2.78.jar包中。
+
+FastJsonHttpMessageConverter是FastJson库提供的一个用于在Spring MVC中将Java对象序列化为JSON格式的HttpMessageConverter实现。在Spring MVC中，它可以替代默认的Jackson库提供的MappingJackson2HttpMessageConverter，从而提供更快的序列化和反序列化性能。
+
+如果你想在自己的项目中使用FastJsonHttpMessageConverter，你需要在你的构建工具（如Maven或Gradle）中添加fastjson依赖，例如：

@@ -1,5 +1,145 @@
 # kafka
 
+kafka配置项目
+
+配置文件备份
+kafka_server.properties
+
+
+```xml
+# Switch to enable topic deletion or not, default value is false
+delete.topic.enable=true
+auto.create.topics.enable=false
+```
+
+### kafka springboot
+https://gitee.com/edidada/testspringbootkafka
+springboot项目中直接注入
+```java
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+```
+
+org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration.kafkaTemplate，这个bean自动注入的
+
+kafka消费者默认使用
+org.springframework.kafka.annotation.KafkaListener注解
+参数：
+1、topic
+2、groupId
+
+源代码
+```java
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@MessageMapping
+@Documented
+@Repeatable(KafkaListeners.class)
+public @interface KafkaListener {
+    String id() default "";
+
+    String containerFactory() default "";
+
+    String[] topics() default {};
+
+    String topicPattern() default "";
+
+    TopicPartition[] topicPartitions() default {};
+
+    String containerGroup() default "";
+
+    String errorHandler() default "";
+
+    String groupId() default "";
+
+    boolean idIsGroup() default true;
+
+    String clientIdPrefix() default "";
+
+    String beanRef() default "__listener";
+}
+```
+
+如果你需要使用 Kafka 的其他高级功能，例如事务、定时器、分区器等，可以通过在应用程序中添加相应的 Bean 来实现。例如，在 Spring Boot 应用程序中，你可以使用以下代码来创建一个自定义的 KafkaProducerFactory Bean：
+```java
+@Bean
+public ProducerFactory<String, String> producerFactory() {
+    Map<String, Object> configProps = new HashMap<>();
+    configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+    configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+    configProps.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, "my-transactional-id");
+
+    DefaultKafkaProducerFactory<String, String> factory = new DefaultKafkaProducerFactory<>(configProps);
+    factory.setTransactionIdPrefix("my-");
+    return factory;
+}
+```
+
+
+### spring kafka
+
+https://gitee.com/edidada/testkafkaspring
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+依赖
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+
+老版本
+
+ https://gitee.com/edidada/kafka-examples
+
+
+
+https://gitee.com/edidada/testkafka
+
+
+
+
+
+kafka broker设置不能自动创建主题
+
+发送消息向不存在的主题，报错：
+
+```shell
+Exception in thread "main" org.springframework.kafka.KafkaException: Send failed; nested exception is org.apache.kafka.common.errors.TimeoutException: Topic my-topic not present in metadata after 60000 ms.
+	at org.springframework.kafka.core.KafkaTemplate.doSend(KafkaTemplate.java:660)
+	at org.springframework.kafka.core.KafkaTemplate.send(KafkaTemplate.java:403)
+	at cn.wdidada.testkafkaspring.KafkaProducer.sendMessage(KafkaProducer.java:11)
+	at cn.wdidada.testkafkaspring.SpringKafkaMain.main(SpringKafkaMain.java:9)
+Caused by: org.apache.kafka.common.errors.TimeoutException: Topic my-topic not present in metadata after 60000 ms.
+```
+
+
+
+### kafka自带解码器
+
+Kafka 自带了一些内置的解码器，这些解码器可以用于将消息的二进制数据转换为特定的数据类型。以下是 Kafka 自带的一些内置解码器：
+1. StringDecoder
+StringDecoder 是 Kafka 自带的字符串解码器，它将消息的二进制数据解码为字符串类型。在使用 StringDecoder 时，需要确保生产者和消费者都使用相同的字符集。
+在 Kafka 0.10 及更高版本中，建议使用 StringDeserializer 替代 StringDecoder。
+2. ByteArrayDecoder
+ByteArrayDecoder 是 Kafka 自带的字节数组解码器，它将消息的二进制数据解码为字节数组类型。
+在 Kafka 0.10 及更高版本中，建议使用 ByteArrayDeserializer 替代 ByteArrayDecoder。
+3. DefaultPartitioner
+DefaultPartitioner 是 Kafka 自带的默认分区器，它使用消息的 key 值来确定消息被发送到哪个分区。如果消息没有 key 值，则使用轮询的方式将消息发送到不同的分区。
+4. RoundRobinPartitioner
+RoundRobinPartitioner 是 Kafka 自带的轮询分区器，它使用轮询的方式将消息发送到不同的分区。
+5. TimeBasedPartitioner
+TimeBasedPartitioner 是 Kafka 自带的基于时间的分区器，它使用消息的时间戳来确定消息被发送到哪个分区。如果消息没有时间戳，则使用当前时间作为时间戳。
+
+需要注意的是，Kafka 的解码器和分区器是可扩展的，我们可以根据自己的需求实现自定义的解码器和分区器，并将其用于生产者和消费者中。此外，Kafka 还支持使用 Avro、JSON、Protobuf 等第三方序列化框架进行数据的序列化和反序列化。
+
+
 kafka logs文件夹下.index文件是干嘛的？
 Kafka是一个分布式流处理平台，它的数据存储采用了分片和索引机制。每个分区都会被分为多个段，每个段对应两个文件：“.index"索引文件和”.log"数据文件。索引文件中存储着大量元数据，而数据文件中存储着大量消息。由于生产者生产的消息会不断追加到log文件末尾，为防止log文件过大导致数据定位效率低下，Kafka采取了分片和索引机制，将每个partition分为多个segment。
 .index文件是Kafka的偏移量索引或时间戳索引，用于定位指定偏移量或时间戳的数据。由于Kafka的数据都是按序插入的，offset也是按序增长的，因此很适合用二分查找定位指定偏移量或时间戳的数据。
@@ -227,6 +367,39 @@ java
 
 
 
+1. 在配置 KafkaTemplate 时，可以通过设置不同的参数来控制 Kafka 生产者的行为，例如 `acks`、`retries`、`batch.size` 等。这些参数的含义和用法可以参考 Kafka 生产者的配置文档。
+
+DefaultKafkaProducerFactory是否是自动创建topic？？
+
+DefaultKafkaProducerFactory 是 Spring Kafka 提供的一个默认的 Kafka 生产者工厂实现类。它负责创建 KafkaProducer 实例，用于发送消息到 Kafka 集群。 
+
+DefaultKafkaProducerFactory 并不会自动创建 Kafka 主题（topic），它只是提供了一个 KafkaProducer 实例，用于向已经存在的 Kafka 主题发送消息。如果要发送消息到一个不存在的主题，KafkaProducer 会在发送消息时自动创建该主题。但这种自动创建主题的行为并不是由 DefaultKafkaProducerFactory 控制的，而是由 Kafka 的 Broker 控制的。
+
+需要注意的是，Kafka 自动创建主题的功能默认是开启的，可以通过 Kafka Broker 的配置文件或者命令行参数进行配置。此外，自动创建主题功能也可以被禁用，这样当向一个不存在的主题发送消息时，会抛出异常。
+
+在 Spring Kafka 中，如果需要在生产者发送消息时自动创建主题，可以通过在 KafkaTemplate 中设置 `autoCreateTopics` 属性为 `true` 来实现。例如：
+
+```java
+@Bean
+public KafkaTemplate<String, String> kafkaTemplate() {
+    Map<String, Object> configs = new HashMap<>();
+    configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+    configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+
+    // enable auto topic creation
+    configs.put("auto.create.topics.enable", true);
+
+    return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(configs));
+}
+```
+
+在这个示例中，我们设置了 `auto.create.topics.enable` 属性为 `true`，以启用自动创建主题的功能。这样，在向一个不存在的主题发送消息时，Kafka 将会自动创建该主题。
+
+
+
+
+
 Apache kafka实战 (胡夕)
 
 [Kafka client](https://zhuanlan.zhihu.com/p/93623447)
@@ -241,13 +414,22 @@ bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 bin\windows\kafka-server-start.bat config\server.properties
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+
+bin\windows\kafka-topics.bat --delete --topic my-topics --zookeeper localhost:2181
+
+
+bin\windows\kafka-topics.bat --create --topic myDemo --zookeeper localhost:2181 --partitions 2 --replication-factor 1 
+
+
+
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
 
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test --property "parse.key=true" --property "key.separator=:" --property "partition.key=1"
 
 
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testDemo --from-beginning
 
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --partition 1 --offset 2
 
@@ -440,6 +622,87 @@ https://spark.apache.org/docs/0.9.1/scala-programming-guide.html
 
 scala写的
 现在有java版本吗？目前没有
+
+
+
+下面是删除主题命令行
+
+```shell
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+__consumer_offsets
+my-topic
+my-topics
+mytest
+test
+testTopic
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --delete --topic my-topics --zookeeper localhost:2181
+Topic my-topics is marked for deletion.
+Note: This will have no impact if delete.topic.enable is not set to true.
+PS D:\Program\kafka_2.12-0.11.0.3>
+PS D:\Program\kafka_2.12-0.11.0.3>
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+__consumer_offsets
+my-topic
+my-topics
+mytest
+test
+testTopic
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+__consumer_offsets
+my-topic
+my-topics
+mytest
+test
+testTopic
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --delete --topic my-topics --zookeeper localhost:2181
+Topic my-topics is marked for deletion.
+Note: This will have no impact if delete.topic.enable is not set to true.
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --delete --topic my-topics --zookeeper localhost:2181
+Topic my-topics is already marked for deletion.
+PS D:\Program\kafka_2.12-0.11.0.3> bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+__consumer_offsets
+my-topic
+my-topics - marked for deletion
+mytest
+test
+testTopic
+PS D:\Program\kafka_2.12-0.11.0.3>
+```
+
+
+
+```shell
+[2023-05-06 14:09:20,165] ERROR [KafkaApi-0] Error when handling request {controller_id=0,controller_epoch=6,delete_partitions=true,partitions=[{topic=my-topics,partition=0}]} (kafka.server.KafkaApis)
+kafka.common.KafkaStorageException: Failed to rename log directory from D:\tmp\kafka-logs20230506\my-topics-0 to D:\tmp\kafka-logs20230506\my-topics-0.4e015dcb5f194710ac100c5998b3f188-delete
+        at kafka.log.LogManager.asyncDelete(LogManager.scala:492)
+        at kafka.cluster.Partition.$anonfun$delete$1(Partition.scala:155)
+        at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)
+        at kafka.utils.CoreUtils$.inLock(CoreUtils.scala:213)
+        at kafka.utils.CoreUtils$.inWriteLock(CoreUtils.scala:221)
+        at kafka.cluster.Partition.delete(Partition.scala:150)
+        at kafka.server.ReplicaManager.stopReplica(ReplicaManager.scala:291)
+        at kafka.server.ReplicaManager.$anonfun$stopReplicas$2(ReplicaManager.scala:321)
+        at scala.collection.Iterator.foreach(Iterator.scala:929)
+        at scala.collection.Iterator.foreach$(Iterator.scala:929)
+        at scala.collection.AbstractIterator.foreach(Iterator.scala:1417)
+        at scala.collection.IterableLike.foreach(IterableLike.scala:71)
+        at scala.collection.IterableLike.foreach$(IterableLike.scala:70)
+        at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+        at kafka.server.ReplicaManager.stopReplicas(ReplicaManager.scala:320)
+        at kafka.server.KafkaApis.handleStopReplicaRequest(KafkaApis.scala:191)
+        at kafka.server.KafkaApis.handle(KafkaApis.scala:102)
+        at kafka.server.KafkaRequestHandler.run(KafkaRequestHandler.scala:66)
+        at java.lang.Thread.run(Thread.java:748)
+[2023-05-06 14:09:20,188] INFO [ReplicaFetcherManager on broker 0] Removed fetcher for partitions my-topics-0 (kafka.server.ReplicaFetcherManager)
+```
+
+
+
+Failed to rename log directory from D:\tmp\kafka-logs20230506\my-topics-0 to D:\tmp\kafka-logs20230506\my-topics-0.4e015dcb5f194710ac100c5998b3f188-delete
+
+
+
+
 
 ### 面试题
 

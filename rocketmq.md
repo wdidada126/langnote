@@ -1,9 +1,37 @@
 # RocketMQ
 
+```shell
+Caused by: org.apache.rocketmq.client.exception.MQBrokerException: CODE: 14  DESC: service not available now. It may be caused by one of the following reasons: the broker's disk is full [CL:  0.91 CQ:  0.91 INDEX:  0.91], messages are put to the slave, message store has been shut down, etc. BROKER: 192.168.10.12:10911
+For more information, please visit the url, http://rocketmq.apache.org/docs/faq/
+        at org.apache.rocketmq.client.impl.MQClientAPIImpl.processSendResponse(MQClientAPIImpl.java:666)
+        at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessageSync(MQClientAPIImpl.java:505)
+        at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessage(MQClientAPIImpl.java:487)
+        at org.apache.rocketmq.client.impl.MQClientAPIImpl.sendMessage(MQClientAPIImpl.java:431)
+        at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendKernelImpl(DefaultMQProducerImpl.java:854)
+        at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:584)
+````
+
+这个错误消息表示您的 RocketMQ Broker 磁盘已满，无法再存储更多的消息。在这种情况下，消息将被发送到 Broker 的从节点（Slave）上。
+
+要解决这个问题，您可以采取以下措施：
+1. 增加磁盘空间：您可以在 Broker 所在的服务器上增加磁盘空间，以便 Broker 可以继续存储更多的消息。此外，您还可以考虑将消息存储在分布式文件系统中，例如 HDFS。
+2. 减少消息保留时间：您可以在 Broker 配置文件（`broker.conf`）中设置消息的保留时间。通过缩短消息的保留时间，您可以减少 Broker 上存储的消息数量，从而减少磁盘空间的使用。
+3. 增加 Broker 数量：您可以通过增加 Broker 的数量来分散消息的存储，从而减少单个 Broker 磁盘的使用。这也可以提高消息的可靠性和可用性。
+请注意，当磁盘空间不足时，RocketMQ 可能会将消息发送到从节点。这可能会导致从节点上存储的消息数量增加，从而可能影响应用程序的性能。因此，建议您尽快解决磁盘空间不足的问题，以确保 Broker 的正常运行。
+
+
+### 版本
+
+alibaba package
+apache package 4.0开始
+
+### 端口号
+9876
+
 github repo https://github.com/edidada/testrocketmq
 
 
-要在 RocketMQ 消费者中打印消息 ID，你可以使用 MessageExt 对象中的 getMsgId() 方法。这个方法返回消息的唯一 ID，可以用作消息的标识符。以下是一个 Java 代码示例，展示了如何在 RocketMQ 消费者中打印消息 ID：
+要在RocketMQ消费者中打印消息ID，你可以使用MessageExt对象中的getMsgId()方法。这个方法返回消息的唯一ID，可以用作消息的标识符。以下是一个Java代码示例，展示了如何在RocketMQ消费者中打印消息ID：
 
 ```java
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
@@ -34,7 +62,7 @@ public class RocketMQConsumerExample {
 使用Netty
 
 ```shell
-18:58:40.443 [NettyClientWorkerThread_1] INFO RocketmqRemoting - NETTY CLIENT PIPELINE: CONNECT  UNKNOWN => ocalhost/127.0.0.1:9876
+18:58:40.443 [NettyClientWorkerThread_1] INFO RocketmqRemoting - NETTY CLIENT PIPELINE: CONNECT  UNKNOWN => localhost/127.0.0.1:9876
 18:58:42.448 [NettyClientWorkerThread_1] INFO RocketmqRemoting - NETTY CLIENT PIPELINE: CLOSE 
 18:58:42.448 [NettyClientWorkerThread_1] INFO RocketmqRemoting - closeChannel: the channel[localhost:9876] was removed from channel table
 18:58:42.448 [NettyClientWorkerThread_1] INFO RocketmqRemoting - NETTY CLIENT PIPELINE: CLOSE 
@@ -106,18 +134,20 @@ sh bin/mqshutdown namesrv
 
 
 
-kafka手动创建Topic
-
+kafka手动创建Topic，默认是可以自动创建topic的
+### 下载启动
 https://rocketmq.apache.org/download/
 
 rocketmq-all-5.1.0-bin-release.zip
 
 设置 ROCKETMQ_HOME环境变量
-
+Windows电脑磁盘空间不足，只能用mac电脑
+Windows电脑磁盘空间不足，只能用mac电脑
+Windows电脑磁盘空间不足，只能用mac电脑
 
 ```shell
 cd E:\rocketmq-all-4.8.0-bin-release
-PS E:\rocketmq-all-4.8.0-bin-release> .\bin\mqnamesrv.cmd
+.\bin\mqnamesrv.cmd
 OpenJDK 64-Bit Server VM warning: Using the DefNew young collector with the CMS collector is deprecated and will likely be removed in a future release
 OpenJDK 64-Bit Server VM warning: UseCMSCompactAtFullCollection is deprecated and will likely be removed in a future release.
 The Name Server boot success. serializeType=JSON
@@ -125,7 +155,7 @@ The Name Server boot success. serializeType=JSON
 
 ```shell
 cd E:\rocketmq-all-4.8.0-bin-release
-PS E:\rocketmq-all-4.8.0-bin-release> .\bin\mqbroker.cmd -n localhost:9876 autoCreateTopicEnable=true
+.\bin\mqbroker.cmd -n localhost:9876 autoCreateTopicEnable=true
 The broker[chengwu2, 169.254.244.186:10911] boot success. serializeType=JSON and name server is localhost:9876
 ```
 
@@ -134,7 +164,134 @@ cd E:\rocketmq-all-4.8.0-bin-release
 .\bin\mqadmin.cmd  updateTopic -n localhost:9876  -b localhost:10911  -t TopicTest
 ```
 
+### bin目录下面的命令行程序
+- .\bin\mqadmin.cmd
+- .\bin\mqbroker.cmd
+- .\bin\mqnamesrv.cmd
+- .\bin\mqshutdown.cmd
+- .\bin\play.cmd
+- .\bin\runbroker.cmd
+- .\bin\runserver.cmd
 
+
+
+.\bin\mqadmin.cmd
+The most commonly used mqadmin commands are:
+   updateTopic          Update or create topic
+   deleteTopic          Delete topic from broker and NameServer.
+   updateSubGroup       Update or create subscription group
+   deleteSubGroup       Delete subscription group from broker.
+   updateBrokerConfig   Update broker's config
+   updateTopicPerm      Update topic perm
+   topicRoute           Examine topic route info
+   topicStatus          Examine topic Status info
+   topicClusterList     get cluster info for topic
+   brokerStatus         Fetch broker runtime status data
+   queryMsgById         Query Message by Id
+   queryMsgByKey        Query Message by Key
+   queryMsgByUniqueKey  Query Message by Unique key
+   queryMsgByOffset     Query Message by offset
+   QueryMsgTraceById    query a message trace
+   printMsg             Print Message Detail
+   printMsgByQueue      Print Message Detail
+   sendMsgStatus        send msg to broker.
+   brokerConsumeStats   Fetch broker consume stats data
+   producerConnection   Query producer's socket connection and client version
+   consumerConnection   Query consumer's socket connection, client version and subscription
+   consumerProgress     Query consumers's progress, speed
+   consumerStatus       Query consumer's internal data structure
+   cloneGroupOffset     clone offset from other group.
+   clusterList          List all of clusters
+   topicList            Fetch all topic list from name server
+   updateKvConfig       Create or update KV config.
+   deleteKvConfig       Delete KV config.
+   wipeWritePerm        Wipe write perm of broker in all name server
+   resetOffsetByTime    Reset consumer offset by timestamp(without client restart).
+   updateOrderConf      Create or update or delete order conf
+   cleanExpiredCQ       Clean expired ConsumeQueue on broker.
+   cleanUnusedTopic     Clean unused topic on broker.
+   startMonitoring      Start Monitoring
+   statsAll             Topic and Consumer tps stats
+   allocateMQ           Allocate MQ
+   checkMsgSendRT       check message send response time
+   clusterRT            List All clusters Message Send RT
+   getNamesrvConfig     Get configs of name server.
+   updateNamesrvConfig  Update configs of name server.
+   getBrokerConfig      Get broker config by cluster or special broker!
+   queryCq              Query cq command.
+   sendMessage          Send a message
+   consumeMessage       Consume message
+   updateAclConfig      Update acl config yaml file in broker
+   deleteAccessConfig   Delete Acl Config Account in broker
+   clusterAclConfigVersion List all of acl config version information in cluster
+   updateGlobalWhiteAddr Update global white address for acl Config File in broker
+   getAccessConfigSubCommand List all of acl config information in cluster
+
+See 'mqadmin help <command>' for more information on a specific command.
+
+
+cd E:\rocketmq-all-4.8.0-bin-release
+.\bin\mqadmin.cmd clusterList -n localhost:9876
+RocketMQLog:WARN No appenders could be found for logger (io.netty.util.internal.PlatformDependent0).
+RocketMQLog:WARN Please initialize the logger system properly.
+#Cluster Name     #Broker Name            #BID  #Addr                  #Version                #InTPS(LOAD)       #OutTPS(LOAD) #PCWait(ms) #Hour #SPACE
+DefaultCluster    Wdidada                 0     192.168.10.12:10911    V4_8_0                   0.00(0,0ms)         0.00(0,0ms)          0 467602.79 0.9131
+
+
+
+.\bin\mqadmin.cmd sendMessage -t testDemo -p "Hello, RocketMQ!" -n localhost:9876
+
+
+其中，`<topic>` 是要发送消息的主题，`-p` 参数指定要发送的消息内容，`<namesrvAddr>` 是 NameServer 的地址。
+
+
+
+其中，`<namesrvAddr>` 是 NameServer 的地址，例如 `localhost:9876`。
+
+
+
+
+### broker配置文件
+
+brokerClusterName = DefaultCluster
+brokerName = broker-a
+brokerId = 0
+deleteWhen = 04
+fileReservedTime = 48
+brokerRole = ASYNC_MASTER
+flushDiskType = ASYNC_FLUSH
+
+
+接收的消息存储到磁盘上吗？如果是，存在哪儿
+
+C:\Users\edidada\store
+
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          2023/5/6     17:56                commitlog
+d-----          2023/5/6     17:59                config
+d-----         2023/4/22     23:21                consumequeue
+d-----          2023/5/6     17:56                index
+-a----         2023/4/22     22:53              0 abort
+-a----         2023/4/22     22:53           4096 checkpoint
+-a----          2023/5/6     17:56              4 lock
+
+
+
+在 Windows 操作系统上，RocketMQ 磁盘上存储消息的文件同样存储在 RocketMQ 的数据目录下。不过，RocketMQ 的数据目录位置在 Windows 上与 Linux 上略有不同。
+默认情况下，RocketMQ 在 Windows 上的数据目录为 `%USERPROFILE%\store`，其中 `%USERPROFILE%` 表示当前用户的 home 目录。因此，你可以在 Windows 资源管理器中打开 `%USERPROFILE%\store` 目录来查看 RocketMQ 存储消息的文件。
+RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog` 目录。该目录下存储了所有消息的存储文件，每个文件的大小为固定大小，默认为 1GB。每个存储文件的名称包括文件偏移量和创建时间，例如 `00000000000000000000.00000000000000010000`。
+除了 `commitlog` 目录外，RocketMQ 的数据目录还包括以下子目录：
+
+- `consumequeue`：存储每个消费者组的消费进度，以便在消费者宕机或重启后恢复消费进度。
+- `index`：为每个消息主题创建索引，以便快速查找消息。
+- `checkpoint`：存储每个主题的消费进度和重放点，以便在 Broker 重启后恢复消费进度。
+- `config`：存储 Broker 的配置信息。
+
+需要注意的是，RocketMQ 的数据目录和存储文件的位置可以通过修改 `broker.conf` 配置文件中的 `storePathRootDir` 和 `storePathCommitLog` 属性来进行自定义。如果你修改了数据目录的位置，则 RocketMQ 将在新的位置创建相应的目录和文件来存储消息。
+总之，RocketMQ 在 Windows 上的数据目录为 `%USERPROFILE%\store`，其中 `%USERPROFILE%` 表示当前用户的 home 目录。RocketMQ 存储消息的文件同样存储在该目录下的 `commitlog` 目录中。
 
 ### rocketmq 集群功能
 

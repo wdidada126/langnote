@@ -6,17 +6,16 @@ spring_in_depth.md
 
 Spring 5
 
-
-
-
-
 Spring源码深度解析 书籍 第二版 2019年出版的
+https://book.douban.com/subject/30452948/
+
+
+
 
 
 
 Could not determine java version from '11.0.4'.
 更换 JAVA_HOME环境变量改成java8的
-
 
 spring5源码下载不了plugin jar包
 报错信息
@@ -34,19 +33,32 @@ set http_proxy=http://127.0.0.1:7890
 cd/d D:\git\gitlab\spring-framework-5.0.x
 gradlew build -x test
 
+## 第 1部分　核心实现
 
-
+### 第2章 容器的基本实现
 【Spring源码分析】Bean加载流程概览
 https://www.cnblogs.com/xrq730/p/6285358.html
 
 
 
+### 第3章　默认标签的解析
 
+3
+
+### 第4章　自定义标签的解析
+
+4
+
+### 第5章　bean的加载
+
+5
+
+### 第6章　容器的功能扩展
 
 Resource接口详解
 继承自InputStreamSource
 
-ResourceLoader
+ResourceLoader  org.springframework.core.io.ResourceLoader spring-core这个jar里面的
 
 bean
 
@@ -60,26 +72,42 @@ ioc容器初始化过程分为三个步骤
 
 
 DefaultListableBeanFactory 是整个bean加载的核心部分
-
 XmlBeanFactory 是DefaultListableBeanFactory 的子类
-
 XmlBeanFactory 使用了XmlBeanDefinitionReader
 
 
 
 XmlBeanDefinitionReader的构造函数
-
 XmlBeanDefinitionReader的loadBeanDefinitions()
-
-XmlBeanDefinitionReader的loadBeanDefinitions()
-
 XmlBeanDefinitionReader的doLoadBeanDefinitions()
-
 EncodedResource按照一定的格式处理xml格式的配置文件（applicationContext.xml）
 
 
 
+- EncodedResource
 
+在Spring中，EncodedResource是一个用于表示编码资源的类，用于将资源文件的字节流和编码方式组合在一起。EncodedResource的作用是将底层资源的输入流和编码方式进行关联，并提供获取输入流的方法，以便在读取资源时使用正确的编码方式。
+
+EncodedResource通常可以用于读取文本文件类型的资源，例如XML文件、配置文件等。使用EncodedResource可以指定正确的编码方式，以避免读取到乱码等问题。
+
+EncodedResource的构造函数接受两个参数：Resource和编码方式（例如UTF-8、GBK等）。其中，Resource表示底层资源，可以是ClassPathResource、FileSystemResource等Spring提供的资源类型；编码方式表示底层资源的编码方式，通常使用字符串来指定。
+
+例如，以下代码使用EncodedResource读取classpath下的XML文件：
+
+```java
+ClassPathResource resource = new ClassPathResource("config.xml");
+EncodedResource encodedResource = new EncodedResource(resource, "UTF-8");
+try (InputStream inputStream = encodedResource.getInputStream()) {
+    // 读取XML文件的字节流，并使用UTF-8编码方式
+    // ...
+} catch (IOException e) {
+    // 处理异常
+}
+```
+
+以上代码中，使用ClassPathResource加载config.xml文件，并将其与编码方式UTF-8关联，然后通过EncodedResource获取输入流并进行读取操作。
+
+总之，EncodedResource是一个用于表示编码资源的类，用于将资源文件的字节流和编码方式组合在一起。EncodedResource通常可以用于读取文本文件类型的资源，例如XML文件、配置文件等。使用EncodedResource可以指定正确的编码方式，以避免读取到乱码等问题。
 
 
 
@@ -114,6 +142,51 @@ DefaultDocumentLoader的loadDocument()方法
 
 
 EntityResolver接口的实现类DelegatingEntityResolver
+
+在Spring中，可以使用不同的BeanDefinitionReader子类来读取和解析Bean定义信息，以便将这些信息注册到IoC容器中。不同的BeanDefinitionReader子类支持不同的Bean定义信息格式和来源，例如XML配置文件、注解等。
+
+以下是几个常用的BeanDefinitionReader子类：
+
+1. XmlBeanDefinitionReader
+
+XmlBeanDefinitionReader是Spring中用于读取和解析XML格式的Bean定义信息的类。通常情况下，可以使用XmlBeanDefinitionReader将XML配置文件中的Bean定义信息读取并注册到IoC容器中。
+
+例如，以下代码使用XmlBeanDefinitionReader读取classpath下的XML配置文件：
+
+
+
+```java
+XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+reader.loadBeanDefinitions(new ClassPathResource("applicationContext.xml"));
+```
+
+2. AnnotatedBeanDefinitionReader
+
+AnnotatedBeanDefinitionReader是Spring中用于读取和解析注解类型的Bean定义信息的类。通常情况下，可以使用AnnotatedBeanDefinitionReader将带有注解的类或方法作为Bean定义信息读取并注册到IoC容器中。
+
+例如，以下代码使用AnnotatedBeanDefinitionReader读取带有特定注解的类或方法：
+
+
+
+```java
+AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(beanFactory);
+reader.register(SomeConfigClass.class);
+```
+
+3. PropertiesBeanDefinitionReader
+
+PropertiesBeanDefinitionReader是Spring中用于读取和解析Properties格式的Bean定义信息的类。通常情况下，可以使用PropertiesBeanDefinitionReader将Properties文件中的Bean定义信息读取并注册到IoC容器中。
+
+例如，以下代码使用PropertiesBeanDefinitionReader读取classpath下的Properties配置文件：
+
+
+
+```java
+PropertiesBeanDefinitionReader reader = new PropertiesBeanDefinitionReader(beanFactory);
+reader.loadBeanDefinitions(new ClassPathResource("application.properties"));
+```
+
+总之，Spring中有多个BeanDefinitionReader子类，可以用于读取和解析不同格式的Bean定义信息，并将这些信息注册到IoC容器中。常用的几个子类包括XmlBeanDefinitionReader、AnnotatedBeanDefinitionReader和PropertiesBeanDefinitionReader等。
 
 
 
@@ -154,7 +227,6 @@ BeanDefinitionDocumentReader接口的实现类DefaultBeanDefinitionDocumentReade
 parseBeanDefinitions()方法
 
 处理<beans>
-
 处理<bean>
 
 
@@ -168,7 +240,6 @@ parseBeanDefinitions()方法
 把文件转化为Document对象
 
 默认的bean      ----- parseDefalutElement
-
 自定义的bean   ----- parseCustomerElement
 
 
@@ -247,14 +318,7 @@ private final BeanDefinition beanDefinition;
 private final String beanName;
 private final String[] aliases;
 
-
-
-
 org.springframework.beans.factory.config.BeanDefinitionHolder;
-
-
-
-
 
 BeanDefinitionHolder是对BeanDefinition，String beanName，String[] aliases的分装
 
@@ -417,16 +481,13 @@ Spring中使用DelegatingEntityResolver作为EntityResolver的实现类
 
 
 BeansDtdResolver
-
-
-
 PluggableSchemaResolver
 
 
 
 
 
-BeanDefinitionDocumentReader
+BeanDefinitionDocumentReader  org.springframework.beans.factory.xml.BeanDefinitionDocumentReader spring-beans包
 
 registerBeanDefinitions()
 
@@ -438,7 +499,6 @@ DefaultBeanDefinitionDocumentReader的doRegisterBeanDefinitions方法
 
 protected void doRegisterBeanDefinitions(Element root){
 
-​	
 
 }
 
@@ -471,7 +531,6 @@ BeanWapper
 
 
 PropertyValue
-
 PropertyValues
 
 
@@ -483,7 +542,7 @@ BeanPostProcessor
 
 
 
-### 自己补充的部分
+-  自己补充的部分
 
 ApplicationContext
 
@@ -520,3 +579,208 @@ guice这种ioc框架，如何打印容器中的数据
 | messageSource               | MessageSource                  | 用于实现国际化的一个接口                                     | AbstractApplicationContext                  |
 | applicationEventMulticaster | ApplicationEventMulticaster    | Spring提供的事件管理机制中的事件多播器接口                   | AbstractApplicationContext                  |
 | applicationListeners        | Set<ApplicationListener>       | Spring提供的事件管理机制中的应用监听器                       | AbstractApplicationContext                  |
+
+
+
+
+
+
+
+
+
+
+
+### 第7章　AOP
+
+
+
+## 第2部分 企业应用
+### 第8章　数据库连接JDBC
+
+
+
+### 第9章　整合MyBatis
+
+org.apache.ibatis.session.SqlSessionFactory
+
+
+
+MapperScannerConfigurer
+
+org.mybatis.spring.mapper.MapperScannerConfigurer
+
+
+
+org.mybatis.spring.mapper.MapperFactoryBean
+
+有一个Interface的field
+
+
+
+第10章 事务
+
+Spring事务 RowMapper
+
+Spring JDBC中的RowMapper是一个接口，它的作用是将ResultSet中的每一行数据映射成一个Java对象。在Spring JDBC中，我们可以使用RowMapper来完成ORM（对象关系映射）的工作。RowMapper是一个接口，它只有一个方法mapRow(ResultSet rs, int rowNum)，这个方法将ResultSet中的一行数据映射成一个Java对象。
+
+
+
+TxNamespaceHandler是Spring框架中用于处理事务的命名空间处理器，用于解析XML中的tx命名空间元素。
+
+TxNamespaceHandler注册了tx命名空间下的所有元素解析器，例如tx:advice、tx:attributes、tx:annotation-driven等。当Spring解析XML文件时，如果遇到tx命名空间下的元素，就会使用TxNamespaceHandler解析器来处理。
+
+TxNamespaceHandler主要做以下几件事情：
+
+注册事务相关的BeanPostProcessor
+TxNamespaceHandler注册了TransactionAttributeSourceAdvisor、TransactionInterceptor和TransactionAnnotationParser等BeanPostProcessor，用于在Bean实例化的过程中，对需要进行事务管理的Bean进行代理，从而提供事务支持。
+
+解析tx:advice和tx:attributes元素
+TxNamespaceHandler解析tx:advice和tx:attributes元素，用于配置事务的通知和事务属性。tx:advice用于配置事务通知的参数，例如事务的传播行为、隔离级别等。tx:attributes则用于配置事务属性，例如事务的超时时间、只读标志等。
+
+解析tx:annotation-driven元素
+TxNamespaceHandler解析tx:annotation-driven元素，用于启用使用@Transactional注解的事务管理。tx:annotation-driven元素会注册AnnotationTransactionAttributeSource、TransactionInterceptor和BeanNameAutoProxyCreator等BeanPostProcessor，以支持使用@Transactional注解的事务管理。
+
+注册事务相关的BeanDefinitionParser
+TxNamespaceHandler注册了多个BeanDefinitionParser，用于解析tx命名空间下的元素，例如tx:advice、tx:attributes、tx:annotation-driven等。每个BeanDefinitionParser都会解析对应的元素，并根据解析结果生成相应的BeanDefinition，从而注册到Spring IoC容器中。
+
+总之，TxNamespaceHandler是Spring框架中用于处理事务的命名空间处理器，用于解析XML中的tx命名空间元素。TxNamespaceHandler主要做以下几件事情：注册事务相关的BeanPostProcessor、解析tx:advice和tx:attributes元素、解析tx:annotation-driven元素、注册事务相关的BeanDefinitionParser。这些功能共同协作，构成了Spring框架中的事务管理功能。
+
+
+
+
+
+TransactionInterceptor是Spring框架中的一个AOP切面，用于提供声明式事务管理的支持。TransactionInterceptor实现了MethodInterceptor接口，可以拦截目标方法的调用，管理事务的开启、提交和回滚等操作。
+
+TransactionInterceptor的主要作用是：
+
+提供声明式事务管理的支持
+TransactionInterceptor可以拦截目标方法的调用，根据配置的事务属性信息，管理事务的开启、提交和回滚等操作。通过声明式事务管理，可以将事务的处理逻辑与业务逻辑分离，使得代码更加简洁、清晰。
+
+支持多种事务管理器
+TransactionInterceptor支持多种事务管理器，例如JpaTransactionManager、DataSourceTransactionManager等。通过配置不同的事务管理器，可以灵活地应对不同的事务管理场景。
+
+支持多种事务传播行为
+TransactionInterceptor支持多种事务传播行为，例如PROPAGATION_REQUIRED、PROPAGATION_REQUIRES_NEW等。通过配置不同的事务传播行为，可以灵活地控制事务的范围和生命周期。
+
+支持事务超时设置
+TransactionInterceptor支持设置事务超时时间，例如设置为5秒钟，表示如果事务执行时间超过了5秒钟，则自动回滚事务。
+
+支持只读事务
+TransactionInterceptor支持只读事务，可以提高事务的并发性能。对于只读事务，事务管理器可以优化事务的实现，例如不需要写入事务日志等。
+
+使用TransactionInterceptor进行声明式事务管理，一般需要进行以下配置：
+
+配置事务管理器
+需要配置一个事务管理器，例如DataSourceTransactionManager、JpaTransactionManager等，用于实现事务管理。
+
+配置事务属性信息
+需要配置事务属性信息，例如事务传播行为、隔离级别、超时时间、只读标志等，用于控制事务的行为。
+
+配置事务切面
+需要配置一个事务切面，将TransactionInterceptor作为切面的拦截器，用于拦截目标方法的调用，并执行事务管理。
+
+例如，以下是一个使用TransactionInterceptor进行声明式事务管理的示例：
+
+
+```xml
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+    <property name="username" value="root"/>
+    <property name="password" value="123456"/>
+</bean>
+
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+        <tx:method name="save*" propagation="REQUIRED"/>
+        <tx:method name="update*" propagation="REQUIRED"/>
+        <tx:method name="delete*" propagation="REQUIRED"/>
+        <tx:method name="get*" read-only="true"/>
+        <tx:method name="find*" read-only="true"/>
+    </tx:attributes>
+</tx:advice>
+
+<aop:config>
+    <aop:pointcut id="businessService" expression="execution(* com.example.service.*.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="businessService"/>
+</aop:config>
+```
+在上述配置中，我们使用DataSourceTransactionManager作为事务管理器，配置了事务传播行为、只读标志等事务属性信息，使用tx:advice元素配置了事务通知，使用aop:config元素配置了事务切面。
+
+
+
+第11章 SpringMVC
+
+WebApplicationContext
+
+HandlerInterceptor
+
+
+
+WebApplicationContext
+
+1. 提供Web应用程序级别的事件机制
+
+WebApplicationContext提供了Web应用程序级别的事件机制，可以在应用程序中使用Spring Framework的事件机制。WebApplicationContext可以发布应用程序级别的事件，例如ServletContext事件、HttpSession事件和ServletRequest事件等，并提供了相应的事件监听器。
+
+
+
+第12章 远程服务
+
+
+
+第13章 Spring消息
+
+
+
+
+
+
+
+第3部分　Spring Boot
+第14章 Spring Boot体系原理
+
+
+
+Spring boot自动装配，使用了 spi技术加载的文件是哪个？
+在Spring Boot中，自动装配是通过Spring框架提供的SPI（Service Provider Interface）机制来实现的。具体来说，Spring Boot使用了Java标准库中的`java.util.ServiceLoader`类来加载META-INF/services目录下的服务提供者配置文件。
+
+在Spring Boot中，每个自动配置类都需要在`META-INF/spring.factories`文件中注册为一个服务提供者，以便Spring Boot可以自动扫描并加载这些自动配置类。`spring.factories`文件是一个标准的Java属性文件，它的格式如下：
+
+```xml
+# Auto Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.autoconfig.MyAutoConfiguration,\
+com.example.autoconfig.AnotherAutoConfiguration
+```
+
+在上面的示例中，`EnableAutoConfiguration`是一个服务提供者接口，其值是一个或多个自动配置类的全限定名，用逗号分隔。当Spring Boot启动时，它会加载`spring.factories`文件，并使用`java.util.ServiceLoader`类来加载`EnableAutoConfiguration`服务提供者的实现类，即自动配置类。
+
+总之，Spring Boot使用了SPI技术加载`META-INF/spring.factories`文件中注册的服务提供者，以自动装配应用程序所需的组件和功能。
+
+
+
+
+`org.springframework.boot.autoconfigure.EnableAutoConfiguration`是Spring Boot中的一个注解，用于启用自动配置。它是Spring Boot自动配置机制的核心注解之一，用来自动装配应用程序所需的组件和功能。
+
+使用`@EnableAutoConfiguration`注解时，Spring Boot会自动扫描classpath下的所有依赖，并根据依赖的jar包中META-INF/spring.factories文件中的配置信息，自动装配所需的组件和功能。例如，如果引入了Spring Data JPA依赖，启用了`@EnableAutoConfiguration`注解后，Spring Boot会自动配置JPA相关的Bean，包括`EntityManagerFactory`、`DataSource`等。
+
+`@EnableAutoConfiguration`注解的使用非常简单，只需要在Spring Boot应用程序的主类上添加该注解即可。例如：
+
+```java
+@SpringBootApplication
+@EnableAutoConfiguration
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+在上面的示例中，`@EnableAutoConfiguration`注解启用了自动配置机制，使得Spring Boot可以根据依赖的jar包自动装配所需的组件和功能。同时，`@SpringBootApplication`注解也包含了`@EnableAutoConfiguration`注解，因此在实际开发中通常只需要使用`@SpringBootApplication`注解即可。
+
+总之，`@EnableAutoConfiguration`注解是Spring Boot自动配置机制的核心注解之一，它可以帮助开发人员轻松地实现应用程序的自动装配，提高开发效率和代码质量。
