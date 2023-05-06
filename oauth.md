@@ -2,7 +2,7 @@
 
 https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?login_hint&prompt=login&response_type=code&redirect_uri=https%3A%2F%2Fauth0.openai.com%2Flogin%2Fcallback&scope=email%20profile&state=ZRFM0n5a9Zaa_gLCLJpjvmhdHT4XVseu&client_id=799222349882-ne3i0s9jdm5s0p7ll2d7tlsi1vc1halt.apps.googleusercontent.com&service=lso&o2v=1&flowName=GeneralOAuthFlow
 
-openai_google_oauth.png
+![openai_google_oauth](./imgs/openai_google_oauth.png)
 
 
 OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。
@@ -18,10 +18,10 @@ https://datatracker.ietf.org/doc/html/rfc6749
 
 也就是说，OAuth 2.0 规定了四种获得令牌的流程。你可以选择最适合自己的那一种，向第三方应用颁发令牌。下面就是这四种授权方式。
 
-授权码（authorization-code）
-隐藏式（implicit）
-密码式（password）：
-客户端凭证（client credentials）
+- 授权码（authorization-code）
+- 隐藏式（implicit）
+- 密码式（password）：
+- 客户端凭证（client credentials）
 
 
 

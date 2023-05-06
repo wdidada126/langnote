@@ -37,7 +37,7 @@ http接口入参 出参 json格式的，用这个
 
 json规范，需要读一下
 
-
+如何处理java Enum String的空格字符串，空字符串，没有赋值的字符串
 
 [Jackson实现序列化和反序列化](https://blog.csdn.net/wus_shang/article/details/79286544)
 

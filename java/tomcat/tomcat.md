@@ -29,6 +29,18 @@ tomcat 8配置文件设置线程池
           prestartminSpareThreads="true" />
 ```
 
+Tomcat 使用的线程池类是 org.apache.tomcat.util.threads.ThreadPoolExecutor。
+
+该类实现了 java.util.concurrent.Executor 接口，可以被用于执行异步任务。
+
+ThreadPoolExecutor 类继承自 java.util.concurrent.ThreadPoolExecutor，并添加了一些 Tomcat 特有的功能，例如：
+
+可以设置线程池的名称，方便调试和监控。
+可以设置线程池的最大线程数、核心线程数、线程池队列等参数。
+可以设置线程池的拒绝策略，当线程池已经满载但又有新的任务需要执行时，可以根据设置的拒绝策略来处理这些任务。
+Tomcat 中的线程池类通常会在 org.apache.catalina.core.StandardThreadExecutor 类中进行配置和使用。在该类中，会创建一个 ThreadPoolExecutor 实例，并将其用于执行异步任务。
+
+值得注意的是，Tomcat 9.x 版本中的线程池类已经发生了变化，具体实现可以查看 org.apache.tomcat.util.threads.ThreadPoolExecutor 和 org.apache.tomcat.util.threads.ThreadPoolExecutor 类的源码实现。
 
 Coyote的AbstractProcessor类如何处理http body
 
