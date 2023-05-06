@@ -1,6 +1,71 @@
 # Spring
 
 
+<init-method>效果跟实现InitializingBean接口是一样的吗？
+
+
+spring ioc中的bean，创建好之后执行特定方法
+
+```java
+public class MyBean implements InitializingBean {
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // 在这里进行初始化操作
+    }
+}
+```
+
+在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 Spring 提供的 `<init-method>` 和 `<destroy-method>` 元素。
+
+1. `<init-method>` 元素：该元素用于指定 Bean 创建完成后要执行的初始化方法。你可以在该方法中进行一些初始化操作，例如初始化成员变量、连接数据库等。例如：
+
+```
+<bean id="myBean" class="com.example.MyBean" init-method="init">
+    <!-- 在这里进行其他配置 -->
+</bean>
+```
+
+在这个例子中，我们定义了一个名为 `myBean` 的 Bean，并使用 `<init-method>` 元素指定了一个名为 `init()` 的方法。在该方法中，我们可以进行一些初始化操作，例如初始化成员变量、连接数据库等。
+
+2. `<destroy-method>` 元素：该元素用于指定 Bean 销毁之前要执行的清理方法。你可以在该方法中进行一些清理操作，例如关闭数据库连接、释放资源等。例如：
+
+```
+<bean id="myBean" class="com.example.MyBean" destroy-method="cleanup">
+    <!-- 在这里进行其他配置 -->
+</bean>
+```
+
+在这个例子中，我们定义了一个名为 `myBean` 的 Bean，并使用 `<destroy-method>` 元素指定了一个名为 `cleanup()` 的方法。在该方法中，我们可以进行一些清理操作，例如关闭数据库连接、释放资源等。
+需要注意的是，使用 `<init-method>` 和 `<destroy-method>` 元素将使你的 Bean 与 Spring 框架产生强耦合。如果你想使你的 Bean 更加独立和可重用，可以使用 Spring 提供的注解来实现。
+例如，你可以使用 `@PostConstruct` 注解来指定一个方法，在 Bean 创建好之后立即执行。例如：
+
+```
+public class MyBean {
+
+    @PostConstruct
+    public void init() {
+        // 在这里进行初始化操作
+    }
+}
+```
+
+在这个例子中，我们定义了一个名为 `MyBean` 的 Bean，并使用 `@PostConstruct` 注解指定了一个名为 `init()` 的方法。在该方法中，我们可以进行一些初始化操作，例如初始化成员变量、连接数据库等。
+类似地，你可以使用 `@PreDestroy` 注解来指定一个方法，在 Bean 销毁之前执行。例如：
+
+```
+public class MyBean {
+
+    @PreDestroy
+    public void cleanup() {
+        // 在这里进行清理操作
+    }
+}
+```
+
+在这个例子中，我们定义了一个名为 `MyBean` 的 Bean，并使用 `@PreDestroy` 注解指定了一个名为 `cleanup()` 的方法。在该方法中，我们可以进行一些清理操作，例如关闭数据库连接、释放资源等。
+总之，在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 `<init-method>` 和 `<destroy-method>` 元素。如果你想使你的 Bean 更加独立和可重用，可以使用 Spring 提供的注解来实现。
+
 
 https://gitee.com/edidada/summer-framework
 

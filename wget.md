@@ -18,3 +18,5 @@ Wget url -O大写
 
 curl -o xxxfilename url
 
+--no-check-certificate
+https不检测tls证书

@@ -10,6 +10,9 @@ yum install -y ftp
 FTP，即：文件传输协议（File Transfer Protocol），基于客户端/服务器模式，默认使用20、21端口号，其中端口20（数据端口）用于进行数据传输，端口21（命令端口）用于接受客户端发出的相关FTP命令与参数。
 
 不是使用21、22端口
+牛客网有填空题，我写22了
+
+22端口是ssh协议的
 
 ```
 ftp> help
@@ -147,5 +150,24 @@ ftp使用的内部命令如下(中括号表示可选项):
 71.user user-name[password][account]：向远程主机表明自己的身份，需要口令时，必须输入口令，如：user anonymous my@email。
 72.verbose：同命令行的-v参数，即设置详尽报告方式，ftp服务器的所有响应都将显示给用户，缺省为on.
 73.?[cmd]：同help。
+
+
+### ftp java编程
+
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+
+
+import org.apache.commons.net.PrintCommandListener;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
+https://gitee.com/edidada/testftp
+
 
 

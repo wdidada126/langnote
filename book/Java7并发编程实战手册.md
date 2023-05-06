@@ -71,10 +71,14 @@ Thread interrupt()
 isInterrupted()
 
 
+```java
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+Future<Integer> future = executorService.submit();
+```
 
 ### chapter2 线程同步基础
 
-synchronized java keyword
+synchronized ,java keyword
 Lock
 ReadWriteLock
 
@@ -115,6 +119,9 @@ Exchanger java提供   Exchanger<V>
 
 Semaphore用法
 
+- availablePermits()
+- tryAcquire()
+
 https://www.cnblogs.com/panshan-lurenjia/p/16124358.html
 限制线程对资源的并发访问量，比如数据库连接，当访问量超过设定的大小时，线程的执行就会被阻塞或受限。
 
@@ -137,6 +144,41 @@ jdk7中增加了一个用于多阶段同步控制的工具类，它包含了Cycl
 
 https://cloud.tencent.com/developer/article/1908152
 
+### Phaser API说明
+
+-   构造方法
+    -   `Phaser()` ：参与任务数0
+    -   `Phaser(int parties)`：指定初始参与任务数
+    -   `Phaser(Phaser parent)`：指定parent阶段器， 子对象作为一个整体加入parent对象，当子对象中没有参与者时，会自动从parent对象解除注册
+    -   `Phaser(Phaser parent , int parties)`：集成上面两个方法的
+-   增减参与任务数方法
+    -   `int register()`：增加一个数，返回当前阶段号
+    -   `int bulkRegister(int parties)`：增加指定个数，返回当前阶段号
+    -   `int arriveAndDeregister()`：减少一个任务数，返回当前阶段号
+-   到达等待方法
+    -   `int arrive()`：到达，任务完成，返回当前阶段号
+    -   `int arriveAndAwaitAdvance()`：到达后等待其他任务到达，返回到达阶段号
+    -   `int awaitAdvance(int phase)`：在指定阶段等待(必须是当前阶段才有效)
+    -   `int awaitAdvanceInterruptibly(int phase)`
+    -   `int awaitAdvanceInterruptibly(int phase ， long timeout, TimeUnit unit)`
+-   阶段到达触发动作
+    -   `protected boolean onAdvance(int Phase , int registeredParties)`：类似于CyclicBarrier的触发命令，通过重写该方法来增加阶段到达动作
+-   其它api
+    -   `void forceTermination()`：强制结束
+    -   `boolean isTerMinated()`：判断是否结束
+    -   `void getPhase()`：获取当前阶段号
+
+
+
+
+### Phaser例子
+
+场景：公司组织郊游活动，大家各自从家出发到公司集合，大家都到了后，出发到公园各自游玩，然后在公园门口集合，再去餐厅就餐，大家都到了就开始用餐。有的员工白天有事，选择晚上的聚餐，有的员工则晚上有事，只参加白天的活动。编程模拟实现。
+
+-   第一阶段，到公司集合5人，任务数为5，去公园游玩。
+-   第二阶段，到公园门口集合，有2人因为晚上有事，自行从公园回家；则3人去餐厅，这是减少参与数，任务数变为3
+-   第三阶段，餐厅集合，有另外4人参加聚餐，这是增加参与数，任务数变为7
+
 
 
 
@@ -157,6 +199,8 @@ void execute(Runnable command)
 ![ScheduledExecutorService](..\imgs\javase\ScheduledExecutorService.png)
 
 
+拒绝策略
+acdd 四个
 
 | 策略                                     | 解释                                           |
 | ---------------------------------------- | ---------------------------------------------- |
@@ -202,7 +246,15 @@ PriorityBlockingQueue (java.util.concurrent)
 
 ### chapter5 Fork/Join框架
 
+```java
+        ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+```
 
+ForkJoinPool.invoke()
+
+
+fjt
+rt
 
 java.util.concurrent.ForkJoinTask abstract
 
@@ -210,6 +262,11 @@ java.util.concurrent.RecursiveTask abstract
 
 java.util.concurrent.ForkJoinPool AbstractExecutorService子类
 
+
+
+`ForkJoinTask`提供了两种任务类型：`RecursiveAction`和`RecursiveTask`。其中，`RecursiveAction`用于没有返回值的任务，`RecursiveTask`用于有返回值的任务。这两种任务类型都继承自`ForkJoinTask`。
+
+`ForkJoinTask`框架的核心思想是“工作窃取”（Work Stealing）。具体来说，当一个线程完成了自己的任务后，如果它还有空闲时间，就会去“窃取”其他线程队列中的任务来执行，从而使得任务的执行更加高效。
 
 
 https://blog.csdn.net/tyrroo/article/details/81390202
@@ -265,12 +322,11 @@ try {
 java.util.concurrent.atomic.AtomicBoolean
 
 java.util.concurrent.atomic.AtomicInteger
+java.util.concurrent.atomic.AtomicLong
 
 java.util.concurrent.atomic.AtomicIntegerArray
 
 java.util.concurrent.atomic.AtomicIntegerFieldUpdater abstract
-
-java.util.concurrent.atomic.AtomicLong
 
 java.util.concurrent.atomic.AtomicLongArray
 
@@ -327,7 +383,8 @@ java.util.concurrent.locks.Condition   interface
 public abstract class AbstractQueuedSynchronizer
     extends AbstractOwnableSynchronizer
 
-
+shard
+excusive
 
 
 

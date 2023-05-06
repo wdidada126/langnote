@@ -1,7 +1,7 @@
 # Java高并发核心编程
 
-https://book.douban.com/subject/35446284/
-https://book.douban.com/subject/35446285/
+https://book.douban.com/subject/35446284/  卷1
+https://book.douban.com/subject/35446285/ 卷2
 
 
 

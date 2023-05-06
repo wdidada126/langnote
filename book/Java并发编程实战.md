@@ -104,11 +104,11 @@ maxSize
             3、maxPoolSize：最大线程数
                             * 当线程数>=corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务
                                    * 当线程数=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常
-               4、 keepAliveTime：线程空闲时间
+                       4、 keepAliveTime：线程空闲时间
                                    * 当线程空闲时间达到keepAliveTime时，线程会退出，直到线程数量=corePoolSize
                                           * 如果allowCoreThreadTimeout=true，则会直到线程数量=0
-                  5、allowCoreThreadTimeout：允许核心线程超时
-                  6、rejectedExecutionHandler：任务拒绝处理器
+                         5、allowCoreThreadTimeout：允许核心线程超时
+                         6、rejectedExecutionHandler：任务拒绝处理器
                                           * 两种情况会拒绝处理任务：
            - 当线程数已经达到maxPoolSize，切队列已满，会拒绝新任务
            - 当线程池被调用shutdown()后，会等待线程池里的任务执行完毕，再shutdown。如果在调用shutdown()和线程池真正shutdown之间提交任务，会拒绝新任务
@@ -118,7 +118,7 @@ maxSize
            - CallerRunsPolicy 哪个线程提交的任务哪个线程就地执行任务
            - DiscardPolicy 忽视，什么都不会发生
            - DiscardOldestPolicy 从队列中踢出最先进入队列（最后一个执行）的任务
-    7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
+        7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
 
 public ThreadPoolExecutor(int corePoolSize,
 int maximumPoolSize,
@@ -306,6 +306,12 @@ Condition接口
 await()
 
 signal()
+
+备注：
+
+Pharse
+
+CyclicBarier
 
 
 
