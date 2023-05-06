@@ -1,5 +1,23 @@
 # RocketMQ
 
+
+### spring boot使用rocketmq
+
+rocketmq-spring-boot-2.0.4.jar
+org.apache.rocketmq.spring.core.RocketMQTemplate
+
+```java
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    public void sendMessage() {
+        rocketMQTemplate.convertAndSend(Consts.TOPIC, "Hello, RocketMQ!");
+    }
+```
+
+
+
+
 ```shell
 Caused by: org.apache.rocketmq.client.exception.MQBrokerException: CODE: 14  DESC: service not available now. It may be caused by one of the following reasons: the broker's disk is full [CL:  0.91 CQ:  0.91 INDEX:  0.91], messages are put to the slave, message store has been shut down, etc. BROKER: 192.168.10.12:10911
 For more information, please visit the url, http://rocketmq.apache.org/docs/faq/
@@ -163,6 +181,16 @@ The broker[chengwu2, 169.254.244.186:10911] boot success. serializeType=JSON and
 cd E:\rocketmq-all-4.8.0-bin-release
 .\bin\mqadmin.cmd  updateTopic -n localhost:9876  -b localhost:10911  -t TopicTest
 ```
+
+
+.\bin\mqadmin.cmd sendMessage -t testDemo -p "Hello, RocketMQ!" -n 192.168.10.11:9876
+Caused by: org.apache.rocketmq.client.exception.MQClientException: No route info of this topic: testDemo
+
+.\bin\mqadmin topicList -n 192.168.10.11:9876
+
+
+.\bin\mqadmin updateTopic -n 192.168.10.11:9876 -c default-cluster -t testDemo
+.\bin\mqadmin clusterList -n 192.168.10.11:9876
 
 ### bin目录下面的命令行程序
 - .\bin\mqadmin.cmd
