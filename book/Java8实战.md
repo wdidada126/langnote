@@ -93,21 +93,13 @@ Java8中有两大最为重要得改变，其一时Lambda表达式，另外就是
 二、Stream 操作的三个步骤
 
 　　1）. 创建 Stream
-
 　　　　一个数据源（集合，数组），获取一个流。
-
 　　2）. 中间操作
-
 　　　　一个中间操作链，对数据源的数据进行处理。
-
 　　3）. 终止操作
-
 　　　　一个终止操作，执行中间操作链，并产生结果。
 
 Stream
-
-
-
 ![Stream](..\imgs\Stream.png)
 
 
@@ -183,24 +175,39 @@ com.google.common.base.Optional
 
 
 ### 第11章　CompletableFuture：组合式异步编程
+Future到CompletableFuture,优越性
+
+Future 和 CompletableFuture 都是 Java 中用于异步编程的 API。但是，CompletableFuture 相对于 Future 有着更强的优越性，主要表现在以下几个方面：
+1. 异步编程方式更加灵活：Future 只能表示一个异步操作的结果，无法手动设置它的值或者触发它的完成。而 CompletableFuture 提供了更加灵活的异步编程方式，可以手动设置它的值或者触发它的完成，从而更加灵活地处理异步操作。
+2. 支持链式调用：CompletableFuture 可以支持链式调用，可以在一个 CompletableFuture 中嵌套多个 CompletableFuture，从而实现更加复杂的异步编程逻辑。而 Future 不支持链式调用，只能通过阻塞等待来获取异步操作结果。
+3. 支持回调机制：CompletableFuture 支持回调机制，可以在异步操作完成时自动触发回调函数，从而实现更加灵活的异步编程。而 Future 不支持回调机制，需要手动轮询来获取异步操作结果。
+4. 支持异常处理：CompletableFuture 支持异常处理，可以通过 handle()、exceptionally() 和 whenComplete() 等方法来处理异步操作中的异常。而 Future 只能通过 try-catch 块来处理异步操作中的异常。
+下面是一个使用 CompletableFuture 的示例代码：
+
+```java
+CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+    // 异步执行耗时操作
+    return "Hello World";
+});
+
+future.thenAccept(result -> {
+    // 异步操作完成后的回调函数
+    System.out.println(result);
+});
+
+// 等待异步操作完成
+future.join();
+```
+
+在上面的代码中，我们首先使用 CompletableFuture.supplyAsync() 方法创建了一个异步计算任务，然后使用 thenAccept() 方法注册了一个回调函数，在异步操作完成后自动触发回调函数并输出结果。最后，我们使用 join() 方法等待异步操作完成。
+需要注意的是，使用 CompletableFuture 需要注意避免线程安全问题和死锁问题，需要合理设计异步编程逻辑，以达到最佳的性能和可靠性的平衡。
 
 java.util.concurrent.CompletableFuture
 
 Future的局限性，它没法直接对多个任务进行链式、组合等处理，需要借助并发工具类才能完成，实现逻辑比较复杂。
-
-
-
 https://blog.csdn.net/sermonlizhi/article/details/123356877
 
-
-
-
-
 ![CompletableFuture](..\imgs\javase\CompletableFuture.png)
-
-
-
-
 
 常用方法
 依赖关系
@@ -238,15 +245,54 @@ public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executo
 面试题
 
 
+Java 8 引入了新的日期和时间 API，主要包括以下几个类和接口：
+1. LocalDate：用于表示日期，不包含时间和时区信息。
+2. LocalTime：用于表示时间，不包含日期和时区信息。
+3. LocalDateTime：用于表示日期和时间，不包含时区信息。
+4. ZonedDateTime：用于表示日期、时间和时区信息。
+5. Instant：用于表示时刻，即从 1970 年 1 月 1 日 00:00:00 UTC 开始计算的秒数。
+6. Duration：用于表示时间间隔，可以精确到纳秒级别。
+7. Period：用于表示日期间隔，可以精确到天。
+下面是一些使用示例：
+```java
+// 获取当前日期和时间
+LocalDateTime now = LocalDateTime.now();
+System.out.println(now);
+
+// 获取指定日期和时间
+LocalDateTime dateTime = LocalDateTime.of(2023, 5, 8, 10, 30, 0);
+System.out.println(dateTime);
+
+// 获取当前时区的时间
+ZonedDateTime zonedDateTime = ZonedDateTime.now();
+System.out.println(zonedDateTime);
+
+// 获取指定时区的时间
+ZonedDateTime zonedDateTime2 = ZonedDateTime.of(dateTime, ZoneId.of("America/New_York"));
+System.out.println(zonedDateTime2);
+
+// 时间间隔计算
+LocalDateTime start = LocalDateTime.of(2023, 5, 8, 10, 30, 0);
+LocalDateTime end = LocalDateTime.of(2023, 5, 8, 12, 0, 0);
+Duration duration = Duration.between(start, end);
+System.out.println(duration.toMinutes());
+
+// 日期间隔计算
+LocalDate start2 = LocalDate.of(2023, 5, 8);
+LocalDate end2 = LocalDate.of(2024, 5, 8);
+Period period = Period.between(start2, end2);
+System.out.println(period.getYears() + "年" + period.getMonths() + "个月" + period.getDays() + "天");
+```
+
+需要注意的是，新的日期和时间 API 是线程安全的，避免了旧的 Date 和 Calendar 类的诸多问题。同时，新的 API 提供了更多的操作方法，可以方便地进行日期和时间的计算和格式化，提高了开发效率和代码可读性。
+
 
 日期时间都是final的，操作的话返回一个新的对象
 
-
-
-
-
 LocalDate、LocalTime、Instant、Duration以及Period
+Mysql数据库如何处理？
 
+LocalDate.now()
 
 
 TemporalAdjuster接口
@@ -268,21 +314,21 @@ public interface Temporal extends TemporalAccessor
 ```
 
 ## 第四部分 超越Java 8
-第13章　函数式的思考
+### 第13章　函数式的思考
 
 
 
 
 
-第14章　函数式编程的技巧
+### 第14章　函数式编程的技巧
 
 
 
-第15章　面向对象和函数式编程的混合：Java 8和Scala的比较
+### 第15章　面向对象和函数式编程的混合：Java 8和Scala的比较
 
 
 
-第16章　结论以及Java的未来
+### 第16章　结论以及Java的未来
 
 
 

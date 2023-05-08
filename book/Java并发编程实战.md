@@ -1,19 +1,9 @@
 # Java并发编程实战
 
-
-
 [Java并发编程实战](https://book.douban.com/subject/10484692/)
-
 本书作者都是Java Community Process JSR 166专家组（并发工具）的主要成员，并在其他很多JCP专家组里任职。Brian Goetz有20多年的软件咨询行业经验，并著有至少75篇关于Java开发的文章。Tim Peierls是“现代多处理器”的典范，他在BoxPop.biz、唱片艺术和戏剧表演方面也颇有研究。Joseph Bowbeer是一个Java ME专家，他对并发编程的兴趣始于Apollo计算机时代。David Holmes是《The Java Programming Language》一书的合著者，任职于Sun公司。Joshua Bloch是Google公司的首席Java架构师，《Effective Java》一书的作者，并参与著作了《Java Puzzlers》。Doug Lea是《Concurrent Programming》一书的作者，纽约州立大学 Oswego分校的计算机科学教授。
 
-
-
-
 javax.annotation.concurrent.ThreadSafe
-
-
-
-
 
 ### 第1章　简介
 
@@ -31,8 +21,6 @@ javax.annotation.concurrent.ThreadSafe
 
 
 ### 第3章 对象的共享
-
-
 final修饰变量 只能赋值一次
 static修饰的变量 java内存模型里面有同步机制，确保线程安全
 
@@ -40,6 +28,12 @@ static修饰的变量 java内存模型里面有同步机制，确保线程安全
 
 线程封闭的三种方式：Ad-hoc线程封闭、栈封闭、ThreadLocal封闭。
 https://www.cnblogs.com/gnivor/p/4913132.html
+
+在多线程编程中，为了确保线程安全，通常需要采用一些技术来保证线程之间的数据隔离。下面是三种常见的线程封闭技术：
+1. Ad-hoc 线程封闭（临时线程封闭）：这种技术通常用于短时间的任务。它基于一个假设：在一个线程中，一个对象只能被单个方法使用，因此不需要考虑多线程访问。例如，在一个方法中创建一个临时对象，并在同一个方法中使用它，这个对象就是 Ad-hoc 线程封闭的。
+2. 栈封闭：这种技术通常用于方法局部变量。它基于一个假设：每个线程都有自己的方法调用栈，方法中的局部变量只能在该方法的执行期间被访问。因此，将数据保存在方法局部变量中，就可以保证线程安全。例如，在一个方法中创建一个对象并将其存储在局部变量中，在方法的执行期间，其他线程无法访问这个对象。
+3. ThreadLocal 封闭：ThreadLocal 是 Java 中的一个类，用于在每个线程中存储数据。使用 ThreadLocal 封闭技术，可以将数据存储在 ThreadLocal 对象中，并且每个线程只能访问其自己的数据，从而保证线程安全。例如，在一个方法中，将数据存储在 ThreadLocal 对象中，以便每个线程都可以访问其自己的数据。
+这些线程封闭技术都可以用来保证线程安全，但是需要根据具体的应用场景来选择合适的技术。在选择线程封闭技术时，需要考虑数据的访问范围、数据的生命周期以及线程的数量等因素。
 
 20210406评注：自定义ThreadLocal
 内存回收
@@ -57,7 +51,8 @@ https://www.cnblogs.com/east7/p/13893633.html
 
 
 同步工具类
-Latch FutchTask
+Latch
+FutchTask
 Semaphere  -> Semaphore
 ConcurrentHashMap
 size()
@@ -65,10 +60,13 @@ isEmpty()方法不一定准确
 可以任意读
 有限数量个写
 
+FutchTask（也称为 FutureTask）是 Java 中的一个类，它实现了 Future 接口和 Runnable 接口，可以用来表示一个异步计算任务的结果。FutchTask 可以在一个线程中执行，也可以提交给 ExecutorService 等线程池来执行。
+FutchTask 的主要作用是在异步计算完成后获取计算结果。通过调用 FutchTask 的 get() 方法，可以阻塞当前线程直到异步计算完成，并返回计算结果。如果异步计算还没有完成，调用 get() 方法会阻塞当前线程，直到计算完成并返回结果。如果异步计算出现异常，调用 get() 方法会抛出相应的异常。
+除了获取计算结果，FutchTask 还可以用来取消异步计算任务。通过调用 FutchTask 的 cancel() 方法，可以请求取消异步计算任务。如果任务已经完成或已经被取消，调用 cancel() 方法将不会产生任何影响。如果任务正在执行，调用 cancel() 方法将会中断任务的执行。
+总之，FutchTask 是一种非常有用的工具，可以方便地进行异步计算，并在计算完成后获取计算结果或取消计算任务。它在 Java 并发编程中经常被使用。
+
 
 CompleteService
-
-
 ES
 
 ### 第6章 任务执行
@@ -95,20 +93,20 @@ maxSize
 线程工厂 ThreadFactory
 拒绝策略 RejectExecutorHandler
 
-   1、corePoolSize：核心线程数
+1、corePoolSize：核心线程数
        * 核心线程会一直存活，及时没有任务需要执行
               * 当线程数小于核心线程数时，即使有线程空闲，线程池也会优先创建新线程处理
               * 设置allowCoreThreadTimeout=true（默认false）时，核心线程会超时关闭
-         2、queueCapacity：任务队列容量（阻塞队列）
+2、queueCapacity：任务队列容量（阻塞队列）
                      * 当核心线程数达到最大时，新任务会放在队列中排队等待执行
-            3、maxPoolSize：最大线程数
+3、maxPoolSize：最大线程数
                             * 当线程数>=corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务
                                    * 当线程数=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常
-                       4、 keepAliveTime：线程空闲时间
+4、 keepAliveTime：线程空闲时间
                                    * 当线程空闲时间达到keepAliveTime时，线程会退出，直到线程数量=corePoolSize
                                           * 如果allowCoreThreadTimeout=true，则会直到线程数量=0
-                         5、allowCoreThreadTimeout：允许核心线程超时
-                         6、rejectedExecutionHandler：任务拒绝处理器
+5、allowCoreThreadTimeout：允许核心线程超时
+6、rejectedExecutionHandler：任务拒绝处理器
                                           * 两种情况会拒绝处理任务：
            - 当线程数已经达到maxPoolSize，切队列已满，会拒绝新任务
            - 当线程池被调用shutdown()后，会等待线程池里的任务执行完毕，再shutdown。如果在调用shutdown()和线程池真正shutdown之间提交任务，会拒绝新任务
@@ -118,7 +116,7 @@ maxSize
            - CallerRunsPolicy 哪个线程提交的任务哪个线程就地执行任务
            - DiscardPolicy 忽视，什么都不会发生
            - DiscardOldestPolicy 从队列中踢出最先进入队列（最后一个执行）的任务
-        7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
+7、线程工厂 public interface ThreadFactory Thread newThread(Runnable r);
 
 public ThreadPoolExecutor(int corePoolSize,
 int maximumPoolSize,
@@ -136,9 +134,6 @@ RejectedExecutionHandler handler)
 
 
 ## 第三部分　活跃性、性能与测试
-
-
-
 ### 第10章 死锁
 死锁模拟
 
@@ -304,7 +299,6 @@ countDownLatch.await();//开始暂停，等待其他线程完毕后继续执行
 Condition接口
 
 await()
-
 signal()
 
 备注：
