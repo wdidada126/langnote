@@ -68,7 +68,7 @@ ESB SOA
 
 ESB考虑异构系统 提供消息转换等功能
 
-现有SOA，后又ESB
+先有SOA，后又ESB
 
 pasox 前提 没有拜占庭将军问题
 

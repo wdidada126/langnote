@@ -1,5 +1,6 @@
 # java_unsafe
 
+```java
 
     private static final sun.misc.Unsafe UNSAFE;
     private static final long parkBlockerOffset;
@@ -20,4 +21,4 @@
                 (tk.getDeclaredField("threadLocalRandomSecondarySeed"));
         } catch (Exception ex) { throw new Error(ex); }
     }
-
+```

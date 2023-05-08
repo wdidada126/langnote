@@ -1,5 +1,17 @@
 # interview
 
+String对象 gbk转utf-8
+
+```java
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
+String gbkString = "中文字符串"; // 假设这是一个 GBK 编码的字符串
+byte[] gbkBytes = gbkString.getBytes("GBK"); // 将字符串转换为字节数组
+String utf8String = new String(gbkBytes, StandardCharsets.UTF_8); // 将字节数组按 UTF-8 编码转换为字符串
+```
+
+
 龙哥 架构 稳定性
 
 简历，项目是做什么，你是做什么

@@ -1,6 +1,5 @@
 # antlr4权威指南
 
-
 参考文档
 https://github.com/edidada/hand_in_hand_with_antlr
 
@@ -32,20 +31,9 @@ parser.rule是干啥的？
 
 https://book.douban.com/subject/27082372/       中文版
 
-
-
 https://book.douban.com/subject/17912658/        英文版
 
-
-
 Twitter搜索使用ANTLR进行语法分析，每天处理超过20亿次查询；Hadoop生态系统中的Hive、Pig、数据仓库和分析系统所使用的语言都用到了ANTLR；Lex Machina将ANTLR用于分析法律文本；Oracle公司在SQL开发者IDE和迁移工具中使用了ANTLR；NetBeans公司的IDE使用ANTLR来解析C++；Hibernate对象-关系映射框架（ORM）使用ANTLR来处理HQL语言。
-
-
-
-
-
-
-
 
 antlr4 vs antlr3
 
@@ -53,10 +41,6 @@ antlr4 访问者模式 flex、bison需要在.i .y中嵌入c c++代码
 antlr4不用
 
 antlr4 java版本的lex和yacc
-
-
-
-
 
 g4文件四大步
 

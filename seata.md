@@ -6,9 +6,7 @@ springboot集成分布式事务Seata
     <artifactId>spring-boot-starter-seata</artifactId>
     <version>${project.version}</version>
 </dependency>
-————————————————
-版权声明：本文为CSDN博主「java圈」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/zhangchangbin123/article/details/89310131
+https://blog.csdn.net/zhangchangbin123/article/details/89310131
 
 Seata-AT
 https://zhuanlan.zhihu.com/p/340292579
@@ -18,9 +16,7 @@ https://zhuanlan.zhihu.com/p/340292579
 seata
 
 QQ群
-
 254657148
-
 需要独立部署一个seata server
 
 tm tc rm
@@ -30,21 +26,14 @@ at
 模式 默认的
 
 本质上是通过添加一个undo_log来维护事务
-
 数据库事务
-
 套上seata的事务
-
 saga
-
 长事误
 
 Saga 理论出自 Hector & Kenneth 1987发表的论文 Sagas。
-
 https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
-
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/EldeebBernstein-TransactionalActors-MSR-TR-1.pdf
-
 saga模式的实现，是长事务解决方案。
 
 https://objcoding.com/2019/11/27/seata-at-start/
@@ -98,19 +87,11 @@ https://www.infoq.cn/video/typL12whoFf2RsDzUWDl
 
 saga
 
-
-
 at
-
-
 
 tcc
 
-
-
 xa
-
-
 
 server的
 
@@ -128,38 +109,23 @@ rm（单个事务数据库的事务管理器
 
 
 
-QQ交流群
 
 f重庆网友使用了
 
-
-
 (原Fescar已更名为Seata)
 
+./seata-server.bat  -p 8091 -h 127.0.0.1 -m file
+
+
+Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。在 Seata 开源之前，Seata 对应的内部版本在阿里经济体内部一直扮演着分布式一致性中间件的角色，帮助经济体平稳的度过历年的双11，对各BU业务进行了有力的支撑。经过多年沉淀与积累，商业化产品先后在阿里云、金融云进行售卖。2019.1 为了打造更加完善的技术生态和普惠技术成果，Seata 正式宣布对外开源，未来 Seata 将以社区共建的形式帮助其技术更加可靠与完备。 
 
 
 
+ap使用jar
+seata-server开启 8091端口
 
- ./seata-server.bat  -p 8091 -h 127.0.0.1 -m file
+2019年1月开源
 
-
- Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。在 Seata 开源之前，Seata 对应的内部版本在阿里经济体内部一直扮演着分布式一致性中间件的角色，帮助经济体平稳的度过历年的双11，对各BU业务进行了有力的支撑。经过多年沉淀与积累，商业化产品先后在阿里云、金融云进行售卖。2019.1 为了打造更加完善的技术生态和普惠技术成果，Seata 正式宣布对外开源，未来 Seata 将以社区共建的形式帮助其技术更加可靠与完备。 
-
-
-
- ap使用jar
- seata-server开启 8091端口
-
- 2019年1月开源
-
-
-
- https://github.com/seata/ 
-
-
+https://github.com/seata/ 
 
  https://seata.io/zh-cn/ 
-
-
-
-https://github.com/seata/seata-samples
