@@ -12,11 +12,11 @@ sun的包
 不是Spring官方发布的
 
 spring xml文件中配置的三个spring-mybatis包中的类
-- PooledDataSource
+- org.apache.ibatis.datasource.pooled.PooledDataSource
 - SqlSessionFactoryBean
 - MapperFactoryBean  一次性配置一个Mapper接口
 - MapperScannerConfigurer 一次配置一个package下面多个Mapper接口
-
+- SqlSessionTemplate 线程安全，包装了一个SqlSessionFactory来进行增删改查操作，事务的commit rollback操作 动态代理
 
 
 
@@ -180,20 +180,31 @@ spring-beans类ClassPathMapperScanner
 
 
 MapperFactoryBean和SqlSessionFactoryBean都是Spring框架中用于整合MyBatis框架的类，但它们的作用和使用方式有所不同。都是FactoryBean接口的子类
-
 1. MapperFactoryBean
-
 MapperFactoryBean是一个FactoryBean，它的作用是将指定的MyBatis Mapper接口（例如DAO接口）注册为Spring的Bean，从而可以在Spring中使用依赖注入等功能。MapperFactoryBean需要配置一个SqlSessionTemplate或SqlSessionFactory作为数据源，以便在调用Mapper方法时获取必要的数据库连接和事务支持。
-
 使用MapperFactoryBean的方式是在Spring的配置文件中配置一个MapperFactoryBean实例，并指定该实例的Mapper接口和数据源（SqlSessionTemplate或SqlSessionFactory），Spring容器会根据这些配置自动创建Mapper实例，并将其注册为Spring的Bean。
-
+public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements FactoryBean<T> {
+泛型
 2. SqlSessionFactoryBean
-
 SqlSessionFactoryBean是一个FactoryBean，它的作用是创建MyBatis的SqlSessionFactory实例，用于管理MyBatis的SqlSession对象。SqlSessionFactoryBean需要配置一个数据源和MyBatis的配置文件，以便在创建SqlSessionFactory时进行配置。
-
 使用SqlSessionFactoryBean的方式是在Spring的配置文件中配置一个SqlSessionFactoryBean实例，并指定该实例的数据源和MyBatis的配置文件，Spring容器会根据这些配置自动创建SqlSessionFactory实例，并将其注册为Spring的Bean。
 
-总的来说，MapperFactoryBean和SqlSessionFactoryBean都是用于整合MyBatis框架的类，但MapperFactoryBean主要用于将MyBatis的Mapper接口注册为Spring的Bean，方便进行依赖注入等操作，而SqlSessionFactoryBean主要用于创建MyBatis的SqlSessionFactory实例，管理MyBatis的SqlSession对象。
+总的来说，MapperFactoryBean和SqlSessionFactoryBean都是用于整合MyBatis框架的类，但MapperFactoryBean主要用于将MyBatis的Mapper接口注册为Spring的Bean，方便进行依赖注入等操作，
+而SqlSessionFactoryBean主要用于创建MyBatis的SqlSessionFactory实例，管理MyBatis的SqlSession对象。
 
 
 org.mybatis.spring.mapper.ClassPathMapperScanner类用到MapperFactoryBean
+
+public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner
+
+org.mybatis.spring.mapper.ClassPathMapperScanner#doScan
+
+public Set<BeanDefinitionHolder> doScan(String... basePackages)
+
+### 日志
+
+	protected final Log logger = LogFactory.getLog(getClass());
+
+org.apache.commons.logging.LogFactory
+
+jcl

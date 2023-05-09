@@ -24,6 +24,47 @@ Could not GET 'https://repo.spring.io/plugins-release
 解决方案
 https://juejin.cn/post/7067505778353143815
 
+这个错误提示通常是由于 Maven 无法访问远程仓库造成的。可能的原因包括：
+
+1. 网络连接问题：请检查您的网络连接是否正常，尝试使用浏览器访问该 URL，看看是否能够正常访问。
+
+2. 代理问题：如果您的网络使用了代理，请确保 Maven 的代理配置正确。您可以在 Maven 的 settings.xml 文件中添加代理配置，例如：
+
+```
+<proxies>
+  <proxy>
+    <id>proxy</id>
+    <active>true</active>
+    <protocol>http</protocol>
+    <host>proxy.host.com</host>
+    <port>8080</port>
+    <username>user</username>
+    <password>password</password>
+    <nonProxyHosts>localhost</nonProxyHosts>
+  </proxy>
+</proxies>
+```
+
+3. 远程仓库配置问题：请确保您的 Maven 配置文件中添加了正确的远程仓库配置。例如，如果您使用的是 Spring Boot，可以在 pom.xml 文件中添加以下配置：
+
+```
+<repositories>
+  <repository>
+    <id>spring-releases</id>
+    <url>https://repo.spring.io/libs-release</url>
+  </repository>
+</repositories>
+```
+
+4. Maven 本地仓库问题：请确保您的 Maven 本地仓库中已经存在所需的依赖。您可以尝试清空本地仓库并重新构建项目，例如：
+
+```
+mvn clean
+rm -rf ~/.m2/repository
+mvn package
+```
+
+如果以上方法都无法解决问题，建议您查看 Maven 的日志文件，找出具体的错误信息，以便更好地定位问题。
 
 
 set https_proxy=http://127.0.0.1:7890
@@ -43,11 +84,26 @@ https://www.cnblogs.com/xrq730/p/6285358.html
 
 ### 第3章　默认标签的解析
 
-3
+在 Spring XML 配置文件中，Spring 提供了许多默认的命名空间和标签，这些默认标签可以简化配置文件的编写，提高开发效率。以下是一些常用的默认标签及其解析：
+
+1. `<bean>` 标签：用于定义一个 Bean，可以配置 Bean 的属性、依赖关系、作用域等。
+2. `<import>` 标签：用于导入其他配置文件，可以将多个配置文件整合在一起，方便管理和维护。
+3. `<property>` 标签：用于设置 Bean 的属性值，可以设置基本数据类型、引用类型、集合类型等。
+4. `<constructor-arg>` 标签：用于设置构造函数参数的值，可以设置基本数据类型、引用类型、集合类型等。
+5. `<qualifier>` 标签：用于指定 Bean 的限定符，可以在多个相同类型的 Bean 中进行选择。
+6. `<autowired>` 标签：用于自动装配 Bean，可以根据类型或名称进行自动装配。
+7. `<component-scan>` 标签：用于自动扫描指定包下的 Bean，可以自动注册 Bean。
+8. `<context:property-placeholder>` 标签：用于加载属性文件中的属性值，可以在配置文件中使用占位符替换属性值。
+总之，Spring 提供了许多默认的标签和命名空间，可以简化配置文件的编写，提高开发效率。开发者可以根据自己的需求选择合适的标签和命名空间，并结合 Spring 的其他功能来完成应用程序的开发。
 
 ### 第4章　自定义标签的解析
 
-4
+在 Spring 中，可以通过自定义标签来扩展 Spring 的 XML 配置文件，以满足特定的业务需求。自定义标签的解析过程包括以下几步：
+1. 定义 XSD 文件：XSD（XML Schema Definition）文件是自定义标签的定义文件，它描述了自定义标签的元素和属性、类型等信息。XSD 文件需要符合 XML Schema 规范，并且需要通过命名空间与自定义标签进行关联。
+2. 编写解析器：编写解析器是自定义标签的核心部分。解析器需要实现 Spring 的 NamespaceHandler 接口，并注册自定义标签的解析器，在解析 XML 文件时，Spring 会调用解析器进行解析。
+3. 注册解析器：在 Spring 配置文件中，需要将自定义标签的命名空间和解析器注册到 Spring 中。这可以通过在 Spring 配置文件中添加 `<beans>` 标签，并在其中添加 `<bean>` 标签来实现。
+4. 编写业务逻辑：自定义标签的解析器可以获取 XML 文件中的元素和属性，并将其转换为 Java 对象。开发者可以在解析器中编写业务逻辑，根据元素和属性的值创建 Java 对象，并将其注册到 Spring 容器中。
+总之，自定义标签可以扩展 Spring 的 XML 配置文件，满足特定的业务需求。自定义标签的解析过程包括定义 XSD 文件、编写解析器、注册解析器和编写业务逻辑等步骤。开发者可以根据自己的需求和业务逻辑，编写自定义标签，并将其集成到 Spring 应用程序中。
 
 ### 第5章　bean的加载
 
@@ -87,9 +143,7 @@ EncodedResource按照一定的格式处理xml格式的配置文件（application
 - EncodedResource
 
 在Spring中，EncodedResource是一个用于表示编码资源的类，用于将资源文件的字节流和编码方式组合在一起。EncodedResource的作用是将底层资源的输入流和编码方式进行关联，并提供获取输入流的方法，以便在读取资源时使用正确的编码方式。
-
 EncodedResource通常可以用于读取文本文件类型的资源，例如XML文件、配置文件等。使用EncodedResource可以指定正确的编码方式，以避免读取到乱码等问题。
-
 EncodedResource的构造函数接受两个参数：Resource和编码方式（例如UTF-8、GBK等）。其中，Resource表示底层资源，可以是ClassPathResource、FileSystemResource等Spring提供的资源类型；编码方式表示底层资源的编码方式，通常使用字符串来指定。
 
 例如，以下代码使用EncodedResource读取classpath下的XML文件：
@@ -106,7 +160,6 @@ try (InputStream inputStream = encodedResource.getInputStream()) {
 ```
 
 以上代码中，使用ClassPathResource加载config.xml文件，并将其与编码方式UTF-8关联，然后通过EncodedResource获取输入流并进行读取操作。
-
 总之，EncodedResource是一个用于表示编码资源的类，用于将资源文件的字节流和编码方式组合在一起。EncodedResource通常可以用于读取文本文件类型的资源，例如XML文件、配置文件等。使用EncodedResource可以指定正确的编码方式，以避免读取到乱码等问题。
 
 
@@ -118,20 +171,13 @@ XmlBeanDefinitionReader的getValidationModeForResource()方法
 XmlBeanDefinitionReader的registerBeanDefinitions()方法
 
 1、获取XML格式文件的验证模式；
-
 2、加载XML文件，并得到对应的Document对象；
-
 3、根据返回的Document对象注册Bean信息。
 
 
-
 XmlBeanDefinitionReader的detectValidationMode()
-
 XmlValidationModeDetector的detectValidationMode()方法
-
 XmlValidationModeDetector的hasDoctype()方法
-
-
 
 返回XmlBeanDefinitionReader的doLoadBeanDefinitions()方法来分析
 DefaultDocumentLoader的loadDocument()方法
@@ -142,18 +188,11 @@ DefaultDocumentLoader的loadDocument()方法
 
 
 EntityResolver接口的实现类DelegatingEntityResolver
-
 在Spring中，可以使用不同的BeanDefinitionReader子类来读取和解析Bean定义信息，以便将这些信息注册到IoC容器中。不同的BeanDefinitionReader子类支持不同的Bean定义信息格式和来源，例如XML配置文件、注解等。
-
 以下是几个常用的BeanDefinitionReader子类：
-
 1. XmlBeanDefinitionReader
-
 XmlBeanDefinitionReader是Spring中用于读取和解析XML格式的Bean定义信息的类。通常情况下，可以使用XmlBeanDefinitionReader将XML配置文件中的Bean定义信息读取并注册到IoC容器中。
-
 例如，以下代码使用XmlBeanDefinitionReader读取classpath下的XML配置文件：
-
-
 
 ```java
 XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
@@ -161,12 +200,8 @@ reader.loadBeanDefinitions(new ClassPathResource("applicationContext.xml"));
 ```
 
 2. AnnotatedBeanDefinitionReader
-
 AnnotatedBeanDefinitionReader是Spring中用于读取和解析注解类型的Bean定义信息的类。通常情况下，可以使用AnnotatedBeanDefinitionReader将带有注解的类或方法作为Bean定义信息读取并注册到IoC容器中。
-
 例如，以下代码使用AnnotatedBeanDefinitionReader读取带有特定注解的类或方法：
-
-
 
 ```java
 AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(beanFactory);
@@ -174,12 +209,8 @@ reader.register(SomeConfigClass.class);
 ```
 
 3. PropertiesBeanDefinitionReader
-
 PropertiesBeanDefinitionReader是Spring中用于读取和解析Properties格式的Bean定义信息的类。通常情况下，可以使用PropertiesBeanDefinitionReader将Properties文件中的Bean定义信息读取并注册到IoC容器中。
-
 例如，以下代码使用PropertiesBeanDefinitionReader读取classpath下的Properties配置文件：
-
-
 
 ```java
 PropertiesBeanDefinitionReader reader = new PropertiesBeanDefinitionReader(beanFactory);
@@ -188,12 +219,7 @@ reader.loadBeanDefinitions(new ClassPathResource("application.properties"));
 
 总之，Spring中有多个BeanDefinitionReader子类，可以用于读取和解析不同格式的Bean定义信息，并将这些信息注册到IoC容器中。常用的几个子类包括XmlBeanDefinitionReader、AnnotatedBeanDefinitionReader和PropertiesBeanDefinitionReader等。
 
-
-
-
-
 DelegatingEntityResolver类对dtd和xsd格式的xml文件分别调用
-
 BeansDtdResolver
 PluggableSchemaResolver
 
@@ -308,7 +334,6 @@ AbstractBeanFactory.doGetBean()
 BeanDefinitionHolder
 
 Spring源码学习--BeanDefinitionHolder
-
 https://blog.csdn.net/qq924862077/article/details/73558848
 
 
@@ -333,17 +358,12 @@ BeanDefinitionHolder是对BeanDefinition，String beanName，String[] aliases的
 
 
 ClassPathResource
-
 org.springframework.core.io.ClassPathResource
-
-
-
 http://elim.iteye.com/blog/2016305
 
 
 
 是对String path和classloader的封装
-
 Resource简介
 在Spring内部，针对于资源文件有一个统一的接口Resource表示。其主要实现类有ClassPathResource、FileSystemResource、UrlResource、ByteArrayResource、ServletContextResource和InputStreamResource。Resource接口中主要定义有以下方法：
 
@@ -365,34 +385,17 @@ InputStreamResource是针对于输入流封装的资源，它的构建需要一�
 
 在Spring里面还定义有一个ResourceLoader接口，该接口中只定义了一个用于获取Resource的getResource(String location)方法。它的实现类有很多，这里我们先挑一个DefaultResourceLoader来讲。
 
-
-
-
 InputStreamSource
 
 org.springframework.core.io.InputStreamSource
 
-
-
 InputStream getInputStream() throws IOException;
-
-
-
-
-
-
 
 Resource
 对应src/main/resource 文件夹
-
 org.springframework.core.io.Resource
 
-
-
 interface Resource extends InputStreamSource 
-
-
-
 常用子类有：1、FileSystemResource；2、ClassPathResource；3、UrlResource；4、InputStreamResource；5、ByteArrayResource vfsResources
 
 
@@ -405,18 +408,7 @@ org.springframework.beans.factory.Aware
 
 回调
 
-
-
-
-
-
-
-
-
-
-
 Spring实现Aware接口，完成对IOC容器的感知
-
 https://blog.csdn.net/ilovejava_2010/article/details/7953582
 
 
@@ -620,6 +612,37 @@ org.mybatis.spring.mapper.MapperFactoryBean
 第10章 事务
 
 Spring事务 RowMapper
+在 Spring 中，`RowMapper` 是用于将查询结果集中的一行映射为一个 Java 对象的接口。如果需要自定义 `RowMapper` 的实现类，可以通过扩展 `RowMapperResultSetExtractor` 类来实现。
+
+`RowMapperResultSetExtractor` 类是 Spring 提供的一个实现了 `ResultSetExtractor` 接口的类，它通过调用 `RowMapper` 的 `mapRow()` 方法将查询结果集中的每一行映射为一个 Java 对象，并将这些 Java 对象封装在一个 `List` 中返回。开发者可以通过继承 `RowMapperResultSetExtractor` 类，并重写 `mapRow()` 方法来实现自定义的 `RowMapper`。
+
+以下是一个示例代码：
+
+```java
+public class CustomRowMapper<T> extends RowMapperResultSetExtractor<T> {
+    public CustomRowMapper(RowMapper<T> rowMapper) {
+        super(rowMapper);
+    }
+
+    @Override
+    protected T mapRow(ResultSet rs, int rowNum) throws SQLException {
+        // 在这里可以根据需要对查询结果进行处理
+        // 例如，可以使用 ResultSet 的 getXXX() 方法获取查询结果，并将其转换为 Java 对象
+        // 然后返回该 Java 对象
+        return super.mapRow(rs, rowNum);
+    }
+}
+```
+
+在上面的代码中，`CustomRowMapper` 类继承了 `RowMapperResultSetExtractor` 类，并重写了其中的 `mapRow()` 方法。在 `mapRow()` 方法中，开发者可以根据需要对查询结果进行处理，并返回一个 Java 对象。
+使用自定义的 `RowMapper` 实现类时，可以将其作为参数传递给 Spring JDBC 模板的查询方法。例如：
+
+```java
+CustomRowMapper<User> rowMapper = new CustomRowMapper<>(new UserRowMapper());
+List<User> userList = jdbcTemplate.query(sql, rowMapper);
+```
+
+在上面的代码中，`CustomRowMapper` 是自定义的 `RowMapperResultSetExtractor` 子类，`UserRowMapper` 是实现了 `RowMapper` 接口的自定义类。通过将这两个类组合在一起，可以实现自定义的 `RowMapper` 实现类，并将其作为参数传递给 `jdbcTemplate.query()` 方法，从而完成查询操作。
 
 Spring JDBC中的RowMapper是一个接口，它的作用是将ResultSet中的每一行数据映射成一个Java对象。在Spring JDBC中，我们可以使用RowMapper来完成ORM（对象关系映射）的工作。RowMapper是一个接口，它只有一个方法mapRow(ResultSet rs, int rowNum)，这个方法将ResultSet中的一行数据映射成一个Java对象。
 
@@ -672,6 +695,8 @@ TransactionInterceptor支持只读事务，可以提高事务的并发性能。�
 
 配置事务管理器
 需要配置一个事务管理器，例如DataSourceTransactionManager、JpaTransactionManager等，用于实现事务管理。
+
+
 
 配置事务属性信息
 需要配置事务属性信息，例如事务传播行为、隔离级别、超时时间、只读标志等，用于控制事务的行为。

@@ -99,25 +99,16 @@ SOLID是5个设计原则的统称，它们分别是：单一职责原则、开�
 依赖倒置原则主要用来指导框架层面的设计。高层模块不依赖低层模块，它们共同依赖同一个抽象。
 
 依赖倒置原则其实也是实现开闭原则的重要途径之一，它降低了类之间的耦合，提高了系统的稳定性和可维护性，同时这样的代码一般更易读，且便于传承。
-————————————————
-版权声明：本文为CSDN博主「`倔强男孩`」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_42151235/article/details/129025690
+https://blog.csdn.net/weixin_42151235/article/details/129025690
 
 
 左耳朵耗子
-
 看到有人说设计模式过时了，我得说设计模式非常非常有用，用Proxy做RAII，用Bridge解耦对象，用Observer 来Watch状态变化，用Strategy解耦实现和接口，用Adapter适配异构，用Command实现Undo/Redo，用Decorator实现无侵入式增强，Interpreter实现表达式，用Vistor分治一个大对象
 
 
 参考文章
-
-
-
-
 https://www.cnblogs.com/qq-361807535/p/6854191.html
-
 https://www.cnblogs.com/zhenyulu/articles/79894.html
-
 http://www.runoob.com/design-pattern/template-pattern.html
 
 facade 门面模式 slf4j

@@ -1,5 +1,10 @@
 # log4j
 
+debug，使用的是slf4j，发现不能打印trace的日志
+log4j.properties文件
+log4j.appender.CONSOLE.Threshold=INFO改成
+log4j.appender.CONSOLE.Threshold=ALL
+
 
 具体实现
 

@@ -2,6 +2,9 @@
 
 https://book.douban.com/subject/25900156/
 
+windows 10电脑上
+Redis设计与实现.pdf
+
 string
 list
 hash
@@ -22,11 +25,12 @@ set a b
 
 a b就是字典
 
-10086个kv对
+10086个/很多歌kv对
 
 dict
 dictEntry
 dictht
+
 第5章 跳跃表 skiplist
 
 zrang
@@ -52,7 +56,7 @@ zcard  `ZCARD`是Redis中用于有序集合（Sorted Set）的命令之一，它
 9
 
 第10章 RDB持久化
-
+面试题
 10
 
 第11章 AOF持久化

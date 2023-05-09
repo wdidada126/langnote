@@ -1,7 +1,6 @@
 # CMake
 
-
-
+cmake 太折磨了，喜欢xmake或者scons这种用已有脚本语言的模式
 
 https://github.com/parallel101/course/blob/master/11/01_source/00/CMakeLists.txt
 

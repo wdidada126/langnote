@@ -1854,14 +1854,46 @@ MyBatis xml
 bind
 
 MyBatis动态SQL
-
 https://mybatis.org/mybatis-3/zh/dynamic-sql.html
+
+
+在MyBatis中，trim、where和set标签对应的源码类分别是：
+- trim标签对应的源码类是org.apache.ibatis.scripting.xmltags.TrimSqlNode
+- where标签对应的源码类是org.apache.ibatis.scripting.xmltags.WhereSqlNode
+- set标签对应的源码类是org.apache.ibatis.scripting.xmltags.SetSqlNode
+
+这些类都是org.apache.ibatis.scripting.xmltags包中的类，它们都实现了org.apache.ibatis.scripting.xmltags.SqlNode接口，用于表示MyBatis XML映射文件中的动态SQL语句节点。这些类的主要作用是根据用户定义的条件动态生成SQL语句，从而可以灵活地构建SQL语句，以适应不同的查询需求。
+在执行SQL语句时，MyBatis会将动态SQL语句节点解析成一个个SqlNode对象，然后使用org.apache.ibatis.scripting.xmltags.MixedSqlNode类将它们组合成一个完整的SQL语句。在组合过程中，MyBatis会根据用户定义的条件动态生成SQL语句，以便生成最终的SQL语句。
+
+
 
 script
 https://blog.csdn.net/qq_32588349/article/details/51541871
 https://blog.csdn.net/a18716374124/article/details/79638980
 
 Jdbctemplate如何写动态sql
+JdbcTemplate可以使用NamedParameterJdbcTemplate来支持动态SQL。通过NamedParameterJdbcTemplate，可以使用命名参数的方式来构建动态SQL语句。
+下面是一个使用NamedParameterJdbcTemplate构建动态SQL的示例：
+```
+public List<User> getUsers(String name, Integer age) {
+    String sql = "SELECT * FROM user WHERE 1=1 ";
+
+    Map<String, Object> params = new HashMap<>();
+    if (name != null) {
+        sql += "AND name = :name ";
+        params.put("name", name);
+    }
+    if (age != null) {
+        sql += "AND age = :age ";
+        params.put("age", age);
+    }
+
+    NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    return jdbcTemplate.query(sql, params, new BeanPropertyRowMapper<>(User.class));
+}
+```
+在这个示例中，我们使用了NamedParameterJdbcTemplate来构建动态SQL语句。首先，我们定义了一个基础的SQL语句"SELECT * FROM user WHERE 1=1"，然后根据传入的参数动态添加查询条件。在添加查询条件时，我们使用了命名参数的方式，例如":name"和":age"。最后，我们使用NamedParameterJdbcTemplate的query方法执行查询，传入SQL语句、参数和结果集的映射方式。
+需要注意的是，使用NamedParameterJdbcTemplate构建动态SQL时，SQL语句中的参数名必须和params中的键名保持一致。
 
 Restful HTTP 路径
 
@@ -1869,9 +1901,7 @@ Restful HTTP 路径
 
 mybatis批量插入数据有哪几种方式，有什么异同
 1、mybatis xml文件中拼接xml
-
 创建 UserMapper.xml 文件，使用 foreach 标签拼接 SQL，具体实现代码如下：
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
@@ -1971,10 +2001,10 @@ https://zhuanlan.zhihu.com/p/256425436
 mybatis_spring.png
 
 ImportBeanDefinitionRegistrar接口
-
 ImportBeanDefinitionRegistrar是Spring3.1开始引入的一个接口，用来动态注册bean定义的接口。通过@Import方式引入，和ImportSelector用法类似，通常和EnvironmentAware、BeanFactoryAware、BeanClassLoaderAware、ResourceLoaderAware接口一起使用。其作用就是把模糊的概念明确化，把抽象的东西实例化，为本地服务提供更方便的使用或者服务调用。
 
 
 BeanDefinitionRegistryPostProcessor
-BeanDefinitionRegistryPostProcessor是BeanFactoryPostProcessor的子接口,BeanFactoryPostProcessor的作用是在Spring Bean的定义信息已经加载但还没有初始化的时候执行postProcessBeanFactory()来处理一些额外的逻辑，而BeanDefinitionRegistryPostProcessor的作用是在BeanFactoryPostProcessor增加了一个前置处理，当一个Bean实现了该接口后，始化前先执行该接口的postProcessBeanDefinitionRegistry()方法，然后再执行其父类的方法postProcessBeanFactory()。这样就把一个Spring Bean的初始化周期更加细化，让我们在各个阶段有定制它的可能。
+BeanDefinitionRegistryPostProcessor是BeanFactoryPostProcessor的子接口,BeanFactoryPostProcessor的作用是在Spring Bean的定义信息已经加载但还没有初始化的时候执行postProcessBeanFactory()来处理一些额外的逻辑，
+而BeanDefinitionRegistryPostProcessor的作用是在BeanFactoryPostProcessor增加了一个前置处理，当一个Bean实现了该接口后，始化前先执行该接口的postProcessBeanDefinitionRegistry()方法，然后再执行其父类的方法postProcessBeanFactory()。这样就把一个Spring Bean的初始化周期更加细化，让我们在各个阶段有定制它的可能。
 

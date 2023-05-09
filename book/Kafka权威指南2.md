@@ -4,6 +4,9 @@ https://book.douban.com/subject/36161660/
 
 Windows 10电脑上有第一版pdf
 
+Kafka权威指南.[美]Neha Narkhede(详细书签).pdf
+2018年第一版
+
 https://www.ituring.com.cn/book/2931
 
 
@@ -17,10 +20,63 @@ https://www.ituring.com.cn/book/2931
 
 
 第 3 章 Kafka生产者——向Kafka写入数据
+参考
+https://gitee.com/edidada/testkafka
+
+jar包
+```xml
+         <dependency>
+          <groupId>org.apache.kafka</groupId>
+          <artifactId>kafka-clients</artifactId>
+          <version>3.0.0</version>
+        </dependency>
+```
+
+api
+KafkaProducer
+org.apache.kafka.clients.producer.KafkaProducer
+
+Producer
+org.apache.kafka.clients.producer.Producer
+
+kafka_Producer.png
+
+send()
+Future<RecordMetadata> send(ProducerRecord<K, V> record);
+
+Future.png
+
+
+
+三个必须配置项
+kafka broker地址
+org.apache.kafka.clients.producer.ProducerConfig#BOOTSTRAP_SERVERS_CONFIG
+org.apache.kafka.clients.producer.ProducerConfig#KEY_SERIALIZER_CLASS_CONFIG
+org.apache.kafka.clients.producer.ProducerConfig#VALUE_SERIALIZER_CLASS_CONFIG
+kafka消息 kv
+k的序列化器
+v的序列化器
+
+
+ShortSerializer (org.apache.kafka.common.serialization)
+ListSerializer (org.apache.kafka.common.serialization)
+DoubleSerializer (org.apache.kafka.common.serialization)
+ByteArraySerializer (org.apache.kafka.common.serialization)
+IntegerSerializer (org.apache.kafka.common.serialization)
+UUIDSerializer (org.apache.kafka.common.serialization)
+StringSerializer (org.apache.kafka.common.serialization)
+VoidSerializer (org.apache.kafka.common.serialization)
+ByteBufferSerializer (org.apache.kafka.common.serialization)
+FloatSerializer (org.apache.kafka.common.serialization)
+LongSerializer (org.apache.kafka.common.serialization)
+BytesSerializer (org.apache.kafka.common.serialization)
 
 
 
 第 4 章 Kafka消费者——从Kafka读取数据
+KafkaConsumer
+public void subscribe(Collection<String> topics) 
+ConsumerRecords
 
 
 

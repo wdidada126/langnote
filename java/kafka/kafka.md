@@ -6,6 +6,10 @@ kafka配置项目
 kafka_server.properties
 
 
+num.network.threads=3
+num.io.threads=8  包括磁盘io
+
+
 ```xml
 # Switch to enable topic deletion or not, default value is false
 delete.topic.enable=true
@@ -96,7 +100,7 @@ https://gitee.com/edidada/testkafkaspring
 
 老版本
 
- https://gitee.com/edidada/kafka-examples
+https://gitee.com/edidada/kafka-examples
 
 
 
@@ -108,8 +112,7 @@ https://gitee.com/edidada/testkafka
 
 kafka broker设置不能自动创建主题
 
-发送消息向不存在的主题，报错：
-
+发送消息向不存在的主题，报错：Topic my-topic not present in metadata
 ```shell
 Exception in thread "main" org.springframework.kafka.KafkaException: Send failed; nested exception is org.apache.kafka.common.errors.TimeoutException: Topic my-topic not present in metadata after 60000 ms.
 	at org.springframework.kafka.core.KafkaTemplate.doSend(KafkaTemplate.java:660)
@@ -139,6 +142,7 @@ TimeBasedPartitioner 是 Kafka 自带的基于时间的分区器，它使用消�
 
 需要注意的是，Kafka 的解码器和分区器是可扩展的，我们可以根据自己的需求实现自定义的解码器和分区器，并将其用于生产者和消费者中。此外，Kafka 还支持使用 Avro、JSON、Protobuf 等第三方序列化框架进行数据的序列化和反序列化。
 
+Avro这个编码，kafka权威指南这本书上有讲解
 
 kafka logs文件夹下.index文件是干嘛的？
 Kafka是一个分布式流处理平台，它的数据存储采用了分片和索引机制。每个分区都会被分为多个段，每个段对应两个文件：“.index"索引文件和”.log"数据文件。索引文件中存储着大量元数据，而数据文件中存储着大量消息。由于生产者生产的消息会不断追加到log文件末尾，为防止log文件过大导致数据定位效率低下，Kafka采取了分片和索引机制，将每个partition分为多个segment。
@@ -150,19 +154,16 @@ https://zhuanlan.zhihu.com/p/103249714
 
 Kafka集群主从模型是主读主写，生产者写入消息、消费者读取消息的操作都是与 leader 副本进行交互的，从而实现的是一种「主写主读」的生产消费模型。 Kafka 并不支持「主写从读」
 
-
+kafka分布式算法是raft
 当Kafka的主节点不可用时，follower节点会进行选举，选出新的leader节点。选举的过程如下：
-
 follower节点向其他follower节点发送请求，请求成为新的leader节点。
 其他follower节点响应请求，如果同意，则将自己的状态改为candidate状态，并向其他follower节点发送投票请求。
 其他follower节点收到投票请求后，如果同意，则将自己的状态改为voting状态，并向candidate节点发送投票。
 candidate节点收到超过半数follower节点的投票后，将自己的状态改为leader状态，并向所有follower节点发送同步消息。
-
 是的，Kafka的选主过程使用的是Raft协议。Raft协议是一种分布式一致性算法，用于解决分布式系统中的数据一致性问题。Kafka使用Raft协议来保证集群中的数据一致性和高可用性。
 Kafka的Raft代码是使用自己编码实现的。Kafka使用了自己的Raft实现，而不是使用其他库来实现Raft协议。Kafka的Raft实现是基于Zookeeper的，它使用Zookeeper来存储集群中的元数据和状态信息。
 
 Kafka的leader节点将消息发送给follower节点使用的是TCP协议。Kafka使用TCP协议来保证消息的可靠传输和顺序传输。
-
 
 Kafka 是一个分布式的消息中间件系统，需要对其进行监控和运维，以确保系统的稳定性和可靠性。以下是一些常用的 Kafka 监控运维工具：
 Kafka Manager：由 Yahoo 开发的开源项目，提供了一个易于使用的 Web 界面，用于监控和管理 Kafka 集群。它可以帮助管理员查看集群状态、创建和修改主题、查看消费者组信息、查看 Broker 日志等。
@@ -174,18 +175,13 @@ Grafana：一个开源的数据可视化工具，可以与 Prometheus 集成，�
 
 是的，Kafka支持死信队列。Kafka的死信队列是通过Kafka Connect来实现的。Kafka Connect是一个用于连接Kafka和外部系统的框架，它可以将数据从Kafka导出到外部系统，也可以将数据从外部系统导入到Kafka。
 
-
-
 kafka 2.12 windows 数据文件存储位置
 kafka logs是数据文件吗？
 
 是的，Kafka 中的 logs 目录是用于存储数据文件的。在 Kafka 中，每个主题（Topic）都有一个或多个分区（Partition），每个分区都对应一个数据文件，用于存储分区中的消息数据。
-
 Kafka 中的数据文件被称为日志（Log），它是一个追加写的文件，可以保证数据的顺序性和一致性。每个日志文件都有一个唯一的名称，格式为 <topic>-<partition>_<start_offset>.log，例如 test-0_00000000000000000000.log 表示 test 主题的第 0 个分区中的第一条消息。
 Kafka 使用日志文件来实现持久化存储和高可用性。当消息写入 Kafka 时，它们首先被追加到生产者所在的分区的日志文件中。消费者从分区的日志文件中读取数据，并且在读取完数据后，Kafka 将会定期清理过期数据文件。
 因此，logs 目录中的文件是 Kafka 中存储消息数据的重要组成部分。如果某个分区的日志文件被删除或损坏，Kafka 可能无法恢复该分区中的数据，这可能导致消息丢失或无法处理。
-
-
 
 要在 Kafka 消息接收者中打印消息 ID，你需要使用 ConsumerRecord 对象中的 offset 属性。这个属性代表消息在分区中的偏移量，可以用作唯一的消息标识符。以下是一个 Java 代码示例，展示了如何在 Kafka 消息接收者中打印消息 ID：
 Kafka消息接收者可以通过获取消息的offset来获取消息id。offset是一个long类型的数字，它代表了一个消息在一个特定分区中的位置。Kafka使用offset来唯一标识一个消息，因此，如果您知道一个消息的offset，您就可以使用它来检索该消息。
@@ -215,15 +211,18 @@ Kafka 支持多种数据格式，包括字符串、整数、浮点数、JSON、A
 Kafka 中的序列化器可以支持自定义类型。这使得应用程序可以使用自定义的 Java 类型来传输数据。
 
 
+### kafka支持json
+写个例子
 
 
 
 kafka stream
 
 
-
+### kafka书籍
 - 深入理解Kafka与Pulsar
 - Kafka权威指南（第2版）
+- Apache kafka实战 (胡夕)
 
 
 
@@ -248,8 +247,9 @@ broker是kafka集群中的一个节点
 
 
 acks 定义了集群中多少个broker确认才能确定消息写入是成功的
-
-
+0
+1
+all？
 
 ### kafka可执行程序
 
@@ -273,11 +273,9 @@ Kafka Stream的特点如下：
 - 同时提供底层的处理原语Processor（类似于Storm的spout和bolt），以及高层抽象的DSL（类似于Spark的map/group/reduce）
 
 
-
-
-
 [淘宝ONS(RocketMQ) vs kafa](http://blog.sina.com.cn/s/blog_693f08470102vjc7.html)
-
+RocketMQ支持事务 java写的
+kafka scala/java写的
 
 
 [MQ(消息队列)常见的应用场景解析](https://zhuanlan.zhihu.com/p/35998206)
@@ -289,7 +287,6 @@ Kafka Stream的特点如下：
 4. 分布式
 
 #### 应用场景
-
 1. 应用解耦（异步）
 2. 通知 一对一 一堆多
 3. 限流 流量削峰
@@ -297,13 +294,9 @@ Kafka Stream的特点如下：
 5. 分布式事务
 
 
-
-
 LinkedIn三人小组离职创立Confluent，已获690万美元融资
-
 11月7日消息，LinkedIn 有个三人小组出来创业了——正是当时开发出 Apache Kafka 实时信息列队技术的团队成员，基于这项技术 Jay Kreps 带头创立了新公司Confluent，致力于为各行各业的公司提供实时数处理服务解决方案，其他两位成员是 Neha Narkhede 和 Jun Rao。该公司已获 Benchmark、LinkedIn、Data Collective 690 万美金融资。
-
-　　不同于传统的企业信息列队系统，Kafka是以近乎实时的方式处理流经一个公司的所有数据，目前已经为LinkedIn，Netflix，Uber和Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
+不同于传统的企业信息列队系统，Kafka是以近乎实时的方式处理流经一个公司的所有数据，目前已经为LinkedIn，Netflix，Uber和Verizon 建立了实时信息处理平台。Confluent 的愿景便是让其他公司也能用上这种平台。Confluent 已经向 Kafka 用户了解了他们的使用模型。现在还没有产品出来，但这些实践足以启示 Confluent应当打造何种产品。
 
 
 使用tcpdump+Wireshark抓包分析kafka通信协议
@@ -311,11 +304,8 @@ https://blog.csdn.net/icycode/article/details/80034774
 
 完整的协议介绍可以参考： 
 A Guide To The Kafka Protocol：
-
 https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol 
-
 kafka协议指南：
-
 http://colobu.com/2017/01/26/A-Guide-To-The-Kafka-Protocol/ 
 
 
@@ -324,10 +314,8 @@ kafka ui
 https://github.com/linxin26/kafka-monitor
 
 jsp写的web ui工具
-
 kafka往zk中存了哪些数据？
 Kafka在Zookeeper中存储的信息都在 / 根路径下，大致分为5大类1：
-
 /brokers 目录下存储着kafka集群broker的相关信息，包括：
 /broker/ids/ 目录，采用 临时znode 的方式，存储所有的broker节点，每个broker的配置文件中都需要指定一个数字类型的id（全局不可重复）；
 /broker/topics/ 目录，采用 持久znode 的方式，存储所有的topic注册信息；
@@ -336,7 +324,22 @@ Kafka在Zookeeper中存储的信息都在 / 根路径下，大致分为5大类1�
 
 
 个人kafka测试代码
-bitbucket.org/sandisks/kafkatest
+bitbucket.org/sandisks/
+
+ProducerListenerAdapter作用？
+
+<dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka-test</artifactId>
+    <version>2.2.6.RELEASE</version>
+</dependency>
+
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-kafka</artifactId>
+            <version>3.0.3.RELEASE</version>
+        </dependency>
+
 
 maven kafka-client
 org.apache.kafka.common.serialization.Serializer
@@ -370,15 +373,10 @@ java
 1. 在配置 KafkaTemplate 时，可以通过设置不同的参数来控制 Kafka 生产者的行为，例如 `acks`、`retries`、`batch.size` 等。这些参数的含义和用法可以参考 Kafka 生产者的配置文档。
 
 DefaultKafkaProducerFactory是否是自动创建topic？？
-
 DefaultKafkaProducerFactory 是 Spring Kafka 提供的一个默认的 Kafka 生产者工厂实现类。它负责创建 KafkaProducer 实例，用于发送消息到 Kafka 集群。 
-
 DefaultKafkaProducerFactory 并不会自动创建 Kafka 主题（topic），它只是提供了一个 KafkaProducer 实例，用于向已经存在的 Kafka 主题发送消息。如果要发送消息到一个不存在的主题，KafkaProducer 会在发送消息时自动创建该主题。但这种自动创建主题的行为并不是由 DefaultKafkaProducerFactory 控制的，而是由 Kafka 的 Broker 控制的。
-
 需要注意的是，Kafka 自动创建主题的功能默认是开启的，可以通过 Kafka Broker 的配置文件或者命令行参数进行配置。此外，自动创建主题功能也可以被禁用，这样当向一个不存在的主题发送消息时，会抛出异常。
-
 在 Spring Kafka 中，如果需要在生产者发送消息时自动创建主题，可以通过在 KafkaTemplate 中设置 `autoCreateTopics` 属性为 `true` 来实现。例如：
-
 ```java
 @Bean
 public KafkaTemplate<String, String> kafkaTemplate() {
@@ -396,12 +394,7 @@ public KafkaTemplate<String, String> kafkaTemplate() {
 
 在这个示例中，我们设置了 `auto.create.topics.enable` 属性为 `true`，以启用自动创建主题的功能。这样，在向一个不存在的主题发送消息时，Kafka 将会自动创建该主题。
 
-
-
-
-
 Apache kafka实战 (胡夕)
-
 [Kafka client](https://zhuanlan.zhihu.com/p/93623447)
 
 https://www.jianshu.com/p/80a10811d5cb
@@ -840,3 +833,59 @@ d-----        2019/11/14     10:40                windows
 
 linkin
 
+### kafkatest测试项目
+
+kafka_2.10-0.8.2.2
+集群版本
+
+注意scala版本和java版本的kafka客户端
+java版本 spring-kafka
+
+在Kafka 0.8.2之前，kafka.javaapi.producer.Producer是为唯一官方用Scala实现的Java Client。
+在Kafka 0.8.2之后，有新的Java Producer API，org.apache.kafka.clients.producer.KafkaProducer,完全用Java实现的。
+https://blog.csdn.net/lavorange/article/details/78970977
+
+kafka提供的库，在配对版本号的情况下，可以访问kafka 0.8.2.0
+apache提供的库(spring kafka依赖的)，最低支持0.9版本的kafka，目前访问不了
+
+可执行程序
+- KafkaProducerOld
+- KafkaConsumerOld
+- KafkaProducerNew
+- KafkaConsumerNew
+
+old是旧版本
+new是新版本
+
+org.apache.kafka.common.errors.TimeoutException: Failed to update metadata after 60000 ms.
+
+[spring boot 集成 kafka 之 spring-kafka 深入探秘](https://my.oschina.net/keking/blog/3056698)
+
+kafka的Java客户端示例代码(kafka_2.11-0.8.2.2)
+https://www.cnblogs.com/hd3013779515/p/6939013.html
+
+```java
+	at kafka.network.Processor.read(SocketServer.scala:450)
+	at kafka.network.Processor.run(SocketServer.scala:340)
+	at java.lang.Thread.run(Thread.java:745)
+[2019-11-29 15:00:25,207] ERROR Closing socket for /192.168.196.37 because of error (kafka.network.Processor)
+kafka.common.KafkaException: Wrong request type 18
+	at kafka.api.RequestKeys$.deserializerForKey(RequestKeys.scala:64)
+	at kafka.network.RequestChannel$Request.<init>(RequestChannel.scala:50)
+```
+
+需要kafka0.11以上
+目前是0.8.2.2
+[ApiKeys](https://github.com/apache/kafka/blob/trunk/clients/src/main/java/org/apache/kafka/common/protocol/ApiKeys.java#L23-L43)
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.10.2.0</version>
+        </dependency>
+上面是旧api，下面是新api
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.0.1</version>
+        </dependency>

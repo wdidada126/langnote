@@ -27,7 +27,12 @@ https://gitee.com/mirrors/nhEsb
 [几种ESB（企业服务总线）介绍](https://blog.csdn.net/yinni11/article/details/81070062)
 
 
-原来深圳智莱使用的是esb，传统行业不使用spring那一套
+原来深圳智莱使用的是esb，传统行业不使用spring那一套？
+esb是一套企业解决方案，不同企业it系统之间集成的
+企业原有it系统跟新建设it项目交互数据，走什么协议?http？
+数据格式 xml json？
+开放接口如何保证安全不被未授权方调用?
+
 [Apache CXF 例子](https://www.cnblogs.com/zuiyirenjian/p/3280236.html)
 [CXF简单例子](https://blog.csdn.net/JXH118/article/details/83284346)
 
@@ -55,3 +60,5 @@ ServiceMix：对于Talend ESB部分能力也基于Camel，而对于ServiceMix则
 
 
 如同Apache ServiceMix一样,Open ESB也实现了JBI规范
+
+WSO2有实践

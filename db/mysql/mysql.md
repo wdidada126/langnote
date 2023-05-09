@@ -160,13 +160,13 @@ update, delete, insert
 
 mysql脏读和幻读区别
 Mysql之脏读、不可重复读、幻读的区别
-数据库在在高并发时，事物会出现三种异常问题。
+数据库在在高并发时，事务会出现三种异常问题。
 
 脏读：在事物还没有提交前，修改的数据可以被其他事物所看到。
 不可重复读：在一个事物中使用相同的条件查询一条数据，前后两次查询所得到的数据不同，这是因为同时其他事物对这条数据进行了修改（已提交事物），第二次查询返回了其他事物修改的数据。
 幻读：在一个事物A中使用相同的条件查询了多条数据，同时其他事物添加或删除了符合事物A中查询条件的数据，这时候当事物A再次查询时候会发现数据多了或者少了，与前一次查询的结果不相同。
-注意：不可重复读与幻读很容易搞混，他们的区别在于：
 
+注意：不可重复读与幻读很容易搞混，他们的区别在于：
 不可重复读：是同一条记录（一条数据）的内容被其他事物修改了，关注的是update、delete操作一条数据的操作.
 幻读：是查询某个范围（多条数据）的数据行变多或变少了，在于insert、delete的操作。
 
@@ -197,23 +197,19 @@ select a from t where id = 1 for update;
 
 可以认为 多版本并发控制（MVCC） 是行级锁的一个变种
 MySQL中的MDL锁
-S 锁和 X 锁。
+S锁和X锁。
 
 S锁，英文为Shared Lock，中文译作共享锁，有时候我们也称之为读锁，即Read Lock。S 锁之间是共享的，或者说是互不阻塞的。
 X锁，英文为Exclusive Lock，中文译作排他锁，有时候我们也称之为写锁，即Write Lock。如同它的名字，X锁是具有排他性的，即一个写锁会阻塞其他的X锁和S锁。
 
-
-
 MySQL是server和engine分离的
-
 Driv的engine是？
 
-Cluster index
-
-Unclusrer index
+Cluster index聚集索引
+Unclusrer index 非聚集索引
 
 covering index 覆盖索引
-
+覆盖索引 covering index
 https://blog.csdn.net/yinni11/article/details/81812309
 
 https://www.hollischuang.com/archives/3818
@@ -222,50 +218,22 @@ https://www.hollischuang.com/archives/3818
 
 最左匹配
 
-
-
 select where 的and条件 mysql会优化
 
-
-
-
-
-
-
-
-
 MYSQL binlog优化几点思考
-
 https://zhuanlan.zhihu.com/p/147459036
 
-https://www.jianshu.com/p/7384d6e09048
-
-
-
 WAL机制
-
 redo log顺序追加写入。事务提交时，只需要保证事务的redo log落盘即可，通过redo log的顺序写代替页面的随机写提升数据库系统的性能。
 
-
-
 问题1：如何解决事务提交时flush redo log带来的性能损失
-
 Redo log组提交技术
-
 问题2：binlog和引擎层事务提交的顺序问题
-
 内部XA事务
 
-
-
-
-
 my.cnf配置
-
 log_bin
-
 bin_alive 大致 
-
 
 ### mysql 源码编译
 ubuntu 16
@@ -286,11 +254,41 @@ timestamp
 
 https://dev.mysql.com/doc/refman/5.7/en/json.html
 
-
+索引下推和覆盖索引都是优化MySQL查询性能的方法，但它们的实现方式有所不同。
+索引下推是指MySQL在执行查询时，尽可能地利用索引来减少需要扫描的行数，从而提高查询性能。具体来说，当MySQL使用一个覆盖索引来执行一个查询时，它会首先扫描索引，然后只返回满足查询条件的索引列，而不需要再去检查数据行，因为索引列已经包含了需要的数据。这种方法可以减少磁盘I/O和CPU开销，从而提高查询性能。
+覆盖索引是指一个索引包含了查询所需要的所有列，因此MySQL可以直接从索引中获取需要的数据，而不需要再去检查数据行。这种方法可以减少磁盘I/O和CPU开销，从而提高查询性能。覆盖索引通常用于查询只需要返回少量列数据的情况下，例如只需要返回某些列的值或者只需要计算总数的情况下。
+虽然索引下推和覆盖索引都能提高查询性能，但它们适用于不同的查询场景。索引下推通常适用于需要返回大量列数据的查询，而覆盖索引通常适用于需要返回少量列数据的查询。
 
 05 如何设计高性能的索引
 
 icp 索引下推
+
+
+索引下推的一个简单例子是使用SELECT语句查询一个包含多列的表，但只需要返回其中的一列数据。
+假设有一个包含以下列的表：
+```
+CREATE TABLE my_table (
+  id INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  age INT NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id),
+  INDEX idx_age (age)
+);
+```
+
+现在需要查询年龄大于等于20岁的所有用户的姓名，可以使用以下查询语句：
+
+```
+SELECT name FROM my_table WHERE age >= 20;
+```
+
+在执行该查询时，MySQL会使用索引idx_age来定位符合条件的行，然后再到数据行中获取需要的name列数据。但是，如果使用索引下推的话，MySQL会在索引中就获取需要的name列数据，而不需要再到数据行中获取，从而减少了不必要的磁盘I/O和CPU开销，提高了查询性能。可以使用以下查询语句来启用索引下推：
+
+```
+SELECT name FROM my_table WHERE age >= 20 AND name IS NOT NULL;
+```
+在这个查询语句中，增加了一个额外的条件name IS NOT NULL，这个条件的作用是强制MySQL在使用索引idx_age定位符合条件的行时，检查name列是否为NULL，从而在索引中获取需要的name列数据。这样，MySQL就可以使用索引下推来提高查询性能。
 
 
 
