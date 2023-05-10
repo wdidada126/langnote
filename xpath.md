@@ -1,8 +1,8 @@
 # xpath
 
+selenium使用过xpath
 
 XPath是一种在XML文档中查找信息的语言，它可以用来查询XML文档中的元素、属性、文本等信息。在C++中，可以使用第三方库来实现XPath的解析和查询，例如Xerces-C++和libxml2等库。
-
 下面以Xerces-C++为例，介绍如何在C++中使用XPath。
 
 
@@ -14,8 +14,8 @@ https://blog.csdn.net/love666666shen/article/details/72613143
 xpath之于XML 就好比SQL 语言之于数据库。
 ognl之于java Object
 
+chrome浏览器有插件，可以直接复制xpath
 xpath chrome插件
-
 https://github.com/google/xpaf
 
 XPath Helper：chrome爬虫网页解析工具

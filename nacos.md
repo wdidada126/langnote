@@ -65,6 +65,8 @@ curl -X POST "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&
 获取配置
 curl -X GET "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&group=test"
 
+nacos/v1/cs/
+nacos/v1/ns/
 name service
 config service
 
@@ -100,17 +102,8 @@ http://192.168.56.1:8848/nacos
 
 
 最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：
-
 专门针对Java语言的：Kryo，FST等等
 跨语言的：Protostuff，ProtoBuf，Thrift，Avro，MsgPack等等
-
-
-
-ldap
-https://docs.spring.io/spring-ldap/docs/1.3.2.RELEASE/reference/html/
-
-
-
 
 ### nacos源码解析
 

@@ -234,8 +234,17 @@ okhttp3.Dispatcher.executorService
 - RealCall
 - Transmitter
 - Dispatcher
-- 
-- 
+
+OkHttp是一个开源的HTTP客户端库，它可以用于发送HTTP请求和处理HTTP响应。在OkHttp中，Transmitter是一个关键组件，它负责处理HTTP请求和响应的发送和接收。
+
+具体来说，Transmitter有以下作用：
+
+1. 处理HTTP请求：Transmitter负责将HTTP请求发送到服务器。它负责建立连接、发送请求头和请求体、处理重定向、处理连接池等问题。
+2. 处理HTTP响应：Transmitter负责从服务器接收HTTP响应。它会读取响应头和响应体，处理重定向、缓存等问题。
+3. 连接池管理：Transmitter维护了一个连接池，用于管理和重用HTTP连接。它可以复用已经建立的连接，从而提高性能。
+4. 异步请求处理：Transmitter可以处理异步请求，它会将异步请求加入到异步请求队列中，等待响应结果。
+5. 请求取消处理：Transmitter可以处理请求取消操作，它会中断正在进行的请求，并释放相关资源。
+总之，Transmitter是OkHttp中负责处理HTTP请求和响应的关键组件，它可以处理HTTP请求和响应、连接池管理、异步请求处理、请求取消处理等问题，是OkHttp的核心组件之一。
 
 
 BridgeInterceptor (okhttp3.internal.http)
@@ -267,17 +276,17 @@ okhttp3.Interceptor.Chain
 
 
 ### Dispatcher类
-
+具体来说，Dispatcher有以下作用：
+控制同时执行的请求数量：Dispatcher可以控制同时执行的请求数量，并发控制可以在一定程度上控制网络流量和资源使用。在Dispatcher中，可以通过setMaxRequests()方法设置最大请求数量，通过setMaxRequestsPerHost()方法设置每个主机允许的最大请求数量。
+管理异步请求队列：Dispatcher可以管理异步请求队列，它会将异步请求加入到请求队列中，并在空闲连接池时自动启动新请求。当请求队列已满时，Dispatcher会将多余的请求加入到等待队列中，等待其他请求完成后再执行。
+处理请求取消操作：Dispatcher可以处理请求取消操作，当请求被取消时，Dispatcher会从等待队列和请求队列中移除该请求，并释放相关资源。
 
 
 Dispatcher类在
 
 - OkHttpClient.Builder
-
 - RealCall
-
 - WebSocketEcho
-
 - TestTls13Request
 
 中使用
