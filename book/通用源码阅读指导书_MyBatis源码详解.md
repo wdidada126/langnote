@@ -98,8 +98,48 @@ GenericArrayType
 
 
 第7章 annotations包与lang包
+@Param
+在MyBatis中，@Param注解的作用是为方法参数取别名。当SQL语句中需要引用方法参数时，可以使用@Param注解为方法参数取一个别名，这样可以在SQL语句中直接使用别名来引用方法参数。
+例如，假设我们有一个查询用户信息的方法，方法的参数为用户名和用户年龄：
+```
+List<User> selectUser(String username, int age);
+```
+我们可以使用@Param注解为方法参数取别名，如下所示：
+```
+List<User> selectUser(@Param("username") String username, @Param("age") int age);
+```
+这样，在SQL语句中就可以使用#{username}和#{age}来引用方法参数了。如果不使用@Param注解，MyBatis会默认使用参数名作为参数别名，但是如果方法参数名被混淆或者被压缩，就会导致SQL语句引用不到正确的方法参数。因此，在使用MyBatis时，建议为方法参数加上@Param注解来指定参数别名。
 
 
+MyBatis中与@Param注解相关的主要类有：
+1. org.apache.ibatis.annotations.Param
+这是@Param注解的定义类，它是一个注解类，用于为方法参数取别名。@Param注解的定义如下：
+
+```
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.PARAMETER)
+public @interface Param {
+  String value();
+}
+```
+
+@Param注解只有一个value属性，用于指定参数别名。
+2. org.apache.ibatis.binding.MapperMethod.ParamMap
+MapperMethod.ParamMap是MyBatis中用于保存方法参数的类，它继承自HashMap<Object, Object>，可以保存方法参数的名称和值。在执行SQL语句时，MyBatis会将MapperMethod.ParamMap中的参数值按照@Param注解指定的参数别名保存到BoundSql对象中，然后执行SQL语句。
+3. org.apache.ibatis.executor.parameter.DefaultParameterHandler
+DefaultParameterHandler是MyBatis中用于处理SQL语句参数的类，它实现了ParameterHandler接口。在执行SQL语句前，MyBatis会将MapperMethod.ParamMap中的参数值传递给DefaultParameterHandler对象，然后由DefaultParameterHandler对象将参数值设置到PreparedStatement对象中。
+总的来说，@Param注解的作用是为方法参数取别名，然后将方法参数的别名和值保存到MapperMethod.ParamMap对象中。当执行SQL语句时，MyBatis会将MapperMethod.ParamMap中的参数值按照@Param注解指定的参数别名设置到PreparedStatement对象中，然后执行SQL语句。在这个过程中，DefaultParameterHandler类起到了关键作用，它负责将MapperMethod.ParamMap中的参数值设置到PreparedStatement对象中。
+
+
+@Mapper作用
+@Responsity与@Mapper区别
+@Mapper的作用是将一个Mapper接口标记为MyBatis的映射器。在MyBatis中，Mapper接口是一个Java接口，用于定义SQL映射的接口，它的方法对应于SQL映射文件中的SQL语句。通过使用@Mapper注解，MyBatis可以将Mapper接口与SQL映射文件关联起来，从而实现SQL语句的执行。
+@Mapper注解通常与@MapperScan注解一起使用，@MapperScan注解用于扫描Mapper接口所在的包，并将其注册到MyBatis的映射器中。
+@Repository和@Mapper都是用于标识DAO(Data Access Object)层的注解，但是它们的用途略有不同。@Repository注解是Spring框架中的注解，用于标识DAO层组件，表示这个组件是用于数据访问的。而@Mapper注解是MyBatis中的注解，用于标识Mapper接口，表示这个接口是用于定义SQL映射的。
+虽然@Mapper和@Repository都可以用来标识DAO层组件，但是它们的实现方式和作用域不同。@Repository注解通常用于标识整个DAO层组件，而@Mapper注解则用于标识Mapper接口中的方法，表示这些方法是用于执行SQL语句的。因此，在使用MyBatis时，建议使用@Mapper注解来标识Mapper接口，而不是使用@Repository注解。
+
+@Mapper涉及到哪些类，这些类的作用
 
 
 
@@ -189,14 +229,28 @@ evalXxx方法在evaluate方法的基础上作了一些处理，其中一个最�
 XNode
 调用XPathParser的evalBoolean()返回对象
 
-第3篇 配置解析包源码阅读
+## 第3篇 配置解析包源码阅读
 
 ### 第12章 配置解析概述 124
 
 
 
-### Chap. 13
+### Chap. 13 binding包
 
 ### Chap. 14  builder包
 
+### 第15章 mapping包 169
+### 第16章 scripting包 179
+### 第17章 datasource包 208
+### 第4篇 核心操作包源码阅读
+### 第18章 jdbc包 232
+### 第19章 cache包 243
+### 第20章 transaction包 279
+### 第21章 cursor包 284
+### 第22章 executor包 293
+### 第23章 session包 355
+### 第24章 plugin包 366
+### 第5篇 总结与展望
+### 第25章 源码阅读总结 378
+### 第26章 优秀开源项目推荐 383
 
