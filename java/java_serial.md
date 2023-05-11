@@ -2,3 +2,8 @@
 
 https://www.zhihu.com/pub/reader/120079431/chapter/1313337268259020800
 
+Java中的序列化机制使用一个称为serialVersionUID的版本号来标识不同版本的序列化类。当一个对象被序列化时，它的serialVersionUID值也被写入序列化流中。当反序列化时，Java会使用该值来检查序列化对象的版本是否与当前类的版本匹配。
+手动更改serialVersionUID的情况通常与序列化版本兼容性有关。以下情况可能需要手动更改serialVersionUID：
+1. 当类的成员发生了不兼容的更改，例如删除或更改了一个非transient的成员变量，或者更改了一个成员变量的类型或访问修饰符。
+2. 当类实现了Serializable接口，但是未显式声明serialVersionUID，此时编译器会根据类的成员生成一个默认的serialVersionUID。如果在类的成员发生了不兼容的更改之后，编译器重新生成了默认的serialVersionUID，那么反序列化就会失败。
+在这些情况下，手动更改serialVersionUID可以确保序列化版本兼容性。需要注意的是，如果手动更改了serialVersionUID，那么反序列化时需要确保使用的是与序列化时相同的serialVersionUID。否则，反序列化会失败或者产生不正确的结果。

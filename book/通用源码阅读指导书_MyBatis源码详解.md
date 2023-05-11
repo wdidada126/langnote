@@ -167,8 +167,11 @@ org.apache.ibatis.io
 
 
 DefaultVFS
-
-
+mybatis开启日志的时候，有很多DefaultVFS相关的日志
+MyBatis是一个Java持久层框架，提供了许多功能来简化数据库访问，其中DefaultVFS类是MyBatis中的一个重要类。
+DefaultVFS类是MyBatis中用于处理文件系统的抽象类。它主要用于处理MyBatis的配置文件和映射文件的加载和访问。DefaultVFS类提供了一组方法来获取和处理文件，包括从类路径、文件系统和JAR文件中获取资源。
+DefaultVFS类是MyBatis中的默认VFS实现，它使用Java标准库中的java.io和java.net包来实现文件系统的访问。如果需要使用其他的VFS实现来处理文件系统，可以通过在MyBatis的配置文件中配置vfsImpl属性来指定。
+总之，DefaultVFS类是MyBatis中的一个重要类，用于处理文件系统的访问和管理，是MyBatis框架实现的核心之一。
 
 ### Chap. 10 logging包
 
