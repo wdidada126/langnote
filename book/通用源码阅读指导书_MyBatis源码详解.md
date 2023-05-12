@@ -97,7 +97,7 @@ GenericArrayType
 
 
 
-第7章 annotations包与lang包
+### 第7章 annotations包与lang包
 @Param
 在MyBatis中，@Param注解的作用是为方法参数取别名。当SQL语句中需要引用方法参数时，可以使用@Param注解为方法参数取一个别名，这样可以在SQL语句中直接使用别名来引用方法参数。
 例如，假设我们有一个查询用户信息的方法，方法的参数为用户名和用户年龄：
@@ -112,7 +112,7 @@ List<User> selectUser(@Param("username") String username, @Param("age") int age)
 
 
 MyBatis中与@Param注解相关的主要类有：
-1. org.apache.ibatis.annotations.Param
+- 1. org.apache.ibatis.annotations.Param
 这是@Param注解的定义类，它是一个注解类，用于为方法参数取别名。@Param注解的定义如下：
 
 ```
@@ -125,9 +125,9 @@ public @interface Param {
 ```
 
 @Param注解只有一个value属性，用于指定参数别名。
-2. org.apache.ibatis.binding.MapperMethod.ParamMap
+- 2. org.apache.ibatis.binding.MapperMethod.ParamMap
 MapperMethod.ParamMap是MyBatis中用于保存方法参数的类，它继承自HashMap<Object, Object>，可以保存方法参数的名称和值。在执行SQL语句时，MyBatis会将MapperMethod.ParamMap中的参数值按照@Param注解指定的参数别名保存到BoundSql对象中，然后执行SQL语句。
-3. org.apache.ibatis.executor.parameter.DefaultParameterHandler
+- 3. org.apache.ibatis.executor.parameter.DefaultParameterHandler
 DefaultParameterHandler是MyBatis中用于处理SQL语句参数的类，它实现了ParameterHandler接口。在执行SQL语句前，MyBatis会将MapperMethod.ParamMap中的参数值传递给DefaultParameterHandler对象，然后由DefaultParameterHandler对象将参数值设置到PreparedStatement对象中。
 总的来说，@Param注解的作用是为方法参数取别名，然后将方法参数的别名和值保存到MapperMethod.ParamMap对象中。当执行SQL语句时，MyBatis会将MapperMethod.ParamMap中的参数值按照@Param注解指定的参数别名设置到PreparedStatement对象中，然后执行SQL语句。在这个过程中，DefaultParameterHandler类起到了关键作用，它负责将MapperMethod.ParamMap中的参数值设置到PreparedStatement对象中。
 
@@ -140,7 +140,14 @@ DefaultParameterHandler是MyBatis中用于处理SQL语句参数的类，它实�
 虽然@Mapper和@Repository都可以用来标识DAO层组件，但是它们的实现方式和作用域不同。@Repository注解通常用于标识整个DAO层组件，而@Mapper注解则用于标识Mapper接口中的方法，表示这些方法是用于执行SQL语句的。因此，在使用MyBatis时，建议使用@Mapper注解来标识Mapper接口，而不是使用@Repository注解。
 
 @Mapper涉及到哪些类，这些类的作用
-
+在MyBatis中，@Mapper注解涉及到以下几个类：
+- 1. org.apache.ibatis.annotations.Mapper
+这是@Mapper注解的定义类，它是一个注解类，用于将一个Mapper接口标记为MyBatis的映射器。
+- 2. org.apache.ibatis.binding.MapperRegistry
+MapperRegistry是MyBatis中用于管理Mapper接口的类，它维护了Mapper接口与对应的MapperProxyFactory对象之间的关系。在MyBatis初始化时，会从配置文件中读取所有的Mapper接口，并将其注册到MapperRegistry中，注册时会为每个Mapper接口创建一个MapperProxyFactory对象，用于处理Mapper接口方法的调用。
+- 3. org.apache.ibatis.binding.MapperProxyFactory
+MapperProxyFactory是MyBatis中用于创建Mapper接口代理对象的工厂类，它继承自MapperProxy，实现了InvocationHandler接口。当MapperRegistry注册一个Mapper接口时，会为该接口创建一个MapperProxyFactory对象，并将其保存到MapperRegistry中。当需要调用Mapper接口方法时，MyBatis会通过MapperRegistry获取对应的MapperProxyFactory对象，然后使用MapperProxyFactory创建一个Mapper接口代理对象，最终将方法调用转发给Mapper接口代理对象。
+总的来说，@Mapper注解的作用是将一个Mapper接口标记为MyBatis的映射器，从而实现Mapper接口与SQL映射文件的关联。在实现过程中，@Mapper注解与MapperRegistry、MapperProxyFactory等类密切相关，这些类负责管理Mapper接口与对应的MapperProxyFactory对象之间的关系，并通过MapperProxyFactory创建Mapper接口代理对象，最终将方法调用转发给Mapper接口代理对象，从而实现SQL语句的执行。
 
 
 ### Chap. 8 type包

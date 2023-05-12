@@ -1,5 +1,8 @@
 # shardingsphere
 
+### 竞品
+华为的 Distributed Database Middleware（DDM）广播
+
 ### 缺点
 太重了，引用了好多的jar包
 
