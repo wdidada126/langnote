@@ -4,7 +4,7 @@
 servlet-3_0-mrel-spec.pdf
 
 
-
+```xml
 <!--        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -17,8 +17,9 @@ servlet-3_0-mrel-spec.pdf
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+```
 
- servlet api两个版本artifactId不一样       
+servlet api两个版本artifactId不一样       
 
 ### servlet api doc
 
