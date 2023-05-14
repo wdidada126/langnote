@@ -1,4 +1,56 @@
 # spring_jdbc_template
+
+在使用Spring的JdbcTemplate进行数据库操作时，可以通过使用`org.springframework.jdbc.core.JdbcTemplate`类的`update`方法进行insert操作。如果想要打印insert语句的入参，可以通过使用`PreparedStatementCreator`和`PreparedStatementSetter`来实现。
+
+具体步骤如下：
+
+1. 实现`PreparedStatementCreator`接口，用于创建PreparedStatement对象，并将参数设置到PreparedStatement对象中。在`createPreparedStatement`方法中，可以打印insert语句的入参。
+
+```java
+PreparedStatementCreator psc = new PreparedStatementCreator() {
+    @Override
+    public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+        String sql = "INSERT INTO user(name, age, gender) VALUES (?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, user.getName());
+        ps.setInt(2, user.getAge());
+        ps.setString(3, user.getGender());
+        System.out.println("Insert SQL: " + sql + ", Parameters: " + user.getName() + ", " + user.getAge() + ", " + user.getGender());
+        return ps;
+    }
+};
+```
+
+2. 实现`PreparedStatementSetter`接口，用于设置PreparedStatement对象中的参数。在`setValues`方法中，可以打印PreparedStatement对象中的参数值。
+
+```java
+PreparedStatementSetter pss = new PreparedStatementSetter() {
+    @Override
+    public void setValues(PreparedStatement ps) throws SQLException {
+        ps.setString(1, user.getName());
+        ps.setInt(2, user.getAge());
+        ps.setString(3, user.getGender());
+        ResultSetMetaData metaData = ps.getMetaData();
+        int count = metaData.getColumnCount();
+        StringBuilder sb = new StringBuilder("Insert Parameters: ");
+        for (int i = 1; i <= count; i++) {
+            sb.append(metaData.getColumnLabel(i)).append("=").append(ps.getObject(i)).append(", ");
+        }
+        System.out.println(sb.substring(0, sb.length() - 2));
+    }
+};
+```
+
+3. 调用JdbcTemplate的`update`方法，并将`PreparedStatementCreator`和`PreparedStatementSetter`作为参数传入。
+
+```java
+int rows = jdbcTemplate.update(psc, pss);
+```
+
+通过实现`PreparedStatementCreator`和`PreparedStatementSetter`接口，可以在JdbcTemplate执行insert语句时打印出入参，方便调试和问题排查。
+
+
+
 例子
 - spring-jdbc-template
 - 

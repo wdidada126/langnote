@@ -223,10 +223,80 @@ DefaultVFS类是MyBatis中的默认VFS实现，它使用Java标准库中的java.
 
 linux里面的虚拟文件系统类似吗？
 ### Chap. 10 logging包
+配置日志实现类：在MyBatis的配置文件中，可以通过设置<settings>标签下的<setting name="logImpl" value="日志实现类全名"/>来指定日志实现类。其中，日志实现类可以是log4j、log4j2、slf4j、jdkLog、stdoutLogging等。
+mybatis_log.png
+
+org.apache.ibatis.builder.BaseBuilder#typeAliasRegistry
+
+org.apache.ibatis.session.Configuration#Configuration()
+
+```java
+    typeAliasRegistry.registerAlias("SLF4J", Slf4jImpl.class);
+    typeAliasRegistry.registerAlias("COMMONS_LOGGING", JakartaCommonsLoggingImpl.class);
+    typeAliasRegistry.registerAlias("LOG4J", Log4jImpl.class);
+    typeAliasRegistry.registerAlias("LOG4J2", Log4j2Impl.class);
+    typeAliasRegistry.registerAlias("JDK_LOGGING", Jdk14LoggingImpl.class);
+    typeAliasRegistry.registerAlias("STDOUT_LOGGING", StdOutImpl.class);
+    typeAliasRegistry.registerAlias("NO_LOGGING", NoLoggingImpl.class);
+```
+Adapter模式
 反射的动态代理
 
-### Chap. 11 parsing包
+日志级别
+InvocationHandler
+Proxy
 
+LogFactory final类有静态方法
+```java
+  static {
+    tryImplementation(LogFactory::useSlf4jLogging);
+    tryImplementation(LogFactory::useCommonsLogging);
+    tryImplementation(LogFactory::useLog4J2Logging);
+    tryImplementation(LogFactory::useLog4JLogging);
+    tryImplementation(LogFactory::useJdkLogging);
+    tryImplementation(LogFactory::useNoLogging);
+  }
+```
+Log接口
+org.apache.ibatis.logging.Log
+
+11个实现类
+Log4j2LoggerImpl (org.apache.ibatis.logging.log4j2)
+StdOutImpl (org.apache.ibatis.logging.stdout)
+Jdk14LoggingImpl (org.apache.ibatis.logging.jdk14)
+Slf4jImpl (org.apache.ibatis.logging.slf4j)
+Slf4jLocationAwareLoggerImpl (org.apache.ibatis.logging.slf4j)
+NoLoggingImpl (org.apache.ibatis.logging.nologging)
+Slf4jLoggerImpl (org.apache.ibatis.logging.slf4j)
+JakartaCommonsLoggingImpl (org.apache.ibatis.logging.commons)
+Log4jImpl (org.apache.ibatis.logging.log4j)
+Log4j2Impl (org.apache.ibatis.logging.log4j2)
+Log4j2AbstractLoggerImpl (org.apache.ibatis.logging.log4j2)
+
+配置日志实现类：在MyBatis的配置文件中，可以通过设置<settings>标签下的<setting name="logImpl" value="日志实现类全名"/>来指定日志实现类。其中，日志实现类可以是log4j、log4j2、slf4j、jdkLog、stdoutLogging等。
+MyBatis解析XML文件的过程比较复杂，因此这里将会介绍`<settings>`标签的解析过程和`logImpl`属性对应的源码。
+在MyBatis中，`<settings>`标签的解析过程是在`org.apache.ibatis.builder.xml.XMLConfigBuilder`类中完成的。在`parseConfiguration`方法中，会调用`parseConfigurationSettings`方法来解析`<settings>`标签，并将解析后的结果保存到`org.apache.ibatis.session.Configuration`对象中。
+在`parseConfigurationSettings`方法中，会遍历所有的`<settings>`子标签，并将子标签的属性名和属性值保存到`Properties`对象中。其中，`logImpl`属性对应的属性名为`LOG_IMPL`。保存完后，将`Properties`对象设置到`Configuration`对象中，供后续使用。
+以下是相关的代码片段：
+```java
+private void parseConfigurationSettings(XNode context) {
+  Properties props = context.getChildrenAsProperties();
+  // Set the log implementation.
+  LogFactory.useCustomLogging(this.logImpl);
+  if (props.containsKey("logPrefix")) {
+    String logPrefix = props.getProperty("logPrefix");
+    props.setProperty("logPrefix", logPrefix + this.logPrefix);
+  }
+  this.configuration.setVariables(props);
+  ...
+}
+```
+在这个代码片段中，`context`表示`<settings>`标签对应的`XNode`对象，`props`是将子标签的属性名和属性值保存到的`Properties`对象。在这个方法中，首先调用`LogFactory.useCustomLogging`方法设置日志实现类，然后将`props`设置到`Configuration`对象中，最后执行其他的配置项解析操作。
+需要注意的是，`logImpl`属性对应的属性名为`LOG_IMPL`，而不是`logImpl`。因此，在配置文件中需要使用大写字母指定`logImpl`属性的值，例如`<setting name="LOG_IMPL" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>`。
+希望这能帮助你理解MyBatis中`<settings>`标签和`logImpl`属性的解析过程。
+
+### Chap. 11 parsing包
+org.apache.ibatis.parsing.XPathParser
 MyBatis源码学习之XPathParser及XNode
 https://www.cnblogs.com/beckwu/p/16112890.html
 
@@ -234,9 +304,59 @@ https://www.cnblogs.com/beckwu/p/16112890.html
 
 evalXxx方法在evaluate方法的基础上作了一些处理，其中一个最重要的处理是将XPath解析获得的Node对象包装为XNode对象
 
-
+org.apache.ibatis.parsing.XNode 父类Object，没有实现其他接口
 XNode
 调用XPathParser的evalBoolean()返回对象
+有private final XPathParser xpathParser;这个field
+
+
+org.apache.ibatis.parsing.GenericTokenParser
+public class GenericTokenParser
+
+private final String openToken;
+private final String closeToken;
+private final TokenHandler handler;
+
+PropertyParser
+
+GenericTokenParser是MyBatis中的一个基本解析器，它用于解析文本中的占位符并替换为实际的值。在MyBatis中，占位符通常用于动态SQL等场景中。
+具体来说，GenericTokenParser可以将文本中的"${}"或"#"包围的占位符替换为实际的值。其中，"${}"用于替换属性值，"#"用于替换参数值。GenericTokenParser会将占位符中的内容作为key，查找对应的属性或参数值，并将占位符替换为实际的值。
+GenericTokenParser的构造方法接受两个参数，第一个参数为开头和结尾的占位符的字符串，第二个参数为占位符解析器，用于解析占位符中的内容并返回实际的值。在MyBatis中，通常使用`org.apache.ibatis.parsing.PropertyParser`类作为占位符解析器，它可以解析属性占位符和环境变量占位符。
+
+以下是GenericTokenParser的示例用法：
+
+```java
+String text = "SELECT * FROM user WHERE id = #{userId}";
+ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler();
+GenericTokenParser parser = new GenericTokenParser("#{", "}", handler);
+String sql = parser.parse(text);
+```
+
+在这个示例中，`text`表示要解析的文本，`handler`是实现了`org.apache.ibatis.parsing.TokenHandler`接口的参数处理器，用于处理占位符中的参数值。`parser`是一个GenericTokenParser对象，用于解析占位符并替换为实际的参数值。最终，`sql`变量会被替换为实际的SQL语句。
+需要注意的是，GenericTokenParser只是MyBatis中的一个基本解析器，通常会和其他解析器一起使用，例如`org.apache.ibatis.scripting.xmltags.DynamicSqlSource`等。这些解析器将会利用GenericTokenParser解析占位符，并根据解析结果生成实际的SQL语句或其他内容。
+希望这能帮助你理解GenericTokenParser的作用和用法。
+DynamicSqlSource是MyBatis中的一个SQL源码对象，用于动态生成SQL语句。在MyBatis中，DynamicSqlSource通常会和其他SQL源码对象一起使用，例如RawSqlSource、ProviderSqlSource等，用于动态生成最终的SQL语句。
+DynamicSqlSource的生成过程包括两个阶段：解析阶段和执行阶段。在解析阶段，DynamicSqlSource会使用MyBatis的SQL解析器解析SQL语句，并将解析结果保存到内部的`org.apache.ibatis.mapping.BoundSql`对象中。在执行阶段，DynamicSqlSource会根据传入的参数动态生成最终的SQL语句，并将结果保存到`BoundSql`对象中。
+DynamicSqlSource的主要作用是支持动态SQL语句的生成。在MyBatis中，动态SQL语句通常由多个SQL节点组成，例如if节点、choose节点、foreach节点等，这些节点可以根据条件动态生成SQL语句的一部分。DynamicSqlSource会将这些SQL节点解析成一个个SQL片段，并根据条件动态拼接SQL语句，从而生成最终的SQL语句。
+以下是一个使用DynamicSqlSource的示例：
+
+```xml
+<select id="getUser" resultType="User">
+  SELECT * FROM user
+  <where>
+    <if test="name != null">
+      AND name = #{name}
+    </if>
+    <if test="age != null">
+      AND age = #{age}
+    </if>
+  </where>
+</select>
+```
+
+在这个示例中，`<select>`节点中包含了一个if节点和一个where节点，用于动态生成SQL语句。在运行时，MyBatis会使用DynamicSqlSource将这些节点解析成一个个SQL片段，并根据条件动态拼接SQL语句，从而生成最终的SQL语句。
+需要注意的是，DynamicSqlSource是MyBatis中的一个SQL源码对象，通常不会直接被使用。在MyBatis中，通常使用其他类型的SQL源码对象，例如RawSqlSource、ProviderSqlSource等，这些SQL源码对象会利用DynamicSqlSource动态生成最终的SQL语句。
+希望这能帮助你理解DynamicSqlSource的作用和用法。
 
 ## 第3篇 配置解析包源码阅读
 
@@ -245,20 +365,111 @@ XNode
 
 
 ### Chap. 13 binding包
+org.apache.ibatis.binding
+
+MapperMethod
+父类是Object，没有实现任何接口
+private final SqlCommand command;
+private final MethodSignature method;
+
+SqlCommand有六类
+增删改查
+清除缓存
+未知
+UNKNOWN, INSERT, UPDATE, DELETE, SELECT, FLUSH
+
+MethodSignature是mm的静态内部类,方法签名，是Mapper接口的签名吗？
+org.apache.ibatis.binding.MapperMethod.MethodSignature
+
+mm内部类ParamMap，获取不存在的值会报错
+
+mm 将java方法转化为数据库操作
+execute()
+
+mp调用mm
+MapperProxy
+
+org.apache.ibatis.binding.MapperRegistry#knownMappers
+kv
+key是Mapper接口
+v是MapperProxyFactory mpf
+
 
 ### Chap. 14  builder包
 
-### 第15章 mapping包 169
-### 第16章 scripting包 179
-### 第17章 datasource包 208
+org.apache.ibatis.builder;
+org.apache.ibatis.builder.annotation;
+org.apache.ibatis.builder.xml;
+
+BaseBuilder (org.apache.ibatis.builder)
+    XMLMapperBuilder (org.apache.ibatis.builder.xml)
+    ParameterMappingTokenHandler in SqlSourceBuilder (org.apache.ibatis.builder)
+    MapperBuilderAssistant (org.apache.ibatis.builder)
+    XMLScriptBuilder (org.apache.ibatis.scripting.xmltags)
+    XMLConfigBuilder (org.apache.ibatis.builder.xml)
+    SqlSourceBuilder (org.apache.ibatis.builder)
+    XMLStatementBuilder (org.apache.ibatis.builder.xml)
+
+确切地说,SqlSourceBuilder类能够将DynamicSqlSource和RawSqlSource中的「# {}」符号替换掉，从而将它们转化为 StaticSqlSource,这一转化过程发生在代码14-7所示的parse方法中。因此，把SqISourceBui Ider类称作一个解析器或者转化器更合适。而事实 上，许多引用SqISourceBui Ider对象的地方都将对象的变量名定为 F sqISourceParserJ（在DynamicSqlSource和RawSqISource类中都能找到这个变量）。
+
+MapperBuilderAssistant
+
+CacheRefResolver
+
+```xml
+  <cache-ref namespace=""/>
+```
+
+ResultMapResolver
+
+```xml
+
+  <resultMap id="BaseResultMap" type="cn.wdidada.test.springbootmybatis.domain.OauthClientDetails">
+
+```
+
+public class ParameterExpression extends HashMap<String, String>
+
+XMLMapperEntityResolver
+public class XMLMapperEntityResolver implements EntityResolver
+
+无网络环境下，校验dtd
+
+
+XMLStatementBuilder
+
+
+XMLIncludeTransformer
+
+
+
+MapperAnnotationBuilder
+@Select
+@Insert
+@Update
+@Delete
+@Param
+
+ProviderContext
+ProviderMethodResolver接口
+ProviderSqlSource
+
+### 第15章 mapping包
+MappedStatement
+
+### 第16章 scripting包
+
+### 第17章 datasource包
+
 ### 第4篇 核心操作包源码阅读
-### 第18章 jdbc包 232
-### 第19章 cache包 243
-### 第20章 transaction包 279
-### 第21章 cursor包 284
-### 第22章 executor包 293
-### 第23章 session包 355
-### 第24章 plugin包 366
+### 第18章 jdbc包
+
+### 第19章 cache包
+### 第20章 transaction包
+### 第21章 cursor包
+### 第22章 executor包
+### 第23章 session包
+### 第24章 plugin包
 ### 第5篇 总结与展望
 ### 第25章 源码阅读总结 378
 ### 第26章 优秀开源项目推荐 383
