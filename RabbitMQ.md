@@ -1,5 +1,10 @@
 # RabbitMQ
 
+### rabbitmq如何避免消息丢失
+producer等待server返回ack
+server设置消息持久化机制
+consumer设置成手动确认消息
+
 https://gitee.com/edidada/testrabbitmqspringboot
 
 开发语言？

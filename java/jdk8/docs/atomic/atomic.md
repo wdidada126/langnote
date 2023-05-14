@@ -1,6 +1,13 @@
 # atomic
 
 
+什么是原子类？什么情况下使用原子类？
+java 1.5引进原子类，具体在java.util.concurrent.atomic包下，atomic包里面一共提供了13个类，分为4种类型，分别是：原子更新基本类型，原子更新数组，原子更新引用，原子更新属性。原子类也是java实现同步的一套解决方案。
+原子类的原理是cas指令
+go中的Cas操作与java中类似，都是借用了CPU提供的原子性指令来实现。CAS操作修改共享变量时候不需要对共享变量加锁，而是通过类似乐观锁的方式进行检查，本质还是不断的占用CPU 资源换取加锁带来的开销（比如上下文切换开销）。
+https://zhuanlan.zhihu.com/p/56733484
+
+
 Number (java.lang)
     Striped64 (java.util.concurrent.atomic)
         LongAdder (java.util.concurrent.atomic)

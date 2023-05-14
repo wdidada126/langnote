@@ -1,6 +1,9 @@
 # mybatis
 
 
+SqlSession内部运行原理
+https://www.modb.pro/db/223729
+
 org.apache.ibatis.session.SqlSession接口
 
 select()

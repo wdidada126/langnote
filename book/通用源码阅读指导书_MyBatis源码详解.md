@@ -210,6 +210,7 @@ https://blog.csdn.net/Michelle_Zhong/article/details/129099305
 
 
 ### Chap. 9 io包
+静态代理
 org.apache.ibatis.io
 
 
@@ -220,8 +221,9 @@ DefaultVFS类是MyBatis中用于处理文件系统的抽象类。它主要用于
 DefaultVFS类是MyBatis中的默认VFS实现，它使用Java标准库中的java.io和java.net包来实现文件系统的访问。如果需要使用其他的VFS实现来处理文件系统，可以通过在MyBatis的配置文件中配置vfsImpl属性来指定。
 总之，DefaultVFS类是MyBatis中的一个重要类，用于处理文件系统的访问和管理，是MyBatis框架实现的核心之一。
 
+linux里面的虚拟文件系统类似吗？
 ### Chap. 10 logging包
-
+反射的动态代理
 
 ### Chap. 11 parsing包
 
