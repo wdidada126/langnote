@@ -1,5 +1,5 @@
 # SpringBoot开发实战
-
+陈光剑
 知乎读书上有电子版
 
 2018年的书
@@ -8,12 +8,14 @@ https://book.douban.com/subject/30320873/
 
 https://weread.qq.com/web/bookDetail/a6d32030715dbcb6a6d9015
 
+https://www.zhihu.com/pub/reader/120331980/chapter/1543189494895202304
 
 第Ⅰ部分　Spring Boot框架基础
 第1章　Spring Boot简介 2
 
 第2章　快速开始HelloWorld 13
 
+java config删除某个bean，怎么确定删除是安全的，
 
 第3章　深入理解Spring Boot自动配置 23
 重点
