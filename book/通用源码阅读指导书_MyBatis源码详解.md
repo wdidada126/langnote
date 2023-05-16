@@ -4,9 +4,16 @@ https://www.zhihu.com/pub/reader/120079431
 
 https://book.douban.com/subject/35138963/
 
+易哥
+
 2020年8月出版
 
 按照java的包来分类阅读代码的
+
+随书代码
+
+https://github.com/edidada/MyBatisDemo
+
 ## 第1篇 背景介绍
 ### 第2章 MyBatis概述
 
@@ -367,7 +374,7 @@ DynamicSqlSource的主要作用是支持动态SQL语句的生成。在MyBatis中
 ### Chap. 13 binding包
 org.apache.ibatis.binding
 
-MapperMethod
+MapperMethod mm
 父类是Object，没有实现任何接口
 private final SqlCommand command;
 private final MethodSignature method;
@@ -381,13 +388,14 @@ UNKNOWN, INSERT, UPDATE, DELETE, SELECT, FLUSH
 MethodSignature是mm的静态内部类,方法签名，是Mapper接口的签名吗？
 org.apache.ibatis.binding.MapperMethod.MethodSignature
 
+mm内部类有三个？
 mm内部类ParamMap，获取不存在的值会报错
 
 mm 将java方法转化为数据库操作
 execute()
 
 mp调用mm
-MapperProxy
+MapperProxy mp
 
 org.apache.ibatis.binding.MapperRegistry#knownMappers
 kv
@@ -455,21 +463,304 @@ ProviderMethodResolver接口
 ProviderSqlSource
 
 ### 第15章 mapping包
-MappedStatement
+MappedStatement 典型的解析实体类
+
+父类是Object，没有实现任何接口
+
+public enum StatementType {
+STATEMENT, PREPARED, CALLABLE
+}
+
+ResultSetType 是 MyBatis 中的一个枚举类型，它定义了返回结果集的类型。ResultSetType 有以下三个枚举值：
+FORWARD_ONLY：只能向前滚动，不能滚动回去，也不能修改数据。
+SCROLL_SENSITIVE：可以滚动，但不保证结果集是最新的。
+SCROLL_INSENSITIVE：可以滚动，结果集是最新的。
+ResultSetType 的默认值是 FORWARD_ONLY
+
+org.apache.ibatis.mapping.MappedStatement.Builder
+
+
+MappedStatement对象是队形mabatis xml文件中的insert update delete select吗？
+是的，MyBatis中的MappedStatement对象代表了在Mapper XML文件中的SQL语句，包括insert、update、delete、select等操作。每个MappedStatement对象都对应一个具体的SQL语句，它包含了该SQL语句的ID、参数类型、返回类型、SQL语句等信息。
+在MyBatis的Mapper XML文件中，每个SQL语句都需要定义一个唯一的ID，这个ID就是MappedStatement的ID。通过这个ID，MyBatis可以在运行时根据用户传入的参数执行相应的SQL语句，并将结果映射到指定的返回类型中。
+除了SQL语句的信息，MappedStatement对象还包含了一些其他的属性，如缓存信息、SQL语句类型、语句参数的映射关系等。这些属性可以帮助MyBatis更好地优化SQL语句的执行效率、提高系统的性能表现。
+
+SqlSource子类
+ProviderSqlSource (org.apache.ibatis.builder.annotation)
+StaticSqlSource (org.apache.ibatis.builder)
+DynamicSqlSource (org.apache.ibatis.scripting.xmltags)
+RawSqlSource (org.apache.ibatis.scripting.defaults)
+
+
+DynamicSqlSource xml文件含有<if 占位符 ${}
+RawSqlSource可能含有#{}
+StaticSqlSource可能含有？可以直接提交给sql server
+ProviderSqlSource注解形式的sql
+
+
+mybatis ProviderSqlSource注解对应关系举例
+在 MyBatis 中，ProviderSqlSource 是一种可以动态生成 SQL 语句的 SqlSource 实现。它的实现方式是通过一个带有 @ProviderSqlSource 注解的 Provider 类来生成 SQL 语句，然后将 SQL 语句和参数信息封装成一个 BoundSql 对象，最终交由 Executor 执行。
+@ProviderSqlSource 注解中的 value 属性指定了对应的 Provider 类，而 method 属性指定了 Provider 类中用于生成 SQL 语句的方法名称。下面是一个简单的示例：
+```java
+@Mapper
+public interface UserMapper {
+  @SelectProvider(type = UserSqlProvider.class, method = "getUserById")
+  User getUserById(Integer id);
+}
+
+public class UserSqlProvider {
+  public String getUserById() {
+    return "SELECT * FROM user WHERE id = #{id}";
+  }
+}
+```
+在上面的示例中，@SelectProvider 注解指定了 ProviderSqlSource 对应的 Provider 类为 UserSqlProvider，使用该类中的 getUserById() 方法生成 SQL 语句。getUserById() 方法返回一个字符串，其中包含了动态生成的 SQL 语句。MyBatis 会将该字符串封装成一个 ProviderSqlSource 对象，最终交由 Executor 执行。
+当调用 UserMapper.getUserById() 方法时，MyBatis 会根据方法参数的值动态生成 SQL 语句，比如当传入 id = 1 时，生成的 SQL 语句为：
+```sql
+SELECT * FROM user WHERE id = 1
+```
+然后将该 SQL 语句和参数信息封装成一个 BoundSql 对象，交由 Executor 执行。这样就实现了动态生成 SQL 语句的功能。
+
+
+
+mybatis，使用java代码中的静态常量
+在 MyBatis 中，可以通过在 Mapper XML 文件中使用静态常量来引用 Java 代码中的常量，从而避免硬编码常量值，提高代码的可维护性和可读性。
+下面是一个示例：
+
+```java
+public class Constants {
+  public static final int STATUS_NORMAL = 1;
+  public static final int STATUS_DELETED = 0;
+}
+
+@Mapper
+public interface UserMapper {
+  @Select("SELECT * FROM user WHERE status = #{status}")
+  List<User> getUsersByStatus(@Param("status") int status);
+}
+```
+在上面的示例中，定义了一个 Constants 类，其中定义了两个静态常量 STATUS_NORMAL 和 STATUS_DELETED。
+在 UserMapper 接口中，使用 @Select 注解定义了一个 SQL 查询语句，其中使用了 status 参数来过滤用户记录。这里可以使用 #{status} 占位符来引用 status 参数的值。
+如果要引用 Constants 类中的 STATUS_NORMAL 常量，可以在 Mapper XML 文件中使用如下的方式：
+```xml
+<select id="getUsersByStatus" resultType="User">
+  SELECT * FROM user WHERE status = #{status, jdbcType=INTEGER, javaType=int, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler, numericScale=0}
+    AND type = #{type, jdbcType=VARCHAR, javaType=String, numericScale=0, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+    AND deleted = #{deleted, jdbcType=BIT, javaType=boolean}
+    AND role = #{role, jdbcType=TINYINT, javaType=byte}
+    AND level = #{level, jdbcType=SMALLINT, javaType=short}
+    AND age = #{age, jdbcType=INTEGER, javaType=int}
+    AND name = #{name, jdbcType=VARCHAR, javaType=String}
+    AND salary = #{salary, jdbcType=DECIMAL, javaType=BigDecimal}
+    AND birthday = #{birthday, jdbcType=TIMESTAMP, javaType=Date}
+    AND range = #{range, jdbcType=ARRAY, javaType=List, typeHandler=org.apache.ibatis.type.ArrayTypeHandler}
+    AND status = #{T(com.example.Constants).STATUS_NORMAL}
+</select>
+```
+在上面的示例中，使用了 ${@类名@常量名} 的方式来引用常量，其中类名和常量名分别用点号分隔。在这个例子中，使用 #{T(com.example.Constants).STATUS_NORMAL} 来引用 Constants 类中的 STATUS_NORMAL 常量。注意，在这里使用的是 #{} 占位符，而不是 ${}。
+这样就可以在 Mapper XML 文件中使用 Java 代码中的静态常量了。
+
+
+xml文件中的
+ResultMap
+ResultMapping
+Discriminator
+
+父类都是Object，没有任何接口
+
+
+ResultMap就是xml文件中<resultMap 节点对应的信息，有4个ResultMapping列表
+
+在 MyBatis 中，Discriminator 元素可以根据某个字段的值来动态地映射不同的结果集。这个字段可以是查询语句中的任意一个列，也可以是传入参数中的一个值。
+下面是一个简单的例子，演示如何使用 Discriminator 元素：
+```xml
+<resultMap id="animalResultMap" type="Animal">
+  <id property="id" column="id"/>
+  <result property="name" column="name"/>
+  <result property="species" column="species"/>
+  <discriminator javaType="string" column="species">
+    <case value="cat" resultMap="catResultMap"/>
+    <case value="dog" resultMap="dogResultMap"/>
+    <case value="bird" resultMap="birdResultMap"/>
+    <case value="fish" resultMap="fishResultMap"/>
+  </discriminator>
+</resultMap>
+
+<resultMap id="catResultMap" type="Cat">
+  <result property="meow" column="meow"/>
+</resultMap>
+
+<resultMap id="dogResultMap" type="Dog">
+  <result property="bark" column="bark"/>
+</resultMap>
+
+<resultMap id="birdResultMap" type="Bird">
+  <result property="chirp" column="chirp"/>
+</resultMap>
+
+<resultMap id="fishResultMap" type="Fish">
+  <result property="swim" column="swim"/>
+</resultMap>
+```
+
+在上面的例子中，定义了一个 Animal 类型的 resultMap，其中包含了一个 Discriminator 元素，它的 column 属性指定了用于区分不同结果集的字段是 species。根据 species 字段的值，MyBatis 会动态地选择对应的 resultMap，比如如果 species 的值是 cat，则会使用 catResultMap 来映射结果集。catResultMap、dogResultMap、birdResultMap 和 fishResultMap 分别对应了不同的 Animal 子类类型。
+这样，当查询结果中包含了不同类型的 Animal 记录时，MyBatis 就会根据 species 字段的值来动态地选择正确的 resultMap，从而将查询结果映射到正确的 Java 对象中。
+注意，在 Discriminator 元素中，可以使用 case 元素来指定不同的结果映射。每个 case 元素都包含了一个 value 属性和一个 resultMap 属性，value 属性指定了用于区分结果集的值，resultMap 属性指定了对应的 resultMap。
+
+
+Environment
+CacheBuilder
 
 ### 第16章 scripting包
+
+org.apache.ibatis.scripting
+
+DefaultParameterHandler implements ParameterHandler
+ognl
+
+LanguageDriver
+
+XMLLanguageDriver (org.apache.ibatis.scripting.xmltags)
+    RawLanguageDriver (org.apache.ibatis.scripting.defaults)
+
+
+跟xml文件中的<if <choose <trim对应  节点树
+SqlNode
+    StaticTextSqlNode (org.apache.ibatis.scripting.xmltags)
+    MixedSqlNode (org.apache.ibatis.scripting.xmltags)
+    TextSqlNode (org.apache.ibatis.scripting.xmltags)
+    ForEachSqlNode (org.apache.ibatis.scripting.xmltags)
+    IfSqlNode (org.apache.ibatis.scripting.xmltags)
+    VarDeclSqlNode (org.apache.ibatis.scripting.xmltags)
+    TrimSqlNode (org.apache.ibatis.scripting.xmltags)
+        WhereSqlNode (org.apache.ibatis.scripting.xmltags)
+        SetSqlNode (org.apache.ibatis.scripting.xmltags)
+    ChooseSqlNode (org.apache.ibatis.scripting.xmltags)
+
+ognl相关的类
+OgnlClassResolver
+OgnlMemberAccess
+OgnlCache
+
+DynamicContext
 
 ### 第17章 datasource包
 
 ### 第4篇 核心操作包源码阅读
 ### 第18章 jdbc包
 
+SqlRunner
+AbstractSQL
+ScriptRunner
+
+public class SQL extends AbstractSQL<SQL>
 ### 第19章 cache包
+
+TransactionalCacheManager
+
+Cache
+    SoftCache (org.apache.ibatis.cache.decorators)
+    PerpetualCache (org.apache.ibatis.cache.impl)
+    LoggingCache (org.apache.ibatis.cache.decorators)
+    SynchronizedCache (org.apache.ibatis.cache.decorators)
+    LruCache (org.apache.ibatis.cache.decorators)
+    ScheduledCache (org.apache.ibatis.cache.decorators)
+    WeakCache (org.apache.ibatis.cache.decorators)
+    FifoCache (org.apache.ibatis.cache.decorators)
+    SerializedCache (org.apache.ibatis.cache.decorators)
+    BlockingCache (org.apache.ibatis.cache.decorators)
+    TransactionalCache (org.apache.ibatis.cache.decorators)
+
+
+CacheException
+CacheKey
+
+CachingExecutor
+
+二级缓存
+
+
 ### 第20章 transaction包
+两套 jdbc managered
+Transaction
+TransactionFactory
+
+JdbcTransactionFactory
+JdbcTransaction
+
+
+ManagedTransaction
+ManagedTransactionFactory
+
 ### 第21章 cursor包
+
+Cursor
+DefaultCursor
+
+
 ### 第22章 executor包
+
+CachingExecutor (org.apache.ibatis.executor)
+BaseExecutor (org.apache.ibatis.executor)
+    SimpleExecutor (org.apache.ibatis.executor)
+    ClosedExecutor in ResultLoaderMap (org.apache.ibatis.executor.loader)
+    ReuseExecutor (org.apache.ibatis.executor)
+    BatchExecutor (org.apache.ibatis.executor)
+
+
+ResultLoader
+
+KeyGenerator
+    NoKeyGenerator (org.apache.ibatis.executor.keygen)
+    Jdbc3KeyGenerator (org.apache.ibatis.executor.keygen)
+    SelectKeyGenerator (org.apache.ibatis.executor.keygen)
+
+
 ### 第23章 session包
 ### 第24章 plugin包
+
+示例27
+源码的示例28
+org.apache.ibatis.plugin.Interceptor接口
+
+org.apache.ibatis.plugin.Intercepts注解
+org.apache.ibatis.plugin.Signatur注解
+
+在 MyBatis 中，org.apache.ibatis.plugin.Signature 注解是用于标识一个方法是否可以被拦截的注解。它可以指定要拦截的类、方法名和方法参数类型，从而确定要拦截的方法。
+
+Signatur 注解的作用是告诉 MyBatis，哪些方法应该被拦截，以及拦截时应该进行哪些处理。通过这种方式，可以在不修改原始代码的情况下，向现有的方法中注入额外的逻辑，从而实现增强功能。
+
+下面是一个简单的示例，演示了如何使用 Signatur 注解来标识一个方法是否可以被拦截：
+
+```java
+@Intercepts({
+  @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})
+})
+public class MyInterceptor implements Interceptor {
+  @Override
+  public Object intercept(Invocation invocation) throws Throwable {
+    // 在调用 update 方法之前进行拦截和处理
+    Object[] args = invocation.getArgs();
+    MappedStatement ms = (MappedStatement) args[0];
+    Object parameter = args[1];
+    // 对参数进行修改
+    parameter = modifyParameter(parameter);
+    args[1] = parameter;
+    // 调用原始方法
+    Object result = invocation.proceed();
+    // 对结果进行修改
+    result = modifyResult(result);
+    return result;
+  }
+}
+```
+
+在上面的示例中，定义了一个 MyInterceptor 拦截器，并使用 @Intercepts 和 @Signature 注解来标识要拦截的方法。在这个例子中，拦截的方法是 Executor 类中的 update() 方法，它接受两个参数，分别是 MappedStatement 和 Object 类型。
+在 MyInterceptor 的 intercept() 方法中，会对参数进行修改，并调用原始方法执行。在原始方法执行完毕后，还可以对结果进行修改，并返回修改后的结果。
+总之，org.apache.ibatis.plugin.Signature 注解是 MyBatis 中用于标识要拦截的方法的注解之一，它可以指定要拦截的类、方法名和方法参数类型，从而确定要拦截的方法。
+
+MyBatis 中一共只有四个类的对象可以被拦截器替换，它们分别是 ParameterHandler、ResultSetHandler、StatementHandler 和 Executor。而且替换只能发生在固定的地方，我们称其为拦截点。
+
 ### 第5篇 总结与展望
 ### 第25章 源码阅读总结 378
 ### 第26章 优秀开源项目推荐 383
