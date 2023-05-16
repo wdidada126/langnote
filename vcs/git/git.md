@@ -1,6 +1,27 @@
 # Git
 
 
+`git merge` 命令用于将不同的分支合并到当前分支。在执行 `git merge` 命令时，Git 会将指定的分支的修改合并到当前分支中。
+
+以下是一个简单的 `git merge` 示例，假设你当前在 `main` 分支上，想要将 `feature` 分支的修改合并到 `main` 分支上：
+
+```
+git merge feature
+```
+
+执行此命令后，Git 将会自动尝试将 `feature` 分支上的修改合并到 `main` 分支上，如果有冲突，则需要手动解决冲突。
+
+如果你想要保留原始分支中的修改，可以使用 `--no-ff` 参数执行非快进合并，例如：
+
+```
+git merge --no-ff feature
+```
+
+这将会在 `main` 分支上创建一个新的合并提交，保留原始分支和合并分支的修改历史。
+
+如果你想要撤销合并操作，可以使用 `git merge --abort` 命令。
+
+
 git remote set-url gitremote https://github.com/wimoor-erp/wimoor.git
 
 1. 如果你的GIT设置了多个remote地址，在不同的remote间pull方法为：

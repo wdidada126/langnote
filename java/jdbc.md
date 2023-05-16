@@ -1,6 +1,22 @@
 # jdbc
 
 
+jdbc url
+useSsl=false无效 mysql-connecto-java 
+
+  <groupId>mysql</groupId>
+  <artifactId>mysql-connector-java</artifactId>
+  <version>5.1.40</version>
+
+
+Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
+报错
+
+useSSL=false
+有用
+
+
+
 JDBC 用CallableStatement接口操作存储过程 输入输出有参数
 https://blog.csdn.net/u014453898/article/details/79043264
 

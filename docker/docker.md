@@ -352,3 +352,14 @@ docker run -d -p 9118:8080 edidada/spring-cloud-eureka
 
 
 https://www.cnblogs.com/quanbisen/p/11483118.html
+
+docker search xxx
+
+不能精确找tag
+
+https://hub.docker.com/_/mysql/tags
+
+docker pull mysql:5.7.42
+docker exec -it 7c5f84ada3dc /bin/bash
+
+https://blog.csdn.net/qq_42971035/article/details/127831101

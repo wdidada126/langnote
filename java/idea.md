@@ -1,5 +1,7 @@
 # IDEA
 
+idea自动调用所有set开头的方法
+https://blog.csdn.net/dkm123456/article/details/122999227
 
 ### 自带的类图
 类图不显示方法，可以设置显示方法

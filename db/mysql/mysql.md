@@ -971,6 +971,13 @@ https://dev.mysql.com/doc/refman/5.7/en/innodb-storage-engine.html
 
 docker
 
+```shell
+docker run -p 3306:3306 --name mysql --restart=always --privileged=true -v /usr/local/mysql/log:/var/log/mysql -v /usr/local/mysql/data:/var/lib/mysql -v /usr/local/mysql/conf:/etc/mysql -v /etc/localtime:/etc/localtime:ro -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+```
+
+
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
 ng Redis都可以用
 
 mysql只能改表名，不能改数据库名称
