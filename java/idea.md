@@ -11,7 +11,7 @@ Translation插件 中英翻译
 understand查看大型项目，生成调用链
 
 idea查看函数调用链
-IDEA完整的调用链显示
+IDEA完整的调用链显示P
 idea时序图显示完整方法调用链
 安装插件 - SequenceDiagram
 https://vanco.github.io/SequencePlugin/
