@@ -11,9 +11,8 @@ FastJson默认使用CamelCase，在1.2.15版本之后，FastJson支持配置Prop
 属性名策略说明：
 
 CamelCase策略，Java对象属性：personId，序列化后属性：persionId
-
 PascalCase策略，Java对象属性：personId，序列化后属性：PersonId
-
 SnakeCase策略，Java对象属性：personId，序列化后属性：person_id
-
 KebabCase策略，Java对象属性：personId，序列化后属性：person-id
+
+
