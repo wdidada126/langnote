@@ -1,5 +1,21 @@
 # jackson
 
+### 支持多种格式
+
+当使用Jackson库解析JSON数据时，如果JSON中包含了Java对象中未定义的属性，Jackson会抛出UnrecognizedPropertyException异常，提示存在未识别的属性。为了避免这个问题，可以使用ObjectMapper类的configure()方法来设置忽略未知属性的选项。
+
+以下是一个示例：
+
+```java
+ObjectMapper objectMapper = new ObjectMapper();
+objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+MyData myData = objectMapper.readValue(jsonString, MyData.class);
+```
+
+在上述代码中，我们首先创建了一个ObjectMapper对象，并使用configure()方法将FAIL_ON_UNKNOWN_PROPERTIES选项设置为false。这个选项表示在反序列化时，如果遇到未知属性，Jackson不会抛出异常，而是忽略这些属性。然后，我们使用readValue()方法将JSON字符串转换为MyData对象。在转换过程中，Jackson会忽略JSON中存在但Java对象中未定义的属性。
+
+需要注意的是，禁用FAIL_ON_UNKNOWN_PROPERTIES选项可能会使反序列化结果不完整，因为未知属性被忽略了。因此，我们应该根据实际情况来决定是否需要禁用这个选项。如果JSON中包含了大量未知属性，而我们只关心其中的一部分，可以考虑使用Mix-in机制来为Java对象添加需要的属性，而忽略不需要的属性。
+
 
 ```java
 package cn.wdidada.springmvccurl.vo;
