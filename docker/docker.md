@@ -24,7 +24,7 @@ docker ps -a 所有container
 
 Docker start
 
-
+docker imgae tag，在网页上查看
 
 [docker](https://jingyan.baidu.com/article/aa6a2c142dc2774c4c19c4ca.html)
 C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx

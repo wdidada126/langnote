@@ -1,5 +1,14 @@
 # logback
 
+logback additivity="false"作用
+
+
+在Logback中，`additivity`属性是用于控制日志事件是否传递到父级Logger的一个属性。当`additivity`属性设置为`true`时，日志事件会被传递到父级Logger中，而父级Logger也会处理这些日志事件。当`additivity`属性设置为`false`时，日志事件不会传递到父级Logger中，而只会在当前Logger中处理。
+通常情况下，我们会将`additivity`属性设置为`true`，这样日志事件会被传递到父级Logger中，父级Logger也可以进行相应的处理。但是，在某些情况下，我们可能希望只在当前Logger中处理日志事件，而不希望将日志事件传递到父级Logger中，这时就可以将`additivity`属性设置为`false`。
+例如，如果我们有一个应用程序，其中有多个模块，每个模块都有自己的Logger，同时还有一个根Logger，用于记录应用程序的所有日志事件。如果我们在某个模块中将`additivity`属性设置为`false`，那么该模块中的日志事件就不会传递到根Logger中，而只会在该模块的Logger中处理。这样可以避免在根Logger中重复记录该模块的日志事件。
+需要注意的是，如果同时存在多个Logger，而其中某些Logger的`additivity`属性设置为`false`，那么这些Logger中的所有日志事件都不会传递到根Logger中。因此，在设置`additivity`属性时，需要根据实际情况进行选择，以便正确地记录和处理日志事件。
+
+
 logback.grovvy
 
 
