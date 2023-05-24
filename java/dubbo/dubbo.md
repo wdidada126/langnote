@@ -175,7 +175,10 @@ git repo
 - dubbospringcustomer
 - dubbospringprovider
 - dubboalone
+- testspringbootdubbo
+- testspringclouddubbo
 
+https://gitee.com/edidada/testspringbootdubbo
 
 
 

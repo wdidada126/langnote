@@ -35,7 +35,7 @@ Windows 10电脑，nacos数据源配置成mysql的
 
 [windows下安装nacos](https://blog.csdn.net/q15102780705/article/details/102571353)
 
-
+Tomcat started on port(s): 8848 (http) with context path '/nacos'
 
 ```shell
 2020-04-29 16:51:22,579 INFO Exposing 2 endpoint(s) beneath base path '/actuator'
@@ -50,6 +50,21 @@ Windows 10电脑，nacos数据源配置成mysql的
 ```
 
 
+### nacos library
+
+```xml
+    <dependency>
+      <groupId>com.alibaba.nacos</groupId>
+      <artifactId>nacos-client</artifactId>
+      <version>1.4.2</version>
+    </dependency>
+```
+
+endpoint 是啥？
+服务发现的
+
+docker pull nacos/nacos-server:1.4.0
+docker run -d -p 8848:8848 -e MODE=standalone -e PREFER_HOST_MODE=hostname --name nacos nacos/nacos-server:1.4.0
 ### nacos api
 
 服务注册&发现和配置管理

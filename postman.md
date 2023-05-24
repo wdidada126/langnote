@@ -39,5 +39,7 @@ ui界面可以选择
 
 text
 
+postman发起http请求，下载文件，
+send and download
 
 
