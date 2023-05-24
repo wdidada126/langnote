@@ -1,6 +1,8 @@
 # nacos
 
 
+默认端口号：8848
+
 
 https://gitee.com/edidada/nacos-config-example
 
@@ -22,13 +24,18 @@ Java写的项目
 用了jraft
 
 
+nacos client版本需要跟nacos server版本相同？
+对
+
 
 https://blog.csdn.net/ljl19930522/article/details/124746908
  D：（nacos解压的盘符）
-cd D:\Java\nacos\bin   （nacos中bin文件的目录）
-startup.cmd -m standalone  （cluster是集群启动）
+cd D:\nacos\bin   （nacos中bin文件的目录）
+./startup.cmd -m standalone  （cluster是集群启动）
 
 1.41最低要求java8
+
+quanyi健康用nacos 1.40
 
 Windows 10电脑，nacos数据源配置成mysql的
 
