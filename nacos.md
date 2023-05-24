@@ -6,7 +6,9 @@
 
 https://gitee.com/edidada/nacos-config-example
 
+https://gitee.com/edidada/alibabademo
 
+https://gitee.com/edidada/testnacosclient
 官网
 https://nacos.io/zh-cn/
 
@@ -26,7 +28,8 @@ Java写的项目
 
 nacos client版本需要跟nacos server版本相同？
 对
-
+困扰了我一天
+nacos github上有版本兼容性相关的描述？
 
 https://blog.csdn.net/ljl19930522/article/details/124746908
  D：（nacos解压的盘符）
