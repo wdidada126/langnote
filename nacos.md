@@ -1,5 +1,31 @@
 # nacos
 
+nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.18848/nacos访问可以
+
+
+Spring cloud alibaba nacos，默认dataID nacos-service.properties修改成自定义值
+
+如果你想将Spring Cloud Alibaba Nacos中默认的`dataId`（即`nacos-service.properties`）修改为自定义的值，你可以在`bootstrap.properties`或`bootstrap.yml`文件中配置`spring.cloud.nacos.config.prefix`和`spring.cloud.nacos.config.file-extension`属性。
+
+具体来说，你可以将`spring.cloud.nacos.config.prefix`设置为你想要的`dataId`前缀，将`spring.cloud.nacos.config.file-extension`设置为你想要的扩展名。例如，你可以在`bootstrap.yml`中添加以下配置：
+
+```
+spring:
+  cloud:
+    nacos:
+      config:
+        prefix: my-service-config
+        file-extension: properties
+```
+
+在这个配置中，`prefix`属性指定了`dataId`的前缀为`my-service-config`，`file-extension`属性指定了`dataId`的扩展名为`properties`。这将会使Spring Cloud Alibaba Nacos使用`my-service-config.properties`作为服务的元数据信息文件。
+
+需要注意的是，如果你修改了`dataId`，你需要在Nacos控制台上创建对应的配置文件，并将服务的元数据信息保存到这个文件中。例如，如果你将`dataId`修改为`my-service-config.properties`，那么你需要在Nacos控制台上创建一个名为`my-service-config.properties`的配置文件，并将服务的元数据信息保存到这个文件中。
+
+总之，如果你想将Spring Cloud Alibaba Nacos中默认的`dataId`修改为自定义的值，你可以在`bootstrap.properties`或`bootstrap.yml`文件中配置`spring.cloud.nacos.config.prefix`和`spring.cloud.nacos.config.file-extension`属性。需要注意的是，如果你修改了`dataId`，你需要在Nacos控制台上创建对应的配置文件，并将服务的元数据信息保存到这个文件中。
+
+
+注意，nacos配置中心的设置，在applicaion.yml中设置不生效，在在`bootstrap.properties`或`bootstrap.yml`中设置才生效
 
 默认端口号：8848
 

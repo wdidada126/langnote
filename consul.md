@@ -409,3 +409,11 @@ consul有两个功能，一个是consul作为注册中心，另一个是consul�
 https://www.cnblogs.com/linjiqin/p/9718223.html
 
 根据上面的博客写个demo
+
+
+### 配置中心，注册中心对比
+
+consul
+nacos
+eureka
+zk

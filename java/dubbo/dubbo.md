@@ -168,6 +168,11 @@ https://bbs.pediy.com/thread-260266.htm
 
 
 
+dubbo xml
+<!-- 	<dubbo:registry address="nacos://${spring.cloud.nacos.server-addr}?namespace=dubbo-dev" />
+	用dubbo协议暴露端口
+	<dubbo:protocol name="dubbo" port="${dubbo.service.port}" threads="400" /> -->
+
 git repo
 
 - incubator-dubbo-annotation
