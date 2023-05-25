@@ -109,6 +109,11 @@ springmvc使用jsr303提供报错信息
 <mvc:annotation-driven validator="validator"/>
 <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 ```
+
+LocalValidatorFactoryBean在spring-context包里
+有一个成员变量时ValidatorFactory
+javax.validation.ValidatorFactory
+
 这段代码中，使用 <mvc:annotation-driven> 标签启用数据校验功能，并将 validator 属性指定为 LocalValidatorFactoryBean，它是 Spring 为 JSR 303 API 提供的一个实现类，用于执行数据校验操作。
 在需要进行数据校验的 Controller 方法上添加 @Validated 注解，同时在方法参数中添加 BindingResult 参数，用于接收校验结果：
 ```java
@@ -251,6 +256,10 @@ springmvc返回对象或集合
 <mvc:annotation-driven/>
 
 
+LocalValidatorFactoryBean
+继承SpringValidatorAdapter
+1、在spring ioc中吗？
+是factoryBean，在ioc中
 
 
 

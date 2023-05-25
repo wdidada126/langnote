@@ -660,7 +660,6 @@ windows 微软维护 3.0
 
 
 从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
-
 redis的作者，叫Salvatore Sanfilippo，来自意大利的西西里岛，居住在卡塔尼亚。目前供职于Pivotal公司。他使用的网名是antirez。
 
 
@@ -1650,3 +1649,11 @@ https://blog.csdn.net/gig886/article/details/123231156
 ### 客户端
 redisson.md
 
+
+
+### java访问redis
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
