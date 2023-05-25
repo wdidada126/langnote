@@ -65,7 +65,26 @@ http feign做序列化
 
 dubbo自带
 
-
+问：dubbo从哪个版本开始支持http协议
+答：Dubbo从2.7.3版本开始支持HTTP协议。在此版本之前，Dubbo只支持基于RPC协议的远程调用，如Dubbo协议、Hessian协议和Thrift协议等。但是，从2.7.3版本开始，Dubbo增加了对HTTP协议的支持，使得Dubbo服务可以通过HTTP协议进行远程调用。
+使用HTTP协议调用Dubbo服务可以带来以下好处：
+1. 支持跨语言调用
+HTTP协议是一种通用的协议，几乎所有编程语言都有HTTP客户端库。因此，使用HTTP协议调用Dubbo服务可以支持跨语言调用。
+2. 支持浏览器调用
+使用HTTP协议调用Dubbo服务可以使得Dubbo服务可以通过浏览器进行调用。这在一些需要将Dubbo服务暴露给用户的场景中非常有用。
+3. 支持HTTP代理
+使用HTTP协议调用Dubbo服务可以方便地使用HTTP代理来进行负载均衡和流量控制等操作。
+在使用HTTP协议调用Dubbo服务时，您需要在Dubbo服务的提供者和消费者中添加HTTP协议的配置。例如，在Dubbo服务的提供者中，您可以添加以下配置：
+```xml
+<dubbo:protocol name="dubbo" port="20880" />
+<dubbo:protocol name="http" port="8080" />
+```
+在上述配置中，我们使用`http`协议在8080端口暴露Dubbo服务。在Dubbo服务的消费者中，您可以添加以下配置：
+```xml
+<dubbo:reference id="userService" interface="com.example.UserService" url="http://localhost:8080" />
+```
+在上述配置中，我们使用`http`协议调用名为`com.example.UserService`的Dubbo服务，服务的URL为`http://localhost:8080`。
+总之，Dubbo从2.7.3版本开始支持HTTP协议。您可以在Dubbo服务的提供者和消费者中添加HTTP协议的配置，以使用HTTP协议调用Dubbo服务。
 
 ### dubbo cxf
 

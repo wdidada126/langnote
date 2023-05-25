@@ -33,9 +33,7 @@ $ git config branch.master.merge refs/heads/master
 3. 也可以直接通过修改git的配置文件进行设置。(工程所在.git目录)
 $ vi .git/config
 4. 如果需要对所有的项目都进行设置可以使用 --global 参数，进行设置
-————————————————
-版权声明：本文为CSDN博主「Andy_Dou」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/Andy_Dou/article/details/84602414
+https://blog.csdn.net/Andy_Dou/article/details/84602414
 
 
 
@@ -56,6 +54,26 @@ git push --set-upstream origin main
 提示：可以通过以下命令重命名刚创建的分支：
 提示：
 提示： git branch -m <name>
+
+
+
+
+
+git config --global user.email "wdidada@qq.com"
+
+git config --global user.name "wdidada"
+
+
+
+
+
+```
+git config user.email "wdidada@qq.com"
+
+git config user.name "wdidada"
+```
+
+
 
 
 
