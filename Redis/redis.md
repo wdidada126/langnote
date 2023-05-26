@@ -1653,7 +1653,4 @@ redisson.md
 
 ### java访问redis
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
+https://gitee.com/edidada/testspringbootredis
