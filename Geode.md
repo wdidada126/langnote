@@ -1,5 +1,107 @@
 # Geode
 
+```shell
+<!-- Apache Geode -->
+		<dependency>
+			<groupId>org.apache.geode</groupId>
+			<artifactId>geode-core</artifactId>
+			<version>${geode.version}</version>
+        </dependency>
+```
+
+
+docker pull apachegeode/geode:1.14.1
+
+docker run -itd --name geode -p 40404:40404 -p 7070:7070 -p 8080:8080 apachegeode/geode:1.14.1
+
+
+```shell
+gfsh start server  --name=Server1
+....
+Server in C:\Users\admin\Server1 on JT121379[40404] as Server1 is currently online.
+Process ID: 35860
+Uptime: 5 seconds
+Geode Version: 1.14.4
+Java Version: 1.8.0_371
+Log File: C:\Users\admin\Server1\Server1.log
+JVM Arguments: -Dgemfire.start-dev-rest-api=false -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=taskkill /F /PID %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: D:\dev_tools\apache-geode-1.14.4\lib\geode-core-1.14.4.jar;D:\dev_tools\apache-geode-1.14.4\lib\geode-dependencies.jar
+```
+
+
+gfsh>connect
+Connecting to Locator at [host=localhost, port=10334] ..
+Connecting to Manager at [host=JT121379, port=1099] ..
+Successfully connected to: [host=JT121379, port=1099]
+
+You are connected to a cluster of version: 1.14.4
+
+
+
+
+
+
+
+
+
+gfsh>list members
+Member Count : 1
+
+  Name   | Id
+-------- | -----------------------------------------------------------------
+Locator1 | 172.19.17.240(Locator1:17764:locator)<ec><v0>:41000 [Coordinator]
+
+
+stop locator --name=Locator1
+
+start locator --name=Locator1
+
+
+
+stop server --name=Server1
+
+Geode的server和locator有如下主要区别和联系:
+
+区别:
+1.  server负责缓存数据,提供数据访问服务。客户端通过与server交互来读取和修改数据。
+2.  locator负责注册和查找集群中其他成员(server、其他locator)。locator不存储任何数据。
+
+联系:
+1. server和locator都是Geode集群的必需组件。一个集群至少需要一个locator和一个server。
+2. server启动时需要连接到locator来加入集群。locator知道整个集群的成员信息。
+3. locator负责注册和查找集群中其他成员。server通过locator可以找到其他server之间的通信路由。
+
+作用:
+1. server负责处理客户端的数据读写请求。实现集群的存储功能。
+2. locator用来维护集群成员(server、locator)的注册表,实现成员发现和路由功能。
+
+关系:
+1. locator完全独立于server,不依赖于server也不存储任何数据。
+2. server依赖locator来加入集群,并与集群中的其他server交互。
+
+总的来说:
+- locator提供注册表和路由服务,集群中的其他成员通过它来找到彼此
+- server提供缓存服务和数据存储,与客户端交互处理数据访问请求
+- locator和server通过注册表和路由功能协作,构成一个完整的Geode分布式缓存集群  
+
+希望以上内容可以帮助您更好理解Geode中server和locator的作用以及它们之间的关联。如果仍有任何疑问,欢迎继续提问。
+
+
+
+
+start server --name=Server1  --locators=localhost[10334] --cache-xml-file=cache.xml
+create cache --name=exampleCache --type=partition
+
+
+Apache Geode文档
+https://wjw465150.github.io/GeodeUserGuide/Geode_1_Getting_Started_with_Apache_Geode.html
+
+
+https://geode.apache.org/
+
+
+https://twitter.com/apachegeode
+
 建议了解一下Geode，是基于商业版本的GemFire内存数据网格完全开源出来的顶级产品，而GemFire作为具有数据库功能的IMDG已经有十几年的历史了，在美国金融行业几乎是随处可见。
 
 
@@ -47,3 +149,8 @@ Geode 和 Redis 都是广泛使用的分布式缓存系统，它们有一些相�
 3. 数据访问方式不同：Geode 提供了多种数据访问方式，如 Java API、REST API、SQL 等；而 Redis 主要使用 Redis 协议进行数据的访问。
 4. 应用场景不同：Geode 主要用于大规模分布式应用场景，如金融、电信、电子商务等领域；而 Redis 更适用于高并发、高性能、低延迟的应用场景，如缓存、会话管理、排行榜等。
 总之，Geode 和 Redis 都是优秀的分布式缓存系统，具有各自的特点和优势。在选择使用哪种系统时，应该根据具体的应用场景和需求进行选择。
+
+For more information see the [Geode
+Examples](https://github.com/apache/geode-examples) repository or the
+[documentation](https://geode.apache.org/docs/).
+
