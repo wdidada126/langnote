@@ -1,4 +1,16 @@
 # junit
+JUnit测试框架中没有`main`函数。相反，JUnit测试是由特殊的测试运行器（Test Runner）来运行的。测试运行器负责加载测试类、调用测试方法，并报告测试结果。JUnit 4中默认的测试运行器是`org.junit.runner.JUnitCore`，JUnit 5中默认的测试运行器是`org.junit.platform.console.ConsoleLauncher`。
+要运行JUnit测试，您可以使用各种工具和IDE，如Eclipse、IntelliJ IDEA、Maven、Gradle等，它们都提供了内置的JUnit测试运行器。
+在Eclipse中，您可以通过右键单击测试类，然后选择"Run as" -> "JUnit Test"来运行测试。在IntelliJ IDEA中，您可以右键单击测试类，然后选择"Run" -> "TestClass"来运行测试。
+如果您想在命令行中运行JUnit测试，可以使用`java`命令来调用测试运行器。例如，在JUnit 4中，您可以使用以下命令来运行测试：
+```
+java -cp junit.jar:your-test-classes-dir org.junit.runner.JUnitCore com.example.YourTest
+```
+其中，`junit.jar`是JUnit库的路径，`your-test-classes-dir`是测试类的路径，`com.example.YourTest`是您要运行的测试类的名称。在JUnit 5中，您可以使用以下命令来运行测试：
+```
+java -jar junit-platform-console-standalone.jar --class-path your-test-classes-dir --scan-classpath
+```
+其中，`junit-platform-console-standalone.jar`是JUnit 5的测试运行器，`your-test-classes-dir`是测试类的路径。通过使用`--scan-classpath`选项，JUnit 5会自动扫描类路径中的测试类并运行测试。
 
 使用Java JUnit框架里的@SuiteClasses注解管理测试用例
 http://blog.itpub.net/24475491/viewspace-2703835/

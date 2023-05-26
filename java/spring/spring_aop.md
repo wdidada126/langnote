@@ -42,8 +42,14 @@ Bean必须是一个AOP代理的目标对象（Target Object）。
 Bean必须符合AOP代理的切点条件。
 由于internalAutoProxyCreator是一个Bean后置处理器，它是在Bean实例化之后、初始化之前被调用的。因此，在使用internalAutoProxyCreator时，需要确保代理的目标对象已经被实例化，但还没有被初始化。如果代理的目标对象已经被初始化，internalAutoProxyCreator将无法创建代理对象。
 总的来说，internalAutoProxyCreator是Spring AOP中非常重要的一个组件，它为Spring AOP提供了自动代理的能力，简化了AOP的配置和使用。
+internalAutoProxyCreator在spring源码中对应的类
+
+在 Spring 源码中，`internalAutoProxyCreator` 实际上是一个 BeanPostProcessor 接口的实现类，它的实现类为 `org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator`。`AbstractAutoProxyCreator` 是一个抽象类，它提供了自动代理创建的基本实现，而 `internalAutoProxyCreator` 则是其子类的一种具体实现。
+`AbstractAutoProxyCreator` 的子类可以通过重写它的 `postProcessBeforeInitialization()` 和 `postProcessAfterInitialization()` 方法，在 Bean 初始化前后自动创建代理对象。在 Spring 中，当一个 Bean 实现了某些接口或符合某些切面表达式时，Spring 会自动将其创建成代理对象，并在调用该 Bean 的方法时，自动执行相应的增强操作。
+需要注意的是，Spring 5.x 版本中，`internalAutoProxyCreator` 已经被移除，而是通过 `@EnableAspectJAutoProxy` 注解或者 `ProxyFactoryBean` 来实现自动代理的创建。
 
 
+org.springframework.aop.aspectj.AspectJPointcutAdvisor spring-aop这个jar包
 `AspectJPointcutAdvisor`是Spring AOP中的一个类，用于将AspectJ切点与通知（Advice）关联起来，构成一个切面（Aspect）。它是Spring AOP中切面的基本组成部分之一。
 在Spring AOP中，切面（Aspect）是由切点（Pointcut）和通知（Advice）组成的。切点用于定义需要拦截的方法，而通知用于定义拦截后需要执行的逻辑。`AspectJPointcutAdvisor`的作用就是将切点和通知组合在一起，创建一个切面。
 `AspectJPointcutAdvisor`通过实现`org.springframework.aop.PointcutAdvisor`接口来实现。它包含两个重要的属性：`Pointcut`和`Advice`。`Pointcut`用于定义需要拦截的方法，可以使用AspectJ切点表达式来描述；`Advice`用于定义拦截后需要执行的逻辑，可以是前置通知、后置通知、环绕通知等。
@@ -323,3 +329,150 @@ MyPersonalAnnotationAspect不加Component注解就不会生效
 
 　　　　（6）用代理类的实例去替代BeanFactory中的被代理类的实例
 
+
+
+
+### 源码解读
+
+AspectInstanceFactory
+MetadataAwareAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+    SimpleMetadataAwareAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+    SingletonMetadataAwareAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+    BeanFactoryAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+        PrototypeAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+    LazySingletonAspectInstanceFactoryDecorator (org.springframework.aop.aspectj.annotation)
+SingletonAspectInstanceFactory (org.springframework.aop.aspectj)
+    SingletonMetadataAwareAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+SimpleBeanFactoryAwareAspectInstanceFactory (org.springframework.aop.config)
+SimpleAspectInstanceFactory (org.springframework.aop.aspectj)
+    SimpleMetadataAwareAspectInstanceFactory (org.springframework.aop.aspectj.annotation)
+
+
+`AspectInstanceFactory` 是 Spring AOP 框架中的一个接口，它的作用是用于创建切面实例对象。在 Spring AOP 中，切面是由一个或多个切面通知（Advice）组成的，而每个切面通知都需要一个切面实例对象来执行。
+
+`AspectInstanceFactory` 接口有两个方法：
+
+- `getAspectInstance()`：用于获取切面实例对象。
+- `getAspectName()`：用于获取切面的名称。
+
+`AspectInstanceFactory` 接口的实现类主要有以下两种：
+
+- `SimpleAspectInstanceFactory`：用于创建简单的切面实例对象，即切面类对象的实例。
+- `LazySingletonAspectInstanceFactory`：用于创建懒加载的单例切面实例对象，即切面类对象的单例实例，并且该实例是在首次访问时才被创建。
+
+在 Spring AOP 中，每个切面都需要一个切面实例对象，如果切面类标注了 `@Aspect` 注解，则 Spring 会自动将其转化为一个切面实例对象；如果没有标注，则需要手动指定切面实例对象的创建方式。通过自定义 `AspectInstanceFactory` 及其子类，可以实现自定义的切面实例对象的创建方式，例如通过工厂方法、反射等方式来创建切面实例对象。
+
+需要注意的是，Spring AOP 中的切面实例对象是非常重要的，因为它不仅仅是用来执行切面通知的，还承担了很多额外的功能，例如切面实例对象可以通过 `@Around` 注解来控制切点方法的执行，还可以通过 `@DeclareParents` 注解来为目标对象引入新的接口等。因此，正确地创建和管理切面实例对象是 Spring AOP 框架中的一个重要问题。
+
+
+
+AspectJAdvisorFactory接口对应的实现类
+AbstractAspectJAdvisorFactory (org.springframework.aop.aspectj.annotation)
+    ReflectiveAspectJAdvisorFactory (org.springframework.aop.aspectj.annotation)
+
+AspectJAdvisorFactory
+![AspectJAdvisorFactory对应的方法](../imgs/AspectJAdvisorFactory.png)
+
+
+
+AspectMetadata 记录Aspect注解修饰的类信息
+`ReflectiveAspectJAdvisorFactory` 是 Spring AOP 框架中的一个类，它实现了 `AspectJAdvisorFactory` 接口，用于根据 `@Aspect` 注解和其他切面注解来创建切面对象和切面通知对象。
+
+`ReflectiveAspectJAdvisorFactory` 主要有以下两个作用：
+
+1. 解析切面类中的注解：在 Spring AOP 框架中，切面类中的注解包括 `@Aspect`、`@Around`、`@Before`、`@After` 等注解。`ReflectiveAspectJAdvisorFactory` 会解析这些注解，并将其转化为相应的切面对象和切面通知对象。
+2. 创建切面对象和切面通知对象：`ReflectiveAspectJAdvisorFactory` 根据切面类中的注解信息，创建切面对象和切面通知对象。具体来说，对于 `@Aspect` 注解，它会创建一个 `AspectMetadata` 对象来保存切面类的信息，例如切面类的名称、切面类的方法、切面类的 Pointcut 表达式等信息。对于其他的切面注解，例如 `@Around`、`@Before`、`@After` 等注解，`ReflectiveAspectJAdvisorFactory` 则会创建相应的切面通知对象，例如 `MethodBeforeAdvice`、`MethodAfterAdvice` 等对象，并将其与切面对象组合成一个完整的切面对象。
+
+需要注意的是，`ReflectiveAspectJAdvisorFactory` 是 Spring AOP 框架中的一个默认实现类，它使用反射来生成切面对象和切面通知对象。除了 `ReflectiveAspectJAdvisorFactory` 之外，Spring AOP 框架还提供了其他实现 `AspectJAdvisorFactory` 接口的类，例如 `AnnotationAwareAspectJAutoProxyCreator`、`AspectJExpressionPointcutAdvisor` 等。这些类可以通过实现 `AspectJAdvisorFactory` 接口来自定义切面对象和切面通知对象的创建方式，从而实现更加灵活的 AOP 切面编程。
+
+
+
+
+ThrowsAdvice (org.springframework.aop)
+AfterReturningAdviceInterceptor (org.springframework.aop.framework.adapter)
+AspectJAfterAdvice (org.springframework.aop.aspectj)
+AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+ThrowsAdviceInterceptor (org.springframework.aop.framework.adapter)
+AfterReturningAdvice (org.springframework.aop)
+    AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+
+
+
+Interceptor (org.aopalliance.intercept)
+    MethodInterceptor (org.aopalliance.intercept)
+        AbstractSlsbInvokerInterceptor (org.springframework.ejb.access)
+        ProjectingMethodInterceptor (org.springframework.data.projection)
+        InputMessageProjecting in JsonProjectingMethodInterceptorFactory (org.springframework.data.web)
+        MethodValidationInterceptor (org.springframework.validation.beanvalidation)
+        XmlRpcProxyFactoryBean (org.apache.dubbo.xml.rpc.protocol.xmlrpc)
+        EventPublicationInterceptor (org.springframework.context.event)
+        TargetAwareMethodInterceptor in ProxyProjectionFactory (org.springframework.data.projection)
+        PersistenceExceptionTranslationInterceptor (org.springframework.dao.support)
+        JndiContextExposingInterceptor in JndiObjectFactoryBean (org.springframework.jndi)
+        AbstractTraceInterceptor (org.springframework.aop.interceptor)
+        RmiClientInterceptor (org.springframework.remoting.rmi)
+        IntroductionInterceptor (org.springframework.aop)
+        PropertyAccessingMethodInterceptor (org.springframework.data.projection)
+        HessianClientInterceptor (org.springframework.remoting.caucho)
+        AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+        DruidStatInterceptor (com.alibaba.druid.support.spring.stat)
+        ThrowsAdviceInterceptor (org.springframework.aop.framework.adapter)
+        ConnectionSplittingInterceptor in RedisConnectionUtils (org.springframework.data.redis.core)
+        CacheInterceptor (org.springframework.cache.interceptor)
+        JCacheInterceptor (org.springframework.cache.jcache.interceptor)
+        ExposeBeanNameInterceptor in ExposeBeanNameAdvisors (org.springframework.aop.interceptor)
+        JaxWsPortClientInterceptor (org.springframework.remoting.jaxws)
+        ExposeInvocationInterceptor (org.springframework.aop.interceptor)
+        ImplementationMethodExecutionInterceptor in RepositoryFactorySupport (org.springframework.data.repository.core.support)
+        AsyncExecutionInterceptor (org.springframework.aop.interceptor)
+        TransactionInterceptor (org.springframework.transaction.interceptor)
+        LockedScopedProxyFactoryBean in GenericScope (org.springframework.cloud.context.scope)
+        EventPublishingMethodInterceptor in EventPublishingRepositoryProxyPostProcessor (org.springframework.data.repository.core.support)
+        ConcurrencyThrottleInterceptor (org.springframework.aop.interceptor)
+        JndiRmiClientInterceptor (org.springframework.remoting.rmi)
+        RecordingMethodInterceptor in MethodInvocationRecorder (org.springframework.data.util)
+        RemoteInvocationTraceInterceptor (org.springframework.remoting.support)
+        AfterReturningAdviceInterceptor (org.springframework.aop.framework.adapter)
+        AspectJAfterAdvice (org.springframework.aop.aspectj)
+        AspectJAroundAdvice (org.springframework.aop.aspectj)
+        QueryExecutorMethodInterceptor (org.springframework.data.repository.core.support)
+        HttpInvokerClientInterceptor (org.springframework.remoting.httpinvoker)
+        MethodInvocationValidator (org.springframework.data.repository.core.support)
+        MBeanClientInterceptor (org.springframework.jmx.access)
+        GenericMessageEndpoint in GenericMessageEndpointFactory (org.springframework.jca.endpoint)
+        DefaultMethodInvokingMethodInterceptor (org.springframework.data.projection)
+        MapAccessingMethodInterceptor (org.springframework.data.projection)
+        DelegatingMethodInterceptor in ExtensionAwareQueryMethodEvaluationContextProvider (org.springframework.data.repository.query)
+        SpelEvaluatingMethodInterceptor (org.springframework.data.projection)
+        JsonRpcProxyFactoryBean (org.apache.dubbo.rpc.protocol.http)
+        SurroundingTransactionDetectorMethodInterceptor (org.springframework.data.repository.core.support)
+        ControllerMethodInvocationInterceptor in MvcUriComponentsBuilder (org.springframework.web.servlet.mvc.method.annotation)
+        MethodBeforeAdviceInterceptor (org.springframework.aop.framework.adapter)
+    ConstructorInterceptor (org.aopalliance.intercept)
+BeforeAdvice (org.springframework.aop)
+    MethodBeforeAdvice (org.springframework.aop)
+        AspectJMethodBeforeAdvice (org.springframework.aop.aspectj)
+    MethodBeforeAdviceInterceptor (org.springframework.aop.framework.adapter)
+DynamicIntroductionAdvice (org.springframework.aop)
+    IntroductionInterceptor (org.springframework.aop)
+        DelegatingIntroductionInterceptor (org.springframework.aop.support)
+            ExposeBeanNameIntroduction in ExposeBeanNameAdvisors (org.springframework.aop.interceptor)
+        DelegatePerTargetObjectIntroductionInterceptor (org.springframework.aop.support)
+AbstractAspectJAdvice (org.springframework.aop.aspectj)
+    AspectJAfterAdvice (org.springframework.aop.aspectj)
+    AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+    AspectJAroundAdvice (org.springframework.aop.aspectj)
+    AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+    AspectJMethodBeforeAdvice (org.springframework.aop.aspectj)
+AfterAdvice (org.springframework.aop)
+    ThrowsAdvice (org.springframework.aop)
+    AfterReturningAdviceInterceptor (org.springframework.aop.framework.adapter)
+    AspectJAfterAdvice (org.springframework.aop.aspectj)
+    AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+    AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+    ThrowsAdviceInterceptor (org.springframework.aop.framework.adapter)
+    AfterReturningAdvice (org.springframework.aop)
+        AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+Anonymous in Advisor (org.springframework.aop)
+Anonymous in InstantiationModelAwarePointcutAdvisorImpl (org.springframework.aop.aspectj.annotation)
