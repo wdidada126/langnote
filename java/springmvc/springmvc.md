@@ -1,5 +1,19 @@
 # springmvc
 
+spring-web
+spring-mvc这两个jar包的区别，相互调用关系
+
+
+`spring-web`和`spring-mvc`是两个不同的Spring模块，它们都属于Spring Framework的Web模块，用于构建Web应用程序。这两个模块之间存在相互依赖关系，但它们的主要功能和使用方式有所不同。
+
+`spring-web`模块提供了一些通用的Web支持类，例如`DispatcherServlet`、`WebApplicationInitializer`、`HttpMessageConverter`、`HandlerInterceptor`等。这些类提供了一些通用的Web功能，例如请求处理、HTTP消息转换、拦截器、异常处理等。`spring-web`模块还提供了一些与Web相关的工具类，例如`UriComponentsBuilder`、`UriTemplate`、`ServletServerHttpRequest`、`ServletServerHttpResponse`等。
+
+`spring-mvc`模块是基于`spring-web`模块构建的，它提供了一些特定于MVC的Web支持类，例如`RequestMappingHandlerMapping`、`RequestMappingHandlerAdapter`、`HandlerInterceptorAdapter`、`HandlerMethodReturnValueHandler`等。这些类提供了与MVC相关的Web功能，例如请求映射、控制器方法处理、视图解析、数据绑定等。`spring-mvc`模块还提供了一些与MVC相关的注解和接口，例如`@Controller`、`@RequestMapping`、`ModelAndView`等。
+
+可以说，`spring-mvc`模块是基于`spring-web`模块提供了更高级别的MVC功能。在使用Spring MVC框架时，通常需要同时使用`spring-web`和`spring-mvc`这两个模块。`spring-mvc`模块依赖于`spring-web`模块，并扩展了它的功能，提供了更丰富的MVC支持。当您需要使用MVC相关的功能时，可以只导入`spring-mvc`模块即可。如果您只需要使用通用的Web支持类，可以只导入`spring-web`模块。
+
+总之，`spring-web`和`spring-mvc`是两个不同的Spring模块，它们都属于Spring Framework的Web模块，用于构建Web应用程序。`spring-web`提供了一些通用的Web支持类和工具类，而`spring-mvc`则提供了更高级别的MVC功能，并扩展了`spring-web`的功能。在使用Spring MVC框架时，通常需要同时使用`spring-web`和`spring-mvc`这两个模块，`spring-mvc`依赖于`spring-web`模块，并扩展了它的功能，提供了更丰富的MVC支持。
+
 springmvc使用jsr303提供报错信息
 spring validate需要引用的jar包
 在使用 Spring 的数据校验（Validation）功能时，需要引用以下依赖：
@@ -566,7 +580,31 @@ mvc:default-servlet-handler/就是为了解决这个问题而存在的。当我�
 2.Controller还是访问不了
 
 <mvc:annotation-driven/>
+`<mvc:annotation-driven/>`是一个Spring MVC命名空间的元素，它的作用是启用注解驱动的Spring MVC配置。启用注解驱动的Spring MVC配置可以简化Spring MVC应用程序的配置，并提高开发效率。
 
+启用注解驱动的Spring MVC配置会自动注册多个关键组件，包括`HandlerMapping`、`HandlerAdapter`和`HTTP消息转换器`等。这些组件的作用是将请求映射到控制器方法，并将控制器方法返回的数据转换为HTTP响应格式。
+
+具体来说，启用注解驱动的Spring MVC配置会完成以下任务：
+
+1. 注册`RequestMappingHandlerMapping`：该组件会扫描所有带有`@Controller`或`@RestController`注解的类，并将它们注册为Spring bean。该组件还会解析`@RequestMapping`注解，将请求映射到相应的控制器方法。
+
+2. 注册`RequestMappingHandlerAdapter`：该组件负责将控制器方法返回的数据转换为HTTP响应格式。该组件会自动注册多个HTTP消息转换器，包括`MappingJackson2HttpMessageConverter`，以便让Spring MVC能够正确地处理JSON格式的请求和响应。
+
+3. 注册`ExceptionHandlerExceptionResolver`：该组件负责处理控制器方法抛出的异常，并将异常信息转换为HTTP响应格式。该组件还会解析`@ExceptionHandler`注解，将异常映射到相应的异常处理方法。
+
+4. 注册`DefaultRequestToViewNameTranslator`：该组件负责将请求转换为视图名称，以便在控制器方法中使用`View`或`ModelAndView`返回视图。
+
+5. 注册`BeanNameViewResolver`：该组件负责将视图名称解析为Spring bean，并返回一个`View`对象。
+
+6. 注册`ContentNegotiationManager`：该组件负责根据请求的媒体类型选择适当的HTTP消息转换器。
+
+7. 注册`MessageCodesResolver`：该组件负责将数据绑定错误信息转换为错误代码。
+
+通过启用注解驱动的Spring MVC配置，您可以使用`@Controller`、`@RestController`、`@RequestMapping`等注解来定义控制器类和控制器方法，而无需显式地声明和配置`HandlerMapping`、`HandlerAdapter`和HTTP消息转换器等组件。这样可以大大简化Spring MVC应用程序的配置，并提高开发效率。
+
+需要注意的是，启用注解驱动的Spring MVC配置是使用注解定义控制器类和控制器方法的关键步骤之一。如果您未启用注解驱动的Spring MVC配置，则无法使用`@Controller`、`@RestController`、`@RequestMapping`等注解来定义控制器类和控制器方法。在这种情况下，您需要手动配置`HandlerMapping`、`HandlerAdapter`和`HTTP消息转换器`等组件，并将它们注册为Spring bean。只有这样，Spring MVC才能正确地将请求映射到控制器方法，并将控制器方法返回的数据转换为HTTP响应格式。
+
+因此，启用注解驱动的Spring MVC配置是Spring MVC应用程序的关键配置之一，它可以简化Spring MVC应用程序的配置，并提高开发效率。
 如何理解servlet web.xml和springmvc的关系
 
 
@@ -893,3 +931,107 @@ RestTemplate 可以使用Netty实现
                 }
             });
 ```
+
+MappingJackson2HttpMessageConverter这个类如何记忆？
+hmc接口
+
+HttpMessageConverter
+
+![HttpMessageConverter methods](../../imgs/HttpMessageConverter.png)
+
+
+	boolean canWrite(Class<?> clazz, @Nullable MediaType mediaType);
+	List<MediaType> getSupportedMediaTypes();
+    read()
+    write()
+
+MappingJackson2HttpMessageConverter  在spring-web这个jar包中
+
+org.springframework.http.MediaType#APPLICATION_JSON  application/json
+根据需要生成response的格式调用，是json调用MappingJackson2HttpMessageConverter，xml调用MappingJackson2XmlMessageConverter/MappingJackson2XmlHttpMessageConverter，如果文件读写，pdf是支持的 PdfView
+HttpMessageConverter接口的实现类
+
+
+AbstractHttpMessageConverter类有个属性，
+	private List<MediaType> supportedMediaTypes = Collections.emptyList();
+
+
+AbstractHttpMessageConverter (org.springframework.http.converter)
+    SourceHttpMessageConverter (org.springframework.http.converter.xml)
+    FastJsonHttpMessageConverter (com.alibaba.fastjson.support.spring)
+    ResourceHttpMessageConverter (org.springframework.http.converter)
+    ByteArrayHttpMessageConverter (org.springframework.http.converter)
+    AbstractXmlHttpMessageConverter (org.springframework.http.converter.xml)
+    ObjectToStringHttpMessageConverter (org.springframework.http.converter)
+    SpringManyMultipartFilesReader (feign.form.spring.converter)
+    AbstractWireFeedHttpMessageConverter (org.springframework.http.converter.feed)
+    XmlBeamHttpMessageConverter (org.springframework.data.web)
+    AbstractGenericHttpMessageConverter (org.springframework.http.converter)
+    ProtobufHttpMessageConverter (org.springframework.http.converter.protobuf)
+    StringHttpMessageConverter (org.springframework.http.converter)
+FormHttpMessageConverter (org.springframework.http.converter)
+    AllEncompassingFormHttpMessageConverter (org.springframework.http.converter.support)
+BufferedImageHttpMessageConverter (org.springframework.http.converter)
+GenericHttpMessageConverter (org.springframework.http.converter)
+    FastJsonHttpMessageConverter (com.alibaba.fastjson.support.spring)
+    Jaxb2CollectionHttpMessageConverter (org.springframework.http.converter.xml)
+    AbstractGenericHttpMessageConverter (org.springframework.http.converter)
+
+
+
+`MappingJackson2HttpMessageConverter`是Spring MVC提供的一个HTTP消息转换器，用于将Java对象序列化成JSON字符串，并将其设置为HTTP响应的数据体。在Spring MVC中，默认情况下会注册`MappingJackson2HttpMessageConverter`，因此您无需手动进行配置即可使用它。
+
+当一个请求被处理后，Spring MVC会根据请求的媒体类型选择适当的HTTP消息转换器。如果客户端请求的是JSON格式的数据，那么Spring MVC就会选择`MappingJackson2HttpMessageConverter`来处理请求。当Controller方法返回一个Java对象时，`MappingJackson2HttpMessageConverter`会将该Java对象序列化成JSON字符串，并将其设置为HTTP响应的数据体。
+
+下面是`MappingJackson2HttpMessageConverter`的相关源码：
+
+```java
+public class MappingJackson2HttpMessageConverter extends AbstractJackson2HttpMessageConverter {
+
+    public MappingJackson2HttpMessageConverter() {
+        super(Jackson2ObjectMapperBuilder.json().build(), MediaType.APPLICATION_JSON);
+    }
+
+    @Override
+    protected void writeInternal(Object object, Type type, HttpOutputMessage outputMessage)
+            throws IOException, HttpMessageNotWritableException {
+        ObjectMapper objectMapper = getObjectMapper();
+        JsonEncoding encoding = getJsonEncoding(outputMessage.getHeaders().getContentTypeCharset());
+        JsonGenerator jsonGenerator = objectMapper.getFactory().createGenerator(outputMessage.getBody(), encoding);
+
+        try {
+            objectMapper.writeValue(jsonGenerator, object);
+        }
+        catch (JsonProcessingException ex) {
+            throw new HttpMessageNotWritableException("Could not write JSON: " + ex.getMessage(), ex);
+        }
+    }
+}
+```
+
+在上述代码中，`MappingJackson2HttpMessageConverter`继承自`AbstractJackson2HttpMessageConverter`，该类实现了`HttpMessageConverter`接口，用于在HTTP请求和响应的数据体和Java对象之间进行转换。`MappingJackson2HttpMessageConverter`类的构造函数会创建一个默认的`ObjectMapper`对象，并将其注册为HTTP消息转换器，同时指定了默认的媒体类型为`MediaType.APPLICATION_JSON`。
+
+在`writeInternal()`方法中，`MappingJackson2HttpMessageConverter`使用`getObjectMapper()`方法获取`ObjectMapper`对象，并使用`getJsonEncoding()`方法获取JSON的编码方式。然后，它使用`ObjectMapper`的`writeValue()`方法将Java对象序列化成JSON字符串，并将其写入HTTP响应的数据体中。
+
+需要注意的是，`MappingJackson2HttpMessageConverter`默认情况下会使用`ObjectMapper`对象来序列化Java对象，而`ObjectMapper`是Jackson库中的核心类，用于将Java对象序列化成JSON字符串或将JSON字符串反序列化成Java对象。`ObjectMapper`提供了各种方法和配置选项，用于控制序列化和反序列化过程中的细节。
+
+在`MappingJackson2HttpMessageConverter`中，默认使用的`ObjectMapper`对象是由`Jackson2ObjectMapperBuilder`类创建的。`Jackson2ObjectMapperBuilder`类是一个构建器类，用于创建`ObjectMapper`对象，并提供了各种配置选项，例如日期格式、空值处理、忽略未知属性等。`MappingJackson2HttpMessageConverter`使用`Jackson2ObjectMapperBuilder`创建的`ObjectMapper`对象来完成Java对象到JSON字符串的转换。
+
+以下是一个简单的示例，演示了如何手动创建`ObjectMapper`对象，并使用它将Java对象序列化成JSON字符串：
+
+```java
+public class MyObject {
+    private String name;
+    private int age;
+
+    // 省略getter和setter方法
+}
+
+ObjectMapper objectMapper = new ObjectMapper();
+MyObject myObject = new MyObject();
+myObject.setName("Alice");
+myObject.setAge(18);
+String json = objectMapper.writeValueAsString(myObject);
+System.out.println(json);在上述代码中，我们手动创建了一个`ObjectMapper`对象，并将一个`MyObject`对象序列化成了JSON字符串。`ObjectMapper`对象提供了`writeValueAsString()`方法，用于将Java对象序列化成JSON字符串。
+
+需要注意的是，`ObjectMapper`对象的默认配置可能无法满足您的需求，例如日期格式、空值处理、忽略未知属性等。因此，您可能需要使用`ObjectMapper`对象提供的各种配置选项来控制序列化和反序列化过程中的细节。

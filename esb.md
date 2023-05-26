@@ -62,3 +62,123 @@ ServiceMix：对于Talend ESB部分能力也基于Camel，而对于ServiceMix则
 如同Apache ServiceMix一样,Open ESB也实现了JBI规范
 
 WSO2有实践
+
+
+
+esb http协议转soap
+
+ESB通常用于连接不同的系统与应用,将不同协议的数据进行转化是一个常见任务。
+对于需要将HTTP请求转化为SOAP请求的场景,ESB可以通过以下方式实现:
+1. 配置HTTP监听端口
+首先,我们需要在ESB上配置一个HTTP监听端口,用于接收HTTP请求。
+2. 定义消息转化路由
+然后,我们需要定义一个消息路由,用来将传入的HTTP请求转化为SOAP请求。
+3. 实现消息转化逻辑
+消息路由中的转化逻辑主要做以下事情:
+- 解析HTTP请求,获取相关信息如URL参数、Header信息、请求Body等
+- 根据这些信息,构造一个SOAP请求。包括soap:Envelope根节点,methodName等。
+- 将构造的SOAP请求作为转发目标。
+4. 发送SOAP请求
+构造完SOAP请求后,ESB可以采用不同的方式发送SOAP请求:
+- 直接使用SOAP连接,如JAX-WS
+- 使用HTTP POST,将SOAP请求发送到目标URL
+- 发往消息总线,使用消息代理模式
+5. 接收SOAP返回结果
+一旦ESB接收到SOAP返回结果后,同样需要实现转化逻辑:
+- 解析SOAP返回结果,获取返回值
+- 构造HTTP相应,设置响应码和响应Body
+- 返回HTTP响应给原始请求方
+总的来说,通过在ESB上实现HTTP监听和消息路由,定义好消息转化逻辑,就可以将HTTP请求转化为SOAP请求,最终将SOAP结果再转化为HTTP响应返回。
+主要涉及解析请求、构造请求、发送请求和解析结果四个环节。希望可以为您提供参考!如果还有其他疑问,欢迎随时提出,我会尽量为您解答。
+
+
+
+WSO2 ESB可以用于执行不同协议的转换,包括HTTP to SOAP协议转换。
+
+配置HTTP监听端口:
+
+```xml
+<http.listener port="9000" stats="enable" trace="enable" ... >  
+   <server-mappings>  
+       <server url-mapping="/service/*"/>
+   </server-mappings> 
+</http.listener>
+```
+
+定义HTTP到SOAP的转换逻辑:
+
+```xml
+<proxy name="ConvertToSoap" transports="http" startOnLoad="true" trace="enable">
+  
+   <target>
+       <inSequence>
+           ... 解析HTTP请求,获取URL、参数、Body ...
+           <!-- 构造SOAP请求 -->
+           <property name="messageType" value="text/xml"/>
+           <payloadFactory media-type="xml">  
+               <format>  
+                   <soap:Envelope ...>  
+                       <soap:Body>
+                           <m:methodName> ... </m:methodName>    
+                       </soap:Body>
+                   <soap:Envelope>
+               </format>                 
+           </payloadFactory> 
+           <!-- 发送SOAP请求 -->  
+           <send>
+               <endpoint>
+                  <address uri="http://soap.service.com/service" />
+               </endpoint>  
+           </send> 
+       </inSequence> 
+       <outSequence>
+           ... 解析SOAP响应,并构造并返回HTTP响应 ... 
+       </outSequence>
+   </target>
+</proxy>
+```
+
+主要步骤:
+
+- 定义HTTP监听端口
+- 通过XML配置定义转换逻辑的Proxy
+- 在`<inSequence>`中解析HTTP请求和构造SOAP请求
+- 使用`<send>`发送SOAP请求
+- 在`<outSequence>`解析SOAP响应并构造HTTP响应
+
+主要元素:
+
+- `<property>` - 设置消息类型
+- `<payloadFactory>` - 构造SOAP请求
+- `<send>` - 发送SOAP请求
+- `Synapse Constants` - 存放解析出的HTTP信息
+
+WSO2 ESB通过简单 yet 强大的XML配置,可以实现不同协议之间的转换。
+
+从WSO2 ESB源码来看,协议转换逻辑主要在以下几个类中:
+1. SynapseMessageReceiver:
+负责接收不同协议的消息,例如HTTP请求。它会对不同类型的消息进行封装,生成相应的SynapseMessage。
+2. SynapseMessage:
+封装了消息的各个属性,如消息内容、消息头、携带的属性等。SynapseMessage封装不同协议的消息的公共属性。
+3. AbstractHandler:
+负责执行消息路由和转换的具体逻辑。它实现了Mediator接口,从而可以作为Mediator注入到路由中。
+4. PayloadFactoryMediator:  
+具体实现Payload Factory 功能,用于构造 neue 消息内容。主要用于消息体的转换。
+5. SendMediator:
+发送转换后的消息内容给目标地址。
+6. RespondMediator:
+根据返回结果构造新的响应消息。
+7. RespondMediator:
+用于解析返回结果,提取数据,并构造新的响应消息。
+总的来说:
+- SynapseMessageReceiver和SynapseMessage负责封装不同协议的消息。
+- AbstractHandler实现了转换逻辑,是路由的主线。
+- PayloadFactoryMediator用于构造新的消息体。
+- SendMediator发送转换后的消息。
+- RespondMediator解析结果并构造响应。
+它们共同协作,实现了WSO2 ESB中的协议转换功能。
+SynapseMessage类似于传统的Message对象,统一封装不同协议的消息。
+AbstractHandler中调用具体的Mediator实现转换。
+希望这能清楚地说明在WSO2 ESB源码中,协议转换主要的角色类。
+
+

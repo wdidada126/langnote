@@ -40,6 +40,44 @@ public enum Fruit {
 }
 ```
 
+当HTTP请求中传递0或1时，如果您的服务器端代码中使用了Java枚举类型来表示状态，您可以使用Jackson库的`@JsonCreator`注解来自定义反序列化逻辑，将0和1分别映射到枚举类型的不同值。
+
+下面是一个示例，演示了如何在服务器端接收HTTP请求中的状态值，并将其映射到枚举类型的不同值：
+
+```java
+public enum Status {
+    SUCCESS, FAILURE;
+
+    @JsonCreator
+    public static Status fromInt(int value) {
+        return value == 0 ? SUCCESS : FAILURE;
+    }
+}
+```
+
+在上述示例中，`Status`是一个简单的枚举类型，包含了两个状态值：`SUCCESS`和`FAILURE`。`@JsonCreator`注解被用于静态的`fromInt()`方法上，表示在反序列化时将使用该方法来创建枚举类型。在`fromInt()`方法中，我们根据传入的整数值（0或1）来选择相应的枚举类型。
+
+在处理HTTP请求时，您可以将状态值作为HTTP参数传递，并使用`@RequestParam`注解来接收该参数。例如：
+
+```java
+@RestController
+public class MyController {
+
+    @PostMapping("/myendpoint")
+    public MyResponse handleRequest(@RequestParam("status") Status status) {
+        // 处理请求，并返回一个MyResponse对象
+        MyResponse response = new MyResponse();
+        response.setStatus(status);
+        return response;
+    }
+}
+```
+
+在上述示例中，`@RequestParam("status")`注解表示将HTTP参数中名为`status`的值映射到`Status`类型的`status`参数上。当HTTP请求中传递0时，`status`参数将被映射到`SUCCESS`枚举值；当传递1时，`status`参数将被映射到`FAILURE`枚举值。
+
+需要注意的是，如果HTTP参数中传递的值不是0或1，那么`fromInt()`方法将会抛出`IllegalArgumentException`异常。因此，您需要在代码中进行相应的异常处理。
+
+
 支持json和xml
 springmvc默认的json序列化 反序列化工具
 

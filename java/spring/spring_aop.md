@@ -476,3 +476,345 @@ AfterAdvice (org.springframework.aop)
         AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
 Anonymous in Advisor (org.springframework.aop)
 Anonymous in InstantiationModelAwarePointcutAdvisorImpl (org.springframework.aop.aspectj.annotation)
+
+
+
+自定义注解，被这个注解修饰的方法执行aop
+
+要使被自定义注解修饰的方法执行AOP，可以使用Spring AOP中的注解方式来实现。
+
+首先，需要定义一个自定义注解，例如：
+
+```
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyCustomAnnotation {
+}
+```
+
+上述代码定义了一个名为`MyCustomAnnotation`的注解，它可以被用于方法上，并且在运行时保留注解信息。
+
+然后，在需要执行AOP的方法上，使用`@MyCustomAnnotation`注解进行修饰，例如：
+
+```
+@Service
+public class MyService {
+    
+    @MyCustomAnnotation
+    public void doSomething() {
+        // ...
+    }
+}
+```
+
+上述代码表示在`doSomething()`方法上使用`@MyCustomAnnotation`注解进行修饰。接下来，可以使用Spring AOP中的`@Around`注解定义一个切面，并使用`@Pointcut`注解定义切点，来拦截所有被`@MyCustomAnnotation`注解修饰的方法。例如：
+
+```
+@Aspect
+@Component
+public class MyCustomAnnotationAspect {
+    
+    @Pointcut("@annotation(com.example.MyCustomAnnotation)")
+    public void myCustomAnnotationPointcut() {}
+    
+    @Around("myCustomAnnotationPointcut()")
+    public Object myCustomAnnotationAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+        // 在方法执行前执行一些逻辑
+        System.out.println("before method execution");
+        
+        // 执行被拦截的方法
+        Object result = joinPoint.proceed();
+        
+        // 在方法执行后执行一些逻辑
+        System.out.println("after method execution");
+        
+        return result;
+    }
+}
+
+上述代码定义了一个名为`MyCustomAnnotationAspect`的切面，它使用`@Pointcut`注解定义了一个切点`myCustomAnnotationPointcut()`，用于拦截所有被`@MyCustomAnnotation`注解修饰的方法。在切面中，使用`@Around`注解定义了一个环绕通知`myCustomAnnotationAdvice()`，它在方法执行前和方法执行后分别执行一些逻辑，并调用`joinPoint.proceed()`方法来继续执行被拦截的方法。
+
+最后，在Spring配置文件中启用AOP和组件扫描功能，例如：
+
+```
+<aop:aspectj-autoproxy />
+<context:component-scan base-package="com.example" />
+```
+
+上述代码启用了AOP和组件扫描功能，并设置了扫描的包路径。
+
+在应用程序运行时，当调用`MyService`类中的`doSomething()`方法时，该方法将被`MyCustomAnnotationAspect`切面拦截，执行前后的逻辑，并最终执行`doSomething()`方法的原始逻辑。
+
+
+@Pointcut("@annotation(com.example.MyCustomAnnotation)")
+的原理
+
+`@Pointcut("@annotation(com.example.MyCustomAnnotation)")`表示一个切点表达式，用于匹配所有被`com.example.MyCustomAnnotation`注解修饰的方法，从而实现对这些方法的AOP拦截和增强。
+
+具体地说，`@Pointcut`注解的参数是一个切点表达式，用于定义需要匹配的连接点。在这个切点表达式中，`@annotation`是一个指示符，用于指示匹配所有被注解修饰的方法；而`com.example.MyCustomAnnotation`则是需要匹配的注解类型。因此，`@Pointcut("@annotation(com.example.MyCustomAnnotation)")`表示匹配所有被`com.example.MyCustomAnnotation`注解修饰的方法。
+
+在方法调用时，Spring框架会通过反射机制获取方法上的注解信息，并根据注解信息判断是否需要应用AOP拦截和增强。如果一个方法被`com.example.MyCustomAnnotation`注解修饰，那么它就会被`@Pointcut("@annotation(com.example.MyCustomAnnotation)")`所匹配，从而被拦截并执行AOP增强逻辑。
+
+AOP的实现原理是通过代理模式来实现的。在Spring框架中，当一个bean被注册到容器中时，Spring会根据其类型和声明的注解信息，动态生成一个代理对象，并将其注册到容器中。当调用该bean的方法时，实际上是调用代理对象的方法，从而实现了对方法调用的拦截和增强。
+
+对于被`com.example.MyCustomAnnotation`注解修饰的方法，Spring框架会在生成代理对象时，检测该方法上是否存在该注解，并根据注解信息动态生成一个对应的增强逻辑。当调用该方法时，代理对象会先执行增强逻辑，然后再执行原始的方法逻辑，从而实现了对该方法的拦截和增强。
+
+总之，`@Pointcut("@annotation(com.example.MyCustomAnnotation)")`的原理是通过匹配被注解修饰的方法，从而实现对这些方法的AOP拦截和增强。在实现过程中，Spring框架会根据注解信息生成代理对象，并动态生成对应的增强逻辑，从而实现了对方法调用的拦截和增强。
+
+
+切点表达式有哪些指示符 除了@Annotation
+
+
+除了`@annotation`指示符，Spring AOP中还支持以下几种切点表达式指示符：
+1. `execution`：匹配方法执行的连接点。例如，`execution(* com.example.service.*.*(..))`表示匹配`com.example.service`包下的任意类的任意方法。
+2. `within`：匹配指定类或包中所有方法的连接点。例如，`within(com.example.service.*)`表示匹配`com.example.service`包中所有类的所有方法。
+3. `this`：匹配当前代理对象所实现的接口类型的连接点。例如，`this(com.example.MyInterface)`表示匹配当前代理对象实现了`com.example.MyInterface`接口的方法。
+4. `target`：匹配当前目标对象所实现的接口类型的连接点。例如，`target(com.example.MyInterface)`表示匹配当前目标对象实现了`com.example.MyInterface`接口的方法。
+5. `args`：匹配方法参数类型的连接点。例如，`args(String)`表示匹配接受一个字符串类型参数的方法。
+6. `bean`：匹配指定bean名称的连接点。例如，`bean(myService)`表示匹配名称为`myService`的bean的所有方法。
+需要注意的是，以上的切点表达式指示符可以结合使用，从而实现更精细的AOP拦截和增强。例如，`execution(* com.example.service.*.*(..)) && @annotation(com.example.MyCustomAnnotation)`表示匹配`com.example.service`包下所有被`com.example.MyCustomAnnotation`注解修饰的方法。这样的切点表达式既限定了匹配的方法范围，又限定了匹配的注解类型，从而实现了更精细的AOP拦截和增强。
+
+除了以上的指示符，Spring AOP还支持更加高级的切点表达式，例如使用`bean()`指示符匹配所有实现了特定接口的bean，或者使用`@within()`指示符匹配所有在特定注解类型所标识的类中声明的方法等。可以根据具体的需求选择合适的切点表达式指示符，从而实现精细化的AOP拦截和增强。
+
+
+@annotation 这个指示符在spring-aop这个jar包中对应的类
+
+ControlFlowPointcut (org.springframework.aop.support)
+ComposablePointcut (org.springframework.aop.support)
+DynamicMethodMatcherPointcut (org.springframework.aop.support)
+    PerTargetInstantiationModelPointcut in InstantiationModelAwarePointcutAdvisorImpl (org.springframework.aop.aspectj.annotation)
+ExpressionPointcut (org.springframework.aop.support)
+    AbstractExpressionPointcut (org.springframework.aop.support)
+        AspectJExpressionPointcut (org.springframework.aop.aspectj)
+TruePointcut (org.springframework.aop)
+AnnotationMatchingPointcut (org.springframework.aop.support.annotation)
+StaticMethodMatcherPointcut (org.springframework.aop.support)
+    StaticMethodMatcherPointcutAdvisor (org.springframework.aop.support)
+    TransactionAttributeSourcePointcut (org.springframework.transaction.interceptor)
+        Anonymous in TransactionAttributeSourceAdvisor (org.springframework.transaction.interceptor)
+        Anonymous in BeanFactoryTransactionAttributeSourceAdvisor (org.springframework.transaction.interceptor)
+    SetterPointcut in Pointcuts (org.springframework.aop.support)
+    JCacheOperationSourcePointcut (org.springframework.cache.jcache.interceptor)
+        Anonymous in BeanFactoryJCacheOperationSourceAdvisor (org.springframework.cache.jcache.interceptor)
+    CacheOperationSourcePointcut (org.springframework.cache.interceptor)
+        Anonymous in BeanFactoryCacheOperationSourceAdvisor (org.springframework.cache.interceptor)
+    GetterPointcut in Pointcuts (org.springframework.aop.support)
+    AbstractRegexpMethodPointcut (org.springframework.aop.support)
+        JdkRegexpMethodPointcut (org.springframework.aop.support)
+    NameMatchMethodPointcut (org.springframework.aop.support)
+
+
+在Spring AOP中，`execution`指示符没有对应的类，它是AspectJ切点表达式语言中的一个关键字，用于匹配方法执行的连接点，用法如下：
+
+```
+execution(modifiers-pattern? ret-type-pattern declaring-type-pattern?name-pattern(param-pattern)throws-pattern?)
+```
+
+其中，各个pattern表示匹配规则，例如：
+
+- `modifiers-pattern`：表示方法的修饰符，例如`public`、`protected`、`private`等；
+- `ret-type-pattern`：表示方法返回值类型，例如`void`、`int`、`java.lang.String`等；
+- `declaring-type-pattern`：表示方法所在类的全路径名，例如`com.example.service.MyService`；
+- `name-pattern`：表示方法名，例如`doSomething`、`*Something`等；
+- `param-pattern`：表示方法参数类型和个数，例如`(int, java.lang.String)`、`(*)`等；
+- `throws-pattern`：表示方法抛出的异常类型，例如`java.lang.Exception`。
+
+`execution`指示符可以根据以上各个pattern来匹配方法，从而实现对方法的拦截和增强。在Spring AOP中，可以使用`AspectJExpressionPointcut`类来解析和匹配`execution`指示符，例如：
+
+```
+AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+pointcut.setExpression("execution(* com.example.service.*.*(..))");
+```
+
+上述代码使用`AspectJExpressionPointcut`类创建了一个切点对象，并通过`setExpression()`方法设置切点表达式。在实际应用中，可以将该切点对象传入到AOP拦截器中，从而实现对匹配方法的拦截和增强。
+
+需要注意的是，在Spring AOP中，`execution`指示符可以与其他指示符（如`@annotation`、`bean`、`args`等）组合使用，从而实现更精细的AOP拦截和增强。例如，`execution(* com.example.service.*.*(..)) && @annotation(com.example.MyCustomAnnotation)`表示匹配`com.example.service`包下所有被`com.example.MyCustomAnnotation`注解修饰的方法。
+
+
+within this target是关键字吗？
+`within`、`this`和`target`不是关键字，它们是AspectJ切点表达式语言中的指示符，用于匹配连接点的类型或实例。
+具体来说，这些指示符的作用如下：
+
+- `within`：匹配指定类或包中所有方法的连接点；
+- `this`：匹配当前代理对象所实现的接口类型的连接点；
+- `target`：匹配当前目标对象所实现的接口类型的连接点。
+在Spring AOP中，这些指示符也被支持，并且可以与其他指示符（如`execution`、`@annotation`、`bean`、`args`等）组合使用，从而实现更加精细的AOP拦截和增强。
+
+需要注意的是，这些指示符在使用时需要注意语法和语义，否则可能会导致匹配失败或产生意外的结果。例如，在使用`this`指示符时，需要注意当前代理对象所实现的接口类型，而非代理对象本身的类型；在使用`target`指示符时，需要注意当前目标对象所实现的接口类型，而非目标对象本身的类型。
+
+在Spring AOP中，`@annotation`指示符对应的类是`org.springframework.aop.support.annotation.AnnotationMatchingPointcut`。
+
+`AnnotationMatchingPointcut`是一个切点实现类，用于匹配带有特定注解的方法。它实现了`org.springframework.aop.ClassFilter`和`org.springframework.aop.MethodMatcher`接口，可以用于对类和方法进行拦截和增强。
+
+在`AnnotationMatchingPointcut`类中，通过`@annotation`指示符和注解类型来匹配被注解修饰的方法。具体地说，它通过获取目标类上和方法上的注解信息，判断方法是否被指定注解所修饰，从而实现对该方法的拦截和增强。
+
+在使用`@annotation`指示符时，可以通过创建一个`AnnotationMatchingPointcut`对象，并将注解类型作为参数传入，来实现对该注解的匹配。例如，下面的代码使用`@annotation`指示符匹配所有被`com.example.MyCustomAnnotation`注解修饰的方法：
+
+```
+AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(com.example.MyCustomAnnotation.class);
+```
+
+需要注意的是，`AnnotationMatchingPointcut`类是Spring AOP的内部实现类，一般不需要直接使用它来实现AOP拦截和增强。在实际开发中，可以使用Spring AOP提供的注解方式或编程方式来实现AOP拦截和增强，而不需要直接操作`AnnotationMatchingPointcut`类。
+
+对于注解方式，可以使用`@Pointcut`注解和`@Around`注解来定义切点和增强逻辑，例如：
+
+```
+@Pointcut("@annotation(com.example.MyCustomAnnotation)")
+public void myCustomAnnotationPointcut() {}
+
+@Around("myCustomAnnotationPointcut()")
+public Object myCustomAnnotationAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+    // ...
+}
+```
+
+对于编程方式，可以使用`AspectJExpressionPointcut`类来实现切点表达式的解析和匹配，例如：
+
+```
+AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+pointcut.setExpression("execution(* com.example.service.*.*(..)) && @annotation(com.example.MyCustomAnnotation)");
+```
+
+上述代码使用`AspectJExpressionPointcut`类创建了一个切点对象，并通过`setExpression()`方法设置切点表达式。在实际应用中，可以将该切点对象传入到AOP拦截器中，从而实现对匹配方法的拦截和增强。
+
+在Spring AOP中，当一个bean被注册到IoC容器中时，Spring框架会为其创建一个代理对象，并将其放入容器中。这个代理对象包含了原始bean对象的所有方法，并在方法调用时执行AOP拦截和增强。
+
+在AOP拦截和增强的过程中，Spring框架会遍历所有注册的切点，对每个切点表达式进行正则匹配，以判断当前方法是否需要被拦截和增强。如果当前方法匹配了某个切点表达式，那么Spring框架会根据该切点表达式所定义的增强逻辑，生成一个对应的增强器，并将其应用到当前方法上。增强器可以是一个前置通知、后置通知、环绕通知、异常通知或引介通知，它们分别对应不同的AOP增强类型。
+
+spring如何获取spring aop代理对象的信息？
+
+在Spring中，获取Spring AOP代理对象的信息可以使用`AopContext`类，该类提供了获取当前代理对象的静态方法`currentProxy()`以及获取当前代理对象的目标对象的方法`getTarget()`，可以用于获取代理对象的相关信息。
+
+具体来说，可以通过以下步骤来获取代理对象的信息：
+
+1. 在需要获取代理对象信息的类中，注入一个`ApplicationContext`对象，用于获取`AopContext`对象。
+
+2. 在需要获取代理对象信息的方法中，通过`AopContext.currentProxy()`方法获取当前代理对象。
+
+3. 通过代理对象的类信息、方法信息等，获取代理对象的相关信息。
+
+下面是一个示例代码：
+
+```
+@Service
+public class MyService {
+    @Autowired
+    private ApplicationContext context;
+
+    public void doSomething() {
+        // 获取当前代理对象
+        MyService proxy = (MyService) AopContext.currentProxy();
+
+        // 获取代理对象的相关信息
+        Class<?> clazz = proxy.getClass();
+        Method[] methods = clazz.getMethods();
+        String methodName = methods[0].getName();
+
+        // 输出代理对象的信息
+        System.out.println("Proxy class: " + clazz.getName());
+        System.out.println("Method name: " + methodName);
+   需要注意的是，使用`AopContext`类获取代理对象信息需要满足以下条件：
+
+1. 代理对象必须是基于接口的代理对象，而非基于类的代理对象。
+2. 代理对象必须开启了`exposeProxy`选项，以允许AopContext类访问当前代理对象。
+在默认情况下，Spring AOP不会开启`exposeProxy`选项，因此需要手动开启。可以在使用`@EnableAspectJAutoProxy`注解时指定`exposeProxy=true`，或在XML配置文件中使用`<aop:aspectj-autoproxy expose-proxy="true"/>`来开启该选项。
+
+AopContext
+org.springframework.aop.framework.AopContext
+
+
+Spring AOP是Spring框架的一个核心模块，它提供了基于代理的AOP实现，支持切面、切点、通知、增强等AOP概念和功能。Spring AOP的源码主要包含以下几个jar包：
+
+1. spring-aop.jar：包含Spring AOP的核心实现类和接口，如`AspectJExpressionPointcut`、`JdkDynamicAopProxy`、`CglibAopProxy`、`AbstractAutoProxyCreator`等。
+
+2. spring-aspects.jar：包含Spring AOP的扩展功能和切面库，如`@Aspect`、`@Pointcut`、`@Before`、`@After`、`@Around`等注解和`AspectJAfterAdvice`、`AspectJAroundAdvice`等增强器。
+
+3. spring-context.jar：包含Spring IoC容器的核心实现类和接口，如`ApplicationContext`、`BeanFactory`、`BeanPostProcessor`、`BeanDefinition`等。
+
+4. spring-core.jar：包含Spring框架的核心实现类和接口，如`Resource`、`ResourceLoader`、`StringUtils`、`ClassUtils`等工具类和`FactoryBean`、`InitializingBean`、`DisposableBean`等生命周期接口。
+
+5. spring-beans.jar：包含Spring框架的Bean相关实现类和接口，如`BeanWrapper`、`BeanDefinitionRegistry`、`BeanDefinitionReader`等。
+
+接下来，我将简要介绍spring-aop.jar中一些常用类的作用和实现原理：
+
+1. `AspectJExpressionPointcut`类：用于解析和匹配AspectJ切点表达式。它继承了`StaticMethodMatcherPointcut`类，并实现了`Serializable`接口，可以序列化和反序列化。在实现上，`AspectJExpressionPointcut`类使用AspectJ的解析器来解析切点表达式，并将解析结果封装成一个`PointcutExpression`对象，然后通过`matches()`方法来匹配连接点和切点表达式。
+
+2. `JdkDynamicAopProxy`类：用于基于JDK动态代理实现AOP代理对象。它实现了`AopProxy`接口，并包含一个`InvocationHandler`对象和一个`AdvisedSupport`对象。在实现上，`JdkDynamicAopProxy`类通过`Proxy.newProxyInstance()`方法创建一个代理对象，并将`InvocationHandler`对象作为参数传入，以实现AOP拦截和增强。在代理对象的方法调用时，`InvocationHandler`对象会根据其包含的`AdvisedSupport`对象来判断当前方法是否需要被拦截和增强，如果需要，则执行相应的增强器。
+
+3. `CglibAopProxy`类：用于基于CGLIB动态代理实现AOP代理对象。它实现了`AopProxy`接口，并包含一个`MethodInterceptor`对象和一个`AdvisedSupport`对象。在实现上，`CglibAopProxy`类通过`Enhancer.create()`方法创建一个代理对象，并将`MethodInterceptor`对象作为回调函数传入，以实现AOP拦截和增强。在代理对象的方法调用时，`MethodInterceptor`对象会根据其包含的`AdvisedSupport`对象来判断当前方法是否需要被拦截和增强，如果需要，则执行相应的增强器。
+
+4. `AbstractAutoProxyCreator`类：用于自动创建AOP代理对象的抽象类。它实现了`BeanPostProcessor`接口和`BeanFactoryAware`接口，并包含一个`AopInfrastructureBean`集合、一个`ProxyFactory`对象和一个`BeanFactory`对象。在实现上，`AbstractAutoProxyCreator`类通过实现`BeanPostProcessor`接口，在Bean初始化之前和之后，分别创建和应用AOP代理对象。在创建AOP代理对象时，它会根据Bean的类型和名称，以及已注册的切面类和切点表达式，选择合适的代理方式（JDK动态代理或CGLIB动态代理），并创建一个`ProxyFactory`对象。在应用AOP代理对象时，它会将代理对象注入到BeanFactory中，并将代理对象的属性复制到原始Bean对象中。
+
+除了以上类之外，`spring-aop.jar`还包含了一些其他的重要类和接口，如`Advisor`、`Advice`、`PointcutAdvisor`、`MethodInterceptor`、`AfterReturningAdvice`、`ThrowsAdvice`等，它们分别对应AOP中的概念和功能，如增强器、通知、切面等。在使用Spring AOP时，可以通过这些类和接口来实现自定义的AOP拦截和增强逻辑，从而实现对Bean的控制和定制。需要注意的是，Spring AOP虽然提供了基于代理的AOP实现，但它并不是完整的AOP框架，它只支持方法级别的拦截和增强，不支持属性级别的拦截和增强。如果需要实现属性级别的AOP拦截和增强，可以考虑使用其他AOP框架，如AspectJ或Javassist等。
+
+
+
+
+
+
+`CglibAopProxy`是Spring AOP中基于CGLIB动态代理实现的AOP代理对象生成器，用于生成代理对象并将其注入到Spring IoC容器中。本文将对`CglibAopProxy`的源码进行详细解析，以便读者更好地理解其实现原理。
+
+`CglibAopProxy`的源码位于`org.springframework.aop.framework.CglibAopProxy`类中，其主要实现原理如下：
+
+1. 准备工作
+
+首先，`CglibAopProxy`会根据传入的`AdvisedSupport`对象来判断当前代理对象是否需要被代理。具体来说，它会判断`AdvisedSupport`对象中是否包含了切面类（`AspectJExpressionPointcutAdvisor`、`AnnotationAwareAspectJAutoProxyCreator`等）以及切点表达式（`Pointcut`）等信息，如果包含，则说明当前代理对象需要被代理。
+2. 创建Enhancer对象
+接下来，`CglibAopProxy`会创建一个`Enhancer`对象，并设置其被代理的类（即目标对象）和回调函数（即`MethodInterceptor`对象）。`Enhancer`是CGLIB库中的一个关键类，它可以用于创建一个被代理的子类，并将回调函数绑定到该子类上。
+在`CglibAopProxy`中，使用`Enhancer`对象来创建代理对象的过程如下：
+```java
+Enhancer enhancer = new Enhancer();
+enhancer.setSuperclass(advised.getTargetClass());
+enhancer.setInterfaces(advised.getProxiedInterfaces());
+enhancer.setCallback(new DynamicAdvisedInterceptor(advised));
+enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
+enhancer.setStrategy(new ClassLoaderAwareUndeclaredThrowableStrategy(getClass().getClassLoader()));
+```
+在上述代码中，`enhancer.setSuperclass(advised.getTargetClass())`用于设置被代理的类，即目标对象的Class对象；`enhancer.setInterfaces(advised.getProxiedInterfaces())`用于设置被代理的接口列表；`enhancer.setCallback(new DynamicAdvisedInterceptor(advised))`用于设置回调函数，即`DynamicAdvisedInterceptor`对象，它实现了`MethodInterceptor`接口，可以在代理对象的方法调用时执行AOP拦截和增强逻辑；`enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE)`用于设置命名策略，即类名生成器；`enhancer.setStrategy(new ClassLoaderAwareUndeclaredThrowableStrategy(getClass().getClassLoader()))`用于设置异常处理策略，即当代理对象抛出未声明异常时，如何处理。
+3. 创建代理对象
+在完成`Enhancer`对象的设置后，`CglibAopProxy`会调用`enhancer.create()`方法创建代理对象。这个方法会返回一个被代理的子类实例。在创建代理对象时，`enhancer.create()`方法会首先尝试使用`FastClass`技术来生成代理对象的方法调用，从而提高方法调用的效率。如果当前类没有支持`FastClass`技术的方法，`enhancer.create()`方法会使用`MethodProxy`技术来生成代理对象的方法调用。
+4. 注入代理对象
+最后，`CglibAopProxy`会将代理对象注入到Spring IoC容器中，并返回代理对象。
+综上所述，`CglibAopProxy`的实现原理主要涉及到CGLIB库中的`Enhancer`、`FastClass`和`MethodProxy`等关键类和技术。CGLIB库可以通过生成代理对象的子类，并将回调函数绑定到该子类上，从而实现对目标对象的拦截和增强。与JDK动态代理相比，CGLIB动态代理不需要目标对象实现接口，因此更加灵活。但是，CGLIB动态代理的代理对象比JDK动态代理的代理对象更加复杂，而且生成代理对象所需的时间和内存开销都比较大。因此，在使用Spring AOP时，需要根据实际情况选择合适的代理方式，以达到最优的性能和效果。
+
+
+JoinPoint
+ProceedingJoinPoint 
+aspectweaver这个jar包中的类
+
+ProceedingJoinPoint接口在debug时候的实现类是？
+
+在debug的时候,ProceedingJoinPoint接口的实现类可能是:
+
+- org.springframework.aop.framework.JdkDynamicAopProxy$MiniProxInvocationHandler - 当使用Jdk动态代理时的实现类
+- org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor - 当使用Cglib代理时的实现类
+这两个实现类分别对应于Spring AOP使用的两种代理方式:
+- Jdk动态代理:使用JDK的Proxy类生成代理,实现InvocationHandler接口。
+- Cglib代理:使用CGLIB库生成子类来模拟代理,实现MethodInterceptor接口。
+Spring会根据情况选择使用Jdk动态代理还是Cglib代理,两种代理方式都会在内部实现ProceedingJoinPoint接口,以提供获取连接点信息和执行方法的功能。
+所以在debug时,具体ProceedingJoinPoint的实现类会是上面两个类中的一个,具体要看Spring是如何为该对象创建代理的。
+
+
+
+ProceedingJoinPoint类是AOP中的一个核心类,主要提供以下功能:
+
+1. 获取连接点信息:可以获取方法签名、参数、异常类型等信息。
+2. 执行方法:可以执行连接点所代表的方法。
+3. 中断方法执行:可以中断连接点方法的执行。
+
+主要方法:
+
+1. String getSignature():获取方法签名。
+2. Object[] getArgs(): 获取方法参数。
+3. Object proceed() throws Throwable:执行连接点方法。
+4. Object proceed(Object[] args) throws Throwable:以指定参数执行连接点方法。
+5. boolean isKind(int kind):判断连接点种类。
+6. static int GET_CLASS:获取类连接点。
+7. static int GET_CONNECTION_POINTCUT:获取连接点切入点。
+8. static int FIELD:获取字段连接点。 
+9. static int METHOD: 获取方法连接点。
+10.static int CONSTRUCTOR:获取构造器连接点。
+
+通常在AOP的通知(Before、After等)中,我们会获取 ProceedingJoinPoint类型的参数,通过它可以获取方法信息、执行方法等。
+
+ProceedingJoinPoint代表一个被AOP增强的连接点,即方法。我们可以通过它获取方法信息,或者执行/中断方法。它提供了在控制流穿过该连接点时所需的功能。

@@ -297,3 +297,233 @@ public class UserServiceImpl implements UserService {
 开发者可以根据具体的应用场景选择合适的事务管理器。例如，如果应用程序使用的是 JDBC 数据源，则可以选择 `DataSourceTransactionManager`；如果应用程序使用的是 Hibernate 框架，则可以选择 `HibernateTransactionManager`；如果应用程序需要跨多个事务资源进行事务管理，则可以选择 `JtaTransactionManager` 等。
 
 总之，不同的事务管理器适用于不同的技术和场景，开发者可以根据具体的应用场景选择合适的事务管理器来管理事务。
+
+
+spring-tx，被@Transaction修饰的方法相互调用，传播属性最终是？
+
+第一个方法的传播属性
+
+因为事务是从外层方法开始的,每个嵌套的 transactional 方法继承外层方法的事务上下文。
+
+
+spring是如何统计被@Transcational修饰的方法的，这些方法被调用，spring又是如何开启事务的
+
+
+Spring是如何统计被@Transactional修饰的方法的:
+
+1. 当Spring启动时,它会扫描所有被@Transactional注解的方法。
+
+2. 对于每个方法,Spring会记录下对应的事务属性,如事务隔离级别、传播行为、回滚规则等。
+
+3. Spring使用这些信息创建事务模版(TransactionTemplate),并缓存这些事务模版。
+
+Spring是如何为这些方法开启事务的:
+
+1. 当一个被@Transactional注解的方法被调用时,Spring会为这个方法创建一个事务执行对象(TransactionInterceptor)。
+
+2. 这个事务执行对象会拦截方法调用,在方法执行前检查是否需要开始事务。
+
+3. 如果需要开始事务,事务执行对象会使用之前缓存的事务模版来获取事务信息,并开始一个事务。
+
+4. 方法执行完毕后,事务执行对象会根据事务属性提交或回滚事务。
+
+5. 如果方法中抛出未检查的异常,事务执行对象也会回滚事务。
+
+大致过程如下:
+1. Spring启动时扫描并记录@Transactional方法信息,创建事务模版。
+2. 当@Transactional方法被调用时,Spring创建一个TransactionInterceptor拦截器对象。
+3. 拦截器在方法执行前根据事务属性开始一个事务。
+4. 方法执行完毕后,拦截器根据事务属性提交或回滚事务。
+5. 如果方法抛出异常,拦截器回滚事务。
+通过这种方式,Spring才能控制投入和回滚事务,实现面向方法的事务管理。
+
+总的来说,@Transactional注解给Spring提供了足够的信息来管理对应方法的事务。Spring利用这个信息创建拦截器,在方法调用时开始控制事务。
+
+
+
+
+
+
+
+
+
+
+是的,被@Transactional修饰的类必须是注册到Spring IoC容器中的Bean。
+原因是:
+1. Spring通过扫描@Transactional注解来获取事务属性信息,生成TransactionTemplate等。这需要类是容器管理的Bean。
+2. Spring使用AOP来实现事务,需要为@Transactional类创建TransactionInterceptor拦截器。这也需要类是容器管理的Bean。
+3. 只有容器管理的Bean,Spring才能在正确时机给予事务性的处理。
+所以总的来说,若一个类没有注册到Spring IoC容器中,即使它被@Transactional修饰,Spring也无法为它提供事务支持。
+一个简单的示例:
+
+```java
+// 不是Spring Bean,没有事务支持
+public class NotManagedClass {
+    
+    @Transactional
+    public void method() {
+       ...
+    }
+}
+
+// 注册为Spring Bean,有事务支持    
+@Component
+public class ManagedClass {
+    
+    @Transactional
+    public void method() {
+       ...
+    }
+}
+```
+
+这样,ManagedClass中的@Transactional方法就能受到Spring的事务管理,而NotManagedClass方法则无法。
+所以结论是,要想让@Transactional起作用,类必须首先是Spring IoC容器管理的Bean。
+除此之外,事务代理也只对public方法起作用,私有方法不会被代理。
+
+
+
+
+
+spring项目，如何查看整个项目中定义了哪些切点切面，哪些方法命中了切点？
+
+您可以通过多个方式检查Spring项目中定义的切点、切面及命中切点的方法:
+
+1. 查看配置文件:在Spring配置文件(如XML配置或注解配置)中,可以查看定义的切面及切点。
+
+2. 日志输出:在Spring启动时,它会输出定义的切点和切面信息到日志中。
+
+3. 使用AspectJ Weaver工具:可以使用AspectJ的ajc编译器或woven工具查看项目中的切点信息。
+
+4. 使用AspectJ断点:可以在项目中设置AspectJ断点,在运行时打印命中的切点信息。
+
+举个简单的例子:
+
+```xml
+<!-- 定义一个切点 --> 
+<pointcut id="recordExecution" expression="execution(* com.myapp.service.*.*(..))"/>
+
+<!-- 定义一个切面 -->
+<aspectj-autoproxy/>
+<aop:aspect ref="logAspect">
+  
+   <!-- 使用上面定义的切点 -->
+   <aop:around pointcut-ref="recordExecution" method="log"/>
+    
+</aop:aspect>
+```
+
+Spring启动时会在日志中输出:
+
+```
+Defined cutpoint 'recordExecution' covering execution(com.myapp.service.*.*(..))
+Advicing aspect 'logAspect' at cutpoint 'recordExecution'
+```
+
+使用AspectJ的woven工具或ajc编译器也可以查看项目中定义的切点详情。
+
+通过设置AspectJ的切点断点,在程序运行时也可以查看到哪些方法命中了这个切点。
+
+总的来说,您可以通过配置文件、日志、AspectJ工具等多种方式查看Spring项目中的AOP定义和使用情况。这有助于理解和调试Spring AOP。
+
+
+TransactionInterceptor
+
+org.springframework.transaction.interceptor.TransactionInterceptor spring-tx中的类
+
+
+
+
+
+@Transactional这个注解，跟我自己自定义一个注解myCustomerAnnotation，然后用在方法上，一样吗？
+
+@Transactional和自定义注解略有不同。
+相同点:
+- 二者都能被用在方法上,为了给方法加上额外的功能。
+- 二者在方法声明上通过annotation都能被Spring扫描到。
+不同点主要有两点:
+1. 功能上的区别
+@Transactional能为方法提供事务功能,可以指定事务属性,让方法在事务中运行。
+而自定义注解只是一个标记,无法提供具体的功能。
+2. 实现上的区别
+@Transactional是Spring框架内置的注解,Spring知道如何处理它。
+而自定义注解,Spring不知道如何处理,需要我们额外的配置。
+例如:
+- 自定义注解需要通过`@Import`导入自定义组件。
+- 通过`@EnableAspectJAutoProxy`启用AOP。
+- 定义一个切面,处理该自定义注解。
+这样自定义注解才能起作用。
+总的来说:
+- @Transactional属于框架层面的注解,Spring默认就知道如何处理。
+- 自定义注解需要我们额外的配置和实现,才能提供相应的功能。
+而且@Transactional能很方便地为方法提供事务功能,而自定义注解不一定能提供和事务一样方便的功能。
+所以二者很相似,但很不一样:
+- @Transactional 是一个内置的框架注解,能很方便地为方法提供事务功能。
+- 自定义注解需要额外的配置、实现,只是一个标记,无法提供具体的功能。
+确保你理解了 @Transactional 是 Spring 框架如何为方法提供事务的一个关键手段。同时也理解自定义注解需要我们额外的实现。
+
+
+
+
+spring是如何处理@Transactional注解的
+
+Spring是通过AOP来处理@Transactional注解的。具体过程如下:
+1. Spring启动时,会扫描所有被@Transactional注解的方法。
+2. 对于每个方法,Spring会记录对应的事务属性,如传播行为、隔离级别等。
+3. Spring会为这些方法创建TransactionInterceptor事务拦截器。
+4. 当方法被调用时,TransactionInterceptor会拦截该方法调用。
+5. TransactionInterceptor会在方法执行前根据事务属性启动一个事务。
+6. 方法执行完成后,根据返回值和异常情况提交或回滚事务。
+7. 如果方法抛出未检查异常,TransactionInterceptor也会回滚事务。
+简单来说,流程是:
+- Spring启动时扫描@Transactional方法,记录事务属性。
+- 为这些方法创建TransactionInterceptor拦截器。
+- 当方法执行时,TransactionInterceptor会拦截方法。
+- TransactionInterceptor内部会在方法前后执行事务管理逻辑:
+  - 方法前启动事务
+  - 方法后根据情况提交或回滚事务
+这就实现了面向方法的声明式事务管理。
+主要涉及到的点有:
+1. Spring启动时扫描@Transactional注解
+2. 为这些方法创建TransactionInterceptor拦截器
+3. 拦截器在方法执行前后管理事务
+4. 提交或回滚依赖于执行情况
+
+总的来说,@Transactional注解给了Spring足够的信息来管理对应的方法事务。Spring利用AOP的方式,在方法调用前后织入事务管理逻辑,从而提供声明式事务。
+
+
+
+
+是不是有一个@Transactional修饰的方法，就会创建一个TrancactionIntercept类对象？
+是的,如果一个方法使用了@Transactional注解,Spring会为这个方法创建一个TransactionInterceptor对象。
+一个TransactionInterceptor对象会对应一个@Transactional方法,为这个方法提供事务支持。
+举个例子:
+
+```java
+@Service
+public class ServiceClass {
+
+  @Transactional
+  public void method1() { .. }
+
+}
+```
+
+对于这个例子:
+- method1()使用了@Transactional注解,证明需要事务支持。
+- Spring会为method1()创建一个TransactionInterceptor1对象。
+- TransactionInterceptor1对象会:
+
+1) 在method1()执行前启动事务  
+2) method1()执行后,根据情况提交或回滚事务
+3) 如果method1()抛出异常,TransactionInterceptor1回滚事务
+TransactionInterceptor1就像一个切面,能在method1()的执行前后织入事务管理逻辑。
+所以总的来说:@Transactional方法和TransactionInterceptor对象是一一对应的关系。
+一个@Transactional方法需要事务管理,Spring会为这个方法创建一个TransactionInterceptor对象。
+这个TransactionInterceptor对象会在方法调用前后提供事务支持。
+这也是Spring通过AOP来实现面向方法声明式事务的基本原理。
+所以答案是:一个@Transactional方法对应的是一个TransactionInterceptor对象。
+TransactionInterceptor为这个@Transactional方法提供事务支持。
+
+
+

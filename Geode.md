@@ -1,4 +1,26 @@
 # Geode
+Geode的server loader cache可以用来加载后端数据存储(如数据库)中的大量数据,缓存到Geode中。它主要有以下几个概念:
+
+1. Loader:负责从后端数据源加载数据。Geode提供了几种内置的loader:
+
+- CsvLoader:从CSV文件加载数据
+- JdbcLoader:从JDBC数据源(如MySQL)加载数据
+- OdbcLoader:从ODBC数据源加载数据
+2. PartitionedRegion:会根据key对数据进行自然分区。使用loader时,需要指定要装载的数据所在的partitioned region。
+3. CacheLoader:定义了如何从后端数据源加载数据。需要实现CacheLoader接口,将数据加载到partitioned region中。
+4. CacheWriter:定义了如何将数据写入后端数据源。需要实现CacheWriter接口。
+5. CacheListener:可在数据被加载到partitioned region时触发。
+6. LoaderHelper:用于在loader中提供有用的方法。
+7. Region:需要使用loader的partitioned region。
+8. 批量加载:Geode支持批量加载数据,可以有效提高性能。
+
+主要过程是:
+1. 创建并配置partitioned region、loader和listener
+2. 通过loader.loadAll()方法加载数据,触发listener
+3. 数据自动分配到各分区,并缓存在Geode中
+4.需要时,通过缓存接口从Geode读取数据
+因此,通过server loader cache功能,Geode能有效地将后端数据库中的大量静态数据缓存在自己的分布式缓存中,提高后续查询性能。
+希望能给你Geode server loader cache特性的一个初步了解。如果仍有其他问题,欢迎随时和我交流!
 
 
 Geode有以下几个方面超前于其它缓存解决方案的架构设计:
