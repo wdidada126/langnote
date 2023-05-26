@@ -1,5 +1,6 @@
 # github
 
+github需要配置一堆东西，使用github desktop
 
 github添加token，http/https有效，git直接访问
 

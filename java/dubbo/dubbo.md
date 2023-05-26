@@ -1,5 +1,91 @@
 # Dubbo
 
+dubbo api版本1.0.0升级到1.0.1，线上生产环境部署的provicer都是1.0.1的，依赖1.0.0的customer会报错吗？
+
+
+没有。Dubbo采用的是软版本匹配,会向下兼容。
+也就是说:
+- Provider版本是1.0.1 
+- Consumer版本是1.0.0
+这种情况下,Consumer依然可以正常调用Provider。
+主要是Dubbo采用的是二进制兼容的升级机制:
+- 在不改变接口定义的前提下,升级后的服务提供方版本可以被旧版本的消费方所调用。
+这是Dubbo的一个重要特性:向下兼容。
+只有在Consumer版本号高于Provider时,才可能会有兼容问题。
+所以总的来说:
+- Provider版本为1.0.1
+- Consumer版本为1.0.0
+这种情况下,Consumer依然可以调用Provider,不会报错,是可以兼容的。
+该设计的目的是最大程度地支持服务消费方的滚动升级。
+希望这可以帮助您理解Dubbo的API版本升级。如果还有其他疑问,欢迎随时提出。
+
+
+1.0.0有个api类A 有a b c三个方法，1.0.1把c方法删除了，cumtomer是1.0.0的，如果调用了c方法会报错吗？
+
+
+
+不会。Dubbo采用的是软版本匹配,所以不会报错。
+具体来说:
+1.0.0接口中有a、b、c三个方法。
+1.0.1中删除c方法。
+然后:
+- Provider版本是1.0.1
+- Consumer版本是1.0.0 
+这种情况下:
+- Consumer调用a、b方法时,能正常调用
+- Consumer调用c方法时,不会报错,但不会执行。
+因为Provider版本高于Consumer版本,所以Provider可以向下兼容Consumer。
+总的来说,Dubbo有以下规则:
+1. Provider如果使用了新的接口,Consumer依然可以包装调用。
+2. Provider删除了接口,Consumer调用不会报错,但是不会被执行。
+3. Provider修改了接口签名,Consumer将无法调用。
+所以在你的例子中,Provider删除了c方法,Consumer调用依然不会报错。
+Dubbo采用的这个向下兼容的版本升级机制,可以最大程度地支持Consumer的滚动升级。
+提供者(Provider)修改接口签名的意思是修改了方法的定义。包括:
+- 修改方法名
+- 添加/删除方法参数
+- 修改参数类型
+- 修改返回值类型
+换句话说,就是接口定义发生变化。
+而Dubbo有以下这些规则:
+- 如果Provider使用了新的接口,Consumer依然可以包装调用。
+- 如果Provider删除了接口,Consumer调用不会报错,但是不会被执行。
+- 如果**Provider修改了接口签名**,Consumer将无法调用。
+就是说,只有在Provider修改了接口的定义(签名)时,Consumer才无法向下兼容。
+举个例子:
+最初的接口:
+```java
+interface DemoService {
+    void sayHello(String name); 
+}
+```
+
+Provider修改后:
+
+```java
+interface DemoService {    
+    void sayHello2(String name, int age);  
+}
+```
+
+这种情况下:
+
+- Provider修改了接口名(`sayHello()` -->`sayHello2()`)
+- Provider修改了参数类型(增加了`int age`)
+
+所以整个接口签名被修改了。
+
+这时,Consumer依然使用原来的接口:
+
+```java
+server.sayHello("John");
+```
+
+这行代码就无法调用Provider,因为接口发生了变化。
+
+
+
+
 支持grpc protobuf
 https://zhuanlan.zhihu.com/p/101921347
 

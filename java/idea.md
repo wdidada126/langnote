@@ -241,3 +241,7 @@ IDEA mac ctrl o或者Shift Ctrl F
 Win ctrl n 查找类
 
 https://www.jianshu.com/p/9812be1f746d
+
+
+idea断点增加代码
+

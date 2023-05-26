@@ -1035,3 +1035,23 @@ String json = objectMapper.writeValueAsString(myObject);
 System.out.println(json);在上述代码中，我们手动创建了一个`ObjectMapper`对象，并将一个`MyObject`对象序列化成了JSON字符串。`ObjectMapper`对象提供了`writeValueAsString()`方法，用于将Java对象序列化成JSON字符串。
 
 需要注意的是，`ObjectMapper`对象的默认配置可能无法满足您的需求，例如日期格式、空值处理、忽略未知属性等。因此，您可能需要使用`ObjectMapper`对象提供的各种配置选项来控制序列化和反序列化过程中的细节。
+
+
+
+
+org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter#writeInternal
+
+org.springframework.http.HttpOutputMessage 接口
+跑的时候实际类 ServletServerHttpResponse
+
+
+
+被GetMapping PostMapping修饰的类被封装成ServletInvocableHandlerMethod对象
+
+org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod#invokeAndHandle
+org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite#handleReturnValue
+
+org.springframework.web.method.support.HandlerMethodReturnValueHandler#handleReturnValue
+
+org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, org.springframework.core.MethodParameter, org.springframework.http.server.ServletServerHttpRequest, org.springframework.http.server.ServletServerHttpResponse)
+

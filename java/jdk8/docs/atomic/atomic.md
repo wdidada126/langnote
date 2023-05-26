@@ -157,3 +157,47 @@ public AtomicReferenceArray(int length) {
 
 Object[] array
 private static final Unsafe unsafe
+
+
+
+AtomicStampedReference可以解决ABA问题。ABA问题是指:
+
+- 一个变量A由一个线程读取,得值a
+- 然后被另一个线程修改为b
+- 后再被修改回a
+- 这个时候,第一个线程以为变量没有被修改,但实际上已经修改过了。
+
+AtomicStampedReference通过添加一个版本号来解决这个问题。
+public int getStamp() {
+        return pair.stamp;
+    }
+它的工作原理是:
+
+1. 每次对引用进行修改时,同时将版本号(stamp)加1 
+2. 读取引用时,也读取版本号
+3. 修改引用时,需要传入读取时得到的版本号
+4. 如果版本号不匹配,则表示有其他线程在修改,抛出失败
+
+举个例子:
+
+```java
+AtomicStampedReference<Integer> ref 
+                                  = new AtomicStampedReference<>(1, 1);
+
+int stamp = ref.getStamp();
+int value = ref.getReference(); // 1
+
+ref.set(2, stamp); // 使用旧版本号,会失败
+
+stamp = ref.getStamp();
+value = ref.getReference(); // 1
+
+ref.compareAndSet(1, 3, stamp, stamp + 1);
+
+stamp = ref.getStamp();
+value = ref.getReference(); // 3
+```
+
+在这个例子中,由于每次修改引用时,版本号都加1。即使值1和3相同,但版本号不同,所以能正确区分 ABA问题。
+
+希望这能够帮助你理解AtomicStampedReference如何解决ABA问题!如果仍有疑问,欢迎随时交流。

@@ -421,9 +421,7 @@ Advicing aspect 'logAspect' at cutpoint 'recordExecution'
 ```
 
 使用AspectJ的woven工具或ajc编译器也可以查看项目中定义的切点详情。
-
 通过设置AspectJ的切点断点,在程序运行时也可以查看到哪些方法命中了这个切点。
-
 总的来说,您可以通过配置文件、日志、AspectJ工具等多种方式查看Spring项目中的AOP定义和使用情况。这有助于理解和调试Spring AOP。
 
 

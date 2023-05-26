@@ -20,6 +20,69 @@ spring xml文件中配置的三个spring-mybatis包中的类
 
 
 
+SqlSessionTemplate调用链
+```shell
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:79)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:447)
+	at com.sun.proxy.$Proxy14.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:167)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:83)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy15.getUser(Unknown Source)
+	at cn.wdidada.spring.testspringaop.service.impl.UserServiceImpl.getUser(UserServiceImpl.java:23)
+	at cn.wdidada.spring.testspringaop.service.impl.UserServiceImpl$$FastClassBySpringCGLIB$$50e16ea6.invoke(<generated>)
+```
+
+
+MyBatisExceptionTranslator是如何将MyBatis异常翻译为Spring的标准异常的
+
+MyBatisExceptionTranslator主要用于翻译MyBatis的异常,将其转换为Spring框架识别的DataAccessExceptions。
+
+它的主要作用是:
+
+1. 提供异常转化器,将MyBatis的各种数据库异常转换为Spring的标准异常。
+
+2. 可以对MyBatis的异常进行拦截,实现自己的异常处理逻辑。
+
+3. 与Spring事务一起使用时,可以根据MyBatis的异常决定是否回滚事务。
+
+具体来说,MyBatisExceptionTranslator实现了Spring 的TranslateException接口,定义了translateException() 方法:
+
+```java
+public class MyBatisExceptionTranslator implements TranslateException {
+
+   public DataAccessException translateExceptionIfPossible(
+      RuntimeException ex) {
+     
+         // 如果是MyBatisDataAccessException,转换为Spring 的DataAccessException返回
+         if (ex.getCause() instanceof MyBatisDataAccessException) {
+            //...
+            return new MyBatisDataAccessException(...);  
+         }
+   
+         // 其他可能的MyBatis异常        
+         if (ex instanceof TooManyResultsException){
+            //...
+            return new IncorrectResultSizeDataAccessException(...);  
+         }
+        
+      return null;  // 不是MyBatis异常,不转换      
+   } 
+}
+```
+
+然后再Spring配置中注入 MyBatisExceptionTranslator:
+
+```xml
+<bean class="xx.MyBatisExceptionTranslator" />
+```
+
+这样一旦MyBatis操作数据库时发生了异常,Spring框架就会调用MyBatisExceptionTranslator 的translateException()方法来转换为Spring标准的DataAccessException。
+
+最终可以与Spring的事务一起使用。
+
+
+
 
 ```xml
     <!--3 会话工厂bean sqlSessionFactoryBean -->
