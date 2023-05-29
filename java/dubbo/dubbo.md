@@ -172,6 +172,70 @@ HTTP协议是一种通用的协议，几乎所有编程语言都有HTTP客户端
 在上述配置中，我们使用`http`协议调用名为`com.example.UserService`的Dubbo服务，服务的URL为`http://localhost:8080`。
 总之，Dubbo从2.7.3版本开始支持HTTP协议。您可以在Dubbo服务的提供者和消费者中添加HTTP协议的配置，以使用HTTP协议调用Dubbo服务。
 
+
+dubbo 支持http协议的例子如下:
+
+服务提供方:
+```java
+@Service(protocol = "http")
+public class HelloServiceImpl implements HelloService { 
+  
+   @Override
+   public String sayHello(String name) {
+        return "Hello " + name;
+   }
+}
+```
+
+服务消费方:
+```xml
+<dubbo:reference id="helloService" interface="com.xxx.HelloService" 
+           url="http://localhost:20880/hello"/>
+```
+
+那么http api的url就是:http://localhost:20880/hello
+
+消费方可以使用http请求来调用该服务:
+
+```
+GET http://localhost:20880/hello?name=xxx
+```
+参数也可以以query string的形式传递。
+
+dubbo中http协议默认支持json参数以及返回结果。
+
+那么完整的调用可以是:
+
+请求:
+```
+POST http://localhost:20880/hello
+
+{
+  "name":"John"
+}
+```
+
+返回:
+```json
+{
+  "value":"Hello John"
+}
+```
+
+即服务提供方可以接受json格式的请求体,并返回json结果。
+
+通过使用dubbo的http协议,可以很方便地将接口暴露为http api,便于其他系统进行调用。
+
+总的来说,dubbo支持http协议的主要特点有:
+
+- 接口使用@Service(protocol = "http")声明
+- 自动生成http访问 url= "http://host:port/path"
+- 默认支持json格式的参数和结果
+- 可以使用http GET/POST等方法进行调用
+
+这样就可以方便地将dubbo服务通过http协议对外提供接口。
+
+
 ### dubbo cxf
 
 

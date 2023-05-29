@@ -33,24 +33,17 @@ jdbctemplate hibernate mybatis对应的spring事务管理器分别是
 ```
 
 DataSourceTransactionManager管理JDBC连接,实现事务。
-
 2. Hibernate:
-
 Hibernate是ORM框架,操作数据库使用Hibernate API,所以对应的事务管理器是:
-
 ```xml
 <bean id="transactionManager" 
       class="org.springframework.orm.hibernate5.HibernateTransactionManager">
    <constructor-arg ref="sessionFactory"/>
 </bean>
 ```
-
 HibernateTransactionManager管理Hibernate SessionFactory,实现事务。
-
 3. MyBatis:
-
 MyBatis使用JDBC语句或存储过程操作数据库,所以对应的事务管理器是:
-
 ```xml
 <bean id="transactionManager"
     class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -58,15 +51,12 @@ MyBatis使用JDBC语句或存储过程操作数据库,所以对应的事务管�
 </bean>
 </bean>  
 ```
-
 仍然是DataSourceTransactionManager,和JdbcTemplate一致。
-
 所以总的来说:
-
 - 如果使用JDBC或者MyBatis,对应事务管理器是DataSourceTransactionManager
 - 如果使用Hibernate,对应事务管理器是HibernateTransactionManager
 
-
+希望以上信息能为您回答JdbcTemplate、Hibernate 和MyBatis对应的Spring事务管理器!如果仍有疑问,欢迎继续提问。
 
 org.springframework.transaction.interceptor.TransactionAspectSupport#commitTransactionAfterReturning
 org.springframework.transaction.interceptor.TransactionAspectSupport#completeTransactionAfterThrowing
