@@ -3,8 +3,18 @@
 
 	
 https://github.com/edidada/testspringaops
+https://gitee.com/edidada/testspringaops
 
 
+
+MethodInterceptor接口
+Object invoke(MethodInvocation invocation) throws Throwable;
+
+org.springframework.transaction.interceptor.TransactionInterceptor#invoke
+
+CglibAopProxy类继承AopProxy接口
+
+@Transactional注解全路径
 ```
 org.springframework.transaction.annotation.Transactional
 ```

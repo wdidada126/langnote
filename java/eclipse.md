@@ -1,5 +1,12 @@
 # Eclipse 快捷键
 
+### eclipse vs IDEA
+
+eclipse解析pom.xml更有效
+处理依赖更清晰
+
+
+lombak
 
 eclipse.ini -vm 设置 javaw.exe
 
