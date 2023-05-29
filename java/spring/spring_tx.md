@@ -7,6 +7,35 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 
 
 
+PlatformTransactionManager
+
+注入失败
+开启事务
+手动开启事务
+手动提交事务
+
+
+
+org.springframework.transaction.TransactionDefinition接口
+封装了@Transactional的传播属性和隔离级别
+某个实现类DefaultTransactionDefinition
+
+
+spring-tx包里面的
+DefaultTransactionDefinition (org.springframework.transaction.support)
+    DefaultTransactionAttribute (org.springframework.transaction.interceptor)
+        RuleBasedTransactionAttribute (org.springframework.transaction.interceptor)
+
+
+
+
+org.springframework.aop.framework.CglibAopProxy.DynamicAdvisedInterceptor#intercept
+    org.springframework.aop.framework.ReflectiveMethodInvocation#proceed
+        org.springframework.aop.interceptor.ExposeInvocationInterceptor#invoke
+            org.springframework.aop.framework.ReflectiveMethodInvocation#proceed
+                org.springframework.transaction.interceptor.TransactionInterceptor#invoke
+                    org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction
+
 AbstractPlatformTransactionManager
 aptm
 tm TransactionManager
