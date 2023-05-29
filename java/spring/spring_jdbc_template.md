@@ -121,7 +121,7 @@ public void rollback(PlatformTransactionStatus status) {
        // ...
    }    
 }
-``` 
+```
 
 doRollback() 方法中做了如下操作:
 
