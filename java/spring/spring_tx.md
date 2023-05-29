@@ -1,6 +1,52 @@
 # spring tx
 
 
+AbstractPlatformTransactionManager
+aptm
+tm TransactionManager
+dsTransactionManager
+
+TransactionSynchronizationManager
+TransactionSynchronizationManager主要用于多事务资源的协调,具体来说主要有以下作用:
+
+1. 管理事务同步。它允许代码在事务提交或回滚时同步执行。这是通过注册TransactionSynchronization对象实现的。
+
+2. 管理事务范围变量。它允许在事务范围内存储和访问变量。这些变量仅在事务提交后才对下一个事务可见。
+
+3. 应用事务到无事务资源。它允许在事务中访问非事务性的资源,比如JMS目标等。
+
+总的来说,TransactionSynchronizationManager是Spring提供的用于统一处理多事务资源的重要工具类。主要用于管理和协调事务中的各种资源,帮助事务资源之间具有一致性。
+
+所以简单点说,TransactionSynchronizationManager主要用于:
+
+- 事务提交和回滚时的同步工作(调用listener)
+- 事务范围内的变量管理
+- 将事务作用域扩展到非事务资源上
+
+
+
+TransactionAspectSupport
+`TransactionAspectSupport` 是 Spring 框架中的一个类，提供了在事务切面中使用的一些公共方法和属性。它是 Spring 事务管理的核心类之一，用于支持 Spring 中的声明式事务管理。
+
+在 Spring 中，事务切面是通过 AOP 的方式实现的。当一个方法被声明为事务性方法时，Spring 会自动生成一个代理对象，该代理对象会织入事务切面的通知，以提供事务管理的功能。`TransactionAspectSupport` 类提供了一些实用方法，以便在事务切面中获取和管理事务相关的信息。
+
+其中一些常用的方法包括：
+
+- `currentTransactionStatus()`：获取当前方法的事务状态对象 `TransactionStatus`。
+- `currentTransactionInfo()`：获取当前方法的事务信息对象 `TransactionInfo`。
+- `invokeWithinTransaction()`：在当前事务上下文中执行给定的 `Callable` 对象，并返回其结果。
+- `completeTransactionAfterThrowing()`：在事务发生异常时，回滚当前事务并将异常重新抛出。
+
+`TransactionAspectSupport` 还提供了一些 Hook 方法，用于在事务切面中进行定制化的处理，如：
+
+- `prepareTransactionInfo()`：在事务开始之前，准备事务信息对象 `TransactionInfo`。
+- `prepareTransactionStatus()`：在事务开始之前，准备事务状态对象 `TransactionStatus`。
+- `beginTransaction()`：在事务开始时，执行一些额外的处理。
+- `commitTransactionAfterReturning()`：在事务正常结束时，提交当前事务并执行一些额外的处理。
+- `handleException()`：在事务发生异常时，处理异常并执行一些额外的处理。
+
+`TransactionAspectSupport` 是 Spring 事务管理的核心支持类之一，提供了丰富的方法和 Hook 方法，可以帮助开发人员实现各种定制化的事务处理逻辑。在使用 Spring 进行声明式事务管理时，开发人员可以继承 `TransactionAspectSupport` 类，以便在事务切面中使用其提供的实用方法和 Hook 方法。
+
 	
 https://github.com/edidada/testspringaops
 

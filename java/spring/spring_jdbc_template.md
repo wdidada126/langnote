@@ -66,7 +66,6 @@ MyBatis使用JDBC语句或存储过程操作数据库,所以对应的事务管�
 - 如果使用JDBC或者MyBatis,对应事务管理器是DataSourceTransactionManager
 - 如果使用Hibernate,对应事务管理器是HibernateTransactionManager
 
-希望以上信息能为您回答JdbcTemplate、Hibernate 和MyBatis对应的Spring事务管理器!如果仍有疑问,欢迎继续提问。
 
 
 org.springframework.transaction.interceptor.TransactionAspectSupport#commitTransactionAfterReturning
@@ -112,6 +111,14 @@ protected void xxx(int status) {
 - 否则,回滚事务  
 
 2. 在rollback() 方法中实现具体的回滚逻辑:
+org.springframework.transaction.support.AbstractTransactionStatus
+
+AbstractTransactionStatus (org.springframework.transaction.support)
+    SimpleTransactionStatus (org.springframework.transaction.support)
+    DefaultTransactionStatus (org.springframework.transaction.support)
+
+
+AbstractTransactionStatus类里面执行rollback()
 
 ```java
 public void rollback(PlatformTransactionStatus status) {
@@ -141,12 +148,21 @@ doRollback() 方法中做了如下操作:
   }
 ```
 
-这就是 DataSourceTransactionManager 在检测到事务方法发生异常后,调用 rollback() 方法回滚事务的过程。
+这就是 DataSourceTransactionManager 在检测到事务方法发生异常后,调用rollback() 方法回滚事务的过程。
 
 org.springframework.transaction.support.AbstractPlatformTransactionManager#rollback
 org.springframework.transaction.support.AbstractPlatformTransactionManager#commit
 
 
+ AbstractTransactionStatus的rollback
+
+
+ DataSourceTransactionManager实现抽象类AbstractPlatformTransactionManager
+ AbstractPlatformTransactionManager实现接口PlatformTransactionManager
+
+PlatformTransactionManager有commit()
+rollback()
+getTransaction()
 
 在使用Spring的JdbcTemplate进行数据库操作时，可以通过使用`org.springframework.jdbc.core.JdbcTemplate`类的`update`方法进行insert操作。如果想要打印insert语句的入参，可以通过使用`PreparedStatementCreator`和`PreparedStatementSetter`来实现。
 
