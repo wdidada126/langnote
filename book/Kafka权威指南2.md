@@ -39,12 +39,13 @@ org.apache.kafka.clients.producer.KafkaProducer
 Producer
 org.apache.kafka.clients.producer.Producer
 
-kafka_Producer.png
+![kafka_Producer](../imgs/mq/kafka_Producer.png)
 
 send()
 Future<RecordMetadata> send(ProducerRecord<K, V> record);
 
-Future.png
+![kafka_Future](../imgs/mq/kafka_Future.png)
+
 
 
 
@@ -103,4 +104,6 @@ ConsumerRecords
 第 10 章 跨集群数据镜像
 
 
+
+https://cwiki.apache.org/confluence/display/KAFKA/Ecosystem
 

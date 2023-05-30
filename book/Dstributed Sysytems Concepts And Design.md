@@ -18,15 +18,15 @@
 
 
 
-**第二章 系统模型**
+第二章 系统模型
 
-**描述分布式系统的三种模型**
+描述分布式系统的三种模型
 
 - Physical models : 用机器，网络，硬件等语言去描述整个系统。
 - Architectural models : 用计算、计算任务、计算单元等语言去描述整个系统。（比上一中抽象）
 - Fundametal models : 用抽象的方式去描述整个系统，主要包括三个方面：interaction models( 系统间的通信)，failure models （描述故障），security models
 
-**Architectural models**
+Architectural models
 
 在这个模型中，考察四个方面：
 
@@ -35,21 +35,21 @@
 - 各个实体的在分布式系统的中的角色。
 - 各个实体在物理层面，对应的是什么设施。
 
-**Fundamental models**
+Fundamental models
 
 用基本的模型主要为了解决两个问题
 
 - 对于分布式系统中的一切假设去建模
 - 对于一些假设去证明是否可能，或者不可能。
 
-**interaction models**
+interaction models
 
 主要影响系统间通信的两个方面：
 
 1. 通信性能受限
 2. 没有一个全局时间
 
-**failures models**
+failures models
 
 主要关注系统是否故障，故障可以分类
 

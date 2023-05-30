@@ -13,13 +13,11 @@ https://github.com/edidada/Java8InAction
 
 #### Chap. 2 通过行为参数化传递代码
 
-
 行为参数化
 
 匿名内部类
 传递代码
 排序、线程
-
 
 #### Chap. 3 Lambda表达式
 
@@ -91,7 +89,6 @@ Java8中有两大最为重要得改变，其一时Lambda表达式，另外就是
 
 
 二、Stream 操作的三个步骤
-
 　　1）. 创建 Stream
 　　　　一个数据源（集合，数组），获取一个流。
 　　2）. 中间操作

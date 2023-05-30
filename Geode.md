@@ -1,4 +1,34 @@
 # Geode
+
+Apache Geode 常用端口如下:
+- 定位服务(Locator) 端口:10334
+Locator 服务用于注册和定位分布式 Geode 成员。客户端和服务器会连接到 Locator 获取已经存在的成员列表。
+- 服务器(Server)端口:40404
+Geode Server 成员使用此端口来进行 P2P 通信。所有服务器都需要打开此端口。
+- 客户端(Client)端口:40403
+Geode 客户端使用此端口与服务器进行交互。所有客户端都需要打开此端口。
+- HTTP端口:7070
+Geode HTTP端口用于使用Geode REST API。默认情况下,这个端口没有打开。
+- JMX管理端口:1099
+Geode 服务器和客户端使用此端口来暴露JMX MBean,用于管理和监控。
+- 多播端口:45556
+Geode 默认使用此端口进行群组广播,例如向新成员广播群组信息。
+除此之外,Geode 还可以使用自定义端口:
+- Member port(默认40000)
+- Gateway receiver port(默认31414)
+- Gateway sender port(默认31414))
+
+所以总的来说:
+- 10334 :定位服务(Locator) 端口
+- 40404 : 服务器(Server)端口
+- 40403 : 客户端(Client)端口  
+- 7070:HTTP端口  
+- 1099 :JMX管理端口
+- 45556:多播端口
+
+向外开放必要的Geode端口,可以实现正常的集群通信和管理。
+
+
 Geode的server loader cache可以用来加载后端数据存储(如数据库)中的大量数据,缓存到Geode中。它主要有以下几个概念:
 
 1. Loader:负责从后端数据源加载数据。Geode提供了几种内置的loader:

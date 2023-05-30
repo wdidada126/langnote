@@ -24,9 +24,6 @@ MBG plugin
 重点看
 ### 第7章 MyBatis的解析和运行原理 162
 
-### 
-
-
 MapperMethod
 
 MappedStatement
@@ -53,57 +50,27 @@ MappedStatement 的作用是保存一个映射器节点（select|insert|delete|u
 MapperRegistry
 
 `MapperRegistry`是MyBatis中的一个重要组件，它的作用是维护`Mapper`接口和对应的`MapperProxyFactory`对象之间的映射关系。在MyBatis框架中，每个`Mapper`接口都需要对应一个`MapperProxyFactory`对象，用于动态代理实现`Mapper`接口中的方法。
-
 `MapperRegistry`类主要负责以下几个方面的工作：
-
 1. 注册`Mapper`接口和对应的`MapperProxyFactory`对象
-
 在MyBatis启动过程中，`MapperRegistry`会扫描所有的`Mapper`接口并创建对应的`MapperProxyFactory`对象，然后将它们注册到`MapperRegistry`中。这样，在后续的使用过程中，MyBatis就可以根据`Mapper`接口获取对应的`MapperProxyFactory`对象，从而动态代理实现`Mapper`接口中的方法。
-
 2. 获取`Mapper`接口对应的`MapperProxyFactory`对象
-
 在MyBatis中，每个`Mapper`接口都需要对应一个`MapperProxyFactory`对象，用于实现动态代理。`MapperRegistry`类提供了`getMapperProxyFactory`方法，用于根据`Mapper`接口获取对应的`MapperProxyFactory`对象。如果`MapperRegistry`中不存在该`Mapper`接口对应的`MapperProxyFactory`对象，则会抛出异常。
-
 3. 获取所有已注册的`Mapper`接口
-
 `MapperRegistry`类还提供了`getMappers`方法，用于获取所有已注册的`Mapper`接口。该方法返回一个`Set`集合，其中包含所有已注册的`Mapper`接口。
-
 总的来说，`MapperRegistry`扮演着MyBatis框架中`Mapper`接口和`MapperProxyFactory`对象之间的桥梁角色，它的作用是维护这两者之间的映射关系，从而实现动态代理，并提供了一些方法，用于获取已注册的`Mapper`接口和对应的`MapperProxyFactory`对象。
 
 
-
-
-
-
-
-
-
 `MapperProxyFactory`是MyBatis框架中的一个重要组件，它的作用是用于动态代理实现`Mapper`接口中的方法。在MyBatis中，每个`Mapper`接口都需要对应一个`MapperProxyFactory`对象，用于实现动态代理。
-
 `MapperProxyFactory`类主要负责以下几个方面的工作：
-
 1. 创建`Mapper`接口的代理对象
-
 `MapperProxyFactory`类提供了`newInstance`方法，用于创建`Mapper`接口的代理对象。在创建代理对象时，会使用`MapperProxy`类对`Mapper`接口进行动态代理，从而实现对`Mapper`接口中方法的拦截和处理。
-
 2. 获取`Mapper`接口的类型
-
 `MapperProxyFactory`类还提供了`getMapperInterface`方法，用于获取该`MapperProxyFactory`对象对应的`Mapper`接口的类型。
-
 3. 缓存`Mapper`接口的代理对象
-
 `MapperProxyFactory`类还维护了一个`Map`对象，用于缓存已创建的`Mapper`接口的代理对象。这样，在后续的使用过程中，如果需要再次使用该`Mapper`接口的代理对象，就可以直接从缓存中获取，而无需重新创建。
-
 总的来说，`MapperProxyFactory`扮演着MyBatis框架中动态代理的角色，它的作用是用于创建`Mapper`接口的代理对象，并缓存已创建的代理对象。`MapperProxyFactory`对象是`MapperRegistry`维护的一个重要组成部分，它们之间的映射关系由`MapperRegistry`负责维护。
 
-
-
-
-
-
-
-
-实际上，SqlSession 是通过 Executor、StatementHandler、ParameterHandler 和 ResultSetHandler 完成数据库操作和结果返回的，在本书中我们把它们简称为  四大对象  。
+实际上，SqlSession 是通过 Executor、StatementHandler、ParameterHandler 和 ResultSetHandler 完成数据库操作和结果返回的，在本书中我们把它们简称为四大对象 。
 
 
 构建的真实对象是一个 RoutingStatementHandler 对象

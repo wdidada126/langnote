@@ -6,7 +6,7 @@ https://book.douban.com/subject/26894736/
 
 
 
-### Chap.2
+### Chap.2 Docker 基础
 
 linux内核 cgruop namespace
 
@@ -58,3 +58,8 @@ docker daemon把用户请求转移成
 
 
 <iframe src="https://qiyukf.com/sdk/res/delegate.html?1574084332225" style="border: 0px; margin: 0px; padding: 0px; height: 0px; width: 0px; cursor: default !important;"></iframe>
+
+
+第3章　Docker核心原理解读
+namespace资源隔离
+cgroups资源限制

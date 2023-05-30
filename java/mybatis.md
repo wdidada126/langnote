@@ -194,19 +194,14 @@ logging:
 
 
 - @SelectProvider
-
 - @InsertProvider
-
 - @UpdateProvider
-
 - @DeleteProvider
 
   
 
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
-
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑.
-
 mybatis 的动态sql语句是基于OGNL表达式的。可以方便的在 sql 语句中实现某些逻辑. 总体说来mybatis 动态SQL 语句主要有以下几类:
 
 1. if 语句 (简单的条件判断)
@@ -663,8 +658,11 @@ CREATE TABLE "websites" (
 INSERT INTO "websites" VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'USA'), ('2', '淘宝', 'https://www.taobao.com/', '13', 'CN'), ('3', '菜鸟教程', 'http://www.runoob.com', '5892', ''), ('4', '微博', 'http://weibo.com/', '20', 'CN'), ('5', 'Facebook', 'https://www.facebook.com/', '3', 'USA');
 本身的数据就很多了
 
-- mybatis 刘增辉
 
+书籍：
+- Mybatis3源码深度解析
+- mybatis 刘增辉
+- MyBatis技术内幕
 mybatis需要练习
 
 mybatis
@@ -1052,6 +1050,4 @@ tk.mapper
 
 
 [Mybatis 中的 SQL 节点的解析](https://xie.infoq.cn/article/026dd91a93ea90ee8900ff9bc)
-
-
 

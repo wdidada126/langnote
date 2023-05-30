@@ -31,9 +31,7 @@ cassandra 常用端口
 
 
 Cassandra传统上被人们认为是一个极为强大的数据库，可以在绝大多数使用场景中脱颖而出，然而也是比较难学习和操作的数据库之一。
-
 DataStax的团队由Cassandra数据库演进过程中的领军人物组成，他们贡献了Cassandra 3.0版本中大部分的代码。在4.0及之后的版本中，我们的团队也在持续积极地与开源社区紧密合作，为Cassandra的未来贡献所能。
-
 DataStax致力于与Cassandra社区一起让Cassandra成为更容易为个人使用、为企业采用和延伸的技术。
 
 - 将提供简化的开发者接口APIs，包括REST和GraphQL
@@ -42,20 +40,36 @@ DataStax致力于与Cassandra社区一起让Cassandra成为更容易为个人使
 - 将使存储引擎变为可插拔的，并同其它接口APIs一起实现数据库部署和配置的定制化
 
 
-
-
-
 https://github.com/apache/cassandra
 
-基于列 Java写的
-Cassandra是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存收件箱等简单格式数据，集GoogleBigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身Facebook于2008将 Cassandra 开源，此后，由于Cassandra良好的可扩展性，被等知名网站所采纳，成为了一种流行的分布式结构化数据存储方案。
+基于列，Java写的
+Cassandra是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存收件箱等简单格式数据，集GoogleBigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身Facebook于2008将Cassandra开源，此后，由于Cassandra良好的可扩展性，被等知名网站所采纳，成为了一种流行的分布式结构化数据存储方案。
 
 
 
 特征处理里用的多，适合一对一检索，比如现在的人脸比对；
-
 还有现在时兴的图片搜索，人脸比对就是图片搜索中的其中一个应用
-
+Cassandra 最主要的使用场景是作为大数据量的高可用分布式数据库。它适用于需要以下特点的场景:
+- 高吞吐量:Cassandra可以很容易地承载TB和PB级的数据量,提供高达数十万的读写QPS能力。
+- 高可用性:Cassandra提供主从高可用架构,通过复制保证可靠性和故障转移。
+- 无单点故障:Cassandra通过分布式设计,没有单点故障。任何一个节点宕机不会影响集群整体。
+- 易扩展:Cassandra可以很容易地在服务器间增加节点,实现线性伸缩。
+- 无关系:Cassandra不需要严格的表名和列名,适用于半结构化和非结构化数据。
+- 支持CDC:Cassandra提供变更数据捕获(CDC)功能,可以记录数据的每一次变更。
+基于这些特点,Cassandra常见的使用场景包括:
+- 网站访问解析:比如记录每次网站访问,分析访问量。
+- 物联网日记记录:比如记录智能设备每次上报的数据,实现追踪和分析。
+- 网站点击流:记录用户每次点击日志,分析用户行为。
+- 交易日志:记录每一笔交易信息,实现数据分析和审计。
+- 搜索引擎存储:作为搜索引擎关键数据的后端存储。
+- 用户活动轨迹:记录用户各种活动信息,分析用户画像。
+- 实时指标监控:比如多数分布式应用的性能指标采集。
+总的来说,Cassandra适合需要:
+- 高性能
+- 高可用
+- 大容量
+- 实时读写
+这些需求的场景。只要能充分利用它的优点,Cassandra都能派上用场。
 
 
 ```asciidoc
@@ -75,12 +89,8 @@ cassandra -v
 
 
 
-gossip
-
+Cassandra中Gossip具体实现方式
 https://blog.csdn.net/zhangzhaokun/article/details/5859760
-
-
-
 
 
 cassandra根据用户名密码登录cqlsh
@@ -111,7 +121,64 @@ https://docs.datastax.com/en/developer/java-driver/4.0/manual/
 KEYSPACE
 TABLE
 
+在Cassandra中, KEYSPACE相当于数据库(database),TABLE相当于数据库表(table)。
+- KEYSPACE概念:
+一个Cassandra服务器可以包含多个keyspace。每个keyspace代表了一个独立的命名空间。
+一个keyspace包含:
+- 一个或多个表(tables)
+- 一个选项的列家族(column families)
+- 其他键空间(keyspaces)的集合
+一个keyspace可包含多个用户、权限和配额。
+- TABLE概念:
+表(table)存储具有相似结构的行。
+Cassandra的表非常相似于传统关系型数据库管理系统中的表。
+每个表包含:
+- 一组列(columns)
+- 一组行(rows)
 
+不同之处在于:
+
+- Cassandra不要求严格的列定义
+- 支持高度可扩展的列数和行数
+- 采用分布式冗余设计
+
+总的来说:
+
+- KEYSPACE相当于数据库
+- 包含一个或多个table
+- 一个keyspace具有独立的命名空间和权限
+
+- TABLE相当于数据库表
+- 包含列和行构成
+- Cassandra表的结构更灵活
+KEYSPACE和TABLE共同构成了Cassandra的数据模型。方便地组织和管理数据。
+希望能为你解决KEYSPACE和TABLE概念!
+
+
+Cassandra本身不是一个关系数据库,也不完全支持SQL。不过Cassandra提供了部分SQL的支持:
+1. CQL(Cassandra Query Language)
+CQL是Cassandra定义的自己的查询语言。是扩展自SQL的。
+通过CQL,用户可以使用类似SQL的语法与Cassandra交互:
+- 创建键空间(create keyspace) 
+- 创建表(create table)
+- 查询数据(select)
+- 更新数据(update)
+- 删除数据(delete)等
+2. CQL Shell
+Cassandra提供一个CQL Shell的命令行工具。用户可以在命令行使用CQL交互式执行CQL语句。
+3. Cassandra Thrift API
+Cassandra还提供一个Thrift API,支持使用类SQL语句与Cassandra交互。
+4. Spark SQL支持
+Cassandra可以作为数据源,集成到Spark SQL中。用户可以使用Spark SQL的SQL语法查询Cassandra数据。
+5. Hadoop SQL支持
+Cassandra也可以作为数据源与Hadoop集成。使用Hive或Impala的SQL访问Cassandra数据。
+总的来说:
+- CQL是Cassandra自己的查询语言,类似但不完全兼容SQL 
+- Cassandra提供CQL Shell使用CQL交互
+- 提供Thrift API使用SQL语句
+- 支持Spark SQL和Hadoop SQL访问
+但Cassandra本身仍然是一个非关系型数据库,不支持所有SQL功能,也不存在表 joins 等关系操作。
+需要使用基于CQL的方式访问。
 
 
 
@@ -181,6 +248,7 @@ cassandra@cqlsh> select release_version from system.local;
 (1 rows)
 ```
 
+4.1.2
 
 
 
@@ -240,11 +308,29 @@ https://cassandra.apache.org/
 
 
 https://www.cnblogs.com/ctgulong/p/10982145.html
-
-
-
 https://blog.csdn.net/kobejayandy/article/details/12392609
-
-
-
 https://zhuanlan.zhihu.com/p/78255146
+
+### 架构亮点
+
+Cassandra 4的主要架构亮点有:
+1. 支持插件式存储引擎
+Cassandra 4引入了插件式存储引擎,默认还是使用SSTable存储。但开发者可以根据需求开发自己的存储插件。
+2. 支持多数据模型
+除了传统的列存储外,Cassandra 4还支持多数据模型,包括键值存储、文档存储、表格存储等。
+3. 优化的负载平衡
+Cassandra 4对负载平衡进行了优化。利用 solicited load reports 主动上报节点负载,实现更智能的负载分配。
+4. STCS新一代一致性算法
+Cassandra 4引入了全新的一致性算法 Slot-Tenant Consistency Service(STCS),替代原来的 Gossiping Property Verifier。
+5. 支持全局序列号
+Cassandra 4提供全局唯一且递增的序列号生成。能解决分布式系统中处理序列号和全局排序的难题。
+6. 改进的网络层
+Cassandra 4改进了网络层,基于 Netty,提供更高性能的网络IO。减少 CPU 和内存消耗。
+7. SQL接入层
+Cassandra 4支持使用SQL语法访问数据。内置了Spark SQL访问层,方便与Spark集成。
+8. 升级 quartz 到 2.3
+Cassandra 4将内置的 quartz 调度器升级到 2.3 版,提供更多的新特性。
+9. 更多新特性
+如:演进后的集群拓扑结构、内置的库存管理功能等。
+总的来说,Cassandra 4在原有稳定基础上,提供了一系列优化和新功能。
+尤其是支持插件式存储引擎、多数据模型、改进的网络层等,都带来了不小的提升。

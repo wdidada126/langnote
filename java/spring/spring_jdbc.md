@@ -62,3 +62,48 @@ spring-jdbc
 org.springframework.jdbc.core.JdbcTemplate
 ```
 
+
+
+SQLErrorCodeSQLExceptionTranslator主要用于把数据库底层SQL异常翻译成友好的业务异常。
+
+其作用如下:
+
+1. 捕获JDBC SQLException
+
+当数据库执行SQL出现异常时,会抛出SQLException。
+SQLErrorCodeSQLExceptionTranslator会捕获到这个异常。
+
+2. 根据错误代码查找错误消息
+
+SQLErrorCodeSQLExceptionTranslator内置有数据库各种SQL错误代码对应的错误消息。
+通过SQLException获取到错误代码,就可以查到对应的错误消息。
+
+3. 抛出自定义的业务异常
+
+将错误代码翻译为友好的错误消息后,它会新建一个自定义的业务异常,抛给上层调用。
+
+这样上层代码就抛出和捕获的都是业务异常,而不是底层的JDBC异常。
+
+例如,一个典型的用法:
+```java
+try {
+    // 执行SQL    
+} catch (SQLException ex) {
+   throw this.translate("someMsg", sql, ex);
+}
+```
+
+`translate()`方法会:
+
+1. 捕获SQLException 
+2. 根据错误代码查找错误消息    
+3. 抛出自定义的DataAccessException异常
+
+这样具体的SQL异常就被转化为友好的业务异常。
+
+总的来说,SQLErrorCodeSQLExceptionTranslator的主要作用是:
+
+将底层JDBC SQL异常翻译为业务异常,使异常信息更友好易懂。
+
+希望上述内容能为你解读SQLErrorCodeSQLExceptionTranslator作用!如还有其他疑问,欢迎继续补充。
+

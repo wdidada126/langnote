@@ -3,12 +3,14 @@
 
 https://docs.spring.io/spring-boot/docs/2.3.x/api/
 
+spring_boot.xlsx
+
 
 ## ConditionalOnClass注解
 @ConditionalOnClass(KafkaTemplate.class)
 
 
-`@ConditionalOnClass` 是 Spring Boot 提供的一个条件注解，用于在特定的类存在时才加载一个 Bean 或配置类。具体来说，`@ConditionalOnClass` 的作用是检查当前 classpath 中是否存在指定的类，如果存在，则加载 Bean 或配置类，否则忽略加载。
+`@ConditionalOnClass` 是 Spring Boot 提供的一个条件注解，用于在特定的类存在时才加载一个 Bean 或配置类。具体来说，`@ConditionalOnClass` 的作用是检查当前 classpath 中是否存在指定的类，如果存在，则加载Bean或配置类，否则忽略加载。
 
 `@ConditionalOnClass` 注解的使用方法如下：
 
@@ -45,10 +47,6 @@ public class MyConfiguration {
 在这个例子中，我们定义了一个名为 `MyConfiguration` 的配置类，并使用 `@ConditionalOnMissingBean` 注解表示只有在当前上下文中不存在类型为 `MyBean` 的 Bean 时，才会创建一个名为 `myBean()` 的 Bean。
 需要注意的是，`@ConditionalOnMissingBean` 注解只检查当前上下文中是否已经存在指定名称或类型的 Bean，并不检查该 Bean 是否可以实例化或是否可用。因此，如果你的应用程序需要使用某个 Bean，但该 Bean 不一定存在或可用，你应该使用更加复杂的条件注解来控制 Bean 的加载行为，例如 `@ConditionalOnBean` 或 `@ConditionalOnExpression`。
 总之，`@ConditionalOnMissingBean` 注解是 Spring Boot 提供的一个条件注解，用于在当前上下文中不存在指定的 Bean 时才加载一个 Bean 或配置类。使用该注解可以避免因重复定义 Bean 而导致应用程序启动失败的问题，并且可以在不影响现有 Bean 的情况下添加新的 Bean。
-
-
-
-
 
 `@ConditionalOnMissingClass` 是 Spring Boot 提供的一个条件注解，用于在 classpath 中不存在指定的类时才加载一个 Bean 或配置类。具体来说，`@ConditionalOnMissingClass` 的作用是检查当前 classpath 中是否存在指定的类，如果不存在，则加载 Bean 或配置类，否则忽略加载。
 `@ConditionalOnMissingClass` 注解的使用方法如下：
@@ -87,8 +85,6 @@ springboot 命令行运行
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-
-
 ### spring-boot-maven-plugin
 build-info：生成项目的构建信息文件 build-info.properties
 repackage：这个是默认 goal，在 mvn package 执行之后，这个命令再次打包生成可执行的 jar，同时将 mvn package 生成的 jar 重命名为 *.origin
@@ -99,10 +95,6 @@ stop：这个在 mvn integration-test 阶段，进行 Spring Boot 应用生命�
 
 mvn package
 java -jar
-
-
-
-
 
 Spring Boot
 配置mybatis
@@ -117,16 +109,11 @@ Springboot中的@EnableAsync和@Async的作用和基本用法
 
 https://blog.csdn.net/qq_38796327/article/details/90599867
 
-
-
-
-
 ### nosql
 
 spring-boot-starter-data-solr
 
 ### Caching
-
 
 Generic
 JCache (JSR-107) (EhCache 3, Hazelcast, Infinispan, and others)

@@ -1,5 +1,31 @@
 # kafka
 
+kafka社区上有一些数据防止丢失的问题，没有解决
+Kafka社区上有关数据防止丢失的问题还没有最佳解决方案,主要有以下几点:
+1. Kafka默认设置会导致数据丢失
+Kafka有以下设计会导致数据丢失:
+- 分区日志由多个segment组成,segment超过配置值会删除。新生产的消息会写入新segment,旧segment会 delete。
+- 配置只保留一定时间的消息,超时的消息会定期删除。
+- replicas角色有LEADER和FOLLOWERS,FOLLOWERS不会写消息,只负责复制LEADER。但如果LEADER故障,FOLLOWERS之间没有消息交换,会导致部分消息丢失。
+因此如果不采取额外措施,Kafka无法保证绝对不丢失任何消息。
+2. Kafka社区提议的可选方案
+Kafka社区曾提议一些可选方案:
+
+- 使用更高的replica数,增加容错性
+- 同步所有FOLLOWERS以减少消息丢失
+- 将消息持久化到外部存储系统,如Hadoop HDFS
+- 合理配置retention.ms和segment.ms,延长消息保留时间
+- 使用Kafka Streams进行exactly-once processing 
+- 等等
+
+但是都存在各自的缺点和限制。
+
+3. 没有最佳方案
+最终 Kafka社区还没有采用一个最佳的防止消息丢失的标准方案。
+常见做法是使用上述可选方案中的一种或者多种。但都不完全能保证绝对没有消息丢失。
+Kafka官方网站为:https://kafka.apache.org/ ,里面提供了大量的使用文档、讨论和解决方案。
+
+
 kafka配置项目
 
 配置文件备份

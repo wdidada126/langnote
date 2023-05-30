@@ -54,8 +54,8 @@ git filter-branch --commit-filter "GIT_AUTHOR_NAME='edidada'; GIT_AUTHOR_EMAIL='
 git filter-branch --commit-filter "GIT_AUTHOR_NAME='wucheneg'; GIT_AUTHOR_EMAIL='wucheng-it@xxxx.com.cn'"
 
 ## 第2篇　Git独奏
-第4章　Git 初始化
-#### Chap. 5 第5章　Git 暂存区
+#### 第4章　Git 初始化
+#### 第5章　Git 暂存区
 
 暂存区
 git ls-files
@@ -76,9 +76,9 @@ git diff --cached
 工作区和HEAD比较
 
 git diff HEAD
-第7章　Git 重置
-第8章　Git 检出  
-第9章　恢复进度
+#### 第7章　Git 重置
+#### 第8章　Git 检出  
+#### 第9章　恢复进度
 ## 第7篇　Git的其他应用
 ### 第36章　etckeeper
 ## 第8篇　Git杂谈
