@@ -295,3 +295,13 @@ CustomSQLErrorCodesTranslation
 CustomSQLExceptionTranslatorRegistrar
 CustomSQLExceptionTranslatorRegistry
 
+DatabaseStartupValidator
+GeneratedKeyHolder
+
+SQLErrorCodesFactory
+
+SQLStateSQLExceptionTranslator
+
+
+TemporaryLobCreator
+
