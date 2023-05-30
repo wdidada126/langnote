@@ -152,7 +152,7 @@ http feign做序列化
 dubbo自带
 
 问：dubbo从哪个版本开始支持http协议
-答：Dubbo从2.7.3版本开始支持HTTP协议。在此版本之前，Dubbo只支持基于RPC协议的远程调用，如Dubbo协议、Hessian协议和Thrift协议等。但是，从2.7.3版本开始，Dubbo增加了对HTTP协议的支持，使得Dubbo服务可以通过HTTP协议进行远程调用。
+答：Dubbo从2.7版本开始支持HTTP协议。在此版本之前，Dubbo只支持基于RPC协议的远程调用，如Dubbo协议、Hessian协议和Thrift协议等。但是，从2.7版本开始，Dubbo增加了对HTTP协议的支持，使得Dubbo服务可以通过HTTP协议进行远程调用。
 使用HTTP协议调用Dubbo服务可以带来以下好处：
 1. 支持跨语言调用
 HTTP协议是一种通用的协议，几乎所有编程语言都有HTTP客户端库。因此，使用HTTP协议调用Dubbo服务可以支持跨语言调用。
@@ -170,7 +170,7 @@ HTTP协议是一种通用的协议，几乎所有编程语言都有HTTP客户端
 <dubbo:reference id="userService" interface="com.example.UserService" url="http://localhost:8080" />
 ```
 在上述配置中，我们使用`http`协议调用名为`com.example.UserService`的Dubbo服务，服务的URL为`http://localhost:8080`。
-总之，Dubbo从2.7.3版本开始支持HTTP协议。您可以在Dubbo服务的提供者和消费者中添加HTTP协议的配置，以使用HTTP协议调用Dubbo服务。
+总之，Dubbo从2.7版本开始支持HTTP协议。您可以在Dubbo服务的提供者和消费者中添加HTTP协议的配置，以使用HTTP协议调用Dubbo服务。
 
 
 dubbo 支持http协议的例子如下:
@@ -235,6 +235,22 @@ POST http://localhost:20880/hello
 
 这样就可以方便地将dubbo服务通过http协议对外提供接口。
 
+dubbo支持http，需要添加jar包依赖？
+<dependency>
+   <groupId>org.apache.dubbo</groupId>
+   <artifactId>dubbo-rpc-http</artifactId>
+   <version>x.x.x</version> 
+</dependency>
+https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-rpc-http
+
+
+
+刘军在 Dubbo 成都 meetup 上分享的《Dubbo 在多语言和协议穿透性方向上的探索》
+https://developer.aliyun.com/article/728009
+
+### samples
+
+https://github.com/apache/dubbo-samples
 
 ### dubbo cxf
 
@@ -412,14 +428,11 @@ https://blog.csdn.net/u012489091/article/details/83314798
 
 `invoke cn.wdidada.dubbo.samples.echo.api.EchoServic.echo({"msg":"123"})`
 
-
-
 `invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo(123)`
 
 `invoke cn.wdidada.dubbo.samples.echo.api.EchoService.echo("123")`
 
 `invoke cn.wdidada.dubbo.samples.echo.impl.EchoServiceImpl.echo("123")`
-
 
 
 
@@ -443,10 +456,6 @@ ls -l EchoService
 
 
 http://dubbo.apache.org/zh-cn/docs/user/references/telnet.html
-
-```
-dubbo 版本 2.7.0
-```
 
 
 

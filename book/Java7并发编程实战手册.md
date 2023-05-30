@@ -1,14 +1,6 @@
 # Java 7并发编程实战手册
 
-
-
 [Java 7并发编程实战手册](https://book.douban.com/subject/25844475/)
-
-
-
-
-
-
 
 ### chapter1 线程管理
 - java.lang.Runnable

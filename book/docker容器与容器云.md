@@ -63,3 +63,12 @@ docker daemon把用户请求转移成
 第3章　Docker核心原理解读
 namespace资源隔离
 cgroups资源限制
+
+
+第4章　Docker 高级实践技巧
+
+第二部分　Docker云平台解读
+第5章　构建自己的容器云
+第6章　专注编排与部署：三剑客与Fleet　　230
+第7章　专注应用支撑和运行时：Flynn和Deis　　258
+第8章　一切皆容器：Kubernetes　　274

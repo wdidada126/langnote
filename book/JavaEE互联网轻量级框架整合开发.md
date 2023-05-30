@@ -99,7 +99,7 @@ public interface SqlSource {
 
 实现类：org.apache.ibatis.scripting.xmltags.DynamicSqlSource
 org.apache.ibatis.builder.annotation.ProviderSqlSource
-org.apache.ibatis.scripting.defaults.RawSqlSource   调用 SqlSourceBuilder类将"#{xxx}“ 替换为占位符”?"，并绑定ParameterMapping，最后返回的RawSqlSource中持有一个由SqlSourceBuilder构建的SqlSource对象。
+org.apache.ibatis.scripting.defaults.RawSqlSource 调用 SqlSourceBuilder类将"#{xxx}“ 替换为占位符”?"，并绑定ParameterMapping，最后返回的RawSqlSource中持有一个由SqlSourceBuilder构建的SqlSource对象。
 
 
 

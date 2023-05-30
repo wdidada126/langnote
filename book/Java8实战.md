@@ -132,7 +132,7 @@ LongStream
 
 流 中间操作 终端操作
 
-
+java.util.Arrays#stream(T[])
 
 String[] ls = new String[]{"age", "eat", "", "tan", "ate", "nat", "bat", "", "back"};
         //数组转换成流
