@@ -244,13 +244,67 @@ dubbo支持http，需要添加jar包依赖？
 https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-rpc-http
 
 
+https://cn.dubbo.apache.org/en/docs/v2.7/user/references/protocol/http/
+
+dubbo 3.2 202305最新版dubbo
 
 刘军在 Dubbo 成都 meetup 上分享的《Dubbo 在多语言和协议穿透性方向上的探索》
 https://developer.aliyun.com/article/728009
 
+
+https://gitee.com/edidada/dubbohttpspringboot
+
+
 ### samples
 
 https://github.com/apache/dubbo-samples
+
+
+DubboReference
+DubboService
+
+
+问题，dubbo provider提供http协议的接口，服务调用者如何调用，能不能直接@DubboReference直接引用？
+Dubbo 2.7.10版本提供HTTP协议时,消费方无法使用@DubboReference直接引用。
+
+需要分步来调用:
+
+1、提供方提供HTTP服务:
+
+```java
+HttpServer httpServer = new HttpServer(8080);
+httpServer.export(service); 
+// service 是需要提供的服务
+```
+
+2、消费方调用:
+
+```java
+DemoService service = HttpClient.get("http://localhost:8080", "com.xxx.DemoService", "sayHello");
+String result = service.sayHello("world");
+```
+
+这里使用了HttpClient来调用HTTP服务。
+
+3、原因分析:
+
+- @DubboReference主要用于调用Dubbo的RPC服务(如Dubbo、RMI等)
+- 当提供HTTP协议时,服务已经和Dubbo脱耦,变成了普通的HTTP服务
+- 所以消费方需要直接通过HTTP方式来调用
+
+4、总结:
+
+- Dubbo HTTP协议只提供了服务暴露和调用的能力,但不属于Dubbo服务调用范畴。
+- @DubboReference只能用来调用Dubbo的RPC协议,无法用来调用Dubbo的HTTP协议。
+- 所以消费方需要使用HttpClient来手动调用HTTP协议提供的服务。
+
+总的来说,Dubbo HTTP协议提供的是:
+
+- 服务提供方:HttpServer类发布HTTP服务
+- 服务消费方:HttpClient类调用HTTP服务
+
+这与Dubbo底层RPC没太大关系,@DubboReference无法使用。
+
 
 ### dubbo cxf
 
