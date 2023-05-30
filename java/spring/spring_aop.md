@@ -818,3 +818,46 @@ ProceedingJoinPoint类是AOP中的一个核心类,主要提供以下功能:
 通常在AOP的通知(Before、After等)中,我们会获取 ProceedingJoinPoint类型的参数,通过它可以获取方法信息、执行方法等。
 
 ProceedingJoinPoint代表一个被AOP增强的连接点,即方法。我们可以通过它获取方法信息,或者执行/中断方法。它提供了在控制流穿过该连接点时所需的功能。
+
+
+
+ProxyConfig
+org.springframework.aop.framework.ProxyConfig
+
+ProxyProcessorSupport
+
+抽象类
+AbstractAutoProxyCreator
+
+
+
+ProxyConfig (org.springframework.aop.framework)
+    ProxyProcessorSupport (org.springframework.aop.framework)
+        AbstractAutoProxyCreator (org.springframework.aop.framework.autoproxy)
+            BeanNameAutoProxyCreator (org.springframework.aop.framework.autoproxy)
+            AbstractAdvisorAutoProxyCreator (org.springframework.aop.framework.autoproxy)
+                DefaultAdvisorAutoProxyCreator (org.springframework.aop.framework.autoproxy)
+                AspectJAwareAdvisorAutoProxyCreator (org.springframework.aop.aspectj.autoproxy)
+                    AnnotationAwareAspectJAutoProxyCreator (org.springframework.aop.aspectj.annotation)
+                InfrastructureAdvisorAutoProxyCreator (org.springframework.aop.framework.autoproxy)
+
+
+
+BeanNameAutoProxyCreator
+
+BeanNameAutoProxyCreator是Spring框架中的一个自动代理创建器，用于生成代理对象，实现对特定Bean的自动代理。
+它的作用是根据配置的Bean名称匹配模式，自动创建代理对象，将匹配的Bean对象包装成代理对象，并将代理对象返回给调用者。在代理对象中可以添加额外的功能，如事务处理、安全控制、性能监控等。
+BeanNameAutoProxyCreator通常用于AOP编程中，当我们需要为特定的Bean对象添加切面功能时，可以使用它来自动生成代理对象。通过配置BeanNameAutoProxyCreator的属性，我们可以指定需要被代理的Bean名称，以及需要添加的拦截器。当满足配置条件时，BeanNameAutoProxyCreator会自动为匹配的Bean对象创建代理对象。
+除了BeanNameAutoProxyCreator，Spring框架还提供了其他的自动代理创建器，如DefaultAdvisorAutoProxyCreator和AnnotationAwareAspectJAutoProxyCreator等，它们可以通过不同的方式来实现代理对象的自动创建。
+
+spring事务用到BeanNameAutoProxyCreator
+
+BeanNameAutoProxyCreator DefaultAdvisorAutoProxyCreator AspectJAwareAdvisorAutoProxyCreator AnnotationAwareAspectJAutoProxyCreator区别
+
+这几个类都是Spring框架中用于创建AOP代理的自动代理创建器，它们的区别如下：
+
+1. BeanNameAutoProxyCreator：根据Bean名称匹配模式自动创建代理对象。
+2. DefaultAdvisorAutoProxyCreator：根据Advisor（通知器）自动创建代理对象。它会查找上下文中所有的Advisor，并将它们应用到适当的Bean上，从而创建代理对象。
+3. AspectJAwareAdvisorAutoProxyCreator：专门用于支持AspectJ注解风格的AOP代理创建器。它可以识别并处理使用AspectJ注解声明的切面，并为符合切面条件的Bean创建代理对象。
+4. AnnotationAwareAspectJAutoProxyCreator：也是支持AspectJ注解风格的AOP代理创建器，相比于AspectJAwareAdvisorAutoProxyCreator，它提供了更多的功能，比如支持基于注解的切点声明、自动代理创建等。
+总的来说，BeanNameAutoProxyCreator和DefaultAdvisorAutoProxyCreator是比较基础、通用的代理创建器，而AspectJAwareAdvisorAutoProxyCreator和AnnotationAwareAspectJAutoProxyCreator则是更加专注于支持AspectJ注解风格的AOP代理创建器，提供了更多的功能和特性。其中，AnnotationAwareAspectJAutoProxyCreator还支持基于注解的切点声明，使得AOP的使用更加便捷和灵活。

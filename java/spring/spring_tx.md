@@ -228,11 +228,16 @@ javaee
 
 TxNamespaceHandler解析tx:annotation-driven元素，用于启用使用@Transactional注解的事务管理。tx:annotation-driven元素会注册AnnotationTransactionAttributeSource、TransactionInterceptor和BeanNameAutoProxyCreator等BeanPostProcessor，以支持使用@Transactional注解的事务管理。
 
-是的，您说得很对。
+org.springframework.transaction.config.TxNamespaceHandler#init()
+
+
+
 
 `TxNamespaceHandler` 是 Spring 框架提供的一个命名空间处理器，它可以解析 Spring 配置文件中的 `tx` 命名空间，并将其中的 `annotation-driven` 元素转换为 Spring 事务管理所需的相关组件，以支持使用 `@Transactional` 注解进行事务管理。
 
 具体地说，`annotation-driven` 元素会注册 `AnnotationTransactionAttributeSource`、`TransactionInterceptor` 和 `BeanNameAutoProxyCreator` 等 Bean 后置处理器，以支持使用 `@Transactional` 注解的事务管理。其中，`AnnotationTransactionAttributeSource` 用于解析 `@Transactional` 注解中的事务属性，`TransactionInterceptor` 用于拦截带有 `@Transactional` 注解的方法，并根据事务属性来开启、提交或回滚事务，`BeanNameAutoProxyCreator` 用于自动为带有 `@Transactional` 注解的方法创建代理对象。
+
+spring-aop jar里面的org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
 
 使用 `tx:annotation-driven` 元素可以非常方便地启用基于 `@Transactional` 注解的事务管理。示例代码如下：
 
@@ -312,6 +317,11 @@ public class UserServiceImpl implements UserService {
 ### TransactionInterceptor
 
 
+TransactionInterceptor
+org.springframework.transaction.interceptor.TransactionInterceptor spring-tx中的类
+是拦截器，实现了org.aopalliance.intercept.Interceptor
+org.aopalliance.intercept.MethodInterceptor
+
 
 ### BeanNameAutoProxyCreator
 在 Spring 中，`BeanNameAutoProxyCreator` 是一个 Bean 后置处理器，它可以自动为指定名称的 Bean 创建代理对象，并将其应用于所有符合指定规则的方法上。通常情况下，`BeanNameAutoProxyCreator` 用于实现基于方法拦截的 AOP 编程。
@@ -374,52 +384,45 @@ public class UserServiceImpl implements UserService {
 
 
 在 Spring 中，以下是一些常用的事务管理器及其对应的技术：
-
 1. `DataSourceTransactionManager`：该事务管理器适用于 JDBC 数据源事务管理，通过使用 JDBC API 来管理事务。
-
 2. `HibernateTransactionManager`：该事务管理器适用于 Hibernate 的事务管理，可以管理 Hibernate SessionFactory 创建的所有 Session。
-
 3. `JtaTransactionManager`：该事务管理器适用于 JTA 事务管理，可以与 JTA 事务管理器一起使用，以实现跨多个事务资源的事务管理。
-
 4. `JpaTransactionManager`：该事务管理器适用于 JPA 的事务管理，可以管理 JPA EntityManagerFactory 创建的所有 EntityManager。
-
 这些事务管理器都实现了 Spring 的 `PlatformTransactionManager` 接口，该接口定义了事务管理器的基本行为，例如开启事务、提交事务、回滚事务等。
 
 开发者可以根据具体的应用场景选择合适的事务管理器。例如，如果应用程序使用的是 JDBC 数据源，则可以选择 `DataSourceTransactionManager`；如果应用程序使用的是 Hibernate 框架，则可以选择 `HibernateTransactionManager`；如果应用程序需要跨多个事务资源进行事务管理，则可以选择 `JtaTransactionManager` 等。
 
 总之，不同的事务管理器适用于不同的技术和场景，开发者可以根据具体的应用场景选择合适的事务管理器来管理事务。
 
+AbstractPlatformTransactionManager子类
+AbstractPlatformTransactionManager (org.springframework.transaction.support)
+    CciLocalTransactionManager (org.springframework.jca.cci.connection)
+    JpaTransactionManager (org.springframework.orm.jpa)
+    DataSourceTransactionManager (org.springframework.jdbc.datasource)
+        JdbcTransactionManager (org.springframework.jdbc.support)
+    JtaTransactionManager (org.springframework.transaction.jta)
+        WebLogicJtaTransactionManager (org.springframework.transaction.jta)
+        WebSphereUowTransactionManager (org.springframework.transaction.jta)
+    HibernateTransactionManager (org.springframework.orm.hibernate5)
+
+
 
 spring-tx，被@Transaction修饰的方法相互调用，传播属性最终是？
 
 第一个方法的传播属性
-
 因为事务是从外层方法开始的,每个嵌套的 transactional 方法继承外层方法的事务上下文。
-
-
 spring是如何统计被@Transcational修饰的方法的，这些方法被调用，spring又是如何开启事务的
 
-
 Spring是如何统计被@Transactional修饰的方法的:
-
 1. 当Spring启动时,它会扫描所有被@Transactional注解的方法。
-
 2. 对于每个方法,Spring会记录下对应的事务属性,如事务隔离级别、传播行为、回滚规则等。
-
 3. Spring使用这些信息创建事务模版(TransactionTemplate),并缓存这些事务模版。
-
 Spring是如何为这些方法开启事务的:
-
 1. 当一个被@Transactional注解的方法被调用时,Spring会为这个方法创建一个事务执行对象(TransactionInterceptor)。
-
 2. 这个事务执行对象会拦截方法调用,在方法执行前检查是否需要开始事务。
-
 3. 如果需要开始事务,事务执行对象会使用之前缓存的事务模版来获取事务信息,并开始一个事务。
-
 4. 方法执行完毕后,事务执行对象会根据事务属性提交或回滚事务。
-
 5. 如果方法中抛出未检查的异常,事务执行对象也会回滚事务。
-
 大致过程如下:
 1. Spring启动时扫描并记录@Transactional方法信息,创建事务模版。
 2. 当@Transactional方法被调用时,Spring创建一个TransactionInterceptor拦截器对象。
@@ -431,15 +434,21 @@ Spring是如何为这些方法开启事务的:
 总的来说,@Transactional注解给Spring提供了足够的信息来管理对应方法的事务。Spring利用这个信息创建拦截器,在方法调用时开始控制事务。
 
 
+DefaultTransactionDefinition这个类里面有
+
+    public static final String PREFIX_PROPAGATION = "PROPAGATION_";
+    public static final String PREFIX_ISOLATION = "ISOLATION_";
+    public static final String PREFIX_TIMEOUT = "timeout_";
+    public static final String READ_ONLY_MARKER = "readOnly";
+这些属性
+
+
+TransactionTemplate extends DefaultTransactionDefinition
 
 
 
 
-
-
-
-
-是的,被@Transactional修饰的类必须是注册到Spring IoC容器中的Bean。
+被@Transactional修饰的类必须是注册到Spring IoC容器中的Bean。
 原因是:
 1. Spring通过扫描@Transactional注解来获取事务属性信息,生成TransactionTemplate等。这需要类是容器管理的Bean。
 2. Spring使用AOP来实现事务,需要为@Transactional类创建TransactionInterceptor拦截器。这也需要类是容器管理的Bean。
@@ -473,23 +482,13 @@ public class ManagedClass {
 除此之外,事务代理也只对public方法起作用,私有方法不会被代理。
 
 
-
-
-
 spring项目，如何查看整个项目中定义了哪些切点切面，哪些方法命中了切点？
-
 您可以通过多个方式检查Spring项目中定义的切点、切面及命中切点的方法:
-
 1. 查看配置文件:在Spring配置文件(如XML配置或注解配置)中,可以查看定义的切面及切点。
-
 2. 日志输出:在Spring启动时,它会输出定义的切点和切面信息到日志中。
-
 3. 使用AspectJ Weaver工具:可以使用AspectJ的ajc编译器或woven工具查看项目中的切点信息。
-
 4. 使用AspectJ断点:可以在项目中设置AspectJ断点,在运行时打印命中的切点信息。
-
 举个简单的例子:
-
 ```xml
 <!-- 定义一个切点 --> 
 <pointcut id="recordExecution" expression="execution(* com.myapp.service.*.*(..))"/>
@@ -514,12 +513,6 @@ Advicing aspect 'logAspect' at cutpoint 'recordExecution'
 使用AspectJ的woven工具或ajc编译器也可以查看项目中定义的切点详情。
 通过设置AspectJ的切点断点,在程序运行时也可以查看到哪些方法命中了这个切点。
 总的来说,您可以通过配置文件、日志、AspectJ工具等多种方式查看Spring项目中的AOP定义和使用情况。这有助于理解和调试Spring AOP。
-
-
-TransactionInterceptor
-
-org.springframework.transaction.interceptor.TransactionInterceptor spring-tx中的类
-
 
 
 
