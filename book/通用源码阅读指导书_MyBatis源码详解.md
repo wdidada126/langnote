@@ -12,7 +12,7 @@ https://book.douban.com/subject/35138963/
 
 随书代码
 
-https://github.com/edidada/MyBatisDemo
+https://gitee.com/edidada/my-batis-demo
 
 ## 第1篇 背景介绍
 ### 第2章 MyBatis概述
