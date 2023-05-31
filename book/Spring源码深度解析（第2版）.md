@@ -579,7 +579,85 @@ guice这种ioc框架，如何打印容器中的数据
 ## 第2部分 企业应用
 ### 第8章　数据库连接JDBC
 
+在JdbcTemplate方面，本书详细介绍了JdbcTemplate的实现原理，并提供了大量的源代码分析和实践案例，帮助读者理解JdbcTemplate的内部机制和使用方式。
 
+
+org.springframework.jdbc.core.RowMapper接口
+实现
+T mapRow(ResultSet rs, int rowNum) throws SQLException;
+方法
+
+JdbcTemplate
+update()
+query()方法
+
+
+ArgumentTypePreparedStatementSetter  pss
+封装了一组
+	@Nullable
+	private final Object[] args;
+	@Nullable
+	private final int[] argTypes;
+
+ArgumentTypePreparedStatementSetter是Spring JDBC中的一个实用类，它的作用是将SQL语句中的占位符参数与Java对象中的属性值进行匹配和设置。
+在使用JDBC访问数据库时，通常需要使用PreparedStatement对象来执行SQL语句，并将占位符参数替换为具体的值。ArgumentTypePreparedStatementSetter类可以方便地将Java对象中的属性值与SQL语句中的占位符参数进行匹配，从而自动设置PreparedStatement对象中的参数值。
+ArgumentTypePreparedStatementSetter类的主要作用有以下几点：
+1. 自动匹配参数：ArgumentTypePreparedStatementSetter可以自动匹配Java对象中的属性值和SQL语句中的占位符参数，从而方便地设置PreparedStatement对象中的参数值。
+2. 简化代码：ArgumentTypePreparedStatementSetter可以简化JDBC代码的编写，避免手动编写处理占位符参数的代码，从而提高了代码的可读性和可维护性。
+3. 支持不同数据类型：ArgumentTypePreparedStatementSetter支持多种不同的数据类型，例如字符串、数字、日期等，可以方便地处理不同类型的参数值。
+使用ArgumentTypePreparedStatementSetter时，需要将一个对象数组作为参数传递给它的构造方法，该对象数组中包含了需要设置的参数值。例如：
+```
+String sql = "INSERT INTO users (id, name, age) VALUES (?, ?, ?)";
+Object[] params = new Object[] {1, "John", 25};
+PreparedStatementSetter setter = new ArgumentTypePreparedStatementSetter(params);
+jdbcTemplate.update(sql, setter);
+```
+
+在上面的示例中，我们首先定义了一个SQL语句，其中包含了三个占位符参数。然后，我们定义了一个数组params，其中包含了需要设置的三个参数值。接下来，我们创建了一个ArgumentTypePreparedStatementSetter对象，并将params数组作为参数传递给它的构造方法。最后，我们使用JdbcTemplate对象的update()方法执行SQL语句，并将ArgumentTypePreparedStatementSetter对象作为参数传递给它。
+通过使用ArgumentTypePreparedStatementSetter，我们可以方便地设置PreparedStatement对象中的参数值，避免了手动编写处理占位符参数的代码，从而提高了代码的可读性和可维护性。
+
+
+
+org.springframework.jdbc.core.JdbcTemplate.SimplePreparedStatementCreator是Spring JDBC中的一个实用类，它的作用是创建一个简单的PreparedStatement对象。
+
+
+
+org.springframework.jdbc.core.JdbcTemplate.SimplePreparedStatementCreator 作用
+
+
+在使用JDBC访问数据库时，通常需要使用PreparedStatement对象来执行SQL语句。SimplePreparedStatementCreator类可以方便地创建一个简单的PreparedStatement对象，可以直接传递SQL语句和参数值，并自动替换占位符参数。
+SimplePreparedStatementCreator类的主要作用有以下几点：
+1. 简化代码：SimplePreparedStatementCreator可以简化JDBC代码的编写，避免手动编写处理占位符参数的代码，从而提高了代码的可读性和可维护性。
+2. 支持不同数据类型：SimplePreparedStatementCreator支持多种不同的数据类型，例如字符串、数字、日期等，可以方便地处理不同类型的参数值。
+3. 灵活性：SimplePreparedStatementCreator可以根据不同的需求进行扩展和定制，例如支持不同类型的占位符参数，支持自定义参数设置等。
+使用SimplePreparedStatementCreator时，需要将SQL语句和参数值作为参数传递给它的构造方法。例如：
+
+```
+String sql = "INSERT INTO users (id, name, age) VALUES (?, ?, ?)";
+Object[] params = new Object[] {1, "John", 25};
+SimplePreparedStatementCreator creator = new SimplePreparedStatementCreator(sql, params);
+jdbcTemplate.update(creator);
+```
+
+在上面的示例中，我们首先定义了一个SQL语句，其中包含了三个占位符参数。然后，我们定义了一个数组params，其中包含了需要设置的三个参数值。接下来，我们创建了一个SimplePreparedStatementCreator对象，并将SQL语句和params数组作为参数传递给它的构造方法。最后，我们使用JdbcTemplate对象的update()方法执行SQL语句，并将SimplePreparedStatementCreator对象作为参数传递给它。
+通过使用SimplePreparedStatementCreator，我们可以方便地创建一个简单的PreparedStatement对象，并自动替换占位符参数，避免了手动编写处理占位符参数的代码，从而提高了代码的可读性和可维护性。
+
+update()方法最终调用execute()方法
+
+public <T> T execute(PreparedStatementCreator psc, PreparedStatementCallback<T> action)
+
+
+SQLWarning
+
+这里用到了一个类SQLWami吨， SQLWaming 提供关于数据库访问警告信息的异常。这些警告直接链接到导致报告警告的方法所在的对象。警告可以从Connection 、Statement 和ResultSet 对象中获得。试图在已经关闭的连接上获取警告将导致抛出异常。类似地，试图在已
+经关闭的语句上或已经关闭的结果集上获取警告也将导致抛出异常。注意，关闭语句时还会关
+闭它可能生成的结果集。
+很多人不是很理解什么情况下会产生警告而不是异常，在这里给读者提示个最常见的警告
+DataTruncation: Data Truncation 直接继承SQLWarning ，由于某种原因意外地截断数据值日才会以
+Data Truncation 警告形式报告异常。
+对于警告的处理方式并不是直接抛出异常，出现警告很可能会出现数据错误，但是，并不
+一定会影响程序执行，所以用户可以自己设置处理警告的方式，如默认的是忽略警告，当出现
+警告时只打印警告日志，而另一种方式只直接抛出异常。
 
 ### 第9章　整合MyBatis
 
