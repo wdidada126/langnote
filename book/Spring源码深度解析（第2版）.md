@@ -25,11 +25,8 @@ Could not GET 'https://repo.spring.io/plugins-release
 https://juejin.cn/post/7067505778353143815
 
 这个错误提示通常是由于 Maven 无法访问远程仓库造成的。可能的原因包括：
-
 1. 网络连接问题：请检查您的网络连接是否正常，尝试使用浏览器访问该 URL，看看是否能够正常访问。
-
 2. 代理问题：如果您的网络使用了代理，请确保 Maven 的代理配置正确。您可以在 Maven 的 settings.xml 文件中添加代理配置，例如：
-
 ```
 <proxies>
   <proxy>
@@ -46,7 +43,6 @@ https://juejin.cn/post/7067505778353143815
 ```
 
 3. 远程仓库配置问题：请确保您的 Maven 配置文件中添加了正确的远程仓库配置。例如，如果您使用的是 Spring Boot，可以在 pom.xml 文件中添加以下配置：
-
 ```
 <repositories>
   <repository>
@@ -55,9 +51,7 @@ https://juejin.cn/post/7067505778353143815
   </repository>
 </repositories>
 ```
-
-4. Maven 本地仓库问题：请确保您的 Maven 本地仓库中已经存在所需的依赖。您可以尝试清空本地仓库并重新构建项目，例如：
-
+4.Maven本地仓库问题：请确保您的 Maven 本地仓库中已经存在所需的依赖。您可以尝试清空本地仓库并重新构建项目，例如：
 ```
 mvn clean
 rm -rf ~/.m2/repository
@@ -65,17 +59,13 @@ mvn package
 ```
 
 如果以上方法都无法解决问题，建议您查看 Maven 的日志文件，找出具体的错误信息，以便更好地定位问题。
-
-
 set https_proxy=http://127.0.0.1:7890
 set http_proxy=http://127.0.0.1:7890
-
 
 cd/d D:\git\gitlab\spring-framework-5.0.x
 gradlew build -x test
 
 ## 第 1部分　核心实现
-
 ### 第2章 容器的基本实现
 【Spring源码分析】Bean加载流程概览
 https://www.cnblogs.com/xrq730/p/6285358.html
@@ -374,7 +364,7 @@ Resource简介
 - getFile()：返回当前资源对应的File。如果当前资源不能以绝对路径解析为一个File则会抛出异常。如ByteArrayResource就不能解析为一个File。
 - getInputStream()：获取当前资源代表的输入流。除了InputStreamResource以外，其它Resource实现类每次调用getInputStream()方法都将返回一个全新的InputStream。
 
- 
+
 
 ClassPathResource可用来获取类路径下的资源文件。假设我们有一个资源文件test.txt在类路径下，我们就可以通过给定对应资源文件在类路径下的路径path来获取它，new ClassPathResource(“test.txt”)。
 FileSystemResource可用来获取文件系统里面的资源。我们可以通过对应资源文件的文件路径来构建一个FileSystemResource。FileSystemResource还可以往对应的资源文件里面写内容，当然前提是当前资源文件是可写的，这可以通过其isWritable()方法来判断。FileSystemResource对外开放了对应资源文件的输出流，可以通过getOutputStream()方法获取到。
