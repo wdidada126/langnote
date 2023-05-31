@@ -271,3 +271,8 @@ setXXX
 删除
 update
 `jdbcTemplate.update("DELETE FROM blog WHERE id=?", id);`
+
+
+
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+

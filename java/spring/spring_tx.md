@@ -515,8 +515,6 @@ Advicing aspect 'logAspect' at cutpoint 'recordExecution'
 总的来说,您可以通过配置文件、日志、AspectJ工具等多种方式查看Spring项目中的AOP定义和使用情况。这有助于理解和调试Spring AOP。
 
 
-
-
 @Transactional这个注解，跟我自己自定义一个注解myCustomerAnnotation，然后用在方法上，一样吗？
 
 @Transactional和自定义注解略有不同。
@@ -543,8 +541,6 @@ Advicing aspect 'logAspect' at cutpoint 'recordExecution'
 - @Transactional 是一个内置的框架注解,能很方便地为方法提供事务功能。
 - 自定义注解需要额外的配置、实现,只是一个标记,无法提供具体的功能。
 确保你理解了 @Transactional 是 Spring 框架如何为方法提供事务的一个关键手段。同时也理解自定义注解需要我们额外的实现。
-
-
 
 
 spring是如何处理@Transactional注解的
@@ -607,5 +603,40 @@ TransactionInterceptor1就像一个切面,能在method1()的执行前后织入�
 所以答案是:一个@Transactional方法对应的是一个TransactionInterceptor对象。
 TransactionInterceptor为这个@Transactional方法提供事务支持。
 
+spring 5.3 TransactionSynchronizationManager这个类的作用
 
+TransactionSynchronizationManager是Spring框架中的一个工具类，它的作用是管理事务同步器(TransactionSynchronization)。
+
+在使用Spring事务管理时，需要在事务开始时创建一个Transaction对象，并在事务结束时执行提交或回滚操作。TransactionSynchronizationManager提供了一系列静态方法，用于管理事务同步器并实现事务的提交或回滚。
+TransactionSynchronizationManager类的主要作用有以下几点：
+1. 管理事务同步器：TransactionSynchronizationManager可以管理事务同步器，将需要执行的事务操作注册到事务同步器中。
+2. 提供静态方法：TransactionSynchronizationManager提供了一系列静态方法，例如initSynchronization()、registerSynchronization()、clearSynchronization()等，可以方便地管理事务同步器。
+3. 实现事务提交和回滚：TransactionSynchronizationManager在事务结束时，根据事务的提交或回滚状态，执行相应的事务操作。
+4. 提供线程绑定机制：TransactionSynchronizationManager使用线程绑定机制，确保事务同步器只在当前事务线程中执行。
+使用TransactionSynchronizationManager时，需要在事务开始时调用initSynchronization()方法，创建一个TransactionSynchronization对象。然后，需要将需要执行的事务操作注册到TransactionSynchronization对象中，例如注册事务提交或回滚的操作。最后，在事务结束时，调用TransactionSynchronizationManager的清理方法，清理事务同步器。例如：
+
+```
+// 开始事务
+TransactionSynchronizationManager.initSynchronization();
+// 注册事务同步器
+TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+   @Override
+   public void afterCommit() {
+      // 提交事务后执行的操作
+   }
+   @Override
+   public void afterCompletion(int status) {
+      if (status == TransactionSynchronization.STATUS_COMMITTED) {
+         // 事务提交后执行的操作
+      } else if (status == TransactionSynchronization.STATUS_ROLLED_BACK) {
+         // 事务回滚后执行的操作
+      }
+   }
+});
+// 结束事务
+TransactionSynchronizationManager.clearSynchronization();
+```
+
+在上面的示例中，我们首先调用了TransactionSynchronizationManager的initSynchronization()方法，创建了一个TransactionSynchronization对象。然后，我们将需要执行的事务操作注册到TransactionSynchronization对象中，例如注册事务提交或回滚的操作。最后，在事务结束时，我们调用了TransactionSynchronizationManager的clearSynchronization()方法，清理了事务同步器。
+通过使用TransactionSynchronizationManager，我们可以方便地管理事务同步器，实现事务的提交或回滚，并可以在事务提交或回滚后执行相应的操作，从而提高了代码的可读性和可维护性。它是Spring事务管理实现的重要组成部分。
 

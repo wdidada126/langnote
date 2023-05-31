@@ -833,8 +833,12 @@ maven3超级POM
 Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy (default-deploy) on project short-url: Deployment failed: repository element was not specified in the POM inside dis
 tributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter -> [Help 1]
 
-
 [maven跳过单元测试-maven.test.skip和skipTests的区别](https://blog.csdn.net/arkblue/article/details/50974957)
+-DskipTests，不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。
+
+-Dmaven.test.skip=true，不执行测试用例，也不编译测试用例类。
+
+mvn package -Dmaven.test.skip=true
 
 ​```java
 
@@ -962,7 +966,7 @@ Maven对settings.xml配置的官方说明文档。http://maven.apache.org/settin
 Maven对password进行加密配置的说明文档。http://maven.apache.org/guides/mini/guide-encryption.html
 
 [maven跳过单元测试-maven.test.skip和skipTests的区别](https://blog.csdn.net/arkblue/article/details/50974957)
-mvn package -Dmaven.test.skip=true
+
 
 ## plugin
 
