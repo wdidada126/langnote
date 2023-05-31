@@ -1,7 +1,8 @@
 # nacos
 
-nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.18848/nacos访问可以
-
+nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
+nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
+nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
 
 Spring cloud alibaba nacos，默认dataID nacos-service.properties修改成自定义值
 

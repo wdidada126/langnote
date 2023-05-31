@@ -1,5 +1,14 @@
 # jackson
 
+报错：
+```shell
+com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String "2023-05-18": not a valid representation (error: Failed to parse Date value '2023-05-18': Unparseable date: "2023-05-18")
+```
+
+在该字段上加上
+```java
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = 
+```
 ### 支持多种格式
 
 当使用Jackson库解析JSON数据时，如果JSON中包含了Java对象中未定义的属性，Jackson会抛出UnrecognizedPropertyException异常，提示存在未识别的属性。为了避免这个问题，可以使用ObjectMapper类的configure()方法来设置忽略未知属性的选项。
