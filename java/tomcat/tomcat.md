@@ -1,4 +1,42 @@
 # Tomcat
+
+https://tomcat.apache.org/tomcat-10.0-doc/api/index.html
+
+https://tomcat.apache.org/tomcat-9.0-doc/api/index.html
+
+https://tomcat.apache.org/tomcat-8.5-doc/api/index.html
+
+https://tomcat.apache.org/tomcat-7.0-doc/api/index.html
+
+Tomcat是一个开源的Web应用服务器，使用Java编写。它是Apache软件基金会的一部分，旨在为Java Web应用程序提供一个容器。以下是Tomcat的Java API文档的链接：
+
+- Tomcat 10: https://tomcat.apache.org/tomcat-10.0-doc/api/index.html
+- Tomcat 9: https://tomcat.apache.org/tomcat-9.0-doc/api/index.html
+- Tomcat 8: https://tomcat.apache.org/tomcat-8.5-doc/api/index.html
+- Tomcat 7: https://tomcat.apache.org/tomcat-7.0-doc/api/index.html
+
+以上链接分别是Tomcat的不同版本的Java API文档。您可以在这些文档中找到Tomcat API的类、接口、方法和字段等详细信息。这些文档非常有用，可以帮助您开发和调试Java Web应用程序，并使用Tomcat作为Web应用服务器。
+
+在文档中，您可以通过输入关键字来搜索特定的类或方法。您也可以浏览Java类的层次结构，以查看每个类的详细信息。文档中的每个类都包含有其构造函数、方法和字段的详细描述，以及相关的代码示例和使用说明。
+
+此外，Tomcat的Java API文档还包括一些其他的有用资源，例如：
+
+- Servlet API文档：描述了Java Servlet API的类、接口和方法等详细信息。Servlet是Java Web应用程序的核心组件之一，它负责处理Web请求并生成响应。
+- JSP API文档：描述了Java Server Pages（JSP）API的类、接口和方法等详细信息。JSP是一种动态Web页面技术，它允许在HTML页面中嵌入Java代码。
+- WebSocket API文档：描述了Java WebSocket API的类、接口和方法等详细信息。WebSocket是一种用于实现双向通信的Web协议，它允许服务器和客户端之间进行实时通信。
+
+这些文档都可以在Tomcat的Java API文档页面中找到。在阅读Tomcat的Java API文档时，建议您先了解Java编程语言和Web应用程序的基本概念和技术，以便更好地理解和应用这些API。
+
+
+
+Tomcat 9的源码中包含多个类加载器，用于加载Tomcat本身和Web应用程序。这些类加载器的实现基于Java的ClassLoader类，但具有一些特定的功能和行为，以满足Tomcat的需求。以下是Tomcat 9源码中的一些类加载器：
+1. CatalinaClassLoader（不存在 CatalinaClassLoaderFactory：这是Tomcat的主要类加载器，用于加载Tomcat的核心类和组件。它由BootstrapClassLoader、CommonClassLoader和CatalinaSharedClassLoader组成，可以加载多个类路径中的类。CatalinaClassLoader实现了类的隔离和防止冲突，确保每个Web应用程序都有独立的类加载器和类路径。
+2. WebappClassLoaderBase：这是Web应用程序的类加载器，用于加载Web应用程序的所有类。它继承自ClassLoader类，支持从多个类路径中加载类。WebappClassLoaderBase实现了类的隔离和防止冲突，确保每个Web应用程序都有独立的类加载器和类路径。
+3. ParallelWebappClassLoader：这是Web应用程序的类加载器，用于在多核CPU上并行加载类。它继承自WebappClassLoaderBase类，但使用了Java 7中新增的ClassLoader API，支持并行加载类。ParallelWebappClassLoader可以提高Web应用程序的启动速度和性能。
+4. JreMemoryLeakPreventionListener.ClassLoaderLeakPreventionClassLoader：这是一个特殊的类加载器，用于防止JRE内存泄漏。在某些情况下，Java虚拟机会在应用程序关闭后仍然保留应用程序的类加载器，导致内存泄漏。JreMemoryLeakPreventionListener.ClassLoaderLeakPreventionClassLoader通过重载finalize()方法来解决这个问题，确保在应用程序关闭后释放类加载器。
+以上是Tomcat 9源码中的一些类加载器。除了这些类加载器外，Tomcat 9还提供了其他的类加载器和工具，例如VirtualWebappClassLoader、WebappClassLoader、JdbcLeakPrevention、ClassloaderLogManager等，用于实现更高级的类加载和管理功能。在编写Web应用程序或开发Tomcat插件时，您可以利用这些类加载器和工具来实现自己的需求。
+
+
 tomcat哪个版本支持nio
 
 Tomcat 从版本 6.0 开始支持 NIO（New I/O）模式，但要使用 NIO，需要将 Connector 的 protocol 属性设置为 "org.apache.coyote.http11.Http11NioProtocol"。
@@ -96,7 +134,7 @@ Tomcat是个web容器， 那么它要解决什么问题：
 web容器也有自己依赖的类库，不能于应用程序的类库混淆。基于安全考虑，应该让容器的类库和程序的类库隔离开来。
 web容器要支持jsp的修改，我们知道，jsp 文件最终也是要编译成class文件才能在虚拟机中运行，但程序运行后修改jsp已经是司空见惯的事情，否则要你何用？ 所以，web容器需要支持 jsp 修改后不用重启。
 
-![tomcat](classloader2.jpg)
+![tomcat](../../imgs/classloader2.jpg)
 
 [Tomcat config](https://www.cnblogs.com/chengssblog/p/6635211.html)
 
@@ -109,9 +147,55 @@ Servlet如何处理
 
 
 
-tomcat如何处理session？
+tomcat 9如何处理session？
+Tomcat 9使用Session来跟踪用户的状态和数据。在Tomcat 9中，Session是一个接口，它定义了访问和管理会话数据的方法。Tomcat 9通过多种方式实现Session，包括内存、文件、数据库和分布式存储等。以下是Tomcat 9如何处理Session的概述：
 
-tomcat如何实现https？
+1. 内存Session：Tomcat 9默认使用内存存储Session。在内存中创建Session对象，并将其与一个唯一的Session ID关联。Session的数据存储在内存中，并在Session超时或无效时被删除。
+
+2. 文件Session：Tomcat 9还支持使用文件存储Session。在文件系统中创建Session对象，并将其与一个唯一的Session ID关联。Session的数据存储在文件中，并在Session超时或无效时被删除。
+
+3. 数据库Session：Tomcat 9支持使用数据库存储Session。在数据库中创建Session对象，并将其与一个唯一的Session ID关联。Session的数据存储在数据库中，并在Session超时或无效时被删除。Tomcat 9支持多种数据库，包括MySQL、Oracle、PostgreSQL等。
+
+4. 分布式Session：Tomcat 9支持使用分布式存储Session。在分布式环境中，Session的数据存储在多个物理节点上，并在节点之间同步。Tomcat 9通过使用多种技术实现分布式Session，包括基于JDBC的存储、基于Redis的存储、基于Hazelcast的存储等。
+
+无论使用哪种方式存储Session，Tomcat 9都提供了一些配置选项和API来管理Session。例如，可以使用session-timeout属性设置Session的超时时间，可以使用Session API来获取、设置和删除Session中的数据等。在Web应用程序中，可以使用HttpServletRequest和HttpSession API来访问和管理Session。例如，可以使用request.getSession()方法获取Session对象，并使用Session API来获取、设置和删除Session中的数据。
+
+需要注意的是，Session数据通常包含敏感信息，例如用户的登录凭证、购物车信息等。为了保护Session数据的安全性，建议使用HTTPS协议来加密Session通信，并尽可能使用安全的Session ID生成算法，以避免Session ID的泄露和伪造。此外，还可以使用Session Fixation攻击的防范策略，例如在用户登录时随机生成Session ID，或在每次请求时使用不同的Session ID来防止Session Fixation攻击。
+
+tomcat 9如何实现https？
+
+
+Tomcat 9可以通过以下步骤来实现HTTPS：
+
+1. 获取SSL证书：HTTPS需要使用SSL/TLS协议进行加密和身份验证。您需要从可信的证书颁发机构（CA）或自签名证书创建工具中获取SSL证书。可以使用keytool工具生成自签名证书。
+
+2. 配置Tomcat 9：在Tomcat 9的配置文件server.xml中，您需要配置SSL协议和证书。在<Connector>元素中添加以下属性：
+
+   - protocol="org.apache.coyote.http11.Http11NioProtocol"：指定SSL协议为NIO协议。
+
+   - SSLEnabled="true"：开启SSL功能。
+
+   - keystoreFile="证书文件路径"：指定SSL证书的路径。
+
+   - keystorePass="证书密码"：指定SSL证书的密码。
+
+   - keyAlias="证书别名"：指定SSL证书的别名。
+
+以下是一个示例配置：
+
+```xml
+<Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+           maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+           clientAuth="false" sslProtocol="TLS"
+           keystoreFile="证书文件路径" keystorePass="证书密码" keyAlias="证书别名" />
+```
+
+3. 重启Tomcat 9：重启Tomcat 9以使配置生效。
+
+4. 测试HTTPS：在Web浏览器中输入HTTPS网址（例如https://localhost），如果SSL证书有效，则应该能够安全地连接到Tomcat 9服务器。
+
+需要注意的是，HTTPS协议可以保护数据的机密性和完整性，但并不能保证数据的真实性和可信性。为了确保HTTPS通信的安全性，您还应该遵循一些最佳实践，例如使用密码强度较高的SSL证书、使用HTTPS Strict Transport Security（HSTS）协议、使用双因素身份验证等。另外，由于SSL证书可能会过期、被吊销或被伪造，因此您还应该定期更新证书并进行审计和监控。
+
 
 BEA WebLogic Sever：是一款十分强大的服务器软件，配置比较简单，而且对JSP的扩展十分强大，附带了数据库的JDBC驱动程序，支持JHTML，是目前市场占有率最高的服务器，目前最新版本是6.1版，价格很贵，不过嘿嘿.....有破解版哦：）
 IBM WebSphere Application Server:是IBM的产品，功能很强大，而且有IBM的开发工具相配套，开发Web程序十分方便，不过价格上万元。
@@ -122,5 +206,17 @@ IBM WebSphere Application Server:是IBM的产品，功能很强大，而且有IB
 
 tomcat打破双亲委派模型
 
+
+Tomcat 9中与Session相关的类、接口和枚举主要有以下几个：
+1. HttpSession：这是一个接口，它定义了访问和管理Session数据的方法。例如，getAttribute()方法用于获取Session中的属性值，setAttribute()方法用于设置Session中的属性值，invalidate()方法用于使Session无效。
+2. HttpServletRequest：这是一个接口，它定义了访问和管理HTTP请求数据的方法。例如，getSession()方法用于获取Session对象，getRequestedSessionId()方法用于获取请求中包含的Session ID。
+3. HttpServletResponse：这是一个接口，它定义了访问和管理HTTP响应数据的方法。例如，addCookie()方法用于添加Cookie，sendRedirect()方法用于重定向HTTP请求。
+4. Session：这是一个接口，它继承自HttpSession接口，增加了一些额外的方法，例如getId()方法用于获取Session ID，getCreationTime()方法用于获取Session创建时间。
+5. StandardSession：这是一个类，它实现了Session接口。它可以存储Session数据，并在Session超时或无效时自动删除数据。
+6. SessionIdGenerator：这是一个接口，它定义了生成Session ID的方法。Tomcat 9中提供了多种Session ID生成器实现，例如StandardSessionIdGenerator、SecureRandomSessionIdGenerator等。
+7. SessionCookieConfig：这是一个接口，它定义了Session ID Cookie的配置选项。例如，setMaxAge()方法用于设置Cookie的最大存活时间，setHttpOnly()方法用于设置Cookie是否只能通过HTTP访问。
+8. SessionTrackingMode：这是一个枚举，它定义了Session跟踪模式。Tomcat 9支持多种Session跟踪模式，包括COOKIE、URL和SSL等。
+9. SessionManager：这是一个接口，它定义了Session管理的方法。Tomcat 9中提供了多种Session管理器实现，例如StandardManager、PersistManager、DeltaManager等。
+以上是Tomcat 9中与Session相关的主要类、接口和枚举。在编写Web应用程序或开发Tomcat插件时，您可以利用这些类、接口和枚举来访问和管理Session数据，实现自己的需求。
 
 

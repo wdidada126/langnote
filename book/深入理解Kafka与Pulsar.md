@@ -28,14 +28,15 @@ https://book.douban.com/subject/36057405/
 第15章　Kafka分布式协同
 第16章　BookKeeper客户端
 第17章　BookKeeper服务端
-第4部分　事务与KRaft模块
+
+## 第4部分　事务与KRaft模块
 第18章　Kafka与Pulsar事务概述
 第19章　Kafka事务的设计与实现
 第20章　KRaft模块概述
 
 第21章　KRaft模块的设计与实现原理
 
-第5部分　高级应用
+## 第5部分　高级应用
 第22章　安全
 第23章　跨地域复制与分层存储
 第24章　监控与管理

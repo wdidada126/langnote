@@ -29,6 +29,66 @@ https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.5/docs/servlet-
 https://tomcat.apache.org/tomcat-7.0-doc/servletapi/index.html
 
 
+
+
+javax.servlet
+
+Interfaces 
+
+Filter
+FilterChain
+FilterConfig
+RequestDispatcher
+Servlet
+ServletConfig
+ServletContext
+ServletContextAttributeListener
+ServletContextListener
+ServletRequest
+ServletRequestAttributeListener
+ServletRequestListener
+ServletResponse
+SingleThreadModel
+
+Classes 
+
+GenericServlet
+ServletContextAttributeEvent
+ServletContextEvent
+ServletInputStream
+ServletOutputStream
+ServletRequestAttributeEvent
+ServletRequestEvent
+ServletRequestWrapper
+ServletResponseWrapper
+Exceptions 
+ServletException
+UnavailableException
+
+
+javax.servlet.http
+
+Interfaces 
+
+HttpServletRequest
+HttpServletResponse
+HttpSession
+HttpSessionActivationListener
+HttpSessionAttributeListener
+HttpSessionBindingListener
+HttpSessionContext
+HttpSessionListener
+
+Classes 
+Cookie
+HttpServlet
+HttpServletRequestWrapper
+HttpServletResponseWrapper
+HttpSessionBindingEvent
+HttpSessionEvent
+HttpUtils
+
+
 ### servlet version
 Servlet版本
 要务必注意servlet-api的版本。4.0及之前的servlet-api由Oracle官方维护，引入的依赖项是javax.servlet:javax.servlet-api，编写代码时引入的包名为：
@@ -55,7 +115,6 @@ Jakarta Servlet 6.0
 - java规范servlet servlet版本
 - web.xml配置文件内容 校验文件 重要参数
 - maven package
-
 
 
 <dependency>
