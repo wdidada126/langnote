@@ -67,11 +67,11 @@ https://gitee.com/edidada/summer-framework
 廖雪峰 自己写spring
 https://www.liaoxuefeng.com/wiki/1539348902182944
 
-![bean生命周期](D:\git\github\langnote\imgs\spring\bean生命周期.png)
+![bean生命周期](../../imgs/spring/bean生命周期.png)
 
 
 
-![Spring 容器中的bean的生命周期](D:\git\github\langnote\imgs\spring\Spring 容器中的bean的生命周期.png)
+![Spring 容器中的bean的生命周期](../../imgs/spring/Spring容器中的bean的生命周期.png)
 
 
 
@@ -536,6 +536,8 @@ String类型的
 
 springframework
 https://docs.spring.io/spring-framework/docs/5.2.14.RELEASE/javadoc-api/
+
+https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/
 
 spring api
 
