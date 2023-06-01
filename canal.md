@@ -1,6 +1,11 @@
 # canal
 
+讯飞用
 
+https://www.jianshu.com/p/87944efe1005
+阿里开源数据库复制
+多数据中心
+纯java开发
 
 alibaba_canal mysql监控工具使用
 https://blog.csdn.net/qq_41908550/article/details/109511780

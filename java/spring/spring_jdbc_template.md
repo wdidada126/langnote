@@ -1,5 +1,12 @@
 # spring_jdbc_template
 
+JDBCTemplate
+JDBC已经能够满足大部分用户最基本的需求，但是在使用JDBC时，必须自己来管理数据库资源如：获取PreparedStatement，设置SQL语句参数，关闭连接等步骤。
+JDBCTemplate就是Spring对JDBC的封装，目的是使JDBC更加易于使用。
+JDBCTemplate是Spring的一部分。,JDBCTemplate处理了资源的建立和释放。他帮助我们避免一些常见的错误，比如忘了总要关闭连接。
+使用JdbcTemplate编程我们只需要做以下步骤：
+提供SQL语句和占位符的值得到封装好的查询结果集JdbcTemplate主要提供以下五类方法：execute方法：可以用于执行任何SQL语句，一般用于执行DDL语句；update方法及batchUpdate方法：update方法用于执行新增、修改、删除等语句；batchUpdate方法用于执行批处理相关语句；query方法及queryForXXX方法：用于执行查询相关语句；call方法：用于执行存储过程、函数相关语句。
+
 JdbcTemplate是Spring为了简化JDBC操作而封装的一个类。它主要做了以下两件事:
 1. 隐藏了原生JDBC API。用户不需要直接操作Connection、Statement等JDBC对象,而是使用JdbcTemplate提供的方法。
 2. 实现了模板方法设计模式。它提供了一系列模板方法,如queryForObject()、update()等。这些模板方法内部完成了JDBC资源的获取、异常处理等重复性工作。

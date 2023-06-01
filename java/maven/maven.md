@@ -1,4 +1,12 @@
 # maven
+
+
+mvn deploy -Dmaven.test.skip -Dautoconfig.skip -pl app-api -am -Dskip.test=true -DaltDeploymentRepository=snapshots::default::http://xxx/content/repositories/snapshots/
+
+Maven的-pl -am -amd参数学习
+https://www.cnblogs.com/hiver/p/7850954.html
+
+
 ### 打包成tar.gz
 
 assembly
@@ -302,7 +310,9 @@ mvn参考 yum apt，联网下载库文件
 分发库文件
 
 下载依赖库源码
-`mvn dependency:resolve -Dclassifier=sources`
+`
+mvn dependency:resolve -Dclassifier=sources
+`
 
 `mvn dependency:tree`
 
