@@ -1,6 +1,8 @@
 # aspectj
 
-https://gitee.com/edidada/testaspectj
+https://gitee.com/edidada/testaspectj  @Aspectj注解
+https://gitee.com/edidada/aspectj  .aj文件
+
 
 ## AOP术语
 
