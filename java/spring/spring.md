@@ -1,5 +1,6 @@
 # Spring
 
+spring两种代理方式.png
 
 <init-method>效果跟实现InitializingBean接口是一样的吗？
 在Spring中，<init-method>标签和实现InitializingBean接口都可以用来指定Bean初始化之后执行的方法，但是它们的实现方式和用途是有些不同的。

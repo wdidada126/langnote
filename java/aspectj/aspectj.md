@@ -2,6 +2,58 @@
 
 https://gitee.com/edidada/testaspectj  @Aspectj注解
 https://gitee.com/edidada/aspectj  .aj文件
+https://gitee.com/edidada/spring-aopexample spring使用@Aspectj注解
+
+https://www.eclipse.org/aspectj/
+
+
+runtime
+weaver
+
+aspectjrt - the AspectJ runtime
+aspectjweaver - the AspectJ weaver
+aspectjtools - the AspectJ compiler
+aspectjmatcher - the AspectJ matcher
+
+aspectjtools这个jar包有main函数，ajbrowser ajc ajdoc命令行工具的实现
+java程序只需要引入aspectjtools就可以编译
+
+@Aspect注解在aspectjtools这个jar包里面
+@Before注解在aspectjtools这个jar包里面
+
+https://www.eclipse.org/aspectj/doc/released/runtime-api/index.html
+https://www.eclipse.org/aspectj/doc/released/weaver-api/index.html
+
+
+书籍
+https://www.amazon.com/exec/obidos/ASIN/0321245873/
+
+
+源代码仓库
+https://github.com/eclipse-aspectj/aspectj
+
+跟java的兼容性
+https://github.com/eclipse-aspectj/aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md
+
+
+
+JoinPoint 接口实现类
+JoinPointImpl
+
+org.aspectj.lang.JoinPoint
+    ProceedingJoinPoint (org.aspectj.lang)
+        JoinPointImpl (org.aspectj.runtime.reflect)
+
+
+JoinPoint api
+Signature getSignature()
+SourceLocation getSourceLocation()
+
+
+kind method-execution
+
+### ajc
+
 
 
 ## AOP术语
@@ -96,7 +148,30 @@ https://blog.csdn.net/weixin_34417814/article/details/92531310
 
 aspectj-maven-plugin
 
-
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>aspectj-maven-plugin</artifactId>
+            <version>1.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <sourceDirectory>src/main/aspect</sourceDirectory>
+                <outputDirectory>target/aspect-classes</outputDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
 
 
 

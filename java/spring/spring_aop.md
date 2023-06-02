@@ -6,8 +6,8 @@ Spring2教案_aop事务.docx
 SpringAOP开发的引入.png
 cglib动态代理的实现原理和步骤.png
 
-https://gitee.com/edidada/spring-aopexample   spring aop
-https://gitee.com/edidada/springexample
+https://gitee.com/edidada/spring-aopexample   spring aop，直接注解和xml两种方式
+https://gitee.com/edidada/springexample  com.samter.common.Main 这个是测试aop的
 
 A : public class MyServiceImpl implements MyService
 B : public class MyServiceImpl
@@ -861,3 +861,124 @@ BeanNameAutoProxyCreator DefaultAdvisorAutoProxyCreator AspectJAwareAdvisorAutoP
 3. AspectJAwareAdvisorAutoProxyCreator：专门用于支持AspectJ注解风格的AOP代理创建器。它可以识别并处理使用AspectJ注解声明的切面，并为符合切面条件的Bean创建代理对象。
 4. AnnotationAwareAspectJAutoProxyCreator：也是支持AspectJ注解风格的AOP代理创建器，相比于AspectJAwareAdvisorAutoProxyCreator，它提供了更多的功能，比如支持基于注解的切点声明、自动代理创建等。
 总的来说，BeanNameAutoProxyCreator和DefaultAdvisorAutoProxyCreator是比较基础、通用的代理创建器，而AspectJAwareAdvisorAutoProxyCreator和AnnotationAwareAspectJAutoProxyCreator则是更加专注于支持AspectJ注解风格的AOP代理创建器，提供了更多的功能和特性。其中，AnnotationAwareAspectJAutoProxyCreator还支持基于注解的切点声明，使得AOP的使用更加便捷和灵活。
+
+
+
+org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint
+
+```java
+    @Before("execution(* chop(..))")
+    public void beforeAttack(JoinPoint point) {
+        System.out.println("Advice: " + point.getTarget().getClass().getSimpleName() + "****");
+    }
+```
+
+这里的JoinPoint实现类是MethodInvocationProceedingJoinPoint
+MethodInvocationProceedingJoinPoint在spring-aop这个包里面
+
+
+spring aop自己的注解
+
+Advisor
+AfterAdvice
+org.springframework.aop.AfterReturningAdvice
+ThrowsAdvice
+AfterReturningAdvice
+org.springframework.aop.Pointcut  接口  aspectj里面有同名注解和接口  org.aspectj.lang.reflect.Pointcut
+PointcutAdvisor
+
+
+org.springframework.aop.Pointcut接口和org.aspectj.lang.reflect.Pointcut接口是在不同的AOP框架中定义的，尽管它们具有相似的名称，但在功能和用途上有一些区别。
+
+org.springframework.aop.Pointcut接口是Spring AOP框架中定义的接口，用于定义切入点（Pointcut）。切入点用于确定哪些方法应该被AOP代理拦截和增强。Pointcut接口定义了一个方法matches(Method method, Class<?> targetClass)，该方法接受要判断的方法和目标类作为参数，并返回一个布尔值，表示该方法是否匹配切入点。
+
+org.aspectj.lang.reflect.Pointcut接口是AspectJ框架中定义的接口，也用于定义切入点。AspectJ是一个功能强大的AOP框架，它提供了更丰富和灵活的切入点表达式语言，允许开发人员更精确地定义切入点。Pointcut接口定义了一些方法，例如getMethodMatcher()和getClassFilter()，用于获取方法匹配器和类过滤器，这些方法用于确定哪些方法和类应该被AOP拦截和增强。
+
+总结来说，org.springframework.aop.Pointcut接口是Spring AOP框架中用于定义切入点的接口，而org.aspectj.lang.reflect.Pointcut接口是AspectJ框架中用于定义切入点的接口。它们在功能和用法上略有差异，具体取决于你使用的AOP框架和你想要实现的切入点的复杂性。
+
+
+
+Spring 不太推荐使用 .aj 切面文件来实现 AOP。
+有以下几个原因:
+1. 可读性差。.aj 文件使用 AspectJ 的语法,对很多人来说比较难懂。
+2. 与 Spring 分离。.aj 文件使用的是 AspectJ 的原生切面语法,与 Spring 框架本身分离。
+3. 维护性差。修改.aj 文件需要重新编译项目。
+4. 功能有限。 .aj文件只能用在编译时织入,无法实现 Spring 提供的一些高级功能,如:运行时织入、条件织入等。
+相比而言,Spring 提倡使用以下 AOP 实现方式:
+- 注解驱动:使用 @AspectJ 注解在类上直接定义切面。
+- `@AfterReturning`、`@AfterThrowing`、`@Around` 等注解定义切面功能。
+- Spring 提供的 AOP API:使用 Spring AOP API 在 Java 中定义切面。
+- 如使用 `AspectJExpressionPointcut`、`MethodMatcher` 等。
+这两种方式更加与 Spring 集成、利用了 Spring 的全部 AOP 能力,如运行时织入、条件织入等。
+总的来说,Spring 不推荐使用 .aj 文件来实现 AOP,主要是因为与 Spring 框架分离、维护性差、功能有限。
+相比之下,建议使用 Spring 提供的注解驱动方式或 AOP API 来实现切面功能,这与 Spring 框架天然集成。
+
+
+
+条件切面是Spring AOP的一个有用特性。它允许只在某种条件满足时才去织入切面。
+
+下面是一个使用@ConditionOnProperty注解实现条件切面的例子:
+
+```java
+@Aspect
+public class LoggingAspect {
+    
+    @Pointcut("execution(* com.company.service.*(..))")
+    public void loggable() {}
+    
+    @Around("loggable()")
+    public Object log(ProceedingJoinedPoint pjp) throws Throwable {
+        // 日志代码...
+    }
+}
+
+@Component
+@ConditionOnProperty(name="enable.logging", havingValue="true") 
+public class LoggingAspectConfig {
+  
+}
+```
+
+在这个例子中:
+- `@ConditionOnProperty` 指明只有当`enable.logging`属性的值为`true`时,这个切面才会生效。
+- `@Aspect` 定义LoggingAspect为一个切面。
+- `@Pointcut` 定义了一个切点loggable。
+- `@Around` 在 loggable() 切点上织入日志功能。
+- LoggingAspectConfig 是一个 Spring Bean,当`enable.logging=true`时,它会激活LoggingAspect这个切面。
+这样一来,只有在应用配置文件中设置`enable.logging=true`时,LoggingAspect这个日志切面才会生效。
+Spring 中还提供了许多其他条件注解:
+- @ConditionOnBean
+- @ConditionOnClass
+- @ConditionOnExpression 等等
+都可以用来做条件切面。
+通过条件切面,可以做到只在特定条件满足时才激活 Spring AOP。这为只在应用中特定情况下需要AOP提供了便利。
+
+对于Spring条件切面,推荐以下几本书:
+1. Spring in Action, 5th Edition
+这本书详细讲解了Spring条件化配置。它介绍了Spring支持的各种条件注解,包括:
+- @ConditionalOnBean
+- @ConditionalOnMissingBean
+- @ConditionalOnProperty
+- @ConditionalOnExpression 等
+并通过示例展示了如何使用这些条件注解实现条件切面。
+2. Spring Boot in Action
+该书专门讲解Spring Boot。其中有一章介绍了Spring Boot支持的条件配置。
+Spring Boot默认支持大部分Spring条件注解,并新增了一些自己的条件注解:
+- @ConditionalOnWebApplication 
+- @ConditionalOnNotWebApplication 
+- @ConditionalOnMissingBean 等
+通过这些条件注解,可以实现只在特定Web环境、非Web环境下激活Bean或者切面等。
+3. Effective Java
+Joshua Bloch的这本经典书。虽然不专注Spring,但介绍了Java制定条件的一些最佳实践。
+如利用polymorphism而非多重if-else来实现条件逻辑,利用构造器替代静态工厂创建类实例等。
+这些设计模式也很适用于Spring条件切面。
+这三本书均能提供有关Spring条件切面使用与设计方面的参考。另外,Spring官方文档也推荐阅读,里面列举了支持的条件注解及示例。
+
+
+如果需要建议字段访问和更新连接点，请考虑使用诸如 AspectJ 之类的语言。
+
+要使用 Java @Configuration启用@AspectJ 支持，请添加@EnableAspectJAutoProxy注解
+
+要通过基于 XML 的配置启用@AspectJ 支持，请使用aop:aspectj-autoproxy元素，如以下示例所示：
+
+<aop:aspectj-autoproxy/>

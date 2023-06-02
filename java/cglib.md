@@ -8,6 +8,7 @@ github repo
 testcglib https://github.com/edidada/testcglib
 
 
+cglib是 code gen library的缩写
 
 MyBatis使用动态代理
 
