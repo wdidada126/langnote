@@ -726,23 +726,16 @@ org.springframework.aop.framework.AopContext
 Spring AOP是Spring框架的一个核心模块，它提供了基于代理的AOP实现，支持切面、切点、通知、增强等AOP概念和功能。Spring AOP的源码主要包含以下几个jar包：
 
 1. spring-aop.jar：包含Spring AOP的核心实现类和接口，如`AspectJExpressionPointcut`、`JdkDynamicAopProxy`、`CglibAopProxy`、`AbstractAutoProxyCreator`等。
-
 2. spring-aspects.jar：包含Spring AOP的扩展功能和切面库，如`@Aspect`、`@Pointcut`、`@Before`、`@After`、`@Around`等注解和`AspectJAfterAdvice`、`AspectJAroundAdvice`等增强器。
-
 3. spring-context.jar：包含Spring IoC容器的核心实现类和接口，如`ApplicationContext`、`BeanFactory`、`BeanPostProcessor`、`BeanDefinition`等。
-
 4. spring-core.jar：包含Spring框架的核心实现类和接口，如`Resource`、`ResourceLoader`、`StringUtils`、`ClassUtils`等工具类和`FactoryBean`、`InitializingBean`、`DisposableBean`等生命周期接口。
-
 5. spring-beans.jar：包含Spring框架的Bean相关实现类和接口，如`BeanWrapper`、`BeanDefinitionRegistry`、`BeanDefinitionReader`等。
 
 接下来，我将简要介绍spring-aop.jar中一些常用类的作用和实现原理：
 
 1. `AspectJExpressionPointcut`类：用于解析和匹配AspectJ切点表达式。它继承了`StaticMethodMatcherPointcut`类，并实现了`Serializable`接口，可以序列化和反序列化。在实现上，`AspectJExpressionPointcut`类使用AspectJ的解析器来解析切点表达式，并将解析结果封装成一个`PointcutExpression`对象，然后通过`matches()`方法来匹配连接点和切点表达式。
-
 2. `JdkDynamicAopProxy`类：用于基于JDK动态代理实现AOP代理对象。它实现了`AopProxy`接口，并包含一个`InvocationHandler`对象和一个`AdvisedSupport`对象。在实现上，`JdkDynamicAopProxy`类通过`Proxy.newProxyInstance()`方法创建一个代理对象，并将`InvocationHandler`对象作为参数传入，以实现AOP拦截和增强。在代理对象的方法调用时，`InvocationHandler`对象会根据其包含的`AdvisedSupport`对象来判断当前方法是否需要被拦截和增强，如果需要，则执行相应的增强器。
-
 3. `CglibAopProxy`类：用于基于CGLIB动态代理实现AOP代理对象。它实现了`AopProxy`接口，并包含一个`MethodInterceptor`对象和一个`AdvisedSupport`对象。在实现上，`CglibAopProxy`类通过`Enhancer.create()`方法创建一个代理对象，并将`MethodInterceptor`对象作为回调函数传入，以实现AOP拦截和增强。在代理对象的方法调用时，`MethodInterceptor`对象会根据其包含的`AdvisedSupport`对象来判断当前方法是否需要被拦截和增强，如果需要，则执行相应的增强器。
-
 4. `AbstractAutoProxyCreator`类：用于自动创建AOP代理对象的抽象类。它实现了`BeanPostProcessor`接口和`BeanFactoryAware`接口，并包含一个`AopInfrastructureBean`集合、一个`ProxyFactory`对象和一个`BeanFactory`对象。在实现上，`AbstractAutoProxyCreator`类通过实现`BeanPostProcessor`接口，在Bean初始化之前和之后，分别创建和应用AOP代理对象。在创建AOP代理对象时，它会根据Bean的类型和名称，以及已注册的切面类和切点表达式，选择合适的代理方式（JDK动态代理或CGLIB动态代理），并创建一个`ProxyFactory`对象。在应用AOP代理对象时，它会将代理对象注入到BeanFactory中，并将代理对象的属性复制到原始Bean对象中。
 
 除了以上类之外，`spring-aop.jar`还包含了一些其他的重要类和接口，如`Advisor`、`Advice`、`PointcutAdvisor`、`MethodInterceptor`、`AfterReturningAdvice`、`ThrowsAdvice`等，它们分别对应AOP中的概念和功能，如增强器、通知、切面等。在使用Spring AOP时，可以通过这些类和接口来实现自定义的AOP拦截和增强逻辑，从而实现对Bean的控制和定制。需要注意的是，Spring AOP虽然提供了基于代理的AOP实现，但它并不是完整的AOP框架，它只支持方法级别的拦截和增强，不支持属性级别的拦截和增强。如果需要实现属性级别的AOP拦截和增强，可以考虑使用其他AOP框架，如AspectJ或Javassist等。
@@ -757,7 +750,6 @@ Spring AOP是Spring框架的一个核心模块，它提供了基于代理的AOP�
 `CglibAopProxy`的源码位于`org.springframework.aop.framework.CglibAopProxy`类中，其主要实现原理如下：
 
 1. 准备工作
-
 首先，`CglibAopProxy`会根据传入的`AdvisedSupport`对象来判断当前代理对象是否需要被代理。具体来说，它会判断`AdvisedSupport`对象中是否包含了切面类（`AspectJExpressionPointcutAdvisor`、`AnnotationAwareAspectJAutoProxyCreator`等）以及切点表达式（`Pointcut`）等信息，如果包含，则说明当前代理对象需要被代理。
 2. 创建Enhancer对象
 接下来，`CglibAopProxy`会创建一个`Enhancer`对象，并设置其被代理的类（即目标对象）和回调函数（即`MethodInterceptor`对象）。`Enhancer`是CGLIB库中的一个关键类，它可以用于创建一个被代理的子类，并将回调函数绑定到该子类上。
