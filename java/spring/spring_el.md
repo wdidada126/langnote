@@ -1,5 +1,29 @@
 spring_el
 
+
+SpEL 字面量：
+
+整数：#{8}
+小数：#{8.8}
+科学计数法：#{1e4}
+String：可以使用单引号或者双引号作为字符串的定界符号。
+Boolean：#{true}
+SpEL引用bean , 属性和方法：
+
+引用其他对象:#{car}
+引用其他对象的属性：#{car.brand}
+调用其它方法 , 还可以链式操作：#{car.toString()}
+调用静态方法静态属性：#{T(java.lang.Math).PI}
+
+SpEL支持的运算符号：
+
+算术运算符：+，-，*，/，%，^(加号还可以用作字符串连接)
+比较运算符：< , > , == , >= , <= , lt , gt , eg , le , ge
+逻辑运算符：and , or , not , |
+if-else 运算符(类似三目运算符)：？:(temary), ?:(Elvis)
+正则表达式：#{admin.email matches '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'}
+
+
 Spring 表达式语言(简称“ SpEL”)是一种功能强大的表达式语言，支持在运行时查询和操作对象图。语言语法类似于 Unified EL，但提供了其他功能，最著名的是方法调用和基本的字符串模板功能。
 
 尽管还有其他几种 Java 表达式语言可用-OGNL，MVEL 和 JBoss EL，仅举几例-Spring 表达式语言的创建是为了向 Spring 社区提供一种受良好支持的表达式语言，该语言可用于以下版本中的所有产品 Spring 投资组合。它的语言功能由 Spring 产品组合中的项目要求所驱动，包括基于 Eclipse 的 Spring Tool Suite 中代码完成支持的工具要求。也就是说，SpEL 基于与技术无关的 API，如果需要，可以将其他表达语言实现集成在一起。
