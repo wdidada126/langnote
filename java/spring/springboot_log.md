@@ -80,3 +80,37 @@ springboot项目读取 logback-spring.xml配置文件的方法如下：
 
 
 
+
+
+
+
+
+```shell
+
+============================
+CONDITIONS EVALUATION REPORT
+============================
+
+
+Positive matches:
+-----------------
+
+   AuditAutoConfiguration#auditListener matched:
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.audit.listener.AbstractAuditListener; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+Negative matches:
+-----------------
+
+   ActiveMQAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'javax.jms.ConnectionFactory', 'org.apache.activemq.ActiveMQConnectionFactory' (OnClassCondition)
+
+```
+
+CONDITIONS EVALUATION REPORT的作用如下：
+
+- CONDITIONS EVALUATION REPORT是一个条件评估报告，用于显示 Spring Boot 应用在启动时匹配的自动配置类和条件¹²³。
+- CONDITIONS EVALUATION REPORT可以帮助开发者了解 Spring Boot 应用的配置情况，以及为什么某些自动配置类被激活或排除¹²³。
+- CONDITIONS EVALUATION REPORT默认在日志级别为 DEBUG 时打印，如果不想看到这些信息，可以在配置文件中设置 logging.level.org.springframework.boot.autoconfigure 为 INFO 或 ERROR¹²⁴。
+
+

@@ -129,6 +129,9 @@ LocalValidatorFactoryBean在spring-context包里
 javax.validation.ValidatorFactory
 
 这段代码中，使用 <mvc:annotation-driven> 标签启用数据校验功能，并将 validator 属性指定为 LocalValidatorFactoryBean，它是 Spring 为 JSR 303 API 提供的一个实现类，用于执行数据校验操作。
+
+http入参校验使用例子
+先解析body到javabean再校验
 在需要进行数据校验的 Controller 方法上添加 @Validated 注解，同时在方法参数中添加 BindingResult 参数，用于接收校验结果：
 ```java
 import javax.validation.Valid;

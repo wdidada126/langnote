@@ -360,5 +360,19 @@ ConfigurableWebBindingInitializer实现类
 
 
 
+
+
+是否直接报错吗？下面这个方法？
+org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver#isBindExceptionRequired
+
+
+真正执行校验的方法
+
+org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver#validateIfApplicable
+org.springframework.validation.DataBinder#validate(java.lang.Object...)
+
+生成绑定结果
+org.springframework.validation.DataBinder#createBeanPropertyBindingResult
+
 ### springmvc @RestController返回结果
 org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter#getJavaType也被调用
