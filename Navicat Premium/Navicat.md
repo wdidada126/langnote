@@ -47,3 +47,7 @@ SQL> describe dbuser;
  CREATED_BY                                NOT NULL VARCHAR2(20 CHAR)
  CREATED_DATE                              NOT NULL DATE
  USERNAME                                  NOT NULL VARCHAR2(20 CHAR)
+
+
+
+查看一张表的数据，navicat右边有建表语句，记得查看，不用单独设计表，修改表结构

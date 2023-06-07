@@ -64,3 +64,19 @@ logback-spring.xml
 
 
 
+springboot项目，如何读取 logback-spring.xml配置文件
+
+
+springboot项目读取 logback-spring.xml配置文件的方法如下：
+- 在 pom.xml 文件中添加 spring-boot-starter-web 依赖，它包含了 spring-boot-starter-logging 依赖，该依赖内容就是 Spring Boot 默认的日志框架 Logback+SLF4J²³。
+- 在 application.properties 或 application.yml 文件中使用 logging.config 属性来指定 logback-spring.xml 配置文件的位置，可以是绝对路径或相对路径³⁴⁵。
+- 在 logback-spring.xml 文件中，可以使用 <springProperty> 标签来引用 application.properties 或 application.yml 文件中的变量，如日志路径、日志级别等¹²⁵。
+- 在 logback-spring.xml 文件中，可以使用 <springProfile> 标签来根据 Spring Boot 的 profile 功能来切换不同的日志配置²。
+(1) logback整合Springboot及logback-spring.xml配置说明 - CSDN博客. https://blog.csdn.net/shanvlang/article/details/120196979.
+(2) Spring Boot读取外部的 logback.xml 配置文件 - CSDN博客. https://blog.csdn.net/WC3312245110/article/details/121008564.
+(3) SpringBoot项目在logback.xml中读取配置中的日志路径问题. https://blog.csdn.net/weimenglala/article/details/106164011.
+(4) SpringBoot在logback.xml中读取application.properties中配置的日志路径 - 繁华一瞬间 - 博客园. https://www.cnblogs.com/xingfudexu/p/10374639.html.
+(5) Spring Boot笔记-logback-spring.xml获取application.properties中的变量. https://bing.com/search?q=springboot%e9%a1%b9%e7%9b%ae%ef%bc%8c%e5%a6%82%e4%bd%95%e8%af%bb%e5%8f%96+logback-spring.xml%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6.
+
+
+

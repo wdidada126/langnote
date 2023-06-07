@@ -4,6 +4,7 @@ java命令行执行程序，增加-D参数
 idea run configure ，vm options
 
 idea自动调用所有set开头的方法
+安装使用GenerateAllSetter插件
 https://blog.csdn.net/dkm123456/article/details/122999227
 
 ### 自带的类图
