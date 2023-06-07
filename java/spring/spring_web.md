@@ -376,3 +376,12 @@ org.springframework.validation.DataBinder#createBeanPropertyBindingResult
 
 ### springmvc @RestController返回结果
 org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter#getJavaType也被调用
+
+
+
+HttpEntityMethodProcessor
+
+org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor
+
+HttpEntity
+
