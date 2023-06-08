@@ -1023,6 +1023,7 @@ http://maven.apache.org/pom.html#BaseBuild_Element
 
 [maven jdk配置](http://www.blogjava.net/fancydeepin/archive/2015/06/23/maven-jdk.html)
 
+设置jdk8
 ```shell
     <build>
         <plugins>

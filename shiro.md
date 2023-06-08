@@ -258,3 +258,9 @@ https://my.oschina.net/linwl/blog/1813441
 
 
 shiro使用了cookie jsessionid
+
+代码仓库
+
+https://gitee.com/edidada/testspringmvcshiro
+
+springboot2项目

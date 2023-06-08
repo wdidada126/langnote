@@ -1058,3 +1058,50 @@ org.springframework.web.method.support.HandlerMethodReturnValueHandler#handleRet
 
 org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, org.springframework.core.MethodParameter, org.springframework.http.server.ServletServerHttpRequest, org.springframework.http.server.ServletServerHttpResponse)
 
+### 用法
+
+http://localhost:8080/doo?name=xujingfeng&email=sandiss@gmail.com&age=19
+输入这个url
+
+```java
+    @RequestMapping("/doo")
+    public @ResponseBody String some(@Validated Foo foo, BindingResult bindingResult)
+```
+
+```java
+    public class Foo {
+
+    private String name;
+
+    private Integer age;
+
+    private String phone;
+
+    private String email;
+    }
+```
+
+HandlerMethodArgumentResolver对应的是
+ServletModelAttributeMethodProcessor 继承了ModelAttributeMethodProcessor类
+ModelAttributeMethodProcessor @ModelAttribute
+
+springmvc日志
+
+```shell
+TRACE o.s.w.m.s.HandlerMethodArgumentResolverComposite 132 - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor@4faf6137] supports [class cn.wdidada.testvalidate.web.bean.Foo]
+
+TRACE o.springframework.beans.CachedIntrospectionResults 265 - Getting BeanInfo for class [cn.wdidada.testvalidate.web.bean.Foo]
+```
+
+`ServletModelAttributeMethodProcessor` 是 Spring MVC 中的一个 `HandlerMethodArgumentResolver`，用于将 HTTP 请求中的参数映射到处理方法的参数中。
+在 Spring MVC 中，HTTP 请求中的参数可以通过多种方式进行传递，如 URL 查询参数、表单参数、请求头等。当一个请求到达 Spring MVC 的 `DispatcherServlet` 时，`DispatcherServlet` 会根据请求的 URL 找到对应的 `HandlerMapping`，然后将请求交给对应的 `HandlerAdapter` 进行处理。在 `HandlerAdapter` 中，Spring MVC 会使用一组 `HandlerMethodArgumentResolver` 实现类来解析请求参数，并将其映射到处理方法的参数中。
+其中，`ServletModelAttributeMethodProcessor` 用于将 HTTP 请求中的参数映射到处理方法的 JavaBean 实例中。具体来说，它会根据请求中的参数名和处理方法的参数名及类型信息，将请求参数转换成对应的 JavaBean 属性，并将其设置到处理方法的 JavaBean 实例中，最终将 JavaBean 实例作为处理方法的参数传入。
+例如，如下代码所示的处理方法：
+```
+@RequestMapping("/example")
+public String handleRequest(@ModelAttribute("user") User user) {
+    // 处理请求
+}
+```
+其中，`User` 是一个 JavaBean 类型，`@ModelAttribute("user")` 注解指定了将请求参数映射到名为 "user" 的 JavaBean 实例中。此时，Spring MVC 会使用 `ServletModelAttributeMethodProcessor` 将 HTTP 请求中的参数映射到 `User` 类型的实例中，并将其作为处理方法的参数传入。
+需要注意的是，`ServletModelAttributeMethodProcessor` 只能将请求参数映射到 JavaBean 类型的对象中，如果处理方法的参数类型不是 JavaBean 类型，则需要使用其他的 `HandlerMethodArgumentResolver` 实现类进行处理。

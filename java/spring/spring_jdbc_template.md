@@ -1,5 +1,32 @@
 # spring_jdbc_template
 
+
+org.springframework.jdbc.core.JdbcTemplate#batchUpdate(java.lang.String, org.springframework.jdbc.core.BatchPreparedStatementSetter)
+
+返回的int [] 返回值啥意思？
+
+`org.springframework.jdbc.core.JdbcTemplate#batchUpdate(java.lang.String, org.springframework.jdbc.core.BatchPreparedStatementSetter)` 方法执行批量更新操作（批量插入、更新或删除），并返回一个表示每个更新语句影响行数的整数数组。该数组中的每个元素表示相应执行的 SQL 语句更新的行数。
+具体来说，如果传入的 SQL 语句是一个参数化的 SQL 语句，并且使用 `BatchPreparedStatementSetter` 对象设置了批量更新的参数，则 `batchUpdate` 方法会将该 SQL 语句执行多次，每次执行时使用一个不同的参数集合。在执行完所有的更新操作后，`batchUpdate` 方法会返回一个整数数组，其中的每个元素表示相应执行的 SQL 语句更新的行数。如果某个更新操作执行成功，其返回值为更新的行数；如果执行失败，其返回值为 `Statement.EXECUTE_FAILED`。
+例如，如下代码所示的 `batchUpdate` 方法执行了一个批量插入操作，并返回一个整数数组：
+```java
+String sql = "INSERT INTO users (id, name, age) VALUES (?, ?, ?)";
+jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+    @Override
+    public void setValues(PreparedStatement ps, int i) throws SQLException {
+        ps.setInt(1, i);
+        ps.setString(2, "user" + i);
+        ps.setInt(3, 20 + i);
+    }
+    @Override
+    public int getBatchSize() {
+        return 10;
+    }
+});
+```
+在上述代码中，`batchUpdate` 方法执行了一个参数化的插入语句，使用 `BatchPreparedStatementSetter` 对象设置了批量插入的参数。在执行完批量插入操作后，`batchUpdate` 方法返回一个整数数组 `[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]`，其中的每个元素表示相应执行的 SQL 语句更新的行数，这里的每个插入操作都成功插入了一行数据。
+需要注意的是，`batchUpdate` 方法返回的整数数组中的顺序与传入的 SQL 语句的顺序相同，即第一个元素表示第一个 SQL 语句的更新行数，第二个元素表示第二个 SQL 语句的更新行数，以此类推。
+
+
 JDBCTemplate
 JDBC已经能够满足大部分用户最基本的需求，但是在使用JDBC时，必须自己来管理数据库资源如：获取PreparedStatement，设置SQL语句参数，关闭连接等步骤。
 JDBCTemplate就是Spring对JDBC的封装，目的是使JDBC更加易于使用。
