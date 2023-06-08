@@ -385,3 +385,75 @@ org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor
 
 HttpEntity
 
+
+
+## springmvc validate api
+
+spring-context这个jar
+org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
+
+LocalValidatorFactoryBean实现了ValidatorFactory接口
+
+ValidatorContext
+MessageInterpolator
+
+
+`LocalValidatorFactoryBean` 是 `javax.validation` API 的一个实现，它是一个 Spring Framework 的工厂 bean，用于创建 `javax.validator.Validator` 和 `javax.validation.ValidatorFactory` 实例。
+
+它的作用是将 `javax.validation` API 集成到 Spring 应用程序中，以便在应用程序中执行 Bean 验证和其他类型的验证。
+
+当你在 Spring 应用程序中创建一个 `LocalValidatorFactoryBean` 实例时，它会自动配置 `javax.validation` API，并使用 Spring 的资源束机制来查找验证消息。通过使用 `LocalValidatorFactoryBean`，你可以在 Spring 应用程序中使用标准的 JSR-303（Bean Validation）注解进行验证，并处理验证错误。
+
+需要注意的是，在使用 `LocalValidatorFactoryBean` 进行验证之前，你需要在应用程序中添加 `javax.validation` API 的依赖项，例如：
+
+```xml
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+```
+
+除了上述作用，`LocalValidatorFactoryBean` 还具有其他功能，例如：
+
+- 可以自定义 `javax.validation.ValidatorFactory` 实例的创建过程，以使用自定义的 `javax.validation.ConstraintValidatorFactory` 和 `javax.validation.MessageInterpolator` 实例。
+- 可以通过 `setValidationMessageSource` 方法设置验证消息的来源。默认情况下，它使用 Spring 的 `MessageSource` 来查找资源束，并将其用于验证消息的本地化。
+
+总之，`LocalValidatorFactoryBean` 是 Spring 框架与 `javax.validation` API 集成的核心组件之一，它提供了一种简单而强大的方式来实现 Bean 验证和其他类型的验证。
+
+
+spring-boot-autoconfig
+
+org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration#defaultValidator
+
+
+springmvc validate断点
+org.hibernate.validator.internal.engine.ValidatorImpl#validate
+
+
+org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor#resolveArgument
+    org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver#validateIfApplicable
+        org.springframework.validation.DataBinder#validate(java.lang.Object...)
+            org.springframework.boot.autoconfigure.validation.ValidatorAdapter#validate(java.lang.Object, org.springframework.validation.Errors, java.lang.Object...)
+                org.springframework.validation.beanvalidation.SpringValidatorAdapter#validate(java.lang.Object, org.springframework.validation.Errors, java.lang.Object...)
+                    org.hibernate.validator.internal.engine.ValidatorImpl#validate
+
+
+
+
+springmvc处理validate结果
+org.springframework.validation.beanvalidation.SpringValidatorAdapter#processConstraintViolations
+
+校验结果存储在
+BeanPropertyBindingResult
+
+ta实现了Errors接口
+
+BeanPropertyBindingResult
+addError()
+
+
+
+org.springframework.validation.FieldError
+ObjectError
+DefaultMessageSourceResolvable

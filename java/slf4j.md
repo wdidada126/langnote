@@ -7,3 +7,9 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 
 ```
+
+jboss-logging
+Slf4jLoggerProvider
+org.jboss.logging.LoggerProvider
+
+

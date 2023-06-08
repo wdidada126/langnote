@@ -94,3 +94,148 @@ public class Order {
 
 在上述代码中，我们为receiveDate属性设置了默认值，这样即使在未设置receiveDate属性值的情况下，它的默认值也不会为null。
 总之，在使用javax.validation注解时，需要确保注解应用于支持该注解的数据类型上，同时需要考虑到数据类型的默认值问题。如果在校验过程中出现任何问题，可以检查代码中的注解使用是否正确，并查看错误日志以了解具体的错误信息。
+
+
+### api
+
+hibernate-validator jar包的
+SimpleConstraintTree
+org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree
+
+
+`SimpleConstraintTree` 是 `javax.validation` API 中的一个类，它代表了一个树形结构，用于表示一个或多个验证约束的组合。
+
+`SimpleConstraintTree` 的主要作用是提供一种方便的方式来组合多个验证约束，并将它们应用于目标对象。它可以通过 `javax.validation.ConstraintTree` 接口来访问，并可以与其他 `javax.validation` API 类一起使用。
+
+下面是一个示例，演示如何使用 `SimpleConstraintTree` 来组合多个验证约束：
+
+```java
+SimpleConstraintTree<Person> constraintTree = new SimpleConstraintTree<Person>(Person.class);
+constraintTree.addConstraint("name", ConstraintType.NOT_NULL);
+constraintTree.addConstraint("age", ConstraintType.MIN, 18);
+```
+
+在上述示例中，我们首先创建了一个 `SimpleConstraintTree` 实例，然后向其中添加两个约束：一个约束要求 `name` 属性不为 null，另一个约束要求 `age` 属性的值大于或等于 18。
+
+然后，我们可以使用 `javax.validation.Validator` 实例来验证目标对象：
+
+```java
+Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+Set<ConstraintViolation<Person>> violations = validator.validate(person, constraintTree);
+```
+
+在这个示例中，我们使用 `javax.validation.Validation` 工厂类创建了一个 `Validator` 实例，并将 `SimpleConstraintTree` 作为参数传递给 `validate` 方法。这样，`Validator` 实例就会根据 `SimpleConstraintTree` 中定义的约束来验证目标对象。
+
+需要注意的是，`SimpleConstraintTree` 只是 `javax.validation` API 中的一个类，用于组合多个验证约束。实际上，还有其他方式来组合验证约束，例如使用注解或编程式 API。但如果你需要动态地组合多个验证约束，`SimpleConstraintTree` 可能是一个有用的工具。
+
+
+
+org.hibernate.validator.HibernateValidator
+
+ta继承了javax.validation.spi.ValidationProvider
+
+
+`org.hibernate.validator.HibernateValidator` 是 `Hibernate Validator` 的一个类，它实现了 `javax.validation.ValidationProvider` 接口，用于将 `Hibernate Validator` 集成到 `javax.validation` API 中。
+
+具体来说，当你在应用程序中使用 `javax.validation` API 时，`javax.validation.Validation` 工厂类会自动查找并加载实现了 `javax.validation.ValidationProvider` 接口的类。如果你使用的是 `Hibernate Validator`，那么 `HibernateValidator` 类就是实现了 `javax.validation.ValidationProvider` 接口的类之一。
+
+`HibernateValidator` 类的主要作用是将 `Hibernate Validator` 集成到 `javax.validation` API 中，使得你可以使用标准的 JSR 303（Bean Validation）注解进行验证，并使用 `Hibernate Validator` 提供的扩展和增强功能。
+
+当你在应用程序中创建 `javax.validation.Validator` 实例时，`javax.validation.Validation` 工厂类会自动使用 `HibernateValidator` 类来创建 `javax.validation.ValidatorFactory` 实例，并将其返回给你。这样，你就可以使用 `Hibernate Validator` 提供的所有功能来验证目标对象。
+
+以下是一个使用 `Hibernate Validator` 进行 Bean 验证的示例：
+
+```java
+ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
+        .configure()
+        .buildValidatorFactory();
+
+Validator validator = validatorFactory.getValidator();
+
+Person person = new Person();
+person.setName(null);
+person.setAge(17);
+
+Set<ConstraintViolation<Person>> violations = validator.validate(person);
+```
+
+在上述示例中，我们使用 `Validation.byProvider(HibernateValidator.class)` 方法创建一个 `ValidatorFactory` 实例，并将其配置为使用 `HibernateValidator`。然后，我们使用 `Validator` 实例来验证一个 `Person` 对象，并将验证结果存储在 `ConstraintViolation` 的集合中。
+
+总之，`HibernateValidator` 类是 `Hibernate Validator` 的一部分，它实现了 `javax.validation.ValidationProvider` 接口，用于将 `Hibernate Validator` 集成到 `javax.validation` API 中。它的作用是使得你可以在应用程序中使用标准的 JSR 303（Bean Validation）注解进行验证，并使用 `Hibernate Validator` 提供的扩展和增强功能。
+
+
+```java
+    private static ValidatorFactory factory = Validation.byDefaultProvider()
+        .configure()
+        .messageInterpolator(new ParameterMessageInterpolator())
+        .buildValidatorFactory();
+```
+
+
+org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator 5.2才有的类
+实现了javax.validation.MessageInterpolator
+
+
+AbstractMessageInterpolator
+实现类
+
+```shell
+AbstractMessageInterpolator (org.hibernate.validator.messageinterpolation)
+    ParameterMessageInterpolator (org.hibernate.validator.messageinterpolation)
+    ResourceBundleMessageInterpolator (org.hibernate.validator.messageinterpolation)
+```
+
+工厂模式
+
+`org.hibernate.validator.HibernateValidator` 是 `Hibernate Validator` 的一个类，它实现了 `javax.validation.ValidationProvider` 接口，用于将 `Hibernate Validator` 集成到 `javax.validation` API 中。
+具体来说，当你在应用程序中使用 `javax.validation` API 时，`javax.validation.Validation` 工厂类会自动查找并加载实现了 `javax.validation.ValidationProvider` 接口的类。如果你使用的是 `Hibernate Validator`，那么 `HibernateValidator` 类就是实现了 `javax.validation.ValidationProvider` 接口的类之一。
+`HibernateValidator` 类的主要作用是将 `Hibernate Validator` 集成到 `javax.validation` API 中，使得你可以使用标准的 JSR 303（Bean Validation）注解进行验证，并使用 `Hibernate Validator` 提供的扩展和增强功能。
+当你在应用程序中创建 `javax.validation.Validator` 实例时，`javax.validation.Validation` 工厂类会自动使用 `HibernateValidator` 类来创建 `javax.validation.ValidatorFactory` 实例，并将其返回给你。这样，你就可以使用 `Hibernate Validator` 提供的所有功能来验证目标对象。
+以下是一个使用 `Hibernate Validator` 进行 Bean 验证的示例：
+
+```java
+ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
+        .configure()
+        .buildValidatorFactory();
+
+Validator validator = validatorFactory.getValidator();
+
+Person person = new Person();
+person.setName(null);
+person.setAge(17);
+
+Set<ConstraintViolation<Person>> violations = validator.validate(person);
+```
+
+在上述示例中，我们使用 `Validation.byProvider(HibernateValidator.class)` 方法创建一个 `ValidatorFactory` 实例，并将其配置为使用 `HibernateValidator`。然后，我们使用 `Validator` 实例来验证一个 `Person` 对象，并将验证结果存储在 `ConstraintViolation` 的集合中。
+总之，`HibernateValidator` 类是 `Hibernate Validator` 的一部分，它实现了 `javax.validation.ValidationProvider` 接口，用于将 `Hibernate Validator` 集成到 `javax.validation` API 中。它的作用是使得你可以在应用程序中使用标准的 JSR 303（Bean Validation）注解进行验证，并使用 `Hibernate Validator` 提供的扩展和增强功能。
+
+
+
+使用注解来确定校验的范围
+两组api
+- javax.validation.constraints
+- org.hibernate.validator.constraints
+
+JSR提供的校验注解：         
+@Null   被注释的元素必须为 null    
+@NotNull    被注释的元素必须不为 null    
+@AssertTrue     被注释的元素必须为 true    
+@AssertFalse    被注释的元素必须为 false    
+@Min(value)     被注释的元素必须是一个数字，其值必须大于等于指定的最小值    
+@Max(value)     被注释的元素必须是一个数字，其值必须小于等于指定的最大值    
+@DecimalMin(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值    
+@DecimalMax(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值    
+@Size(max=, min=)   被注释的元素的大小必须在指定的范围内    
+@Digits (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内    
+@Past   被注释的元素必须是一个过去的日期    
+@Future     被注释的元素必须是一个将来的日期    
+@Pattern(regex=,flag=)  被注释的元素必须符合指定的正则表达式
+
+
+Hibernate Validator提供的校验注解：  
+@NotBlank(message =)   验证字符串非null，且长度必须大于0    
+@Email  被注释的元素必须是电子邮箱地址    
+@Length(min=,max=)  被注释的字符串的大小必须在指定的范围内    
+@NotEmpty   被注释的字符串的必须非空    
+@Range(min=,max=,message=)  被注释的元素必须在合适的范围内
