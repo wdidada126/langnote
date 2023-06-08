@@ -1,5 +1,31 @@
 #  java validate
 
+### jar包maven坐标
+
+```xml
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+```
+
+```xml
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+        </dependency>
+```
+
+```xml
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+```
+
+
 ```shell
 javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.NotBlank' validating type 'java.util.Date'. Check configuration for 'receiveDate'
 	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116)
@@ -239,3 +265,85 @@ Hibernate Validator提供的校验注解：
 @Length(min=,max=)  被注释的字符串的大小必须在指定的范围内    
 @NotEmpty   被注释的字符串的必须非空    
 @Range(min=,max=,message=)  被注释的元素必须在合适的范围内
+
+
+
+@Valid
+类的属性也校验，加上@Valid
+注解
+
+validate-api spi
+hibernate-validator 有spi配置文件吗？
+是的，Hibernate Validator 提供了 SPI（Service Provider Interface）机制，可以通过 SPI 配置文件来自定义验证器和约束验证器的实现。
+具体来说，Hibernate Validator 使用的是 Java 的 SPI 机制，需要在 `META-INF/services` 目录下创建名为 `javax.validation.ConstraintValidatorFactory` 和 `javax.validation.ValidationProvider` 的文件，然后在这些文件中指定相应的实现类。例如：
+`META-INF/services/javax.validation.ConstraintValidatorFactory`
+```
+com.example.MyConstraintValidatorFactory
+```
+`META-INF/services/javax.validation.ValidationProvider`
+
+```
+org.hibernate.validator.HibernateValidator
+```
+在上述示例中，我们使用了自定义的 `MyConstraintValidatorFactory` 类作为约束验证器工厂类的实现，并将其指定为 `javax.validation.ConstraintValidatorFactory` SPI 的实现。同时，我们也指定了 Hibernate Validator 作为 `javax.validation.ValidationProvider` SPI 的实现。
+值得注意的是，如果你想使用自定义的约束验证器，也需要在 `META-INF/services` 目录下创建名为 `javax.validation.ConstraintValidator` 的文件，并在其中指定相应的实现类。例如：
+`META-INF/services/javax.validation.ConstraintValidator`
+```
+com.example.MyConstraintValidator
+```
+在上述示例中，我们使用了自定义的 `MyConstraintValidator` 类作为约束验证器的实现，并将其指定为 `javax.validation.ConstraintValidator` SPI 的实现。
+总之，Hibernate Validator 提供了 SPI 机制来自定义验证器和约束验证器的实现。你可以通过在 `META-INF/services` 目录下创建相应的 SPI 配置文件来指定实现类。
+
+
+
+javax.validation.spi.ValidationProvider文件
+org.hibernate.validator.HibernateValidator
+
+hibernate-validator-cdi jar
+
+org.hibernate.validator.cdi.ValidationExtension
+
+`hibernate-validator-cdi` 是 Hibernate Validator 项目中的一个可选模块，它提供了在 CDI（Contexts and Dependency Injection）环境下使用 Hibernate Validator 的支持。
+具体来说，`hibernate-validator-cdi` 模块为 CDI 容器提供了一个扩展，使得在 CDI 环境下可以使用 Hibernate Validator 的验证器和约束注解。它可以让你在 CDI 中使用 `@Inject` 注入验证器和约束注解，以及在 CDI 生命周期中自动初始化和销毁验证器和约束注解。
+另外，`hibernate-validator-cdi` 模块还提供了一个 `Validator` 类型的可注入对象，可以用于在 CDI 环境中进行验证操作。例如：
+
+```java
+@Inject
+private Validator validator;
+
+public void validateObject(Object object) {
+    Set<ConstraintViolation<Object>> violations = validator.validate(object);
+    // handle violations
+}
+```
+
+在上述示例中，我们使用 `@Inject` 注入了 `Validator` 对象，并在 `validateObject` 方法中使用它对目标对象进行验证，并获取验证结果。
+
+总之，`hibernate-validator-cdi` 模块是 Hibernate Validator 项目中的一个可选模块，它提供了在 CDI 环境下使用 Hibernate Validator 的支持，包括注入验证器和约束注解，以及提供可注入的 `Validator` 类型的对象用于验证操作。
+
+
+
+testvalidation项目，使用logback打印日志成功
+要在 Hibernate Validator 中使用 Logback 作为日志后端，需要在类路径下添加 `logback-classic` 和 `logback-core` 两个依赖，并在 `logback.xml` 中配置相应的日志输出规则。很方便
+
+下面是一个简单的 `logback.xml` 配置示例，用于输出 Hibernate Validator 的调试日志信息：
+
+```xml
+<configuration>
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="org.hibernate.validator" level="DEBUG"/>
+  <root level="INFO">
+    <appender-ref ref="console" />
+  </root>
+</configuration>
+```
+
+在上述示例中，我们定义了一个名为 `console` 的控制台输出 appender，并将其添加到了 root logger 中。同时，我们也定义了一个名为 `org.hibernate.validator` 的 logger，用于输出 Hibernate Validator 的调试日志信息。通过设置 logger 的级别为 `DEBUG`，我们可以输出更详细的日志信息。
+
+在应用程序启动时，Logback 会自动加载 `logback.xml` 配置文件，并根据其中的配置来输出日志信息。当 Hibernate Validator 初始化时，它会使用 Logback 作为日志后端，并按照相应的日志输出规则输出日志信息。
+
+总之，要在 Hibernate Validator 中使用 Logback 作为日志后端，需要在类路径下添加相应的依赖，并配置相应的日志输出规则。这样可以让 Hibernate Validator 输出更详细的日志信息，帮助你更好地调试和排查问题。
