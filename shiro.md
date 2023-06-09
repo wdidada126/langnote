@@ -81,6 +81,8 @@ http://shiro.apache.org/static/1.3.2/apidocs/org/apache/shiro/subject/Subject.ht
 
         Subject subject = SecurityUtils.getSubject();
 
+login()
+logout()
 
 
 https://shiro.apache.org/
@@ -771,3 +773,6 @@ org.apache.shiro.web.servlet.ProxiedFilterChain#ProxiedFilterChain 这里的断�
 
 https://shiro.apache.org/
 https://github.com/apache/shiro/tree/shiro-root-1.11.0/
+
+官方例子
+https://github.com/lhazlewood/apache-shiro-tutorial-webapp
