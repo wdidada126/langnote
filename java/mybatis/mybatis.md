@@ -3067,3 +3067,14 @@ BeanDefinitionRegistryPostProcessor
 BeanDefinitionRegistryPostProcessor是BeanFactoryPostProcessor的子接口,BeanFactoryPostProcessor的作用是在Spring Bean的定义信息已经加载但还没有初始化的时候执行postProcessBeanFactory()来处理一些额外的逻辑，
 而BeanDefinitionRegistryPostProcessor的作用是在BeanFactoryPostProcessor增加了一个前置处理，当一个Bean实现了该接口后，始化前先执行该接口的postProcessBeanDefinitionRegistry()方法，然后再执行其父类的方法postProcessBeanFactory()。这样就把一个Spring Bean的初始化周期更加细化，让我们在各个阶段有定制它的可能。
 
+mybatis，可以强制设置使用哪个日志工具 mybatis-config.xml里面配置
+```xml
+    <settings>
+
+<!--
+        <setting name="logImpl" value="SLF4J" />
+-->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+```
+dubbo也可以，设置环境变量

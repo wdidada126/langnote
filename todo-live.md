@@ -249,7 +249,7 @@ https://blog.csdn.net/abc123lzf/article/details/82873181
 
 
 
-shrio单体应用鉴权，不能直接用于分布式应用
+shiro单体应用鉴权，不能直接用于分布式应用
 
 
 
