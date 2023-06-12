@@ -776,3 +776,29 @@ https://github.com/apache/shiro/tree/shiro-root-1.11.0/
 
 官方例子
 https://github.com/lhazlewood/apache-shiro-tutorial-webapp
+
+
+### shiro samples
+https://github.com/apache/shiro/tree/main/samples/spring-boot
+
+
+
+Apache Shiro 的 Web Support 主要包括以下模块：
+
+1. 认证模块：提供了基于表单、HTTP 基本身份验证、证书等方式的认证机制。
+2. 授权模块：提供了基于角色、权限、资源等的授权机制，可以对 URL、方法、类级别进行授权。
+3. Session 管理模块：提供了基于 Cookie 和 URL 重写的 Session 管理机制，以便于在分布式环境下管理用户 Session。
+4. Servlet 环境集成模块：提供了与 Servlet API 集成的支持，可以轻松地将 Shiro 集成到 Web 应用程序中。
+5. Filter 支持模块：提供了基于 Filter 的集成支持，可以通过 Filter 轻松地将 Shiro 集成到 Web 应用程序中。
+总的来说，Shiro 的 Web Support 模块提供了一系列的 Web 安全性特性，可以帮助开发人员构建安全的 Web 应用程序。
+
+shiro保存的信息在内存中吗？登录信息可以保存在redis中吗？
+
+
+自定义SessionDAO
+MySQLSessionDAO
+
+
+org.apache.shiro.session.mgt.eis.SessionDAO
+
+org.apache.shiro.mgt.SubjectDAO
