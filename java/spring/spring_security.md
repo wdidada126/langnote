@@ -104,3 +104,91 @@ todo
 jar
 spring-boot-starter-security 2.3.10.RELEASE
 spring-cloud-starter-security 2.2.5.RELEASE
+
+
+
+在Spring Security中，你可以通过配置来给登录的用户赋予角色。下面是一种常见的方式：
+
+首先，你需要创建一个实现了`UserDetailsService`接口的类，用于加载用户信息和角色信息。在该类中，你可以从数据库、内存或其他数据源中获取用户信息，并将用户的角色信息添加到`UserDetails`对象中。
+
+```java
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+public class UserDetailsServiceImpl implements UserDetailsService {
+    
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 从数据源中获取用户信息和角色信息
+        // 示例中使用硬编码的方式添加角色信息，你可以根据实际情况从数据库或其他地方获取角色信息
+        UserDetails user = User.withUsername(username)
+                .password("password")
+                .roles("ROLE_USER") // 添加用户角色
+                .build();
+        
+        return user;
+    }
+}
+```
+
+然后，在配置类中使用`UserDetailsService`将其注入到`AuthenticationManagerBuilder`中，并配置登录的URL和角色相关的权限。
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/admin/**").hasRole("ADMIN") // 需要ADMIN角色才能访问
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login") // 登录页面的URL
+            .permitAll()
+            .and()
+            .logout()
+            .permitAll();
+    }
+}
+```
+
+在上述示例中，`UserDetailsServiceImpl`实现了`UserDetailsService`接口，并在`loadUserByUsername`方法中为用户添加了角色信息。在`SecurityConfig`配置类中，我们将`UserDetailsService`注入到`AuthenticationManagerBuilder`中，并使用`.hasRole("ROLE_NAME")`配置了需要具有指定角色的权限。
+
+这样，当用户成功登录后，Spring Security会根据用户的角色信息进行权限验证，以决定用户是否具有访问受限资源的权限。
+
+
+spring security
+
+UserDetails信息如何支持集群中不同节点访问的
+
+```java
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+public class MyService {
+    public boolean hasRole(String role) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals(role));
+    }
+}
+```
