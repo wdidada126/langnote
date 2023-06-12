@@ -76,8 +76,11 @@ logger.info("Using generated security password: " + password);
 
 需要有oauth2基础
 
+深入浅出spring security作者，江南一点雨
+SpringSecurity快速入门.pdf windows电脑上    有
 
-SpringSecurity快速入门.pdf windows电脑上有
+
+### 初识Spring Security
 
 
 Spring Security官方提供了很多示例代码，以帮助您了解和使用Spring Security的各种功能。以下是一些常见的Spring Security官方示例代码：
@@ -192,3 +195,15 @@ public class MyService {
     }
 }
 ```
+
+login页面的用户名密码设置
+```yml
+spring:
+  security:
+    user:
+      name: user
+      password: 123456
+```
+
+
+
