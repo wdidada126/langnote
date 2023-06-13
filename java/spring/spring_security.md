@@ -79,29 +79,24 @@ logger.info("Using generated security password: " + password);
 深入浅出spring security作者，江南一点雨
 SpringSecurity快速入门.pdf windows电脑上    有
 
+https://github.com/lenve/spring-security-samples
+https://gitee.com/edidada/spring-security-samples
 
 ### 初识Spring Security
 
 
 Spring Security官方提供了很多示例代码，以帮助您了解和使用Spring Security的各种功能。以下是一些常见的Spring Security官方示例代码：
-
 1. Spring Security Samples Repository：官方维护了一个GitHub仓库，其中包含了多个示例项目，涵盖了不同的使用场景和功能。您可以在该仓库中查看示例代码，并按照说明进行配置和运行。
-
-   GitHub链接：[https://github.com/spring-projects/spring-security-samples](https://github.com/spring-projects/spring-security-samples)
-
+GitHub链接：[https://github.com/spring-projects/spring-security-samples](https://github.com/spring-projects/spring-security-samples)
 2. Spring Security Guides：官方提供了一系列的指南（guides），涵盖了Spring Security的不同方面和用法。这些指南提供了详细的说明、示例代码和配置示例，帮助您了解和应用Spring Security的功能。
-
-   官方指南链接：[https://docs.spring.io/spring-security/site/docs/current/guides/](https://docs.spring.io/spring-security/site/docs/current/guides/)
-
+官方指南链接：[https://docs.spring.io/spring-security/site/docs/current/guides/](https://docs.spring.io/spring-security/site/docs/current/guides/)
 3. Spring Security OAuth Samples：如果您希望了解和使用Spring Security OAuth相关的功能，官方也提供了一些示例代码，用于演示OAuth 2.0和OpenID Connect等认证和授权场景的实现。
-
-   GitHub链接：[https://github.com/spring-projects/spring-security-oauth-samples](https://github.com/spring-projects/spring-security-oauth-samples)
-
+GitHub链接：[https://github.com/spring-projects/spring-security-oauth-samples](https://github.com/spring-projects/spring-security-oauth-samples)
 这些示例代码和指南将帮助您快速入门并理解Spring Security的用法和配置方式。您可以根据自己的需求选择适合的示例，并根据官方文档进行配置和定制化。
 
 
-### security与shiro结合使用
-
+### security与shiro结合使用？
+有说法是不能结合，二者是竞品
 todo
 
 jar
@@ -209,4 +204,37 @@ spring:
 
 https://gitee.com/edidada/spring-security-samples-5.6.x
 
+### todo
+
+GET /login
+POST /login
+
+
+org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration#getOrDeducePassword
+打印spring security生成的密码
+
+两种非主流的用户名/密码配置方案。
+Spring Security 提供了多种密码加密方案，官方推荐使用 BCryptPasswordEncoder，BCryptPasswordEncoder 使用 BCrypt 强哈希函数，开发者在使用时可以选择提供 strength 和 SecureRandom 实例。strength 越大，密钥的迭代次数越多，密钥迭代次数为 2^strength。strength 取值在 4~31 之间，默认为 10。
+不同于 Shiro 中需要自己处理密码加盐，在 Spring Security 中，BCryptPasswordEncoder 就自带了盐，处理起来非常方便。
+而 BCryptPasswordEncoder 就是 PasswordEncoder 接口的实现类。
+定义类，实现，注入spring ioc容器
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+
+
+`WebSecurityConfigurerAdapter`是Spring Security框架提供的一个方便的类，用于简化Web应用程序的安全配置。
+
+它的主要作用如下：
+
+1. 提供默认的安全配置：`WebSecurityConfigurerAdapter`定义了一系列方法，可以用于配置Web应用程序的安全性。它提供了一组默认的安全配置，例如禁用CSRF保护、启用HTTP基本身份验证、配置表单登录、配置注销等。通过继承`WebSecurityConfigurerAdapter`，可以轻松地启用和配置这些默认的安全设置。
+2. 自定义安全配置：除了提供默认的安全配置外，`WebSecurityConfigurerAdapter`还允许开发人员自定义安全配置以满足特定的应用程序需求。通过重写`WebSecurityConfigurerAdapter`的方法，可以定制安全规则、配置认证管理器、定义登录和注销行为、配置访问权限等。这样，开发人员可以根据应用程序的具体要求来设计和配置安全性。
+3. 组合多个安全配置类：`WebSecurityConfigurerAdapter`支持通过组合多个安全配置类的方式实现复杂的安全配置。通过创建多个继承自`WebSecurityConfigurerAdapter`的配置类，并将它们注入到主配置类中，可以实现按模块划分、分层次的安全配置。这样，每个配置类可以专注于特定的安全需求，提高了安全配置的可维护性和可扩展性。
+总的来说，`WebSecurityConfigurerAdapter`是Spring Security框架提供的一个便捷的类，用于简化Web应用程序的安全配置。它提供了默认的安全设置和可扩展的配置选项，使开发人员能够快速搭建和定制应用程序的安全性。
+
+spring security源代码，哪儿用抽象类WebSecurityConfigurerAdapter
+
+chatgpt回答不是我想问的
+
+实现了接口org.springframework.security.config.annotation.SecurityConfigurer
+
+org.springframework.security.config.annotation.web.WebSecurityConfigurer
 
