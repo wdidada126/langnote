@@ -49,4 +49,54 @@ aoutconfig maven插件是生成properties插件
 
 
 
+从Alibaba提供Spring Alibaba来看，国内在Spring使用上还是很强大的
+
+
+
+BeanDefinitionParserDelegate dbpd;
+DefaultDocumentLoader defaultDocumentLoader;
+
+`BeanDefinitionParserDelegate`是Spring框架内部的一个关键类，用于解析和处理XML配置文件中的bean定义。
+
+它的主要作用如下：
+
+1. 解析bean定义：`BeanDefinitionParserDelegate`负责解析XML配置文件中的bean定义，并将其转换为Spring框架内部的数据结构，即`BeanDefinition`对象。它会根据配置文件中的元素和属性，构建相应的`BeanDefinition`对象，包括bean的名称、类型、属性、依赖关系等信息。
+
+2. 处理命名空间：Spring框架支持使用命名空间扩展XML配置文件的功能，而`BeanDefinitionParserDelegate`负责处理这些命名空间。它会根据不同的命名空间，调用相应的处理器来解析和处理扩展元素。
+
+3. 处理属性值：`BeanDefinitionParserDelegate`会处理配置文件中bean的属性值，包括字面值、引用值、占位符等。它会根据配置文件中的不同写法，将属性值解析为相应的对象，如字符串、引用、表达式等。
+
+4. 处理嵌套标签：`BeanDefinitionParserDelegate`支持处理XML配置文件中的嵌套标签，如构造函数参数、集合属性、内部bean等。它会递归地解析和处理这些嵌套标签，确保bean定义的完整性和准确性。
+
+总的来说，`BeanDefinitionParserDelegate`在Spring框架的XML配置文件解析过程中扮演了重要的角色，负责解析和处理bean定义的各个方面，将配置文件转化为Spring框架内部可操作的数据结构。它为Spring的IoC容器提供了必要的元数据信息，以便正确地创建和管理应用程序中的bean实例。
+
+
+`DefaultDocumentLoader`是Spring框架中用于加载和解析XML文档的默认实现类。
+
+它的主要作用如下：
+
+1. 加载XML文档：`DefaultDocumentLoader`负责加载XML文档并创建对应的`Document`对象。它使用JAXP（Java API for XML Processing）提供的API，通过解析器将XML文档转换为DOM（Document Object Model）树结构。
+
+2. 解析XML文档：一旦XML文档加载完成，`DefaultDocumentLoader`会对文档进行解析，将其转换为内部的表示形式。它会识别XML中的元素、属性、命名空间等，并将其映射为Spring框架内部的数据结构，如`BeanDefinition`、`PropertyValue`等。
+
+3. 处理命名空间：`DefaultDocumentLoader`还负责处理XML文档中的命名空间。它会解析文档中的命名空间声明，并注册相应的命名空间处理器，以便在解析过程中处理扩展的XML元素。
+
+4. 处理DTD和Schema验证：如果XML文档定义了DTD（Document Type Definition）或Schema验证，`DefaultDocumentLoader`会根据相应的规范进行验证。它会检查XML文档的结构和内容，确保其符合定义的规则和约束。
+
+总的来说，`DefaultDocumentLoader`是Spring框架中负责加载和解析XML文档的核心组件。它将XML文档转换为Spring框架内部可操作的数据结构，为后续的处理过程提供必要的元数据信息。通过`DefaultDocumentLoader`，Spring能够有效地读取和理解XML配置文件，实现IoC容器的构建和配置。
+
+
+new project how to integert to Spring Cloud?
+
+
+
+spring
+
+
+
+xml文件定义${}变量，如何替换掉
+spel表达式
+
+
+aoutconfig maven插件是生成properties插件
 
