@@ -204,4 +204,9 @@ rust
 web是计算机程序的对外接口
 
 
+Bearer Token、JWT Bearer、Basic Auth 和 Digest Auth 都是在 Web 应用程序中进行身份验证的常见方式，它们之间有以下区别：
 
+1. Bearer Token：Bearer Token 是一种用于 OAuth 2.0 授权的身份验证机制，它使用一个访问令牌来验证用户身份。Bearer Token 通常用于客户端与服务器之间的身份验证，它使用 HTTP 头部字段 `Authorization` 带上访问令牌进行身份验证。Bearer Token 机制相对简单，但安全性较低，因为访问令牌可以被截获并被恶意使用。
+2. JWT Bearer：JWT Bearer 是一种使用 JSON Web Token（JWT）进行身份验证的机制。JWT Bearer 机制使用 JWT 作为访问令牌，并使用 HTTP 头部字段 `Authorization` 带上 JWT 进行身份验证。相对于 Bearer Token，JWT Bearer 机制更加安全，因为 JWT 可以被加密和签名，从而确保令牌不会被篡改或伪造。
+3. Basic Auth：Basic Auth 是一种使用用户名和密码进行身份验证的机制。当使用 Basic Auth 时，客户端将用户名和密码进行 Base64 编码，并将编码后的字符串作为 HTTP 头部字段 `Authorization` 的值传递到服务器进行身份验证。Basic Auth 机制相对简单，但安全性较低，因为用户名和密码是以明文形式传输的，容易被截获并被恶意使用。
+4. Digest Auth：Digest Auth 是一种使用摘要算法进行身份验证的机制。当使用 Digest Auth 时，客户端将用户名和密码进行 MD5 摘要，并将摘要结果作为 HTTP 头部字段 `Authorization` 的值传递到服务器进行身份验证。Digest Auth 相对于 Basic Auth 更加安全，因为密码是以摘要形式传输的，而不是以明文形式传输。但 Digest Auth 的实现相对较复杂，并且在某些情况下可能会导致性能问题。

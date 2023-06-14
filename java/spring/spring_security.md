@@ -238,3 +238,15 @@ chatgpt回答不是我想问的
 
 org.springframework.security.config.annotation.web.WebSecurityConfigurer
 
+/admin需要ROLE_ADMIN角色才能访问，现在登录了普通user账户，直接访问/admin下面的url，是直接报错还是？
+
+
+JdbcUserDetailsManager 自己提供了一个数据库模型，这个数据库模型保存在如下位置：
+
+org/springframework/security/core/userdetails/jdbc/users.ddl
+这里存储的脚本内容如下：
+
+create table users(username varchar_ignorecase(50) not null primary key,password varchar_ignorecase(500) not null,enabled boolean not null);
+create table authorities (username varchar_ignorecase(50) not null,authority varchar_ignorecase(50) not null,constraint fk_authorities_users foreign key(username) references users(username));
+create unique index ix_auth_username on authorities (username,authority);
+可以看到，脚本中有一种数据类型 varchar_ignorecase，这个其实是针对 HSQLDB 数据库创建的，而我们使用的 MySQL 并不支持这种数据类型，所以这里需要大家手动调整一下数据类型，将 varchar_ignorecase 改为 varchar 即可。
