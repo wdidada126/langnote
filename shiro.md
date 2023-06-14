@@ -1,5 +1,5 @@
 # shiro
-
+https://gitee.com/edidada/shiro-demo
 shiro netty项目，或者爬虫项目，大数据处理项目，如何鉴权？
 数据拿去校验
 
