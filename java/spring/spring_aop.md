@@ -1,4 +1,5 @@
 # Spring Aop
+org.springframework.aop.interceptor.ExposeInvocationInterceptor
 
 Spring2教案_aop事务.docx
 

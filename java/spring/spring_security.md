@@ -82,6 +82,9 @@ SpringSecurity快速入门.pdf windows电脑上    有
 https://github.com/lenve/spring-security-samples
 https://gitee.com/edidada/spring-security-samples
 
+https://gitee.com/edidada/spring-security-samples
+根据README.md上面的文章列表去看代码，注意学习方式
+
 ### 初识Spring Security
 
 
