@@ -74,7 +74,7 @@ git config user.name "wdidada"
 
 ```
 git config user.email "xxx@qq.com"
-git config user.name "ChengWu"
+git config user.name "WuCheng"
 ```
 
 
