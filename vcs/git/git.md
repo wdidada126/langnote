@@ -616,3 +616,15 @@ issue-5234-dev
 
 
 [how to delete all commit history in github](https://stackoverflow.com/questions/13716658/how-to-delete-all-commit-history-in-github)
+
+
+要删除远程分支，可以使用以下命令：
+```bash
+git push origin --delete <branch_name>
+```
+其中，`<branch_name>`是要删除的远程分支的名称。
+例如，要删除名为`feature/branch1`的远程分支，可以运行以下命令：
+```bash
+git push origin --delete feature/branch1
+```
+请注意，此命令将从远程仓库中永久删除指定的分支。确保在执行此操作之前，你已经确认了要删除的分支，并且在删除之前进行了必要的备份或合并操作。
