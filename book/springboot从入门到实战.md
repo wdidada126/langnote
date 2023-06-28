@@ -19,4 +19,4 @@ PreparedStatementCreator接口
 
 
 
-2023-05-17 09:21:04.164 [http-nio-9099-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver 199 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.ykcloud.soa.erp.api.fi.jiameng.response.JmFiReceiptResponse com.ykcloud.soa.erp.fi.jiameng.service.impl.JMFiPortalMappingServiceImpl.addOrUdpdateReceipt(com.ykcloud.soa.erp.api.fi.jiameng.request.JmFiReceiptRequest)]
+2023-05-17 09:21:04.164 [http-nio-9099-exec-3] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver 199 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public cn.wdidada.test.erp.api.fi.jiameng.response.JmFiReceiptResponse cn.wdidada.test.erp.fi.jiameng.service.impl.JMFiPortalMappingServiceImpl.addOrUdpdateReceipt(cn.wdidada.test.erp.api.fi.jiameng.request.JmFiReceiptRequest)]
