@@ -1,5 +1,21 @@
 # feign
 
+
+Retrofit和Feign是两种常用的HTTP客户端库，用于在Java应用程序中进行服务间的通信。它们具有以下区别：
+
+1. 基于库的选择：Retrofit是Square公司开发的库，而Feign是Netflix公司开发的库。它们在设计和实现上有一些差异。
+
+2. 使用方式：Retrofit使用注解和接口定义API请求，通过动态代理生成具体的HTTP请求代码。开发人员需要手动定义接口和注解，以描述请求和响应的结构。Feign则更加声明式，使用接口定义API请求，但是不需要手动实现接口，而是通过运行时代理来自动创建实现。
+
+3. 支持的协议：Retrofit主要用于处理RESTful风格的HTTP请求，并支持多种HTTP协议（如GET、POST等）。Feign则是基于Java标准的JAX-RS（Java API for RESTful Web Services）规范，并支持更多的HTTP协议和功能。
+
+4. 整合Spring Cloud：Feign在Spring Cloud框架中得到了广泛应用，并提供了与其他Spring Cloud组件的集成，如服务发现、负载均衡等。Retrofit通常与Android应用程序结合使用，也可以与其他框架进行集成，但没有专门针对Spring Cloud的支持。
+
+5. 定制化能力：由于Retrofit和Feign的设计理念和实现方式不同，它们在定制化能力上也有一些差异。Retrofit提供了更多的灵活性和可定制性，可以通过拦截器、转换器等机制来扩展和定制请求和响应的处理。Feign则提供了更多的自动化功能，并通过Spring Cloud的集成来实现更高级的功能，如服务注册、负载均衡等。
+
+总体而言，Retrofit更适合于构建自定义的、面向RESTful API的HTTP客户端，而Feign更适合于与Spring Cloud等微服务框架集成，并且更加声明式和自动化。选择哪个库取决于您的具体需求和项目背景。
+
+
 SpringCloud原理之feign.md
 
 
