@@ -1,7 +1,58 @@
 # Retrofit
 
+
+
+Java doc
+
+https://square.github.io/retrofit/2.x/retrofit/
+
+
+Body
+Call
+CallAdapter
+CallAdapter.Factory
+Callback
+Converter
+Converter.Factory
+DELETE
+Field
+FieldMap
+FormUrlEncoded
+GET
+HEAD
+Header
+HeaderMap
+Headers
+HTTP
+HttpException
+Invocation
+Multipart
+OPTIONS
+Part
+PartMap
+PATCH
+Path
+POST
+PUT
+Query
+QueryMap
+QueryName
+Response
+Retrofit
+Retrofit.Builder
+SkipCallbackExecutor
+Streaming
+Tag
+Url
+
+
 retrofit是基于OkHttp 的封装
 
+
+转换器
+http request body
+response body
+retrofit2.Converter 接口 
 
 主要分析以下几个框架
 HttpClient

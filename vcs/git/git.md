@@ -73,8 +73,8 @@ git config user.name "wdidada"
 
 
 ```
-git config user.email "xxx@qq.com"
-git config user.name "WuCheng"
+git config --global user.email "xxx@qq.com"
+git config --global user.name "WuCheng"
 ```
 
 
