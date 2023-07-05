@@ -1,6 +1,15 @@
 # atomic
 
 
+### 使用场景
+
+nacos中
+
+com.alibaba.nacos.client.config.NacosConfigService
+
+private final AtomicReference<Map<String, CacheData>> cacheMap = new AtomicReference<Map<String, CacheData>>(new HashMap<>());
+
+
 什么是原子类？什么情况下使用原子类？
 java 1.5引进原子类，具体在java.util.concurrent.atomic包下，atomic包里面一共提供了13个类，分为4种类型，分别是：原子更新基本类型，原子更新数组，原子更新引用，原子更新属性。原子类也是java实现同步的一套解决方案。
 原子类的原理是cas指令
