@@ -17,14 +17,35 @@ com.github.lianjiatech.retrofit.spring.boot.core.RetrofitFactoryBean#getObject
 
 作用是把retrofit 接口的动态代理类注入spring容器
 
+https://github.com/edidada/retrofit-spring-boot-starter
+
+注意spring boot 2
+spring boot 3的区别
+
 https://gitee.com/edidada/testspringbootretrofit
 
+### retrofit vs retrofit spring boot starter
+
+retrofit
+```java
+        @POST(UrlConstant.BAIWANG_ET_INVOICE_RED_INFO)
+        Call<Result<InvoiceRedInfoResult>> applyInvoiceRedInfo4(@HeaderMap Map<String, String> headers, @Body InvoiceRedInfoParam invoiceRedInfoParam);
+
+        @POST(UrlConstant.BAIWANG_ET_INVOICE_RED_INFO)
+        Observable<Result<InvoiceRedInfoResult>> applyInvoiceRedInfo5(@HeaderMap Map<String, String> headers, @Body InvoiceRedInfoParam invoiceRedInfoParam);
+```
 
 
+retrofit spring boot starter
+```java
+
+        @POST(UrlConstant.BAIWANG_ET_INVOICE_RED_INFO)
+        Result<InvoiceRedInfov252Result> applyInvoiceRedInfo3(@HeaderMap Map<String, String> headers, @Body InvoiceRedInfoParam invoiceRedInfoParam);
+```
 
 https://gitee.com/edidada/retrofitdemo
 
-
+cn.wdidada.test.retrofitdemo.adapter.BodyCallAdapterFactory 这个类要记住
 
 Retrofit
 
@@ -67,6 +88,24 @@ Process finished with exit code 1
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 ```
+
+
+```shell
+java.lang.IllegalArgumentException: Unable to create call adapter for
+for method HttpApiV252.applyInvoiceRedInfo
+
+	at retrofit2.Utils.methodError(Utils.java:54)
+	at retrofit2.HttpServiceMethod.createCallAdapter(HttpServiceMethod.java:116)
+	at retrofit2.HttpServiceMethod.parseAnnotations(HttpServiceMethod.java:67)
+	at retrofit2.ServiceMethod.parseAnnotations(ServiceMethod.java:39)
+	at retrofit2.Retrofit.loadServiceMethod(Retrofit.java:202)
+	at retrofit2.Retrofit$1.invoke(Retrofit.java:160)
+	at com.sun.proxy.$Proxy136.applyInvoiceRedInfo(Unknown Source)
+```
+
+
+DefaultCallAdapterFactory
+CompletableFutureCallAdapterFactory
 
 问题：
 retrofit源代码 如何生成http param headers body
@@ -187,7 +226,7 @@ retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
 
 InvocationHandler
 动态代理
-### Retrofit VS feign
+# Retrofit VS feign
 
 
 https://blog.csdn.net/choi2016/article/details/54974137
@@ -199,6 +238,23 @@ https://zhuanlan.zhihu.com/p/384451261
 Feign 通过给我们定义的目标接口（比如例子中的 GitHub）生成一个 HardCodedTarget 类型的代理对象，由 JDK 动态代理实现，生成代理的时候会根据注解来生成一个对应的 Map<Method, MethodHandler>，这个 Map 被 InvocationHandler 持有，接口方法调用的时候，进入 InvocationHandler 的 invoke 方法（为什么会进入这里？JDK 动态代理的基础知识）。
 
 然后根据调用的方法从 Map<Method, MethodHandler> 获取对应的 MethodHandler，然后通过 MethodHandler 根据指定的 client 来完成对应处理， MethodHandler 中的实现类 DefaultMethodHandler 处理默认方法（接口的默认方法）的请求处理的，SynchronousMethodHandler 实现类是完成其它方法的 HTTP 请求的实现，这就是 Feign 的主要核心流程
+
+feign设置url的时候，支持设置微服务名称，会从注册中心获取url列表？
+
+是的，Feign 支持通过微服务名称来访问服务，其会从注册中心获取服务的 URL 列表，并进行负载均衡和容错处理。
+
+在 Feign 中，您可以使用 `@FeignClient` 注解中的 `value` 或 `name` 属性来指定要访问的微服务名称。例如：
+
+```
+@FeignClient(value = "user-service")
+public interface UserServiceClient {
+    ...
+}
+```
+
+在这个例子中，我们使用 `value` 属性将 Feign 客户端绑定到 `user-service` 微服务上。
+当 Feign 调用微服务时，它会通过注册中心获取 `user-service` 的实例列表，并使用负载均衡算法选择一个实例进行请求。如果选择的实例发生故障或不可用，Feign 会使用容错机制自动切换到其它可用的实例进行请求。
+需要注意的是，Feign 的负载均衡和容错机制是基于 Ribbon 实现的，因此需要同时引入 Ribbon 依赖。另外，您还需要在应用程序中配置注册中心的地址和协议等信息，以便 Feign 可以正确地从注册中心获取服务的实例列表。
 
 
 spring boot与retrofit
