@@ -411,9 +411,67 @@ https://www.cnblogs.com/linjiqin/p/9718223.html
 根据上面的博客写个demo
 
 
+https://spring.io/projects/spring-cloud-consul/
+
+
 ### 配置中心，注册中心对比
 
 consul
 nacos
 eureka
 zk
+
+
+
+是的，Spring Cloud 中的 ZooKeeper（ZK）可以作为配置中心，用于集中管理应用程序的配置信息，实现配置的动态更新和分布式共享。
+
+具体而言，可以通过 Spring Cloud 的 `spring-cloud-starter-zookeeper-config` 依赖来集成 ZooKeeper 作为配置中心。您需要在应用程序中添加该依赖，并在 `bootstrap.properties` 或 `bootstrap.yml` 配置文件中指定以下配置项：
+
+```yaml
+spring.cloud.zookeeper.enabled=true
+spring.cloud.zookeeper.connect-string=localhost:2181 # ZooKeeper 的连接地址
+spring.cloud.zookeeper.config.root=/config # 配置文件在 ZooKeeper 中的根节点路径
+spring.cloud.zookeeper.config.enabled=true # 启用 ZooKeeper 作为配置中心
+```
+
+然后，您可以在 ZooKeeper 的 `/config` 节点下创建配置文件，并在应用程序中通过 `@Value`、`@ConfigurationProperties` 等注解来获取配置信息。例如：
+
+```yaml
+# 在 ZooKeeper 中创建配置文件 /config/myapp.yml
+server:
+  port: 8080
+```
+
+```java
+@Component
+@ConfigurationProperties(prefix = "server")
+public class MyAppConfig {
+    private int port;
+    // getter 和 setter 方法
+}
+```
+
+在上述例子中，`MyAppConfig` 类使用 `@ConfigurationProperties` 注解来获取 `server.port` 配置项的值，该配置项存储在 ZooKeeper 的 `/config/myapp.yml` 文件中。当 `/config/myapp.yml` 文件发生变化时，应用程序会自动重新加载配置，并更新 `MyAppConfig` 对象的值。
+
+需要注意的是，使用 ZooKeeper 作为配置中心时，要确保 ZooKeeper 的稳定性和可靠性，并避免出现 ZooKeeper 故障导致应用程序无法正常启动或运行的情况。同时，也要注意配置文件的安全性和权限控制，防止敏感信息泄露或被非法访问。
+
+
+在微服务架构中，配置中心和注册中心都是非常重要的组件，它们分别负责应用程序配置信息的管理和服务实例的注册与发现。下面是四种常见的微服务框架中，配置中心和注册中心的比较：
+
+1. Consul
+
+Consul 是一个分布式的、高可用的服务发现和配置管理平台。它提供了服务注册与发现、健康检查、KV 存储、分布式锁等功能，并且支持多数据中心、跨平台、跨云等特性。在 Consul 中，配置中心和注册中心是集成在一起的，使用 Consul 可以实现统一的配置管理和服务发现。
+
+2. Nacos
+
+Nacos 是一个开源的分布式服务注册和配置中心，它提供了服务注册与发现、配置管理、流量管理等功能，并且支持多数据中心、多语言、多协议等特性。在 Nacos 中，配置中心和注册中心是集成在一起的，使用 Nacos 可以实现统一的配置管理和服务发现。
+
+3. Eureka
+
+Eureka 是 Netflix 开源的一个服务注册和发现框架，它提供了服务注册与发现、健康检查等功能，并且支持集群部署、自我保护、自动剔除等特性。在 Eureka 中，注册中心主要负责服务实例的注册和发现，而配置管理则需要借助其他的配置中心组件，例如 Spring Cloud Config。
+
+4. ZooKeeper
+
+ZooKeeper 是一个分布式的、高可用的协调服务框架，它提供了分布式锁、命名服务、配置管理等功能，并且支持多语言、多协议等特性。在 ZooKeeper 中，配置管理和注册中心可以分别使用不同的节点或路径来实现，例如使用 `/config` 节点来存储应用程序配置信息，使用 `/services` 节点来存储服务实例信息。
+
+总之，不同的微服务框架中，配置中心和注册中心的实现方式和特性都有所不同，您可以根据实际情况进行选择和定制。无论您选择哪种框架，都需要注意其稳定性、可靠性和安全性，以确保应用程序的正常运行。
