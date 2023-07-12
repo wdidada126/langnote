@@ -1,5 +1,13 @@
 # spring_web
 
+
+@RequestBody注解修饰的类
+
+org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver#readWithMessageConverters(org.springframework.http.HttpInputMessage, org.springframework.core.MethodParameter, java.lang.reflect.Type)
+
+在这里赋值
+
+
 DispatcherServlet.properties 文件中HandlerAdapter的内容
 ```
 org.springframework.web.servlet.HandlerAdapter=org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,\
@@ -305,14 +313,14 @@ org.springframework.web.method.annotation.ErrorsMethodArgumentResolver
 
 
 你好，这是 Bing。根据我的搜索结果，springmvc代码如何校验http body，把校验结果封装在 BindingResult result上的源码解析如下：
-- 当控制器方法中使用 @Valid 或 @Validated 注解时，Spring MVC 会调用 RequestResponseBodyMethodProcessor 这个参数解析器来处理请求体中的参数¹²。
-- RequestResponseBodyMethodProcessor 会使用 HttpMessageConverter 来将请求体中的内容转换为 Java 对象，并使用 WebDataBinder 来进行属性绑定和校验¹²。
-- WebDataBinder 会遍历当前参数的所有注解，如果注解是 @Validated 或注解的名字以 ‘Valid’ 开头，则使用 Validator 对象来执行校验逻辑¹²。
-- Validator 对象会使用 Bean Validation API 来对参数对象的所有字段进行校验，如果有错误，会将错误信息添加到 BindingResult 对象中¹²³。
-- BindingResult 对象会被保存到 ModelAndViewContainer 对象中，以便后续使用¹²。
-- 当控制器方法中有 BindingResult 类型的参数时，Spring MVC 会调用 ErrorsMethodArgumentResolver 这个参数解析器来处理该参数¹²。
-- ErrorsMethodArgumentResolver 会从 ModelAndViewContainer 对象中获取 BindingResult 对象，并赋值给该参数¹²。
-- BindingResult 参数必须紧跟在被校验的参数后面，否则会抛出 IllegalStateException 异常¹²。
+- 当控制器方法中使用 @Valid 或 @Validated 注解时，Spring MVC 会调用 RequestResponseBodyMethodProcessor 这个参数解析器来处理请求体中的参数。
+- RequestResponseBodyMethodProcessor 会使用 HttpMessageConverter 来将请求体中的内容转换为 Java 对象，并使用 WebDataBinder 来进行属性绑定和校验。
+- WebDataBinder 会遍历当前参数的所有注解，如果注解是 @Validated 或注解的名字以 ‘Valid’ 开头，则使用 Validator 对象来执行校验逻辑。
+- Validator 对象会使用 Bean Validation API 来对参数对象的所有字段进行校验，如果有错误，会将错误信息添加到 BindingResult 对象中。
+- BindingResult 对象会被保存到 ModelAndViewContainer 对象中，以便后续使用。
+- 当控制器方法中有 BindingResult 类型的参数时，Spring MVC 会调用 ErrorsMethodArgumentResolver 这个参数解析器来处理该参数。
+- ErrorsMethodArgumentResolver 会从 ModelAndViewContainer 对象中获取 BindingResult 对象，并赋值给该参数。
+- BindingResult 参数必须紧跟在被校验的参数后面，否则会抛出 IllegalStateException 异常。
 
 希望这些信息对你有帮助。😊
 

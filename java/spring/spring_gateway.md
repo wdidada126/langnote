@@ -180,8 +180,10 @@ Spring Cloud Gateway和Zuul都是Spring Cloud提供的API网关组件，用于�
 5. 生态系统支持：由于Spring Cloud Gateway基于Spring WebFlux，它能够与Spring生态系统中的其他组件（如Spring Security、Spring Cloud Sleuth等）无缝集成。而Zuul在一些新的功能和扩展上可能相对较少。
 总体而言，Spring Cloud Gateway更适合构建高性能、响应式的微服务架构，而Zuul则更适合传统的阻塞式请求处理和与传统Spring生态系统的集成。选择使用哪个网关组件取决于项目需求和技术栈的选择。
 
+Spring Cloud Gateway 并没有依赖 Tomcat，而是用 NettyWebServer 来启动服务监听（从启动日志可以看到）
 
 
+https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/
 https://cloud.spring.io/spring-cloud-gateway/reference/html/
 三个核心概念
 Route
@@ -344,3 +346,71 @@ public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 在上述例子中，我们创建了一个名为 `erp-fi` 的路由规则，其中 `path` 属性用于匹配请求路径，`uri` 属性用于指定 `lb:erp-fi` 的负载均衡器地址。此时，Gateway 就可以根据负载均衡策略，将客户端请求转发到 `erp-fi` 服务实例中的任意一个可用实例上，实现动态负载均衡的功能。
 
 总之，`Router` 中的 `URI` 地址可以是一个具体的地址，也可以是一个 `lb` 开头的地址，用于实现负载均衡的功能。您可以通过配置服务注册与发现功能，将多个后端服务实例注册到注册中心，并使用 `lb` 开头的 `URI` 地址来实现动态负载均衡的功能。
+
+
+GatewayFilter
+AddRequestParameterGatewayFilterFactory，为请求添加一个查询参数
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ${serviceId}
+          filters:
+            - AddRequestParameter=foo, bar        # 请求增加 foo=bar 这个参数
+
+AddResponseHeaderGatewayFilterFactory，为请求的返回的 Header 中添加数据
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ${serviceId}
+          filters:
+            - AddResponseHeader=X-Response-Foo, bar   
+            # Response Header 添加 key=X-Response-Foo, Valuebar
+
+RetryGatewayFilterFactory，请求重试过滤器，当后端服务不可用时，根据配置参数发起重试请求
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ${serviceId}
+          filters:
+            - name: Retry
+              args: 
+                retries: 3				# 重试次数
+                status: 503				# 针对 HTTP 请求返回状态码进行重试
+
+RequestRateLimiterGatewayFilterFactory，对请求进行限流（被限流的请求会收到 Too Many Request）
+
+由 org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter 实现，其他参数参考实现类
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ${serviceId}
+          filters:
+            - name: RequestRateLimiter
+              args: 
+                redis-rate-limiter.replenishRate: 10				
+                   # 令牌桶的令牌填充速度，代表允许每秒执行的请求数
+                redis-rate-limiter.burstCapacity: 20				
+                   # 令牌桶的容量，表示每秒用户最大能够执行的请求数量
+
+jar包
+
+- spring-cloud-starter-gateway
+- spring-cloud-starter-core
+
+
+
+org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewayFilterFactory
+
+
+org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
+
+
+spring-web里面的类
+org.springframework.web.server.ServerWebExchange
