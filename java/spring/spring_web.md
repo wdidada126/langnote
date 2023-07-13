@@ -8,6 +8,38 @@ org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMe
 在这里赋值
 
 
+把jackson替换成fastjson来序列化，反序列化http入参，出参
+
+java代码
+
+```java
+@Configuration
+public class HttpReqRespConfig {
+
+        @Bean
+        public HttpMessageConverters fastJsonHttpMessageConverters() {
+            // 创建FastJson的配置对象
+            FastJsonConfig fastJsonConfig = new FastJsonConfig();
+            // 配置FastJson的相关参数
+
+            // 创建FastJson的消息转换器
+            FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+            converter.setFastJsonConfig(fastJsonConfig);
+
+            // 返回HttpMessageConverters对象
+            return new HttpMessageConverters(converter);
+    }
+
+}
+```
+
+源码
+```java
+FastJsonHttpMessageConverter extends AbstractHttpMessageConverter<Object>//
+        implements GenericHttpMessageConverter<Object>
+```
+
+
 DispatcherServlet.properties 文件中HandlerAdapter的内容
 ```
 org.springframework.web.servlet.HandlerAdapter=org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,\
