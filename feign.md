@@ -205,7 +205,6 @@ https://gitee.com/edidada/openfeigndemo
 https://gitee.com/edidada/springboothttpserver
 
 
-https://github.com/OpenFeign/feign
 
 
 doc
@@ -219,7 +218,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 
 README_feign.md
 
-
+https://github.com/OpenFeign/feign
 github.com/openfeign/feign-form
 
 
@@ -227,3 +226,175 @@ POST 传输文件
 
 openfeign_form_README.md
 
+在 Feign 中，InvocationHandler 的默认实现是 SynchronousMethodHandler，它会将接口方法转换为对应的 HTTP 请求，并使用 Client 接口发送请求。
+
+feign.ReflectiveFeign.FeignInvocationHandler类
+  static class FeignInvocationHandler implements InvocationHandler 
+
+
+
+feign api doc
+
+
+feign-core
+feign-form
+feign-hyxtrix
+feign-form-spring
+feign-slf4j
+
+
+注解
+Body
+Experimental
+HeaderMap
+Headers
+Param
+QueryMap
+RequestLine
+
+
+feign.Target 接口
+feign.Target.HardCodedTarget 内部静态接口
+feign.Feign
+feign.InvocationHandlerFactory.MethodHandler 接口
+feign.SynchronousMethodHandler
+feign.SynchronousMethodHandler.Factory 内部类
+
+静态 feign.ReflectiveFeign.FeignInvocationHandler 内部类，实现InvocationHandler接口
+异常
+feign.FeignException
+feign.RetryableException
+feign.RetryableException
+AsyncJoinException
+请求返回
+feign.Response
+feign.Request
+
+
+feign.Feign
+feign.AsyncFeign
+feign.ReflectiveFeign
+feign.ReflectiveAsyncFeign
+
+
+
+AsyncClient
+feign.AsyncClient.Default
+feign.AsyncClient.Pseudo
+
+feign.Contract
+feign.Contract.BaseContract
+feign.DeclarativeContract
+
+feign.Client
+feign.Client.Default
+
+feign.RequestInterceptor
+
+
+feign.RequestTemplate
+
+feign.CollectionFormat
+feign.QueryMapEncoder
+feign.DefaultMethodHandler
+AsyncResponseHandler
+feign.Types
+Feign 中的 Types 类提供了一些静态方法，用于获取各种类型的 Type 对象，例如获取泛型类型、获取数组类型、获取参数化类型等。Feign 使用 Java 的反射机制来解析接口定义中的泛型信息，并将其转换为对应的 Type 对象。使用 Types 类可以方便地获取这些 Type 对象，以便在 Feign 客户端中正确地处理泛型类型。
+Types 类中的一些常用方法包括：
+- `genericArrayType(Type componentType)`：返回表示指定组件类型的数组类型的 Type 对象。
+- `parameterizedType(Class<?> rawType, Type... typeArguments)`：返回表示具有指定原始类型和类型参数的参数化类型的 Type 对象。
+- `typeVariable(String name, Type... bounds)`：返回表示具有指定名称和边界的类型变量的 Type 对象。
+- `wildcardType(Type[] upperBounds, Type[] lowerBounds)`：返回表示具有指定上界和下界的通配符类型的 Type 对象。
+- `resolve(Type context, Class<?> contextRawType, Type toResolve)`：将指定的类型解析为在给定上下文中的实际类型，例如解析包含类型变量的参数化类型。
+这些方法可以帮助我们在使用 Feign 客户端时，正确地处理各种类型的参数，避免出现类型转换错误或参数解析错误。
+需要注意的是，Types 类是 Feign 内部使用的类，通常情况下不需要直接使用该类。如果您需要在 Feign 客户端中处理复杂的类型，可以参考 Feign 的官方文档中关于泛型的说明，了解如何在接口定义中正确地使用泛型。
+
+
+feign.template.BodyTemplate
+UriTemplate
+HeaderTemplate
+
+
+QueryTemplate
+
+
+TemplateChunk
+Expression implements TemplateChunk
+Literal implements TemplateChunk
+Expressions
+
+UriUtils
+
+package feign.auth;
+
+Base64
+public class BasicAuthRequestInterceptor implements RequestInterceptor
+
+
+package feign.codec;
+public class DecodeException extends FeignException
+    public class EncodeException extends FeignException
+
+public interface Decoder
+
+public interface Encoder
+
+
+public interface ErrorDecoder
+public class StringDecoder implements Decoder
+
+feign.optionals。OptionalDecoder implements Decoder
+
+
+public class BeanQueryMapEncoder implements feign.QueryMapEncoder
+
+
+
+feign-form
+
+package feign.form;
+
+public interface ContentProcessor
+public enum ContentType
+public class FormData
+public class FormEncoder implements Encoder
+public @interface FormProperty
+public class MultipartFormContentProcessor implements ContentProcessor
+public class UrlencodedFormContentProcessor implements ContentProcessor
+
+
+package feign.form.util;
+CharsetUtil
+PojoUtil
+
+
+package feign.form.multipart;
+
+public interface Writer
+public abstract class AbstractWriter implements Writer
+public class ByteArrayWriter extends AbstractWriter
+public class DelegateWriter extends AbstractWriter
+public class FormDataWriter extends AbstractWriter
+public class ManyFilesWriter extends AbstractWriter
+public class ManyParametersWriter extends AbstractWriter
+public class PojoWriter extends AbstractWriter
+public class SingleFileWriter extends AbstractWriter
+public class SingleParameterWriter extends AbstractWriter
+
+Output
+
+
+feign-form-spring
+
+feign.form.spring
+public class SpringSingleMultipartFileWriter extends AbstractWriter {
+public class SpringManyMultipartFilesWriter extends AbstractWriter {
+
+public class SpringFormEncoder extends FormEncoder {
+
+package feign.form.spring.converter;
+
+
+class ByteArrayMultipartFile implements MultipartFile {
+final class IgnoreKeyCaseMap extends HashMap<String, String> {
+public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter<MultipartFile[]> {
