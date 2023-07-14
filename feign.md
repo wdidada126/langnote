@@ -726,3 +726,101 @@ SortJsonComponent
 class SpringDecoder implements Decoder
 class SpringEncoder implements Encoder
 class SpringMvcContract extends Contract.BaseContract implements ResourceLoaderAware
+
+
+
+
+
+
+
+
+
+
+
+Feign 源码中的 `@RequestLine` 注解是通过 Feign 的编译期代码生成机制来支持的。
+
+在使用 `@RequestLine` 注解时，Feign 会在编译期间通过 Java Annotation Processing 工具解析该注解，并根据注解中的信息生成对应的 HTTP 请求方法。
+
+具体来说，Feign 会通过 `feign.processor.Processor` 接口定义的 `process()` 方法来处理 `@RequestLine` 注解。该接口定义了两个方法：`processAnnotation()` 和 `processMethod()`，分别用于处理类注解和方法注解。
+
+在处理 `@RequestLine` 注解时，Feign 会首先在类上查找 `@Headers` 注解，以获取请求头信息。然后，它会解析 `@RequestLine` 注解中的请求方法、请求 URL 和请求参数信息，并生成相应的 HTTP 请求方法。
+
+具体来说，Feign 会根据 `@RequestLine` 注解中指定的请求方法和 URL 生成一个 `RequestTemplate` 对象，并在该对象中设置请求参数信息。然后，它会将 `RequestTemplate` 对象传递给 `Target` 对象，以执行实际的 HTTP 请求。
+
+例如，下面的代码演示了如何使用 `@RequestLine` 注解来定义一个 HTTP GET 请求：
+
+```java
+@FeignClient(name = "my-service")
+public interface MyServiceClient {
+
+    @RequestLine("GET /api/users/{userId}")
+    User getUser(@Param("userId") Long userId);
+
+}
+```
+
+在这个例子中，`@RequestLine` 注解指定了 HTTP 请求方法为 GET，请求 URL 为 `/api/users/{userId}`，其中 `{userId}` 是一个路径参数。`@Param` 注解用于指定请求参数名为 `userId`。
+
+在编译期间，Feign 会解析这个注解，并生成一个 HTTP GET 方法，以执行实际的 HTTP 请求。生成的方法将会接受一个 `Long` 类型的参数 `userId`，并返回一个 `User` 类型的对象。
+
+总的来说，Feign 使用编译期代码生成机制来支持 `@RequestLine` 注解。它可以帮助开发人员方便地定义 HTTP 请求方法，并自动生成相应的代码。
+
+
+
+MatrixVariable注解
+MatrixVariableParameterProcessor
+
+
+feign.Contract.Default
+构造函数，注册注解与注解处理器
+
+super.registerClassAnnotation(Headers.class,
+super.registerClassAnnotation(RequestLine.class,
+super.registerClassAnnotation(Body.class,
+super.registerClassAnnotation(Headers.class,
+super.registerClassAnnotation(Param.class,
+super.registerClassAnnotation(QueryMap.class,
+super.registerClassAnnotation(HeaderMap.class,
+
+
+自定义feign.DeclarativeContract.AnnotationProcessor 子类
+
+
+
+
+public abstract class DeclarativeContract extends BaseContract {
+
+  private final List<GuardedAnnotationProcessor> classAnnotationProcessors = new ArrayList<>();
+  private final List<GuardedAnnotationProcessor> methodAnnotationProcessors = new ArrayList<>();
+
+classAnnotationProcessors
+methodAnnotationProcessors
+
+
+feign.DeclarativeContract.GuardedAnnotationProcessor 私有内部类
+
+封装了
+    private final Predicate<Annotation> predicate;
+    private final DeclarativeContract.AnnotationProcessor<Annotation> processor;
+
+
+
+feign
+用了注解，自定义注解处理器
+
+java5新增的
+
+java注解处理器对应java se中的哪个类
+
+Java 注解处理器对应 Java SE 中的 `javax.annotation.processing` 包下的一组类和接口。
+
+在 Java SE 中，`javax.annotation.processing` 包提供了一组 API，用于编写注解处理器。其中，最核心的接口是 `javax.annotation.processing.Processor`，它定义了一个注解处理器的基本接口。
+
+除了 `Processor` 接口，`javax.annotation.processing` 包中还包含了许多其他的类和接口，用于协助开发者编写注解处理器。例如，`javax.annotation.processing.AbstractProcessor` 是一个抽象类，实现了 `Processor` 接口的大部分方法，可以帮助开发者更方便地编写注解处理器。另外，`javax.annotation.processing.RoundEnvironment` 接口用于表示一个编译轮次中所有的注解和元素，通过该接口，开发者可以访问到当前编译轮次中所有的注解和元素信息。
+
+总的来说，Java 注解处理器通过实现 `javax.annotation.processing.Processor` 接口和其他相关的类和接口，可以对 Java 程序中的注解进行解析和处理。这些处理器在编译期间运行，可以帮助开发者生成额外的代码，或者进行其他的代码转换和优化操作。
+
+public abstract class AbstractProcessor implements Processor
+
+public interface Processor
+

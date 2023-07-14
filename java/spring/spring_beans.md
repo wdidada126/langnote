@@ -184,3 +184,11 @@ beanfactorypostprocessor
 factorybean
 
 
+
+org.springframework.beans.factory.xml.NamespaceHandler 接口
+void init();
+BeanDefinition parse(Element element, ParserContext parserContext);
+BeanDefinitionHolder decorate(Node source, BeanDefinitionHolder definition, ParserContext parserContext);
+
+
+abstract class NamespaceHandlerSupport implements NamespaceHandler

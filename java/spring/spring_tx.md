@@ -278,7 +278,19 @@ spring-aop jar里面的org.springframework.aop.framework.autoproxy.BeanNameAutoP
 
 总之，`TxNamespaceHandler` 可以解析 Spring 配置文件中的 `tx` 命名空间，将其中的 `annotation-driven` 元素转换为 Spring 事务管理所需的相关组件，以支持使用 `@Transactional` 注解进行事务管理。
 
-### AnnotationTransactionAttributeSource
+### AnnotationTransactionAttributeSource 实现了TransactionAttributeSource接口
+
+TransactionAttributeSource接口的两个方法
+tas
+boolean isCandidateClass(Class<?> targetClass)
+TransactionAttribute getTransactionAttribute(Method method, @Nullable Class<?> targetClass);
+
+TransactionAttribute也是接口
+继承TransactionDefinition
+
+TransactionAttribute的方法
+String getQualifier();
+boolean rollbackOn(Throwable ex);
 
 在 Spring 中，`AnnotationTransactionAttributeSource` 是用于解析 `@Transactional` 注解的事务属性的类。它可以将带有 `@Transactional` 注解的方法中的事务属性解析为事务的隔离级别、传播行为、只读属性等信息，从而在事务管理器中对事务进行更加精细的管理。
 
