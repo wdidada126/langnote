@@ -257,7 +257,7 @@ feign.Target 接口
 feign.Target.HardCodedTarget 内部静态接口
 feign.Feign
 feign.InvocationHandlerFactory.MethodHandler 接口
-feign.SynchronousMethodHandler
+feign.SynchronousMethodHandler  feign.SynchronousMethodHandler#invoke 这个方法很重要，静态
 feign.SynchronousMethodHandler.Factory 内部类
 
 静态 feign.ReflectiveFeign.FeignInvocationHandler 内部类，实现InvocationHandler接口
