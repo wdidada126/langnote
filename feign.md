@@ -455,3 +455,274 @@ public List<User> getUsers(@RequestParam("page") int page, @RequestParam("size")
 在发送请求时，Feign 将使用 `PageableSpringEncoder` 编码器将 `Pageable` 对象转换为 HTTP 请求参数，并发送到指定的服务端。
 
 需要注意的是，为了正确地将 Java 对象转换为指定格式的请求体，需要在该 Java 对象的类定义中添加相应的注解，例如 `@JsonProperty`、`@JsonRootName` 等。这些注解可以告诉 `SpringEncoder` 如何将 Java 对象转换为指定格式的请求体。
+
+
+```shell
+feign.FeignException$NotFound: [404] during [POST] to [http://localhost:9991/httpserver/httpserver/feign/list] [OrgApi#getOrgList(OrgSearchParam)]: [{"timestamp":1689307337419,"status":404,"error":"Not Found","message":"No message available","path":"/httpserver/httpserver/feign/list"}]
+
+```
+
+
+### spring cloud openfeign
+
+org.springframework.cloud.openfeign.annotation
+MatrixVariableParameterProcessor
+PathVariableParameterProcessor
+QueryMapParameterProcessor
+RequestHeaderParameterProcessor
+RequestParamParameterProcessor
+RequestPartParameterProcessor
+
+
+org.springframework.cloud.openfeign
+
+interface AnnotatedParameterProcessor
+
+注解
+CollectionFormat
+EnableFeignClients
+FeignClient
+SpringQueryMap
+
+
+
+interface FeignLoggerFactory
+DefaultFeignLoggerFactory implements FeignLoggerFactory
+
+interface Targeter
+DefaultTargeter implements Targeter
+
+interface FallbackFactory<T>
+
+FeignAutoConfiguration
+
+
+interface FeignBuilderCustomizer
+
+
+FeignCircuitBreaker
+
+FeignCircuitBreakerDisabledConditions extends AnyNestedCondition
+
+FeignCircuitBreakerInvocationHandler implements InvocationHandler
+
+FeignCircuitBreakerTargeter implements Targeter
+FeignClientBuilder
+
+FeignClientFactoryBean implements FactoryBean<Object>, InitializingBean,
+		ApplicationContextAware, BeanFactoryAware
+
+@ConfigurationProperties("feign.client")
+public class FeignClientProperties
+
+@Configuration(proxyBeanMethods = false)
+public class FeignClientsConfiguration
+
+class FeignClientSpecification implements NamedContextFactory.Specification
+
+FeignClientsRegistrar
+FeignContext extends NamedContextFactory<FeignClientSpecification>
+
+FeignErrorDecoderFactory
+
+public interface FeignFormatterRegistrar extends FormatterRegistrar
+
+FeignLoggerFactory
+public class HttpClient5DisabledConditions extends AnyNestedCondition
+class HystrixDisabledConditions extends AnyNestedCondition
+
+
+class HystrixTargeter implements Targeter
+
+interface Targeter
+
+
+
+
+
+
+org.springframework.cloud.openfeign.clientconfig
+interface FeignClientConfigurer
+HttpClient5FeignConfiguration
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnMissingBean(CloseableHttpClient.class)
+public class HttpClientFeignConfiguration
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnMissingBean(okhttp3.OkHttpClient.class)
+public class OkHttpFeignConfiguration
+
+
+
+####### org.springframework.cloud.openfeign.encoding
+
+public abstract class BaseRequestInterceptor implements RequestInterceptor
+
+@ConditionalOnMissingBean(type = "okhttp3.OkHttpClient")
+@AutoConfigureAfter(FeignAutoConfiguration.class)
+public class FeignAcceptGzipEncodingAutoConfiguration
+
+FeignAcceptGzipEncodingInterceptor extends BaseRequestInterceptor
+
+
+@ConfigurationProperties("feign.compression.request")
+public class FeignClientEncodingProperties
+
+
+
+@ConditionalOnMissingBean(type = "okhttp3.OkHttpClient")
+@ConditionalOnProperty("feign.compression.request.enabled")
+@AutoConfigureAfter(FeignAutoConfiguration.class)
+public class FeignContentGzipEncodingAutoConfiguration
+
+
+
+FeignContentGzipEncodingInterceptor extends BaseRequestInterceptor
+
+interface HttpEncoding
+
+
+##### org.springframework.cloud.openfeign.hateoas
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnWebApplication
+@ConditionalOnClass(RepresentationModel.class)
+@AutoConfigureAfter({ JacksonAutoConfiguration.class,
+		HttpMessageConvertersAutoConfiguration.class,
+		RepositoryRestMvcAutoConfiguration.class })
+public class FeignHalAutoConfiguration
+
+
+
+
+@Configuration(proxyBeanMethods = false)
+class DefaultFeignLoadBalancerConfiguration
+public class FeignBlockingLoadBalancerClient implements Client
+
+
+@Import({ HttpClientFeignLoadBalancerConfiguration.class,
+		OkHttpFeignLoadBalancerConfiguration.class,
+		HttpClient5FeignLoadBalancerConfiguration.class,
+		DefaultFeignLoadBalancerConfiguration.class })
+public class FeignLoadBalancerAutoConfiguration
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(ApacheHttp5Client.class)
+@ConditionalOnBean(BlockingLoadBalancerClient.class)
+@ConditionalOnProperty(value = "feign.httpclient.hc5.enabled", havingValue = "true")
+@Import(HttpClient5FeignConfiguration.class)
+class HttpClient5FeignLoadBalancerConfiguration
+
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(ApacheHttpClient.class)
+@ConditionalOnBean(BlockingLoadBalancerClient.class)
+@ConditionalOnProperty(value = "feign.httpclient.enabled", matchIfMissing = true)
+@Conditional(HttpClient5DisabledConditions.class)
+@Import(HttpClientFeignConfiguration.class)
+class HttpClientFeignLoadBalancerConfiguration
+
+
+LoadBalancerResponseStatusCodeException extends RetryableStatusCodeException
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(OkHttpClient.class)
+@ConditionalOnProperty("feign.okhttp.enabled")
+@ConditionalOnBean(BlockingLoadBalancerClient.class)
+@Import(OkHttpFeignConfiguration.class)
+class OkHttpFeignLoadBalancerConfiguration
+
+
+OnRetryNotEnabledCondition extends AnyNestedCondition
+
+
+
+RetryableFeignBlockingLoadBalancerClient implements Client
+
+
+##### org.springframework.cloud.openfeign.ribbon
+
+CachingSpringLoadBalancerFactory
+DefaultFeignLoadBalancedConfiguration
+FeignLoadBalancer extends
+		AbstractLoadBalancerAwareClient<FeignLoadBalancer.RibbonRequest, FeignLoadBalancer.RibbonResponse>
+
+
+
+@Import({ HttpClientFeignLoadBalancedConfiguration.class,
+		OkHttpFeignLoadBalancedConfiguration.class,
+		HttpClient5FeignLoadBalancedConfiguration.class,
+		DefaultFeignLoadBalancedConfiguration.class })
+public class FeignRibbonClientAutoConfiguration
+
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(ApacheHttp5Client.class)
+@ConditionalOnProperty(value = "feign.httpclient.hc5.enabled", havingValue = "true")
+@Import(HttpClient5FeignConfiguration.class)
+class HttpClient5FeignLoadBalancedConfiguration
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(ApacheHttpClient.class)
+@ConditionalOnProperty(value = "feign.httpclient.enabled", matchIfMissing = true)
+@Conditional(HttpClient5DisabledConditions.class)
+@Import(HttpClientFeignConfiguration.class)
+class HttpClientFeignLoadBalancedConfiguration
+
+
+LoadBalancerFeignClient implements Client
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(OkHttpClient.class)
+@ConditionalOnProperty("feign.okhttp.enabled")
+@Import(OkHttpFeignConfiguration.class)
+class OkHttpFeignLoadBalancedConfiguration
+
+RetryableFeignLoadBalancer extends FeignLoadBalancer
+		implements ServiceInstanceChooser
+
+RibbonResponseStatusCodeException extends RetryableStatusCodeException
+
+
+###### org.springframework.cloud.openfeign.support
+abstract class AbstractFormWriter extends AbstractWriter
+DefaultGzipDecoder implements Decoder
+
+
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnProperty("feign.compression.response.enabled")
+// The OK HTTP client uses "transparent" compression.
+// If the accept-encoding header is present, it disables transparent compression
+@ConditionalOnMissingBean(type = "okhttp3.OkHttpClient")
+@AutoConfigureAfter(FeignAutoConfiguration.class)
+public class DefaultGzipDecoderConfiguration
+
+class FallbackCommand<T> extends HystrixCommand<T>
+
+@ConfigurationProperties("feign.encoder")
+public class FeignEncoderProperties
+
+@ConfigurationProperties(prefix = "feign.httpclient")
+public class FeignHttpClientProperties
+
+FeignUtils
+
+class JsonFormWriter extends AbstractFormWriter
+
+class PageableSpringEncoder implements Encoder
+class PageableSpringQueryMapEncoder extends BeanQueryMapEncoder
+
+class PageJacksonModule extends Module
+class ResponseEntityDecoder implements Decoder
+class SortJacksonModule extends Module
+SortJsonComponent
+class SpringDecoder implements Decoder
+class SpringEncoder implements Encoder
+class SpringMvcContract extends Contract.BaseContract implements ResourceLoaderAware
