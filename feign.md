@@ -292,7 +292,7 @@ feign.Client.Default
 feign.RequestInterceptor
 
 
-feign.RequestTemplate
+feign.RequestTemplate  request的body header获取
 
 feign.CollectionFormat
 feign.QueryMapEncoder
@@ -327,8 +327,8 @@ UriUtils
 
 package feign.auth;
 
-Base64
-public class BasicAuthRequestInterceptor implements RequestInterceptor
+feign.auth.Base64
+feign.auth.BasicAuthRequestInterceptor implements RequestInterceptor
 
 
 package feign.codec;
@@ -343,7 +343,7 @@ public interface Encoder
 public interface ErrorDecoder
 public class StringDecoder implements Decoder
 
-feign.optionals。OptionalDecoder implements Decoder
+feign.optionals.OptionalDecoder implements Decoder
 
 
 public class BeanQueryMapEncoder implements feign.QueryMapEncoder
@@ -387,14 +387,71 @@ Output
 feign-form-spring
 
 feign.form.spring
-public class SpringSingleMultipartFileWriter extends AbstractWriter {
-public class SpringManyMultipartFilesWriter extends AbstractWriter {
+public class SpringSingleMultipartFileWriter extends AbstractWriter
+public class SpringManyMultipartFilesWriter extends AbstractWriter
 
-public class SpringFormEncoder extends FormEncoder {
+public class SpringFormEncoder extends FormEncoder
 
 package feign.form.spring.converter;
 
 
-class ByteArrayMultipartFile implements MultipartFile {
-final class IgnoreKeyCaseMap extends HashMap<String, String> {
-public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter<MultipartFile[]> {
+class ByteArrayMultipartFile implements MultipartFile
+final class IgnoreKeyCaseMap extends HashMap<String, String>
+public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter<MultipartFile[]>
+
+
+
+### spring cloud feign
+
+
+org.springframework.cloud.openfeign.FeignClientFactoryBean
+org.springframework.cloud.openfeign.FeignContext
+
+
+```shell
+feign.RetryableException: Connection refused: connect executing POST http://localhost:9991/httpserver/getAbc?device=1
+
+```
+
+
+编码器找不到
+
+org.springframework.cloud.openfeign.support.SpringEncoder
+org.springframework.cloud.openfeign.support.PageableSpringEncoder
+
+`SpringEncoder` 和 `PageableSpringEncoder` 都是 Feign 中的编码器，用于将请求体转换为指定的格式，并发送到服务端。它们都是 Spring Cloud 对 Feign 的扩展，提供了对 Spring MVC 中常用的参数类型的支持，例如 `MultiValueMap`、`Pageable` 等。
+
+`SpringEncoder` 是一个基于 Spring 的编码器，它使用 Spring 的 `HttpMessageConverter` 将请求体转换为指定的格式。默认情况下，`SpringEncoder` 支持将 Java 对象转换为 JSON 或 XML 格式的请求体。可以在 Feign 的配置类中添加以下代码，启用 `SpringEncoder` 编码器：
+
+```java
+@Configuration
+public class FeignConfig {
+    @Bean
+    public Encoder feignEncoder() {
+        return new SpringEncoder();
+    }
+}
+```
+
+`PageableSpringEncoder` 是一个扩展于 `SpringEncoder` 的编码器，它支持将 Spring MVC 中的 `Pageable` 对象转换为 HTTP 请求参数，并将其发送到服务端。`PageableSpringEncoder` 还支持将 Spring MVC 中的 `MultiValueMap` 对象转换为 HTTP 请求参数。可以在 Feign 的配置类中添加以下代码，启用 `PageableSpringEncoder` 编码器：
+
+```java
+@Configuration
+public class FeignConfig {
+    @Bean
+    public Encoder feignEncoder() {
+        return new PageableSpringEncoder(new SpringEncoder());
+    }
+}
+```
+
+在使用 `PageableSpringEncoder` 编码器时，需要在 Feign 的接口方法中使用 `Pageable` 类型的参数，例如：
+
+```java
+@GetMapping("/users")
+public List<User> getUsers(@RequestParam("page") int page, @RequestParam("size") int size, Pageable pageable);
+```
+
+在发送请求时，Feign 将使用 `PageableSpringEncoder` 编码器将 `Pageable` 对象转换为 HTTP 请求参数，并发送到指定的服务端。
+
+需要注意的是，为了正确地将 Java 对象转换为指定格式的请求体，需要在该 Java 对象的类定义中添加相应的注解，例如 `@JsonProperty`、`@JsonRootName` 等。这些注解可以告诉 `SpringEncoder` 如何将 Java 对象转换为指定格式的请求体。

@@ -1874,3 +1874,7 @@ ConsumeMessageThread_12 Receive New Messages: [MessageExt [brokerName=chengwu2, 
 ConsumeMessageThread_1 Receive New Messages: [MessageExt [brokerName=chengwu2, queueId=1, storeSize=203, queueOffset=229, sysFlag=0, bornTimestamp=1610691786918, bornHost=/169.254.244.186:3332, storeTimestamp=1610691786919, storeHost=/169.254.244.186:10911, msgId=A9FEF4BA00002A9F000000000002D84F, commitLogOffset=186447, bodyCRC=1859138835, reconsumeTimes=0, preparedTransactionOffset=0, toString()=Message{topic='TopicTest', flag=0, properties={MIN_OFFSET=0, MAX_OFFSET=250, CONSUME_START_TIME=1610691804228, UNIQ_KEY=7F0000012D204DC639964B2F3CA60397, CLUSTER=DefaultCluster, WAIT=true, TAGS=TagA}, body=[72, 101, 108, 108, 111, 32, 82, 111, 99, 107, 101, 116, 77, 81, 32, 57, 49, 57], transactionId='null'}]]
 
 ```
+
+
+### 全x健康用了
+消息不要太大，否则耗时
