@@ -269,6 +269,48 @@ CompositeDatabasePopulator
 
 
 DataSourceInitializer
+DataSourceInitializer 是 Spring JDBC 中的一个类，用于在应用程序启动时初始化数据库。
+
+在应用程序启动时，DataSourceInitializer 会读取一个或多个 SQL 脚本，并将这些脚本中定义的表、索引、约束等对象创建在数据库中。可以使用 DataSourceInitializer 来确保应用程序所依赖的数据库已经初始化完毕，从而避免应用程序在运行期间出现数据库相关的错误。
+
+DataSourceInitializer 可以配置以下属性：
+
+- DataSource：数据源，用于连接到数据库。
+- DatabasePopulator：定义要执行的 SQL 脚本，可以是 SQL 文件、Groovy 脚本或者自定义的类。
+- DatabasePopulatorResource：定义要执行的 SQL 脚本的位置，可以是文件系统路径、classpath 路径或者 URL。
+- IgnoreFailedDrops：是否忽略删除数据库对象失败的情况，默认为 false。
+- ContinueOnError：是否在 SQL 执行失败时继续执行，默认为 false。
+- Separator：SQL 脚本中语句的分隔符，默认为 ";"。
+- CommentPrefix：SQL 脚本中注释的前缀，默认为 "--"。
+- ScriptEncoding：SQL 脚本的编码，默认为系统默认编码。
+
+以下是一个使用 DataSourceInitializer 的例子：
+
+```java
+@Configuration
+public class AppConfig {
+
+  @Autowired
+  private DataSource dataSource;
+
+  @Bean
+  public DataSourceInitializer dataSourceInitializer() {
+    DataSourceInitializer initializer = new DataSourceInitializer();
+    initializer.setDataSource(dataSource);
+    initializer.setDatabasePopulator(databasePopulator());
+    return initializer;
+  }
+
+  private DatabasePopulator databasePopulator() {
+    ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+    populator.addScript(new ClassPathResource("schema.sql"));
+    populator.addScript(new ClassPathResource("data.sql"));
+    return populator;
+  }
+}
+```
+
+在上面的例子中，首先定义了一个 DataSourceInitializer bean，并注入了数据源。然后调用 setDatabasePopulator 方法设置了要执行的 SQL 脚本，其中使用 ResourceDatabasePopulator 类加载了两个 SQL 文件（schema.sql 和 data.sql）。这样，在应用程序启动时，就会执行这两个 SQL 文件中定义的 SQL 语句，将数据库初始化为应用程序需要的状态。
 
 BeanFactoryDataSourceLookup
 
