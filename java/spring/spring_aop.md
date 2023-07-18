@@ -817,6 +817,7 @@ ProceedingJoinPoint代表一个被AOP增强的连接点,即方法。我们可以
 ProxyConfig
 org.springframework.aop.framework.ProxyConfig
 
+
 ProxyProcessorSupport
 
 抽象类
@@ -835,8 +836,38 @@ ProxyConfig (org.springframework.aop.framework)
                 InfrastructureAdvisorAutoProxyCreator (org.springframework.aop.framework.autoproxy)
 
 
-
+org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
 BeanNameAutoProxyCreator
+
+BeanNameAutoProxyCreator 是一个自动代理创建器，它可以根据指定的 bean 名称，为这些 bean 创建代理。BeanNameAutoProxyCreator 的配置非常简单，只需要在 Spring 配置文件中指定 bean 名称即可。
+
+以下是一个使用 BeanNameAutoProxyCreator 的示例：
+
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 定义 bean 名称 -->
+    <bean id="userService" class="com.example.UserServiceImpl"/>
+
+    <!-- 配置 BeanNameAutoProxyCreator -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="userService"/>
+    </bean>
+</beans>
+```
+
+在上面这个例子中，BeanNameAutoProxyCreator 会为 bean 名称为 "userService" 的 bean 创建代理。
+
+BeanNameAutoProxyCreator 可以用来实现很多功能，比如：
+
+* 为 bean 添加切面
+* 为 bean 添加事务管理
+* 为 bean 添加缓存
+
+BeanNameAutoProxyCreator 是一个非常灵活的自动代理创建器，它可以满足很多不同的需求。
 
 BeanNameAutoProxyCreator是Spring框架中的一个自动代理创建器，用于生成代理对象，实现对特定Bean的自动代理。
 它的作用是根据配置的Bean名称匹配模式，自动创建代理对象，将匹配的Bean对象包装成代理对象，并将代理对象返回给调用者。在代理对象中可以添加额外的功能，如事务处理、安全控制、性能监控等。

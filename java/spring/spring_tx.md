@@ -7,12 +7,32 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 
 https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/
 
-PlatformTransactionManager
+
+
+编程事务
+
+声明事务
+
+两套api
+
+
+
+org.springframework.transaction.PlatformTransactionManager interface
 
 注入失败
 开启事务
 手动开启事务
 手动提交事务
+
+
+
+PlatformTransactionManager api
+
+commit()
+
+rollback()
+
+getTransaction(TransactionDefinition definition)
 
 
 
@@ -41,7 +61,7 @@ aptm
 tm TransactionManager
 dsTransactionManager
 
-TransactionSynchronizationManager
+org.springframework.transaction.reactive.TransactionSynchronizationManager tsm
 TransactionSynchronizationManager主要用于多事务资源的协调,具体来说主要有以下作用:
 
 1. 管理事务同步。它允许代码在事务提交或回滚时同步执行。这是通过注册TransactionSynchronization对象实现的。
@@ -60,7 +80,7 @@ TransactionSynchronizationManager主要用于多事务资源的协调,具体来�
 
 
 
-TransactionAspectSupport
+org.springframework.transaction.interceptor.TransactionAspectSupport
 `TransactionAspectSupport` 是 Spring 框架中的一个类，提供了在事务切面中使用的一些公共方法和属性。它是 Spring 事务管理的核心类之一，用于支持 Spring 中的声明式事务管理。
 
 在 Spring 中，事务切面是通过 AOP 的方式实现的。当一个方法被声明为事务性方法时，Spring 会自动生成一个代理对象，该代理对象会织入事务切面的通知，以提供事务管理的功能。`TransactionAspectSupport` 类提供了一些实用方法，以便在事务切面中获取和管理事务相关的信息。
@@ -82,18 +102,22 @@ TransactionAspectSupport
 
 `TransactionAspectSupport` 是 Spring 事务管理的核心支持类之一，提供了丰富的方法和 Hook 方法，可以帮助开发人员实现各种定制化的事务处理逻辑。在使用 Spring 进行声明式事务管理时，开发人员可以继承 `TransactionAspectSupport` 类，以便在事务切面中使用其提供的实用方法和 Hook 方法。
 
-	
+
 https://github.com/edidada/testspringaops
 https://gitee.com/edidada/testspringaops
 
 
 
+org.aopalliance.intercept.MethodInterceptor
+
 MethodInterceptor接口
 Object invoke(MethodInvocation invocation) throws Throwable;
 
+
+
 org.springframework.transaction.interceptor.TransactionInterceptor#invoke
 
-CglibAopProxy类继承AopProxy接口
+org.springframework.aop.framework.CglibAopProxy CglibAopProxy类实现 org.springframework.aop.framework.AopProxy AopProxy接口
 
 @Transactional注解全路径
 ```
@@ -113,9 +137,9 @@ https://blog.csdn.net/sayoko06/article/details/79164858
 
 - REQUIRED：支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。 
 - SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。 
-- MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。 
 - REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。 
 - NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。 
+- MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。 
 - NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。 
 - NESTED：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。
 
@@ -216,6 +240,8 @@ public class UserServiceImpl implements UserService {
 
 解析tx:annotation-driven元素
 TxNamespaceHandler解析tx:annotation-driven元素，用于启用使用@Transactional注解的事务管理。tx:annotation-driven元素会注册AnnotationTransactionAttributeSource、TransactionInterceptor和BeanNameAutoProxyCreator等BeanPostProcessor，以支持使用@Transactional注解的事务管理。
+
+
 
 
 
