@@ -134,19 +134,19 @@
 | ConstructorResolver                                |          |                                                              |
 | EvaluationContext                                  |          | 接口实现类SimpleEvaluationContext StandardEvaluationContext MethodBasedEvaluationContext |
 | Expression                                         |          | String getExpressionString()  getValue() isWritable()  实现接口的类 SpelExpression CompositeStringExpression  LiteralExpression |
-| ExpressionParser                                   |          |                                                              |
-| MethodExecutor                                     |          |                                                              |
-| MethodFilter                                       |          |                                                              |
-| MethodResolver                                     |          |                                                              |
-| OperatorOverloader                                 |          |                                                              |
-| ParserContext                                      |          |                                                              |
+| ExpressionParser                                   |          | Expression parseExpression(String expressionString)  Expression parseExpression(String expressionString, ParserContext context) |
+| MethodExecutor                                     |          | TypedValue execute(EvaluationContext context, Object target, Object... arguments) |
+| MethodFilter                                       |          | boolean isHandled(Method m)                                  |
+| MethodResolver                                     |          | MethodExecutor resolve(EvaluationContext context, Object targetObject, String name,<br/>       List<TypeDescriptor> argumentTypes) |
+| OperatorOverloader                                 |          | boolean overridesOperation(Operation operation, @Nullable Object leftOperand, @Nullable Object rightOperand)   Object operate(Operation operation, @Nullable Object leftOperand, @Nullable Object rightOperand) |
+| ParserContext                                      |          | boolean isTemplate()   String getExpressionPrefix()  String getExpressionSuffix() |
 | PropertyAccessor                                   |          | 实现类 ReflectivePropertyAccessor                            |
-| TypeComparator                                     |          |                                                              |
+| TypeComparator                                     |          | boolean canCompare(@Nullable Object firstObject, @Nullable Object secondObject)  int compare(@Nullable Object firstObject, @Nullable Object secondObject) |
 | TypeConverter                                      |          | <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType,<br/>       @Nullable MethodParameter methodParam)       <T> T convertIfNecessary(@Nullable Object value, @Nullable Class<T> requiredType) |
-| TypeLocator                                        |          |                                                              |
+| TypeLocator                                        |          | Class<?> findType(String typeName)                           |
 |                                                    |          |                                                              |
 | Classes                                            |          |                                                              |
-| TypedValue                                         |          |                                                              |
+| TypedValue                                         |          | TypeDescriptor                                               |
 |                                                    |          |                                                              |
 | Enums                                              |          |                                                              |
 | Operation                                          |          |                                                              |
