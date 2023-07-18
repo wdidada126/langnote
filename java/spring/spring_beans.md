@@ -166,7 +166,7 @@ SmartLifecycle
 
 Lifecycle
 
-Chap. 17
+### Chap. 17
 bean继承
 
 
@@ -174,7 +174,7 @@ bean继承
 Bean
 parent
 
-Chap.18
+### Chap.18
 bean的其他定义方式
 
 
@@ -190,5 +190,69 @@ void init();
 BeanDefinition parse(Element element, ParserContext parserContext);
 BeanDefinitionHolder decorate(Node source, BeanDefinitionHolder definition, ParserContext parserContext);
 
-
 abstract class NamespaceHandlerSupport implements NamespaceHandler
+
+
+
+
+
+
+
+在 Spring Framework 中，属性访问通常通过 `BeanWrapper` 和 `PropertyAccessor` 接口来实现。`BeanWrapper` 是一个用于访问 JavaBean 属性的接口，可以通过反射或内省来读取和设置属性值。而 `PropertyAccessor` 接口定义了属性访问的通用方法。
+
+以下是一个示例，展示了如何使用 `BeanWrapper` 和 `PropertyAccessor` 进行属性访问：
+
+```java
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+
+public class PropertyAccessExample {
+    public static void main(String[] args) {
+        // 创建一个对象
+        Person person = new Person();
+        person.setName("John");
+        person.setAge(30);
+
+        // 使用 BeanWrapper 包装对象
+        BeanWrapper beanWrapper = new BeanWrapperImpl(person);
+
+        // 通过 BeanWrapper 访问属性
+        String name = (String) beanWrapper.getPropertyValue("name");
+        Integer age = (Integer) beanWrapper.getPropertyValue("age");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+
+        // 设置新的属性值
+        beanWrapper.setPropertyValue("name", "Jane");
+        beanWrapper.setPropertyValue("age", 25);
+
+        System.out.println("Updated Name: " + person.getName());
+        System.out.println("Updated Age: " + person.getAge());
+    }
+
+    public static class Person {
+        private String name;
+        private Integer age;
+
+        // Getter 和 Setter 方法省略
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+    }
+}
+```
+
+在上面的示例中，我们创建了一个 `Person` 类，使用 `BeanWrapper` 包装对象，并使用 `getPropertyValue` 和 `setPropertyValue` 方法来访问和修改属性值。这样，我们可以使用 `BeanWrapper` 来方便地进行属性的读取和设置操作。
