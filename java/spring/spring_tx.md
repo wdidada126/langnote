@@ -598,8 +598,8 @@ Spring是通过AOP来处理@Transactional注解的。具体过程如下:
 - TransactionInterceptor内部会在方法前后执行事务管理逻辑:
   - 方法前启动事务
   - 方法后根据情况提交或回滚事务
-这就实现了面向方法的声明式事务管理。
-主要涉及到的点有:
+  这就实现了面向方法的声明式事务管理。
+  主要涉及到的点有:
 1. Spring启动时扫描@Transactional注解
 2. 为这些方法创建TransactionInterceptor拦截器
 3. 拦截器在方法执行前后管理事务
