@@ -9,6 +9,10 @@ https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/
 
 
 
+spring-tx5.2.9 包所有的类.xlsx
+
+
+
 编程事务
 
 声明事务
@@ -17,7 +21,9 @@ https://docs.spring.io/spring-framework/docs/5.3.x/javadoc-api/
 
 
 
-org.springframework.transaction.PlatformTransactionManager interface
+org.springframework.transaction.PlatformTransactionManager interface 实现了TransactionManager接口
+
+TransactionManager还有其他子接口ReactiveTransactionManager 5.2开始的
 
 注入失败
 开启事务
@@ -678,3 +684,737 @@ TransactionSynchronizationManager.clearSynchronization();
 在上面的示例中，我们首先调用了TransactionSynchronizationManager的initSynchronization()方法，创建了一个TransactionSynchronization对象。然后，我们将需要执行的事务操作注册到TransactionSynchronization对象中，例如注册事务提交或回滚的操作。最后，在事务结束时，我们调用了TransactionSynchronizationManager的clearSynchronization()方法，清理了事务同步器。
 通过使用TransactionSynchronizationManager，我们可以方便地管理事务同步器，实现事务的提交或回滚，并可以在事务提交或回滚后执行相应的操作，从而提高了代码的可读性和可维护性。它是Spring事务管理实现的重要组成部分。
 
+
+
+
+
+
+
+| org.springframework.transaction            | package   | 是否异常 |                                                |
+| ------------------------------------------ | --------- | -------- | ---------------------------------------------- |
+|                                            |           |          |                                                |
+| CannotCreateTransactionException           | exception |          |                                                |
+| HeuristicCompletionException               | exception |          |                                                |
+| IllegalTransactionStateException           | exception |          |                                                |
+| InvalidIsolationLevelException             | exception |          |                                                |
+| InvalidTimeoutException                    | exception |          |                                                |
+| NestedTransactionNotSupportedException     | exception |          |                                                |
+| NoTransactionException                     | exception |          |                                                |
+| PlatformTransactionManager                 | interface |          |                                                |
+| ReactiveTransaction                        |           |          |                                                |
+| ReactiveTransactionManager                 |           |          |                                                |
+| SavepointManager                           |           |          |                                                |
+| StaticTransactionDefinition                |           |          |                                                |
+| TransactionDefinition                      |           |          | int *PROPAGATION_REQUIRED* = 0 等属性 隔离级别 |
+| TransactionException                       | exception |          |                                                |
+| TransactionExecution                       |           |          |                                                |
+| TransactionManager                         | interface |          |                                                |
+| TransactionStatus                          |           |          |                                                |
+| TransactionSuspensionNotSupportedException | exception |          |                                                |
+| TransactionSystemException                 | exception |          |                                                |
+| TransactionTimedOutException               | exception |          |                                                |
+| TransactionUsageException                  | exception |          |                                                |
+| UnexpectedRollbackException                | exception |          |                                                |
+
+
+
+
+
+
+
+
+
+| org.springframework.transaction.annotation | package 类型 | 详解                                                         |
+| ------------------------------------------ | ------------ | ------------------------------------------------------------ |
+| AbstractTransactionManagementConfiguration |              |                                                              |
+| AnnotationTransactionAttributeSource       |              | @Transactional注解形成的类 属性类                            |
+| Ejb3TransactionAnnotationParser            |              | TransactionAnnotationParser接口实现类                        |
+| EnableTransactionManagement                | @interface   |                                                              |
+| Isolation                                  |              |                                                              |
+| JtaTransactionAnnotationParser             |              | TransactionAnnotationParser接口实现类                        |
+| Propagation                                | enum         |                                                              |
+| ProxyTransactionManagementConfiguration    |              | 实现抽象类AbstractTransactionManagementConfiguration         |
+| SpringTransactionAnnotationParser          |              | TransactionAnnotationParser接口实现类                        |
+| Transactional                              | @interface   | 注解处理器 SpringTransactionAnnotationParser                 |
+| TransactionAnnotationParser                | interface    | TransactionAttribute parseTransactionAnnotation(AnnotatedElement element);       实现类SpringTransactionAnnotationParser JtaTransactionAnnotationParser  Ejb3TransactionAnnotationParser |
+| TransactionManagementConfigurationSelector |              |                                                              |
+| TransactionManagementConfigurer            | interface    |                                                              |
+
+
+
+
+
+
+
+
+
+
+
+| org.springframework.transaction.config    | 类型     | 详解                                                         |
+| ----------------------------------------- | -------- | ------------------------------------------------------------ |
+| AnnotationDrivenBeanDefinitionParser      |          | 处理spring xml配置文件中的annotation-driven                  |
+| JtaTransactionManagerBeanDefinitionParser |          | 处理spring xml配置文件中的jta-transaction-manager  transactionManager |
+| JtaTransactionManagerFactoryBean          |          | 返回spring 容器中 JtaTransactionManager                      |
+| TransactionManagementConfigUtils          | abstract | 静态抽象类                                                   |
+| TxAdviceBeanDefinitionParser              |          | 处理spring xml配置文件中的advice 有静态属性read-only propagation等 继承AbstractSingleBeanDefinitionParser类 |
+| TxNamespaceHandler                        |          | TxNamespaceHandler extends NamespaceHandlerSupport           |
+
+
+
+
+
+
+
+| org.springframework.transaction.event         | 类型       | 详解                                                         |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| ApplicationListenerMethodTransactionalAdapter |            |                                                              |
+| TransactionalEventListener                    | @interface | 注解处理器 TransactionalEventListenerFactory 例子 https://gitee.com/edidada/spring-transaction-practice |
+| TransactionalEventListenerFactory             |            |                                                              |
+| TransactionPhase                              | enum       |                                                              |
+
+
+
+
+
+ApplicationListenerMethodTransactionalAdapter作用
+
+ApplicationListenerMethodTransactionalAdapter 是 Spring Framework 中的一个适配器类，用于将事件监听器方法转换为事务性方法。它的主要作用是在事件监听器方法中以事务性方式执行业务逻辑，从而确保在事件处理期间执行的任何数据库操作都受到事务管理器的控制。
+
+通常情况下，事件监听器方法不会被 Spring 事务管理器所管理，这意味着它们不会自动受到事务保护。但是，在某些情况下，我们可能希望在事件监听器方法中执行某些需要事务保护的操作，例如数据库操作或者其他涉及到资源的操作。这时，ApplicationListenerMethodTransactionalAdapter 就可以起到很好的作用。
+
+下面是一个使用 ApplicationListenerMethodTransactionalAdapter 的例子：
+
+```java
+public class UserCreatedEventListener implements ApplicationListener<UserCreatedEvent> {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public void onApplicationEvent(UserCreatedEvent event) {
+        User user = event.getUser();
+        saveUser(user);
+    }
+    
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+在上面的例子中，UserCreatedEventListener 实现了 ApplicationListener 接口，用于监听 UserCreatedEvent 事件。在事件处理方法 onApplicationEvent() 中，通过调用 saveUser() 方法来保存用户数据。注意，saveUser() 方法被标记为 @Transactional 注解，这意味着该方法会被 Spring 事务管理器所管理，从而保证在保存用户数据时，该操作受到事务管理器的控制。
+
+
+
+
+
+@TransactionalEventListener 是 Spring Framework 中的一个注解，用于将事件监听器方法转换为事务性方法。它的主要作用是在事件监听器方法中以事务性方式执行业务逻辑，从而确保在事件处理期间执行的任何数据库操作都受到事务管理器的控制。
+
+与 ApplicationListenerMethodTransactionalAdapter 不同，@TransactionalEventListener 注解可以直接标注在事件监听器方法上，而不需要创建一个额外的适配器类来包装该方法。
+
+下面是一个使用 @TransactionalEventListener 注解的例子：
+
+```java
+@Component
+public class UserCreatedEventListener {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @TransactionalEventListener
+    public void handleUserCreatedEvent(UserCreatedEvent event) {
+        User user = event.getUser();
+        saveUser(user);
+    }
+    
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+在上面的例子中，UserCreatedEventListener 是一个组件类，用于监听 UserCreatedEvent 事件。在事件处理方法 handleUserCreatedEvent() 中，通过调用 saveUser() 方法来保存用户数据。注意，handleUserCreatedEvent() 方法被标记为 @TransactionalEventListener 注解，这意味着该方法会被 Spring 事务管理器所管理，从而保证在保存用户数据时，该操作受到事务管理器的控制。
+
+需要注意的是，@TransactionalEventListener 注解只能用于处理 Spring 事务管理器所管理的事务。如果事件处理方法中需要使用不同的事务管理器，或者需要使用其他的事务管理策略，可以考虑使用 ApplicationListenerMethodTransactionalAdapter 或者手动编写事务管理逻辑来实现。
+
+
+
+
+
+发送 UserCreatedEvent 事件可以通过 Spring Framework 中的 ApplicationEventPublisher 来实现。ApplicationEventPublisher 是一个接口，用于向应用程序中注册的事件监听器发送事件。在使用 ApplicationEventPublisher 之前，需要先创建一个 UserCreatedEvent 类，用于封装要发送的事件数据。
+
+下面是一个示例代码，用于发送 UserCreatedEvent 事件：
+
+首先，创建 UserCreatedEvent 类：
+
+```java
+public class UserCreatedEvent extends ApplicationEvent {
+    private User user;
+
+    public UserCreatedEvent(Object source, User user) {
+        super(source);
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+}
+```
+
+然后，在需要发送事件的地方，注入 ApplicationEventPublisher，并调用其 publishEvent() 方法来发送事件：
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+        UserCreatedEvent userCreatedEvent = new UserCreatedEvent(this, user);
+        applicationEventPublisher.publishEvent(userCreatedEvent);
+    }
+}
+```
+
+在上面的代码中，UserService 中的 saveUser() 方法被标记为 @Transactional 注解，这意味着该方法会被 Spring 事务管理器所管理，从而保证在保存用户数据时，该操作受到事务管理器的控制。在保存用户数据之后，创建一个 UserCreatedEvent 实例，并调用 ApplicationEventPublisher 的 publishEvent() 方法来发送事件。注意，UserCreatedEvent 的第一个参数是事件源，这里使用 this 表示当前对象。
+
+当事件被发送时，Spring 将会自动调用所有已注册的 UserCreatedEvent 监听器的 handleUserCreatedEvent() 方法来处理事件。
+
+
+
+
+
+
+
+TransactionPhase 枚举是 Spring Framework 中的一个枚举类型，用于表示事务监听器方法在事务生命周期中的执行阶段。它定义了以下几个枚举常量：
+
+- BEFORE_COMMIT：在事务提交之前执行事务监听器方法。
+- AFTER_COMMIT：在事务提交之后执行事务监听器方法，仅在事务成功提交时执行。
+- AFTER_ROLLBACK：在事务回滚之后执行事务监听器方法，仅在事务回滚时执行。
+- AFTER_COMPLETION：在事务完成之后执行事务监听器方法，不管事务是提交还是回滚都会执行。
+
+事务监听器方法可以使用 @TransactionalEventListener 注解来标记，并通过设置 phase 属性来指定事务监听器方法应该在事务的哪个阶段执行。如果未设置 phase 属性，则默认为 TransactionPhase.AFTER_COMMIT。
+
+下面是一个使用 TransactionPhase 枚举的例子：
+
+```java
+@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+public void handleUserCreatedEvent(UserCreatedEvent event) {
+    User user = event.getUser();
+    saveUser(user);
+}
+
+@Transactional
+public void saveUser(User user) {
+    userRepository.save(user);
+}
+```
+
+在上面的例子中，handleUserCreatedEvent() 方法被标记为 @TransactionalEventListener 注解，并且设置了 phase 属性为 TransactionPhase.AFTER_COMMIT。这意味着该方法将在事务提交之后执行，仅在事务成功提交时执行。在 handleUserCreatedEvent() 方法中，调用了 saveUser() 方法来保存用户数据，该方法被标记为 @Transactional 注解，从而保证在保存用户数据时，该操作受到事务管理器的控制。
+
+总之，TransactionPhase 枚举允许我们更精确地控制事务监听器方法的执行时机，从而更好地处理事务相关的业务逻辑。
+
+
+
+
+
+
+
+| org.springframework.transaction.interceptor  | 类型      | 内容                                                         |
+| -------------------------------------------- | --------- | ------------------------------------------------------------ |
+| AbstractFallbackTransactionAttributeSource   |           |                                                              |
+| BeanFactoryTransactionAttributeSourceAdvisor |           |                                                              |
+| CompositeTransactionAttributeSource          |           |                                                              |
+| DefaultTransactionAttribute                  | abstract  |                                                              |
+| MatchAlwaysTransactionAttributeSource        |           |                                                              |
+| MethodMapTransactionAttributeSource          |           |                                                              |
+| NameMatchTransactionAttributeSource          |           |                                                              |
+| NoRollbackRuleAttribute                      |           |                                                              |
+| RollbackRuleAttribute                        |           |                                                              |
+| RuleBasedTransactionAttribute                |           | 有list RollbackRuleAttribute 决定是否回滚的                  |
+| TransactionalProxy                           | interface |                                                              |
+| TransactionAspectSupport                     | abstract  |                                                              |
+| TransactionAttribute                         |           |                                                              |
+| TransactionAttributeEditor                   |           |                                                              |
+| TransactionAttributeSource                   | interface |                                                              |
+| TransactionAttributeSourceAdvisor            |           | org.springframework.transaction.interceptor.TransactionProxyFactoryBean#createMainInterceptor 调用构造函数 |
+| TransactionAttributeSourceEditor             |           |                                                              |
+| TransactionAttributeSourcePointcut           | abstract  |                                                              |
+| TransactionInterceptor                       |           |                                                              |
+| TransactionProxyFactoryBean                  |           | 继承AbstractSingletonProxyFactoryBean抽象类                  |
+
+
+
+
+
+核心概念
+
+事务增强器 BeanFactoryTransactionAttributeSourceAdvisor
+
+
+
+BeanFactoryTransactionAttributeSourceAdvisor 是 Spring Framework 中的一个事务增强器，用于为 bean 中的方法添加事务增强。它的作用是根据指定的事务属性，为目标 bean 中的方法动态生成事务代理。
+
+BeanFactoryTransactionAttributeSourceAdvisor 的工作原理与其他事务增强器类似。它使用 TransactionInterceptor 对象来动态生成事务代理，并将其应用于目标 bean 的方法。在生成事务代理时，BeanFactoryTransactionAttributeSourceAdvisor 使用 TransactionAttributeSource 对象来获取事务属性，以便将其应用于目标 bean 的方法。
+
+下面是一个使用 BeanFactoryTransactionAttributeSourceAdvisor 的例子：
+
+首先，在 Spring 配置文件中定义一个事务属性源 TransactionAttributeSource：
+
+```xml
+<bean id="transactionAttributeSource" class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource"/>
+```
+
+然后，定义一个事务增强器 BeanFactoryTransactionAttributeSourceAdvisor，并将其应用于目标 bean：
+
+```xml
+<bean id="transactionAdvisor" class="org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor">
+    <property name="transactionAttributeSource" ref="transactionAttributeSource" />
+</bean>
+
+<bean id="userService" class="com.example.UserService">
+    <property name="userRepository" ref="userRepository"/>
+    <property name="transactionManager" ref="transactionManager"/>
+</bean>
+```
+
+在上面的配置中，BeanFactoryTransactionAttributeSourceAdvisor 作为一个 bean 被定义，并设置了 transactionAttributeSource 属性为之前定义的 TransactionAttributeSource 对象。然后，定义了一个 UserService bean，并将其 transactionManager 属性设置为一个事务管理器。当 UserService bean 中的方法被调用时，BeanFactoryTransactionAttributeSourceAdvisor 将会根据 TransactionAttributeSource 中定义的事务属性为其动态生成事务代理。
+
+需要注意的是，BeanFactoryTransactionAttributeSourceAdvisor 仅适用于基于 Spring 配置文件的应用程序。在基于注解的应用程序中，可以使用 @EnableTransactionManagement 注解来启用事务管理，并配置 TransactionInterceptor 对象来动态生成事务代理。
+
+总之，BeanFactoryTransactionAttributeSourceAdvisor 是 Spring Framework 中的一个重要的事务增强器，它允许我们根据事务属性动态生成事务代理，并将其应用于目标 bean 的方法。
+
+
+
+
+
+| org.springframework.transaction.jta |           |                                                              |
+| ----------------------------------- | --------- | ------------------------------------------------------------ |
+| JtaAfterCompletionSynchronization   |           | 实现javax.transaction.Synchronization接口                    |
+| JtaTransactionManager               |           |                                                              |
+| JtaTransactionObject                |           | 实现SmartTransactionObject接口                               |
+| ManagedTransactionAdapter           |           | 实现javax.transaction.Transaction接口                        |
+| SimpleTransactionFactory            |           | 实现TransactionFactory接口                                   |
+| SpringJtaSynchronizationAdapter     |           | 实现javax.transaction.Synchronization                        |
+| TransactionFactory                  | interface | Transaction createTransaction(@Nullable String name, int timeout)  boolean supportsResourceAdapterManagedTransactions() |
+| UserTransactionAdapter              |           | 继承javax.transaction.UserTransaction                        |
+| WebLogicJtaTransactionManager       |           |                                                              |
+| WebSphereUowTransactionManager      |           |                                                              |
+
+
+
+TransactionFactory接口实现类
+
+JtaTransactionManager (org.springframework.transaction.jta)
+    WebLogicJtaTransactionManager (org.springframework.transaction.jta)
+    WebSphereUowTransactionManager (org.springframework.transaction.jta)
+SimpleTransactionFactory (org.springframework.transaction.jta)
+
+
+
+| org.springframework.transaction.reactive |           |           |                                                   |
+| ---------------------------------------- | --------- | --------- | ------------------------------------------------- |
+| AbstractReactiveTransactionManager       | abstract  |           |                                                   |
+| GenericReactiveTransaction               |           |           |                                                   |
+| ReactiveResourceSynchronization          | abstract  |           |                                                   |
+| TransactionalOperator                    | interface |           |                                                   |
+| TransactionalOperatorExtensionsKt        |           |           |                                                   |
+| TransactionalOperatorImpl                |           |           |                                                   |
+| TransactionCallback                      | interface |           |                                                   |
+| TransactionContext                       |           |           |                                                   |
+| TransactionContextHolder                 |           |           |                                                   |
+| TransactionContextManager                | abstract  |           |                                                   |
+| TransactionSynchronization               | interface | Since:5.2 |                                                   |
+| TransactionSynchronizationManager        |           | Since:5.2 | 静态方法 getResource()  registerSynchronization() |
+| TransactionSynchronizationUtils          |           | Since:5.2 |                                                   |
+
+
+
+
+
+dd
+
+
+
+
+
+| org.springframework.transaction.support      |           |           |                                                              |               |
+| -------------------------------------------- | --------- | --------- | ------------------------------------------------------------ | ------------- |
+| AbstractPlatformTransactionManager           | abstract  |           |                                                              |               |
+| AbstractTransactionStatus                    | abstract  |           | 子类SimpleTransactionStatus DefaultTransactionStatus         |               |
+| CallbackPreferringPlatformTransactionManager | interface |           |                                                              |               |
+| DefaultTransactionDefinition                 |           |           | "int propagationBehavior                                     |               |
+| int isolationLevel                           |           |           |                                                              |               |
+| boolean readOnly                             |           |           |                                                              |               |
+| String name"                                 |           |           |                                                              |               |
+| DefaultTransactionStatus                     |           |           |                                                              |               |
+| DelegatingTransactionDefinition              | abstract  |           | 匿名子类                                                     |               |
+| ResourceHolder                               | interface |           |                                                              |               |
+| ResourceHolderSupport                        | abstract  |           | implements ResourceHolder  orm jar包里面有子类   jdbc包 org.springframework.jdbc.datasource.ConnectionHolder |               |
+| ResourceHolderSynchronization                | abstract  |           | TransactionSynchronizationManager.*registerSynchronization*(new TransactionScopedEntityManagerSynchronization(emHolder, emf));  子类是orm jar包的私有内部类 org.springframework.orm.jpa.EntityManagerFactoryUtils.TransactionalEntityManagerSynchronization |               |
+| ResourceTransactionDefinition                |           | Since:5.1 |                                                              |               |
+| ResourceTransactionManager                   | interface |           | 继承PlatformTransactionManager接口，org.springframework.transaction.support.TransactionSynchronizationUtils#sameResourceFactory  这里调用 见下面文字 |               |
+| SimpleTransactionScope                       |           |           |                                                              |               |
+| SimpleTransactionStatus                      |           |           | 属性 boolean newTransaction 实现AbstractTransactionStatus接口AbstractTransactionStatus |               |
+| SmartTransactionObject                       | interface |           | 接口实现类JtaTransactionObject 见下面的文字                  |               |
+| TransactionCallback                          | interface |           | TransactionCallbackWithoutResult实现了接口  public final Object doInTransaction(TransactionStatus status) |               |
+| TransactionCallbackWithoutResult             | abstract  |           | 使用例子见下面   transactionTemplate.execute(new TransactionCallbackWithoutResult() { |               |
+| TransactionOperations                        | interface |           | 接口实现类 TransactionTemplate WithoutTransactionOperations  |               |
+| TransactionSynchronization                   | interface |           | int *STATUS_COMMITTED* = 0;  常量 *STATUS_ROLLED_BACK*  *STATUS_UNKNOWN*  suspend()  resume() flush()       beforeCommit(boolean readOnly) |               |
+| TransactionSynchronizationAdapter            | abstract  |           | 实现TransactionSynchronization接口                           |               |
+| TransactionSynchronizationManager            | abstract  |           | 静态方法 见下面                                              |               |
+| TransactionSynchronizationUtils              | abstract  |           | 静态方法                                                     |               |
+| TransactionTemplate                          |           |           | 实现TransactionOperations接口 继承DefaultTransactionDefinition类 | execute()方法 |
+| WithoutTransactionOperations                 |           |           | 实现TransactionOperations接口                                |               |
+
+
+
+
+
+`SmartTransactionObject` 接口是 Spring 框架中的一个接口，用于实现事务相关的对象。它定义了一些方法，用于支持自定义事务管理的特定行为。
+
+该接口的主要作用是允许实现类在事务进行过程中参与事务的控制和管理。它提供了以下方法：
+
+- `isRollbackOnly()`：检查当前事务是否被标记为只回滚。
+- `flush()`：在事务提交之前执行刷新操作。
+- `isReleaseAfterCompletion()`：检查事务是否在完成后进行释放。
+- `cleanupAfterCompletion()`：在事务完成后执行清理操作。
+
+通过实现 `SmartTransactionObject` 接口，可以扩展或修改事务管理的行为，以满足特定的业务需求。
+
+需要注意的是，`SmartTransactionObject` 接口通常不直接由开发人员直接实现，而是由特定的事务管理器或事务相关的类来实现，以提供与事务交互的功能。
+
+请注意，具体的实现和用法可能会根据所使用的事务管理器和框架而有所不同。因此，如果您在特定的框架或库中使用 `SmartTransactionObject` 接口，请参考相关文档和示例以了解更多详细信息。
+
+
+
+
+
+
+
+`SimpleTransactionStatus` 和 `DefaultTransactionStatus` 是 Spring 框架中用于表示事务状态的两个类，它们具有一些相似的功能，但在实现和使用上有一些不同之处。
+
+1. `SimpleTransactionStatus`：
+   - `SimpleTransactionStatus` 是一个简单的事务状态对象，它实现了 `TransactionStatus` 接口。
+   - 它是一个轻量级的事务状态实现，不包含复杂的逻辑和状态管理。
+   - 它提供了一些基本的事务状态信息，例如是否是一个新的事务、是否已完成、是否只回滚等。
+   - `SimpleTransactionStatus` 通常用于简单的事务场景，或者在特定的事务管理器中作为内部状态的一部分使用。
+
+2. `DefaultTransactionStatus`：
+   - `DefaultTransactionStatus` 是一个默认的事务状态对象，它扩展了 `SimpleTransactionStatus` 类。
+   - 它提供了更多的事务状态信息和管理功能，以支持更复杂的事务场景。
+   - 它包含了更多的属性和方法，例如事务隔离级别、保存点、保存点管理等。
+   - `DefaultTransactionStatus` 通常用于需要更多事务管理功能的情况，例如使用保存点来实现嵌套事务或手动回滚等。
+
+总体而言，`SimpleTransactionStatus` 和 `DefaultTransactionStatus` 都用于表示事务的状态信息，但前者是一个简化版的实现，适用于简单的事务场景，而后者提供了更多的功能和管理选项，适用于复杂的事务场景。
+
+需要注意的是，具体的使用方式和适用范围可能会根据所使用的事务管理器和框架而有所不同。因此，如果您在特定的框架或库中使用这些事务状态类，请参考相关文档和示例以了解更多详细信息。
+
+
+
+
+
+ResourceTransactionManager接口实现类
+
+CallbackPreferringPlatformTransactionManager (org.springframework.transaction.support)
+    WebSphereUowTransactionManager (org.springframework.transaction.jta)
+AbstractPlatformTransactionManager (org.springframework.transaction.support)
+    CciLocalTransactionManager (org.springframework.jca.cci.connection)
+    JpaTransactionManager (org.springframework.orm.jpa)
+    DataSourceTransactionManager (org.springframework.jdbc.datasource)
+    JtaTransactionManager (org.springframework.transaction.jta)
+    HibernateTransactionManager (org.springframework.orm.hibernate5)
+ResourceTransactionManager (org.springframework.transaction.support)
+    CciLocalTransactionManager (org.springframework.jca.cci.connection)
+    JpaTransactionManager (org.springframework.orm.jpa)
+    DataSourceTransactionManager (org.springframework.jdbc.datasource)
+    HibernateTransactionManager (org.springframework.orm.hibernate5)
+
+
+
+
+
+org.springframework.orm.jpa.EntityManagerFactoryUtils.TransactionalEntityManagerSynchronization 类是 Spring Framework 中的一个用于管理 JPA 事务的类，它实现了 Spring 的 TransactionSynchronization 接口，用于在事务同步器中注册 JPA EntityManager 对象。
+
+TransactionalEntityManagerSynchronization 类的作用是为 JPA EntityManager 对象创建一个与事务绑定的 EntityManagerHolder 对象，并在事务结束时自动关闭 EntityManager。它可以确保在 JPA 事务中，每个 EntityManager 对象都与事务同步，并在事务结束时正确地关闭 EntityManager。
+
+下面是一个使用 TransactionalEntityManagerSynchronization 的例子：
+
+```java
+@Transactional
+public void updateUser(User user) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManagerHolder entityManagerHolder = new EntityManagerHolder(entityManager);
+    TransactionSynchronizationManager.bindResource(entityManagerFactory, entityManagerHolder);
+    TransactionSynchronizationManager.registerSynchronization(new TransactionalEntityManagerSynchronization(entityManagerHolder, entityManagerFactory));
+    try {
+        entityManager.getTransaction().begin();
+        entityManager.merge(user);
+        entityManager.getTransaction().commit();
+    } catch (Exception ex) {
+        entityManager.getTransaction().rollback();
+        throw ex;
+    } finally {
+        TransactionSynchronizationManager.unbindResource(entityManagerFactory);
+        entityManagerHolder.close();
+    }
+}
+```
+
+在上面的例子中，我们使用 EntityManagerFactory.createEntityManager() 方法创建了一个 EntityManager 对象，并将其持有在 EntityManagerHolder 中。然后，我们使用 TransactionSynchronizationManager.bindResource() 方法将 EntityManagerHolder 注册到事务管理器中，并使用 TransactionSynchronizationManager.registerSynchronization() 方法注册一个 TransactionalEntityManagerSynchronization 对象，以便在事务结束时自动关闭 EntityManager。
+
+在 updateUser() 方法中，我们使用 EntityManager 对象来更新用户数据，并在事务结束时自动关闭 EntityManager。需要注意的是，我们需要手动管理 EntityManager 对象，并使用 TransactionalEntityManagerSynchronization 对象来确保在事务中正确地处理 EntityManager。
+
+总之，TransactionalEntityManagerSynchronization 类是 Spring Framework 中的一个重要的类，用于管理 JPA 事务中的 EntityManager 对象，并在事务结束时自动关闭 EntityManager。虽然我们可以手动管理 EntityManager 对象，但使用 TransactionalEntityManagerSynchronization 类可以让我们更方便地处理 JPA 事务。
+
+
+
+
+
+
+
+TransactionCallbackWithoutResult 是 Spring Framework 中的一个事务回调接口，用于在事务中执行无返回值的操作。它的作用是允许我们将需要在事务中执行的操作封装成一个回调对象，然后通过事务模板来管理事务，并在事务结束时自动提交或回滚事务。
+
+TransactionCallbackWithoutResult 接口中只有一个方法 doInTransactionWithoutResult()，该方法没有返回值，但允许我们在其中执行需要在事务中执行的操作。
+
+下面是一个使用 TransactionCallbackWithoutResult 的例子：
+
+```java
+public void updateUser(User user) {
+    TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
+    transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        @Override
+        public void doInTransactionWithoutResult(TransactionStatus status) {
+            try {
+                entityManager.merge(user);
+            } catch (Exception ex) {
+                status.setRollbackOnly();
+                throw ex;
+            }
+        }
+    });
+}
+```
+
+在上面的例子中，我们创建了一个 TransactionTemplate 对象，并使用 execute() 方法来执行一个 TransactionCallbackWithoutResult 对象。在 doInTransactionWithoutResult() 方法中，我们使用 EntityManager 对象来更新用户数据，并在事务中处理异常。如果出现异常，我们可以通过设置 TransactionStatus.setRollbackOnly() 方法来回滚事务。
+
+TransactionCallbackWithoutResult 接口通常用于执行需要在事务中执行的操作，但不需要返回值的情况。例如，在更新数据库中的多个实体时，我们可以将每个实体的更新操作封装到一个 TransactionCallbackWithoutResult 对象中，并使用事务模板来管理事务，并在事务结束时自动提交或回滚事务。
+
+总之，TransactionCallbackWithoutResult 接口是 Spring Framework 中的一个重要的事务回调接口，它允许我们将需要在事务中执行的操作封装成一个回调对象，并通过事务模板来管理事务。它适用于需要在事务中执行无返回值操作的场景。
+
+
+
+
+
+org.springframework.transaction.support.TransactionSynchronization接口实现类
+
+ResourceHolderSynchronization (org.springframework.transaction.support)
+    TransactionScopedEntityManagerSynchronization in EntityManagerFactoryUtils (org.springframework.orm.jpa)
+    TransactionalEntityManagerSynchronization in EntityManagerFactoryUtils (org.springframework.orm.jpa)
+    ExtendedEntityManagerSynchronization in ExtendedEntityManagerCreator (org.springframework.orm.jpa)
+    ConnectionSynchronization in ConnectionFactoryUtils (org.springframework.jca.cci.connection)
+SpringSessionSynchronization (org.springframework.orm.hibernate5)
+TransactionSynchronizationAdapter (org.springframework.transaction.support)
+    TransactionSynchronizationEventAdapter in ApplicationListenerMethodTransactionalAdapter (org.springframework.transaction.event)
+    CleanupSynchronization in SimpleTransactionScope (org.springframework.transaction.support)
+    ConnectionSynchronization in DataSourceUtils (org.springframework.jdbc.datasource)
+    SpringFlushSynchronization (org.springframework.orm.hibernate5)
+
+
+
+
+
+
+
+TransactionSynchronizationManager 是 Spring Framework 中的一个事务同步器，用于在事务中注册资源，并在事务结束时触发资源的提交或回滚操作。它的作用是允许我们在事务中对多个资源进行管理，并在事务结束时自动提交或回滚所有资源。
+
+TransactionSynchronizationManager 可以管理多种类型的资源，例如数据库连接、JPA EntityManager、Hibernate Session、Redis 连接等。我们可以使用 TransactionSynchronizationManager.bindResource() 方法将资源绑定到事务管理器中，并使用 TransactionSynchronizationManager.registerSynchronization() 方法注册一个事务同步对象，以便在事务结束时触发资源的提交或回滚操作。
+
+下面是一个使用 TransactionSynchronizationManager 的例子：
+
+```java
+@Transactional
+public void updateUser(User user) {
+    Connection connection = dataSource.getConnection();
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    RedisConnection redisConnection = redisConnectionFactory.getConnection();
+    try {
+        TransactionSynchronizationManager.bindResource(dataSource, new ConnectionHolder(connection));
+        TransactionSynchronizationManager.bindResource(entityManagerFactory, new EntityManagerHolder(entityManager));
+        TransactionSynchronizationManager.bindResource(redisConnectionFactory, new RedisConnectionHolder(redisConnection));
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCompletion(int status) {
+                if (status == TransactionSynchronization.STATUS_COMMITTED) {
+                    // 提交事务后的操作
+                } else if (status == TransactionSynchronization.STATUS_ROLLED_BACK) {
+                    // 回滚事务后的操作
+                }
+            }
+        });
+        // 在事务中执行数据库、JPA和Redis操作
+        // ...
+    } finally {
+        TransactionSynchronizationManager.unbindResource(dataSource);
+        TransactionSynchronizationManager.unbindResource(entityManagerFactory);
+        TransactionSynchronizationManager.unbindResource(redisConnectionFactory);
+        connection.close();
+        entityManager.close();
+        redisConnection.close();
+    }
+}
+```
+
+在上面的例子中，我们使用 TransactionSynchronizationManager.bindResource() 方法将数据库连接、JPA EntityManager 和 Redis 连接绑定到事务管理器中，并使用 TransactionSynchronizationManager.registerSynchronization() 方法注册一个 TransactionSynchronizationAdapter 对象。在事务结束时，我们可以在 TransactionSynchronizationAdapter.afterCompletion() 方法中根据事务的状态来执行提交或回滚后的操作，并使用 TransactionSynchronizationManager.unbindResource() 方法解绑所有资源。
+
+TransactionSynchronizationManager 可以用于任何需要在事务中管理多个资源的场景。例如，在一个业务方法中需要对数据库、JPA、Redis 和文件系统等多种资源进行操作时，我们可以使用 TransactionSynchronizationManager 将这些资源绑定到事务管理器中，并在事务结束时自动提交或回滚所有资源。
+
+总之，TransactionSynchronizationManager 是 Spring Framework 中的一个重要的事务同步器，它允许我们在事务中对多个资源进行管理，并在事务结束时自动提交或回滚所有资源。它适用于任何需要在事务中管理多个资源的场景。
+
+
+
+spring-tx jar包
+
+| org.springframework.dao.annotation           |      |      |
+| -------------------------------------------- | ---- | ---- |
+| PersistenceExceptionTranslationAdvisor       |      |      |
+| PersistenceExceptionTranslationPostProcessor |      |      |
+|                                              |      |      |
+
+
+
+
+
+PersistenceExceptionTranslationAdvisor 是 Spring Framework 中的一个切面，用于将底层数据访问异常（如 JPA 或 Hibernate 的异常）转换为 Spring 统一的 DataAccessException 异常。它的作用是使得底层数据访问异常可以被 Spring 统一处理，从而简化了异常处理代码，并提高了系统的稳定性和可靠性。
+
+PersistenceExceptionTranslationAdvisor 通常与 @Repository 注解一起使用，用于处理 JPA 或 Hibernate 的异常。当我们在 DAO 中使用 JPA 或 Hibernate 进行数据访问时，如果出现异常，PersistenceExceptionTranslationAdvisor 将会捕获并将其转换为 Spring 统一的 DataAccessException 异常，从而使得异常可以被 Spring 统一处理。
+
+下面是一个使用 PersistenceExceptionTranslationAdvisor 的例子：
+
+```java
+@Repository
+public class UserDaoImpl implements UserDao {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
+    public void updateUser(User user) {
+        try {
+            entityManager.merge(user);
+        } catch (Exception ex) {
+            throw new DataAccessException("Failed to update user", ex);
+        }
+    }
+}
+
+@Configuration
+@EnableTransactionManagement
+public class AppConfig {
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
+    @Bean
+    public PersistenceExceptionTranslationAdvisor persistenceExceptionTranslationAdvisor() {
+        return new PersistenceExceptionTranslationAdvisor(exceptionTranslator());
+    }
+
+    @Bean
+    public PersistenceExceptionTranslator exceptionTranslator() {
+        return new HibernateJpaExceptionTranslator();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+```
+
+在上面的例子中，我们使用 @Repository 注解将 UserDaoImpl 标记为一个 DAO，并在其中使用 JPA 进行数据访问。当出现异常时，我们将其捕获并转换为 Spring 统一的 DataAccessException 异常。在 AppConfig 中，我们创建了一个 PersistenceExceptionTranslationAdvisor 对象，并将其与 @EnableTransactionManagement 注解一起使用，以便在事务管理中自动处理 JPA 或 Hibernate 的异常。
+
+PersistenceExceptionTranslationAdvisor 通常用于处理底层数据访问异常，并将其转换为 Spring 统一的 DataAccessException 异常。它可以使得异常处理代码更加简洁，并提高系统的稳定性和可靠性。
+
+总之，PersistenceExceptionTranslationAdvisor 是 Spring Framework 中用于处理底层数据访问异常的一个切面，它使得底层数据访问异常可以被 Spring 统一处理，并提高了系统的稳定性和可靠性。它适用于任何使用 JPA 或 Hibernate 进行数据访问的场景。
+
+
+
+`PersistenceExceptionTranslationPostProcessor` 是 Spring 框架中的一个后置处理器（post-processor），用于将持久化（Persistence）异常转换为 Spring 的数据访问异常体系中的统一异常类型。它主要用于简化对于数据访问异常的处理和转换。
+
+该后置处理器的作用主要有两个方面：
+1. 异常转换：它会拦截被标注为 `@Repository` 或者继承 `Repository` 接口的 Bean 的方法调用，并尝试将底层的持久化异常（如 JDBC、Hibernate 等）转换为 Spring 的统一异常类型（如 `DataAccessException`）。这样，应用程序在处理数据访问异常时就不需要针对每个底层的持久化实现进行不同的异常处理了。
+2. 自动代理：它会自动将被标注为 `@Repository` 或者继承 `Repository` 接口的 Bean 进行 AOP 代理，以便实现异常转换的逻辑。
+
+使用例子：
+```java
+@Configuration
+@EnableTransactionManagement
+public class AppConfig {
+
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslationPostProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    // 其他配置...
+}
+```
+
+在上述的配置类中，通过 `@Bean` 注解将 `PersistenceExceptionTranslationPostProcessor` 实例化为一个 Bean，并将其注册到 Spring 容器中。这样就会启用持久化异常转换功能，对被标注为 `@Repository` 或者继承 `Repository` 接口的 Bean 进行异常转换和自动代理。
+
+注意：使用 `PersistenceExceptionTranslationPostProcessor` 需要保证相关的依赖（如 JDBC 驱动、ORM 框架）已经正确配置，并且开启了事务管理（使用 `@EnableTransactionManagement` 注解或者其他方式）。另外，如果使用的是 Spring Boot，它会自动进行相关配置，无需手动添加 `PersistenceExceptionTranslationPostProcessor` Bean。
+
+
+
+| org.springframework.dao.support            |           |      |
+| ------------------------------------------ | --------- | ---- |
+| ChainedPersistenceExceptionTranslator      |           |      |
+| DaoSupport                                 | abstract  |      |
+| DataAccessUtils                            | abstract  |      |
+| PersistenceExceptionTranslationInterceptor |           |      |
+| PersistenceExceptionTranslator             | interface |      |
+
+
+
+
+
+ChainedPersistenceExceptionTranslator 是 Spring Framework 中的一个异常转换器，用于将多个异常转换为一个异常链。它的作用是使得异常处理更加灵活和可扩展，可以将多个底层数据访问异常转换为一个更具体的异常，从而使得异常处理更加准确和精细。
+
+ChainedPersistenceExceptionTranslator 通常用于处理多个底层数据访问异常，并将其转换为一个更具体的异常。例如，当一个 DAO 方法中同时执行多个 JPA 操作时，可能会出现多个 JPA 异常，ChainedPersistenceExceptionTranslator 可以将这些异常转换为一个更具体的异常链，从而使得异常处理更加准确和精细。
+
+下面是一个使用 ChainedPersistenceExceptionTranslator 的例子：
+
+```java
+@Configuration
+@EnableTransactionManagement
+public class AppConfig {
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
+    @Bean
+    public ChainedPersistenceExceptionTranslator chainedPersistenceExceptionTranslator() {
+        List<PersistenceExceptionTranslator> translators = new ArrayList<>();
+        translators.add(new HibernateJpaExceptionTranslator());
+        translators.add(new MyJpaExceptionTranslator());
+        return new ChainedPersistenceExceptionTranslator(translators);
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+```
+
+在上面的例子中，我们创建了一个 ChainedPersistenceExceptionTranslator 对象，并将多个 PersistenceExceptionTranslator 对象添加到其中。在每个 PersistenceExceptionTranslator 对象中，我们可以定义不同的异常转换规则，例如将某些特定的异常转换为一个特定的异常类型。在 AppConfig 中，我们将 ChainedPersistenceExceptionTranslator 对象与 @EnableTransactionManagement 注解一起使用，以便在事务管理中自动处理多个底层数据访问异常。
+
+ChainedPersistenceExceptionTranslator 通常用于处理多个底层数据访问异常，并将其转换为一个更具体的异常链。它可以使得异常处理更加灵活和可扩展，可以根据具体的异常类型来定义不同的转换规则，从而使得异常处理更加准确和精细。
+
+总之，ChainedPersistenceExceptionTranslator 是 Spring Framework 中的一个异常转换器，用于将多个底层数据访问异常转换为一个异常链。它适用于处理多个底层数据访问异常，并将其转换为一个更具体的异常链的场景。

@@ -347,3 +347,32 @@ SQLStateSQLExceptionTranslator
 
 TemporaryLobCreator
 
+
+
+org.springframework.jdbc.datasource.ConnectionHolder 是 Spring Framework 中的一个持有连接对象的类，用于在事务管理器中保存连接对象。它的作用是在事务管理器控制的事务中，为每个连接对象创建一个 ConnectionHolder 对象并持有该连接对象，以便在事务结束时自动关闭连接。
+
+ConnectionHolder 对象通常是由事务管理器创建和管理的，因此我们通常不需要直接使用该对象，但是在某些情况下，我们可能需要手动创建 ConnectionHolder 对象并将其注册到事务管理器中。
+
+下面是一个使用 ConnectionHolder 的例子：
+
+```java
+DataSource dataSource = ...; // 获取数据源
+Connection connection = dataSource.getConnection(); // 获取连接对象
+TransactionSynchronizationManager.initSynchronization(); // 初始化事务同步器
+ConnectionHolder connectionHolder = new ConnectionHolder(connection);
+TransactionSynchronizationManager.bindResource(dataSource, connectionHolder); // 将 ConnectionHolder 注册到事务管理器中
+
+try {
+    // 在事务中执行数据库操作
+    // ...
+} finally {
+    TransactionSynchronizationManager.unbindResource(dataSource); // 从事务管理器中解绑 ConnectionHolder
+    TransactionSynchronizationManager.clearSynchronization(); // 清理事务同步器
+    connectionHolder.close(); // 关闭连接
+}
+```
+
+在上面的例子中，我们手动创建了一个 ConnectionHolder 对象，并将其注册到事务管理器中。在执行事务期间，我们可以通过 ConnectionHolder 对象来持有连接对象，并在事务结束时自动关闭连接。需要注意的是，我们需要手动初始化事务同步器，并在事务结束时将 ConnectionHolder 从事务管理器中解绑，并清理事务同步器。
+
+总之，ConnectionHolder 对象是 Spring Framework 中的一个重要的类，用于在事务管理器中保存连接对象，并在事务结束时自动关闭连接。虽然我们通常不需要直接使用 ConnectionHolder 对象，但在某些情况下，手动创建和管理 ConnectionHolder 对象可能是必要的。
+
