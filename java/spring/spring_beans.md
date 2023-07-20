@@ -193,7 +193,7 @@ BeanDefinitionHolder decorate(Node source, BeanDefinitionHolder definition, Pars
 abstract class NamespaceHandlerSupport implements NamespaceHandler
 
 
-
+实现类有MvcNamespaceHandler，处理springmvc xml配置文件
 
 
 

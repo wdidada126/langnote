@@ -1505,7 +1505,7 @@ public class CorsConfig {
 | ---------------------------------------- | --------- | ---- |
 | Interfaces                               |           |      |
 | AsyncHandlerMethodReturnValueHandler     | interface |      |
-| HandlerMethodArgumentResolver            | interface |      |
+| HandlerMethodArgumentResolver            | interface |  resolveArgument()    |
 | HandlerMethodReturnValueHandler          | interface |      |
 | UriComponentsContributor                 | interface |      |
 |                                          |           |      |
@@ -1711,6 +1711,20 @@ public class HttpReqRespConfig {
 
 }
 ```
+
+
+GenericHttpMessageConverter在org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, org.springframework.core.MethodParameter, org.springframework.http.server.ServletServerHttpRequest, org.springframework.http.server.ServletServerHttpResponse)被调用
+
+
+
+AbstractGenericHttpMessageConverter
+
+canRead
+canWrite
+public final void write(final T t, @Nullable final Type type, @Nullable MediaType contentType, HttpOutputMessage outputMessage)
+
+
+org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter#writeInternal
 
 源码
 ```java
@@ -2176,3 +2190,13 @@ addError()
 org.springframework.validation.FieldError
 ObjectError
 DefaultMessageSourceResolvable
+
+
+
+
+
+
+
+
+org.springframework.web.util.UrlPathHelper
+	public String getLookupPathForRequest(HttpServletRequest request, @Nullable String lookupPathAttributeName)
