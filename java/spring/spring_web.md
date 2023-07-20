@@ -534,6 +534,35 @@ RestGatewaySupport
 | ContextLoaderListener             |           | extends ContextLoader implements ServletContextListener   web.xml中配置这个类 |
 |                                   |           |                                                              |
 
+ServletContextListener
+javax.servlet.ServletContextListener
+    public void contextInitialized(ServletContextEvent sce);
+    public void contextDestroyed(ServletContextEvent sce);
+
+
+在Spring MVC应用的web.xml文件中配置ContextLoaderListener监听器,可以实现自动装载Spring应用上下文。
+具体配置方式:
+
+```xml
+<listener>
+  <listener-class>
+    org.springframework.web.context.ContextLoaderListener
+  </listener-class>
+</listener>
+```
+
+这会注册ContextLoaderListener到Servlet容器中。
+
+它的作用是:
+
+1. 在Web应用启动时自动创建Spring的根ApplicationContext。
+2. 读取contextConfigLocation参数配置的Spring配置文件。
+3. 将根ApplicationContext存储在ServletContext属性中。
+4. 后续Spring MVC的DispatcherServlet等组件可以使用这个根上下文。
+5. 实现了Web层服务与业务层Spring容器的集成。
+所以在Spring MVC项目中,通常会配置ContextLoaderListener来自动装载Spring上下文。
+这为后续的Spring MVC配置提供基础,实现Web层和服务层的无缝集成。
+
 ContextLoader 是 Spring Framework 中的一个类，用于加载和初始化 Spring 应用程序上下文。它的作用是在 Web 应用程序中加载和初始化 Spring 应用程序上下文，并将其绑定到 ServletContext 中，使得在整个 Web 应用程序中都可以访问 Spring 应用程序上下文。
 
 ContextLoader 可以用于在 Web 应用程序中加载和初始化 Spring 应用程序上下文。在 Web 应用程序中，Spring 应用程序上下文通常是在 ServletContextListener 或 ServletContextInitializer 中加载和初始化的。ContextLoader 类提供了一种方便的方式来加载和初始化 Spring 应用程序上下文，并将其绑定到 ServletContext 中，使得在整个 Web 应用程序中都可以访问 Spring 应用程序上下文。
