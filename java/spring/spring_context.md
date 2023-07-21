@@ -74,8 +74,7 @@ org.springframework.context.annotation.ConfigurationClassParser#ConfigurationCla
 |                                                 | Context information for use by Condition implementations.    |                                            |      |
 | Configuration                                   |                                                              |                                            |      |
 |                                                 | Indicates that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime, for example: |                                            |      |
-| ConfigurationClassPostProcessor                 |                                                              |                                            |      |
-|                                                 | BeanFactoryPostProcessor used for bootstrapping processing of @Configuration classes. |                                            |      |
+| ConfigurationClassPostProcessor                 | BeanFactoryPostProcessor used for bootstrapping processing of @Configuration classes. | processConfigBeanDefinitions()核心方法     |      |
 | ConfigurationClassUtils                         |                                                              |                                            |      |
 |                                                 | Utilities for identifying and configuring Configuration classes. |                                            |      |
 | ConfigurationCondition                          |                                                              |                                            |      |
