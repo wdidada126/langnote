@@ -1,6 +1,14 @@
 # gradle
 
 
+查看gradle插件是否存在？
+https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
+
+
+网页上显示 https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
+
+
+
 gradle如何解决依赖冲突
 
 

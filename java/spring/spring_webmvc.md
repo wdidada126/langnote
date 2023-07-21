@@ -399,16 +399,16 @@ MvcNamespaceHandler
 | DelegatingWebMvcConfiguration                     |            |                                                              |
 | InterceptorRegistration                           |            |                                                              |
 | InterceptorRegistry                               |            |                                                              |
-| PathMatchConfigurer                               |            |                                                              |
+| PathMatchConfigurer                               |            | 4.0.3                                                        |
 | RedirectViewControllerRegistration                |            |                                                              |
 | ResourceChainRegistration                         |            |                                                              |
-| ResourceHandlerRegistration                       |            |                                                              |
+| ResourceHandlerRegistration                       |            | 注册静态资源处理器                                           |
 | ResourceHandlerRegistry                           |            |                                                              |
-| UrlBasedViewResolverRegistration                  |            |                                                              |
-| ViewControllerRegistration                        |            |                                                              |
+| UrlBasedViewResolverRegistration                  |            | 注册基于URL的视图解析器                                      |
+| ViewControllerRegistration                        |            | 注册视图控制器                                               |
 | ViewControllerRegistry                            |            |                                                              |
 | ViewResolverRegistry                              |            |                                                              |
-| WebMvcConfigurationSupport                        |            |                                                              |
+| WebMvcConfigurationSupport                        |            | 定义了很多Spring ico容器的bean，比如RequestMappingHandlerMapping |
 | WebMvcConfigurerAdapter                           |            |                                                              |
 | WebMvcConfigurerComposite                         |            | DelegatingWebMvcConfiguration里面有这个类的对象              |
 |                                                   |            |                                                              |
