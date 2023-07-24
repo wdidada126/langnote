@@ -16,13 +16,13 @@ MvcNamespaceHandler
 
 
 
-| org.springframework.web.servlet |           |                                                              |
+| org.springframework.web.servlet | 类型      | 说明                                                         |
 | ------------------------------- | --------- | ------------------------------------------------------------ |
 | Interfaces                      |           |                                                              |
 | AsyncHandlerInterceptor         | interface | extends HandlerInterceptor      void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response,  Object handler) |
 | FlashMapManager                 | interface | saveOutputFlashMap(FlashMap flashMap, HttpServletRequest request, HttpServletResponse response)  FlashMap retrieveAndUpdate(HttpServletRequest request, HttpServletResponse response) |
-| HandlerAdapter                  | interface | ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) |
-| HandlerExceptionResolver        | interface |                                                              |
+| **HandlerAdapter**              | interface | ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)  boolean supports(Object handler) |
+| HandlerExceptionResolver        | interface | ModelAndView resolveException(       HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex); |
 | HandlerInterceptor              | interface | preHandle() postHandle() afterCompletion()                   |
 | HandlerMapping                  | interface | 处理器映射 url跟java对象的方法关联起来 HandlerExecutionChain getHandler(HttpServletRequest request)  还有常量 MATRIX_VARIABLES_ATTRIBUTE，见下面 |
 | LocaleContextResolver           | interface | extends LocaleResolver    LocaleContext resolveLocaleContext(HttpServletRequest request) void setLocaleContext(HttpServletRequest request, @Nullable HttpServletResponse response,       @Nullable LocaleContext localeContext) |
@@ -44,6 +44,11 @@ MvcNamespaceHandler
 | Exceptions                      |           |                                                              |
 | ModelAndViewDefiningException   | exception |                                                              |
 | NoHandlerFoundException         | exception |                                                              |
+
+
+
+HandlerAdapter HandlerExceptionResolver 都返回ModuleAndView
+
 
 
 
