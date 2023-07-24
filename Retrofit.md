@@ -52,60 +52,89 @@ com.github.lianjiatech.retrofit.spring.boot.util
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.core |      |      |
-| ------------------------------------------------ | ---- | ---- |
-|                                                  |      |      |
-|                                                  |      |      |
-|                                                  |      |      |
+| com.github.lianjiatech.retrofit.spring.boot.degrade |            |      |
+| --------------------------------------------------- | ---------- | ---- |
+| BaseDegradeInterceptor                              | abstract   |      |
+| BaseResourceNameParser                              | abstract   |      |
+| DefaultResourceNameParser                           |            |      |
+| Degrade                                             | @interface |      |
+| DegradeStrategy                                     | enum       |      |
+| DegradeType                                         | enum       |      |
+| FallbackFactory<T>                                  |            |      |
+| HttpMethodPath                                      |            |      |
+| RetrofitBlockException                              | exception  |      |
+| RetrofitDegradeRule                                 |            |      |
+| RetrofitDegradeRuleInitializer                      |            |      |
+| SentinelDegradeInterceptor                          |            |      |
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.degrade |      |      |
-| --------------------------------------------------- | ---- | ---- |
-| AutoConfiguredRetrofitScannerRegistrar              |      |      |
-| BasicTypeConverterFactory                           |      |      |
-| BasicTypeConverterFactory.BooleanResponseConverter  |      |      |
-| BasicTypeConverterFactory.DoubleResponseConverter   |      |      |
-| BasicTypeConverterFactory.FloatResponseConverter    |      |      |
-| BasicTypeConverterFactory.IntegerResponseConverter  |      |      |
-| BasicTypeConverterFactory.LongResponseConverter     |      |      |
-| BasicTypeConverterFactory.StringResponseConverter   |      |      |
-| BodyCallAdapterFactory                              |      |      |
-| BodyCallAdapterFactory.BodyCallAdapter              |      |      |
-|                                                     |      |      |
-|                                                     |      |      |
+| com.github.lianjiatech.retrofit.spring.boot.core   |      |      |
+| -------------------------------------------------- | ---- | ---- |
+| AutoConfiguredRetrofitScannerRegistrar             |      |      |
+| BasicTypeConverterFactory                          |      |      |
+| BasicTypeConverterFactory.BooleanResponseConverter |      |      |
+| BasicTypeConverterFactory.DoubleResponseConverter  |      |      |
+| BasicTypeConverterFactory.FloatResponseConverter   |      |      |
+| BasicTypeConverterFactory.IntegerResponseConverter |      |      |
+| BasicTypeConverterFactory.LongResponseConverter    |      |      |
+| BasicTypeConverterFactory.StringResponseConverter  |      |      |
+| BodyCallAdapterFactory                             |      |      |
+| BodyCallAdapterFactory.BodyCallAdapter             |      |      |
+| ClassPathRetrofitClientScanner                     |      |      |
+| DefaultErrorDecoder                                |      |      |
+| ErrorDecoder                                       |      |      |
+| NoValidServiceInstanceChooser                      |      |      |
+| PrototypeInterceptorBdfProcessor                   |      |      |
+| ResponseCallAdapterFactory                         |      |      |
+| ResponseCallAdapterFactory.ResponseCallAdapter     |      |      |
+| RetrofitClientScannerRegistrar                     |      |      |
+| RetrofitFactoryBean<T>                             |      |      |
+| RetrofitInvocationHandler                          |      |      |
+| ServiceInstanceChooser                             |      |      |
+| SpringCloudServiceInstanceChooser                  |      |      |
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.exception |      |      |
-| ----------------------------------------------------- | ---- | ---- |
-|                                                       |      |      |
-|                                                       |      |      |
-|                                                       |      |      |
+| com.github.lianjiatech.retrofit.spring.boot.exception |           |      |
+| ----------------------------------------------------- | --------- | ---- |
+| ReadResponseBodyException                             | exception |      |
+| RetrofitException                                     | exception |      |
+| RetrofitIOException                                   | exception |      |
+| ServiceInstanceChooseException                        | exception |      |
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.interceptor |      |      |
-| ------------------------------------------------------- | ---- | ---- |
-|                                                         |      |      |
-|                                                         |      |      |
-|                                                         |      |      |
+| com.github.lianjiatech.retrofit.spring.boot.interceptor |           |      |
+| ------------------------------------------------------- | --------- | ---- |
+| BaseGlobalInterceptor                                   | abstract  |      |
+| BaseLoggingInterceptor                                  | abstract  |      |
+| BasePathMatchInterceptor                                | abstract  |      |
+| DefaultLoggingInterceptor                               |           |      |
+| ErrorDecoderInterceptor                                 |           |      |
+| LogLevel                                                | enum      |      |
+| LogStrategy                                             | enum      |      |
+| NetworkInterceptor                                      | interface |      |
+| PrototypeInterceptor                                    | interface |      |
+| ServiceInstanceChooserInterceptor                       |           |      |
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.retry |      |      |
-| ------------------------------------------------- | ---- | ---- |
-|                                                   |      |      |
-|                                                   |      |      |
-|                                                   |      |      |
+| com.github.lianjiatech.retrofit.spring.boot.retry |            |      |
+| ------------------------------------------------- | ---------- | ---- |
+| BaseRetryInterceptor                              | abstract   |      |
+| DefaultRetryInterceptor                           |            |      |
+| Retry                                             | @interface |      |
+| RetryRule                                         | enum       |      |
+| RetryStrategy                                     |            |      |
 
 
 
 | com.github.lianjiatech.retrofit.spring.boot.util |      |      |
 | ------------------------------------------------ | ---- | ---- |
-|                                                  |      |      |
-|                                                  |      |      |
-|                                                  |      |      |
+| ApplicationContextUtils                          |      |      |
+| BeanExtendUtils                                  |      |      |
+| RetrofitUtils                                    |      |      |
 
 
 
