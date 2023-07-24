@@ -1434,7 +1434,18 @@ public class CorsConfig {
 
 
 
+CharacterEncodingFilter
 
+```xml
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+```
 
 
 | org.springframework.web.filter.reactive |      |      |
@@ -1575,6 +1586,14 @@ public class CorsConfig {
 
 
 
+    <!-- 多部分文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600" />
+        <property name="maxInMemorySize" value="4096" />
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
+CommonsMultipartFile implements MultipartFile
 
 
 | org.springframework.web.multipart.support |      |      |
