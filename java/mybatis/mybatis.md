@@ -43,15 +43,13 @@ MapperProxy类的源码非常复杂，其核心方法是invoke方法，该方法
 总之，MapperProxy类是MyBatis框架中非常重要的一个类，它实现了接口与SQL语句的绑定，并通过动态代理技术实现了接口方法的调用。了解MapperProxy类的原理和实现方式，对于深入理解MyBatis框架的原理和实现方式非常有帮助。
 
 
-
+MappedStatement 跟java.sql中的Statement对应
 
 
 
 
 MapperMethod是MyBatis框架中的一个重要类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。在MyBatis框架中，每个Mapper接口方法都会对应一个MapperMethod对象。
-
 MapperMethod类的源码非常复杂，但是它的核心方法是execute方法，该方法用于执行SQL语句并将查询结果映射成Java对象。下面对MapperMethod类的一些重要属性和方法进行简单介绍：
-
 private final SqlCommand command：表示该MapperMethod对应的SQL语句的信息，包括SQL语句、参数类型、返回值类型等信息。
 
 private final MethodSignature method：表示该MapperMethod对应的Mapper接口方法的信息，包括方法名、参数类型、返回值类型等信息。
@@ -64,6 +62,10 @@ private Object executeForMap(SqlSession sqlSession, Object[] args)：该方法�
 
 总之，MapperMethod类是MyBatis框架中非常重要的一个类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。
 
+个人总结，有一个Mapper类方法，就哟一个
+MapperMethod对象
+
+MapperMethod类跟springmvc中的 RequestMethod枚举 RequestInfo RequestMappingInfo
 
 
 ### mybatis调用流程
@@ -78,7 +80,7 @@ SqlSessionFactoryBuilder是构造器，见名知意，它的主要作用便是�
 解析mapper.xml时，Mybatis默认XML驱动类为XMLLanguageDriver，它的主要作用是解析select、update、insert、delete节点为完整的SQL语句，也是对应SQL的解析过程，XMLLanguageDriver在解析mapper.xml时，会将解析结果存储至SqlSource的实现类中，SqlSource是一个接口，只定义了一个 getBoundSql() 方法，它控制着动态 SQL 语句解析的整个流程，它会根据从 Mapper.xml 映射文件解析到的 SQL 语句以及执行 SQL 时传入的实参，返回一条可执行的 SQL。它有三个重要的实现类，对应图中写到的RawSqlSource、DynamicSqlSource及StaticSqlSource，其中RawSqlSource处理的是非动态 SQL 语句，DynamicSqlSource处理的是动态 SQL 语句，StaticSqlSource是BoundSql中要存储SQL语句的一个载体，上面RawSqlSource、DynamicSqlSource的SQL语句，最终都会存储到StaticSqlSource实现类中。StaticSqlSource的 getBoundSql() 方法是真正创建 BoundSql 对象的地方， BoundSql 包含了解析之后的 SQL 语句、字段、每个“#{}”占位符的属性信息、实参信息等。这里也重点介绍下Configuration对象，Configuration 的创建会装载一些基本属性，如事务，数据源，缓存，代理，类型处理器等，从这里可以看出 Configuration 也是一个大的容器，来为后面的SQL语句解析和初始化提供保障，也是Mybatis中贯穿全局的存在，后续我们要提到的Mybatis降低全表更新插件，也是基于这个对象来完成。其中解析mapper.xml这步最终作用便是将解析的每一条CRUD语句封装成对应的MappedStatement存放至Configuration中。
 
 
-
+SqlSource 接口实现类
 
 XMLLanguageDriver用于对sql脚本进行解析，解析各种标签。
 
