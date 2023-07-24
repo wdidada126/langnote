@@ -62,17 +62,45 @@ AnnotationAttributes
 | StandardReflectionParameterNameDiscoverer               |           | 参考 PrioritizedParameterNameDiscoverer |
 
 
+LocalVariableTableParameterNameDiscoverer 根据类型查到函数参数名称
+
+
+org.springframework.core.MethodParameter
+属性
+String parameterName
+Class<?> parameterType
+int parameterIndex
+
+调用的地方
+MethodArgumentNotValidException 类返回MethodParameter
+        MethodParameter methodParameter = ((MethodParameter) ex.getParameter());
+
+子类
+ 内部类
+ MethodParameter (org.springframework.core)
+    SynthesizingMethodParameter (org.springframework.core.annotation)
+        HandlerMethodParameter in HandlerMethod (org.springframework.web.method)
+            ReturnValueMethodParameter in HandlerMethod (org.springframework.web.method)
+            ConcurrentResultMethodParameter in ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
+        HandlerMethodParameter in HandlerMethod (org.springframework.messaging.handler)
+            ReturnValueMethodParameter in HandlerMethod (org.springframework.messaging.handler)
+            AsyncResultMethodParameter in InvocableHandlerMethod (org.springframework.messaging.handler.invocation)
+    FieldAwareConstructorParameter in ModelAttributeMethodProcessor (org.springframework.web.method.annotation)
+
+
+org.springframework.core.ParameterNameDiscoverer接口实现类
+
+String[] getParameterNames(Method method)
+String[] getParameterNames(Constructor<?> ctor)
 
 `PrioritizedParameterNameDiscoverer` 和 `StandardReflectionParameterNameDiscoverer` 都是 Spring 框架中用于获取方法的参数名的工具类，它们之间存在一些区别和联系。
 
 区别：
 1. 实现方式：`StandardReflectionParameterNameDiscoverer` 是通过 Java 的反射机制来获取方法的参数名，它使用了 `java.lang.reflect.Executable` 和 `java.lang.reflect.Parameter` 类来获取方法的参数名。而 `PrioritizedParameterNameDiscoverer` 则是一个可扩展的参数名解析器，它允许用户自定义多个参数名解析器，按优先级顺序来获取方法的参数名。
-
 2. 解析策略：`StandardReflectionParameterNameDiscoverer` 只使用了 Java 的反射机制，它适用于大多数情况下。而 `PrioritizedParameterNameDiscoverer` 可以支持多种解析策略，用户可以根据自己的需求自定义参数名解析器，例如从注解中获取参数名、从配置文件中获取参数名等。
 
 联系：
 1. 共同接口：它们都实现了 Spring 框架中的 `ParameterNameDiscoverer` 接口，该接口定义了获取方法参数名的方法 `getParameterNames(Method method)`。
-
 2. 用途相似：它们都用于获取方法的参数名，在使用 Spring AOP、Spring MVC 等功能时，需要获取方法的参数名来进行一些处理，比如参数校验、日志输出等。
 
 示例代码：
@@ -111,14 +139,11 @@ public class Main {
 
 作用：
 1. 解析泛型类型：`ResolvableType` 可以帮助我们解析泛型类型，获取泛型类型的实际类型参数。这对于需要在运行时获取泛型类型信息的场景非常有用。
-
 2. 获取类的泛型信息：`ResolvableType` 可以获取类的泛型父类、泛型接口等信息，使我们能够在运行时了解类的泛型信息。
 
 使用场景：
 1. 在自定义框架或库中需要处理泛型类型的信息时，可以使用 `ResolvableType` 来获取泛型类型的实际参数类型。
-
 2. 在 Spring 框架中，`ResolvableType` 通常用于处理 Bean 的类型信息，尤其是在使用泛型作为依赖注入的类型时。
-
 示例代码：
 假设我们有一个自定义的泛型类 `MyGenericClass<T>`，并且有一个子类 `MySubClass` 继承自 `MyGenericClass<String>`，我们可以使用 `ResolvableType` 来获取泛型类型的实际参数。
 
@@ -149,9 +174,7 @@ public class Main {
 
 
 ResolvableTypeProvider 是 Spring Framework 中的一个接口，用于提供 ResolvableType 对象。它的作用是在运行时获取泛型类型的具体类型信息，并提供 ResolvableType 对象，以便其他组件可以在运行时获取泛型类型的具体类型信息。
-
 ResolvableTypeProvider 可以用于在运行时获取泛型类型的具体类型信息，并提供 ResolvableType 对象，以便其他组件可以在运行时获取泛型类型的具体类型信息。它通常用于在 Spring 框架中，在某些组件中需要获取泛型类型的具体类型信息时使用，例如，获取一个方法或参数的类型信息、获取一个类或接口的泛型类型信息等。
-
 下面是一个使用 ResolvableTypeProvider 的例子：
 
 ```java
@@ -214,7 +237,6 @@ public class UserService {
 ```
 
 在上面的例子中，我们首先定义了一个 CrudRepository 接口，其中包含了一些基本的 CRUD 方法，并实现了 ResolvableTypeProvider 接口。ResolvableTypeProvider 接口中的 getResolvableType() 方法返回了一个 ResolvableType 对象，用于表示 CrudRepository 的泛型类型信息。然后，我们创建了一个 UserRepository 类，实现了 CrudRepository 接口，并实现了其中的方法。在 getResolvableType() 方法中，我们使用 ResolvableType.forClassWithGenerics() 方法创建了一个 ResolvableType 对象，用于表示 CrudRepository<User, Long> 的泛型类型信息。最后，我们创建了一个 UserService 类，其中包含了一个 getUserById() 方法，该方法接收一个 Long 类型的参数，并使用 userRepository.findById() 方法获取 User 对象。
-
 总之，ResolvableTypeProvider 是 Spring Framework 中的一个接口，用于提供 ResolvableType 对象。它可以用于在某些组件中需要获取泛型类型的具体类型信息时使用，例如，获取一个方法或参数的类型信息、获取一个类或接口的泛型类型信息等。使用它可以方便地获取泛型类型的具体类型信息，并提供 ResolvableType 对象，以便其他组件可以在运行时获取泛型类型的具体类型信息。
 
 
@@ -225,9 +247,7 @@ public class UserService {
 
 使用场景：
 1. 多个Bean实现了同一个接口，并且需要按照特定的优先级顺序进行加载和处理。通过让这些Bean实现 `PriorityOrdered` 接口，并在 `getOrder()` 方法中返回不同的优先级值，可以实现对它们的加载顺序进行控制。
-
 2. 在 Spring 配置文件中，需要手动指定Bean的加载顺序。通过在 `<bean>` 标签中使用 `order` 属性，并将其设置为 `PriorityOrdered.HIGHEST_PRECEDENCE` 或 `PriorityOrdered.LOWEST_PRECEDENCE`，可以明确指定Bean的加载顺序。
-
 示例代码：
 假设我们有两个Bean实现了同一个接口 `MyBeanInterface`，我们希望按照特定的顺序进行加载和处理。我们可以按照以下步骤实现：
 
@@ -283,9 +303,7 @@ public class MyBean2 implements MyBeanInterface, PriorityOrdered {
 
 
 PrioritizedParameterNameDiscoverer 是 Spring Framework 中的一个类，它实现了 ParameterNameDiscoverer 接口，并增加了一个优先级的概念。它的作用是可以支持多个 ParameterNameDiscoverer 的组合使用，并按照优先级顺序依次获取方法参数的名称。
-
 PrioritizedParameterNameDiscoverer 可以用于支持多个 ParameterNameDiscoverer 的组合使用，并按照优先级顺序依次获取方法参数的名称。它通常用于在 Spring 框架中，当存在多个 ParameterNameDiscoverer 实现时，需要按照一定的优先级顺序获取方法参数的名称。
-
 下面是一个使用 PrioritizedParameterNameDiscoverer 的例子：
 
 ```java
@@ -331,7 +349,6 @@ public class UserControllerAdvice {
 ```
 
 在上面的例子中，我们首先创建了一个 UserController 类，其中包含了一个名为 createUser() 的方法，该方法包含了两个参数，分别为 name 和 age。然后，我们创建了一个 UserControllerAdvice 类，其中维护了一个 PrioritizedParameterNameDiscoverer 对象。在构造函数中，我们首先创建了一个 AnnotationParameterNameDiscoverer 对象和一个 LocalVariableTableParameterNameDiscoverer 对象，并将其添加到 PrioritizedParameterNameDiscoverer 对象中。这样，我们就可以按照一定的优先级顺序依次获取方法参数的名称。在 handleMethodArgumentNotValid() 方法中，我们首先通过 ex.getBindingResult() 获取到方法参数的验证结果，然后通过 parameterNameDiscoverer.getParameterNames() 方法获取到方法参数的名称。最后，我们将方法参数的名称和值都存储到一个 Map 中，并将其作为错误返回给客户端。
-
 总之，PrioritizedParameterNameDiscoverer 是 Spring Framework 中的一个类，它实现了 ParameterNameDiscoverer 接口，并增加了一个优先级的概念。它可以支持多个 ParameterNameDiscoverer 的组合使用，并按照优先级顺序依次获取方法参数的名称。在存在多个 ParameterNameDiscoverer 实现时，可以使用它按照一定的优先级顺序获取方法参数的名称。
 
 

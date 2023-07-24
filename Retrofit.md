@@ -1,13 +1,112 @@
 # Retrofit
 
 ### 封装成spring boot starter
+
+com.github.lianjiatech.retrofit.spring.boot.annotation
+
+com.github.lianjiatech.retrofit.spring.boot.config
+
+com.github.lianjiatech.retrofit.spring.boot.core
+
+com.github.lianjiatech.retrofit.spring.boot.degrade
+
+com.github.lianjiatech.retrofit.spring.boot.exception
+
+com.github.lianjiatech.retrofit.spring.boot.interceptor
+
 com.github.lianjiatech.retrofit.spring.boot.retry
+
+com.github.lianjiatech.retrofit.spring.boot.util
+
+
+
 
         <dependency>
             <groupId>com.github.lianjiatech</groupId>
             <artifactId>retrofit-spring-boot-starter</artifactId>
             <version>2.2.16</version>
         </dependency>
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.annotation |      |      |
+| ------------------------------------------------------ | ---- | ---- |
+| Intercept                                              |      |      |
+| InterceptMark                                          |      |      |
+| Intercepts                                             |      |      |
+| OkHttpClientBuilder                                    |      |      |
+| RetrofitClient                                         |      |      |
+| RetrofitScan                                           |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.config |      |      |
+| -------------------------------------------------- | ---- | ---- |
+| DegradeProperty                                    |      |      |
+| LogProperty                                        |      |      |
+| PoolConfig                                         |      |      |
+| RetrofitAutoConfiguration                          |      |      |
+| RetrofitConfigBean                                 |      |      |
+| RetrofitProperties                                 |      |      |
+| RetryProperty                                      |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.core |      |      |
+| ------------------------------------------------ | ---- | ---- |
+|                                                  |      |      |
+|                                                  |      |      |
+|                                                  |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.degrade |      |      |
+| --------------------------------------------------- | ---- | ---- |
+| AutoConfiguredRetrofitScannerRegistrar              |      |      |
+| BasicTypeConverterFactory                           |      |      |
+| BasicTypeConverterFactory.BooleanResponseConverter  |      |      |
+| BasicTypeConverterFactory.DoubleResponseConverter   |      |      |
+| BasicTypeConverterFactory.FloatResponseConverter    |      |      |
+| BasicTypeConverterFactory.IntegerResponseConverter  |      |      |
+| BasicTypeConverterFactory.LongResponseConverter     |      |      |
+| BasicTypeConverterFactory.StringResponseConverter   |      |      |
+| BodyCallAdapterFactory                              |      |      |
+| BodyCallAdapterFactory.BodyCallAdapter              |      |      |
+|                                                     |      |      |
+|                                                     |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.exception |      |      |
+| ----------------------------------------------------- | ---- | ---- |
+|                                                       |      |      |
+|                                                       |      |      |
+|                                                       |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.interceptor |      |      |
+| ------------------------------------------------------- | ---- | ---- |
+|                                                         |      |      |
+|                                                         |      |      |
+|                                                         |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.retry |      |      |
+| ------------------------------------------------- | ---- | ---- |
+|                                                   |      |      |
+|                                                   |      |      |
+|                                                   |      |      |
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.util |      |      |
+| ------------------------------------------------ | ---- | ---- |
+|                                                  |      |      |
+|                                                  |      |      |
+|                                                  |      |      |
+
 
 
 
@@ -18,6 +117,20 @@ com.github.lianjiatech.retrofit.spring.boot.core.RetrofitFactoryBean#getObject
 作用是把retrofit 接口的动态代理类注入spring容器
 
 https://github.com/edidada/retrofit-spring-boot-starter
+
+
+
+
+
+AutoConfiguredRetrofitScannerRegistrar
+
+
+
+RetrofitConfigBean
+
+
+
+
 
 注意spring boot 2
 spring boot 3的区别
@@ -122,18 +235,35 @@ retrofit源代码  如何解析http response
 请注意，以上是对 Retrofit 2.4.0 源代码中 `@FormUrlEncoded` 注解处理的大致描述。具体的实现细节可能会有所变化，具体还需根据您所使用的 Retrofit 版本来查看源代码来获取准确的信息。
 
 
+
+
 Java doc
 
 https://square.github.io/retrofit/2.x/retrofit/
 
+retrofit2包下面的类
 
-Body
 Call
 CallAdapter
 CallAdapter.Factory
 Callback
 Converter
 Converter.Factory
+
+HttpException
+Invocation
+
+Response
+Retrofit
+Retrofit.Builder
+SkipCallbackExecutor
+
+
+
+retrofit2.http
+
+Body
+
 DELETE
 Field
 FieldMap
@@ -144,8 +274,7 @@ Header
 HeaderMap
 Headers
 HTTP
-HttpException
-Invocation
+
 Multipart
 OPTIONS
 Part
@@ -157,13 +286,16 @@ PUT
 Query
 QueryMap
 QueryName
-Response
-Retrofit
-Retrofit.Builder
-SkipCallbackExecutor
+
 Streaming
 Tag
 Url
+
+retrofit2.internal
+
+
+
+
 
 OkHttpCall
 ServiceMethod  parseParameterAnnotation()
