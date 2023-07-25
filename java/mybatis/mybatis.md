@@ -47,7 +47,6 @@ MappedStatement 跟java.sql中的Statement对应
 
 
 
-
 MapperMethod是MyBatis框架中的一个重要类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。在MyBatis框架中，每个Mapper接口方法都会对应一个MapperMethod对象。
 MapperMethod类的源码非常复杂，但是它的核心方法是execute方法，该方法用于执行SQL语句并将查询结果映射成Java对象。下面对MapperMethod类的一些重要属性和方法进行简单介绍：
 private final SqlCommand command：表示该MapperMethod对应的SQL语句的信息，包括SQL语句、参数类型、返回值类型等信息。
@@ -143,7 +142,7 @@ Mybatis对数据的处理可以分为 用入参动态的拼装sql 和 对sql执�
 ![mybatis_process](..\..\imgs\mybatis_process.jpg)
 
 MapperRegistry
-  MapperProxyFactory
+  MapperProxyFactory<T>
     MapperProxy
 
 ### Mybatis开启日志打印
@@ -169,7 +168,7 @@ Mybatis中Like 的使用方式以及一些注意点
 - sonar
 
 
-mybatis xml文件 有哪些子节点，可以在IDEA中查看到，IDEA中有智能提示
+mybatis xml文件 有哪些子节点，可以在IDEA中查看到，IDEA中有智能提示 .xsd文件，在mybatis jar包中
 
 一个mybatis节点，可以执行多条sql语句
 
@@ -249,7 +248,7 @@ mybatis 源码 类
 
 
 MapperProxy
-MapperProxy<T> implements InvocationHandler
+MapperProxy<T> implements InvocationHandler  重要
 
 InvocationHandler
 public Object invoke(Object proxy, Method method, Object[] args)
@@ -337,8 +336,8 @@ SqlSession session子包
 	selectList(String statement, Object parameter)
 	selectList(String statement, Object parameter, RowBounds rowBounds)
 
-SqlSessionFactory
-子类
+SqlSessionFactory   接口核心方法 SqlSession openSession()
+实现类
 	DefaultSqlSessionFactory, SqlSessionManager
 	getConfiguration()
 	openSession()
@@ -3093,210 +3092,157 @@ dubbo也可以，设置环境变量
 
 3.4.6
 
-| org.apache.ibatis.annotations |                                                              |
-| ----------------------------- | ------------------------------------------------------------ |
-| Arg                           | The annotation that specify a mapping definition for the constructor argument. |
-|                               |                                                              |
-| AutomapConstructor            | The marker annotation that indicate a constructor for automatic mapping. |
-|                               |                                                              |
-| CacheNamespace                | The annotation that specify to use cache on namespace(e.g.   |
-|                               |                                                              |
-| CacheNamespaceRef             | The annotation that reference a cache.                       |
-|                               |                                                              |
-| Case                          | The annotation that conditional mapping definition for TypeDiscriminator. |
-|                               |                                                              |
-| ConstructorArgs               | The annotation that be grouping mapping definitions for constructor. |
-|                               |                                                              |
-| Delete                        | The annotation that specify an SQL for deleting record(s).   |
-|                               |                                                              |
-| Delete.List                   | The container annotation for Delete.                         |
-|                               |                                                              |
-| DeleteProvider                | The annotation that specify a method that provide an SQL for deleting record(s). |
-|                               |                                                              |
-| DeleteProvider.List           | The container annotation for DeleteProvider.                 |
-|                               |                                                              |
-| Flush                         | The maker annotation that invoke a flush statements via Mapper interface. |
-|                               |                                                              |
-| Insert                        | The annotation that specify an SQL for inserting record(s).  |
-|                               |                                                              |
-| Insert.List                   | The container annotation for Insert.                         |
-|                               |                                                              |
-| InsertProvider                | The annotation that specify a method that provide an SQL for inserting record(s). |
-|                               |                                                              |
-| InsertProvider.List           | The container annotation for InsertProvider.                 |
-|                               |                                                              |
-| Lang                          | The annotation that specify a LanguageDriver to use.         |
-|                               |                                                              |
-| Many                          | The annotation that specify the nested statement for retrieving collections. |
-|                               |                                                              |
-| MapKey                        | The annotation that specify the property name(or column name) for a key value of Map. |
-|                               |                                                              |
-| Mapper                        | Marker interface for MyBatis mappers.                        |
-|                               |                                                              |
-| One                           | The annotation that specify the nested statement for retrieving single object. |
-|                               |                                                              |
-| Options                       | The annotation that specify options for customizing default behaviors. |
-|                               |                                                              |
-| Options.FlushCachePolicy      | The options for the Options.flushCache().                    |
-|                               |                                                              |
-| Options.List                  | The container annotation for Options.                        |
-|                               |                                                              |
-| Param                         | The annotation that specify the parameter name.              |
-|                               |                                                              |
-| Property                      | The annotation that inject a property value.                 |
-|                               |                                                              |
-| Result                        | The annotation that specify a mapping definition for the property. |
-|                               |                                                              |
-| ResultMap                     | The annotation that specify result map names to use.         |
-|                               |                                                              |
-| Results                       | The annotation that be grouping mapping definitions for property. |
-|                               |                                                              |
-| ResultType                    | This annotation can be used when a @Select method is using a ResultHandler. |
-|                               |                                                              |
-| Select                        | The annotation that specify an SQL for retrieving record(s). |
-|                               |                                                              |
-| Select.List                   | The container annotation for Select.                         |
-|                               |                                                              |
-| SelectKey                     | The annotation that specify an SQL for retrieving a key value. |
-|                               |                                                              |
-| SelectKey.List                | The container annotation for SelectKey.                      |
-|                               |                                                              |
-| SelectProvider                | The annotation that specify a method that provide an SQL for retrieving record(s). |
-|                               |                                                              |
-| SelectProvider.List           | The container annotation for SelectProvider.                 |
-|                               |                                                              |
-| TypeDiscriminator             | The annotation that be grouping conditional mapping definitions. |
-|                               |                                                              |
-| Update                        | The annotation that specify an SQL for updating record(s).   |
-|                               |                                                              |
-| Update.List                   | The container annotation for Update.                         |
-|                               |                                                              |
-| UpdateProvider                | The annotation that specify a method that provide an SQL for updating record(s). |
-|                               |                                                              |
-| UpdateProvider.List           | The container annotation for UpdateProvider.                 |
-|                               |                                                              |
+| org.apache.ibatis.annotations |            |                                                              |
+| ----------------------------- | ---------- | ------------------------------------------------------------ |
+| Arg                           | @interface | The annotation that specify a mapping definition for the constructor argument. |
+|                               |            |                                                              |
+| AutomapConstructor            | @interface | The marker annotation that indicate a constructor for automatic mapping. |
+|                               |            |                                                              |
+| CacheNamespace                | @interface | The annotation that specify to use cache on namespace(e.g.   |
+|                               |            |                                                              |
+| CacheNamespaceRef             | @interface | The annotation that reference a cache.                       |
+|                               |            |                                                              |
+| Case                          | @interface | The annotation that conditional mapping definition for TypeDiscriminator. |
+|                               |            |                                                              |
+| ConstructorArgs               | @interface | The annotation that be grouping mapping definitions for constructor. |
+|                               |            |                                                              |
+| Delete                        | @interface | The annotation that specify an SQL for deleting record(s).   |
+|                               |            |                                                              |
+| Delete.List                   | @interface | The container annotation for Delete.                         |
+|                               |            |                                                              |
+| DeleteProvider                | @interface | The annotation that specify a method that provide an SQL for deleting record(s). |
+|                               |            |                                                              |
+| DeleteProvider.List           | @interface | The container annotation for DeleteProvider.                 |
+|                               |            |                                                              |
+| Flush                         | @interface | The maker annotation that invoke a flush statements via Mapper interface. |
+|                               |            |                                                              |
+| Insert                        | @interface | The annotation that specify an SQL for inserting record(s).  |
+|                               |            |                                                              |
+| Insert.List                   | @interface | The container annotation for Insert.                         |
+|                               |            |                                                              |
+| InsertProvider                | @interface | The annotation that specify a method that provide an SQL for inserting record(s). |
+|                               |            |                                                              |
+| InsertProvider.List           | @interface | The container annotation for InsertProvider.                 |
+|                               |            |                                                              |
+| Lang                          | @interface | The annotation that specify a LanguageDriver to use.         |
+|                               |            |                                                              |
+| Many                          | @interface | The annotation that specify the nested statement for retrieving collections. |
+|                               |            |                                                              |
+| MapKey                        | @interface | The annotation that specify the property name(or column name) for a key value of Map. |
+|                               |            |                                                              |
+| Mapper                        | @interface | Marker interface for MyBatis mappers.                        |
+|                               |            |                                                              |
+| One                           | @interface | The annotation that specify the nested statement for retrieving single object. |
+|                               |            |                                                              |
+| Options                       | @interface | The annotation that specify options for customizing default behaviors. |
+|                               |            |                                                              |
+| Options.FlushCachePolicy      | @interface | The options for the Options.flushCache().                    |
+|                               |            |                                                              |
+| Options.List                  | @interface | The container annotation for Options.                        |
+|                               |            |                                                              |
+| Param                         | @interface | The annotation that specify the parameter name.              |
+|                               |            |                                                              |
+| Property                      | @interface | The annotation that inject a property value.                 |
+|                               |            |                                                              |
+| Result                        | @interface | The annotation that specify a mapping definition for the property. |
+|                               |            |                                                              |
+| ResultMap                     | @interface | The annotation that specify result map names to use.         |
+|                               |            |                                                              |
+| Results                       | @interface | The annotation that be grouping mapping definitions for property. |
+|                               |            |                                                              |
+| ResultType                    | @interface | This annotation can be used when a @Select method is using a ResultHandler. |
+|                               |            |                                                              |
+| Select                        | @interface | The annotation that specify an SQL for retrieving record(s). |
+|                               |            |                                                              |
+| Select.List                   | @interface | The container annotation for Select.                         |
+|                               |            |                                                              |
+| SelectKey                     | @interface | The annotation that specify an SQL for retrieving a key value. |
+|                               |            |                                                              |
+| SelectKey.List                | @interface | The container annotation for SelectKey.                      |
+|                               |            |                                                              |
+| SelectProvider                | @interface | The annotation that specify a method that provide an SQL for retrieving record(s). |
+|                               |            |                                                              |
+| SelectProvider.List           | @interface | The container annotation for SelectProvider.                 |
+|                               |            |                                                              |
+| TypeDiscriminator             | @interface | The annotation that be grouping conditional mapping definitions. |
+|                               |            |                                                              |
+| Update                        | @interface | The annotation that specify an SQL for updating record(s).   |
+|                               |            |                                                              |
+| Update.List                   | @interface | The container annotation for Update.                         |
+|                               |            |                                                              |
+| UpdateProvider                | @interface | The annotation that specify a method that provide an SQL for updating record(s). |
+|                               |            |                                                              |
+| UpdateProvider.List           | @interface | The container annotation for UpdateProvider.                 |
+|                               |            |                                                              |
 
 
 
 
 
-| org.apache.ibatis.binding    |
-| ---------------------------- |
-| BindingException             |
-| MapperMethod                 |
-| MapperMethod.MethodSignature |
-| MapperMethod.ParamMap<V>     |
-| MapperMethod.SqlCommand      |
-| MapperProxy<T>               |
-|                              |
-| MapperProxyFactory<T>        |
-|                              |
-| MapperRegistry               |
+| org.apache.ibatis.binding    |      |                                                              |
+| ---------------------------- | ---- | ------------------------------------------------------------ |
+| BindingException             |      |                                                              |
+| MapperMethod                 |      | public Object execute(SqlSession sqlSession, Object[] args) 核心方法 |
+| MapperMethod.MethodSignature |      |                                                              |
+| MapperMethod.ParamMap<V>     |      | HashMap<String, V>                                           |
+| MapperMethod.SqlCommand      |      | SqlCommandType type                                          |
+| MapperProxy<T>               |      | 动态代理                                                     |
+|                              |      |                                                              |
+| MapperProxyFactory<T>        | 泛型 | 见下面，调用动态代理                                         |
+|                              |      |                                                              |
+| MapperRegistry               |      | Mapper注册 get add Mapper   Map<Class<?>, MapperProxyFactory<?>> knownMappers  属性 |
+
+
+
+一个mybatis接口，一个org.apache.ibatis.binding.MapperProxyFactory对象 泛型T就是接口动态代理对象
+
+
+
+java.lang.reflect.Proxy#newProxyInstance(ClassLoader loader,
+                                      Class<?>[] interfaces,
+                                      InvocationHandler h)
+
+
+
+InvocationHandler 参数是MapperProxy对象
+
+MapperProxyFactory类公开方法
+
+```
+public T newInstance(SqlSession sqlSession)
+```
+
+
+
+| org.apache.ibatis.builder                     |           |                         |
+| --------------------------------------------- | --------- | ----------------------- |
+| BaseBuilder                                   | abstract  |                         |
+| BuilderException                              |           | PersistenceException    |
+| CacheRefResolver                              |           |                         |
+| IncompleteElementException                    |           |                         |
+| InitializingObject                            | interface |                         |
+| MapperBuilderAssistant                        |           |                         |
+| ParameterExpression                           |           | HashMap<String, String> |
+| ResultMapResolver                             |           |                         |
+| SqlSourceBuilder                              |           |                         |
+| SqlSourceBuilder.ParameterMappingTokenHandler |           |                         |
+| StaticSqlSource                               |           | implements SqlSource    |
 
 
 
 
 
-
-
-| org.apache.ibatis.builder.annotation                         |
-| ------------------------------------------------------------ |
-| MapperAnnotationBuilder                                      |
-|                                                              |
-| MethodResolver                                               |
-|                                                              |
-| ProviderContext                                              |
-| The context object for sql provider method.                  |
-| ProviderMethodResolver                                       |
-| The interface that resolve an SQL provider method via an SQL provider class. |
-| ProviderSqlSource                                            |
-
-
-
-
-
-
-
-| org.apache.ibatis.builder.xml                 |
-| --------------------------------------------- |
-| XMLConfigBuilder                              |
-|                                               |
-| XMLIncludeTransformer                         |
-|                                               |
-| XMLMapperBuilder                              |
-|                                               |
-| XMLMapperEntityResolver                       |
-| Offline entity resolver for the MyBatis DTDs. |
-| XMLStatementBuilder                           |
-
-
-
-
-
-
-
-| org.apache.ibatis.cache                                      |
-| ------------------------------------------------------------ |
-| Cache                                                        |
-| SPI for cache providers.                                     |
-| CacheException                                               |
-|                                                              |
-| CacheKey                                                     |
-|                                                              |
-| NullCacheKey                                                 |
-| Deprecated.                                                  |
-| Since 3.5.3, This class never used and will be removed future version. |
-| TransactionalCacheManager                                    |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| cache.decorators                                             |
-|                                                              |
-| BlockingCache                                                |
-| Simple blocking decorator                                    |
-| FifoCache                                                    |
-| FIFO (first in, first out) cache decorator.                  |
-| LoggingCache                                                 |
-|                                                              |
-| LruCache                                                     |
-| Lru (least recently used) cache decorator.                   |
-| ScheduledCache                                               |
-|                                                              |
-| SerializedCache                                              |
-|                                                              |
-| SerializedCache.CustomObjectInputStream                      |
-|                                                              |
-| SoftCache                                                    |
-| Soft Reference cache decorator.                              |
-| SynchronizedCache                                            |
-|                                                              |
-| TransactionalCache                                           |
-| The 2nd level cache transactional buffer.                    |
-| WeakCache                                                    |
-| Weak Reference cache decorator.                              |
-|                                                              |
-|                                                              |
-| cache.impl                                                   |
-| PerpetualCache                                               |
-
-
-
-
-
-| org.apache.ibatis.cursor                                     |
-| ------------------------------------------------------------ |
-| Cursor<T>                                                    |
-| Cursor contract to handle fetching items lazily using an Iterator. |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.cursor.defaults                            |
-|                                                              |
-|                                                              |
-| DefaultCursor<T>                                             |
-| This is the default implementation of a MyBatis Cursor.      |
-| DefaultCursor.ObjectWrapperResultHandler<T>                  |
+| org.apache.ibatis.builder.annotation |      |                                                              |
+| ------------------------------------ | ---- | ------------------------------------------------------------ |
+| MapperAnnotationBuilder              |      |                                                              |
+|                                      |      |                                                              |
+| MethodResolver                       |      |                                                              |
+|                                      |      |                                                              |
+| ProviderContext                      |      | The context object for sql provider method.                  |
+|                                      |      |                                                              |
+| ProviderMethodResolver               |      | The interface that resolve an SQL provider method via an SQL provider class. |
+|                                      |      |                                                              |
+| ProviderSqlSource                    |      |                                                              |
 
 
 
@@ -3304,34 +3250,121 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.datasource                                 |
-| ------------------------------------------------------------ |
-| DataSourceException                                          |
-|                                                              |
-| DataSourceFactory                                            |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| datasource.jndi                                              |
-|                                                              |
-| JndiDataSourceFactory                                        |
-|                                                              |
-|                                                              |
-| datasource.pooled                                            |
-|                                                              |
-| PooledDataSource                                             |
-| This is a simple, synchronous, thread-safe database connection pool. |
-| PooledDataSourceFactory                                      |
-| 聽                                                           |
-| PoolState                                                    |
-|                                                              |
-|                                                              |
-| datasource.unpooled                                          |
-| UnpooledDataSource                                           |
-|                                                              |
-| UnpooledDataSourceFactory                                    |
+| org.apache.ibatis.builder.xml |                                               |
+| ----------------------------- | --------------------------------------------- |
+| XMLConfigBuilder              |                                               |
+|                               |                                               |
+| XMLIncludeTransformer         |                                               |
+|                               |                                               |
+| XMLMapperBuilder              |                                               |
+|                               |                                               |
+| XMLMapperEntityResolver       | Offline entity resolver for the MyBatis DTDs. |
+|                               |                                               |
+| XMLStatementBuilder           |                                               |
+
+
+
+
+
+
+
+| org.apache.ibatis.cache                 |                                                              |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Cache                                   | SPI for cache providers.                                     |
+|                                         |                                                              |
+| CacheException                          |                                                              |
+|                                         |                                                              |
+| CacheKey                                |                                                              |
+|                                         |                                                              |
+| NullCacheKey                            | Deprecated. Since 3.5.3, This class never used and will be removed future version. |
+|                                         |                                                              |
+|                                         |                                                              |
+| TransactionalCacheManager               |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+| org.apache.ibatis.cache.decorators      |                                                              |
+|                                         |                                                              |
+| BlockingCache                           | Simple blocking decorator                                    |
+|                                         |                                                              |
+| FifoCache                               | FIFO (first in, first out) cache decorator.                  |
+|                                         |                                                              |
+| LoggingCache                            |                                                              |
+|                                         |                                                              |
+| LruCache                                | Lru (least recently used) cache decorator.                   |
+|                                         |                                                              |
+| ScheduledCache                          |                                                              |
+|                                         |                                                              |
+| SerializedCache                         |                                                              |
+|                                         |                                                              |
+| SerializedCache.CustomObjectInputStream |                                                              |
+|                                         |                                                              |
+| SoftCache                               | Soft Reference cache decorator.                              |
+|                                         |                                                              |
+| SynchronizedCache                       |                                                              |
+|                                         |                                                              |
+| TransactionalCache                      | The 2nd level cache transactional buffer.                    |
+|                                         |                                                              |
+| WeakCache                               | Weak Reference cache decorator.                              |
+|                                         |                                                              |
+|                                         |                                                              |
+|                                         |                                                              |
+| org.apache.ibatis.cache.impl            |                                                              |
+| PerpetualCache                          |                                                              |
+
+
+
+
+
+| org.apache.ibatis.cursor                    |                                                              |
+| ------------------------------------------- | ------------------------------------------------------------ |
+| Cursor<T>                                   | Cursor contract to handle fetching items lazily using an Iterator. |
+|                                             |                                                              |
+|                                             |                                                              |
+|                                             |                                                              |
+|                                             |                                                              |
+| org.apache.ibatis.cursor.defaults           |                                                              |
+|                                             |                                                              |
+|                                             |                                                              |
+| DefaultCursor<T>                            | This is the default implementation of a MyBatis Cursor.      |
+|                                             |                                                              |
+| DefaultCursor.ObjectWrapperResultHandler<T> |                                                              |
+
+
+
+
+
+
+
+| org.apache.ibatis.datasource |                                                              |
+| ---------------------------- | ------------------------------------------------------------ |
+| DataSourceException          |                                                              |
+|                              |                                                              |
+| DataSourceFactory            |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+| datasource.jndi              |                                                              |
+|                              |                                                              |
+| JndiDataSourceFactory        |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+| datasource.pooled            |                                                              |
+|                              |                                                              |
+| PooledDataSource             | This is a simple, synchronous, thread-safe database connection pool. |
+|                              |                                                              |
+| PooledDataSourceFactory      |                                                              |
+|                              |                                                              |
+| PoolState                    |                                                              |
+|                              |                                                              |
+|                              |                                                              |
+| datasource.unpooled          |                                                              |
+| UnpooledDataSource           |                                                              |
+|                              |                                                              |
+| UnpooledDataSourceFactory    |                                                              |
 
 
 
@@ -3341,15 +3374,15 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.exceptions |
-| ---------------------------- |
-| ExceptionFactory             |
-|                              |
-| IbatisException              |
-| Deprecated.                  |
-| PersistenceException         |
-|                              |
-| TooManyResultsException      |
+| org.apache.ibatis.exceptions | 类型      |                                                    |
+| ---------------------------- | --------- | -------------------------------------------------- |
+| ExceptionFactory             |           |                                                    |
+|                              |           |                                                    |
+| IbatisException              |           |                                                    |
+| Deprecated.                  |           |                                                    |
+| PersistenceException         |           |                                                    |
+|                              |           |                                                    |
+| TooManyResultsException      | exception | 查询数据库数据，有多个，但是你代码出参是一个，报错 |
 
 
 
@@ -3357,120 +3390,120 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.executor                                   |
-| ------------------------------------------------------------ |
-| BaseExecutor                                                 |
-|                                                              |
-| BatchExecutor                                                |
-|                                                              |
-| BatchExecutorException                                       |
-| This exception is thrown if a java.sql.BatchUpdateException is caught during the execution of any nested batch. |
-| BatchResult                                                  |
-|                                                              |
-| CachingExecutor                                              |
-|                                                              |
-| ErrorContext                                                 |
-|                                                              |
-| ExecutionPlaceholder                                         |
-|                                                              |
-| Executor                                                     |
-|                                                              |
-| ExecutorException                                            |
-|                                                              |
-| ResultExtractor                                              |
-|                                                              |
-| ReuseExecutor                                                |
-|                                                              |
-| SimpleExecutor                                               |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.keygen                            |
-|                                                              |
-|                                                              |
-| Jdbc3KeyGenerator                                            |
-|                                                              |
-| KeyGenerator                                                 |
-|                                                              |
-| NoKeyGenerator                                               |
-|                                                              |
-| SelectKeyGenerator                                           |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.loader                            |
-| AbstractEnhancedDeserializationProxy                         |
-|                                                              |
-| AbstractSerialStateHolder                                    |
-|                                                              |
-| CglibProxyFactory                                            |
-| Deprecated.                                                  |
-| JavassistProxyFactory                                        |
-| Deprecated.                                                  |
-| ProxyFactory                                                 |
-|                                                              |
-| ResultLoader                                                 |
-|                                                              |
-| ResultLoaderMap                                              |
-|                                                              |
-| ResultLoaderMap.LoadPair                                     |
-| Property which was not loaded yet.                           |
-| WriteReplaceInterface                                        |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.loader.cglib                      |
-| CglibProxyFactory                                            |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.loader.javassist                  |
-| JavassistProxyFactory                                        |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.parameter                         |
-| ParameterHandler                                             |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.result                            |
-| DefaultMapResultHandler<K,V>                                 |
-|                                                              |
-| DefaultResultContext<T>                                      |
-|                                                              |
-| DefaultResultHandler                                         |
-|                                                              |
-| ResultMapException                                           |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.executor.resultset                         |
-|                                                              |
-| DefaultResultSetHandler                                      |
-|                                                              |
-| ResultSetHandler                                             |
-|                                                              |
-| ResultSetWrapper                                             |
-|                                                              |
-| executor.statement                                           |
-| BaseStatementHandler                                         |
-|                                                              |
-| CallableStatementHandler                                     |
-|                                                              |
-| PreparedStatementHandler                                     |
-|                                                              |
-| RoutingStatementHandler                                      |
-|                                                              |
-| SimpleStatementHandler                                       |
-|                                                              |
-| StatementHandler                                             |
-|                                                              |
-| StatementUtil                                                |
+| org.apache.ibatis.executor                  | 类型 | 英文说明                                                     | 说明             |
+| ------------------------------------------- | ---- | ------------------------------------------------------------ | ---------------- |
+| BaseExecutor                                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| BatchExecutor                               |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| BatchExecutorException                      |      | This exception is thrown if a java.sql.BatchUpdateException is caught during the execution of any nested batch. |                  |
+|                                             |      |                                                              |                  |
+| BatchResult                                 |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| CachingExecutor                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ErrorContext                                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ExecutionPlaceholder                        |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| Executor                                    |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ExecutorException                           |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultExtractor                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ReuseExecutor                               |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| SimpleExecutor                              |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.keygen           |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| Jdbc3KeyGenerator                           |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| KeyGenerator                                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| NoKeyGenerator                              |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| SelectKeyGenerator                          |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.loader           |      |                                                              |                  |
+| AbstractEnhancedDeserializationProxy        |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| AbstractSerialStateHolder                   |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| CglibProxyFactory                           |      |                                                              |                  |
+| Deprecated.                                 |      |                                                              |                  |
+| JavassistProxyFactory                       |      |                                                              |                  |
+| Deprecated.                                 |      |                                                              |                  |
+| ProxyFactory                                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultLoader                                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultLoaderMap                             |      |                                                              |                  |
+|                                             |      | Property which was not loaded yet.                           |                  |
+| ResultLoaderMap.LoadPair                    |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| WriteReplaceInterface                       |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.loader.cglib     |      |                                                              |                  |
+| CglibProxyFactory                           |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.loader.javassist |      |                                                              |                  |
+| JavassistProxyFactory                       |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.parameter        |      |                                                              |                  |
+| ParameterHandler                            |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.result           |      |                                                              |                  |
+| DefaultMapResultHandler<K,V>                |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| DefaultResultContext<T>                     |      |                                                              | ResultContext<T> |
+|                                             |      |                                                              |                  |
+| DefaultResultHandler                        |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultMapException                          |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| org.apache.ibatis.executor.resultset        |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| DefaultResultSetHandler                     |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultSetHandler                            |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| ResultSetWrapper                            |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| executor.statement                          |      |                                                              |                  |
+| BaseStatementHandler                        |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| CallableStatementHandler                    |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| PreparedStatementHandler                    |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| RoutingStatementHandler                     |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| SimpleStatementHandler                      |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| StatementHandler                            |      |                                                              |                  |
+|                                             |      |                                                              |                  |
+| StatementUtil                               |      |                                                              |                  |
 
 
 
@@ -3478,30 +3511,30 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.io                                         |
-| ------------------------------------------------------------ |
-| ClassLoaderWrapper                                           |
-| A class to wrap access to multiple class loaders making them work as one |
-| DefaultVFS                                                   |
-| A default implementation of VFS that works for most application servers. |
-| ExternalResources                                            |
-| Deprecated.                                                  |
-| JBoss6VFS                                                    |
-| A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |
-| ResolverUtil<T>                                              |
-| ResolverUtil is used to locate classes that are available in the/a class path and meet arbitrary conditions. |
-| ResolverUtil.AnnotatedWith                                   |
-| A Test that checks to see if each class is annotated with a specific annotation. |
-| ResolverUtil.IsA                                             |
-| A Test that checks to see if each class is assignable to the provided class. |
-| ResolverUtil.Test                                            |
-| A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |
-| Resources                                                    |
-| A class to simplify access to resources through the classloader. |
-| SerialFilterChecker                                          |
-|                                                              |
-| VFS                                                          |
-| Provides a very simple API for accessing resources within an application server. |
+| org.apache.ibatis.io       |                                                              |
+| -------------------------- | ------------------------------------------------------------ |
+| ClassLoaderWrapper         | A class to wrap access to multiple class loaders making them work as one |
+|                            |                                                              |
+| DefaultVFS                 | A default implementation of VFS that works for most application servers. |
+|                            |                                                              |
+| ExternalResources          | Deprecated.                                                  |
+|                            |                                                              |
+| JBoss6VFS                  | A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |
+|                            |                                                              |
+| ResolverUtil<T>            | ResolverUtil is used to locate classes that are available in the/a class path and meet arbitrary conditions. |
+|                            |                                                              |
+| ResolverUtil.AnnotatedWith | A Test that checks to see if each class is annotated with a specific annotation. |
+|                            |                                                              |
+| ResolverUtil.IsA           | A Test that checks to see if each class is assignable to the provided class. |
+|                            |                                                              |
+| ResolverUtil.Test          | A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |
+|                            |                                                              |
+| Resources                  | A class to simplify access to resources through the classloader. |
+|                            |                                                              |
+| SerialFilterChecker        |                                                              |
+|                            |                                                              |
+| VFS                        | Provides a very simple API for accessing resources within an application server. |
+|                            |                                                              |
 
 
 
@@ -3564,7 +3597,7 @@ dubbo也可以，设置环境变量
 |                                         |      |
 |                                         |      |
 |                                         |      |
-| logging.jdbc                            |      |
+| org.apache.ibatis.logging.jdbc          |      |
 |                                         |      |
 | BaseJdbcLogger                          |      |
 | Base class for proxies to do logging.   |      |
@@ -3578,15 +3611,15 @@ dubbo也可以，设置环境变量
 | Statement proxy to add logging.         |      |
 |                                         |      |
 |                                         |      |
-| logging.jdk14                           |      |
+| org.apache.ibatis.logging.jdk14         |      |
 | Jdk14LoggingImpl                        |      |
 |                                         |      |
 |                                         |      |
-| logging.log4j                           |      |
+| org.apache.ibatis.logging.log4j         |      |
 | Log4jImpl                               |      |
 |                                         |      |
 |                                         |      |
-| logging.log4j2                          |      |
+| org.apache.ibatis.logging.log4j2        |      |
 |                                         |      |
 | Log4j2AbstractLoggerImpl                |      |
 |                                         |      |
@@ -3595,20 +3628,20 @@ dubbo也可以，设置环境变量
 | Log4j2LoggerImpl                        |      |
 |                                         |      |
 |                                         |      |
-| logging.nologging                       |      |
+| org.apache.ibatis.logging.nologging     |      |
 |                                         |      |
 | NoLoggingImpl                           |      |
 |                                         |      |
 |                                         |      |
 |                                         |      |
 |                                         |      |
-| logging.slf4j                           |      |
+| org.apache.ibatis.logging.slf4j         |      |
 | Slf4jImpl                               |      |
 |                                         |      |
 |                                         |      |
 |                                         |      |
 |                                         |      |
-| logging.stdout                          |      |
+| org.apache.ibatis.logging.stdout        |      |
 | StdOutImpl                              |      |
 
 
@@ -3617,60 +3650,60 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.mapping                                    |
-| ------------------------------------------------------------ |
-| BoundSql                                                     |
-| An actual SQL String got from an SqlSource after having processed any dynamic content. |
-| CacheBuilder                                                 |
-|                                                              |
-| DatabaseIdProvider                                           |
-| Should return an id to identify the type of this database.   |
-| DefaultDatabaseIdProvider                                    |
-| Deprecated.                                                  |
-| Discriminator                                                |
-|                                                              |
-| Discriminator.Builder                                        |
-|                                                              |
-| Environment                                                  |
-|                                                              |
-| Environment.Builder                                          |
-|                                                              |
-| FetchType                                                    |
-|                                                              |
-| MappedStatement                                              |
-|                                                              |
-| MappedStatement.Builder                                      |
-|                                                              |
-| ParameterMap                                                 |
-|                                                              |
-| ParameterMap.Builder                                         |
-|                                                              |
-| ParameterMapping                                             |
-|                                                              |
-| ParameterMapping.Builder                                     |
-|                                                              |
-| ParameterMode                                                |
-|                                                              |
-| ResultFlag                                                   |
-|                                                              |
-| ResultMap                                                    |
-|                                                              |
-| ResultMap.Builder                                            |
-|                                                              |
-| ResultMapping                                                |
-|                                                              |
-| ResultMapping.Builder                                        |
-|                                                              |
-| ResultSetType                                                |
-|                                                              |
-| SqlCommandType                                               |
-|                                                              |
-| SqlSource                                                    |
-| Represents the content of a mapped statement read from an XML file or an annotation. |
-| StatementType                                                |
-|                                                              |
-| VendorDatabaseIdProvider                                     |
-| Vendor DatabaseId provider.                                  |
+| org.apache.ibatis.mapping |                                                              |
+| ------------------------- | ------------------------------------------------------------ |
+| BoundSql                  |                                                              |
+|                           | An actual SQL String got from an SqlSource after having processed any dynamic content. |
+| CacheBuilder              |                                                              |
+|                           |                                                              |
+| DatabaseIdProvider        | Should return an id to identify the type of this database.   |
+|                           |                                                              |
+| DefaultDatabaseIdProvider | Deprecated.                                                  |
+|                           |                                                              |
+| Discriminator             |                                                              |
+|                           |                                                              |
+| Discriminator.Builder     |                                                              |
+|                           |                                                              |
+| Environment               |                                                              |
+|                           |                                                              |
+| Environment.Builder       |                                                              |
+|                           |                                                              |
+| FetchType                 |                                                              |
+|                           |                                                              |
+| MappedStatement           |                                                              |
+|                           |                                                              |
+| MappedStatement.Builder   |                                                              |
+|                           |                                                              |
+| ParameterMap              |                                                              |
+|                           |                                                              |
+| ParameterMap.Builder      |                                                              |
+|                           |                                                              |
+| ParameterMapping          |                                                              |
+|                           |                                                              |
+| ParameterMapping.Builder  |                                                              |
+|                           |                                                              |
+| ParameterMode             |                                                              |
+|                           |                                                              |
+| ResultFlag                |                                                              |
+|                           |                                                              |
+| ResultMap                 |                                                              |
+|                           |                                                              |
+| ResultMap.Builder         |                                                              |
+|                           |                                                              |
+| ResultMapping             |                                                              |
+|                           |                                                              |
+| ResultMapping.Builder     |                                                              |
+|                           |                                                              |
+| ResultSetType             |                                                              |
+|                           |                                                              |
+| SqlCommandType            |                                                              |
+|                           |                                                              |
+| SqlSource                 | Represents the content of a mapped statement read from an XML file or an annotation. |
+|                           |                                                              |
+| StatementType             |                                                              |
+|                           |                                                              |
+| VendorDatabaseIdProvider  | Vendor DatabaseId provider.                                  |
+|                           |                                                              |
 
 
 
@@ -3678,9 +3711,33 @@ dubbo也可以，设置环境变量
 
 | org.apache.ibatis.ognl |      |      |
 | ---------------------- | ---- | ---- |
+| ArrayElementsAccessor  |      |      |
+| ArrayPropertyAccessor  |      |      |
+| ASTAdd                 |      |      |
+| ASTAnd                 |      |      |
+| ASTAssign              |      |      |
+| ASTBitAnd              |      |      |
+| ASTBitNegate           |      |      |
+| ASTBitOr               |      |      |
 |                        |      |      |
 |                        |      |      |
 |                        |      |      |
+
+
+
+| org.apache.ibatis.ognl.enhance |      |      |
+| ------------------------------ | ---- | ---- |
+| ContextClassLoader             |      |      |
+|                                |      |      |
+|                                |      |      |
+
+
+
+| org.apache.ibatis.ognl.internal |      |      |
+| ------------------------------- | ---- | ---- |
+| ClassCache                      |      |      |
+| ClassCacheImpl                  |      |      |
+| Entry                           |      |      |
 
 
 
@@ -3877,51 +3934,51 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.session                                    |
-| ------------------------------------------------------------ |
-| AutoMappingBehavior                                          |
-| Specifies if and how MyBatis should automatically map columns to fields/properties. |
-| AutoMappingUnknownColumnBehavior                             |
-| Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. |
-| Configuration                                                |
-|                                                              |
-| Configuration.StrictMap<V>                                   |
-|                                                              |
-| Configuration.StrictMap.Ambiguity                            |
-|                                                              |
-| ExecutorType                                                 |
-|                                                              |
-| LocalCacheScope                                              |
-|                                                              |
-| ResultContext<T>                                             |
-|                                                              |
-| ResultHandler<T>                                             |
-|                                                              |
-| RowBounds                                                    |
-|                                                              |
-| SqlSession                                                   |
-| The primary Java interface for working with MyBatis.         |
-| SqlSessionException                                          |
-|                                                              |
-| SqlSessionFactory                                            |
-| Creates an SqlSession out of a connection or a DataSource    |
-| SqlSessionFactoryBuilder                                     |
-| Builds SqlSession instances.                                 |
-| SqlSessionManager                                            |
-|                                                              |
-| TransactionIsolationLevel                                    |
-|                                                              |
-|                                                              |
-| session.defaults                                             |
-|                                                              |
-|                                                              |
-|                                                              |
-| DefaultSqlSession                                            |
-| The default implementation for SqlSession.                   |
-| DefaultSqlSession.StrictMap<V>                               |
-| Deprecated.                                                  |
-| Since 3.5.5                                                  |
-| DefaultSqlSessionFactory                                     |
+| org.apache.ibatis.session          | 类型      | 说明                                                         |                                                    |
+| ---------------------------------- | --------- | ------------------------------------------------------------ | -------------------------------------------------- |
+| AutoMappingBehavior                |           | Specifies if and how MyBatis should automatically map columns to fields/properties. |                                                    |
+|                                    |           |                                                              |                                                    |
+| AutoMappingUnknownColumnBehavior   |           | Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. |                                                    |
+|                                    |           |                                                              |                                                    |
+| Configuration                      |           |                                                              | 配置类                                             |
+|                                    |           |                                                              |                                                    |
+| Configuration.StrictMap<V>         |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| Configuration.StrictMap.Ambiguity  |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| ExecutorType                       | enum      |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| LocalCacheScope                    |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| ResultContext<T>                   | interface |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| ResultHandler<T>                   | interface |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| RowBounds                          |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| SqlSession                         | interface | The primary Java interface for working with MyBatis.         | select等等方法                                     |
+|                                    |           |                                                              |                                                    |
+| SqlSessionException                | exception |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| SqlSessionFactory                  | interface |                                                              | 获取 SqlSession对象 实现类DefaultSqlSessionFactory |
+|                                    |           | Creates an SqlSession out of a connection or a DataSource    |                                                    |
+| SqlSessionFactoryBuilder           |           | Builds SqlSession instances.                                 | public SqlSessionFactory build(Reader reader) 方法 |
+|                                    |           |                                                              |                                                    |
+| SqlSessionManager                  |           |                                                              | SqlSession接口实现类，跟DefaultSqlSession类比      |
+|                                    |           |                                                              |                                                    |
+| TransactionIsolationLevel          |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| org.apache.ibatis.session.defaults |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| DefaultSqlSession                  |           | The default implementation for SqlSession.                   | SqlSession接口实现类，跟SqlSessionManager类比      |
+|                                    |           |                                                              |                                                    |
+| DefaultSqlSession.StrictMap<V>     |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+|                                    |           |                                                              |                                                    |
+| DefaultSqlSessionFactory           |           |                                                              |                                                    |
 
 
 
