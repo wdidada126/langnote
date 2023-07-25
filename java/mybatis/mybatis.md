@@ -3936,23 +3936,16 @@ dubbo也可以，设置环境变量
 | Transaction                                                  |
 | Wraps a database connection.                                 |
 | TransactionException                                         |
-|                                                              |
 | TransactionFactory                                           |
 | Creates Transaction instances.                               |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| transaction.jdbc                                             |
-|                                                              |
-|                                                              |
+| org.apache.ibatis.transaction.transaction.jdbc               |
 |                                                              |
 | JdbcTransaction                                              |
 | Transaction that makes use of the JDBC commit and rollback facilities directly. |
 | JdbcTransactionFactory                                       |
 | Creates JdbcTransaction instances.                           |
 |                                                              |
-| transaction.managed                                          |
+| org.apache.ibatis.transaction..managed                       |
 |                                                              |
 | ManagedTransaction                                           |
 | Transaction that lets the container manage the full lifecycle of the transaction. |
@@ -3967,112 +3960,59 @@ dubbo也可以，设置环境变量
 
 
 
-| org.apache.ibatis.type                                       |                                         |
-| ------------------------------------------------------------ | --------------------------------------- |
-| Alias                                                        | The annotation that specify alias name. |
-|                                                              |                                         |
-| ArrayTypeHandler                                             |                                         |
-|                                                              |                                         |
-| BaseTypeHandler<T>                                           |                                         |
-| The base TypeHandler for references a generic type.          |                                         |
-| BigDecimalTypeHandler                                        |                                         |
-|                                                              |                                         |
-| BigIntegerTypeHandler                                        |                                         |
-|                                                              |                                         |
-| BlobByteObjectArrayTypeHandler                               |                                         |
-|                                                              |                                         |
-| BlobInputStreamTypeHandler                                   |                                         |
-| The TypeHandler for Blob/InputStream using method supported at JDBC 4.0. |                                         |
-| BlobTypeHandler                                              |                                         |
-|                                                              |                                         |
-| BooleanTypeHandler                                           |                                         |
-|                                                              |                                         |
-| ByteArrayTypeHandler                                         |                                         |
-|                                                              |                                         |
-| ByteObjectArrayTypeHandler                                   |                                         |
-|                                                              |                                         |
-| ByteTypeHandler                                              |                                         |
-|                                                              |                                         |
-| CharacterTypeHandler                                         |                                         |
-|                                                              |                                         |
-| ClobReaderTypeHandler                                        |                                         |
-| The TypeHandler for Clob/Reader using method supported at JDBC 4.0. |                                         |
-| ClobTypeHandler                                              |                                         |
-|                                                              |                                         |
-| DateOnlyTypeHandler                                          |                                         |
-|                                                              |                                         |
-| DateTypeHandler                                              |                                         |
-|                                                              |                                         |
-| DoubleTypeHandler                                            |                                         |
-|                                                              |                                         |
-| EnumOrdinalTypeHandler<E extends Enum<E>>                    |                                         |
-|                                                              |                                         |
-| EnumTypeHandler<E extends Enum<E>>                           |                                         |
-|                                                              |                                         |
-| FloatTypeHandler                                             |                                         |
-|                                                              |                                         |
-| InstantTypeHandler                                           |                                         |
-|                                                              |                                         |
-| IntegerTypeHandler                                           |                                         |
-|                                                              |                                         |
-| JapaneseDateTypeHandler                                      |                                         |
-| Type Handler for JapaneseDate.                               |                                         |
-| JdbcType                                                     |                                         |
-|                                                              |                                         |
-| LocalDateTimeTypeHandler                                     |                                         |
-|                                                              |                                         |
-| LocalDateTypeHandler                                         |                                         |
-|                                                              |                                         |
-| LocalTimeTypeHandler                                         |                                         |
-|                                                              |                                         |
-| LongTypeHandler                                              |                                         |
-|                                                              |                                         |
-| MappedJdbcTypes                                              |                                         |
-| The annotation that specify jdbc types to map TypeHandler.   |                                         |
-| MappedTypes                                                  |                                         |
-| The annotation that specify java types to map TypeHandler.   |                                         |
-| MonthTypeHandler                                             |                                         |
-|                                                              |                                         |
-| NClobTypeHandler                                             |                                         |
-|                                                              |                                         |
-| NStringTypeHandler                                           |                                         |
-|                                                              |                                         |
-| ObjectTypeHandler                                            |                                         |
-|                                                              |                                         |
-| OffsetDateTimeTypeHandler                                    |                                         |
-|                                                              |                                         |
-| OffsetTimeTypeHandler                                        |                                         |
-|                                                              |                                         |
-| ShortTypeHandler                                             |                                         |
-|                                                              |                                         |
-| SimpleTypeRegistry                                           |                                         |
-|                                                              |                                         |
-| SqlDateTypeHandler                                           |                                         |
-|                                                              |                                         |
-| SqlTimestampTypeHandler                                      |                                         |
-|                                                              |                                         |
-| SqlTimeTypeHandler                                           |                                         |
-|                                                              |                                         |
-| SqlxmlTypeHandler                                            |                                         |
-| Convert String to/from SQLXML.                               |                                         |
-| StringTypeHandler                                            |                                         |
-|                                                              |                                         |
-| TimeOnlyTypeHandler                                          |                                         |
-|                                                              |                                         |
-| TypeAliasRegistry                                            |                                         |
-|                                                              |                                         |
-| TypeException                                                |                                         |
-|                                                              |                                         |
-| TypeHandler<T>                                               |                                         |
-|                                                              |                                         |
-| TypeHandlerRegistry                                          |                                         |
-|                                                              |                                         |
-| TypeReference<T>                                             |                                         |
-| References a generic type.                                   |                                         |
-| UnknownTypeHandler                                           |                                         |
-|                                                              |                                         |
-| YearMonthTypeHandler                                         |                                         |
-| Type Handler for YearMonth.                                  |                                         |
-| YearTypeHandler                                              |                                         |
-|                                                              |                                         |
-| ZonedDateTimeTypeHandler                                     |                                         |
+| org.apache.ibatis.type                    |                                                              |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Alias                                     | The annotation that specify alias name.                      |
+| ArrayTypeHandler                          |                                                              |
+| BaseTypeHandler<T>                        | The base TypeHandler for references a generic type.          |
+| BigDecimalTypeHandler                     |                                                              |
+| BigIntegerTypeHandler                     |                                                              |
+| BlobByteObjectArrayTypeHandler            |                                                              |
+| BlobInputStreamTypeHandler                | The TypeHandler for Blob/InputStream using method supported at JDBC 4.0. |
+| BlobTypeHandler                           |                                                              |
+| BooleanTypeHandler                        |                                                              |
+| ByteArrayTypeHandler                      |                                                              |
+| ByteObjectArrayTypeHandler                |                                                              |
+| ByteTypeHandler                           |                                                              |
+| CharacterTypeHandler                      |                                                              |
+| ClobReaderTypeHandler                     | The TypeHandler for Clob/Reader using method supported at JDBC 4.0. |
+| ClobTypeHandler                           |                                                              |
+| DateOnlyTypeHandler                       |                                                              |
+| DateTypeHandler                           |                                                              |
+| DoubleTypeHandler                         |                                                              |
+| EnumOrdinalTypeHandler<E extends Enum<E>> |                                                              |
+| EnumTypeHandler<E extends Enum<E>>        |                                                              |
+| FloatTypeHandler                          |                                                              |
+| InstantTypeHandler                        |                                                              |
+| IntegerTypeHandler                        |                                                              |
+| JapaneseDateTypeHandler                   | Type Handler for JapaneseDate.                               |
+| JdbcType                                  |                                                              |
+| LocalDateTimeTypeHandler                  |                                                              |
+| LocalDateTypeHandler                      |                                                              |
+| LocalTimeTypeHandler                      |                                                              |
+| LongTypeHandler                           |                                                              |
+| MappedJdbcTypes                           | The annotation that specify jdbc types to map TypeHandler.   |
+| MappedTypes                               | The annotation that specify java types to map TypeHandler.   |
+| MonthTypeHandler                          |                                                              |
+| NClobTypeHandler                          |                                                              |
+| NStringTypeHandler                        |                                                              |
+| ObjectTypeHandler                         |                                                              |
+| OffsetDateTimeTypeHandler                 |                                                              |
+| OffsetTimeTypeHandler                     |                                                              |
+| ShortTypeHandler                          |                                                              |
+| SimpleTypeRegistry                        |                                                              |
+| SqlDateTypeHandler                        |                                                              |
+| SqlTimestampTypeHandler                   |                                                              |
+| SqlTimeTypeHandler                        |                                                              |
+| SqlxmlTypeHandler                         | Convert String to/from SQLXML.                               |
+| StringTypeHandler                         |                                                              |
+| TimeOnlyTypeHandler                       |                                                              |
+| TypeAliasRegistry                         |                                                              |
+| TypeException                             |                                                              |
+| TypeHandler<T>                            |                                                              |
+| TypeHandlerRegistry                       |                                                              |
+| TypeReference<T>                          | References a generic type.                                   |
+| UnknownTypeHandler                        |                                                              |
+| YearMonthTypeHandler                      | Type Handler for YearMonth.                                  |
+| YearTypeHandler                           |                                                              |
+| ZonedDateTimeTypeHandler                  |                                                              |
