@@ -140,7 +140,7 @@ Mybatis对数据的处理可以分为 用入参动态的拼装sql 和 对sql执�
 
 一个完整的Sql命令，其执行的完整流程图如下：
 
-![mybatis_process](..\imgs\mybatis_process.jpg)
+![mybatis_process](..\..\imgs\mybatis_process.jpg)
 
 MapperRegistry
   MapperProxyFactory
@@ -554,7 +554,6 @@ MapperAnnotationBuilder
 MethodResolver
 ProviderContext
 ProviderSqlSource
-
 
 MyBatis mapper 注解过程中通过 LanguageDriver 实现动态 SQL
 https://blog.csdn.net/w_yunlong/article/details/79201509

@@ -2,6 +2,12 @@
 
 https://github.com/edidada/testmybatisspring
 
+
+
+https://mybatis.org/spring/
+
+
+
 spring ioc中存的是MapperProxy代理类对象
 
 mysql-connector-java
@@ -13,7 +19,7 @@ sun的包
 
 spring xml文件中配置的三个spring-mybatis包中的类
 - org.apache.ibatis.datasource.pooled.PooledDataSource
-- SqlSessionFactoryBean
+- SqlSessionFactoryBean xml配置类
 - MapperFactoryBean  一次性配置一个Mapper接口
 - MapperScannerConfigurer 一次配置一个package下面多个Mapper接口
 - SqlSessionTemplate 线程安全，包装了一个SqlSessionFactory来进行增删改查操作，事务的commit rollback操作 动态代理
@@ -145,7 +151,7 @@ SqlSessionTemplate.png
 
 mybatis-spring中的类
 - ms
-- msc
+- msc MapperScannerConfigurer
 - ssfb
 
 - org.mybatis.spring.SqlSessionFactoryBean
@@ -159,7 +165,7 @@ DaoSupport (org.springframework.dao.support)
 
 ### SqlSessionFactoryBean
 
-SqlSessionFactoryBean 实现了 Spring 的 FactoryBean 接口。
+SqlSessionFactoryBean 实现了 Spring 的 FactoryBean 接口。 FactoryBean<SqlSessionFactory>
 
 ### MapperScannerConfigurer
 
@@ -178,11 +184,11 @@ https://www.jianshu.com/p/976aa407bda4
 
 SqlSessionFactoryBean向spring容器注入
 DefaultSqlSessionFactory对象
-### MapperFactoryBean
+### MapperFactoryBean<T>
 Mybatis在与Spring集成的时候可以配置MapperFactoryBean来生成Mapper接口的代理。MapperFactoryBean的出现为了代替手工使用SqlSessionDaoSupport或SqlSessionTemplate编写数据访问对象(DAO)的代码，使用动态代理实现。
 MapperFactoryBean是MyBatis-Spring框架中的一个特殊的FactoryBean，它用于创建MyBatis Mapper接口的代理实例。MapperFactoryBean可以将一个Mapper接口封装为一个Spring Bean，并对其进行配置和管理，使得我们可以像使用普通的Spring Bean一样使用Mapper接口。
 MapperFactoryBean的作用可以总结为以下几点：
-管理Mapper接口
+1、管理Mapper接口
 MapperFactoryBean可以将Mapper接口封装为一个Spring Bean，并对其进行配置和管理。我们可以通过Spring配置文件配置MapperFactoryBean来创建Mapper接口的代理实例，并将其注入到其他Spring Bean中。
 提供灵活的Mapper代理配置
 MapperFactoryBean提供了一些灵活的Mapper代理配置选项，例如Mapper接口的类对象、SqlSessionFactory实例、是否启用缓存等。这些配置选项可以通过Spring配置文件进行配置，使得Mapper代理的创建和管理更加灵活。
@@ -191,6 +197,13 @@ MapperFactoryBean支持MyBatis-Spring框架的事务管理功能。我们可以�
 提供MyBatis Mapper接口与DAO的转换
 MapperFactoryBean提供了MyBatis Mapper接口与DAO的转换功能。我们可以将Mapper接口注入到DAO中，并在DAO中调用Mapper接口中的方法，从而实现对数据库的访问。
 总之，MapperFactoryBean是MyBatis-Spring框架中的一个重要组件，它可以将Mapper接口封装为一个Spring Bean，并对其进行配置和管理，使得我们可以更加方便地使用Mapper接口。同时，MapperFactoryBean还提供了一些灵活的Mapper代理配置选项和支持Spring事务管理的功能，使得Mapper接口的使用更加灵活和可靠。
+
+
+
+##### MapperScannerConfigurer 
+
+MapperScannerConfigurer public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) 方法调用	ClassPathMapperScanner#scan()方法
+
 
 
 MapperScannerConfigurer是MyBatis-Spring框架中的一个特殊的Bean后置处理器，它用于扫描指定的包，自动注册MyBatis的Mapper接口，并将其注入到Spring容器中。MapperScannerConfigurer可以自动扫描指定包下的所有Mapper接口，并将其创建为Spring Bean，使得我们可以在其他Spring Bean中直接使用Mapper接口。
@@ -271,3 +284,262 @@ public Set<BeanDefinitionHolder> doScan(String... basePackages)
 org.apache.commons.logging.LogFactory
 
 jcl
+
+
+
+MyBatis-Spring 集成了 MyBatis 和 Spring 框架,
+这里作为 Spring 框架的一部分提供了 MyBatis-Spring 的 API文档。
+https://mybatis.org/spring/apidocs/index.html
+
+两者的文档内容基本一致,主要类和接口包括:
+
+- SqlSessionFactoryBean:构建SqlSessionFactory
+- SqlSessionTemplate:封装了SqlSession的线程安全类
+- MapperFactoryBean:构建Mapper代理
+- MapperScannerConfigurer:扫描和注册Mapper
+- plus一些辅助类如SqlSessionDaoSupport等
+这些文档详细记录了组件的用法和配置方式,非常有助于使用MyBatis-Spring集成。
+
+
+
+### 源代码核心类
+
+ClassPathMapperScanner  扫描包，生成beanDefination 
+SqlSessionTemplate
+MapperFactoryBean
+SqlSessionFactoryBean
+
+
+
+
+
+### 分包详解
+
+
+
+| org.mybatis.logging | 类型 | 英文解析                                                     | 解释 |
+| ------------------- | ---- | ------------------------------------------------------------ | ---- |
+| Logger              |      | Wrapper of Log, allow log with lambda expressions.           |      |
+| LoggerFactory       |      | LoggerFactory is a wrapper around LogFactory to support Logger. |      |
+|                     |      |                                                              |      |
+
+
+
+
+
+| org.mybatis.spring                       | 类型 | 英文描述                                                     | 解释                                                         |
+| ---------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| MyBatisExceptionTranslator               |      | Default exception translator.                                | org.springframework.dao.support.PersistenceExceptionTranslator 接口实现类  有SQLExceptionTranslator接口属性  SqlSessionTemplate中调用 |
+| MyBatisSystemException                   |      | MyBatis specific subclass of UncategorizedDataAccessException, for MyBatis system errors that do not match any concrete org.springframework.dao exceptions. |                                                              |
+| SqlSessionFactoryBean                    |      | FactoryBean that creates a MyBatis SqlSessionFactory.        | FactoryBean<SqlSessionFactory>      xml 文件中配置了这个类 上面有很多例子 |
+| SqlSessionHolder                         |      | Used to keep current SqlSession in TransactionSynchronizationManager. | org.springframework.transaction.support.ResourceHolderSupport  子类 |
+| SqlSessionTemplate                       |      | Thread safe, Spring managed, SqlSession that works with Spring transaction management to ensure that the actual SqlSession used is the one associated with the current Spring transaction. | 模板类 select insert update delete                           |
+| SqlSessionTemplate.SqlSessionInterceptor |      |                                                              | InvocationHandler子类                                        |
+| SqlSessionUtils                          |      | Handles MyBatis SqlSession life cycle.                       |                                                              |
+
+
+
+`SqlSessionTemplate` 是 MyBatis-Spring 框架中的一个核心类，它是一个线程安全的 MyBatis 的核心类 `SqlSession` 的实现类。通过使用 `SqlSessionTemplate`，我们可以方便地在 Spring 中使用 MyBatis 进行数据库操作，并且不需要手动管理 `SqlSession` 的生命周期。
+
+以下是一个使用 `SqlSessionTemplate` 的例子：
+
+```java
+@Repository
+public class UserDaoImpl implements UserDao {
+
+    private static final String NAMESPACE = "com.example.mapper.UserMapper";
+
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;
+
+    @Override
+    public List<User> findAllUsers() {
+        return sqlSessionTemplate.selectList(NAMESPACE + ".findAllUsers");
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return sqlSessionTemplate.selectOne(NAMESPACE + ".findUserById", id);
+    }
+
+    @Override
+    public void addUser(User user) {
+        sqlSessionTemplate.insert(NAMESPACE + ".addUser", user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        sqlSessionTemplate.update(NAMESPACE + ".updateUser", user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        sqlSessionTemplate.delete(NAMESPACE + ".deleteUser", id);
+    }
+}
+```
+
+在上面的代码中，我们使用 `SqlSessionTemplate` 实现了一个 `UserDao` 接口的实现类。通过 `@Autowired` 注解将 `SqlSessionTemplate` 注入到 DAO 类中，然后就可以在 DAO 方法中使用 `SqlSessionTemplate` 提供的方法来进行数据库操作。例如，在 `findAllUsers()` 方法中，我们使用 `SqlSessionTemplate` 的 `selectList()` 方法来查询所有的用户信息。
+
+需要注意的是，`SqlSessionTemplate` 是一个线程安全的类，因此可以在多线程环境下使用。另外，`SqlSessionTemplate` 在 Spring 的事务管理下会自动管理其生命周期，所以我们不需要手动关闭 `SqlSession`。
+
+总之，`SqlSessionTemplate` 是 MyBatis-Spring 框架中的一个核心类，它是一个线程安全的 MyBatis 的核心类 `SqlSession` 的实现类。通过使用 `SqlSessionTemplate`，我们可以方便地在 Spring 中使用 MyBatis 进行数据库操作，并且不需要手动管理 `SqlSession` 的生命周期。
+
+[使用SqlSessionTemplate实现数据库的操作 - 夏末、初秋 - 博客园 (cnblogs.com)](https://www.cnblogs.com/xuerong/p/5000456.html)
+
+
+
+
+
+
+
+
+
+| org.mybatis.spring.annotation | 类型       |                                                              | 解释                                                        |
+| ----------------------------- | ---------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+| MapperScan                    | @interface | Use this annotation to register MyBatis mapper interfaces when using Java Config. |                                                             |
+| MapperScannerRegistrar        |            | A ImportBeanDefinitionRegistrar to allow annotation configuration of MyBatis mapper scanning. | ImportBeanDefinitionRegistrar ResourceLoaderAware接口实现类 |
+| MapperScans                   |            | The Container annotation that aggregates several MapperScan annotations. |                                                             |
+
+
+
+
+
+
+
+| org.mybatis.spring.batch   | 类型 | Description                                                  | 解释 |
+| -------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| MyBatisBatchItemWriter<T>  |      | ItemWriter that uses the batching features from SqlSessionTemplate to execute a batch of statements for all items provided. |      |
+| MyBatisCursorItemReader<T> |      |                                                              |      |
+| MyBatisPagingItemReader<T> |      | org.springframework.batch.item.ItemReader for reading database records using MyBatis in a paging fashion. |      |
+
+
+
+spring-batch-infrastructure 依赖类
+
+
+
+
+
+| org.mybatis.spring.batch.build    | 类型 | Description                                | 解释 |
+| --------------------------------- | ---- | ------------------------------------------ | ---- |
+| MyBatisBatchItemWriterBuilder<T>  |      | A builder for the MyBatisBatchItemWriter.  |      |
+| MyBatisCursorItemReaderBuilder<T> |      | A builder for the MyBatisCursorItemReader. |      |
+| MyBatisPagingItemReaderBuilder<T> |      | A builder for the MyBatisPagingItemReader. |      |
+
+
+
+
+
+
+
+| org.mybatis.spring.config         | 类型 | Description                                                  | 解释                                                         |
+| --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| MapperScannerBeanDefinitionParser |      | A {#code BeanDefinitionParser} that handles the element scan of the MyBatis. | NamespaceHandler中调用，BeanDefinitionParser接口实现类 BeanDefinition parse(Element element, ParserContext parserContext);   private static final String *ATTRIBUTE_BASE_PACKAGE* = "base-package";private static final String *ATTRIBUTE_ANNOTATION* = "annotation";private static final String *ATTRIBUTE_MARKER_INTERFACE* = "marker-interface";private static final String *ATTRIBUTE_NAME_GENERATOR* = "name-generator";private static final String *ATTRIBUTE_TEMPLATE_REF* = "template-ref"; private static final String *ATTRIBUTE_FACTORY_REF* = "factory-ref"; |
+| NamespaceHandler                  |      | Namespace handler for the MyBatis namespace.                 | registerBeanDefinitionParser("scan", new MapperScannerBeanDefinitionParser());    <mybatis:scan base-package="com.example.mapper"/> |
+
+
+
+
+
+`org.mybatis.spring.config.NamespaceHandler` 是 MyBatis-Spring 框架中的一个命名空间处理器，它用于解析 MyBatis-Spring 的自定义 XML 配置文件中的标签，并将其转换为相应的 Spring Bean。在 MyBatis-Spring 中使用该命名空间处理器可以简化配置文件的编写，并提高配置文件的可读性和可维护性。
+
+使用 `NamespaceHandler` 通常需要两个步骤：
+
+1. 配置 XML 命名空间
+
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <!-- 这里是 MyBatis-Spring 的配置 -->
+    ...
+</beans>
+```
+
+在上面的代码中，我们使用 `xmlns:mybatis` 声明了一个名为 `mybatis` 的 XML 命名空间，并将其指向 `http://mybatis.org/schema/mybatis-spring`。这个命名空间所对应的 XSD 文件定义了 MyBatis-Spring 的自定义标签和属性。
+
+2. 在 XML 配置文件中使用 MyBatis-Spring 标签
+
+```xml
+<mybatis:scan base-package="com.example.mapper"/>
+```
+
+在上面的代码中，我们使用 `mybatis:scan` 标签来配置 Mapper 扫描器，将 Mapper 映射器的包路径指定为 `com.example.mapper`。这个标签会被 `NamespaceHandler` 解析，并转换为相应的 Spring Bean。
+
+总之，`org.mybatis.spring.config.NamespaceHandler` 是 MyBatis-Spring 框架中的一个命名空间处理器，用于解析 MyBatis-Spring 的自定义 XML 配置文件中的标签，并将其转换为相应的 Spring Bean。使用 `NamespaceHandler` 可以简化配置文件的编写，并提高配置文件的可读性和可维护性。
+
+
+
+
+
+以下是一个使用 MyBatis-Spring 的 XML 配置示例，包括数据源配置、Mapper 映射器配置以及事务管理器配置：
+
+```xml
+<!-- 配置数据源 -->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+    <property name="username" value="root"/>
+    <property name="password" value="password"/>
+</bean>
+
+<!-- 配置 SqlSessionFactory -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="typeAliasesPackage" value="com.example.model"/>
+    <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+</bean>
+
+<!-- 配置 Mapper 映射器 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.example.mapper"/>
+</bean>
+
+<!-- 配置事务管理器 -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+```
+
+在上面的代码中，我们首先配置了一个数据源，使用的是 MySQL 数据库。接下来，我们配置了一个 `SqlSessionFactory`，并设置了数据源、实体类的别名和 Mapper 映射器的路径。其中，`mapperLocations` 属性指定了 Mapper 映射器 XML 文件的位置，使用通配符 `*` 表示在 `mapper` 目录下的所有 XML 文件。
+
+然后，我们使用 `MapperScannerConfigurer` 配置了 Mapper 扫描器，将 Mapper 映射器的包路径指定为 `com.example.mapper`。这样，MyBatis-Spring 就能够自动扫描并注册这些 Mapper 映射器。
+
+最后，我们配置了一个事务管理器，使用的是 Spring 的 `DataSourceTransactionManager`，并将数据源设置为前面配置的数据源。
+
+总之，这是一个 MyBatis-Spring 的 XML 配置示例，包括了数据源配置、Mapper 映射器配置以及事务管理器配置。在实际使用时，需要根据具体的需求进行相应的配置。
+
+
+
+
+
+
+
+| org.mybatis.spring.mapper | 类型 | Description                                                  | 解释                                                         |
+| ------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ClassPathMapperScanner    |      | A ClassPathBeanDefinitionScanner that registers Mappers by basePackage, annotationClass, or markerInterface. | 根据package扫描包                                            |
+| MapperFactoryBean<T>      |      | BeanFactory that enables injection of MyBatis mapper interfaces. | MapperFactoryBean 有属性 private Class<T> mapperInterface; 就是mybatis的接口 |
+| MapperScannerConfigurer   |      | BeanDefinitionRegistryPostProcessor that searches recursively starting from a base package for interfaces and registers them as MapperFactoryBean. | 核心类                                                       |
+
+
+
+MapperScannerConfigurer上面有详细解读
+
+
+
+| org.mybatis.spring.support | 类型     | Description                                                  | 解释                     |
+| -------------------------- | -------- | ------------------------------------------------------------ | ------------------------ |
+| SqlSessionDaoSupport       | abstract | Convenient super class for MyBatis SqlSession data access objects | 子类MapperFactoryBean<T> |
+
+
+
+
+
+| org.mybatis.spring.transaction  | 类型 | Description                                                  | 解释                                                         |
+| ------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| SpringManagedTransaction        |      | SpringManagedTransaction handles the lifecycle of a JDBC connection. | org.apache.ibatis.transaction.Transaction接口实现类          |
+| SpringManagedTransactionFactory |      | Creates a SpringManagedTransaction.                          | TransactionFactory接口实现类，返回SpringManagedTransaction对象 |
