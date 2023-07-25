@@ -1530,3 +1530,11 @@ org.springframework.objenesis.instantiator
 
 
 
+
+
+org.springframework.core.type.filter
+
+org.springframework.core.type.filter.AnnotationTypeFilter
+在ClassPathBeanDefinitionScanner中使用 
+
+
