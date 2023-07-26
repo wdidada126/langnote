@@ -35,7 +35,7 @@ xml解析
 jdk自带的api
 mysql-connector-java的api
 mybatis的api
-jdbc-templete的api
+JdbcTemplete的api
 区别
 
 
@@ -146,7 +146,7 @@ bind元素允许你在OGNL表达式以外创建一个变量，并将其绑定到
 
 
 
-### Chap.1 入门
+## Chap.1 入门
 
 ORM框架
 Hibernate
@@ -207,7 +207,7 @@ provider
 
 
 
-### Chap. 4 MyBatis动态SQL
+## Chap. 4 MyBatis动态SQL
 
 select中 wehre if
 防止判断条件为null
@@ -269,7 +269,7 @@ bind concat
 
 
 
-### Chap. 6 MyBatis高级查询
+## Chap. 6 MyBatis高级查询
 
 存储过程
 高级结果映射
@@ -284,28 +284,28 @@ bind concat
 
 
 
-### Chap. 7 MyBatis缓存配置
+## Chap. 7 MyBatis缓存配置
 
 
 
-### Chap. 8 MyBatis插件开发
+## Chap. 8 MyBatis插件开发
 
 重点
 
 
 
-### Chap.9 Spring集成MyBatis
+## Chap.9 Spring集成MyBatis
 
 
 
 
 
-### Chap.10 MyBatis跟Spring Boot结合使用
+## Chap.10 MyBatis跟Spring Boot结合使用
 
 
 
 
 
-### Chap.11 MyBatis开源项目
+## Chap.11 MyBatis开源项目
 
 git啥的

@@ -5,7 +5,6 @@ https://mybatis.org/mybatis-3/apidocs/index.html
 
 mybatis_javadoc_api.xlsx
 
-[TOC]
 
 SqlSession内部运行原理
 https://www.modb.pro/db/223729
@@ -1514,8 +1513,57 @@ dubbo也可以，设置环境变量
 | MapperMethod.SqlCommand      |      | SqlCommandType type                                          |      |
 | MapperProxy<T>               |      | 动态代理                                                     |      |
 | MapperProxyFactory<T>        | 泛型 | 见下面，调用动态代理                                         |      |
-| MapperRegistry               |      | Mapper注册 get add Mapper   Map<Class<?>, MapperProxyFactory<?>> knownMappers  属性 |      |
+| MapperRegistry               |      | Mapper注册 getMapper() addMapper()   Map<Class<?>, MapperProxyFactory<?>> knownMappers  属性 |      |
 
+
+MapperMethod构造函数
+
+  private final SqlCommand command;
+  private final MethodSignature method;
+
+
+MapperMethod调用栈
+
+selectList:147, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectList:141, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectOne:77, DefaultSqlSession (org.apache.ibatis.session.defaults)
+execute:83, MapperMethod (org.apache.ibatis.binding)
+invoke:59, MapperProxy (org.apache.ibatis.binding)
+getUser:-1, $Proxy9 (com.sun.proxy)
+makeWithMapper:101, TestMyBatis (cn.wdidada.testmybatis)
+main:23, TestMyBatis (cn.wdidada.testmybatis)
+
+
+SqlSession.getMapper()
+    Configuration.getMapper()
+        MapperRegistry.getMapper() knownMappers这个map里面获取
+
+
+哪儿添加的呢？
+SqlSessionFactoryBuilder.build()
+XMLConfigBuilder.parse()
+XMLConfigBuilder.mapperElement()
+    Configuration.addMapper()
+
+
+
+addMapper:61, MapperRegistry (org.apache.ibatis.binding)
+addMappers:97, MapperRegistry (org.apache.ibatis.binding)
+addMappers:105, MapperRegistry (org.apache.ibatis.binding)
+addMappers:737, Configuration (org.apache.ibatis.session)
+mapperElement:364, XMLConfigBuilder (org.apache.ibatis.builder.xml)
+parseConfiguration:119, XMLConfigBuilder (org.apache.ibatis.builder.xml)
+parse:99, XMLConfigBuilder (org.apache.ibatis.builder.xml)
+build:78, SqlSessionFactoryBuilder (org.apache.ibatis.session)
+build:64, SqlSessionFactoryBuilder (org.apache.ibatis.session)
+makeWithMapper:86, TestMyBatis (cn.wdidada.testmybatis)
+main:23, TestMyBatis (cn.wdidada.testmybatis)
+
+
+
+org.apache.ibatis.builder.xml.XMLConfigBuilder#parseConfiguration
+
+挨个解析mybatis-config.xml
 
 
 一个mybatis接口，一个org.apache.ibatis.binding.MapperProxyFactory对象 泛型T就是接口动态代理对象
@@ -1717,6 +1765,44 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+
+
+
+
+
+
+
+
+
+BaseExecutor (org.apache.ibatis.executor)
+    SimpleExecutor (org.apache.ibatis.executor)
+    ClosedExecutor in ResultLoaderMap (org.apache.ibatis.executor.loader)
+    ReuseExecutor (org.apache.ibatis.executor)
+    BatchExecutor (org.apache.ibatis.executor)
+
+
+
+ReuseExecutor
+
+
+RoutingStatementHandler (org.apache.ibatis.executor.statement)
+BaseStatementHandler (org.apache.ibatis.executor.statement)
+    PreparedStatementHandler (org.apache.ibatis.executor.statement)
+    CallableStatementHandler (org.apache.ibatis.executor.statement)
+    SimpleStatementHandler (org.apache.ibatis.executor.statement)
+
+RoutingStatementHandler
+delete委托类 PreparedStatementHandler
+
+
+ResultHandler<T>子类
+
+ObjectWrapperResultHandler in DefaultCursor (org.apache.ibatis.cursor.defaults)
+DefaultResultHandler (org.apache.ibatis.executor.result)
+DefaultMapResultHandler (org.apache.ibatis.executor.result)
+
+DefaultResultHandler
+
 ## org.apache.ibatis.io 
 
 
@@ -1728,13 +1814,14 @@ public T newInstance(SqlSession sqlSession)
 | JBoss6VFS                  |      | A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |      |
 | ResolverUtil<T>            |      | ResolverUtil is used to locate classes that are available in the/a class path and meet arbitrary conditions. |      |
 | ResolverUtil.AnnotatedWith |      | A Test that checks to see if each class is annotated with a specific annotation. |      |
-| ResolverUtil.IsA           |      | A Test that checks to see if each class is assignable to the provided class. |      |
+| ResolverUtil.IsA           | interface     | A Test that checks to see if each class is assignable to the provided class. |      |
 | ResolverUtil.Test          |      | A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |      |
 | Resources                  |      | A class to simplify access to resources through the classloader. |      |
 | SerialFilterChecker        |      |                                                              |      |
 | VFS                        |      | Provides a very simple API for accessing resources within an application server. |      |
 
 
+ResolverUtil.find()在org.apache.ibatis.binding.MapperRegistry#addMappers(java.lang.String, java.lang.Class<?>)
 
 
 
@@ -1774,10 +1861,13 @@ public T newInstance(SqlSession sqlSession)
 | LogFactory                          |      |                                         |      |
 | logging.commons                     |      |                                         |      |
 | JakartaCommonsLoggingImpl           |      |                                         |      |
-| org.apache.ibatis.logging.jdbc      |      |                                         |      |
-| BaseJdbcLogger                      |      | Base class for proxies to do logging.   |      |
+
+
+| org.apache.ibatis.logging.jdbc      |类型 | 英文说明                                | 说明 |
+| ----------------------------------- | ---- | --------------------------------------- | ---- |
+| BaseJdbcLogger                      |   abstract   | Base class for proxies to do logging.   |      |
 | ConnectionLogger                    |      | Connection proxy to add logging.        |      |
-| PreparedStatementLogger             |      | PreparedStatement proxy to add logging. |      |
+| PreparedStatementLogger             |      | PreparedStatement proxy to add logging. |   重要   |
 | ResultSetLogger                     |      | ResultSet proxy to add logging.         |      |
 | StatementLogger                     |      | Statement proxy to add logging.         |      |
 | org.apache.ibatis.logging.jdk14     |      |                                         |      |
@@ -1797,7 +1887,57 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+PreparedStatementLogger InvocationHandler动态代理
 
+
+invoke:59, PreparedStatementLogger (org.apache.ibatis.logging.jdbc)
+execute:-1, $Proxy11 (com.sun.proxy)
+query:63, PreparedStatementHandler (org.apache.ibatis.executor.statement)
+query:79, RoutingStatementHandler (org.apache.ibatis.executor.statement)
+doQuery:60, ReuseExecutor (org.apache.ibatis.executor)
+queryFromDatabase:326, BaseExecutor (org.apache.ibatis.executor)
+query:156, BaseExecutor (org.apache.ibatis.executor)
+query:136, BaseExecutor (org.apache.ibatis.executor)
+selectList:148, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectList:141, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectOne:77, DefaultSqlSession (org.apache.ibatis.session.defaults)
+execute:83, MapperMethod (org.apache.ibatis.binding)
+invoke:59, MapperProxy (org.apache.ibatis.binding)
+getUser:-1, $Proxy9 (com.sun.proxy)
+makeWithMapper:101, TestMyBatis (cn.wdidada.testmybatis)
+main:23, TestMyBatis (cn.wdidada.testmybatis)
+
+JDBC42PreparedStatement 真正执行sql的类
+originalSql  select id,user_name userName,password,name,age,sex,birthday,created,updated from tb_user where id = ?
+
+execute:1174, PreparedStatement (com.mysql.jdbc)
+invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
+invoke:62, NativeMethodAccessorImpl (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+invoke:498, Method (java.lang.reflect)
+invoke:59, PreparedStatementLogger (org.apache.ibatis.logging.jdbc)
+execute:-1, $Proxy11 (com.sun.proxy)
+query:63, PreparedStatementHandler (org.apache.ibatis.executor.statement)
+query:79, RoutingStatementHandler (org.apache.ibatis.executor.statement)
+doQuery:60, ReuseExecutor (org.apache.ibatis.executor)
+queryFromDatabase:326, BaseExecutor (org.apache.ibatis.executor)
+query:156, BaseExecutor (org.apache.ibatis.executor)
+query:136, BaseExecutor (org.apache.ibatis.executor)
+selectList:148, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectList:141, DefaultSqlSession (org.apache.ibatis.session.defaults)
+selectOne:77, DefaultSqlSession (org.apache.ibatis.session.defaults)
+execute:83, MapperMethod (org.apache.ibatis.binding)
+invoke:59, MapperProxy (org.apache.ibatis.binding)
+getUser:-1, $Proxy9 (com.sun.proxy)
+makeWithMapper:101, TestMyBatis (cn.wdidada.testmybatis)
+main:23, TestMyBatis (cn.wdidada.testmybatis)
+
+
+处理查询的结果
+org.apache.ibatis.executor.resultset.DefaultResultSetHandler#handleResultSets
+
+
+ResultSetWrapper这个类也很重要，一堆属性
 
 ## org.apache.ibatis.mapping
 
@@ -2070,26 +2210,31 @@ public interface UserMapper {
 
 ## org.apache.ibatis.session
 
-| org.apache.ibatis.session          | 类型      | 英文说明                                                     | 说明                                               |
-| ---------------------------------- | --------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| AutoMappingBehavior                |           | Specifies if and how MyBatis should automatically map columns to fields/properties. |                                                    |
-| AutoMappingUnknownColumnBehavior   |           | Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. |                                                    |
-| Configuration                      |           |                                                              | 配置类                                             |
-| Configuration.StrictMap<V>         |           |                                                              |                                                    |
-| Configuration.StrictMap.Ambiguity  |           |                                                              |                                                    |
-| ExecutorType                       | enum      |                                                              |                                                    |
-| LocalCacheScope                    |           |                                                              |                                                    |
-| ResultContext<T>                   | interface |                                                              |                                                    |
-| ResultHandler<T>                   | interface |                                                              |                                                    |
-| RowBounds                          |           |                                                              |                                                    |
-| SqlSession                         | interface | The primary Java interface for working with MyBatis.         | select等等方法                                     |
-| SqlSessionException                | exception |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
-| SqlSessionFactory                  | interface | Creates an SqlSession out of a connection or a DataSource    | 获取 SqlSession对象 实现类DefaultSqlSessionFactory |
-| SqlSessionFactoryBuilder           |           | Builds SqlSession instances.                                 | public SqlSessionFactory build(Reader reader) 方法 |
-| SqlSessionManager                  |           |                                                              | SqlSession接口实现类，跟DefaultSqlSession类比      |
-| TransactionIsolationLevel          |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
+| org.apache.ibatis.session         | 类型      | 英文说明                                                     | 说明                                                         |
+| --------------------------------- | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| AutoMappingBehavior               |           | Specifies if and how MyBatis should automatically map columns to fields/properties. |                                                              |
+| AutoMappingUnknownColumnBehavior  |           | Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. |                                                              |
+| Configuration                     |           |                                                              | 配置类                                                       |
+| Configuration.StrictMap<V>        |           |                                                              |                                                              |
+| Configuration.StrictMap.Ambiguity |           |                                                              |                                                              |
+| ExecutorType                      | enum      |                                                              |                                                              |
+| LocalCacheScope                   |           |                                                              |                                                              |
+| ResultContext<T>                  | interface |                                                              |                                                              |
+| ResultHandler<T>                  | interface |                                                              | void handleResult(ResultContext<? extends T> resultContext) 方法 子类 DefaultResultHandler  DefaultMapResultHandler<K, V> implements ResultHandler<V>  DefaultCursor.ObjectWrapperResultHandler  三个子类 |
+| RowBounds                         |           |                                                              |                                                              |
+| SqlSession                        | interface | The primary Java interface for working with MyBatis.         | select insert update delete getMapper()等方法                                               |
+| SqlSessionException               | exception |                                                              |                                                              |
+|                                   |           |                                                              |                                                              |
+| SqlSessionFactory                 | interface | Creates an SqlSession out of a connection or a DataSource    | 获取 SqlSession对象 实现类DefaultSqlSessionFactory           |
+| SqlSessionFactoryBuilder          |           | Builds SqlSession instances.                                 | public SqlSessionFactory build(Reader reader) 方法           |
+| SqlSessionManager                 |           |                                                              | SqlSession接口实现类，跟DefaultSqlSession类比                |
+| TransactionIsolationLevel         |           |                                                              |                                                              |
+|                                   |           |                                                              |                                                              |
+
+
+
+Configuration类属性很重要
+
 
 ### org.apache.ibatis.session.defaults
 | org.apache.ibatis.session.defaults | 类型 | 英文说明                                   | 说明                                          |
