@@ -50,7 +50,7 @@ Dubbo采用的这个向下兼容的版本升级机制,可以最大程度地支�
 而Dubbo有以下这些规则:
 - 如果Provider使用了新的接口,Consumer依然可以包装调用。
 - 如果Provider删除了接口,Consumer调用不会报错,但是不会被执行。
-- 如果**Provider修改了接口签名**,Consumer将无法调用。
+- 如果Provider修改了接口签名,Consumer将无法调用。
 就是说,只有在Provider修改了接口的定义(签名)时,Consumer才无法向下兼容。
 举个例子:
 最初的接口:
@@ -1359,7 +1359,7 @@ Consumer
 
 
 
-Consumer 直接发起对 Provider 的调用，无需经过注册中心。而对多个 Provider 的负载均衡，Consumer 通过 **cluster** 组件实现。重点，不经过注册中心。
+Consumer 直接发起对 Provider 的调用，无需经过注册中心。而对多个 Provider 的负载均衡，Consumer 通过 cluster 组件实现。重点，不经过注册中心。
 
 
 
@@ -1406,10 +1406,10 @@ Consumer 直接发起对 Provider 的调用，无需经过注册中心。而对�
 - BED 模型：Sharding Sphere 。
   - 无需和 Dubbo 进行集成。
 - Saga 模型：ServiceComb Saga 。
-  - **好像**已经提供了和 Dubbo 集成的方案，参见 [《Saga-dubbo-demo》](https://github.com/apache/servicecomb-pack/blob/64d8cfdfb9e0c8362e962eb17765b57ae2211c84/saga-demo/saga-dubbo-demo/README.md) 文档。
+  - 好像已经提供了和 Dubbo 集成的方案，参见 [《Saga-dubbo-demo》](https://github.com/apache/servicecomb-pack/blob/64d8cfdfb9e0c8362e962eb17765b57ae2211c84/saga-demo/saga-dubbo-demo/README.md) 文档。
   - 😈 暂时没去深入研究。
 
-另外，胖友在理解分布式事务时，一定要记住，分布式事务需要由多个**本地**事务组成。无论是上述的那种事务组件模型，它们都是扮演一个**协调者**，使多个**本地**事务达到最终一致性。而协调的过程中，就非常依赖每个方法操作可以被重复执行不会产生副作用，那么就需要：
+另外，胖友在理解分布式事务时，一定要记住，分布式事务需要由多个本地事务组成。无论是上述的那种事务组件模型，它们都是扮演一个协调者，使多个本地事务达到最终一致性。而协调的过程中，就非常依赖每个方法操作可以被重复执行不会产生副作用，那么就需要：
 
 - 幂等性！因为可能会被重复调用。如果调用两次退款，结果退了两次钱，那就麻烦大了。
 - 本地事务！因为执行过程中可能会出错，需要回滚。
@@ -1556,15 +1556,15 @@ I0Itec这个zookeeper客户端基本上解决了上面的所有问题，主要�
 
  
 
-**请注意使用I0Itect-zkClient暂时有几个方法仍需要重写:**
+请注意使用I0Itect-zkClient暂时有几个方法仍需要重写:
 
-*1) create方法*:创建节点时,如果节点已经存在,仍然抛出NodeExistException,可是我期望它不在抛出此异常.
+1) create方法*:创建节点时,如果节点已经存在,仍然抛出NodeExistException,可是我期望它不在抛出此异常.
 
-**2) retryUtilConnected:** 如果向zookeeper请求数据时(create,delete,setData等),此时链接不可用,那么调用者将会被阻塞直到链接建立成功;不过我仍然需要一些方法是非阻塞的,如果链接不可用,则抛出异常,或者直接返回.
+2) retryUtilConnected: 如果向zookeeper请求数据时(create,delete,setData等),此时链接不可用,那么调用者将会被阻塞直到链接建立成功;不过我仍然需要一些方法是非阻塞的,如果链接不可用,则抛出异常,或者直接返回.
 
-**3) create方法:** 创建节点时,如果节点的父节点不存在,我期望同时也要创建父节点,而不是抛出异常.
+3) create方法: 创建节点时,如果节点的父节点不存在,我期望同时也要创建父节点,而不是抛出异常.
 
-4) **data监测:** 我需要提供一个额外的功能来补充watch的不足,开启一个线程,间歇性的去zk server获取指定的path的data,并缓存起来..归因与watch可能丢失,以及它不能持续的反应znode数据的每一次变化,所以只能手动去同步获取.
+4) data监测: 我需要提供一个额外的功能来补充watch的不足,开启一个线程,间歇性的去zk server获取指定的path的data,并缓存起来..归因与watch可能丢失,以及它不能持续的反应znode数据的每一次变化,所以只能手动去同步获取.
 
 
 
@@ -1591,4 +1591,12 @@ com.alibaba.dubbo.monitor.MonitorService
 通过mvn dependency:tree > dep.log命令分析，Dubbo缺省依赖以下三方库
 
 
+
+### dubbo往spring ioc中注入的类对象有哪些
+
+dubbo service
+dubbo reference注解修饰的类
+
+### dubbo 2.7.8
+dubbo api doc网址
 

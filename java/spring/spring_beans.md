@@ -256,3 +256,15 @@ public class PropertyAccessExample {
 ```
 
 在上面的示例中，我们创建了一个 `Person` 类，使用 `BeanWrapper` 包装对象，并使用 `getPropertyValue` 和 `setPropertyValue` 方法来访问和修改属性值。这样，我们可以使用 `BeanWrapper` 来方便地进行属性的读取和设置操作。
+
+
+
+### 分包解析代码
+
+
+
+
+| org.apache.dubbo.config.spring.beans.factory.annotation |      |      |
+| ---------------------------------- | ---- | ---- |
+|      ReferenceAnnotationBeanPostProcessor            |      |      |
+

@@ -149,9 +149,63 @@ org.springframework.context.annotation.ConfigurationClassParser#ConfigurationCla
 |                                                 | Describes scope characteristics for a Spring-managed bean including the scope name and the scoped-proxy behavior. |                                                              |      |
 | ScopeMetadataResolver                           |                                                              |                                                              |      |
 |                                                 | Strategy interface for resolving the scope of bean definitions. |                                                              |      |
-| TypeFilterUtils                                 |                                                              |                                                              |      |
-|                                                 | Collection of utilities for working with @ComponentScan type filters. |                                                              |      |
-| EnableSpringConfigured                          |                                                              |                                                              |      |
-|                                                 | Signals the current application context to apply dependency injection to non-managed classes that are instantiated outside the Spring bean factory (typically classes annotated with the @Configurable annotation). |                                                              |      |
-| SpringConfiguredConfiguration                   |                                                              |                                                              |      |
-|                                                 | @Configuration class that registers an AnnotationBeanConfigurerAspect capable of performing dependency injection services for non-Spring managed objects annotated with @Configurable. |                                                              |      |
+| TypeFilterUtils                                 | Collection of utilities for working with @ComponentScan type filters. |                                                              |      |
+|                                                 |                                                              |                                                              |      |
+| EnableSpringConfigured                          | Signals the current application context to apply dependency injection to non-managed classes that are instantiated outside the Spring bean factory (typically classes annotated with the @Configurable annotation). |                                                              |      |
+|                                                 |                                                              |                                                              |      |
+| SpringConfiguredConfiguration                   | @Configuration class that registers an AnnotationBeanConfigurerAspect capable of performing dependency injection services for non-Spring managed objects annotated with @Configurable. |                                                              |      |
+|                                                 |                                                              |                                                              |      |
+
+
+
+AnnotatedBeanDefinitionReader
+`AnnotatedBeanDefinitionReader` 是 Spring 框架中的一个类，它的作用是将带有注解的类转换成 Bean 定义（BeanDefinition），并将这些 Bean 定义注册到 Spring 应用上下文中。
+在 Spring 中，Bean 定义是描述 Spring 容器中的 Bean 的元数据，它包含了 Bean 的类名、作用域、属性、构造函数参数等信息。通常情况下，我们可以通过 XML 配置文件或者 Java 配置类来定义 Bean，但是 Spring 还提供了一种方式，即使用注解来定义 Bean。
+`AnnotatedBeanDefinitionReader` 类就是用于处理这种注解方式的 Bean 定义。它可以扫描指定的包路径，查找带有特定注解的类，并将这些类转换成对应的 Bean 定义。常用的注解包括 `@Component`、`@Service`、`@Repository`、`@Controller` 等。
+使用 `AnnotatedBeanDefinitionReader` 可以使 Bean 的定义更加简洁，避免了繁琐的 XML 配置或 Java 配置类的编写。同时，它也提供了更加灵活的方式对 Bean 进行定制。
+需要注意的是，要使用 `AnnotatedBeanDefinitionReader`，你需要先创建一个空的 `BeanDefinitionRegistry` 对象，然后将其作为参数传递给 `AnnotatedBeanDefinitionReader` 的构造函数，最后使用 `register` 方法将 Bean 定义注册到该对象中。
+
+
+| org.springframework.context.support         |           |      |
+| ------------------------------------------- | --------- | ---- |
+| Interfaces                                  |           |      |
+|                                             |           |      |
+| LiveBeansViewMBean                          | interface |      |
+|                                             |           |      |
+| Classes                                     |           |      |
+|                                             |           |      |
+| AbstractApplicationContext                  |           |      |
+| AbstractMessageSource                       |           |      |
+| AbstractRefreshableApplicationContext       |           |      |
+| AbstractRefreshableConfigApplicationContext |           |      |
+| AbstractResourceBasedMessageSource          |           |      |
+| AbstractXmlApplicationContext               |           |      |
+| ApplicationObjectSupport                    |           |      |
+| ClassPathXmlApplicationContext              |           |      |
+| ConversionServiceFactoryBean                |           |      |
+| DefaultLifecycleProcessor                   |           |      |
+| DefaultMessageSourceResolvable              |           |      |
+| DelegatingMessageSource                     |           |      |
+| EmbeddedValueResolutionSupport              |           |      |
+| FileSystemXmlApplicationContext             |           |      |
+| GenericApplicationContext                   |           |      |
+| GenericGroovyApplicationContext             |           |      |
+| GenericXmlApplicationContext                |           |      |
+| LiveBeansView                               |           |      |
+| MessageSourceAccessor                       |           |      |
+| MessageSourceResourceBundle                 |           |      |
+| MessageSourceSupport                        |           |      |
+| PropertySourcesPlaceholderConfigurer        |           |      |
+| ReloadableResourceBundleMessageSource       |           |      |
+| ResourceBundleMessageSource                 |           |      |
+| SimpleThreadScope                           |           |      |
+| StaticApplicationContext                    |           |      |
+| StaticMessageSource                         |           |      |
+
+
+
+
+
+AbstractApplicationContext
+    GenericApplicationContext
+        AnnotationConfigApplicationContext

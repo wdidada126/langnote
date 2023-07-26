@@ -188,3 +188,257 @@ spring.datasource.jndi-name=java:jboss/datasources/customers
 B站视频
 
 写SpringBoot starter
+
+
+
+### springboot 
+
+
+
+
+
+|  org.springframework.boot    |      |      |
+| ---- | ---- | ---- |
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+
+
+### springboot autoconfig
+|  org.springframework.boot.autoconfigure    |      |      |
+| ---- | ---- | ---- |
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
+
+
+|  org.springframework.boot.autoconfigure.jdbc    |      |      |
+| ---- | ---- | ---- |
+|   DataSourceAutoConfiguration   |      |      |
+|      |      |      |
+|      |      |      |
+
+
+
+org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
+使用DataSourceAutoConfiguration
+
+
+| 库       |      |      |
+| -------- | ---- | ---- |
+| druid    |      |      |
+| retrofit |      |      |
+| mybatis  |      |      |
+| dubbo    |      |      |
+
+
+
+<dependency>
+    <groupId>org.apache.dubbo</groupId>
+    <artifactId>dubbo-spring-boot-starter</artifactId>
+</dependency>
+
+
+
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid-spring-boot-starter</artifactId>
+    <version>${druid.version}</version>
+</dependency>
+
+
+
+
+
+<dependency>
+  <groupId>com.github.lianjiatech</groupId>
+  <artifactId>retrofit-spring-boot-starter</artifactId>
+  <version>${retrofit-spring-boot-starter.version}</version>
+</dependency>
+
+
+
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>${mybatis-spring-boot-starter.version}</version>
+</dependency>
+
+
+
+kafka
+
+
+
+Kafka Spring Boot Starter 的 Maven 坐标为：
+
+```xml
+<dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka</artifactId>
+    <version>${spring-kafka.version}</version>
+</dependency>
+```
+
+其中，`${spring-kafka.version}` 是 Kafka Spring Boot Starter 的版本号，你需要将它替换为你要使用的版本号。你可以在 Maven 的 `pom.xml` 文件中添加以上依赖，然后使用 Maven 或其他构建工具进行项目构建。
+
+需要注意的是，Kafka Spring Boot Starter 依赖于 Spring Boot 和 Kafka，因此你需要同时引入 Spring Boot 和 Kafka 的依赖，例如：
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+    <version>${spring-boot.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.kafka</groupId>
+    <artifactId>kafka-clients</artifactId>
+    <version>${kafka.version}</version>
+</dependency>
+```
+
+
+
+其中，`${spring-boot.version}` 和 `${kafka.version}` 分别是 Spring Boot 和 Kafka 的版本号，你需要将它们替换为你要使用的版本号。
+
+在引入以上依赖后，你可以在 Spring Boot 的配置文件中配置 Kafka，例如：
+
+```properties
+spring.kafka.bootstrap-servers=localhost:9092
+
+# 配置消费者
+spring.kafka.consumer.group-id=my-group
+spring.kafka.consumer.auto-offset-reset=earliest
+spring.kafka.consumer.enable-auto-commit=false
+
+# 配置生产者
+spring.kafka.producer.acks=all
+spring.kafka.producer.retries=0
+spring.kafka.producer.batch-size=16384
+spring.kafka.producer.buffer-memory=33554432
+```
+
+这样，你就可以通过 `spring.kafka.*` 配置项来配置 Kafka，例如配置 Kafka 的地址、消费者的 Group ID、消费者的消费模式、生产者的参数等。然后在代码中通过 `@Autowired` 注解来注入 Kafka 的 `KafkaTemplate` 对象，例如：
+
+```java
+import org.springframework.kafka.core.KafkaTemplate;
+
+@RestController
+public class UserController {
+    
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+    
+    // ...
+}
+```
+
+这样，你就可以通过 `kafkaTemplate` 来发送消息到 Kafka 以及接收来自 Kafka 的消息。
+
+spring官方支持
+
+
+
+```java
+import org.springframework.kafka.core.KafkaTemplate;
+
+@RestController
+public class UserController {
+    
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+    
+    // ...
+}
+```
+
+
+
+
+
+rocketmq
+
+
+
+redis
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+
+RedisTemplate
+
+
+
+
+
+mongodb
+
+rabbitmq
+
+
+
+web springboot
+
+
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>${spring-boot.version}</version>
+</dependency>
+
+
+
+test
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+
+
+
+logging
+
+
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-logging</artifactId>
+  <version>2.3.4.RELEASE</version>
+  <scope>compile</scope>
+</dependency>
+
+
+
+
+
+json
+
+
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-json</artifactId>
+  <version>2.3.4.RELEASE</version>
+  <scope>compile</scope>
+</dependency>
+
+
+
+tomcat
+
+
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-tomcat</artifactId>
+  <version>2.3.4.RELEASE</version>
+  <scope>compile</scope>
+</dependency>
+

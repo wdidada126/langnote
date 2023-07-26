@@ -81,7 +81,7 @@ SqlSessionFactoryBuilder是构造器，见名知意，它的主要作用便是�
 
 SqlSource 接口实现类
 
-XMLLanguageDriver用于对sql脚本进行解析，解析各种标签。
+XMLLanguageDriver用于对sql脚本进行解析，解析各种标签。  重点
 
 trim TrimHandler
 where WhereHandler
@@ -717,6 +717,10 @@ SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, InitializingBea
 
 ![四大金刚 mybatis plugin](..\..\imges\mybatis_plugin.png)
 
+
+
+![mybatis_plugin](D:\langnote\imgs\mybatis\mybatis_plugin.png)
+
 http://www.mybatis.cn/archives/685.html
 
 Spring源码深度分析
@@ -1229,1652 +1233,8 @@ jmap -histo:live 1424
  877:             1             16  org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory
  878:             1             16  org.apache.ibatis.type.TypeAliasRegistry
 
-
-
-
-
- 605:             1             16  org.apache.ibatis.cache.TransactionalCacheManager
- 606:             1             16  org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory
- 607:             1             16  org.apache.ibatis.io.DefaultVFS
- 608:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$1
- 609:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$3
- 610:             1             16  org.apache.ibatis.ognl.ArrayElementsAccessor
- 611:             1             16  org.apache.ibatis.ognl.ArrayPropertyAccessor
- 612:             1             16  org.apache.ibatis.ognl.CollectionElementsAccessor
- 613:             1             16  org.apache.ibatis.ognl.EnumerationElementsAccessor
- 614:             1             16  org.apache.ibatis.ognl.EnumerationPropertyAccessor
- 615:             1             16  org.apache.ibatis.ognl.EvaluationPool
- 616:             1             16  org.apache.ibatis.ognl.IteratorElementsAccessor
- 617:             1             16  org.apache.ibatis.ognl.IteratorPropertyAccessor
- 618:             1             16  org.apache.ibatis.ognl.ListPropertyAccessor
- 619:             1             16  org.apache.ibatis.ognl.MapElementsAccessor
- 620:             1             16  org.apache.ibatis.ognl.MapPropertyAccessor
- 621:             1             16  org.apache.ibatis.ognl.NumberElementsAccessor
- 622:             1             16  org.apache.ibatis.ognl.ObjectArrayPool
- 623:             1             16  org.apache.ibatis.ognl.ObjectElementsAccessor
- 624:             1             16  org.apache.ibatis.ognl.ObjectMethodAccessor
- 625:             1             16  org.apache.ibatis.ognl.ObjectNullHandler
- 626:             1             16  org.apache.ibatis.ognl.ObjectPropertyAccessor
- 627:             1             16  org.apache.ibatis.ognl.SetPropertyAccessor
- 628:             1             16  org.apache.ibatis.plugin.InterceptorChain
- 629:             1             16  org.apache.ibatis.scripting.defaults.RawLanguageDriver
- 630:             1             16  org.apache.ibatis.scripting.xmltags.DynamicContext$ContextAccessor
- 631:             1             16  org.apache.ibatis.scripting.xmltags.XMLLanguageDriver
- 632:             1             16  org.apache.ibatis.session.defaults.DefaultSqlSessionFactory
- 633:             1             16  org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory
- 634:             1             16  org.apache.ibatis.type.TypeAliasRegistry
- 635:             1             16  org.apache.log4j.DefaultCategoryFactory
- 636:             1             16  org.apache.log4j.helpers.AppenderAttachableImpl
- 637:             1             16  org.apache.log4j.or.DefaultRenderer
- 638:             1             16  org.apache.log4j.or.RendererMap
- 639:             1             16  org.apache.log4j.spi.DefaultRepositorySelector
- 640:             1             16  org.slf4j.helpers.BasicMarkerFactory
- 641:             1             16  org.slf4j.helpers.NOPLoggerFactory
- 642:             1             16  org.slf4j.helpers.SubstituteLoggerFactory
- 643:             1             16  org.slf4j.impl.Log4jLoggerFactory
- 644:             1             16  org.slf4j.impl.StaticLoggerBinder
- 645:             1             16  org.slf4j.impl.StaticMarkerBinder
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- num     #instances         #bytes  class name
-----------------------------------------------
-   1:          1884        2461048  [B
-   2:         14213        1959584  [C
-   3:         13857         332568  java.lang.String
-   4:          2004         231216  java.lang.Class
-   5:          1753         226576  [I
-   6:          1659         145992  java.lang.reflect.Method
-   7:          1561         120944  [Ljava.lang.Object;
-   8:          3411         109152  java.util.HashMap$Node
-   9:          1634          52288  java.util.concurrent.ConcurrentHashMap$Node
-  10:           696          50112  java.lang.reflect.Field
-  11:           482          40680  [Ljava.lang.String;
-  12:          1008          40320  java.lang.ref.Finalizer
-  13:          1753          39848  [Ljava.lang.Class;
-  14:           171          35744  [Ljava.util.HashMap$Node;
-  15:           848          33920  java.util.TreeMap$Entry
-  16:           480          26880  java.util.zip.ZipFile$ZipFileInputStream
-  17:            13          26832  [Lorg.apache.ibatis.ognl.internal.Entry;
-  18:           463          25928  java.util.zip.ZipFile$ZipFileInflaterInputStream
-  19:          1426          22816  java.lang.Object
-  20:           476          15232  java.util.Hashtable$Entry
-  21:           175          14000  java.lang.reflect.Constructor
-  22:            35          12176  [Ljava.util.concurrent.ConcurrentHashMap$Node;
-  23:           341          10912  sun.misc.FDBigInteger
-  24:           268          10720  java.lang.ref.SoftReference
-  25:           405           9720  java.util.ArrayList
-  26:           202           9696  java.util.HashMap
-  27:             9           8360  [[C
-  28:            54           8104  [Ljava.lang.reflect.Method;
-  29:           126           8064  com.mysql.jdbc.ConnectionPropertiesImpl$BooleanConnectionProperty
-  30:           480           7680  java.lang.Integer
-  31:           130           7280  java.lang.Class$ReflectionData
-  32:           202           6464  sun.reflect.UnsafeObjectFieldAccessorImpl
-  33:           100           6400  java.net.URL
-  34:           258           6192  java.lang.Long
-  35:            21           4608  [Ljava.util.Hashtable$Entry;
-  36:           109           4360  java.math.BigInteger
-  37:            13           4304  [S
-  38:            74           4144  java.lang.Package
-  39:           172           4128  java.text.EntryPair
-  40:             1           4112  [Lcom.sun.org.apache.xpath.internal.objects.XObject;
-  41:            78           3120  java.io.ObjectStreamField
-  42:           127           3048  java.util.jar.Attributes$Name
-  43:            43           2752  com.mysql.jdbc.ConnectionPropertiesImpl$StringConnectionProperty
-  44:            42           2688  java.util.concurrent.ConcurrentHashMap
-  45:            55           2640  sun.net.www.MimeEntry
-  46:             7           2632  java.lang.Thread
-  47:            47           2632  sun.misc.URLClassPath$JarLoader
-  48:            77           2464  java.lang.ref.WeakReference
-  49:            30           2400  [Ljava.util.WeakHashMap$Entry;
-  50:            60           2400  com.mysql.jdbc.MysqlCharset
-  51:            24           2336  [Ljava.lang.reflect.Field;
-  52:            70           2240  java.util.Vector
-  53:            43           2064  sun.util.locale.LocaleObjectCache$CacheEntry
-  54:            51           2040  java.util.LinkedHashMap$Entry
-  55:            28           2000  [J
-  56:            83           1992  java.util.LinkedList$Node
-  57:            80           1960  [Ljava.lang.reflect.Constructor;
-  58:            29           1856  com.mysql.jdbc.ConnectionPropertiesImpl$IntegerConnectionProperty
-  59:            76           1824  sun.reflect.NativeConstructorAccessorImpl
-  60:            68           1632  org.apache.ibatis.reflection.invoker.MethodInvoker
-  61:             1           1568  [[B
-  62:            64           1536  sun.reflect.generics.tree.SimpleClassTypeSignature
-  63:            47           1504  java.util.LinkedList
-  64:            26           1456  sun.nio.cs.UTF_8$Encoder
-  65:            30           1440  java.util.WeakHashMap
-  66:            60           1440  org.apache.ibatis.ognl.internal.Entry
-  67:            10           1392  [Z
-  68:             1           1376  [Lsun.misc.FDBigInteger;
-  69:            41           1312  java.lang.ref.ReferenceQueue
-  70:            39           1280  [Ljava.math.BigInteger;
-  71:            20           1280  java.util.jar.JarFile
-  72:            64           1264  [Lsun.reflect.generics.tree.TypeArgument;
-  73:            13           1248  java.util.jar.JarFile$JarFileEntry
-  74:             1           1224  com.mysql.jdbc.JDBC4Connection
-  75:            51           1224  java.io.ExpiringCache$Entry
-  76:            76           1216  sun.reflect.DelegatingConstructorAccessorImpl
-  77:            28           1120  java.math.BigDecimal
-  78:             2           1064  [Ljava.lang.Integer;
-  79:             2           1064  [Ljava.lang.invoke.MethodHandle;
-  80:            19           1064  java.beans.MethodDescriptor
-  81:             1           1040  [Lcom.mysql.jdbc.MysqlCharset;
-  82:             1           1040  [Ljava.lang.Long;
-  83:             1           1040  [Lsun.text.normalizer.UnicodeSet;
-  84:            63           1008  sun.reflect.generics.tree.ClassTypeSignature
-  85:            30            960  sun.reflect.generics.repository.ClassRepository
-  86:            39            936  java.sql.JDBCType
-  87:            23            920  java.util.WeakHashMap$Entry
-  88:            21            840  sun.util.locale.BaseLocale$Key
-  89:             5            824  [D
-  90:            33            792  java.beans.MethodRef
-  91:            49            784  java.util.HashSet
-  92:            14            784  java.util.ResourceBundle$CacheKey
-  93:            16            768  java.util.zip.Inflater
-  94:            19            760  sun.nio.cs.UTF_8$Decoder
-  95:            47            752  java.util.Collections$UnmodifiableSet
-  96:            32            744  [Ljava.lang.reflect.Type;
-  97:            31            744  org.apache.ibatis.type.JdbcType
-  98:            23            736  java.util.zip.ZipCoder
-  99:            18            720  java.io.FileDescriptor
- 100:            30            720  sun.reflect.generics.factory.CoreReflectionFactory
- 101:            30            720  sun.reflect.generics.tree.ClassSignature
- 102:            29            696  java.util.Collections$UnmodifiableRandomAccessList
- 103:            29            696  sun.reflect.NativeMethodAccessorImpl
- 104:            29            696  sun.reflect.generics.scope.ClassScope
- 105:            43            688  java.lang.ref.ReferenceQueue$Lock
- 106:            42            672  java.util.HashMap$KeySet
- 107:            21            672  java.util.Locale
- 108:            14            672  java.util.ResourceBundle$BundleReference
- 109:            28            672  sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
- 110:            21            672  sun.util.locale.BaseLocale
- 111:            18            648  [Ljava.io.ObjectStreamField;
- 112:            26            624  org.apache.log4j.CategoryKey
- 113:            19            608  java.io.File
- 114:            12            576  java.util.Hashtable
- 115:             6            576  org.apache.ibatis.mapping.MappedStatement
- 116:            10            560  sun.util.calendar.ZoneInfo
- 117:            23            552  java.util.ArrayDeque
- 118:            22            528  java.lang.Class$AnnotationData
- 119:            13            520  java.security.ProtectionDomain
- 120:            31            512  [Lsun.reflect.generics.tree.FormalTypeParameter;
- 121:            30            504  [Lsun.reflect.generics.tree.ClassTypeSignature;
- 122:             7            504  java.beans.PropertyDescriptor
- 123:            21            504  java.util.Locale$LocaleKey
- 124:            31            496  sun.reflect.DelegatingMethodAccessorImpl
- 125:            12            480  java.security.AccessControlContext
- 126:            12            480  org.apache.log4j.Logger
- 127:            14            448  com.sun.org.apache.xml.internal.dtm.ref.ExtendedType
- 128:            14            448  java.io.FileInputStream
- 129:            14            448  java.util.ResourceBundle$LoaderReference
- 130:            14            448  org.apache.log4j.ProvisionNode
- 131:             9            432  java.util.Properties
- 132:            18            432  sun.misc.MetaIndex
- 133:            13            416  java.security.CodeSource
- 134:             1            384  java.lang.ref.Finalizer$FinalizerThread
- 135:             6            384  java.nio.DirectByteBuffer
- 136:            16            384  java.util.zip.ZStreamRef
- 137:             1            376  com.mysql.jdbc.AbandonedConnectionCleanupThread
- 138:             1            376  java.lang.ref.Reference$ReferenceHandler
- 139:             9            360  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$Limit
- 140:             6            336  java.nio.DirectLongBufferU
- 141:            10            320  java.lang.OutOfMemoryError
- 142:            13            312  org.apache.ibatis.ognl.internal.ClassCacheImpl
- 143:            13            312  org.apache.log4j.Level
- 144:             2            288  [Lorg.apache.ibatis.type.JdbcType;
- 145:             6            288  org.apache.ibatis.session.Configuration$StrictMap
- 146:            11            264  tk.mybatis.simple.model.Country
- 147:             1            256  com.mysql.jdbc.MysqlIO
- 148:             8            256  java.io.FilePermission
- 149:             8            256  java.security.Permissions
- 150:             8            256  java.util.Collections$UnmodifiableMap
- 151:             8            256  sun.misc.ProxyGenerator$PrimitiveTypeInfo
- 152:            10            240  com.sun.org.apache.xerces.internal.impl.XMLScanner$NameType
- 153:             2            240  java.net.SocksSocketImpl
- 154:             5            240  java.util.TreeMap
- 155:            15            240  org.apache.ibatis.reflection.invoker.SetFieldInvoker
- 156:             3            240  sun.net.www.protocol.jar.URLJarFile
- 157:             5            240  sun.util.locale.provider.LocaleResources$ResourceReference
- 158:             7            224  java.security.BasicPermissionCollection
- 159:             2            224  java.util.GregorianCalendar
- 160:             7            224  java.util.RegularEnumSet
- 161:            14            224  org.apache.ibatis.reflection.invoker.GetFieldInvoker
- 162:             3            216  [Ljava.beans.MethodDescriptor;
- 163:             7            216  [Ljava.lang.Boolean;
- 164:             3            216  com.mysql.jdbc.ConnectionPropertiesImpl$MemorySizeConnectionProperty
- 165:             9            216  java.lang.RuntimePermission
- 166:            13            208  [Ljava.security.Principal;
- 167:            13            208  java.security.ProtectionDomain$Key
- 168:             8            192  java.io.FilePermissionCollection
- 169:             6            192  java.lang.ThreadLocal$ThreadLocalMap$Entry
- 170:             8            192  java.math.RoundingMode
- 171:             2            192  sun.util.calendar.Gregorian$Date
- 172:             1            176  [Ljava.sql.JDBCType;
- 173:             2            176  java.net.DualStackPlainSocketImpl
- 174:             1            168  [[Ljava.math.BigInteger;
- 175:             7            168  com.sun.org.apache.xerces.internal.util.FeatureState
- 176:             7            168  java.util.jar.Manifest
- 177:             3            168  org.apache.ibatis.mapping.ResultMap
- 178:             2            160  [[Ljava.lang.String;
- 179:             5            160  com.sun.org.apache.xpath.internal.objects.XNumber
- 180:             4            160  java.lang.ClassLoader$NativeLibrary
- 181:            10            160  java.util.Formatter$Flags
- 182:             5            160  java.util.regex.Pattern$Branch
- 183:             1            160  org.apache.ibatis.session.Configuration
- 184:             5            160  sun.util.locale.provider.LocaleProviderAdapter$Type
- 185:             2            144  [Ljava.math.BigDecimal;
- 186:             6            144  com.sun.org.apache.xerces.internal.util.Status
- 187:             3            144  java.beans.BeanDescriptor
- 188:             3            144  java.nio.HeapByteBuffer
- 189:             6            144  java.util.concurrent.atomic.AtomicLong
- 190:             6            144  java.util.regex.Pattern$GroupHead
- 191:             6            144  java.util.regex.Pattern$GroupTail
- 192:             6            144  org.apache.ibatis.builder.StaticSqlSource
- 193:             6            144  org.apache.ibatis.mapping.ParameterMap
- 194:             6            144  org.apache.ibatis.mapping.SqlCommandType
- 195:             6            144  sun.misc.PerfCounter
- 196:             3            144  sun.misc.URLClassPath
- 197:             3            144  sun.nio.cs.StreamEncoder
- 198:             2            144  sun.reflect.DelegatingClassLoader
- 199:             2            128  [F
- 200:             6            128  [Lsun.reflect.generics.tree.FieldTypeSignature;
- 201:             2            128  java.io.ExpiringCache$1
- 202:             4            128  java.util.Stack
- 203:             8            128  java.util.jar.Attributes
- 204:             4            128  java.util.regex.Pattern$Curly
- 205:             8            128  org.apache.ibatis.logging.log4j.Log4jImpl
- 206:             2            128  sun.nio.cs.ext.DoubleByte$Encoder
- 207:             5            120  [Ljava.util.regex.Pattern$Node;
- 208:             5            120  com.mysql.jdbc.StringUtils$SearchMode
- 209:             5            120  com.sun.org.apache.xerces.internal.util.PropertyState
- 210:             5            120  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$State
- 211:             5            120  com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$State
- 212:             3            120  java.beans.GenericBeanInfo
- 213:             5            120  javax.xml.namespace.QName
- 214:             5            120  jdk.xml.internal.JdkXmlFeatures$State
- 215:             5            120  org.apache.ibatis.type.StringTypeHandler
- 216:             3            120  sun.misc.FloatingDecimal$BinaryToASCIIBuffer
- 217:             5            120  sun.misc.FloatingDecimal$PreparedASCIIToBinaryBuffer
- 218:             7            112  java.lang.ThreadLocal
- 219:             2            112  java.util.LinkedHashMap
- 220:             3             96  [Ljava.beans.PropertyDescriptor;
- 221:             1             96  [[J
- 222:             3             96  com.mysql.jdbc.Buffer
- 223:             3             96  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$NameMap
- 224:             3             96  java.io.FileOutputStream
- 225:             2             96  java.lang.ThreadGroup
- 226:             3             96  java.lang.reflect.WeakCache$CacheValue
- 227:             4             96  java.math.MathContext
- 228:             4             96  java.sql.SQLPermission
- 229:             6             96  org.apache.ibatis.executor.keygen.NoKeyGenerator
- 230:             2             96  org.apache.ibatis.reflection.Reflector
- 231:             6             96  org.apache.ibatis.scripting.defaults.RawSqlSource
- 232:             4             96  org.apache.ibatis.type.BigDecimalTypeHandler
- 233:             4             96  org.apache.ibatis.type.BlobTypeHandler
- 234:             4             96  org.apache.ibatis.type.BooleanTypeHandler
- 235:             4             96  org.apache.ibatis.type.ClobTypeHandler
- 236:             4             96  org.apache.ibatis.type.NStringTypeHandler
- 237:             3             96  org.apache.log4j.helpers.PatternParser$BasicPatternConverter
- 238:             3             96  org.apache.log4j.helpers.PatternParser$LiteralPatternConverter
- 239:             1             96  sun.misc.Launcher$AppClassLoader
- 240:             3             96  sun.net.spi.DefaultProxySelector$NonProxyInfo
- 241:             2             96  sun.nio.cs.US_ASCII$Decoder
- 242:             2             96  sun.text.normalizer.CharTrie
- 243:             1             88  sun.misc.Launcher$ExtClassLoader
- 244:             2             80  [Lcom.mysql.jdbc.StringUtils$SearchMode;
- 245:             1             80  [Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;
- 246:             2             80  [Lorg.apache.ibatis.mapping.SqlCommandType;
- 247:             1             80  [[I
- 248:             1             80  [[S
- 249:             1             80  [[Z
- 250:             2             80  java.io.BufferedWriter
- 251:             2             80  java.io.ExpiringCache
- 252:             2             80  java.util.Locale$Category
- 253:             5             80  java.util.regex.Pattern$BranchConn
- 254:             2             80  jdk.xml.internal.JdkXmlFeatures$XmlFeature
- 255:             5             80  org.apache.ibatis.logging.slf4j.Slf4jImpl
- 256:             5             80  org.apache.ibatis.logging.slf4j.Slf4jLocationAwareLoggerImpl
- 257:             1             72  [Lcom.sun.org.apache.xml.internal.dtm.ref.ExtendedType;
- 258:             3             72  java.io.BufferedOutputStream
- 259:             3             72  java.io.OutputStreamWriter
- 260:             3             72  java.net.Proxy$Type
- 261:             3             72  java.util.Arrays$ArrayList
- 262:             1             72  java.util.ResourceBundle$RBClassLoader
- 263:             3             72  java.util.concurrent.ConcurrentHashMap$KeySetView
- 264:             3             72  java.util.concurrent.atomic.AtomicMarkableReference$Pair
- 265:             1             72  java.util.regex.Pattern
- 266:             3             72  java.util.regex.Pattern$BitClass
- 267:             3             72  java.util.regex.Pattern$Ctype
- 268:             3             72  java.util.regex.Pattern$Single
- 269:             3             72  org.apache.ibatis.mapping.StatementType
- 270:             3             72  org.apache.ibatis.session.AutoMappingBehavior
- 271:             3             72  org.apache.ibatis.session.ExecutorType
- 272:             3             72  org.apache.ibatis.type.ByteTypeHandler
- 273:             3             72  org.apache.ibatis.type.DoubleTypeHandler
- 274:             3             72  org.apache.ibatis.type.FloatTypeHandler
- 275:             3             72  org.apache.ibatis.type.IntegerTypeHandler
- 276:             3             72  org.apache.ibatis.type.LongTypeHandler
- 277:             3             72  org.apache.ibatis.type.ShortTypeHandler
- 278:             3             72  org.slf4j.impl.Log4jLoggerAdapter
- 279:             3             72  sun.misc.FloatingDecimal$ExceptionalBinaryToASCIIBuffer
- 280:             3             72  sun.misc.JarIndex
- 281:             1             72  sun.util.locale.provider.JRELocaleProviderAdapter
- 282:             3             72  sun.util.resources.ParallelListResourceBundle$KeySet
- 283:             2             64  [Ljava.lang.Thread;
- 284:             3             64  [Ljava.lang.reflect.TypeVariable;
- 285:             2             64  [Lorg.apache.ibatis.mapping.StatementType;
- 286:             2             64  [Lorg.apache.ibatis.session.AutoMappingBehavior;
- 287:             2             64  [Lorg.apache.ibatis.session.ExecutorType;
- 288:             1             64  com.mysql.jdbc.ConnectionPropertiesImpl$LongConnectionProperty
- 289:             2             64  com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$Property
- 290:             2             64  java.io.PrintStream
- 291:             2             64  java.lang.ClassValue$Entry
- 292:             2             64  java.lang.VirtualMachineError
- 293:             2             64  java.lang.ref.ReferenceQueue$Null
- 294:             2             64  java.lang.reflect.Proxy$Key1
- 295:             2             64  java.net.InetAddress$InetAddressHolder
- 296:             2             64  java.net.Socket
- 297:             2             64  java.util.concurrent.locks.ReentrantLock$NonfairSync
- 298:             1             64  org.apache.log4j.ConsoleAppender
- 299:             2             64  sun.reflect.generics.reflectiveObjects.TypeVariableImpl
- 300:             4             64  sun.reflect.generics.tree.ArrayTypeSignature
- 301:             2             64  sun.util.locale.provider.LocaleServiceProviderPool
- 302:             1             56  [Lcom.sun.org.apache.xerces.internal.impl.XMLScanner$NameType;
- 303:             1             56  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$Limit;
- 304:             1             48  [Lcom.sun.beans.util.Cache$CacheEntry;
- 305:             1             48  [Ljava.beans.WeakIdentityMap$Entry;
- 306:             3             48  [Ljava.lang.annotation.Annotation;
- 307:             1             48  [Ljava.math.RoundingMode;
- 308:             2             48  [Lorg.apache.ibatis.session.LocalCacheScope;
- 309:             3             48  com.sun.org.apache.xerces.internal.impl.dv.dtd.ListDatatypeValidator
- 310:             2             48  java.io.File$PathStatus
- 311:             3             48  java.lang.Byte
- 312:             2             48  java.lang.Double
- 313:             3             48  java.lang.Short
- 314:             2             48  java.net.Inet4Address
- 315:             2             48  java.net.InetAddress$Cache
- 316:             2             48  java.net.InetAddress$Cache$Type
- 317:             1             48  java.net.SocketInputStream
- 318:             1             48  java.net.SocketOutputStream
- 319:             2             48  java.nio.charset.CoderResult
- 320:             3             48  java.nio.charset.CodingErrorAction
- 321:             2             48  java.sql.DriverInfo
- 322:             3             48  java.text.AttributedCharacterIterator$Attribute
- 323:             1             48  java.text.RuleBasedCollator
- 324:             2             48  java.util.BitSet
- 325:             2             48  java.util.Collections$SynchronizedSet
- 326:             2             48  java.util.concurrent.CopyOnWriteArrayList
- 327:             3             48  java.util.concurrent.atomic.AtomicMarkableReference
- 328:             2             48  java.util.regex.Pattern$1
- 329:             2             48  java.util.regex.Pattern$5
- 330:             2             48  org.apache.ibatis.cache.impl.PerpetualCache
- 331:             1             48  org.apache.ibatis.datasource.unpooled.UnpooledDataSource
- 332:             1             48  org.apache.ibatis.executor.SimpleExecutor
- 333:             2             48  org.apache.ibatis.reflection.DefaultReflectorFactory
- 334:             2             48  org.apache.ibatis.session.LocalCacheScope
- 335:             2             48  org.apache.ibatis.type.ArrayTypeHandler
- 336:             2             48  org.apache.ibatis.type.BlobByteObjectArrayTypeHandler
- 337:             2             48  org.apache.ibatis.type.CharacterTypeHandler
- 338:             2             48  org.apache.ibatis.type.DateOnlyTypeHandler
- 339:             2             48  org.apache.ibatis.type.DateTypeHandler
- 340:             2             48  org.apache.ibatis.type.NClobTypeHandler
- 341:             2             48  org.apache.ibatis.type.TimeOnlyTypeHandler
- 342:             1             48  org.apache.log4j.Hierarchy
- 343:             2             48  sun.misc.NativeSignalHandler
- 344:             2             48  sun.misc.Signal
- 345:             3             48  sun.net.www.protocol.jar.Handler
- 346:             2             48  sun.reflect.generics.tree.FormalTypeParameter
- 347:             1             48  sun.text.normalizer.IntTrie
- 348:             1             48  sun.text.resources.FormatData
- 349:             1             48  sun.text.resources.zh.FormatData_zh
- 350:             1             48  sun.text.resources.zh.FormatData_zh_CN
- 351:             1             48  sun.util.resources.CalendarData
- 352:             1             48  sun.util.resources.CurrencyNames
- 353:             1             48  sun.util.resources.zh.CalendarData_zh
- 354:             1             48  sun.util.resources.zh.CurrencyNames_zh_CN
- 355:             1             40  [Lcom.sun.org.apache.xerces.internal.util.Status;
- 356:             1             40  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$State;
- 357:             1             40  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$State;
- 358:             1             40  [Ljdk.xml.internal.JdkXmlFeatures$State;
- 359:             1             40  [Lsun.util.locale.provider.LocaleProviderAdapter$Type;
- 360:             1             40  com.mysql.jdbc.StandardSocketFactory
- 361:             1             40  com.mysql.jdbc.util.ReadAheadInputStream
- 362:             1             40  com.sun.beans.finder.MethodFinder$1
- 363:             1             40  com.sun.xml.internal.stream.util.BufferAllocator
- 364:             1             40  java.beans.WeakIdentityMap$Entry
- 365:             1             40  java.io.BufferedInputStream
- 366:             1             40  java.lang.reflect.Proxy$Key2
- 367:             1             40  java.text.RBCollationTables
- 368:             1             40  java.util.EnumMap
- 369:             1             40  java.util.IdentityHashMap
- 370:             1             40  java.util.PropertyResourceBundle
- 371:             1             40  java.util.ResourceBundle$1
- 372:             1             40  org.apache.ibatis.cache.NullCacheKey
- 373:             1             40  org.apache.log4j.spi.RootLogger
- 374:             1             40  sun.nio.cs.StandardCharsets$Aliases
- 375:             1             40  sun.nio.cs.StandardCharsets$Cache
- 376:             1             40  sun.nio.cs.StandardCharsets$Classes
- 377:             1             40  sun.nio.cs.ext.ExtendedCharsets
- 378:             1             40  sun.reflect.generics.repository.MethodRepository
- 379:             1             40  sun.text.IntHashtable
- 380:             1             40  sun.text.UCompactIntArray
- 381:             1             40  sun.text.resources.CollationData
- 382:             1             40  sun.text.resources.zh.CollationData_zh
- 383:             1             32  [Lcom.sun.beans.util.Cache$Kind;
- 384:             1             32  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$NameMap;
- 385:             2             32  [Ljava.lang.Enum;
- 386:             1             32  [Ljava.lang.OutOfMemoryError;
- 387:             2             32  [Ljava.lang.StackTraceElement;
- 388:             1             32  [Ljava.lang.ThreadGroup;
- 389:             1             32  [Ljava.net.Proxy$Type;
- 390:             1             32  com.mysql.jdbc.JDBC4DatabaseMetaData
- 391:             1             32  com.mysql.jdbc.NonRegisteringDriver$ConnectionPhantomReference
- 392:             1             32  com.mysql.jdbc.authentication.Sha256PasswordPlugin
- 393:             2             32  com.sun.beans.WeakCache
- 394:             1             32  com.sun.beans.finder.BeanInfoFinder
- 395:             1             32  com.sun.org.apache.xerces.internal.impl.XMLEntityScanner$1
- 396:             2             32  com.sun.org.apache.xerces.internal.impl.dv.dtd.ENTITYDatatypeValidator
- 397:             1             32  com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl
- 398:             1             32  java.beans.ThreadGroupContext
- 399:             1             32  java.beans.ThreadGroupContext$1
- 400:             1             32  java.io.WinNTFileSystem
- 401:             1             32  java.lang.ArithmeticException
- 402:             2             32  java.lang.Boolean
- 403:             2             32  java.lang.Character
- 404:             2             32  java.lang.Float
- 405:             1             32  java.lang.NullPointerException
- 406:             1             32  java.lang.StringCoding$StringDecoder
- 407:             1             32  java.lang.StringCoding$StringEncoder
- 408:             1             32  java.lang.reflect.WeakCache
- 409:             2             32  java.nio.ByteOrder
- 410:             1             32  java.util.Formatter
- 411:             1             32  java.util.Random
- 412:             2             32  java.util.concurrent.atomic.AtomicInteger
- 413:             1             32  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl
- 414:             2             32  java.util.concurrent.locks.ReentrantLock
- 415:             2             32  javax.xml.xpath.SecuritySupport
- 416:             1             32  org.apache.ibatis.reflection.MetaObject
- 417:             2             32  org.apache.ibatis.reflection.factory.DefaultObjectFactory
- 418:             2             32  org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory
- 419:             1             32  org.apache.ibatis.transaction.jdbc.JdbcTransaction
- 420:             1             32  org.apache.ibatis.type.TypeHandlerRegistry
- 421:             1             32  org.apache.log4j.PatternLayout
- 422:             1             32  org.apache.log4j.helpers.QuietWriter
- 423:             1             32  sun.instrument.InstrumentationImpl
- 424:             1             32  sun.nio.cs.StandardCharsets
- 425:             1             32  sun.reflect.generics.reflectiveObjects.WildcardTypeImpl
- 426:             1             32  sun.reflect.generics.tree.MethodTypeSignature
- 427:             2             32  sun.reflect.generics.tree.TypeVariableSignature
- 428:             2             32  sun.text.normalizer.CharTrie$FriendAgent
- 429:             1             32  sun.util.locale.provider.LocaleResources
- 430:             1             24  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$Property;
- 431:             1             24  [Ljava.io.File$PathStatus;
- 432:             1             24  [Ljava.lang.ClassValue$Entry;
- 433:             1             24  [Ljava.net.InetAddress$Cache$Type;
- 434:             1             24  [Ljava.security.ProtectionDomain;
- 435:             1             24  [Ljava.util.Locale$Category;
- 436:             1             24  [Ljdk.xml.internal.JdkXmlFeatures$XmlFeature;
- 437:             1             24  [Lorg.apache.ibatis.executor.ExecutionPlaceholder;
- 438:             1             24  [Lorg.apache.ibatis.ognl.internal.ClassCache;
- 439:             1             24  [Lsun.launcher.LauncherHelper;
- 440:             1             24  com.mysql.jdbc.NetworkResources
- 441:             1             24  com.mysql.jdbc.SingleByteCharsetConverter
- 442:             1             24  com.mysql.jdbc.authentication.MysqlClearPasswordPlugin
- 443:             1             24  com.mysql.jdbc.authentication.MysqlNativePasswordPlugin
- 444:             1             24  com.mysql.jdbc.authentication.MysqlOldPasswordPlugin
- 445:             1             24  com.sun.beans.util.Cache$Kind$1
- 446:             1             24  com.sun.beans.util.Cache$Kind$2
- 447:             1             24  com.sun.beans.util.Cache$Kind$3
- 448:             1             24  com.sun.org.apache.xerces.internal.impl.Constants$ArrayEnumeration
- 449:             1             24  java.lang.ClassValue$Version
- 450:             1             24  java.lang.StringBuffer
- 451:             1             24  java.lang.StringBuilder
- 452:             1             24  java.lang.ThreadLocal$ThreadLocalMap
- 453:             1             24  java.lang.invoke.MethodHandleImpl$4
- 454:             1             24  java.lang.reflect.ReflectPermission
- 455:             1             24  java.net.Inet6AddressImpl
- 456:             1             24  java.net.Proxy
- 457:             1             24  java.util.Collections$EmptyMap
- 458:             1             24  java.util.Collections$SetFromMap
- 459:             1             24  java.util.Currency
- 460:             1             24  java.util.Locale$Cache
- 461:             1             24  java.util.ResourceBundle$Control$CandidateListCache
- 462:             1             24  java.util.concurrent.ConcurrentLinkedQueue
- 463:             1             24  java.util.concurrent.ConcurrentLinkedQueue$Node
- 464:             1             24  java.util.regex.Pattern$Start
- 465:             1             24  org.apache.ibatis.binding.MapperRegistry
- 466:             1             24  org.apache.ibatis.executor.CachingExecutor
- 467:             1             24  org.apache.ibatis.executor.ExecutionPlaceholder
- 468:             1             24  org.apache.ibatis.io.ClassLoaderWrapper
- 469:             1             24  org.apache.ibatis.javassist.util.proxy.ProxyFactory$2
- 470:             1             24  org.apache.ibatis.mapping.Environment
- 471:             1             24  org.apache.ibatis.ognl.enhance.ExpressionCompiler
- 472:             1             24  org.apache.ibatis.reflection.MetaClass
- 473:             1             24  org.apache.ibatis.reflection.wrapper.BeanWrapper
- 474:             1             24  org.apache.ibatis.scripting.LanguageDriverRegistry
- 475:             1             24  org.apache.ibatis.session.RowBounds
- 476:             1             24  org.apache.ibatis.session.defaults.DefaultSqlSession
- 477:             1             24  org.apache.ibatis.type.BigIntegerTypeHandler
- 478:             1             24  org.apache.ibatis.type.ByteArrayTypeHandler
- 479:             1             24  org.apache.ibatis.type.ByteObjectArrayTypeHandler
- 480:             1             24  org.apache.ibatis.type.ObjectTypeHandler
- 481:             1             24  org.apache.ibatis.type.SqlDateTypeHandler
- 482:             1             24  org.apache.ibatis.type.SqlTimeTypeHandler
- 483:             1             24  org.apache.ibatis.type.SqlTimestampTypeHandler
- 484:             1             24  org.apache.ibatis.type.UnknownTypeHandler
- 485:             1             24  org.apache.log4j.helpers.OnlyOnceErrorHandler
- 486:             1             24  org.slf4j.helpers.BasicMarker
- 487:             1             24  sun.instrument.TransformerManager
- 488:             1             24  sun.launcher.LauncherHelper
- 489:             1             24  sun.misc.URLClassPath$FileLoader
- 490:             1             24  sun.net.ProgressMonitor
- 491:             1             24  sun.net.www.MimeTable
- 492:             1             24  sun.nio.cs.IBM437
- 493:             1             24  sun.nio.cs.IBM850
- 494:             1             24  sun.nio.cs.IBM852
- 495:             1             24  sun.nio.cs.IBM866
- 496:             1             24  sun.nio.cs.ISO_8859_1
- 497:             1             24  sun.nio.cs.ISO_8859_13
- 498:             1             24  sun.nio.cs.ISO_8859_2
- 499:             1             24  sun.nio.cs.ISO_8859_7
- 500:             1             24  sun.nio.cs.ISO_8859_9
- 501:             1             24  sun.nio.cs.KOI8_R
- 502:             1             24  sun.nio.cs.MS1250
- 503:             1             24  sun.nio.cs.MS1251
- 504:             1             24  sun.nio.cs.MS1252
- 505:             1             24  sun.nio.cs.MS1257
- 506:             1             24  sun.nio.cs.ThreadLocalCoders$1
- 507:             1             24  sun.nio.cs.ThreadLocalCoders$2
- 508:             1             24  sun.nio.cs.US_ASCII
- 509:             1             24  sun.nio.cs.UTF_16
- 510:             1             24  sun.nio.cs.UTF_16BE
- 511:             1             24  sun.nio.cs.UTF_16LE
- 512:             1             24  sun.nio.cs.UTF_32
- 513:             1             24  sun.nio.cs.UTF_8
- 514:             1             24  sun.nio.cs.ext.Big5
- 515:             1             24  sun.nio.cs.ext.EUC_CN
- 516:             1             24  sun.nio.cs.ext.EUC_JP
- 517:             1             24  sun.nio.cs.ext.EUC_JP_Open
- 518:             1             24  sun.nio.cs.ext.EUC_KR
- 519:             1             24  sun.nio.cs.ext.GB18030
- 520:             1             24  sun.nio.cs.ext.GBK
- 521:             1             24  sun.nio.cs.ext.IBM943
- 522:             1             24  sun.nio.cs.ext.ISO_8859_8
- 523:             1             24  sun.nio.cs.ext.MS1256
- 524:             1             24  sun.nio.cs.ext.MS932
- 525:             1             24  sun.nio.cs.ext.MS936
- 526:             1             24  sun.nio.cs.ext.MacCentralEurope
- 527:             1             24  sun.nio.cs.ext.MacRoman
- 528:             1             24  sun.nio.cs.ext.SJIS
- 529:             1             24  sun.nio.cs.ext.TIS_620
- 530:             1             24  sun.reflect.generics.scope.MethodScope
- 531:             1             24  sun.reflect.generics.tree.Wildcard
- 532:             1             24  sun.util.locale.BaseLocale$Cache
- 533:             1             24  sun.util.locale.provider.CalendarDataProviderImpl
- 534:             1             24  sun.util.locale.provider.CollatorProviderImpl
- 535:             1             24  sun.util.locale.provider.CurrencyNameProviderImpl
- 536:             1             24  sun.util.locale.provider.DecimalFormatSymbolsProviderImpl
- 537:             1             16  [Ljava.beans.EventSetDescriptor;
- 538:             1             16  [Ljava.lang.Throwable;
- 539:             1             16  [Ljava.security.cert.Certificate;
- 540:             1             16  [Lsun.instrument.TransformerManager$TransformerInfo;
- 541:             1             16  [Lsun.reflect.generics.tree.TypeSignature;
- 542:             1             16  com.mysql.fabric.jdbc.FabricMySQLDriver
- 543:             1             16  com.mysql.jdbc.Driver
- 544:             1             16  com.mysql.jdbc.Util
- 545:             1             16  com.mysql.jdbc.log.NullLogger
- 546:             1             16  com.mysql.jdbc.log.StandardLogger
- 547:             1             16  com.sun.org.apache.xerces.internal.dom.CharacterDataImpl$1
- 548:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.IDDatatypeValidator
- 549:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.IDREFDatatypeValidator
- 550:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.NMTOKENDatatypeValidator
- 551:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.NOTATIONDatatypeValidator
- 552:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.StringDatatypeValidator
- 553:             1             16  com.sun.org.apache.xerces.internal.utils.SecuritySupport
- 554:             1             16  com.sun.org.apache.xpath.internal.objects.EqualComparator
- 555:             1             16  com.sun.org.apache.xpath.internal.objects.GreaterThanComparator
- 556:             1             16  com.sun.org.apache.xpath.internal.objects.GreaterThanOrEqualComparator
- 557:             1             16  com.sun.org.apache.xpath.internal.objects.LessThanComparator
- 558:             1             16  com.sun.org.apache.xpath.internal.objects.LessThanOrEqualComparator
- 559:             1             16  com.sun.org.apache.xpath.internal.objects.NotEqualComparator
- 560:             1             16  com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl
- 561:             1             16  java.io.FileDescriptor$1
- 562:             1             16  java.lang.CharacterDataLatin1
- 563:             1             16  java.lang.ClassValue$Identity
- 564:             1             16  java.lang.Runtime
- 565:             1             16  java.lang.String$CaseInsensitiveComparator
- 566:             1             16  java.lang.System$2
- 567:             1             16  java.lang.Terminator$1
- 568:             1             16  java.lang.invoke.MemberName$Factory
- 569:             1             16  java.lang.invoke.MethodHandleImpl$2
- 570:             1             16  java.lang.invoke.MethodHandleImpl$3
- 571:             1             16  java.lang.ref.Reference$1
- 572:             1             16  java.lang.ref.Reference$Lock
- 573:             1             16  java.lang.reflect.Proxy$KeyFactory
- 574:             1             16  java.lang.reflect.Proxy$ProxyClassFactory
- 575:             1             16  java.lang.reflect.ReflectAccess
- 576:             1             16  java.math.BigDecimal$1
- 577:             1             16  java.net.InetAddress$2
- 578:             1             16  java.net.URLClassLoader$7
- 579:             1             16  java.nio.Bits$1
- 580:             1             16  java.nio.charset.CoderResult$1
- 581:             1             16  java.nio.charset.CoderResult$2
- 582:             1             16  java.security.ProtectionDomain$2
- 583:             1             16  java.security.ProtectionDomain$JavaSecurityAccessImpl
- 584:             1             16  java.text.MessageFormat$Field
- 585:             1             16  java.util.Collections$EmptyEnumeration
- 586:             1             16  java.util.Collections$EmptyIterator
- 587:             1             16  java.util.Collections$EmptyList
- 588:             1             16  java.util.Collections$EmptySet
- 589:             1             16  java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet
- 590:             1             16  java.util.Currency$CurrencyNameGetter
- 591:             1             16  java.util.EnumMap$1
- 592:             1             16  java.util.HashMap$EntrySet
- 593:             1             16  java.util.Hashtable$EntrySet
- 594:             1             16  java.util.Hashtable$KeySet
- 595:             1             16  java.util.ResourceBundle$Control
- 596:             1             16  java.util.WeakHashMap$KeySet
- 597:             1             16  java.util.concurrent.ConcurrentHashMap$ValuesView
- 598:             1             16  java.util.concurrent.atomic.AtomicBoolean
- 599:             1             16  java.util.jar.JavaUtilJarAccessImpl
- 600:             1             16  java.util.regex.Pattern$4
- 601:             1             16  java.util.regex.Pattern$LastNode
- 602:             1             16  java.util.regex.Pattern$Node
- 603:             1             16  java.util.zip.ZipFile$1
- 604:             1             16  javax.xml.parsers.SecuritySupport
- 605:             1             16  org.apache.ibatis.cache.TransactionalCacheManager
- 606:             1             16  org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory
- 607:             1             16  org.apache.ibatis.io.DefaultVFS
- 608:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$1
- 609:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$3
- 610:             1             16  org.apache.ibatis.ognl.ArrayElementsAccessor
- 611:             1             16  org.apache.ibatis.ognl.ArrayPropertyAccessor
- 612:             1             16  org.apache.ibatis.ognl.CollectionElementsAccessor
- 613:             1             16  org.apache.ibatis.ognl.EnumerationElementsAccessor
- 614:             1             16  org.apache.ibatis.ognl.EnumerationPropertyAccessor
- 615:             1             16  org.apache.ibatis.ognl.EvaluationPool
- 616:             1             16  org.apache.ibatis.ognl.IteratorElementsAccessor
- 617:             1             16  org.apache.ibatis.ognl.IteratorPropertyAccessor
- 618:             1             16  org.apache.ibatis.ognl.ListPropertyAccessor
- 619:             1             16  org.apache.ibatis.ognl.MapElementsAccessor
- 620:             1             16  org.apache.ibatis.ognl.MapPropertyAccessor
- 621:             1             16  org.apache.ibatis.ognl.NumberElementsAccessor
- 622:             1             16  org.apache.ibatis.ognl.ObjectArrayPool
- 623:             1             16  org.apache.ibatis.ognl.ObjectElementsAccessor
- 624:             1             16  org.apache.ibatis.ognl.ObjectMethodAccessor
- 625:             1             16  org.apache.ibatis.ognl.ObjectNullHandler
- 626:             1             16  org.apache.ibatis.ognl.ObjectPropertyAccessor
- 627:             1             16  org.apache.ibatis.ognl.SetPropertyAccessor
- 628:             1             16  org.apache.ibatis.plugin.InterceptorChain
- 629:             1             16  org.apache.ibatis.scripting.defaults.RawLanguageDriver
- 630:             1             16  org.apache.ibatis.scripting.xmltags.DynamicContext$ContextAccessor
- 631:             1             16  org.apache.ibatis.scripting.xmltags.XMLLanguageDriver
- 632:             1             16  org.apache.ibatis.session.defaults.DefaultSqlSessionFactory
- 633:             1             16  org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory
- 634:             1             16  org.apache.ibatis.type.TypeAliasRegistry
- 635:             1             16  org.apache.log4j.DefaultCategoryFactory
- 636:             1             16  org.apache.log4j.helpers.AppenderAttachableImpl
- 637:             1             16  org.apache.log4j.or.DefaultRenderer
- 638:             1             16  org.apache.log4j.or.RendererMap
- 639:             1             16  org.apache.log4j.spi.DefaultRepositorySelector
- 640:             1             16  org.slf4j.helpers.BasicMarkerFactory
- 641:             1             16  org.slf4j.helpers.NOPLoggerFactory
- 642:             1             16  org.slf4j.helpers.SubstituteLoggerFactory
- 643:             1             16  org.slf4j.impl.Log4jLoggerFactory
- 644:             1             16  org.slf4j.impl.StaticLoggerBinder
- 645:             1             16  org.slf4j.impl.StaticMarkerBinder
- 646:             1             16  sun.misc.ASCIICaseInsensitiveComparator
- 647:             1             16  sun.misc.FloatingDecimal$1
- 648:             1             16  sun.misc.Launcher
- 649:             1             16  sun.misc.Launcher$Factory
- 650:             1             16  sun.misc.Perf
- 651:             1             16  sun.misc.Unsafe
- 652:             1             16  sun.net.DefaultProgressMeteringPolicy
- 653:             1             16  sun.net.spi.DefaultProxySelector
- 654:             1             16  sun.net.www.protocol.file.Handler
- 655:             1             16  sun.net.www.protocol.jar.JarFileFactory
- 656:             1             16  sun.reflect.GeneratedMethodAccessor1
- 657:             1             16  sun.reflect.GeneratedMethodAccessor2
- 658:             1             16  sun.reflect.ReflectionFactory
- 659:             1             16  sun.reflect.generics.tree.BottomSignature
- 660:             1             16  sun.reflect.generics.tree.ByteSignature
- 661:             1             16  sun.text.normalizer.NormalizerImpl
- 662:             1             16  sun.text.normalizer.NormalizerImpl$AuxTrieImpl
- 663:             1             16  sun.text.normalizer.NormalizerImpl$FCDTrieImpl
- 664:             1             16  sun.text.normalizer.NormalizerImpl$NormTrieImpl
- 665:             1             16  sun.util.calendar.Gregorian
- 666:             1             16  sun.util.locale.provider.AuxLocaleProviderAdapter$NullProvider
- 667:             1             16  sun.util.locale.provider.CalendarDataUtility$CalendarWeekParameterGetter
- 668:             1             16  sun.util.locale.provider.SPILocaleProviderAdapter
- 669:             1             16  sun.util.resources.LocaleData
- 670:             1             16  sun.util.resources.LocaleData$LocaleDataResourceBundleControl
- 671:             1             16  tk.mybatis.simple.Main
-Total         56976        6290520
-
-
-
- num     #instances         #bytes  class name
-----------------------------------------------
-   1:          2781        3484176  [B
-   2:         15154        1956784  [C
-   3:         14924         358176  java.lang.String
-   4:          2444         279264  java.lang.Class
-   5:          1975         173800  java.lang.reflect.Method
-   6:          2032         144384  [Ljava.lang.Object;
-   7:          3668         117376  java.util.HashMap$Node
-   8:          2536          81152  java.util.concurrent.ConcurrentHashMap$Node
-   9:          1611          64440  java.lang.ref.Finalizer
-  10:          1121          55472  [I
-  11:           738          53136  java.lang.reflect.Field
-  12:           727          47848  [Ljava.lang.String;
-  13:           287          47288  [Ljava.util.HashMap$Node;
-  14:          2011          45312  [Ljava.lang.Class;
-  15:           777          43512  java.util.zip.ZipFile$ZipFileInputStream
-  16:           762          42672  java.util.zip.ZipFile$ZipFileInflaterInputStream
-  17:          2207          35312  java.lang.Object
-  18:           848          33920  java.util.TreeMap$Entry
-  19:           813          32520  java.util.LinkedHashMap$Entry
-  20:            13          26832  [Lorg.apache.ibatis.ognl.internal.Entry;
-  21:            45          22000  [Ljava.util.concurrent.ConcurrentHashMap$Node;
-  22:           499          19960  java.lang.ref.SoftReference
-  23:           815          19560  java.util.ArrayList
-  24:           230          18400  java.lang.reflect.Constructor
-  25:           536          17152  java.lang.ref.WeakReference
-  26:           310          14880  java.util.HashMap
-  27:           446          14272  java.util.Hashtable$Entry
-  28:           106          11872  [Ljava.lang.reflect.Method;
-  29:           341          10912  sun.misc.FDBigInteger
-  30:           183          10248  java.lang.Class$ReflectionData
-  31:             1           8208  [Lcom.mysql.jdbc.MysqlCharset;
-  32:           126           8064  com.mysql.jdbc.ConnectionPropertiesImpl$BooleanConnectionProperty
-  33:             7           7280  [[C
-  34:           105           6720  java.net.URL
-  35:           417           6672  java.lang.Integer
-  36:           206           6592  sun.reflect.UnsafeObjectFieldAccessorImpl
-  37:           111           6216  java.beans.MethodDescriptor
-  38:           259           6216  java.lang.Long
-  39:           111           6216  java.lang.Package
-  40:           237           5688  java.beans.MethodRef
-  41:           223           5352  sun.reflect.generics.tree.SimpleClassTypeSignature
-  42:            63           4536  java.beans.PropertyDescriptor
-  43:           109           4360  java.math.BigInteger
-  44:           223           4344  [Lsun.reflect.generics.tree.TypeArgument;
-  45:            20           4240  [Ljava.util.Hashtable$Entry;
-  46:             1           4112  [Lcom.sun.org.apache.xpath.internal.objects.XObject;
-  47:           171           4104  java.util.jar.Attributes$Name
-  48:           178           3896  [Ljava.lang.reflect.Type;
-  49:            55           3520  java.util.concurrent.ConcurrentHashMap
-  50:            87           3480  java.io.ObjectStreamField
-  51:           208           3328  sun.reflect.generics.tree.ClassTypeSignature
-  52:             8           3008  java.lang.Thread
-  53:            46           2944  com.mysql.jdbc.ConnectionPropertiesImpl$StringConnectionProperty
-  54:            48           2688  sun.misc.URLClassPath$JarLoader
-  55:           110           2640  sun.reflect.generics.factory.CoreReflectionFactory
-  56:           108           2624  [Ljava.lang.reflect.Constructor;
-  57:            28           2528  [Ljava.lang.reflect.Field;
-  58:            30           2528  [Ljava.util.WeakHashMap$Entry;
-  59:           101           2424  sun.reflect.NativeConstructorAccessorImpl
-  60:            60           2400  com.mysql.jdbc.MysqlCharset
-  61:            96           2304  sun.reflect.generics.scope.ClassScope
-  62:            57           2280  java.util.WeakHashMap$Entry
-  63:            71           2272  sun.reflect.generics.repository.ClassRepository
-  64:            11           2224  [S
-  65:            89           2136  sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl
-  66:            15           2112  [Ljava.beans.MethodDescriptor;
-  67:            44           2112  sun.util.locale.LocaleObjectCache$CacheEntry
-  68:            98           2064  [Lsun.reflect.generics.tree.FieldTypeSignature;
-  69:            28           2000  [J
-  70:           106           1928  [Lsun.reflect.generics.tree.FormalTypeParameter;
-  71:            30           1920  com.mysql.jdbc.ConnectionPropertiesImpl$IntegerConnectionProperty
-  72:            80           1920  org.apache.ibatis.reflection.invoker.MethodInvoker
-  73:            72           1728  java.util.LinkedList$Node
-  74:            71           1704  sun.reflect.generics.tree.ClassSignature
-  75:             3           1616  [[B
-  76:           101           1616  sun.reflect.DelegatingConstructorAccessorImpl
-  77:            66           1584  java.security.Provider$ServiceKey
-  78:            28           1568  java.util.LinkedHashMap
-  79:            27           1512  java.security.Provider$Service
-  80:            31           1488  ch.qos.logback.classic.Logger
-  81:            26           1456  sun.nio.cs.UTF_8$Encoder
-  82:            30           1440  java.util.WeakHashMap
-  83:            60           1440  org.apache.ibatis.ognl.internal.Entry
-  84:            44           1408  java.util.LinkedList
-  85:            35           1400  sun.reflect.generics.repository.MethodRepository
-  86:             1           1376  [Lsun.misc.FDBigInteger;
-  87:            42           1344  java.lang.ref.ReferenceQueue
-  88:            14           1344  java.util.jar.JarFile$JarFileEntry
-  89:            33           1320  com.sun.org.apache.xerces.internal.dom.DeferredAttrImpl
-  90:            55           1320  java.io.ExpiringCache$Entry
-  91:            71           1288  [Lsun.reflect.generics.tree.ClassTypeSignature;
-  92:            39           1280  [Ljava.math.BigInteger;
-  93:            20           1280  java.util.jar.JarFile
-  94:             1           1232  com.mysql.jdbc.JDBC4Connection
-  95:            50           1200  sun.reflect.NativeMethodAccessorImpl
-  96:            37           1184  org.xml.sax.helpers.LocatorImpl
-  97:            28           1120  java.math.BigDecimal
-  98:            35           1120  sun.reflect.generics.tree.MethodTypeSignature
-  99:            27           1080  com.sun.org.apache.xerces.internal.dom.DeferredTextImpl
- 100:             2           1064  [Ljava.lang.invoke.MethodHandle;
- 101:            52           1064  [Ljava.lang.reflect.TypeVariable;
- 102:            44           1056  java.lang.Class$AnnotationData
- 103:             1           1040  [Ljava.lang.Integer;
- 104:             1           1040  [Ljava.lang.Long;
- 105:            24            960  java.io.FileDescriptor
- 106:            30            960  java.security.Provider$EngineDescription
- 107:            60            960  java.util.HashSet
- 108:            30            960  sun.reflect.generics.reflectiveObjects.TypeVariableImpl
- 109:            17            952  com.sun.org.apache.xerces.internal.dom.DeferredElementImpl
- 110:            39            936  java.sql.JDBCType
- 111:            39            936  org.apache.ibatis.type.JdbcType
- 112:            16            896  sun.util.calendar.ZoneInfo
- 113:            37            888  java.util.Collections$UnmodifiableRandomAccessList
- 114:            16            872  [Z
- 115:             6            864  java.text.DecimalFormat
- 116:             9            864  sun.util.calendar.Gregorian$Date
- 117:            15            840  java.util.ResourceBundle$CacheKey
- 118:            35            840  sun.reflect.generics.scope.MethodScope
- 119:            21            840  sun.util.locale.BaseLocale$Key
- 120:             5            824  [D
- 121:            17            816  java.util.zip.Inflater
- 122:            20            800  ch.qos.logback.core.status.InfoStatus
- 123:            50            800  sun.reflect.DelegatingMethodAccessorImpl
- 124:             7            784  java.util.GregorianCalendar
- 125:            22            752  [Ljava.io.ObjectStreamField;
- 126:            47            752  java.util.Collections$UnmodifiableSet
- 127:            47            752  java.util.HashMap$KeySet
- 128:            15            744  [Ljava.beans.PropertyDescriptor;
- 129:             5            720  [[I
- 130:            15            720  java.beans.BeanDescriptor
- 131:            15            720  java.util.ResourceBundle$BundleReference
- 132:            45            720  java.util.jar.Attributes
- 133:            18            720  sun.nio.cs.UTF_8$Decoder
- 134:            30            720  sun.reflect.generics.tree.FormalTypeParameter
- 135:            45            720  sun.reflect.generics.tree.TypeVariableSignature
- 136:            22            704  java.io.File
- 137:            44            704  java.lang.ref.ReferenceQueue$Lock
- 138:            22            704  java.util.zip.ZipCoder
- 139:            28            672  java.security.Provider$UString
- 140:            21            672  java.util.Locale
- 141:            21            672  sun.util.locale.BaseLocale
- 142:            35            656  [Lsun.reflect.generics.tree.TypeSignature;
- 143:            16            640  ch.qos.logback.core.joran.event.StartEvent
- 144:            13            624  java.util.Properties
- 145:            19            608  java.util.PropertyPermission
- 146:            15            600  java.beans.GenericBeanInfo
- 147:            18            576  java.io.FileInputStream
- 148:            34            544  ch.qos.logback.core.joran.spi.ElementSelector
- 149:            22            528  java.util.ArrayDeque
- 150:            13            520  java.security.AccessControlContext
- 151:            16            512  ch.qos.logback.core.joran.event.EndEvent
- 152:            16            512  sun.reflect.generics.reflectiveObjects.WildcardTypeImpl
- 153:            21            504  java.util.Locale$LocaleKey
- 154:            15            480  java.util.ResourceBundle$LoaderReference
- 155:             5            464  [Ljava.lang.ThreadLocal$ThreadLocalMap$Entry;
- 156:            19            456  java.lang.RuntimePermission
- 157:            14            448  com.sun.org.apache.xml.internal.dtm.ref.ExtendedType
- 158:            14            448  java.lang.ThreadLocal$ThreadLocalMap$Entry
- 159:            14            448  java.security.CodeSource
- 160:            11            440  java.security.ProtectionDomain
- 161:             3            432  [[Ljava.lang.Object;
- 162:            18            432  java.text.DateFormat$Field
- 163:             6            432  org.apache.ibatis.mapping.ResultMapping
- 164:            18            432  sun.misc.MetaIndex
- 165:            17            408  com.sun.org.apache.xerces.internal.dom.AttributeMap
- 166:            17            408  java.util.zip.ZStreamRef
- 167:            16            384  ch.qos.logback.core.spi.ContextAwareBase
- 168:             1            384  com.intellij.rt.execution.application.AppMainV2$1
- 169:             1            384  java.lang.ref.Finalizer$FinalizerThread
- 170:             6            384  java.nio.DirectByteBuffer
- 171:             6            384  java.text.DateFormatSymbols
- 172:             6            384  java.text.DecimalFormatSymbols
- 173:             4            384  org.apache.ibatis.mapping.MappedStatement
- 174:            16            384  org.xml.sax.helpers.AttributesImpl
- 175:            16            384  sun.reflect.generics.tree.Wildcard
- 176:             8            384  sun.util.locale.provider.LocaleResources$ResourceReference
- 177:             1            376  java.lang.ref.Reference$ReferenceHandler
- 178:             9            360  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$Limit
- 179:             2            352  [Lorg.apache.ibatis.type.JdbcType;
- 180:            11            352  java.util.Stack
- 181:             6            336  java.nio.DirectLongBufferU
- 182:            21            336  org.apache.ibatis.reflection.invoker.SetFieldInvoker
- 183:            10            320  java.lang.OutOfMemoryError
- 184:            10            320  java.security.Permissions
- 185:             5            320  java.text.SimpleDateFormat
- 186:            10            320  java.util.concurrent.locks.ReentrantLock$NonfairSync
- 187:            20            320  org.apache.ibatis.reflection.invoker.GetFieldInvoker
- 188:            10            320  sun.security.jca.ProviderConfig
- 189:            13            312  org.apache.ibatis.ognl.internal.ClassCacheImpl
- 190:            12            288  ch.qos.logback.core.joran.spi.HostClassAndPropertyDouble
- 191:            12            288  ch.qos.logback.core.pattern.LiteralConverter
- 192:             9            288  java.net.InetAddress$InetAddressHolder
- 193:             6            288  java.util.TreeMap
- 194:             9            288  java.util.Vector
- 195:             6            288  org.apache.ibatis.session.Configuration$StrictMap
- 196:            17            272  ch.qos.logback.core.joran.spi.ElementPath
- 197:             1            264  com.mysql.jdbc.JDBC42PreparedStatement
- 198:            11            264  sun.reflect.annotation.AnnotationInvocationHandler
- 199:             1            256  com.mysql.jdbc.MysqlIO
- 200:             8            256  java.io.FilePermission
- 201:             8            256  java.security.BasicPermissionCollection
- 202:             8            256  sun.misc.ProxyGenerator$PrimitiveTypeInfo
- 203:            10            240  com.sun.org.apache.xerces.internal.impl.XMLScanner$NameType
- 204:             2            240  java.net.SocksSocketImpl
- 205:             6            240  java.text.DigitList
- 206:             5            240  java.util.Hashtable
- 207:            15            240  sun.reflect.generics.tree.ArrayTypeSignature
- 208:             7            224  java.util.Collections$UnmodifiableMap
- 209:             7            224  java.util.RegularEnumSet
- 210:             7            216  [Ljava.lang.Boolean;
- 211:             9            216  ch.qos.logback.core.rolling.helper.PeriodicityType
- 212:             3            216  com.mysql.jdbc.ConnectionPropertiesImpl$MemorySizeConnectionProperty
- 213:             9            216  java.io.FilePermissionCollection
- 214:             2            200  [Ljava.text.DateFormat$Field;
- 215:             1            200  com.sun.org.apache.xerces.internal.dom.DeferredDocumentImpl
- 216:             6            192  java.lang.reflect.WeakCache$CacheValue
- 217:             8            192  java.math.RoundingMode
- 218:             8            192  java.net.NetPermission
- 219:             8            192  java.util.jar.Manifest
- 220:             3            192  org.apache.ibatis.mapping.ResultMap
- 221:            11            176  [Ljava.security.Principal;
- 222:             1            176  [Ljava.sql.JDBCType;
- 223:            11            176  com.sun.proxy.$Proxy1
- 224:             2            176  java.net.DualStackPlainSocketImpl
- 225:            11            176  java.security.ProtectionDomain$Key
- 226:            11            176  java.text.NumberFormat$Field
- 227:            11            176  org.apache.ibatis.logging.slf4j.Slf4jImpl
- 228:            11            176  org.apache.ibatis.logging.slf4j.Slf4jLocationAwareLoggerImpl
- 229:            11            176  sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl
- 230:             1            168  [[Ljava.math.BigInteger;
- 231:             7            168  ch.qos.logback.classic.Level
- 232:             7            168  com.sun.org.apache.xerces.internal.util.FeatureState
- 233:             7            168  java.util.Date
- 234:             1            168  org.apache.ibatis.session.Configuration
- 235:             2            160  [[Ljava.lang.String;
- 236:             5            160  ch.qos.logback.core.joran.event.BodyEvent
- 237:             5            160  ch.qos.logback.core.util.CachingDateFormatter
- 238:             5            160  com.sun.org.apache.xpath.internal.objects.XNumber
- 239:             4            160  java.lang.ClassLoader$NativeLibrary
- 240:            10            160  java.lang.ThreadLocal
- 241:             5            160  java.lang.reflect.Proxy$Key1
- 242:            10            160  java.util.concurrent.locks.ReentrantLock
- 243:             2            160  sun.net.www.protocol.jar.URLJarFile
- 244:             5            160  sun.util.locale.provider.LocaleProviderAdapter$Type
- 245:             2            144  [Ljava.math.BigDecimal;
- 246:             6            144  com.sun.org.apache.xerces.internal.util.Status
- 247:             3            144  java.nio.HeapByteBuffer
- 248:             6            144  java.util.concurrent.CopyOnWriteArrayList
- 249:             6            144  java.util.concurrent.atomic.AtomicLong
- 250:             6            144  org.apache.ibatis.mapping.SqlCommandType
- 251:             3            144  org.apache.ibatis.reflection.Reflector
- 252:             6            144  sun.misc.PerfCounter
- 253:             3            144  sun.misc.URLClassPath
- 254:             3            144  sun.nio.cs.US_ASCII$Decoder
- 255:             2            128  [F
- 256:             2            128  ch.qos.logback.classic.PatternLayout
- 257:             2            128  java.io.ExpiringCache$1
- 258:             4            128  java.io.FileOutputStream
- 259:             4            128  java.net.Inet6Address
- 260:             4            128  java.net.Inet6Address$Inet6AddressHolder
- 261:             2            128  sun.nio.cs.ext.DoubleByte$Encoder
- 262:             5            120  ch.qos.logback.core.pattern.parser.TokenStream$TokenizerState
- 263:             1            120  ch.qos.logback.core.rolling.helper.RollingCalendar
- 264:             5            120  ch.qos.logback.core.subst.Token$Type
- 265:             5            120  ch.qos.logback.core.util.AggregationType
- 266:             5            120  com.mysql.jdbc.StringUtils$SearchMode
- 267:             5            120  com.sun.org.apache.xerces.internal.util.PropertyState
- 268:             5            120  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$State
- 269:             5            120  com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$State
- 270:             5            120  java.lang.ThreadLocal$ThreadLocalMap
- 271:             5            120  java.net.Inet4Address
- 272:             5            120  javax.xml.namespace.QName
- 273:             5            120  jdk.xml.internal.JdkXmlFeatures$State
- 274:             5            120  org.apache.ibatis.type.StringTypeHandler
- 275:             3            120  sun.misc.FloatingDecimal$BinaryToASCIIBuffer
- 276:             5            120  sun.misc.FloatingDecimal$PreparedASCIIToBinaryBuffer
- 277:             5            120  sun.reflect.generics.repository.FieldRepository
- 278:             2            112  ch.qos.logback.classic.encoder.PatternLayoutEncoder
- 279:             2            112  java.net.SocketPermission
- 280:             2            112  org.apache.ibatis.mapping.ParameterMapping
- 281:             2            104  [Lch.qos.logback.core.rolling.helper.PeriodicityType;
- 282:             1             96  [[J
- 283:             1             96  ch.qos.logback.classic.LoggerContext
- 284:             2             96  ch.qos.logback.classic.pattern.DateConverter
- 285:             2             96  ch.qos.logback.classic.pattern.ExtendedThrowableProxyConverter
- 286:             3             96  ch.qos.logback.core.joran.action.AppenderRefAction
- 287:             4             96  ch.qos.logback.core.pattern.parser.Token
- 288:             2             96  ch.qos.logback.core.rolling.helper.DateTokenConverter
- 289:             4             96  ch.qos.logback.core.subst.Token
- 290:             3             96  com.mysql.jdbc.Buffer
- 291:             4             96  com.mysql.jdbc.authentication.CachingSha2PasswordPlugin$AuthStage
- 292:             3             96  com.sun.org.apache.xerces.internal.utils.XMLSecurityManager$NameMap
- 293:             4             96  java.io.BufferedOutputStream
- 294:             3             96  java.lang.StringCoding$StringEncoder
- 295:             2             96  java.lang.ThreadGroup
- 296:             4             96  java.math.MathContext
- 297:             2             96  java.net.SocketInputStream
- 298:             4             96  java.sql.SQLPermission
- 299:             4             96  org.apache.ibatis.mapping.ParameterMap
- 300:             6             96  org.apache.ibatis.scripting.xmltags.StaticTextSqlNode
- 301:             4             96  org.apache.ibatis.type.BigDecimalTypeHandler
- 302:             4             96  org.apache.ibatis.type.BlobTypeHandler
- 303:             4             96  org.apache.ibatis.type.BooleanTypeHandler
- 304:             4             96  org.apache.ibatis.type.ClobTypeHandler
- 305:             4             96  org.apache.ibatis.type.NStringTypeHandler
- 306:             1             96  sun.misc.Launcher$AppClassLoader
- 307:             3             96  sun.net.spi.DefaultProxySelector$NonProxyInfo
- 308:             2             96  sun.nio.cs.StreamEncoder
- 309:             1             96  sun.security.jca.ProviderList$1
- 310:             1             96  sun.security.provider.Sun
- 311:             3             96  sun.util.locale.provider.LocaleServiceProviderPool
- 312:             1             88  com.sun.org.apache.xerces.internal.dom.DeferredDocumentTypeImpl
- 313:             1             88  org.apache.ibatis.datasource.pooled.PoolState
- 314:             1             88  sun.misc.Launcher$ExtClassLoader
- 315:             2             80  [Lcom.mysql.jdbc.StringUtils$SearchMode;
- 316:             2             80  [Lorg.apache.ibatis.mapping.SqlCommandType;
- 317:             2             80  ch.qos.logback.classic.pattern.LoggerConverter
- 318:             1             80  ch.qos.logback.core.rolling.RollingFileAppender
- 319:             1             80  ch.qos.logback.core.rolling.TimeBasedRollingPolicy
- 320:             5             80  ch.qos.logback.core.spi.LogbackLock
- 321:             2             80  java.io.BufferedInputStream
- 322:             2             80  java.io.BufferedWriter
- 323:             2             80  java.io.ExpiringCache
- 324:             2             80  java.util.Locale$Category
- 325:             1             80  java.util.concurrent.ThreadPoolExecutor
- 326:             2             80  jdk.xml.internal.JdkXmlFeatures$XmlFeature
- 327:             1             72  [Lcom.sun.org.apache.xml.internal.dtm.ref.ExtendedType;
- 328:             2             72  [Lsun.security.jca.ProviderConfig;
- 329:             1             72  ch.qos.logback.core.ConsoleAppender
- 330:             3             72  ch.qos.logback.core.joran.action.ActionUtil$Scope
- 331:             3             72  ch.qos.logback.core.joran.action.NOPAction
- 332:             3             72  ch.qos.logback.core.joran.action.PropertyAction
- 333:             3             72  ch.qos.logback.core.rolling.helper.CompressionMode
- 334:             3             72  ch.qos.logback.core.spi.FilterReply
- 335:             3             72  ch.qos.logback.core.subst.Tokenizer$TokenizerState
- 336:             1             72  com.mysql.jdbc.PreparedStatement$ParseInfo
- 337:             3             72  com.sun.org.apache.xerces.internal.dom.NamedNodeMapImpl
- 338:             3             72  java.lang.annotation.RetentionPolicy
- 339:             3             72  java.net.Proxy$Type
- 340:             3             72  java.security.SecurityPermission
- 341:             3             72  java.util.Arrays$ArrayList
- 342:             3             72  java.util.Collections$SynchronizedSet
- 343:             1             72  java.util.ResourceBundle$RBClassLoader
- 344:             3             72  java.util.concurrent.ConcurrentHashMap$KeySetView
- 345:             3             72  java.util.concurrent.atomic.AtomicMarkableReference$Pair
- 346:             3             72  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject
- 347:             1             72  java.util.regex.Pattern
- 348:             3             72  java.util.regex.Pattern$SliceI
- 349:             3             72  org.apache.ibatis.cache.impl.PerpetualCache
- 350:             3             72  org.apache.ibatis.mapping.ParameterMode
- 351:             3             72  org.apache.ibatis.mapping.StatementType
- 352:             3             72  org.apache.ibatis.session.AutoMappingBehavior
- 353:             3             72  org.apache.ibatis.session.ExecutorType
- 354:             3             72  org.apache.ibatis.type.ByteTypeHandler
- 355:             3             72  org.apache.ibatis.type.DoubleTypeHandler
- 356:             3             72  org.apache.ibatis.type.FloatTypeHandler
- 357:             3             72  org.apache.ibatis.type.IntegerTypeHandler
- 358:             3             72  org.apache.ibatis.type.LongTypeHandler
- 359:             3             72  org.apache.ibatis.type.ShortTypeHandler
- 360:             3             72  sun.misc.FloatingDecimal$ExceptionalBinaryToASCIIBuffer
- 361:             3             72  sun.security.provider.PolicyFile$PolicyEntry
- 362:             1             72  sun.util.locale.provider.JRELocaleProviderAdapter
- 363:             3             72  sun.util.resources.ParallelListResourceBundle$KeySet
- 364:             2             64  [Ljava.lang.Thread;
- 365:             2             64  [Ljava.lang.annotation.RetentionPolicy;
- 366:             2             64  [Ljava.net.InetAddress;
- 367:             2             64  [Ljdk.xml.internal.JdkXmlFeatures$State;
- 368:             2             64  [Lorg.apache.ibatis.mapping.StatementType;
- 369:             2             64  [Lorg.apache.ibatis.session.AutoMappingBehavior;
- 370:             2             64  [Lorg.apache.ibatis.session.AutoMappingUnknownColumnBehavior;
- 371:             2             64  [Lorg.apache.ibatis.session.ExecutorType;
- 372:             2             64  ch.qos.logback.classic.joran.action.LevelAction
- 373:             2             64  ch.qos.logback.classic.pattern.LevelConverter
- 374:             2             64  ch.qos.logback.classic.pattern.LineSeparatorConverter
- 375:             2             64  ch.qos.logback.classic.pattern.MessageConverter
- 376:             2             64  ch.qos.logback.classic.pattern.ThreadConverter
- 377:             2             64  ch.qos.logback.core.joran.spi.ConsoleTarget
- 378:             1             64  ch.qos.logback.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy
- 379:             2             64  ch.qos.logback.core.rolling.helper.FileNamePattern
- 380:             1             64  com.mysql.jdbc.ConnectionPropertiesImpl$LongConnectionProperty
- 381:             2             64  com.mysql.jdbc.JDBC4DatabaseMetaData
- 382:             2             64  com.sun.org.apache.xerces.internal.dom.NodeListCache
- 383:             2             64  com.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$Property
- 384:             2             64  java.io.PrintStream
- 385:             2             64  java.lang.ClassValue$Entry
- 386:             2             64  java.lang.StringCoding$StringDecoder
- 387:             2             64  java.lang.VirtualMachineError
- 388:             2             64  java.lang.ref.ReferenceQueue$Null
- 389:             2             64  java.net.Socket
- 390:             2             64  java.util.Collections$SynchronizedMap
- 391:             4             64  java.util.HashMap$EntrySet
- 392:             4             64  java.util.concurrent.atomic.AtomicInteger
- 393:             2             64  java.util.regex.Pattern$Curly
- 394:             1             64  org.apache.ibatis.datasource.pooled.PooledConnection
- 395:             4             64  org.apache.ibatis.scripting.xmltags.MixedSqlNode
- 396:             2             64  sun.reflect.annotation.AnnotationType
- 397:             2             64  sun.util.locale.provider.LocaleResources
- 398:             1             56  [Lcom.sun.org.apache.xerces.internal.impl.XMLScanner$NameType;
- 399:             1             56  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$Limit;
- 400:             1             56  org.apache.ibatis.datasource.pooled.PooledDataSource
- 401:             1             56  sun.nio.cs.US_ASCII$Encoder
- 402:             1             56  sun.nio.cs.ext.DoubleByte$Decoder
- 403:             1             48  [Lcom.sun.beans.util.Cache$CacheEntry;
- 404:             1             48  [Ljava.beans.WeakIdentityMap$Entry;
- 405:             3             48  [Ljava.lang.annotation.Annotation;
- 406:             1             48  [Ljava.math.RoundingMode;
- 407:             2             48  [Ljava.security.ProtectionDomain;
- 408:             1             48  [Ljava.util.concurrent.TimeUnit;
- 409:             2             48  [Lorg.apache.ibatis.session.LocalCacheScope;
- 410:             1             48  ch.qos.logback.core.joran.action.DefinePropertyAction
- 411:             1             48  ch.qos.logback.core.joran.spi.InterpretationContext
- 412:             1             48  ch.qos.logback.core.joran.spi.Interpreter
- 413:             2             48  ch.qos.logback.core.pattern.FormatInfo
- 414:             1             48  ch.qos.logback.core.recovery.ResilientFileOutputStream
- 415:             1             48  ch.qos.logback.core.rolling.helper.TimeBasedArchiveRemover
- 416:             2             48  ch.qos.logback.core.subst.Node$Type
- 417:             1             48  ch.qos.logback.core.util.InvocationGate
- 418:             1             48  cn.wdidada.testmybatis.domain.User
- 419:             3             48  com.sun.org.apache.xerces.internal.impl.dv.dtd.ListDatatypeValidator
- 420:             1             48  com.sun.org.apache.xpath.internal.jaxp.XPathImpl
- 421:             1             48  java.io.BufferedReader
- 422:             2             48  java.io.File$PathStatus
- 423:             2             48  java.io.OutputStreamWriter
- 424:             3             48  java.lang.Boolean
- 425:             3             48  java.lang.Byte
- 426:             2             48  java.lang.Double
- 427:             3             48  java.lang.Short
- 428:             2             48  java.lang.StringBuilder
- 429:             2             48  java.net.InetAddress$Cache
- 430:             2             48  java.net.InetAddress$Cache$Type
- 431:             2             48  java.net.InetAddress$CacheEntry
- 432:             1             48  java.net.SocketOutputStream
- 433:             1             48  java.nio.HeapCharBuffer
- 434:             2             48  java.nio.charset.CoderResult
- 435:             3             48  java.nio.charset.CodingErrorAction
- 436:             2             48  java.sql.DriverInfo
- 437:             3             48  java.text.AttributedCharacterIterator$Attribute
- 438:             2             48  java.util.BitSet
- 439:             3             48  java.util.LinkedHashMap$LinkedKeySet
- 440:             1             48  java.util.concurrent.LinkedBlockingQueue
- 441:             1             48  java.util.concurrent.ThreadPoolExecutor$Worker
- 442:             3             48  java.util.concurrent.atomic.AtomicMarkableReference
- 443:             2             48  java.util.regex.Pattern$GroupHead
- 444:             2             48  java.util.regex.Pattern$GroupTail
- 445:             2             48  org.apache.ibatis.builder.StaticSqlSource
- 446:             1             48  org.apache.ibatis.datasource.unpooled.UnpooledDataSource
- 447:             1             48  org.apache.ibatis.executor.ReuseExecutor
- 448:             2             48  org.apache.ibatis.mapping.ResultFlag
- 449:             2             48  org.apache.ibatis.reflection.DefaultReflectorFactory
- 450:             2             48  org.apache.ibatis.scripting.xmltags.DynamicSqlSource
- 451:             1             48  org.apache.ibatis.scripting.xmltags.ForEachSqlNode
- 452:             2             48  org.apache.ibatis.session.LocalCacheScope
- 453:             2             48  org.apache.ibatis.type.ArrayTypeHandler
- 454:             2             48  org.apache.ibatis.type.BlobByteObjectArrayTypeHandler
- 455:             2             48  org.apache.ibatis.type.CharacterTypeHandler
- 456:             2             48  org.apache.ibatis.type.DateOnlyTypeHandler
- 457:             2             48  org.apache.ibatis.type.DateTypeHandler
- 458:             2             48  org.apache.ibatis.type.NClobTypeHandler
- 459:             2             48  org.apache.ibatis.type.TimeOnlyTypeHandler
- 460:             2             48  sun.misc.JarIndex
- 461:             2             48  sun.misc.NativeSignalHandler
- 462:             2             48  sun.misc.Signal
- 463:             3             48  sun.net.www.protocol.jar.Handler
- 464:             1             48  sun.nio.cs.StreamDecoder
- 465:             2             48  sun.security.jca.ProviderList
- 466:             2             48  sun.security.jca.ProviderList$3
- 467:             1             48  sun.text.resources.FormatData
- 468:             1             48  sun.text.resources.zh.FormatData_zh
- 469:             1             48  sun.text.resources.zh.FormatData_zh_CN
- 470:             1             48  sun.util.resources.CalendarData
- 471:             1             48  sun.util.resources.CurrencyNames
- 472:             1             48  sun.util.resources.TimeZoneNames
- 473:             1             48  sun.util.resources.en.CalendarData_en
- 474:             1             48  sun.util.resources.en.TimeZoneNames_en
- 475:             1             48  sun.util.resources.zh.CalendarData_zh
- 476:             1             48  sun.util.resources.zh.CurrencyNames_zh_CN
- 477:             1             40  [Lch.qos.logback.core.pattern.parser.TokenStream$TokenizerState;
- 478:             1             40  [Lch.qos.logback.core.subst.Token$Type;
- 479:             1             40  [Lch.qos.logback.core.util.AggregationType;
- 480:             1             40  [Lcom.sun.org.apache.xerces.internal.util.Status;
- 481:             1             40  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$State;
- 482:             1             40  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$State;
- 483:             1             40  [Lsun.util.locale.provider.LocaleProviderAdapter$Type;
- 484:             1             40  ch.qos.logback.core.BasicStatusManager
- 485:             1             40  ch.qos.logback.core.joran.spi.ConfigurationWatchList
- 486:             1             40  ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy
- 487:             1             40  com.mysql.jdbc.StandardSocketFactory
- 488:             1             40  com.mysql.jdbc.authentication.CachingSha2PasswordPlugin
- 489:             1             40  com.mysql.jdbc.util.ReadAheadInputStream
- 490:             1             40  com.sun.beans.finder.MethodFinder$1
- 491:             1             40  com.sun.xml.internal.stream.util.BufferAllocator
- 492:             1             40  java.beans.WeakIdentityMap$Entry
- 493:             1             40  java.lang.reflect.Parameter
- 494:             1             40  java.lang.reflect.Proxy$Key2
- 495:             1             40  java.util.EnumMap
- 496:             1             40  java.util.IdentityHashMap
- 497:             1             40  java.util.PropertyResourceBundle
- 498:             1             40  java.util.ResourceBundle$1
- 499:             1             40  javax.management.ObjectName
- 500:             1             40  org.apache.ibatis.binding.MapperMethod$MethodSignature
- 501:             1             40  org.apache.ibatis.cache.CacheKey
- 502:             1             40  org.apache.ibatis.cache.NullCacheKey
- 503:             1             40  org.apache.ibatis.logging.jdbc.PreparedStatementLogger
- 504:             1             40  org.apache.ibatis.parsing.XNode
- 505:             1             40  sun.nio.cs.StandardCharsets$Aliases
- 506:             1             40  sun.nio.cs.StandardCharsets$Cache
- 507:             1             40  sun.nio.cs.StandardCharsets$Classes
- 508:             1             40  sun.nio.cs.ext.ExtendedCharsets
- 509:             1             32  [Lch.qos.logback.core.joran.action.ActionUtil$Scope;
- 510:             1             32  [Lch.qos.logback.core.rolling.helper.CompressionMode;
- 511:             1             32  [Lch.qos.logback.core.spi.FilterReply;
- 512:             1             32  [Lch.qos.logback.core.subst.Tokenizer$TokenizerState;
- 513:             1             32  [Lcom.mysql.jdbc.authentication.CachingSha2PasswordPlugin$AuthStage;
- 514:             1             32  [Lcom.sun.beans.util.Cache$Kind;
- 515:             1             32  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityManager$NameMap;
- 516:             2             32  [Ljava.lang.Enum;
- 517:             1             32  [Ljava.lang.OutOfMemoryError;
- 518:             2             32  [Ljava.lang.StackTraceElement;
- 519:             1             32  [Ljava.lang.ThreadGroup;
- 520:             1             32  [Ljava.net.Proxy$Type;
- 521:             1             32  [Ljava.util.regex.Pattern$Node;
- 522:             1             32  [Lorg.apache.ibatis.mapping.ParameterMode;
- 523:             1             32  ch.qos.logback.classic.joran.JoranConfigurator
- 524:             1             32  ch.qos.logback.classic.joran.action.ConfigurationAction
- 525:             1             32  ch.qos.logback.classic.joran.action.EvaluatorAction
- 526:             1             32  ch.qos.logback.classic.joran.action.LoggerAction
- 527:             1             32  ch.qos.logback.classic.joran.action.LoggerContextListenerAction
- 528:             1             32  ch.qos.logback.classic.joran.action.ReceiverAction
- 529:             1             32  ch.qos.logback.classic.joran.action.RootLoggerAction
- 530:             2             32  ch.qos.logback.classic.pattern.EnsureExceptionHandling
- 531:             2             32  ch.qos.logback.classic.pattern.TargetLengthBasedClassNameAbbreviator
- 532:             1             32  ch.qos.logback.classic.sift.SiftAction
- 533:             1             32  ch.qos.logback.classic.spi.LoggerContextVO
- 534:             1             32  ch.qos.logback.core.helpers.CyclicBuffer
- 535:             1             32  ch.qos.logback.core.joran.action.AppenderAction
- 536:             1             32  ch.qos.logback.core.joran.action.ConversionRuleAction
- 537:             1             32  ch.qos.logback.core.joran.action.IncludeAction
- 538:             1             32  ch.qos.logback.core.joran.action.NestedBasicPropertyIA
- 539:             1             32  ch.qos.logback.core.joran.action.NestedComplexPropertyIA
- 540:             1             32  ch.qos.logback.core.joran.action.NewRuleAction
- 541:             1             32  ch.qos.logback.core.joran.action.ParamAction
- 542:             1             32  ch.qos.logback.core.joran.action.StatusListenerAction
- 543:             1             32  ch.qos.logback.core.joran.action.TimestampAction
- 544:             1             32  ch.qos.logback.core.joran.conditional.ElseAction
- 545:             1             32  ch.qos.logback.core.joran.conditional.IfAction
- 546:             1             32  ch.qos.logback.core.joran.conditional.ThenAction
- 547:             1             32  ch.qos.logback.core.joran.spi.SimpleRuleStore
- 548:             1             32  ch.qos.logback.core.rolling.helper.Compressor
- 549:             2             32  ch.qos.logback.core.spi.FilterAttachableImpl
- 550:             1             32  com.mysql.jdbc.NonRegisteringDriver$ConnectionPhantomReference
- 551:             1             32  com.mysql.jdbc.authentication.Sha256PasswordPlugin
- 552:             2             32  com.sun.beans.WeakCache
- 553:             1             32  com.sun.beans.finder.BeanInfoFinder
- 554:             1             32  com.sun.org.apache.xerces.internal.impl.XMLEntityScanner$1
- 555:             2             32  com.sun.org.apache.xerces.internal.impl.dv.dtd.ENTITYDatatypeValidator
- 556:             1             32  com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl
- 557:             1             32  java.beans.ThreadGroupContext
- 558:             1             32  java.beans.ThreadGroupContext$1
- 559:             1             32  java.io.WinNTFileSystem
- 560:             1             32  java.lang.ArithmeticException
- 561:             1             32  java.lang.ArrayIndexOutOfBoundsException
- 562:             2             32  java.lang.Character
- 563:             2             32  java.lang.Float
- 564:             2             32  java.lang.InheritableThreadLocal
- 565:             1             32  java.lang.NullPointerException
- 566:             1             32  java.lang.reflect.WeakCache
- 567:             1             32  java.lang.reflect.WeakCache$CacheKey
- 568:             2             32  java.nio.ByteOrder
- 569:             1             32  java.text.DontCareFieldPosition
- 570:             1             32  java.util.Collections$UnmodifiableSortedMap
- 571:             2             32  java.util.HashMap$Values
- 572:             2             32  java.util.Hashtable$EntrySet
- 573:             2             32  java.util.LinkedHashMap$LinkedEntrySet
- 574:             1             32  java.util.Random
- 575:             2             32  java.util.concurrent.atomic.AtomicBoolean
- 576:             1             32  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl
- 577:             1             32  java.util.regex.Pattern$3
- 578:             1             32  java.util.regex.Pattern$Branch
- 579:             2             32  javax.xml.xpath.SecuritySupport
- 580:             1             32  org.apache.ibatis.cache.decorators.LoggingCache
- 581:             1             32  org.apache.ibatis.cache.decorators.ScheduledCache
- 582:             2             32  org.apache.ibatis.ognl.OgnlRuntime$ClassPropertyMethodCache
- 583:             1             32  org.apache.ibatis.parsing.XPathParser
- 584:             1             32  org.apache.ibatis.reflection.MetaObject
- 585:             2             32  org.apache.ibatis.reflection.factory.DefaultObjectFactory
- 586:             2             32  org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory
- 587:             2             32  org.apache.ibatis.scripting.defaults.RawSqlSource
- 588:             2             32  org.apache.ibatis.scripting.xmltags.ExpressionEvaluator
- 589:             1             32  org.apache.ibatis.session.defaults.DefaultSqlSession
- 590:             1             32  org.apache.ibatis.transaction.jdbc.JdbcTransaction
- 591:             1             32  org.apache.ibatis.type.TypeHandlerRegistry
- 592:             1             32  sun.instrument.InstrumentationImpl
- 593:             1             32  sun.nio.cs.StandardCharsets
- 594:             1             32  sun.security.provider.PolicyFile
- 595:             1             32  sun.security.provider.PolicyFile$PolicyInfo
- 596:             1             24  [Lch.qos.logback.core.joran.spi.ConsoleTarget;
- 597:             1             24  [Lch.qos.logback.core.subst.Node$Type;
- 598:             1             24  [Lcom.sun.org.apache.xerces.internal.utils.XMLSecurityPropertyManager$Property;
- 599:             1             24  [Ljava.io.File$PathStatus;
- 600:             1             24  [Ljava.io.InputStream;
- 601:             1             24  [Ljava.lang.ClassValue$Entry;
- 602:             1             24  [Ljava.lang.reflect.Parameter;
- 603:             1             24  [Ljava.net.InetAddress$Cache$Type;
- 604:             1             24  [Ljava.util.Locale$Category;
- 605:             1             24  [Ljdk.xml.internal.JdkXmlFeatures$XmlFeature;
- 606:             1             24  [Lorg.apache.ibatis.executor.ExecutionPlaceholder;
- 607:             1             24  [Lorg.apache.ibatis.mapping.ResultFlag;
- 608:             1             24  [Lorg.apache.ibatis.ognl.internal.ClassCache;
- 609:             1             24  [Lsun.launcher.LauncherHelper;
- 610:             1             24  [Lsun.misc.JavaSecurityProtectionDomainAccess$ProtectionDomainCache;
- 611:             1             24  ch.qos.logback.classic.joran.action.ConsolePluginAction
- 612:             1             24  ch.qos.logback.classic.joran.action.ContextNameAction
- 613:             1             24  ch.qos.logback.classic.joran.action.InsertFromJNDIAction
- 614:             1             24  ch.qos.logback.classic.joran.action.JMXConfiguratorAction
- 615:             1             24  ch.qos.logback.classic.spi.TurboFilterList
- 616:             1             24  ch.qos.logback.classic.util.ContextSelectorStaticBinder
- 617:             1             24  ch.qos.logback.classic.util.LogbackMDCAdapter
- 618:             1             24  ch.qos.logback.core.joran.action.ContextPropertyAction
- 619:             1             24  ch.qos.logback.core.joran.spi.CAI_WithLocatorSupport
- 620:             1             24  ch.qos.logback.core.joran.spi.EventPlayer
- 621:             1             24  ch.qos.logback.core.rolling.helper.RenameUtil
- 622:             1             24  ch.qos.logback.core.util.FileSize
- 623:             1             24  com.mysql.jdbc.NetworkResources
- 624:             1             24  com.mysql.jdbc.SingleByteCharsetConverter
- 625:             1             24  com.mysql.jdbc.authentication.MysqlClearPasswordPlugin
- 626:             1             24  com.mysql.jdbc.authentication.MysqlNativePasswordPlugin
- 627:             1             24  com.mysql.jdbc.authentication.MysqlOldPasswordPlugin
- 628:             1             24  com.sun.beans.util.Cache$Kind$1
- 629:             1             24  com.sun.beans.util.Cache$Kind$2
- 630:             1             24  com.sun.beans.util.Cache$Kind$3
- 631:             1             24  com.sun.org.apache.xerces.internal.impl.Constants$ArrayEnumeration
- 632:             1             24  java.io.InputStreamReader
- 633:             1             24  java.lang.ClassValue$Version
- 634:             1             24  java.lang.invoke.MethodHandleImpl$4
- 635:             1             24  java.lang.reflect.ReflectPermission
- 636:             1             24  java.net.Inet6AddressImpl
- 637:             1             24  java.net.Proxy
- 638:             1             24  java.net.SocketPermissionCollection
- 639:             1             24  java.security.Policy$PolicyInfo
- 640:             1             24  java.security.Policy$UnsupportedEmptyCollection
- 641:             1             24  java.security.ProtectionDomain$2$1
- 642:             1             24  java.util.Collections$EmptyMap
- 643:             1             24  java.util.Collections$SetFromMap
- 644:             1             24  java.util.Collections$SynchronizedRandomAccessList
- 645:             1             24  java.util.Currency
- 646:             1             24  java.util.Locale$Cache
- 647:             1             24  java.util.PropertyPermissionCollection
- 648:             1             24  java.util.ResourceBundle$Control$CandidateListCache
- 649:             1             24  java.util.concurrent.ConcurrentLinkedQueue
- 650:             1             24  java.util.concurrent.ConcurrentLinkedQueue$Node
- 651:             1             24  java.util.concurrent.LinkedBlockingQueue$Node
- 652:             1             24  java.util.concurrent.TimeUnit$1
- 653:             1             24  java.util.concurrent.TimeUnit$2
- 654:             1             24  java.util.concurrent.TimeUnit$3
- 655:             1             24  java.util.concurrent.TimeUnit$4
- 656:             1             24  java.util.concurrent.TimeUnit$5
- 657:             1             24  java.util.concurrent.TimeUnit$6
- 658:             1             24  java.util.concurrent.TimeUnit$7
- 659:             1             24  java.util.regex.Pattern$Ctype
- 660:             1             24  java.util.regex.Pattern$Ques
- 661:             1             24  java.util.regex.Pattern$SingleI
- 662:             1             24  java.util.regex.Pattern$Start
- 663:             1             24  jdk.xml.internal.JdkXmlFeatures
- 664:             1             24  org.apache.ibatis.binding.MapperMethod
- 665:             1             24  org.apache.ibatis.binding.MapperMethod$SqlCommand
- 666:             1             24  org.apache.ibatis.binding.MapperProxy
- 667:             1             24  org.apache.ibatis.binding.MapperProxyFactory
- 668:             1             24  org.apache.ibatis.binding.MapperRegistry
- 669:             1             24  org.apache.ibatis.cache.decorators.FifoCache
- 670:             1             24  org.apache.ibatis.executor.ExecutionPlaceholder
- 671:             1             24  org.apache.ibatis.io.ClassLoaderWrapper
- 672:             1             24  org.apache.ibatis.javassist.util.proxy.ProxyFactory$2
- 673:             1             24  org.apache.ibatis.mapping.Environment
- 674:             1             24  org.apache.ibatis.ognl.OgnlRuntime$ArgsCompatbilityReport
- 675:             1             24  org.apache.ibatis.ognl.enhance.ExpressionCompiler
- 676:             1             24  org.apache.ibatis.reflection.MetaClass
- 677:             1             24  org.apache.ibatis.reflection.ParamNameResolver
- 678:             1             24  org.apache.ibatis.reflection.wrapper.BeanWrapper
- 679:             1             24  org.apache.ibatis.scripting.LanguageDriverRegistry
- 680:             1             24  org.apache.ibatis.scripting.xmltags.IfSqlNode
- 681:             1             24  org.apache.ibatis.session.AutoMappingUnknownColumnBehavior$1
- 682:             1             24  org.apache.ibatis.session.AutoMappingUnknownColumnBehavior$2
- 683:             1             24  org.apache.ibatis.session.AutoMappingUnknownColumnBehavior$3
- 684:             1             24  org.apache.ibatis.session.RowBounds
- 685:             1             24  org.apache.ibatis.type.BigIntegerTypeHandler
- 686:             1             24  org.apache.ibatis.type.BlobInputStreamTypeHandler
- 687:             1             24  org.apache.ibatis.type.ByteArrayTypeHandler
- 688:             1             24  org.apache.ibatis.type.ByteObjectArrayTypeHandler
- 689:             1             24  org.apache.ibatis.type.ClobReaderTypeHandler
- 690:             1             24  org.apache.ibatis.type.InstantTypeHandler
- 691:             1             24  org.apache.ibatis.type.JapaneseDateTypeHandler
- 692:             1             24  org.apache.ibatis.type.LocalDateTimeTypeHandler
- 693:             1             24  org.apache.ibatis.type.LocalDateTypeHandler
- 694:             1             24  org.apache.ibatis.type.LocalTimeTypeHandler
- 695:             1             24  org.apache.ibatis.type.MonthTypeHandler
- 696:             1             24  org.apache.ibatis.type.ObjectTypeHandler
- 697:             1             24  org.apache.ibatis.type.OffsetDateTimeTypeHandler
- 698:             1             24  org.apache.ibatis.type.OffsetTimeTypeHandler
- 699:             1             24  org.apache.ibatis.type.SqlDateTypeHandler
- 700:             1             24  org.apache.ibatis.type.SqlTimeTypeHandler
- 701:             1             24  org.apache.ibatis.type.SqlTimestampTypeHandler
- 702:             1             24  org.apache.ibatis.type.UnknownTypeHandler
- 703:             1             24  org.apache.ibatis.type.YearMonthTypeHandler
- 704:             1             24  org.apache.ibatis.type.YearTypeHandler
- 705:             1             24  org.apache.ibatis.type.ZonedDateTimeTypeHandler
- 706:             1             24  org.slf4j.helpers.BasicMarker
- 707:             1             24  org.slf4j.helpers.FormattingTuple
- 708:             1             24  org.slf4j.impl.StaticLoggerBinder
- 709:             1             24  sun.instrument.TransformerManager
- 710:             1             24  sun.launcher.LauncherHelper
- 711:             1             24  sun.misc.URLClassPath$FileLoader
- 712:             1             24  sun.net.ProgressMonitor
- 713:             1             24  sun.nio.cs.IBM437
- 714:             1             24  sun.nio.cs.IBM850
- 715:             1             24  sun.nio.cs.IBM852
- 716:             1             24  sun.nio.cs.IBM866
- 717:             1             24  sun.nio.cs.ISO_8859_1
- 718:             1             24  sun.nio.cs.ISO_8859_13
- 719:             1             24  sun.nio.cs.ISO_8859_2
- 720:             1             24  sun.nio.cs.ISO_8859_7
- 721:             1             24  sun.nio.cs.ISO_8859_9
- 722:             1             24  sun.nio.cs.KOI8_R
- 723:             1             24  sun.nio.cs.MS1250
- 724:             1             24  sun.nio.cs.MS1251
- 725:             1             24  sun.nio.cs.MS1252
- 726:             1             24  sun.nio.cs.MS1257
- 727:             1             24  sun.nio.cs.Surrogate$Parser
- 728:             1             24  sun.nio.cs.ThreadLocalCoders$1
- 729:             1             24  sun.nio.cs.ThreadLocalCoders$2
- 730:             1             24  sun.nio.cs.US_ASCII
- 731:             1             24  sun.nio.cs.UTF_16
- 732:             1             24  sun.nio.cs.UTF_16BE
- 733:             1             24  sun.nio.cs.UTF_16LE
- 734:             1             24  sun.nio.cs.UTF_32
- 735:             1             24  sun.nio.cs.UTF_8
- 736:             1             24  sun.nio.cs.ext.Big5
- 737:             1             24  sun.nio.cs.ext.EUC_CN
- 738:             1             24  sun.nio.cs.ext.EUC_JP
- 739:             1             24  sun.nio.cs.ext.EUC_JP_Open
- 740:             1             24  sun.nio.cs.ext.EUC_KR
- 741:             1             24  sun.nio.cs.ext.GB18030
- 742:             1             24  sun.nio.cs.ext.GBK
- 743:             1             24  sun.nio.cs.ext.IBM943
- 744:             1             24  sun.nio.cs.ext.ISO_8859_8
- 745:             1             24  sun.nio.cs.ext.MS1256
- 746:             1             24  sun.nio.cs.ext.MS932
- 747:             1             24  sun.nio.cs.ext.MacCentralEurope
- 748:             1             24  sun.nio.cs.ext.MacRoman
- 749:             1             24  sun.nio.cs.ext.SJIS
- 750:             1             24  sun.nio.cs.ext.TIS_620
- 751:             1             24  sun.util.locale.BaseLocale$Cache
- 752:             1             24  sun.util.locale.provider.CalendarDataProviderImpl
- 753:             1             24  sun.util.locale.provider.CalendarProviderImpl
- 754:             1             24  sun.util.locale.provider.CurrencyNameProviderImpl
- 755:             1             24  sun.util.locale.provider.DateFormatSymbolsProviderImpl
- 756:             1             24  sun.util.locale.provider.DecimalFormatSymbolsProviderImpl
- 757:             1             24  sun.util.locale.provider.NumberFormatProviderImpl
- 758:             1             24  sun.util.locale.provider.TimeZoneNameProviderImpl
- 759:             1             16  [Ljava.beans.EventSetDescriptor;
- 760:             1             16  [Ljava.lang.Throwable;
- 761:             1             16  [Ljava.security.Provider;
- 762:             1             16  [Ljava.security.cert.Certificate;
- 763:             1             16  [Ljava.text.FieldPosition;
- 764:             1             16  [Ljavax.management.ObjectName$Property;
- 765:             1             16  [Lsun.instrument.TransformerManager$TransformerInfo;
- 766:             1             16  ch.qos.logback.classic.selector.DefaultContextSelector
- 767:             1             16  ch.qos.logback.core.joran.spi.ConsoleTarget$1
- 768:             1             16  ch.qos.logback.core.joran.spi.ConsoleTarget$2
- 769:             1             16  ch.qos.logback.core.joran.spi.DefaultNestedComponentRegistry
- 770:             1             16  ch.qos.logback.core.joran.util.ConfigurationWatchListUtil
- 771:             1             16  ch.qos.logback.core.spi.AppenderAttachableImpl
- 772:             1             16  cn.wdidada.testmybatis.TestMyBatis
- 773:             1             16  com.mysql.fabric.jdbc.FabricMySQLDriver
- 774:             1             16  com.mysql.jdbc.AbandonedConnectionCleanupThread
- 775:             1             16  com.mysql.jdbc.AbandonedConnectionCleanupThread$1
- 776:             1             16  com.mysql.jdbc.Driver
- 777:             1             16  com.mysql.jdbc.Util
- 778:             1             16  com.mysql.jdbc.log.NullLogger
- 779:             1             16  com.mysql.jdbc.log.StandardLogger
- 780:             1             16  com.sun.org.apache.xerces.internal.dom.CharacterDataImpl$1
- 781:             1             16  com.sun.org.apache.xerces.internal.dom.DeferredDocumentImpl$RefCount
- 782:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.IDDatatypeValidator
- 783:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.IDREFDatatypeValidator
- 784:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.NMTOKENDatatypeValidator
- 785:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.NOTATIONDatatypeValidator
- 786:             1             16  com.sun.org.apache.xerces.internal.impl.dv.dtd.StringDatatypeValidator
- 787:             1             16  com.sun.org.apache.xerces.internal.utils.SecuritySupport
- 788:             1             16  com.sun.org.apache.xpath.internal.objects.EqualComparator
- 789:             1             16  com.sun.org.apache.xpath.internal.objects.GreaterThanComparator
- 790:             1             16  com.sun.org.apache.xpath.internal.objects.GreaterThanOrEqualComparator
- 791:             1             16  com.sun.org.apache.xpath.internal.objects.LessThanComparator
- 792:             1             16  com.sun.org.apache.xpath.internal.objects.LessThanOrEqualComparator
- 793:             1             16  com.sun.org.apache.xpath.internal.objects.NotEqualComparator
- 794:             1             16  com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl
- 795:             1             16  com.sun.proxy.$Proxy2
- 796:             1             16  com.sun.proxy.$Proxy3
- 797:             1             16  com.sun.proxy.$Proxy4
- 798:             1             16  java.io.FileDescriptor$1
- 799:             1             16  java.lang.CharacterDataLatin1
- 800:             1             16  java.lang.ClassValue$Identity
- 801:             1             16  java.lang.Runtime
- 802:             1             16  java.lang.String$CaseInsensitiveComparator
- 803:             1             16  java.lang.System$2
- 804:             1             16  java.lang.Terminator$1
- 805:             1             16  java.lang.invoke.MemberName$Factory
- 806:             1             16  java.lang.invoke.MethodHandleImpl$2
- 807:             1             16  java.lang.invoke.MethodHandleImpl$3
- 808:             1             16  java.lang.ref.Reference$1
- 809:             1             16  java.lang.ref.Reference$Lock
- 810:             1             16  java.lang.reflect.Proxy$KeyFactory
- 811:             1             16  java.lang.reflect.Proxy$ProxyClassFactory
- 812:             1             16  java.lang.reflect.ReflectAccess
- 813:             1             16  java.math.BigDecimal$1
- 814:             1             16  java.net.InetAddress$2
- 815:             1             16  java.net.URLClassLoader$7
- 816:             1             16  java.nio.Bits$1
- 817:             1             16  java.nio.charset.CoderResult$1
- 818:             1             16  java.nio.charset.CoderResult$2
- 819:             1             16  java.security.AllPermission
- 820:             1             16  java.security.ProtectionDomain$2
- 821:             1             16  java.security.ProtectionDomain$JavaSecurityAccessImpl
- 822:             1             16  java.text.DontCareFieldPosition$1
- 823:             1             16  java.text.MessageFormat$Field
- 824:             1             16  java.util.Collections$EmptyIterator
- 825:             1             16  java.util.Collections$EmptyList
- 826:             1             16  java.util.Collections$EmptySet
- 827:             1             16  java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet
- 828:             1             16  java.util.Currency$CurrencyNameGetter
- 829:             1             16  java.util.EnumMap$1
- 830:             1             16  java.util.Hashtable$KeySet
- 831:             1             16  java.util.ResourceBundle$Control
- 832:             1             16  java.util.WeakHashMap$KeySet
- 833:             1             16  java.util.concurrent.Executors$FinalizableDelegatedExecutorService
- 834:             1             16  java.util.concurrent.ThreadPoolExecutor$AbortPolicy
- 835:             1             16  java.util.concurrent.atomic.AtomicReference
- 836:             1             16  java.util.jar.JavaUtilJarAccessImpl
- 837:             1             16  java.util.regex.Pattern$4
- 838:             1             16  java.util.regex.Pattern$BranchConn
- 839:             1             16  java.util.regex.Pattern$LastNode
- 840:             1             16  java.util.regex.Pattern$Node
- 841:             1             16  java.util.zip.ZipFile$1
- 842:             1             16  javax.xml.parsers.SecuritySupport
- 843:             1             16  org.apache.ibatis.builder.xml.XMLMapperEntityResolver
- 844:             1             16  org.apache.ibatis.cache.decorators.SynchronizedCache
- 845:             1             16  org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator
- 846:             1             16  org.apache.ibatis.executor.keygen.NoKeyGenerator
- 847:             1             16  org.apache.ibatis.executor.loader.javassist.JavassistProxyFactory
- 848:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$1
- 849:             1             16  org.apache.ibatis.javassist.util.proxy.ProxyFactory$3
- 850:             1             16  org.apache.ibatis.ognl.ArrayElementsAccessor
- 851:             1             16  org.apache.ibatis.ognl.ArrayPropertyAccessor
- 852:             1             16  org.apache.ibatis.ognl.CollectionElementsAccessor
- 853:             1             16  org.apache.ibatis.ognl.EnumerationElementsAccessor
- 854:             1             16  org.apache.ibatis.ognl.EnumerationPropertyAccessor
- 855:             1             16  org.apache.ibatis.ognl.EvaluationPool
- 856:             1             16  org.apache.ibatis.ognl.IteratorElementsAccessor
- 857:             1             16  org.apache.ibatis.ognl.IteratorPropertyAccessor
- 858:             1             16  org.apache.ibatis.ognl.ListPropertyAccessor
- 859:             1             16  org.apache.ibatis.ognl.MapElementsAccessor
- 860:             1             16  org.apache.ibatis.ognl.MapPropertyAccessor
- 861:             1             16  org.apache.ibatis.ognl.NumberElementsAccessor
- 862:             1             16  org.apache.ibatis.ognl.ObjectArrayPool
- 863:             1             16  org.apache.ibatis.ognl.ObjectElementsAccessor
- 864:             1             16  org.apache.ibatis.ognl.ObjectMethodAccessor
- 865:             1             16  org.apache.ibatis.ognl.ObjectNullHandler
- 866:             1             16  org.apache.ibatis.ognl.ObjectPropertyAccessor
- 867:             1             16  org.apache.ibatis.ognl.SetPropertyAccessor
- 868:             1             16  org.apache.ibatis.plugin.InterceptorChain
- 869:             1             16  org.apache.ibatis.scripting.defaults.RawLanguageDriver
- 870:             1             16  org.apache.ibatis.scripting.xmltags.DynamicContext$ContextAccessor
- 871:             1             16  org.apache.ibatis.scripting.xmltags.XMLLanguageDriver
- 872:             1             16  org.apache.ibatis.session.defaults.DefaultSqlSessionFactory
- 873:             1             16  org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory
- 874:             1             16  org.apache.ibatis.type.TypeAliasRegistry
- 875:             1             16  org.slf4j.helpers.BasicMarkerFactory
- 876:             1             16  org.slf4j.helpers.NOPLoggerFactory
- 877:             1             16  org.slf4j.helpers.SubstituteLoggerFactory
- 878:             1             16  org.slf4j.impl.StaticMDCBinder
- 879:             1             16  org.slf4j.impl.StaticMarkerBinder
- 880:             1             16  sun.misc.ASCIICaseInsensitiveComparator
- 881:             1             16  sun.misc.FloatingDecimal$1
- 882:             1             16  sun.misc.Launcher
- 883:             1             16  sun.misc.Launcher$Factory
- 884:             1             16  sun.misc.Perf
- 885:             1             16  sun.misc.Unsafe
- 886:             1             16  sun.net.DefaultProgressMeteringPolicy
- 887:             1             16  sun.net.spi.DefaultProxySelector
- 888:             1             16  sun.net.www.protocol.file.Handler
- 889:             1             16  sun.net.www.protocol.jar.JarFileFactory
- 890:             1             16  sun.reflect.ReflectionFactory
- 891:             1             16  sun.reflect.generics.tree.BooleanSignature
- 892:             1             16  sun.reflect.generics.tree.BottomSignature
- 893:             1             16  sun.reflect.generics.tree.ByteSignature
- 894:             1             16  sun.reflect.generics.tree.VoidDescriptor
- 895:             1             16  sun.util.calendar.Gregorian
- 896:             1             16  sun.util.locale.provider.AuxLocaleProviderAdapter$NullProvider
- 897:             1             16  sun.util.locale.provider.CalendarDataUtility$CalendarWeekParameterGetter
- 898:             1             16  sun.util.locale.provider.SPILocaleProviderAdapter
- 899:             1             16  sun.util.locale.provider.TimeZoneNameUtility$TimeZoneNameGetter
- 900:             1             16  sun.util.resources.LocaleData
- 901:             1             16  sun.util.resources.LocaleData$LocaleDataResourceBundleControl
-Total         69230        7577224
-
+其他见：
+mybatis项目内存对象.md
 
 
 idea插件 mybatisprohelper
@@ -3092,105 +1452,65 @@ dubbo也可以，设置环境变量
 
 3.4.6
 
-| org.apache.ibatis.annotations |            |                                                              |
-| ----------------------------- | ---------- | ------------------------------------------------------------ |
-| Arg                           | @interface | The annotation that specify a mapping definition for the constructor argument. |
-|                               |            |                                                              |
-| AutomapConstructor            | @interface | The marker annotation that indicate a constructor for automatic mapping. |
-|                               |            |                                                              |
-| CacheNamespace                | @interface | The annotation that specify to use cache on namespace(e.g.   |
-|                               |            |                                                              |
-| CacheNamespaceRef             | @interface | The annotation that reference a cache.                       |
-|                               |            |                                                              |
-| Case                          | @interface | The annotation that conditional mapping definition for TypeDiscriminator. |
-|                               |            |                                                              |
-| ConstructorArgs               | @interface | The annotation that be grouping mapping definitions for constructor. |
-|                               |            |                                                              |
-| Delete                        | @interface | The annotation that specify an SQL for deleting record(s).   |
-|                               |            |                                                              |
-| Delete.List                   | @interface | The container annotation for Delete.                         |
-|                               |            |                                                              |
-| DeleteProvider                | @interface | The annotation that specify a method that provide an SQL for deleting record(s). |
-|                               |            |                                                              |
-| DeleteProvider.List           | @interface | The container annotation for DeleteProvider.                 |
-|                               |            |                                                              |
-| Flush                         | @interface | The maker annotation that invoke a flush statements via Mapper interface. |
-|                               |            |                                                              |
-| Insert                        | @interface | The annotation that specify an SQL for inserting record(s).  |
-|                               |            |                                                              |
-| Insert.List                   | @interface | The container annotation for Insert.                         |
-|                               |            |                                                              |
-| InsertProvider                | @interface | The annotation that specify a method that provide an SQL for inserting record(s). |
-|                               |            |                                                              |
-| InsertProvider.List           | @interface | The container annotation for InsertProvider.                 |
-|                               |            |                                                              |
-| Lang                          | @interface | The annotation that specify a LanguageDriver to use.         |
-|                               |            |                                                              |
-| Many                          | @interface | The annotation that specify the nested statement for retrieving collections. |
-|                               |            |                                                              |
-| MapKey                        | @interface | The annotation that specify the property name(or column name) for a key value of Map. |
-|                               |            |                                                              |
-| Mapper                        | @interface | Marker interface for MyBatis mappers.                        |
-|                               |            |                                                              |
-| One                           | @interface | The annotation that specify the nested statement for retrieving single object. |
-|                               |            |                                                              |
-| Options                       | @interface | The annotation that specify options for customizing default behaviors. |
-|                               |            |                                                              |
-| Options.FlushCachePolicy      | @interface | The options for the Options.flushCache().                    |
-|                               |            |                                                              |
-| Options.List                  | @interface | The container annotation for Options.                        |
-|                               |            |                                                              |
-| Param                         | @interface | The annotation that specify the parameter name.              |
-|                               |            |                                                              |
-| Property                      | @interface | The annotation that inject a property value.                 |
-|                               |            |                                                              |
-| Result                        | @interface | The annotation that specify a mapping definition for the property. |
-|                               |            |                                                              |
-| ResultMap                     | @interface | The annotation that specify result map names to use.         |
-|                               |            |                                                              |
-| Results                       | @interface | The annotation that be grouping mapping definitions for property. |
-|                               |            |                                                              |
-| ResultType                    | @interface | This annotation can be used when a @Select method is using a ResultHandler. |
-|                               |            |                                                              |
-| Select                        | @interface | The annotation that specify an SQL for retrieving record(s). |
-|                               |            |                                                              |
-| Select.List                   | @interface | The container annotation for Select.                         |
-|                               |            |                                                              |
-| SelectKey                     | @interface | The annotation that specify an SQL for retrieving a key value. |
-|                               |            |                                                              |
-| SelectKey.List                | @interface | The container annotation for SelectKey.                      |
-|                               |            |                                                              |
-| SelectProvider                | @interface | The annotation that specify a method that provide an SQL for retrieving record(s). |
-|                               |            |                                                              |
-| SelectProvider.List           | @interface | The container annotation for SelectProvider.                 |
-|                               |            |                                                              |
-| TypeDiscriminator             | @interface | The annotation that be grouping conditional mapping definitions. |
-|                               |            |                                                              |
-| Update                        | @interface | The annotation that specify an SQL for updating record(s).   |
-|                               |            |                                                              |
-| Update.List                   | @interface | The container annotation for Update.                         |
-|                               |            |                                                              |
-| UpdateProvider                | @interface | The annotation that specify a method that provide an SQL for updating record(s). |
-|                               |            |                                                              |
-| UpdateProvider.List           | @interface | The container annotation for UpdateProvider.                 |
-|                               |            |                                                              |
+| org.apache.ibatis.annotations | 类型       | 英文说明                                                     | 说明 |
+| ----------------------------- | ---------- | ------------------------------------------------------------ | ---- |
+| Arg                           | @interface | The annotation that specify a mapping definition for the constructor argument. |      |
+| AutomapConstructor            | @interface | The marker annotation that indicate a constructor for automatic mapping. |      |
+| CacheNamespace                | @interface | The annotation that specify to use cache on namespace(e.g.   |      |
+| CacheNamespaceRef             | @interface | The annotation that reference a cache.                       |      |
+| Case                          | @interface | The annotation that conditional mapping definition for TypeDiscriminator. |      |
+| ConstructorArgs               | @interface | The annotation that be grouping mapping definitions for constructor. |      |
+| Delete                        | @interface | The annotation that specify an SQL for deleting record(s).   |      |
+| Delete.List                   | @interface | The container annotation for Delete.                         |      |
+| DeleteProvider                | @interface | The annotation that specify a method that provide an SQL for deleting record(s). |      |
+| DeleteProvider.List           | @interface | The container annotation for DeleteProvider.                 |      |
+| Flush                         | @interface | The maker annotation that invoke a flush statements via Mapper interface. |      |
+| Insert                        | @interface | The annotation that specify an SQL for inserting record(s).  |      |
+| Insert.List                   | @interface | The container annotation for Insert.                         |      |
+| InsertProvider                | @interface | The annotation that specify a method that provide an SQL for inserting record(s). |      |
+| InsertProvider.List           | @interface | The container annotation for InsertProvider.                 |      |
+| Lang                          | @interface | The annotation that specify a LanguageDriver to use.         |      |
+| Many                          | @interface | The annotation that specify the nested statement for retrieving collections. |      |
+| MapKey                        | @interface | The annotation that specify the property name(or column name) for a key value of Map. |      |
+| Mapper                        | @interface | Marker interface for MyBatis mappers.                        |      |
+| One                           | @interface | The annotation that specify the nested statement for retrieving single object. |      |
+| Options                       | @interface | The annotation that specify options for customizing default behaviors. |      |
+| Options.FlushCachePolicy      | @interface | The options for the Options.flushCache().                    |      |
+| Options.List                  | @interface | The container annotation for Options.                        |      |
+| Param                         | @interface | The annotation that specify the parameter name.              |      |
+| Property                      | @interface | The annotation that inject a property value.                 |      |
+| Result                        | @interface | The annotation that specify a mapping definition for the property. |      |
+| ResultMap                     | @interface | The annotation that specify result map names to use.         |      |
+| Results                       | @interface | The annotation that be grouping mapping definitions for property. |      |
+| ResultType                    | @interface | This annotation can be used when a @Select method is using a ResultHandler. |      |
+| Select                        | @interface | The annotation that specify an SQL for retrieving record(s). |      |
+| Select.List                   | @interface | The container annotation for Select.                         |      |
+| SelectKey                     | @interface | The annotation that specify an SQL for retrieving a key value. |      |
+| SelectKey.List                | @interface | The container annotation for SelectKey.                      |      |
+| SelectProvider                | @interface | The annotation that specify a method that provide an SQL for retrieving record(s). |      |
+| SelectProvider.List           | @interface | The container annotation for SelectProvider.                 |      |
+| TypeDiscriminator             | @interface | The annotation that be grouping conditional mapping definitions. |      |
+| Update                        | @interface | The annotation that specify an SQL for updating record(s).   |      |
+| Update.List                   | @interface | The container annotation for Update.                         |      |
+| UpdateProvider                | @interface | The annotation that specify a method that provide an SQL for updating record(s). |      |
+| UpdateProvider.List           | @interface | The container annotation for UpdateProvider.                 |      |
 
 
 
 
 
-| org.apache.ibatis.binding    |      |                                                              |
-| ---------------------------- | ---- | ------------------------------------------------------------ |
-| BindingException             |      |                                                              |
-| MapperMethod                 |      | public Object execute(SqlSession sqlSession, Object[] args) 核心方法 |
-| MapperMethod.MethodSignature |      |                                                              |
-| MapperMethod.ParamMap<V>     |      | HashMap<String, V>                                           |
-| MapperMethod.SqlCommand      |      | SqlCommandType type                                          |
-| MapperProxy<T>               |      | 动态代理                                                     |
-|                              |      |                                                              |
-| MapperProxyFactory<T>        | 泛型 | 见下面，调用动态代理                                         |
-|                              |      |                                                              |
-| MapperRegistry               |      | Mapper注册 get add Mapper   Map<Class<?>, MapperProxyFactory<?>> knownMappers  属性 |
+
+
+| org.apache.ibatis.binding    | 类型 |                                                              |      |
+| ---------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| BindingException             |      |                                                              |      |
+| MapperMethod                 |      | public Object execute(SqlSession sqlSession, Object[] args) 核心方法 |      |
+| MapperMethod.MethodSignature |      |                                                              |      |
+| MapperMethod.ParamMap<V>     |      | HashMap<String, V>                                           |      |
+| MapperMethod.SqlCommand      |      | SqlCommandType type                                          |      |
+| MapperProxy<T>               |      | 动态代理                                                     |      |
+| MapperProxyFactory<T>        | 泛型 | 见下面，调用动态代理                                         |      |
+| MapperRegistry               |      | Mapper注册 get add Mapper   Map<Class<?>, MapperProxyFactory<?>> knownMappers  属性 |      |
 
 
 
@@ -3214,53 +1534,31 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.builder                     |           |                         |
-| --------------------------------------------- | --------- | ----------------------- |
-| BaseBuilder                                   | abstract  |                         |
-| BuilderException                              |           | PersistenceException    |
-| CacheRefResolver                              |           |                         |
-| IncompleteElementException                    |           |                         |
-| InitializingObject                            | interface |                         |
-| MapperBuilderAssistant                        |           |                         |
-| ParameterExpression                           |           | HashMap<String, String> |
-| ResultMapResolver                             |           |                         |
-| SqlSourceBuilder                              |           |                         |
-| SqlSourceBuilder.ParameterMappingTokenHandler |           |                         |
-| StaticSqlSource                               |           | implements SqlSource    |
+| org.apache.ibatis.builder                     | 类型      |                         |      |
+| --------------------------------------------- | --------- | ----------------------- | ---- |
+| BaseBuilder                                   | abstract  |                         |      |
+| BuilderException                              |           | PersistenceException    |      |
+| CacheRefResolver                              |           |                         |      |
+| IncompleteElementException                    |           |                         |      |
+| InitializingObject                            | interface |                         |      |
+| MapperBuilderAssistant                        |           |                         |      |
+| ParameterExpression                           |           | HashMap<String, String> |      |
+| ResultMapResolver                             |           |                         |      |
+| SqlSourceBuilder                              |           |                         |      |
+| SqlSourceBuilder.ParameterMappingTokenHandler |           |                         |      |
+| StaticSqlSource                               |           | implements SqlSource    |      |
 
 
 
 
 
-| org.apache.ibatis.builder.annotation |      |                                                              |
-| ------------------------------------ | ---- | ------------------------------------------------------------ |
-| MapperAnnotationBuilder              |      |                                                              |
-|                                      |      |                                                              |
-| MethodResolver                       |      |                                                              |
-|                                      |      |                                                              |
-| ProviderContext                      |      | The context object for sql provider method.                  |
-|                                      |      |                                                              |
-| ProviderMethodResolver               |      | The interface that resolve an SQL provider method via an SQL provider class. |
-|                                      |      |                                                              |
-| ProviderSqlSource                    |      |                                                              |
-
-
-
-
-
-
-
-| org.apache.ibatis.builder.xml |                                               |
-| ----------------------------- | --------------------------------------------- |
-| XMLConfigBuilder              |                                               |
-|                               |                                               |
-| XMLIncludeTransformer         |                                               |
-|                               |                                               |
-| XMLMapperBuilder              |                                               |
-|                               |                                               |
-| XMLMapperEntityResolver       | Offline entity resolver for the MyBatis DTDs. |
-|                               |                                               |
-| XMLStatementBuilder           |                                               |
+| org.apache.ibatis.builder.annotation | 类型 |                                                              |      |
+| ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
+| MapperAnnotationBuilder              |      |                                                              |      |
+| MethodResolver                       |      |                                                              |      |
+| ProviderContext                      |      | The context object for sql provider method.                  |      |
+| ProviderMethodResolver               |      | The interface that resolve an SQL provider method via an SQL provider class. |      |
+| ProviderSqlSource                    |      |                                                              |      |
 
 
 
@@ -3268,68 +1566,13 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.cache                 |                                                              |
-| --------------------------------------- | ------------------------------------------------------------ |
-| Cache                                   | SPI for cache providers.                                     |
-|                                         |                                                              |
-| CacheException                          |                                                              |
-|                                         |                                                              |
-| CacheKey                                |                                                              |
-|                                         |                                                              |
-| NullCacheKey                            | Deprecated. Since 3.5.3, This class never used and will be removed future version. |
-|                                         |                                                              |
-|                                         |                                                              |
-| TransactionalCacheManager               |                                                              |
-|                                         |                                                              |
-|                                         |                                                              |
-|                                         |                                                              |
-|                                         |                                                              |
-| org.apache.ibatis.cache.decorators      |                                                              |
-|                                         |                                                              |
-| BlockingCache                           | Simple blocking decorator                                    |
-|                                         |                                                              |
-| FifoCache                               | FIFO (first in, first out) cache decorator.                  |
-|                                         |                                                              |
-| LoggingCache                            |                                                              |
-|                                         |                                                              |
-| LruCache                                | Lru (least recently used) cache decorator.                   |
-|                                         |                                                              |
-| ScheduledCache                          |                                                              |
-|                                         |                                                              |
-| SerializedCache                         |                                                              |
-|                                         |                                                              |
-| SerializedCache.CustomObjectInputStream |                                                              |
-|                                         |                                                              |
-| SoftCache                               | Soft Reference cache decorator.                              |
-|                                         |                                                              |
-| SynchronizedCache                       |                                                              |
-|                                         |                                                              |
-| TransactionalCache                      | The 2nd level cache transactional buffer.                    |
-|                                         |                                                              |
-| WeakCache                               | Weak Reference cache decorator.                              |
-|                                         |                                                              |
-|                                         |                                                              |
-|                                         |                                                              |
-| org.apache.ibatis.cache.impl            |                                                              |
-| PerpetualCache                          |                                                              |
-
-
-
-
-
-| org.apache.ibatis.cursor                    |                                                              |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| Cursor<T>                                   | Cursor contract to handle fetching items lazily using an Iterator. |
-|                                             |                                                              |
-|                                             |                                                              |
-|                                             |                                                              |
-|                                             |                                                              |
-| org.apache.ibatis.cursor.defaults           |                                                              |
-|                                             |                                                              |
-|                                             |                                                              |
-| DefaultCursor<T>                            | This is the default implementation of a MyBatis Cursor.      |
-|                                             |                                                              |
-| DefaultCursor.ObjectWrapperResultHandler<T> |                                                              |
+| org.apache.ibatis.builder.xml | 类型 |                                               |      |
+| ----------------------------- | ---- | --------------------------------------------- | ---- |
+| XMLConfigBuilder              |      |                                               |      |
+| XMLIncludeTransformer         |      |                                               |      |
+| XMLMapperBuilder              |      |                                               |      |
+| XMLMapperEntityResolver       |      | Offline entity resolver for the MyBatis DTDs. |      |
+| XMLStatementBuilder           |      |                                               |      |
 
 
 
@@ -3337,34 +1580,58 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.datasource |                                                              |
-| ---------------------------- | ------------------------------------------------------------ |
-| DataSourceException          |                                                              |
-|                              |                                                              |
-| DataSourceFactory            |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-| datasource.jndi              |                                                              |
-|                              |                                                              |
-| JndiDataSourceFactory        |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-| datasource.pooled            |                                                              |
-|                              |                                                              |
-| PooledDataSource             | This is a simple, synchronous, thread-safe database connection pool. |
-|                              |                                                              |
-| PooledDataSourceFactory      |                                                              |
-|                              |                                                              |
-| PoolState                    |                                                              |
-|                              |                                                              |
-|                              |                                                              |
-| datasource.unpooled          |                                                              |
-| UnpooledDataSource           |                                                              |
-|                              |                                                              |
-| UnpooledDataSourceFactory    |                                                              |
+| org.apache.ibatis.cache                 | 类型 |                                                              | 说明 |
+| --------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| Cache                                   |      | SPI for cache providers.                                     |      |
+| CacheException                          |      |                                                              |      |
+| CacheKey                                |      |                                                              |      |
+| NullCacheKey                            |      | Deprecated. Since 3.5.3, This class never used and will be removed future version. |      |
+| TransactionalCacheManager               |      | org.apache.ibatis.cache.decorators                           |      |
+|                                         |      |                                                              |      |
+| BlockingCache                           |      | Simple blocking decorator                                    |      |
+| FifoCache                               |      | FIFO (first in, first out) cache decorator.                  |      |
+| LoggingCache                            |      |                                                              |      |
+| LruCache                                |      | Lru (least recently used) cache decorator.                   |      |
+| ScheduledCache                          |      |                                                              |      |
+| SerializedCache                         |      |                                                              |      |
+| SerializedCache.CustomObjectInputStream |      |                                                              |      |
+| SoftCache                               |      | Soft Reference cache decorator.                              |      |
+| SynchronizedCache                       |      |                                                              |      |
+| TransactionalCache                      |      | The 2nd level cache transactional buffer.                    |      |
+| WeakCache                               |      | Weak Reference cache decorator.                              |      |
+| org.apache.ibatis.cache.impl            |      |                                                              |      |
+| PerpetualCache                          |      |                                                              |      |
+
+
+
+
+
+| org.apache.ibatis.cursor                    | 类型 |                                                              |      |
+| ------------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| Cursor<T>                                   |      | Cursor contract to handle fetching items lazily using an Iterator. |      |
+| org.apache.ibatis.cursor.defaults           |      |                                                              |      |
+| DefaultCursor<T>                            |      | This is the default implementation of a MyBatis Cursor.      |      |
+| DefaultCursor.ObjectWrapperResultHandler<T> |      |                                                              |      |
+
+
+
+
+
+
+
+| org.apache.ibatis.datasource | 类型 |                                                              |      |
+| ---------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| DataSourceException          |      |                                                              |      |
+| DataSourceFactory            |      |                                                              |      |
+| datasource.jndi              |      |                                                              |      |
+| JndiDataSourceFactory        |      |                                                              |      |
+| datasource.pooled            |      |                                                              |      |
+| PooledDataSource             |      | This is a simple, synchronous, thread-safe database connection pool. |      |
+| PooledDataSourceFactory      |      |                                                              |      |
+| PoolState                    |      |                                                              |      |
+| datasource.unpooled          |      |                                                              |      |
+| UnpooledDataSource           |      |                                                              |      |
+| UnpooledDataSourceFactory    |      |                                                              |      |
 
 
 
@@ -3374,14 +1641,12 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.exceptions | 类型      |                                                    |
+| org.apache.ibatis.exceptions | 类型      | 说明                                               |
 | ---------------------------- | --------- | -------------------------------------------------- |
 | ExceptionFactory             |           |                                                    |
-|                              |           |                                                    |
 | IbatisException              |           |                                                    |
 | Deprecated.                  |           |                                                    |
 | PersistenceException         |           |                                                    |
-|                              |           |                                                    |
 | TooManyResultsException      | exception | 查询数据库数据，有多个，但是你代码出参是一个，报错 |
 
 
@@ -3393,116 +1658,56 @@ public T newInstance(SqlSession sqlSession)
 | org.apache.ibatis.executor                  | 类型 | 英文说明                                                     | 说明             |
 | ------------------------------------------- | ---- | ------------------------------------------------------------ | ---------------- |
 | BaseExecutor                                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | BatchExecutor                               |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | BatchExecutorException                      |      | This exception is thrown if a java.sql.BatchUpdateException is caught during the execution of any nested batch. |                  |
-|                                             |      |                                                              |                  |
 | BatchResult                                 |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | CachingExecutor                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ErrorContext                                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ExecutionPlaceholder                        |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | Executor                                    |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ExecutorException                           |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ResultExtractor                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ReuseExecutor                               |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | SimpleExecutor                              |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.keygen           |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | Jdbc3KeyGenerator                           |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | KeyGenerator                                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | NoKeyGenerator                              |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | SelectKeyGenerator                          |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.loader           |      |                                                              |                  |
 | AbstractEnhancedDeserializationProxy        |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | AbstractSerialStateHolder                   |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | CglibProxyFactory                           |      |                                                              |                  |
 | Deprecated.                                 |      |                                                              |                  |
 | JavassistProxyFactory                       |      |                                                              |                  |
 | Deprecated.                                 |      |                                                              |                  |
 | ProxyFactory                                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ResultLoader                                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-| ResultLoaderMap                             |      |                                                              |                  |
-|                                             |      | Property which was not loaded yet.                           |                  |
+| ResultLoaderMap                             |      | Property which was not loaded yet.                           |                  |
 | ResultLoaderMap.LoadPair                    |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | WriteReplaceInterface                       |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.loader.cglib     |      |                                                              |                  |
 | CglibProxyFactory                           |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.loader.javassist |      |                                                              |                  |
 | JavassistProxyFactory                       |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.parameter        |      |                                                              |                  |
 | ParameterHandler                            |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.result           |      |                                                              |                  |
 | DefaultMapResultHandler<K,V>                |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | DefaultResultContext<T>                     |      |                                                              | ResultContext<T> |
-|                                             |      |                                                              |                  |
 | DefaultResultHandler                        |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ResultMapException                          |      |                                                              |                  |
-|                                             |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | org.apache.ibatis.executor.resultset        |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | DefaultResultSetHandler                     |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ResultSetHandler                            |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | ResultSetWrapper                            |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | executor.statement                          |      |                                                              |                  |
 | BaseStatementHandler                        |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | CallableStatementHandler                    |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | PreparedStatementHandler                    |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | RoutingStatementHandler                     |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | SimpleStatementHandler                      |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | StatementHandler                            |      |                                                              |                  |
-|                                             |      |                                                              |                  |
 | StatementUtil                               |      |                                                              |                  |
 
 
@@ -3511,30 +1716,19 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.io       |                                                              |
-| -------------------------- | ------------------------------------------------------------ |
-| ClassLoaderWrapper         | A class to wrap access to multiple class loaders making them work as one |
-|                            |                                                              |
-| DefaultVFS                 | A default implementation of VFS that works for most application servers. |
-|                            |                                                              |
-| ExternalResources          | Deprecated.                                                  |
-|                            |                                                              |
-| JBoss6VFS                  | A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |
-|                            |                                                              |
-| ResolverUtil<T>            | ResolverUtil is used to locate classes that are available in the/a class path and meet arbitrary conditions. |
-|                            |                                                              |
-| ResolverUtil.AnnotatedWith | A Test that checks to see if each class is annotated with a specific annotation. |
-|                            |                                                              |
-| ResolverUtil.IsA           | A Test that checks to see if each class is assignable to the provided class. |
-|                            |                                                              |
-| ResolverUtil.Test          | A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |
-|                            |                                                              |
-| Resources                  | A class to simplify access to resources through the classloader. |
-|                            |                                                              |
-| SerialFilterChecker        |                                                              |
-|                            |                                                              |
-| VFS                        | Provides a very simple API for accessing resources within an application server. |
-|                            |                                                              |
+| org.apache.ibatis.io       | 类型 |                                                              |      |
+| -------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| ClassLoaderWrapper         |      | A class to wrap access to multiple class loaders making them work as one |      |
+| DefaultVFS                 |      | A default implementation of VFS that works for most application servers. |      |
+| ExternalResources          |      | Deprecated.                                                  |      |
+| JBoss6VFS                  |      | A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |      |
+| ResolverUtil<T>            |      | ResolverUtil is used to locate classes that are available in the/a class path and meet arbitrary conditions. |      |
+| ResolverUtil.AnnotatedWith |      | A Test that checks to see if each class is annotated with a specific annotation. |      |
+| ResolverUtil.IsA           |      | A Test that checks to see if each class is assignable to the provided class. |      |
+| ResolverUtil.Test          |      | A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |      |
+| Resources                  |      | A class to simplify access to resources through the classloader. |      |
+| SerialFilterChecker        |      |                                                              |      |
+| VFS                        |      | Provides a very simple API for accessing resources within an application server. |      |
 
 
 
@@ -3542,39 +1736,25 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.jdbc                                       |
-| ------------------------------------------------------------ |
-| AbstractSQL<T>                                               |
-|                                                              |
-| Null                                                         |
-|                                                              |
-| RuntimeSqlException                                          |
-|                                                              |
-| ScriptRunner                                                 |
-| This is an internal testing utility.                         |
-| You are welcome to use this class for your own purposes,     |
-| but if there is some feature/enhancement you need for your own usage, |
-| please make and modify your own copy instead of sending us an enhancement request. |
-| SelectBuilder                                                |
-| Deprecated.                                                  |
-| Use the SQL Class                                            |
-| SQL                                                          |
-|                                                              |
-| SqlBuilder                                                   |
-| Deprecated.                                                  |
-| Use the SQL Class                                            |
-| SqlRunner                                                    |
+| org.apache.ibatis.jdbc | 类型 |                                                              |      |
+| ---------------------- | ---- | ------------------------------------------------------------ | ---- |
+| AbstractSQL<T>         |      |                                                              |      |
+| Null                   |      |                                                              |      |
+| RuntimeSqlException    |      |                                                              |      |
+| ScriptRunner           |      | This is an internal testing utility.You are welcome to use this class for your own purposes,but if there is some feature/enhancement you need for your own usage,please make and modify your own copy instead of sending us an enhancement request. |      |
+| SelectBuilder          |      | Deprecated.Use the SQL Class                                 |      |
+| SQL                    |      |                                                              |      |
+| SqlBuilder             |      | Deprecated.Use the SQL Class                                 |      |
+| SqlRunner              |      |                                                              |      |
 
 
 
 
 
-| org.apache.ibatis.lang                      |
-| ------------------------------------------- |
-| UsesJava7                                   |
-| Indicates that the element uses Java 7 API. |
-| UsesJava8                                   |
-| Indicates that the element uses Java 8 API. |
+| org.apache.ibatis.lang | 类型 |                                             |      |
+| ---------------------- | ---- | ------------------------------------------- | ---- |
+| UsesJava7              |      | Indicates that the element uses Java 7 API. |      |
+| UsesJava8              |      | Indicates that the element uses Java 8 API. |      |
 
 
 
@@ -3582,67 +1762,33 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.logging               |      |
-| --------------------------------------- | ---- |
-| Log                                     |      |
-|                                         |      |
-| LogException                            |      |
-|                                         |      |
-| LogFactory                              |      |
-|                                         |      |
-|                                         |      |
-| logging.commons                         |      |
-|                                         |      |
-| JakartaCommonsLoggingImpl               |      |
-|                                         |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.jdbc          |      |
-|                                         |      |
-| BaseJdbcLogger                          |      |
-| Base class for proxies to do logging.   |      |
-| ConnectionLogger                        |      |
-| Connection proxy to add logging.        |      |
-| PreparedStatementLogger                 |      |
-| PreparedStatement proxy to add logging. |      |
-| ResultSetLogger                         |      |
-| ResultSet proxy to add logging.         |      |
-| StatementLogger                         |      |
-| Statement proxy to add logging.         |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.jdk14         |      |
-| Jdk14LoggingImpl                        |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.log4j         |      |
-| Log4jImpl                               |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.log4j2        |      |
-|                                         |      |
-| Log4j2AbstractLoggerImpl                |      |
-|                                         |      |
-| Log4j2Impl                              |      |
-|                                         |      |
-| Log4j2LoggerImpl                        |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.nologging     |      |
-|                                         |      |
-| NoLoggingImpl                           |      |
-|                                         |      |
-|                                         |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.slf4j         |      |
-| Slf4jImpl                               |      |
-|                                         |      |
-|                                         |      |
-|                                         |      |
-|                                         |      |
-| org.apache.ibatis.logging.stdout        |      |
-| StdOutImpl                              |      |
+| org.apache.ibatis.logging           | 类型 |                                         |      |
+| ----------------------------------- | ---- | --------------------------------------- | ---- |
+| Log                                 |      |                                         |      |
+| LogException                        |      |                                         |      |
+| LogFactory                          |      |                                         |      |
+| logging.commons                     |      |                                         |      |
+| JakartaCommonsLoggingImpl           |      |                                         |      |
+| org.apache.ibatis.logging.jdbc      |      |                                         |      |
+| BaseJdbcLogger                      |      | Base class for proxies to do logging.   |      |
+| ConnectionLogger                    |      | Connection proxy to add logging.        |      |
+| PreparedStatementLogger             |      | PreparedStatement proxy to add logging. |      |
+| ResultSetLogger                     |      | ResultSet proxy to add logging.         |      |
+| StatementLogger                     |      | Statement proxy to add logging.         |      |
+| org.apache.ibatis.logging.jdk14     |      |                                         |      |
+| Jdk14LoggingImpl                    |      |                                         |      |
+| org.apache.ibatis.logging.log4j     |      |                                         |      |
+| Log4jImpl                           |      |                                         |      |
+| org.apache.ibatis.logging.log4j2    |      |                                         |      |
+| Log4j2AbstractLoggerImpl            |      |                                         |      |
+| Log4j2Impl                          |      |                                         |      |
+| Log4j2LoggerImpl                    |      |                                         |      |
+| org.apache.ibatis.logging.nologging |      |                                         |      |
+| NoLoggingImpl                       |      |                                         |      |
+| org.apache.ibatis.logging.slf4j     |      |                                         |      |
+| Slf4jImpl                           |      |                                         |      |
+| org.apache.ibatis.logging.stdout    |      |                                         |      |
+| StdOutImpl                          |      |                                         |      |
 
 
 
@@ -3650,66 +1796,40 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.mapping |                                                              |
-| ------------------------- | ------------------------------------------------------------ |
-| BoundSql                  |                                                              |
-|                           | An actual SQL String got from an SqlSource after having processed any dynamic content. |
-| CacheBuilder              |                                                              |
-|                           |                                                              |
-| DatabaseIdProvider        | Should return an id to identify the type of this database.   |
-|                           |                                                              |
-| DefaultDatabaseIdProvider | Deprecated.                                                  |
-|                           |                                                              |
-| Discriminator             |                                                              |
-|                           |                                                              |
-| Discriminator.Builder     |                                                              |
-|                           |                                                              |
-| Environment               |                                                              |
-|                           |                                                              |
-| Environment.Builder       |                                                              |
-|                           |                                                              |
-| FetchType                 |                                                              |
-|                           |                                                              |
-| MappedStatement           |                                                              |
-|                           |                                                              |
-| MappedStatement.Builder   |                                                              |
-|                           |                                                              |
-| ParameterMap              |                                                              |
-|                           |                                                              |
-| ParameterMap.Builder      |                                                              |
-|                           |                                                              |
-| ParameterMapping          |                                                              |
-|                           |                                                              |
-| ParameterMapping.Builder  |                                                              |
-|                           |                                                              |
-| ParameterMode             |                                                              |
-|                           |                                                              |
-| ResultFlag                |                                                              |
-|                           |                                                              |
-| ResultMap                 |                                                              |
-|                           |                                                              |
-| ResultMap.Builder         |                                                              |
-|                           |                                                              |
-| ResultMapping             |                                                              |
-|                           |                                                              |
-| ResultMapping.Builder     |                                                              |
-|                           |                                                              |
-| ResultSetType             |                                                              |
-|                           |                                                              |
-| SqlCommandType            |                                                              |
-|                           |                                                              |
-| SqlSource                 | Represents the content of a mapped statement read from an XML file or an annotation. |
-|                           |                                                              |
-| StatementType             |                                                              |
-|                           |                                                              |
-| VendorDatabaseIdProvider  | Vendor DatabaseId provider.                                  |
-|                           |                                                              |
+| org.apache.ibatis.mapping | 类型 |                                                              |      |
+| ------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| BoundSql                  |      | An actual SQL String got from an SqlSource after having processed any dynamic content. |      |
+| CacheBuilder              |      |                                                              |      |
+| DatabaseIdProvider        |      | Should return an id to identify the type of this database.   |      |
+| DefaultDatabaseIdProvider |      | Deprecated.                                                  |      |
+| Discriminator             |      |                                                              |      |
+| Discriminator.Builder     |      |                                                              |      |
+| Environment               |      |                                                              |      |
+| Environment.Builder       |      |                                                              |      |
+| FetchType                 |      |                                                              |      |
+| MappedStatement           |      |                                                              |      |
+| MappedStatement.Builder   |      |                                                              |      |
+| ParameterMap              |      |                                                              |      |
+| ParameterMap.Builder      |      |                                                              |      |
+| ParameterMapping          |      |                                                              |      |
+| ParameterMapping.Builder  |      |                                                              |      |
+| ParameterMode             |      |                                                              |      |
+| ResultFlag                |      |                                                              |      |
+| ResultMap                 |      |                                                              |      |
+| ResultMap.Builder         |      |                                                              |      |
+| ResultMapping             |      |                                                              |      |
+| ResultMapping.Builder     |      |                                                              |      |
+| ResultSetType             |      |                                                              |      |
+| SqlCommandType            |      |                                                              |      |
+| SqlSource                 |      | Represents the content of a mapped statement read from an XML file or an annotation. |      |
+| StatementType             |      |                                                              |      |
+| VendorDatabaseIdProvider  |      | Vendor DatabaseId provider.                                  |      |
 
 
 
 
 
-| org.apache.ibatis.ognl |      |      |
+| org.apache.ibatis.ognl | 类型 |      |
 | ---------------------- | ---- | ---- |
 | ArrayElementsAccessor  |      |      |
 | ArrayPropertyAccessor  |      |      |
@@ -3719,214 +1839,22 @@ public T newInstance(SqlSession sqlSession)
 | ASTBitAnd              |      |      |
 | ASTBitNegate           |      |      |
 | ASTBitOr               |      |      |
-|                        |      |      |
-|                        |      |      |
-|                        |      |      |
 
 
 
-| org.apache.ibatis.ognl.enhance |      |      |
-| ------------------------------ | ---- | ---- |
-| ContextClassLoader             |      |      |
-|                                |      |      |
-|                                |      |      |
+| org.apache.ibatis.ognl.enhance | 类型 | 英文说明 |      |
+| ------------------------------ | ---- | -------- | ---- |
+| ContextClassLoader             |      |          |      |
+|                                |      |          |      |
+|                                |      |          |      |
 
 
 
-| org.apache.ibatis.ognl.internal |      |      |
-| ------------------------------- | ---- | ---- |
-| ClassCache                      |      |      |
-| ClassCacheImpl                  |      |      |
-| Entry                           |      |      |
-
-
-
-
-
-
-
-| org.apache.ibatis.parsing |
-| ------------------------- |
-| GenericTokenParser        |
-|                           |
-| ParsingException          |
-|                           |
-| PropertyParser            |
-|                           |
-| TokenHandler              |
-|                           |
-| XNode                     |
-|                           |
-| XPathParser               |
-
-
-
-
-
-| org.apache.ibatis.plugin                                 |
-| -------------------------------------------------------- |
-| Interceptor                                              |
-|                                                          |
-| InterceptorChain                                         |
-|                                                          |
-| Intercepts                                               |
-| The annotation that specify target methods to intercept. |
-| Invocation                                               |
-|                                                          |
-| Plugin                                                   |
-|                                                          |
-| PluginException                                          |
-|                                                          |
-| Signature                                                |
-| The annotation that indicate the method signature.       |
-
-
-
-
-
-| org.apache.ibatis.reflection                                 |
-| ------------------------------------------------------------ |
-| ArrayUtil                                                    |
-| Provides hashCode, equals and toString methods that can handle array. |
-| DefaultReflectorFactory                                      |
-|                                                              |
-| ExceptionUtil                                                |
-|                                                              |
-| Jdk                                                          |
-| To check the existence of version dependent classes.         |
-| MetaClass                                                    |
-|                                                              |
-| MetaObject                                                   |
-|                                                              |
-| OptionalUtil                                                 |
-| Deprecated.                                                  |
-| Since 3.5.0, Will remove this class at future(next major version up). |
-| ParamNameResolver                                            |
-|                                                              |
-| ParamNameUtil                                                |
-|                                                              |
-| ReflectionException                                          |
-|                                                              |
-| Reflector                                                    |
-| This class represents a cached set of class definition information that allows for easy mapping between property names and getter/setter methods. |
-| ReflectorFactory                                             |
-|                                                              |
-| SystemMetaObject                                             |
-|                                                              |
-| TypeParameterResolver                                        |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.reflection.factory                         |
-|                                                              |
-| DefaultObjectFactory                                         |
-|                                                              |
-| ObjectFactory                                                |
-| MyBatis uses an ObjectFactory to create all needed new Objects. |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.reflection.invoker                         |
-|                                                              |
-| AmbiguousMethodInvoker                                       |
-|                                                              |
-| GetFieldInvoker                                              |
-|                                                              |
-| Invoker                                                      |
-|                                                              |
-| MethodInvoker                                                |
-|                                                              |
-| SetFieldInvoker                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.reflection.property                        |
-| PropertyCopier                                               |
-|                                                              |
-| PropertyNamer                                                |
-|                                                              |
-| PropertyTokenizer                                            |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.reflection.wrapper                         |
-| BaseWrapper                                                  |
-|                                                              |
-| BeanWrapper                                                  |
-|                                                              |
-| CollectionWrapper                                            |
-|                                                              |
-| DefaultObjectWrapperFactory                                  |
-|                                                              |
-| MapWrapper                                                   |
-|                                                              |
-| ObjectWrapper                                                |
-|                                                              |
-| ObjectWrapperFactory                                         |
-
-
-
-
-
-| org.apache.ibatis.scripting                                  |
-| ------------------------------------------------------------ |
-| LanguageDriver                                               |
-|                                                              |
-| LanguageDriverRegistry                                       |
-|                                                              |
-| ScriptingException                                           |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.scripting.defaults                         |
-|                                                              |
-| DefaultParameterHandler                                      |
-|                                                              |
-| RawLanguageDriver                                            |
-| As of 3.2.4 the default XML language is able to identify static statements and create a RawSqlSource. |
-| RawSqlSource                                                 |
-| Static SqlSource.                                            |
-|                                                              |
-|                                                              |
-|                                                              |
-|                                                              |
-| org.apache.ibatis.scripting.xmltags                          |
-|                                                              |
-|                                                              |
-|                                                              |
-| ChooseSqlNode                                                |
-|                                                              |
-| DynamicContext                                               |
-|                                                              |
-| DynamicSqlSource                                             |
-|                                                              |
-| ExpressionEvaluator                                          |
-|                                                              |
-| ForEachSqlNode                                               |
-|                                                              |
-| IfSqlNode                                                    |
-|                                                              |
-| MixedSqlNode                                                 |
-|                                                              |
-| OgnlCache                                                    |
-| Caches OGNL parsed expressions.                              |
-| OgnlClassResolver                                            |
-| Custom ognl ClassResolver which behaves same like ognl's DefaultClassResolver. |
-| SetSqlNode                                                   |
-|                                                              |
-| SqlNode                                                      |
-|                                                              |
-| StaticTextSqlNode                                            |
-|                                                              |
-| TextSqlNode                                                  |
-|                                                              |
-| TrimSqlNode                                                  |
-|                                                              |
-| VarDeclSqlNode                                               |
-|                                                              |
-| WhereSqlNode                                                 |
-|                                                              |
-| XMLLanguageDriver                                            |
-|                                                              |
-| XMLScriptBuilder                                             |
+| org.apache.ibatis.ognl.internal | 类型 | 英文说明 |      |
+| ------------------------------- | ---- | -------- | ---- |
+| ClassCache                      |      |          |      |
+| ClassCacheImpl                  |      |          |      |
+| Entry                           |      |          |      |
 
 
 
@@ -3934,50 +1862,216 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.session          | 类型      | 说明                                                         |                                                    |
+| org.apache.ibatis.parsing | 类型 | 英文说明 |      |
+| ------------------------- | ---- | -------- | ---- |
+| GenericTokenParser        |      |          |      |
+| ParsingException          |      |          |      |
+| PropertyParser            |      |          |      |
+| TokenHandler              |      |          |      |
+| XNode                     |      |          |      |
+| XPathParser               |      |          |      |
+
+
+
+
+
+| org.apache.ibatis.plugin | 类型 | 英文说明                                                 |      |
+| ------------------------ | ---- | -------------------------------------------------------- | ---- |
+| Interceptor              |      |                                                          |      |
+| InterceptorChain         |      |                                                          |      |
+| Intercepts               |      | The annotation that specify target methods to intercept. |      |
+|                          |      |                                                          |      |
+| Invocation               |      |                                                          |      |
+| Plugin                   |      |                                                          |      |
+| PluginException          |      |                                                          |      |
+| Signature                |      | The annotation that indicate the method signature.       |      |
+|                          |      |                                                          |      |
+
+
+
+
+
+| org.apache.ibatis.reflection                                 | 类型 | 英文说明                                                     |      |
+| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
+| ArrayUtil                                                    |      |                                                              |      |
+| Provides hashCode, equals and toString methods that can handle array. |      |                                                              |      |
+| DefaultReflectorFactory                                      |      |                                                              |      |
+| ExceptionUtil                                                |      |                                                              |      |
+| Jdk                                                          |      | To check the existence of version dependent classes.         |      |
+| MetaClass                                                    |      |                                                              |      |
+| MetaObject                                                   |      |                                                              |      |
+| OptionalUtil                                                 |      | Deprecated.Since 3.5.0, Will remove this class at future(next major version up). |      |
+| ParamNameResolver                                            |      |                                                              |      |
+| ParamNameUtil                                                |      |                                                              |      |
+| ReflectionException                                          |      |                                                              |      |
+| Reflector                                                    |      | This class represents a cached set of class definition information that allows for easy mapping between property names and getter/setter methods. |      |
+| ReflectorFactory                                             |      |                                                              |      |
+| SystemMetaObject                                             |      |                                                              |      |
+| TypeParameterResolver                                        |      |                                                              |      |
+|                                                              |      |                                                              |      |
+| org.apache.ibatis.reflection.factory                         |      |                                                              |      |
+| DefaultObjectFactory                                         |      |                                                              |      |
+| ObjectFactory                                                |      | MyBatis uses an ObjectFactory to create all needed new Objects. |      |
+|                                                              |      |                                                              |      |
+| org.apache.ibatis.reflection.invoker                         |      |                                                              |      |
+| AmbiguousMethodInvoker                                       |      |                                                              |      |
+| GetFieldInvoker                                              |      |                                                              |      |
+| Invoker                                                      |      |                                                              |      |
+| MethodInvoker                                                |      |                                                              |      |
+| SetFieldInvoker                                              |      |                                                              |      |
+|                                                              |      |                                                              |      |
+| org.apache.ibatis.reflection.property                        |      |                                                              |      |
+| PropertyCopier                                               |      |                                                              |      |
+| PropertyNamer                                                |      |                                                              |      |
+| PropertyTokenizer                                            |      |                                                              |      |
+|                                                              |      |                                                              |      |
+| org.apache.ibatis.reflection.wrapper                         |      |                                                              |      |
+| BaseWrapper                                                  |      |                                                              |      |
+| BeanWrapper                                                  |      |                                                              |      |
+| CollectionWrapper                                            |      |                                                              |      |
+| DefaultObjectWrapperFactory                                  |      |                                                              |      |
+| MapWrapper                                                   |      |                                                              |      |
+| ObjectWrapper                                                |      |                                                              |      |
+| ObjectWrapperFactory                                         |      |                                                              |      |
+
+
+
+
+
+| org.apache.ibatis.scripting          | 类型 | 英文说明                                                     |      |
+| ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
+| LanguageDriver                       |      |                                                              |      |
+| LanguageDriverRegistry               |      |                                                              |      |
+| ScriptingException                   |      |                                                              |      |
+|                                      |      |                                                              |      |
+| org.apache.ibatis.scripting.defaults |      |                                                              |      |
+| DefaultParameterHandler              |      |                                                              |      |
+| RawLanguageDriver                    |      | As of 3.2.4 the default XML language is able to identify static statements and create a RawSqlSource. |      |
+| RawSqlSource                         |      |                                                              |      |
+| Static SqlSource.                    |      |                                                              |      |
+|                                      |      |                                                              |      |
+
+| org.apache.ibatis.scripting.xmltags  |      |                                                              |      |
+| ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
+| ChooseSqlNode                        |      |                                                              |      |
+| DynamicContext                       |      |                                                              |      |
+| DynamicSqlSource                     |      |                                                              |      |
+| ExpressionEvaluator                  |      |                                                              |      |
+| ForEachSqlNode                       |      |                                                              |      |
+| IfSqlNode                            |      |                                                              |      |
+| MixedSqlNode                         |      |                                                              |      |
+| OgnlCache                            |      | Caches OGNL parsed expressions.                              |      |
+| OgnlClassResolver                    |      | Custom ognl ClassResolver which behaves same like ognl's DefaultClassResolver. |      |
+| SetSqlNode                           |      |                                                              |      |
+| SqlNode                              |      |                                                              |      |
+| StaticTextSqlNode                    |      |                                                              |      |
+| TextSqlNode                          |      |                                                              |      |
+| TrimSqlNode                          |      |                                                              |      |
+| VarDeclSqlNode                       |      |                                                              |      |
+| WhereSqlNode                         |      |                                                              |      |
+| XMLLanguageDriver                    |      |                                                              | 重要，解析xml文件     |
+| XMLScriptBuilder                     |      |                                                              |      |
+
+
+
+MybatisLanguageDriverAutoConfiguration 是 MyBatis-Spring-Boot-Starter 自动配置的一部分，用于自动配置 MyBatis 的自定义语言驱动（Language Driver）。
+
+在 MyBatis 中，语言驱动是用于解析 MyBatis Mapper 文件中的动态 SQL 语句的组件。默认情况下，MyBatis 支持的语言驱动有 XMLLanguageDriver 和 AnnotationLanguageDriver 两种，分别用于解析 XML 和注解方式编写的动态 SQL 语句。除此之外，MyBatis 还允许开发者自定义语言驱动，以支持更多的动态 SQL 语法。
+
+MybatisLanguageDriverAutoConfiguration 就是用于自动配置 MyBatis 的自定义语言驱动的。在启用了该自动配置之后，如果项目中存在自定义的语言驱动类（实现了 org.apache.ibatis.scripting.LanguageDriver 接口），那么 MybatisLanguageDriverAutoConfiguration 就会自动将其加入到 MyBatis 的语言驱动列表中，从而使得 MyBatis 可以支持该自定义语言驱动。
+
+需要注意的是，如果你要使用自定义的语言驱动，除了将其实现的类加入到项目的类路径中之外，还需要在 MyBatis 的 Mapper 文件中将其配置为使用该自定义语言驱动，例如：
+
+```xml
+<mapper namespace="com.example.mapper.UserMapper">
+    <select id="findUsers" resultType="User">
+        <!-- 使用自定义语言驱动解析动态 SQL 语句 -->
+        <script language="com.example.mybatis.CustomLanguageDriver">
+            SELECT * FROM users WHERE 1=1
+            <if test="name != null">
+                AND name = #{name}
+            </if>
+            <if test="age != null">
+                AND age = #{age}
+            </if>
+        </script>
+    </select>
+</mapper>
+```
+
+在上面的示例中，我们使用了自定义的语言驱动 `com.example.mybatis.CustomLanguageDriver` 来解析动态 SQL 语句。需要注意的是，使用自定义语言驱动时，需要将 `language` 属性设置为自定义语言驱动的类全名。
+
+
+XMLLanguageDriver 和 AnnotationLanguageDriver 是 MyBatis 中用于解析 Mapper 文件中的动态 SQL 语句的两种语言驱动。
+
+XMLLanguageDriver 是默认的语言驱动，它使用 XML 标签和属性来定义动态 SQL 语句。例如，在 Mapper 文件中，我们可以使用 `<if>` 标签和 `${}` 占位符来编写动态 SQL 语句，例如：
+
+```xml
+<select id="findUsers" resultType="User">
+    SELECT * FROM users WHERE 1=1
+    <if test="name != null">
+        AND name = #{name}
+    </if>
+    <if test="age != null">
+        AND age = #{age}
+    </if>
+</select>
+```
+
+在上面的示例中，我们使用了 `<if>` 标签来根据条件动态生成 WHERE 语句，`${}` 占位符来表示 SQL 参数。XMLLanguageDriver 会解析 `<if>` 标签和 `${}` 占位符，并生成最终的 SQL 语句。
+
+AnnotationLanguageDriver 是使用注解来定义动态 SQL 语句的语言驱动。例如，在 Mapper 接口中，我们可以使用 `@SelectProvider`、`@UpdateProvider`、`@DeleteProvider` 和 `@InsertProvider` 等注解来定义动态 SQL 语句的生成器。例如：
+
+```java
+@Mapper
+public interface UserMapper {
+
+    @SelectProvider(type = UserSqlProvider.class, method = "findUsers")
+    List<User> findUsers(String name, Integer age);
+
+    class UserSqlProvider {
+        public String findUsers(String name, Integer age) {
+            return new SQL()
+                    .SELECT("*")
+                    .FROM("users")
+                    .WHERE("1=1")
+                    .WHERE("name = #{name}")
+                    .WHERE("age = #{age}")
+                    .toString();
+        }
+    }
+}
+```
+
+在上面的示例中，我们使用了 `@SelectProvider` 注解来定义了一个动态 SQL 语句的生成器 `UserSqlProvider.findUsers()`，该方法返回一个使用 SQL 类库生成的 SQL 语句。AnnotationLanguageDriver 会解析 `@SelectProvider` 注解，并调用对应的方法来生成最终的 SQL 语句。
+
+总的来说，XMLLanguageDriver 和 AnnotationLanguageDriver 都是 MyBatis 中用于解析 Mapper 文件中的动态 SQL 语句的语言驱动，只是使用的方式有所不同。XMLLanguageDriver 使用 XML 标签和属性来定义动态 SQL 语句，而 AnnotationLanguageDriver 使用注解来定义动态 SQL 语句的生成器。两种语言驱动各有优缺点，具体使用哪种方式取决于个人的喜好和实际需求。
+
+
+
+| org.apache.ibatis.session          | 类型      | 英文说明                                                     | 说明                                               |
 | ---------------------------------- | --------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | AutoMappingBehavior                |           | Specifies if and how MyBatis should automatically map columns to fields/properties. |                                                    |
-|                                    |           |                                                              |                                                    |
 | AutoMappingUnknownColumnBehavior   |           | Specify the behavior when detects an unknown column (or unknown property type) of automatic mapping target. |                                                    |
-|                                    |           |                                                              |                                                    |
 | Configuration                      |           |                                                              | 配置类                                             |
-|                                    |           |                                                              |                                                    |
 | Configuration.StrictMap<V>         |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | Configuration.StrictMap.Ambiguity  |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | ExecutorType                       | enum      |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | LocalCacheScope                    |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | ResultContext<T>                   | interface |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | ResultHandler<T>                   | interface |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | RowBounds                          |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | SqlSession                         | interface | The primary Java interface for working with MyBatis.         | select等等方法                                     |
-|                                    |           |                                                              |                                                    |
 | SqlSessionException                | exception |                                                              |                                                    |
 |                                    |           |                                                              |                                                    |
-| SqlSessionFactory                  | interface |                                                              | 获取 SqlSession对象 实现类DefaultSqlSessionFactory |
-|                                    |           | Creates an SqlSession out of a connection or a DataSource    |                                                    |
+| SqlSessionFactory                  | interface | Creates an SqlSession out of a connection or a DataSource    | 获取 SqlSession对象 实现类DefaultSqlSessionFactory |
 | SqlSessionFactoryBuilder           |           | Builds SqlSession instances.                                 | public SqlSessionFactory build(Reader reader) 方法 |
-|                                    |           |                                                              |                                                    |
 | SqlSessionManager                  |           |                                                              | SqlSession接口实现类，跟DefaultSqlSession类比      |
-|                                    |           |                                                              |                                                    |
 | TransactionIsolationLevel          |           |                                                              |                                                    |
 |                                    |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | org.apache.ibatis.session.defaults |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | DefaultSqlSession                  |           | The default implementation for SqlSession.                   | SqlSession接口实现类，跟SqlSessionManager类比      |
-|                                    |           |                                                              |                                                    |
 | DefaultSqlSession.StrictMap<V>     |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
-|                                    |           |                                                              |                                                    |
 | DefaultSqlSessionFactory           |           |                                                              |                                                    |
 
 
@@ -3988,26 +2082,19 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.transaction                                |
-| ------------------------------------------------------------ |
-| Transaction                                                  |
-| Wraps a database connection.                                 |
-| TransactionException                                         |
-| TransactionFactory                                           |
-| Creates Transaction instances.                               |
-| org.apache.ibatis.transaction.transaction.jdbc               |
-|                                                              |
-| JdbcTransaction                                              |
-| Transaction that makes use of the JDBC commit and rollback facilities directly. |
-| JdbcTransactionFactory                                       |
-| Creates JdbcTransaction instances.                           |
-|                                                              |
-| org.apache.ibatis.transaction..managed                       |
-|                                                              |
-| ManagedTransaction                                           |
-| Transaction that lets the container manage the full lifecycle of the transaction. |
-| ManagedTransactionFactory                                    |
-| Creates ManagedTransaction instances.                        |
+| org.apache.ibatis.transaction                  | 类型 | 英文说明                                                     |      |
+| ---------------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| Transaction                                    |      | Wraps a database connection.                                 |      |
+| TransactionException                           |      |                                                              |      |
+| TransactionFactory                             |      | Creates Transaction instances.                               |      |
+|                                                |      |                                                              |      |
+| org.apache.ibatis.transaction.transaction.jdbc |      |                                                              |      |
+| JdbcTransaction                                |      | Transaction that makes use of the JDBC commit and rollback facilities directly. |      |
+| JdbcTransactionFactory                         |      | Creates JdbcTransaction instances.                           |      |
+|                                                |      |                                                              |      |
+| org.apache.ibatis.transaction..managed         |      |                                                              |      |
+| ManagedTransaction                             |      | Transaction that lets the container manage the full lifecycle of the transaction. |      |
+| ManagedTransactionFactory                      |      | Creates ManagedTransaction instances.                        |      |
 
 
 
@@ -4017,59 +2104,59 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-| org.apache.ibatis.type                    |                                                              |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| Alias                                     | The annotation that specify alias name.                      |
-| ArrayTypeHandler                          |                                                              |
-| BaseTypeHandler<T>                        | The base TypeHandler for references a generic type.          |
-| BigDecimalTypeHandler                     |                                                              |
-| BigIntegerTypeHandler                     |                                                              |
-| BlobByteObjectArrayTypeHandler            |                                                              |
-| BlobInputStreamTypeHandler                | The TypeHandler for Blob/InputStream using method supported at JDBC 4.0. |
-| BlobTypeHandler                           |                                                              |
-| BooleanTypeHandler                        |                                                              |
-| ByteArrayTypeHandler                      |                                                              |
-| ByteObjectArrayTypeHandler                |                                                              |
-| ByteTypeHandler                           |                                                              |
-| CharacterTypeHandler                      |                                                              |
-| ClobReaderTypeHandler                     | The TypeHandler for Clob/Reader using method supported at JDBC 4.0. |
-| ClobTypeHandler                           |                                                              |
-| DateOnlyTypeHandler                       |                                                              |
-| DateTypeHandler                           |                                                              |
-| DoubleTypeHandler                         |                                                              |
-| EnumOrdinalTypeHandler<E extends Enum<E>> |                                                              |
-| EnumTypeHandler<E extends Enum<E>>        |                                                              |
-| FloatTypeHandler                          |                                                              |
-| InstantTypeHandler                        |                                                              |
-| IntegerTypeHandler                        |                                                              |
-| JapaneseDateTypeHandler                   | Type Handler for JapaneseDate.                               |
-| JdbcType                                  |                                                              |
-| LocalDateTimeTypeHandler                  |                                                              |
-| LocalDateTypeHandler                      |                                                              |
-| LocalTimeTypeHandler                      |                                                              |
-| LongTypeHandler                           |                                                              |
-| MappedJdbcTypes                           | The annotation that specify jdbc types to map TypeHandler.   |
-| MappedTypes                               | The annotation that specify java types to map TypeHandler.   |
-| MonthTypeHandler                          |                                                              |
-| NClobTypeHandler                          |                                                              |
-| NStringTypeHandler                        |                                                              |
-| ObjectTypeHandler                         |                                                              |
-| OffsetDateTimeTypeHandler                 |                                                              |
-| OffsetTimeTypeHandler                     |                                                              |
-| ShortTypeHandler                          |                                                              |
-| SimpleTypeRegistry                        |                                                              |
-| SqlDateTypeHandler                        |                                                              |
-| SqlTimestampTypeHandler                   |                                                              |
-| SqlTimeTypeHandler                        |                                                              |
-| SqlxmlTypeHandler                         | Convert String to/from SQLXML.                               |
-| StringTypeHandler                         |                                                              |
-| TimeOnlyTypeHandler                       |                                                              |
-| TypeAliasRegistry                         |                                                              |
-| TypeException                             |                                                              |
-| TypeHandler<T>                            |                                                              |
-| TypeHandlerRegistry                       |                                                              |
-| TypeReference<T>                          | References a generic type.                                   |
-| UnknownTypeHandler                        |                                                              |
-| YearMonthTypeHandler                      | Type Handler for YearMonth.                                  |
-| YearTypeHandler                           |                                                              |
-| ZonedDateTimeTypeHandler                  |                                                              |
+| org.apache.ibatis.type                    | 类型 | 英文说明                                                     |      |
+| ----------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
+| Alias                                     |      | The annotation that specify alias name.                      |      |
+| ArrayTypeHandler                          |      |                                                              |      |
+| BaseTypeHandler<T>                        |      | The base TypeHandler for references a generic type.          |      |
+| BigDecimalTypeHandler                     |      |                                                              |      |
+| BigIntegerTypeHandler                     |      |                                                              |      |
+| BlobByteObjectArrayTypeHandler            |      |                                                              |      |
+| BlobInputStreamTypeHandler                |      | The TypeHandler for Blob/InputStream using method supported at JDBC 4.0. |      |
+| BlobTypeHandler                           |      |                                                              |      |
+| BooleanTypeHandler                        |      |                                                              |      |
+| ByteArrayTypeHandler                      |      |                                                              |      |
+| ByteObjectArrayTypeHandler                |      |                                                              |      |
+| ByteTypeHandler                           |      |                                                              |      |
+| CharacterTypeHandler                      |      |                                                              |      |
+| ClobReaderTypeHandler                     |      | The TypeHandler for Clob/Reader using method supported at JDBC 4.0. |      |
+| ClobTypeHandler                           |      |                                                              |      |
+| DateOnlyTypeHandler                       |      |                                                              |      |
+| DateTypeHandler                           |      |                                                              |      |
+| DoubleTypeHandler                         |      |                                                              |      |
+| EnumOrdinalTypeHandler<E extends Enum<E>> |      |                                                              |      |
+| EnumTypeHandler<E extends Enum<E>>        |      |                                                              |      |
+| FloatTypeHandler                          |      |                                                              |      |
+| InstantTypeHandler                        |      |                                                              |      |
+| IntegerTypeHandler                        |      |                                                              |      |
+| JapaneseDateTypeHandler                   |      | Type Handler for JapaneseDate.                               |      |
+| JdbcType                                  |      |                                                              |      |
+| LocalDateTimeTypeHandler                  |      |                                                              |      |
+| LocalDateTypeHandler                      |      |                                                              |      |
+| LocalTimeTypeHandler                      |      |                                                              |      |
+| LongTypeHandler                           |      |                                                              |      |
+| MappedJdbcTypes                           |      | The annotation that specify jdbc types to map TypeHandler.   |      |
+| MappedTypes                               |      | The annotation that specify java types to map TypeHandler.   |      |
+| MonthTypeHandler                          |      |                                                              |      |
+| NClobTypeHandler                          |      |                                                              |      |
+| NStringTypeHandler                        |      |                                                              |      |
+| ObjectTypeHandler                         |      |                                                              |      |
+| OffsetDateTimeTypeHandler                 |      |                                                              |      |
+| OffsetTimeTypeHandler                     |      |                                                              |      |
+| ShortTypeHandler                          |      |                                                              |      |
+| SimpleTypeRegistry                        |      |                                                              |      |
+| SqlDateTypeHandler                        |      |                                                              |      |
+| SqlTimestampTypeHandler                   |      |                                                              |      |
+| SqlTimeTypeHandler                        |      |                                                              |      |
+| SqlxmlTypeHandler                         |      | Convert String to/from SQLXML.                               |      |
+| StringTypeHandler                         |      |                                                              |      |
+| TimeOnlyTypeHandler                       |      |                                                              |      |
+| TypeAliasRegistry                         |      |                                                              |      |
+| TypeException                             |      |                                                              |      |
+| TypeHandler<T>                            |      |                                                              |      |
+| TypeHandlerRegistry                       |      |                                                              |      |
+| TypeReference<T>                          |      | References a generic type.                                   |      |
+| UnknownTypeHandler                        |      |                                                              |      |
+| YearMonthTypeHandler                      |      | Type Handler for YearMonth.                                  |      |
+| YearTypeHandler                           |      |                                                              |      |
+| ZonedDateTimeTypeHandler                  |      |                                                              |      |

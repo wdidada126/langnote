@@ -378,3 +378,8 @@ IGNORE_UNDEFINED是一个布尔值，如果设置为true，JsonParser会忽略JS
 INCLUDE_SOURCE_IN_LOCATION
 INCLUDE_SOURCE_IN_LOCATION是一个布尔值，如果设置为true，JsonParser会在解析JSON时包含源文件的位置信息。这可以帮助你在处理JSON数据时进行调试，但也可能会使JSON解析变慢
 
+#### 代码分包详解
+
+https://fasterxml.github.io/jackson-databind/javadoc/2.11/
+
+jackson_2_11_apidoc.xlsx
