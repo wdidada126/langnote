@@ -25,7 +25,7 @@ https://www.cnblogs.com/keepruning/p/9295395.html
 
 
 
-![mybatis](../../../mybatis.webp)
+![mybatis](../../imgs/mybatis.webp)
 
 application.yml
 

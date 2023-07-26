@@ -1,6 +1,6 @@
 # Retrofit
 
-### 封装成spring boot starter
+## 封装成spring boot starter
 
 com.github.lianjiatech.retrofit.spring.boot.annotation
 
@@ -27,9 +27,12 @@ com.github.lianjiatech.retrofit.spring.boot.util
             <version>2.2.16</version>
         </dependency>
 
+## 源代码分包解析
+
+### com.github.lianjiatech.retrofit.spring.boot.annotation
 
 
-| com.github.lianjiatech.retrofit.spring.boot.annotation |            |                                                   |
+| com.github.lianjiatech.retrofit.spring.boot.annotation | 类型       | 解释                                              |
 | ------------------------------------------------------ | ---------- | ------------------------------------------------- |
 | Intercept                                              | @interface | 自动将注解上的参数值赋值到handleInterceptor实例上 |
 | InterceptMark                                          | @interface | 拦截标记注解                                      |
@@ -39,8 +42,9 @@ com.github.lianjiatech.retrofit.spring.boot.util
 | RetrofitScan                                           | @interface |                                                   |
 
 
+### com.github.lianjiatech.retrofit.spring.boot.config
 
-| com.github.lianjiatech.retrofit.spring.boot.config           |        |                                                              |
+| com.github.lianjiatech.retrofit.spring.boot.config           | 类型   | 解释                                                         |
 | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
 | DegradeProperty                                              |        | 熔断降级配置 BaseResourceNameParser子类                      |
 | LogProperty                                                  |        | 日志属性设置                                                 |
@@ -56,9 +60,10 @@ com.github.lianjiatech.retrofit.spring.boot.util
 
 
 
+### com.github.lianjiatech.retrofit.spring.boot.degrade
 
 
-| com.github.lianjiatech.retrofit.spring.boot.degrade |            |                                                              |
+| com.github.lianjiatech.retrofit.spring.boot.degrade | 类型       | 解释                                                         |
 | --------------------------------------------------- | ---------- | ------------------------------------------------------------ |
 | BaseDegradeInterceptor                              | abstract   | com.github.lianjiatech.retrofit.spring.boot.config.DegradeProperty 中用 接口实现类 DefaultResourceNameParser 子类 SentinelDegradeInterceptor |
 | BaseResourceNameParser                              | abstract   | 子类 DefaultResourceNameParser   RetrofitConfigBean类resourceNameParser属性  resourceNameParser() 方法 |
@@ -175,9 +180,11 @@ public class MyApiFallbackFactory implements FallbackFactory<MyApi> {
 
 
 
+### com.github.lianjiatech.retrofit.spring.boot.core
 
 
-| com.github.lianjiatech.retrofit.spring.boot.core   |           |                                                              |
+
+| com.github.lianjiatech.retrofit.spring.boot.core   |           | 解释                                                         |
 | -------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | AutoConfiguredRetrofitScannerRegistrar             |           |                                                              |
 | BasicTypeConverterFactory                          |           | 基本类型转换，http返回数据 Converter.Factory子类             |
@@ -305,6 +312,8 @@ mybatis也有自定义类ClassPathMapperScanner继承ClassPathBeanDefinitionScan
 
 
 
+### com.github.lianjiatech.retrofit.spring.boot.exception
+
 
 
 | com.github.lianjiatech.retrofit.spring.boot.exception |           |      |
@@ -316,7 +325,11 @@ mybatis也有自定义类ClassPathMapperScanner继承ClassPathBeanDefinitionScan
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.interceptor |           |                                                              |
+### com.github.lianjiatech.retrofit.spring.boot.interceptor
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.interceptor |           | 解释                                                         |
 | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | BaseGlobalInterceptor                                   | abstract  | PrototypeInterceptor接口实现类                               |
 | BaseLoggingInterceptor                                  | abstract  | NetworkInterceptor接口实现类                                 |
@@ -341,7 +354,11 @@ HeadersInterceptor.java
 
 
 
-| com.github.lianjiatech.retrofit.spring.boot.retry |            |                                                              |
+### com.github.lianjiatech.retrofit.spring.boot.retry
+
+
+
+| com.github.lianjiatech.retrofit.spring.boot.retry |            | 解释                                                         |
 | ------------------------------------------------- | ---------- | ------------------------------------------------------------ |
 | BaseRetryInterceptor                              | abstract   | protected abstract Response retryIntercept(int maxRetries, int intervalMs, RetryRule[] retryRules, Chain chain); 子类 DefaultRetryInterceptor |
 | **DefaultRetryInterceptor**                       |            | 继承 BaseRetryInterceptor                                    |
@@ -441,7 +458,7 @@ spring boot 3的区别
 
 https://gitee.com/edidada/testspringbootretrofit
 
-### retrofit vs retrofit spring boot starter
+## retrofit vs retrofit spring boot starter
 
 retrofit
 ```java
@@ -662,7 +679,7 @@ retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
 
 InvocationHandler
 动态代理
-# Retrofit VS feign
+## Retrofit VS feign
 
 
 https://blog.csdn.net/choi2016/article/details/54974137

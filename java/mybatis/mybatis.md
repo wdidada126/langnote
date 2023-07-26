@@ -5,6 +5,8 @@ https://mybatis.org/mybatis-3/apidocs/index.html
 
 mybatis_javadoc_api.xlsx
 
+[TOC]
+
 SqlSession内部运行原理
 https://www.modb.pro/db/223729
 
@@ -1448,9 +1450,11 @@ dubbo也可以，设置环境变量
 
 
 
-### 分包解析
+# 源代码分包解析
 
 3.4.6
+
+## org.apache.ibatis.annotations
 
 | org.apache.ibatis.annotations | 类型       | 英文说明                                                     | 说明 |
 | ----------------------------- | ---------- | ------------------------------------------------------------ | ---- |
@@ -1499,9 +1503,9 @@ dubbo也可以，设置环境变量
 
 
 
+## org.apache.ibatis.binding 
 
-
-| org.apache.ibatis.binding    | 类型 |                                                              |      |
+| org.apache.ibatis.binding    | 类型 | 英文说明                                                     | 说明 |
 | ---------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | BindingException             |      |                                                              |      |
 | MapperMethod                 |      | public Object execute(SqlSession sqlSession, Object[] args) 核心方法 |      |
@@ -1532,9 +1536,9 @@ MapperProxyFactory类公开方法
 public T newInstance(SqlSession sqlSession)
 ```
 
+## org.apache.ibatis.builder
 
-
-| org.apache.ibatis.builder                     | 类型      |                         |      |
+| org.apache.ibatis.builder                     | 类型      | 英文说明                | 说明 |
 | --------------------------------------------- | --------- | ----------------------- | ---- |
 | BaseBuilder                                   | abstract  |                         |      |
 | BuilderException                              |           | PersistenceException    |      |
@@ -1550,9 +1554,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+### org.apache.ibatis.builder.annotation
 
-
-| org.apache.ibatis.builder.annotation | 类型 |                                                              |      |
+| org.apache.ibatis.builder.annotation | 类型 | 英文说明                                                     | 说明 |
 | ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
 | MapperAnnotationBuilder              |      |                                                              |      |
 | MethodResolver                       |      |                                                              |      |
@@ -1564,9 +1568,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+### org.apache.ibatis.builder.xml 
 
-
-| org.apache.ibatis.builder.xml | 类型 |                                               |      |
+| org.apache.ibatis.builder.xml | 类型 | 英文说明                                      | 说明 |
 | ----------------------------- | ---- | --------------------------------------------- | ---- |
 | XMLConfigBuilder              |      |                                               |      |
 | XMLIncludeTransformer         |      |                                               |      |
@@ -1578,9 +1582,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.cache 
 
-
-| org.apache.ibatis.cache                 | 类型 |                                                              | 说明 |
+| org.apache.ibatis.cache                 | 类型 | 英文说明                                                     | 说明 |
 | --------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | Cache                                   |      | SPI for cache providers.                                     |      |
 | CacheException                          |      |                                                              |      |
@@ -1604,9 +1608,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.cursor
 
-
-| org.apache.ibatis.cursor                    | 类型 |                                                              |      |
+| org.apache.ibatis.cursor                    | 类型 | 英文说明                                                     | 说明 |
 | ------------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | Cursor<T>                                   |      | Cursor contract to handle fetching items lazily using an Iterator. |      |
 | org.apache.ibatis.cursor.defaults           |      |                                                              |      |
@@ -1618,8 +1622,8 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
-| org.apache.ibatis.datasource | 类型 |                                                              |      |
+## org.apache.ibatis.datasource
+| org.apache.ibatis.datasource | 类型 | 英文说明                                                     | 说明 |
 | ---------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | DataSourceException          |      |                                                              |      |
 | DataSourceFactory            |      |                                                              |      |
@@ -1639,7 +1643,7 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
+## org.apache.ibatis.exceptions
 
 | org.apache.ibatis.exceptions | 类型      | 说明                                               |
 | ---------------------------- | --------- | -------------------------------------------------- |
@@ -1653,7 +1657,7 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
+## org.apache.ibatis.executor
 
 | org.apache.ibatis.executor                  | 类型 | 英文说明                                                     | 说明             |
 | ------------------------------------------- | ---- | ------------------------------------------------------------ | ---------------- |
@@ -1713,10 +1717,10 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.io 
 
 
-
-| org.apache.ibatis.io       | 类型 |                                                              |      |
+| org.apache.ibatis.io       | 类型 | 英文说明                                                     | 说明 |
 | -------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | ClassLoaderWrapper         |      | A class to wrap access to multiple class loaders making them work as one |      |
 | DefaultVFS                 |      | A default implementation of VFS that works for most application servers. |      |
@@ -1734,9 +1738,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.jdbc 
 
-
-| org.apache.ibatis.jdbc | 类型 |                                                              |      |
+| org.apache.ibatis.jdbc | 类型 | 英文说明                                                     | 说明 |
 | ---------------------- | ---- | ------------------------------------------------------------ | ---- |
 | AbstractSQL<T>         |      |                                                              |      |
 | Null                   |      |                                                              |      |
@@ -1750,8 +1754,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.lang
 
-| org.apache.ibatis.lang | 类型 |                                             |      |
+| org.apache.ibatis.lang | 类型 | 英文说明                                    | 说明 |
 | ---------------------- | ---- | ------------------------------------------- | ---- |
 | UsesJava7              |      | Indicates that the element uses Java 7 API. |      |
 | UsesJava8              |      | Indicates that the element uses Java 8 API. |      |
@@ -1760,9 +1765,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.logging
 
-
-| org.apache.ibatis.logging           | 类型 |                                         |      |
+| org.apache.ibatis.logging           | 类型 | 英文说明                                | 说明 |
 | ----------------------------------- | ---- | --------------------------------------- | ---- |
 | Log                                 |      |                                         |      |
 | LogException                        |      |                                         |      |
@@ -1794,9 +1799,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.mapping
 
-
-| org.apache.ibatis.mapping | 类型 |                                                              |      |
+| org.apache.ibatis.mapping | 类型 | 英文说明                                                     | 说明 |
 | ------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | BoundSql                  |      | An actual SQL String got from an SqlSource after having processed any dynamic content. |      |
 | CacheBuilder              |      |                                                              |      |
@@ -1828,8 +1833,8 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
-| org.apache.ibatis.ognl | 类型 |      |
+## org.apache.ibatis.ognl
+| org.apache.ibatis.ognl | 类型 | 说明 |
 | ---------------------- | ---- | ---- |
 | ArrayElementsAccessor  |      |      |
 | ArrayPropertyAccessor  |      |      |
@@ -1841,16 +1846,17 @@ public T newInstance(SqlSession sqlSession)
 | ASTBitOr               |      |      |
 
 
-
-| org.apache.ibatis.ognl.enhance | 类型 | 英文说明 |      |
+### org.apache.ibatis.ognl.enhance
+| org.apache.ibatis.ognl.enhance | 类型 | 英文说明 | 说明 |
 | ------------------------------ | ---- | -------- | ---- |
 | ContextClassLoader             |      |          |      |
 |                                |      |          |      |
 |                                |      |          |      |
 
 
+### org.apache.ibatis.ognl.internal
 
-| org.apache.ibatis.ognl.internal | 类型 | 英文说明 |      |
+| org.apache.ibatis.ognl.internal | 类型 | 英文说明 | 说明 |
 | ------------------------------- | ---- | -------- | ---- |
 | ClassCache                      |      |          |      |
 | ClassCacheImpl                  |      |          |      |
@@ -1861,8 +1867,8 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
-| org.apache.ibatis.parsing | 类型 | 英文说明 |      |
+## org.apache.ibatis.parsing
+| org.apache.ibatis.parsing | 类型 | 英文说明 | 说明 |
 | ------------------------- | ---- | -------- | ---- |
 | GenericTokenParser        |      |          |      |
 | ParsingException          |      |          |      |
@@ -1873,9 +1879,9 @@ public T newInstance(SqlSession sqlSession)
 
 
 
+## org.apache.ibatis.plugin
 
-
-| org.apache.ibatis.plugin | 类型 | 英文说明                                                 |      |
+| org.apache.ibatis.plugin | 类型 | 英文说明                                                 | 说明 |
 | ------------------------ | ---- | -------------------------------------------------------- | ---- |
 | Interceptor              |      |                                                          |      |
 | InterceptorChain         |      |                                                          |      |
@@ -1890,8 +1896,8 @@ public T newInstance(SqlSession sqlSession)
 
 
 
-
-| org.apache.ibatis.reflection                                 | 类型 | 英文说明                                                     |      |
+## org.apache.ibatis.reflection 
+| org.apache.ibatis.reflection                                 | 类型 | 英文说明                                                     | 说明 |
 | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
 | ArrayUtil                                                    |      |                                                              |      |
 | Provides hashCode, equals and toString methods that can handle array. |      |                                                              |      |
@@ -1909,49 +1915,63 @@ public T newInstance(SqlSession sqlSession)
 | SystemMetaObject                                             |      |                                                              |      |
 | TypeParameterResolver                                        |      |                                                              |      |
 |                                                              |      |                                                              |      |
-| org.apache.ibatis.reflection.factory                         |      |                                                              |      |
-| DefaultObjectFactory                                         |      |                                                              |      |
-| ObjectFactory                                                |      | MyBatis uses an ObjectFactory to create all needed new Objects. |      |
-|                                                              |      |                                                              |      |
-| org.apache.ibatis.reflection.invoker                         |      |                                                              |      |
-| AmbiguousMethodInvoker                                       |      |                                                              |      |
-| GetFieldInvoker                                              |      |                                                              |      |
-| Invoker                                                      |      |                                                              |      |
-| MethodInvoker                                                |      |                                                              |      |
-| SetFieldInvoker                                              |      |                                                              |      |
-|                                                              |      |                                                              |      |
-| org.apache.ibatis.reflection.property                        |      |                                                              |      |
-| PropertyCopier                                               |      |                                                              |      |
-| PropertyNamer                                                |      |                                                              |      |
-| PropertyTokenizer                                            |      |                                                              |      |
-|                                                              |      |                                                              |      |
-| org.apache.ibatis.reflection.wrapper                         |      |                                                              |      |
-| BaseWrapper                                                  |      |                                                              |      |
-| BeanWrapper                                                  |      |                                                              |      |
-| CollectionWrapper                                            |      |                                                              |      |
-| DefaultObjectWrapperFactory                                  |      |                                                              |      |
-| MapWrapper                                                   |      |                                                              |      |
-| ObjectWrapper                                                |      |                                                              |      |
-| ObjectWrapperFactory                                         |      |                                                              |      |
+
+| org.apache.ibatis.reflection.factory                         | 类型 | 说明 |
+| ------------------------------------------------------------ | ---- | ---- |
+|      |||
+| DefaultObjectFactory                                         |      |      |
+| ObjectFactory                                                |      |      |
+|                                                              |      |      |
+
+
+| org.apache.ibatis.reflection.invoker | 类型 | 说明 |
+| ------------------------------------ | ---- | ---- |
+| AmbiguousMethodInvoker               |      |      |
+| GetFieldInvoker                      |      |      |
+| Invoker                              |      |      |
+| MethodInvoker                        |      |      |
+| SetFieldInvoker                      |      |      |
+|                                      |      |      |
+
+
+| org.apache.ibatis.reflection.property | 类型 | 英文说明 | 说明 |
+| ------------------------------------- | ---- | -------- | ---- |
+| PropertyCopier                        |      |          |      |
+| PropertyNamer                         |      |          |      |
+| PropertyTokenizer                     |      |          |      |
+|                                       |      |          |      |
+
+| org.apache.ibatis.reflection.wrapper | 类型 | 英文说明 | 说明 |
+| ------------------------------------ | ---- | -------- | ---- |
+| BaseWrapper                          |      |          |      |
+| BeanWrapper                          |      |          |      |
+| CollectionWrapper                    |      |          |      |
+| DefaultObjectWrapperFactory          |      |          |      |
+| MapWrapper                           |      |          |      |
+| ObjectWrapper                        |      |          |      |
+| ObjectWrapperFactory                 |      |          |      |
 
 
 
 
 
-| org.apache.ibatis.scripting          | 类型 | 英文说明                                                     |      |
+| org.apache.ibatis.scripting | 类型 | 英文说明 | 说明 |
+| --------------------------- | ---- | -------- | ---- |
+| LanguageDriver              |      |          |      |
+| LanguageDriverRegistry      |      |          |      |
+| ScriptingException          |      |          |      |
+|                             |      |          |      |
+
+
+| org.apache.ibatis.scripting.defaults | 类型 | 英文说明                                                     |      |
 | ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
-| LanguageDriver                       |      |                                                              |      |
-| LanguageDriverRegistry               |      |                                                              |      |
-| ScriptingException                   |      |                                                              |      |
-|                                      |      |                                                              |      |
-| org.apache.ibatis.scripting.defaults |      |                                                              |      |
 | DefaultParameterHandler              |      |                                                              |      |
 | RawLanguageDriver                    |      | As of 3.2.4 the default XML language is able to identify static statements and create a RawSqlSource. |      |
 | RawSqlSource                         |      |                                                              |      |
 | Static SqlSource.                    |      |                                                              |      |
 |                                      |      |                                                              |      |
 
-| org.apache.ibatis.scripting.xmltags  |      |                                                              |      |
+| org.apache.ibatis.scripting.xmltags  | 类型 | 英文说明 | 说明 |
 | ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
 | ChooseSqlNode                        |      |                                                              |      |
 | DynamicContext                       |      |                                                              |      |
@@ -2048,6 +2068,7 @@ public interface UserMapper {
 总的来说，XMLLanguageDriver 和 AnnotationLanguageDriver 都是 MyBatis 中用于解析 Mapper 文件中的动态 SQL 语句的语言驱动，只是使用的方式有所不同。XMLLanguageDriver 使用 XML 标签和属性来定义动态 SQL 语句，而 AnnotationLanguageDriver 使用注解来定义动态 SQL 语句的生成器。两种语言驱动各有优缺点，具体使用哪种方式取决于个人的喜好和实际需求。
 
 
+## org.apache.ibatis.session
 
 | org.apache.ibatis.session          | 类型      | 英文说明                                                     | 说明                                               |
 | ---------------------------------- | --------- | ------------------------------------------------------------ | -------------------------------------------------- |
@@ -2069,26 +2090,34 @@ public interface UserMapper {
 | SqlSessionManager                  |           |                                                              | SqlSession接口实现类，跟DefaultSqlSession类比      |
 | TransactionIsolationLevel          |           |                                                              |                                                    |
 |                                    |           |                                                              |                                                    |
-| org.apache.ibatis.session.defaults |           |                                                              |                                                    |
-| DefaultSqlSession                  |           | The default implementation for SqlSession.                   | SqlSession接口实现类，跟SqlSessionManager类比      |
-| DefaultSqlSession.StrictMap<V>     |           |                                                              |                                                    |
-| DefaultSqlSessionFactory           |           |                                                              |                                                    |
+
+### org.apache.ibatis.session.defaults
+| org.apache.ibatis.session.defaults | 类型 | 英文说明                                   | 说明                                          |
+| ---------------------------------- | ---- | ------------------------------------------ | --------------------------------------------- |
+| DefaultSqlSession                  |      | The default implementation for SqlSession. | SqlSession接口实现类，跟SqlSessionManager类比 |
+| DefaultSqlSession.StrictMap<V>     |      |                                            |                                               |
+| DefaultSqlSessionFactory           |      |                                            |                                               |
 
 
 
 
 
+## org.apache.ibatis.transaction
 
 
 
+| org.apache.ibatis.transaction | 类型 | 英文说明                       | 说明 |
+| ----------------------------- | ---- | ------------------------------ | ---- |
+| Transaction                   |      | Wraps a database connection.   |      |
+| TransactionException          |      |                                |      |
+| TransactionFactory            |      | Creates Transaction instances. |      |
+|                               |      |                                |      |
 
-| org.apache.ibatis.transaction                  | 类型 | 英文说明                                                     |      |
+
+### org.apache.ibatis.transaction.transaction.jdbc
+
+| org.apache.ibatis.transaction.transaction.jdbc | 类型 | 英文说明                                                     | 说明 |
 | ---------------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
-| Transaction                                    |      | Wraps a database connection.                                 |      |
-| TransactionException                           |      |                                                              |      |
-| TransactionFactory                             |      | Creates Transaction instances.                               |      |
-|                                                |      |                                                              |      |
-| org.apache.ibatis.transaction.transaction.jdbc |      |                                                              |      |
 | JdbcTransaction                                |      | Transaction that makes use of the JDBC commit and rollback facilities directly. |      |
 | JdbcTransactionFactory                         |      | Creates JdbcTransaction instances.                           |      |
 |                                                |      |                                                              |      |
@@ -2102,9 +2131,9 @@ public interface UserMapper {
 
 
 
+## org.apache.ibatis.type 
 
-
-| org.apache.ibatis.type                    | 类型 | 英文说明                                                     |      |
+| org.apache.ibatis.type                    | 类型 | 英文说明                                                     | 说明 |
 | ----------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | Alias                                     |      | The annotation that specify alias name.                      |      |
 | ArrayTypeHandler                          |      |                                                              |      |

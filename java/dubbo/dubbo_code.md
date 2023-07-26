@@ -1,3 +1,5 @@
+[TOC]
+
 # dubbo源码挨个.java文件分析
 
 
@@ -138,11 +140,18 @@ org.apache.dubbo.common.threadpool.support.fixed
 org.apache.dubbo.common.threadpool.support.limited
 org.apache.dubbo.common.timer
 org.apache.dubbo.common.utils
+
+## org.apache.dubbo.config
+
 org.apache.dubbo.config
 
 
 
-| org.apache.dubbo.config.annotation | 类型       |      |
+
+
+### org.apache.dubbo.config.annotation
+
+| org.apache.dubbo.config.annotation | 类型       |  解释    |
 | ---------------------------------- | ---------- | ---- |
 | Argument                           | @interface |      |
 | DubboReference                     | @interface |      |
@@ -163,6 +172,8 @@ org.apache.dubbo.config.event
 org.apache.dubbo.config.event.listener
 org.apache.dubbo.config.invoker
 org.apache.dubbo.config.metadata
+
+### org.apache.dubbo.config.spring
 org.apache.dubbo.config.spring
 org.apache.dubbo.config.spring.beans.factory.annotation
 
@@ -170,9 +181,9 @@ org.apache.dubbo.config.spring.beans.factory.annotation
 
 
 
-### org.apache.dubbo.config.spring.beans.factory.annotation
+###### org.apache.dubbo.config.spring.beans.factory.annotation
 
-| org.apache.dubbo.config.spring.beans.factory.annotation |      |                         |
+| org.apache.dubbo.config.spring.beans.factory.annotation |      |         解释                |
 | ------------------------------------------------------- | ---- | ----------------------- |
 | ReferenceAnnotationBeanPostProcessor                    |      | 处理@DubboService等注解 |
 
@@ -200,10 +211,10 @@ org.apache.dubbo.config.spring.schema
 
 
 
+#### org.apache.dubbo.config.spring.schema
 
 
-
-| org.apache.dubbo.config.spring.schema |      |                                                              |
+| org.apache.dubbo.config.spring.schema |      |          解释                                                    |
 | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | DubboBeanDefinitionParser             |      | 实现BeanDefinitionParser接口，DubboNamespaceHandler调用      |
 | DubboNamespaceHandler                 |      | 代码见下面 继承org.springframework.beans.factory.xml.NamespaceHandlerSupport |

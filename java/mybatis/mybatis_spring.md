@@ -200,7 +200,7 @@ MapperFactoryBean提供了MyBatis Mapper接口与DAO的转换功能。我们可�
 
 
 
-##### MapperScannerConfigurer 
+### MapperScannerConfigurer 
 
 MapperScannerConfigurer public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) 方法调用	ClassPathMapperScanner#scan()方法
 
@@ -313,10 +313,10 @@ SqlSessionFactoryBean
 
 
 
-### 分包详解
+# 分包详解
 
 
-
+## org.mybatis.logging
 | org.mybatis.logging | 类型 | 英文解析                                                     | 解释 |
 | ------------------- | ---- | ------------------------------------------------------------ | ---- |
 | Logger              |      | Wrapper of Log, allow log with lambda expressions.           |      |
@@ -325,7 +325,7 @@ SqlSessionFactoryBean
 
 
 
-
+## org.mybatis.spring 
 
 | org.mybatis.spring                       | 类型 | 英文描述                                                     | 解释                                                         |
 | ---------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -393,7 +393,7 @@ public class UserDaoImpl implements UserDao {
 
 
 
-
+### org.mybatis.spring.annotation
 
 | org.mybatis.spring.annotation | 类型       |                                                              | 解释                                                        |
 | ----------------------------- | ---------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
@@ -405,7 +405,7 @@ public class UserDaoImpl implements UserDao {
 
 
 
-
+## org.mybatis.spring.batch
 
 | org.mybatis.spring.batch   | 类型 | Description                                                  | 解释 |
 | -------------------------- | ---- | ------------------------------------------------------------ | ---- |
@@ -419,7 +419,7 @@ spring-batch-infrastructure 依赖类
 
 
 
-
+### org.mybatis.spring.batch.build
 
 | org.mybatis.spring.batch.build    | 类型 | Description                                | 解释 |
 | --------------------------------- | ---- | ------------------------------------------ | ---- |
@@ -431,7 +431,7 @@ spring-batch-infrastructure 依赖类
 
 
 
-
+## org.mybatis.spring.config
 
 | org.mybatis.spring.config         | 类型 | Description                                                  | 解释                                                         |
 | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -518,7 +518,7 @@ spring-batch-infrastructure 依赖类
 
 
 
-
+## org.mybatis.spring.mapper
 | org.mybatis.spring.mapper | 类型 | Description                                                  | 解释                                                         |
 | ------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ClassPathMapperScanner    |      | A ClassPathBeanDefinitionScanner that registers Mappers by basePackage, annotationClass, or markerInterface. | 根据package扫描包                                            |
@@ -529,7 +529,7 @@ spring-batch-infrastructure 依赖类
 
 MapperScannerConfigurer上面有详细解读
 
-
+## org.mybatis.spring.support
 
 | org.mybatis.spring.support | 类型     | Description                                                  | 解释                     |
 | -------------------------- | -------- | ------------------------------------------------------------ | ------------------------ |
@@ -537,7 +537,7 @@ MapperScannerConfigurer上面有详细解读
 
 
 
-
+## org.mybatis.spring.transaction 
 
 | org.mybatis.spring.transaction  | 类型 | Description                                                  | 解释                                                         |
 | ------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
