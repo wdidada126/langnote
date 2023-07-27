@@ -2465,14 +2465,14 @@ XPath表达式解析器,用于解析和处理XML文档的XPath表达式,从XML�
 
 | org.apache.ibatis.plugin | 类型 | 英文说明                                                 | 说明 |
 | ------------------------ | ---- | -------------------------------------------------------- | ---- |
-| Interceptor              |      |                                                          |      |
+| Interceptor              | interface注解     |                                                          |      |
 | InterceptorChain         |      |                                                          |      |
-| Intercepts               |      | The annotation that specify target methods to intercept. |      |
+| Intercepts               |   注解   | The annotation that specify target methods to intercept. |      |
 |                          |      |                                                          |      |
 | Invocation               |      |                                                          |      |
 | Plugin                   |      |                                                          |      |
 | PluginException          |      |                                                          |      |
-| Signature                |      | The annotation that indicate the method signature.       |      |
+| Signature                |    注解  | The annotation that indicate the method signature.       |      |
 |                          |      |                                                          |      |
 
 
