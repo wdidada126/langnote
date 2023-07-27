@@ -1586,19 +1586,36 @@ public T newInstance(SqlSession sqlSession)
 
 ## org.apache.ibatis.builder
 
-| org.apache.ibatis.builder                     | 类型      | 英文说明                | 说明 |
-| --------------------------------------------- | --------- | ----------------------- | ---- |
-| BaseBuilder                                   | abstract  |                         |      |
-| BuilderException                              |           | PersistenceException    |      |
-| CacheRefResolver                              |           |                         |      |
-| IncompleteElementException                    |           |                         |      |
-| InitializingObject                            | interface |                         |      |
-| MapperBuilderAssistant                        |           |                         |      |
-| ParameterExpression                           |           | HashMap<String, String> |      |
-| ResultMapResolver                             |           |                         |      |
-| SqlSourceBuilder                              |           |                         |      |
-| SqlSourceBuilder.ParameterMappingTokenHandler |           |                         |      |
-| StaticSqlSource                               |           | implements SqlSource    |      |
+| org.apache.ibatis.builder                     | 类型      | 英文说明                | 说明                                                         |
+| --------------------------------------------- | --------- | ----------------------- | ------------------------------------------------------------ |
+| BaseBuilder                                   | abstract  |                         |                                                              |
+| BuilderException                              |           | PersistenceException    |                                                              |
+| CacheRefResolver                              |           |                         |                                                              |
+| IncompleteElementException                    |           |                         |                                                              |
+| InitializingObject                            | interface |                         |                                                              |
+| MapperBuilderAssistant                        |           |                         | BaseBuilder子类   XMLStatementBuilder类属性 MapperBuilderAssistant builderAssistant |
+| ParameterExpression                           |           | HashMap<String, String> |                                                              |
+| ResultMapResolver                             |           |                         |                                                              |
+| SqlSourceBuilder                              |           |                         |                                                              |
+| SqlSourceBuilder.ParameterMappingTokenHandler |           |                         |                                                              |
+| StaticSqlSource                               |           | implements SqlSource    |                                                              |
+
+
+
+
+
+BaseBuilder (org.apache.ibatis.builder)
+    XMLMapperBuilder (org.apache.ibatis.builder.xml)
+    ParameterMappingTokenHandler in SqlSourceBuilder (org.apache.ibatis.builder)
+    MapperBuilderAssistant (org.apache.ibatis.builder)
+    XMLScriptBuilder (org.apache.ibatis.scripting.xmltags)
+    XMLConfigBuilder (org.apache.ibatis.builder.xml)
+    SqlSourceBuilder (org.apache.ibatis.builder)
+    XMLStatementBuilder (org.apache.ibatis.builder.xml)
+
+
+
+
 
 
 
@@ -1618,13 +1635,107 @@ public T newInstance(SqlSession sqlSession)
 
 ### org.apache.ibatis.builder.xml 
 
-| org.apache.ibatis.builder.xml | 类型 | 英文说明                                      | 说明 |
-| ----------------------------- | ---- | --------------------------------------------- | ---- |
-| XMLConfigBuilder              |      |                                               |      |
-| XMLIncludeTransformer         |      |                                               |      |
-| XMLMapperBuilder              |      |                                               |      |
-| XMLMapperEntityResolver       |      | Offline entity resolver for the MyBatis DTDs. |      |
-| XMLStatementBuilder           |      |                                               |      |
+| org.apache.ibatis.builder.xml | 类型 | 英文说明                                      | 说明                                                         |
+| ----------------------------- | ---- | --------------------------------------------- | ------------------------------------------------------------ |
+| XMLConfigBuilder              |      |                                               |                                                              |
+| XMLIncludeTransformer         |      |                                               |                                                              |
+| XMLMapperBuilder              |      |                                               | 重点类 parse()  一个 mybatis xml文件，一个XMLMapperBuilder对象 |
+| XMLMapperEntityResolver       |      | Offline entity resolver for the MyBatis DTDs. |                                                              |
+| XMLStatementBuilder           |      |                                               | mybatis xml文件中一个<select 一个XMLStatementBuilder对象     |
+
+
+
+
+
+解析 xml文件 <select 
+
+XMLStatementBuilder parseStatementNode()
+
+​	LanguageDriver createSqlSource()
+
+
+
+MyBatis解析Mapper.xml文件的过程主要分为以下几步:
+
+1. XmlMapperBuilder负责解析Mapper.xml文件
+
+在完成MyBatis的配置和初始化后,会创建XmlMapperBuilder实例,它负责扫描和解析指定包下的Mapper.xml文件。
+
+2. Document解析xml文档
+
+XmlMapperBuilder会使用Dom4j或JDK自带的DocumentBuilder对Mapper.xml文件进行解析,生成Document对象。
+
+3. 注册Mappers
+
+XmlMapperBuilder会遍历Document查找<mapper>节点,使用Configuration的addMapper方法注册解析的Mapper接口或注解的Mapper类。
+
+4. 解析SQL节点
+
+对<select>、<insert>等SQL节点,XmlMapperBuilder会调用XMLStatementBuilder解析并生成MappedStatement。
+
+5. 解析ResultMap
+
+对<resultMap>节点,XmlMapperBuilder会使用ResultMapResolver解析并生成ResultMapping对象。
+
+6. 注册到Configuration
+
+最后将生成的MappedStatement、ResultMap等内容注册到MyBatis的Configuration中。
+
+所以MyBatis的Mapper.xml解析主要分两步:
+
+1) 使用Dom4j或JDK Document解析XML文档 
+
+2) 使用XmlMapperBuilder解析文档内容,注册Mapper和生成MappedStatement
+
+这是MyBatis解析Mapper XML的主要流程。
+
+
+
+
+
+
+
+org.apache.ibatis.builder.xml.XMLConfigBuilder#mapperElement
+
+解析mybatis-config.xml文件的mappers节点 ，当mappers节点不是package方法时，调用org.apache.ibatis.builder.xml.XMLMapperBuilder#parse方法
+
+
+
+
+
+org.apache.ibatis.builder.xml.XMLMapperBuilder#configurationElement  重点看
+
+解析mybatis xml文件 namespace不能为空
+
+
+
+
+
+
+
+
+
+org.apache.ibatis.builder.xml.XMLMapperBuilder#buildStatementFromContext(java.util.List<org.apache.ibatis.parsing.XNode>, java.lang.String)
+
+​	XMLStatementBuilder parseStatementNode();
+
+
+
+
+
+
+
+org.apache.ibatis.builder.xml.XMLStatementBuilder#parseStatementNode
+
+​	MapperBuilderAssistant.addMappedStatement()
+
+​		Configuration.addMappedStatement()     
+
+
+
+最后添加到Configuration的属性
+
+protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection");
 
 
 
@@ -1707,60 +1818,242 @@ public T newInstance(SqlSession sqlSession)
 
 ## org.apache.ibatis.executor
 
-| org.apache.ibatis.executor                  | 类型 | 英文说明                                                     | 说明             |
-| ------------------------------------------- | ---- | ------------------------------------------------------------ | ---------------- |
-| BaseExecutor                                |      |                                                              |                  |
-| BatchExecutor                               |      |                                                              |                  |
-| BatchExecutorException                      |      | This exception is thrown if a java.sql.BatchUpdateException is caught during the execution of any nested batch. |                  |
-| BatchResult                                 |      |                                                              |                  |
-| CachingExecutor                             |      |                                                              |                  |
-| ErrorContext                                |      |                                                              |                  |
-| ExecutionPlaceholder                        |      |                                                              |                  |
-| Executor                                    |      |                                                              |                  |
-| ExecutorException                           |      |                                                              |                  |
-| ResultExtractor                             |      |                                                              |                  |
-| ReuseExecutor                               |      |                                                              |                  |
-| SimpleExecutor                              |      |                                                              |                  |
-| org.apache.ibatis.executor.keygen           |      |                                                              |                  |
-| Jdbc3KeyGenerator                           |      |                                                              |                  |
-| KeyGenerator                                |      |                                                              |                  |
-| NoKeyGenerator                              |      |                                                              |                  |
-| SelectKeyGenerator                          |      |                                                              |                  |
-| org.apache.ibatis.executor.loader           |      |                                                              |                  |
-| AbstractEnhancedDeserializationProxy        |      |                                                              |                  |
-| AbstractSerialStateHolder                   |      |                                                              |                  |
-| CglibProxyFactory                           |      |                                                              |                  |
-| Deprecated.                                 |      |                                                              |                  |
-| JavassistProxyFactory                       |      |                                                              |                  |
-| Deprecated.                                 |      |                                                              |                  |
-| ProxyFactory                                |      |                                                              |                  |
-| ResultLoader                                |      |                                                              |                  |
-| ResultLoaderMap                             |      | Property which was not loaded yet.                           |                  |
-| ResultLoaderMap.LoadPair                    |      |                                                              |                  |
-| WriteReplaceInterface                       |      |                                                              |                  |
+| org.apache.ibatis.executor | 类型      | 英文说明                                                     | 说明       |
+| -------------------------- | --------- | ------------------------------------------------------------ | ---------- |
+| BaseExecutor               | abstract  |                                                              |            |
+| BatchExecutor              |           |                                                              | 子类见下面 |
+| BatchExecutorException     | exception | This exception is thrown if a java.sql.BatchUpdateException is caught during the execution of any nested batch. |            |
+| BatchResult                |           |                                                              |            |
+| CachingExecutor            |           |                                                              |            |
+| ErrorContext               | context   |                                                              |            |
+| ExecutionPlaceholder       | enum      |                                                              |            |
+| Executor                   | interface |                                                              |            |
+| ExecutorException          |           |                                                              |            |
+| ResultExtractor            |           |                                                              |            |
+| ReuseExecutor              |           |                                                              |            |
+| SimpleExecutor             |           |                                                              |            |
+
+
+
+Executor方法列表
+
+事务相关的
+
+rollback() 
+
+commit() 
+
+getTransaction() 
+
+update() 
+
+query() 
+
+flushStatements() 
+
+setExecutorWrapper() 
+
+
+
+
+
+
+
+BaseExecutor (org.apache.ibatis.executor)
+    SimpleExecutor (org.apache.ibatis.executor)
+    ClosedExecutor in ResultLoaderMap (org.apache.ibatis.executor.loader)
+    ReuseExecutor (org.apache.ibatis.executor)
+    BatchExecutor (org.apache.ibatis.executor)
+
+
+
+
+
+| org.apache.ibatis.executor.keygen |           |      |      |
+| --------------------------------- | --------- | ---- | ---- |
+| Jdbc3KeyGenerator                 |           |      |      |
+| KeyGenerator                      | interface |      |      |
+| NoKeyGenerator                    |           |      |      |
+| SelectKeyGenerator                |           |      |      |
+
+
+
+
+
+
+#### org.apache.ibatis.executor.loader 
+| org.apache.ibatis.executor.loader    |           |                                    |            |
+| ------------------------------------ | --------- | ---------------------------------- | ---------- |
+| AbstractEnhancedDeserializationProxy | abstract  |                                    |            |
+| AbstractSerialStateHolder            |           |                                    |            |
+| CglibProxyFactory                    |           | Deprecated.                        |            |
+| JavassistProxyFactory                |           | Deprecated.                        |            |
+| ProxyFactory                         | interface |                                    | 子类见下面 |
+| ResultLoader                         |           |                                    | 有很多属性 |
+| ResultLoaderMap                      |           | Property which was not loaded yet. |            |
+| ResultLoaderMap.LoadPair             |           |                                    |            |
+| WriteReplaceInterface                |           |                                    |            |
+
+
+
+ProxyFactory接口实现类
+
+JavassistProxyFactory (org.apache.ibatis.executor.loader.javassist)
+    JavassistProxyFactory (org.apache.ibatis.executor.loader)
+CglibProxyFactory (org.apache.ibatis.executor.loader.cglib)
+    CglibProxyFactory (org.apache.ibatis.executor.loader)
+
+
+
+org.apache.ibatis.executor.loader.ResultLoader 作用
+
+在MyBatis中,ResultLoader是结果加载器,其主要作用是实现延迟加载。
+
+当某个属性被配置为延迟加载时,在获取该属性时不会直接加载关联数据,而是返回一个代理对象。
+
+只有当真正使用该属性时,才通过ResultLoader进行加载。
+
+ResultLoader的工作流程主要包括:
+
+1. 创建代理对象
+
+对于配置了延迟加载的属性,会为其创建一个代理对象,代理的目标是ResultLoader本身。
+
+2. 接收加载请求
+
+当真正用到该属性时,由于是代理对象,会调用ResultLoader的loadResult()方法发起加载请求。
+
+3. 查询数据库
+
+ResultLoader根据属性的配置,执行对应的SQL语句查询数据库,获取关联的数据。
+
+4. 重设属性
+
+将查询得到的关联数据设置到初始对象的属性上,完成延迟加载。
+
+5. 返回数据
+
+返回初始调用中的数据,此时已包含了延迟加载的关联属性。
+
+所以ResultLoader实现了延迟加载的核心逻辑,它为MyBatis提供了重要的延迟加载能力,可以有效优化应用性能。
+
+
+
+`org.apache.ibatis.executor.loader.ResultLoader` 是 MyBatis 中的一个重要组件，它用于实现延迟加载（lazy loading）功能。在 MyBatis 中，当我们查询一个对象时，如果该对象的某些属性是关联对象（即多对一或一对一关系），并且我们希望在需要时才去查询这些关联对象，而不是在查询该对象时一并查询出来，那么就可以使用延迟加载功能。延迟加载可以显著提高查询性能，因为它避免了在查询时一次性加载所有关联对象，而是在需要时才去加载。
+
+`ResultLoader` 的作用就是在需要时加载延迟加载的对象。它的实现方式是，在查询主对象时，并不真正查询该对象的关联对象，而是将这些关联对象的信息保存下来，等到需要访问这些关联对象时，再去执行对应的查询语句，获取关联对象的数据，并将其设置到主对象中。
+
+`ResultLoader` 主要用于处理延迟加载的场景，尤其是在查询对象的关联对象时。例如，当我们查询一个订单对象时，它可能包含多个订单项对象，而每个订单项对象又包含一个产品对象。如果我们希望在需要时才去查询订单项对象和产品对象，而不是在查询订单对象时一并查询出来，那么就可以使用延迟加载功能，并通过 `ResultLoader` 来加载延迟加载的对象。
+
+需要注意的是，使用延迟加载功能虽然可以提高查询性能，但也会增加代码的复杂度，因为我们需要在代码中显式地处理延迟加载的情况。此外，延迟加载功能也可能会引发懒加载异常（LazyInitializationException），因为当我们访问延迟加载的对象时，如果此时数据库连接已经关闭或事务已经提交，那么就无法再去执行查询语句，从而导致异常的发生。因此，在使用延迟加载功能时，需要注意这些问题，并谨慎设计代码逻辑。
+
+
+
+
+
+#### org.apache.ibatis.executor.loader.cglib
+
+
+
 | org.apache.ibatis.executor.loader.cglib     |      |                                                              |                  |
+| ------------------------------------------- | ---- | ------------------------------------------------------------ | ---------------- |
 | CglibProxyFactory                           |      |                                                              |                  |
-| org.apache.ibatis.executor.loader.javassist |      |                                                              |                  |
-| JavassistProxyFactory                       |      |                                                              |                  |
-| org.apache.ibatis.executor.parameter        |      |                                                              |                  |
-| ParameterHandler                            |      |                                                              |                  |
-| org.apache.ibatis.executor.result           |      |                                                              |                  |
-| DefaultMapResultHandler<K,V>                |      |                                                              |                  |
-| DefaultResultContext<T>                     |      |                                                              | ResultContext<T> |
-| DefaultResultHandler                        |      |                                                              |                  |
-| ResultMapException                          |      |                                                              |                  |
-| org.apache.ibatis.executor.resultset        |      |                                                              |                  |
-| DefaultResultSetHandler                     |      |                                                              |                  |
-| ResultSetHandler                            |      |                                                              |                  |
-| ResultSetWrapper                            |      |                                                              |                  |
-| executor.statement                          |      |                                                              |                  |
-| BaseStatementHandler                        |      |                                                              |                  |
-| CallableStatementHandler                    |      |                                                              |                  |
-| PreparedStatementHandler                    |      |                                                              |                  |
-| RoutingStatementHandler                     |      |                                                              |                  |
-| SimpleStatementHandler                      |      |                                                              |                  |
-| StatementHandler                            |      |                                                              |                  |
-| StatementUtil                               |      |                                                              |                  |
+
+
+
+
+#### org.apache.ibatis.executor.loader.javassist
+
+
+| org.apache.ibatis.executor.loader.javassist |           |      |                  |
+| ------------------------------------------- | --------- | ---- | ---------------- |
+| JavassistProxyFactory                       |           |      |                  |
+
+#### org.apache.ibatis.executor.parameter
+
+
+| org.apache.ibatis.executor.parameter        |           |      |                  |
+| ------------------------------------------- | --------- | ---- | ---------------- |
+| ParameterHandler                            |           |      |                  |
+
+#### org.apache.ibatis.executor.result
+| org.apache.ibatis.executor.result |           |      |                                 |
+| --------------------------------- | --------- | ---- | ------------------------------- |
+| DefaultMapResultHandler<K,V>      |           |      | ResultHandler接口实现类         |
+| DefaultResultContext<T>           | context   |      | ResultContext<T>                |
+| DefaultResultHandler              |           |      | ResultHandler<Object>接口实现类 |
+| ResultMapException                | exception |      |                                 |
+
+
+
+
+
+
+
+#### org.apache.ibatis.executor.resultset
+
+| org.apache.ibatis.executor.resultset |           |      |                                       |
+| ------------------------------------ | --------- | ---- | ------------------------------------- |
+| DefaultResultSetHandler              |           |      | ResultSetHandler接口实现类 有很多属性 |
+| ResultSetHandler                     | interface |      |                                       |
+| ResultSetWrapper                     |           |      | 有很多属性                            |
+
+
+
+
+
+
+
+在MyBatis中,ResultSetWrapper是一个结果集包装器,它的作用主要有:
+
+1. 类型转换
+
+可以把ResultSet中的原始数据类型转换为需要的Java类型。
+
+比如将ResultSet中的String类型字段转换为Java中的Integer类型。
+
+2. 结果映射
+
+根据配置的ResultMap,把ResultSet中的数据映射到对应的Java对象的属性上。
+
+3. 延迟加载
+
+对于配置了延迟加载的属性,在获取时会自动调用延迟加载,从数据库中加载关联的数据。
+
+4. 游标维护
+
+内部需要维护一个指向ResultSet当前行的游标,nodeList等需要此游标进行定位。
+
+5. 分页
+
+支持与分页组件PageHelper结合,进行分页查询结果的包装。
+
+6. 缓存管理
+
+可与各级缓存结合,避免重复查询数据库。
+
+7. 自动映射
+
+可自动分析ResultSet元数据,将列映射到合适的Java类型属性上。
+
+所以ResultSetWrapper为MyBatis提供了非常重要的功能,包括类型转换、映射、延迟加载等,都依赖它对结果集的包装处理。
+
+它是MyBatis将数据库记录映射到Java对象的关键组件之一。
+
+
+
+#### org.apache.ibatis.executor.executor.statement
+
+
+| org.apache.ibatis.executor.executor.statement |          |      |                            |
+| --------------------------------------------- | -------- | ---- | -------------------------- |
+| BaseStatementHandler                          | abstract |      | StatementHandler接口实现类 |
+| CallableStatementHandler                      |          |      |                            |
+| PreparedStatementHandler                      |          |      |                            |
+| RoutingStatementHandler                       |          |      |                            |
+| SimpleStatementHandler                        |          |      | BaseStatementHandler子类   |
+| StatementHandler                              |          |      |                            |
+| StatementUtil                                 |          |      |                            |
 
 
 
@@ -1854,42 +2147,78 @@ ResolverUtil.find()在org.apache.ibatis.binding.MapperRegistry#addMappers(java.l
 
 ## org.apache.ibatis.logging
 
-| org.apache.ibatis.logging           | 类型 | 英文说明                                | 说明 |
-| ----------------------------------- | ---- | --------------------------------------- | ---- |
-| Log                                 |      |                                         |      |
-| LogException                        |      |                                         |      |
-| LogFactory                          |      |                                         |      |
-| logging.commons                     |      |                                         |      |
-| JakartaCommonsLoggingImpl           |      |                                         |      |
+| org.apache.ibatis.logging | 类型      | 英文说明 | 说明   |
+| ------------------------- | --------- | -------- | ------ |
+| Log                       | interface |          | 子类   |
+| LogException              | exception |          |        |
+| LogFactory                |           |          | 工厂类 |
+
+
+
+| org.apache.ibatis.logging.commons | 类型 | 英文说明 | 说明        |
+| --------------------------------- | ---- | -------- | ----------- |
+| JakartaCommonsLoggingImpl         |      |          | Log接口子类 |
 
 
 | org.apache.ibatis.logging.jdbc      |类型 | 英文说明                                | 说明 |
 | ----------------------------------- | ---- | --------------------------------------- | ---- |
-| BaseJdbcLogger                      |   abstract   | Base class for proxies to do logging.   |      |
-| ConnectionLogger                    |      | Connection proxy to add logging.        |      |
-| PreparedStatementLogger             |      | PreparedStatement proxy to add logging. |   重要   |
-| ResultSetLogger                     |      | ResultSet proxy to add logging.         |      |
-| StatementLogger                     |      | Statement proxy to add logging.         |      |
-| org.apache.ibatis.logging.jdk14     |      |                                         |      |
-| Jdk14LoggingImpl                    |      |                                         |      |
-| org.apache.ibatis.logging.log4j     |      |                                         |      |
-| Log4jImpl                           |      |                                         |      |
-| org.apache.ibatis.logging.log4j2    |      |                                         |      |
-| Log4j2AbstractLoggerImpl            |      |                                         |      |
-| Log4j2Impl                          |      |                                         |      |
-| Log4j2LoggerImpl                    |      |                                         |      |
-| org.apache.ibatis.logging.nologging |      |                                         |      |
-| NoLoggingImpl                       |      |                                         |      |
-| org.apache.ibatis.logging.slf4j     |      |                                         |      |
-| Slf4jImpl                           |      |                                         |      |
-| org.apache.ibatis.logging.stdout    |      |                                         |      |
-| StdOutImpl                          |      |                                         |      |
+| BaseJdbcLogger                      |   abstract   | Base class for proxies to do logging.   | 子类 ConnectionLogger PreparedStatementLogger ResultSetLogger StatementLogger  有打印日志的属性Log statementLog;  SET_METHODS |
+| ConnectionLogger                    |      | Connection proxy to add logging.        | BaseJdbcLogger子类 InvocationHandler动态代理 |
+| PreparedStatementLogger             |      | PreparedStatement proxy to add logging. |   重要 BaseJdbcLogger子类 InvocationHandler动态代理 newInstance()静态方法   |
+| ResultSetLogger                     |      | ResultSet proxy to add logging.         | BaseJdbcLogger子类 InvocationHandler动态代理 newInstance()静态方法 |
+| StatementLogger                     |      | Statement proxy to add logging.         | BaseJdbcLogger子类 InvocationHandler动态代理 newInstance()静态方法 |
 
 
+| org.apache.ibatis.logging.jdk14 | 类型 | 英文说明 | 说明        |
+| ------------------------------- | ---- | -------- | ----------- |
+| Jdk14LoggingImpl                |      |          | Log接口子类 |
+
+
+| org.apache.ibatis.logging.log4j | 类型 | 英文说明 | 说明        |
+| ------------------------------- | ---- | -------- | ----------- |
+| Log4jImpl                       |      |          | Log接口子类 |
+
+
+| org.apache.ibatis.logging.log4j2 | 类型 | 英文说明 | 说明        |
+| -------------------------------- | ---- | -------- | ----------- |
+| Log4j2AbstractLoggerImpl         |      |          | Log接口子类 |
+| Log4j2Impl                       |      |          | Log接口子类 |
+| Log4j2LoggerImpl                 |      |          | Log接口子类 |
+
+
+
+| org.apache.ibatis.logging.nologging | 类型 | 英文说明 | 说明        |
+| ----------------------------------- | ---- | -------- | ----------- |
+| NoLoggingImpl                       |      |          | Log接口子类 |
+
+
+| org.apache.ibatis.logging.slf4j | 类型 | 英文说明 | 说明        |
+| ------------------------------- | ---- | -------- | ----------- |
+| Slf4jImpl                       |      |          | Log接口子类 |
+
+
+| org.apache.ibatis.logging.stdout | 类型 | 英文说明 | 说明        |
+| -------------------------------- | ---- | -------- | ----------- |
+| StdOutImpl                       |      |          | Log接口子类 |
+
+
+```shell
+2023-07-27 09:23:01.176 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction 101 - Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@1a72a540]
+2023-07-27 09:23:01.211 [main] DEBUG cn.wdidada.testmybatis.mapper.UserMapper.getUser 159 - ==>  Preparing: select id,user_name userName,password,name,age,sex,birthday,created,updated from tb_user where id = ? 
+2023-07-27 09:24:13.825 [main] DEBUG cn.wdidada.testmybatis.mapper.UserMapper.getUser 159 - ==> Parameters: 1(Long)
+2023-07-27 09:24:13.843 [main] TRACE cn.wdidada.testmybatis.mapper.UserMapper.getUser 165 - <==    Columns: id, userName, password, name, age, sex, birthday, created, updated
+2023-07-27 09:24:13.844 [main] TRACE cn.wdidada.testmybatis.mapper.UserMapper.getUser 165 - <==        Row: 1, test, 1, null, 1, 1, 2023-07-27, 2023-07-27 09:18:32.0, 2023-07-27 09:18:34.0
+2023-07-27 09:24:13.847 [main] DEBUG cn.wdidada.testmybatis.mapper.UserMapper.getUser 159 - <==      Total: 1
+```
+
+PreparedStatementLogger父类BaseJdbcLogger159行打印
+ResultSetLogger父类BaseJdbcLogger165行打印trace日志
 
 PreparedStatementLogger InvocationHandler动态代理
 
 
+
+```shell
 invoke:59, PreparedStatementLogger (org.apache.ibatis.logging.jdbc)
 execute:-1, $Proxy11 (com.sun.proxy)
 query:63, PreparedStatementHandler (org.apache.ibatis.executor.statement)
@@ -1906,10 +2235,12 @@ invoke:59, MapperProxy (org.apache.ibatis.binding)
 getUser:-1, $Proxy9 (com.sun.proxy)
 makeWithMapper:101, TestMyBatis (cn.wdidada.testmybatis)
 main:23, TestMyBatis (cn.wdidada.testmybatis)
+```
 
 JDBC42PreparedStatement 真正执行sql的类
 originalSql  select id,user_name userName,password,name,age,sex,birthday,created,updated from tb_user where id = ?
 
+```shell
 execute:1174, PreparedStatement (com.mysql.jdbc)
 invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
 invoke:62, NativeMethodAccessorImpl (sun.reflect)
@@ -1931,7 +2262,7 @@ invoke:59, MapperProxy (org.apache.ibatis.binding)
 getUser:-1, $Proxy9 (com.sun.proxy)
 makeWithMapper:101, TestMyBatis (cn.wdidada.testmybatis)
 main:23, TestMyBatis (cn.wdidada.testmybatis)
-
+```
 
 处理查询的结果
 org.apache.ibatis.executor.resultset.DefaultResultSetHandler#handleResultSets
@@ -1941,34 +2272,34 @@ ResultSetWrapper这个类也很重要，一堆属性
 
 ## org.apache.ibatis.mapping
 
-| org.apache.ibatis.mapping | 类型 | 英文说明                                                     | 说明 |
-| ------------------------- | ---- | ------------------------------------------------------------ | ---- |
-| BoundSql                  |      | An actual SQL String got from an SqlSource after having processed any dynamic content. |      |
-| CacheBuilder              |      |                                                              |      |
-| DatabaseIdProvider        |      | Should return an id to identify the type of this database.   |      |
-| DefaultDatabaseIdProvider |      | Deprecated.                                                  |      |
-| Discriminator             |      |                                                              |      |
-| Discriminator.Builder     |      |                                                              |      |
-| Environment               |      |                                                              |      |
-| Environment.Builder       |      |                                                              |      |
-| FetchType                 |      |                                                              |      |
-| MappedStatement           |      |                                                              |      |
-| MappedStatement.Builder   |      |                                                              |      |
-| ParameterMap              |      |                                                              |      |
-| ParameterMap.Builder      |      |                                                              |      |
-| ParameterMapping          |      |                                                              |      |
-| ParameterMapping.Builder  |      |                                                              |      |
-| ParameterMode             |      |                                                              |      |
-| ResultFlag                |      |                                                              |      |
-| ResultMap                 |      |                                                              |      |
-| ResultMap.Builder         |      |                                                              |      |
-| ResultMapping             |      |                                                              |      |
-| ResultMapping.Builder     |      |                                                              |      |
-| ResultSetType             |      |                                                              |      |
-| SqlCommandType            |      |                                                              |      |
-| SqlSource                 |      | Represents the content of a mapped statement read from an XML file or an annotation. |      |
-| StatementType             |      |                                                              |      |
-| VendorDatabaseIdProvider  |      | Vendor DatabaseId provider.                                  |      |
+| org.apache.ibatis.mapping | 类型 | 英文说明                                                     | 说明                                                         |
+| ------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| BoundSql                  |      | An actual SQL String got from an SqlSource after having processed any dynamic content. |                                                              |
+| CacheBuilder              |      |                                                              |                                                              |
+| DatabaseIdProvider        |      | Should return an id to identify the type of this database.   |                                                              |
+| DefaultDatabaseIdProvider |      | Deprecated.                                                  |                                                              |
+| Discriminator             |      |                                                              |                                                              |
+| Discriminator.Builder     |      |                                                              |                                                              |
+| Environment               |      |                                                              |                                                              |
+| Environment.Builder       |      |                                                              |                                                              |
+| FetchType                 |      |                                                              |                                                              |
+| MappedStatement           |      |                                                              | Configuration  属性 Map<String, MappedStatement> mappedStatements |
+| MappedStatement.Builder   |      |                                                              | public Builder(Configuration configuration, String id, SqlSource sqlSource, SqlCommandType sqlCommandType) |
+| ParameterMap              |      |                                                              |                                                              |
+| ParameterMap.Builder      |      |                                                              |                                                              |
+| ParameterMapping          |      |                                                              |                                                              |
+| ParameterMapping.Builder  |      |                                                              |                                                              |
+| ParameterMode             |      |                                                              |                                                              |
+| ResultFlag                |      |                                                              |                                                              |
+| ResultMap                 |      |                                                              |                                                              |
+| ResultMap.Builder         |      |                                                              |                                                              |
+| ResultMapping             |      |                                                              |                                                              |
+| ResultMapping.Builder     |      |                                                              |                                                              |
+| ResultSetType             |      |                                                              |                                                              |
+| SqlCommandType            |      |                                                              |                                                              |
+| SqlSource                 |      | Represents the content of a mapped statement read from an XML file or an annotation. |                                                              |
+| StatementType             |      |                                                              |                                                              |
+| VendorDatabaseIdProvider  |      | Vendor DatabaseId provider.                                  |                                                              |
 
 
 
@@ -2008,14 +2339,92 @@ ResultSetWrapper这个类也很重要，一堆属性
 
 
 ## org.apache.ibatis.parsing
-| org.apache.ibatis.parsing | 类型 | 英文说明 | 说明 |
-| ------------------------- | ---- | -------- | ---- |
-| GenericTokenParser        |      |          |      |
-| ParsingException          |      |          |      |
-| PropertyParser            |      |          |      |
-| TokenHandler              |      |          |      |
-| XNode                     |      |          |      |
-| XPathParser               |      |          |      |
+| org.apache.ibatis.parsing   | 类型      | 英文说明 | 说明                                           |
+| --------------------------- | --------- | -------- | ---------------------------------------------- |
+| GenericTokenParser          |           |          |                                                |
+| ParsingException            | exception |          |                                                |
+| PropertyParser              |           |          |                                                |
+| PropertyParser.TokenHandler |           |          |                                                |
+| XNode                       |           |          | 重要 有属性 XPathParser xpathParser            |
+| XPathParser                 |           |          | 在XNode中使用 evalString() evalBoolean()等方法 |
+
+
+
+在MyBatis中,XPathParser类用于解析和处理XPath表达式。
+
+XPath表达式通常用在MyBatis的<select>、<update>等语句中,用于提取或映射XML文档中的节点。
+
+XPathParser的主要作用有:
+
+1. 解析select语句的XPath节点抽取表达式
+
+在<select>语句中,可以使用XPath表达式抽取结果集XML中的节点,例如:
+
+```xml
+<select id="selectBlog" resultType="Blog">
+  select * from Blog 
+  <include refid="Base_Column_List" />
+  where id = #{id}
+</select>
+
+<sql id="Base_Column_List">
+    id as 'Blog.id',
+    title as 'Blog.title'
+    from Blog
+</sql>
+```
+
+这里的"Blog.id"等XPath表达式会由XPathParser解析。
+
+2. 解析update语句的XPath写入表达式
+
+在<update>语句中,也可以在set节点中使用XPath表达式指定更新的XML节点,XPathParser会解析这些XPath表达式。
+
+3. 解析输入参数的XPath表达式
+
+例如在<foreach>节点的collection属性中,可以指定一个XPath表达式提取集合参数,XPathParser会解析这个XPath表达式。
+
+4. 解析结果映射的XPath表达式
+
+在<resultMap>中,<id>和<result>的定义也可使用XPath表达式,同样需要XPathParser解析。
+
+所以XPathParser是解析和处理Mapper XML中XPath表达式的关键组件。它为MyBatis提供了操作XML文档的重要支持。
+
+
+
+
+
+GenericTokenParser PropertyParser XPathParser区别
+
+在MyBatis中,GenericTokenParser、PropertyParser和XPathParser都是表达式解析器,但各有不同的用途:
+
+1. GenericTokenParser 
+
+通用令牌解析器,用来解析带有变量占位符的字符串,这些占位符通常会被其他表达式解析器解析。
+
+例如解析SQL语句中的"#{id}"占位符,其中"#{}"由GenericTokenParser处理,而id会由PropertyParser解析。
+
+2. PropertyParser
+
+属性表达式解析器,用于解析和处理OGNL表达式,从对象图中获取或设置属性值。
+
+例如"#{user.name}"会解析user对象的name属性。
+
+3. XPathParser
+
+XPath表达式解析器,用于解析和处理XML文档的XPath表达式,从XML中提取或设置内容。
+
+例如解析<foreach>节点collection属性中的XPath表达式,用于提取集合参数。
+
+总结:
+
+- GenericTokenParser处理带占位符的字符串
+
+- PropertyParser处理OGNL表达式和对象属性 
+
+- XPathParser处理XML文档的XPath表达式
+
+它们各有不同的用途,但都为MyBatis提供了重要的表达式处理能力。
 
 
 
@@ -2095,42 +2504,122 @@ ResultSetWrapper这个类也很重要，一堆属性
 
 
 
-| org.apache.ibatis.scripting | 类型 | 英文说明 | 说明 |
-| --------------------------- | ---- | -------- | ---- |
-| LanguageDriver              |      |          |      |
-| LanguageDriverRegistry      |      |          |      |
-| ScriptingException          |      |          |      |
-|                             |      |          |      |
+| org.apache.ibatis.scripting | 类型      | 英文说明 | 说明 |
+| --------------------------- | --------- | -------- | ---- |
+| LanguageDriver              | interface |          |      |
+| LanguageDriverRegistry      |           |          |      |
+| ScriptingException          | exception |          |      |
+|                             |           |          |      |
+
+解析mybatis xml文件到SqlSource对象
+
+MappedStatement 类的 sqlSource属性
 
 
-| org.apache.ibatis.scripting.defaults | 类型 | 英文说明                                                     |      |
-| ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
-| DefaultParameterHandler              |      |                                                              |      |
-| RawLanguageDriver                    |      | As of 3.2.4 the default XML language is able to identify static statements and create a RawSqlSource. |      |
-| RawSqlSource                         |      |                                                              |      |
-| Static SqlSource.                    |      |                                                              |      |
-|                                      |      |                                                              |      |
+
+StaticSqlSource
+
+```sql
+select
+        id,user_name
+        tb_user where id = ?
+```
+
+
+
+
+
+
+| org.apache.ibatis.scripting.defaults | 类型 | 英文说明                                                     | 内容                                  |
+| ------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------- |
+| DefaultParameterHandler              |      |                                                              | ParameterHandler接口实现类 有很多属性 |
+| RawLanguageDriver                    |      | As of 3.2.4 the default XML language is able to identify static statements and create a RawSqlSource. |                                       |
+| RawSqlSource                         |      |                                                              |                                       |
+| StaticSqlSource                      |      |                                                              |                                       |
+|                                      |      |                                                              |                                       |
 
 | org.apache.ibatis.scripting.xmltags  | 类型 | 英文说明 | 说明 |
 | ------------------------------------ | ---- | ------------------------------------------------------------ | ---- |
-| ChooseSqlNode                        |      |                                                              |      |
+| ChooseSqlNode                        |      |                                                              | SqlNode子类 |
 | DynamicContext                       |      |                                                              |      |
-| DynamicSqlSource                     |      |                                                              |      |
-| ExpressionEvaluator                  |      |                                                              |      |
-| ForEachSqlNode                       |      |                                                              |      |
-| IfSqlNode                            |      |                                                              |      |
-| MixedSqlNode                         |      |                                                              |      |
+| DynamicSqlSource                     |      |                                                              | SqlNode子类 |
+| ExpressionEvaluator                  |      |                                                              | 见下面 |
+| ForEachSqlNode                       |      |                                                              | SqlNode子类 |
+| IfSqlNode                            |      |                                                              | SqlNode子类 |
+| MixedSqlNode                         |      |                                                              | SqlNode子类 |
 | OgnlCache                            |      | Caches OGNL parsed expressions.                              |      |
-| OgnlClassResolver                    |      | Custom ognl ClassResolver which behaves same like ognl's DefaultClassResolver. |      |
-| SetSqlNode                           |      |                                                              |      |
-| SqlNode                              |      |                                                              |      |
-| StaticTextSqlNode                    |      |                                                              |      |
-| TextSqlNode                          |      |                                                              |      |
-| TrimSqlNode                          |      |                                                              |      |
-| VarDeclSqlNode                       |      |                                                              |      |
-| WhereSqlNode                         |      |                                                              |      |
+| OgnlClassResolver                    |      | Custom ognl ClassResolver which behaves same like ognl's DefaultClassResolver. | ognl.ClassResolver实现类 |
+| SetSqlNode                           |      |                                                              | SqlNode子类 |
+| SqlNode                              | interface |                                                              | 见下面 |
+| StaticTextSqlNode                    |      |                                                              | SqlNode子类 |
+| TextSqlNode                          |      |                                                              | SqlNode子类 |
+| TrimSqlNode                          |      |                                                              | SqlNode子类 |
+| VarDeclSqlNode                       |      |                                                              | SqlNode子类 |
+| WhereSqlNode                         |      |                                                              | SqlNode子类 |
 | XMLLanguageDriver                    |      |                                                              | 重要，解析xml文件     |
-| XMLScriptBuilder                     |      |                                                              |      |
+| XMLScriptBuilder                     |      |                                                              | initNodeHandlerMap()方法 注册 trim where set foreach 等处理器 |
+| XMLScriptBuilder.BindHandler | | | bind |
+| XMLScriptBuilder.ChooseHandler | | | choose |
+| XMLScriptBuilder.ForEachHandler | | | foreach |
+| XMLScriptBuilder.IfHandler | | | if |
+| XMLScriptBuilder.NodeHandler | interface | |  |
+| XMLScriptBuilder.OtherwiseHandler | | | otherwise |
+| XMLScriptBuilder.SetHandler | | | set |
+| XMLScriptBuilder.TrimHandler | | | trim |
+| XMLScriptBuilder.WhereHandler | | | where |
+
+
+
+
+
+
+
+在MyBatis中,ExpressionEvaluator是表达式评估器,它的作用是评估和处理ognl表达式。
+
+主要的使用场景有:
+
+1. 处理SQL语句中的参数表达式
+
+在Mapper XML中,可以在SQL语句中使用#{}或${}包含ognl表达式,来表示参数或属性值。
+
+比如:#{item.price},此时ExpressionEvaluator会解析item.price表达式,并根据参数值提取price属性。
+
+2. 处理Select节点的结果映射
+
+在<select>节点中可以使用ognl表达式来定义对象属性和查询结果列的映射关系。
+
+例如:<id property="id" column="item_id"/>,ExpressionEvaluator会解析property和column的表达式。
+
+3. 处理Update节点的参数映射 
+
+在<update>节点中,可以通过ognl表达式来定义参数和SQL参数位的映射关系。
+
+例如:#{itemId},会通过表达式映射到SQL的参数位。
+
+4. 动态SQL的表达式判断
+
+例如<if>节点中包含ognl判断表达式,这些表达式也会由ExpressionEvaluator处理。
+
+5. 处理配置属性表达式
+
+其他节点的attribute或value等,也可使用ognl表达式,会由ExpressionEvaluator解析。
+
+所以ExpressionEvaluator是MyBatis非常重要的组件,它为MyBatis提供了强大的表达式处理能力,是MyBatis的核心之一。
+
+
+
+SqlNode接口实现类
+
+StaticTextSqlNode (org.apache.ibatis.scripting.xmltags)
+MixedSqlNode (org.apache.ibatis.scripting.xmltags)
+TextSqlNode (org.apache.ibatis.scripting.xmltags)
+ForEachSqlNode (org.apache.ibatis.scripting.xmltags)
+IfSqlNode (org.apache.ibatis.scripting.xmltags)
+VarDeclSqlNode (org.apache.ibatis.scripting.xmltags)
+TrimSqlNode (org.apache.ibatis.scripting.xmltags)
+    WhereSqlNode (org.apache.ibatis.scripting.xmltags)
+    SetSqlNode (org.apache.ibatis.scripting.xmltags)
+ChooseSqlNode (org.apache.ibatis.scripting.xmltags)
 
 
 

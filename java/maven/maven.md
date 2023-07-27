@@ -991,10 +991,19 @@ maven modules项目打包，直接在主目录mvn install就行，不用在子mo
 
 maven 安装jar到电脑磁盘上
 
-```java
+```shell
 
 mvn install:install-file -DgroupId=org.csource -DartifactId=fastdfs-client-java -Dversion=1.25 -Dpackaging=jar -Dfile=D:/x/fastdfs_client.jar 
+```
 
+```shell
+mvn install:install-file -DgroupId=io.spring.gradle -DartifactId=gradle-enterprise-conventions -Dversion=0.0.3 -Dpackaging=jar -Dfile=C:/Users/admin/Documents/GitHub/gradle-enterprise-conventions/build/libs/gradle-enterprise-conventions-plugin-0.0.3.jar
+```
+
+https://blog.csdn.net/chengxuya/article/details/107706682
+
+```shell
+mvn install:install-file "-DgroupId=io.spring.gradle" "-DartifactId=gradle-enterprise-conventions" "-Dversion=0.0.3" "-Dpackaging=jar" "-Dfile=C:/Users/admin/Documents/GitHub/gradle-enterprise-conventions/build/libs/gradle-enterprise-conventions-plugin-0.0.3.jar"
 ```
 
 设置war文件名称projectName.war
