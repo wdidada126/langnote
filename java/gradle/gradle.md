@@ -1,5 +1,10 @@
 # gradle
 
+## 仓库
+gradle可以使用maven的库仓库
+mavenLocal() 使用本地仓库
+
+
 
 查看gradle插件是否存在？
 https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
