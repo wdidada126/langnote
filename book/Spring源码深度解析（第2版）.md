@@ -65,6 +65,8 @@ set http_proxy=http://127.0.0.1:7890
 cd/d D:\git\gitlab\spring-framework-5.0.x
 gradlew build -x test
 
+备注：202307 公司电脑 编译 spring 5.2.4.release成功，但是编译spring boot 2.3.4失败
+
 ## 第 1部分　核心实现
 ### 第2章 容器的基本实现
 【Spring源码分析】Bean加载流程概览
@@ -97,7 +99,106 @@ https://www.cnblogs.com/xrq730/p/6285358.html
 
 ### 第5章　bean的加载
 
-5
+FactoryBean接口
+spring-beans包
+org.springframework.beans.factory.FactoryBean<T>
+
+T getObject()
+boolean isSingleton()
+Class<?> getObjectType()
+
+MBeanProxyFactoryBean (org.springframework.jmx.access)
+JobDetailFactoryBean (org.springframework.scheduling.quartz)
+LocalStatelessSessionProxyFactoryBean (org.springframework.ejb.access)
+PropertyPathFactoryBean (org.springframework.beans.factory.config)
+XmlRpcProxyFactoryBean (org.apache.dubbo.xml.rpc.protocol.xmlrpc)
+EhCacheFactoryBean (org.springframework.cache.ehcache)
+JdbcStatManagerFactoryBean (com.alibaba.druid.stat)
+TimerManagerFactoryBean (org.springframework.scheduling.commonj)
+ContentNegotiationManagerFactoryBean (org.springframework.web.accept)
+EmbeddedDataSourceFactoryBean in TestDatabaseAutoConfiguration (org.springframework.boot.test.autoconfigure.jdbc)
+LocalJaxWsServiceFactoryBean (org.springframework.remoting.jaxws)
+HessianProxyFactoryBean (org.springframework.remoting.caucho)
+JCacheManagerFactoryBean (org.springframework.cache.jcache)
+MBeanServerConnectionFactoryBean (org.springframework.jmx.support)
+ServiceLocatorFactoryBean (org.springframework.beans.factory.config)
+RepositoryFragmentsFactoryBean (org.springframework.data.repository.core.support)
+MethodLocatingFactoryBean (org.springframework.aop.config)
+SchedulerFactoryBean (org.springframework.scheduling.quartz)
+CronTriggerFactoryBean (org.springframework.scheduling.quartz)
+ConnectorServerFactoryBean (org.springframework.jmx.support)
+ScheduledExecutorFactoryBean (org.springframework.scheduling.concurrent)
+SimpleTriggerFactoryBean (org.springframework.scheduling.quartz)
+RmiProxyFactoryBean (org.springframework.remoting.rmi)
+AbstractSingletonProxyFactoryBean (org.springframework.aop.framework)
+    TransactionProxyFactoryBean (org.springframework.transaction.interceptor)
+    CacheProxyFactoryBean (org.springframework.cache.interceptor)
+CompositeUriComponentsContributorFactoryBean in AnnotationDrivenBeanDefinitionParser (org.springframework.web.servlet.config)
+WebSphereMBeanServerFactoryBean (org.springframework.jmx.support)
+EmbeddedDatabaseFactoryBean (org.springframework.jdbc.datasource.embedded)
+BeanListFactoryBean (org.springframework.plugin.core.support)
+ProxyFactoryBean (org.springframework.http.client.support)
+GsonFactoryBean (org.springframework.http.converter.json)
+ScopedProxyFactoryBean (org.springframework.aop.scope)
+    LockedScopedProxyFactoryBean in GenericScope (org.springframework.cloud.context.scope)
+WebTestClientFactory in WebTestClientContextCustomizer (org.springframework.boot.test.web.reactive.server)
+HttpInvokerProxyFactoryBean (org.springframework.remoting.httpinvoker)
+MBeanServerFactoryBean (com.alibaba.druid.support.spring)
+DateTimeFormatterFactoryBean (org.springframework.format.datetime.standard)
+JndiRmiProxyFactoryBean (org.springframework.remoting.rmi)
+MBeanServerFactoryBean (org.springframework.jmx.support)
+JaxWsPortProxyFactoryBean (org.springframework.remoting.jaxws)
+ConcurrentMapCacheFactoryBean (org.springframework.cache.concurrent)
+TestRestTemplateFactory in TestRestTemplateContextCustomizer (org.springframework.boot.test.web.client)
+SimpleHttpServerFactoryBean (org.springframework.remoting.support)
+ServletContextParameterFactoryBean (org.springframework.web.context.support)
+DateTimeFormatterFactoryBean (org.springframework.format.datetime.joda)
+ThreadPoolExecutorFactoryBean (org.springframework.scheduling.concurrent)
+ReferenceBean (org.apache.dubbo.config.spring)
+RmiRegistryFactoryBean (org.springframework.remoting.rmi)
+AbstractFactoryBean (org.springframework.beans.factory.config)
+    SortedResourcesFactoryBean (org.springframework.jdbc.config)
+    MapFactoryBean (org.springframework.beans.factory.config)
+    ListFactoryBean (org.springframework.beans.factory.config)
+    SetFactoryBean (org.springframework.beans.factory.config)
+    LettuceFactoryBeanSupport (io.lettuce.core.support)
+    AbstractRepositoryPopulatorFactoryBean (org.springframework.data.repository.init)
+    ClientResourcesFactoryBean (io.lettuce.core.support)
+    ObjectFactoryCreatingFactoryBean (org.springframework.beans.factory.config)
+    ProviderCreatingFactoryBean (org.springframework.beans.factory.config)
+    AbstractServiceLoaderBasedFactoryBean (org.springframework.beans.factory.serviceloader)
+PropertiesFactoryBean (org.springframework.beans.factory.config)
+ForkJoinPoolFactoryBean (org.springframework.scheduling.concurrent)
+ServletContextAttributeFactoryBean (org.springframework.web.context.support)
+SimpleRemoteStatelessSessionProxyFactoryBean (org.springframework.ejb.access)
+LocalConnectionFactoryBean (org.springframework.jca.support)
+FeignClientFactoryBean (org.springframework.cloud.openfeign)
+JtaTransactionManagerFactoryBean (org.springframework.transaction.config)
+FieldRetrievingFactoryBean (org.springframework.beans.factory.config)
+RedisCollectionFactoryBean (org.springframework.data.redis.support.collections)
+JsonTesterFactoryBean in JsonTestersAutoConfiguration (org.springframework.boot.test.autoconfigure.json)
+ProxyFactoryBean (org.springframework.aop.framework)
+JndiObjectFactoryBean (org.springframework.jndi)
+YamlMapFactoryBean (org.springframework.beans.factory.config)
+RetrofitFactoryBean (com.github.lianjiatech.retrofit.spring.boot.core)
+FreeMarkerConfigurationFactoryBean (org.springframework.ui.freemarker)
+ResourceAdapterFactoryBean (org.springframework.jca.support)
+MethodInvokingJobDetailFactoryBean (org.springframework.scheduling.quartz)
+MethodInvokingFactoryBean (org.springframework.beans.factory.config)
+YamlPropertiesFactoryBean (org.springframework.beans.factory.config)
+Jackson2ObjectMapperFactoryBean (org.springframework.http.converter.json)
+EhCacheManagerFactoryBean (org.springframework.cache.ehcache)
+PluginRegistryFactoryBean (org.springframework.plugin.core.support)
+SmartFactoryBean (org.springframework.beans.factory)
+FormattingConversionServiceFactoryBean (org.springframework.format.support)
+RepositoryFactoryBeanSupport (org.springframework.data.repository.core.support)
+    KeyValueRepositoryFactoryBean (org.springframework.data.keyvalue.repository.support)
+    TransactionalRepositoryFactoryBeanSupport (org.springframework.data.repository.core.support)
+TaskExecutorFactoryBean (org.springframework.scheduling.config)
+JsonRpcProxyFactoryBean (org.apache.dubbo.rpc.protocol.http)
+ConversionServiceFactoryBean (org.springframework.context.support)
+SharedMetadataReaderFactoryBean in SharedMetadataReaderFactoryContextInitializer (org.springframework.boot.autoconfigure)
+
 
 ### 第6章　容器的功能扩展
 

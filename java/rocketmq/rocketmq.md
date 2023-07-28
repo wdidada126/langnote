@@ -1,9 +1,18 @@
 # RocketMQ
+## 官方doc
+
+https://rocketmq.apache.org/zh/docs/4.x/
+
 
 ## 书籍
 - RocketMQ技术内幕：RocketMQ架构设计
 - RocketMQ实战
 - 分布式中间件核心原理与RocketMQ
+- RocketMQ分布式消息中间件
+- RocketMQ实战与原理解析
+
+http://www.broadview.com.cn/book/6615
+
 
 ## 客户端例子
 
