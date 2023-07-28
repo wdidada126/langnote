@@ -4,6 +4,13 @@
 ![mybatis](../imgs/mybatis_architect.png)
 
 
+
+
+
+## mybatis什么版本的？
+
+
+
 参数映射
 sql解析
 sql执行
@@ -288,9 +295,51 @@ bind concat
 
 
 
+Mapper.xml
+
+<cache 节点配置
+
+@CacheNamespace
+
+
+
+mybatis-encache	
+
+
+
 ## Chap. 8 MyBatis插件开发
 
 重点
+
+org.apache.ibatis.plugin.Interceptor
+
+
+
+@Intercepts
+
+@Signature
+
+
+
+
+
+默认情况下， MyBatis允许拦截器拦截Executor的方法、 ParameterHandler 的方法、 ResultSetHandler 的方法以及StatementHandler 的方法，这个四个对象可称为Mybatis的四大对象。
+
+本章挨个讲如何拦截
+
+org.apache.ibatis.executor.Executor
+
+org.apache.ibatis.executor.parameter.ParameterHandler
+
+org.apache.ibatis.executor.resultset.ResultSetHandler
+
+org.apache.ibatis.executor.statement.StatementHandler
+
+
+
+### 8.4 分页插件
+
+
 
 
 

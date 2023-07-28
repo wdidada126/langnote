@@ -974,6 +974,39 @@ Typehandler
 Java数据类型 MySQL数据库的类型
 
 
+
+##  xml文件解析
+
+
+
+有两个xml文件
+
+mybatis-config.xml文件
+
+参数
+
+
+
+```java
+String resource = "mybatis-config.xml";
+Resources.getResourceAsStream(resource)
+```
+
+
+
+mybatis-config.xml文件如何被解析
+
+org.apache.ibatis.builder.xml.XMLConfigBuilder#parseConfiguration
+
+
+
+mybatis动态sql是如何解析的
+
+org.apache.ibatis.builder.xml.XMLMapperBuilder#configurationElement
+
+
+
+
 ## MyBatis Generator
 
 mybatis 2 3区别
@@ -2101,7 +2134,7 @@ DefaultResultHandler
 
 | org.apache.ibatis.io       | 类型 | 英文说明                                                     | 说明 |
 | -------------------------- | ---- | ------------------------------------------------------------ | ---- |
-| ClassLoaderWrapper         |      | A class to wrap access to multiple class loaders making them work as one |      |
+| ClassLoaderWrapper         |      | A class to wrap access to multiple class loaders making them work as one | Resources中用 |
 | DefaultVFS                 |      | A default implementation of VFS that works for most application servers. |      |
 | ExternalResources          |      | Deprecated.                                                  |      |
 | JBoss6VFS                  |      | A JBoss6VFS.VFS implementation that works with the VFS API provided by JBoss 6. |      |
@@ -2109,9 +2142,9 @@ DefaultResultHandler
 | ResolverUtil.AnnotatedWith |      | A Test that checks to see if each class is annotated with a specific annotation. |      |
 | ResolverUtil.IsA           | interface     | A Test that checks to see if each class is assignable to the provided class. |      |
 | ResolverUtil.Test          |      | A simple interface that specifies how to test classes to determine if they are to be included in the results produced by the ResolverUtil. |      |
-| Resources                  |      | A class to simplify access to resources through the classloader. |      |
+| Resources                  |      | A class to simplify access to resources through the classloader. | 静态方法 |
 | SerialFilterChecker        |      |                                                              |      |
-| VFS                        |      | Provides a very simple API for accessing resources within an application server. |      |
+| VFS                        | abstract | Provides a very simple API for accessing resources within an application server. | 子类 DefaultVFS     JBoss6VFS |
 
 
 ResolverUtil.find()在org.apache.ibatis.binding.MapperRegistry#addMappers(java.lang.String, java.lang.Class<?>)
@@ -2432,14 +2465,14 @@ XPath表达式解析器,用于解析和处理XML文档的XPath表达式,从XML�
 
 | org.apache.ibatis.plugin | 类型 | 英文说明                                                 | 说明 |
 | ------------------------ | ---- | -------------------------------------------------------- | ---- |
-| Interceptor              |      |                                                          |      |
+| Interceptor              | interface注解     |                                                          |      |
 | InterceptorChain         |      |                                                          |      |
-| Intercepts               |      | The annotation that specify target methods to intercept. |      |
+| Intercepts               |   注解   | The annotation that specify target methods to intercept. |      |
 |                          |      |                                                          |      |
 | Invocation               |      |                                                          |      |
 | Plugin                   |      |                                                          |      |
 | PluginException          |      |                                                          |      |
-| Signature                |      | The annotation that indicate the method signature.       |      |
+| Signature                |    注解  | The annotation that indicate the method signature.       |      |
 |                          |      |                                                          |      |
 
 
