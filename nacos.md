@@ -33,7 +33,7 @@ spring:
 
 https://gitee.com/edidada/nacos-config-example
 
-https://gitee.com/edidada/alibabademo
+https://gitee.com/edidada/springcloudnacosdemo
 
 https://gitee.com/edidada/testnacosclient
 官网

@@ -255,7 +255,11 @@ https://developer.aliyun.com/article/728009
 https://gitee.com/edidada/dubbohttpspringboot
 
 
-## samples
+## springclouddubbo samples
+
+https://gitee.com/edidada/springclouddubbo
+
+
 
 https://github.com/apache/dubbo-samples
 
@@ -525,6 +529,7 @@ debug源码了
 
 - 深入理解Apache Dubbo与实战
 - 深度剖析Apache Dubbo核心技术内幕
+- ZooKeeper_Dubbo3分布式高性能RPC通信
 
 Dubbo容错
 

@@ -2788,7 +2788,11 @@ Configuration类属性很重要
 | JdbcTransaction                                |      | Transaction that makes use of the JDBC commit and rollback facilities directly. |      |
 | JdbcTransactionFactory                         |      | Creates JdbcTransaction instances.                           |      |
 |                                                |      |                                                              |      |
-| org.apache.ibatis.transaction..managed         |      |                                                              |      |
+
+#### org.apache.ibatis.transaction.managed
+
+| org.apache.ibatis.transaction.managed         |      |                                                              |      |
+| ---------------------------------------------- | ---- | ------------------------------------------------------------ | ---- |
 | ManagedTransaction                             |      | Transaction that lets the container manage the full lifecycle of the transaction. |      |
 | ManagedTransactionFactory                      |      | Creates ManagedTransaction instances.                        |      |
 

@@ -1,5 +1,10 @@
 # RocketMQ
 
+## 书籍
+- RocketMQ技术内幕：RocketMQ架构设计
+- RocketMQ实战
+- 分布式中间件核心原理与RocketMQ
+
 ## 客户端例子
 
 https://gitee.com/edidada/testrocketmq
@@ -8,13 +13,13 @@ rocketmq_client.md
 
 
 
-spring使用rocketmq
+## spring使用rocketmq
 
 https://gitee.com/edidada/testrocketmqspring
 
 
 
-### spring boot使用rocketmq
+## spring boot使用rocketmq
 
 https://gitee.com/edidada/testrocketmqspringboot
 
@@ -370,15 +375,10 @@ RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog
 
 
 RocketMQ client和MQ server之间的通信协议是自定义的，它们之间的通信是通过网络传输实现的。下面是RocketMQ client和MQ server之间的通信协议的主要内容：
-
 1. 协议头：协议头包括魔数、版本号、请求代码、语言、序列化类型等字段，用于标识协议的版本和类型。
-
 2. 消息体：消息体是客户端向服务器发送的数据，包括生产者发送的消息、消费者订阅的消息等。
-
 3. 协议体：协议体是客户端和服务器之间交换的数据，包括请求和响应。请求包括生产者发送消息、消费者拉取消息、心跳等操作，响应包括发送结果、消费结果等。
-
 4. 心跳：客户端和服务器之间需要定期发送心跳包，以维持连接状态。心跳包中包含心跳请求码和心跳响应码。
-
 RocketMQ还支持多种通信协议，如HTTP协议、JMS协议等。不同的通信协议适用于不同的场景和需求，选择合适的协议可以提高通信效率和稳定性。
 
 通信协议是明文的，支持ssl/tls
