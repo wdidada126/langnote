@@ -1,5 +1,6 @@
 # apifox
 
+比postman好用
 
 apifox，指定pqs去调用http接口
 
