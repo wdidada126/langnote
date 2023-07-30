@@ -6,7 +6,9 @@ https://book.douban.com/subject/26808298/
 ISBN: 9787111536642
 出版年: 2016-5
 
-目录
+
+spring boot 1
+## 目录
 
 第1章了解微服务
 1.1什么是微服务
@@ -91,4 +93,41 @@ ISBN: 9787111536642
 SpringFactoriesLoader
 
 @EnableAutoConfiguration自动配置的魔法其实就变成了：从classpath中搜寻所有META-INF/spring.factories配置文件，并将其中org.spring-framework.boot.autoconfigure.EnableAutoConfiguration对应的配置项通过反射（Java Reflection）实例化为对应的标注了@Configuration的JavaConfig形式的IoC容器配置类，然后汇总为一个并加载到IoC容器。
+
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+
+SpringApplicationRunListener
+ApplicationListener
+ApplicationContextInitializer
+
+CommandLineRunner
+
+
+ApplicationContextInitializer作用 spring-context 包中的类
+`ApplicationContextInitializer` 是 Spring Framework 中的一个接口，用于在 Spring 应用程序上下文被创建时进行初始化。它是 `ConfigurableApplicationContext` 接口的一个扩展点，可以用于在应用程序上下文创建之前对应用程序上下文进行自定义配置。
+
+`ApplicationContextInitializer` 接口有一个 `initialize()` 方法，该方法接受一个 `ConfigurableApplicationContext` 对象作为参数，您可以在该方法中执行自定义的配置和初始化逻辑。例如，您可以在该方法中注册自定义的 BeanPostProcessor、添加自定义的 PropertySource 或设置自定义的环境变量等。
+
+`ApplicationContextInitializer` 的主要作用是提供一个扩展点，允许开发人员在 Spring 应用程序上下文被创建之前对其进行自定义配置。在实际应用中，您可以通过实现 `ApplicationContextInitializer` 接口并将其注册到您的应用程序上下文中来实现自定义配置。
+
+`ApplicationContextInitializer` 接口位于 `spring-context` 包中，是 Spring Framework 的一部分，可用于所有支持 Spring 应用程序上下文的项目，例如 Spring Boot、Spring MVC 等。
+
+### 4 了解纷杂的spring-boot-starter
+
+一个配置类，一个spring bean配置类
+
+
+#### 应用日志和spring-boot-starter-logging
+
+
+#### 快速Web应用开发与spring-boot-starter-web
+
+
+#### 数据访问与spring-boot-starter-jdbc
+
+
+#### spring-boot-starter-aop及其使用场景说明
+
 

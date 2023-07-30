@@ -80,6 +80,14 @@ springboot项目读取 logback-spring.xml配置文件的方法如下：
 
 
 
+备注
+
+logging.config配置项
+
+LoggingApplicationListener的   public static final String CONFIG_PROPERTY = "logging.config";
+
+
+
 
 
 
@@ -112,5 +120,199 @@ CONDITIONS EVALUATION REPORT的作用如下：
 - CONDITIONS EVALUATION REPORT是一个条件评估报告，用于显示 Spring Boot 应用在启动时匹配的自动配置类和条件¹²³。
 - CONDITIONS EVALUATION REPORT可以帮助开发者了解 Spring Boot 应用的配置情况，以及为什么某些自动配置类被激活或排除¹²³。
 - CONDITIONS EVALUATION REPORT默认在日志级别为 DEBUG 时打印，如果不想看到这些信息，可以在配置文件中设置 logging.level.org.springframework.boot.autoconfigure 为 INFO 或 ERROR¹²⁴。
+
+
+### 源代码分包解析
+
+https://docs.spring.io/spring-boot/docs/2.3.x/api/
+
+
+
+org.springframework.boot.logging包自动注入spring ioc容器的类有哪些，源码中在哪个类方法中注入的
+
+org.springframework.boot.logging包中自动注入Spring IoC容器的主要类有:
+
+1. LoggingApplicationListener
+
+这个类会在Spring ApplicationContext创建后自动调用,它会设置日志系统,并将日志配置环境信息打印到控制台。
+
+它是通过org.springframework.context.event.EventListener注解自动注册的:
+
+@EventListener(ApplicationStartedEvent.class)
+public void onApplicationStartedEvent(ApplicationStartedEvent event) {
+  // 日志初始化代码
+}
+
+2. LoggingSystem
+
+这个类封装了日志系统的初始化逻辑,它会被LoggingApplicationListener自动注入使用。
+
+它通过@Component注解自动注册:
+
+@Component
+public class LoggingSystem {
+  // 日志系统初始化代码
+}  
+
+org.springframework.boot.context.logging.LoggingApplicationListener#onApplicationStartingEvent   调用LoggingSystem beforeInitialize()
+
+
+
+3. LogFile
+
+这个类代表日志文件,也通过@Component注册。
+
+其他一些辅助类如LogLevel、LoggingConverter等也都是通过@Component自动注册的。
+
+所以综上,org.springframework.boot.logging包通过@Component、@EventListener等注解实现了组件的自动注册,使得日志模块可以自动集成到Spring Boot应用中,这也是Spring Boot自动配置的核心方式之一。
+
+
+
+org.springframework.boot.context.logging.LoggingApplicationListener#initialize
+
+配置
+
+
+
+
+
+
+
+spring boot log配置项？
+
+
+
+Spring Boot中提供了丰富的日志配置项,可以通过application.properties或application.yml进行设置。
+
+常见的日志配置项包括:
+
+- logging.file - 设置日志文件的名称,如logging.file=app.log
+
+- logging.path - 设置日志文件的路径,如logging.path=/var/log
+
+- logging.pattern.console - 设置控制台日志的格式 pattern
+
+- logging.pattern.file - 设置文件日志的格式 pattern
+
+- logging.level - 设置日志级别,可以针对路径或Logger名称,如logging.level.root=WARN
+
+- logging.charset - 设置日志的编码,如logging.charset=UTF-8 
+
+- logging.max-size - 设置日志文件的最大大小,如logging.max-size=10MB
+
+- logging.max-history - 设置最大归档日志文件数,如logging.max-history=30
+
+此外,Spring Boot也支持更详细的自定义日志配置:
+
+- logging.config - 指定日志配置文件位置
+
+- logging.exception-conversion-word - 设置日志打印异常时的转换词,如logging.exception-conversion-word=%wEx
+
+- logging.redis.channel - 设置Redis日志记录通道
+
+- logging.logstash.* - 设置Logstash配置
+
+- logging.logback.* - 设置Logback配置
+
+- logging.log4j2.* - 设置Log4j2配置
+
+通过这些配置,Spring Boot为日志提供了自动配置的同时,也给予了用户更大的自定义空间。
+
+
+
+
+
+### org.springframework.boot.logging
+
+| org.springframework.boot.logging | 类型     | 说明                              |
+| -------------------------------- | -------- | --------------------------------- |
+| Classes                          |          |                                   |
+|                                  |          |                                   |
+| AbstractLoggingSystem            |          |                                   |
+| AbstractLoggingSystem.LogLevels  |          |                                   |
+| DeferredLog                      |          |                                   |
+| LogFile                          |          | 重要 有配置项 logging.file.name等 |
+| LoggerConfiguration              |          |                                   |
+| LoggerConfigurationComparator    | 私有类   |                                   |
+| LoggerGroup                      | final    | implements Iterable<LoggerGroup>  |
+| LoggerGroups                     |          |                                   |
+| LoggingInitializationContext     | context  |                                   |
+| LoggingSystem                    | abstract | 重要 见上面 子类JavaLoggingSystem |
+| LoggingSystemProperties          |          | 有属性 Environment environment    |
+| Slf4JLoggingSystem               | abstract |                                   |
+|                                  |          |                                   |
+| Enums                            |          |                                   |
+|                                  |          |                                   |
+| LogLevel                         |          |                                   |
+
+LogLevel 在LoggerConfiguration中用
+
+LoggerConfiguration在JavaLoggingSystem 中用
+
+
+
+LoggingSystem (org.springframework.boot.logging)
+    AbstractLoggingSystem (org.springframework.boot.logging)
+        JavaLoggingSystem (org.springframework.boot.logging.java)
+        Slf4JLoggingSystem (org.springframework.boot.logging)
+            Log4J2LoggingSystem (org.springframework.boot.logging.log4j2)
+            LogbackLoggingSystem (org.springframework.boot.logging.logback)
+
+
+
+### org.springframework.boot.logging.java
+
+| org.springframework.boot.logging.java | 类型 | 说明                            |
+| ------------------------------------- | ---- | ------------------------------- |
+| Classes                               |      |                                 |
+|                                       |      |                                 |
+| JavaLoggingSystem                     |      |                                 |
+| SimpleFormatter                       |      | 继承java.util.logging.Formatter |
+
+JavaLoggingSystem是子类
+
+
+
+有配置文件
+
+
+
+logging.properties
+
+
+
+```shell
+handlers =java.util.logging.ConsoleHandler
+```
+
+
+
+### org.springframework.boot.logging.log4j2
+
+| org.springframework.boot.logging.log4j2     | 类型 | 说明 |
+| ------------------------------------------- | ---- | ---- |
+| Classes                                     |      |      |
+|                                             |      |      |
+| ColorConverter                              |      |      |
+| ExtendedWhitespaceThrowablePatternConverter |      |      |
+| Log4J2LoggingSystem                         |      |      |
+| SpringBootConfigurationFactory              |      |      |
+| WhitespaceThrowablePatternConverter         |      |      |
+
+
+### org.springframework.boot.logging.logback 
+
+| org.springframework.boot.logging.logback  | 类型 | 说明                              |
+| ----------------------------------------- | ---- | --------------------------------- |
+| Classes                                   |      |                                   |
+|                                           |      |                                   |
+| ColorConverter                            |      | CompositeConverter<ILoggingEvent> |
+| DebugLogbackConfigurator                  |      |                                   |
+| DefaultLogbackConfiguration               |      |                                   |
+| ExtendedWhitespaceThrowableProxyConverter |      |                                   |
+| LogbackConfigurator                       |      |                                   |
+| LogbackConfigurator.ShutdownHandler       |      |                                   |
+| LogbackLoggingSystem                      |      |                                   |
+| WhitespaceThrowableProxyConverter         |      |                                   |
 
 
