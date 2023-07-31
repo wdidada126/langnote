@@ -6,8 +6,13 @@ https://www.zhihu.com/pub/book/120292193
 
 书籍代码
 https://gitee.com/edidada/spring-boot_app_dev_in_action
+ISBN: 9787302575269
+出版年: 2021-3
 
-第2章 使用Spring Boot构建Web应用程序
+### 第1章 Spring Boot基础知识
+
+
+### 第2章 使用Spring Boot构建Web应用程序
 
 ### 第3章 创建RESTful Web服务
 
@@ -30,6 +35,9 @@ JPA
 Spring Data JPA
 
 
+### 第5章 应用程序安全性
+
+### 第6章 自动化测试
 
 ### 第7章 部署与运维
 

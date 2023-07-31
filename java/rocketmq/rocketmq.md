@@ -38,7 +38,7 @@ https://gitee.com/edidada/testrocketmqspringboot
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <version>2.0.4</version>
         </dependency>
- ```           
+```
 
 rocketmq-spring-boot-2.0.4.jar
 org.apache.rocketmq.spring.core.RocketMQTemplate

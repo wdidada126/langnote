@@ -1,9 +1,45 @@
-# Spring Boot
+# 笔记类型Spring Boot
 
 
 https://docs.spring.io/spring-boot/docs/2.3.x/api/
 
 spring_boot.xlsx
+
+
+spring-boot-2.7.11.jar!\META-INF\spring.factories
+文件
+
+
+jar文件
+- spring-boot
+- spring-boot-autoconfigure
+- spring-boot-starter  没有java文件
+- spring-boot-starter-amqp  没有java文件
+- spring-boot-starter-logging  没有java文件
+- spring-boot-starter-test  没有java文件
+- spring-boot-starter-validation  没有java文件
+- spring-boot-test
+- spring-boot-test-autoconfigure
+
+
+从你提供的信息看,这些Spring Boot starter依赖项确实不包含Java源代码文件:
+- spring-boot-starter: 这是核心的启动器,提供了自动配置的支持、日志和YAML。它不包含任何Java代码。
+- spring-boot-starter-amqp: 提供了对Spring AMQP和RabbitMQ的自动配置。其代码在spring-amqp项目中。
+- spring-boot-starter-logging: 提供了日志(Logback, Log4J2)的自动配置。其代码在spring-boot项目中。
+- spring-boot-starter-test: 提供了测试支持,包含JUnit、Hamcrest、Mockito等。其代码在spring-boot项目中。
+- spring-boot-starter-validation: 提供了Bean Validation(Hibernate Validator)的自动配置。其代码在hibernate-validator项目中。
+这些启动器的作用是提供自动配置,减少手动设置的代码量。实际的功能实现代码存在于它们所依赖的其他项目中,而不是在启动器里面。这使得启动器能保持精简和专注于自动配置的目的。我们在使用Spring Boot时通常需要同时引入这些启动器依赖,它们会一起启用Spring Boot应用所需的常见功能。
+
+AnnotationConfigServletWebApplicationContext
+AnnotationConfigServletWebServerApplicationContext  区别 都是spring-boot包里面的
+
+AnnotationConfigServletWebApplicationContext 和 AnnotationConfigServletWebServerApplicationContext 都是 Spring Framework 应用程序上下文，用于支持基于注解的 Spring Web 应用程序。
+
+它们的主要区别在于应用程序运行的环境不同：
+
+AnnotationConfigServletWebApplicationContext 用于 Web 应用程序运行在 Servlet 容器中的情况。它是基于 AnnotationConfigApplicationContext 实现的，但还添加了一些支持 Spring Web 应用程序的特定功能，例如处理 Web 请求和响应、处理静态资源等。它适用于通过 WAR 包部署的 Spring Web 应用程序。
+AnnotationConfigServletWebServerApplicationContext 用于 Web 应用程序运行在嵌入式 Servlet 容器中的情况。它是基于 AnnotationConfigApplicationContext 实现的，但还添加了一些支持嵌入式 Servlet 容器的特定功能，例如创建和配置嵌入式 Servlet 容器、处理静态资源等。它适用于使用嵌入式 Tomcat、Jetty 或 Undertow 等容器运行的 Spring Web 应用程序。
+因此，当您使用 Spring 框架开发 Web 应用程序时，您可以根据应用程序的部署方式来选择使用哪种应用程序上下文。如果您的应用程序将部署在 Servlet 容器中，您应该使用 AnnotationConfigServletWebApplicationContext；如果您的应用程序将嵌入在一个 Servlet 容器中，您应该使用 AnnotationConfigServletWebServerApplicationContext。
 
 
 ## ConditionalOnClass注解
@@ -188,7 +224,7 @@ spring.datasource.jndi-name=java:jboss/datasources/customers
 B站视频
 
 写SpringBoot starter
-
+## 源代码分包详解
 
 
 ### springboot 
@@ -197,33 +233,916 @@ B站视频
 
 
 
-|  org.springframework.boot    |      |      |
+|  org.springframework.boot    |  类型    | 笔记     |
 | ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-
-
-
-### springboot autoconfig
-|  org.springframework.boot.autoconfigure    |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
+|   SpringApplication   |      |      |
 |      |      |      |
 |      |      |      |
 
 
 
-|  org.springframework.boot.autoconfigure.jdbc    |      |      |
-| ---- | ---- | ---- |
-|   DataSourceAutoConfiguration   |      |      |
-|      |      |      |
-|      |      |      |
+| org.springframework.boot.                  | 类型 | 笔记 |
+| ------------------------------------------ | ---- | ---- |
+| Interfaces                                 |      |      |
+| ApplicationArguments                       |      |      |
+| ApplicationRunner                          |      |      |
+| Banner                                     |      |      |
+| CommandLineRunner                          |      |      |
+| ExitCodeExceptionMapper                    |      |      |
+| ExitCodeGenerator                          |      |      |
+| LazyInitializationExcludeFilter            |      |      |
+| SpringApplicationRunListener               |      |      |
+| SpringBootExceptionReporter                |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+|                                            |      |      |
+| DefaultApplicationArguments                |      |      |
+| ExitCodeEvent                              |      |      |
+| ImageBanner                                |      |      |
+| LazyInitializationBeanFactoryPostProcessor |      |      |
+| ResourceBanner                             |      |      |
+| SpringApplication                          |      |      |
+| SpringBootVersion                          |      |      |
+|                                            |      |      |
+| Enums                                      |      |      |
+|                                            |      |      |
+| Banner.Mode                                |      |      |
+| ImageBanner.PixelMode                      |      |      |
+| WebApplicationType                         |      |      |
+|                                            |      |      |
+| Annotation Types                           |      |      |
+|                                            |      |      |
+| SpringBootConfiguration                    |      |      |
+
+
+SpringApplication有main函数，会启动两个Context
+
+
+### org.springframework.boot.admin
+
+| org.springframework.boot.admin        | 类型 | 笔记 |
+| ------------------------------------- | ---- | ---- |
+| Interfaces                            |      |      |
+|                                       |      |      |
+| SpringApplicationAdminMXBean          |      |      |
+|                                       |      |      |
+| Classes                               |      |      |
+|                                       |      |      |
+| SpringApplicationAdminMXBeanRegistrar |      |      |
+
+### org.springframework.boot.ansi
+
+| org.springframework.boot.ansi         | 类型 | 笔记 |
+| ------------------------------------- | ---- | ---- |
+| Interfaces                            |      |      |
+|                                       |      |      |
+| SpringApplicationAdminMXBean          |      |      |
+|                                       |      |      |
+| Classes                               |      |      |
+|                                       |      |      |
+| SpringApplicationAdminMXBeanRegistrar |      |      |
+
+
+### availability
+| org.springframework.boot.availability | 类型 | 笔记 |
+| ------------------------------------- | ---- | ---- |
+| Interfaces                            |      |      |
+|                                       |      |      |
+| ApplicationAvailability               |      |      |
+| AvailabilityState                     |      |      |
+|                                       |      |      |
+| Classes                               |      |      |
+|                                       |      |      |
+| ApplicationAvailabilityBean           |      |      |
+| AvailabilityChangeEvent               |      |      |
+|                                       |      |      |
+| Enums                                 |      |      |
+|                                       |      |      |
+| LivenessState                         |      |      |
+| ReadinessState                        |      |      |
+
+
+### builder
+
+| org.springframework.boot.builder                             | 类型 | 笔记 |
+| ------------------------------------------------------------ | ---- | ---- |
+| ParentContextApplicationContextInitializer                   |      |      |
+| ParentContextApplicationContextInitializer.ParentContextAvailableEvent |      |      |
+| ParentContextCloserApplicationListener                       |      |      |
+| ParentContextCloserApplicationListener.ContextCloserListener |      |      |
+| SpringApplicationBuilder                                     |      |      |
+
+
+### cloud
+
+| org.springframework.boot.cloud           | 类型 | 笔记 |
+| ---------------------------------------- | ---- | ---- |
+| Classes                                  |      |      |
+|                                          |      |      |
+| CloudFoundryVcapEnvironmentPostProcessor |      |      |
+|                                          |      |      |
+| Enums                                    |      |      |
+|                                          |      |      |
+| CloudPlatform                            |      |      |
 
 
 
-org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
-使用DataSourceAutoConfiguration
+### context
+| org.springframework.boot.context                             | 类型 | 笔记 |
+| ------------------------------------------------------------ | ---- | ---- |
+| Interfaces                                                   |      |      |
+| ConfigurationWarningsApplicationContextInitializer.Check     |      |      |
+|                                                              |      |      |
+| Classes                                                      |      |      |
+|                                                              |      |      |
+| ApplicationPidFileWriter                                     |      |      |
+| ConfigurationWarningsApplicationContextInitializer           |      |      |
+| ConfigurationWarningsApplicationContextInitializer.ComponentScanPackageCheck |      |      |
+| ConfigurationWarningsApplicationContextInitializer.ConfigurationWarningsPostProcessor |      |      |
+| ContextIdApplicationContextInitializer                       |      |      |
+| FileEncodingApplicationListener                              |      |      |
+| TypeExcludeFilter                                            |      |      |
+
+
+
+### org.springframework.boot.context.annotation
+
+| org.springframework.boot.context.annotation | 类型 | 笔记 |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| DeterminableImports                         |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| Configurations                              |      |      |
+| UserConfigurations                          |      |      |
+
+
+
+### config
+| org.springframework.boot.config         | 类型 | 笔记 |
+| --------------------------------------- | ---- | ---- |
+| Classes                                 |      |      |
+| AnsiOutputApplicationListener           |      |      |
+| ConfigFileApplicationListener           |      |      |
+| DelegatingApplicationContextInitializer |      |      |
+| DelegatingApplicationListener           |      |      |
+
+
+
+### org.springframework.boot.context.event
+
+| org.springframework.boot.context.event | 类型 | 笔记 |
+| -------------------------------------- | ---- | ---- |
+| Classes                                |      |      |
+| ApplicationContextInitializedEvent     |      |      |
+| ApplicationEnvironmentPreparedEvent    |      |      |
+| ApplicationFailedEvent                 |      |      |
+| ApplicationPreparedEvent               |      |      |
+| ApplicationReadyEvent                  |      |      |
+| ApplicationStartedEvent                |      |      |
+| ApplicationStartingEvent               |      |      |
+| EventPublishingRunListener             |      |      |
+| SpringApplicationEvent                 |      |      |
+
+
+
+###  org.springframework.boot.context.logging
+
+
+| org.springframework.boot.context.logging | 类型 | 笔记 |
+| ---------------------------------------- | ---- | ---- |
+| Classes                                  |      |      |
+| ClasspathLoggingApplicationListener      |      |      |
+| LoggingApplicationListener               |      |      |
+
+
+LoggingApplicationListener初始化日志
+
+
+
+#### org.springframework.boot.context.properties
+
+| org.springframework.boot.context.properties | 类型 | 笔记 |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| ConfigurationPropertiesBindHandlerAdvisor   |      |      |
+| PropertyMapper.SourceOperator               |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| BoundConfigurationProperties                |      |      |
+| ConfigurationBeanFactoryMetadata            |      |      |
+| ConfigurationPropertiesBean                 |      |      |
+| ConfigurationPropertiesBindingPostProcessor |      |      |
+| PropertyMapper                              |      |      |
+| PropertyMapper.Source                       |      |      |
+|                                             |      |      |
+| Enums                                       |      |      |
+|                                             |      |      |
+| ConfigurationPropertiesBean.BindMethod      |      |      |
+|                                             |      |      |
+| Exceptions                                  |      |      |
+|                                             |      |      |
+| ConfigurationPropertiesBindException        |      |      |
+|                                             |      |      |
+| Annotation Types                            |      |      |
+|                                             |      |      |
+| ConfigurationProperties                     |      |      |
+| ConfigurationPropertiesBinding              |      |      |
+| ConfigurationPropertiesScan                 |      |      |
+| ConstructorBinding                          |      |      |
+| DeprecatedConfigurationProperty             |      |      |
+| EnableConfigurationProperties               |      |      |
+| NestedConfigurationProperty                 |      |      |
+
+
+#### org.springframework.boot.bind
+
+
+| org.springframework.boot.bind           | 类型 | 笔记 |
+| --------------------------------------- | ---- | ---- |
+| Interfaces                              |      |      |
+| BindConstructorProvider                 |      |      |
+| BindContext                             |      |      |
+| BindHandler                             |      |      |
+| PlaceholdersResolver                    |      |      |
+|                                         |      |      |
+| Classes                                 |      |      |
+|                                         |      |      |
+| AbstractBindHandler                     |      |      |
+| Bindable                                |      |      |
+| Binder                                  |      |      |
+| BindResult                              |      |      |
+| BoundPropertiesTrackingBindHandler      |      |      |
+| DataObjectPropertyName                  |      |      |
+| PropertySourcesPlaceholdersResolver     |      |      |
+|                                         |      |      |
+| Exceptions                              |      |      |
+|                                         |      |      |
+| BindException                           |      |      |
+| UnboundConfigurationPropertiesException |      |      |
+|                                         |      |      |
+| Annotation Types                        |      |      |
+|                                         |      |      |
+| DefaultValue                            |      |      |
+
+
+
+#### org.springframework.boot.context.properties.bind.handler
+
+
+| org.springframework.boot.context.properties.bind.handler | 类型 | 笔记 |
+| -------------------------------------------------------- | ---- | ---- |
+| Classes                                                  |      |      |
+| IgnoreErrorsBindHandler                                  |      |      |
+| IgnoreTopLevelConverterNotFoundBindHandler               |      |      |
+| NoUnboundElementsBindHandler                             |      |      |
+
+#### org.springframework.boot.context.properties.bind.validation
+
+| org.springframework.boot.context.properties.bind.validation | 类型 | 笔记 |
+| ----------------------------------------------------------- | ---- | ---- |
+| Classes                                                     |      |      |
+| ValidationBindHandler                                       |      |      |
+| ValidationErrors                                            |      |      |
+|                                                             |      |      |
+| Exceptions                                                  |      |      |
+|                                                             |      |      |
+| BindValidationException                                     |      |      |
+
+#### sd
+
+|                              | 类型 | 笔记 |
+| ---------------------------- | ---- | ---- |
+| Classes                      |      |      |
+| ApplicationConversionService |      |      |
+|                              |      |      |
+| Enums                        |      |      |
+|                              |      |      |
+| DurationStyle                |      |      |
+| PeriodStyle                  |      |      |
+|                              |      |      |
+| Annotation Types             |      |      |
+|                              |      |      |
+| DataSizeUnit                 |      |      |
+| Delimiter                    |      |      |
+| DurationFormat               |      |      |
+| DurationUnit                 |      |      |
+| PeriodFormat                 |      |      |
+| PeriodUnit                   |      |      |
+
+
+
+#### diagnostics
+
+
+|                                | 类型 | 笔记 |
+| ------------------------------ | ---- | ---- |
+| Interfaces                     |      |      |
+| FailureAnalysisReporter        |      |      |
+| FailureAnalyzer                |      |      |
+|                                |      |      |
+| Classes                        |      |      |
+|                                |      |      |
+| AbstractFailureAnalyzer        |      |      |
+| FailureAnalysis                |      |      |
+| LoggingFailureAnalysisReporter |      |      |
+
+
+
+#### org.springframework.boot.diagnostics.analyzer
+
+
+| org.springframework.boot.diagnostics.analyzer | 类型 | 笔记 |
+| --------------------------------------------- | ---- | ---- |
+| Classes                                       |      |      |
+| AbstractInjectionFailureAnalyzer              |      |      |
+| BeanNotOfRequiredTypeFailureAnalyzer          |      |      |
+
+
+#### org.springframework.boot.env
+
+
+|                                                              | 类型 | 说明 |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- | ---- | ---- |
+| Interfaces                                                   |      |      |      |      |      |      |
+| EnvironmentPostProcessor                                     |      |      |      |      |      |      |
+| PropertySourceLoader                                         |      |      |      |      |      |      |
+|                                                              |      |      |      |      |      |      |
+| Classes                                                      |      |      |      |      |      |      |
+|                                                              |      |      |      |      |      |      |
+| OriginTrackedMapPropertySource                               |      |      |      |      |      |      |
+| PropertiesPropertySourceLoader                               |      |      |      |      |      |      |
+| RandomValuePropertySource                                    |      |      |      |      |      |      |
+| SpringApplicationJsonEnvironmentPostProcessor                |      |      |      |      |      |      |
+| SystemEnvironmentPropertySourceEnvironmentPostProcessor      |      |      |      |      |      |      |
+| SystemEnvironmentPropertySourceEnvironmentPostProcessor.OriginAwareSystemEnvironmentPropertySource |      |      |      |      |      |      |
+| YamlPropertySourceLoader                                     |      |      |      |      |      |      |
+
+
+
+
+
+#### org.springframework.boot.info
+
+
+|                      | 类型 | 笔记 |
+| -------------------- | ---- | ---- |
+| Classes              |      |      |
+| BuildProperties      |      |      |
+| GitProperties        |      |      |
+| InfoProperties       |      |      |
+| InfoProperties.Entry |      |      |
+
+
+#### org.springframework.boot.jackson
+
+|                        | 类型 | 笔记 |
+| ---------------------- | ---- | ---- |
+| Classes                |      |      |
+| JsonComponentModule    |      |      |
+| JsonObjectDeserializer |      |      |
+| JsonObjectSerializer   |      |      |
+|                        |      |      |
+| Enums                  |      |      |
+|                        |      |      |
+| JsonComponent.Scope    |      |      |
+|                        |      |      |
+| Annotation Types       |      |      |
+|                        |      |      |
+| JsonComponent          |      |      |
+
+
+
+#### org.springframework.boot.jdbc
+
+
+|                               | 类型 | 笔记 |
+| ----------------------------- | ---- | ---- |
+| Interfaces                    |      |      |
+| SchemaManagementProvider      |      |      |
+| XADataSourceWrapper           |      |      |
+|                               |      |      |
+| Classes                       |      |      |
+|                               |      |      |
+| AbstractDataSourceInitializer |      |      |
+| DataSourceBuilder             |      |      |
+| DataSourceUnwrapper           |      |      |
+|                               |      |      |
+| Enums                         |      |      |
+|                               |      |      |
+| DatabaseDriver                |      |      |
+| DataSourceInitializationMode  |      |      |
+| EmbeddedDatabaseConnection    |      |      |
+| SchemaManagement              |      |      |
+
+
+
+#### org.springframework.boot.jdbc.metadata
+
+
+|                                         | 类型 | 笔记 |
+| --------------------------------------- | ---- | ---- |
+| Interfaces                              |      |      |
+| DataSourcePoolMetadata                  |      |      |
+| DataSourcePoolMetadataProvider          |      |      |
+|                                         |      |      |
+| Classes                                 |      |      |
+|                                         |      |      |
+| AbstractDataSourcePoolMetadata          |      |      |
+| CommonsDbcp2DataSourcePoolMetadata      |      |      |
+| CompositeDataSourcePoolMetadataProvider |      |      |
+| HikariDataSourcePoolMetadata            |      |      |
+| TomcatDataSourcePoolMetadata            |      |      |
+
+#### org.springframework.boot.jms
+
+|  | 类型 | 笔记 |
+|----------------------------|----------------------------|----------------------------|
+| XAConnectionFactoryWrapper |  |  |
+
+
+
+#### org.springframework.boot.json
+
+|                    | 类型 | 笔记 |
+| ------------------ | ---- | ---- |
+| Interfaces         |      |      |
+| JsonParser         |      |      |
+|                    |      |      |
+| Classes            |      |      |
+|                    |      |      |
+| AbstractJsonParser |      |      |
+| BasicJsonParser    |      |      |
+| GsonJsonParser     |      |      |
+| JacksonJsonParser  |      |      |
+| JsonParserFactory  |      |      |
+| YamlJsonParser     |      |      |
+|                    |      |      |
+| Exceptions         |      |      |
+|                    |      |      |
+| JsonParseException |      |      |
+
+
+
+#### jta.atomikos
+
+
+
+
+
+| org.springframework.boot.jta.atomikos     | 类型 | 笔记 |
+| ----------------------------------------- | ---- | ---- |
+| Classes                                   |      |      |
+| AtomikosConnectionFactoryBean             |      |      |
+| AtomikosDataSourceBean                    |      |      |
+| AtomikosDependsOnBeanFactoryPostProcessor |      |      |
+| AtomikosProperties                        |      |      |
+| AtomikosProperties.Recovery               |      |      |
+| AtomikosXAConnectionFactoryWrapper        |      |      |
+| AtomikosXADataSourceWrapper               |      |      |
+
+
+
+#### dd
+
+|                                            | 类型 | 笔记 |
+| ------------------------------------------ | ---- | ---- |
+| Classes                                    |      |      |
+| LiquibaseServiceLocatorApplicationListener |      |      |
+| SpringPackageScanClassResolver             |      |      |
+
+#### dd
+
+#### dd
+
+|                             | 类型 | 笔记 |
+| --------------------------- | ---- | ---- |
+| Interfaces                  |      |      |
+| Origin                      |      |      |
+| OriginLookup                |      |      |
+| OriginProvider              |      |      |
+|                             |      |      |
+| Classes                     |      |      |
+|                             |      |      |
+| OriginTrackedValue          |      |      |
+| PropertySourceOrigin        |      |      |
+| SystemEnvironmentOrigin     |      |      |
+| TextResourceOrigin          |      |      |
+| TextResourceOrigin.Location |      |      |
+
+#### 
+
+####  org.springframework.boot.reactor
+
+| org.springframework.boot.reactor | 类型 | 笔记 |
+|------------------------------------|------------------------------------|------------------------------------|
+| DebugAgentEnvironmentPostProcessor |  |  |
+
+
+
+
+
+#### 
+
+#### 
+
+#### 
+
+#### 
+
+
+#### 
+
+#### 
+
+
+#### 
+
+#### 
+
+####  org.springframework.boot.web.client
+
+
+
+| org.springframework.boot.web.client | 类型 | 内容 |
+| ----------------------------------- | ---- | ---- |
+| Interfaces                          |      |      |
+| RestTemplateCustomizer              |      |      |
+| RestTemplateRequestCustomizer       |      |      |
+|                                     |      |      |
+| Classes                             |      |      |
+|                                     |      |      |
+| ClientHttpRequestFactorySupplier    |      |      |
+| RestTemplateBuilder                 |      |      |
+| RootUriTemplateHandler              |      |      |
+
+#### org.springframework.boot.web.codec
+
+
+
+| org.springframework.boot.web.codec | 类型 |      |
+| ---------------------------------- | ---- | ---- |
+| Interfaces                         |      |      |
+| CodecCustomizer                    |      |      |
+
+
+
+#### org.springframework.boot.context
+
+
+
+| org.springframework.boot.context            | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| ConfigurableWebServerApplicationContext     |      |      |
+| WebServerApplicationContext                 |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| ServerPortInfoApplicationContextInitializer |      |      |
+| WebServerInitializedEvent                   |      |      |
+| WebServerPortFileWriter                     |      |      |
+
+
+
+#### org.springframework.boot.reactor
+
+
+
+
+
+| org.springframework.boot.reactor       | 类型 |      |
+| -------------------------------------- | ---- | ---- |
+| Interfaces                             |      |      |
+| ConfigurableJettyWebServerFactory      |      |      |
+| JettyServerCustomizer                  |      |      |
+|                                        |      |      |
+| Classes                                |      |      |
+|                                        |      |      |
+| JettyReactiveWebServerFactory          |      |      |
+| JettyServletWebServerFactory           |      |      |
+| JettyWebServer                         |      |      |
+| ServletContextInitializerConfiguration |      |      |
+
+
+
+#### org.springframework.boot.web.embedded.netty
+
+
+
+| org.springframework.boot.web.embedded.netty | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| NettyRouteProvider                          |      |      |
+| NettyServerCustomizer                       |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| NettyReactiveWebServerFactory               |      |      |
+| NettyWebServer                              |      |      |
+| SslServerCustomizer                         |      |      |
+
+
+
+#### org.springframework.boot.web.embedded.tomcat
+
+
+
+| org.springframework.boot.web.embedded.tomcat | 类型 |      |
+| -------------------------------------------- | ---- | ---- |
+| Interfaces                                   |      |      |
+| ConfigurableTomcatWebServerFactory           |      |      |
+| TomcatConnectorCustomizer                    |      |      |
+| TomcatContextCustomizer                      |      |      |
+| TomcatProtocolHandlerCustomizer              |      |      |
+|                                              |      |      |
+| Classes                                      |      |      |
+|                                              |      |      |
+| TomcatEmbeddedWebappClassLoader              |      |      |
+| TomcatReactiveWebServerFactory               |      |      |
+| TomcatServletWebServerFactory                |      |      |
+| TomcatWebServer                              |      |      |
+|                                              |      |      |
+| Exceptions                                   |      |      |
+|                                              |      |      |
+| ConnectorStartFailedException                |      |      |
+
+
+
+#### org.springframework.boot.web.embedded.undertow
+
+
+
+| org.springframework.boot.web.embedded.undertow | 类型 |      |
+| ---------------------------------------------- | ---- | ---- |
+| Interfaces                                     |      |      |
+| ConfigurableUndertowWebServerFactory           |      |      |
+| HttpHandlerFactory                             |      |      |
+| UndertowBuilderCustomizer                      |      |      |
+| UndertowDeploymentInfoCustomizer               |      |      |
+|                                                |      |      |
+| Classes                                        |      |      |
+|                                                |      |      |
+| UndertowReactiveWebServerFactory               |      |      |
+| UndertowServletWebServer                       |      |      |
+| UndertowServletWebServerFactory                |      |      |
+| UndertowWebServer                              |      |      |
+
+
+
+
+
+#### org.springframework.boot.web.reactive.error
+
+
+
+| org.springframework.boot.web.reactive.error | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| ErrorAttributes                             |      |      |
+| ErrorWebExceptionHandler                    |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| DefaultErrorAttributes                      |      |      |
+
+
+
+#### org.springframework.boot.web.reactive.context
+
+
+
+| org.springframework.boot.web.reactive.context       | 类型 |      |
+| --------------------------------------------------- | ---- | ---- |
+| Interfaces                                          |      |      |
+| ConfigurableReactiveWebApplicationContext           |      |      |
+| ConfigurableReactiveWebEnvironment                  |      |      |
+| ReactiveWebApplicationContext                       |      |      |
+|                                                     |      |      |
+| Classes                                             |      |      |
+|                                                     |      |      |
+| AnnotationConfigReactiveWebApplicationContext       |      |      |
+| AnnotationConfigReactiveWebServerApplicationContext |      |      |
+| GenericReactiveWebApplicationContext                |      |      |
+| ReactiveWebServerApplicationContext                 |      |      |
+| ReactiveWebServerInitializedEvent                   |      |      |
+| StandardReactiveWebEnvironment                      |      |      |
+
+
+
+####  org.springframework.boot.web.server
+
+
+
+| org.springframework.boot.web.server         | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| ConfigurableWebServerFactory                |      |      |
+| ErrorPageRegistrar                          |      |      |
+| ErrorPageRegistry                           |      |      |
+| GracefulShutdownCallback                    |      |      |
+| SslStoreProvider                            |      |      |
+| WebServer                                   |      |      |
+| WebServerFactory                            |      |      |
+| WebServerFactoryCustomizer                  |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| AbstractConfigurableWebServerFactory        |      |      |
+| Compression                                 |      |      |
+| ErrorPage                                   |      |      |
+| ErrorPageRegistrarBeanPostProcessor         |      |      |
+| Http2                                       |      |      |
+| MimeMappings                                |      |      |
+| MimeMappings.Mapping                        |      |      |
+| Ssl                                         |      |      |
+| SslConfigurationValidator                   |      |      |
+| WebServerFactoryCustomizerBeanPostProcessor |      |      |
+|                                             |      |      |
+| Enums                                       |      |      |
+|                                             |      |      |
+| GracefulShutdownResult                      |      |      |
+| Shutdown                                    |      |      |
+| Ssl.ClientAuth                              |      |      |
+|                                             |      |      |
+| Exceptions                                  |      |      |
+|                                             |      |      |
+| PortInUseException                          |      |      |
+| WebServerException                          |      |      |
+|                                             |      |      |
+| Annotation Types                            |      |      |
+|                                             |      |      |
+| LocalServerPort                             |      |      |
+
+
+
+####  org.springframework.boot.web.servlet
+
+
+
+
+
+| org.springframework.boot.web.servlet                   | 类型 |      |
+| ------------------------------------------------------ | ---- | ---- |
+| Interfaces                                             |      |      |
+| ServletContextInitializer                              |      |      |
+| ServletContextInitializerBeans.RegistrationBeanAdapter |      |      |
+|                                                        |      |      |
+| Classes                                                |      |      |
+|                                                        |      |      |
+| AbstractFilterRegistrationBean                         |      |      |
+| DelegatingFilterProxyRegistrationBean                  |      |      |
+| DynamicRegistrationBean                                |      |      |
+| FilterRegistrationBean                                 |      |      |
+| MultipartConfigFactory                                 |      |      |
+| RegistrationBean                                       |      |      |
+| ServletContextInitializerBeans                         |      |      |
+| ServletListenerRegistrationBean                        |      |      |
+| ServletRegistrationBean                                |      |      |
+|                                                        |      |      |
+| Enums                                                  |      |      |
+|                                                        |      |      |
+| DispatcherType                                         |      |      |
+|                                                        |      |      |
+| Annotation Types                                       |      |      |
+|                                                        |      |      |
+| ServletComponentScan                                   |      |      |
+
+
+
+#### org.springframework.boot.web.servlet.context
+
+
+
+
+
+| org.springframework.boot.web.servlet.context                 | 类型 |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| AnnotationConfigServletWebApplicationContext                 |      |      |
+| AnnotationConfigServletWebServerApplicationContext           |      |      |
+| ServletWebServerApplicationContext                           |      |      |
+| ServletWebServerApplicationContext.ExistingWebApplicationScopes |      |      |
+| ServletWebServerInitializedEvent                             |      |      |
+| WebApplicationContextServletContextAwareProcessor            |      |      |
+| XmlServletWebServerApplicationContext                        |      |      |
+
+
+
+#### org.springframework.boot.web.servlet.error
+
+
+
+| org.springframework.boot.web.servlet.error | 类型 |      |
+| ------------------------------------------ | ---- | ---- |
+| Interfaces                                 |      |      |
+| ErrorAttributes                            |      |      |
+| ErrorController                            |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+|                                            |      |      |
+| DefaultErrorAttributes                     |      |      |
+
+
+
+
+
+#### org.springframework.boot.web.servlet.filter
+
+
+
+
+
+| org.springframework.boot.web.servlet.filter | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+|                                             |      |      |
+| OrderedFilter                               |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| ApplicationContextHeaderFilter              |      |      |
+| OrderedCharacterEncodingFilter              |      |      |
+| OrderedFormContentFilter                    |      |      |
+| OrderedHiddenHttpMethodFilter               |      |      |
+| OrderedRequestContextFilter                 |      |      |
+
+
+
+#### org.springframework.boot.web.servlet.server
+
+
+
+
+
+| org.springframework.boot.web.servlet.server | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+| ConfigurableServletWebServerFactory         |      |      |
+| ServletWebServerFactory                     |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| AbstractServletWebServerFactory             |      |      |
+| Encoding                                    |      |      |
+| Jsp                                         |      |      |
+| Session                                     |      |      |
+| Session.Cookie                              |      |      |
+|                                             |      |      |
+| Enums                                       |      |      |
+|                                             |      |      |
+| Encoding.Type                               |      |      |
+| Session.SessionTrackingMode                 |      |      |
+
+
+
+#### support
+
+
+
+| Classes                                     | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+|                                             |      |      |
+| ErrorPageFilter                             |      |      |
+| ServletContextApplicationContextInitializer |      |      |
+| SpringBootServletInitializer                |      |      |
+
+
+
+#### dd
+
+
+
+| Classes              | 类型 |      |
+| -------------------- | ---- | ---- |
+|                      |      |      |
+| MustacheView         |      |      |
+| MustacheViewResolver |      |      |
+
+
+
+#### dd
+
+
+
+
+
+| Classes              | 类型 |      |
+| -------------------- | ---- | ---- |
+|                      |      |      |
+| MustacheView         |      |      |
+| MustacheViewResolver |      |      |
+
+
+
+#### dd
+
+#### dd
+
+#### dd
+
+#### dd
 
 
 | 库       |      |      |
