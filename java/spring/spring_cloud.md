@@ -1,5 +1,29 @@
 # Spring Cloud
 
+
+
+## spring cloud作用
+
+
+
+springmvc开发http接口
+
+spring boot starter web快速开发http接口
+
+
+
+sping cloud 一整套企业级服务
+
+微服务http调用 分布式追踪，注册中心，配置中心，分布式事务 网关
+
+国内 阿里 腾讯 华为 卖云服务的，都有一套基于spring cloud的框架
+
+
+
+之前是netfix主导的
+
+
+
 腾讯云 阿里云都有类似的微服务框架
 
 
@@ -99,4 +123,92 @@ spel表达式
 
 
 aoutconfig maven插件是生成properties插件
+
+## 源代码
+
+
+
+https://cloud.spring.io/
+
+
+
+[spring-cloud/spring-cloud-commons: Common classes used in different Spring Cloud implementations (github.com)](https://github.com/spring-cloud/spring-cloud-commons)
+
+
+
+v2.2.5.RELEASE
+
+
+
+spring-cloud-commons
+
+spring-cloud-commons-dependencies
+
+spring-cloud-context
+
+spring-cloud-starter
+
+spring-cloud-starter-loadbalancer
+
+spring-cloud-loadbalancer
+
+
+
+
+
+
+
+https://github.com/alibaba/spring-cloud-alibaba
+
+
+
+https://github.com/spring-cloud/spring-cloud-config
+
+
+
+https://github.com/spring-cloud/spring-cloud-openfeign
+
+
+
+v2.2.5.RELEASE
+
+
+
+maven构建的
+
+
+
+spring-cloud-openfeign-core api doc网址？
+
+https://docs.spring.io/spring-cloud-openfeign/docs/3.1.8/reference/html/
+
+
+
+spring-cloud-openfeign-dependencies
+
+
+
+```xml
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+```
 

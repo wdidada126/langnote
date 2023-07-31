@@ -2,17 +2,11 @@
 
 
 Retrofit和Feign是两种常用的HTTP客户端库，用于在Java应用程序中进行服务间的通信。它们具有以下区别：
-
 1. 基于库的选择：Retrofit是Square公司开发的库，而Feign是Netflix公司开发的库。它们在设计和实现上有一些差异。
-
 2. 使用方式：Retrofit使用注解和接口定义API请求，通过动态代理生成具体的HTTP请求代码。开发人员需要手动定义接口和注解，以描述请求和响应的结构。Feign则更加声明式，使用接口定义API请求，但是不需要手动实现接口，而是通过运行时代理来自动创建实现。
-
 3. 支持的协议：Retrofit主要用于处理RESTful风格的HTTP请求，并支持多种HTTP协议（如GET、POST等）。Feign则是基于Java标准的JAX-RS（Java API for RESTful Web Services）规范，并支持更多的HTTP协议和功能。
-
 4. 整合Spring Cloud：Feign在Spring Cloud框架中得到了广泛应用，并提供了与其他Spring Cloud组件的集成，如服务发现、负载均衡等。Retrofit通常与Android应用程序结合使用，也可以与其他框架进行集成，但没有专门针对Spring Cloud的支持。
-
 5. 定制化能力：由于Retrofit和Feign的设计理念和实现方式不同，它们在定制化能力上也有一些差异。Retrofit提供了更多的灵活性和可定制性，可以通过拦截器、转换器等机制来扩展和定制请求和响应的处理。Feign则提供了更多的自动化功能，并通过Spring Cloud的集成来实现更高级的功能，如服务注册、负载均衡等。
-
 总体而言，Retrofit更适合于构建自定义的、面向RESTful API的HTTP客户端，而Feign更适合于与Spring Cloud等微服务框架集成，并且更加声明式和自动化。选择哪个库取决于您的具体需求和项目背景。
 
 
@@ -87,7 +81,7 @@ public interface MyServiceClient {
 使用Feign客户端非常简单，只需将其注入到您的代码中即可：
 
 
-
+```java
 @Service
 public class MyService {
     private final MyServiceClient client;
@@ -100,6 +94,7 @@ public class MyService {
         return client.getUserById(userId);
     }
 }
+```
 
 
 
@@ -118,10 +113,6 @@ public class FeignConfig {
 
 
 以上是使用Spring Boot配置Feign的基本步骤。根据您的具体需求，您可能需要进行其他配置来满足您的需求。
-
-
-
-
 
 
 
@@ -168,10 +159,12 @@ tutorials\feign
 
 一个Java接口
 
-
+```java
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
+```
+
 
 http协议
 get 路径参数
@@ -188,11 +181,8 @@ io.github.openfeign
 
 
 Feign、OpenFeign及SpringCloud Feign的区别
-
 Feign是Spring Cloud组件中一个轻量级RESTful的HTTP服务客户端，Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。Feign的使用方式是：使用Feign的注解定义接口，调用接口，就可以调用服务注册中心的服务。
-
 由于 Netflix 公司不再维护feign，feign由社区维护，feign更名为 openfeign，并且项目迁移到新的仓库。后续版本仅使用“io.github.openfeign”，推荐使用该依赖。
-
 spring-cloud-openfeign是基于openfeign进行包装，集成了SpringMVC的注解等方便SpringBoot项目开发的一个组件。
 
 Spring Cloud OpenFeign简介
@@ -203,8 +193,6 @@ Spring Cloud OpenFeign是一个声明式的HTTP客户端，它简化了HTTP客�
 https://gitee.com/edidada/openfeigndemo
 
 https://gitee.com/edidada/springboothttpserver
-
-
 
 
 doc
@@ -236,21 +224,22 @@ feign.ReflectiveFeign.FeignInvocationHandler类
 feign api doc
 
 
-feign-core
-feign-form
-feign-hyxtrix
-feign-form-spring
-feign-slf4j
+- feign-core
+- feign-form
+- feign-hyxtrix
+- feign-form-spring
+- feign-slf4j
+- feign-hystrix
 
 
 注解
-Body
-Experimental
-HeaderMap
-Headers
-Param
-QueryMap
-RequestLine
+- Body
+- Experimental
+- HeaderMap
+- Headers
+- Param
+- ueryMap
+- RequestLine
 
 
 feign.Target 接口
@@ -339,7 +328,6 @@ public interface Decoder
 
 public interface Encoder
 
-
 public interface ErrorDecoder
 public class StringDecoder implements Decoder
 
@@ -347,8 +335,6 @@ feign.optionals.OptionalDecoder implements Decoder
 
 
 public class BeanQueryMapEncoder implements feign.QueryMapEncoder
-
-
 
 feign-form
 
@@ -361,7 +347,6 @@ public class FormEncoder implements Encoder
 public @interface FormProperty
 public class MultipartFormContentProcessor implements ContentProcessor
 public class UrlencodedFormContentProcessor implements ContentProcessor
-
 
 package feign.form.util;
 CharsetUtil
@@ -407,6 +392,9 @@ public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter
 org.springframework.cloud.openfeign.FeignClientFactoryBean
 org.springframework.cloud.openfeign.FeignContext
 
+
+org.springframework.cloud.openfeign.EnableFeignClients
+org.springframework.cloud.openfeign.FeignClient
 
 ```shell
 feign.RetryableException: Connection refused: connect executing POST http://localhost:9991/httpserver/getAbc?device=1
@@ -463,26 +451,88 @@ feign.FeignException$NotFound: [404] during [POST] to [http://localhost:9991/htt
 ```
 
 
-### spring cloud openfeign
 
-org.springframework.cloud.openfeign.annotation
-MatrixVariableParameterProcessor
-PathVariableParameterProcessor
-QueryMapParameterProcessor
-RequestHeaderParameterProcessor
-RequestParamParameterProcessor
-RequestPartParameterProcessor
+## feign-hystrix源代码分包详解 
 
 
-org.springframework.cloud.openfeign
 
-interface AnnotatedParameterProcessor
 
-注解
-CollectionFormat
-EnableFeignClients
-FeignClient
-SpringQueryMap
+
+### 源代码分包详解 spring cloud openfeign
+
+https://cloud.spring.io/spring-cloud-openfeign/reference/html/
+v2.2.5
+
+
+
+#### org.springframework.cloud.openfeign
+
+
+
+| org.springframework.cloud.openfeign                      | 类型 |      |
+|----------------------------------------------------------| ---- | ---- |
+| AnnotatedParameterProcessor                              |      |      |
+| AnnotatedParameterProcessor.AnnotatedParameterContext    |      |      |
+| CollectionFormat                                         |      |      |
+| DefaultFeignLoggerFactory                                |      |      |
+| DefaultTargeter                                          |      |      |
+| EnableFeignClients                                       |  @interface    |      |
+| FeignAutoConfiguration                                   |      |      |
+| FeignAutoConfiguration.DefaultFeignTargeterConfiguration |      |      |
+| FeignAutoConfiguration.HttpClientFeignConfiguration      |      |      |
+| FeignAutoConfiguration.HystrixFeignTargeterConfiguration |      |      |
+| FeignAutoConfiguration.OkHttpFeignConfiguration          |      |      |
+| FeignClient                                              |   @interface   |      |
+| FeignClientBuilder                                       |      |      |
+| FeignClientBuilder.Builder                               |      |      |
+| FeignClientFactoryBean                                   |      |      |
+| FeignClientProperties                                    |      |      |
+| FeignClientProperties.FeignClientConfiguration           |      |      |
+| FeignClientsConfiguration                                |      |      |
+| FeignClientsConfiguration.HystrixFeignConfiguration      |      |      |
+| FeignClientsConfiguration.SpringPojoFormEncoder          |      |      |
+| FeignClientSpecification                                 |      |      |
+| FeignClientsRegistrar                                    |      |      |
+| FeignClientsRegistrar.AllTypeFilter                      |      |      |
+| FeignContext                                             |      |      |
+| FeignErrorDecoderFactory                                 |      |      |
+| FeignFormatterRegistrar                                  |      |      |
+| FeignLoggerFactory                                       |      |      |
+| HystrixTargeter                                     |      |      |
+|    SpringQueryMap                                       |      |      |
+|    Targeter                             |      |      |
+
+
+FeignAutoConfiguration
+定义了spring ioc中的bean
+FeignContext
+
+
+FeignClientsConfiguration spring ioc注解配置类
+
+spring cloud feign
+两个注解在哪儿被处理
+FeignClient在
+org.springframework.cloud.openfeign.FeignClientsRegistrar#registerFeignClients
+
+EnableFeignClients在
+org.springframework.cloud.openfeign.FeignClientsRegistrar#registerDefaultConfiguration
+
+
+FeignClientSpecification在FeignClientsRegistrar中调用
+
+
+FeignClientsRegistrar在EnableFeignClients中调用
+
+
+ClassPathScanningCandidateComponentProvider scanner
+scanner.addIncludeFilter(new AnnotationTypeFilter(FeignClient.class));
+candidateComponents.addAll(scanner.findCandidateComponents(basePackage));
+
+获取bean定义
+ScannedGenericBeanDefinition
+
+BeanDefinitionReaderUtils.registerBeanDefinition(holder, registry);
 
 
 
@@ -541,7 +591,52 @@ interface Targeter
 
 
 
-org.springframework.cloud.openfeign.clientconfig
+
+#### org.springframework.cloud.openfeign.annotation
+
+| org.springframework.cloud.openfeign.annotation | 类型 |      |
+| ---------------------------------------------- | ---- | ---- |
+| MatrixVariableParameterProcessor               |      |      |
+| PathVariableParameterProcessor                 |      |      |
+| QueryMapParameterProcessor                     |      |      |
+| RequestHeaderParameterProcessor                |      |      |
+| RequestParamParameterProcessor                 |      |      |
+| RequestPartParameterProcessor                  |      |      |
+
+
+
+都是AnnotatedParameterProcessor子类
+
+
+
+
+org.springframework.cloud.openfeign包
+
+interface AnnotatedParameterProcessor
+
+注解
+CollectionFormat
+EnableFeignClients
+FeignClient
+SpringQueryMap
+
+
+
+
+
+#### org.springframework.cloud.openfeign.clientconfig
+
+
+
+| org.springframework.cloud.openfeign.clientconfig |           |      |
+| ------------------------------------------------ | --------- | ---- |
+| FeignClientConfigurer                            | interface |      |
+| HttpClientFeignConfiguration                     |           |      |
+| OkHttpFeignConfiguration                         |           |      |
+
+
+
+
 interface FeignClientConfigurer
 HttpClient5FeignConfiguration
 
@@ -555,7 +650,18 @@ public class OkHttpFeignConfiguration
 
 
 
-####### org.springframework.cloud.openfeign.encoding
+#### org.springframework.cloud.openfeign.encoding
+| org.springframework.cloud.openfeign.encoding |      |      |
+| ----------------------------------------------- | ---- | ---- |
+| BaseRequestInterceptor | abstract |      |
+| FeignAcceptGzipEncodingAutoConfiguration |      |      |
+| FeignAcceptGzipEncodingInterceptor |      |      |
+| FeignClientEncodingProperties | | |
+| FeignContentGzipEncodingAutoConfiguration | | |
+| FeignContentGzipEncodingInterceptor | | |
+| HttpEncoding | interface | |
+
+
 
 public abstract class BaseRequestInterceptor implements RequestInterceptor
 
@@ -583,7 +689,14 @@ FeignContentGzipEncodingInterceptor extends BaseRequestInterceptor
 interface HttpEncoding
 
 
-##### org.springframework.cloud.openfeign.hateoas
+#### org.springframework.cloud.openfeign.hateoas
+| org.springframework.cloud.openfeign.hateoas |      |      |
+| ----------------------------------------------- | ---- | ---- |
+|                                                 |      |      |
+| FeignHalAutoConfiguration |      |      |
+|                                                 |      |      |
+
+
 
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
@@ -592,6 +705,19 @@ interface HttpEncoding
 		HttpMessageConvertersAutoConfiguration.class,
 		RepositoryRestMvcAutoConfiguration.class })
 public class FeignHalAutoConfiguration
+
+
+
+#### org.springframework.cloud.openfeign.loadbalancer
+
+| org.springframework.cloud.openfeign.loadbalancer |      |      |
+| ------------------------------------------------ | ---- | ---- |
+| DefaultFeignLoadBalancerConfiguration            |      |      |
+| FeignBlockingLoadBalancerClient                  |      |      |
+| FeignLoadBalancerAutoConfiguration               |      |      |
+| HttpClientFeignLoadBalancerConfiguration         |      |      |
+| OkHttpFeignLoadBalancerConfiguration             |      |      |
+|                                                  |      |      |
 
 
 
@@ -606,7 +732,6 @@ public class FeignBlockingLoadBalancerClient implements Client
 		HttpClient5FeignLoadBalancerConfiguration.class,
 		DefaultFeignLoadBalancerConfiguration.class })
 public class FeignLoadBalancerAutoConfiguration
-
 
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(ApacheHttp5Client.class)
@@ -644,7 +769,27 @@ OnRetryNotEnabledCondition extends AnyNestedCondition
 RetryableFeignBlockingLoadBalancerClient implements Client
 
 
-##### org.springframework.cloud.openfeign.ribbon
+#### org.springframework.cloud.openfeign.ribbon
+
+
+| org.springframework.cloud.openfeign.ribbon |      |      |
+| ----------------------------------------------- | ---- | ---- |
+| CachingSpringLoadBalancerFactory |      |      |
+| DefaultFeignLoadBalancedConfiguration |      |      |
+| FeignLoadBalancer | | |
+| FeignLoadBalancer.RibbonRequest | | |
+| FeignLoadBalancer.RibbonResponse | | |
+| FeignRetryPolicy | | |
+| FeignRetryPolicy.FeignRetryPolicyServiceInstance |      |      |
+| FeignRibbonClientAutoConfiguration | | |
+| HttpClientFeignLoadBalancedConfiguration | | |
+| LoadBalancerFeignClient | | |
+| LoadBalancerFeignClient.FeignOptionsClientConfig | | |
+| OkHttpFeignLoadBalancedConfiguration | | |
+| RetryableFeignLoadBalancer | | |
+| RibbonResponseStatusCodeException | | |
+
+
 
 CachingSpringLoadBalancerFactory
 DefaultFeignLoadBalancedConfiguration
@@ -691,9 +836,26 @@ RetryableFeignLoadBalancer extends FeignLoadBalancer
 RibbonResponseStatusCodeException extends RetryableStatusCodeException
 
 
-###### org.springframework.cloud.openfeign.support
+#### org.springframework.cloud.openfeign.support
+
+
+
+| org.springframework.cloud.openfeign.support |      |      |
+| ----------------------------------------------- | ---- | ---- |
+| AbstractFormWriter | abstract |      |
+| DefaultGzipDecoder |      |      |
+| DefaultGzipDecoderConfiguration |      |      |
+| FallbackCommand | | |
+|  | | |
+
+
+
 abstract class AbstractFormWriter extends AbstractWriter
+
+
+
 DefaultGzipDecoder implements Decoder
+
 
 
 @Configuration(proxyBeanMethods = false)
@@ -705,6 +867,8 @@ DefaultGzipDecoder implements Decoder
 public class DefaultGzipDecoderConfiguration
 
 class FallbackCommand<T> extends HystrixCommand<T>
+
+
 
 @ConfigurationProperties("feign.encoder")
 public class FeignEncoderProperties
@@ -738,15 +902,10 @@ class SpringMvcContract extends Contract.BaseContract implements ResourceLoaderA
 
 
 Feign 源码中的 `@RequestLine` 注解是通过 Feign 的编译期代码生成机制来支持的。
-
 在使用 `@RequestLine` 注解时，Feign 会在编译期间通过 Java Annotation Processing 工具解析该注解，并根据注解中的信息生成对应的 HTTP 请求方法。
-
 具体来说，Feign 会通过 `feign.processor.Processor` 接口定义的 `process()` 方法来处理 `@RequestLine` 注解。该接口定义了两个方法：`processAnnotation()` 和 `processMethod()`，分别用于处理类注解和方法注解。
-
 在处理 `@RequestLine` 注解时，Feign 会首先在类上查找 `@Headers` 注解，以获取请求头信息。然后，它会解析 `@RequestLine` 注解中的请求方法、请求 URL 和请求参数信息，并生成相应的 HTTP 请求方法。
-
 具体来说，Feign 会根据 `@RequestLine` 注解中指定的请求方法和 URL 生成一个 `RequestTemplate` 对象，并在该对象中设置请求参数信息。然后，它会将 `RequestTemplate` 对象传递给 `Target` 对象，以执行实际的 HTTP 请求。
-
 例如，下面的代码演示了如何使用 `@RequestLine` 注解来定义一个 HTTP GET 请求：
 
 ```java

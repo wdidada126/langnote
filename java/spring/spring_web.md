@@ -128,14 +128,14 @@ ContentNegotiationManager (org.springframework.web.accept)
 
 
 
-| org.springframework.web.bind |      |      |
+| org.springframework.web.bind | 类型 | 解释 |
 | ---------------------------- | ---- | ---- |
 |     Classes                         |      |      |
 |        EscapedErrors                      |      | implements Errors |
 |        ServletRequestDataBinder                      |      | extends WebDataBinder 见下面 |
 |   ServletRequestParameterPropertyValues                           |      | extends MutablePropertyValues |
 |     ServletRequestUtils                         |      |      |
-|       WebDataBinder                       |      |      |
+|       WebDataBinder                       |      | 重要 |
 |    Exceptions                          | exception |      |
 |      MethodArgumentNotValidException                        | exception |      |
 |     MissingMatrixVariableException                         | exception |      |
@@ -149,7 +149,7 @@ ContentNegotiationManager (org.springframework.web.accept)
 
 
 ServletRequestDataBinder是Spring MVC中的一个数据绑定器,它的作用和使用场景如下:
-
+ExtendedServletRequestDataBinder 这个类void addBindValues(MutablePropertyValues mpvs, ServletRequest request)方法才实现
 1. 作用:将HTTP请求中的参数绑定到JavaBean对象。
 
 2. 使用场景:
@@ -252,7 +252,7 @@ public class UserValidator implements Validator {
 
 
 
-| org.springframework.web.bind.annotation |            |                                                              |
+| org.springframework.web.bind.annotation | 类型       |     解释                                                         |
 | --------------------------------------- | ---------- | ------------------------------------------------------------ |
 | Interfaces                              |            |                                                              |
 | ValueConstants                          |            | @RequestParam(required = false, defaultValue = ValueConstants.DEFAULT_NONE) |
@@ -354,7 +354,7 @@ public class GlobalControllerExceptionHandler {
 
 
 
-| org.springframework.web.bind.support |      |      |
+| org.springframework.web.bind.support | 类型 |  解释    |
 | ------------------------------------ | ---- | ---- |
 | Interfaces                           |      |      |
 | SessionAttributeStore                |      |      |
@@ -384,7 +384,7 @@ public class GlobalControllerExceptionHandler {
 
 
 
-| org.springframework.web.client                               |           |                                                              |
+| org.springframework.web.client                               | 类型      |    解释                                                          |
 | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | Interfaces                                                   |           |                                                              |
 | AsyncRequestCallback                                         | interface | @Deprecated                                                  |
@@ -518,7 +518,7 @@ RestGatewaySupport
 
 
 
-| org.springframework.web.context   |           |                                                              |
+| org.springframework.web.context   | 类型      |     解释                                                         |
 | --------------------------------- | --------- | ------------------------------------------------------------ |
 | Interfaces                        |           |                                                              |
 | ConfigurableWebApplicationContext | interface | extends WebApplicationContext, ConfigurableApplicationContext   核心方法 void setConfigLocations(String... configLocations) String[] getConfigLocations(); |
@@ -619,7 +619,7 @@ ContextLoaderListener实现了ServletContextListener接口,在web应用启动时
 
 
 
-| org.springframework.web.context.annotation |            |      |
+| org.springframework.web.context.annotation | 类型       |   解释   |
 | ------------------------------------------ | ---------- | ---- |
 | ApplicationScope                           | @interface |      |
 | RequestScope                               | @interface |      |
@@ -660,7 +660,7 @@ ContextLoaderListener实现了ServletContextListener接口,在web应用启动时
 
 
 
-| org.springframework.web.context.request |           |                                                              |
+| org.springframework.web.context.request | 类型      |     解释                                                         |
 | --------------------------------------- | --------- | ------------------------------------------------------------ |
 | Interfaces                              |           |                                                              |
 | AsyncWebRequestInterceptor              | interface | void afterConcurrentHandlingStarted(WebRequest request)  extends WebRequestInterceptor |
@@ -769,7 +769,7 @@ httpSession.setAttribute("user", new User());
 
 
 
-| org.springframework.web.context.request.async |           |                                                              |
+| org.springframework.web.context.request.async | 类型      |       解释                                                       |
 | --------------------------------------------- | --------- | ------------------------------------------------------------ |
 | Interfaces                                    |           |                                                              |
 | AsyncWebRequest                               | interface | extends NativeWebRequest                                     |
@@ -1032,7 +1032,7 @@ public class MyCallableProcessingInterceptor implements CallableProcessingInterc
 
 
 
-| org.springframework.web.context.support  |          |                                                              |
+| org.springframework.web.context.support  | 类型     |     解释                                                         |
 | ---------------------------------------- | -------- | ------------------------------------------------------------ |
 | Classes                                  |          |                                                              |
 | AbstractRefreshableWebApplicationContext | abstract |                                                              |
@@ -1261,7 +1261,7 @@ public class MyConfig implements WebMvcConfigurer {
 
 
 
-| org.springframework.web.cors    |           |                                                              |
+| org.springframework.web.cors    | 类型      |      解释                                                        |
 | ------------------------------- | --------- | ------------------------------------------------------------ |
 | Interfaces                      |           |                                                              |
 | CorsConfigurationSource         | interface | CorsConfiguration getCorsConfiguration(HttpServletRequest request) 接口实现类 UrlBasedCorsConfigurationSource |
@@ -1389,7 +1389,7 @@ public class CorsConfig {
 
 
 
-| org.springframework.web.cors.reactive |           |      |
+| org.springframework.web.cors.reactive | 类型      | 解释     |
 | ------------------------------------- | --------- | ---- |
 | Interfaces                            |           |      |
 | CorsConfigurationSource               | interface |      |
@@ -1408,7 +1408,7 @@ public class CorsConfig {
 
 
 
-| org.springframework.web.filter     |      |      |
+| org.springframework.web.filter     | 类型 |  解释    |
 | ---------------------------------- | ---- | ---- |
 |                                    |      |      |
 | Classes                            |      |      |
@@ -1448,7 +1448,7 @@ CharacterEncodingFilter
 ```
 
 
-| org.springframework.web.filter.reactive |      |      |
+| org.springframework.web.filter.reactive | 类型 | 解释     |
 | --------------------------------------- | ---- | ---- |
 | Classes                                 |      |      |
 | ForwardedHeaderFilter                   |      |      |
@@ -1459,7 +1459,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.jsf        |      |      |
+| org.springframework.web.jsf        | 类型 |   解释   |
 | ---------------------------------- | ---- | ---- |
 | Classes                            |      |      |
 | DecoratingNavigationHandler        |      |      |
@@ -1479,7 +1479,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.jsf.el       |      |      |
+| org.springframework.web.jsf.el       | 类型 | 解释     |
 | ------------------------------------ | ---- | ---- |
 | Classes                              |      |      |
 | SpringBeanFacesELResolver            |      |      |
@@ -1497,7 +1497,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.method |      |      |
+| org.springframework.web.method | 类型 |  解释    |
 | ------------------------------ | ---- | ---- |
 | Classes                        |      |      |
 | ControllerAdviceBean           |      |      |
@@ -1511,7 +1511,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.method.annotation               |      |      |
+| org.springframework.web.method.annotation               | 类型 |  解释    |
 | ------------------------------------------------------- | ---- | ---- |
 | Classes                                                 |      |      |
 | AbstractCookieValueMethodArgumentResolver               |      |      |
@@ -1541,7 +1541,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.method.support   |           |      |
+| org.springframework.web.method.support   | 类型 |   解释   |
 | ---------------------------------------- | --------- | ---- |
 | Interfaces                               |           |      |
 | AsyncHandlerMethodReturnValueHandler     | interface |      |
@@ -1560,7 +1560,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.multipart |           |      |
+| org.springframework.web.multipart |   类型        |  解释    |
 | --------------------------------- | --------- | ---- |
 | Interfaces                        |           |      |
 | MultipartFile                     | interface |      |
@@ -1576,7 +1576,7 @@ CharacterEncodingFilter
 
 
 
-| org.springframework.web.multipart.commons       |      |      |
+| org.springframework.web.multipart.commons       |  类型    | 解释     |
 | ----------------------------------------------- | ---- | ---- |
 | Classes                                         |      |      |
 | CommonsFileUploadSupport                        |      |      |
@@ -1596,7 +1596,7 @@ CharacterEncodingFilter
 CommonsMultipartFile implements MultipartFile
 
 
-| org.springframework.web.multipart.support |      |      |
+| org.springframework.web.multipart.support |  类型    |   解释   |
 | ----------------------------------------- | ---- | ---- |
 | Classes                                   |      |      |
 | AbstractMultipartHttpServletRequest       |      |      |
@@ -1614,7 +1614,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-| org.springframework.web.server       |           |      |
+| org.springframework.web.server       |     类型      | 解释     |
 | ------------------------------------ | --------- | ---- |
 | Interfaces                           |           |      |
 | ServerWebExchange                    | interface |      |
@@ -1645,7 +1645,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-| org.springframework.web.server.adapter |      |      |
+| org.springframework.web.server.adapter |   类型   |  解释    |
 | -------------------------------------- | ---- | ---- |
 |                                        |      |      |
 | Classes                                |      |      |
@@ -1667,7 +1667,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-| org.springframework.web.server.handler |      |      |
+| org.springframework.web.server.handler |   类型   | 解释     |
 | -------------------------------------- | ---- | ---- |
 | Classes                                |      |      |
 | DefaultWebFilterChain                  |      |      |
@@ -1696,7 +1696,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-| org.springframework.web.server.i18n |           |      |
+| org.springframework.web.server.i18n |     类型      |  解释    |
 | ----------------------------------- | --------- | ---- |
 | Interfaces                          |           |      |
 | LocaleContextResolver               | interface |      |
@@ -1711,7 +1711,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-| org.springframework.web.server.session |           |      |
+| org.springframework.web.server.session |   类型        | 解释     |
 | -------------------------------------- | --------- | ---- |
 | Interfaces                             |           |      |
 | WebSessionIdResolver                   | interface |      |

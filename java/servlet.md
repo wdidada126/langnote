@@ -28,65 +28,99 @@ https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.5/docs/servlet-
 
 https://tomcat.apache.org/tomcat-7.0-doc/servletapi/index.html
 
+servlet 3
+https://docs.oracle.com/javaee/7/api/
+
+Java Servlet 的最新版本是 Servlet 4.0，该版本是 Java EE 8 规范的一部分，于2017年9月发布。 Servlet 4.0 在 Servlet 3.1 的基础上增加了一些新特性，包括对 HTTP/2 的全面支持、非阻塞 I/O API、Servlet 过滤器的改进等。
+
+需要注意的是，Java EE 8 已经停止维护，因此 Servlet 4.0 的最新实现是 Jakarta Servlet 4.0，它是在 Eclipse Foundation 管理下的 Jakarta EE 规范的一部分。如果你想使用 Servlet 4.0，建议使用 Jakarta Servlet 4.0 的实现，例如 Apache Tomcat 9 或 Eclipse Jetty 9。
+
+
+https://jakarta.ee/specifications/servlet/4.0/apidocs/
+
+
+Jakarta Servlet 4.0
+First release for Jakarta EE 8
+
+Jakarta Servlet 5.0
+Release for Jakarta EE 9
+
+Jakarta Servlet 6.0
+Release for Jakarta EE 10
+
+### javax.servlet
 
 
 
-javax.servlet
+| javax.servlet                   | 类型 | 解释 |
+| ------------------------------- | ---- | ---- |
+| Interfaces                      |      |      |
+| Filter                          |      |      |
+| FilterChain                     |      |      |
+| FilterConfig                    |      |      |
+| RequestDispatcher               |      |      |
+| Servlet                         |      |      |
+| ServletConfig                   |      |      |
+| ServletContext                  |      |      |
+| ServletContextAttributeListener |      |      |
+| ServletContextListener          |      |      |
+| ServletRequest                  |      |      |
+| ServletRequestAttributeListener |      |      |
+| ServletRequestListener          |      |      |
+| ServletResponse                 |      |      |
+| SingleThreadModel               |      |      |
+|                                 |      |      |
+| Classes                         |      |      |
+| GenericServlet                  |      |      |
+| ServletContextAttributeEvent    |      |      |
+| ServletContextEvent             |      |      |
+| ServletInputStream              |      |      |
+| ServletOutputStream             |      |      |
+| ServletRequestAttributeEvent    |      |      |
+| ServletRequestEvent             |      |      |
+| ServletRequestWrapper           |      |      |
+| ServletResponseWrapper          |      |      |
+|                                 |      |      |
+| Exceptions                      |      |      |
+| ServletException                |      |      |
+| UnavailableException            |      |      |
+|                                 |      |      |
 
-Interfaces 
 
-Filter
-FilterChain
-FilterConfig
-RequestDispatcher
-Servlet
-ServletConfig
-ServletContext
-ServletContextAttributeListener
-ServletContextListener
-ServletRequest
-ServletRequestAttributeListener
-ServletRequestListener
-ServletResponse
-SingleThreadModel
 
-Classes 
 
-GenericServlet
-ServletContextAttributeEvent
-ServletContextEvent
-ServletInputStream
-ServletOutputStream
-ServletRequestAttributeEvent
-ServletRequestEvent
-ServletRequestWrapper
-ServletResponseWrapper
-Exceptions 
-ServletException
-UnavailableException
+
 
 
 javax.servlet.http
 
-Interfaces 
 
-HttpServletRequest
-HttpServletResponse
-HttpSession
-HttpSessionActivationListener
-HttpSessionAttributeListener
-HttpSessionBindingListener
-HttpSessionContext
-HttpSessionListener
 
-Classes 
-Cookie
-HttpServlet
-HttpServletRequestWrapper
-HttpServletResponseWrapper
-HttpSessionBindingEvent
-HttpSessionEvent
-HttpUtils
+| Interfaces                    |      |      |
+| ----------------------------- | ---- | ---- |
+| HttpServletRequest            |      |      |
+| HttpServletResponse           |      |      |
+| HttpSession                   |      |      |
+| HttpSessionActivationListener |      |      |
+| HttpSessionAttributeListener  |      |      |
+| HttpSessionBindingListener    |      |      |
+| HttpSessionContext            |      |      |
+| HttpSessionListener           |      |      |
+|                               |      |      |
+| Classes                       |      |      |
+| Cookie                        |      |      |
+| HttpServlet                   |      |      |
+| HttpServletRequestWrapper     |      |      |
+| HttpServletResponseWrapper    |      |      |
+| HttpSessionBindingEvent       |      |      |
+| HttpSessionEvent              |      |      |
+| HttpUtils                     |      |      |
+
+
+
+
+
+
 
 
 ### servlet version
@@ -311,5 +345,4 @@ org.springframework.web.servlet.HandlerInterceptor
 
 
 ### servlet与springmvc
-
 
