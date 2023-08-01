@@ -68,7 +68,7 @@ edidada@outlook.com
 
 [zk github repo](https://github.com/apache/zookeeper)
 
-maven组织的
+源代码是由maven组织的
 java开发的
 
 October, 2008: release 3.0.0 available
@@ -79,7 +79,7 @@ zk在dubbo hadoop中的应用
 
 
 
-ZooKeeper是一个开源的**分布式协调服务**，由雅虎创建，是Google **Chubby的开源实现**。分布式应用程序可以基于ZooKeeper实现诸如**数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列**等功能。
+ZooKeeper是一个开源的分布式协调服务，由雅虎创建，是Google Chubby的开源实现。分布式应用程序可以基于ZooKeeper实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列等功能。
 
 
 
@@ -444,7 +444,7 @@ zk在dubbo hadoop中的应用
 
 
 
-ZooKeeper是一个开源的**分布式协调服务**，由雅虎创建，是Google **Chubby的开源实现**。分布式应用程序可以基于ZooKeeper实现诸如**数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列**等功能。
+ZooKeeper是一个开源的分布式协调服务，由雅虎创建，是Google Chubby的开源实现。分布式应用程序可以基于ZooKeeper实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列等功能。
 
 
 

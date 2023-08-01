@@ -1,5 +1,7 @@
 # nacos
 
+nacos有配置文件，debug的时候配置文件在哪儿？
+
 nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
 nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
 nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
@@ -48,6 +50,17 @@ startup.cmd
 
 source code
 https://github.com/alibaba/nacos
+https://gitter.im/alibaba/nacos
+
+https://github.com/edidada/nacos.git
+
+1.4.2
+cd C:\Users\admin\Documents\GitHub\nacos
+git checkout 1.4.2
+
+mvn -Prelease-nacos -Dmaven.test.skip=true install -U
+
+
 Java写的项目
 
 用了jraft
@@ -164,16 +177,16 @@ com.alibaba.cloud.nacos.NacosConfigManager
 如何发起http请求，如何接收nacos server的推送
 push pull？
 
-Nacos 配置中心支持 push 和 pull 两种方式来获取配置。
+Nacos 配置中心支持push和pull两种方式来获取配置。
 
-Pull 模式：客户端主动从 Nacos 服务器拉取配置信息。在这种模式下，客户端需要周期性地轮询 Nacos 服务器，以便及时得到配置变化。
-Push 模式：Nacos 服务器将配置信息推送给客户端，客户端需要开启一个长连接并订阅指定的配置集，一旦配置发生变化，Nacos 服务器会立即推送变更信息给客户端。这种模式下客户端只需要在启动时订阅一次，就可以实现实时更新配置。
-推荐使用 push 模式，因为它能够及时地将配置变化推送给客户端，避免了客户端轮询带来的网络和服务器资源浪费。
+Pull模式：客户端主动从Nacos服务器拉取配置信息。在这种模式下，客户端需要周期性地轮询Nacos服务器，以便及时得到配置变化。
+Push模式：Nacos服务器将配置信息推送给客户端，客户端需要开启一个长连接并订阅指定的配置集，一旦配置发生变化，Nacos服务器会立即推送变更信息给客户端。这种模式下客户端只需要在启动时订阅一次，就可以实现实时更新配置。
+推荐使用push模式，因为它能够及时地将配置变化推送给客户端，避免了客户端轮询带来的网络和服务器资源浪费。
 
 
 如何查看nacos是pull还是push
 
-如果你想要查看你的 Java Nacos 程序是采用的哪种模式，可以检查你的程序代码中注册监听器的方式。如果使用了 @NacosConfigListener 注解，则是采用了 push 模式。如果是通过轮询访问 Nacos 配置中心的 HTTP 接口或者使用 Nacos 客户端 SDK 进行轮询，则是采用了 pull 模式。
+如果你想要查看你的Java Nacos程序是采用的哪种模式，可以检查你的程序代码中注册监听器的方式。如果使用了 @NacosConfigListener 注解，则是采用了 push 模式。如果是通过轮询访问 Nacos 配置中心的 HTTP 接口或者使用 Nacos 客户端 SDK 进行轮询，则是采用了 pull 模式。
 
 
 spring-cloud-alibaba-nacos-config程序是push还是pull
@@ -295,3 +308,13 @@ Nacos 每个节点是平等的都可以处理写请求，同时把新数据同�
 每个节点独立处理读请求，及时从本地发出响应。
 
 nacos配置单个文件的
+
+
+### nacos server源代码解析
+http接口
+
+- /v1/cs  com.alibaba.nacos.config.server.controller.ConfigController#publishConfig
+- /v1/auth/users/login?username=nacos
+
+## docker部署nacos集群
+
