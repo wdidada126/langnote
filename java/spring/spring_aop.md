@@ -3,7 +3,10 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor
 
 Spring2教案_aop事务.docx
 
-可以用来拿方法返回值的通知.png
+
+
+![可以用来拿方法返回值的通知](..\..\imgs\spring\可以用来拿方法返回值的通知.png)
+
 SpringAOP开发的引入.png
 cglib动态代理的实现原理和步骤.png
 
@@ -25,33 +28,51 @@ Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitio
 
 下面的可以
 
-
 上面为什么报错，因为aop方式是动态代理
 
-internalAutoProxyCreator
-internalAutoProxyCreator是Spring AOP中的一个Bean后置处理器，它的主要作用是自动创建AOP代理对象。
 
-在Spring中，当一个Bean被注册到容器中时，internalAutoProxyCreator会检查该Bean是否需要被代理。如果该Bean需要被代理，并且没有指定具体的代理方式，internalAutoProxyCreator会根据该Bean的类型和配置信息自动选择合适的代理方式，并创建代理对象。代理对象将替代原始对象，成为该Bean在应用中的实际实例。
-internalAutoProxyCreator的具体工作流程如下：
+
+bean是否是PointCut Advice Advisor接口的子类对象？
+
+
+
+
+
+org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator 这个抽象类
+
+InfrastructureAdvisorAutoProxyCreator 
+
+IntroductionAdvisor接口
+
+InfrastructureAdvisorAutoProxyCreator是Spring AOP中的一个Bean后置处理器，它的主要作用是自动创建AOP代理对象。
+
+在Spring中，当一个Bean被注册到容器中时，InfrastructureAdvisorAutoProxyCreator会检查该Bean是否需要被代理。如果该Bean需要被代理，并且没有指定具体的代理方式，InfrastructureAdvisorAutoProxyCreator会根据该Bean的类型和配置信息自动选择合适的代理方式，并创建代理对象。代理对象将替代原始对象，成为该Bean在应用中的实际实例。
+InfrastructureAdvisorAutoProxyCreator的具体工作流程如下：
 遍历所有Bean的定义，找到需要被代理的Bean。
 根据代理的目标类型和配置信息，选择合适的代理方式（JDK动态代理或CGLIB代理）。
 创建代理对象，将其注册到Spring容器中。
 将代理对象返回给调用方，替代原始对象成为该Bean在应用中的实际实例。
-需要注意的是，internalAutoProxyCreator只会对满足以下条件的Bean进行代理：
+需要注意的是，InfrastructureAdvisorAutoProxyCreator只会对满足以下条件的Bean进行代理：
 Bean必须是一个单例（Singleton）。
 Bean必须是一个AOP代理的目标对象（Target Object）。
 Bean必须符合AOP代理的切点条件。
-由于internalAutoProxyCreator是一个Bean后置处理器，它是在Bean实例化之后、初始化之前被调用的。因此，在使用internalAutoProxyCreator时，需要确保代理的目标对象已经被实例化，但还没有被初始化。如果代理的目标对象已经被初始化，internalAutoProxyCreator将无法创建代理对象。
-总的来说，internalAutoProxyCreator是Spring AOP中非常重要的一个组件，它为Spring AOP提供了自动代理的能力，简化了AOP的配置和使用。
-internalAutoProxyCreator在spring源码中对应的类
+由于InfrastructureAdvisorAutoProxyCreator是一个Bean后置处理器，它是在Bean实例化之后、初始化之前被调用的。因此，在使用InfrastructureAdvisorAutoProxyCreator时，需要确保代理的目标对象已经被实例化，但还没有被初始化。如果代理的目标对象已经被初始化，InfrastructureAdvisorAutoProxyCreator将无法创建代理对象。
+总的来说，InfrastructureAdvisorAutoProxyCreator是Spring AOP中非常重要的一个组件，它为Spring AOP提供了自动代理的能力，简化了AOP的配置和使用。
+InfrastructureAdvisorAutoProxyCreator在spring源码中对应的类
 
-在 Spring 源码中，`internalAutoProxyCreator` 实际上是一个 BeanPostProcessor 接口的实现类，它的实现类为 `org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator`。`AbstractAutoProxyCreator` 是一个抽象类，它提供了自动代理创建的基本实现，而 `internalAutoProxyCreator` 则是其子类的一种具体实现。
+在 Spring 源码中，`InfrastructureAdvisorAutoProxyCreator` 实际上是一个 BeanPostProcessor 接口的实现类，它的实现类为 `org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator`。`AbstractAutoProxyCreator` 是一个抽象类，它提供了自动代理创建的基本实现，而 `InfrastructureAdvisorAutoProxyCreator` 则是其子类的一种具体实现。
 `AbstractAutoProxyCreator` 的子类可以通过重写它的 `postProcessBeforeInitialization()` 和 `postProcessAfterInitialization()` 方法，在 Bean 初始化前后自动创建代理对象。在 Spring 中，当一个 Bean 实现了某些接口或符合某些切面表达式时，Spring 会自动将其创建成代理对象，并在调用该 Bean 的方法时，自动执行相应的增强操作。
-需要注意的是，Spring 5.x 版本中，`internalAutoProxyCreator` 已经被移除，而是通过 `@EnableAspectJAutoProxy` 注解或者 `ProxyFactoryBean` 来实现自动代理的创建。
+需要注意的是，Spring 5.x 版本中，通过 `@EnableAspectJAutoProxy` 注解或者 `ProxyFactoryBean` 来实现自动代理的创建。
+
+
+
+org.springframework.context.annotation.EnableAspectJAutoProxy
+
 
 
 org.springframework.aop.aspectj.AspectJPointcutAdvisor spring-aop这个jar包
 `AspectJPointcutAdvisor`是Spring AOP中的一个类，用于将AspectJ切点与通知（Advice）关联起来，构成一个切面（Aspect）。它是Spring AOP中切面的基本组成部分之一。
+
 在Spring AOP中，切面（Aspect）是由切点（Pointcut）和通知（Advice）组成的。切点用于定义需要拦截的方法，而通知用于定义拦截后需要执行的逻辑。`AspectJPointcutAdvisor`的作用就是将切点和通知组合在一起，创建一个切面。
 `AspectJPointcutAdvisor`通过实现`org.springframework.aop.PointcutAdvisor`接口来实现。它包含两个重要的属性：`Pointcut`和`Advice`。`Pointcut`用于定义需要拦截的方法，可以使用AspectJ切点表达式来描述；`Advice`用于定义拦截后需要执行的逻辑，可以是前置通知、后置通知、环绕通知等。
 例如，以下是一个示例，它使用`AspectJPointcutAdvisor`来定义一个切面，拦截`com.example.service.UserService`类的所有方法，并在方法执行前后输出日志信息：
@@ -86,6 +107,16 @@ public class LoggingAspect {
 
 在上面的示例中，`@Aspect`注解用于声明一个切面类，`@Pointcut`注解用于定义一个切点，它拦截`com.example.service.UserService`类的所有方法。`@Around`注解用于定义一个环绕通知，它拦截`userServicePointcut()`切点，并在方法执行前后输出日志信息。`@Bean`注解用于定义一个Bean，它创建一个`AspectJPointcutAdvisor`对象，将切点和通知组合在一起，形成一个切面。通过这种方式，可以将日志逻辑从业务逻辑中分离出来，以模块化的方式进行管理，提高代码的可维护性和可扩展性。
 需要注意的是，`AspectJPointcutAdvisor`适用于使用AspectJ切点表达式的情况，如果需要使用其他类型的切点，可以使用其他类型的Advisor，例如`NameMatchMethodPointcutAdvisor`、`RegexpMethodPointcutAdvisor`等。
+
+
+
+
+
+
+
+
+
+
 
 org.springframework.aop.aspectj.AspectJPointcutAdvisor
 
@@ -188,8 +219,13 @@ Weaveing
 
 
 
-D:\git\github\langnote\imgs\spring\spring_aop声明通知方法.PNG
-aspect切点表达式.PNG
+imgs\spring\spring_aop声明通知方法.PNG
+
+
+
+
+
+![spring_aop声明通知方法](D:\git\github\langnote\imgs\spring\spring_aop声明通知方法.PNG)aspect切点表达式.PNG
 
 java切面.PNG
 
@@ -372,7 +408,7 @@ AbstractAspectJAdvisorFactory (org.springframework.aop.aspectj.annotation)
     ReflectiveAspectJAdvisorFactory (org.springframework.aop.aspectj.annotation)
 
 AspectJAdvisorFactory
-![AspectJAdvisorFactory对应的方法](../imgs/AspectJAdvisorFactory.png)
+![AspectJAdvisorFactory对应的方法](../../imgs/spring/AspectJAdvisorFactory.png)
 
 
 
@@ -705,12 +741,12 @@ public class MyService {
     public void doSomething() {
         // 获取当前代理对象
         MyService proxy = (MyService) AopContext.currentProxy();
-
+    
         // 获取代理对象的相关信息
         Class<?> clazz = proxy.getClass();
         Method[] methods = clazz.getMethods();
         String methodName = methods[0].getName();
-
+    
         // 输出代理对象的信息
         System.out.println("Proxy class: " + clazz.getName());
         System.out.println("Method name: " + methodName);

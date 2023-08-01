@@ -259,7 +259,469 @@ public class PropertyAccessExample {
 
 
 
-### 分包解析代码
+### 分包解析代码 v5.2.9
+
+
+
+### org.springframework.beans
+
+| org.springframework.beans                            |      |      |
+| ---------------------------------------------------- | ---- | ---- |
+|                                                      |      |      |
+| Interfaces                                           |      |      |
+|                                                      |      |      |
+| BeanInfoFactory                                      |      |      |
+| BeanMetadataElement                                  |      |      |
+| BeanWrapper                                          |      |      |
+| ConfigurablePropertyAccessor                         |      |      |
+| Mergeable                                            |      |      |
+| PropertyAccessor                                     |      |      |
+| PropertyEditorRegistrar                              |      |      |
+| PropertyEditorRegistry                               |      |      |
+| PropertyValues                                       |      |      |
+| TypeConverter                                        |      |      |
+|                                                      |      |      |
+| Classes                                              |      |      |
+|                                                      |      |      |
+| AbstractNestablePropertyAccessor                     |      |      |
+| AbstractNestablePropertyAccessor.PropertyHandler     |      |      |
+| AbstractNestablePropertyAccessor.PropertyTokenHolder |      |      |
+| AbstractPropertyAccessor                             |      |      |
+| BeanMetadataAttribute                                |      |      |
+| BeanMetadataAttributeAccessor                        |      |      |
+| BeanUtils                                            |      |      |
+| BeanWrapperImpl                                      |      |      |
+| CachedIntrospectionResults                           |      |      |
+| DirectFieldAccessor                                  |      |      |
+| ExtendedBeanInfoFactory                              |      |      |
+| MutablePropertyValues                                |      |      |
+| PropertyAccessorFactory                              |      |      |
+| PropertyAccessorUtils                                |      |      |
+| PropertyEditorRegistrySupport                        |      |      |
+| PropertyMatches                                      |      |      |
+| PropertyValue                                        |      |      |
+| PropertyValuesEditor                                 |      |      |
+| SimpleTypeConverter                                  |      |      |
+| TypeConverterSupport                                 |      |      |
+|                                                      |      |      |
+| Exceptions                                           |      |      |
+|                                                      |      |      |
+| BeanInstantiationException                           |      |      |
+| BeansException                                       |      |      |
+| ConversionNotSupportedException                      |      |      |
+| FatalBeanException                                   |      |      |
+| InvalidPropertyException                             |      |      |
+| MethodInvocationException                            |      |      |
+| NotReadablePropertyException                         |      |      |
+| NotWritablePropertyException                         |      |      |
+| NullValueInNestedPathException                       |      |      |
+| PropertyAccessException                              |      |      |
+| PropertyBatchUpdateException                         |      |      |
+| TypeMismatchException                                |      |      |
+
+
+
+#### org.springframework.beans.annotation
+
+d
+
+| org.springframework.beans.annotation |          |      |
+| ------------------------------------ | -------- | ---- |
+| AnnotationBeanUtils                  | abstract |      |
+|                                      |          |      |
+|                                      |          |      |
+
+
+
+#### org.springframework.beans.factory
+
+
+
+| org.springframework.beans.factory  |      |      |
+| ---------------------------------- | ---- | ---- |
+|                                    |      |      |
+| Interfaces                         |      |      |
+|                                    |      |      |
+| Aware                              |      |      |
+| BeanClassLoaderAware               |      |      |
+| BeanFactory                        |      |      |
+| BeanFactoryAware                   |      |      |
+| BeanNameAware                      |      |      |
+| DisposableBean                     |      |      |
+| FactoryBean                        |      |      |
+| HierarchicalBeanFactory            |      |      |
+| InitializingBean                   |      |      |
+| ListableBeanFactory                |      |      |
+| NamedBean                          |      |      |
+| ObjectFactory                      |      |      |
+| ObjectProvider                     |      |      |
+| SmartFactoryBean                   |      |      |
+| SmartInitializingSingleton         |      |      |
+|                                    |      |      |
+| Classes                            |      |      |
+|                                    |      |      |
+| BeanFactoryUtils                   |      |      |
+| InjectionPoint                     |      |      |
+|                                    |      |      |
+| Exceptions                         |      |      |
+|                                    |      |      |
+| BeanCreationException              |      |      |
+| BeanCreationNotAllowedException    |      |      |
+| BeanCurrentlyInCreationException   |      |      |
+| BeanDefinitionStoreException       |      |      |
+| BeanExpressionException            |      |      |
+| BeanInitializationException        |      |      |
+| BeanIsAbstractException            |      |      |
+| BeanIsNotAFactoryException         |      |      |
+| BeanNotOfRequiredTypeException     |      |      |
+| CannotLoadBeanClassException       |      |      |
+| FactoryBeanNotInitializedException |      |      |
+| NoSuchBeanDefinitionException      |      |      |
+| NoUniqueBeanDefinitionException    |      |      |
+| UnsatisfiedDependencyException     |      |      |
+
+#### org.springframework.beans.factory.annotation
+
+
+
+| org.springframework.beans.factory.annotation |      |      |
+| -------------------------------------------- | ---- | ---- |
+|                                              |      |      |
+| Interfaces                                   |      |      |
+|                                              |      |      |
+| AnnotatedBeanDefinition                      |      |      |
+|                                              |      |      |
+| Classes                                      |      |      |
+|                                              |      |      |
+| AnnotatedGenericBeanDefinition               |      |      |
+| AnnotationBeanWiringInfoResolver             |      |      |
+| AutowiredAnnotationBeanPostProcessor         |      |      |
+| BeanFactoryAnnotationUtils                   |      |      |
+| CustomAutowireConfigurer                     |      |      |
+| InitDestroyAnnotationBeanPostProcessor       |      |      |
+| InjectionMetadata                            |      |      |
+| InjectionMetadata.InjectedElement            |      |      |
+| ParameterResolutionDelegate                  |      |      |
+| QualifierAnnotationAutowireCandidateResolver |      |      |
+| RequiredAnnotationBeanPostProcessor          |      |      |
+|                                              |      |      |
+| Enums                                        |      |      |
+|                                              |      |      |
+| Autowire                                     |      |      |
+|                                              |      |      |
+| Annotation Types                             |      |      |
+|                                              |      |      |
+| Autowired                                    |      |      |
+| Configurable                                 |      |      |
+| Lookup                                       |      |      |
+| Qualifier                                    |      |      |
+| Required                                     |      |      |
+| Value                                        |      |      |
+
+#### org.springframework.beans.factory.config
+
+
+
+| org.springframework.beans.factory.config   |      |      |
+| ------------------------------------------ | ---- | ---- |
+|                                            |      |      |
+| Interfaces                                 |      |      |
+|                                            |      |      |
+| AutowireCapableBeanFactory                 |      |      |
+| BeanDefinition                             |      |      |
+| BeanDefinitionCustomizer                   |      |      |
+| BeanExpressionResolver                     |      |      |
+| BeanFactoryPostProcessor                   |      |      |
+| BeanPostProcessor                          |      |      |
+| BeanReference                              |      |      |
+| ConfigurableBeanFactory                    |      |      |
+| ConfigurableListableBeanFactory            |      |      |
+| DestructionAwareBeanPostProcessor          |      |      |
+| InstantiationAwareBeanPostProcessor        |      |      |
+| Scope                                      |      |      |
+| SingletonBeanRegistry                      |      |      |
+| SmartInstantiationAwareBeanPostProcessor   |      |      |
+| YamlProcessor.DocumentMatcher              |      |      |
+| YamlProcessor.MatchCallback                |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+|                                            |      |      |
+| AbstractFactoryBean                        |      |      |
+| AutowiredPropertyMarker                    |      |      |
+| BeanDefinitionHolder                       |      |      |
+| BeanDefinitionVisitor                      |      |      |
+| BeanExpressionContext                      |      |      |
+| ConstructorArgumentValues                  |      |      |
+| ConstructorArgumentValues.ValueHolder      |      |      |
+| CustomEditorConfigurer                     |      |      |
+| CustomScopeConfigurer                      |      |      |
+| DependencyDescriptor                       |      |      |
+| DeprecatedBeanWarner                       |      |      |
+| EmbeddedValueResolver                      |      |      |
+| FieldRetrievingFactoryBean                 |      |      |
+| InstantiationAwareBeanPostProcessorAdapter |      |      |
+| ListFactoryBean                            |      |      |
+| MapFactoryBean                             |      |      |
+| MethodInvokingBean                         |      |      |
+| MethodInvokingFactoryBean                  |      |      |
+| NamedBeanHolder                            |      |      |
+| ObjectFactoryCreatingFactoryBean           |      |      |
+| PlaceholderConfigurerSupport               |      |      |
+| PreferencesPlaceholderConfigurer           |      |      |
+| PropertiesFactoryBean                      |      |      |
+| PropertyOverrideConfigurer                 |      |      |
+| PropertyPathFactoryBean                    |      |      |
+| PropertyPlaceholderConfigurer              |      |      |
+| PropertyResourceConfigurer                 |      |      |
+| ProviderCreatingFactoryBean                |      |      |
+| RuntimeBeanNameReference                   |      |      |
+| RuntimeBeanReference                       |      |      |
+| ServiceLocatorFactoryBean                  |      |      |
+| SetFactoryBean                             |      |      |
+| TypedStringValue                           |      |      |
+| YamlMapFactoryBean                         |      |      |
+| YamlProcessor                              |      |      |
+| YamlPropertiesFactoryBean                  |      |      |
+|                                            |      |      |
+| Enums                                      |      |      |
+|                                            |      |      |
+| YamlProcessor.MatchStatus                  |      |      |
+| YamlProcessor.ResolutionMethod             |      |      |
+
+
+
+##### org.springframework.beans.factory.groovy
+
+
+
+| org.springframework.beans.factory.groovy |      |      |
+| ---------------------------------------- | ---- | ---- |
+|                                          |      |      |
+|                                          |      |      |
+|                                          |      |      |
+
+#### org.springframework.beans.factory.parsing
+
+
+
+| org.springframework.beans.factory.parsing |      |      |
+| ----------------------------------------- | ---- | ---- |
+|                                           |      |      |
+| Interfaces                                |      |      |
+|                                           |      |      |
+| ComponentDefinition                       |      |      |
+| DefaultsDefinition                        |      |      |
+| ParseState.Entry                          |      |      |
+| ProblemReporter                           |      |      |
+| ReaderEventListener                       |      |      |
+| SourceExtractor                           |      |      |
+|                                           |      |      |
+| Classes                                   |      |      |
+|                                           |      |      |
+| AbstractComponentDefinition               |      |      |
+| AliasDefinition                           |      |      |
+| BeanComponentDefinition                   |      |      |
+| BeanEntry                                 |      |      |
+| CompositeComponentDefinition              |      |      |
+| ConstructorArgumentEntry                  |      |      |
+| EmptyReaderEventListener                  |      |      |
+| FailFastProblemReporter                   |      |      |
+| ImportDefinition                          |      |      |
+| Location                                  |      |      |
+| NullSourceExtractor                       |      |      |
+| ParseState                                |      |      |
+| PassThroughSourceExtractor                |      |      |
+| Problem                                   |      |      |
+| PropertyEntry                             |      |      |
+| QualifierEntry                            |      |      |
+| ReaderContext                             |      |      |
+|                                           |      |      |
+| Exceptions                                |      |      |
+|                                           |      |      |
+| BeanDefinitionParsingException            |      |      |
+
+
+
+#####  org.springframework.beans.factory.serviceloader
+
+| org.springframework.beans.factory.serviceloader |          |      |
+| ----------------------------------------------- | -------- | ---- |
+| AbstractServiceLoaderBasedFactoryBean           | abstract |      |
+| ServiceFactoryBean                              |          |      |
+| ServiceListFactoryBean                          |          |      |
+| ServiceLoaderFactoryBean                        |          |      |
+
+#### org.springframework.beans.factory.support
+
+| org.springframework.beans.factory.support |      |      |
+| ----------------------------------------- | ---- | ---- |
+|                                           |      |      |
+| Interfaces                                |      |      |
+|                                           |      |      |
+| AutowireCandidateResolver                 |      |      |
+| BeanDefinitionReader                      |      |      |
+| BeanDefinitionRegistry                    |      |      |
+| BeanDefinitionRegistryPostProcessor       |      |      |
+| BeanNameGenerator                         |      |      |
+| InstantiationStrategy                     |      |      |
+| MergedBeanDefinitionPostProcessor         |      |      |
+| MethodReplacer                            |      |      |
+| SecurityContextProvider                   |      |      |
+|                                           |      |      |
+| Classes                                   |      |      |
+|                                           |      |      |
+| AbstractAutowireCapableBeanFactory        |      |      |
+| AbstractBeanDefinition                    |      |      |
+| AbstractBeanDefinitionReader              |      |      |
+| AbstractBeanFactory                       |      |      |
+| AutowireCandidateQualifier                |      |      |
+| BeanDefinitionBuilder                     |      |      |
+| BeanDefinitionDefaults                    |      |      |
+| BeanDefinitionReaderUtils                 |      |      |
+| CglibSubclassingInstantiationStrategy     |      |      |
+| ChildBeanDefinition                       |      |      |
+| DefaultBeanNameGenerator                  |      |      |
+| DefaultListableBeanFactory                |      |      |
+| DefaultSingletonBeanRegistry              |      |      |
+| FactoryBeanRegistrySupport                |      |      |
+| GenericBeanDefinition                     |      |      |
+| GenericTypeAwareAutowireCandidateResolver |      |      |
+| LookupOverride                            |      |      |
+| ManagedArray                              |      |      |
+| ManagedList                               |      |      |
+| ManagedMap                                |      |      |
+| ManagedProperties                         |      |      |
+| ManagedSet                                |      |      |
+| MethodOverride                            |      |      |
+| MethodOverrides                           |      |      |
+| PropertiesBeanDefinitionReader            |      |      |
+| ReplaceOverride                           |      |      |
+| RootBeanDefinition                        |      |      |
+| SimpleAutowireCandidateResolver           |      |      |
+| SimpleBeanDefinitionRegistry              |      |      |
+| SimpleInstantiationStrategy               |      |      |
+| SimpleSecurityContextProvider             |      |      |
+| StaticListableBeanFactory                 |      |      |
+|                                           |      |      |
+| Exceptions                                |      |      |
+|                                           |      |      |
+| BeanDefinitionOverrideException           |      |      |
+| BeanDefinitionValidationException         |      |      |
+
+
+
+##### org.springframework.beans.factory.wiring
+
+
+
+| org.springframework.beans.factory.wiring |           |                            |
+| ---------------------------------------- | --------- | -------------------------- |
+| BeanConfigurerSupport                    |           |                            |
+| BeanWiringInfo                           |           |                            |
+| BeanWiringInfoResolver                   | interface |                            |
+| ClassNameBeanWiringInfoResolver          |           | 子类BeanWiringInfoResolver |
+|                                          |           |                            |
+|                                          |           |                            |
+
+
+
+#### org.springframework.beans.factory.xml
+
+
+
+| org.springframework.beans.factory.xml |      |      |
+| ------------------------------------- | ---- | ---- |
+|                                       |      |      |
+| Interfaces                            |      |      |
+|                                       |      |      |
+| BeanDefinitionDecorator               |      |      |
+| BeanDefinitionDocumentReader          |      |      |
+| BeanDefinitionParser                  |      |      |
+| DocumentLoader                        |      |      |
+| NamespaceHandler                      |      |      |
+| NamespaceHandlerResolver              |      |      |
+|                                       |      |      |
+| Classes                               |      |      |
+|                                       |      |      |
+| AbstractBeanDefinitionParser          |      |      |
+| AbstractSimpleBeanDefinitionParser    |      |      |
+| AbstractSingleBeanDefinitionParser    |      |      |
+| BeanDefinitionParserDelegate          |      |      |
+| BeansDtdResolver                      |      |      |
+| DefaultBeanDefinitionDocumentReader   |      |      |
+| DefaultDocumentLoader                 |      |      |
+| DefaultNamespaceHandlerResolver       |      |      |
+| DelegatingEntityResolver              |      |      |
+| DocumentDefaultsDefinition            |      |      |
+| NamespaceHandlerSupport               |      |      |
+| ParserContext                         |      |      |
+| PluggableSchemaResolver               |      |      |
+| ResourceEntityResolver                |      |      |
+| SimpleConstructorNamespaceHandler     |      |      |
+| SimplePropertyNamespaceHandler        |      |      |
+| UtilNamespaceHandler                  |      |      |
+| XmlBeanDefinitionReader               |      |      |
+| XmlBeanFactory                        |      |      |
+| XmlReaderContext                      |      |      |
+|                                       |      |      |
+| Exceptions                            |      |      |
+|                                       |      |      |
+| XmlBeanDefinitionStoreException       |      |      |
+
+
+
+
+
+#### org.springframework.beans.propertyeditors
+
+
+
+| org.springframework.beans.propertyeditors |      |      |
+| ----------------------------------------- | ---- | ---- |
+|                                           |      |      |
+| Classes                                   |      |      |
+|                                           |      |      |
+| ByteArrayPropertyEditor                   |      |      |
+| CharacterEditor                           |      |      |
+| CharArrayPropertyEditor                   |      |      |
+| CharsetEditor                             |      |      |
+| ClassArrayEditor                          |      |      |
+| ClassEditor                               |      |      |
+| CurrencyEditor                            |      |      |
+| CustomBooleanEditor                       |      |      |
+| CustomCollectionEditor                    |      |      |
+| CustomDateEditor                          |      |      |
+| CustomMapEditor                           |      |      |
+| CustomNumberEditor                        |      |      |
+| FileEditor                                |      |      |
+| InputSourceEditor                         |      |      |
+| InputStreamEditor                         |      |      |
+| LocaleEditor                              |      |      |
+| PathEditor                                |      |      |
+| PatternEditor                             |      |      |
+| PropertiesEditor                          |      |      |
+| ReaderEditor                              |      |      |
+| ResourceBundleEditor                      |      |      |
+| StringArrayPropertyEditor                 |      |      |
+| StringTrimmerEditor                       |      |      |
+| TimeZoneEditor                            |      |      |
+| URIEditor                                 |      |      |
+| URLEditor                                 |      |      |
+| UUIDEditor                                |      |      |
+| ZoneIdEditor                              |      |      |
+
+#### org.springframework.beans.support
+
+
+
+| org.springframework.beans.support |           |      |
+| --------------------------------- | --------- | ---- |
+| ArgumentConvertingMethodInvoker   |           |      |
+| MutableSortDefinition             |           |      |
+| PagedListHolder<E>                |           |      |
+| PropertyComparator<T>             |           |      |
+| ResourceEditorRegistrar           |           |      |
+| SortDefinition                    | interface |      |
 
 
 

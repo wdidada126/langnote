@@ -1,6 +1,10 @@
 # 笔记类型Spring Boot
 
 
+G:\source_code\spring-boot
+
+spring boot 2.0.4 maven组织的，可以跳转
+
 https://docs.spring.io/spring-boot/docs/2.3.x/api/
 
 spring_boot.xlsx

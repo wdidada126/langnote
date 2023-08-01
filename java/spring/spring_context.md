@@ -19,7 +19,11 @@ org.springframework.context.annotation.ConfigurationClassParser#ConfigurationCla
 
 
 
+## 源代码分包详解v5.2.9
 
+
+
+### org.springframework.context.annotation
 
 
 
@@ -164,6 +168,10 @@ AnnotatedBeanDefinitionReader
 `AnnotatedBeanDefinitionReader` 类就是用于处理这种注解方式的 Bean 定义。它可以扫描指定的包路径，查找带有特定注解的类，并将这些类转换成对应的 Bean 定义。常用的注解包括 `@Component`、`@Service`、`@Repository`、`@Controller` 等。
 使用 `AnnotatedBeanDefinitionReader` 可以使 Bean 的定义更加简洁，避免了繁琐的 XML 配置或 Java 配置类的编写。同时，它也提供了更加灵活的方式对 Bean 进行定制。
 需要注意的是，要使用 `AnnotatedBeanDefinitionReader`，你需要先创建一个空的 `BeanDefinitionRegistry` 对象，然后将其作为参数传递给 `AnnotatedBeanDefinitionReader` 的构造函数，最后使用 `register` 方法将 Bean 定义注册到该对象中。
+
+
+
+### org.springframework.context.support  
 
 
 | org.springframework.context.support         |           |      |
