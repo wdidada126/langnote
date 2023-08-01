@@ -50,6 +50,7 @@ startup.cmd
 
 source code
 https://github.com/alibaba/nacos
+https://gitter.im/alibaba/nacos
 
 https://github.com/edidada/nacos.git
 
@@ -313,4 +314,7 @@ nacos配置单个文件的
 http接口
 
 - /v1/cs  com.alibaba.nacos.config.server.controller.ConfigController#publishConfig
-- /v1/auth/users/login?username=nacos 
+- /v1/auth/users/login?username=nacos
+
+## docker部署nacos集群
+
