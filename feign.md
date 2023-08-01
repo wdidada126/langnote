@@ -207,7 +207,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 README_feign.md
 
 https://github.com/OpenFeign/feign
-github.com/openfeign/feign-form
+https://github.com/openfeign/feign-form
 
 
 POST 传输文件
@@ -234,9 +234,11 @@ feign.ReflectiveFeign.FeignInvocationHandler类
 ### feign-core
 
 feign.ReflectiveAsyncFeign.AsyncFeignInvocationHandler是动态代理
-    调用 feign.SynchronousMethodHandler#invoke
-        feign.SynchronousMethodHandler#executeAndDecode
-            feign.Client#execute
+    调用 feign.SynchronousMethodHandler#invoke()
+        feign.SynchronousMethodHandler#executeAndDecode()
+            feign.Client#execute()
+
+debug代码，实际是LoadBalancerFeignClient #execute()
 
 feign.Client子类feign.Client.Default使用HttpURLConnection来发起http请求
 
@@ -252,22 +254,32 @@ feign.Client.Default#convertResponse
 - RequestLine
 
 
+
+
+
 feign.Target 接口
 feign.Target.HardCodedTarget 内部静态接口
+
+
+
 feign.Feign
 feign.InvocationHandlerFactory.MethodHandler 接口
 feign.SynchronousMethodHandler  feign.SynchronousMethodHandler#invoke 这个方法很重要，静态
 feign.SynchronousMethodHandler.Factory 内部类
 
 静态 feign.ReflectiveFeign.FeignInvocationHandler 内部类，实现InvocationHandler接口
+
 异常
 feign.FeignException
 feign.RetryableException
 feign.RetryableException
 AsyncJoinException
+
 请求返回
 feign.Response
 feign.Request
+
+
 
 
 feign.Feign
@@ -281,9 +293,13 @@ AsyncClient
 feign.AsyncClient.Default
 feign.AsyncClient.Pseudo
 
+
+
 feign.Contract
 feign.Contract.BaseContract
 feign.DeclarativeContract
+
+
 
 feign.Client
 feign.Client.Default
@@ -324,11 +340,40 @@ Expressions
 
 UriUtils
 
+
+
+#### feign.auth
+
+
+
+| feign.auth                  | 类型 |                            |
+| --------------------------- | ---- | -------------------------- |
+| Base64                      |      |                            |
+| BasicAuthRequestInterceptor |      | RequestInterceptor接口子类 |
+|                             |      |                            |
+
+
+
 package feign.auth;
 
 feign.auth.Base64
 feign.auth.BasicAuthRequestInterceptor implements RequestInterceptor
 
+
+
+
+
+| feign.codec     | 类型      |      |
+| --------------- | --------- | ---- |
+| DecodeException |           |      |
+| Decoder         | interface |      |
+| Encoder         |           |      |
+| ErrorDecoder    | interface |      |
+| StringDecoder   |           |      |
+|                 |           |      |
+|                 |           |      |
+|                 |           |      |
+|                 |           |      |
 
 package feign.codec;
 public class DecodeException extends FeignException
@@ -341,12 +386,91 @@ public interface Encoder
 public interface ErrorDecoder
 public class StringDecoder implements Decoder
 
+
+
+#### feign.optionals
+
+| feign.optionals | 类型 |      |
+| --------------- | ---- | ---- |
+| OptionalDecoder |      |      |
+|                 |      |      |
+|                 |      |      |
+
+
+
+
+
 feign.optionals.OptionalDecoder implements Decoder
+
+
+
+#### feign.querymap
+
+
+
+| feign.querymap                           | 类型 |      |
+| ---------------------------------------- | ---- | ---- |
+| BeanQueryMapEncoder                      |      |      |
+| BeanQueryMapEncoder.ObjectParamMetadata  |      |      |
+| FieldQueryMapEncoder                     |      |      |
+| FieldQueryMapEncoder.ObjectParamMetadata |      |      |
+
 
 
 public class BeanQueryMapEncoder implements feign.QueryMapEncoder
 
+
+
+| feign.stream                            |      |                   |
+| --------------------------------------- | ---- | ----------------- |
+| StreamDecoder                           |      | Decoder接口实现类 |
+| StreamDecoder.IteratorParameterizedType |      |                   |
+|                                         |      |                   |
+
+
+
+
+
+#### feign.template
+
+
+
+| feign.template               | 类型      |              |
+| ---------------------------- | --------- | ------------ |
+| BodyTemplate                 |           |              |
+| Expression                   | abstract  |              |
+| Expressions                  |           |              |
+| Expressions.SimpleExpression |           |              |
+| HeaderTemplate               |           |              |
+| Literal                      |           |              |
+| QueryTemplate                |           |              |
+| Template                     |           |              |
+| Template.ChunkTokenizer      |           |              |
+| Template.EncodingOptions     | enum      |              |
+| Template.ExpansionOptions    | enum      |              |
+| TemplateChunk                | interface |              |
+| UriTemplate                  |           | Template子类 |
+| UriUtils                     |           |              |
+
+
+
+
+
 ### feign-form
+
+
+
+| feign.form                     | 类型       |      |
+| ------------------------------ | ---------- | ---- |
+| ContentProcessor               | interface  |      |
+| ContentType                    | enum       |      |
+| FormData                       |            |      |
+| FormEncoder                    |            |      |
+| FormProperty                   | @interface |      |
+| MultipartFormContentProcessor  |            |      |
+| UrlencodedFormContentProcessor |            |      |
+
+
 
 package feign.form;
 
@@ -358,9 +482,37 @@ public @interface FormProperty
 public class MultipartFormContentProcessor implements ContentProcessor
 public class UrlencodedFormContentProcessor implements ContentProcessor
 
+
+
+#### feign.form.util
+
+| feign.form.util              |      |      |
+| ---------------------------- | ---- | ---- |
+| CharsetUtil                  |      |      |
+| PojoUtil                     |      |      |
+| PojoUtil.SetAccessibleAction |      |      |
+
+
+
 package feign.form.util;
 CharsetUtil
 PojoUtil
+
+
+
+
+
+####  feign.form.multipart
+
+
+
+| feign.form.multipart |      |      |
+| -------------------- | ---- | ---- |
+|                      |      |      |
+|                      |      |      |
+|                      |      |      |
+
+
 
 
 package feign.form.multipart;
@@ -381,11 +533,32 @@ Output
 
 ### feign-form-spring
 
-feign.form.spring
+
+
+
+
+| feign.form.spring               |      | 说明 |
+| ------------------------------- | ---- | ---- |
+| SpringSingleMultipartFileWriter |      |      |
+| SpringManyMultipartFilesWriter  |      |      |
+| SpringFormEncoder               |      |      |
+
 public class SpringSingleMultipartFileWriter extends AbstractWriter
 public class SpringManyMultipartFilesWriter extends AbstractWriter
 
 public class SpringFormEncoder extends FormEncoder
+
+
+
+#### feign.form.spring.converter
+
+| feign.form.spring.converter    |      | 说明                             |
+| ------------------------------ | ---- | -------------------------------- |
+| ByteArrayMultipartFile         |      |                                  |
+| IgnoreKeyCaseMap               |      |                                  |
+| SpringManyMultipartFilesReader |      | AbstractHttpMessageConverter子类 |
+
+
 
 package feign.form.spring.converter;
 
@@ -393,6 +566,23 @@ package feign.form.spring.converter;
 class ByteArrayMultipartFile implements MultipartFile
 final class IgnoreKeyCaseMap extends HashMap<String, String>
 public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter<MultipartFile[]>
+
+### feign.hystrix
+
+
+
+| feign.hystrix               |           |      |
+| --------------------------- | --------- | ---- |
+| FallbackFactory<T>          | interface |      |
+| Default<T>                  |           |      |
+| HystrixCapability           |           |      |
+| HystrixDelegatingContract   |           |      |
+| HystrixFeign                |           |      |
+| HystrixFeign.Builder        |           |      |
+| HystrixInvocationHandler    |           |      |
+| ObservableCompletableFuture |           |      |
+| SetterFactory               | interface |      |
+| SetterFactory.Default       |           |      |
 
 
 
@@ -402,9 +592,8 @@ public class SpringManyMultipartFilesReader extends AbstractHttpMessageConverter
 org.springframework.cloud.openfeign.FeignClientFactoryBean
 org.springframework.cloud.openfeign.FeignContext
 
-
-org.springframework.cloud.openfeign.EnableFeignClients
-org.springframework.cloud.openfeign.FeignClient
+org.springframework.cloud.openfeign.EnableFeignClients 注解  @Import(FeignClientsRegistrar.class)
+org.springframework.cloud.openfeign.FeignClient 注解
 
 ```shell
 feign.RetryableException: Connection refused: connect executing POST http://localhost:9991/httpserver/getAbc?device=1
@@ -479,7 +668,7 @@ v2.2.5
 
 
 
-| org.springframework.cloud.openfeign                      | 类型 |      |
+| org.springframework.cloud.openfeign                      | 类型 | 解释  |
 |----------------------------------------------------------| ---- | ---- |
 | AnnotatedParameterProcessor                              |      |      |
 | AnnotatedParameterProcessor.AnnotatedParameterContext    |      |      |
@@ -604,7 +793,7 @@ interface Targeter
 
 #### org.springframework.cloud.openfeign.annotation
 
-| org.springframework.cloud.openfeign.annotation | 类型 |      |
+| org.springframework.cloud.openfeign.annotation | 类型 |   解释   |
 | ---------------------------------------------- | ---- | ---- |
 | MatrixVariableParameterProcessor               |      |      |
 | PathVariableParameterProcessor                 |      |      |
@@ -638,7 +827,7 @@ SpringQueryMap
 
 
 
-| org.springframework.cloud.openfeign.clientconfig |           |      |
+| org.springframework.cloud.openfeign.clientconfig |     类型      | 解释  |
 | ------------------------------------------------ | --------- | ---- |
 | FeignClientConfigurer                            | interface |      |
 | HttpClientFeignConfiguration                     |           |      |
@@ -661,7 +850,7 @@ public class OkHttpFeignConfiguration
 
 
 #### org.springframework.cloud.openfeign.encoding
-| org.springframework.cloud.openfeign.encoding |      |      |
+| org.springframework.cloud.openfeign.encoding |   类型   | 解释  |
 | ----------------------------------------------- | ---- | ---- |
 | BaseRequestInterceptor | abstract |      |
 | FeignAcceptGzipEncodingAutoConfiguration |      |      |
@@ -675,11 +864,17 @@ public class OkHttpFeignConfiguration
 
 public abstract class BaseRequestInterceptor implements RequestInterceptor
 
+
+
+
+
 @ConditionalOnMissingBean(type = "okhttp3.OkHttpClient")
 @AutoConfigureAfter(FeignAutoConfiguration.class)
 public class FeignAcceptGzipEncodingAutoConfiguration
 
 FeignAcceptGzipEncodingInterceptor extends BaseRequestInterceptor
+
+
 
 
 @ConfigurationProperties("feign.compression.request")
@@ -699,8 +894,20 @@ FeignContentGzipEncodingInterceptor extends BaseRequestInterceptor
 interface HttpEncoding
 
 
+
+BaseRequestInterceptor子类
+
+BaseRequestInterceptor (org.springframework.cloud.openfeign.encoding)
+    FeignAcceptGzipEncodingInterceptor (org.springframework.cloud.openfeign.encoding)
+    FeignContentGzipEncodingInterceptor (org.springframework.cloud.openfeign.encoding)
+
+
+
+
+
+
 #### org.springframework.cloud.openfeign.hateoas
-| org.springframework.cloud.openfeign.hateoas |      |      |
+| org.springframework.cloud.openfeign.hateoas |   类型   |  解释   |
 | ----------------------------------------------- | ---- | ---- |
 |                                                 |      |      |
 | FeignHalAutoConfiguration |      |      |
@@ -720,7 +927,7 @@ public class FeignHalAutoConfiguration
 
 #### org.springframework.cloud.openfeign.loadbalancer
 
-| org.springframework.cloud.openfeign.loadbalancer |      |      |
+| org.springframework.cloud.openfeign.loadbalancer |   类型   |  解释    |
 | ------------------------------------------------ | ---- | ---- |
 | DefaultFeignLoadBalancerConfiguration            |      |      |
 | FeignBlockingLoadBalancerClient                  |      |      |
@@ -782,7 +989,7 @@ RetryableFeignBlockingLoadBalancerClient implements Client
 #### org.springframework.cloud.openfeign.ribbon
 
 
-| org.springframework.cloud.openfeign.ribbon |      |      |
+| org.springframework.cloud.openfeign.ribbon |  类型    |   解释   |
 | ----------------------------------------------- | ---- | ---- |
 | CachingSpringLoadBalancerFactory |      |      |
 | DefaultFeignLoadBalancedConfiguration |      |      |
@@ -850,13 +1057,35 @@ RibbonResponseStatusCodeException extends RetryableStatusCodeException
 
 
 
-| org.springframework.cloud.openfeign.support |      |      |
+| org.springframework.cloud.openfeign.support |  类型    |  解释    |
 | ----------------------------------------------- | ---- | ---- |
 | AbstractFormWriter | abstract |      |
 | DefaultGzipDecoder |      |      |
 | DefaultGzipDecoderConfiguration |      |      |
 | FallbackCommand | | |
-|  | | |
+| FeignEncoderProperties | | @ConfigurationProperties("feign.encoder") |
+| FeignHttpClientProperties | |  |
+| FeignHttpClientProperties.Hc5Properties | |  |
+| FeignUtils | |  |
+| JsonFormWriter | |  |
+| PageableSpringEncoder | |  |
+| PageableSpringQueryMapEncoder | |  |
+| PageJacksonModule | |  |
+| PageJacksonModule.PageMixIn | interface |  |
+| PageJacksonModule.SimplePageImpl | |  |
+| ResponseEntityDecoder | | Decoder接口实现类 |
+| SortJacksonModule | | Module子类 |
+| SortJsonComponent | |  |
+| SortJsonComponent. | |  |
+| SortJsonComponent. | |  |
+| SpringDecoder | |  |
+| SpringDecoder. | |  |
+| SpringEncoder | |  |
+| SpringEncoder. | |  |
+| SpringMvcContract | |  |
+| SpringMvcContract.ConvertingExpander | |  |
+| SpringMvcContract.ConvertingExpanderFactory | |  |
+| SpringMvcContract.SimpleAnnotatedParameterContext | |  |
 
 
 
