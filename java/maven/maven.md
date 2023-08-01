@@ -1,5 +1,9 @@
 # maven
 
+nacos打包zip文件
+mvn -Prelease-nacos -Dmaven.test.skip=true install -U
+
+
 
 mvn deploy -Dmaven.test.skip -Dautoconfig.skip -pl app-api -am -Dskip.test=true -DaltDeploymentRepository=snapshots::default::http://xxx/content/repositories/snapshots/
 
