@@ -11,3 +11,10 @@ annotation processing
 https://www.cnblogs.com/top-geek/p/12869192.html
 
 
+```
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+		</dependency>
+```
