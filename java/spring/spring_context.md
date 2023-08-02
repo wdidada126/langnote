@@ -21,6 +21,7 @@ org.springframework.context.annotation.ConfigurationClassParser#ConfigurationCla
 
 ## 源代码分包详解v5.2.9
 
+https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 ### org.springframework.context.annotation
