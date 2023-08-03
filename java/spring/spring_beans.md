@@ -6,7 +6,6 @@ Spring Bean 的初始化和实例化是两个不同的过程，它们的含义�
 需要注意的是，Bean 的初始化过程是在 Bean 实例化之后进行的，也就是说，初始化方法需要在 Bean 实例化之后调用。在 Spring 中，Bean 的初始化顺序是由 Bean 的依赖关系和配置文件中的 <bean> 元素的顺序共同决定的。
 总的来说，Bean 的实例化和初始化是两个不同的过程，它们的目的和方式也不同。实例化是创建对象的过程，而初始化是在对象创建之后对其进行初始化的过程。在 Spring 中，Bean 的实例化和初始化都是由容器自动管理的，一般不需要手动干预。
 
-
 ConstructorArgumentValues
 ValueHolder
 String type
@@ -295,7 +294,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | AbstractPropertyAccessor                             |           |      |
 | BeanMetadataAttribute                                |           |      |
 | BeanMetadataAttributeAccessor                        |           |      |
-| BeanUtils                                            |           |      |
+| BeanUtils                                            |           | 重要 |
 | BeanWrapperImpl                                      |           |      |
 | CachedIntrospectionResults                           |           |      |
 | DirectFieldAccessor                                  |           |      |
@@ -324,6 +323,16 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | PropertyAccessException                              |    exception       |      |
 | PropertyBatchUpdateException                         |  exception         |      |
 | TypeMismatchException                                |   exception        |      |
+
+
+
+
+
+BeanUtils methods
+
+![BeanUtils_methods](..\..\imgs\spring\BeanUtils_methods.png)
+
+
 
 
 

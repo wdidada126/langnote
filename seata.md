@@ -32,7 +32,7 @@ at
 数据库事务
 套上seata的事务
 saga
-长事误
+长事务
 
 Saga 理论出自 Hector & Kenneth 1987发表的论文 Sagas。
 https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
@@ -47,7 +47,7 @@ https://blog.csdn.net/tianyaleixiaowu/article/details/95208906
 
 https://blog.csdn.net/weixin_39860915/article/details/103917845
 
-**（AT、TCC、Saga、XA）模式分析**
+（AT、TCC、Saga、XA）模式分析
 
 四种分布式事务模式，分别在不同的时间被提出，每种模式都有它的适用场景
 
@@ -163,3 +163,4 @@ https://seata.io/zh-cn/
 选择时主要看中产品的功能和强项是否符合你的需求。如果你更看重多种事务场景的支撑或安全性,收费产品会是一个不错的选择。
 希望能给你一些参考,选择合适你的分布式事务中间件。有任何问题欢迎随时和我交流!
 
+## 源代码分包解析 v1.3.0
