@@ -220,7 +220,7 @@ https://blog.csdn.net/nikeylee/article/details/117367744
 sonarqube与IDEA
 
 idea sonalint插件
-	https://blog.csdn.net/zengmingen/article/details/106473012
+https://blog.csdn.net/zengmingen/article/details/106473012
 
 pom.xml增加
 ```xml
@@ -251,7 +251,7 @@ Downloading analyzer 'python'
 
 Plugin 'secrets' embeds dependencies. This will be deprecated soon. Plugin should be updated.
 
-
+```
 [SYNC] Downloading plugin 'sonar-scala-plugin-1.9.0.3429.jar'
 Downloaded 'sonarscala' in 125036ms
 [SYNC] Downloading plugin 'sonar-xml-plugin-2.5.0.3376.jar'
@@ -277,7 +277,7 @@ Found 0 issues
 Using connection '106.75.209.6' for project 'dsfasdfasd'
 Analysing 'A.java'...
 Found 0 issues
-
+```
 
 
 
@@ -285,9 +285,11 @@ Found 0 issues
 
 
 ### 完整报错：
+```
 ERROR: [1] bootstrap checks failed. You must address the points described in the following [1] lines before starting Elasticsearch.
 bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/logs/sonarqube.log
+```
 
 原因：由于 SonarQube 使用嵌入式 Elasticsearch，请确保您的 Docker 主机配置符合Elasticsearch 生产模式要求和文件描述符配置。
 解决：在 Linux 上，您可以通过在主机上以 root 身份运行以下命令来设置当前会话的推荐值：（调整系统参数）
@@ -299,13 +301,16 @@ ERROR: Elasticsearch did not exit normally - check the logs at /opt/sonarqube/lo
 admin
 5Edidada
 
-mvn clean verify sonar:sonar -Dsonar.projectKey=mytestsonarproject -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=9d7d2b7f76ef5353c4834875e6683912cc921daf
+`mvn clean verify sonar:sonar -Dsonar.projectKey=mytestsonarproject -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=9d7d2b7f76ef5353c4834875e6683912cc921daf`
 
-
+```
  An API incompatibility was encountered while
  executing org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar: java.lang.UnsupportedClassVersionError: org/sonar/batch/bootstrapper
 /EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime
  only recognizes class file versions up to 52.0
-
+```
 
 需要将JDK版本更换至 Java 11
+
+## sonar扫面出的提示
+
