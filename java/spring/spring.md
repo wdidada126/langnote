@@ -1,6 +1,14 @@
 # Spring
 
-spring两种代理方式.png
+
+
+## sping两种代理
+
+
+
+![spring两种代理方式](..\..\imgs\spring\spring两种代理方式.png)
+
+
 
 <init-method>效果跟实现InitializingBean接口是一样的吗？
 在Spring中，<init-method>标签和实现InitializingBean接口都可以用来指定Bean初始化之后执行的方法，但是它们的实现方式和用途是有些不同的。
@@ -585,11 +593,19 @@ Spring用了注解 反射
 
 用Spring一年之后，懂了好多
 
-
 https://github.com/seaswalker/spring-analysis
 
-ScopedProxyMode
+https://github.com/edidada/spring-analysis
+
+
+
+
+
+spring-context
+
+ScopedProxyMode org.springframework.context.annotation.ScopedProxyMode
 https://blog.csdn.net/weixin_37689658/article/details/122308798
+
 ```
 
 public enum ScopedProxyMode {
@@ -713,7 +729,19 @@ https://www.iteye.com/blog/jinnianshilongnian-1418311
 
 https://zhuanlan.zhihu.com/p/99603669
 
+整理spring beans，spring context support两个包
 
+主要过程有:
+
+1.实例化:主要是创建对象
+
+2.填充属性：为对象属性赋值
+
+3.初始化：调用初始化方法
+
+4.使用：保存在缓冲池中等待使用
+
+5.销毁：随着容器的销毁 对象也被回收
 
 
 
@@ -754,7 +782,33 @@ https://blog.csdn.net/GoSaint/article/details/101320827
 
 
 
+- spring-aop
+
 - spring-beans
+
+- spring-core
+
+- spring-context
+
+- spring-context-support
+
+- spring-spel
+
+- spring-jdbc
+
+- spring-tx
+
+- spring-orm
+
+- spring-oxm
+
+- spring-web
+
+- spring-webmvc
+
+- spring-jcl
+
+- spring-test
 
   
 
@@ -1214,16 +1268,14 @@ https://blog.csdn.net/qq_36567005/article/details/80611139
 `@Service("beanName")`
 
 
-```
+```java
 
 @Autowired
 @Qualifier("beanName")
 Interface ..
-
 ```
 
 Qualifier的意思是合格者，通过这个标示，表明了哪个实现类才是我们所需要的，添加@Qualifier注解，需要注意的是@Qualifier的参数名称为我们之前定义@Service注解的名称之一。
-
 
 @Resource(name="")
 @Qualifier注解的用处：当一个接口有多个实现的时候，为了指名具体调用哪个类的实现。
@@ -1233,7 +1285,7 @@ org.springframework.beans.factory.annotation.Qualifier
 
 
 
-Spring整理系列(11)——@Configuration注解、@Bean注解以及配置自动扫描、bean作用域
+##### Spring整理系列(11)——@Configuration注解、@Bean注解以及配置自动扫描、bean作用域
 https://blog.csdn.net/javaloveiphone/article/details/52182899
 
 
@@ -1242,8 +1294,6 @@ BeanDefinitionStoreException：无法解析配置类
 Spring注解之@PostConstruct在项目启动时执行指定方法
 
 @PreDestroy
-
-
 
 - javax.annotation.Resource
 - javax.annotation.Resources
@@ -1273,17 +1323,15 @@ https://docs.oracle.com/javaee/7/api/javax/annotation/PostConstruct.html
 - 三、通过 @PropertySource 注解实现配置文件加载
 - 四、通过 PropertyPlaceholderConfigurer 类读取配置文件
 
-PropertyPlaceholderConfigurer
+PropertyPlaceholderConfigurer org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
 https://blog.csdn.net/weixin_43314519/article/details/109233365
-
 
 PropertyPlaceholderConfigurer 的基本使用
 PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。在XML文件中用${…}替换指定的properties文件中的值。这样的话，只需要对properties文件进 行修改，而不用对xml配置文件进行修改。
 在Spring中，使用PropertyPlaceholderConfigurer可以在XML配置文件中加入外部属性文件
 PropertyPlaceholderConfigurer 引入外部属性文件
-————————————————
-版权声明：本文为CSDN博主「Hi丶ImViper」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_43314519/article/details/109233365
+
+https://blog.csdn.net/weixin_43314519/article/details/109233365
 
 
 [util:properties](https://maidong660.iteye.com/blog/2363666)
@@ -1333,7 +1381,7 @@ Redis入门指南 第2版
 
 Redis入门指南第六章 lua脚本
 
-
+```
 org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from ServletContext resource [/WEB-INF/applicationContext.xml]; nested exception is java.io.FileNotFoundException: Could not open ServletContext resource [/WEB-INF/applicationContext.xml]
 	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:344) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
 	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304) ~[spring-beans-4.3.12.RELEASE.jar:4.3.12.RELEASE]
@@ -1345,6 +1393,8 @@ org.springframework.beans.factory.BeanDefinitionStoreException: IOException pars
 	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129) ~[spring-context-4.3.12.RELEASE.jar:4.3.12.RELEASE]
 
 
+
+```
 
 
 
@@ -1364,7 +1414,21 @@ ClassPathXmlApplicationContext
 
 close()
 
-ApplicationContext无close()
+ApplicationContext无close() FileSystemXmlApplicationContext  AnnotationConfigServletWebApplicationContext  AnnotationConfigServletWebServerApplicationContext
+
+
+
+ClassPathXmlApplicationContext类路径
+
+```
+DefaultResourceLoader (org.springframework.core.io)
+    AbstractApplicationContext (org.springframework.context.support)
+        AbstractRefreshableApplicationContext (org.springframework.context.support)
+            AbstractRefreshableConfigApplicationContext (org.springframework.context.support)
+                AbstractXmlApplicationContext (org.springframework.context.support)
+                    ClassPathXmlApplicationContext (org.springframework.context.support)
+
+```
 
 
 
