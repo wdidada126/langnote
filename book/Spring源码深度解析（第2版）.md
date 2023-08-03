@@ -72,6 +72,12 @@ gradlew build -x test
 【Spring源码分析】Bean加载流程概览
 https://www.cnblogs.com/xrq730/p/6285358.html
 
+spring源码分析 系列
+https://www.cnblogs.com/xrq730/category/941473.html
+
+上面博文
+org.springframework.beans.PropertyEditorRegistrar 接口
+	void registerCustomEditors(PropertyEditorRegistry registry);
 
 
 ### 第3章　默认标签的解析
@@ -88,6 +94,7 @@ https://www.cnblogs.com/xrq730/p/6285358.html
 8. `<context:property-placeholder>` 标签：用于加载属性文件中的属性值，可以在配置文件中使用占位符替换属性值。
 总之，Spring 提供了许多默认的标签和命名空间，可以简化配置文件的编写，提高开发效率。开发者可以根据自己的需求选择合适的标签和命名空间，并结合 Spring 的其他功能来完成应用程序的开发。
 
+
 ### 第4章　自定义标签的解析
 
 在 Spring 中，可以通过自定义标签来扩展 Spring 的 XML 配置文件，以满足特定的业务需求。自定义标签的解析过程包括以下几步：
@@ -99,14 +106,14 @@ https://www.cnblogs.com/xrq730/p/6285358.html
 
 ### 第5章　bean的加载
 
-FactoryBean接口
-spring-beans包
+FactoryBean接口 spring-beans包
 org.springframework.beans.factory.FactoryBean<T>
 
 T getObject()
 boolean isSingleton()
 Class<?> getObjectType()
 
+FactoryBean接口子类
 MBeanProxyFactoryBean (org.springframework.jmx.access)
 JobDetailFactoryBean (org.springframework.scheduling.quartz)
 LocalStatelessSessionProxyFactoryBean (org.springframework.ejb.access)
@@ -202,7 +209,7 @@ SharedMetadataReaderFactoryBean in SharedMetadataReaderFactoryContextInitializer
 
 ### 第6章　容器的功能扩展
 
-Resource接口详解
+Resource接口详解 org.springframework.core.io.Resource spring-core包里面的
 继承自InputStreamSource
 
 ResourceLoader  org.springframework.core.io.ResourceLoader spring-core这个jar里面的
@@ -214,7 +221,7 @@ bean
 ioc容器初始化过程分为三个步骤
 1、Resource定位
 2、载入（BeanDefinition）
-3、注册BeanDefinition
+3、注册BeanDefinition BeanDefinitionRegistry接口
 
 
 
@@ -231,7 +238,7 @@ EncodedResource按照一定的格式处理xml格式的配置文件（application
 
 
 
-- EncodedResource
+- EncodedResource org.springframework.core.io.support.EncodedResource spring-core这个jar里面的
 
 在Spring中，EncodedResource是一个用于表示编码资源的类，用于将资源文件的字节流和编码方式组合在一起。EncodedResource的作用是将底层资源的输入流和编码方式进行关联，并提供获取输入流的方法，以便在读取资源时使用正确的编码方式。
 EncodedResource通常可以用于读取文本文件类型的资源，例如XML文件、配置文件等。使用EncodedResource可以指定正确的编码方式，以避免读取到乱码等问题。
@@ -255,8 +262,8 @@ try (InputStream inputStream = encodedResource.getInputStream()) {
 
 
 
-
-
+XmlBeanDefinitionReader类
+org.springframework.beans.factory.xml.XmlBeanDefinitionReader spring-beans jar包里面的
 XmlBeanDefinitionReader的getValidationModeForResource()方法
 
 XmlBeanDefinitionReader的registerBeanDefinitions()方法
@@ -267,11 +274,11 @@ XmlBeanDefinitionReader的registerBeanDefinitions()方法
 
 
 XmlBeanDefinitionReader的detectValidationMode()
-XmlValidationModeDetector的detectValidationMode()方法
+XmlValidationModeDetector的detectValidationMode()方法   org.springframework.util.xml.XmlValidationModeDetector spring-core 里面的类
 XmlValidationModeDetector的hasDoctype()方法
 
 返回XmlBeanDefinitionReader的doLoadBeanDefinitions()方法来分析
-DefaultDocumentLoader的loadDocument()方法
+DefaultDocumentLoader的loadDocument()方法 org.springframework.beans.factory.xml.DefaultDocumentLoader spring-beans jar包里面的
 从原理上讲就是sax解析
 
 
@@ -310,9 +317,17 @@ reader.loadBeanDefinitions(new ClassPathResource("application.properties"));
 
 总之，Spring中有多个BeanDefinitionReader子类，可以用于读取和解析不同格式的Bean定义信息，并将这些信息注册到IoC容器中。常用的几个子类包括XmlBeanDefinitionReader、AnnotatedBeanDefinitionReader和PropertiesBeanDefinitionReader等。
 
+
+BeanDefinitionReader接口子类 spring-beans里面的
+AbstractBeanDefinitionReader (org.springframework.beans.factory.support)
+    PropertiesBeanDefinitionReader (org.springframework.beans.factory.support)
+    GroovyBeanDefinitionReader (org.springframework.beans.factory.groovy)
+    XmlBeanDefinitionReader (org.springframework.beans.factory.xml)
+
+
 DelegatingEntityResolver类对dtd和xsd格式的xml文件分别调用
-BeansDtdResolver
-PluggableSchemaResolver
+BeansDtdResolver  org.springframework.beans.factory.xml.BeansDtdResolver
+PluggableSchemaResolver org.springframework.beans.factory.xml.PluggableSchemaResolver
 
 
 
@@ -443,13 +458,8 @@ BeanDefinitionHolder是对BeanDefinition，String beanName，String[] aliases的
 
 
 
-
-
-
-
-
 ClassPathResource
-org.springframework.core.io.ClassPathResource
+org.springframework.core.io.ClassPathResource spring-core里面的
 http://elim.iteye.com/blog/2016305
 
 
@@ -476,9 +486,7 @@ InputStreamResource是针对于输入流封装的资源，它的构建需要一�
 
 在Spring里面还定义有一个ResourceLoader接口，该接口中只定义了一个用于获取Resource的getResource(String location)方法。它的实现类有很多，这里我们先挑一个DefaultResourceLoader来讲。
 
-InputStreamSource
-
-org.springframework.core.io.InputStreamSource
+InputStreamSource org.springframework.core.io.InputStreamSource
 
 InputStream getInputStream() throws IOException;
 
@@ -495,7 +503,7 @@ interface Resource extends InputStreamSource
 
 Aware
 
-org.springframework.beans.factory.Aware
+org.springframework.beans.factory.Aware spring-beans jar包里面的
 
 回调
 
@@ -518,14 +526,13 @@ ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使
 
 
 
-DocumentLoader
+DocumentLoader org.springframework.beans.factory.xml.DocumentLoader spring-beans jar包里面的
+
 Spring4.3.x 浅析xml配置的解析过程（3）——使用DocumentLoader创建Document对象
 
 
-org.springframework.beans.factory.xml.DocumentLoader
 
 Document loadDocument()
-
 子类：DefaultDocumentLoader
 
 DefaultDocumentLoader是DocumentLoader的实现类
@@ -582,7 +589,6 @@ DefaultBeanDefinitionDocumentReader的doRegisterBeanDefinitions方法
 
 protected void doRegisterBeanDefinitions(Element root){
 
-
 }
 
 
@@ -601,23 +607,12 @@ Spring3自定义环境配置  beans profile
 
 
 
-
-
-
-
-
-
-
-
 BeanWapper
 
 
 
 PropertyValue
 PropertyValues
-
-
-
 
 
 BeanPostProcessor
@@ -646,7 +641,7 @@ guice这种ioc框架，如何打印容器中的数据
 
 
 
-| **对象名**                  | **类  型**                     | **作  用**                                                   | **归属类**                                  |
+| **对象名**                  | **类型**                     | **作用**                                                   | **归属类**                                  |
 | --------------------------- | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------- |
 | configResources             | Resource[]                     | 配置文件资源对象数组                                         | ClassPathXmlApplicationContext              |
 | configLocations             | String[]                       | 配置文件字符串数组，存储配置文件路径                         | AbstractRefreshableConfigApplicationContext |
@@ -762,16 +757,11 @@ Data Truncation 警告形式报告异常。
 
 ### 第9章　整合MyBatis
 
-org.apache.ibatis.session.SqlSessionFactory
+org.apache.ibatis.session.SqlSessionFactory  mybatis jar包里面的
 
 
 
-MapperScannerConfigurer
-
-org.mybatis.spring.mapper.MapperScannerConfigurer
-
-
-
+MapperScannerConfigurer org.mybatis.spring.mapper.MapperScannerConfigurer
 org.mybatis.spring.mapper.MapperFactoryBean
 
 有一个Interface的field
@@ -859,8 +849,6 @@ TransactionInterceptor支持只读事务，可以提高事务的并发性能。�
 配置事务管理器
 需要配置一个事务管理器，例如DataSourceTransactionManager、JpaTransactionManager等，用于实现事务管理。
 
-
-
 配置事务属性信息
 需要配置事务属性信息，例如事务传播行为、隔离级别、超时时间、只读标志等，用于控制事务的行为。
 
@@ -903,7 +891,7 @@ TransactionInterceptor支持只读事务，可以提高事务的并发性能。�
 
 第11章 SpringMVC
 
-WebApplicationContext
+WebApplicationContext接口org.springframework.web.context.WebApplicationContext spring-web jar包里面的类
 
 HandlerInterceptor
 
@@ -912,7 +900,6 @@ HandlerInterceptor
 WebApplicationContext
 
 1. 提供Web应用程序级别的事件机制
-
 WebApplicationContext提供了Web应用程序级别的事件机制，可以在应用程序中使用Spring Framework的事件机制。WebApplicationContext可以发布应用程序级别的事件，例如ServletContext事件、HttpSession事件和ServletRequest事件等，并提供了相应的事件监听器。
 
 

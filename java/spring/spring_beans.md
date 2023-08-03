@@ -270,7 +270,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 ### org.springframework.beans
 
-| org.springframework.beans                            |           |      |
+| org.springframework.beans                            | 类型 |      |
 | ---------------------------------------------------- |-----------| ---- |
 |                                                      |           |      |
 | Interfaces                                           |           |      |
@@ -340,7 +340,7 @@ BeanUtils methods
 
 
 
-| org.springframework.beans.annotation |          |      |
+| org.springframework.beans.annotation | 类型     |      |
 | ------------------------------------ | -------- | ---- |
 | AnnotationBeanUtils                  | abstract |      |
 |                                      |          |      |
@@ -352,7 +352,7 @@ BeanUtils methods
 
 
 
-| org.springframework.beans.factory  |           |      |
+| org.springframework.beans.factory  | 类型 |      |
 | ---------------------------------- |-----------| ---- |
 |                                    |           |      |
 | Interfaces                         |           |      |
@@ -399,7 +399,7 @@ BeanUtils methods
 
 
 
-| org.springframework.beans.factory.annotation |           |      |
+| org.springframework.beans.factory.annotation | 类型 |      |
 | -------------------------------------------- |-----------| ---- |
 |                                              |           |      |
 | Interfaces                                   |           |      |
@@ -437,7 +437,7 @@ BeanUtils methods
 
 
 
-| org.springframework.beans.factory.config   |                              |                                  |
+| org.springframework.beans.factory.config   | 类型 |                                  |
 |--------------------------------------------|------------------------------|----------------------------------|
 |                                            |                              |                                  |
 | Interfaces                                 |                              |                                  |
@@ -529,7 +529,7 @@ ServiceFactoryBean (org.springframework.beans.factory.serviceloader)
 
 
 
-| org.springframework.beans.factory.groovy |      |      |
+| org.springframework.beans.factory.groovy | 类型 |      |
 | ---------------------------------------- | ---- | ---- |
 |                                          |      |      |
 |                                          |      |      |
@@ -539,7 +539,7 @@ ServiceFactoryBean (org.springframework.beans.factory.serviceloader)
 
 
 
-| org.springframework.beans.factory.parsing |           |                          |
+| org.springframework.beans.factory.parsing | 类型 |                          |
 | ----------------------------------------- |-----------|--------------------------|
 |                                           |           |                          |
 | Interfaces                                |           |                          |
@@ -591,7 +591,7 @@ AdvisorComponentDefinition (org.springframework.aop.config)
 
 #####  org.springframework.beans.factory.serviceloader
 
-| org.springframework.beans.factory.serviceloader |          |      |
+| org.springframework.beans.factory.serviceloader | 类型     |      |
 | ----------------------------------------------- | -------- | ---- |
 | AbstractServiceLoaderBasedFactoryBean           | abstract |      |
 | ServiceFactoryBean                              |          |      |
@@ -600,7 +600,7 @@ AdvisorComponentDefinition (org.springframework.aop.config)
 
 ##### org.springframework.beans.factory.support
 
-| org.springframework.beans.factory.support |           |      |
+| org.springframework.beans.factory.support | 类型 |      |
 | ----------------------------------------- |-----------| ---- |
 |                                           |           |      |
 | Interfaces                                |           |      |
@@ -672,7 +672,7 @@ AutowireCandidateResolver 接口
 
 
 
-| org.springframework.beans.factory.wiring |           |                            |
+| org.springframework.beans.factory.wiring | 类型      |                            |
 | ---------------------------------------- | --------- | -------------------------- |
 | BeanConfigurerSupport                    |           |                            |
 | BeanWiringInfo                           |           |                            |
@@ -695,7 +695,7 @@ AnnotationBeanWiringInfoResolver ClassNameBeanWiringInfoResolver区别
 
 
 
-| org.springframework.beans.factory.xml |      |      |
+| org.springframework.beans.factory.xml | 类型 |      |
 | ------------------------------------- | ---- | ---- |
 |                                       |      |      |
 | Interfaces                            |      |      |
@@ -742,7 +742,7 @@ AnnotationBeanWiringInfoResolver ClassNameBeanWiringInfoResolver区别
 
 
 
-| org.springframework.beans.propertyeditors |      |      |
+| org.springframework.beans.propertyeditors | 类型 |      |
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | Classes                                   |      |      |
@@ -780,7 +780,7 @@ AnnotationBeanWiringInfoResolver ClassNameBeanWiringInfoResolver区别
 
 
 
-| org.springframework.beans.support |           |      |
+| org.springframework.beans.support | 类型      |      |
 | --------------------------------- | --------- | ---- |
 | ArgumentConvertingMethodInvoker   |           |      |
 | MutableSortDefinition             |           |      |

@@ -1043,7 +1043,7 @@ Joshua Bloch的这本经典书。虽然不专注Spring,但介绍了Java制定条
 https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 ### org.springframework.aop
-| org.springframework.aop        |           |      |
+| org.springframework.aop        | 类型      | 解释 |
 | ------------------------------ | --------- | ---- |
 |                                |           |      |
 | Interfaces                     |           |      |
@@ -1074,7 +1074,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | AopInvocationException         |           |      |
 
 ### org.springframework.aop.aspectj
-| org.springframework.aop.aspectj                              |           |      |
+| org.springframework.aop.aspectj                              | 类型      | 解释 |
 | ------------------------------------------------------------ | --------- | ---- |
 |                                                              |           |      |
 | Interfaces                                                   |           |      |
@@ -1110,7 +1110,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 #### org.springframework.aop.aspectj.annotation
 
-| org.springframework.aop.aspectj.annotation                   |           |      |
+| org.springframework.aop.aspectj.annotation                   | 类型      | 解释 |
 | ------------------------------------------------------------ | --------- | ---- |
 |                                                              |           |      |
 | Interfaces                                                   |           |      |
@@ -1148,7 +1148,7 @@ AspectJAwareAdvisorAutoProxyCreator
 AspectJPrecedenceComparator
 
 ### org.springframework.aop.config
-| org.springframework.aop.aspectj.annotation                   |           |      |
+| org.springframework.aop.aspectj.annotation                   | 类型      | 解释 |
 | ------------------------------------------------------------ | --------- | ---- |
 |                                                              |           |      |
 | Interfaces                                                   |           |      |
@@ -1184,7 +1184,7 @@ AspectJPrecedenceComparator
 
 ### org.springframework.aop.framework
 
-| org.springframework.aop.framework |           |      |
+| org.springframework.aop.framework | 类型      | 解释 |
 | --------------------------------- | --------- | ---- |
 |                                   |           |      |
 | Interfaces                        |           |      |
@@ -1220,7 +1220,7 @@ AspectJPrecedenceComparator
 
 #### org.springframework.aop.framework.adapter
 
-| org.springframework.aop.framework.adapter |           |      |
+| org.springframework.aop.framework.adapter | 类型      | 解释 |
 | ----------------------------------------- | --------- | ---- |
 |                                           |           |      |
 | Interfaces                                |           |      |
@@ -1245,7 +1245,7 @@ AspectJPrecedenceComparator
 
 #### org.springframework.aop.framework.autoproxy
 
-| org.springframework.aop.framework.autoproxy   |           |      |
+| org.springframework.aop.framework.autoproxy   | 类型      | 解释 |
 | --------------------------------------------- | --------- | ---- |
 |                                               |           |      |
 | Interfaces                                    |           |      |
@@ -1273,7 +1273,7 @@ AspectJPrecedenceComparator
 
 
 
-| org.springframework.aop.framework.autoproxy.target |      |      |
+| org.springframework.aop.framework.autoproxy.target | 类型 | 解释 |
 | -------------------------------------------------- | ---- | ---- |
 | AbstractBeanFactoryBasedTargetSourceCreator        |      |      |
 | LazyInitTargetSourceCreator                        |      |      |
@@ -1284,7 +1284,7 @@ AspectJPrecedenceComparator
 
 ### org.springframework.aop.interceptor
 
-| org.springframework.aop.interceptor |           |      |
+| org.springframework.aop.interceptor | 类型      | 解释 |
 | ----------------------------------- | --------- | ---- |
 |                                     |           |      |
 | Interfaces                          |           |      |
@@ -1313,17 +1313,17 @@ AspectJPrecedenceComparator
 
 
 
-| org.springframework.aop.scope |           |      |
-| ----------------------------- |-----------| ---- |
-| DefaultScopedObject           |           |      |
-| ScopedObject                              | interface |      |
-| ScopedProxyFactoryBean                              |           |      |
-|  ScopedProxyUtils                             | 抽象静态工具类   |      |
+| org.springframework.aop.scope | 类型           | 解释 |
+| ----------------------------- | -------------- | ---- |
+| DefaultScopedObject           |                |      |
+| ScopedObject                  | interface      |      |
+| ScopedProxyFactoryBean        |                |      |
+| ScopedProxyUtils              | 抽象静态工具类 |      |
 
 
 
 ### org.springframework.aop.support
-| org.springframework.aop.support                |           |      |
+| org.springframework.aop.support                | 类型      | 解释 |
 | ---------------------------------------------- | --------- | ---- |
 |                                                |           |      |
 | Interfaces                                     |           |      |
@@ -1332,11 +1332,11 @@ AspectJPrecedenceComparator
 |                                                |           |      |
 | Classes                                        |           |      |
 |                                                |           |      |
-| AbstractBeanFactoryPointcutAdvisor             |           |      |
-| AbstractExpressionPointcut                     |           |      |
-| AbstractGenericPointcutAdvisor                 |           |      |
-| AbstractPointcutAdvisor                        |           |      |
-| AbstractRegexpMethodPointcut                   |           |      |
+| AbstractBeanFactoryPointcutAdvisor             | abstract  |      |
+| AbstractExpressionPointcut                     | abstract  |      |
+| AbstractGenericPointcutAdvisor                 | abstract  |      |
+| AbstractPointcutAdvisor                        | abstract  |      |
+| AbstractRegexpMethodPointcut                   | abstract  |      |
 | AopUtils                                       |           |      |
 | ClassFilters                                   |           |      |
 | ComposablePointcut                             |           |      |
@@ -1362,17 +1362,17 @@ AspectJPrecedenceComparator
 
 #### org.springframework.aop.support.annotation
 
-| org.springframework.aop.support.annotation |      |      |
-|--------------------------------------------| ---- | ---- |
-| AnnotationClassFilter                      |      |      |
-| AnnotationMatchingPointcut                 |      |      |
-| AnnotationMatchingPointcut.AnnotationCandidateClassFilter                |      |      |
-| AnnotationMethodMatcher                |      |      |
+| org.springframework.aop.support.annotation                | 类型 | 解释 |
+| --------------------------------------------------------- | ---- | ---- |
+| AnnotationClassFilter                                     |      |      |
+| AnnotationMatchingPointcut                                |      |      |
+| AnnotationMatchingPointcut.AnnotationCandidateClassFilter |      |      |
+| AnnotationMethodMatcher                                   |      |      |
 
 
 
 ### org.springframework.aop.target
-| org.springframework.aop.target       |           |      |
+| org.springframework.aop.target       | 类型      | 解释 |
 | ------------------------------------ | --------- | ---- |
 |                                      |           |      |
 | Interfaces                           |           |      |
@@ -1398,7 +1398,7 @@ AspectJPrecedenceComparator
 #### org.springframework.aop.target.dynamic
 
 
-| org.springframework.aop.target.dynamic     |      |      |
+| org.springframework.aop.target.dynamic     | 类型 | 解释 |
 | ---- | ---- | ---- |
 |  AbstractRefreshableTargetSource    | abstract     |      |
 |  BeanFactoryRefreshableTargetSource    |      |      |
