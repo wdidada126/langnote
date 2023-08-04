@@ -106,8 +106,7 @@ org.springframework.beans.PropertyEditorRegistrar 接口
 
 ### 第5章　bean的加载
 
-FactoryBean接口 spring-beans包
-org.springframework.beans.factory.FactoryBean<T>
+FactoryBean接口 spring-beans包 org.springframework.beans.factory.FactoryBean<T>
 
 T getObject()
 boolean isSingleton()
@@ -262,8 +261,7 @@ try (InputStream inputStream = encodedResource.getInputStream()) {
 
 
 
-XmlBeanDefinitionReader类
-org.springframework.beans.factory.xml.XmlBeanDefinitionReader spring-beans jar包里面的
+XmlBeanDefinitionReader类 org.springframework.beans.factory.xml.XmlBeanDefinitionReader spring-beans jar包里面的
 XmlBeanDefinitionReader的getValidationModeForResource()方法
 
 XmlBeanDefinitionReader的registerBeanDefinitions()方法
@@ -342,7 +340,8 @@ XmlBeanDefinitionReader的registerBeanDefinitions()
 调用同一个类的registerBeanDefinitions()方法
 
 
-
+org.springframework.beans.factory.xml.BeanDefinitionDocumentReader 
+void registerBeanDefinitions(Document doc, XmlReaderContext readerContext)
 BeanDefinitionDocumentReader接口的实现类DefaultBeanDefinitionDocumentReader依次调用
 
 1、registerBeanDefinitions(Document, XmlReaderContext)方法   ----提取root对象 再次注册
@@ -439,7 +438,7 @@ AbstractBeanFactory.doGetBean()
 
 BeanDefinitionHolder
 
-Spring源码学习--BeanDefinitionHolder
+Spring源码学习--BeanDefinitionHolder org.springframework.beans.factory.config.BeanDefinitionHolder类
 https://blog.csdn.net/qq924862077/article/details/73558848
 
 
@@ -490,7 +489,7 @@ InputStreamSource org.springframework.core.io.InputStreamSource
 
 InputStream getInputStream() throws IOException;
 
-Resource
+Resource接口
 对应src/main/resource 文件夹
 org.springframework.core.io.Resource
 
@@ -501,7 +500,7 @@ interface Resource extends InputStreamSource
 
 
 
-Aware
+Aware接口
 
 org.springframework.beans.factory.Aware spring-beans jar包里面的
 
@@ -526,7 +525,9 @@ ResourceLoaderAware，在Bean中可以得到ResourceLoader，从而在bean中使
 
 
 
-DocumentLoader org.springframework.beans.factory.xml.DocumentLoader spring-beans jar包里面的
+DocumentLoader接口 org.springframework.beans.factory.xml.DocumentLoader spring-beans jar包里面的
+Document loadDocument(InputSource inputSource, EntityResolver entityResolver,
+			ErrorHandler errorHandler, int validationMode, boolean namespaceAware)
 
 Spring4.3.x 浅析xml配置的解析过程（3）——使用DocumentLoader创建Document对象
 
@@ -556,12 +557,11 @@ BeanDefinition的实现类用于描述Spring中的一个应该被实例化的bea
 
 
 
-DelegatingEntityResolver
+DelegatingEntityResolver org.springframework.beans.factory.xml.DelegatingEntityResolver spring-beans 包
 
 属性systemId的取值有一下两种：
 
 public static final String DTD_SUFFIX = ".dtd";
-
 public static final String XSD_SUFFIX = ".xsd";
 
 Spring中使用DelegatingEntityResolver作为EntityResolver的实现类
@@ -768,7 +768,7 @@ org.mybatis.spring.mapper.MapperFactoryBean
 
 
 
-第10章 事务
+### 第10章 事务
 
 Spring事务 RowMapper
 在 Spring 中，`RowMapper` 是用于将查询结果集中的一行映射为一个 Java 对象的接口。如果需要自定义 `RowMapper` 的实现类，可以通过扩展 `RowMapperResultSetExtractor` 类来实现。
@@ -889,7 +889,7 @@ TransactionInterceptor支持只读事务，可以提高事务的并发性能。�
 
 
 
-第11章 SpringMVC
+## 第11章 SpringMVC
 
 WebApplicationContext接口org.springframework.web.context.WebApplicationContext spring-web jar包里面的类
 
@@ -904,11 +904,11 @@ WebApplicationContext提供了Web应用程序级别的事件机制，可以在�
 
 
 
-第12章 远程服务
+## 第12章 远程服务
 
 
 
-第13章 Spring消息
+## 第13章 Spring消息
 
 
 
@@ -916,8 +916,8 @@ WebApplicationContext提供了Web应用程序级别的事件机制，可以在�
 
 
 
-第3部分　Spring Boot
-第14章 Spring Boot体系原理
+## 第3部分　Spring Boot
+### 第14章 Spring Boot体系原理
 
 
 
