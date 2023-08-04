@@ -12,6 +12,262 @@ AnnotationAttributes
 
 ## 源代码分包解析 v5.2.9
 
+
+
+### org.springframework.asm
+
+| org.springframework.asm   | 类型 |      |
+| ------------------------- | ---- | ---- |
+|                           |      |      |
+| Interfaces                |      |      |
+| Opcodes                   |      |      |
+|                           |      |      |
+| Classes                   |      |      |
+| AnnotationVisitor         |      |      |
+| Attribute                 |      |      |
+| ByteVector                |      |      |
+| ClassReader               |      |      |
+| ClassVisitor              |      |      |
+| ClassWriter               |      |      |
+| ConstantDynamic           |      |      |
+| FieldVisitor              |      |      |
+| Handle                    |      |      |
+| Label                     |      |      |
+| MethodVisitor             |      |      |
+| ModuleVisitor             |      |      |
+| RecordComponentVisitor    |      |      |
+| SpringAsmInfo             |      |      |
+| Type                      |      |      |
+| TypePath                  |      |      |
+| TypeReference             |      |      |
+|                           |      |      |
+| Exceptions                |      |      |
+| ClassTooLargeException    |      |      |
+| MethodTooLargeException   |      |      |
+|                           |      |      |
+|                           |      |      |
+|                           |      |      |
+|                           |      |      |
+| org.springframework.cglib | 类型 |      |
+|                           |      |      |
+| Classes                   |      |      |
+|                           |      |      |
+| SpringCglibInfo           |      |      |
+|                           |      |      |
+
+
+
+### org.springframework.cglib
+
+
+
+| org.springframework.cglib       | 类型 |      |
+| ------------------------------- | ---- | ---- |
+| Classes                         |      |      |
+|                                 |      |      |
+| SpringCglibInfo                 |      |      |
+|                                 |      |      |
+| org.springframework.cglib.beans |      |      |
+|                                 |      |      |
+| Classes                         |      |      |
+|                                 |      |      |
+| BeanCopier                      |      |      |
+| BeanCopier.Generator            |      |      |
+| BeanGenerator                   |      |      |
+| BeanMap                         |      |      |
+| BeanMap.Generator               |      |      |
+| BulkBean                        |      |      |
+| BulkBean.Generator              |      |      |
+| FixedKeySet                     |      |      |
+| ImmutableBean                   |      |      |
+| ImmutableBean.Generator         |      |      |
+|                                 |      |      |
+| Exceptions                      |      |      |
+|                                 |      |      |
+| BulkBeanException               |      |      |
+
+
+
+#### org.springframework.cglib.beans
+
+
+| org.springframework.cglib.beans        | 类型 |      |
+| ---- | ---- | ---- |
+|                                        |      |      |
+| Classes                                |      |      |
+|                                        |      |      |
+| BeanCopier                             |      |      |
+| BeanCopier.Generator                   |      |      |
+| BeanGenerator                          |      |      |
+| BeanMap                                |      |      |
+| BeanMap.Generator                      |      |      |
+| BulkBean                               |      |      |
+| BulkBean.Generator                     |      |      |
+| FixedKeySet                            |      |      |
+| ImmutableBean                          |      |      |
+| ImmutableBean.Generator                |      |      |
+|                                        |      |      |
+| Exceptions                             |      |      |
+|                                        |      |      |
+| BulkBeanException                      |      |      |
+|                                        |      |      |
+|                                        |      |      |
+|                                        |      |      |
+
+
+
+
+
+#### org.springframework.cglib.beans
+
+
+
+| org.springframework.cglib.beans | 类型 |      |
+| ------------------------------- | ---- | ---- |
+| Classes                         |      |      |
+|                                 |      |      |
+| BeanCopier                      |      |      |
+| BeanCopier.Generator            |      |      |
+| BeanGenerator                   |      |      |
+| BeanMap                         |      |      |
+| BeanMap.Generator               |      |      |
+| BulkBean                        |      |      |
+| BulkBean.Generator              |      |      |
+| FixedKeySet                     |      |      |
+| ImmutableBean                   |      |      |
+| ImmutableBean.Generator         |      |      |
+|                                 |      |      |
+| Exceptions                      |      |      |
+|                                 |      |      |
+| BulkBeanException               |      |      |
+|                                 |      |      |
+
+
+
+
+
+#### org.springframework.cglib.core
+
+
+| org.springframework.cglib.core         | 类型 |      |
+| ---- | ---- | ---- |
+|                                        |      |      |
+| Classes                                |      |      |
+|                                        |      |      |
+| AbstractClassGenerator                 |      |      |
+| AbstractClassGenerator.ClassLoaderData |      |      |
+| AbstractClassGenerator.Source          |      |      |
+| Block | | |
+| ClassEmitter | | |
+| ClassEmitter.FieldInfo | | |
+|  | | |
+| ClassLoaderAwareGeneratorStrategy      |      |      |
+|  | | |
+|  | | |
+| FieldTypeCustomizer | | |
+| GeneratorStrategy | | |
+| HashCodeCustomizer | | |
+| KeyFactory                             |      |      |
+| org.springframework.cglib.core.KeyFactory.Generator | 内部类 | |
+| KeyFactoryCustomizer | interface | |
+| KeyFactory.Generator                   |      |      |
+| ReflectUtils                           |      |      |
+| SpringNamingPolicy                     |      | extends DefaultNamingPolicy  自定义 Spring Bean 的命名策略,覆盖默认的命名规则。 提供更可读的 Bean 名称。 |
+| Transformer | interface |      |
+| TypeUtils |      |      |
+| VisibilityPredicate |      | DuplicatesPredicate |
+| WeakCacheKey | | |
+
+
+
+
+
+
+
+GeneratorStrategy接口实现类
+
+DefaultGeneratorStrategy (org.springframework.cglib.core)
+UndeclaredThrowableStrategy (org.springframework.cglib.transform.impl)
+ClassLoaderAwareUndeclaredThrowableStrategy in CglibAopProxy (org.springframework.aop.framework)
+ClassLoaderAwareGeneratorStrategy in CglibSubclassingInstantiationStrategy (org.springframework.beans.factory.support)
+BeanFactoryAwareGeneratorStrategy in ConfigurationClassEnhancer (org.springframework.context.annotation)
+
+
+
+
+
+Spring NamingPolicy 类允许自定义 Spring Bean 的命名规则。
+
+它的主要作用是:
+
+1. 自定义 Spring Bean 的命名策略,覆盖默认的命名规则。
+
+2. 提供更可读的 Bean 名称。
+
+使用示例:
+
+```java
+@Configuration
+public class NamingConfig {
+
+  @Bean
+  public NamingPolicy namingPolicy() {
+    return new SpringNamingPolicy(new CamelCaseStrategy()); 
+  }
+
+}
+
+@Component("userService")
+public class UserService {
+  // ...
+}
+```
+
+在这个例子中,我们通过 SpringNamingPolicy 类使用了 CamelCaseStrategy 来自定义 Bean 的命名规则为驼峰命名法。那么 UserService Bean 的名称就会被覆盖成 "userService",而不是默认的 "userServiceImpl"。
+
+这样可以让 Bean 名称更简洁,符合 Java 命名约定。
+
+
+
+#### org.springframework.cglib.proxy
+
+
+
+| org.springframework.cglib.proxy        | 类型 |      |
+| ---- | ---- | ---- |
+|                                        |      |      |
+|                                        |      |      |
+| Interfaces                             |      |      |
+|                                        |      |      |
+| Enhancer.EnhancerKey                   |      |      |
+|                                        |      |      |
+| Classes                                |      |      |
+|                                        |      |      |
+| Enhancer                               |      |      |
+| MethodProxy                            |      |      |
+|                                        |      |      |
+|                                        |      |      |
+|                                        |      |      |
+|                                        |      |      |
+|                                        |      |      |
+
+
+
+#### org.springframework.cglib.transform
+
+
+
+
+
+#### org.springframework.cglib.util
+
+
+
+
+
+
+
+
 ### org.springframework.core
 
 | org.springframework.core                                | 类型      | 详解                                                         |
@@ -1101,7 +1357,7 @@ MyException: Exception 1
 
 
 
-### org.springframework.core.annotation
+#### org.springframework.core.annotation
 
 | org.springframework.core.annotation            | 类型     | 详解 |
 | ---------------------------------------------- | -------- | ---- |
@@ -1149,354 +1405,390 @@ Order
 
 
 
-### org.springframework.core.codec
+#### org.springframework.core.codec
 
-| org.springframework.core.codec |      |      |
+| org.springframework.core.codec | 类型 |      |
 | ------------------------------ | ---- | ---- |
-|                                |      |      |
-|                                |      |      |
-|                                |      |      |
+|     Interfaces                   |      |      |
+|      Decoder                |      | interface     |
+|    Encoder               |      | interface   |
+|    Classes               |      |      |
+|   AbstractDataBufferDecoder     |      |      |
+|  AbstractDecoder    |      |      |
+|   AbstractEncoder    |      |      |
+|     AbstractSingleValueEncoder    |      |      |
+|     ByteArrayDecoder      |      |      |
+|   ByteArrayEncoder         |      |      |
+|    ByteBufferDecoder         |      |      |
+|    ByteBufferEncoder      |      |      |
+|      CharSequenceEncoder     |      |      |
+|    DataBufferDecoder    |      |      |
+|     DataBufferEncoder       |      |      |
+|      Hints       |      |      |
+|    NettyByteBufDecoder     |      |      |
+|    NettyByteBufEncoder    |      |      |
+|    ResourceDecoder   |      |      |
+|    ResourceEncoder     |      |      |
+|   ResourceRegionEncoder  |      |      |
+|   StringDecoder    |      |      |
+|                   |      |      |
+|     Exceptions       |      |      |
+|     CodecException     |      |      |
+|    DecodingException      |      |      |
+|  EncodingException        |      |      |
 
 
-
-
-
-Interfaces
-
-Decoder
-
-Encoder
-
-Classes
-
-AbstractDataBufferDecoder
-
-AbstractDecoder
-
-AbstractEncoder
-
-AbstractSingleValueEncoder
-
-ByteArrayDecoder
-
-ByteArrayEncoder
-
-ByteBufferDecoder
-
-ByteBufferEncoder
-
-CharSequenceEncoder
-
-DataBufferDecoder
-
-DataBufferEncoder
-
-Hints
-
-NettyByteBufDecoder
-
-NettyByteBufEncoder
-
-ResourceDecoder
-
-ResourceEncoder
-
-ResourceRegionEncoder
-
-StringDecoder
-
-Exceptions
-
-CodecException
-
-DecodingException
-
-EncodingException
-
-
-
-
-
-
-
-### org.springframework.core.convert
+#### org.springframework.core.convert
 
 | org.springframework.core.convert |      |      |
 | -------------------------------- | ---- | ---- |
+|        Interfaces                          |      |      |
+|        ConversionService                          |   interface   |      |
 |                                  |      |      |
+|        Classes            |      |      |
+|      Property               |      |      |
+|      TypeDescriptor            |      |      |
 |                                  |      |      |
+|      Exceptions         |      |      |
+|      ConversionException         |      |      |
+|   ConversionFailedException         |      |      |
+|      ConverterNotFoundException           |      |      |
 |                                  |      |      |
 
 
+ConversionService接口方法
+boolean canConvert()
+<T> T convert(@Nullable Object source, Class<T> targetType);
 
 
+接口实现类
+org.springframework.core.convert.support.DefaultConversionService
+
+
+spring-mvc jar包
+org.springframework.http.converter.ObjectToStringHttpMessageConverter 中使用
+spring-jdbc jar包
+org.springframework.jdbc.core.SingleColumnRowMapper 中使用 DefaultConversionService
+
+跟spring-mvc jar包里面的org.springframework.http.converter.HttpMessageConverter 接口没大多联系
+
+###### org.springframework.core.convert.converter
+
+
+| org.springframework.core.convert.converter | 类型 |      |
+| ------------------------------------------ | ---- | ---- |
+|                                            |      |      |
+| Interfaces                                 |      |      |
+| ConditionalConverter                       |      |      |
+| ConditionalGenericConverter                |      |      |
+| Converter                                  |      |      |
+| ConverterFactory                           |      |      |
+| ConverterRegistry                          |      |      |
+| GenericConverter                           |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+| ConvertingComparator                       |      |      |
+| GenericConverter.ConvertiblePair           |      |      |
 
-Interfaces
 
-ConversionService
 
-Classes
+##### org.springframework.core.convert.support
 
-Property
 
-TypeDescriptor
+| org.springframework.core.io     | 类型 |      |
+| ------------------------------- | ---- | ---- |
+| Interfaces                      |      |      |
+| ConfigurableConversionService   |      |      |
+|                                 |      |      |
+| Classes                         |      |      |
+| ConversionServiceFactory        |      |      |
+| ConvertingPropertyEditorAdapter |      |      |
+| DefaultConversionService        |      |      |
+| GenericConversionService        |      |      |
+
+
+
+#### org.springframework.core.io
+org.springframework.core.io.Resource接口 子接口 ContextResource WritableResource
+org.springframework.core.io.ResourceLoader接口
 
-Exceptions
 
-ConversionException
 
-ConversionFailedException
+| org.springframework.core.io                    | 类型 |      |
+| ---------------------------------------------- | ---- | ---- |
+| Interfaces                                     |      |      |
+|                                                |      |      |
+| ContextResource                                |      |      |
+| InputStreamSource                              |      |      |
+| ProtocolResolver                               |      |      |
+| Resource                                       |      |      |
+| ResourceLoader                                 |      |      |
+| WritableResource                               |      |      |
+|                                                |      |      |
+| Classes                                        |      |      |
+|                                                |      |      |
+| AbstractFileResolvingResource                  |      |      |
+| AbstractResource                               |      |      |
+| ByteArrayResource                              |      |      |
+| ClassPathResource                              |      |      |
+| ClassRelativeResourceLoader                    |      |      |
+| DefaultResourceLoader                          |      |      |
+| DefaultResourceLoader.ClassPathContextResource |      |      |
+| DescriptiveResource                            |      |      |
+| FileSystemResource                             |      |      |
+| FileSystemResourceLoader                       |      |      |
+| FileUrlResource                                |      |      |
+| InputStreamResource                            |      |      |
+| PathResource                                   |      |      |
+| ResourceEditor                                 |      |      |
+| UrlResource                                    |      |      |
+| VfsResource                                    |      |      |
+| VfsUtils                                       |      |      |
 
-ConverterNotFoundException
 
 
+##### org.springframework.core.io.buffer
 
+org.springframework.core.io.buffer.DataBuffer接口
+DataBufferFactory 工厂接口 实现类 NettyDataBufferFactory NettyDataBufferFactory
 
 
-org.springframework.core.convert.converter
 
+| org.springframework.core.io.buffer | 类型 |      |
+| ---------------------------------- | ---- | ---- |
+| Interfaces                         |      |      |
+|                                    |      |      |
+| DataBuffer                         |      |      |
+| DataBufferFactory                  |      |      |
+| DataBufferUtils.Matcher            |      |      |
+| PooledDataBuffer                   |      |      |
+|                                    |      |      |
+| Classes                            |      |      |
+|                                    |      |      |
+| DataBufferUtils                    |      |      |
+| DataBufferWrapper                  |      |      |
+| DefaultDataBuffer                  |      |      |
+| DefaultDataBufferFactory           |      |      |
+| LimitedDataBufferList              |      |      |
+| NettyDataBuffer                    |      |      |
+| NettyDataBufferFactory             |      |      |
+|                                    |      |      |
+| Exceptions                         |      |      |
+|                                    |      |      |
+| DataBufferLimitException           |      |      |
 
 
-Interfaces
 
-ConditionalConverter
 
-ConditionalGenericConverter
 
-Converter
+##### org.springframework.core.io.support
 
-ConverterFactory
 
-ConverterRegistry
 
-GenericConverter
 
-Classes
 
-ConvertingComparator
+| org.springframework.core.io.support | 类型     |                                                              |
+| ----------------------------------- | -------- | ------------------------------------------------------------ |
+| Interfaces                          |          |                                                              |
+|                                     |          |                                                              |
+| PropertySourceFactory               |          | PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) 接口实现类DefaultPropertySourceFactory |
+| ResourcePatternResolver             |          | Resource[] getResources(String locationPattern)              |
+|                                     |          |                                                              |
+| Classes                             |          |                                                              |
+|                                     |          |                                                              |
+| DefaultPropertySourceFactory        |          | 实现了PropertySourceFactory接口                              |
+| EncodedResource                     |          |                                                              |
+| LocalizedResourceHelper             |          | Resource findLocalizedResource(String name, String extension, @Nullable Locale locale) |
+| PathMatchingResourcePatternResolver |          | 实现ResourcePatternResolver 接口 Resource[] getResources(String locationPattern) |
+| PropertiesLoaderSupport             | abstract | 子类PropertiesFactoryBean PropertyResourceConfigurer PropertyOverrideConfigurer |
+| PropertiesLoaderUtils               | abstract |                                                              |
+| ResourceArrayPropertyEditor         |          | 继承PropertyEditorSupport接口                                |
+| ResourcePatternUtils                |          |                                                              |
+| ResourcePropertiesPersister         |          |                                                              |
+| ResourcePropertySource              |          |                                                              |
+| ResourceRegion                      |          |                                                              |
+| SpringFactoriesLoader               |          |                                                              |
 
-GenericConverter.ConvertiblePair
 
 
 
 
+#### org.springframework.core.log
 
+| org.springframework.core.log | 类型 |      |
+| ---------------------------- | ---- | ---- |
+| Classes                      |      |      |
+|                              |      |      |
+| LogAccessor                  |      |      |
+| LogDelegateFactory           |      |      |
+| LogFormatUtils               |      |      |
+| LogMessage                   |      |      |
 
 
-org.springframework.core.convert.support
 
 
 
-Interfaces
+#### org.springframework.core.serializer
 
-ConfigurableConversionService
+| org.springframework.core.serializer | 类型 |      |
+| ----------------------------------- | ---- | ---- |
+| Interfaces                          |      |      |
+|                                     |      |      |
+| Deserializer                        |      |      |
+| Serializer                          |      |      |
+|                                     |      |      |
+| Classes                             |      |      |
+|                                     |      |      |
+| DefaultDeserializer                 |      |      |
+| DefaultSerializer                   |      |      |
 
-Classes
 
-ConversionServiceFactory
 
-ConvertingPropertyEditorAdapter
 
-DefaultConversionService
 
-GenericConversionService
+##### org.springframework.core.serializer.support
 
 
 
-### org.springframework.asm
+| org.springframework.core.serializer.support | 类型 |                                                              |
+| ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Classes                                     |      |                                                              |
+|                                             |      |                                                              |
+| DeserializingConverter                      |      | implements Converter<byte[], Object>                         |
+| SerializationDelegate                       |      | `4.3 SerializationDelegate implements Serializer<Object>, Deserializer<Object> |
+| SerializingConverter                        |      |                                                              |
+|                                             |      |                                                              |
+| Exceptions                                  |      |                                                              |
+|                                             |      |                                                              |
+| SerializationFailedException                |      |                                                              |
 
-| org.springframework.asm   |      |      |
-| ------------------------- | ---- | ---- |
-|                           |      |      |
-| Interfaces                |      |      |
-| Opcodes                   |      |      |
-|                           |      |      |
-| Classes                   |      |      |
-| AnnotationVisitor         |      |      |
-| Attribute                 |      |      |
-| ByteVector                |      |      |
-| ClassReader               |      |      |
-| ClassVisitor              |      |      |
-| ClassWriter               |      |      |
-| ConstantDynamic           |      |      |
-| FieldVisitor              |      |      |
-| Handle                    |      |      |
-| Label                     |      |      |
-| MethodVisitor             |      |      |
-| ModuleVisitor             |      |      |
-| RecordComponentVisitor    |      |      |
-| SpringAsmInfo             |      |      |
-| Type                      |      |      |
-| TypePath                  |      |      |
-| TypeReference             |      |      |
-|                           |      |      |
-| Exceptions                |      |      |
-| ClassTooLargeException    |      |      |
-| MethodTooLargeException   |      |      |
-|                           |      |      |
-|                           |      |      |
-|                           |      |      |
-|                           |      |      |
-| org.springframework.cglib | 类型 |      |
-|                           |      |      |
-| Classes                   |      |      |
-|                           |      |      |
-| SpringCglibInfo           |      |      |
-|                           |      |      |
 
 
+#### org.springframework.core.style
 
-### org.springframework.cglib.beans
 
 
-| org.springframework.cglib.beans        | 类型 |      |
-| ---- | ---- | ---- |
-|                                        |      |      |
-| Classes                                |      |      |
-|                                        |      |      |
-| BeanCopier                             |      |      |
-| BeanCopier.Generator                   |      |      |
-| BeanGenerator                          |      |      |
-| BeanMap                                |      |      |
-| BeanMap.Generator                      |      |      |
-| BulkBean                               |      |      |
-| BulkBean.Generator                     |      |      |
-| FixedKeySet                            |      |      |
-| ImmutableBean                          |      |      |
-| ImmutableBean.Generator                |      |      |
-|                                        |      |      |
-| Exceptions                             |      |      |
-|                                        |      |      |
-| BulkBeanException                      |      |      |
-|                                        |      |      |
-|                                        |      |      |
-|                                        |      |      |
+| Interfaces                     | 类型 |      |
+| ------------------------------ | ---- | ---- |
+| org.springframework.core.style |      |      |
+|                                |      |      |
+| ToStringStyler                 |      |      |
+| ValueStyler                    |      |      |
+|                                |      |      |
+| Classes                        |      |      |
+|                                |      |      |
+| DefaultToStringStyler          |      |      |
+| DefaultValueStyler             |      |      |
+| StylerUtils                    |      |      |
+| ToStringCreator                |      |      |
 
 
 
+#### org.springframework.core.task
 
 
-org.springframework.cglib.beans
 
+| org.springframework.core.task | 类型 |      |
+| ----------------------------- | ---- | ---- |
+| Interfaces                    |      |      |
+|                               |      |      |
+| AsyncListenableTaskExecutor   |      |      |
+| AsyncTaskExecutor             |      |      |
+| TaskDecorator                 |      |      |
+| TaskExecutor                  |      |      |
+|                               |      |      |
+| Classes                       |      |      |
+|                               |      |      |
+| SimpleAsyncTaskExecutor       |      |      |
+| SyncTaskExecutor              |      |      |
+|                               |      |      |
+| Exceptions                    |      |      |
+|                               |      |      |
+| TaskRejectedException         |      |      |
+| TaskTimeoutException          |      |      |
+|                               |      |      |
 
 
 
+##### org.springframework.core.task.support
 
-### org.springframework.cglib.core
 
 
-| org.springframework.cglib.core         | 类型 |      |
-| ---- | ---- | ---- |
-|                                        |      |      |
-| Classes                                |      |      |
-|                                        |      |      |
-| AbstractClassGenerator                 |      |      |
-| AbstractClassGenerator.ClassLoaderData |      |      |
-| AbstractClassGenerator.Source          |      |      |
-| Block | | |
-| ClassEmitter | | |
-| ClassEmitter.FieldInfo | | |
-|  | | |
-| ClassLoaderAwareGeneratorStrategy      |      |      |
-|  | | |
-|  | | |
-| FieldTypeCustomizer | | |
-| GeneratorStrategy | | |
-| HashCodeCustomizer | | |
-| KeyFactory                             |      |      |
-| org.springframework.cglib.core.KeyFactory.Generator | 内部类 | |
-| KeyFactoryCustomizer | interface | |
-| KeyFactory.Generator                   |      |      |
-| ReflectUtils                           |      |      |
-| SpringNamingPolicy                     |      | extends DefaultNamingPolicy  自定义 Spring Bean 的命名策略,覆盖默认的命名规则。 提供更可读的 Bean 名称。 |
-| Transformer | interface |      |
-| TypeUtils |      |      |
-| VisibilityPredicate |      | DuplicatesPredicate |
-| WeakCacheKey | | |
 
 
+| org.springframework.core.task.support | 类型 |      |
+| ------------------------------------- | ---- | ---- |
+| Classes                               |      |      |
+|                                       |      |      |
+| ConcurrentExecutorAdapter             |      |      |
+| ExecutorServiceAdapter                |      |      |
+| TaskExecutorAdapter                   |      |      |
 
 
 
+#### org.springframework.core.type
 
 
-GeneratorStrategy接口实现类
 
-DefaultGeneratorStrategy (org.springframework.cglib.core)
-    UndeclaredThrowableStrategy (org.springframework.cglib.transform.impl)
-        ClassLoaderAwareUndeclaredThrowableStrategy in CglibAopProxy (org.springframework.aop.framework)
-    ClassLoaderAwareGeneratorStrategy in CglibSubclassingInstantiationStrategy (org.springframework.beans.factory.support)
-    BeanFactoryAwareGeneratorStrategy in ConfigurationClassEnhancer (org.springframework.context.annotation)
+| org.springframework.core.type | 类型 |      |
+| ----------------------------- | ---- | ---- |
+|                               |      |      |
+| Interfaces                    |      |      |
+|                               |      |      |
+| AnnotatedTypeMetadata         |      |      |
+| AnnotationMetadata            |      |      |
+| ClassMetadata                 |      |      |
+| MethodMetadata                |      |      |
+|                               |      |      |
+| Classes                       |      |      |
+|                               |      |      |
+| StandardAnnotationMetadata    |      |      |
+| StandardClassMetadata         |      |      |
+| StandardMethodMetadata        |      |      |
 
 
 
+##### org.springframework.core.type.classreading
 
 
-Spring NamingPolicy 类允许自定义 Spring Bean 的命名规则。
 
-它的主要作用是:
+| org.springframework.core.type.classreading | 类型 |      |
+| ------------------------------------------ | ---- | ---- |
+| Interfaces                                 |      |      |
+|                                            |      |      |
+| MetadataReader                             |      |      |
+| MetadataReaderFactory                      |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+|                                            |      |      |
+| AnnotationMetadataReadingVisitor           |      |      |
+| CachingMetadataReaderFactory               |      |      |
+| MethodMetadataReadingVisitor               |      |      |
+| SimpleMetadataReaderFactory                |      |      |
 
-1. 自定义 Spring Bean 的命名策略,覆盖默认的命名规则。
 
-2. 提供更可读的 Bean 名称。
 
-使用示例:
+##### org.springframework.core.type.filter
 
-```java
-@Configuration
-public class NamingConfig {
+| org.springframework.core.type.filter  | 类型 |      |
+| ------------------------------------- | ---- | ---- |
+| Interfaces                            |      |      |
+|                                       |      |      |
+| TypeFilter                            |      |      |
+|                                       |      |      |
+| Classes                               |      |      |
+|                                       |      |      |
+| AbstractClassTestingTypeFilter        |      |      |
+| AbstractTypeHierarchyTraversingFilter |      |      |
+| AnnotationTypeFilter                  |      |      |
+| AspectJTypeFilter                     |      |      |
+| AssignableTypeFilter                  |      |      |
+| RegexPatternTypeFilter                |      |      |
 
-  @Bean
-  public NamingPolicy namingPolicy() {
-    return new SpringNamingPolicy(new CamelCaseStrategy()); 
-  }
 
-}
 
-@Component("userService")
-public class UserService {
-  // ...
-}
-```
-
-在这个例子中,我们通过 SpringNamingPolicy 类使用了 CamelCaseStrategy 来自定义 Bean 的命名规则为驼峰命名法。那么 UserService Bean 的名称就会被覆盖成 "userService",而不是默认的 "userServiceImpl"。
-
-这样可以让 Bean 名称更简洁,符合 Java 命名约定。
-
-
-
-### org.springframework.cglib.proxy
-
-
-
-| org.springframework.cglib.proxy        |      |      |
-| ---- | ---- | ---- |
-|                                        |      |      |
-|                                        |      |      |
-| Interfaces                             |      |      |
-|                                        |      |      |
-| Enhancer.EnhancerKey                   |      |      |
-|                                        |      |      |
-| Classes                                |      |      |
-|                                        |      |      |
-| Enhancer                               |      |      |
-| MethodProxy                            |      |      |
-|                                        |      |      |
-|                                        |      |      |
-|                                        |      |      |
-|                                        |      |      |
-|                                        |      |      |
-
-
-
-org.springframework.cglib.transform
-
-
-
-
-
-org.springframework.cglib.util
-
+org.springframework.core.type.filter.AnnotationTypeFilter
+在ClassPathBeanDefinitionScanner中使用
 
 
 ### org.springframework.lang
@@ -1504,7 +1796,7 @@ org.springframework.cglib.util
 
 
 
-| org.springframework.lang               |      |      |
+| org.springframework.lang               | 类型 |      |
 | ---- | ---- | ---- |
 |                                        |      |      |
 | Annotation Types                       |      |      |
@@ -1522,11 +1814,23 @@ org.springframework.cglib.util
 
 
 
-org.springframework.lang
 
 
 
-org.springframework.objenesis
+
+
+
+
+
+
+
+
+
+
+### org.springframework.objenesis
+
+
+
 
 
 
@@ -1534,23 +1838,20 @@ SpringObjenesis
 
 
 
+#### org.springframework.objenesis.instantiator
+#### org.springframework.objenesis.strategy
 
+### org.springframework.ui
+#### org.springframework.ui.backoff
+#### org.springframework.ui.comparator
+#### org.springframework.ui.concurrent
+#### org.springframework.ui.function
+SingletonSupplier<T>
+SupplierUtils
 
+#### org.springframework.ui.unit
 
+DataSize
 
-
-
-org.springframework.objenesis.instantiator
-
-
-
-
-
-
-
-org.springframework.core.type.filter
-
-org.springframework.core.type.filter.AnnotationTypeFilter
-在ClassPathBeanDefinitionScanner中使用 
-
-
+DataUnit
+#### org.springframework.ui.xml
