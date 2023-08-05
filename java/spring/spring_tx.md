@@ -716,7 +716,11 @@ TransactionSynchronizationManager.clearSynchronization();
 
 
 
+## 源码分包解析 v5.2.9
 
+
+
+### org.springframework.transaction
 
 | org.springframework.transaction            | package   | 是否异常 |                                                |
 | ------------------------------------------ | --------- | -------- | ---------------------------------------------- |
@@ -748,7 +752,7 @@ TransactionSynchronizationManager.clearSynchronization();
 
 
 
-
+### org.springframework.transaction.annotation
 
 
 
@@ -774,7 +778,7 @@ TransactionSynchronizationManager.clearSynchronization();
 
 
 
-
+### org.springframework.transaction.config
 
 
 
@@ -791,7 +795,7 @@ TransactionSynchronizationManager.clearSynchronization();
 
 
 
-
+### org.springframework.transaction.event
 
 | org.springframework.transaction.event         | 类型       | 详解                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -952,7 +956,7 @@ public void saveUser(User user) {
 
 
 
-
+### org.springframework.transaction.interceptor
 
 
 
@@ -1022,6 +1026,8 @@ BeanFactoryTransactionAttributeSourceAdvisor 的工作原理与其他事务增�
 
 
 
+### org.springframework.transaction.jta
+
 
 
 | org.springframework.transaction.jta |           |                                                              |
@@ -1048,6 +1054,10 @@ SimpleTransactionFactory (org.springframework.transaction.jta)
 
 
 
+### org.springframework.transaction.reactive
+
+
+
 | org.springframework.transaction.reactive |           |           |                                                   |
 | ---------------------------------------- | --------- | --------- | ------------------------------------------------- |
 | AbstractReactiveTransactionManager       | abstract  |           |                                                   |
@@ -1068,7 +1078,7 @@ SimpleTransactionFactory (org.springframework.transaction.jta)
 
 
 
-dd
+### org.springframework.transaction.support
 
 
 
@@ -1401,6 +1411,56 @@ public class AppConfig {
 
 
 
+### org.springframework.dao
+
+| org.springframework.dao                     | 类型 |      |
+| ------------------------------------------- | ---- | ---- |
+| Exceptions                                  |      |      |
+|                                             |      |      |
+| CannotAcquireLockException                  |      |      |
+| CannotSerializeTransactionException         |      |      |
+| CleanupFailureDataAccessException           |      |      |
+| ConcurrencyFailureException                 |      |      |
+| DataAccessException                         |      |      |
+| DataAccessResourceFailureException          |      |      |
+| DataIntegrityViolationException             |      |      |
+| DataRetrievalFailureException               |      |      |
+| DeadlockLoserDataAccessException            |      |      |
+| DuplicateKeyException                       |      |      |
+| EmptyResultDataAccessException              |      |      |
+| IncorrectResultSizeDataAccessException      |      |      |
+| IncorrectUpdateSemanticsDataAccessException |      |      |
+| InvalidDataAccessApiUsageException          |      |      |
+| InvalidDataAccessResourceUsageException     |      |      |
+| NonTransientDataAccessException             |      |      |
+| NonTransientDataAccessResourceException     |      |      |
+| OptimisticLockingFailureException           |      |      |
+| PermissionDeniedDataAccessException         |      |      |
+| PessimisticLockingFailureException          |      |      |
+| QueryTimeoutException                       |      |      |
+| RecoverableDataAccessException              |      |      |
+| TransientDataAccessException                |      |      |
+| TransientDataAccessResourceException        |      |      |
+| TypeMismatchDataAccessException             |      |      |
+| UncategorizedDataAccessException            |      |      |
+
+
+
+#### org.springframework.dao.annotation
+
+
+
+| org.springframework.dao.annotation           |      |      |
+| -------------------------------------------- | ---- | ---- |
+| Classes                                      |      |      |
+|                                              |      |      |
+| PersistenceExceptionTranslationAdvisor       |      |      |
+| PersistenceExceptionTranslationPostProcessor |      |      |
+
+#### org.springframework.dao.support
+
+
+
 | org.springframework.dao.support            |           |      |
 | ------------------------------------------ | --------- | ---- |
 | ChainedPersistenceExceptionTranslator      |           |      |
@@ -1446,3 +1506,62 @@ public class AppConfig {
 ChainedPersistenceExceptionTranslator 通常用于处理多个底层数据访问异常，并将其转换为一个更具体的异常链。它可以使得异常处理更加灵活和可扩展，可以根据具体的异常类型来定义不同的转换规则，从而使得异常处理更加准确和精细。
 
 总之，ChainedPersistenceExceptionTranslator 是 Spring Framework 中的一个异常转换器，用于将多个底层数据访问异常转换为一个异常链。它适用于处理多个底层数据访问异常，并将其转换为一个更具体的异常链的场景。
+
+
+
+
+
+#### org.springframework.jca.cci
+
+
+
+| org.springframework.jca.cci       |
+| --------------------------------- |
+| Exceptions                        |
+|                                   |
+| CannotCreateRecordException       |
+| CannotGetCciConnectionException   |
+| CciOperationNotSupportedException |
+| InvalidResultSetAccessException   |
+| RecordTypeNotSupportedException   |
+
+
+
+
+
+#### org.springframework.jca.cci.connection
+
+
+
+| Classes                                |      |      |
+| -------------------------------------- | ---- | ---- |
+|                                        |      |      |
+| CciLocalTransactionManager             |      |      |
+| ConnectionFactoryUtils                 |      |      |
+| ConnectionHolder                       |      |      |
+| ConnectionSpecConnectionFactoryAdapter |      |      |
+| DelegatingConnectionFactory            |      |      |
+| NotSupportedRecordFactory              |      |      |
+| SingleConnectionFactory                |      |      |
+| TransactionAwareConnectionFactoryProxy |      |      |
+
+
+
+
+
+#### org.springframework.jca.cci.core
+
+
+
+| Interfaces          |      |      |
+| ------------------- | ---- | ---- |
+|                     |      |      |
+| CciOperations       |      |      |
+| ConnectionCallback  |      |      |
+| InteractionCallback |      |      |
+| RecordCreator       |      |      |
+| RecordExtractor     |      |      |
+|                     |      |      |
+| Classes             |      |      |
+|                     |      |      |
+| CciTemplate         |      |      |

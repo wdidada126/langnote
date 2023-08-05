@@ -286,7 +286,7 @@ DataSourceInitializer 可以配置以下属性：
 
 以下是一个使用 DataSourceInitializer 的例子：
 
-```java
+​```java
 @Configuration
 public class AppConfig {
 
@@ -375,4 +375,447 @@ try {
 在上面的例子中，我们手动创建了一个 ConnectionHolder 对象，并将其注册到事务管理器中。在执行事务期间，我们可以通过 ConnectionHolder 对象来持有连接对象，并在事务结束时自动关闭连接。需要注意的是，我们需要手动初始化事务同步器，并在事务结束时将 ConnectionHolder 从事务管理器中解绑，并清理事务同步器。
 
 总之，ConnectionHolder 对象是 Spring Framework 中的一个重要的类，用于在事务管理器中保存连接对象，并在事务结束时自动关闭连接。虽然我们通常不需要直接使用 ConnectionHolder 对象，但在某些情况下，手动创建和管理 ConnectionHolder 对象可能是必要的。
+
+
+
+## 源代码分包解析5.2.9
+
+
+
+### org.springframework.jdbc.config
+
+|                                        |      |      |                                            |
+| -------------------------------------- | ---- | ---- | ------------------------------------------ |
+| DatabasePopulatorConfigUtils           |      |      |                                            |
+| EmbeddedDatabaseBeanDefinitionParser   |      |      |                                            |
+| InitializeDatabaseBeanDefinitionParser |      |      |                                            |
+| JdbcNamespaceHandler                   |      |      | 注册 embedded-database initialize-database |
+| SortedResourcesFactoryBean             |      |      |                                            |
+
+
+
+
+
+
+
+### org.springframework.jdbc.core
+
+| 类名称                                                       | 类型                         | 作用                                                         |
+| ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ |
+| ArgumentPreparedStatementSetter                              |                              |                                                              |
+| ArgumentTypePreparedStatementSetter                          |                              | 将SQL语句中的占位符参数与Java对象中的属性值进行匹配和设置。  |
+| BatchPreparedStatementSetter                                 | interface                    |                                                              |
+| BatchUpdateUtils                                             | abstract class               |                                                              |
+| CallableStatementCallback                                    | interface                    | T doInCallableStatement(CallableStatement cs)                |
+| CallableStatementCreator                                     | interface                    | CallableStatement createCallableStatement(Connection con)    |
+| CallableStatementCreatorFactory                              |                              |                                                              |
+|                                                              | CallableStatementCreatorImpl |                                                              |
+| BeanPropertyRowMapper                                        |                              | RowMapper实现类 jdbcTemplateMdm.query(sql, new Object[]{tenantNumId, dataSign}, new BeanPropertyRowMapper<>(ProductIdAndNameDTO.class)); |
+| ColumnMapRowMapper                                           |                              | RowMapper实现类 Map<String, Object>                          |
+| SingleColumnRowMapper                                        |                              | RowMapper实现类 泛型类                                       |
+| ConnectionCallback                                           | interface                    | T doInConnection(Connection con)                             |
+| DisposableSqlTypeValue                                       | interface                    | void cleanup()                                               |
+| InterruptibleBatchPreparedStatementSetter                    | interface                    | boolean isBatchExhausted(int i)                              |
+| JdbcOperations                                               | interface                    |                                                              |
+| JdbcTemplate                                                 |                              | 核心api，继承抽象类JdbcAccessor execute() query() queryForObject() queryForList() |
+| JdbcTemplate.CloseSuppressingInvocationHandler               |                              |                                                              |
+| JdbcTemplate.RowCallbackHandlerResultSetExtractor            |                              |                                                              |
+| JdbcTemplate.SimpleCallableStatementCreator                  |                              |                                                              |
+| JdbcTemplate.SimplePreparedStatementCreator                  |                              | 方便地创建一个简单的PreparedStatement对象，可以直接传递SQL语句和参数值，并自动替换占位符参数 |
+| ParameterDisposer                                            | interface                    | void cleanupParameters();                                    |
+| ParameterizedPreparedStatementSetter                         | interface                    | void setValues(PreparedStatement ps, T argument)             |
+| ParameterMapper                                              | interface                    | Map<String, ?> createMap(Connection con)                     |
+| PreparedStatementCallback                                    | interface                    | T doInPreparedStatement(PreparedStatement ps) 实现此接口的抽象类 AbstractLobCreatingPreparedStatementCallback |
+| PreparedStatementCreator                                     | interface                    | PreparedStatement createPreparedStatement(Connection con) 根据连接创建预编译语句 |
+| PreparedStatementCreatorFactory                              |                              |                                                              |
+| PreparedStatementCreatorFactory.PreparedStatementCreatorImpl |                              |                                                              |
+| PreparedStatementSetter                                      | interface                    |                                                              |
+| ResultSetExtractor                                           | interface                    |                                                              |
+| ResultSetSupportingSqlParameter                              |                              | SqlParameter子类                                             |
+| RowCallbackHandler                                           | interface                    | void processRow(ResultSet rs) throws SQLException; 处理返回的ResultSet结果集 |
+| RowCountCallbackHandler                                      |                              | 处理SQL查询结果集的行数                                      |
+| RowMapper                                                    | interface                    | T mapRow(ResultSet rs, int rowNum)                           |
+| RowMapperResultSetExtractor                                  |                              | [实现ResultSetExtractor这个接口，将数据库查询的结果集转换为Java对象的集合。org.springframework.jdbc.core.RowMapperResultSetExtractor#extractData这个方法，调用RowMapper处理ResultSet](http://org.springframework.jdbc.core.RowMapperResultSetExtractor#extractData) |
+| SqlInOutParameter                                            |                              |                                                              |
+| SqlOutParameter                                              |                              |                                                              |
+| SqlParameter                                                 |                              | SqlParameter是Spring框架中用于封装SQL参数的类，它的作用是将SQL语句中的参数值和参数类型封装起来，方便在JdbcTemplate执行SQL语句时使用。 |
+| SqlParameterValue                                            |                              | SqlParameter子类                                             |
+| SqlProvider                                                  | interface                    | String getSql()                                              |
+| SqlReturnResultSet                                           |                              |                                                              |
+| SqlReturnType                                                | interface                    |                                                              |
+| SqlReturnUpdateCount                                         |                              |                                                              |
+| SqlRowSetResultSetExtractor                                  |                              | implements ResultSetExtractor                                |
+| SqlRowSetResultSetExtractor.CachedRowSetFactory              |                              |                                                              |
+| SqlRowSetResultSetExtractor.StandardCachedRowSetFactory      |                              |                                                              |
+| SqlRowSetResultSetExtractor.SunCachedRowSetFactory           |                              |                                                              |
+| SqlTypeValue                                                 |                              |                                                              |
+| StatementCallback                                            |                              |                                                              |
+| StatementCreatorUtils                                        | abstract class               |                                                              |
+|                                                              |                              |                                                              |
+|                                                              |                              |                                                              |
+
+
+
+
+
+#### org.springframework.jdbc.core.metadata
+
+
+
+| org.springframework.jdbc.core.metadata                                  | 类型           | 作用                                                         |
+| ----------------------------------------- | -------------- | ------------------------------------------------------------ |
+| ArgumentPreparedStatementSetter           |                |                                                              |
+| ArgumentTypePreparedStatementSetter       |                | 将SQL语句中的占位符参数与Java对象中的属性值进行匹配和设置。  |
+| BatchPreparedStatementSetter              | interface      |                                                              |
+| BatchUpdateUtils                          | abstract class |                                                              |
+| CallableStatementCallback                 | interface      | T doInCallableStatement(CallableStatement cs)                |
+| CallableStatementCreator                  | interface      | CallableStatement createCallableStatement(Connection con)    |
+| CallableStatementCreatorFactory           |                |                                                              |
+| CallableStatementCreatorImpl              |                |                                                              |
+| BeanPropertyRowMapper                     |                | RowMapper实现类 jdbcTemplateMdm.query(sql, new Object[]{tenantNumId, dataSign}, new BeanPropertyRowMapper<>(ProductIdAndNameDTO.class)); |
+| ColumnMapRowMapper                        |                | RowMapper实现类 Map<String, Object>                          |
+| SingleColumnRowMapper                     |                | RowMapper实现类 泛型类                                       |
+| ConnectionCallback                        | interface      | T doInConnection(Connection con)                             |
+| DisposableSqlTypeValue                    | interface      | void cleanup()                                               |
+| InterruptibleBatchPreparedStatementSetter | interface      | boolean isBatchExhausted(int i)                              |
+| JdbcOperations                            | interface      |                                                              |
+| JdbcTemplate                              |                | 核心api，继承抽象类JdbcAccessor execute() query() queryForObject() queryForList() |
+| .CloseSuppressingInvocationHandler        |                |                                                              |
+| .RowCallbackHandlerResultSetExtractor     |                |                                                              |
+| .SimpleCallableStatementCreator           |                |                                                              |
+| .SimplePreparedStatementCreator           |                | 方便地创建一个简单的PreparedStatement对象，可以直接传递SQL语句和参数值，并自动替换占位符参数 |
+| ParameterDisposer                         | interface      | void cleanupParameters();                                    |
+| ParameterizedPreparedStatementSetter      | interface      | void setValues(PreparedStatement ps, T argument)             |
+| ParameterMapper                           | interface      | Map<String, ?> createMap(Connection con)                     |
+| PreparedStatementCallback                 | interface      | T doInPreparedStatement(PreparedStatement ps) 实现此接口的抽象类 AbstractLobCreatingPreparedStatementCallback |
+| PreparedStatementCreator                  | interface      | PreparedStatement createPreparedStatement(Connection con) 根据连接创建预编译语句 |
+| PreparedStatementCreatorFactory           |                |                                                              |
+| .PreparedStatementCreatorImpl             |                |                                                              |
+| PreparedStatementSetter                   | interface      |                                                              |
+| ResultSetExtractor                        | interface      |                                                              |
+| ResultSetSupportingSqlParameter           |                | SqlParameter子类                                             |
+| RowCallbackHandler                        | interface      | void processRow(ResultSet rs) throws SQLException; 处理返回的ResultSet结果集 |
+| RowCountCallbackHandler                   |                | 处理SQL查询结果集的行数                                      |
+| RowMapper                                 | interface      | T mapRow(ResultSet rs, int rowNum)                           |
+| RowMapperResultSetExtractor               |                | [实现ResultSetExtractor这个接口，将数据库查询的结果集转换为Java对象的集合。org.springframework.jdbc.core.RowMapperResultSetExtractor#extractData这个方法，调用RowMapper处理ResultSet](http://org.springframework.jdbc.core.RowMapperResultSetExtractor#extractData) |
+| SqlInOutParameter                         |                |                                                              |
+| SqlOutParameter                           |                |                                                              |
+| SqlParameter                              |                | SqlParameter是Spring框架中用于封装SQL参数的类，它的作用是将SQL语句中的参数值和参数类型封装起来，方便在JdbcTemplate执行SQL语句时使用。 |
+| SqlParameterValue                         |                | SqlParameter子类                                             |
+| SqlProvider                               | interface      | String getSql()                                              |
+| SqlReturnResultSet                        |                |                                                              |
+| SqlReturnType                             | interface      |                                                              |
+| SqlReturnUpdateCount                      |                |                                                              |
+| SqlRowSetResultSetExtractor               |                | implements ResultSetExtractor                                |
+| .CachedRowSetFactory                      |                |                                                              |
+| .StandardCachedRowSetFactory              |                |                                                              |
+| .SunCachedRowSetFactory                   |                |                                                              |
+| SqlTypeValue                              |                |                                                              |
+| StatementCallback                         |                |                                                              |
+| StatementCreatorUtils                     | abstract class |                                                              |
+|                                           |                |                                                              |
+|                                           |                |                                                              |
+|                                           |                |                                                              |
+|                                           |                |                                                              |
+|                                           |                |                                                              |
+
+
+
+
+
+#### org.springframework.jdbc.core.namedparam
+
+
+
+| org.springframework.jdbc.core.namedparam |                 |                                                              |
+| ---------------------------------------- | --------------- | ------------------------------------------------------------ |
+| AbstractSqlParameterSource               | abstract class  |                                                              |
+| BeanPropertySqlParameterSource           |                 | AbstractSqlParameterSource子类                               |
+| EmptySqlParameterSource                  |                 |                                                              |
+| MapSqlParameterSource                    |                 | AbstractSqlParameterSource子类                               |
+| NamedParameterBatchUpdateUtils           |                 |                                                              |
+| NamedParameterJdbcDaoSupport             |                 |                                                              |
+| NamedParameterJdbcOperations             | interface       | JdbcOperations getJdbcOperations() T execute(String sql, SqlParameterSource paramSource, PreparedStatementCallback<T> action) T execute(String sql, Map<String, ?> paramMap, PreparedStatementCallback<T> action) T execute(String sql, PreparedStatementCallback<T> action) T query(String sql, SqlParameterSource paramSource, ResultSetExtractor<T> rse) 接口实现类 NamedParameterJdbcTemplate |
+| NamedParameterJdbcTemplate               |                 | 实现NamedParameterJdbcOperations接口 Spring框架中对JdbcTemplate的扩展，它提供了一种使用命名参数的方式来执行SQL语句的方式。它的作用是简化JdbcTemplate操作，提高代码的可读性和可维护性。 |
+| NamedParameterUtils                      | abstract class  |                                                              |
+|                                          | ParameterHolder |                                                              |
+| ParsedSql                                |                 |                                                              |
+| SqlParameterSource                       | interface       |                                                              |
+| SqlParameterSourceUtils                  |                 |                                                              |
+
+
+
+#### org.springframework.jdbc.core.simple
+
+
+
+| org.springframework.jdbc.core.simple |                |                                                              |
+| ------------------------------------ | -------------- | ------------------------------------------------------------ |
+| AbstractJdbcCall                     | abstract class |                                                              |
+| AbstractJdbcInsert                   | abstract class |                                                              |
+| SimpleJdbcCall                       |                | SimpleJdbcCall是Spring框架中用于调用存储过程的类，它的作用是简化存储过程调用的过程，提高代码的可读性和可维护性。 |
+| SimpleJdbcCallOperations             | interface      |                                                              |
+| SimpleJdbcInsert                     |                |                                                              |
+| SimpleJdbcInsertOperations           | interface      |                                                              |
+
+
+
+
+
+#### org.springframework.jdbc.core.support
+
+
+
+| org.springframework.jdbc.core.support             |                |                              |
+| ------------------------------------------------- | -------------- | ---------------------------- |
+| AbstractInterruptibleBatchPreparedStatementSetter | abstract class |                              |
+| AbstractLobCreatingPreparedStatementCallback      | abstract class |                              |
+| AbstractLobStreamingResultSetExtractor            | abstract class |                              |
+| AbstractSqlTypeValue                              | abstract class |                              |
+| JdbcBeanDefinitionReader                          |                | 读取多种类型的JDBC元数据信息 |
+| JdbcDaoSupport                                    | abstract class |                              |
+| SqlLobValue                                       |                |                              |
+
+
+
+
+
+### org.springframework.jdbc.datasource
+
+
+
+| org.springframework.jdbc.datasource |                                   |                                         |
+| ----------------------------------- | --------------------------------- | --------------------------------------- |
+| AbstractDriverBasedDataSource       |                                   |                                         |
+| ConnectionHandle                    | interface                         |                                         |
+| ConnectionHolder                    |                                   |                                         |
+| ConnectionProxy                     | interface                         |                                         |
+| DataSourceTransactionManager        |                                   |                                         |
+|                                     | DataSourceTransactionObject       |                                         |
+| DataSourceUtils                     | abstract class                    | 静态方法 applyTimeout() getConnection() |
+|                                     | ConnectionSynchronization         |                                         |
+| DelegatingDataSource                |                                   |                                         |
+| DriverManagerDataSource             |                                   |                                         |
+| IsolationLevelDataSourceAdapter     |                                   |                                         |
+| JdbcTransactionObjectSupport        | abstract class                    |                                         |
+| LazyConnectionDataSourceProxy       |                                   |                                         |
+|                                     | LazyConnectionInvocationHandler   |                                         |
+| SimpleConnectionHandle              |                                   |                                         |
+| SimpleDriverDataSource              |                                   |                                         |
+| SingleConnectionDataSource          |                                   |                                         |
+|                                     | CloseSuppressingInvocationHandler |                                         |
+| SmartDataSource                     | interface                         |                                         |
+| TransactionAwareDataSourceProxy     |                                   |                                         |
+|                                     | TransactionAwareInvocationHandler |                                         |
+| UserCredentialsDataSourceAdapter    |                                   |                                         |
+|                                     | JdbcUserCredentials               |                                         |
+| WebSphereDataSourceAdapter          |                                   |                                         |
+
+
+
+
+
+#### org.springframework.jdbc.datasource.embedded
+
+
+
+| org.springframework.jdbc.datasource.embedded |                         |      |
+| -------------------------------------------- | ----------------------- | ---- |
+| AbstractEmbeddedDatabaseConfigurer           | abstract class          |      |
+| ConnectionProperties                         | interface               |      |
+| DataSourceFactory                            | interface               |      |
+| DerbyEmbeddedDatabaseConfigurer              |                         |      |
+| EmbeddedDatabase                             | interface               |      |
+| EmbeddedDatabaseBuilder                      |                         |      |
+| EmbeddedDatabaseConfigurer                   |                         |      |
+| EmbeddedDatabaseConfigurerFactory            |                         |      |
+| EmbeddedDatabaseFactory                      |                         |      |
+|                                              | EmbeddedDataSourceProxy |      |
+| EmbeddedDatabaseFactoryBean                  |                         |      |
+| EmbeddedDatabaseType                         | enum                    |      |
+| H2EmbeddedDatabaseConfigurer                 |                         |      |
+| HsqlEmbeddedDatabaseConfigurer               |                         |      |
+| OutputStreamFactory                          |                         |      |
+| SimpleDriverDataSourceFactory                |                         |      |
+
+
+
+#### org.springframework.jdbc.datasource.init
+
+
+
+| org.springframework.jdbc.datasource.init |                           |                                                              |
+| ---------------------------------------- | ------------------------- | ------------------------------------------------------------ |
+| CannotReadScriptException                | 异常类                    |                                                              |
+| CompositeDatabasePopulator               | 实现DatabasePopulator接口 |                                                              |
+| DatabasePopulator                        | interface                 | void populate(Connection connection)                         |
+| DatabasePopulatorUtils                   | abstract class            |                                                              |
+| DataSourceInitializer                    |                           | 用于在应用程序启动时初始化数据库。 在应用程序启动时，DataSourceInitializer 会读取一个或多个 SQL 脚本，并将这些脚本中定义的表、索引、约束等对象创建在数据库中。可以使用 DataSourceInitializer 来确保应用程序所依赖的数据库已经初始化完毕，从而避免应用程序在运行期间出现数据库相关的错误。 |
+| ResourceDatabasePopulator                | 实现DatabasePopulator接口 |                                                              |
+| ScriptException                          |                           |                                                              |
+| ScriptParseException                     |                           |                                                              |
+| ScriptStatementFailedException           |                           |                                                              |
+| ScriptUtils                              | abstract class            |                                                              |
+| UncategorizedScriptException             |                           |                                                              |
+
+
+
+##### org.springframework.jdbc.datasource.lookup
+
+
+
+| org.springframework.jdbc.datasource.lookup |                |                                                              |
+| ------------------------------------------ | -------------- | ------------------------------------------------------------ |
+| AbstractRoutingDataSource                  | abstract class | protected abstract Object determineCurrentLookupKey() 实现类IsolationLevelDataSourceRouter |
+| BeanFactoryDataSourceLookup                |                | DataSourceLookup接口实现类                                   |
+| DataSourceLookup                           | interface      | DataSource getDataSource(String dataSourceName) 子类 JndiDataSourceLookup SingleDataSourceLookup MapDataSourceLookup BeanFactoryDataSourceLookup |
+| DataSourceLookupFailureException           |                |                                                              |
+| IsolationLevelDataSourceRouter             |                |                                                              |
+| JndiDataSourceLookup                       |                | DataSourceLookup接口实现类                                   |
+| MapDataSourceLookup                        |                | DataSourceLookup接口实现类                                   |
+| SingleDataSourceLookup                     |                | DataSourceLookup接口实现类                                   |
+
+
+
+### org.springframework.jdbc.object
+
+| org.springframework.jdbc.object |                      |      |                                                              |
+| ------------------------------- | -------------------- | ---- | ------------------------------------------------------------ |
+| BatchSqlUpdate                  |                      |      |                                                              |
+| GenericSqlQuery                 |                      |      |                                                              |
+| GenericStoredProcedure          |                      |      |                                                              |
+| MappingSqlQuery                 | abstract class       |      | protected abstract T mapRow(ResultSet rs, int rowNum)        |
+| MappingSqlQueryWithParameters   | abstract class       |      | protected abstract T mapRow(ResultSet rs, int rowNum, @Nullable Object[] parameters, @Nullable Map<?, ?> context) |
+|                                 | RowMapperImpl 内部类 |      |                                                              |
+| RdbmsOperation                  | abstract class       |      | protected abstract void compileInternal()                    |
+| SqlCall                         | abstract class       |      | extends RdbmsOperation                                       |
+| SqlFunction                     |                      |      |                                                              |
+| SqlOperation                    | abstract class       |      | extends RdbmsOperation                                       |
+| SqlQuery                        | abstract class       |      | abstract class SqlQuery<T> extends SqlOperation              |
+| SqlUpdate                       |                      |      |                                                              |
+| StoredProcedure                 | abstract class       |      | extends SqlCall                                              |
+| UpdatableSqlQuery               | abstract class       |      | abstract class UpdatableSqlQuery<T> extends SqlQuery<T>      |
+|                                 | RowMapperImpl        |      |                                                              |
+
+
+
+
+
+### org.springframework.jdbc.support
+
+| org.springframework.jdbc.support   |                |                                                              |
+| ---------------------------------- | -------------- | ------------------------------------------------------------ |
+| JdbcAccessor                       | abstract class | 实现类 JdbcTemplate，属性 SQLExceptionTranslator             |
+| JdbcUtils                          | abstract class | 静态类                                                       |
+| KeyHolder                          | interface      | 方法有很多，返回key 实现类 GeneratedKeyHolder                |
+| MetaDataAccessException            |                |                                                              |
+| SQLErrorCodes                      |                |                                                              |
+| SQLErrorCodesFactory               |                |                                                              |
+| SQLErrorCodeSQLExceptionTranslator |                | SQLErrorCodeSQLExceptionTranslator主要用于把数据库底层SQL异常翻译成友好的业务异常。 |
+| SQLExceptionSubclassTranslator     |                |                                                              |
+| SQLExceptionTranslator             | interface      | DataAccessException translate(String task, @Nullable String sql, SQLException ex) |
+| SQLStateSQLExceptionTranslator     |                | SQLStateSQLExceptionTranslator 类是 Spring Framework 中的一个异常转换器，用于将 JDBC 抛出的 SQLException 异常转换为 Spring 的通用 DataAccessException 异常。 |
+| SqlValue                           | interface      | void setValue(PreparedStatement ps, int paramIndex)          |
+
+
+
+#### org.springframework.jdbc.support.incrementer
+
+| org.springframework.jdbc.support.incrementer |                |                                                              |
+| -------------------------------------------- | -------------- | ------------------------------------------------------------ |
+| AbstractColumnMaxValueIncrementer            | abstract class | extends AbstractDataFieldMaxValueIncrementer                 |
+| AbstractDataFieldMaxValueIncrementer         | abstract class |                                                              |
+| AbstractDataFieldMaxValueIncrementer         | abstract class |                                                              |
+| AbstractSequenceMaxValueIncrementer          | abstract class |                                                              |
+| DataFieldMaxValueIncrementer                 | interface      | int nextIntValue() long nextLongValue() String nextStringValue() |
+| Db2LuwMaxValueIncrementer                    |                |                                                              |
+| Db2MainframeMaxValueIncrementer              |                |                                                              |
+| DB2MainframeSequenceMaxValueIncrementer      |                |                                                              |
+| DB2SequenceMaxValueIncrementer               |                |                                                              |
+| DerbyMaxValueIncrementer                     |                |                                                              |
+| H2SequenceMaxValueIncrementer                |                |                                                              |
+| HanaSequenceMaxValueIncrementer              |                |                                                              |
+| HsqlMaxValueIncrementer                      |                |                                                              |
+| HsqlSequenceMaxValueIncrementer              |                |                                                              |
+| MySQLMaxValueIncrementer                     |                |                                                              |
+| OracleSequenceMaxValueIncrementer            |                |                                                              |
+| PostgreSQLSequenceMaxValueIncrementer        |                |                                                              |
+| PostgresSequenceMaxValueIncrementer          |                |                                                              |
+| SqlServerMaxValueIncrementer                 |                |                                                              |
+| SybaseAnywhereMaxValueIncrementer            |                |                                                              |
+| SybaseMaxValueIncrementer                    |                |                                                              |
+
+
+
+
+
+#### org.springframework.jdbc.support.lob
+
+| org.springframework.jdbc.support.lob |      |      |
+| ------------------------------------ | ---- | ---- |
+| Interfaces                           |      |      |
+| LobCreator                           |      |      |
+| LobHandler                           |      |      |
+|                                      |      |      |
+| Classes                              |      |      |
+|                                      |      |      |
+| AbstractLobHandler                   |      |      |
+| DefaultLobHandler                    |      |      |
+| TemporaryLobCreator                  |      |      |
+
+
+
+#### org.springframework.jdbc.support.rowset
+
+| org.springframework.jdbc.support.rowset |                          |                                                              |
+| --------------------------------------- | ------------------------ | ------------------------------------------------------------ |
+| AbstractLobHandler                      | abstract class           |                                                              |
+| DefaultLobHandler                       |                          | 实现LobHandler接口                                           |
+|                                         | DefaultLobCreator        |                                                              |
+| LobCreator                              | interface                | 实现类TemporaryLobCreator com.alibaba.druid.support.spring.DruidLobCreator |
+| LobHandler                              | interface                | 支持处理大对象（LOB）类型的数据。 实现类DefaultLobHandler    |
+| PassThroughBlob                         |                          |                                                              |
+| PassThroughClob                         |                          |                                                              |
+| TemporaryLobCreator                     |                          |                                                              |
+| ResultSetWrappingSqlRowSet              |                          |                                                              |
+| ResultSetWrappingSqlRowSetMetaData      |                          |                                                              |
+| SqlRowSet                               | interface                | SqlRowSetMetaData getMetaData() int findColumn(String columnLabel) |
+| SqlRowSetMetaData                       | interface                |                                                              |
+|                                         |                          |                                                              |
+|                                         |                          |                                                              |
+|                                         |                          |                                                              |
+| Jdbc4SqlXmlHandler                      |                          |                                                              |
+|                                         | AbstractJdbc4SqlXmlValue |                                                              |
+| SqlXmlFeatureNotImplementedException    |                          |                                                              |
+| SqlXmlHandler                           | interface                |                                                              |
+| SqlXmlValue                             | interface                |                                                              |
+| XmlBinaryStreamProvider                 | interface                |                                                              |
+| XmlCharacterStreamProvider              | interface                |                                                              |
+| XmlResultProvider                       | interface                |                                                              |
+
+
+
+
+
+#### org.springframework.jdbc.support.xml
+
+
+
+| org.springframework.jdbc.support.xml |      |      |
+| ------------------------------------ | ---- | ---- |
+| Interfaces                           |      |      |
+|                                      |      |      |
+| SqlXmlHandler                        |      |      |
+| SqlXmlValue                          |      |      |
+| XmlBinaryStreamProvider              |      |      |
+| XmlCharacterStreamProvider           |      |      |
+| XmlResultProvider                    |      |      |
+|                                      |      |      |
+| Classes                              |      |      |
+|                                      |      |      |
+| Jdbc4SqlXmlHandler                   |      |      |
+|                                      |      |      |
+| Exceptions                           |      |      |
+|                                      |      |      |
+| SqlXmlFeatureNotImplementedException |      |      |
 

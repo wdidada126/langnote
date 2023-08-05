@@ -239,7 +239,11 @@ result: Hello World
 
 
 
+## 源代码分包解析v5.2.9
 
+
+
+### org.springframework.expression
 
 | org.springframework.expression                               | package  |                                                              |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
@@ -273,17 +277,32 @@ result: Hello World
 | ExpressionInvocationTargetException                          |          |                                                              |
 | ParseException                                               |          |                                                              |
 |                                                              |          |                                                              |
-| org.springframework.expression.common                        | package  |                                                              |
-| Classes                                                      |          |                                                              |
-| CompositeStringExpression                                    |          | implements Expression 核心方法 getValue()                    |
-| ExpressionUtils                                              | abstract | 抽象类，都是静态方法                                         |
-| LiteralExpression                                            |          | 字面常量表达式 例子见后续代码                                |
-| TemplateAwareExpressionParser                                | abstract | abstract Expression doParseExpression(String expressionString, @Nullable ParserContext context)  子类InternalSpelExpressionParser SpelExpressionParser |
-| TemplateParserContext                                        |          | implements ParserContext 属性 String expressionPrefix  String expressionSuffix |
-|                                                              |          |                                                              |
-|                                                              |          |                                                              |
-|                                                              |          |                                                              |
+
+
+#### org.springframework.expression.common
+
+| org.springframework.expression.common | package  |                                                              |
+| ------------------------------------- | -------- | ------------------------------------------------------------ |
+| Classes                               |          |                                                              |
+| CompositeStringExpression             |          | implements Expression 核心方法 getValue()                    |
+| ExpressionUtils                       | abstract | 抽象类，都是静态方法                                         |
+| LiteralExpression                     |          | 字面常量表达式 例子见后续代码                                |
+| TemplateAwareExpressionParser         | abstract | abstract Expression doParseExpression(String expressionString, @Nullable ParserContext context)  子类InternalSpelExpressionParser SpelExpressionParser |
+| TemplateParserContext                 |          | implements ParserContext 属性 String expressionPrefix  String expressionSuffix |
+|                                       |          |                                                              |
+|                                       |          |                                                              |
+
+
+
+#### org.springframework.expression.spel
+
+
+
+
+
+
 | org.springframework.expression.spel                          | package  |                                                              |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | Interfaces                                                   |          |                                                              |
 | CodeFlow.ClinitAdder                                         |          |                                                              |
 | CodeFlow.FieldAdder                                          |          |                                                              |
@@ -307,7 +326,17 @@ result: Hello World
 | SpelParseException                                           |          |                                                              |
 |                                                              |          |                                                              |
 |                                                              |          |                                                              |
+
+
+
+##### org.springframework.expression.spel.ast 
+
+
+
+
+
 | org.springframework.expression.spel.ast                      | package  |                                                              |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 |                                                              |          |                                                              |
 | Interfaces                                                   |          |                                                              |
 |                                                              |          |                                                              |
@@ -373,38 +402,58 @@ result: Hello World
 |                                                              |          |                                                              |
 |                                                              |          |                                                              |
 |                                                              |          |                                                              |
-| org.springframework.expression.spel.standard                 | package  |                                                              |
-|                                                              |          |                                                              |
-| Classes                                                      |          |                                                              |
-| InternalSpelExpressionParser                                 |          | 构造函数 public InternalSpelExpressionParser(SpelParserConfiguration configuration)   很多 eatxxx()方法  非public ，class InternalSpelExpressionParser extends TemplateAwareExpressionParser 核心类 |
-| SpelCompiler                                                 |          |                                                              |
-| org.springframework.expression.spel.standard.SpelCompiler.ChildClassLoader |          |                                                              |
-| org.springframework.expression.spel.standard.SpelCompiler.ExpressionClassWriter |          |                                                              |
-| SpelExpression                                               |          |                                                              |
-| SpelExpressionParser                                         |          | 父类TemplateAwareExpressionParser                            |
-| Token                                                        |          |                                                              |
-| Tokenizer                                                    |          |                                                              |
-| org.springframework.expression.spel.support                  | package  |                                                              |
-|                                                              |          |                                                              |
-| Classes                                                      |          |                                                              |
-|                                                              |          |                                                              |
-| BooleanTypedValue                                            |          |                                                              |
-| DataBindingMethodResolver                                    |          | final class DataBindingMethodResolver extends ReflectiveMethodResolver 见文字 |
-| DataBindingPropertyAccessor                                  |          | 实现PropertyAccessor接口                                     |
-| ReflectionHelper                                             |          | 静态工具类，org.springframework.expression.spel.support.ReflectiveConstructorExecutor#execute |
-| ReflectiveConstructorExecutor                                |          | execute()                                                    |
-| ReflectiveConstructorResolver                                |          |                                                              |
-| ReflectiveMethodExecutor                                     |          |                                                              |
-| ReflectiveMethodResolver                                     |          |                                                              |
-| ReflectivePropertyAccessor                                   |          | DataBindingPropertyAccessor extends ReflectivePropertyAccessor |
-| ReflectivePropertyAccessor.OptimalPropertyAccessor           |          |                                                              |
-| SimpleEvaluationContext                                      |          | 简化的表达式求值上下文，它提供了最基本的配置选项             |
-| SimpleEvaluationContext.Builder                              |          |                                                              |
-| StandardEvaluationContext                                    |          | 可配置的表达式求值上下文                                     |
-| StandardOperatorOverloader                                   |          | implements OperatorOverloader                                |
-| StandardTypeComparator                                       |          | implements TypeComparator                                    |
-| StandardTypeConverter                                        |          | implements TypeConverter  核心方法 convertValue              |
-| StandardTypeLocator                                          |          | implements TypeLocator                                       |
+
+
+
+
+
+##### org.springframework.expression.spel.standard 
+
+
+
+
+
+
+
+| org.springframework.expression.spel.standard                 |      |                                                              |
+| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| Classes                                                      |      |                                                              |
+| InternalSpelExpressionParser                                 |      | 构造函数 public InternalSpelExpressionParser(SpelParserConfiguration configuration)   很多 eatxxx()方法  非public ，class InternalSpelExpressionParser extends TemplateAwareExpressionParser 核心类 |
+| SpelCompiler                                                 |      |                                                              |
+| org.springframework.expression.spel.standard.SpelCompiler.ChildClassLoader |      |                                                              |
+| org.springframework.expression.spel.standard.SpelCompiler.ExpressionClassWriter |      |                                                              |
+| SpelExpression                                               |      |                                                              |
+| SpelExpressionParser                                         |      | 父类TemplateAwareExpressionParser                            |
+| Token                                                        |      |                                                              |
+| Tokenizer                                                    |      |                                                              |
+
+
+
+##### org.springframework.expression.spel.support 
+
+
+
+| org.springframework.expression.spel.support        |      |                                                              |
+| -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Classes                                            |      |                                                              |
+|                                                    |      |                                                              |
+| BooleanTypedValue                                  |      |                                                              |
+| DataBindingMethodResolver                          |      | final class DataBindingMethodResolver extends ReflectiveMethodResolver 见文字 |
+| DataBindingPropertyAccessor                        |      | 实现PropertyAccessor接口                                     |
+| ReflectionHelper                                   |      | 静态工具类，org.springframework.expression.spel.support.ReflectiveConstructorExecutor#execute |
+| ReflectiveConstructorExecutor                      |      | execute()                                                    |
+| ReflectiveConstructorResolver                      |      |                                                              |
+| ReflectiveMethodExecutor                           |      |                                                              |
+| ReflectiveMethodResolver                           |      |                                                              |
+| ReflectivePropertyAccessor                         |      | DataBindingPropertyAccessor extends ReflectivePropertyAccessor |
+| ReflectivePropertyAccessor.OptimalPropertyAccessor |      |                                                              |
+| SimpleEvaluationContext                            |      | 简化的表达式求值上下文，它提供了最基本的配置选项             |
+| SimpleEvaluationContext.Builder                    |      |                                                              |
+| StandardEvaluationContext                          |      | 可配置的表达式求值上下文                                     |
+| StandardOperatorOverloader                         |      | implements OperatorOverloader                                |
+| StandardTypeComparator                             |      | implements TypeComparator                                    |
+| StandardTypeConverter                              |      | implements TypeConverter  核心方法 convertValue              |
+| StandardTypeLocator                                |      | implements TypeLocator                                       |
 
 
 

@@ -4,9 +4,11 @@
 
 
 
+## 源代码分包详解
 
 
 
+### org.springframework.web
 
 | org.springframework.web                | 类型      | 解释                                                         |
 | -------------------------------------- | --------- | ------------------------------------------------------------ |
@@ -48,6 +50,8 @@ AbstractReactiveWebInitializer (org.springframework.web.server.adapter)
 JerseyWebApplicationInitializer in JerseyAutoConfiguration (org.springframework.boot.autoconfigure.jersey)
 
 
+
+#### org.springframework.web.accept
 
 | org.springframework.web.accept                 |           |                                                              |
 | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
@@ -126,7 +130,7 @@ ContentNegotiationManager (org.springframework.web.accept)
 
 
 
-
+#### org.springframework.web.bind
 
 | org.springframework.web.bind | 类型 | 解释 |
 | ---------------------------- | ---- | ---- |
@@ -250,7 +254,7 @@ public class UserValidator implements Validator {
 
 
 
-
+#### org.springframework.web.bind.annotation
 
 | org.springframework.web.bind.annotation | 类型       |     解释                                                         |
 | --------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -352,7 +356,7 @@ public class GlobalControllerExceptionHandler {
 
 
 
-
+#### org.springframework.web.bind.support
 
 | org.springframework.web.bind.support | 类型 |  解释    |
 | ------------------------------------ | ---- | ---- |
@@ -382,7 +386,7 @@ public class GlobalControllerExceptionHandler {
 
 
 
-
+#### org.springframework.web.client
 
 | org.springframework.web.client                               | 类型      |    解释                                                          |
 | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
@@ -516,7 +520,7 @@ org.springframework.web.client.support
 
 RestGatewaySupport
 
-
+#### org.springframework.web.context
 
 | org.springframework.web.context   | 类型      |     解释                                                         |
 | --------------------------------- | --------- | ------------------------------------------------------------ |
@@ -619,6 +623,8 @@ ContextLoaderListener实现了ServletContextListener接口,在web应用启动时
 
 
 
+##### org.springframework.web.context.annotation  
+
 | org.springframework.web.context.annotation | 类型       |   解释   |
 | ------------------------------------------ | ---------- | ---- |
 | ApplicationScope                           | @interface |      |
@@ -658,7 +664,7 @@ ContextLoaderListener实现了ServletContextListener接口,在web应用启动时
 
 
 
-
+##### org.springframework.web.context.annotation  
 
 | org.springframework.web.context.request | 类型      |     解释                                                         |
 | --------------------------------------- | --------- | ------------------------------------------------------------ |
@@ -765,7 +771,7 @@ httpSession.setAttribute("user", new User());
 
 
 
-
+##### org.springframework.web.context.request.async
 
 
 
@@ -1032,6 +1038,8 @@ public class MyCallableProcessingInterceptor implements CallableProcessingInterc
 
 
 
+##### org.springframework.web.context.support
+
 | org.springframework.web.context.support  | 类型     |     解释                                                         |
 | ---------------------------------------- | -------- | ------------------------------------------------------------ |
 | Classes                                  |          |                                                              |
@@ -1259,7 +1267,7 @@ public class MyConfig implements WebMvcConfigurer {
 
 
 
-
+#### org.springframework.web.cors
 
 | org.springframework.web.cors    | 类型      |      解释                                                        |
 | ------------------------------- | --------- | ------------------------------------------------------------ |
@@ -1387,7 +1395,7 @@ public class CorsConfig {
 
 
 
-
+##### org.springframework.web.cors.reactive
 
 | org.springframework.web.cors.reactive | 类型      | 解释     |
 | ------------------------------------- | --------- | ---- |
@@ -1406,7 +1414,7 @@ public class CorsConfig {
 
 
 
-
+#### org.springframework.web.filter
 
 | org.springframework.web.filter     | 类型 |  解释    |
 | ---------------------------------- | ---- | ---- |
@@ -1457,7 +1465,7 @@ CharacterEncodingFilter
 
 
 
-
+#### org.springframework.web.jsf
 
 | org.springframework.web.jsf        | 类型 |   解释   |
 | ---------------------------------- | ---- | ---- |
@@ -1477,7 +1485,7 @@ CharacterEncodingFilter
 
 
 
-
+##### org.springframework.web.jsf.el
 
 | org.springframework.web.jsf.el       | 类型 | 解释     |
 | ------------------------------------ | ---- | ---- |
@@ -1493,7 +1501,7 @@ CharacterEncodingFilter
 
 
 
-
+#### org.springframework.web.method
 
 
 
@@ -1509,7 +1517,7 @@ CharacterEncodingFilter
 
 
 
-
+##### org.springframework.web.method.annotation
 
 | org.springframework.web.method.annotation               | 类型 |  解释    |
 | ------------------------------------------------------- | ---- | ---- |
@@ -1539,7 +1547,7 @@ CharacterEncodingFilter
 
 
 
-
+##### org.springframework.web.method.support
 
 | org.springframework.web.method.support   | 类型 |   解释   |
 | ---------------------------------------- | --------- | ---- |
@@ -1558,7 +1566,7 @@ CharacterEncodingFilter
 
 
 
-
+#### org.springframework.web.multipart
 
 | org.springframework.web.multipart |   类型        |  解释    |
 | --------------------------------- | --------- | ---- |
@@ -1574,7 +1582,7 @@ CharacterEncodingFilter
 
 
 
-
+##### org.springframework.web.multipart.commons
 
 | org.springframework.web.multipart.commons       |  类型    | 解释     |
 | ----------------------------------------------- | ---- | ---- |
@@ -1596,6 +1604,10 @@ CharacterEncodingFilter
 CommonsMultipartFile implements MultipartFile
 
 
+
+##### org.springframework.web.multipart.support
+
+
 | org.springframework.web.multipart.support |  类型    |   解释   |
 | ----------------------------------------- | ---- | ---- |
 | Classes                                   |      |      |
@@ -1613,6 +1625,8 @@ CommonsMultipartFile implements MultipartFile
 | MissingServletRequestPartException        |      |      |
 
 
+
+#### org.springframework.web.server
 
 | org.springframework.web.server       |     类型      | 解释     |
 | ------------------------------------ | --------- | ---- |
@@ -1643,7 +1657,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-
+##### org.springframework.web.server.adapter  
 
 | org.springframework.web.server.adapter |   类型   |  解释    |
 | -------------------------------------- | ---- | ---- |
@@ -1665,7 +1679,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-
+##### org.springframework.web.server.handler
 
 | org.springframework.web.server.handler |   类型   | 解释     |
 | -------------------------------------- | ---- | ---- |
@@ -1694,7 +1708,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-
+##### org.springframework.web.server.i18n
 
 | org.springframework.web.server.i18n |     类型      |  解释    |
 | ----------------------------------- | --------- | ---- |
@@ -1709,7 +1723,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-
+##### org.springframework.web.server.session
 
 | org.springframework.web.server.session |   类型        | 解释     |
 | -------------------------------------- | --------- | ---- |
@@ -1726,7 +1740,7 @@ CommonsMultipartFile implements MultipartFile
 
 
 
-
+## 笔记
 
 @RequestBody注解修饰的类
 

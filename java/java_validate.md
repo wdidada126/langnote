@@ -6,6 +6,7 @@
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
+			<version>2.0.2</version>
         </dependency>
 ```
 
@@ -127,6 +128,57 @@ public class Order {
 hibernate-validator jar包的
 SimpleConstraintTree
 org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree
+
+
+SimpleConstraintTree hibernate-validator 6.2找不到了，替代类是？
+
+在 Hibernate Validator 6.2 中，`SimpleConstraintTree` 类已被移除，因为它是一个内部实现类，不应该在应用程序中直接使用。如果您需要构建和操作验证约束树，可以使用 `ConstraintTree` 类来替代。
+
+`ConstraintTree` 类提供了一些方法来构建和操作验证约束树。您可以使用 `ConstraintTree.Builder` 类来构建验证约束树的根节点，并使用方法链语法添加子节点和约束。以下是一个示例：
+
+```java
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorInitializationContext;
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorInitializationContextImpl;
+import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorManager;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
+
+public class Main {
+
+    public static void main(String[] args) {
+        ConstraintTree.Builder<MyObject> builder = ConstraintTree.builder();
+
+        builder.addConstraint(NotEmpty.class)
+                .addPropertyNode("name")
+                .addConstraint(NotBlank.class);
+
+        ConstraintTree<MyObject> constraintTree = builder.build();
+
+        MyObject myObject = new MyObject("");
+        Set<ConstraintViolation<MyObject>> violations = constraintTree.validate(myObject);
+
+        for (ConstraintViolation<MyObject> violation : violations) {
+            System.out.println(violation.getPropertyPath() + ": " + violation.getMessage());
+        }
+    }
+
+    public static class MyObject {
+        private String name;
+
+        public MyObject(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+}
+```
+在上面的示例中，我们使用 `ConstraintTree.Builder` 构建了一个验证约束树。我们添加了 `NotEmpty` 约束到 `name` 属性，并且在 `name` 属性上添加了 `NotBlank` 约束。然后，我们创建了一个 `MyObject` 实例，并使用验证约束树对其进行验证。
+请注意，示例代码中的 `NotEmpty` 和 `NotBlank` 是示例约束注解，您需要根据您的实际需求替换为适合您的约束注解。另外，您需要确保您的项目中包含了 Hibernate Validator 6.2 或更高版本的依赖。
 
 
 `SimpleConstraintTree` 是 `javax.validation` API 中的一个类，它代表了一个树形结构，用于表示一个或多个验证约束的组合。
