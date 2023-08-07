@@ -65,7 +65,7 @@ websocket
 dubbo netty
 
 
-### jar包
+## jar包
 
 - 
 
@@ -216,7 +216,7 @@ public class NioServer {
 
 
 
-### 核心类
+## 核心类
 
 
 ChannelInboundHandlerAdapter ChannelHandlerAdapter区别
@@ -251,7 +251,7 @@ ByteBuf又分为两种，DirectByteBuf和HeapByteBuf。简而言之就是一种�
 
 
 
-### netty版本
+## netty版本
 netty3是jboss的
 netty4是io.netty的
 
@@ -329,7 +329,7 @@ Netty实现http
 
 netty可以用作客户端client
 
-### netty 日志
+## netty 日志
 
 ```shell
 2021-04-12 21:19:50.087 [main] DEBUG i.n.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
@@ -347,10 +347,459 @@ io.netty.bootstrap.Bootstrap
 源码：
 `private static final InternalLogger logger = InternalLoggerFactory.getInstance(Bootstrap.class);`
 
-### netty api doc
+## netty api doc
+https://javadoc.io/doc/io.netty/netty-all/4.1.52.Final/overview-summary.html
 
 https://netty.io/4.1/api/index.html
-io.netty.bootstrap
+## io.netty.bootstrap
+
+
+
+|     io.netty.bootstrap                    |      |      |
+| ----------------------- | ---- | ---- |
+| Interfaces              |      |      |
+|                         |      |      |
+| ChannelFactory          |      |      |
+|                         |      |      |
+| Classes                 |      |      |
+|                         |      |      |
+| AbstractBootstrap       |      |      |
+| AbstractBootstrapConfig |      |      |
+| Bootstrap               |      |      |
+| BootstrapConfig         |      |      |
+| ServerBootstrap         |      |      |
+| ServerBootstrapConfig   |      |      |
+
+
+
+## io.netty.buffer
+
+
+
+
+
+| io.netty.buffer                 |      |      |
+| ------------------------------- | ---- | ---- |
+| Interfaces                      |      |      |
+|                                 |      |      |
+| ByteBufAllocator                |      |      |
+| ByteBufAllocatorMetric          |      |      |
+| ByteBufAllocatorMetricProvider  |      |      |
+| ByteBufConvertible              |      |      |
+| ByteBufHolder                   |      |      |
+| ByteBufProcessor                |      |      |
+| PoolArenaMetric                 |      |      |
+| PoolChunkListMetric             |      |      |
+| PoolChunkMetric                 |      |      |
+| PoolSubpageMetric               |      |      |
+| SizeClassesMetric               |      |      |
+|                                 |      |      |
+| Classes                         |      |      |
+|                                 |      |      |
+| AbstractByteBuf                 |      |      |
+| AbstractByteBufAllocator        |      |      |
+| AbstractDerivedByteBuf          |      |      |
+| AbstractReferenceCountedByteBuf |      |      |
+| ByteBuf                         |      |      |
+| ByteBufInputStream              |      |      |
+| ByteBufOutputStream             |      |      |
+| ByteBufUtil                     |      |      |
+| CompositeByteBuf                |      |      |
+| DefaultByteBufHolder            |      |      |
+| DuplicatedByteBuf               |      |      |
+| EmptyByteBuf                    |      |      |
+| PooledByteBufAllocator          |      |      |
+| PooledByteBufAllocatorMetric    |      |      |
+| ReadOnlyByteBuf                 |      |      |
+| SlicedByteBuf                   |      |      |
+| SwappedByteBuf                  |      |      |
+| Unpooled                        |      |      |
+| UnpooledByteBufAllocator        |      |      |
+| UnpooledDirectByteBuf           |      |      |
+| UnpooledHeapByteBuf             |      |      |
+| UnpooledUnsafeDirectByteBuf     |      |      |
+| UnpooledUnsafeHeapByteBuf       |      |      |
+
+
+
+
+### io.netty.buffer.search
+
+| Interfaces                                 |      |      |
+| ------------------------------------------ | ---- | ---- |
+|                                            |      |      |
+| MultiSearchProcessor                       |      |      |
+| MultiSearchProcessorFactory                |      |      |
+| SearchProcessor                            |      |      |
+| SearchProcessorFactory                     |      |      |
+|                                            |      |      |
+| Classes                                    |      |      |
+|                                            |      |      |
+| AbstractMultiSearchProcessorFactory        |      |      |
+| AbstractSearchProcessorFactory             |      |      |
+| AhoCorasicSearchProcessorFactory           |      |      |
+| AhoCorasicSearchProcessorFactory.Processor |      |      |
+| BitapSearchProcessorFactory                |      |      |
+| BitapSearchProcessorFactory.Processor      |      |      |
+| KmpSearchProcessorFactory                  |      |      |
+| KmpSearchProcessorFactory.Processor        |      |      |
+
+
+## io.netty.channel
+
+
+
+
+
+| io.netty.channel                                    |      |      |
+| ---------------------------------------------- | ---- | ---- |
+|                                                |      |      |
+| AddressedEnvelope                              |      |      |
+| Channel                                        |      |      |
+| Channel.Unsafe                                 |      |      |
+| ChannelConfig                                  |      |      |
+| ChannelFactory                                 |      |      |
+| ChannelFuture                                  |      |      |
+| ChannelFutureListener                          |      |      |
+| ChannelHandler                                 |      |      |
+| ChannelHandlerContext                          |      |      |
+| ChannelId                                      |      |      |
+| ChannelInboundHandler                          |      |      |
+| ChannelInboundInvoker                          |      |      |
+| ChannelOutboundBuffer.MessageProcessor         |      |      |
+| ChannelOutboundHandler                         |      |      |
+| ChannelOutboundInvoker                         |      |      |
+| ChannelPipeline                                |      |      |
+| ChannelProgressiveFuture                       |      |      |
+| ChannelProgressiveFutureListener               |      |      |
+| ChannelProgressivePromise                      |      |      |
+| ChannelPromise                                 |      |      |
+| EventLoop                                      |      |      |
+| EventLoopGroup                                 |      |      |
+| EventLoopTaskQueueFactory                      |      |      |
+| FileRegion                                     |      |      |
+| MaxBytesRecvByteBufAllocator                   |      |      |
+| MaxMessagesRecvByteBufAllocator                |      |      |
+| MessageSizeEstimator                           |      |      |
+| MessageSizeEstimator.Handle                    |      |      |
+| RecvByteBufAllocator                           |      |      |
+| RecvByteBufAllocator.ExtendedHandle            |      |      |
+| RecvByteBufAllocator.Handle                    |      |      |
+| SelectStrategy                                 |      |      |
+| SelectStrategyFactory                          |      |      |
+| ServerChannel                                  |      |      |
+|                                                |      |      |
+| Classes                                        |      |      |
+|                                                |      |      |
+| AbstractChannel                                |      |      |
+| AbstractCoalescingBufferQueue                  |      |      |
+| AbstractEventLoop                              |      |      |
+| AbstractEventLoopGroup                         |      |      |
+| AbstractServerChannel                          |      |      |
+| AdaptiveRecvByteBufAllocator                   |      |      |
+| ChannelDuplexHandler                           |      |      |
+| ChannelFlushPromiseNotifier                    |      |      |
+| ChannelHandlerAdapter                          |      |      |
+| ChannelInboundHandlerAdapter                   |      |      |
+| ChannelInitializer                             |      |      |
+| ChannelMetadata                                |      |      |
+| ChannelOption                                  |      |      |
+| ChannelOutboundBuffer                          |      |      |
+| ChannelOutboundHandlerAdapter                  |      |      |
+| ChannelPromiseAggregator                       |      |      |
+| ChannelPromiseNotifier                         |      |      |
+| CoalescingBufferQueue                          |      |      |
+| CombinedChannelDuplexHandler                   |      |      |
+| DefaultAddressedEnvelope                       |      |      |
+| DefaultChannelConfig                           |      |      |
+| DefaultChannelId                               |      |      |
+| DefaultChannelPipeline                         |      |      |
+| DefaultChannelProgressivePromise               |      |      |
+| DefaultChannelPromise                          |      |      |
+| DefaultEventLoop                               |      |      |
+| DefaultEventLoopGroup                          |      |      |
+| DefaultFileRegion                              |      |      |
+| DefaultMaxBytesRecvByteBufAllocator            |      |      |
+| DefaultMaxMessagesRecvByteBufAllocator         |      |      |
+| DefaultMessageSizeEstimator                    |      |      |
+| DefaultSelectStrategyFactory                   |      |      |
+| DelegatingChannelPromiseNotifier               |      |      |
+| FixedRecvByteBufAllocator                      |      |      |
+| MultithreadEventLoopGroup                      |      |      |
+| PendingWriteQueue                              |      |      |
+| PreferHeapByteBufAllocator                     |      |      |
+| RecvByteBufAllocator.DelegatingHandle          |      |      |
+| ReflectiveChannelFactory                       |      |      |
+| ServerChannelRecvByteBufAllocator              |      |      |
+| SimpleChannelInboundHandler                    |      |      |
+| SimpleUserEventChannelHandler                  |      |      |
+| SingleThreadEventLoop                          |      |      |
+| SingleThreadEventLoop.ChannelsReadOnlyIterator |      |      |
+| ThreadPerChannelEventLoop                      |      |      |
+| ThreadPerChannelEventLoopGroup                 |      |      |
+| VoidChannelPromise                             |      |      |
+| WriteBufferWaterMark                           |      |      |
+|                                                |      |      |
+| Exceptions                                     |      |      |
+|                                                |      |      |
+| ChannelException                               |      |      |
+| ChannelPipelineException                       |      |      |
+| ConnectTimeoutException                        |      |      |
+| EventLoopException                             |      |      |
+|                                                |      |      |
+| Annotation Types                               |      |      |
+|                                                |      |      |
+| ChannelHandler.Sharable                        |      |      |
+
+
+
+
+
+
+### io.netty.channel.embedded
+
+EmbeddedChannel
+
+### io.netty.channel.epoll
+
+
+
+| io.netty.channel.epoll           |      |      |
+| -------------------------------- | ---- | ---- |
+| Classes                          |      |      |
+|                                  |      |      |
+| AbstractEpollServerChannel       |      |      |
+| AbstractEpollStreamChannel       |      |      |
+| Epoll                            |      |      |
+| EpollChannelConfig               |      |      |
+| EpollChannelOption               |      |      |
+| EpollDatagramChannel             |      |      |
+| EpollDatagramChannelConfig       |      |      |
+| EpollDomainDatagramChannel       |      |      |
+| EpollDomainDatagramChannelConfig |      |      |
+| EpollDomainSocketChannel         |      |      |
+| EpollDomainSocketChannelConfig   |      |      |
+| EpollEventArray                  |      |      |
+| EpollEventLoop                   |      |      |
+| EpollEventLoopGroup              |      |      |
+| EpollServerChannelConfig         |      |      |
+| EpollServerDomainSocketChannel   |      |      |
+| EpollServerSocketChannel         |      |      |
+| EpollServerSocketChannelConfig   |      |      |
+| EpollSocketChannel               |      |      |
+| EpollSocketChannelConfig         |      |      |
+| EpollTcpInfo                     |      |      |
+| LinuxSocket                      |      |      |
+| Native                           |      |      |
+| SegmentedDatagramPacket          |      |      |
+| VSockAddress                     |      |      |
+|                                  |      |      |
+| Enums                            |      |      |
+|                                  |      |      |
+| EpollMode                        |      |      |
+
+
+
+
+
+### io.netty.channel.group
+
+| io.netty.channel.group     |      |      |
+| -------------------------- | ---- | ---- |
+| Interfaces                 |      |      |
+|                            |      |      |
+| ChannelGroup               |      |      |
+| ChannelGroupFuture         |      |      |
+| ChannelGroupFutureListener |      |      |
+| ChannelMatcher             |      |      |
+|                            |      |      |
+| Classes                    |      |      |
+|                            |      |      |
+| ChannelMatchers            |      |      |
+| DefaultChannelGroup        |      |      |
+|                            |      |      |
+| Exceptions                 |      |      |
+|                            |      |      |
+| ChannelGroupException      |      |      |
+
+
+
+### io.netty.channel.internal
+
+ChannelUtils
+
+
+
+### io.netty.channel.kqueue
+
+
+
+
+
+| io.netty.channel.kqueue           |      |      |
+| --------------------------------- | ---- | ---- |
+| Classes                           |      |      |
+|                                   |      |      |
+| AbstractKQueueServerChannel       |      |      |
+| AbstractKQueueStreamChannel       |      |      |
+| AcceptFilter                      |      |      |
+| KQueue                            |      |      |
+| KQueueChannelConfig               |      |      |
+| KQueueChannelOption               |      |      |
+| KQueueDatagramChannel             |      |      |
+| KQueueDatagramChannelConfig       |      |      |
+| KQueueDomainDatagramChannel       |      |      |
+| KQueueDomainDatagramChannelConfig |      |      |
+| KQueueDomainSocketChannel         |      |      |
+| KQueueDomainSocketChannelConfig   |      |      |
+| KQueueEventLoopGroup              |      |      |
+| KQueueServerChannelConfig         |      |      |
+| KQueueServerDomainSocketChannel   |      |      |
+| KQueueServerSocketChannel         |      |      |
+| KQueueServerSocketChannelConfig   |      |      |
+| KQueueSocketChannel               |      |      |
+| KQueueSocketChannelConfig         |      |      |
+
+
+
+### io.netty.channel.local
+
+
+
+
+
+| io.netty.channel.local |      |      |
+| ---------------------- | ---- | ---- |
+| Classes                |      |      |
+|                        |      |      |
+| LocalAddress           |      |      |
+| LocalChannel           |      |      |
+| LocalEventLoopGroup    |      |      |
+| LocalServerChannel     |      |      |
+
+
+
+### io.netty.channel.nio
+
+| io.netty.channel.nio         |      |      |
+| ---------------------------- | ---- | ---- |
+| Interfaces                   |      |      |
+|                              |      |      |
+| AbstractNioChannel.NioUnsafe |      |      |
+| NioTask                      |      |      |
+|                              |      |      |
+| Classes                      |      |      |
+|                              |      |      |
+| AbstractNioByteChannel       |      |      |
+| AbstractNioChannel           |      |      |
+| AbstractNioMessageChannel    |      |      |
+| NioEventLoop                 |      |      |
+| NioEventLoopGroup            |      |      |
+
+
+
+### io.netty.channel.oio
+
+
+
+### io.netty.channel.pool
+
+
+
+### io.netty.channel.rxtx
+
+
+
+### io.netty.channel.sctp
+
+
+
+### io.netty.channel.sctp.nio
+
+
+
+### io.netty.channel.sctp.oio
+
+
+
+### io.netty.channel.socket
+
+
+
+### io.netty.channel.socket.nio
+
+
+
+### io.netty.channel.socket.oio
+
+
+
+### io.netty.channel.udt
+
+
+
+### io.netty.channel.udt.nio
+
+
+
+### io.netty.channel.unix
+
+
+## io.netty.handler
+io.netty.handler.address
+io.netty.handler.codec
+io.netty.handler.codec.base64
+io.netty.handler.codec.bytes
+io.netty.handler.codec.compression
+io.netty.handler.codec.dns
+io.netty.handler.codec.haproxy
+io.netty.handler.codec.http
+io.netty.handler.codec.http.cookie
+io.netty.handler.codec.http.cors
+io.netty.handler.codec.http.multipart
+io.netty.handler.codec.http.websocketx
+io.netty.handler.codec.http.websocketx.extensions
+io.netty.handler.codec.http.websocketx.extensions.compression
+io.netty.handler.codec.http2
+io.netty.handler.codec.json
+io.netty.handler.codec.marshalling
+io.netty.handler.codec.memcache
+io.netty.handler.codec.memcache.binary
+io.netty.handler.codec.mqtt
+io.netty.handler.codec.protobuf
+io.netty.handler.codec.redis
+io.netty.handler.codec.rtsp
+io.netty.handler.codec.sctp
+io.netty.handler.codec.serialization
+io.netty.handler.codec.smtp
+io.netty.handler.codec.socks
+io.netty.handler.codec.socksx
+io.netty.handler.codec.socksx.v4
+io.netty.handler.codec.socksx.v5
+io.netty.handler.codec.spdy
+io.netty.handler.codec.stomp
+io.netty.handler.codec.string
+io.netty.handler.codec.xml
+io.netty.handler.flow
+io.netty.handler.flush
+io.netty.handler.ipfilter
+io.netty.handler.logging
+io.netty.handler.pcap
+io.netty.handler.proxy
+io.netty.handler.ssl
+io.netty.handler.ssl.ocsp
+io.netty.handler.ssl.util
+io.netty.handler.stream
+io.netty.handler.timeout
+io.netty.handler.traffic
+
+## io.netty.resolver
+io.netty.resolver
+io.netty.resolver.dns
+io.netty.resolver.dns.macos
+
+
+
 AbstractBootstrap
 Bootstrap, ServerBootstrap
 
