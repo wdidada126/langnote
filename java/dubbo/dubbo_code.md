@@ -1131,11 +1131,11 @@ LimitedThreadPool
 
 
 #### org.apache.dubbo.config.spring
-org.apache.dubbo.config.spring
 
 
 
-| org.apache.dubbo. | 类型 |      |
+
+| org.apache.dubbo.config.spring | 类型 |      |
 | ------------------------------ | ---- | ---- |
 |       ConfigCenterBean                         |      |      |
 |        ReferenceBean                        |      |      |
@@ -1151,11 +1151,11 @@ org.apache.dubbo.config.spring.beans.factory.annotation
 |   AnnotatedInterfaceConfigBeanBuilder      |      |  |
 |     AnnotationPropertyValuesAdapter       |      |  |
 |   DubboConfigAliasPostProcessor      |      |  |
-| **ReferenceAnnotationBeanPostProcessor**                    |      | 处理@DubboService等注解 |
+| **ReferenceAnnotationBeanPostProcessor**                    |      | 处理@DubboReference等注解 |
 |  ReferenceBeanBuilder     |      |  |
-|  ServiceAnnotationBeanPostProcessor     |      |  |
+|  ServiceAnnotationBeanPostProcessor     | @Deprecated |  |
 |     ServiceBeanNameBuilder      |      |  |
-|   ServiceClassPostProcessor     |      |  |
+|   ServiceClassPostProcessor     |      | 实现BeanDefinitionRegistryPostProcessor 接口 |
 
 ReferenceAnnotationBeanPostProcessor使用了DubboService
 
@@ -1167,6 +1167,14 @@ ReferenceAnnotationBeanPostProcessor使用了DubboService
 com.alibaba.spring.beans.factory.annotation.AbstractAnnotationBeanPostProcessor#annotationTypes这个属性
 
 
+
+
+
+ServiceClassPostProcessor 注册@DubboService修饰的类到spring ioc
+
+
+
+ReferenceAnnotationBeanPostProcessor 跟 ServiceAnnotationBeanPostProcessor是对应的
 
 ###### org.apache.dubbo.config.spring.beans.factory.config
 
@@ -1193,25 +1201,75 @@ com.alibaba.spring.beans.factory.annotation.AbstractAnnotationBeanPostProcessor#
 ###### org.apache.dubbo.config.spring.context.annotation
 
 
-| org.apache.dubbo.config.spring.context.annotation | 类型 |      |
-| ------------------------------------------------- | ---- | ---- |
-|                                                   |      |      |
-| 类                                                |      |      |
-|                                                   |      |      |
-| DubboClassPathBeanDefinitionScanner               |      |      |
-| DubboComponentScanRegistrar                       |      |      |
-| DubboConfigConfiguration                          |      |      |
-| DubboConfigConfiguration.Multiple                 |      |      |
-| DubboConfigConfiguration.Single                   |      |      |
-| DubboConfigConfigurationRegistrar                 |      |      |
-| DubboLifecycleComponentRegistrar                  |      |      |
-|                                                   |      |      |
-| 注释类型                                          |      |      |
-|                                                   |      |      |
-| DubboComponentScan                                |      |      |
-| EnableDubbo                                       |      |      |
-| EnableDubboConfig                                 |      |      |
-| EnableDubboLifecycle                              |      |      |
+| org.apache.dubbo.config.spring.context.annotation | 类型                   |      |
+| ------------------------------------------------- | ---------------------- | ---- |
+| 类                                                |                        |      |
+| DubboClassPathBeanDefinitionScanner               |                        |      |
+| DubboComponentScanRegistrar                       |                        |      |
+| DubboConfigConfiguration                          |                        |      |
+| DubboConfigConfiguration.Multiple                 |                        |      |
+| DubboConfigConfiguration.Single                   |                        |      |
+| DubboConfigConfigurationRegistrar                 |                        |      |
+| DubboLifecycleComponentRegistrar                  |                        |      |
+|                                                   |                        |      |
+| 注释类型                                          |                        |      |
+| DubboComponentScan                                | @interface             |      |
+| EnableDubbo                                       | @interface             |      |
+| EnableDubboConfig                                 | @interface             |      |
+| EnableDubboLifecycle                              | @interface @Deprecated |      |
+
+
+
+
+
+以下是一个使用Dubbo框架的应用程序的application.yml配置文件的示例：
+
+```yaml
+spring:
+  application:
+    name: my-dubbo-application
+
+dubbo:
+  application:
+    id: my-application-id
+    name: my-dubbo-application
+  registry:
+    address: zookeeper://localhost:2181
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.example.service
+```
+
+在上面的示例中，配置文件中的属性用于配置Dubbo框架的各个组件。
+
+- `spring.application.name`配置了Spring Boot应用程序的名称。
+- `dubbo.application.id`配置了Dubbo应用程序的ID。
+- `dubbo.application.name`配置了Dubbo应用程序的名称。
+- `dubbo.registry.address`配置了ZooKeeper注册中心的地址。
+- `dubbo.protocol.name`配置了Dubbo使用的协议名称。
+- `dubbo.protocol.port`配置了Dubbo协议的端口。
+- `dubbo.scan.base-packages`配置了扫描Dubbo服务的基础包路径。
+
+这只是一个简单的示例，您可以根据您的实际需求进行配置。根据您的应用程序的具体情况，您可能还需要配置其他Dubbo组件，如服务提供者、服务消费者等。
+
+请确保在应用程序的类路径中包含Dubbo和相关依赖项，并正确配置ZooKeeper或其他支持的注册中心。
+
+希望这个例子能帮助您理解如何在application.yml文件中配置Dubbo应用程序。
+
+
+
+@EnableDubboConfig注解是Dubbo框架中的一个注解，用于启用Dubbo配置。Dubbo是一种分布式服务框架，用于构建高性能、可扩展的分布式应用程序。@EnableDubboConfig注解的作用是在Spring Boot应用程序中启用Dubbo的配置。
+
+具体来说，@EnableDubboConfig注解可以用于启用Dubbo的配置属性，这些属性可以在application.properties或application.yml文件中配置。通过使用@EnableDubboConfig注解，可以将Dubbo的配置属性与Spring Boot的自动配置机制集成在一起，从而更方便地管理和配置Dubbo的相关功能。
+
+使用@EnableDubboConfig注解时，通常需要指定一些属性值，例如扫描Dubbo配置的包路径、ZooKeeper注册中心的地址、Dubbo协议的端口等。这些属性值可以根据具体的需求进行配置。
+
+总的来说，@EnableDubboConfig注解的作用是启用Dubbo的配置属性，并将其与Spring Boot的自动配置机制集成，以便更方便地管理和配置Dubbo框架。
+
+
+
 
 
 ###### org.apache.dubbo.config.spring.context.config
