@@ -5,6 +5,513 @@
 
 
 ## 源代码分包详解
+### org.springframework.http
+
+| Interfaces                           |      |      |
+| ------------------------------------ | ---- | ---- |
+|                                      |      |      |
+| ContentDisposition.Builder           |      |      |
+| HttpInputMessage                     |      |      |
+| HttpMessage                          |      |      |
+| HttpOutputMessage                    |      |      |
+| HttpRequest                          |      |      |
+| ReactiveHttpInputMessage             |      |      |
+| ReactiveHttpOutputMessage            |      |      |
+| RequestEntity.BodyBuilder            |      |      |
+| RequestEntity.HeadersBuilder         |      |      |
+| ResponseCookie.ResponseCookieBuilder |      |      |
+| ResponseEntity.BodyBuilder           |      |      |
+| ResponseEntity.HeadersBuilder        |      |      |
+| StreamingHttpOutputMessage           |      |      |
+| StreamingHttpOutputMessage.Body      |      |      |
+| ZeroCopyHttpOutputMessage            |      |      |
+|                                      |      |      |
+| Classes                              |      |      |
+|                                      |      |      |
+| CacheControl                         |      |      |
+| ContentDisposition                   |      |      |
+| HttpCookie                           |      |      |
+| HttpEntity                           |      |      |
+| HttpHeaders                          |      |      |
+| HttpLogging                          |      |      |
+| HttpRange                            |      |      |
+| MediaType                            |      |      |
+| MediaTypeEditor                      |      |      |
+| MediaTypeFactory                     |      |      |
+| RequestEntity                        |      |      |
+| ResponseCookie                       |      |      |
+| ResponseEntity                       |      |      |
+|                                      |      |      |
+| Enums                                |      |      |
+|                                      |      |      |
+| HttpMethod                           |      |      |
+| HttpStatus                           |      |      |
+| HttpStatus.Series                    |      |      |
+|                                      |      |      |
+| Exceptions                           |      |      |
+|                                      |      |      |
+| InvalidMediaTypeException            |      |      |
+
+
+
+
+
+#### org.springframework.http.client
+
+
+
+|                                             |      |      |
+| ------------------------------------------- | ---- | ---- |
+| Interfaces                                  |      |      |
+|                                             |      |      |
+| AsyncClientHttpRequest                      |      |      |
+| AsyncClientHttpRequestExecution             |      |      |
+| AsyncClientHttpRequestFactory               |      |      |
+| AsyncClientHttpRequestInterceptor           |      |      |
+| ClientHttpRequest                           |      |      |
+| ClientHttpRequestExecution                  |      |      |
+| ClientHttpRequestFactory                    |      |      |
+| ClientHttpRequestInitializer                |      |      |
+| ClientHttpRequestInterceptor                |      |      |
+| ClientHttpResponse                          |      |      |
+| MultipartBodyBuilder.PartBuilder            |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| AbstractClientHttpRequest                   |      |      |
+| AbstractClientHttpRequestFactoryWrapper     |      |      |
+| AbstractClientHttpResponse                  |      |      |
+| BufferingClientHttpRequestFactory           |      |      |
+| HttpComponentsAsyncClientHttpRequestFactory |      |      |
+| HttpComponentsClientHttpRequestFactory      |      |      |
+| InterceptingAsyncClientHttpRequestFactory   |      |      |
+| InterceptingClientHttpRequestFactory        |      |      |
+| MultipartBodyBuilder                        |      |      |
+| Netty4ClientHttpRequestFactory              |      |      |
+| OkHttp3ClientHttpRequestFactory             |      |      |
+| SimpleClientHttpRequestFactory              |      |      |
+
+
+
+##### org.springframework.http.client.reactive
+
+
+
+|                             |      |      |
+| --------------------------- | ---- | ---- |
+| Interfaces                  |      |      |
+|                             |      |      |
+| ClientHttpConnector         |      |      |
+| ClientHttpRequest           |      |      |
+| ClientHttpResponse          |      |      |
+|                             |      |      |
+| Classes                     |      |      |
+|                             |      |      |
+| AbstractClientHttpRequest   |      |      |
+| ClientHttpRequestDecorator  |      |      |
+| ClientHttpResponseDecorator |      |      |
+| JettyClientHttpConnector    |      |      |
+| JettyResourceFactory        |      |      |
+| ReactorClientHttpConnector  |      |      |
+| ReactorResourceFactory      |      |      |
+
+
+
+
+
+##### org.springframework.http.client.support
+
+
+
+|                                |      |      |
+| ------------------------------ | ---- | ---- |
+| Classes                        |      |      |
+|                                |      |      |
+| AsyncHttpAccessor              |      |      |
+| BasicAuthenticationInterceptor |      |      |
+| BasicAuthorizationInterceptor  |      |      |
+| HttpAccessor                   |      |      |
+| HttpRequestWrapper             |      |      |
+| InterceptingAsyncHttpAccessor  |      |      |
+| InterceptingHttpAccessor       |      |      |
+| ProxyFactoryBean               |      |      |
+
+
+
+
+
+#### org.springframework.http.codec
+
+
+
+|                                           |      |      |
+| ----------------------------------------- | ---- | ---- |
+| Interfaces                                |      |      |
+|                                           |      |      |
+| ClientCodecConfigurer                     |      |      |
+| ClientCodecConfigurer.ClientDefaultCodecs |      |      |
+| ClientCodecConfigurer.MultipartCodecs     |      |      |
+| CodecConfigurer                           |      |      |
+| CodecConfigurer.CustomCodecs              |      |      |
+| CodecConfigurer.DefaultCodecConfig        |      |      |
+| CodecConfigurer.DefaultCodecs             |      |      |
+| HttpMessageDecoder                        |      |      |
+| HttpMessageEncoder                        |      |      |
+| HttpMessageReader                         |      |      |
+| HttpMessageWriter                         |      |      |
+| ServerCodecConfigurer                     |      |      |
+| ServerCodecConfigurer.ServerDefaultCodecs |      |      |
+| ServerSentEvent.Builder                   |      |      |
+|                                           |      |      |
+| Classes                                   |      |      |
+|                                           |      |      |
+| DecoderHttpMessageReader                  |      |      |
+| EncoderHttpMessageWriter                  |      |      |
+| FormHttpMessageReader                     |      |      |
+| FormHttpMessageWriter                     |      |      |
+| LoggingCodecSupport                       |      |      |
+| ResourceHttpMessageReader                 |      |      |
+| ResourceHttpMessageWriter                 |      |      |
+| ServerSentEvent                           |      |      |
+| ServerSentEventHttpMessageReader          |      |      |
+| ServerSentEventHttpMessageWriter          |      |      |
+
+
+
+
+
+##### org.springframework.http.codec.cbor
+
+
+
+|                     |      |      |
+| ------------------- | ---- | ---- |
+| Classes             |      |      |
+|                     |      |      |
+| Jackson2CborDecoder |      |      |
+| Jackson2CborEncoder |      |      |
+
+
+
+##### org.springframework.http.codec.json
+
+
+
+|                         |      |      |
+| ----------------------- | ---- | ---- |
+| Classes                 |      |      |
+|                         |      |      |
+| AbstractJackson2Decoder |      |      |
+| AbstractJackson2Encoder |      |      |
+| Jackson2CodecSupport    |      |      |
+| Jackson2JsonDecoder     |      |      |
+| Jackson2JsonEncoder     |      |      |
+| Jackson2SmileDecoder    |      |      |
+| Jackson2SmileEncoder    |      |      |
+
+
+
+##### org.springframework.http.codec.multipart
+
+
+
+|                                  |      |      |
+| -------------------------------- | ---- | ---- |
+| Interfaces                       |      |      |
+|                                  |      |      |
+| FilePart                         |      |      |
+| FormFieldPart                    |      |      |
+| Part                             |      |      |
+|                                  |      |      |
+| Classes                          |      |      |
+|                                  |      |      |
+| MultipartHttpMessageReader       |      |      |
+| MultipartHttpMessageWriter       |      |      |
+| SynchronossPartHttpMessageReader |      |      |
+
+
+
+##### org.springframework.http.codec.protobuf
+
+
+
+| org.springframework.http.codec.protobuf |      |      |
+| --------------------------------------- | ---- | ---- |
+| Classes                                 |      |      |
+|                                         |      |      |
+| ProtobufCodecSupport                    |      |      |
+| ProtobufDecoder                         |      |      |
+| ProtobufEncoder                         |      |      |
+| ProtobufHttpMessageWriter               |      |      |
+
+
+
+##### org.springframework.http.codec.support
+
+
+
+| org.springframework.http.codec.support |      |      |
+| -------------------------------------- | ---- | ---- |
+| Classes                                |      |      |
+|                                        |      |      |
+| DefaultClientCodecConfigurer           |      |      |
+| DefaultServerCodecConfigurer           |      |      |
+
+
+
+##### org.springframework.http.codec.xml
+
+| org.springframework.http.codec.xml |      |      |
+| ---------------------------------- | ---- | ---- |
+|                                    |      |      |
+| Classes                            |      |      |
+|                                    |      |      |
+| Jaxb2XmlDecoder                    |      |      |
+| Jaxb2XmlEncoder                    |      |      |
+| XmlEventDecoder                    |      |      |
+
+
+
+##### org.springframework.http.converter
+
+
+
+|                                     |      |      |
+| ----------------------------------- | ---- | ---- |
+| Interfaces                          |      |      |
+|                                     |      |      |
+| GenericHttpMessageConverter         |      |      |
+| HttpMessageConverter                |      |      |
+|                                     |      |      |
+| Classes                             |      |      |
+|                                     |      |      |
+| AbstractGenericHttpMessageConverter |      |      |
+| AbstractHttpMessageConverter        |      |      |
+| BufferedImageHttpMessageConverter   |      |      |
+| ByteArrayHttpMessageConverter       |      |      |
+| FormHttpMessageConverter            |      |      |
+| ObjectToStringHttpMessageConverter  |      |      |
+| ResourceHttpMessageConverter        |      |      |
+| ResourceRegionHttpMessageConverter  |      |      |
+| StringHttpMessageConverter          |      |      |
+|                                     |      |      |
+| Exceptions                          |      |      |
+|                                     |      |      |
+| HttpMessageConversionException      |      |      |
+| HttpMessageNotReadableException     |      |      |
+| HttpMessageNotWritableException     |      |      |
+
+
+
+##### org.springframework.http.converter.cbor
+
+| org.springframework.http.converter.cbor |      |      |
+| --------------------------------------- | ---- | ---- |
+| MappingJackson2CborHttpMessageConverter |      |      |
+|                                         |      |      |
+|                                         |      |      |
+
+
+
+##### org.springframework.http.converter.feed
+
+
+
+|                                      |      |      |
+| ------------------------------------ | ---- | ---- |
+| Classes                              |      |      |
+|                                      |      |      |
+| AbstractWireFeedHttpMessageConverter |      |      |
+| AtomFeedHttpMessageConverter         |      |      |
+| RssChannelHttpMessageConverter       |      |      |
+
+
+
+##### org.springframework.http.converter.json
+
+
+
+|                                      |      |      |
+| ------------------------------------ | ---- | ---- |
+| Classes                              |      |      |
+|                                      |      |      |
+| AbstractJackson2HttpMessageConverter |      |      |
+| AbstractJsonHttpMessageConverter     |      |      |
+| GsonBuilderUtils                     |      |      |
+| GsonFactoryBean                      |      |      |
+| GsonHttpMessageConverter             |      |      |
+| Jackson2ObjectMapperBuilder          |      |      |
+| Jackson2ObjectMapperFactoryBean      |      |      |
+| JsonbHttpMessageConverter            |      |      |
+| MappingJackson2HttpMessageConverter  |      |      |
+| MappingJacksonInputMessage           |      |      |
+| MappingJacksonValue                  |      |      |
+| SpringHandlerInstantiator            |      |      |
+
+
+
+##### org.springframework.http.converter.protobuf
+
+
+
+|                                        |      |      |
+| -------------------------------------- | ---- | ---- |
+| Interfaces                             |      |      |
+|                                        |      |      |
+| ExtensionRegistryInitializer           |      |      |
+|                                        |      |      |
+| Classes                                |      |      |
+|                                        |      |      |
+| ProtobufHttpMessageConverter           |      |      |
+| ProtobufJsonFormatHttpMessageConverter |      |      |
+
+
+
+##### org.springframework.http.converter.smile
+
+
+
+| org.springframework.http.converter.smile |      |      |
+| ---------------------------------------- | ---- | ---- |
+| MappingJackson2SmileHttpMessageConverter |      |      |
+|                                          |      |      |
+|                                          |      |      |
+
+
+
+##### org.springframework.http.converter.support
+
+
+
+AllEncompassingFormHttpMessageConverter
+
+
+
+##### org.springframework.http.converter.xml
+
+
+
+|                                        |      |      |
+| -------------------------------------- | ---- | ---- |
+| Classes                                |      |      |
+|                                        |      |      |
+| AbstractJaxb2HttpMessageConverter      |      |      |
+| AbstractXmlHttpMessageConverter        |      |      |
+| Jaxb2CollectionHttpMessageConverter    |      |      |
+| Jaxb2RootElementHttpMessageConverter   |      |      |
+| MappingJackson2XmlHttpMessageConverter |      |      |
+| MarshallingHttpMessageConverter        |      |      |
+| SourceHttpMessageConverter             |      |      |
+
+
+
+#### org.springframework.http.server
+
+
+
+|                                      |      |      |
+| ------------------------------------ | ---- | ---- |
+| Interfaces                           |      |      |
+|                                      |      |      |
+| PathContainer                        |      |      |
+| PathContainer.Element                |      |      |
+| PathContainer.PathSegment            |      |      |
+| PathContainer.Separator              |      |      |
+| RequestPath                          |      |      |
+| ServerHttpAsyncRequestControl        |      |      |
+| ServerHttpRequest                    |      |      |
+| ServerHttpResponse                   |      |      |
+|                                      |      |      |
+| Classes                              |      |      |
+|                                      |      |      |
+| PathContainer.Options                |      |      |
+| ServletServerHttpAsyncRequestControl |      |      |
+| ServletServerHttpRequest             |      |      |
+| ServletServerHttpResponse            |      |      |
+
+
+
+### org.springframework.remoting
+
+
+
+|                                  |      |      |
+| -------------------------------- | ---- | ---- |
+| Exceptions                       |      |      |
+|                                  |      |      |
+| RemoteAccessException            |      |      |
+| RemoteConnectFailureException    |      |      |
+| RemoteInvocationFailureException |      |      |
+| RemoteLookupFailureException     |      |      |
+| RemoteProxyFailureException      |      |      |
+| RemoteTimeoutException           |      |      |
+
+
+
+
+
+#### org.springframework.remoting.caucho
+
+
+
+|                              |      |      |
+| ---------------------------- | ---- | ---- |
+| Classes                      |      |      |
+|                              |      |      |
+| HessianClientInterceptor     |      |      |
+| HessianExporter              |      |      |
+| HessianProxyFactoryBean      |      |      |
+| HessianServiceExporter       |      |      |
+| SimpleHessianServiceExporter |      |      |
+
+
+
+
+
+#### org.springframework.remoting.httpinvoker
+
+
+
+|                                          |      |      |
+| ---------------------------------------- | ---- | ---- |
+| Interfaces                               |      |      |
+|                                          |      |      |
+| HttpInvokerClientConfiguration           |      |      |
+| HttpInvokerRequestExecutor               |      |      |
+|                                          |      |      |
+| Classes                                  |      |      |
+|                                          |      |      |
+| AbstractHttpInvokerRequestExecutor       |      |      |
+| HttpComponentsHttpInvokerRequestExecutor |      |      |
+| HttpInvokerClientInterceptor             |      |      |
+| HttpInvokerProxyFactoryBean              |      |      |
+| HttpInvokerServiceExporter               |      |      |
+| SimpleHttpInvokerRequestExecutor         |      |      |
+| SimpleHttpInvokerServiceExporter         |      |      |
+
+
+
+
+
+#### org.springframework.remoting.jaxws
+
+
+
+|                                      |      |      |
+| ------------------------------------ | ---- | ---- |
+| Classes                              |      |      |
+|                                      |      |      |
+| AbstractJaxWsServiceExporter         |      |      |
+| JaxWsPortClientInterceptor           |      |      |
+| JaxWsPortProxyFactoryBean            |      |      |
+| LocalJaxWsServiceFactory             |      |      |
+| LocalJaxWsServiceFactoryBean         |      |      |
+| SimpleHttpServerJaxWsServiceExporter |      |      |
+| SimpleJaxWsServiceExporter           |      |      |
+|                                      |      |      |
+| Exceptions                           |      |      |
+|                                      |      |      |
+| JaxWsSoapFaultException              |      |      |
 
 
 
