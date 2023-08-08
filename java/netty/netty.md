@@ -15,7 +15,7 @@ netty 中reactor主从多线程模型，bossgroup 线程池大小默认应该为
 bossgroup 对应使用的是主reactor吗？ workgroup对应使用的是从reactor吗
 
 
-bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量是cpu核心数*2还是+1我忘了。所以bossGroup本来就是多线程。一个eventLoop可以处理多个客户端链接，而一个客户端链接只能注册在同一个eventLoop上，这才是netty的实现。什么默认大小应该为1，看看源码，不要章口就莱
+bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量是cpu核心数*2还是+1我忘了。所以bossGroup本来就是多线程。一个eventLoop可以处理多个客户端链接，而一个客户端链接只能注册在同一个eventLoop上，这才是netty的实现。什么默认大小应该为1，看看源码，不要章口就来
 
 作者：太上玄元道君
  https://www.zhihu.com/question/330317976/answer/723690201
@@ -37,7 +37,7 @@ bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量
 
 
 
-- api doc
+- api doc https://netty.io/4.1/api/
 - 书籍
 
 
@@ -47,7 +47,7 @@ bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量
 - 闪电侠netty源码课
 - [netty 4 guide](https://github.com/waylau/netty-4-user-guide)
 - netty-example
-
+- Netty4核心原理与手写RPC框架实战 https://github.com/gupaoedu-tom/netty4-samples
 
 Dubbo是如何使用Netty的
 使用netty实现telnet
@@ -67,7 +67,94 @@ dubbo netty
 
 ## jar包
 
-- 
+- netty
+- netty-all
+- netty-bom
+- netty-buffer
+- netty-build                                                                                     
+- netty-build-common
+- netty-codec
+- netty-codec-dns
+- netty-codec-haproxy
+- netty-codec-http
+- netty-codec-http2
+- netty-codec-memcache
+- netty-codec-mqtt
+- netty-codec-redis
+- netty-codec-smtp
+- netty-codec-socks
+- netty-codec-stomp
+- netty-codec-xml
+- netty-common
+- netty-dev-tools
+- netty-handler                                                                                   
+- netty-handler-proxy
+- netty-handler-ssl-ocsp
+- netty-jni-util
+- netty-parent
+- netty-resolver
+- netty-resolver-dns
+- netty-resolver-dns-classes-macos
+- netty-resolver-dns-native-macos
+- netty-tcnative                                                                                  
+- netty-tcnative-boringssl-static
+- netty-tcnative-classes
+- netty-tcnative-parent
+- netty-testsuite
+- netty-transport                                                                                 
+- netty-transport-classes-epoll
+- netty-transport-classes-kqueue
+- netty-transport-native-epoll
+- netty-transport-native-kqueue
+- netty-transport-native-unix-common
+- netty-transport-native-unix-common-tests
+- netty-transport-rxtx                                                                            
+- netty-transport-sctp
+- netty-transport-udt
+
+  <modules>
+    <module>all</module>
+    <module>dev-tools</module>
+    <module>common</module>
+    <module>buffer</module>
+    <module>codec</module>
+    <module>codec-dns</module>
+    <module>codec-haproxy</module>
+    <module>codec-http</module>
+    <module>codec-http2</module>
+    <module>codec-memcache</module>
+    <module>codec-mqtt</module>
+    <module>codec-redis</module>
+    <module>codec-smtp</module>
+    <module>codec-socks</module>
+    <module>codec-stomp</module>
+    <module>codec-xml</module>
+    <module>resolver</module>
+    <module>resolver-dns</module>
+    <module>resolver-dns-native-macos</module>
+    <module>tarball</module>
+    <module>transport</module>
+    <module>transport-native-unix-common-tests</module>
+    <module>transport-native-unix-common</module>
+    <module>transport-native-epoll</module>
+    <module>transport-native-kqueue</module>
+    <module>transport-rxtx</module>
+    <module>transport-sctp</module>
+    <module>transport-udt</module>
+    <module>handler</module>
+    <module>handler-proxy</module>
+    <module>example</module>
+    <module>testsuite</module>
+    <module>testsuite-autobahn</module>
+    <module>testsuite-http2</module>
+    <module>testsuite-osgi</module>
+    <module>testsuite-shading</module>
+    <module>testsuite-native-image</module>
+    <module>transport-blockhound-tests</module>
+    <module>microbench</module>
+    <module>bom</module>
+  </modules>
+
 
 
 Java NIO（New I/O）是Java 1.4版本引入的一个新的I/O API，可以用来替换原来的Java I/O API（即Java 1.0到Java 1.3版本所使用的I/O API），提供了异步非阻塞的高效数据传输方式，适用于处理高并发、高吞吐量的应用场景。Java NIO的核心类主要包括以下几种：
@@ -83,41 +170,29 @@ DatagramChannel：数据报通道，用于对UDP连接进行读写操作。
 
 
 Netty是一款高性能的网络编程框架，其核心类主要包括：
-
 Channel：表示一个网络连接的实体，类似于Java NIO中的SocketChannel。通过Channel可以读取和写入数据，注册Channel感兴趣的事件，以及获取Channel的配置等信息。
-
 EventLoop：表示一个事件循环，用于处理IO操作和事件通知。一个EventLoop通常绑定到一个或多个Channel，可以处理多个Channel上的IO操作。Netty使用了一种线程模型，即每个EventLoop都绑定到一个线程上，在该线程上运行EventLoop中的任务。
-
 ChannelPipeline：表示一个ChannelHandler的链表，用于处理Channel上的事件。每个Channel都会有一个对应的ChannelPipeline，当Channel上发生事件时，事件会从Pipeline的头部开始依次被ChannelHandler处理。
-
 ChannelHandlerContext：表示ChannelHandler和ChannelPipeline之间的上下文关系。ChannelHandler可以通过ChannelHandlerContext访问到ChannelPipeline和其他ChannelHandler，并调用相关方法。
-
 ChannelHandler：表示一个Channel的处理器，用于处理Channel上的事件。ChannelHandler通常被添加到ChannelPipeline中，并被顺序执行，以完成一系列的业务逻辑处理。
-
 Bootstrap：表示一个用于启动和连接网络连接的辅助类。通过Bootstrap可以配置Channel类型、EventLoop类型、ChannelHandler、连接超时时间等信息。
-
 ServerBootstrap：表示一个用于启动和监听网络连接的辅助类。通过ServerBootstrap可以配置Channel类型、EventLoop类型、ChannelHandler、连接超时时间、端口号等信息，并启动服务器。
-
 ByteBuf：表示一个字节缓冲区，用于在网络中传输数据。ByteBuf支持读写、引用计数、池化等操作，并提供了一些方便的方法，如get/set/read/write等。
 
 
 
 
 SingleThreadEventExecutor
+在Netty中，通常会使用两类线程来处理来自客户端的请求，一类是boss线程，另一类是worker线程。它们各自的作用如下：
+boss线程
+负责监听客户端连接请求，当有新的连接请求时，会创建一个新的SocketChannel，并将其注册到一个worker线程上。
+boss线程的数量通常设置为1。
+worker线程
+负责处理客户端连接请求，处理读写事件，以及执行ChannelPipeline中的各个Handler。
+通常有多个worker线程，线程的数量根据实际情况和硬件配置进行调整。
+在Netty中，boss线程和worker线程都是EventLoop的实例。EventLoop是Netty的核心组件之一，它负责监听并处理IO事件，并且提供了定时调度、异步任务执行等能力。
 
-
-
-在 Netty 中，通常会使用两类线程来处理来自客户端的请求，一类是 boss 线程，另一类是 worker 线程。它们各自的作用如下：
-
-boss 线程
-负责监听客户端连接请求，当有新的连接请求时，会创建一个新的 SocketChannel，并将其注册到一个 worker 线程上。
-boss 线程的数量通常设置为 1。
-worker 线程
-负责处理客户端连接请求，处理读写事件，以及执行 ChannelPipeline 中的各个 Handler。
-通常有多个 worker 线程，线程的数量根据实际情况和硬件配置进行调整。
-在 Netty 中，boss 线程和 worker 线程都是 EventLoop 的实例。EventLoop 是 Netty 的核心组件之一，它负责监听并处理 IO 事件，并且提供了定时调度、异步任务执行等能力。
-
-SingleThreadEventExecutor 是 Netty 中的一个抽象类，用于表示只有一个线程的 EventExecutor 实现。它继承了 ScheduledFutureTaskQueue 和 SingleThreadEventLoop 两个类，并提供了线程执行器的基本逻辑实现，包括线程池的创建、任务执行、定时任务处理等等。在 Netty 中，boss 线程和 worker 线程都是基于 SingleThreadEventExecutor 实现的。
+SingleThreadEventExecutor是Netty中的一个抽象类，用于表示只有一个线程的EventExecutor实现。它继承了ScheduledFutureTaskQueue和SingleThreadEventLoop两个类，并提供了线程执行器的基本逻辑实现，包括线程池的创建、任务执行、定时任务处理等等。在Netty中，boss线程和worker线程都是基于SingleThreadEventExecutor实现的。
 
 
 
@@ -215,9 +290,17 @@ public class NioServer {
 
 
 
+## 使用netty的框架
+- dubbo
+- vert.x
+
 
 ## 核心类
 
+
+- Buffer
+- SingleThreadEventExecutor
+- ChannelInboundHandlerAdapter
 
 ChannelInboundHandlerAdapter ChannelHandlerAdapter区别
 ChannelInboundHandlerAdapter我们通常会继承此类，覆写上面的channelRead方法，加入自己的逻辑处理。
@@ -3026,7 +3109,7 @@ MacOSDnsServerAddressStreamProvider
 | PromiseCombiner                                  |           |      |
 | PromiseNotifier                                  |           |      |
 | RejectedExecutionHandlers                        |           |      |
-| SingleThreadEventExecutor                        |           |      |
+| SingleThreadEventExecutor                        |           |  见上面    |
 | SucceededFuture                                  |           |      |
 | ThreadPerTaskExecutor                            |           |      |
 | UnaryPromiseNotifier                             |           |      |
