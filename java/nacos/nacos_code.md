@@ -1334,7 +1334,7 @@ MergeTaskProcessor
 | EmbeddedStoragePersistServiceImpl                           |      |      |
 | StandaloneDatabaseOperateImpl                               |      |      |
 
-
+EmbeddedStoragePersistServiceImpl derby对应的数据源
 
 ##### com.alibaba.nacos.config.server.service.repository.extrnal
 
