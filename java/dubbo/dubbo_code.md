@@ -332,13 +332,16 @@ org.apache.dubbo.common.utils
 | 类                                          |      |      |
 |                                             |      |      |
 | AbstractDynamicConfiguration                |      |      |
-| AbstractDynamicConfigurationFactory         |      |      |
+| AbstractDynamicConfigurationFactory         |   abstract   |      |
 | ConfigChangedEvent                          |      |      |
 | TreePathDynamicConfiguration                |      |      |
 |                                             |      |      |
 | 枚举                                        |      |      |
 |                                             |      |      |
 | ConfigChangeType                            |      |      |
+
+AbstractDynamicConfigurationFactory抽象类，ZookeeperDynamicConfigurationFactory是其子类
+
 
 
 org.apache.dubbo.common.config.configcenter.file
@@ -449,6 +452,21 @@ CompositeDynamicConfiguration
 | DisableInject                     |      |      |
 | SPI                               |      |      |
 | Wrapper                           |      |      |
+
+@SPI
+
+ExtensionFactory子类
+ExtensionFactory (com.alibaba.dubbo.common.extension)
+SpiExtensionFactory (org.apache.dubbo.common.extension.factory)      @SPI
+AdaptiveExtensionFactory (org.apache.dubbo.common.extension.factory)
+SpringExtensionFactory (org.apache.dubbo.config.spring.extension)     @SPI
+
+
+LoadingStrategy接口实现类
+ServicesLoadingStrategy (org.apache.dubbo.common.extension)       "META-INF/services/"
+DubboLoadingStrategy (org.apache.dubbo.common.extension)          "META-INF/dubbo/"
+DubboInternalLoadingStrategy (org.apache.dubbo.common.extension)  META-INF/dubbo/internal/
+
 
 ##### org.apache.dubbo.common.extension.factory
 
@@ -1511,10 +1529,10 @@ AnnotationBeanDefinitionParser
 |                                                 |      |      |
 | CacheListener                                   |      |      |
 | ZookeeperDynamicConfiguration                   |      |      |
-| ZookeeperDynamicConfigurationFactory            |      |      |
+| ZookeeperDynamicConfigurationFactory            |      |  AbstractDynamicConfigurationFactory子类    |
 
 
-
+ZookeeperDynamicConfiguration配置类，ZookeeperDynamicConfigurationFactory工厂，protected DynamicConfiguration createDynamicConfiguration(URL url)
 
 
 ### org.apache.dubbo.container
@@ -2127,8 +2145,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.qos.textui | 类型 |      |
 | --------------------------- | ---- | ---- |
-| 接口                        |      |      |
-|                             |      |      |
 | TComponent                  |      |      |
 |                             |      |      |
 | 类                          |      |      |
@@ -2153,8 +2169,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry | 类型 |      |
 | ------------------------- | ---- | ---- |
-| 接口                      |      |      |
-|                           |      |      |
 | AddressListener           |      |      |
 | Constants                 |      |      |
 | NotifyListener            |      |      |
@@ -2178,8 +2192,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.client  | 类型 |      |
 | --------------------------------- | ---- | ---- |
-| 接口                              |      |      |
-|                                   |      |      |
 | ServiceDiscovery                  |      |      |
 | ServiceDiscoveryFactory           |      |      |
 | ServiceInstance                   |      |      |
@@ -2206,8 +2218,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.client.event |      | 类型 |      |
 | -------------------------------------- | ---- | ---- | ---- |
-| 类                                     |      |      |      |
-|                                        |      |      |      |
 | ServiceDiscoveryDestroyedEvent         |      |      |      |
 | ServiceDiscoveryDestroyingEvent        |      |      |      |
 | ServiceDiscoveryEvent                  |      |      |      |
@@ -2233,8 +2243,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.client.event.listener | 类型 |      |
 | ----------------------------------------------- | ---- | ---- |
-| 类                                              |      |      |
-|                                                 |      |      |
 | CustomizableServiceInstanceListener             |      |      |
 | LoggingEventListener                            |      |      |
 | ServiceInstancesChangedListener                 |      |      |
@@ -2247,8 +2255,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.client.metadata    | 类型 |      |
 | -------------------------------------------- | ---- | ---- |
-| 接口                                         |      |      |
-|                                              |      |      |
 | MetadataServiceURLBuilder                    |      |      |
 | SubscribedURLsSynthesizer                    |      |      |
 |                                              |      |      |
@@ -2272,8 +2278,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.client.metadata.proxy | 类型 |      |
 | ----------------------------------------------- | ---- | ---- |
-| 接口                                            |      |      |
-|                                                 |      |      |
 | MetadataServiceProxyFactory                     |      |      |
 |                                                 |      |      |
 | 类                                              |      |      |
@@ -2311,7 +2315,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.consul | 类型 |      |
 | -------------------------------- | ---- | ---- |
-| 类                               |      |      |
 |                                  |      |      |
 | AbstractConsulRegistry           |      |      |
 | ConsulRegistry                   |      |      |
@@ -2319,7 +2322,6 @@ org.apache.dubbo.event
 | ConsulServiceDiscovery           |      |      |
 |                                  |      |      |
 | 枚举                             |      |      |
-|                                  |      |      |
 | ConsulParameter                  |      |      |
 
 
@@ -2332,7 +2334,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.dubbo | 类型 |      |
 | ------------------------------- | ---- | ---- |
-| 类                              |      |      |
 |                                 |      |      |
 | DubboRegistry                   |      |      |
 | DubboRegistryFactory            |      |      |
@@ -2345,7 +2346,6 @@ org.apache.dubbo.event
 
 | org.apache.dubbo.registry.etcd | 类型 |      |
 | ------------------------------ | ---- | ---- |
-| 类                             |      |      |
 |                                |      |      |
 | EtcdRegistry                   |      |      |
 | EtcdRegistryFactory            |      |      |
@@ -3092,7 +3092,7 @@ AbstractZookeeperTransporter
 | Filter                               |      |      |
 | Filter.Listener                      |      |      |
 | Invocation                           |      |      |
-| Invoker                              |      |      |
+| Invoker<T>                              |      |      |
 | InvokerListener                      |      |      |
 | Protocol                             |      |      |
 | ProtocolServer                       |      |      |
@@ -3123,7 +3123,45 @@ AbstractZookeeperTransporter
 |                                      |      |      |
 | RpcException                         |      |      |
 
+Invoker<T>接口，应该类似于springmvc的handler
+Result invoke(Invocation invocation) 方法
 
+Invocation是调用入参信息
+Object[] getArguments()
+
+Invoker<T>接口接口子类
+AbstractInvoker (org.apache.dubbo.rpc.protocol)
+    GrpcInvoker (org.apache.dubbo.rpc.protocol.grpc)
+    InjvmInvoker (org.apache.dubbo.rpc.protocol.injvm)
+    DubboInvoker (org.apache.dubbo.rpc.protocol.dubbo)
+    ChannelWrappedInvoker (org.apache.dubbo.rpc.protocol.dubbo)
+    ThriftInvoker (org.apache.dubbo.rpc.protocol.thrift)
+    Anonymous in AbstractProxyProtocol (org.apache.dubbo.rpc.protocol)
+    Anonymous in RedisProtocol (org.apache.dubbo.rpc.protocol.redis)
+    Anonymous in MemcachedProtocol (org.apache.dubbo.rpc.protocol.memcached)
+Invoker (com.alibaba.dubbo.rpc)
+    CompatibleInvoker in Invoker (com.alibaba.dubbo.rpc)
+AbstractProxyInvoker (org.apache.dubbo.rpc.proxy)
+    Anonymous in JdkProxyFactory (org.apache.dubbo.rpc.proxy.jdk)
+    Anonymous in JavassistProxyFactory (org.apache.dubbo.rpc.proxy.javassist)
+ClusterInvoker (org.apache.dubbo.rpc.cluster)
+    MockClusterInvoker (org.apache.dubbo.rpc.cluster.support.wrapper)
+    AbstractClusterInvoker (org.apache.dubbo.rpc.cluster.support)
+    RegistryInvokerWrapper (org.apache.dubbo.registry.integration)
+AsyncToSyncInvoker (org.apache.dubbo.rpc.protocol)
+InvokerWrapper (org.apache.dubbo.rpc.protocol)
+    InvokerDelegate in RegistryProtocol (org.apache.dubbo.registry.integration)
+    InvokerDelegate in RegistryDirectory (org.apache.dubbo.registry.integration)
+MockInvoker (org.apache.dubbo.rpc.support)
+DelegateProviderMetaDataInvoker (org.apache.dubbo.config.invoker)
+ListenerInvokerWrapper (org.apache.dubbo.rpc.listener)
+Anonymous in ProtocolFilterWrapper (org.apache.dubbo.rpc.protocol)
+Anonymous in MetricsFilter (org.apache.dubbo.monitor.dubbo)
+
+
+GrpcInvoker
+DubboInvoker
+ThriftInvoker
 
 #### org.apache.dubbo.rpc.cluster
 
@@ -3746,40 +3784,40 @@ WebServiceProtocol
 
 | org.apache.dubbo.rpc.proxy | 类型 |      |
 | ------------------------------ | ---- | ---- |
-|                                |      |      |
-|                                |      |      |
-|                                |      |      |
-类
-AbstractProxyFactory
-AbstractProxyInvoker
-InvokerInvocationHandler
+|    AbstractProxyFactory    |      |      |
+|     AbstractProxyInvoker<T>     | abstract     |      |
+|    InvokerInvocationHandler     |      |      |
+
+
+InvokerInvocationHandler是动态代理类 实现java.lang.reflect.InvocationHandler接口
+
+AbstractProxyInvoker的Result invoke(Invocation invocation) 方法
 
 ##### org.apache.dubbo.rpc.proxy.javassist
 
 | org.apache.dubbo.rpc.proxy.javassist | 类型 |      |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
+|  JavassistProxyFactory     |      |      |
 |                                |      |      |
-|                                |      |      |
-JavassistProxyFactory
+
 
 ##### org.apache.dubbo.rpc.proxy.jdk
 
 | org.apache.dubbo.rpc.proxy.jdk | 类型 |      |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
+|   JdkProxyFactory       |      |      |
 |                                |      |      |
-|                                |      |      |
-JavassistProxyFactory
+
 
 ##### org.apache.dubbo.rpc.proxy.wrapper
 
 | org.apache.dubbo.rpc.proxy.wrapper | 类型 |      |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
+|  StubProxyFactoryWrapper         |      |  ProxyFactory接口实现类    |
 |                                |      |      |
-|                                |      |      |
-org.apache.dubbo.rpc.proxy.wrapper
 
 #### org.apache.dubbo.rpc.service
 

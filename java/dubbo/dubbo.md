@@ -480,6 +480,7 @@ List<RegistryConfig> registries
 
 dubbo telnet invoke
 
+dubbo的invoke（dubbo通过invoke命令调用dubbo接口）
 https://blog.csdn.net/u012489091/article/details/83314798
 
 失败
@@ -545,7 +546,7 @@ Dubbo有集群，避免单点故障
 
 thrift grpc tars有没有？
 
-
+grpc也是单点的，但是istio
 
 
 #### rc
@@ -580,6 +581,42 @@ netty
 
 Dubbo源码解析（四）注册中心——dubbo
 https://segmentfault.com/blog/dubboanalysis
+
+
+文档简短形象的对单一应用架构、垂直应用架构、分布式服务架构、流动计算架构做了一个对比，可以很明白的看出这四个架构所适用的场景，因为业务需求越来越复杂，才会有这一系列的演变。
+
+dubbo-registry——注册中心模块
+官方文档的解释：基于注册中心下发地址的集群方式，以及对各种注册中心的抽象。
+dubbo-cluster——集群模块
+官方文档的解释：将多个服务提供方伪装为一个提供方，包括：负载均衡, 容错，路由等，集群的地址列表可以是静态配置的，也可以是由注册中心下发。
+dubbo-common——公共逻辑模块
+官方文档的解释：包括 Util 类和通用模型。
+dubbo-config——配置模块
+官方文档的解释：是 Dubbo 对外的 API，用户通过 Config 使用Dubbo，隐藏 Dubbo 所有细节。
+dubbo-rpc——远程调用模块
+官方文档的解释：抽象各种协议，以及动态代理，只包含一对一的调用，不关心集群的管理。
+dubbo-remoting——远程通信模块
+官方文档的解释：相当于 Dubbo 协议的实现，如果 RPC 用 RMI协议则不需要使用此包。
+dubbo-container——容器模块
+官方文档的解释：是一个 Standlone 的容器，以简单的 Main 加载 Spring 启动，因为服务通常不需要 Tomcat/JBoss 等 Web 容器的特性，没必要用 Web 容器去加载服务。
+dubbo-monitor——监控模块
+官方文档的解释：统计服务调用次数，调用时间的，调用链跟踪的服务。
+dubbo-bootstrap——清理模块
+这个模块只有一个类，是作为dubbo的引导类，并且在停止期间进行清理资源。具体的介绍我在后续文章中讲解。
+dubbo-demo——示例模块
+这个模块是快速启动示例，其中包含了服务提供方和调用方，注册中心用的是multicast，用XML配置方法，具体的介绍可以看官方文档。
+dubbo-filter——过滤器模块
+这个模块提供了内置的一些过滤器。
+dubbo-plugin——插件模块
+该模块提供了内置的插件。
+dubbo-serialization——序列化模块
+该模块中封装了各类序列化框架的支持实现。
+dubbo-test——测试模块
+这个模块封装了针对dubbo的性能测试、兼容性测试等功能。
+
+dubbo-dependencies-bom/pom.xml：利用Maven BOM统一定义了dubbo依赖的第三方库的版本号。dubbo-parent会引入该bom
+
+
 
 自定义logger
 com.alibaba.dubbo.common.logger
@@ -629,15 +666,11 @@ Protocol refprotocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAda
 ```
 
 
-
-
-
 [dubbo 2.6 源码解读](https://github.com/CrazyHZM/dubbo/tree/analyze-2.6.x/dubbo-registry/dubbo-registry-api/src/main/java/com/alibaba/dubbo/registry)
 
 
 
 spi破坏了双亲委派模型
-
 
 
 app
@@ -646,6 +679,7 @@ boostrap
 
 ext
 
+为什么说SPI打破双亲委派机制?
 https://blog.csdn.net/kunpeng90/article/details/100189580#comments
 
 
@@ -1581,9 +1615,7 @@ I0Itec这个zookeeper客户端基本上解决了上面的所有问题，主要�
 
 MonitorService
 
-
-
-com.alibaba.dubbo.monitor.MonitorService
+com.alibaba.dubbo.monitor.MonitorService 接口 统计dubbo服务接口
 
 
 
@@ -1596,6 +1628,62 @@ com.alibaba.dubbo.monitor.MonitorService
 通过mvn dependency:tree > dep.log命令分析，Dubbo缺省依赖以下三方库
 
 
+
+### dubbo使用了netty的哪些api
+
+remoting.transport.netty4.NettyServer
+
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.concurrent.DefaultThreadFactory;
+
+
+dubbo.remoting.transport.netty4.NettyServerHandler io.netty.channel.ChannelDuplexHandler子类
+import io.netty.channel.ChannelDuplexHandler;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPromise;
+
+
+org.apache.dubbo.remoting.ChannelHandler接口子类
+
+AbstractPeer (org.apache.dubbo.remoting.transport)
+    AbstractEndpoint (org.apache.dubbo.remoting.transport)
+    AbstractChannel (org.apache.dubbo.remoting.transport)
+ChannelHandlerDelegate (org.apache.dubbo.remoting.transport)
+    WrappedChannelHandler (org.apache.dubbo.remoting.transport.dispatcher)
+    HeaderExchangeHandler (org.apache.dubbo.remoting.exchange.support.header)
+    AbstractChannelHandlerDelegate (org.apache.dubbo.remoting.transport)
+ExchangeHandler (org.apache.dubbo.remoting.exchange)
+    ExchangeHandlerAdapter (org.apache.dubbo.remoting.exchange.support)
+    ExchangeHandlerDispatcher (org.apache.dubbo.remoting.exchange.support)
+ChannelHandler (com.alibaba.dubbo.remoting)
+    Anonymous in Transporter (com.alibaba.dubbo.remoting)
+ChannelHandlerAdapter (org.apache.dubbo.remoting.transport)
+    TelnetHandlerAdapter (org.apache.dubbo.remoting.telnet.support)
+ChannelHandlerDispatcher (org.apache.dubbo.remoting.transport)
+
+
+`org.apache.dubbo.remoting.ChannelHandler` 接口是 Dubbo 远程通信中的通道处理器接口，用于处理网络通道的事件和消息。以下是 `ChannelHandler` 接口的一些常见子类：
+1. `org.apache.dubbo.remoting.transport.ChannelHandlerAdapter`：`ChannelHandlerAdapter` 是 `ChannelHandler` 接口的适配器类，提供了默认的空实现，供子类选择性地覆盖需要的方法。
+2. `org.apache.dubbo.remoting.transport.dispatcher.all.AllChannelHandler`：`AllChannelHandler` 是一个通用的通道处理器，它将所有事件和消息都派发给线程池中的工作线程进行处理，适用于高并发场景。
+3. `org.apache.dubbo.remoting.transport.dispatcher.direct.DirectChannelHandler`：`DirectChannelHandler` 是一个直接执行的通道处理器，它在 IO 线程中直接执行事件和消息的处理逻辑，适用于低延迟、吞吐量要求较高的场景。
+4. `org.apache.dubbo.remoting.transport.dispatcher.message.MessageOnlyChannelHandler`：`MessageOnlyChannelHandler` 是一个仅处理消息的通道处理器，忽略所有事件，只处理消息的接收和发送。
+这些是 Dubbo 中 `org.apache.dubbo.remoting.ChannelHandler` 接口的一些常见子类。它们提供了不同的处理策略和机制，以满足不同的需求和场景。具体使用哪个子类取决于您的应用程序的特定要求和性能需求。
+
+
+### dubbo使用了zk的哪些api
+
+
+### dubbo网络协议抓包
+
+### 使用明文协议替代dubbo协议实践
 
 ### dubbo往spring ioc中注入的类对象
 
