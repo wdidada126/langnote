@@ -2,9 +2,6 @@
 
 nacos有配置文件，debug的时候配置文件在哪儿？
 
-nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
-nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
-nacos 用localhost:8848/nacos访问，转圈圈，用 127.0.0.8848/nacos访问可以
 
 Spring cloud alibaba nacos，默认dataID nacos-service.properties修改成自定义值
 
@@ -38,10 +35,10 @@ https://gitee.com/edidada/nacos-config-example
 https://gitee.com/edidada/springcloudnacosdemo
 
 https://gitee.com/edidada/testnacosclient
-官网
+## 官网
 https://nacos.io/zh-cn/
 
-windows
+## windows启动nacos server
 
 
 
