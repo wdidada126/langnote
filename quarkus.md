@@ -14,3 +14,7 @@ quarks 2.13.8.Final
 vertx 4.3.4
 
 要求java 17
+
+### cli工具
+
+https://github.com/jbangdev/jbang/releases/tag/v0.110.0
