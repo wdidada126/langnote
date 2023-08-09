@@ -404,7 +404,39 @@ result: Hello World
 |                                                              |          |                                                              |
 
 
+在 Spring 5.2.9 版本中，位于 `org.springframework.expression.spel.ast` 包下的类是 Spring Expression Language (SpEL) 的抽象语法树（AST）节点类。SpEL 是 Spring 框架中的表达式语言，用于在运行时对对象进行求值和操作。这些类表示了 SpEL 表达式的不同组成部分和操作。以下是该包下一些常见类的简要说明：
 
+1. **AstNode**：
+   `AstNode` 是所有 AST 节点类的基类。它提供了一些共享的方法和属性，如获取和设置节点位置信息。
+
+2. **BooleanLiteral**：
+   `BooleanLiteral` 用于表示布尔字面值（true 或 false）的节点。
+
+3. **CompositeStringNode**：
+   `CompositeStringNode` 用于表示复合字符串节点，即包含表达式的字符串。例如，`"Hello ${name}"` 中的 `${name}` 就是一个复合字符串节点。
+
+4. **ConstructorReference**：
+   `ConstructorReference` 用于表示构造函数引用的节点。它指示要使用的构造函数及其参数。
+
+5. **Indexer**：
+   `Indexer` 用于表示索引器访问的节点，例如数组或集合的索引访问。
+
+6. **MethodReference**：
+   `MethodReference` 用于表示方法引用的节点。它指示要调用的方法及其参数。
+
+7. **NullLiteral**：
+   `NullLiteral` 用于表示空字面值（null）的节点。
+
+8. **PropertyOrFieldReference**：
+   `PropertyOrFieldReference` 用于表示属性或字段引用的节点。它指示要访问的属性或字段的名称。
+
+9. **ThisReference**：
+   `ThisReference` 用于表示当前对象引用的节点。它表示当前正在求值的对象。
+
+10. **TypeReference**：
+    `TypeReference` 用于表示类型引用的节点。它指示要使用的类或接口的名称。
+
+这些类只是 `org.springframework.expression.spel.ast` 包下的一部分，用于构建 SpEL 表达式的抽象语法树。它们提供了处理和解析表达式的基础结构和功能。如果你需要更详细的信息，建议查阅 Spring Framework 的官方文档或相关资源。
 
 
 ##### org.springframework.expression.spel.standard 
@@ -427,6 +459,9 @@ result: Hello World
 | Token                                                        |      |                                                              |
 | Tokenizer                                                    |      |                                                              |
 
+
+
+InternalSpelExpressionParser大量使用org.springframework.expression.spel.ast包下面的类
 
 
 ##### org.springframework.expression.spel.support 
