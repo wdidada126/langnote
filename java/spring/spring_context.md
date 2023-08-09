@@ -348,6 +348,30 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
+PropertySource注解
+
+@Repeatable(PropertySources.class)
+public @interface PropertySource {
+    
+用法例子
+   ```java
+   import org.springframework.beans.factory.annotation.Value;
+   import org.springframework.context.annotation.PropertySource;
+   import org.springframework.stereotype.Component;
+
+   @Component
+   @PropertySource("classpath:config.properties")
+   public class ConfigReader {
+       @Value("${key}")
+       private String value;
+
+       public void printValue() {
+           System.out.println("Value: " + value);
+       }
+   }
+   ```
+
+
 AnnotatedBeanDefinitionReader
 `AnnotatedBeanDefinitionReader` 是 Spring 框架中的一个类，它的作用是将带有注解的类转换成 Bean 定义（BeanDefinition），并将这些 Bean 定义注册到 Spring 应用上下文中。
 在 Spring 中，Bean 定义是描述 Spring 容器中的 Bean 的元数据，它包含了 Bean 的类名、作用域、属性、构造函数参数等信息。通常情况下，我们可以通过 XML 配置文件或者 Java 配置类来定义 Bean，但是 Spring 还提供了一种方式，即使用注解来定义 Bean。

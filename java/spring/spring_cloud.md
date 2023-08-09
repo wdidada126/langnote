@@ -145,7 +145,8 @@ spring-cloud-commons
 spring-cloud-commons-dependencies
 
 spring-cloud-context
-
+spring-cloud-netflix-archaius
+spring-cloud-netflix-ribbon
 spring-cloud-starter
 
 spring-cloud-starter-loadbalancer
@@ -220,3 +221,20 @@ spring-cloud-openfeign-dependencies
 
 
 
+
+spring-cloud-commons
+
+spring-cloud-commons-dependencies
+
+spring-cloud-context
+
+BootstrapPropertySource<T>
+org.springframework.cloud.bootstrap.config.BootstrapPropertySource 
+
+spring-cloud-netflix-archaius
+spring-cloud-netflix-ribbon
+spring-cloud-starter
+
+spring-cloud-starter-loadbalancer
+
+spring-cloud-loadbalancer

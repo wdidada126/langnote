@@ -39,6 +39,7 @@ Guice和Spring的区别在于Guice更轻量级,可以嵌入现有项目,而Sprin
 
 
 ## java api doc
+https://google.github.io/guice/api-docs/5.0.1/javadoc/index.html
 https://google.github.io/guice/api-docs/6.0.0/javadoc/index.html
 
 
@@ -126,3 +127,8 @@ JMX integration; this extension requires guice-jmx.jar.
 
 com.google.inject.util
 Helper methods for working with Guice.
+
+## example
+
+https://gitee.com/edidada/guice-demo    报错
+https://gitee.com/edidada/guice-example 可以跑起来

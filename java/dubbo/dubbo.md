@@ -1413,7 +1413,17 @@ Consumer 直接发起对 Provider 的调用，无需经过注册中心。而对�
 ## Dubbo 如何做参数校验
 
 
+- Dubbo 使用 JSR303 标准注解验证，通过 hibernate-validator 实现，可以在服务端和客户端进行参数校验³。
+- Dubbo 提供了一个 validation 过滤器，用于在调用服务之前或之后进行参数校验，可以通过配置 dubbo:service 或 dubbo:reference 的 validation 属性来开启或关闭参数校验²。
+- Dubbo 支持对基本类型、对象类型、集合类型、分组验证和关联验证等多种场景的参数校验，可以使用 javax.validation.constraints 包下的各种注解来标注参数的校验规则²。
+- Dubbo 还支持自定义参数校验器，只需实现 org.apache.dubbo.validation.Validator 接口，并配置 dubbo:provider 或 dubbo:consumer 的 validator 属性即可²。
 
+(1) springboot+dubbo+validation 进行 rpc 参数校验 - CSDN博客. https://bing.com/search?q=Dubbo+%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c.
+(2) 参数校验 | Apache Dubbo. https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/advanced-features-and-usage/service/parameter-validation/.
+(3) Dubbo服务如何优雅的校验参数 - 掘金. https://juejin.cn/post/7072552497256071182.
+(4) springboot+dubbo+validation 进行 rpc 参数校验 - CSDN博客. https://blog.csdn.net/u012373815/article/details/101165747.
+(5) springboot+dubbo+validation 进行rpc参数校验的实现方法 - 编程语言 - 亿速云. https://www.yisu.com/zixun/200334.html.
+(6) undefined. https://github.com/apache/dubbo-samples/tree/master/dubbo-samples-validation.
 
 
 
@@ -1452,20 +1462,18 @@ Consumer 直接发起对 Provider 的调用，无需经过注册中心。而对�
   - 无需和 Dubbo 进行集成。
 - Saga 模型：ServiceComb Saga 。
   - 好像已经提供了和 Dubbo 集成的方案，参见 [《Saga-dubbo-demo》](https://github.com/apache/servicecomb-pack/blob/64d8cfdfb9e0c8362e962eb17765b57ae2211c84/saga-demo/saga-dubbo-demo/README.md) 文档。
-  - 😈 暂时没去深入研究。
+
 
 另外，胖友在理解分布式事务时，一定要记住，分布式事务需要由多个本地事务组成。无论是上述的那种事务组件模型，它们都是扮演一个协调者，使多个本地事务达到最终一致性。而协调的过程中，就非常依赖每个方法操作可以被重复执行不会产生副作用，那么就需要：
-
 - 幂等性！因为可能会被重复调用。如果调用两次退款，结果退了两次钱，那就麻烦大了。
 - 本地事务！因为执行过程中可能会出错，需要回滚。
-
 鉴于服务发现对服务化架构的重要性，再补充一点：Dubbo 实践通常以ZooKeeper 为注册中心（Dubbo 原生支持的Redis 方案需要服务器时间同步，且性能消耗过大）。针对分布式领域著名的CAP理论（C——数据一致性，A——服务可用性，P——服务对网络分区故障的容错性），Zookeeper保证的是CP ，但对于服务发现而言，可用性比数据一致性更加重要 ，而 Eureka 设计则遵循AP原则 。
 
 
 
 
 
-
+spring cloud 和 dubbo 各自的优缺点是什么?
 https://www.zhihu.com/question/45413135
 
 
@@ -1576,39 +1584,27 @@ dubbo使用了zkClient而不是使用zookeeper本身的客户端与zookeeper进�
  
 
 先看看zookeeper本身自带的客户端的问题。
-
 1）ZooKeeper的Watcher是一次性的，用过了需要再注册；
-
 2） session的超时后没有自动重连，生产环境中如果网络出现不稳定情况，那么这种情况出现的更加明显；
 3） 没有领导选举机制，集群情况下可能需要实现stand by，一个服务挂了，另一个需要接替的效果；
 4） 客户端只提供了存储byte数组的接口，而项目中一般都会使用对象。
-
 5）客户端接口需要处理的异常太多，并且通常，我们也不知道如何处理这些异常。
 
  
 
 I0Itec这个zookeeper客户端基本上解决了上面的所有问题，主要有以下特性：
-
 1) 提供了zookeeper重连的特性------能够在断链的时候,重新建立连接,无论session失效与否.
-
 2) 持久的event监听器机制------ZKClient框架将事件重新定义分为了stateChanged、znodeChanged、dataChanged三种情况，用户可以注册这三种情况下的监听器（znodeChanged和dataChanged和路径有关），而不是注册Watcher。
-
 3) zookeeper异常处理-------zookeeper中繁多的Exception,以及每个Exception所需要关注的事情各有不同，I0Itec简单的做了封装.
-
 4) data序列化------简单的data序列化.(Serialzer/Deserialzer)
-
 5）有默认的领导选举机制
 
  
 
 请注意使用I0Itect-zkClient暂时有几个方法仍需要重写:
-
 1) create方法*:创建节点时,如果节点已经存在,仍然抛出NodeExistException,可是我期望它不在抛出此异常.
-
 2) retryUtilConnected: 如果向zookeeper请求数据时(create,delete,setData等),此时链接不可用,那么调用者将会被阻塞直到链接建立成功;不过我仍然需要一些方法是非阻塞的,如果链接不可用,则抛出异常,或者直接返回.
-
 3) create方法: 创建节点时,如果节点的父节点不存在,我期望同时也要创建父节点,而不是抛出异常.
-
 4) data监测: 我需要提供一个额外的功能来补充watch的不足,开启一个线程,间歇性的去zk server获取指定的path的data,并缓存起来..归因与watch可能丢失,以及它不能持续的反应znode数据的每一次变化,所以只能手动去同步获取.
 
 
@@ -1636,6 +1632,7 @@ com.alibaba.dubbo.monitor.MonitorService 接口 统计dubbo服务接口
 
 
 ### dubbo使用了netty的哪些api
+dubbo server绑定端口，接收信息
 
 remoting.transport.netty4.NettyServer
 

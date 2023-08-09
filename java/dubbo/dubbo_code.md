@@ -3945,10 +3945,28 @@ AbstractProxyInvoker的Result invoke(Invocation invocation) 方法
 
 | org.apache.dubbo.validation.filter | 类型 |      |
 | ------------------------------ | ---- | ---- |
-|    ValidationFilter          |      |      |
+|    ValidationFilter          |      |  实现Filter接口    |
 |                                |      |      |
 |                                |      |      |
 
+developer needs to do 
+1)Implement a SpecialValidation.java class (package name xxx.yyy.zzz) either by implementing Validation or extending org.apache.dubbo.validation.support.AbstractValidation 
+2)Implement a SpecialValidator.java class (package name xxx.yyy.zzz) 
+3)Add an entry special=xxx.yyy.zzz.SpecialValidation under META-INF folders org.apache.dubbo.validation.Validation file.
+
+好的,让我用中文描述一下实现Dubbo自定义验证器需要的步骤:
+1) 在xxx.yyy.zzz包下实现一个SpecialValidation类,可以通过实现Validation接口或者继承AbstractValidation抽象类
+2) 在xxx.yyy.zzz包下实现一个SpecialValidator类,这个是真正执行验证逻辑的验证器
+3) 在classpath下的META-INF/dubbo/org.apache.dubbo.validation.Validation文件中添加一行配置:
+special=xxx.yyy.zzz.SpecialValidation
+这个是声明自定义验证器的入口类
+4) 在SpecialValidator中可以负责实现真正的验证逻辑,可能需要访问数据库或外部系统
+5) 在SpecialValidation中根据验证参数创建SpecialValidator实例,并调用validator进行验证
+6) 将验证结果封装成ValidationResult返回
+7) 服务提供方和消费方都可以用<dubbo:validation />指定使用这个验证器
+这样就实现了自定义的Dubbo验证扩展,可以通过Validation文件注册,非常灵活。
+
+找个例子看一下
 
 #### org.apache.dubbo.validation.support
 
