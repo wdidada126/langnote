@@ -1,5 +1,6 @@
 # Tomcat
 
+## api doc
 https://tomcat.apache.org/tomcat-10.0-doc/api/index.html
 
 https://tomcat.apache.org/tomcat-9.0-doc/api/index.html
@@ -37,7 +38,7 @@ Tomcat 9的源码中包含多个类加载器，用于加载Tomcat本身和Web应
 以上是Tomcat 9源码中的一些类加载器。除了这些类加载器外，Tomcat 9还提供了其他的类加载器和工具，例如VirtualWebappClassLoader、WebappClassLoader、JdbcLeakPrevention、ClassloaderLogManager等，用于实现更高级的类加载和管理功能。在编写Web应用程序或开发Tomcat插件时，您可以利用这些类加载器和工具来实现自己的需求。
 
 
-tomcat哪个版本支持nio
+### tomcat哪个版本支持nio
 
 Tomcat 从版本 6.0 开始支持 NIO（New I/O）模式，但要使用 NIO，需要将 Connector 的 protocol 属性设置为 "org.apache.coyote.http11.Http11NioProtocol"。
 
@@ -147,7 +148,7 @@ Servlet如何处理
 
 
 
-tomcat 9如何处理session？
+## tomcat 9如何处理session？
 Tomcat 9使用Session来跟踪用户的状态和数据。在Tomcat 9中，Session是一个接口，它定义了访问和管理会话数据的方法。Tomcat 9通过多种方式实现Session，包括内存、文件、数据库和分布式存储等。以下是Tomcat 9如何处理Session的概述：
 
 1. 内存Session：Tomcat 9默认使用内存存储Session。在内存中创建Session对象，并将其与一个唯一的Session ID关联。Session的数据存储在内存中，并在Session超时或无效时被删除。
@@ -162,7 +163,7 @@ Tomcat 9使用Session来跟踪用户的状态和数据。在Tomcat 9中，Sessio
 
 需要注意的是，Session数据通常包含敏感信息，例如用户的登录凭证、购物车信息等。为了保护Session数据的安全性，建议使用HTTPS协议来加密Session通信，并尽可能使用安全的Session ID生成算法，以避免Session ID的泄露和伪造。此外，还可以使用Session Fixation攻击的防范策略，例如在用户登录时随机生成Session ID，或在每次请求时使用不同的Session ID来防止Session Fixation攻击。
 
-tomcat 9如何实现https？
+## tomcat 9如何实现https？
 
 
 Tomcat 9可以通过以下步骤来实现HTTPS：
@@ -204,7 +205,7 @@ IBM WebSphere Application Server:是IBM的产品，功能很强大，而且有IB
 
 
 
-tomcat打破双亲委派模型
+## tomcat打破双亲委派模型
 
 
 Tomcat 9中与Session相关的类、接口和枚举主要有以下几个：

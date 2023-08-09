@@ -37,8 +37,12 @@ https://github.com/Tencent/phxpaxos
 
 [腾讯开源的Paxos库PhxPaxos代码解读---Prepare阶段]( https://www.cnblogs.com/lijingshanxi/p/10165802.html ) 
 
+
+
+如何评价 brpc 团队新的开源 Raft 库 braft？
+
 https://www.zhihu.com/question/266834707 
-作者：我做分布式系统
+
 
 
 
@@ -105,7 +109,7 @@ https://www.zhihu.com/question/266834707
 
 
 
----------------------------------update-----------------
+
 
 我们开源了使用 java 重写的 jraft 项目 [alipay/sofa-jraft](https://link.zhihu.com/?target=https%3A//github.com/alipay/sofa-jraft)，基于  braft 移植而来，并且做了 pipeline 优化、线性一致读实现等。
 

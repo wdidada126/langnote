@@ -1935,13 +1935,23 @@ org.apache.dubbo.event
 |                          |      |      |
 | 接口                     |      |      |
 |                          |      |      |
-| Constants                |      |      |
-| MetricsService           |      |      |
-| Monitor                  |      |      |
-| MonitorFactory           |      |      |
-| MonitorService           |      |      |
+| Constants                | interface |      |
+| MetricsService           | interface |      |
+| Monitor                  | interface |      |
+| MonitorFactory           | interface   |      |
+| MonitorService           | interface  |      |
 
 
+org.apache.dubbo.monitor.MonitorService 是一个用于监控 Dubbo 服务调用次数和耗时的接口，它定义了一个 collect 方法，用于收集统计数据。Dubbo 提供了一个简单的监控中心实现，即 org.apache.dubbo.monitor.simple.SimpleMonitorService，它将统计数据存储在内存中，并提供了一个 Web 页面来展示数据。用户也可以自定义监控中心实现，只需实现 MonitorService 接口，并配置 dubbo:monitor 标签或 dubbo.monitor.protocol 属性即可。关于监控中心的更多信息，可以参考以下网页¹²³。希望这能回答您的问题😊。
+
+
+(1) 【Dubbo】Monitor层实现简述 - 知乎 - 知乎专栏. https://zhuanlan.zhihu.com/p/351714441.
+(2) 简单监控 | Apache Dubbo. https://dubbo.apache.org/zh-cn/docsv2.7/user/simple-monitor/.
+(3) 监控中心扩展 | Apache Dubbo. http://static.dubbo.apache.org:8080/zh-cn/docs3-v2/java-sdk/reference-manual/spi/description/monitor/.
+
+org.apache.dubbo.monitor.simple.SimpleMonitorService 是一个简单的监控中心实现类，它在 Dubbo 2.7.8 中确实不存在，因为它已经被移除了。Dubbo 2.7.8 中推荐使用 org.apache.dubbo.monitor.support.MonitorFilter 来收集和发送统计数据，而监控中心的实现可以由用户自定义，或者使用第三方的监控平台，如 Prometheus、Grafana 等。您可以参考以下网页了解更多关于 Dubbo 2.7.8 监控中心的信息¹²³。希望这能解答您的疑惑😊。
+
+org.apache.dubbo.monitor.dubbo.DubboMonitor 是一个实现了 org.apache.dubbo.monitor.Monitor 接口的类，它用于将 Dubbo 服务的调用次数和耗时发送到监控中心，以便进行数据分析和展示。DubboMonitor 通过 org.apache.dubbo.monitor.dubbo.DubboMonitorFactory 创建，它会根据 URL 参数来获取或创建相应的 DubboMonitor 实例。DubboMonitor 的主要逻辑是在 collect 方法中，它会将统计数据封装成一个 URL，并通过 org.apache.dubbo.rpc.protocol.dubbo.DubboInvoker 调用监控中心的 collect 方法。DubboMonitor 还实现了一个定时任务，用于每分钟发送一次统计数据。关于 DubboMonitor 的更多细节，可以参考以下网页³⁴。希望这能帮助您了解 org.apache.dubbo.monitor.dubbo.DubboMonitor 的作用😊。
 
 
 

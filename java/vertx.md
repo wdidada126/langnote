@@ -83,3 +83,20 @@ idea vm设置
 
 io.vertx.ext.web.impl.RoutingContextImplBase#routes
 routes 是ConcurrentSkipListSet对象
+
+
+### vert.x BlockedThreadChecker报错
+
+09:22:51.213 WARN  io.vertx.core.impl.BlockedThreadChecker$1 53 run - Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 2155 ms, time limit is 2000
+vertx项目，报错如何解决
+
+
+您在Vert.x项目中看到的这个错误是一个"Blocked Thread"警告，它表明一个事件循环线程（`vert.x-eventloop-thread`）在某个操作中被阻塞的时间超过了预定的阈值，这可能会影响应用程序的性能和响应性。这种情况通常会引起程序的延迟和响应不及时。
+要解决这个问题，您可以考虑以下步骤：
+1. **检查阻塞操作：** 首先，您需要找出在哪个代码段中发生了阻塞。根据错误信息中的线程名（`vert.x-eventloop-thread-0`），您可以定位到可能引发阻塞的代码。这些代码通常包含需要执行时间较长的同步操作，例如阻塞I/O操作、长时间运行的计算等。
+2. **避免阻塞操作：** 一旦您找到了阻塞操作的位置，尝试将这些操作改为非阻塞的异步操作。在Vert.x中，强烈推荐使用异步操作来避免阻塞事件循环线程。例如，使用`vertx.executeBlocking`来执行长时间运行的操作，或者使用非阻塞的I/O操作。
+3. **使用 Worker 线程：** 对于耗时的计算型操作，您可以将它们分发到 Vert.x 的 Worker 线程池中执行，这样不会阻塞主事件循环线程。Worker 线程专门用于执行长时间运行的操作。
+4. **监控和分析：** 如果问题仍然存在，您可以使用Vert.x提供的监控工具来分析阻塞的情况，找出引发问题的具体原因。Vert.x提供了一些诊断工具，如`VertxInspector`，可以帮助您检测和解决问题。
+5. **优化代码：** 在确保异步和非阻塞操作后，您还可以进一步优化代码，以确保最佳性能和响应性。这可能涉及到缓存、并发控制、资源释放等方面的操作。
+总之，Vert.x鼓励使用异步和非阻塞的编程模型，以保持应用程序的性能和响应性。通过定位并解决阻塞操作，您可以改善应用程序的稳定性和用户体验。如果问题仍然存在，考虑使用Vert.x的诊断工具和社区资源来获取更详细的帮助。
+
