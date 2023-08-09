@@ -240,3 +240,5 @@ org.apache.catalina.core.ApplicationFilterChain
 
 org.apache.tomcat.util.net.SocketProcessorBase 实现Runnable接口
 
+在apr模式下，Tomcat将以JNI(Java Native Interface)的形式调用Apache HTTP服务器的核心动态链接库来处理文件读取或网络传输操作，从而大大提高Tomcat对静态文件的处理性能。Tomcat apr是在Tomcat上运行高并发应用的首选模式。
+https://blog.csdn.net/weixin_39778417/article/details/88946533
