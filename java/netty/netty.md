@@ -17,7 +17,6 @@ bossgroup 对应使用的是主reactor吗？ workgroup对应使用的是从react
 
 bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量是cpu核心数*2还是+1我忘了。所以bossGroup本来就是多线程。一个eventLoop可以处理多个客户端链接，而一个客户端链接只能注册在同一个eventLoop上，这才是netty的实现。什么默认大小应该为1，看看源码，不要章口就来
 
-作者：太上玄元道君
  https://www.zhihu.com/question/330317976/answer/723690201
 
 
@@ -438,22 +437,22 @@ https://netty.io/4.1/api/index.html
 
 
 
-| io.netty.bootstrap                           | 类型 |                     |
-| -------------------------------------------- | ---- | ------------------- |
-| Interfaces                                   |      |                     |
-|                                              |      |                     |
-| ChannelFactory                               |      |                     |
-|                                              |      |                     |
-| Classes                                      |      |                     |
-|                                              |      |                     |
-| AbstractBootstrap                            |      |                     |
-| AbstractBootstrap.PendingRegistrationPromise |      |                     |
-| AbstractBootstrapConfig                      |      |                     |
-| Bootstrap                                    |      |                     |
-| BootstrapConfig                              |      |                     |
-| FailedChannel                                |      | AbstractChannel子类 |
-| ServerBootstrap                              |      |                     |
-| ServerBootstrapConfig                        |      |                     |
+| io.netty.bootstrap                           | 类型      | 说明                |
+| -------------------------------------------- | --------- | ------------------- |
+| Interfaces                                   |           |                     |
+|                                              |           |                     |
+| ChannelFactory                               | interface | @Deprecated         |
+|                                              |           |                     |
+| Classes                                      |           |                     |
+|                                              |           |                     |
+| AbstractBootstrap                            |           |                     |
+| AbstractBootstrap.PendingRegistrationPromise |           |                     |
+| AbstractBootstrapConfig                      |           |                     |
+| Bootstrap                                    |           |                     |
+| BootstrapConfig                              |           |                     |
+| FailedChannel                                |           | AbstractChannel子类 |
+| ServerBootstrap                              |           |                     |
+| ServerBootstrapConfig                        |           |                     |
 
 
 
@@ -463,7 +462,7 @@ https://netty.io/4.1/api/index.html
 
 
 
-| io.netty.buffer                 | 类型      |                            |
+| io.netty.buffer                 | 类型      | 说明                       |
 | ------------------------------- | --------- | -------------------------- |
 | Interfaces                      |           |                            |
 |                                 |           |                            |
@@ -607,7 +606,7 @@ ByteBuf (io.netty.buffer)
 
 ### io.netty.buffer.search
 
-| Interfaces                                 | 类型      |      |
+| Interfaces                                 | 类型      | 说明 |
 | ------------------------------------------ | --------- | ---- |
 |                                            |           |      |
 | MultiSearchProcessor                       | interface |      |
@@ -657,7 +656,7 @@ MultiSearchProcessor (io.netty.buffer.search)
 
 
 
-| io.netty.channel                               | 类型      |      |
+| io.netty.channel                               | 类型      | 说明 |
 | ---------------------------------------------- | --------- | ---- |
 |                                                |           |      |
 | AddressedEnvelope                              | interface |      |
@@ -759,6 +758,12 @@ MultiSearchProcessor (io.netty.buffer.search)
 
 
 
+ChannelFactory接口子类
+
+ReflectiveChannelFactory (io.netty.channel)
+ReflectiveChannelFactory (io.netty.channel)
+NioUdtProvider (io.netty.channel.udt.nio)
+
 
 
 
@@ -770,7 +775,7 @@ EmbeddedChannel
 
 
 
-| io.netty.channel.epoll           | 类型     |      |
+| io.netty.channel.epoll           | 类型     | 说明 |
 | -------------------------------- | -------- | ---- |
 | Classes                          |          |      |
 |                                  |          |      |
@@ -810,7 +815,7 @@ EmbeddedChannel
 
 ### io.netty.channel.group
 
-| io.netty.channel.group     | 类型      |      |
+| io.netty.channel.group     | 类型      | 说明 |
 | -------------------------- | --------- | ---- |
 | Interfaces                 |           |      |
 |                            |           |      |
@@ -842,7 +847,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.kqueue           | 类型 |      |
+| io.netty.channel.kqueue           | 类型 | 说明 |
 | --------------------------------- | ---- | ---- |
 | Classes                           |      |      |
 |                                   |      |      |
@@ -874,7 +879,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.local | 类型 |      |
+| io.netty.channel.local | 类型 | 说明 |
 | ---------------------- | ---- | ---- |
 | Classes                |      |      |
 |                        |      |      |
@@ -887,7 +892,7 @@ ChannelUtils
 
 ### io.netty.channel.nio
 
-| io.netty.channel.nio         | 类型      |      |
+| io.netty.channel.nio         | 类型      | 说明 |
 | ---------------------------- | --------- | ---- |
 | Interfaces                   |           |      |
 |                              |           |      |
@@ -908,7 +913,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.oio      | 类型 |      |
+| io.netty.channel.oio      | 类型 | 说明 |
 | ------------------------- | ---- | ---- |
 | Classes                   |      |      |
 |                           |      |      |
@@ -922,7 +927,7 @@ ChannelUtils
 
 ### io.netty.channel.pool
 
-|                                       | 类型      |      |
+|                                       | 类型      | 说明 |
 | ------------------------------------- | --------- | ---- |
 | Interfaces                            |           |      |
 |                                       |           |      |
@@ -944,7 +949,7 @@ ChannelUtils
 
 ### io.netty.channel.rxtx
 
-|                             | 类型      |      |
+|                             | 类型      | 说明 |
 | --------------------------- | --------- | ---- |
 | Interfaces                  |           |      |
 |                             |           |      |
@@ -968,7 +973,7 @@ ChannelUtils
 
 
 
-| Interfaces                     | 类型      |      |
+| Interfaces                     | 类型      | 说明 |
 | ------------------------------ | --------- | ---- |
 |                                |           |      |
 | SctpChannel                    | interface |      |
@@ -990,7 +995,7 @@ ChannelUtils
 
 
 
-|                      | 类型 |      |
+|                      | 类型 | 说明 |
 | -------------------- | ---- | ---- |
 | Classes              |      |      |
 |                      |      |      |
@@ -1007,7 +1012,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.sctp.oio | 类型 |      |
+| io.netty.channel.sctp.oio | 类型 | 说明 |
 | ------------------------- | ---- | ---- |
 | Classes                   |      |      |
 |                           |      |      |
@@ -1018,7 +1023,7 @@ ChannelUtils
 
 ### io.netty.channel.socket
 
-| io.netty.channel.socket          | 类型      |      |
+| io.netty.channel.socket          | 类型      | 说明 |
 | -------------------------------- | --------- | ---- |
 | Interfaces                       |           |      |
 |                                  |           |      |
@@ -1059,7 +1064,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.socket.nio | 类型 |      |
+| io.netty.channel.socket.nio | 类型 | 说明 |
 | --------------------------- | ---- | ---- |
 | Classes                     |      |      |
 |                             |      |      |
@@ -1074,7 +1079,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.socket.oio         | 类型      |      |
+| io.netty.channel.socket.oio         | 类型      | 说明 |
 | ----------------------------------- | --------- | ---- |
 | Interfaces                          |           |      |
 |                                     |           |      |
@@ -1096,7 +1101,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.udt          | 类型      |      |
+| io.netty.channel.udt          | 类型      | 说明 |
 | ----------------------------- | --------- | ---- |
 | Interfaces                    |           |      |
 |                               |           |      |
@@ -1118,7 +1123,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.udt.nio       | 类型 |      |
+| io.netty.channel.udt.nio       | 类型 | 说明 |
 | ------------------------------ | ---- | ---- |
 | Classes                        |      |      |
 |                                |      |      |
@@ -1137,7 +1142,7 @@ ChannelUtils
 
 
 
-| io.netty.channel.unix           | 类型      |      |
+| io.netty.channel.unix           | 类型      | 说明 |
 | ------------------------------- | --------- | ---- |
 | Interfaces                      |           |      |
 |                                 |           |      |
@@ -1194,7 +1199,7 @@ ChannelUtils
 
 
 
-| io.netty.handler.address     | 类型 |      |
+| io.netty.handler.address     | 类型 | 说明 |
 | ---------------------------- | ---- | ---- |
 | Classes                      |      |      |
 |                              |      |      |
@@ -1209,7 +1214,7 @@ ChannelUtils
 
 
 
-| io.netty.handler.codec            | 类型      |      |
+| io.netty.handler.codec            | 类型      | 说明 |
 | --------------------------------- | --------- | ---- |
 |                                   |           |      |
 | Interfaces                        |           |      |
@@ -1277,7 +1282,7 @@ ChannelUtils
 
 
 
-| io.netty.handler.codec.base64 | 类型 |      |
+| io.netty.handler.codec.base64 | 类型 | 说明 |
 | ----------------------------- | ---- | ---- |
 | Classes                       |      |      |
 |                               |      |      |
@@ -1295,7 +1300,7 @@ ChannelUtils
 
 
 
-| io.netty.handler.codec.bytes | 类型 |      |
+| io.netty.handler.codec.bytes | 类型 | 说明 |
 | ---------------------------- | ---- | ---- |
 | Classes                      |      |      |
 |                              |      |      |
@@ -1312,7 +1317,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.compression | 类型      |      |
+| io.netty.handler.codec.compression | 类型      | 说明 |
 | ---------------------------------- | --------- | ---- |
 | Interfaces                         |           |      |
 |                                    |           |      |
@@ -1368,7 +1373,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.dns   | 类型      |      |
+| io.netty.handler.codec.dns   | 类型      | 说明 |
 | ---------------------------- | --------- | ---- |
 | Interfaces                   |           |      |
 |                              |           |      |
@@ -1421,11 +1426,7 @@ io.netty.handler.codec.compression
 
 #### io.netty.handler.codec.haproxy
 
-
-
-
-
-| io.netty.handler.codec.haproxy           | 类型 |      |
+| io.netty.handler.codec.haproxy           | 类型 | 说明 |
 | ---------------------------------------- | ---- | ---- |
 | Classes                                  |      |      |
 |                                          |      |      |
@@ -1454,7 +1455,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.http                  | 类型      |      |
+| io.netty.handler.codec.http                  | 类型      | 说明 |
 | -------------------------------------------- | --------- | ---- |
 | Interfaces                                   |           |      |
 |                                              |           |      |
@@ -1545,7 +1546,7 @@ io.netty.handler.codec.compression
 
 ##### io.netty.handler.codec.http.cookie
 
-| io.netty.handler.codec.http.cookie | 类型      |      |
+| io.netty.handler.codec.http.cookie | 类型      | 说明 |
 | ---------------------------------- | --------- | ---- |
 | Interfaces                         |           |      |
 |                                    |           |      |
@@ -1572,7 +1573,7 @@ io.netty.handler.codec.compression
 
 ##### io.netty.handler.codec.http.cors
 
-| io.netty.handler.codec.http.cors | 类型 |      |
+| io.netty.handler.codec.http.cors | 类型 | 说明 |
 | -------------------------------- | ---- | ---- |
 | Classes                          |      |      |
 |                                  |      |      |
@@ -1584,7 +1585,7 @@ io.netty.handler.codec.compression
 
 ##### io.netty.handler.codec.http.multipart
 
-| io.netty.handler.codec.http.multipart                | 类型      |      |
+| io.netty.handler.codec.http.multipart                | 类型      | 说明 |
 | ---------------------------------------------------- | --------- | ---- |
 | Interfaces                                           |           |      |
 |                                                      |           |      |
@@ -1635,7 +1636,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.http.websocketx                   | 类型      |      |
+| io.netty.handler.codec.http.websocketx                   | 类型      | 说明 |
 | -------------------------------------------------------- | --------- | ---- |
 | Interfaces                                               |           |      |
 |                                                          |           |      |
@@ -1703,7 +1704,7 @@ io.netty.handler.codec.compression
 
 ##### io.netty.handler.codec.http.websocketx.extensions
 
-| io.netty.handler.codec.http.websocketx.extensions | 类型      |      |
+| io.netty.handler.codec.http.websocketx.extensions | 类型      | 说明 |
 | ------------------------------------------------- | --------- | ---- |
 | Interfaces                                        |           |      |
 |                                                   |           |      |
@@ -1728,7 +1729,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.http.websocketx.extensions.compression | 类型 |      |
+| io.netty.handler.codec.http.websocketx.extensions.compression | 类型 | 说明 |
 | ------------------------------------------------------------ | ---- | ---- |
 | Classes                                                      |      |      |
 |                                                              |      |      |
@@ -1745,7 +1746,7 @@ io.netty.handler.codec.compression
 
 
 
-| io.netty.handler.codec.http2                                 | 类型      |      |
+| io.netty.handler.codec.http2                                 | 类型      | 说明 |
 | ------------------------------------------------------------ | --------- | ---- |
 | Interfaces                                                   |           |      |
 |                                                              |           |      |
@@ -1903,7 +1904,7 @@ JsonObjectDecoder
 
 
 
-| io.netty.handler.codec.marshalling | 类型      |      |
+| io.netty.handler.codec.marshalling | 类型      | 说明 |
 | ---------------------------------- | --------- | ---- |
 | Interfaces                         |           |      |
 |                                    |           |      |
@@ -1938,7 +1939,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.memcache  | 类型      |      |
+| io.netty.handler.codec.memcache  | 类型      | 说明 |
 | -------------------------------- | --------- | ---- |
 | Interfaces                       |           |      |
 |                                  | interface |      |
@@ -1961,7 +1962,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 ##### io.netty.handler.codec.memcache.binary
 
-| io.netty.handler.codec.memcache.binary | 类型      |      |
+| io.netty.handler.codec.memcache.binary | 类型      | 说明 |
 | -------------------------------------- | --------- | ---- |
 | Interfaces                             |           |      |
 |                                        |           |      |
@@ -1998,7 +1999,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.mqtt                   | 类型      |      |
+| io.netty.handler.codec.mqtt                   | 类型      | 说明 |
 | --------------------------------------------- | --------- | ---- |
 | Interfaces                                    |           |      |
 |                                               |           |      |
@@ -2073,7 +2074,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 ##### io.netty.handler.codec.protobuf
 
-| io.netty.handler.codec.protobuf      | 类型 |      |
+| io.netty.handler.codec.protobuf      | 类型 | 说明 |
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | Classes                              |      |      |
@@ -2091,7 +2092,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.redis      | 类型      |      |
+| io.netty.handler.codec.redis      | 类型      | 说明 |
 | --------------------------------- | --------- | ---- |
 |                                   |           |      |
 | Interfaces                        |           |      |
@@ -2128,7 +2129,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.rtsp | 类型 |      |
+| io.netty.handler.codec.rtsp | 类型 | 说明 |
 | --------------------------- | ---- | ---- |
 | Classes                     |      |      |
 |                             |      |      |
@@ -2158,7 +2159,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.sctp   | 类型 |      |
+| io.netty.handler.codec.sctp   | 类型 | 说明 |
 | ----------------------------- | ---- | ---- |
 | Classes                       |      |      |
 |                               |      |      |
@@ -2173,7 +2174,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.serialization | 类型 |      |
+| io.netty.handler.codec.serialization | 类型 | 说明 |
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | ClassResolver                        |      |      |
@@ -2193,7 +2194,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 ##### io.netty.handler.codec.smtp
 
-| io.netty.handler.codec.smtp | 类型 |      |
+| io.netty.handler.codec.smtp | 类型 | 说明 |
 | --------------------------- | ---- | ---- |
 |                             |      |      |
 | LastSmtpContent             |      |      |
@@ -2216,7 +2217,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 ##### io.netty.handler.codec.socks
 
-| io.netty.handler.codec.socks   | 类型 |      |
+| io.netty.handler.codec.socks   | 类型 | 说明 |
 | ------------------------------ | ---- | ---- |
 | Classes                        |      |      |
 |                                |      |      |
@@ -2264,7 +2265,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.socksx  | 类型 |      |
+| io.netty.handler.codec.socksx  | 类型 | 说明 |
 | ------------------------------ | ---- | ---- |
 | Classes                        |      |      |
 |                                |      |      |
@@ -2310,7 +2311,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 ##### io.netty.handler.codec.socksx.v4
 
-| io.netty.handler.codec.socksx.v4 | 类型      |      |
+| io.netty.handler.codec.socksx.v4 | 类型      | 说明 |
 | -------------------------------- | --------- | ---- |
 |                                  |           |      |
 | Interfaces                       |           |      |
@@ -2343,7 +2344,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.socksx.v5        | 类型      |      |
+| io.netty.handler.codec.socksx.v5        | 类型      | 说明 |
 | --------------------------------------- | --------- | ---- |
 | Interfaces                              |           |      |
 |                                         |           |      |
@@ -2397,7 +2398,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.spdy     | 类型      |      |
+| io.netty.handler.codec.spdy     | 类型      | 说明 |
 | ------------------------------- | --------- | ---- |
 | Interfaces                      |           |      |
 |                                 |           |      |
@@ -2464,7 +2465,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.stomp    | 类型      |      |
+| io.netty.handler.codec.stomp    | 类型      | 说明 |
 | ------------------------------- | --------- | ---- |
 | Interfaces                      |           |      |
 |                                 |           |      |
@@ -2497,7 +2498,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.string | 类型 |      |
+| io.netty.handler.codec.string | 类型 | 说明 |
 | ----------------------------- | ---- | ---- |
 | LineEncoder                   |      |      |
 | StringDecoder                 |      |      |
@@ -2509,7 +2510,7 @@ marshalling是jboss的java对象序列化包,修正了jdk原生序列化存在�
 
 
 
-| io.netty.handler.codec.xml | 类型 |      |
+| io.netty.handler.codec.xml | 类型 | 说明 |
 | -------------------------- | ---- | ---- |
 | Classes                    |      |      |
 |                            |      |      |
@@ -2563,7 +2564,7 @@ FlushConsolidationHandler
 
 
 
-| io.netty.handler.ipfilter   | 类型      |      |
+| io.netty.handler.ipfilter   | 类型      | 说明 |
 | --------------------------- | --------- | ---- |
 | Interfaces                  |           |      |
 |                             |           |      |
@@ -2589,7 +2590,7 @@ FlushConsolidationHandler
 
 
 
-| io.netty.handler.logging | 类型 |      |
+| io.netty.handler.logging | 类型 | 说明 |
 | ------------------------ | ---- | ---- |
 | Classes                  |      |      |
 |                          |      |      |
@@ -2618,7 +2619,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.proxy                     | 类型 |      |
+| io.netty.handler.proxy                     | 类型 | 说明 |
 | ------------------------------------------ | ---- | ---- |
 | Classes                                    |      |      |
 |                                            |      |      |
@@ -2645,7 +2646,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.ssl                                         | 类型      |      |
+| io.netty.handler.ssl                                         | 类型      | 说明 |
 | ------------------------------------------------------------ | --------- | ---- |
 | Interfaces                                                   |           |      |
 |                                                              |           |      |
@@ -2738,7 +2739,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.ssl.ocsp      | 类型 |      |
+| io.netty.handler.ssl.ocsp      | 类型 | 说明 |
 | ------------------------------ | ---- | ---- |
 | Classes                        |      |      |
 |                                |      |      |
@@ -2766,7 +2767,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.ssl.util             | 类型 |      |
+| io.netty.handler.ssl.util             | 类型 | 说明 |
 | ------------------------------------- | ---- | ---- |
 | Classes                               |      |      |
 |                                       |      |      |
@@ -2787,7 +2788,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.stream | 类型      |      |
+| io.netty.handler.stream | 类型      | 说明 |
 | ----------------------- | --------- | ---- |
 | Interfaces              |           |      |
 |                         |           |      |
@@ -2809,7 +2810,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.timeout | 类型 |      |
+| io.netty.handler.timeout | 类型 | 说明 |
 | ------------------------ | ---- | ---- |
 | Classes                  |      |      |
 |                          |      |      |
@@ -2834,7 +2835,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.handler.traffic           | 类型 |      |
+| io.netty.handler.traffic           | 类型 | 说明 |
 | ---------------------------------- | ---- | ---- |
 | Classes                            |      |      |
 |                                    |      |      |
@@ -2852,7 +2853,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.resolver               | 类型      |      |
+| io.netty.resolver               | 类型      | 说明 |
 | ------------------------------- | --------- | ---- |
 | Interfaces                      |           |      |
 |                                 |           |      |
@@ -2891,7 +2892,7 @@ PcapWriteHandler.Builder
 
 
 
-| io.netty.resolver.dns                      | 类型      |      |
+| io.netty.resolver.dns                      | 类型      | 说明 |
 | ------------------------------------------ | --------- | ---- |
 | Interfaces                                 |           |      |
 |                                            |           |      |
@@ -2953,7 +2954,7 @@ MacOSDnsServerAddressStreamProvider
 
 
 
-| io.netty.util                     | 类型      |      |
+| io.netty.util                     | 类型      | 说明 |
 | --------------------------------- | --------- | ---- |
 | Interfaces                        |           |      |
 |                                   |           |      |
@@ -3028,7 +3029,7 @@ MacOSDnsServerAddressStreamProvider
 
 
 
-| io.netty.util.collection      | 类型      |      |
+| io.netty.util.collection      | 类型      | 说明 |
 | ----------------------------- | --------- | ---- |
 | Interfaces                    |           |      |
 |                               |           |      |
@@ -3062,7 +3063,7 @@ MacOSDnsServerAddressStreamProvider
 
 
 
-| io.netty.util.concurrent                         | 类型      |      |
+| io.netty.util.concurrent                         | 类型      | 说明 |
 | ------------------------------------------------ | --------- | ---- |
 | Interfaces                                       |           |      |
 |                                                  |           |      |
@@ -3125,7 +3126,7 @@ MacOSDnsServerAddressStreamProvider
 
 
 
-|                          | 类型      |      |
+|                          | 类型      | 说明 |
 | ------------------------ | --------- | ---- |
 | Interfaces               |           |      |
 |                          |           |      |
@@ -3186,7 +3187,7 @@ MacOSDnsServerAddressStreamProvider
 
 
 
-|                        | 类型      |      |
+|                        | 类型      | 说明 |
 | ---------------------- | --------- | ---- |
 | Interfaces             |           |      |
 |                        |           |      |
