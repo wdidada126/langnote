@@ -34,10 +34,13 @@ SqlSessionTemplateInteceptor 实现了Invocation
 invoke()方法
 
 Proxy.newInstance()
+
+## MapperProxy
+
 MapperProxy是MyBatis框架中用于实现动态代理的关键类，它是通过JDK动态代理技术实现的，用于将接口与对应的SQL语句绑定在一起，实现接口方法调用时的SQL执行。
 MapperProxy类的主要作用是：
 实现接口的代理对象。当调用接口方法时，MapperProxy代理对象会根据方法名、参数类型等信息，从Configuration对象中获取对应的MappedStatement对象，并执行SQL语句，将查询结果映射成对应的Java对象返回给调用者。
-将Mapper接口方法与MappedStatement对象绑定在一起。当使用SqlSession.getMapper方法获取Mapper接口实例时，MyBatis框架会使用MapperRegistry类将Mapper接口与对应的MapperProxy对象进行绑定，从而实现Mapper接口方法的调用。
+将Mapper接口方法与MappedStatement对象绑定在一起。当使用SqlSession.getMapper()方法获取Mapper接口实例时，MyBatis框架会使用MapperRegistry类将Mapper接口与对应的MapperProxy对象进行绑定，从而实现Mapper接口方法的调用。
 MapperProxy类的源码非常复杂，其核心方法是invoke方法，该方法会根据接口方法的返回值类型，调用对应的SQL执行方法
 在上述代码中，如果接口方法是Object类中的方法，则直接调用对应的方法。如果接口方法是默认方法，则调用invokeDefaultMethod方法执行默认方法。如果接口方法不是Object类中的方法或默认方法，则使用cachedMapperMethod方法从MapperMethodCache中获取对应的MapperMethod对象，然后调用MapperMethod对象的execute方法执行SQL语句，并将查询结果映射成对应的Java对象返回给调用者。
 需要注意的是，MapperProxy类并不会直接执行SQL语句，它会调用MapperMethod对象的execute方法来执行SQL语句。MapperMethod对象包含了SQL语句、SQL参数等信息，用于执行SQL语句并将查询结果映射成Java对象返回给调用者。
@@ -47,6 +50,8 @@ MapperProxy类的源码非常复杂，其核心方法是invoke方法，该方法
 MappedStatement 跟java.sql中的Statement对应
 
 
+
+#### MapperMethod
 
 MapperMethod是MyBatis框架中的一个重要类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。在MyBatis框架中，每个Mapper接口方法都会对应一个MapperMethod对象。
 MapperMethod类的源码非常复杂，但是它的核心方法是execute方法，该方法用于执行SQL语句并将查询结果映射成Java对象。下面对MapperMethod类的一些重要属性和方法进行简单介绍：
@@ -62,7 +67,7 @@ private Object executeForMap(SqlSession sqlSession, Object[] args)：该方法�
 
 总之，MapperMethod类是MyBatis框架中非常重要的一个类，它用于执行Mapper接口方法对应的SQL语句，并将查询结果映射成对应的Java对象。
 
-个人总结，有一个Mapper类方法，就哟一个
+个人总结，有一个Mapper类方法，就有一个
 MapperMethod对象
 
 MapperMethod类跟springmvc中的 RequestMethod枚举 RequestInfo RequestMappingInfo
@@ -124,7 +129,6 @@ Mybatis动态解析里面有2个核心的类SqlNode、SqlSource、ExpressionEval
 
 
 new GenericTokenParser("${", "}", new BindingTokenParser(context, injectionFilter))
-
 
 ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler(configuration, parameterType, additionalParameters);
 //#{}解析器
@@ -355,8 +359,7 @@ RowBounds
 	NO_ROW_LIMIT
 	DEFAULT
 
-
-SqlSessionFactoryBuilder
+### SqlSessionFactoryBuilder
 
 build(Configuration config)
 build(InputStream inputStream)
@@ -387,7 +390,7 @@ ManagedTransactionFactory
 
 org.apache.ibatis.type
 
-TypeHandler
+### TypeHandler
 
 
 ArrayTypeHandler, BaseTypeHandler, BigIntegerTypeHandler, BlobByteObjectArrayTypeHandler, BlobInputStreamTypeHandler, BlobTypeHandler, ByteArrayTypeHandler, ByteObjectArrayTypeHandler,  , ClobReaderTypeHandler, ClobTypeHandler, DateOnlyTypeHandler, DateTypeHandler, EnumOrdinalTypeHandler, EnumTypeHandler, InstantTypeHandler, , JapaneseDateTypeHandler, LocalDateTimeTypeHandler, LocalDateTypeHandler, LocalTimeTypeHandler, LongTypeHandler, MonthTypeHandler, NClobTypeHandler, NStringTypeHandler, ObjectTypeHandler, OffsetDateTimeTypeHandler, OffsetTimeTypeHandler, , SqlDateTypeHandler, SqlTimestampTypeHandler, SqlTimeTypeHandler, SqlxmlTypeHandler, TimeOnlyTypeHandler, UnknownTypeHandler, YearMonthTypeHandler, YearTypeHandler, ZonedDateTimeTypeHandler
@@ -665,9 +668,10 @@ CREATE TABLE "websites" (
   PRIMARY KEY ("id")
 ) 
 
-
 INSERT INTO "websites" VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'USA'), ('2', '淘宝', 'https://www.taobao.com/', '13', 'CN'), ('3', '菜鸟教程', 'http://www.runoob.com', '5892', ''), ('4', '微博', 'http://weibo.com/', '20', 'CN'), ('5', 'Facebook', 'https://www.facebook.com/', '3', 'USA');
 本身的数据就很多了
+
+## 书籍
 
 
 书籍/book：
@@ -675,6 +679,39 @@ INSERT INTO "websites" VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'US
 - mybatis 刘增辉
 - MyBatis技术内幕
 - 通用源码阅读指导书：MyBatis源码详解
+
+
+
+## 高级特性
+
+
+
+MyBatis 是一个流行的 Java 持久层框架，它提供了许多高级特性，以便更灵活地进行数据库访问和映射。以下是 MyBatis 的一些高级特性：
+
+1. **动态 SQL**：
+   MyBatis 允许在 SQL 语句中使用动态 SQL 来根据不同的条件生成不同的 SQL 片段。这样可以根据运行时的条件构建灵活的 SQL 查询。动态 SQL 包括条件判断、循环迭代和动态片段等功能。
+
+1. **对象关系映射（ORM）**：
+   MyBatis 支持将查询结果自动映射到 Java 对象。通过配置映射规则，可以将查询结果的列与 Java 对象的属性进行自动映射，简化了数据的转换和处理。
+
+1. **批处理操作**：
+   MyBatis 提供了批处理操作的支持，可以一次性执行多个数据库操作。这可以显著提高数据库操作的性能，特别是在需要插入或更新大量数据时。
+
+1. **嵌套查询**：
+   MyBatis 支持嵌套查询，允许在一个查询中嵌入另一个查询。这样可以在单个查询中获取更复杂的结果，通过减少数据库访问次数来提高性能。
+
+1. **缓存支持**：
+   MyBatis 提供了缓存机制，可以缓存查询结果以减少对数据库的访问。它支持两级缓存：一级缓存（默认开启）是会话级别的缓存，二级缓存是全局级别的缓存。可以根据需求配置缓存的刷新策略和失效机制。
+
+1. **插件机制**：
+   MyBatis 的插件机制允许开发人员在执行 SQL 语句的过程中自定义扩展逻辑。可以编写插件来拦截和修改 SQL 语句的执行流程，实现自定义的功能和增强。
+
+1. **分页支持**：
+   MyBatis 提供了分页查询的支持，可以方便地进行分页查询操作。可以指定查询的起始位置和返回的记录数，以实现分页效果。
+
+这些是 MyBatis 的一些高级特性，它们提供了更灵活、高效的数据库访问和映射功能。使用这些特性，你可以更好地控制和优化你的数据库操作，提高应用程序的性能和可维护性。
+
+
 
 mybatis需要练习
 

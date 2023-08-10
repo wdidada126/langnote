@@ -167,23 +167,8 @@ DaoSupport (org.springframework.dao.support)
 
 SqlSessionFactoryBean 实现了 Spring 的 FactoryBean 接口。 FactoryBean<SqlSessionFactory>
 
-### MapperScannerConfigurer
-
-当发现要使用多个MapperFactoryBean的时候，一个一个定义肯定非常麻烦，于是mybatis-spring提供了MapperScannerConfigurer这个类，它将会查找类路径下的映射器并自动将它们创建成MapperFactoryBean。
-
-MapperScannerConfigurer是spring和mybatis整合的mybatis-spring的jar包中提供的一个类。
-
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	<property name="basePackage" value="org.mybatis.spring.sample.mapper" />
-</bean>
-
-- org.mybatis.spring.annotation.MapperScan
-当使用Java进行配置Mybatis时可以使用@MapperScan注解进行对MyBatis的Mapper interfaces进行注册。
-https://www.jianshu.com/p/976aa407bda4
 
 
-SqlSessionFactoryBean向spring容器注入
-DefaultSqlSessionFactory对象
 ### MapperFactoryBean<T>
 Mybatis在与Spring集成的时候可以配置MapperFactoryBean来生成Mapper接口的代理。MapperFactoryBean的出现为了代替手工使用SqlSessionDaoSupport或SqlSessionTemplate编写数据访问对象(DAO)的代码，使用动态代理实现。
 MapperFactoryBean是MyBatis-Spring框架中的一个特殊的FactoryBean，它用于创建MyBatis Mapper接口的代理实例。MapperFactoryBean可以将一个Mapper接口封装为一个Spring Bean，并对其进行配置和管理，使得我们可以像使用普通的Spring Bean一样使用Mapper接口。
@@ -200,7 +185,26 @@ MapperFactoryBean提供了MyBatis Mapper接口与DAO的转换功能。我们可�
 
 
 
-### MapperScannerConfigurer 
+### 
+
+### MapperScannerConfigurer
+
+当发现要使用多个MapperFactoryBean的时候，一个一个定义肯定非常麻烦，于是mybatis-spring提供了MapperScannerConfigurer这个类，它将会查找类路径下的映射器并自动将它们创建成MapperFactoryBean。
+
+MapperScannerConfigurer是spring和mybatis整合的mybatis-spring的jar包中提供的一个类。
+
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="org.mybatis.spring.sample.mapper" />
+</bean>
+
+- org.mybatis.spring.annotation.MapperScan
+  当使用Java进行配置Mybatis时可以使用@MapperScan注解进行对MyBatis的Mapper interfaces进行注册。
+  https://www.jianshu.com/p/976aa407bda4
+
+SqlSessionFactoryBean向spring容器注入
+DefaultSqlSessionFactory对象
+
+
 
 MapperScannerConfigurer public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) 方法调用	ClassPathMapperScanner#scan()方法
 
