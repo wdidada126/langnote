@@ -797,8 +797,16 @@ AbstractApplicationContext
         AnnotationConfigApplicationContext
 
 
-
-
+PropertySourcesPlaceholderConfigurer使用例子
+```
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+        Resource[] resources = new ClassPathResource[]{new ClassPathResource("application.properties")};
+        configurer.setLocations(resources);
+        return configurer;
+    }
+```
 
 #### org.springframework.context.weaving
 
