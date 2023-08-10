@@ -214,137 +214,206 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.context.annotation          | 详解                                                         |                                                              |      |
-| ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| AdviceMode                                      | Enumeration used to determine whether JDK proxy-based or AspectJ weaving-based advice should be applied. |                                                              |      |
-|                                                 |                                                              |                                                              |      |
-| AdviceModeImportSelector<A extends Annotation>  | Convenient base class for ImportSelector implementations that select imports based on an AdviceMode value from an annotation (such as the @Enable* annotations). |                                                              |      |
-|                                                 |                                                              |                                                              |      |
-| AnnotatedBeanDefinitionReader                   | Convenient adapter for programmatic registration of bean classes. |                                                              |      |
-|                                                 |                                                              |                                                              |      |
-| AnnotationBeanNameGenerator                     |                                                              |                                                              |      |
-|                                                 | BeanNameGenerator implementation for bean classes annotated with the @Component annotation or with another annotation that is itself annotated with @Component as a meta-annotation. |                                                              |      |
-| AnnotationConfigApplicationContext              |                                                              |                                                              |      |
-|                                                 | Standalone application context, accepting component classes as input — in particular @Configuration-annotated classes, but also plain @Component types and JSR-330 compliant classes using jakarta.inject annotations. |                                                              |      |
-| AnnotationConfigBeanDefinitionParser            |                                                              |                                                              |      |
-|                                                 | Parser for the <context:annotation-config/> element.         |                                                              |      |
-| AnnotationConfigRegistry                        |                                                              |                                                              |      |
-|                                                 | Common interface for annotation config application contexts, defining AnnotationConfigRegistry.register(java.lang.Class<?>...) and AnnotationConfigRegistry.scan(java.lang.String...) methods. |                                                              |      |
-| AnnotationConfigUtils                           |                                                              |                                                              |      |
-|                                                 | Utility class that allows for convenient registration of common BeanPostProcessor and BeanFactoryPostProcessor definitions for annotation-based configuration. |                                                              |      |
-| AnnotationScopeMetadataResolver                 |                                                              |                                                              |      |
-|                                                 | A ScopeMetadataResolver implementation that by default checks for the presence of Spring's @Scope annotation on the bean class. |                                                              |      |
-| AutoProxyRegistrar                              |                                                              |                                                              |      |
-|                                                 | Registers an auto proxy creator against the current BeanDefinitionRegistry as appropriate based on an @Enable* annotation having mode and proxyTargetClass attributes set to the correct values. |                                                              |      |
-| Bean                                            |                                                              |                                                              |      |
-|                                                 | Indicates that a method produces a bean to be managed by the Spring container. |                                                              |      |
-| **ClassPathBeanDefinitionScanner**              |                                                              | ClassPathScanningCandidateComponentProvider子类 scan() doScan() addIncludeFilter() 很多三方框架都自定义这个类的子类 |      |
-|                                                 | A bean definition scanner that detects bean candidates on the classpath, registering corresponding bean definitions with a given registry (BeanFactory or ApplicationContext). |                                                              |      |
-| ClassPathScanningCandidateComponentProvider     |                                                              |                                                              |      |
-|                                                 | A component provider that provides candidate components from a base package. |                                                              |      |
-| CommonAnnotationBeanPostProcessor               |                                                              |                                                              |      |
-|                                                 | BeanPostProcessor implementation that supports common Java annotations out of the box, in particular the common annotations in the jakarta.annotation package. |                                                              |      |
-| CommonAnnotationBeanPostProcessor.LookupElement |                                                              |                                                              |      |
-|                                                 | Class representing generic injection information about an annotated field or setter method, supporting @Resource and related annotations. |                                                              |      |
-| ComponentScan                                   |                                                              |                                                              |      |
-|                                                 | Configures component scanning directives for use with @Configuration classes. |                                                              |      |
-| ComponentScanAnnotationParser                   |                                                              | @ComponentScan会被解析为一个Bean定义扫描器                   |      |
-|                                                 |                                                              |                                                              |      |
-| ComponentScan.Filter                            |                                                              |                                                              |      |
-|                                                 | Declares the type filter to be used as an include filter or exclude filter. |                                                              |      |
-| ComponentScanBeanDefinitionParser               |                                                              |                                                              |      |
-|                                                 | Parser for the <context:component-scan/> element.            |                                                              |      |
-| ComponentScans                                  |                                                              |                                                              |      |
-|                                                 | Container annotation that aggregates several ComponentScan annotations. |                                                              |      |
-| Condition                                       |                                                              |                                                              |      |
-|                                                 | A single condition that must be matched in order for a component to be registered. |                                                              |      |
-| Conditional                                     |                                                              |                                                              |      |
-|                                                 | Indicates that a component is only eligible for registration when all specified conditions match. |                                                              |      |
-| ConditionContext                                |                                                              |                                                              |      |
-|                                                 | Context information for use by Condition implementations.    |                                                              |      |
-| Configuration                                   |                                                              |                                                              |      |
-|                                                 | Indicates that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime, for example: |                                                              |      |
-| ConfigurationClassPostProcessor                 | BeanFactoryPostProcessor used for bootstrapping processing of @Configuration classes. | processConfigBeanDefinitions()核心方法                       |      |
-| ConfigurationClassUtils                         |                                                              |                                                              |      |
-|                                                 | Utilities for identifying and configuring Configuration classes. |                                                              |      |
-| ConfigurationCondition                          |                                                              |                                                              |      |
-|                                                 | A Condition that offers more fine-grained control when used with @Configuration. |                                                              |      |
-| ConfigurationCondition.ConfigurationPhase       |                                                              |                                                              |      |
-|                                                 | The various configuration phases where the condition could be evaluated. |                                                              |      |
-| ContextAnnotationAutowireCandidateResolver      |                                                              |                                                              |      |
-|                                                 | Complete implementation of the AutowireCandidateResolver strategy interface, providing support for qualifier annotations as well as for lazy resolution driven by the Lazy annotation in the context.annotation package. |                                                              |      |
-| DeferredImportSelector                          |                                                              |                                                              |      |
-|                                                 | A variation of ImportSelector that runs after all @Configuration beans have been processed. |                                                              |      |
-| DeferredImportSelector.Group                    |                                                              |                                                              |      |
-|                                                 | Interface used to group results from different import selectors. |                                                              |      |
-| DeferredImportSelector.Group.Entry              |                                                              |                                                              |      |
-|                                                 | An entry that holds the AnnotationMetadata of the importing Configuration class and the class name to import. |                                                              |      |
-| DependsOn                                       |                                                              |                                                              |      |
-|                                                 | Beans on which the current bean depends.                     |                                                              |      |
-| Description                                     |                                                              |                                                              |      |
-|                                                 | Adds a textual description to bean definitions derived from Component or Bean. |                                                              |      |
-| EnableAspectJAutoProxy                          |                                                              |                                                              |      |
-|                                                 | Enables support for handling components marked with AspectJ's @Aspect annotation, similar to functionality found in Spring's <aop:aspectj-autoproxy> XML element. |                                                              |      |
-| EnableLoadTimeWeaving                           |                                                              |                                                              |      |
-|                                                 | "Activates a Spring LoadTimeWeaver for this application context, available as a bean with the name ""loadTimeWeaver"", similar to the <context:load-time-weaver> element in Spring XML." |                                                              |      |
-| EnableLoadTimeWeaving.AspectJWeaving            |                                                              |                                                              |      |
-|                                                 | AspectJ weaving enablement options.                          |                                                              |      |
-| EnableMBeanExport                               |                                                              |                                                              |      |
-|                                                 | Enables default exporting of all standard MBeans from the Spring context, as well as all @ManagedResource annotated beans. |                                                              |      |
-| FilterType                                      |                                                              |                                                              |      |
-|                                                 | Enumeration of the type filters that may be used in conjunction with @ComponentScan. |                                                              |      |
-| FullyQualifiedAnnotationBeanNameGenerator       |                                                              |                                                              |      |
-|                                                 | An extension of AnnotationBeanNameGenerator that uses the fully qualified class name as the default bean name if an explicit bean name is not supplied via a supported type-level annotation such as @Component (see AnnotationBeanNameGenerator for details on supported annotations). |                                                              |      |
-| Import                                          |                                                              |                                                              |      |
-|                                                 | Indicates one or more component classes to import — typically @Configuration classes. |                                                              |      |
-| ImportAware                                     |                                                              |                                                              |      |
-|                                                 | Interface to be implemented by any @Configuration class that wishes to be injected with the AnnotationMetadata of the @Configuration class that imported it. |                                                              |      |
-| ImportAwareAotBeanPostProcessor                 |                                                              |                                                              |      |
-|                                                 | A BeanPostProcessor that honours ImportAware callback using a mapping computed at build time. |                                                              |      |
-| ImportBeanDefinitionRegistrar                   |                                                              |                                                              |      |
-|                                                 | Interface to be implemented by types that register additional bean definitions when processing @Configuration classes. |                                                              |      |
-| ImportResource                                  |                                                              |                                                              |      |
-|                                                 | Indicates one or more resources containing bean definitions to import. |                                                              |      |
-| ImportRuntimeHints                              |                                                              |                                                              |      |
-|                                                 | Indicates that one or more RuntimeHintsRegistrar implementations should be processed. |                                                              |      |
-| ImportSelector                                  |                                                              |                                                              |      |
-|                                                 | Interface to be implemented by types that determine which @Configuration class(es) should be imported based on a given selection criteria, usually one or more annotation attributes. |                                                              |      |
-| Jsr330ScopeMetadataResolver                     |                                                              |                                                              |      |
-|                                                 | Simple ScopeMetadataResolver implementation that follows JSR-330 scoping rules: defaulting to prototype scope unless Singleton is present. |                                                              |      |
-| Lazy                                            |                                                              |                                                              |      |
-|                                                 | Indicates whether a bean is to be lazily initialized.        |                                                              |      |
-| LoadTimeWeavingConfiguration                    |                                                              |                                                              |      |
-|                                                 | @Configuration class that registers a LoadTimeWeaver bean.   |                                                              |      |
-| LoadTimeWeavingConfigurer                       |                                                              |                                                              |      |
-|                                                 | Interface to be implemented by @Configuration classes annotated with @EnableLoadTimeWeaving that wish to customize the LoadTimeWeaver instance to be used. |                                                              |      |
-| MBeanExportConfiguration                        |                                                              |                                                              |      |
-|                                                 | @Configuration class that registers a AnnotationMBeanExporter bean. |                                                              |      |
-| Primary                                         |                                                              |                                                              |      |
-|                                                 | Indicates that a bean should be given preference when multiple candidates are qualified to autowire a single-valued dependency. |                                                              |      |
-| Profile                                         |                                                              |                                                              |      |
-|                                                 | Indicates that a component is eligible for registration when one or more specified profiles are active. |                                                              |      |
-| PropertySource                                  |                                                              |                                                              |      |
-|                                                 | Annotation providing a convenient and declarative mechanism for adding a PropertySource to Spring's Environment. |                                                              |      |
-| PropertySources                                 |                                                              |                                                              |      |
-|                                                 | Container annotation that aggregates several PropertySource annotations. |                                                              |      |
-| Role                                            |                                                              |                                                              |      |
-|                                                 | Indicates the 'role' hint for a given bean.                  |                                                              |      |
-| ScannedGenericBeanDefinition                    |                                                              |                                                              |      |
-|                                                 | Extension of the GenericBeanDefinition class, based on an ASM ClassReader, with support for annotation metadata exposed through the AnnotatedBeanDefinition interface. |                                                              |      |
-| Scope                                           |                                                              |                                                              |      |
-|                                                 | When used as a type-level annotation in conjunction with @Component, @Scope indicates the name of a scope to use for instances of the annotated type. |                                                              |      |
-| ScopedProxyMode                                 |                                                              |                                                              |      |
-|                                                 | Enumerates the various scoped-proxy options.                 |                                                              |      |
-| ScopeMetadata                                   |                                                              |                                                              |      |
-|                                                 | Describes scope characteristics for a Spring-managed bean including the scope name and the scoped-proxy behavior. |                                                              |      |
-| ScopeMetadataResolver                           |                                                              |                                                              |      |
-|                                                 | Strategy interface for resolving the scope of bean definitions. |                                                              |      |
-| TypeFilterUtils                                 | Collection of utilities for working with @ComponentScan type filters. |                                                              |      |
-|                                                 |                                                              |                                                              |      |
-| EnableSpringConfigured                          | Signals the current application context to apply dependency injection to non-managed classes that are instantiated outside the Spring bean factory (typically classes annotated with the @Configurable annotation). |                                                              |      |
-|                                                 |                                                              |                                                              |      |
-| SpringConfiguredConfiguration                   | @Configuration class that registers an AnnotationBeanConfigurerAspect capable of performing dependency injection services for non-Spring managed objects annotated with @Configurable. |                                                              |      |
-|                                                 |                                                              |                                                              |      |
+| org.springframework.context.annotation          |            |      | 详解                                                         |                                                              |      |
+| ----------------------------------------------- | ---------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| AdviceMode                                      |            |      | Enumeration used to determine whether JDK proxy-based or AspectJ weaving-based advice should be applied. |                                                              |      |
+| AdviceModeImportSelector<A extends Annotation>  |            |      | Convenient base class for ImportSelector implementations that select imports based on an AdviceMode value from an annotation (such as the @Enable* annotations). |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotatedBeanDefinitionReader                   |            |      | Convenient adapter for programmatic registration of bean classes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationBeanNameGenerator                     |            |      | BeanNameGenerator implementation for bean classes annotated with the @Component annotation or with another annotation that is itself annotated with @Component as a meta-annotation. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationConfigApplicationContext              |            |      | Standalone application context, accepting component classes as input — in particular @Configuration-annotated classes, but also plain @Component types and JSR-330 compliant classes using jakarta.inject annotations. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationConfigBeanDefinitionParser            |            |      | Parser for the <context:annotation-config/> element.         |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationConfigRegistry                        |            |      | Common interface for annotation config application contexts, defining AnnotationConfigRegistry.register(java.lang.Class<?>...) and AnnotationConfigRegistry.scan(java.lang.String...) methods. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationConfigUtils                           |            |      | Utility class that allows for convenient registration of common BeanPostProcessor and BeanFactoryPostProcessor definitions for annotation-based configuration. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AnnotationScopeMetadataResolver                 |            |      | A ScopeMetadataResolver implementation that by default checks for the presence of Spring's @Scope annotation on the bean class. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| AutoProxyRegistrar                              |            |      | Registers an auto proxy creator against the current BeanDefinitionRegistry as appropriate based on an @Enable* annotation having mode and proxyTargetClass attributes set to the correct values. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Bean                                            | @interface |      | Indicates that a method produces a bean to be managed by the Spring container. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| **ClassPathBeanDefinitionScanner**              |            |      | A bean definition scanner that detects bean candidates on the classpath, registering corresponding bean definitions with a given registry (BeanFactory or ApplicationContext). | ClassPathScanningCandidateComponentProvider子类 scan() doScan() addIncludeFilter() 很多三方框架都自定义这个类的子类 |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ClassPathScanningCandidateComponentProvider     |            |      | A component provider that provides candidate components from a base package. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| CommonAnnotationBeanPostProcessor               |            |      | BeanPostProcessor implementation that supports common Java annotations out of the box, in particular the common annotations in the jakarta.annotation package. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| CommonAnnotationBeanPostProcessor.LookupElement |            |      | Class representing generic injection information about an annotated field or setter method, supporting @Resource and related annotations. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ComponentScan                                   | @interface |      | Configures component scanning directives for use with @Configuration classes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ComponentScanAnnotationParser                   |            |      |                                                              | @ComponentScan会被解析为一个Bean定义扫描器                   |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ComponentScan.Filter                            |            |      | Declares the type filter to be used as an include filter or exclude filter. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ComponentScanBeanDefinitionParser               |            |      | Parser for the <context:component-scan/> element.            |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ComponentScans                                  |            |      | Container annotation that aggregates several ComponentScan annotations. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Condition                                       |            |      | A single condition that must be matched in order for a component to be registered. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Conditional                                     | @interface |      | Indicates that a component is only eligible for registration when all specified conditions match. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ConditionContext                                |            |      | Context information for use by Condition implementations.    |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Configuration                                   | @interface |      | Indicates that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime, for example: |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ConfigurationClassPostProcessor                 |            |      | BeanFactoryPostProcessor used for bootstrapping processing of @Configuration classes. | processConfigBeanDefinitions()核心方法                       |      |
+| ConfigurationClassUtils                         |            |      | Utilities for identifying and configuring Configuration classes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ConfigurationCondition                          |            |      | A Condition that offers more fine-grained control when used with @Configuration. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ConfigurationCondition.ConfigurationPhase       |            |      | The various configuration phases where the condition could be evaluated. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ContextAnnotationAutowireCandidateResolver      |            |      | Complete implementation of the AutowireCandidateResolver strategy interface, providing support for qualifier annotations as well as for lazy resolution driven by the Lazy annotation in the context.annotation package. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| DeferredImportSelector                          |            |      | A variation of ImportSelector that runs after all @Configuration beans have been processed. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| DeferredImportSelector.Group                    |            |      | Interface used to group results from different import selectors. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| DeferredImportSelector.Group.Entry              |            |      | An entry that holds the AnnotationMetadata of the importing Configuration class and the class name to import. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| DependsOn                                       | @interface |      | Beans on which the current bean depends.                     |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Description                                     | @interface |      | Adds a textual description to bean definitions derived from Component or Bean. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| EnableAspectJAutoProxy                          | @interface |      | Enables support for handling components marked with AspectJ's @Aspect annotation, similar to functionality found in Spring's <aop:aspectj-autoproxy> XML element. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| EnableLoadTimeWeaving                           | @interface |      | "Activates a Spring LoadTimeWeaver for this application context, available as a bean with the name ""loadTimeWeaver"", similar to the <context:load-time-weaver> element in Spring XML." |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| EnableLoadTimeWeaving.AspectJWeaving            | @interface |      | AspectJ weaving enablement options.                          |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| EnableMBeanExport                               |            |      | Enables default exporting of all standard MBeans from the Spring context, as well as all @ManagedResource annotated beans. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| FilterType                                      |            |      | Enumeration of the type filters that may be used in conjunction with @ComponentScan. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| FullyQualifiedAnnotationBeanNameGenerator       |            |      | An extension of AnnotationBeanNameGenerator that uses the fully qualified class name as the default bean name if an explicit bean name is not supplied via a supported type-level annotation such as @Component (see AnnotationBeanNameGenerator for details on supported annotations). |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Import                                          | @interface |      | Indicates one or more component classes to import — typically @Configuration classes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportAware                                     |            |      | Interface to be implemented by any @Configuration class that wishes to be injected with the AnnotationMetadata of the @Configuration class that imported it. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportAwareAotBeanPostProcessor                 |            |      | A BeanPostProcessor that honours ImportAware callback using a mapping computed at build time. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportBeanDefinitionRegistrar                   |            |      | Interface to be implemented by types that register additional bean definitions when processing @Configuration classes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportResource                                  | @interface |      | Indicates one or more resources containing bean definitions to import. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportRuntimeHints                              |            |      | Indicates that one or more RuntimeHintsRegistrar implementations should be processed. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ImportSelector                                  |            |      | Interface to be implemented by types that determine which @Configuration class(es) should be imported based on a given selection criteria, usually one or more annotation attributes. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Jsr330ScopeMetadataResolver                     |            |      | Simple ScopeMetadataResolver implementation that follows JSR-330 scoping rules: defaulting to prototype scope unless Singleton is present. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Lazy                                            | @interface |      | Indicates whether a bean is to be lazily initialized.        |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| LoadTimeWeavingConfiguration                    |            |      | @Configuration class that registers a LoadTimeWeaver bean.   |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| LoadTimeWeavingConfigurer                       |            |      | Interface to be implemented by @Configuration classes annotated with @EnableLoadTimeWeaving that wish to customize the LoadTimeWeaver instance to be used. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| MBeanExportConfiguration                        |            |      | @Configuration class that registers a AnnotationMBeanExporter bean. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Primary                                         | @interface |      | Indicates that a bean should be given preference when multiple candidates are qualified to autowire a single-valued dependency. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Profile                                         | @interface |      | Indicates that a component is eligible for registration when one or more specified profiles are active. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| PropertySource                                  | @interface |      | Annotation providing a convenient and declarative mechanism for adding a PropertySource to Spring's Environment. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| PropertySources                                 |            |      | Container annotation that aggregates several PropertySource annotations. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Role                                            | @interface |      | Indicates the 'role' hint for a given bean.                  |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ScannedGenericBeanDefinition                    |            |      | Extension of the GenericBeanDefinition class, based on an ASM ClassReader, with support for annotation metadata exposed through the AnnotatedBeanDefinition interface. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| Scope                                           | @interface |      | When used as a type-level annotation in conjunction with @Component, @Scope indicates the name of a scope to use for instances of the annotated type. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ScopedProxyMode                                 |            |      | Enumerates the various scoped-proxy options.                 |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ScopeMetadata                                   |            |      | Describes scope characteristics for a Spring-managed bean including the scope name and the scoped-proxy behavior. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| ScopeMetadataResolver                           |            |      | Strategy interface for resolving the scope of bean definitions. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| TypeFilterUtils                                 |            |      | Collection of utilities for working with @ComponentScan type filters. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| EnableSpringConfigured                          |            |      | Signals the current application context to apply dependency injection to non-managed classes that are instantiated outside the Spring bean factory (typically classes annotated with the @Configurable annotation). |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+| SpringConfiguredConfiguration                   |            |      | @Configuration class that registers an AnnotationBeanConfigurerAspect capable of performing dependency injection services for non-Spring managed objects annotated with @Configurable. |                                                              |      |
+|                                                 |            |      |                                                              |                                                              |      |
+
+
+
+
+
+```
+AnnotationConfigRegistry子类
+```
+
+
+
+AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+AnnotationConfigReactiveWebServerApplicationContext (org.springframework.boot.web.reactive.context)
+AnnotationConfigWebApplicationContext (org.springframework.web.context.support)
+AnnotationConfigApplicationContext (org.springframework.context.annotation)
+    AnnotationConfigReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+AnnotationConfigServletWebApplicationContext (org.springframework.boot.web.servlet.context)
+
+
+
+
+
+org.springframework.context.annotation.AnnotatedBeanDefinitionReader#doRegisterBean 断点
+
+
+
+
+
+```
+doRegisterBean:253, AnnotatedBeanDefinitionReader (org.springframework.context.annotation)
+registerBean:147, AnnotatedBeanDefinitionReader (org.springframework.context.annotation)
+register:137, AnnotatedBeanDefinitionReader (org.springframework.context.annotation)
+load:157, BeanDefinitionLoader (org.springframework.boot)
+load:136, BeanDefinitionLoader (org.springframework.boot)
+load:128, BeanDefinitionLoader (org.springframework.boot)
+load:691, SpringApplication (org.springframework.boot)
+prepareContext:392, SpringApplication (org.springframework.boot)
+run:314, SpringApplication (org.springframework.boot)
+run:1237, SpringApplication (org.springframework.boot)
+run:1226, SpringApplication (org.springframework.boot)
+
+```
+
+
+
+
+
+org.springframework.boot.BeanDefinitionLoader#annotatedReader 中有该类的对象
+
+
+
+
+
+```
+ImportAware接口实现类 LoadTimeWeavingConfiguration
+```
+
+
+
+
+
+org.springframework.context.annotation.ConfigurationClassPostProcessor#postProcessBeanFactory
+
+代码
+
+```
+beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
+```
+
+
 
 
 
@@ -389,12 +458,18 @@ AnnotatedBeanDefinitionReader
 | ---------------------------------- | ---- | ---- |
 |                                    |      |      |
 | Classes                            |      |      |
-|                                    |      |      |
+|  AbstractPropertyLoadingBeanDefinitionParser          |  abstract    |      |
 | ContextNamespaceHandler            |      |      |
+|   LoadTimeWeaverBeanDefinitionParser        |      |  load-time-weaver xml文件子节点   |
+|   MBeanExportBeanDefinitionParser           |      |  mbean-export   |
+|  MBeanServerBeanDefinitionParser     |      | mbean-server |
+|  PropertyOverrideBeanDefinitionParser       |      | property-override  |
+|  PropertyPlaceholderBeanDefinitionParser    |      | property-placeholder   |
+|  SpringConfiguredBeanDefinitionParser        |      |  spring-configured  |
 
+spring-context.xsd
 
-
-
+ContextNamespaceHandler继承NamespaceHandlerSupport来处理xml
 
 #### org.springframework.context.event
 
@@ -428,9 +503,131 @@ AnnotatedBeanDefinitionReader
 |                                     |      |      |
 | EventListener                       |      |      |
 
+XXXEvent
+ApplicationContextEvent
+ContextClosedEvent
+ContextRefreshedEvent
+ContextStartedEvent
+ContextStoppedEvent
+
+SmartApplicationListener接口
+子类
+GenericApplicationListenerAdapter (org.springframework.context.event)
+RefreshEventListener (org.springframework.cloud.endpoint.event)
+CloseContextOnFailureApplicationListener in BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+AwaitingNonWebApplicationListener (org.apache.dubbo.spring.boot.context.event)
+RestartListener (org.springframework.cloud.context.restart)
+ConfigFileApplicationListener (org.springframework.boot.context.config)
+    Anonymous in ConfigFileApplicationContextInitializer (org.springframework.boot.test.context)
+SourceFilteringListener (org.springframework.context.event)
+
+
+SmartApplicationListener接口是Spring框架中的一个事件监听器接口，用于监听应用程序中的事件并执行相应的逻辑。与普通的ApplicationListener接口相比，SmartApplicationListener接口提供了更多的灵活性和扩展性。
+
+下面是列出的子类以及它们的作用和区别：
+
+1. GenericApplicationListenerAdapter (org.springframework.context.event)：
+GenericApplicationListenerAdapter是一个适配器类，用于将普通的ApplicationListener适配成SmartApplicationListener。它实现了SmartApplicationListener接口，并将普通的ApplicationListener委托给其处理。
+
+2. RefreshEventListener (org.springframework.cloud.endpoint.event)：
+RefreshEventListener是用于监听Spring Cloud中的刷新事件的监听器。它负责处理应用程序中的RefreshEvent事件，通常与Spring Cloud Config等组件一起使用，用于动态刷新配置。
+
+3. CloseContextOnFailureApplicationListener in BootstrapApplicationListener (org.springframework.cloud.bootstrap)：
+CloseContextOnFailureApplicationListener是BootstrapApplicationListener中的一个内部类，用于在引导过程中处理应用程序启动失败的情况，关闭应用程序上下文。
+
+4. AwaitingNonWebApplicationListener (org.apache.dubbo.spring.boot.context.event)：
+AwaitingNonWebApplicationListener是Dubbo框架中的一个监听器，用于等待非Web应用程序上下文的加载完成。它主要用于Dubbo在Spring Boot环境下的初始化过程。
+
+5. RestartListener (org.springframework.cloud.context.restart)：
+RestartListener是用于监听Spring Cloud应用程序的重启事件的监听器。它负责处理应用程序的重启逻辑，通常与Spring Cloud的热加载和热部署功能一起使用。
+
+6. ConfigFileApplicationListener (org.springframework.boot.context.config)：
+ConfigFileApplicationListener是Spring Boot中的一个监听器，用于加载和解析应用程序的配置文件。它负责处理应用程序配置文件的加载和刷新，支持多种配置文件格式和位置。
+
+7. Anonymous in ConfigFileApplicationContextInitializer (org.springframework.boot.test.context)：
+Anonymous是ConfigFileApplicationContextInitializer中的一个匿名内部类，用于为测试环境中的应用程序上下文初始化提供配置文件的加载和解析功能。
+
+8. SourceFilteringListener (org.springframework.context.event)：
+SourceFilteringListener是一个用于过滤事件源的监听器。它可以根据特定的事件源类型来过滤掉不感兴趣的事件，只处理目标类型的事件。
+
+这些类的作用和区别主要体现在监听的事件类型、处理的逻辑和使用的上下文环境等方面。它们各自针对不同的场景和需求，提供了特定的事件监听和处理功能，用于增强和扩展应用程序的事件驱动能力。
+
+
+EventListenerFactory接口
+子类
+DefaultEventListenerFactory
+
+
+ApplicationEventMulticaster接口
+
+子类
+AbstractApplicationEventMulticaster (org.springframework.context.event)
+    SimpleApplicationEventMulticaster (org.springframework.context.event)
+
+EventListenerMethodProcessor类 实现了 BeanFactoryPostProcessor接口
+属性
+	private List<EventListenerFactory> eventListenerFactories;
+
+在Spring 5.2.9版本中，EventListenerMethodProcessor是Spring框架中的一个事件监听器方法处理器。它用于处理使用@EventListener注解标记的方法，实现事件的发布与监听。
+
+EventListenerMethodProcessor的主要作用是将带有@EventListener注解的方法注册为事件监听器，并在相应的事件发生时触发这些方法的执行。
+
+具体功能和作用如下：
+
+1. 事件监听器的注册：
+EventListenerMethodProcessor会扫描Spring容器中的bean，检查bean中的方法是否带有@EventListener注解。如果发现带有@EventListener注解的方法，它会将这些方法注册为事件监听器。
+
+2. 事件发布与监听：
+一旦被注册为事件监听器，带有@EventListener注解的方法就能够监听到相应的事件。当事件被发布时，EventListenerMethodProcessor会根据事件类型找到对应的监听器方法，并触发其执行。
+
+3. 事件参数注入：
+带有@EventListener注解的方法可以定义参数，用于接收事件对象或其他相关参数。EventListenerMethodProcessor会根据方法参数的类型，将相应的事件对象或参数传递给监听器方法。
+
+4. 异步事件监听：
+EventListenerMethodProcessor还支持异步事件监听。当方法被标记为@EventListener并且使用@Async注解时，事件监听器方法将在异步线程中执行。
+
+通过使用EventListenerMethodProcessor，开发者可以方便地在Spring应用中使用事件驱动的编程模型。它提供了一种简洁的方式来定义和处理事件，让应用程序的不同组件之间能够通过事件进行解耦和交互，从而实现更灵活、可扩展的应用架构。
 
 
 
+org.springframework.context.event.EventListenerMethodProcessor#postProcessBeanFactory()方法断点
+
+
+	@Override
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+		this.beanFactory = beanFactory;
+	
+		Map<String, EventListenerFactory> beans = beanFactory.getBeansOfType(EventListenerFactory.class, false, false);
+		List<EventListenerFactory> factories = new ArrayList<>(beans.values());
+		AnnotationAwareOrderComparator.sort(factories);
+		this.eventListenerFactories = factories;
+	}
+
+是查找 EventListenerFactory 的ioc容器对象，不是EventListener对象
+
+postProcessBeanFactory:93, EventListenerMethodProcessor (org.springframework.context.event)
+invokeBeanFactoryPostProcessors:291, PostProcessorRegistrationDelegate (org.springframework.context.support)
+invokeBeanFactoryPostProcessors:182, PostProcessorRegistrationDelegate (org.springframework.context.support)
+invokeBeanFactoryPostProcessors:707, AbstractApplicationContext (org.springframework.context.support)
+refresh:533, AbstractApplicationContext (org.springframework.context.support)
+refresh:758, SpringApplication (org.springframework.boot)
+refresh:750, SpringApplication (org.springframework.boot)
+refreshContext:397, SpringApplication (org.springframework.boot)
+run:315, SpringApplication (org.springframework.boot)
+run:140, SpringApplicationBuilder (org.springframework.boot.builder)
+bootstrapServiceContext:212, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:117, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:74, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+doInvokeListener:172, SimpleApplicationEventMulticaster (org.springframework.context.event)
+invokeListener:165, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:139, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:127, SimpleApplicationEventMulticaster (org.springframework.context.event)
+environmentPrepared:80, EventPublishingRunListener (org.springframework.boot.context.event)
+environmentPrepared:53, SpringApplicationRunListeners (org.springframework.boot)
+prepareEnvironment:345, SpringApplication (org.springframework.boot)
+run:308, SpringApplication (org.springframework.boot)
+run:1237, SpringApplication (org.springframework.boot)
+run:1226, SpringApplication (org.springframework.boot)
 
 #### org.springframework.context.expression
 

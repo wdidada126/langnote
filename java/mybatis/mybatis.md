@@ -1644,10 +1644,21 @@ BaseBuilder (org.apache.ibatis.builder)
     XMLScriptBuilder (org.apache.ibatis.scripting.xmltags)
     XMLConfigBuilder (org.apache.ibatis.builder.xml)
     SqlSourceBuilder (org.apache.ibatis.builder)
-    XMLStatementBuilder (org.apache.ibatis.builder.xml)
+    XMLStatementBuilder (org.apache.ibatis.builder.xml)  接口对应文件的 select|insert|update|delete
 
 
+这些类都是 MyBatis 框架中的组成部分，并且都扮演着重要的角色。以下是这些类的简单描述：
 
+1. **BaseBuilder (org.apache.ibatis.builder)**: 这是一个基础的构建类，提供了一些公用的构建函数以及一些全局的配置信息。其他的构建类都继承自这个类。
+2. **XMLMapperBuilder (org.apache.ibatis.builder.xml)**: 这个类的主要职责是解析 Mapper XML 文件，将 XML 文件中的 SQL 语句和结果映射转化为 MyBatis 框架可以理解的内部数据结构。
+3. **ParameterMappingTokenHandler in SqlSourceBuilder (org.apache.ibatis.builder)**: 这个类用于处理 SQL 语句中的参数占位符，将它们转化为 `?`，同时生成参数映射列表。
+4. **MapperBuilderAssistant (org.apache.ibatis.builder)**: 这个类是一个辅助类，提供了一些可以在创建映射器时使用的辅助函数。
+5. **XMLScriptBuilder (org.apache.ibatis.scripting.xmltags)**: 这个类用于解析 SQL 脚本，将 XML 格式的 SQL 脚本转化为 MyBatis 可以理解的内部数据结构。
+6. **XMLConfigBuilder (org.apache.ibatis.builder.xml)**: 这个类用于解析 MyBatis 的全局配置文件，将 XML 格式的配置文件转化为 MyBatis 可以理解的内部数据结构。
+7. **SqlSourceBuilder (org.apache.ibatis.builder)**: 这个类用于解析 SQL 语句，将 SQL 语句和参数映射列表转化为 SqlSource 对象。
+8. **XMLStatementBuilder (org.apache.ibatis.builder.xml)**: 这个类用于解析 Mapper XML 文件中的 `<select>`, `<update>`, `<delete>`, `<insert>` 等标签，将它们转化为 MyBatis 可以理解的内部数据结构。
+
+XMLMapperBuilder 包括 result cache    select | update |insert |delate XMLStatementBuilder跟增删改查
 
 
 
@@ -1663,7 +1674,25 @@ BaseBuilder (org.apache.ibatis.builder)
 | ProviderSqlSource                    |      |                                                              |      |
 
 
+ProviderSqlSource RawSqlSource DynamicSqlSource StaticSqlSource
 
+ProviderSqlSource、RawSqlSource、DynamicSqlSource和StaticSqlSource都是MyBatis框架中的SqlSource接口的实现类，用于封装SQL语句以及相关参数信息。
+
+1. ProviderSqlSource：
+ProviderSqlSource是一个相对较新的实现类，它允许你使用Java 8的lambda表达式或者方法引用来动态生成SQL语句。它通过指定一个提供SQL的Java方法来创建SQL语句，可以在Java代码中编写动态的SQL逻辑。这个实现类在MyBatis 3.4.0版本中引入。
+2. RawSqlSource：
+RawSqlSource是一个简单的实现类，它接受一个预定义的SQL语句作为参数。这个SQL语句可以包含静态的SQL文本以及占位符，占位符将在执行时被具体的参数取代。这种实现方式适用于那些在编写SQL语句时已经确定了所有的逻辑和参数。
+3. DynamicSqlSource：
+DynamicSqlSource是一个更加灵活的实现类，它可以根据运行时的条件和参数来动态生成SQL语句。它接受一个包含动态SQL逻辑的XML配置或者是一个包含动态SQL逻辑的字符串。DynamicSqlSource可以使用MyBatis提供的动态标签（如if、choose、foreach等）来构建具有条件判断和循环等逻辑的SQL语句。
+4. StaticSqlSource：
+StaticSqlSource是一个简单的实现类，它接受一个静态的SQL语句作为参数。这个SQL语句在编写时已经是完整的，不包含任何动态生成的逻辑和条件。
+总结：
+- ProviderSqlSource允许使用Java方法动态生成SQL语句。
+- RawSqlSource接受预定义的SQL语句和占位符，适用于已知所有逻辑和参数的情况。
+- DynamicSqlSource通过动态SQL逻辑生成SQL语句，可以根据运行时条件和参数进行灵活的SQL构建。
+- StaticSqlSource接受静态的完整SQL语句。
+
+这些实现类都是用于将SQL语句和参数封装成可执行的对象，供MyBatis框架使用。它们的选择取决于具体的需求和场景。
 
 
 ### org.apache.ibatis.builder.xml 
@@ -2335,6 +2364,43 @@ ResultSetWrapper这个类也很重要，一堆属性
 | VendorDatabaseIdProvider  |      | Vendor DatabaseId provider.                                  |                                                              |
 
 
+ParameterMapping
+ResultMapping 
+
+
+在MyBatis中,ParameterMapping和ResultMapping都是描述映射关系的类,但用途不同:
+
+1. ParameterMapping用于描述Java方法参数和SQL语句参数之间的映射关系。 
+
+- 它包含参数名、Java类型等信息。
+- 用于参数准备,将Java参数值设置到SQL参数上。
+
+2. ResultMapping用于描述SQL结果集列和Java对象属性之间的映射关系。
+
+- 它包含数据库列名、Java属性名、类型处理器等信息。 
+- 用于结果映射,将SQL查询结果中的列值映射到Java对象属性上。
+
+举例来说:
+
+```
+// ParameterMapping
+@Select("select * from user where id = #{id}") 
+User findUser(int id);
+
+// ResultMapping  
+@Select("...")
+@Results({
+  @Result(property="userName", column="user_name")
+})
+User findUser(int id);
+```
+
+所以:
+
+- ParameterMapping负责输入映射,用于参数绑定。
+- ResultMapping负责输出映射,用于结果映射。
+
+两者共同实现了MyBatis中的参数映射和结果映射功能。
 
 
 ## org.apache.ibatis.ognl
@@ -2349,6 +2415,34 @@ ResultSetWrapper这个类也很重要，一堆属性
 | ASTBitNegate           |      |      |
 | ASTBitOr               |      |      |
 
+一大堆ASt开头的类
+在MyBatis中,org.apache.ibatis.ognl包下面一大堆以AST开头的类都是用于构建OGNL表达式树的节点类。
+
+其中:
+
+- AST节点是对OGNL表达式的抽象语法树(Abstract Syntax Tree)的实现。
+
+- OGNL表示Object-Graph Navigation Language,是一种表达式语言,可以用来访问对象图属性。
+
+- MyBatis使用OGNL解析配置和映射文件中的表达式。
+
+具体来看,这些AST节点类主要包括:
+
+- ASTAssign: 赋值表达式节点
+- ASTCompilationUnit: 编译单元根节点 
+- ASTEq: 相等比对表达式节点
+- ASTFalse: false布尔表达式节点
+- ASTGt: 大于表达式节点
+- ASTGte: 大于等于表达式节点  
+- ASTLt: 小于表达式节点
+- ASTLte: 小于等于表达式节点
+- ASTNot: 非表达式节点
+- ASTRoot: 树根节点
+- ASTTrue: true布尔表达式节点
+
+等等。每个节点类都代表一种OGNL表达式类型。 
+
+MyBatis通过这些节点构建OGNL表达式树,然后解释执行,来实现动态SQL、映射属性等功能。
 
 ### org.apache.ibatis.ognl.enhance
 | org.apache.ibatis.ognl.enhance | 类型 | 英文说明 | 说明 |
@@ -2425,6 +2519,45 @@ XPathParser的主要作用有:
 
 
 
+Java中可以通过XPath表达式来查询XML文档,示例代码如下:
+
+1. 导入JAXP XPath相关依赖:
+
+```xml
+<dependency>
+  <groupId>javax.xml.xpath</groupId>
+  <artifactId>jaxp-api</artifactId>
+  <version>1.4.5</version>
+</dependency>
+```
+
+2. 解析XML文档为Document对象:
+
+```java  
+DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+Document doc = builder.parse(new File("data.xml"));
+```
+
+3. 编写XPath表达式查询节点:
+
+```java
+XPath xpath = XPathFactory.newInstance().newXPath();
+
+// 查询id属性值为1的user节点
+XPathExpression expr = xpath.compile("/users/user[@id=1]"); 
+
+Node user = (Node) expr.evaluate(doc, XPathConstants.NODE);
+```
+
+4. 可以通过XPath各种函数查询属性、文本等:
+
+```java
+// 查询user的name文本  
+String name = xpath.evaluate("user/name/text()", doc);
+```
+
+XPath提供了非常强大的文档查询功能,可以灵活地定位元素、提取文本等,非常适合处理XML。
+
 
 
 GenericTokenParser PropertyParser XPathParser区别
@@ -2475,7 +2608,7 @@ XPath表达式解析器,用于解析和处理XML文档的XPath表达式,从XML�
 | Signature                |    注解  | The annotation that indicate the method signature.       |      |
 |                          |      |                                                          |      |
 
-
+Plugin是动态代理 Invocation这个类，dubbo中也有类似的，mybatis中
 
 
 ## org.apache.ibatis.reflection 
@@ -2497,6 +2630,49 @@ XPath表达式解析器,用于解析和处理XML文档的XPath表达式,从XML�
 | SystemMetaObject                                             |      |                                                              |      |
 | TypeParameterResolver                                        |      |                                                              |      |
 |                                                              |      |                                                              |      |
+
+
+ReflectorFactory接口
+  Reflector findForClass(Class<?> type);
+org.apache.ibatis.reflection.Reflector 核心类
+属性
+  private final Map<String, Invoker> setMethods = new HashMap<String, Invoker>();
+
+org.apache.ibatis.reflection.invoker.Invoker
+
+
+```java
+public interface Invoker {
+  Object invoke(Object target, Object[] args) throws IllegalAccessException, InvocationTargetException;
+
+  Class<?> getType();
+}
+```
+
+GetFieldInvoker (org.apache.ibatis.reflection.invoker)
+SetFieldInvoker (org.apache.ibatis.reflection.invoker)
+MethodInvoker (org.apache.ibatis.reflection.invoker)
+
+
+GetFieldInvoker、SetFieldInvoker和MethodInvoker是MyBatis框架中org.apache.ibatis.reflection.invoker包下的类，用于反射调用对象的字段和方法。
+
+1. GetFieldInvoker：
+GetFieldInvoker是一个用于获取对象字段值的反射调用器。它通过反射获取对象的指定字段的值，并返回该值。这个类通常用于MyBatis框架内部的结果映射过程，用于从结果集中获取字段的值并设置到对象中。
+
+2. SetFieldInvoker：
+SetFieldInvoker是一个用于设置对象字段值的反射调用器。它通过反射设置对象的指定字段的值。这个类通常用于MyBatis框架内部的参数设置过程，用于将参数值设置到对象的字段中。
+
+3. MethodInvoker：
+MethodInvoker是一个用于调用对象方法的反射调用器。它通过反射调用对象的指定方法，并返回方法的执行结果。这个类通常用于MyBatis框架内部的方法调用过程，比如调用对象的getter、setter方法或自定义的映射方法。
+
+区别：
+- GetFieldInvoker和SetFieldInvoker主要用于对对象的字段进行读取和设置操作，而MethodInvoker则用于对对象的方法进行调用。
+- GetFieldInvoker和SetFieldInvoker是针对字段的操作，而MethodInvoker是针对方法的操作。
+- GetFieldInvoker用于获取字段值，SetFieldInvoker用于设置字段值，而MethodInvoker用于调用方法并返回方法的执行结果。
+- GetFieldInvoker和SetFieldInvoker通常用于结果映射和参数设置过程，MethodInvoker用于方法调用过程。
+
+这些反射调用器在MyBatis框架中起到了关键的作用，帮助实现了对象字段值的读取和设置，以及方法的动态调用。它们是实现数据映射、参数绑定和方法调用等核心功能的重要组成部分。
+
 
 | org.apache.ibatis.reflection.factory                         | 类型 | 说明 |
 | ------------------------------------------------------------ | ---- | ---- |
@@ -2602,6 +2778,19 @@ select
 | XMLScriptBuilder.WhereHandler | | | where |
 
 
+SqlNode接口及其子类
+StaticTextSqlNode (org.apache.ibatis.scripting.xmltags)
+MixedSqlNode (org.apache.ibatis.scripting.xmltags)
+TextSqlNode (org.apache.ibatis.scripting.xmltags)
+ForEachSqlNode (org.apache.ibatis.scripting.xmltags)
+IfSqlNode (org.apache.ibatis.scripting.xmltags)
+VarDeclSqlNode (org.apache.ibatis.scripting.xmltags)
+TrimSqlNode (org.apache.ibatis.scripting.xmltags)
+    WhereSqlNode (org.apache.ibatis.scripting.xmltags)
+    SetSqlNode (org.apache.ibatis.scripting.xmltags)
+ChooseSqlNode (org.apache.ibatis.scripting.xmltags)
+
+xml文件里面的tag
 
 
 
@@ -2779,7 +2968,20 @@ Configuration类属性很重要
 | TransactionException          |      |                                |      |
 | TransactionFactory            |      | Creates Transaction instances. |      |
 |                               |      |                                |      |
+TransactionFactory 工厂接口创建Transaction
 
+
+ManagedTransaction (org.apache.ibatis.transaction.managed)
+JdbcTransaction (org.apache.ibatis.transaction.jdbc)
+
+
+分别在两个子包里面
+
+      transaction.commit();
+      transaction.rollback();
+        transaction.getTimeout()
+    transaction.getConnection()
+BaseExecutor中有Transaction对象
 
 ### org.apache.ibatis.transaction.transaction.jdbc
 
@@ -2860,3 +3062,57 @@ Configuration类属性很重要
 | YearMonthTypeHandler                      |      | Type Handler for YearMonth.                                  |      |
 | YearTypeHandler                           |      |                                                              |      |
 | ZonedDateTimeTypeHandler                  |      |                                                              |      |
+
+
+TypeHandler<T> 接口子类
+
+
+BaseTypeHandler (org.apache.ibatis.type)
+    NClobTypeHandler (org.apache.ibatis.type)
+    ClobReaderTypeHandler (org.apache.ibatis.type)
+    OffsetTimeTypeHandler (org.apache.ibatis.type)
+    ByteObjectArrayTypeHandler (org.apache.ibatis.type)
+    DateOnlyTypeHandler (org.apache.ibatis.type)
+    BlobTypeHandler (org.apache.ibatis.type)
+    DateTypeHandler (org.apache.ibatis.type)
+    IntegerTypeHandler (org.apache.ibatis.type)
+    SqlTimeTypeHandler (org.apache.ibatis.type)
+    NStringTypeHandler (org.apache.ibatis.type)
+    CharacterTypeHandler (org.apache.ibatis.type)
+    ArrayTypeHandler (org.apache.ibatis.type)
+    StringTypeHandler (org.apache.ibatis.type)
+    EnumOrdinalTypeHandler (org.apache.ibatis.type)
+    BigDecimalTypeHandler (org.apache.ibatis.type)
+    BooleanTypeHandler (org.apache.ibatis.type)
+    SqlTimestampTypeHandler (org.apache.ibatis.type)
+    BlobInputStreamTypeHandler (org.apache.ibatis.type)
+    BlobByteObjectArrayTypeHandler (org.apache.ibatis.type)
+    MonthTypeHandler (org.apache.ibatis.type)
+    EnumTypeHandler (org.apache.ibatis.type)
+    FloatTypeHandler (org.apache.ibatis.type)
+    TimeOnlyTypeHandler (org.apache.ibatis.type)
+    ByteTypeHandler (org.apache.ibatis.type)
+    YearMonthTypeHandler (org.apache.ibatis.type)
+    InstantTypeHandler (org.apache.ibatis.type)
+    ObjectTypeHandler (org.apache.ibatis.type)
+    ClobTypeHandler (org.apache.ibatis.type)
+    DoubleTypeHandler (org.apache.ibatis.type)
+    ShortTypeHandler (org.apache.ibatis.type)
+    LongTypeHandler (org.apache.ibatis.type)
+    LocalDateTypeHandler (org.apache.ibatis.type)
+    UnknownTypeHandler (org.apache.ibatis.type)
+    BigIntegerTypeHandler (org.apache.ibatis.type)
+    ByteArrayTypeHandler (org.apache.ibatis.type)
+    OffsetDateTimeTypeHandler (org.apache.ibatis.type)
+    JapaneseDateTypeHandler (org.apache.ibatis.type)
+    LocalDateTimeTypeHandler (org.apache.ibatis.type)
+    ZonedDateTimeTypeHandler (org.apache.ibatis.type)
+    SqlDateTypeHandler (org.apache.ibatis.type)
+    YearTypeHandler (org.apache.ibatis.type)
+    LocalTimeTypeHandler (org.apache.ibatis.type)
+
+注意泛型
+NClobTypeHandler extends BaseTypeHandler<String>
+IntegerTypeHandler extends BaseTypeHandler<Integer>
+
+自定义类型转换器
