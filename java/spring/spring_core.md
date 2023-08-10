@@ -1508,6 +1508,65 @@ org.springframework.jdbc.core.SingleColumnRowMapper 中使用 DefaultConversionS
 
 
 
+
+
+#### org.springframework.core.env
+
+
+
+| Interfaces                         |      |      |
+| ---------------------------------- | ---- | ---- |
+|                                    |      |      |
+| ConfigurableEnvironment            |      |      |
+| ConfigurablePropertyResolver       |      |      |
+| Environment                        |      |      |
+| EnvironmentCapable                 |      |      |
+| Profiles                           |      |      |
+| PropertyResolver                   |      |      |
+| PropertySources                    |      |      |
+|                                    |      |      |
+| Classes                            |      |      |
+|                                    |      |      |
+| AbstractEnvironment                |      |      |
+| AbstractPropertyResolver           |      |      |
+| CommandLinePropertySource          |      |      |
+| CompositePropertySource            |      |      |
+| EnumerablePropertySource           |      |      |
+| JOptCommandLinePropertySource      |      |      |
+| MapPropertySource                  |      |      |
+| MutablePropertySources             |      |      |
+| PropertiesPropertySource           |      |      |
+| PropertySource                     |      |      |
+| PropertySource.StubPropertySource  |      |      |
+| PropertySourcesPropertyResolver    |      |      |
+| SimpleCommandLinePropertySource    |      |      |
+| StandardEnvironment                |      |      |
+| SystemEnvironmentPropertySource    |      |      |
+|                                    |      |      |
+| Exceptions                         |      |      |
+|                                    |      |      |
+| MissingRequiredPropertiesException |      |      |
+
+
+
+PropertySourcesPropertyResolver日志
+
+
+
+```shell
+15:08:10.746 TRACE org.springframework.core.env.PropertySourcesPropertyResolver 82 getProperty - Searching for key 'spring.liveBeansView.mbeanDomain' in PropertySource 'systemProperties'
+15:08:10.746 TRACE org.springframework.core.env.PropertySourcesPropertyResolver 82 getProperty - Searching for key 'spring.liveBeansView.mbeanDomain' in PropertySource 'systemEnvironment'
+15:08:10.746 TRACE org.springframework.core.env.PropertySourcesPropertyResolver 96 getProperty - Could not find key 'spring.liveBeansView.mbeanDomain' in any property source
+```
+
+
+
+
+
+
+
+
+
 #### org.springframework.core.io
 org.springframework.core.io.Resource接口 子接口 ContextResource WritableResource
 org.springframework.core.io.ResourceLoader接口
@@ -1608,6 +1667,16 @@ DataBufferFactory 工厂接口 实现类 NettyDataBufferFactory NettyDataBufferF
 | ResourcePropertySource              |          |                                                              |
 | ResourceRegion                      |          |                                                              |
 | SpringFactoriesLoader               |          |                                                              |
+
+
+
+
+
+SpringFactoriesLoader 日志
+
+```shell
+15:08:10.749 TRACE org.springframework.core.io.support.SpringFactoriesLoader 100 loadFactories - Loaded [org.springframework.beans.BeanInfoFactory] names: [org.springframework.beans.ExtendedBeanInfoFactory]
+```
 
 
 

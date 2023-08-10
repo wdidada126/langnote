@@ -43,7 +43,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.cache     | 类型      |      |
+| org.springframework.cache     | 类型      | 详解 |
 | ----------------------------- | --------- | ---- |
 | Cache                         | interface |      |
 | Cache.ValueRetrievalException | exception |      |
@@ -55,7 +55,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.cache.annotation                  | 类型 |      |
+| org.springframework.cache.annotation                  | 类型 | 详解 |
 | ----------------------------------------------------- | ---- | ---- |
 |                                                       |      |      |
 | Interfaces                                            |      |      |
@@ -84,7 +84,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 #### org.springframework.cache.concurrent
 
-| org.springframework.cache.concurrent |      |      |
+| org.springframework.cache.concurrent | 类型 | 详解 |
 | ------------------------------------ | ---- | ---- |
 | ConcurrentMapCache                   |      |      |
 | ConcurrentMapCacheFactoryBean        |      |      |
@@ -94,7 +94,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 #### org.springframework.cache.config
 
-| org.springframework.cache.config                             | 类型     |                             |
+| org.springframework.cache.config                             | 类型     | 详解                        |
 | ------------------------------------------------------------ | -------- | --------------------------- |
 | AnnotationDrivenCacheBeanDefinitionParser                    |          |                             |
 | AnnotationDrivenCacheBeanDefinitionParser.JCacheCachingConfigurer |          |                             |
@@ -108,7 +108,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 #### org.springframework.cache.interceptor
 
-| org.springframework.cache.interceptor     | 类型 |      |
+| org.springframework.cache.interceptor     | 类型 | 详解 |
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | BasicOperation                            |      |      |
@@ -151,7 +151,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 #### org.springframework.cache.support
 
-| org.springframework.cache.support | 类型 |      |
+| org.springframework.cache.support | 类型 | 详解 |
 | --------------------------------- | ---- | ---- |
 |                                   |      |      |
 | Classes                           |      |      |
@@ -173,7 +173,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.context    | 类型 |      |
+| org.springframework.context    | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Interfaces                     |      |      |
@@ -214,7 +214,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.context.annotation          |            |      | 详解                                                         |                                                              |      |
+| org.springframework.context.annotation          | 类型       |      | 详解                                                         |                                                              |      |
 | ----------------------------------------------- | ---------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
 | AdviceMode                                      |            |      | Enumeration used to determine whether JDK proxy-based or AspectJ weaving-based advice should be applied. |                                                              |      |
 | AdviceModeImportSelector<A extends Annotation>  |            |      | Convenient base class for ImportSelector implementations that select imports based on an AdviceMode value from an annotation (such as the @Enable* annotations). |                                                              |      |
@@ -450,6 +450,33 @@ AnnotatedBeanDefinitionReader
 
 
 
+
+
+ClassPathScanningCandidateComponentProvider
+
+<context:component-scan base-package="cn.edidada.test.testspring32.scan.service" />
+
+
+
+
+
+```shell
+14:43:14.878 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 425 scanCandidateComponents - Scanning file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\NotifyService.class]
+14:43:14.891 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 447 scanCandidateComponents - Ignored because not matching any filter: file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\NotifyService.class]
+14:43:14.891 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 425 scanCandidateComponents - Scanning file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\Order.class]
+14:43:14.909 DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 435 scanCandidateComponents - Identified candidate component class: file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\Order.class]
+14:43:14.909 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 425 scanCandidateComponents - Scanning file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\impl\NotifyServiceByCellPhoneImpl.class]
+14:43:14.910 DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 435 scanCandidateComponents - Identified candidate component class: file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\impl\NotifyServiceByCellPhoneImpl.class]
+14:43:14.910 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 425 scanCandidateComponents - Scanning file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\impl\NotifyServiceByWeixinImpl.class]
+14:43:14.911 TRACE org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider 447 scanCandidateComponents - Ignored because not matching any filter: file [D:\testspring32\target\classes\cn\edidada\test\testspring32\scan\service\impl\NotifyServiceByWeixinImpl.class]
+```
+
+
+
+
+
+
+
 #### org.springframework.context.config
 
 
@@ -629,11 +656,37 @@ run:308, SpringApplication (org.springframework.boot)
 run:1237, SpringApplication (org.springframework.boot)
 run:1226, SpringApplication (org.springframework.boot)
 
+
+
+
+
+EventListenerMethodProcessor
+
+
+
+```shell
+15:08:10.741 TRACE org.springframework.context.event.EventListenerMethodProcessor 166 processBean - No @EventListener annotations found on bean class: org.apache.logging.log4j.core.config.Configurator
+15:08:10.741 TRACE org.springframework.context.event.EventListenerMethodProcessor 166 processBean - No @EventListener annotations found on bean class: cn.edidada.test.testspring32.scan.service.Order
+15:08:10.742 TRACE org.springframework.context.event.EventListenerMethodProcessor 166 processBean - No @EventListener annotations found on bean class: cn.edidada.test.testspring32.scan.service.impl.NotifyServiceByCellPhoneImpl
+```
+
+
+
+org.springframework.context.event.EventListenerMethodProcessor#processBean
+
+查看spring bean对象方法上是否有@EventListener注解
+
+
+
+EventListenerMethodProcessor跟@EventListener注解绑定
+
+
+
 #### org.springframework.context.expression
 
 
 
-| org.springframework.context.expression  | 类型 |      |
+| org.springframework.context.expression  | 类型 | 详解 |
 | --------------------------------------- | ---- | ---- |
 |                                         |      |      |
 | Classes                                 |      |      |
@@ -655,7 +708,7 @@ run:1226, SpringApplication (org.springframework.boot)
 
 
 
-| org.springframework.context.i18n | 类型 |      |
+| org.springframework.context.i18n | 类型 | 详解 |
 | -------------------------------- | ---- | ---- |
 |                                  |      |      |
 | Interfaces                       |      |      |
@@ -675,7 +728,7 @@ run:1226, SpringApplication (org.springframework.boot)
 
 
 
-| org.springframework.context.index | 类型 |      |
+| org.springframework.context.index | 类型 | 详解 |
 | --------------------------------- | ---- | ---- |
 |                                   |      |      |
 | Classes                           |      |      |
@@ -687,7 +740,7 @@ run:1226, SpringApplication (org.springframework.boot)
 
 
 
-| org.springframework.context.index.processor | 类型 |      |
+| org.springframework.context.index.processor | 类型 | 详解 |
 | ------------------------------------------- | ---- | ---- |
 |                                             |      |      |
 | Classes                                     |      |      |
@@ -699,7 +752,7 @@ run:1226, SpringApplication (org.springframework.boot)
 #### org.springframework.context.support  
 
 
-| org.springframework.context.support         | 类型      |      |
+| org.springframework.context.support         | 类型      | 详解 |
 | ------------------------------------------- | --------- | ---- |
 | Interfaces                                  |           |      |
 |                                             |           |      |
@@ -751,7 +804,7 @@ AbstractApplicationContext
 
 
 
-| Interfaces                   | 类型 |      |
+| Interfaces                   | 类型 | 详解 |
 | ---------------------------- | ---- | ---- |
 |                              |      |      |
 | LoadTimeWeaverAware          |      |      |
@@ -770,7 +823,7 @@ AbstractApplicationContext
 
 #### org.springframework.ejb.access
 
-| org.springframework.ejb.access               | 类型 |      |
+| org.springframework.ejb.access               | 类型 | 详解 |
 | -------------------------------------------- | ---- | ---- |
 |                                              |      |      |
 | Classes                                      |      |      |
@@ -792,7 +845,7 @@ AbstractApplicationContext
 
 ### org.springframework.format
 
-| org.springframework.format | 类型 |      |
+| org.springframework.format | 类型 | 详解 |
 | -------------------------- | ---- | ---- |
 |                            |      |      |
 | Interfaces                 |      |      |
@@ -806,7 +859,7 @@ AbstractApplicationContext
 
 #### org.springframework.format.annotation
 
-| org.springframework.format.annotation | 类型       |      |
+| org.springframework.format.annotation | 类型       | 详解 |
 | ------------------------------------- | ---------- | ---- |
 | DateTimeFormat                        | @interface |      |
 | DateTimeFormat.ISO                    | enum       |      |
@@ -818,7 +871,7 @@ AbstractApplicationContext
 
 
 
-| org.springframework.format.datetime            | 类型 |      |
+| org.springframework.format.datetime            | 类型 | 详解 |
 | ---------------------------------------------- | ---- | ---- |
 | DateFormatter                                  |      |      |
 | DateFormatterRegistrar                         |      |      |
@@ -835,7 +888,7 @@ AbstractApplicationContext
 
 ##### org.springframework.format.datetime.joda
 
-| org.springframework.format.datetime.joda     | 类型 |      |
+| org.springframework.format.datetime.joda     | 类型 | 详解 |
 | -------------------------------------------- | ---- | ---- |
 |                                              |      |      |
 | Classes                                      |      |      |
@@ -856,7 +909,7 @@ AbstractApplicationContext
 
 ##### org.springframework.format.datetime.standard
 
-| org.springframework.format.datetime.standard   | 类型 |      |
+| org.springframework.format.datetime.standard   | 类型 | 详解 |
 | ---------------------------------------------- | ---- | ---- |
 |                                                |      |      |
 | Classes                                        |      |      |
@@ -873,7 +926,7 @@ AbstractApplicationContext
 
 #### org.springframework.format.number
 
-| org.springframework.format.number      | 类型 |      |
+| org.springframework.format.number      | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
 |                                        |      |      |
 | Classes                                |      |      |
@@ -901,7 +954,7 @@ AbstractApplicationContext
 
 
 
-| org.springframework.format.support                     | 类型 |      |
+| org.springframework.format.support                     | 类型 | 详解 |
 | ------------------------------------------------------ | ---- | ---- |
 | DefaultFormattingConversionService                     |      |      |
 | FormatterPropertyEditorAdapter                         |      |      |
@@ -922,7 +975,7 @@ AbstractApplicationContext
 
 
 
-| org.springframework.instrument.classloading | 类型 |      |
+| org.springframework.instrument.classloading | 类型 | 详解 |
 | ------------------------------------------- | ---- | ---- |
 |                                             |      |      |
 | Interfaces                                  |      |      |
@@ -946,7 +999,7 @@ AbstractApplicationContext
 
 ###### org.springframework.instrument.classloading.glassfish
 
-| org.springframework.instrument.classloading.glassfish | 类型 |      |
+| org.springframework.instrument.classloading.glassfish | 类型 | 详解 |
 | ----------------------------------------------------- | ---- | ---- |
 | GlassFishLoadTimeWeaver                               |      |      |
 |                                                       |      |      |
@@ -988,7 +1041,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 
 
-| org.springframework.jmx      | 类型      |      |
+| org.springframework.jmx      | 类型      | 详解 |
 | ---------------------------- | --------- | ---- |
 | JmxException                 |           |      |
 | MBeanServerNotFoundException | exception |      |
@@ -998,7 +1051,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 #### org.springframework.jmx.access
 
-| org.springframework.jmx.access | 类型 |      |
+| org.springframework.jmx.access | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Classes                        |      |      |
@@ -1016,7 +1069,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 #### org.springframework.jmx.export
 
-| org.springframework.jmx.export | 类型 |      |
+| org.springframework.jmx.export | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Interfaces                     |      |      |
@@ -1037,7 +1090,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ##### org.springframework.jmx.export.annotation
 
-| org.springframework.jmx.export.annotation | 类型 |      |
+| org.springframework.jmx.export.annotation | 类型 | 详解 |
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | Classes                                   |      |      |
@@ -1058,7 +1111,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ##### org.springframework.jmx.export.assembler
 
-| org.springframework.jmx.export.assembler | 类型 |      |
+| org.springframework.jmx.export.assembler | 类型 | 详解 |
 | ---------------------------------------- | ---- | ---- |
 |                                          |      |      |
 | Interfaces                               |      |      |
@@ -1079,7 +1132,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ##### org.springframework.jmx.export.metadata
 
-| org.springframework.jmx.export.metadata | 类型 |      |
+| org.springframework.jmx.export.metadata | 类型 | 详解 |
 | --------------------------------------- | ---- | ---- |
 |                                         |      |      |
 | Interfaces                              |      |      |
@@ -1103,7 +1156,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ##### org.springframework.jmx.export.naming
 
-| org.springframework.jmx.export.naming | 类型 |      |
+| org.springframework.jmx.export.naming | 类型 | 详解 |
 | ------------------------------------- | ---- | ---- |
 |                                       |      |      |
 | Interfaces                            |      |      |
@@ -1119,7 +1172,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ##### org.springframework.jmx.export.notification
 
-| org.springframework.jmx.export.notification | 类型 |      |
+| org.springframework.jmx.export.notification | 类型 | 详解 |
 | ------------------------------------------- | ---- | ---- |
 |                                             |      |      |
 | Interfaces                                  |      |      |
@@ -1141,7 +1194,7 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 ### org.springframework.jndi
 
-| org.springframework.jndi    | 类型 |      |
+| org.springframework.jndi    | 类型 | 详解 |
 | --------------------------- | ---- | ---- |
 |                             |      |      |
 | Interfaces                  |      |      |
@@ -1175,7 +1228,7 @@ SimpleJndiBeanFactory
 
 ### org.springframework.remoting
 
-| org.springframework.remoting     | 类型 |      |
+| org.springframework.remoting     | 类型 | 详解 |
 | -------------------------------- | ---- | ---- |
 |                                  |      |      |
 | Exceptions                       |      |      |
@@ -1193,7 +1246,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.remoting.rmi    | 类型 |      |
+| org.springframework.remoting.rmi    | 类型 | 详解 |
 | ----------------------------------- | ---- | ---- |
 |                                     |      |      |
 | Interfaces                          |      |      |
@@ -1218,7 +1271,7 @@ SimpleJndiBeanFactory
 
 #### org.springframework.remoting.soap
 
-| org.springframework.remoting.soap | 类型     |      |
+| org.springframework.remoting.soap | 类型     | 详解 |
 | --------------------------------- | -------- | ---- |
 | SoapFaultException                | abstract |      |
 |                                   |          |      |
@@ -1230,7 +1283,7 @@ SimpleJndiBeanFactory
 
 #### org.springframework.remoting.support
 
-| org.springframework.remoting.support | 类型 |      |
+| org.springframework.remoting.support | 类型 | 详解 |
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | Interfaces                           |      |      |
@@ -1260,7 +1313,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scheduling | 类型 |      |
+| org.springframework.scheduling | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Interfaces                     |      |      |
@@ -1283,7 +1336,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scheduling.annotation | 类型 |      |
+| org.springframework.scheduling.annotation | 类型 | 详解 |
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | Interfaces                                |      |      |
@@ -1318,7 +1371,7 @@ SimpleJndiBeanFactory
 
 #### org.springframework.scheduling.concurrent
 
-| org.springframework.scheduling.concurrent | 类型 |      |
+| org.springframework.scheduling.concurrent | 类型 | 详解 |
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | Classes                                   |      |      |
@@ -1344,7 +1397,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scheduling.config  | 类型 |      |
+| org.springframework.scheduling.config  | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
 |                                        |      |      |
 | Interfaces                             |      |      |
@@ -1378,7 +1431,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scheduling.support | 类型 |      |
+| org.springframework.scheduling.support | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
 |                                        |      |      |
 | Classes                                |      |      |
@@ -1400,7 +1453,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scripting | 类型 |      |
+| org.springframework.scripting | 类型 | 详解 |
 | ----------------------------- | ---- | ---- |
 |                               |      |      |
 | Interfaces                    |      |      |
@@ -1423,7 +1476,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scripting.bsh    | 类型 |      |
+| org.springframework.scripting.bsh    | 类型 | 详解 |
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | Classes                              |      |      |
@@ -1442,7 +1495,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scripting.config | 类型 |      |
+| org.springframework.scripting.config | 类型 | 详解 |
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | Classes                              |      |      |
@@ -1456,7 +1509,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scriptingg.groovy | 类型 |      |
+| org.springframework.scriptingg.groovy | 类型 | 详解 |
 | ------------------------------------- | ---- | ---- |
 |                                       |      |      |
 | Interfaces                            |      |      |
@@ -1474,7 +1527,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.scripting.support | 类型 |      |
+| org.springframework.scripting.support | 类型 | 详解 |
 | ------------------------------------- | ---- | ---- |
 |                                       |      |      |
 | Classes                               |      |      |
@@ -1497,7 +1550,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.stereotype | 类型 |      |
+| org.springframework.stereotype | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Annotation Types               |      |      |
@@ -1514,7 +1567,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.ui | 类型 |      |
+| org.springframework.ui | 类型 | 详解 |
 | ---------------------- | ---- | ---- |
 |                        |      |      |
 | Interfaces             |      |      |
@@ -1533,7 +1586,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.ui.context | 类型 |      |
+| org.springframework.ui.context | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
 |                                |      |      |
 | Interfaces                     |      |      |
@@ -1546,7 +1599,7 @@ SimpleJndiBeanFactory
 
 ##### org.springframework.ui.context.support
 
-| org.springframework.ui.context.support | 类型 |      |
+| org.springframework.ui.context.support | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
 |                                        |      |      |
 | Classes                                |      |      |
@@ -1564,7 +1617,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.validation     | 类型 |      |
+| org.springframework.validation     | 类型 | 详解 |
 | ---------------------------------- | ---- | ---- |
 |                                    |      |      |
 | Interfaces                         |      |      |
@@ -1609,7 +1662,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.validation.annotation | 类型       |      |
+| org.springframework.validation.annotation | 类型       | 详解 |
 | ----------------------------------------- | ---------- | ---- |
 | Validated                                 | @interface |      |
 |                                           |            |      |
@@ -1623,7 +1676,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.validation.beanvalidation | 类型 |      |
+| org.springframework.validation.beanvalidation | 类型 | 详解 |
 | --------------------------------------------- | ---- | ---- |
 |                                               |      |      |
 | Classes                                       |      |      |
@@ -1645,7 +1698,7 @@ SimpleJndiBeanFactory
 
 
 
-| org.springframework.validation.support | 类型 |      |
+| org.springframework.validation.support | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
 | BindingAwareConcurrentModel            |      |      |
 | BindingAwareModelMap                   |      |      |
