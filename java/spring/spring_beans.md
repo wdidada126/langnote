@@ -525,6 +525,11 @@ ServiceLoaderFactoryBean (org.springframework.beans.factory.serviceloader)
 ServiceFactoryBean (org.springframework.beans.factory.serviceloader)
 
 
+
+BeanExpressionContext
+BeanExpressionResolver接口 方法
+	Object evaluate(@Nullable String value, BeanExpressionContext evalContext)
+
 ##### org.springframework.beans.factory.groovy
 
 

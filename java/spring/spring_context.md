@@ -702,8 +702,46 @@ EventListenerMethodProcessor跟@EventListener注解绑定
 | MethodBasedEvaluationContext            |      |      |
 | StandardBeanExpressionResolver          |      |      |
 
+BeanExpressionResolver实现类StandardBeanExpressionResolver
 
 
+```shell
+evaluate:141, StandardBeanExpressionResolver (org.springframework.context.expression)
+evaluateBeanDefinitionString:1575, AbstractBeanFactory (org.springframework.beans.factory.support)
+doEvaluate:280, BeanDefinitionValueResolver (org.springframework.beans.factory.support)
+resolveReference:329, BeanDefinitionValueResolver (org.springframework.beans.factory.support)
+resolveValueIfNecessary:113, BeanDefinitionValueResolver (org.springframework.beans.factory.support)
+applyPropertyValues:1697, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
+populateBean:1442, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
+doCreateBean:593, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
+createBean:516, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
+lambda$doGetBean$0:324, AbstractBeanFactory (org.springframework.beans.factory.support)
+getObject:-1, 474933596 (org.springframework.beans.factory.support.AbstractBeanFactory$$Lambda$144)
+getSingleton:234, DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)
+doGetBean:322, AbstractBeanFactory (org.springframework.beans.factory.support)
+getBean:207, AbstractBeanFactory (org.springframework.beans.factory.support)
+invokeBeanFactoryPostProcessors:90, PostProcessorRegistrationDelegate (org.springframework.context.support)
+invokeBeanFactoryPostProcessors:707, AbstractApplicationContext (org.springframework.context.support)
+refresh:533, AbstractApplicationContext (org.springframework.context.support)
+refresh:758, SpringApplication (org.springframework.boot)
+refresh:750, SpringApplication (org.springframework.boot)
+refreshContext:397, SpringApplication (org.springframework.boot)
+run:315, SpringApplication (org.springframework.boot)
+run:140, SpringApplicationBuilder (org.springframework.boot.builder)
+bootstrapServiceContext:212, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:117, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:74, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+doInvokeListener:172, SimpleApplicationEventMulticaster (org.springframework.context.event)
+invokeListener:165, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:139, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:127, SimpleApplicationEventMulticaster (org.springframework.context.event)
+environmentPrepared:80, EventPublishingRunListener (org.springframework.boot.context.event)
+environmentPrepared:53, SpringApplicationRunListeners (org.springframework.boot)
+prepareEnvironment:345, SpringApplication (org.springframework.boot)
+run:308, SpringApplication (org.springframework.boot)
+run:1237, SpringApplication (org.springframework.boot)
+run:1226, SpringApplication (org.springframework.boot)
+```
 #### org.springframework.context.i18n
 
 
