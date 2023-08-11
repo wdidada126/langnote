@@ -329,3 +329,34 @@ public interface Temporal extends TemporalAccessor
 
 
 
+https://docs.oracle.com/javase/8/docs/api/
+
+
+
+## java.util.stream
+
+
+
+|     java.util.stream                      |      |      |
+| ------------------------- | ---- | ---- |
+| Interfaces                |      |      |
+|                           |      |      |
+| BaseStream                |      |      |
+| Collector                 |      |      |
+| DoubleStream              |      |      |
+| DoubleStream.Builder      |      |      |
+| IntStream                 |      |      |
+| IntStream.Builder         |      |      |
+| LongStream                |      |      |
+| LongStream.Builder        |      |      |
+| Stream                    |      |      |
+| Stream.Builder            |      |      |
+|                           |      |      |
+| Classes                   |      |      |
+|                           |      |      |
+| Collectors                |      |      |
+| StreamSupport             |      |      |
+|                           |      |      |
+| Enums                     |      |      |
+|                           |      |      |
+| Collector.Characteristics |      |      |
