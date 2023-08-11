@@ -1,4 +1,4 @@
-# 笔记类型Spring Boot
+# Spring Boot
 
 
 G:\source_code\spring-boot
@@ -9,12 +9,11 @@ https://docs.spring.io/spring-boot/docs/2.3.x/api/
 
 spring_boot.xlsx
 
-
 spring-boot-2.7.11.jar!\META-INF\spring.factories
 文件
 
+##  jar文件
 
-jar文件
 - spring-boot
 - spring-boot-autoconfigure
 - spring-boot-starter  没有java文件
@@ -24,6 +23,12 @@ jar文件
 - spring-boot-starter-validation  没有java文件
 - spring-boot-test
 - spring-boot-test-autoconfigure
+
+
+
+
+
+
 
 
 从你提供的信息看,这些Spring Boot starter依赖项确实不包含Java源代码文件:
@@ -228,14 +233,14 @@ spring.datasource.jndi-name=java:jboss/datasources/customers
 B站视频
 
 写SpringBoot starter
-## 源代码分包详解
+## 源代码分包详解v2.3.4
 
 
 ### springboot 
 
 
 
-
+https://docs.spring.io/spring-boot/docs/2.3.x/api/
 
 |  org.springframework.boot    |  类型    | 笔记     |
 | ---- | ---- | ---- |
@@ -307,7 +312,7 @@ SpringApplication有main函数，会启动两个Context
 | SpringApplicationAdminMXBeanRegistrar |      |      |
 
 
-### availability
+### org.springframework.boot.availability
 | org.springframework.boot.availability | 类型 | 笔记 |
 | ------------------------------------- | ---- | ---- |
 | Interfaces                            |      |      |
@@ -326,7 +331,7 @@ SpringApplication有main函数，会启动两个Context
 | ReadinessState                        |      |      |
 
 
-### builder
+### org.springframework.boot.builder
 
 | org.springframework.boot.builder                             | 类型 | 笔记 |
 | ------------------------------------------------------------ | ---- | ---- |
@@ -337,7 +342,7 @@ SpringApplication有main函数，会启动两个Context
 | SpringApplicationBuilder                                     |      |      |
 
 
-### cloud
+### org.springframework.boot.cloud
 
 | org.springframework.boot.cloud           | 类型 | 笔记 |
 | ---------------------------------------- | ---- | ---- |
@@ -351,7 +356,7 @@ SpringApplication有main函数，会启动两个Context
 
 
 
-### context
+### org.springframework.boot.context
 | org.springframework.boot.context                             | 类型 | 笔记 |
 | ------------------------------------------------------------ | ---- | ---- |
 | Interfaces                                                   |      |      |
@@ -369,7 +374,7 @@ SpringApplication有main函数，会启动两个Context
 
 
 
-### org.springframework.boot.context.annotation
+#### org.springframework.boot.context.annotation
 
 | org.springframework.boot.context.annotation | 类型 | 笔记 |
 | ------------------------------------------- | ---- | ---- |
@@ -383,7 +388,7 @@ SpringApplication有main函数，会启动两个Context
 
 
 
-### config
+### org.springframework.boot.config
 | org.springframework.boot.config         | 类型 | 笔记 |
 | --------------------------------------- | ---- | ---- |
 | Classes                                 |      |      |
@@ -393,8 +398,40 @@ SpringApplication有main函数，会启动两个Context
 | DelegatingApplicationListener           |      |      |
 
 
+#### org.springframework.boot.bind
 
-### org.springframework.boot.context.event
+
+| org.springframework.boot.bind           | 类型 | 笔记 |
+| --------------------------------------- | ---- | ---- |
+| Interfaces                              |      |      |
+| BindConstructorProvider                 |      |      |
+| BindContext                             |      |      |
+| BindHandler                             |      |      |
+| PlaceholdersResolver                    |      |      |
+|                                         |      |      |
+| Classes                                 |      |      |
+|                                         |      |      |
+| AbstractBindHandler                     |      |      |
+| Bindable                                |      |      |
+| Binder                                  |      |      |
+| BindResult                              |      |      |
+| BoundPropertiesTrackingBindHandler      |      |      |
+| DataObjectPropertyName                  |      |      |
+| PropertySourcesPlaceholdersResolver     |      |      |
+|                                         |      |      |
+| Exceptions                              |      |      |
+|                                         |      |      |
+| BindException                           |      |      |
+| UnboundConfigurationPropertiesException |      |      |
+|                                         |      |      |
+| Annotation Types                        |      |      |
+|                                         |      |      |
+| DefaultValue                            |      |      |
+
+
+#### org.springframework.boot.context
+
+##### org.springframework.boot.context.event
 
 | org.springframework.boot.context.event | 类型 | 笔记 |
 | -------------------------------------- | ---- | ---- |
@@ -411,7 +448,7 @@ SpringApplication有main函数，会启动两个Context
 
 
 
-###  org.springframework.boot.context.logging
+#####  org.springframework.boot.context.logging
 
 
 | org.springframework.boot.context.logging | 类型 | 笔记 |
@@ -425,7 +462,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.context.properties
+##### org.springframework.boot.context.properties
 
 | org.springframework.boot.context.properties | 类型 | 笔记 |
 | ------------------------------------------- | ---- | ---- |
@@ -461,39 +498,8 @@ LoggingApplicationListener初始化日志
 | NestedConfigurationProperty                 |      |      |
 
 
-#### org.springframework.boot.bind
 
-
-| org.springframework.boot.bind           | 类型 | 笔记 |
-| --------------------------------------- | ---- | ---- |
-| Interfaces                              |      |      |
-| BindConstructorProvider                 |      |      |
-| BindContext                             |      |      |
-| BindHandler                             |      |      |
-| PlaceholdersResolver                    |      |      |
-|                                         |      |      |
-| Classes                                 |      |      |
-|                                         |      |      |
-| AbstractBindHandler                     |      |      |
-| Bindable                                |      |      |
-| Binder                                  |      |      |
-| BindResult                              |      |      |
-| BoundPropertiesTrackingBindHandler      |      |      |
-| DataObjectPropertyName                  |      |      |
-| PropertySourcesPlaceholdersResolver     |      |      |
-|                                         |      |      |
-| Exceptions                              |      |      |
-|                                         |      |      |
-| BindException                           |      |      |
-| UnboundConfigurationPropertiesException |      |      |
-|                                         |      |      |
-| Annotation Types                        |      |      |
-|                                         |      |      |
-| DefaultValue                            |      |      |
-
-
-
-#### org.springframework.boot.context.properties.bind.handler
+###### org.springframework.boot.context.properties.bind.handler
 
 
 | org.springframework.boot.context.properties.bind.handler | 类型 | 笔记 |
@@ -503,7 +509,7 @@ LoggingApplicationListener初始化日志
 | IgnoreTopLevelConverterNotFoundBindHandler               |      |      |
 | NoUnboundElementsBindHandler                             |      |      |
 
-#### org.springframework.boot.context.properties.bind.validation
+###### org.springframework.boot.context.properties.bind.validation
 
 | org.springframework.boot.context.properties.bind.validation | 类型 | 笔记 |
 | ----------------------------------------------------------- | ---- | ---- |
@@ -515,47 +521,47 @@ LoggingApplicationListener初始化日志
 |                                                             |      |      |
 | BindValidationException                                     |      |      |
 
-#### sd
+#### org.springframework.boot.convert
 
-|                              | 类型 | 笔记 |
-| ---------------------------- | ---- | ---- |
-| Classes                      |      |      |
-| ApplicationConversionService |      |      |
-|                              |      |      |
-| Enums                        |      |      |
-|                              |      |      |
-| DurationStyle                |      |      |
-| PeriodStyle                  |      |      |
-|                              |      |      |
-| Annotation Types             |      |      |
-|                              |      |      |
-| DataSizeUnit                 |      |      |
-| Delimiter                    |      |      |
-| DurationFormat               |      |      |
-| DurationUnit                 |      |      |
-| PeriodFormat                 |      |      |
-| PeriodUnit                   |      |      |
-
-
-
-#### diagnostics
-
-
-|                                | 类型 | 笔记 |
-| ------------------------------ | ---- | ---- |
-| Interfaces                     |      |      |
-| FailureAnalysisReporter        |      |      |
-| FailureAnalyzer                |      |      |
-|                                |      |      |
-| Classes                        |      |      |
-|                                |      |      |
-| AbstractFailureAnalyzer        |      |      |
-| FailureAnalysis                |      |      |
-| LoggingFailureAnalysisReporter |      |      |
+| org.springframework.boot.convert | 类型 | 笔记 |
+| -------------------------------- | ---- | ---- |
+| Classes                          |      |      |
+| ApplicationConversionService     |      |      |
+|                                  |      |      |
+| Enums                            |      |      |
+|                                  |      |      |
+| DurationStyle                    |      |      |
+| PeriodStyle                      |      |      |
+|                                  |      |      |
+| Annotation Types                 |      |      |
+|                                  |      |      |
+| DataSizeUnit                     |      |      |
+| Delimiter                        |      |      |
+| DurationFormat                   |      |      |
+| DurationUnit                     |      |      |
+| PeriodFormat                     |      |      |
+| PeriodUnit                       |      |      |
 
 
 
-#### org.springframework.boot.diagnostics.analyzer
+#### org.springframework.boot.diagnostics
+
+
+| org.springframework.boot.diagnostics | 类型 | 笔记 |
+| ------------------------------------ | ---- | ---- |
+| Interfaces                           |      |      |
+| FailureAnalysisReporter              |      |      |
+| FailureAnalyzer                      |      |      |
+|                                      |      |      |
+| Classes                              |      |      |
+|                                      |      |      |
+| AbstractFailureAnalyzer              |      |      |
+| FailureAnalysis                      |      |      |
+| LoggingFailureAnalysisReporter       |      |      |
+
+
+
+##### org.springframework.boot.diagnostics.analyzer
 
 
 | org.springframework.boot.diagnostics.analyzer | 类型 | 笔记 |
@@ -643,7 +649,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.jdbc.metadata
+##### org.springframework.boot.jdbc.metadata
 
 
 |                                         | 类型 | 笔记 |
@@ -688,9 +694,9 @@ LoggingApplicationListener初始化日志
 |                    |      |      |
 | JsonParseException |      |      |
 
+#### org.springframework.boot.jta
 
-
-#### jta.atomikos
+##### org.springframework.boot.jta.atomikos
 
 
 
@@ -709,34 +715,45 @@ LoggingApplicationListener初始化日志
 
 
 
-#### dd
+#### org.springframework.boot.liquibase
 
-|                                            | 类型 | 笔记 |
-| ------------------------------------------ | ---- | ---- |
-| Classes                                    |      |      |
-| LiquibaseServiceLocatorApplicationListener |      |      |
-| SpringPackageScanClassResolver             |      |      |
+|                                                             | 类型 | 笔记 |
+| ----------------------------------------------------------- | ---- | ---- |
+| Classes                                                     |      |      |
+| LiquibaseServiceLocatorApplicationListener                  |      |      |
+| LiquibaseServiceLocatorApplicationListener.LiquibasePresent |      |      |
+| SpringPackageScanClassResolver                              |      |      |
 
-#### dd
+#### org.springframework.boot.logging
 
-#### dd
 
-|                             | 类型 | 笔记 |
-| --------------------------- | ---- | ---- |
-| Interfaces                  |      |      |
-| Origin                      |      |      |
-| OriginLookup                |      |      |
-| OriginProvider              |      |      |
-|                             |      |      |
-| Classes                     |      |      |
-|                             |      |      |
-| OriginTrackedValue          |      |      |
-| PropertySourceOrigin        |      |      |
-| SystemEnvironmentOrigin     |      |      |
-| TextResourceOrigin          |      |      |
-| TextResourceOrigin.Location |      |      |
 
-#### 
+| org.springframework.boot.logging |      |      |
+| -------------------------------- | ---- | ---- |
+|                                  |      |      |
+|                                  |      |      |
+|                                  |      |      |
+
+
+
+#### org.springframework.boot.origin
+
+| org.springframework.boot.origin | 类型 | 笔记 |
+| ------------------------------- | ---- | ---- |
+| Interfaces                      |      |      |
+| Origin                          |      |      |
+| OriginLookup                    |      |      |
+| OriginProvider                  |      |      |
+|                                 |      |      |
+| Classes                         |      |      |
+|                                 |      |      |
+| OriginTrackedValue              |      |      |
+| PropertySourceOrigin            |      |      |
+| SystemEnvironmentOrigin         |      |      |
+| TextResourceOrigin              |      |      |
+| TextResourceOrigin.Location     |      |      |
+
+
 
 ####  org.springframework.boot.reactor
 
@@ -748,25 +765,105 @@ LoggingApplicationListener初始化日志
 
 
 
-#### 
+#### org.springframework.boot.rsocket
 
-#### 
+org.springframework.boot.rsocket.context
 
-#### 
+org.springframework.boot.rsocket.messaging
 
-#### 
+org.springframework.boot.rsocket.netty
 
-
-#### 
-
-#### 
+org.springframework.boot.rsocket.server
 
 
-#### 
 
-#### 
 
-####  org.springframework.boot.web.client
+
+#### org.springframework.boot.security
+
+
+
+org.springframework.boot.security.reactive
+
+org.springframework.boot.security.servlet
+
+
+
+#### org.springframework.boot.system
+
+
+
+ApplicationHome
+
+ApplicationPid
+
+ApplicationTemp
+
+SystemProperties
+
+Enums
+
+JavaVersion
+
+
+
+#### org.springframework.boot.task
+
+
+
+TaskExecutorCustomizer
+
+TaskSchedulerCustomizer
+
+Classes
+
+TaskExecutorBuilder
+
+TaskSchedulerBuilder
+
+
+
+#### org.springframework.boot.type
+
+
+
+org.springframework.boot.type.classreading
+
+Classes
+
+ConcurrentReferenceCachingMetadataReaderFactor
+
+
+
+
+
+#### org.springframework.boot.util
+
+
+
+LambdaSafe
+
+LambdaSafe.Callback
+
+LambdaSafe.Callbacks
+
+LambdaSafe.InvocationResult
+
+LambdaSafe.LambdaSafeCallback
+
+
+
+#### org.springframework.boot.validation
+
+
+
+MessageInterpolatorFactory
+
+
+
+#### org.springframework.boot.web
+
+#####  org.springframework.boot.web.client
 
 
 
@@ -782,7 +879,7 @@ LoggingApplicationListener初始化日志
 | RestTemplateBuilder                 |      |      |
 | RootUriTemplateHandler              |      |      |
 
-#### org.springframework.boot.web.codec
+##### org.springframework.boot.web.codec
 
 
 
@@ -830,9 +927,9 @@ LoggingApplicationListener初始化日志
 | JettyWebServer                         |      |      |
 | ServletContextInitializerConfiguration |      |      |
 
-
-
-#### org.springframework.boot.web.embedded.netty
+#### org.springframework.boot.web
+##### org.springframework.boot.web.embedded
+###### org.springframework.boot.web.embedded.netty
 
 
 
@@ -850,7 +947,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.embedded.tomcat
+###### org.springframework.boot.web.embedded.tomcat
 
 
 
@@ -875,7 +972,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.embedded.undertow
+###### org.springframework.boot.web.embedded.undertow
 
 
 
@@ -896,9 +993,9 @@ LoggingApplicationListener初始化日志
 
 
 
+#### org.springframework.boot.web.reactive
 
-
-#### org.springframework.boot.web.reactive.error
+##### org.springframework.boot.web.reactive.error
 
 
 
@@ -914,7 +1011,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.reactive.context
+##### org.springframework.boot.web.reactive.context
 
 
 
@@ -1016,7 +1113,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.servlet.context
+##### org.springframework.boot.web.servlet.context
 
 
 
@@ -1034,7 +1131,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.servlet.error
+##### org.springframework.boot.web.servlet.error
 
 
 
@@ -1052,7 +1149,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.servlet.filter
+##### org.springframework.boot.web.servlet.filter
 
 
 
@@ -1074,7 +1171,7 @@ LoggingApplicationListener初始化日志
 
 
 
-#### org.springframework.boot.web.servlet.server
+##### org.springframework.boot.web.servlet.server
 
 
 
@@ -1101,52 +1198,229 @@ LoggingApplicationListener初始化日志
 
 
 
-#### support
+##### org.springframework.boot.web.servlet.support
 
 
 
-| Classes                                     | 类型 |      |
-| ------------------------------------------- | ---- | ---- |
+| org.springframework.boot.web.servlet.support | 类型 |      |
+| -------------------------------------------- | ---- | ---- |
+|                                              |      |      |
+| ErrorPageFilter                              |      |      |
+| ServletContextApplicationContextInitializer  |      |      |
+| SpringBootServletInitializer                 |      |      |
+
+
+
+##### org.springframework.boot.web.servlet.view
+
+
+
+| org.springframework.boot.web.servlet.view | 类型 |      |
+| ----------------------------------------- | ---- | ---- |
+|                                           |      |      |
+| MustacheView                              |      |      |
+| MustacheViewResolver                      |      |      |
+
+
+
+#### org.springframework.boot.web.reactive.result.view
+
+
+
+
+
+| org.springframework.boot.web.reactive.result.view | 类型 |      |
+| ------------------------------------------------- | ---- | ---- |
+|                                                   |      |      |
+| MustacheView                                      |      |      |
+| MustacheViewResolver                              |      |      |
+
+
+
+#### org.springframework.boot.web.reactive.server
+
+
+
+ConfigurableReactiveWebServerFactory
+
+ReactiveWebServerFactory
+
+Classes
+
+AbstractReactiveWebServerFactory
+
+
+
+#### org.springframework.boot.web.server
+
+
+
 |                                             |      |      |
-| ErrorPageFilter                             |      |      |
-| ServletContextApplicationContextInitializer |      |      |
-| SpringBootServletInitializer                |      |      |
+| ------------------------------------------- | ---- | ---- |
+| ConfigurableWebServerFactory                |      |      |
+| ErrorPageRegistrar                          |      |      |
+| ErrorPageRegistry                           |      |      |
+| GracefulShutdownCallback                    |      |      |
+| SslStoreProvider                            |      |      |
+| WebServer                                   |      |      |
+| WebServerFactory                            |      |      |
+| WebServerFactoryCustomizer                  |      |      |
+|                                             |      |      |
+| Classes                                     |      |      |
+|                                             |      |      |
+| AbstractConfigurableWebServerFactory        |      |      |
+| Compression                                 |      |      |
+| ErrorPage                                   |      |      |
+| ErrorPageRegistrarBeanPostProcessor         |      |      |
+| Http2                                       |      |      |
+| MimeMappings                                |      |      |
+| MimeMappings.Mapping                        |      |      |
+| Ssl                                         |      |      |
+| SslConfigurationValidator                   |      |      |
+| WebServerFactoryCustomizerBeanPostProcessor |      |      |
+|                                             |      |      |
+| Enums                                       |      |      |
+|                                             |      |      |
+| GracefulShutdownResult                      |      |      |
+| Shutdown                                    |      |      |
+| Ssl.ClientAuth                              |      |      |
+|                                             |      |      |
+| Exceptions                                  |      |      |
+|                                             |      |      |
+| PortInUseException                          |      |      |
+| WebServerException                          |      |      |
+|                                             |      |      |
+| Annotation Types                            |      |      |
+|                                             |      |      |
+| LocalServerPort                             |      |      |
 
 
 
-#### dd
+#### org.springframework.boot.web.servlet
 
 
 
-| Classes              | 类型 |      |
-| -------------------- | ---- | ---- |
-|                      |      |      |
-| MustacheView         |      |      |
-| MustacheViewResolver |      |      |
+| Interfaces                                             |      |      |
+| ------------------------------------------------------ | ---- | ---- |
+|                                                        |      |      |
+| ServletContextInitializer                              |      |      |
+| ServletContextInitializerBeans.RegistrationBeanAdapter |      |      |
+|                                                        |      |      |
+| Classes                                                |      |      |
+|                                                        |      |      |
+| AbstractFilterRegistrationBean                         |      |      |
+| DelegatingFilterProxyRegistrationBean                  |      |      |
+| DynamicRegistrationBean                                |      |      |
+| FilterRegistrationBean                                 |      |      |
+| MultipartConfigFactory                                 |      |      |
+| RegistrationBean                                       |      |      |
+| ServletContextInitializerBeans                         |      |      |
+| ServletListenerRegistrationBean                        |      |      |
+| ServletRegistrationBean                                |      |      |
+|                                                        |      |      |
+| Enums                                                  |      |      |
+|                                                        |      |      |
+| DispatcherType                                         |      |      |
+|                                                        |      |      |
+| Annotation Types                                       |      |      |
+|                                                        |      |      |
+| ServletComponentScan                                   |      |      |
 
 
 
-#### dd
+#### org.springframework.boot.web.servlet.context
+
+|                                                              |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| AnnotationConfigServletWebApplicationContext                 |      |      |
+| AnnotationConfigServletWebServerApplicationContext           |      |      |
+| ServletWebServerApplicationContext                           |      |      |
+| ServletWebServerApplicationContext.ExistingWebApplicationScopes |      |      |
+| ServletWebServerInitializedEvent                             |      |      |
+| WebApplicationContextServletContextAwareProcessor            |      |      |
+| XmlServletWebServerApplicationContext                        |      |      |
+
+#### org.springframework.boot.web.servlet.error
 
 
 
+ErrorAttributes
+
+ErrorController
+
+Classes
+
+DefaultErrorAttributes
 
 
-| Classes              | 类型 |      |
-| -------------------- | ---- | ---- |
-|                      |      |      |
-| MustacheView         |      |      |
-| MustacheViewResolver |      |      |
+
+#### org.springframework.boot.web.servlet.filter
+
+|                                |      |      |
+| ------------------------------ | ---- | ---- |
+| OrderedFilter                  |      |      |
+|                                |      |      |
+| Classes                        |      |      |
+|                                |      |      |
+| ApplicationContextHeaderFilter |      |      |
+| OrderedCharacterEncodingFilter |      |      |
+| OrderedFormContentFilter       |      |      |
+| OrderedHiddenHttpMethodFilter  |      |      |
+| OrderedRequestContextFilter    |      |      |
 
 
 
-#### dd
+#### org.springframework.boot.web.servlet.server
 
-#### dd
+|                                     |      |      |
+| ----------------------------------- | ---- | ---- |
+| ConfigurableServletWebServerFactory |      |      |
+| ServletWebServerFactory             |      |      |
+|                                     |      |      |
+| Classes                             |      |      |
+|                                     |      |      |
+| AbstractServletWebServerFactory     |      |      |
+| Encoding                            |      |      |
+| Jsp                                 |      |      |
+| Session                             |      |      |
+| Session.Cookie                      |      |      |
+|                                     |      |      |
+| Enums                               |      |      |
+|                                     |      |      |
+| Encoding.Type                       |      |      |
+| Session.SessionTrackingMode         |      |      |
 
-#### dd
+#### org.springframework.boot.web.servlet.support
 
-#### dd
+ErrorPageFilter
+
+ServletContextApplicationContextInitializer
+
+SpringBootServletInitializer
+
+#### org.springframework.boot.web.servlet.view
+
+
+
+MustacheView
+
+MustacheViewResolver
+
+
+
+#### org.springframework.boot.webservices.client
+
+
+
+WebServiceTemplateCustomizer
+
+Classes
+
+HttpWebServiceMessageSenderBuilder
+
+WebServiceTemplateBuilder
+
+
 
 
 | 库       |      |      |

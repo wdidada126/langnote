@@ -5,7 +5,7 @@ ISBN:9787115601377
 https://book.douban.com/subject/36244230/
 
 LinkedBear，Java开发工程师、底层技术研究者与分享者，倾心研究Spring技术体系多年，对Spring、Spring Boot等框架有独到的见解，拥有丰富的框架体系实践经验和架构封装经验。
-
+本书引用的源码均基于Spring Boot 2.3.11.RELEASE 5.附赠本书附带的测试代码与课件
 
 https://gitee.com/edidada/spring-boot-source-analysis-epubit
 
