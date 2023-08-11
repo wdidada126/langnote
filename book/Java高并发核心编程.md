@@ -23,7 +23,7 @@ https://gitee.com/edidada/Java-high-concurrency-core-Programming-Volume-2-source
 
 
 
-第3章 CAS原理与JUC原子类
+# 第3章 CAS原理与JUC原子类
 
 面试会问
 
@@ -37,7 +37,7 @@ https://gitee.com/edidada/Java-high-concurrency-core-Programming-Volume-2-source
 
 
 
-第5章 JUC显式锁的原理与实战
+# 第5章 JUC显式锁的原理与实战
 
 
 
@@ -51,21 +51,21 @@ Semaphore
 
 
 
-第6章 AQS抽象同步器的核心原理
+# 第6章 AQS抽象同步器的核心原理
 
 
 
-第7章 JUC容器类
+# 第7章 JUC容器类
 
 
 
-第8章 高并发设计模式
+# 第8章 高并发设计模式
 
 
 
-第9章 高并发核心模式之异步回调模式
+# 第9章 高并发核心模式之异步回调模式
 
 
 
-第10章 CompletableFuture异步回调
+# 第10章 CompletableFuture异步回调
 
