@@ -226,8 +226,6 @@ Spring Boot中提供了丰富的日志配置项,可以通过application.properti
 
 | org.springframework.boot.logging | 类型     | 说明                              |
 | -------------------------------- | -------- | --------------------------------- |
-| Classes                          |          |                                   |
-|                                  |          |                                   |
 | AbstractLoggingSystem            |          |                                   |
 | AbstractLoggingSystem.LogLevels  |          |                                   |
 | DeferredLog                      |          |                                   |
@@ -240,8 +238,6 @@ Spring Boot中提供了丰富的日志配置项,可以通过application.properti
 | LoggingSystem                    | abstract | 重要 见上面 子类JavaLoggingSystem |
 | LoggingSystemProperties          |          | 有属性 Environment environment    |
 | Slf4JLoggingSystem               | abstract |                                   |
-|                                  |          |                                   |
-| Enums                            |          |                                   |
 |                                  |          |                                   |
 | LogLevel                         |          |                                   |
 
@@ -264,8 +260,6 @@ LoggingSystem (org.springframework.boot.logging)
 
 | org.springframework.boot.logging.java | 类型 | 说明                            |
 | ------------------------------------- | ---- | ------------------------------- |
-| Classes                               |      |                                 |
-|                                       |      |                                 |
 | JavaLoggingSystem                     |      |                                 |
 | SimpleFormatter                       |      | 继承java.util.logging.Formatter |
 
@@ -291,8 +285,6 @@ handlers =java.util.logging.ConsoleHandler
 
 | org.springframework.boot.logging.log4j2     | 类型 | 说明 |
 | ------------------------------------------- | ---- | ---- |
-| Classes                                     |      |      |
-|                                             |      |      |
 | ColorConverter                              |      |      |
 | ExtendedWhitespaceThrowablePatternConverter |      |      |
 | Log4J2LoggingSystem                         |      |      |
@@ -304,8 +296,6 @@ handlers =java.util.logging.ConsoleHandler
 
 | org.springframework.boot.logging.logback  | 类型 | 说明                              |
 | ----------------------------------------- | ---- | --------------------------------- |
-| Classes                                   |      |                                   |
-|                                           |      |                                   |
 | ColorConverter                            |      | CompositeConverter<ILoggingEvent> |
 | DebugLogbackConfigurator                  |      |                                   |
 | DefaultLogbackConfiguration               |      |                                   |
@@ -314,5 +304,4 @@ handlers =java.util.logging.ConsoleHandler
 | LogbackConfigurator.ShutdownHandler       |      |                                   |
 | LogbackLoggingSystem                      |      |                                   |
 | WhitespaceThrowableProxyConverter         |      |                                   |
-
 

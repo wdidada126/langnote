@@ -253,7 +253,7 @@ https://docs.spring.io/spring-boot/docs/2.3.x/api/
 | org.springframework.boot.                  | 类型 | 笔记 |
 | ------------------------------------------ | ---- | ---- |
 | Interfaces                                 |      |      |
-| ApplicationArguments                       |      |      |
+| ApplicationArguments                       |      | 实现类DefaultApplicationArguments     |
 | ApplicationRunner                          |      |      |
 | Banner                                     |      |      |
 | CommandLineRunner                          |      |      |
@@ -265,7 +265,7 @@ https://docs.spring.io/spring-boot/docs/2.3.x/api/
 |                                            |      |      |
 | Classes                                    |      |      |
 |                                            |      |      |
-| DefaultApplicationArguments                |      |      |
+| DefaultApplicationArguments                |      |  实现了ApplicationArguments接口    |
 | ExitCodeEvent                              |      |      |
 | ImageBanner                                |      |      |
 | LazyInitializationBeanFactoryPostProcessor |      |      |
@@ -283,10 +283,119 @@ https://docs.spring.io/spring-boot/docs/2.3.x/api/
 |                                            |      |      |
 | SpringBootConfiguration                    |      |      |
 
+Banner接口的实现类
+SpringBootBanner (org.springframework.boot)
+PrintedBanner in SpringApplicationBannerPrinter (org.springframework.boot)
+Banners in SpringApplicationBannerPrinter (org.springframework.boot)
+ResourceBanner (org.springframework.boot)
+ImageBanner (org.springframework.boot)
+
 
 SpringApplication有main函数，会启动两个Context
 
+在 Spring Boot 框架中，`org.springframework.boot.LazyInitializationExcludeFilter` 类是用于指定不应懒加载的类的过滤器。懒加载（Lazy Initialization）是一种性能优化技术，它可以推迟对象的加载和初始化，直到实际需要的时候再进行。
+在 Spring Boot 2.2 版本及之后，Spring Boot 引入了 "懒加载排除过滤器"，该过滤器允许您定义哪些类不应该被懒加载。这可以防止某些类的懒加载，以确保它们在应用程序启动时立即初始化，而不需要等到第一次使用时才初始化。
+`LazyInitializationExcludeFilter` 类的主要作用是指定那些应该在应用程序启动时立即初始化的类，以避免在后续的请求或操作中引起懒加载导致的延迟。这对于某些特定场景很有用，例如避免在关键路径上的延迟。
+您可以在 Spring Boot 的配置文件中使用 `spring.jpa.properties` 来指定这个过滤器。例如：
 
+```properties
+spring.jpa.properties.hibernate.bytecode.use_reflection_optimizer=false
+spring.jpa.properties.org.springframework.boot.LazyInitializationExcludeFilter=com.example.MyClass1,com.example.MyClass2
+```
+上述配置中，`com.example.MyClass1` 和 `com.example.MyClass2` 是指定在启动时不应该进行懒加载的类。
+请注意，确保在使用这个过滤器时明确理解您的应用程序需求，以便不会出现不必要的性能问题。
+
+
+ApplicationRunner CommandLineRunner
+
+自定义类实现ApplicationRunner，注入spring ioc容器，获取ApplicationArguments参数，ApplicationArguments对象的参数是哪儿来的  命令行中赋值的
+
+要将自定义类实现 `ApplicationRunner` 并注入到 Spring IOC 容器中，你可以按照以下步骤进行操作：
+
+1. 创建自定义类并实现 `ApplicationRunner` 接口：
+
+   ````java
+   import org.springframework.boot.ApplicationArguments;
+   import org.springframework.boot.ApplicationRunner;
+   import org.springframework.stereotype.Component;
+
+   @Component
+   public class MyApplicationRunner implements ApplicationRunner {
+
+       @Override
+       public void run(ApplicationArguments args) throws Exception {
+           // 执行逻辑，使用 args 获取命令行参数
+           String[] sourceArgs = args.getSourceArgs();
+           // ...
+       }
+   }
+   ```
+
+   在上述示例中，我们创建了一个名为 `MyApplicationRunner` 的自定义类，并实现了 `ApplicationRunner` 接口。在 `run()` 方法中，你可以编写你的逻辑，通过 `args` 参数获取命令行参数。
+
+   ````
+
+1. 将自定义类注入到 Spring IOC 容器中：
+
+   确保在你的 Spring Boot 项目中使用了组件扫描（`@ComponentScan`）或显式配置类（`@Configuration`）来启用自动扫描和注册组件的功能。这样，Spring Boot 将会自动扫描 `MyApplicationRunner` 类，并将其实例化为一个 Bean。
+
+   如果你的自定义类不在主应用程序的包或子包中，你可能需要使用 `@ComponentScan` 注解来指定要扫描的包或类。
+
+   ````java
+   import org.springframework.boot.SpringApplication;
+   import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+   @SpringBootApplication
+   public class MyApplication {
+       public static void main(String[] args) {
+           SpringApplication.run(MyApplication.class, args);
+       }
+   }
+   ```
+
+   在主应用程序类中使用 `@SpringBootApplication` 注解标记你的应用程序类，并确保使用了 `SpringApplication.run()` 方法来启动应用程序。
+
+   ````
+
+1. 获取命令行参数：
+
+   在 `MyApplicationRunner` 类的 `run()` 方法中，你可以使用 `args` 参数来获取命令行参数。`ApplicationArguments` 对象提供了多个方法来访问命令行参数，如 `getSourceArgs()` 返回一个字符串数组，包含原始的命令行参数。
+
+   ````java
+   @Override
+   public void run(ApplicationArguments args) throws Exception {
+       String[] sourceArgs = args.getSourceArgs();
+       // ...
+   }
+   ```
+
+   在上述示例中，我们使用 `getSourceArgs()` 方法获取原始的命令行参数，并将其保存在 `sourceArgs` 字符串数组中。
+
+   ````
+`ApplicationArguments` 对象的参数是通过 Spring Boot 的启动类 `SpringApplication` 在启动过程中解析和收集的。它可以包含来自命令行的参数、配置文件中的参数等。
+请注意，在 Spring Boot 应用程序中，你也可以使用 `@Value` 注解来直接注入单个命令行参数，而不必实现 `ApplicationRunner` 接口。这种方式适用于获取单个参数的情况，例如 `java -jar myapp.jar --my.param=value` 中的 `--my.param=value`。
+总结起来，你可以创建一个实现 `ApplicationRunner` 接口的自定义类，并将其注入到 Spring IOC 容器中。通过 `ApplicationArguments` 对象，你可以获取 Spring Boot 应用程序启动时传递的命令行参数。
+
+`ApplicationRunner` 和 `CommandLineRunner` 都是在 Spring Boot 应用程序启动时执行一些逻辑的接口，它们有以下区别：
+
+1. **参数类型不同**：
+
+   - `ApplicationRunner` 的 `run()` 方法接收一个 `ApplicationArguments` 对象作为参数，该对象提供了对应用程序启动时传递的命令行参数的访问。
+   - `CommandLineRunner` 的 `run()` 方法接收一个 `String` 数组作为参数，该数组表示应用程序启动时传递的命令行参数。
+
+1. **命令行参数的处理方式不同**：
+
+   - `ApplicationRunner` 的 `ApplicationArguments` 对象提供了更丰富的命令行参数处理方法，如 `getOptionValues()`、`getOptionNames()`、`getNonOptionArgs()` 等，可以更灵活地访问和解析命令行参数。
+   - `CommandLineRunner` 的 `String` 数组参数直接表示原始的命令行参数，你需要自行解析和处理这些参数。
+
+1. **扩展性不同**：
+
+   - `ApplicationRunner` 接口提供了更高级的扩展能力，因为它可以访问更多关于命令行参数的信息，并提供了更多方法来处理这些参数。
+   - `CommandLineRunner` 接口的参数简单明了，适合处理简单的命令行参数情况。
+
+在实际使用中，你可以根据具体的需求选择使用 `ApplicationRunner` 还是 `CommandLineRunner`。如果你需要更丰富的命令行参数处理能力，或者需要在应用程序启动时执行一些复杂的逻辑，那么 `ApplicationRunner` 可能更适合。而对于简单的命令行参数处理或逻辑执行，`CommandLineRunner` 也是一个很好的选择。
+
+需要注意的是，你可以同时使用多个 `ApplicationRunner` 或 `CommandLineRunner` 实现类，它们将按照注册的顺序依次执行。
 ### org.springframework.boot.admin
 
 | org.springframework.boot.admin        | 类型 | 笔记 |
