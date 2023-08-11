@@ -1194,7 +1194,7 @@ AspectJPrecedenceComparator
 | AdvisorChainFactory               | interface |      |
 | AopInfrastructureBean             | interface |      |
 | AopProxy                          | interface |      |
-| AopProxyFactory                   | interface |      |
+| AopProxyFactory                   | interface |  接口库实现类DefaultAopProxyFactory    |
 |                                   |           |      |
 | Classes                           |           |      |
 |                                   |           |      |
@@ -1203,8 +1203,25 @@ AspectJPrecedenceComparator
 | AdvisedSupport                    |           |      |
 | AopContext                        |           |      |
 | AopProxyUtils                     |           |      |
+| CglibAopProxy                     |           |      |
+| CglibAopProxy.AdvisedDispatcher     |           |      |
+| CglibAopProxy.CglibMethodInvocation |           |      |
+| CglibAopProxy.DynamicAdvisedInterceptor |           |      |
+| CglibAopProxy.DynamicUnadvisedExposedInterceptor |           |      |
+| CglibAopProxy.DynamicUnadvisedInterceptor |           |      |
+| CglibAopProxy.EqualsInterceptor    |           |      |
+| CglibAopProxy.FixedChainStaticTargetInterceptor |           |      |
+| CglibAopProxy.HashCodeInterceptor  |           |      |
+| CglibAopProxy.ProxyCallbackFilter  |           |      |
+| CglibAopProxy.SerializableNoOp     |           |      |
+| CglibAopProxy.StaticDispatcher     |           |      |
+| CglibAopProxy.StaticUnadvisedExposedInterceptor |           |      |
+| CglibAopProxy.StaticUnadvisedInterceptor | | |
 | DefaultAdvisorChainFactory        |           |      |
 | DefaultAopProxyFactory            |           |      |
+| InterceptorAndDynamicMethodMatcher            |           |      |
+| JdkDynamicAopProxy            |           |      |
+| ObjenesisCglibAopProxy            |           |      |
 | ProxyConfig                       |           |      |
 | ProxyCreatorSupport               |           |      |
 | ProxyFactory                      |           |      |
@@ -1216,6 +1233,10 @@ AspectJPrecedenceComparator
 |                                   |           |      |
 | AopConfigException                |           |      |
 
+AopProxyFactory接口方法
+AopProxy createAopProxy(AdvisedSupport config)
+
+DefaultAopProxyFactory实现类
 
 
 #### org.springframework.aop.framework.adapter
