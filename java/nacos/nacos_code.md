@@ -20,53 +20,36 @@
 
 file:///C:/Users/admin/Documents/GitHub/nacos/api/target/apidocs/index.html
 
-
+nacos-api 1.4.2
 
 
 
 
 
 - nacos-address 地址
-
 - nacos-all 所有jar包打成一个jar包
-
 - nacos-api
 
+
 nacos-auth 授权
-
 nacos-auth-plugin                                        
-
 nacos-client 客户端
-
 nacos-cmdb qos
-
 nacos-common 公共的
-
 nacos-config 配置的 conf/application.properties
-
 nacos-consistency 一致性 jfaft
-
 nacos-console 命令行启动
-
 nacos-core 核心
-
 nacos-discovery
-
 nacos-distribution 分布式                                        
-
 nacos-encryption-plugin 加密
-
 nacos-example
-
 nacos-istio
-
 nacos-naming 命名
-
 nacos-plugin
-
 nacos-sys 系统
-
 nacos-test
+
 
 
 
@@ -635,7 +618,8 @@ UtilsAndCommons
 |                                          |      |      |
 | BaseHttpMethod                           |      |      |
 
-
+HttpClientBeanHolder
+getNacosRestTemplate() 调用com.alibaba.nacos.common.http.HttpClientFactory#createNacosRestTemplate()方法
 
 ##### com.alibaba.nacos.common.http.client
 
@@ -690,8 +674,8 @@ UtilsAndCommons
 | -------------------------------------------- | ---- | ---- |
 | 接口                                         |      |      |
 |                                              |      |      |
-| AsyncHttpClientRequest                       |      |      |
-| HttpClientRequest                            |      |      |
+| AsyncHttpClientRequest                       | interface  |      |
+| HttpClientRequest                            | interface |      |
 |                                              |      |      |
 | 类                                           |      |      |
 |                                              |      |      |
@@ -699,7 +683,9 @@ UtilsAndCommons
 | DefaultHttpClientRequest                     |      |      |
 | JdkHttpClientRequest                         |      |      |
 
-
+DefaultHttpClientRequest使用apache httpclient库的
+org.apache.http.impl.client.CloseableHttpClient对象
+JdkHttpClientRequest使用 java.net.HttpURLConnection
 
 ###### com.alibaba.nacos.common.http.client.response
 
@@ -715,7 +701,8 @@ DefaultClientHttpResponse
 
 JdkHttpClientResponse
 
-
+DefaultClientHttpResponse使用apache httpcomponents库
+JdkHttpClientResponse 跟JdkHttpClientRequest对应，使用 java.net.HttpURLConnection
 
 ##### com.alibaba.nacos.common.http.handler
 
@@ -743,7 +730,89 @@ Query
 
 
 
-Closeable
+Closeable 接口
+public void shutdown()方法
+自定义NacosServiceInstanceUpAndDownOperator
+
+```java
+import com.alibaba.cloud.nacos.registry.NacosRegistration;
+import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
+import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.common.lifecycle.Closeable;
+import com.alibaba.nacos.common.utils.ThreadUtils;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class NacosServiceInstanceUpAndDownOperator implements ApplicationRunner, Closeable {
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final String OPERATOR_UP = "UP";
+    private static final String OPERATOR_DOWN = "DOWN";
+    @Autowired
+    NacosServiceRegistry nacosServiceRegistry;
+    @Autowired
+    NacosRegistration nacosRegistration;
+    private ScheduledExecutorService executorService;
+
+    public NacosServiceInstanceUpAndDownOperator() {
+    }
+
+    @PostConstruct
+    public void init() {
+        int poolSize = 1;
+        this.executorService = new ScheduledThreadPoolExecutor(poolSize, new ThreadFactory() {
+            public Thread newThread(Runnable r) {
+                Thread thread = new Thread(r);
+                thread.setDaemon(true);
+                thread.setName("NacosServiceInstanceUpAndDownOperator");
+                return thread;
+            }
+        });
+    }
+
+    public void run(ApplicationArguments args) throws Exception {
+        long delay_down = 5000L;
+        long delay_up = 10000L;
+        this.executorService.schedule(new InstanceDownAndUpTask(this.nacosServiceRegistry, this.nacosRegistration, "DOWN"), delay_down, TimeUnit.MILLISECONDS);
+        this.executorService.schedule(new InstanceDownAndUpTask(this.nacosServiceRegistry, this.nacosRegistration, "UP"), delay_up, TimeUnit.MILLISECONDS);
+    }
+
+    public void shutdown() throws NacosException {
+        ThreadUtils.shutdownThreadPool(this.executorService, this.logger);
+    }
+
+    class InstanceDownAndUpTask implements Runnable {
+        private NacosServiceRegistry nacosServiceRegistry;
+        private NacosRegistration nacosRegistration;
+        private String nacosServiceInstanceOperator;
+
+        InstanceDownAndUpTask(NacosServiceRegistry nacosServiceRegistry, NacosRegistration nacosRegistration, String nacosServiceInstanceOperator) {
+            this.nacosServiceRegistry = nacosServiceRegistry;
+            this.nacosRegistration = nacosRegistration;
+            this.nacosServiceInstanceOperator = nacosServiceInstanceOperator;
+        }
+
+        public void run() {
+            NacosServiceInstanceUpAndDownOperator.this.logger.warn("===更新nacos服务实例的状态to：{}===start=", this.nacosServiceInstanceOperator);
+            this.nacosServiceRegistry.setStatus(this.nacosRegistration, this.nacosServiceInstanceOperator);
+            NacosServiceInstanceUpAndDownOperator.this.logger.warn("===更新nacos服务实例的状态to：{}===end=", this.nacosServiceInstanceOperator);
+            if ("UP".equals(this.nacosServiceInstanceOperator)) {
+                ThreadUtils.shutdownThreadPool(NacosServiceInstanceUpAndDownOperator.this.executorService, NacosServiceInstanceUpAndDownOperator.this.logger);
+            }
+
+        }
+    }
+}
+```
 
 
 
