@@ -1,5 +1,31 @@
 # spring beans
+org.springframework.beans.factory
+BeanFactory
+ 
+bean的配置
 
+<bean  name="user" class="top.edidada.springday01.bean.User" ></bean>
+
+
+一、id 不可以重复
+二、name 可以重复，实际项目中没有意义 可以含有特殊字符
+
+创建bean的三种方式
+1、普通
+2、静态工厂
+3、实例工厂
+
+
+#{}
+
+spel
+
+基于注解的bean IoC方式
+@Component
+@Controller
+@Respository
+
+@Resource
 Spring Bean 的初始化和实例化是两个不同的过程，它们的含义和目的也不同。
 实例化是指创建对象的过程，也就是在内存中分配空间并对对象进行初始化的过程。在 Spring 中，Bean 的实例化是由 BeanFactory 或 ApplicationContext 负责完成的。当容器启动时，Spring 会根据配置文件或注解信息创建 Bean 的实例，并将其保存到容器中。实例化过程是在 BeanFactory 或 ApplicationContext 启动时完成的，一般不需要手动干预。
 初始化是指在对象创建之后对其进行初始化的过程。在 Spring 中，Bean 的初始化是通过调用初始化方法（比如实现 InitializingBean 接口或在配置文件中指定的 init-method 方法）来完成的。初始化方法可以包括对 Bean 的属性进行设置、执行一些初始化操作等。初始化方法的执行时机可以通过配置文件中的 init-method 属性或 @PostConstruct 注解来指定。
@@ -433,6 +459,16 @@ BeanUtils methods
 | Required                                     |  @interface         |      |
 | Value                                        |  @interface         |      |
 
+
+InitDestroyAnnotationBeanPostProcessor处理spring ioc中对象生命周期回调
+InitDestroyAnnotationBeanPostProcessor子类
+spring-context jar包中CommonAnnotationBeanPostProcessor
+CommonAnnotationBeanPostProcessor处理PostConstruct PreDestroy两个注解
+```java
+		setInitAnnotationType(PostConstruct.class);
+		setDestroyAnnotationType(PreDestroy.class);
+```
+
 ##### org.springframework.beans.factory.config
 
 
@@ -536,9 +572,65 @@ BeanExpressionResolver接口 方法
 
 | org.springframework.beans.factory.groovy | 类型 |      |
 | ---------------------------------------- | ---- | ---- |
-|                                          |      |      |
-|                                          |      |      |
-|                                          |      |      |
+|        GroovyBeanDefinitionReader                |      |      |
+|     GroovyBeanDefinitionWrapper            |      |      |
+|    GroovyDynamicElementReader           |      |      |
+
+```java
+GenericApplicationContext context = new GenericApplicationContext();
+new GroovyBeanDefinitionReader(context).loadBeanDefinitions("services.groovy", "daos.groovy");
+context.refresh();
+```
+
+循环依赖
+BeanCurrentlyInCreationException
+
+
+<bean id="theTargetBean" class="..."/>
+
+<bean id="theClientBean" class="...">
+	<property name="targetName">
+		<idref bean="theTargetBean"/>
+	</property>
+</bean>
+
+bean | ref | idref | list | set | map | props | value | null
+
+
+父子bean，继承属性
+<beans>
+	<bean id="parent" abstract="true" class="example.ComplexObject">
+		<property name="adminEmails">
+			<props>
+				<prop key="administrator">administrator@example.com</prop>
+				<prop key="support">support@example.com</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="child" parent="parent">
+		<property name="adminEmails">
+			<!-- the merge is specified on the child collection definition -->
+			<props merge="true">
+				<prop key="sales">sales@example.com</prop>
+				<prop key="support">support@example.co.uk</prop>
+			</props>
+		</property>
+	</bean>
+<beans>
+
+
+administrator=administrator@example.com
+sales=sales@example.com
+support=support@example.co.uk
+
+<bean name="john-modern"
+		class="com.example.Person"
+		p:name="John Doe"
+		p:spouse-ref="jane"/>
+
+<bean id="beanOne" class="x.y.ThingOne" c:thingTwo-ref="beanTwo"
+		c:thingThree-ref="beanThree" c:email="something@somewhere.com"/>
+
 
 ##### org.springframework.beans.factory.parsing
 
@@ -739,9 +831,11 @@ AnnotationBeanWiringInfoResolver ClassNameBeanWiringInfoResolver区别
 |                                       |      |      |
 | XmlBeanDefinitionStoreException       |      |      |
 
-
-
-
+```java
+GenericApplicationContext context = new GenericApplicationContext();
+new XmlBeanDefinitionReader(context).loadBeanDefinitions("services.xml", "daos.xml");
+context.refresh();
+```
 
 #### org.springframework.beans.propertyeditors
 

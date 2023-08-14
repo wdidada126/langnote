@@ -215,59 +215,33 @@ Spring 3.x企业开发实战
 
 
 
-**35. @RequestMapping 注解**
-
+35. @RequestMapping 注解
 该注解是用来映射一个URL到一个类或一个特定的方处理法上。
-
-**36. 什么是基于Java的Spring注解配置? 给一些注解的例子.**
-
+36. 什么是基于Java的Spring注解配置? 给一些注解的例子.
 基于Java的配置，允许你在少量的Java注解的帮助下，进行你的大部分Spring配置而非通过XML文件。
-
 以@Configuration 注解为例，它用来标记类可以当做一个bean的定义，被Spring IOC容器使用。另一个例子是@Bean注解，它表示此方法将要返回一个对象，作为一个bean注册进Spring应用上下文。
-
-**37. 什么是基于注解的容器配置?**
-
+37. 什么是基于注解的容器配置?
 相对于XML文件，注解型的配置依赖于通过字节码元数据装配组件，而非尖括号的声明。
-
 开发者通过在相应的类，方法或属性上使用注解的方式，直接组件类中进行配置，而不是使用xml表述bean的装配关系。
-
-**38. 怎样开启注解装配？**
-
+38. 怎样开启注解装配？
 注解装配在默认情况下是不开启的，为了使用注解装配，我们必须在Spring配置文件中配置 <context:annotation-config/>元素。
-
-**39. @Required 注解**
-
+39. @Required 注解
 这个注解表明bean的属性必须在配置的时候设置，通过一个bean定义的显式的属性值或通过自动装配，若@Required注解的bean属性未被设置，容器将抛出BeanInitializationException。
-
-**40. @Autowired 注解**
-
+40. @Autowired 注解
 @Autowired 注解提供了更细粒度的控制，包括在何处以及如何完成自动装配。它的用法和@Required一样，修饰setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。
-
-**41. @Qualifier 注解**
-
+41. @Qualifier 注解
 当有多个相同类型的bean却只有一个需要自动装配时，将@Qualifier 注解和@Autowire 注解结合使用以消除这种混淆，指定需要装配的确切的bean。
-
-**42.在Spring框架中如何更有效地使用JDBC?**
-
+42.在Spring框架中如何更有效地使用JDBC?
 使用SpringJDBC 框架，资源管理和错误处理的代价都会被减轻。所以开发者只需写statements 和 queries从数据存取数据，JDBC也可以在Spring框架提供的模板类的帮助下更有效地被使用，这个模板叫JdbcTemplate （例子见这里here）
-
-**43. JdbcTemplate**
-
+43. JdbcTemplate
 JdbcTemplate 类提供了很多便利的方法解决诸如把数据库数据转变成基本数据类型或对象，执行写好的或可调用的数据库操作语句，提供自定义的数据错误处理。
-
-**44. Spring对DAO的支持**
-
+44. Spring对DAO的支持
 Spring对数据访问对象（DAO）的支持旨在简化它和数据访问技术如JDBC，Hibernate or JDO 结合使用。这使我们可以方便切换持久层。编码时也不用担心会捕获每种技术特有的异常。
-
-**45. 使用Spring通过什么方式访问Hibernate?**
-
+45. 使用Spring通过什么方式访问Hibernate?
 在Spring中有两种方式访问Hibernate：
-
 控制反转 Hibernate Template和 Callback。
 继承 HibernateDAOSupport提供一个AOP 拦截器。
-
-**46. Spring支持的ORM**
-
+46. Spring支持的ORM
 Spring支持以下ORM：
 
 - Hibernate
@@ -277,51 +251,47 @@ Spring支持以下ORM：
 - JDO (Java Data Objects)
 - OJB
 
-**47.如何通过HibernateDaoSupport将Spring和Hibernate结合起来？**
-
+47.如何通过HibernateDaoSupport将Spring和Hibernate结合起来？
 用Spring的 SessionFactory 调用 LocalSessionFactory。集成过程分三步：
-
 配置the Hibernate SessionFactory。
 继承HibernateDaoSupport实现一个DAO。
 在AOP支持的事务中装配。
-
-**48. Spring支持的事务管理类型**
-
+48. Spring支持的事务管理类型
 Spring支持两种类型的事务管理：
 
 - 编程式事务管理：这意味你通过编程的方式管理事务，给你带来极大的灵活性，但是难维护。
 - 声明式事务管理：这意味着你可以将业务代码和事务管理分离，你只需用注解和XML配置来管理事务。
 
-**49. Spring框架的事务管理有哪些优点？**
+49. Spring框架的事务管理有哪些优点？
 
 - 它为不同的事务API 如 JTA，JDBC，Hibernate，JPA 和JDO，提供一个不变的编程模式。
 - 它为编程式事务管理提供了一套简单的API而不是一些复杂的事务API如
 - 它支持声明式事务管理。
 - 它和Spring各种数据访问抽象层很好得集成。
 
-**50. 你更倾向用那种事务管理类型？**
+50. 你更倾向用那种事务管理类型？
 
 大多数Spring框架的用户选择声明式事务管理，因为它对应用代码的影响最小，因此更符合一个无侵入的轻量级容器的思想。声明式事务管理要优于编程式事务管理，虽然比编程式事务管理（这种方式允许你通过代码控制事务）少了一点灵活性。
 
-**51. 解释AOP**
+51. 解释AOP
 
 面向切面的编程，或AOP， 是一种编程技术，允许程序模块化横向切割关注点，或横切典型的责任划分，如日志和事务管理。
 
-**52. Aspect 切面**
+52. Aspect 切面
 
 AOP核心就是切面，它将多个类的通用行为封装成可重用的模块，该模块含有一组API提供横切功能。比如，一个日志模块可以被称作日志的AOP切面。根据需求的不同，一个应用程序可以有若干切面。在Spring AOP中，切面通过带有@Aspect注解的类实现。
 
-**53. 在Spring AOP 中，关注点和横切关注的区别是什么？**
+53. 在Spring AOP 中，关注点和横切关注的区别是什么？
 
 关注点是应用中一个模块的行为，一个关注点可能会被定义成一个我们想实现的一个功能。
 
 横切关注点是一个关注点，此关注点是整个应用都会使用的功能，并影响整个应用，比如日志，安全和数据传输，几乎应用的每个模块都需要的功能。因此这些都属于横切关注点。
 
-**54. 连接点**
+54. 连接点
 
 连接点代表一个应用程序的某个位置，在这个位置我们可以插入一个AOP切面，它实际上是个应用程序执行Spring AOP的位置。
 
-**55. 通知**
+55. 通知
 
 通知是个在方法执行前或执行后要做的动作，实际上是程序执行时要通过SpringAOP框架触发的代码段。
 
@@ -333,23 +303,23 @@ Spring切面可以应用五种类型的通知：
 - after-throwing: 在方法抛出异常退出时执行的通知。
 - around: 在方法执行之前和之后调用的通知。
 
-**56. 切点**
+56. 切点
 
 切入点是一个或一组连接点，通知将在这些位置执行。可以通过表达式或匹配的方式指明切入点。
 
-**57. 什么是引入?**
+57. 什么是引入?
 
 引入允许我们在已存在的类中增加新的方法和属性。
 
-**58. 什么是目标对象?**
+58. 什么是目标对象?
 
 被一个或者多个切面所通知的对象。它通常是一个代理对象。也指被通知（advised）对象。
 
-**59. 什么是代理?**
+59. 什么是代理?
 
 代理是通知目标对象后创建的对象。从客户端的角度看，代理对象和目标对象是一样的。
 
-**60. 有几种不同类型的自动代理？**
+60. 有几种不同类型的自动代理？
 
 BeanNameAutoProxyCreator
 
@@ -357,37 +327,37 @@ DefaultAdvisorAutoProxyCreator
 
 Metadata autoproxying
 
-**61. 什么是织入。什么是织入应用的不同点？**
+61. 什么是织入。什么是织入应用的不同点？
 
 织入是将切面和到其他应用类型或对象连接或创建一个被通知对象的过程。
 
 织入可以在编译时，加载时，或运行时完成。
 
-**62. 解释基于XML Schema方式的切面实现。**
+62. 解释基于XML Schema方式的切面实现。
 
 在这种情况下，切面由常规类以及基于XML的配置实现。
 
-**63. 解释基于注解的切面实现**
+63. 解释基于注解的切面实现
 
 在这种情况下(基于@AspectJ的实现)，涉及到的切面声明的风格与带有java5标注的普通java类一致。
 
-**64. 什么是Spring的MVC框架？**
+64. 什么是Spring的MVC框架？
 
 Spring 配备构建Web 应用的全功能MVC框架。Spring可以很便捷地和其他MVC框架集成，如Struts，Spring 的MVC框架用控制反转把业务对象和控制逻辑清晰地隔离。它也允许以声明的方式把请求参数和业务对象绑定。
 
-**65. DispatcherServlet**
+65. DispatcherServlet
 
 Spring的MVC框架是围绕DispatcherServlet来设计的，它用来处理所有的HTTP请求和响应。
 
-**66. WebApplicationContext**
+66. WebApplicationContext
 
 WebApplicationContext 继承了ApplicationContext 并增加了一些WEB应用必备的特有功能，它不同于一般的ApplicationContext ，因为它能处理主题，并找到被关联的servlet。
 
-**67. 什么是Spring MVC框架的控制器？**
+67. 什么是Spring MVC框架的控制器？
 
 控制器提供一个访问应用程序的行为，此行为通常通过服务接口实现。控制器解析用户输入并将其转换为一个由视图呈现给用户的模型。Spring用一个非常抽象的方式实现了一个控制层，允许用户创建多种用途的控制器。
 
-**68. @Controller 注解**
+68. @Controller 注解
 
 该注解表明该类扮演控制器的角色，Spring不需要你继承任何其他控制器基类或引用Servlet API。
 
@@ -734,19 +704,217 @@ https://zhuanlan.zhihu.com/p/99603669
 主要过程有:
 
 1.实例化:主要是创建对象
-
 2.填充属性：为对象属性赋值
-
 3.初始化：调用初始化方法
-
 4.使用：保存在缓冲池中等待使用
-
 5.销毁：随着容器的销毁 对象也被回收
 
 
 
+## spring与jsr
+
+Servlet API (JSR 340)
+WebSocket API (JSR 356)
+Concurrency Utilities (JSR 236)
+JSON Binding API (JSR 367)
+Bean Validation (JSR 303)
+JPA (JSR 338)
+JMS (JSR 914)
+as well as JTA/JCA setups for transaction coordination, if necessary.
+Dependency Injection (JSR 330) and Common Annotations (JSR 250) specifications
 
 
+Spring Framework 6.0 is fully compatible with Tomcat 10.1, Jetty 11 and Undertow 2.3 as web servers, and also with Hibernate ORM 6.1.
+
+
+Scope
+singleton
+prototype
+request
+session
+application
+websocket
+
+The JSR-250 @PostConstruct and @PreDestroy annotations
+
+
+org.springframework.beans.factory.InitializingBean
+不建议用InitializingBean
+建议用@PostConstruct
+
+<bean id="exampleInitBean" class="examples.ExampleBean" init-method="init"/>
+
+
+public class ExampleBean {
+
+	public void init() {
+		// do some initialization work
+	}
+}
+
+
+`@PostConstruct` 是一个标注在方法上的注解，它表示该方法在对象被创建后会被自动调用一次，通常用于执行一些初始化操作。在使用 Spring 框架时，`@PostConstruct` 注解可以与任何 bean 的初始化方法一起使用。
+以下是 `@PostConstruct` 的用法：
+1. 导入依赖：确保你的项目中包含了 `javax.annotation` 包的依赖，因为 `@PostConstruct` 注解位于该包中。如果使用 Maven，则需要添加以下依赖：
+   ````xml
+   <dependency>
+       <groupId>javax.annotation</groupId>
+       <artifactId>javax.annotation-api</artifactId>
+       <version>1.3.2</version>
+   </dependency>
+   ```
+
+
+   ````
+
+1. 在类中添加初始化方法：在需要执行初始化操作的方法上添加 `@PostConstruct` 注解。该方法可以有任意名称，但不能有任何参数。
+
+   ````java
+   import javax.annotation.PostConstruct;
+   import org.springframework.stereotype.Component;
+
+   @Component
+   public class MyBean {
+       @PostConstruct
+       public void init() {
+           // 执行初始化操作
+           System.out.println("Initializing MyBean...");
+       }
+   }
+```
+   在上面的示例中，`init()` 方法被标注为 `@PostConstruct`，在 `MyBean` 对象创建后会被自动调用。
+   注意：`@PostConstruct` 注解可以与 `@Component`、`@Service`、`@Controller` 等 Spring 相关注解一起使用，以确保该方法被正确地识别为初始化方法。
+
+
+
+1. 配置 Spring 上下文：确保 Spring 上下文能够扫描到带有 `@PostConstruct` 注解的类。这可以通过配置组件扫描或显式声明 bean 来实现。
+   如果使用基于注解的配置方式（例如使用 `@ComponentScan` 注解），则需要确保将 `@PostConstruct` 注解的类所在的包包含在扫描范围内。
+   如果使用 XML 配置方式，则需要在 XML 配置文件中使用适当的元素（如 `<context:component-scan>`）来启用组件扫描。
+
+当 Spring 容器创建带有 `@PostConstruct` 注解的 bean 时，初始化方法将会被自动调用。这样，你可以在初始化方法中执行一些必要的操作，例如初始化对象、加载数据或建立连接等。
+
+是的，当使用`@PostConstruct`注解修饰的方法时，Spring AOP会在方法执行前后织入额外的代码，以实现初始化的逻辑。
+具体而言，`@PostConstruct`注解使用了Spring的`CommonAnnotationBeanPostProcessor`后置处理器。该后置处理器会在Bean初始化完成后，检查Bean中是否存在带有`@PostConstruct`注解的方法。如果存在，则会使用动态代理技术，在方法执行前后织入额外的代码。
+这意味着，在标有`@PostConstruct`注解的方法执行前，Spring AOP会在其前面插入一段代码，用于执行特定的初始化逻辑。同样，在方法执行后，会插入另一段代码，用于执行其他必要的操作。
+这种方式可以方便地实现Bean的初始化过程中的一些处理，例如资源的加载、依赖的注入、属性的初始化等。
+需要注意的是，`@PostConstruct`注解只会在单例的Bean对象上生效，因为它们只会在Bean创建后执行一次。对于原型（prototype）作用域的Bean对象，`@PostConstruct`注解不会触发初始化方法的调用。如果需要在原型作用域的Bean上执行初始化逻辑，可以考虑使用`InitializingBean`接口或自定义的初始化方法来实现。
+
+As of Spring 2.5, you have three options for controlling bean lifecycle behavior:
+The InitializingBean and DisposableBean callback interfaces
+Custom init() and destroy() methods
+The @PostConstruct and @PreDestroy annotations
+
+
+org.springframework.context.Lifecycle
+org.springframework.context.SmartLifecycle
+
+
+ConfigurableApplicationContext (org.springframework.context)
+    ConfigurableWebServerApplicationContext (org.springframework.boot.web.context)
+        ReactiveWebServerApplicationContext (org.springframework.boot.web.reactive.context)
+            AnnotationConfigReactiveWebServerApplicationContext (org.springframework.boot.web.reactive.context)
+        ServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+            AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+            XmlServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+    ConfigurableReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+        AnnotationConfigReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+        AssertableReactiveWebApplicationContext (org.springframework.boot.test.context.assertj)
+        GenericReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+    AbstractApplicationContext (org.springframework.context.support)
+        AbstractRefreshableApplicationContext (org.springframework.context.support)
+        GenericApplicationContext (org.springframework.context.support)
+    AssertableApplicationContext (org.springframework.boot.test.context.assertj)
+    ConfigurableWebApplicationContext (org.springframework.web.context)
+        AssertableWebApplicationContext (org.springframework.boot.test.context.assertj)
+        GenericWebApplicationContext (org.springframework.web.context.support)
+        StaticWebApplicationContext (org.springframework.web.context.support)
+        AbstractRefreshableWebApplicationContext (org.springframework.web.context.support)
+SmartLifecycle (org.springframework.context)
+    RSocketServerBootstrap (org.springframework.boot.rsocket.context)
+    WebServerGracefulShutdownLifecycle (org.springframework.boot.web.servlet.context)
+    WebServerGracefulShutdownLifecycle (org.springframework.boot.web.reactive.context)
+    WebServerStartStopLifecycle (org.springframework.boot.web.reactive.context)
+    WebServerStartStopLifecycle (org.springframework.boot.web.servlet.context)
+LifecycleProcessor (org.springframework.context)
+    DefaultLifecycleProcessor (org.springframework.context.support)
+
+
+
+public interface Lifecycle {
+
+	void start();
+	
+	void stop();
+	
+	boolean isRunning();
+}
+
+
+public interface LifecycleProcessor extends Lifecycle {
+
+	void onRefresh();
+	
+	void onClose();
+}
+
+
+public interface Phased {
+
+	int getPhase();
+}
+
+public interface SmartLifecycle extends Lifecycle, Phased {
+
+	boolean isAutoStartup();
+	
+	void stop(Runnable callback);
+}
+
+
+<bean id="lifecycleProcessor" class="org.springframework.context.support.DefaultLifecycleProcessor">
+	<!-- timeout value in milliseconds -->
+	<property name="timeoutPerShutdownPhase" value="10000"/>
+</bean>
+
+
+
+
+
+ApplicationContextAware and BeanNameAware
+
+
+public interface ApplicationContextAware {
+	void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
+}
+
+public interface BeanNameAware {
+	void setBeanName(String name) throws BeansException;
+}
+
+
+
+| Name                             | Injected Dependency                                          | Explained in…                                                |
+| :------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| `ApplicationContextAware`        | Declaring `ApplicationContext`.                              | [`ApplicationContextAware` and `BeanNameAware`](https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html#beans-factory-aware) |
+| `ApplicationEventPublisherAware` | Event publisher of the enclosing `ApplicationContext`.       | [Additional Capabilities of the `ApplicationContext`](https://docs.spring.io/spring-framework/reference/core/beans/context-introduction.html) |
+| `BeanClassLoaderAware`           | Class loader used to load the bean classes.                  | [Instantiating Beans](https://docs.spring.io/spring-framework/reference/core/beans/definition.html#beans-factory-class) |
+| `BeanFactoryAware`               | Declaring `BeanFactory`.                                     | [The `BeanFactory` API](https://docs.spring.io/spring-framework/reference/core/beans/beanfactory.html) |
+| `BeanNameAware`                  | Name of the declaring bean.                                  | [`ApplicationContextAware` and `BeanNameAware`](https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html#beans-factory-aware) |
+| `LoadTimeWeaverAware`            | Defined weaver for processing class definition at load time. | [Load-time Weaving with AspectJ in the Spring Framework](https://docs.spring.io/spring-framework/reference/core/aop/using-aspectj.html#aop-aj-ltw) |
+| `MessageSourceAware`             | Configured strategy for resolving messages (with support for parameterization and internationalization). | [Additional Capabilities of the `ApplicationContext`](https://docs.spring.io/spring-framework/reference/core/beans/context-introduction.html) |
+| `NotificationPublisherAware`     | Spring JMX notification publisher.                           | [Notifications](https://docs.spring.io/spring-framework/reference/integration/jmx/notifications.html) |
+| `ResourceLoaderAware`            | Configured loader for low-level access to resources.         | [Resources](https://docs.spring.io/spring-framework/reference/web/webflux-webclient/client-builder.html#webflux-client-builder-reactor-resources) |
+| `ServletConfigAware`             | Current `ServletConfig` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html#mvc) |
+| `ServletContextAware`            | Current `ServletContext` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html#mvc) |
+
+
+
+
+## Resource
+
+ResourceLoader
+
+FileSystemResource
 
 
 
@@ -904,7 +1072,7 @@ spring-beans jar包里面
 DefaultSingletonBeanRegistry
 org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
 DefaultSingletonBeanRegistry是Spring框架中单例Bean的默认注册表实现，其中保存了所有已经初始化的单例Bean对象。
-```shell
+​```shell
 D:\Java\jdk1.8.0_231\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=13521:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\bin" -Dfile.encoding=UTF-8 -classpath xx cn.edidada.testss.spring.namespace.mybatis.nodep.SpringNamespaceExample
 Exception in thread "main" org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JDBCOrderRepositoryImpl' defined in file [D:\git\github\shardingspheretest_local\target\classes\cn\edidada\testss\repository\jdbc\repository\JDBCOrderRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected single matching bean but found 5: demo_ds_2,demo_ds_0,demo_ds_1,demo_ds_3,shardingDataSource
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:749)
@@ -981,7 +1149,7 @@ spring如何打印源码中的日志
 
 
 
-```java
+​```java
 		if (logger.isDebugEnabled()) {
 			logger.debug("Eagerly caching bean '" + beanName +
 					"' to allow for resolving potential circular references");
@@ -1124,7 +1292,7 @@ MyBatis中解析xml配置文件的类
 
 org.springframework.cglib.proxy.MethodProxy
 
-```java
+​```java
 
 at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
@@ -1442,7 +1610,7 @@ applicationContext.xml是整个spring应用所有的，springmvc是属于spring�
 
 
 
-**Java的升级比c#差**
+Java的升级比c#差
 
 Spring bean生命周期，看源码
 

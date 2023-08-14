@@ -473,8 +473,21 @@ ClassPathScanningCandidateComponentProvider
 
 
 
+CommonAnnotationBeanPostProcessor
+处理PostConstruct
+PreDestroy
+注解
 
-
+```java
+@Component
+public class MyBean {
+    @PostConstruct
+    public void init() {
+        // 执行初始化操作
+        System.out.println("Initializing MyBean...");
+    }
+}
+```
 
 
 #### org.springframework.context.config
