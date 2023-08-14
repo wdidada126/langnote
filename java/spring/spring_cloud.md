@@ -27,8 +27,8 @@ sping cloud 一整套企业级服务
 腾讯云 阿里云都有类似的微服务框架
 
 
- Spring Cloud
- Finchley
+Spring Cloud
+Finchley
 Spring Cloud	Spring Boot
 Angel版本	兼容Spring Boot 1.2.x
 Brixton版本	兼容Spring Boot 1.3.x，也兼容Spring Boot 1.4.x

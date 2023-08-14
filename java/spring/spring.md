@@ -908,7 +908,64 @@ public interface BeanNameAware {
 | `ServletContextAware`            | Current `ServletContext` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html#mvc) |
 
 
+https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html
 
+AutowiredAnnotationBeanPostProcessor
+Customizing Configuration Metadata with a BeanFactoryPostProcessor
+
+PropertySourcesPlaceholderConfigurer
+
+PropertyOverrideConfigurer
+
+Customizing Instantiation Logic with a FactoryBean
+"Customizing Instantiation Logic with a FactoryBean" 是Spring文档中关于使用FactoryBean自定义实例化逻辑的部分。让我用汉语解释一下，并提供一个代码示例。
+
+在Spring中，通常我们使用`new`关键字或者通过构造方法来实例化Bean对象。但是有时候，我们可能需要在实例化过程中进行一些额外的逻辑操作，例如从缓存中获取对象、返回单例对象等。这时，我们可以使用`FactoryBean`接口来自定义实例化逻辑。
+
+`FactoryBean`是Spring框架提供的一个接口，它允许我们定义一个工厂类，负责创建特定类型的对象。这个工厂类需要实现`FactoryBean`接口，并重写其中的方法。
+
+下面是一个简单的示例，展示了如何使用`FactoryBean`来自定义实例化逻辑：
+
+首先，创建一个实现`FactoryBean`接口的工厂类，例如`CustomFactoryBean`：
+
+```java
+import org.springframework.beans.factory.FactoryBean;
+
+public class CustomFactoryBean implements FactoryBean<CustomObject> {
+
+    @Override
+    public CustomObject getObject() throws Exception {
+        // 在这里进行自定义的实例化逻辑
+        CustomObject customObject = new CustomObject();
+        // 可以在这里对customObject进行进一步的操作
+        return customObject;
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return CustomObject.class;
+    }
+
+    @Override
+    public boolean isSingleton() {
+        return true;
+    }
+}
+```
+
+在上面的示例中，`CustomFactoryBean`实现了`FactoryBean<CustomObject>`接口，并重写了其中的方法。`getObject()`方法用于实例化并返回自定义的对象，`getObjectType()`方法返回工厂所创建的对象的类型，`isSingleton()`方法指示对象是否为单例。
+
+然后，在Spring配置文件中，将`CustomFactoryBean`作为一个Bean进行配置：
+
+```xml
+<bean name="customObject" class="com.example.CustomFactoryBean" />
+```
+
+在上述配置中，`name`属性是Bean的名称，`class`属性指定了使用的工厂类。
+
+当Spring容器启动时，它会检测到`CustomFactoryBean`的配置，并调用`getObject()`方法来获取实例化的对象。然后，该对象将被注册为一个Bean，并可以在应用程序中使用。
+
+这样，通过使用`FactoryBean`接口和自定义工厂类，我们可以在实例化Bean对象时添加额外的逻辑操作，以满足特定的需求。
 
 ## Resource
 
