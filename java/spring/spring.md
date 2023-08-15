@@ -781,7 +781,9 @@ public class ExampleBean {
            System.out.println("Initializing MyBean...");
        }
    }
+   ````
 ```
+
 ```
 
    在上面的示例中，`init()` 方法被标注为 `@PostConstruct`，在 `MyBean` 对象创建后会被自动调用。
@@ -1330,6 +1332,216 @@ public class AppConfig {
 ```
 
 
+
+@Autowired and @Value
+AutowiredAnnotationBeanPostProcessor
+
+
+    @Autowired
+    Environment env;
+
+对象：StandardEnvironment
+
+```shell
+StandardServletEnvironment {activeProfiles=[dev], defaultProfiles=[default], propertySources=[ConfigurationPropertySourcesPropertySource@836841663 {name='configurationProperties', properties=org.springframework.boot.context.properties.source.SpringConfigurationPropertySources@54755dd9}, StubPropertySource@253722034 {name='servletConfigInitParams', properties=java.lang.Object@4462efe1}, ServletContextPropertySource@2084457242 {name='servletContextInitParams', properties=org.apache.catalina.core.ApplicationContextFacade@2db4ad1}, PropertiesPropertySource@1985828309 {name='systemProperties', properties={java.runtime.name=Java(TM) SE Runtime Environment, spring.output.ansi.enabled=always, sun.boot.library.path=D:\Java\jdk1.8.0_231\jre\bin, java.vm.version=25.231-b11, java.vm.vendor=Oracle Corporation, java.vendor.url=http://java.oracle.com/, java.rmi.server.randomIDs=true, path.separator=;, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, file.encoding.pkg=sun.io, user.country=CN, user.script=, sun.java.launcher=SUN_STANDARD, sun.os.patch.level=, PID=15216, java.vm.specification.name=Java Virtual Machine Specification, user.dir=D:\git\github\springboothttpserver, intellij.debug.agent=true, java.runtime.version=1.8.0_231-b11, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, java.endorsed.dirs=D:\Java\jdk1.8.0_231\jre\lib\endorsed, os.arch=amd64, java.io.tmpdir=C:\Users\edidada\AppData\Local\Temp\, line.separator=
+, java.vm.specification.vendor=Oracle Corporation, user.variant=, os.name=Windows 10, sun.jnu.encoding=GBK, spring.beaninfo.ignore=true, java.library.path=D:\Java\jdk1.8.0_231\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\Program\Python36\Scripts\;D:\Program\Python36\;C:\Python39\Scripts\;C:\Python39\;C:\Users\edidada\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;D:\Program\ripgrep-12.1.0-x86_64-pc-windows-gnu;d:\cloc;D:\Oracle\DataBase\app\edidada\product\12.1.0\dbhome_1\bin;D:\Oracle\DataBase\app\wdidada\product\12.1.0\dbhome_1\bin;D:\Program\kafka_2.12-0.11.0.3\bin\windows;D:\Java\jdk1.8.0_231\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\kubernetes;D:\zookeeper-3.4.10\bin;D:\gradle-5.1.1\bin;D:\apache-maven-3.6.1\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\MinGW64\mingw64\bin;D:\Program Files\ffmpeg-win64-static\bin;C:\Program Files\PuTTY\;D:\mysql-5.7.17-winx64\bin;C:\Program Files (x86)\WinSCP\;C:\Program Files\erl9.0\bi;C:\WINDOWS\System32\OpenSSH\;%ANT_HOME%\bin;D:\Java\jdk1.8.0_231\jre\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\antlr;C:\Program Files\nodejs\;C:\Program Files\Sublime Text 3;D:\groovy-2.5.7\bin;D:\Program\protoc-3.10.0-win64\bin;D:\Program Files\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin;C:\Users\edidada\AppData\Roaming\local\bin;D:\Program\thrift;D:\Program\node-v8.11.3-win-x64;D:\Program\dart-sdk\bin;D:\Program\nasm-2.14.02;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.26.28801\bin\Hostx64\x64\;D:\Program\rebar3;C:\Program Files\erl-23.0.1\bin;E:\Android\SDK\platform-tools;E:\apache-servicecomb-service-center-1.3.0-windows-amd64;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;D:\Program\netcat-win32-1.12;D:\Programs\consul_1.9.4_windows_amd64;E:\Program Files\Redis\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;E:\apache-ant-1.10.5\bin\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Calibre2\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;D:\git\github\vcpkg;D:\aspectj1.8\bin;D:\mule-enterprise-standalone-3.9.5-20230217\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\IDM Computer Solutions\UltraEdit;D:\Program Files\Conan\conan;C:\Users\edidada\.cargo\bin;d:\Ruby24-x64\bin;C:\Users\edidada\AppData\Local\Microsoft\WindowsApps;C:\Users\edidada\.dotnet\tools;D:\Programs\Microsoft VS Code\bin;C:\Users\edidada\go\bin;C:\Users\edidada\AppData\Local\Programs\Fiddler;C:\Users\edidada\AppData\Local\Microsoft\WindowsApps;C:\Users\edidada\AppData\Roaming\npm;C:\Program Files\JetBrains\CLion 2021.3.3\bin;;C:\Users\edidada\.dotnet\tools;C:\Users\edidada\xmake;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\edidada\AppData\Local\GitHubDesktop\bin;., jboss.modules.system.pkgs=com.intellij.rt, spring.jmx.enabled=true, java.specification.name=Java Platform API Specification, java.class.version=52.0, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, spring.liveBeansView.mbeanDomain=, os.version=10.0, user.home=C:\Users\edidada, catalina.useNaming=false, user.timezone=Asia/Shanghai, java.awt.printerjob=sun.awt.windows.WPrinterJob, file.encoding=UTF-8, java.specification.version=1.8, catalina.home=C:\Users\edidada\AppData\Local\Temp\tomcat.5950821585943334703.9991, java.class.path=D:\Java\jdk1.8.0_231\jre\lib\charsets.jar;D:\Java\jdk1.8.0_231\jre\lib\deploy.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\access-bridge-64.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\cldrdata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\dnsns.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jaccess.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jfxrt.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\localedata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\nashorn.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunec.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunjce_provider.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunmscapi.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunpkcs11.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\zipfs.jar;D:\Java\jdk1.8.0_231\jre\lib\javaws.jar;D:\Java\jdk1.8.0_231\jre\lib\jce.jar;D:\Java\jdk1.8.0_231\jre\lib\jfr.jar;D:\Java\jdk1.8.0_231\jre\lib\jfxswt.jar;D:\Java\jdk1.8.0_231\jre\lib\jsse.jar;D:\Java\jdk1.8.0_231\jre\lib\management-agent.jar;D:\Java\jdk1.8.0_231\jre\lib\plugin.jar;D:\Java\jdk1.8.0_231\jre\lib\resources.jar;D:\Java\jdk1.8.0_231\jre\lib\rt.jar;D:\git\github\springboothttpserver\target\classes;D:\mavenrepository\201904\com\fasterxml\jackson\dataformat\jackson-dataformat-xml\2.11.2\jackson-dataformat-xml-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-core\2.11.2\jackson-core-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-annotations\2.11.2\jackson-annotations-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-databind\2.11.2\jackson-databind-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.11.2\jackson-module-jaxb-annotations-2.11.2.jar;D:\mavenrepository\201904\jakarta\activation\jakarta.activation-api\1.2.2\jakarta.activation-api-1.2.2.jar;D:\mavenrepository\201904\org\codehaus\woodstox\stax2-api\4.2.1\stax2-api-4.2.1.jar;D:\mavenrepository\201904\com\fasterxml\woodstox\woodstox-core\6.2.1\woodstox-core-6.2.1.jar;D:\mavenrepository\201904\org\hibernate\validator\hibernate-validator\6.2.0.Final\hibernate-validator-6.2.0.Final.jar;D:\mavenrepository\201904\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;D:\mavenrepository\201904\jakarta\validation\jakarta.validation-api\2.0.2\jakarta.validation-api-2.0.2.jar;D:\mavenrepository\201904\com\wdidada\test\feign-api\1.0-SNAPSHOT\feign-api-1.0-SNAPSHOT.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-web\2.3.4.RELEASE\spring-boot-starter-web-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter\2.3.4.RELEASE\spring-boot-starter-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot\2.3.4.RELEASE\spring-boot-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-autoconfigure\2.3.4.RELEASE\spring-boot-autoconfigure-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-logging\2.3.4.RELEASE\spring-boot-starter-logging-2.3.4.RELEASE.jar;D:\mavenrepository\201904\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;D:\mavenrepository\201904\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;D:\mavenrepository\201904\org\apache\logging\log4j\log4j-to-slf4j\2.13.3\log4j-to-slf4j-2.13.3.jar;D:\mavenrepository\201904\org\apache\logging\log4j\log4j-api\2.13.3\log4j-api-2.13.3.jar;D:\mavenrepository\201904\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;D:\mavenrepository\201904\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;D:\mavenrepository\201904\org\yaml\snakeyaml\1.26\snakeyaml-1.26.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-json\2.3.4.RELEASE\spring-boot-starter-json-2.3.4.RELEASE.jar;D:\mavenrepository\201904\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.11.2\jackson-datatype-jdk8-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.11.2\jackson-datatype-jsr310-2.11.2.jar;D:\mavenrepository\201904\com\fasterxml\jackson\module\jackson-module-parameter-names\2.11.2\jackson-module-parameter-names-2.11.2.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-tomcat\2.3.4.RELEASE\spring-boot-starter-tomcat-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\apache\tomcat\embed\tomcat-embed-core\9.0.38\tomcat-embed-core-9.0.38.jar;D:\mavenrepository\201904\org\glassfish\jakarta.el\3.0.3\jakarta.el-3.0.3.jar;D:\mavenrepository\201904\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.38\tomcat-embed-websocket-9.0.38.jar;D:\mavenrepository\201904\org\springframework\spring-web\5.2.9.RELEASE\spring-web-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-webmvc\5.2.9.RELEASE\spring-webmvc-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-aop\5.2.9.RELEASE\spring-aop-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-context\5.2.9.RELEASE\spring-context-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-expression\5.2.9.RELEASE\spring-expression-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-jdbc\5.2.9.RELEASE\spring-jdbc-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-beans\5.2.9.RELEASE\spring-beans-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-core\5.2.9.RELEASE\spring-core-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-jcl\5.2.9.RELEASE\spring-jcl-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-tx\5.2.9.RELEASE\spring-tx-5.2.9.RELEASE.jar;D:\mavenrepository\201904\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;D:\mavenrepository\201904\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;D:\mavenrepository\201904\org\jboss\logging\jboss-logging\3.4.1.Final\jboss-logging-3.4.1.Final.jar;D:\mavenrepository\201904\net\logstash\logback\logstash-logback-encoder\7.3\logstash-logback-encoder-7.3.jar;D:\mavenrepository\201904\org\jboss\logmanager\jboss-logmanager\2.1.19.Final\jboss-logmanager-2.1.19.Final.jar;D:\mavenrepository\201904\org\wildfly\common\wildfly-common\1.5.1.Final\wildfly-common-1.5.1.Final.jar;D:\mavenrepository\201904\jakarta\xml\bind\jakarta.xml.bind-api\2.3.3\jakarta.xml.bind-api-2.3.3.jar;D:\mavenrepository\201904\commons-codec\commons-codec\1.14\commons-codec-1.14.jar;D:\mavenrepository\201904\com\alibaba\fastjson\1.2.76\fastjson-1.2.76.jar;D:\mavenrepository\201904\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar;D:\mavenrepository\201904\org\apache\commons\commons-lang3\3.8.1\commons-lang3-3.8.1.jar;D:\mavenrepository\201904\commons-collections\commons-collections\3.2.1\commons-collections-3.2.1.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-actuator\2.3.4.RELEASE\spring-boot-starter-actuator-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-actuator-autoconfigure\2.3.4.RELEASE\spring-boot-actuator-autoconfigure-2.3.4.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-actuator\2.3.4.RELEASE\spring-boot-actuator-2.3.4.RELEASE.jar;D:\mavenrepository\201904\io\micrometer\micrometer-core\1.5.5\micrometer-core-1.5.5.jar;D:\mavenrepository\201904\org\hdrhistogram\HdrHistogram\2.1.12\HdrHistogram-2.1.12.jar;D:\mavenrepository\201904\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;D:\mavenrepository\201904\org\projectlombok\lombok\1.18.12\lombok-1.18.12.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.1\lib\idea_rt.jar;C:\Users\edidada\AppData\Local\JetBrains\IntelliJIdea2021.1\captureAgent\debugger-agent.jar, user.name=edidada, com.sun.management.jmxremote=, java.vm.specification.version=1.8, sun.java.command=com.wdidada.test.springboothttpserver.SpringboothttpserverApplication, java.home=D:\Java\jdk1.8.0_231\jre, sun.arch.data.model=64, user.language=zh, java.specification.vendor=Oracle Corporation, awt.toolkit=sun.awt.windows.WToolkit, java.vm.info=mixed mode, java.version=1.8.0_231, java.ext.dirs=D:\Java\jdk1.8.0_231\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext, sun.boot.class.path=D:\Java\jdk1.8.0_231\jre\lib\resources.jar;D:\Java\jdk1.8.0_231\jre\lib\rt.jar;D:\Java\jdk1.8.0_231\jre\lib\sunrsasign.jar;D:\Java\jdk1.8.0_231\jre\lib\jsse.jar;D:\Java\jdk1.8.0_231\jre\lib\jce.jar;D:\Java\jdk1.8.0_231\jre\lib\charsets.jar;D:\Java\jdk1.8.0_231\jre\lib\jfr.jar;D:\Java\jdk1.8.0_231\jre\classes, java.awt.headless=true, java.vendor=Oracle Corporation, catalina.base=C:\Users\edidada\AppData\Local\Temp\tomcat.5950821585943334703.9991, spring.application.admin.enabled=true, file.separator=\, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, sun.io.unicode.encoding=UnicodeLittle, sun.cpu.endian=little, sun.desktop=windows, sun.cpu.isalist=amd64}}, OriginAwareSystemEnvironmentPropertySource@622043416 {name='systemEnvironment', properties={USERDOMAIN_ROAMINGPROFILE=WDIDADA, NO_PROXY=192.168.99.100, PROCESSOR_LEVEL=6, VS140COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\, SESSIONNAME=Console, ALLUSERSPROFILE=C:\ProgramData, PROCESSOR_ARCHITECTURE=AMD64, ANDROID_HOME=E:\Android\SDK, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\;, SystemDrive=C:, ADSK_3DSMAX_x64_2018=C:\Program Files\Autodesk\3ds Max 2018\, ROCKETMQ_HOME=E:\rocketmq-all-4.8.0-bin-release, USERNAME=edidada, ProgramFiles(x86)=C:\Program Files (x86), QtMsBuild=C:\Users\edidada\AppData\Local\QtMsBuild, FPS_BROWSER_USER_PROFILE_STRING=Default, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.RB;.RBW, COMPOSE_CONVERT_WINDOWS_PATHS=true, DriverData=C:\Windows\System32\Drivers\DriverData, CLion=C:\Program Files\JetBrains\CLion 2021.3.3\bin;, VCPKG_ROOT=D:\git\github\vcpkg, ProgramData=C:\ProgramData, ProgramW6432=C:\Program Files, HOMEPATH=\Users\edidada, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 61 Stepping 4, GenuineIntel, HADOOP_HOME=E:\hbase-1.6.0, M2_HOME=D:\apache-maven-3.6.1, ProgramFiles=C:\Program Files, PUBLIC=C:\Users\Public, windir=C:\WINDOWS, =::=::\, MINGW_HOME=D:\MinGW64\mingw64, LOCALAPPDATA=C:\Users\edidada\AppData\Local, USERDOMAIN=WDIDADA, FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer, LOGONSERVER=\\WDIDADA, JAVA_HOME=D:\Java\jdk1.8.0_231, GRADLE_HOME=D:\gradle-5.1.1, GROOVY_HOME=D:\groovy-2.5.7, OneDrive=C:\Users\edidada\OneDrive, APPDATA=C:\Users\edidada\AppData\Roaming, GRADLE_USER_HOME=G:\gradle\cache, DokanLibrary1=C:\Program Files\Dokan\Dokan Library-1.1.0.2000\, VBOX_MSI_INSTALL_PATH=D:\Program Files\Oracle\VirtualBox\, CommonProgramFiles=C:\Program Files\Common Files, JMETER_HOME=D:\apache-jmeter-4.0, Path=D:\Program\Python36\Scripts\;D:\Program\Python36\;C:\Python39\Scripts\;C:\Python39\;C:\Users\edidada\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;D:\Program\ripgrep-12.1.0-x86_64-pc-windows-gnu;d:\cloc;D:\Oracle\DataBase\app\edidada\product\12.1.0\dbhome_1\bin;D:\Oracle\DataBase\app\wdidada\product\12.1.0\dbhome_1\bin;D:\Program\kafka_2.12-0.11.0.3\bin\windows;D:\Java\jdk1.8.0_231\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\kubernetes;D:\zookeeper-3.4.10\bin;D:\gradle-5.1.1\bin;D:\apache-maven-3.6.1\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\MinGW64\mingw64\bin;D:\Program Files\ffmpeg-win64-static\bin;C:\Program Files\PuTTY\;D:\mysql-5.7.17-winx64\bin;C:\Program Files (x86)\WinSCP\;C:\Program Files\erl9.0\bi;C:\WINDOWS\System32\OpenSSH\;%ANT_HOME%\bin;D:\Java\jdk1.8.0_231\jre\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\antlr;C:\Program Files\nodejs\;C:\Program Files\Sublime Text 3;D:\groovy-2.5.7\bin;D:\Program\protoc-3.10.0-win64\bin;D:\Program Files\Microsoft Visual Studio\2019\Professional\MSBuild\Current\Bin;C:\Users\edidada\AppData\Roaming\local\bin;D:\Program\thrift;D:\Program\node-v8.11.3-win-x64;D:\Program\dart-sdk\bin;D:\Program\nasm-2.14.02;C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.26.28801\bin\Hostx64\x64\;D:\Program\rebar3;C:\Program Files\erl-23.0.1\bin;E:\Android\SDK\platform-tools;E:\apache-servicecomb-service-center-1.3.0-windows-amd64;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;D:\Program\netcat-win32-1.12;D:\Programs\consul_1.9.4_windows_amd64;E:\Program Files\Redis\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;E:\apache-ant-1.10.5\bin\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Calibre2\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;D:\git\github\vcpkg;D:\aspectj1.8\bin;D:\mule-enterprise-standalone-3.9.5-20230217\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\IDM Computer Solutions\UltraEdit;D:\Program Files\Conan\conan;C:\Users\edidada\.cargo\bin;d:\Ruby24-x64\bin;C:\Users\edidada\AppData\Local\Microsoft\WindowsApps;C:\Users\edidada\.dotnet\tools;D:\Programs\Microsoft VS Code\bin;C:\Users\edidada\go\bin;C:\Users\edidada\AppData\Local\Programs\Fiddler;C:\Users\edidada\AppData\Local\Microsoft\WindowsApps;C:\Users\edidada\AppData\Roaming\npm;C:\Program Files\JetBrains\CLion 2021.3.3\bin;;C:\Users\edidada\.dotnet\tools;C:\Users\edidada\xmake;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\edidada\AppData\Local\GitHubDesktop\bin, OS=Windows_NT, COMPUTERNAME=WDIDADA, ANDROID_SDK_ROOT=E:\Android\SDK, PROCESSOR_REVISION=3d04, CLASSPATH=.;D:\Java\jdk1.8.0_231\lib;D:\Java\jdk1.8.0_231\lib\tools.jar;D:\antlr\jar\antlr-4.7.2-complete.jar;D:\apache-jmeter-4.0/lib;D:\apache-jmeter-4.0/lib/ext;D:\aspectj1.8\lib\aspectjrt.jar, CommonProgramW6432=C:\Program Files\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, ZOOKEEPER_HOM=D:\zookeeper-3.4.10, RUBYOPT=-Eutf-8, MULE_HOME=D:\mule-enterprise-standalone-3.9.5-20230217, SystemRoot=C:\WINDOWS, TEMP=C:\Users\edidada\AppData\Local\Temp, HOMEDRIVE=C:, USERPROFILE=C:\Users\edidada, TMP=C:\Users\edidada\AppData\Local\Temp, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, NUMBER_OF_PROCESSORS=4, IDEA_INITIAL_DIRECTORY=C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.1\bin}}, RandomValuePropertySource@737892411 {name='random', properties=java.util.Random@73ae0257}, OriginTrackedMapPropertySource@1874919946 {name='applicationConfig: [classpath:/application.properties]', properties={server.port=9991, server.servlet.context-path=/httpserver, management.endpoints.web.exposure.include=*, spring.profiles.active=dev, spring.servlet.multipart.max-file-size=100, spring.servlet.multipart.max-request-size=100MB}}, ResourcePropertySource@1466066315 {name='class path resource [com/wdidada/test/springboothttpserver/app.properties]', properties={testbean.name=sdfsd}}]}
+```
+
+
+Conditionally Include @Configuration Classes or @Bean Methods
+
+@Configuration
+@Profile
+@Conditional 
+
+org.springframework.context.annotation.Condition 接口
+
+	boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
+
+
+```java
+@Override
+public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+    // Read the @Profile annotation attributes
+    MultiValueMap<String, Object> attrs = metadata.getAllAnnotationAttributes(Profile.class.getName());
+    if (attrs != null) {
+        for (Object value : attrs.get("value")) {
+            if (context.getEnvironment().acceptsProfiles(((String[]) value))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    return true;
+}
+
+```
+
+
+混合使用java配置和xml配置
+
+system-test-config.xml
+```xml
+<beans>
+    <!-- enable processing of annotations such as @Autowired and @Configuration -->
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath:/com/acme/jdbc.properties"/>
+
+    <bean class="com.acme.AppConfig"/>
+
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+</beans>
+```
+
+
+jdbc.properties
+
+jdbc.url=jdbc:hsqldb:hsql://localhost/xdb
+jdbc.username=sa
+jdbc.password=
+
+
+Using <context:component-scan/> to pick up @Configuration classes
+
+@Configuration Class-centric Use of XML with @ImportResource
+
+
+@Configuration
+@ImportResource("classpath:/com/acme/properties-config.xml")
+public class AppConfig {
+
+    @Value("${jdbc.url}")
+    private String url;
+    
+    @Value("${jdbc.username}")
+    private String username;
+    
+    @Value("${jdbc.password}")
+    private String password;
+    
+    @Bean
+    public DataSource dataSource() {
+        return new DriverManagerDataSource(url, username, password);
+    }
+}
+
+properties-config.xml
+<beans>
+    <context:property-placeholder location="classpath:/com/acme/jdbc.properties"/>
+</beans>
+
+
+1.13. Environment Abstraction
+
+@Profile("development")
+@Profile("production")
+
+激活
+
+AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+ctx.getEnvironment().setActiveProfiles("development");
+ctx.register(SomeConfig.class, StandaloneDataConfig.class, JndiDataConfig.class);
+ctx.refresh();
+
+
+1.13.3. Using @PropertySource
+
+@PropertySource("classpath:/com/myco/app.properties")
+
+
+1.13.4. Placeholder Resolution in Statements
+
+1.14. Registering a LoadTimeWeaver
+
+@EnableLoadTimeWeaving
+
+
+
+@Configuration
+@EnableLoadTimeWeaving
+public class AppConfig {
+}
+
+<beans>
+    <context:load-time-weaver/>
+</beans>
+
+
+1.15. Additional Capabilities 能力 of the ApplicationContext
+
+1.15.1. Internationalization using MessageSource
+
+org.springframework.context.MessageSource
+
+String getMessage(String code, @Nullable Object[] args, Locale locale)
+
+Locale locale
+
+1.15.2. Standard and Custom Events
+
+
+
+| Event                        | Explanation                                                  |
+| :--------------------------- | :----------------------------------------------------------- |
+| `ContextRefreshedEvent`      | Published when the `ApplicationContext` is initialized or refreshed (for example, by using the `refresh()` method on the `ConfigurableApplicationContext` interface). Here, “initialized” means that all beans are loaded, post-processor beans are detected and activated, singletons are pre-instantiated, and the `ApplicationContext` object is ready for use. As long as the context has not been closed, a refresh can be triggered multiple times, provided that the chosen `ApplicationContext` actually supports such “hot” refreshes. For example, `XmlWebApplicationContext` supports hot refreshes, but `GenericApplicationContext` does not. |
+| `ContextStartedEvent`        | Published when the `ApplicationContext` is started by using the `start()` method on the `ConfigurableApplicationContext` interface. Here, “started” means that all `Lifecycle` beans receive an explicit start signal. Typically, this signal is used to restart beans after an explicit stop, but it may also be used to start components that have not been configured for autostart (for example, components that have not already started on initialization). |
+| `ContextStoppedEvent`        | Published when the `ApplicationContext` is stopped by using the `stop()` method on the `ConfigurableApplicationContext` interface. Here, “stopped” means that all `Lifecycle` beans receive an explicit stop signal. A stopped context may be restarted through a `start()` call. |
+| `ContextClosedEvent`         | Published when the `ApplicationContext` is being closed by using the `close()` method on the `ConfigurableApplicationContext` interface or via a JVM shutdown hook. Here, "closed" means that all singleton beans will be destroyed. Once the context is closed, it reaches its end of life and cannot be refreshed or restarted. |
+| `RequestHandledEvent`        | A web-specific event telling all beans that an HTTP request has been serviced. This event is published after the request is complete. This event is only applicable to web applications that use Spring’s `DispatcherServlet`. |
+| `ServletRequestHandledEvent` | A subclass of `RequestHandledEvent` that adds Servlet-specific context information. |
+
+ApplicationEventMulticaster interface and SimpleApplicationEventMulticaster
+
+
+@EventListener({ContextStartedEvent.class, ContextRefreshedEvent.class})
+
+Asynchronous Listeners
+
+@EventListener
+@Async
+public void processBlockedListEvent(BlockedListEvent event) {
+    // BlockedListEvent is processed in a separate thread
+}
+
+Ordering Listeners
+
+@EventListener
+@Order(42)
+public void processBlockedListEvent(BlockedListEvent event) {
+    // notify appropriate parties via notificationAddress...
+}
+
+Generic Events
+
+https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.htm
+看文档吧
+ResolvableTypeProvider 
+
+
+1.15.3. Convenient Access to Low-level Resources
+1.15.4. Application Startup Tracking
+
+ApplicationStartup 
+FlightRecorderApplicationStartup
+ApplicationStartupAware
+
+
+1.15.5. Convenient ApplicationContext Instantiation for Web Applications
+1.16. The BeanFactory API
+
+2. Resources
+2.3. Built-in Resource Implementations
+
+https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.html#resources
+
+2.4. ResourceLoader 
+2.5. ResourcePatternResolver 
+
+2.6. The ResourceLoaderAware Interface
 
 
 
