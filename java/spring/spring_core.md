@@ -1940,7 +1940,7 @@ SpringObjenesis
 | ReflectionUtils.MethodFilter                     |          |      |
 | RouteMatcher                                     |          |      |
 | RouteMatcher.Route                               |          |      |
-| StringValueResolver                              |          |      |
+| StringValueResolver                              |  接口   |      |
 |                                                  |          |      |
 | Classes                                          |          |      |
 |                                                  |          |      |
@@ -2001,7 +2001,22 @@ SpringObjenesis
 | AutoPopulatingList.ElementInstantiationException |          |      |
 | InvalidMimeTypeException                         |          |      |
 
+StringValueResolver接口
+String resolveStringValue(String strVal);
 
+
+PlaceholderResolvingStringValueResolver in PropertyPlaceholderConfigurer (org.springframework.beans.factory.config)
+StaticStringValueResolver in StandaloneMockMvcBuilder (org.springframework.test.web.servlet.setup)
+EmbeddedValueResolver (org.springframework.beans.factory.config)
+
+
+@Repository
+public class ExArcPayTypeDao extends Dao<EX_ARC_PAY_TYPE_SHOP> {
+
+    @Resource(name = "mdmsJdbcTemplate")
+    private MyJdbcTemplate jdbcTemplate;
+
+Resource注解的mdmsJdbcTemplate EmbeddedValueResolver中调用
 
 #### org.springframework.util.backoff
 

@@ -173,39 +173,106 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-| org.springframework.context    | 类型 | 详解 |
-| ------------------------------ | ---- | ---- |
-|                                |      |      |
-| Interfaces                     |      |      |
-|                                |      |      |
-| ApplicationContext             |      |      |
-| ApplicationContextAware        |      |      |
-| ApplicationContextInitializer  |      |      |
-| ApplicationEventPublisher      |      |      |
-| ApplicationEventPublisherAware |      |      |
-| ApplicationListener            |      |      |
-| ConfigurableApplicationContext |      |      |
-| EmbeddedValueResolverAware     |      |      |
-| EnvironmentAware               |      |      |
-| HierarchicalMessageSource      |      |      |
-| Lifecycle                      |      |      |
-| LifecycleProcessor             |      |      |
-| MessageSource                  |      |      |
-| MessageSourceAware             |      |      |
-| MessageSourceResolvable        |      |      |
-| Phased                         |      |      |
-| ResourceLoaderAware            |      |      |
-| SmartLifecycle                 |      |      |
-|                                |      |      |
-| Classes                        |      |      |
-|                                |      |      |
-| ApplicationEvent               |      |      |
-| PayloadApplicationEvent        |      |      |
-|                                |      |      |
-| Exceptions                     |      |      |
-|                                |      |      |
-| ApplicationContextException    |      |      |
-| NoSuchMessageException         |      |      |
+| org.springframework.context    | 类型      | 详解 |
+| ------------------------------ | --------- | ---- |
+| ApplicationContext             | interface |      |
+| ApplicationContextAware        | interface |      |
+| ApplicationContextInitializer  | interface |      |
+| ApplicationEventPublisher      | interface |      |
+| ApplicationEventPublisherAware | interface |      |
+| ApplicationListener            | interface |      |
+| ConfigurableApplicationContext | interface |      |
+| EmbeddedValueResolverAware     | interface |      |
+| EnvironmentAware               | interface |      |
+| HierarchicalMessageSource      | interface |      |
+| Lifecycle                      | interface |      |
+| LifecycleProcessor             | interface |      |
+| MessageSource                  | interface |      |
+| MessageSourceAware             | interface |      |
+| MessageSourceResolvable        | interface |      |
+| Phased                         | interface |      |
+| ResourceLoaderAware            | interface |      |
+| SmartLifecycle                 | interface |      |
+|                                |           |      |
+| ApplicationEvent               |           |      |
+| PayloadApplicationEvent        |           |      |
+|                                |           |      |
+| Exceptions                     |           |      |
+|                                |           |      |
+| ApplicationContextException    |           |      |
+| NoSuchMessageException         |           |      |
+
+
+
+
+
+
+
+ApplicationContextInitializer<C extends ConfigurableApplicationContext>
+
+
+
+在org.springframework.boot.SpringApplication#initializers 中使用
+
+spring boot项目调用栈例子
+
+
+
+```shell
+initialize:39, DubboServiceRegistrationApplicationContextInitializer (com.alibaba.cloud.dubbo.context)
+applyInitializers:626, SpringApplication (org.springframework.boot)
+prepareContext:370, SpringApplication (org.springframework.boot)
+run:314, SpringApplication (org.springframework.boot)
+run:140, SpringApplicationBuilder (org.springframework.boot.builder)
+bootstrapServiceContext:212, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:117, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+onApplicationEvent:74, BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+doInvokeListener:172, SimpleApplicationEventMulticaster (org.springframework.context.event)
+invokeListener:165, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:139, SimpleApplicationEventMulticaster (org.springframework.context.event)
+multicastEvent:127, SimpleApplicationEventMulticaster (org.springframework.context.event)
+environmentPrepared:80, EventPublishingRunListener (org.springframework.boot.context.event)
+environmentPrepared:53, SpringApplicationRunListeners (org.springframework.boot)
+prepareEnvironment:345, SpringApplication (org.springframework.boot)
+run:308, SpringApplication (org.springframework.boot)
+run:1237, SpringApplication (org.springframework.boot)
+run:1226, SpringApplication (org.springframework.boot)
+```
+
+
+
+
+
+ApplicationContextInitializer
+
+
+
+```
+ParentContextApplicationContextInitializer (org.springframework.boot.builder)
+ConditionEvaluationReportLoggingListener (org.springframework.boot.autoconfigure.logging)
+BeanDefinitionDsl (org.springframework.context.support)
+DubboApplicationContextInitializer (org.apache.dubbo.spring.boot.context)
+AncestorInitializer in BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+EnvironmentDecryptApplicationInitializer (org.springframework.cloud.bootstrap.encrypt)
+DelegatingEnvironmentDecryptApplicationInitializer in BootstrapApplicationListener (org.springframework.cloud.bootstrap)
+ServerPortInfoApplicationContextInitializer (org.springframework.boot.web.context)
+DelegatingApplicationContextInitializer (org.springframework.boot.context.config)
+ServletContextApplicationContextInitializer (org.springframework.boot.web.servlet.support)
+ParentContextApplicationContextInitializer in SpringBootContextLoader (org.springframework.boot.test.context)
+ContextCustomizerAdapter in SpringBootContextLoader (org.springframework.boot.test.context)
+SharedMetadataReaderFactoryContextInitializer (org.springframework.boot.autoconfigure)
+RSocketPortInfoApplicationContextInitializer (org.springframework.boot.rsocket.context)
+ConfigurationWarningsApplicationContextInitializer (org.springframework.boot.context)
+DubboServiceRegistrationApplicationContextInitializer (com.alibaba.cloud.dubbo.context)
+ConfigFileApplicationContextInitializer (org.springframework.boot.test.context)
+PostProcessorInitializer in RestartEndpoint (org.springframework.cloud.context.restart)
+PropertySourceBootstrapConfiguration (org.springframework.cloud.bootstrap.config)
+ContextIdApplicationContextInitializer (org.springframework.boot.context)
+```
+
+
+
+
 
 
 

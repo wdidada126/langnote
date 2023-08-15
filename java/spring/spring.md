@@ -676,7 +676,6 @@ spring 集成mybatis
 
 
 控制反转    -------  定义bean
-
 依赖注入    -------  获取bean
 
 
@@ -762,17 +761,18 @@ public class ExampleBean {
        <artifactId>javax.annotation-api</artifactId>
        <version>1.3.2</version>
    </dependency>
+   
+   
    ```
 
 
-   ````
 
 1. 在类中添加初始化方法：在需要执行初始化操作的方法上添加 `@PostConstruct` 注解。该方法可以有任意名称，但不能有任何参数。
 
    ````java
    import javax.annotation.PostConstruct;
    import org.springframework.stereotype.Component;
-
+   
    @Component
    public class MyBean {
        @PostConstruct
@@ -782,6 +782,8 @@ public class ExampleBean {
        }
    }
 ```
+```
+
    在上面的示例中，`init()` 方法被标注为 `@PostConstruct`，在 `MyBean` 对象创建后会被自动调用。
    注意：`@PostConstruct` 注解可以与 `@Component`、`@Service`、`@Controller` 等 Spring 相关注解一起使用，以确保该方法被正确地识别为初始化方法。
 
@@ -966,6 +968,370 @@ public class CustomFactoryBean implements FactoryBean<CustomObject> {
 当Spring容器启动时，它会检测到`CustomFactoryBean`的配置，并调用`getObject()`方法来获取实例化的对象。然后，该对象将被注册为一个Bean，并可以在应用程序中使用。
 
 这样，通过使用`FactoryBean`接口和自定义工厂类，我们可以在实例化Bean对象时添加额外的逻辑操作，以满足特定的需求。
+
+
+1.8.2
+
+```xml
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="locations" value="classpath:com/something/jdbc.properties"/>
+</bean>
+<bean id="dataSource" destroy-method="close"
+        class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+    <property name="url" value="${jdbc.url}"/>
+    <property name="username" value="${jdbc.username}"/>
+    <property name="password" value="${jdbc.password}"/>
+</bean>
+```
+
+
+<context:property-placeholder location="classpath:com/something/jdbc.properties"/>
+
+1.9. Annotation-based Container Configuration
+AutowiredAnnotationBeanPostProcessor
+
+spring beans定义的xml
+<context:annotation-config/>
+ConfigurationClassPostProcessor
+
+AutowiredAnnotationBeanPostProcessor
+
+CommonAnnotationBeanPostProcessor
+
+PersistenceAnnotationBeanPostProcessor
+
+EventListenerMethodProcessor
+
+
+在 Spring 框架中，上述提到的一些关键的组件和类在实现依赖注入、注解驱动和事件处理等方面发挥着重要作用。以下是对这些组件和类的简要解释以及它们的相关源代码位置的详细说明：
+
+1. **`<context:annotation-config/>`：** 这是一个 Spring XML 配置元素，用于启用默认的注解配置处理器。它告诉 Spring 在容器中自动检测和注册标注了注解（如 `@Autowired`、`@Component` 等）的类。
+2. **`ConfigurationClassPostProcessor`：** 这个类是用于处理 Spring 配置类的后置处理器。它负责处理 `@Configuration` 注解标记的配置类，将其中的 `@Bean` 方法注册为 Spring 的 Bean 定义。
+3. **`AutowiredAnnotationBeanPostProcessor`：** 这个类是一个后置处理器，负责处理 `@Autowired` 和 `@Value` 注解，进行依赖注入和属性注入。
+4. **`CommonAnnotationBeanPostProcessor`：** 这个后置处理器用于处理一些常见的 Java EE 注解，如 `@Resource`、`@PostConstruct`、`@PreDestroy` 等。
+5. **`PersistenceAnnotationBeanPostProcessor`：** 这个类是用于处理 JPA 注解的后置处理器，可以自动注册 JPA 实体类作为 Spring 的 Bean。
+6. **`EventListenerMethodProcessor`：** 这个类是用于处理事件监听方法的后置处理器。它检测标注了 `@EventListener` 注解的方法，将其注册为 Spring 事件监听器。
+这些组件和类的源代码都位于 Spring Framework 项目中，您可以在其 GitHub 仓库中找到它们的实现。以下是 Spring Framework 项目的 GitHub 仓库链接，您可以在这里找到相关的源代码：
+
+The RequiredAnnotationBeanPostProcessor must be registered as a bean to enable support for the @Required annotation.
+
+The @Required annotation and RequiredAnnotationBeanPostProcessor are formally deprecated as of Spring Framework 5.1, in favor of using constructor injection for required settings (or a custom implementation of InitializingBean.afterPropertiesSet() or a custom @PostConstruct method along with bean property setter methods).
+
+
+@Autowired修饰数组 Set Map对象
+在 Spring Framework 中，`@Autowired` 注解可以用于自动注入数组、Set 和 Map 类型的对象。这意味着您可以使用 `@Autowired` 注解来让 Spring 自动为您创建和注入这些集合类型的对象。以下是如何在 Spring 中使用 `@Autowired` 注解来注入数组、Set 和 Map 对象的示例：
+
+1. **注入数组（Array）：**
+
+```java
+@Component
+public class MyBean {
+    private String[] stringArray;
+
+    @Autowired
+    public void setStringArray(String[] stringArray) {
+        this.stringArray = stringArray;
+    }
+
+    // ...
+}
+```
+
+2. **注入 Set：**
+
+```java
+@Component
+public class MyBean {
+    private Set<String> stringSet;
+
+    @Autowired
+    public void setStringSet(Set<String> stringSet) {
+        this.stringSet = stringSet;
+    }
+
+    // ...
+}
+```
+
+3. **注入 Map：**
+
+```java
+@Component
+public class MyBean {
+    private Map<String, Integer> stringIntegerMap;
+
+    @Autowired
+    public void setStringIntegerMap(Map<String, Integer> stringIntegerMap) {
+        this.stringIntegerMap = stringIntegerMap;
+    }
+
+    // ...
+}
+```
+
+在上述示例中，使用 `@Autowired` 注解标注了相应的 setter 方法。Spring 将会自动检测容器中所有匹配类型的 Bean，然后将它们注入到数组、Set 或 Map 对象中，使您能够轻松地获取这些集合类型的组件。
+
+请注意，当使用 `@Autowired` 注解注入 Set 和 Map 类型时，Spring 将会自动查找所有匹配的 Bean，并将它们注入到集合中。如果没有找到匹配的 Bean，集合将保持为空。如果有多个匹配的 Bean，它们将被注入到集合中。
+
+要确保在类上添加 `@Component` 或其他适当的注解，以便 Spring 能够扫描和识别您的 Bean 类。另外，确保您已经正确配置了 Spring 上下文和组件扫描，以便 `@Autowired` 注解能够生效。
+
+
+
+org.springframework.context.annotation.ComponentScanBeanDefinitionParser#registerComponents
+
+	private static final String ANNOTATION_CONFIG_ATTRIBUTE = "annotation-config";
+
+`<context:annotation-config/>` 是 Spring 框架中用于启用基于注解的配置和注解驱动的配置元素之一。它告诉 Spring 在应用程序上下文中自动检测和处理使用了注解的类和配置。
+
+具体来说，`<context:annotation-config/>` 的作用是：
+
+1. **启用注解处理器：** 它启用了 Spring 框架中的各种注解处理器，用于处理不同类型的注解。这些处理器可以帮助 Spring 进行自动装配、AOP（面向切面编程）、事务管理等操作。
+
+2. **激活组件扫描：** 当您使用注解标记 Spring 组件（如 `@Component`、`@Service`、`@Repository`、`@Controller` 等）时，`<context:annotation-config/>` 会激活组件扫描，让 Spring 自动发现并注册这些组件。
+
+3. **激活注解驱动功能：** 除了组件扫描，`<context:annotation-config/>` 也会激活其他注解驱动的功能，如 `@Autowired`、`@Value` 等注解的处理，以及事件监听、异步方法等功能。
+
+示例用法如下：
+
+```xml
+<context:annotation-config/>
+```
+
+通常情况下，当您使用 Spring 的注解特性时，您应该在 Spring 配置文件中添加 `<context:annotation-config/>`，以确保 Spring 能够正确地处理和应用您的注解。
+
+请注意，`<context:annotation-config/>` 是 Spring Framework 中的一个核心配置元素，用于启用注解驱动的功能。它类似于 `<context:component-scan/>`，后者用于启用组件扫描并自动注册带有特定注解的类。通过这些配置元素，您可以更方便地使用基于注解的 Spring 特性。
+
+1.9.7
+@Resource
+    <bean class="example.SimpleMovieCatalog">
+        <qualifier value="main"/> 
+
+        <!-- inject any dependencies required by this bean -->
+    </bean>
+SimpleJndiBeanFactory
+1.9.8
+
+PropertySourcesPlaceholderConfigurer
+
+1.9.9
+
+@PostConstruct and @PreDestroy
+
+CommonAnnotationBeanPostProcessor
+
+1.10. Classpath Scanning and Managed Components
+
+
+@Configuration
+@ComponentScan(basePackages = "org.example")
+public class AppConfig  {
+    // ...
+}
+
+xml
+
+    <context:component-scan base-package="org.example"/>
+
+
+1.10.4. Using Filters to Customize Scanning
+Filter Type	Example Expression	Description
+annotation (default)
+
+org.example.SomeAnnotation
+
+An annotation to be present or meta-present at the type level in target components.
+
+assignable
+
+org.example.SomeClass
+
+A class (or interface) that the target components are assignable to (extend or implement).
+
+aspectj
+
+org.example..*Service+
+
+An AspectJ type expression to be matched by the target components.
+
+regex
+
+org\.example\.Default.*
+
+A regex expression to be matched by the target components' class names.
+
+custom
+
+org.example.MyTypeFilter
+
+A custom implementation of the org.springframework.core.type.TypeFilter interface.
+
+
+@RequestScope
+@Qualifier("public")
+
+@Component
+public class FactoryMethodComponent {
+
+    private static int i;
+    
+    @Bean
+    @Qualifier("public")
+    public TestBean publicInstance() {
+        return new TestBean("publicInstance");
+    }
+    
+    // use of a custom qualifier and autowiring of method parameters
+    @Bean
+    protected TestBean protectedInstance(
+            @Qualifier("public") TestBean spouse,
+            @Value("#{privateInstance.age}") String country) {
+        TestBean tb = new TestBean("protectedInstance", 1);
+        tb.setSpouse(spouse);
+        tb.setCountry(country);
+        return tb;
+    }
+    
+    @Bean
+    private TestBean privateInstance() {
+        return new TestBean("privateInstance", i++);
+    }
+    
+    @Bean
+    @RequestScope
+    public TestBean requestScopedInstance() {
+        return new TestBean("requestScopedInstance", 3);
+    }
+}
+
+DependencyDescriptor
+
+
+ScopedProxyMode
+
+
+
+@Configuration
+@ComponentScan(basePackages = "org.example", scopedProxy = ScopedProxyMode.INTERFACES)
+public class AppConfig {
+    // ...
+}
+
+
+<beans>
+    <context:component-scan base-package="org.example" scoped-proxy="interfaces"/>
+</beans>
+
+
+@Offline
+
+1.11. Using JSR 330 Standard Annotations
+
+
+
+
+
+<dependency>
+    <groupId>javax.inject</groupId>
+    <artifactId>javax.inject</artifactId>
+    <version>1</version>
+</dependency>
+
+
+
+
+
+| Spring              | javax.inject.*        | javax.inject restrictions / comments                         |
+| :------------------ | :-------------------- | :----------------------------------------------------------- |
+| @Autowired          | @Inject               | `@Inject` has no 'required' attribute. Can be used with Java 8’s `Optional` instead. |
+| @Component          | @Named / @ManagedBean | JSR-330 does not provide a composable model, only a way to identify named components. |
+| @Scope("singleton") | @Singleton            | The JSR-330 default scope is like Spring’s `prototype`. However, in order to keep it consistent with Spring’s general defaults, a JSR-330 bean declared in the Spring container is a `singleton` by default. In order to use a scope other than `singleton`, you should use Spring’s `@Scope` annotation. `javax.inject` also provides a [@Scope](https://download.oracle.com/javaee/6/api/javax/inject/Scope.html) annotation. Nevertheless, this one is only intended to be used for creating your own annotations. |
+| @Qualifier          | @Qualifier / @Named   | `javax.inject.Qualifier` is just a meta-annotation for building custom qualifiers. Concrete `String` qualifiers (like Spring’s `@Qualifier` with a value) can be associated through `javax.inject.Named`. |
+| @Value              | -                     | no equivalent                                                |
+| @Required           | -                     | no equivalent                                                |
+| @Lazy               | -                     | no equivalent                                                |
+| ObjectFactory       | Provider              | `javax.inject.Provider` is a direct alternative to Spring’s `ObjectFactory`, only with a shorter `get()` method name. It can also be used in combination with Spring’s `@Autowired` or with non-annotated constructors and setter methods. |
+
+
+
+
+
+
+
+```java
+    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+    ctx.scan("com.acme");
+    ctx.refresh();
+```
+
+AnnotationConfigApplicationContext
+
+AnnotationConfigWebApplicationContext
+
+```xml
+<web-app>
+    <!-- Configure ContextLoaderListener to use AnnotationConfigWebApplicationContext
+        instead of the default XmlWebApplicationContext -->
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>
+            org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+        </param-value>
+    </context-param>
+```
+
+
+
+
+
+```java
+@Configuration
+public class AppConfig {
+
+    @Bean(initMethod = "init")
+    public BeanOne beanOne() {
+        return new BeanOne();
+    }
+
+    @Bean(destroyMethod = "cleanup")
+    public BeanTwo beanTwo() {
+        return new BeanTwo();
+    }
+}
+```
+
+
+
+
+
+#### 1.12.5. Composing Java-based Configurations
+
+
+
+##### Using the `@Import` Annotation
+
+
+
+```java
+@Configuration
+@PropertySource("classpath:/com/myco/app.properties")
+public class AppConfig {
+
+    @Autowired
+    Environment env;
+
+    @Bean
+    public TestBean testBean() {
+        TestBean testBean = new TestBean();
+        testBean.setName(env.getProperty("testbean.name"));
+        return testBean;
+    }
+}
+```
+
+
+
+
 
 ## Resource
 
@@ -1349,7 +1715,7 @@ MyBatis中解析xml配置文件的类
 
 org.springframework.cglib.proxy.MethodProxy
 
-​```java
+```java
 
 at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
