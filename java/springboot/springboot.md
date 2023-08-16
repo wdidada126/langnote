@@ -1,5 +1,6 @@
 # Spring Boot
 
+https://docs.spring.io/spring-boot/docs/2.7.14/reference/html/using.html#using.devtools.property-defaults
 
 G:\source_code\spring-boot
 
