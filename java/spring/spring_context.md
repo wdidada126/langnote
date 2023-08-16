@@ -181,7 +181,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | ApplicationEventPublisher      | interface |      |
 | ApplicationEventPublisherAware | interface |      |
 | ApplicationListener            | interface |      |
-| ConfigurableApplicationContext | interface |      |
+| ConfigurableApplicationContext | interface |  下面 |
 | EmbeddedValueResolverAware     | interface |      |
 | EnvironmentAware               | interface |      |
 | HierarchicalMessageSource      | interface |      |
@@ -273,6 +273,7 @@ ContextIdApplicationContextInitializer (org.springframework.boot.context)
 
 
 
+ConfigurableApplicationContext_struct.png
 
 
 

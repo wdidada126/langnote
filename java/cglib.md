@@ -1,5 +1,15 @@
 # cglib
 
+## 代码托管
+
+https://github.com/cglib/cglib
+不支持jdk17
+
+## cglib不更新了，推荐的其他框架
+https://bytebuddy.net/#/
+
+## 相关文章
+https://blog.csdn.net/qq_46371399/article/details/128107006
 
 ![cglib 例子](../imgs/cglib_alone.png)
 
