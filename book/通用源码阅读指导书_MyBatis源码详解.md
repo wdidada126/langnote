@@ -33,9 +33,7 @@ Error表示JVM运行时出现的致命错误，例如OutOfMemoryError、StackOve
 Exception则表示可捕获和处理的异常，包括运行时异常（RuntimeException及其子类）和非运行时异常（非RuntimeException及其子类）。运行时异常通常由程序逻辑错误引起，例如NullPointerException、IndexOutOfBoundsException等；非运行时异常通常由外部环境或程序资源不足引起，例如IOException、SQLException等。
 除了Error和Exception之外，还有一个子类RuntimeException，它表示运行时异常，包括NullPointerException、IndexOutOfBoundsException等。RuntimeException及其子类可以被程序捕获和处理，但不要求在方法声明中显式地声明它们。
 `Throwable` 是 Java 语言中所有错误或异常的父类，只有当对象是此类（或其子类之一）的实例时，才能通过 Java 虚拟机或者 Java throw 语句抛出²。`Throwable` 的子类有两个，`Error` 和 `Exception`。其中，`Exception` 的子类有两个，`RuntimeException` 和 `Checked Exception`³。
-希望这能帮到你。
 
-源: 与必应的对话， 2023/5/10
 (1) Throwable类详解_回老家了看看你的博客-CSDN博客. https://blog.csdn.net/jtdsh/article/details/69003842.
 (2) 【java异常】1 throwable及主要子类_恰子李的博客-CSDN博客. https://blog.csdn.net/qiaziliping/article/details/96160610.
 (3) Java---Throwable类_丶炜钦的博客-CSDN博客. https://blog.csdn.net/weixin_44521690/article/details/99678243.
@@ -211,6 +209,7 @@ BaseTypeHandler (org.apache.ibatis.type)
 - TypeHandlerRegistry
 
 
+【MyBatis】源码学习 03 - 类型处理器 TypeHandler
 https://blog.csdn.net/Michelle_Zhong/article/details/129099305
 
 
