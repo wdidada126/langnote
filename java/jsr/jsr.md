@@ -1,23 +1,33 @@
 # jsr
 
-
-
-
-
-
 JSR-51
 nio
 aio
-
 
  Java Rule Engine API（JSR 94）
 
 - drtools与 Java Rule Engine API（JSR 94）兼容
 
 
-
 jsr305
 https://blog.csdn.net/JonasErosonAtsea/article/details/76038676
+
+
+JSR 305是一项Java规范，用于提供一组注解，用于标记代码中的预期行为和约束。然而，JSR 305已经在2011年停止维护，并且不再推荐使用。因此，没有官方的Maven坐标可用于JSR 305。
+
+如果您的项目需要使用JSR 305的注解，可以考虑使用以下非官方的Maven坐标：
+
+```xml
+<dependency>
+    <groupId>com.google.code.findbugs</groupId>
+    <artifactId>jsr305</artifactId>
+    <version>3.0.2</version>
+</dependency>
+```
+
+上述Maven坐标使用了FindBugs项目的扩展版本，其中包含JSR 305的注解。请注意，这只是一个非官方的提供方式，因此使用时请注意仔细评估和测试所选择的依赖项。
+
+另外，建议您在考虑使用JSR 305之前，了解其他替代方案，例如使用Java 8及更高版本中的`javax.annotation`包中的注解（如`@Nonnull`和`@Nullable`），或者使用更现代的静态代码分析工具来实现类似的功能。
 
 
 JSR-000356 JavaTM API for WebSocket (Maintenance Release)
