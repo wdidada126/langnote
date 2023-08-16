@@ -1543,7 +1543,310 @@ https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.html#res
 
 2.6. The ResourceLoaderAware Interface
 
+3. Validation, Data Binding, and Type Conversion
+4. Spring Expression Language (SpEL)
+5. Aspect Oriented Programming with Spring
+6. Spring AOP APIs
 
+org.springframework.aop.Pointcut
+
+public interface Pointcut {
+
+    ClassFilter getClassFilter();
+    
+    MethodMatcher getMethodMatcher();
+}
+
+public interface ClassFilter {
+
+    boolean matches(Class clazz);
+}
+
+public interface MethodMatcher {
+
+    boolean matches(Method m, Class<?> targetClass);
+    
+    boolean isRuntime();
+    
+    boolean matches(Method m, Class<?> targetClass, Object... args);
+}
+
+
+org.springframework.aop.support.JdkRegexpMethodPointcut
+
+<bean id="settersAndAbsquatulatePointcut"
+        class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+    <property name="patterns">
+        <list>
+            <value>.*set.*</value>
+            <value>.*absquatulate</value>
+        </list>
+    </property>
+</bean>
+
+RegexpMethodPointcutAdvisor
+
+<bean id="settersAndAbsquatulateAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <property name="advice">
+        <ref bean="beanNameOfAopAllianceInterceptor"/>
+    </property>
+    <property name="patterns">
+        <list>
+            <value>.*set.*</value>
+            <value>.*absquatulate</value>
+        </list>
+    </property>
+</bean>
+
+
+6.1.5. Pointcut Superclasses
+class TestStaticPointcut extends StaticMethodMatcherPointcut {
+
+    public boolean matches(Method m, Class targetClass) {
+        // return true if custom criteria match
+    }
+}
+
+public interface MethodInterceptor extends Interceptor {
+
+    Object invoke(MethodInvocation invocation) throws Throwable;
+}
+
+public class DebugInterceptor implements MethodInterceptor {
+
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        System.out.println("Before: invocation=[" + invocation + "]");
+        Object rval = invocation.proceed();
+        System.out.println("Invocation returned");
+        return rval;
+    }
+}
+
+Before Advice
+
+public interface MethodBeforeAdvice extends BeforeAdvice {
+
+    void before(Method m, Object[] args, Object target) throws Throwable;
+}
+
+public class CountingBeforeAdvice implements MethodBeforeAdvice {
+
+    private int count;
+    
+    public void before(Method m, Object[] args, Object target) throws Throwable {
+        ++count;
+    }
+    
+    public int getCount() {
+        return count;
+    }
+}
+
+Throws Advice
+
+afterThrowing([Method, args, target], subclassOfThrowable)
+
+public class RemoteThrowsAdvice implements ThrowsAdvice {
+
+    public void afterThrowing(RemoteException ex) throws Throwable {
+        // Do something with remote exception
+    }
+}
+
+After Returning Advice
+Introduction Advice
+6.3. The Advisor API in Spring
+
+6.4. Using the ProxyFactoryBean to Create AOP Proxies
+
+ProxyFactoryBean  org.springframework.aop.framework.ProxyFactoryBean
+org.springframework.aop.framework.ProxyConfig
+
+TransactionProxyFactoryBean 
+
+6.4.4. Proxying Interfaces
+org.springframework.aop.interceptor.DebugInterceptor
+org.springframework.aop.interceptor.PerformanceMonitorInterceptor
+
+6.5. Concise Proxy Definitions
+
+6.6. Creating AOP Proxies Programmatically with the ProxyFactory
+
+ProxyFactory factory = new ProxyFactory(myBusinessInterfaceImpl);
+factory.addAdvice(myMethodInterceptor);
+factory.addAdvisor(myAdvisor);
+MyBusinessInterface tb = (MyBusinessInterface) factory.getProxy();
+
+6.7. Manipulating Advised Objects
+
+org.springframework.aop.framework.Advised 这个接口的核心方法
+
+```java
+Advisor[] getAdvisors();
+void addAdvice(Advice advice) throws AopConfigException;
+void addAdvice(int pos, Advice advice) throws AopConfigException;
+void addAdvisor(Advisor advisor) throws AopConfigException;
+void addAdvisor(int pos, Advisor advisor) throws AopConfigException;
+int indexOf(Advisor advisor);
+boolean removeAdvisor(Advisor advisor) throws AopConfigException;
+void removeAdvisor(int index) throws AopConfigException;
+boolean replaceAdvisor(Advisor a, Advisor b) throws AopConfigException;
+boolean isFrozen();
+```
+
+6.8. Using the "auto-proxy" facility
+6.8.1. Auto-proxy Bean Definitions
+BeanNameAutoProxyCreator
+
+<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <property name="beanNames" value="jdk*,onlyJdk"/>
+    <property name="interceptorNames">
+        <list>
+            <value>myInterceptor</value>
+        </list>
+    </property>
+</bean>
+DefaultAdvisorAutoProxyCreator
+
+<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+    <property name="transactionInterceptor" ref="transactionInterceptor"/>
+</bean>
+
+<bean id="customAdvisor" class="com.mycompany.MyAdvisor"/>
+
+<bean id="businessObject1" class="com.mycompany.BusinessObject1">
+    <!-- Properties omitted -->
+</bean>
+
+<bean id="businessObject2" class="com.mycompany.BusinessObject2"/>
+
+6.9. Using TargetSource Implementations
+org.springframework.aop.TargetSource
+
+6.9.2. Pooling Target Sources
+
+```xml
+<bean id="businessObjectTarget" class="com.mycompany.MyBusinessObject"
+        scope="prototype">
+    ... properties omitted
+</bean>
+
+<bean id="poolTargetSource" class="org.springframework.aop.target.CommonsPool2TargetSource">
+    <property name="targetBeanName" value="businessObjectTarget"/>
+    <property name="maxSize" value="25"/>
+</bean>
+
+<bean id="businessObject" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="targetSource" ref="poolTargetSource"/>
+    <property name="interceptorNames" value="myInterceptor"/>
+</bean>
+```
+
+```xml
+<bean id="poolConfigAdvisor" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <property name="targetObject" ref="poolTargetSource"/>
+    <property name="targetMethod" value="getPoolingConfigMixin"/>
+</bean>
+```
+
+
+6.9.3. Prototype Target Sources
+
+```xml
+<bean id="prototypeTargetSource" class="org.springframework.aop.target.PrototypeTargetSource">
+    <property name="targetBeanName" ref="businessObjectTarget"/>
+</bean>
+```
+
+6.9.4. ThreadLocal Target Sources
+<bean id="threadlocalTargetSource" class="org.springframework.aop.target.ThreadLocalTargetSource">
+    <property name="targetBeanName" value="businessObjectTarget"/>
+</bean>
+
+7. Null-safety
+@Nullable: Annotation to indicate that a specific parameter, return value, or field can be null.
+@NonNull: Annotation to indicate that a specific parameter, return value, or field cannot be null (not needed on parameters / return values and fields where @NonNullApi and @NonNullFields apply, respectively).
+@NonNullApi: Annotation at the package level that declares non-null as the default semantics for parameters and return values.
+@NonNullFields: Annotation at the package level that declares non-null as the default semantics for fields.
+
+7.2. JSR-305 meta-annotations
+
+https://jcp.org/en/jsr/detail?id=305
+
+
+JSR 305是一项Java规范，用于提供一组注解，用于标记代码中的预期行为和约束。然而，JSR 305已经在2011年停止维护，并且不再推荐使用。因此，没有官方的Maven坐标可用于JSR 305。
+如果您的项目需要使用JSR 305的注解，可以考虑使用以下非官方的Maven坐标：
+
+```xml
+<dependency>
+    <groupId>com.google.code.findbugs</groupId>
+    <artifactId>jsr305</artifactId>
+    <version>3.0.2</version>
+</dependency>
+```
+
+上述Maven坐标使用了FindBugs项目的扩展版本，其中包含JSR 305的注解。请注意，这只是一个非官方的提供方式，因此使用时请注意仔细评估和测试所选择的依赖项。
+另外，建议您在考虑使用JSR 305之前，了解其他替代方案，例如使用Java 8及更高版本中的`javax.annotation`包中的注解（如`@Nonnull`和`@Nullable`），或者使用更现代的静态代码分析工具来实现类似的功能。
+8. Data Buffers and Codecs
+
+9. Logging
+
+10. Appendix
+10.1. XML Schemas
+
+Using <util:constant/>
+Using <util:property-path/>
+Using <util:properties/>
+Using <util:list/>
+Using <util:map/>
+Using <util:set/>
+
+10.1.1. The util Schema
+10.1.2. The aop Schema
+10.1.3. The context Schema
+
+Using <property-placeholder/>
+Using <annotation-config/>
+Using <component-scan/>
+Using <load-time-weaver/>
+Using <spring-configured/>
+Using <mbean-export/>
+
+10.2. XML Schema Authoring
+10.3. Application Startup Steps
+
+
+
+
+
+|                                              |                                                              |                                                              |
+| -------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Name                                         | Description                                                  | Tags                                                         |
+|                                              |                                                              |                                                              |
+| spring.beans.instantiate                     | Instantiation of a bean and its dependencies.                | beanName the name of the bean, beanType the type required at the injection point. |
+| spring.beans.smart-initialize                | Initialization of SmartInitializingSingleton beans.          | beanName the name of the bean.                               |
+| spring.context.annotated-bean-reader.create  | Creation of the AnnotatedBeanDefinitionReader.               |                                                              |
+| spring.context.base-packages.scan            | Scanning of base packages.                                   | packages array of base packages for scanning.                |
+| spring.context.beans.post-process            | Beans post-processing phase.                                 |                                                              |
+| spring.context.bean-factory.post-process     | Invocation of the BeanFactoryPostProcessor beans.            | postProcessor the current post-processor.                    |
+| spring.context.beandef-registry.post-process | Invocation of the BeanDefinitionRegistryPostProcessor beans. | postProcessor the current post-processor.                    |
+| spring.context.component-classes.register    | Registration of component classes through AnnotationConfigApplicationContext#register. | classes array of given classes for registration.             |
+| spring.context.config-classes.enhance        | Enhancement of configuration classes with CGLIB proxies.     | classCount count of enhanced classes.                        |
+| spring.context.config-classes.parse          | Configuration classes parsing phase with the ConfigurationClassPostProcessor. | classCount count of processed classes.                       |
+| spring.context.refresh                       | Application context refresh phase.                           |                                                              |
+
+是的，这些术语涉及到 Spring IoC 容器的初始化和启动步骤。让我为你解释一下：
+
+1. `spring.beans.instantiate`：这指的是 Spring IoC 容器在初始化过程中，实例化对象的步骤。在这个阶段，容器会根据配置信息创建对象的实例，包括通过构造函数或工厂方法创建。这是 Spring IoC 的核心部分之一。
+
+2. `spring.beans.smart-initialize`：这是 Spring IoC 容器在初始化过程中，智能地进行初始化的步骤。在这个阶段，容器会检测对象是否实现了特定的接口（如 `SmartInitializingSingleton`），如果是，则会调用相应的初始化方法，这样可以在所有单例对象都实例化之后执行一些初始化逻辑。
+
+3. `Application startup steps defined in the core container`：这指的是 Spring 容器核心模块中定义的应用程序启动步骤。Spring IoC 容器在启动过程中会经历一系列的步骤，包括加载配置、实例化对象、注入依赖、执行初始化等。这些步骤是在 Spring 核心模块中实现的，确保容器能够正确地初始化和启动应用程序。
+
+总之，这些术语描述了 Spring IoC 容器初始化和启动过程中的不同阶段和步骤。在 Spring 应用程序中，了解这些步骤有助于深入理解 Spring IoC 容器的工作原理和内部机制。
 
 ## Resource
 
