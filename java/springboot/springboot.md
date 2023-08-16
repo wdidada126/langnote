@@ -2,6 +2,116 @@
 
 https://docs.spring.io/spring-boot/docs/2.7.14/reference/html/using.html#using.devtools.property-defaults
 
+## springboot官方文档笔记
+
+## Chapter 7. Core Features
+### 7.1. SpringApplication
+#### 7.1.4. Customizing SpringApplication
+
+7.1.1. Startup Failure
+org.springframework.boot.diagnostics.FailureAnalyzers
+FailureAnalyzers子类
+
+org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener
+
+java -jar myproject-0.0.1-SNAPSHOT.jar --debug
+
+7.1.2. Lazy Initialization
+
+spring.main.lazy-initialization=true
+
+7.1.3. Customizing the Banner
+
+org.springframework.boot.loader.JarLauncher
+
+7.1.4. Customizing SpringApplication
+  application.setBannerMode(Banner.Mode.OFF);
+
+7.1.5. Fluent Builder API
+
+```java
+new SpringApplicationBuilder()
+  .sources(Parent.class)
+  .child(Application.class)
+  .bannerMode(Banner.Mode.OFF)
+  .run(args);
+```
+
+7.1.6. Application Availability
+
+ApplicationAvailability
+org.springframework.boot.availability.ApplicationAvailability
+
+CommandLineRunner
+ApplicationRunner
+
+7.1.7. Application Events and Listeners
+ContextRefreshedEvent
+
+META-INF/spring.factories
+
+ApplicationStartingEvent
+ApplicationEnvironmentPreparedEvent
+ApplicationContextInitializedEvent
+ApplicationPreparedEvent
+ApplicationStartedEvent
+AvailabilityChangeEvent
+ApplicationReadyEvent
+AvailabilityChangeEvent
+ApplicationFailedEvent
+
+
+7.1.8. Web Environment
+
+AnnotationConfigServletWebServerApplicationContext
+AnnotationConfigReactiveWebServerApplicationContext
+AnnotationConfigApplicationContext
+
+7.1.9. Accessing Application Arguments
+
+org.springframework.boot.ApplicationArguments
+
+7.1.10. Using the ApplicationRunner or CommandLineRunner
+
+CommandLineRunner ApplicationRunner
+
+7.1.11. Application Exit
+
+org.springframework.boot.ExitCodeGenerator
+
+7.1.12. Admin Features
+
+7.1.13. Application Startup tracking
+
+ApplicationStartup
+
+BufferingApplicationStartup
+
+org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup
+FlightRecorderApplicationStartup
+
+7.2. Externalized Configuration
+
+@Value注解获取Environment对象的值
+
+@ConfigurationProperties 使用
+PropertySource
+
+变量的顺序
+
+7.2.1. Accessing Command Line Properties
+7.2.2. JSON Application Properties
+7.2.3. External Application Properties
+7.2.4. Encrypting Properties
+7.2.5. Working With YAML
+7.2.6. Configuring Random Values
+7.2.7. Configuring System Environment Properties
+7.2.8. Type-safe Configuration Properties
+
+7.3. Profiles
+7.3.1. Adding Active Profiles
+7.3.2. Profile Groups
+
 G:\source_code\spring-boot
 
 spring boot 2.0.4 maven组织的，可以跳转
@@ -13,7 +123,7 @@ spring_boot.xlsx
 spring-boot-2.7.11.jar!\META-INF\spring.factories
 文件
 
-##  jar文件
+## jar文件
 
 - spring-boot
 - spring-boot-autoconfigure

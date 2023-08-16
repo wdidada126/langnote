@@ -1,5 +1,12 @@
 # Vert.x框架
 
+## 官方文档
+https://vertx.io/get-started/
+
+### 支持的语言
+java
+kotlin
+groovy
 
 http://vertxchina.github.io/vertx-translation-chinese/
 https://www.zhihu.com/question/277219881
