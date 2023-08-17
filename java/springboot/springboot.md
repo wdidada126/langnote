@@ -136,6 +136,197 @@ MessageSource
 
 7.6.1. Jackson
 
+7.6.2. Gson
+GsonBuilderCustomizer
+
+
+7.6.3. JSON-B
+
+Jsonb
+
+7.7. Task Execution and Scheduling
+
+ThreadPoolTaskExecutor
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+
+AsyncTaskExecutor
+
+ThreadPoolTaskExecutor
+
+AsyncConfigurer
+
+TaskExecutorBuilder
+
+ThreadPoolTaskScheduler
+TaskSchedulerBuilder
+@EnableScheduling
+
+spring.task.scheduling namespace
+
+
+7.8. Testing
+
+jar包 spring-boot-test  spring-boottest-autoconfigure
+
+spring-boot-starter-test
+
+7.8.1. Test Scope Dependencies
+
+
+The spring-boot-starter-test “Starter” (in the test scope) contains the following provided libraries:
+• JUnit 5: The de-facto standard for unit testing Java applications.
+• Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot
+applications.
+• AssertJ: A fluent assertion library.
+• Hamcrest: A library of matcher objects (also known as constraints or predicates).
+• Mockito: A Java mocking framework.
+• JSONassert: An assertion library for JSON.
+• JsonPath: XPath for JSON.
+
+7.8.2. Testing Spring Applications
+
+7.9. Creating Your Own Auto-configuration
+
+7.9.1. Understanding Auto-configured Beans
+@AutoConfiguration
+@Configuration
+@Conditional
+@ConditionalOnClass
+@ConditionalOnMissingBean
+
+METAINF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+
+7.9.2. Locating Auto-configuration Candidates
+
+METAINF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+
+
+@AutoConfiguration
+@AutoConfigureBefore @AutoConfigureAfter
+
+WebMvcAutoConfiguration
+
+@AutoConfigureOrder
+
+7.9.3. Condition Annotations
+
+• Class Conditions
+• Bean Conditions
+• Property Conditions
+• Resource Conditions
+• Web Application Conditions
+• SpEL Expression Conditions
+
+
+7.9.4. Testing your Auto-configuration
+7.9.5. Creating Your Own Starter
+
+
+7.10. Kotlin Support
+
+7.11. What to Read Next
+
+Chapter 8. Web
+8.1. Servlet Web Applications
+8.1.1. The “Spring Web MVC Framework”
+8.1.2. JAX-RS and Jersey
+8.1.3. Embedded Servlet Container Support
+
+8.2. Reactive Web Applications
+
+8.2.1. The “Spring WebFlux Framework”
+8.2.2. Embedded Reactive Server Support
+8.2.3. Reactive Server Resources Configuration
+
+8.3. Graceful Shutdown
+
+
+8.4. Spring Security
+
+
+8.4.1. MVC Security
+8.4.2. WebFlux Security
+8.4.3. OAuth2
+
+8.4.4. SAML 2.0
+
+8.5. Spring Session
+8.6. Spring for GraphQL
+8.6.1. GraphQL Schema
+8.6.2. GraphQL RuntimeWiring
+8.6.3. Querydsl and QueryByExample Repositories Support
+8.6.4. Transports
+8.6.5. Exception Handling
+8.6.6. GraphiQL and Schema printer
+8.7. Spring HATEOAS
+
+8.8. What to Read Next
+
+数据技术
+消息系统
+
+data technologies,
+messaging systems
+
+Chapter 9. Data
+9.1. SQL Database
+9.1.1. Configure a DataSource
+9.1.2. Using JdbcTemplate
+9.1.3. JPA and Spring Data JPA
+9.1.4. Spring Data JDBC
+9.1.5. Using H2’s Web Console
+9.1.6. Using jOOQ
+9.1.7. Using R2DBC
+
+
+9.2. Working with NoSQL Technologies
+9.2.1. Redis
+9.2.2. MongoDB
+9.2.3. Neo4j
+9.2.4. Solr
+9.2.5. Elasticsearch
+9.2.6. Cassandra
+9.2.8. LDAP
+9.2.9. InfluxDB
+9.3. What to Read Nex
+Chapter 10. Messaging
+10.1. JMS
+javax.jms.ConnectionFactory
+javax.jms.Connection
+10.1.1. ActiveMQ Support
+10.1.2. ActiveMQ Artemis Support
+spring-boot-starter-artemis
+org.apache.activemq:artemis-jmsserver
+10.1.3. Using a JNDI ConnectionFactory
+java:/JmsXA and java:/XAConnectionFactory
+10.1.4. Sending a Message
+
+JmsMessagingTemplate
+DestinationResolver
+MessageConverter
+
+10.1.5. Receiving a Message
+
+@JmsListener
+JmsListenerContainerFactory
+DestinationResolver  MessageConverter  javax.jms.ExceptionListener
+JtaTransactionManager
+@Transactional
+JmsListenerContainerFactory
+
+DefaultJmsListenerContainerFactoryConfigurer
+
+
+
+
+
+
+
+
+
+
+
+
 spring-boot-starter-json
 
 JsonSerializer 
@@ -462,10 +653,10 @@ ApplicationRunner CommandLineRunner
    import org.springframework.boot.ApplicationArguments;
    import org.springframework.boot.ApplicationRunner;
    import org.springframework.stereotype.Component;
-
+   
    @Component
    public class MyApplicationRunner implements ApplicationRunner {
-
+   
        @Override
        public void run(ApplicationArguments args) throws Exception {
            // 执行逻辑，使用 args 获取命令行参数
@@ -478,6 +669,8 @@ ApplicationRunner CommandLineRunner
    在上述示例中，我们创建了一个名为 `MyApplicationRunner` 的自定义类，并实现了 `ApplicationRunner` 接口。在 `run()` 方法中，你可以编写你的逻辑，通过 `args` 参数获取命令行参数。
 
    ````
+   
+   ````
 
 1. 将自定义类注入到 Spring IOC 容器中：
 
@@ -488,7 +681,7 @@ ApplicationRunner CommandLineRunner
    ````java
    import org.springframework.boot.SpringApplication;
    import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+   
    @SpringBootApplication
    public class MyApplication {
        public static void main(String[] args) {
@@ -499,6 +692,8 @@ ApplicationRunner CommandLineRunner
 
    在主应用程序类中使用 `@SpringBootApplication` 注解标记你的应用程序类，并确保使用了 `SpringApplication.run()` 方法来启动应用程序。
 
+   ````
+   
    ````
 
 1. 获取命令行参数：
@@ -516,9 +711,10 @@ ApplicationRunner CommandLineRunner
    在上述示例中，我们使用 `getSourceArgs()` 方法获取原始的命令行参数，并将其保存在 `sourceArgs` 字符串数组中。
 
    ````
-`ApplicationArguments` 对象的参数是通过 Spring Boot 的启动类 `SpringApplication` 在启动过程中解析和收集的。它可以包含来自命令行的参数、配置文件中的参数等。
-请注意，在 Spring Boot 应用程序中，你也可以使用 `@Value` 注解来直接注入单个命令行参数，而不必实现 `ApplicationRunner` 接口。这种方式适用于获取单个参数的情况，例如 `java -jar myapp.jar --my.param=value` 中的 `--my.param=value`。
-总结起来，你可以创建一个实现 `ApplicationRunner` 接口的自定义类，并将其注入到 Spring IOC 容器中。通过 `ApplicationArguments` 对象，你可以获取 Spring Boot 应用程序启动时传递的命令行参数。
+   `ApplicationArguments` 对象的参数是通过 Spring Boot 的启动类 `SpringApplication` 在启动过程中解析和收集的。它可以包含来自命令行的参数、配置文件中的参数等。
+   请注意，在 Spring Boot 应用程序中，你也可以使用 `@Value` 注解来直接注入单个命令行参数，而不必实现 `ApplicationRunner` 接口。这种方式适用于获取单个参数的情况，例如 `java -jar myapp.jar --my.param=value` 中的 `--my.param=value`。
+   总结起来，你可以创建一个实现 `ApplicationRunner` 接口的自定义类，并将其注入到 Spring IOC 容器中。通过 `ApplicationArguments` 对象，你可以获取 Spring Boot 应用程序启动时传递的命令行参数。
+   ````
 
 `ApplicationRunner` 和 `CommandLineRunner` 都是在 Spring Boot 应用程序启动时执行一些逻辑的接口，它们有以下区别：
 
