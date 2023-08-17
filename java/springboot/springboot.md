@@ -112,6 +112,39 @@ PropertySource
 7.3.1. Adding Active Profiles
 7.3.2. Profile Groups
 
+7.3.3. Programmatically Setting Profiles
+
+ConfigurableEnvironment
+
+7.3.4. Profile-specific Configuration Files
+
+@ConfigurationProperties
+
+7.4. Logging
+
+7.4.9. Logback Extensions
+
+logback-spring.xml
+7.5. Internationalization
+
+messages.properties
+
+
+MessageSource
+
+7.6. JSON
+
+7.6.1. Jackson
+
+spring-boot-starter-json
+
+JsonSerializer 
+JsonDeserializer
+
+@JsonComponent
+
+KeyDeserializer
+
 G:\source_code\spring-boot
 
 spring boot 2.0.4 maven组织的，可以跳转
