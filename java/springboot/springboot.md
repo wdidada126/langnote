@@ -193,11 +193,11 @@ applications.
 @ConditionalOnClass
 @ConditionalOnMissingBean
 
-METAINF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
 
 7.9.2. Locating Auto-configuration Candidates
 
-METAINF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
 
 
 @AutoConfiguration
@@ -315,16 +315,95 @@ JmsListenerContainerFactory
 
 DefaultJmsListenerContainerFactoryConfigurer
 
+10.2. AMQP
+
+10.2.1. RabbitMQ Support
+
+10.2.2. Sending a Message
+
+10.2.3. Sending a Message To A Stream
+
+10.2.4. Receiving a Message
+10.3. Apache Kafka Support
+10.3.1. Sending a Message
+10.3.2. Receiving a Message
+10.3.3. Kafka Streams
+
+10.3.4. Additional Kafka Properties
+10.3.5. Testing with Embedded Kafka
+
+10.4. RSocket
+
+10.4.1. RSocket Strategies Auto-configuration
+10.4.2. RSocket server Auto-configuration
+10.4.3. Spring Messaging RSocket support
+10.4.4. Calling RSocket Services with RSocketRequester
+
+10.5. Spring Integration
+10.6. WebSockets
+10.7. What to Read Next
+
+Chapter 11. IO
+11.1. Caching
+11.1.1. Supported Cache Providers
+
+1. Generic
+2. JCache (JSR-107) (EhCache 3, Hazelcast, Infinispan, and others)
+3. EhCache 2.x
+377
+4. Hazelcast
+5. Infinispan
+6. Couchbase
+7. Redis
+8. Caffeine
+9. Cache2k
+10. Simple
+11.2. Hazelcast
+
+11.3. Quartz Scheduler
+
+11.4. Sending Email
+11.5. Validation
+11.6. Calling REST Services
+11.6.1. RestTemplate
+11.6.2. WebClient
+11.7. Web Services
+11.7.1. Calling Web Services with WebServiceTemplate
+
+11.8. Distributed Transactions With JTA
+11.8.1. Using an Atomikos Transaction Manager
+11.8.2. Using a Java EE Managed Transaction Manager
+11.8.3. Mixing XA and Non-XA JMS Connections
+
+11.8.4. Supporting an Alternative Embedded Transaction Manager
+
+Chapter 12. Container Images
+
+12.1. Efficient Container Images
+12.1.1. Unpacking the Executable JAR
+java org.springframework.boot.loader.JarLauncher
+java -cp BOOT-INF/classes:BOOT-INF/lib/* com.example.MyApplication
 
 
+12.1.2. Layering Docker Images
+12.2. Dockerfiles
+12.3. Cloud Native Buildpacks
 
 
+Chapter 13. Production-ready Features
+13.1. Enabling Production-ready Features
+13.2. Endpoints
+13.2.1. Enabling Endpoints
 
-
-
-
-
-
+13.2.2. Exposing Endpoints
+13.2.3. Security
+13.2.4. Configuring Endpoints
+13.2.5. Hypermedia for Actuator Web Endpoints
+13.2.6. CORS Support
+13.2.7. Implementing Custom Endpoints
+13.2.8. Health Information
+13.2.9. Kubernetes Probes
+13.2.10. Application Information
 
 spring-boot-starter-json
 
