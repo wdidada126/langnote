@@ -151,7 +151,6 @@ org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 
 AsyncTaskExecutor
 
-ThreadPoolTaskExecutor
 
 AsyncConfigurer
 
@@ -1261,15 +1260,13 @@ JavaVersion
 
 
 TaskExecutorCustomizer
-
 TaskSchedulerCustomizer
 
-Classes
-
 TaskExecutorBuilder
-
 TaskSchedulerBuilder
 
+官方文档
+7.7. Task Execution and Scheduling
 
 
 #### org.springframework.boot.type
