@@ -414,6 +414,280 @@ JsonDeserializer
 
 KeyDeserializer
 
+
+
+
+13.3. Monitoring and Management Over HTTP
+13.3.1. Customizing the Management Endpoint Paths 
+13.3.2. Customizing the Management Server Port
+13.3.3. Configuring Management-specific SSL 
+13.3.4. Customizing the Management Server Address 
+13.3.5. Disabling HTTP Endpoints
+13.4. Monitoring and Management over JMX
+13.4.1. Customizing MBean Names 
+13.4.2. Disabling JMX Endpoints
+13.4.3. Using Jolokia for JMX over HTTP 
+Customizing Jolokia 
+Disabling Jolokia
+13.5. Loggers
+13.5.1. Configure a Logger
+13.6. Metrics 
+13.6.1. Getting started
+13.6.2. Supported Monitoring Systems
+AppOptics 
+Atlas
+Datadog
+Dynatrace
+Elastic
+Ganglia
+Graphite
+Humio
+Influx
+JMX
+KairosDB 
+New Relic
+Prometheus
+SignalFx
+Simple
+Stackdriver
+StatsD
+Wavefront
+13.6.3. Supported Metrics and Meters
+JVM Metrics
+System Metrics
+Application Startup Metrics
+Logger Metrics
+Task Execution and Scheduling Metrics
+Spring MVC Metrics
+Spring WebFlux Metrics
+Jersey Server Metrics
+HTTP Client Metrics
+Tomcat Metrics
+Cache Metrics
+Spring GraphQL Metrics 
+DataSource Metrics
+Hibernate Metrics 
+Spring Data Repository Metrics
+RabbitMQ Metrics
+Spring Integration Metrics
+Kafka Metrics
+MongoDB Metrics 
+Jetty Metrics
+@Timed Annotation Support
+Redis Metrics
+13.6.4. Registering Custom Metrics
+13.6.5. Customizing Individual Metrics
+Common Tags
+Per-meter Properties
+13.6.6. Metrics Endpoint
+13.7. Auditing
+13.7.1. Custom Auditing
+13.8. HTTP Tracing
+13.8.1. Custom HTTP tracing
+13.9. Process Monitoring
+13.9.1. Extending Configuration
+13.9.2. Programmatically Enabling Process Monitoring
+13.10. Cloud Foundry Support
+13.10.1. Disabling Extended Cloud Foundry Actuator Support
+13.10.2. Cloud Foundry Self-signed Certificates
+13.10.3. Custom Context Path
+13.11. What to Read Next
+14. Deploying Spring Boot Applications
+14.1. Deploying to the Cloud
+14.1.1. Cloud Foundry
+Binding to Services
+14.1.2. Kubernetes
+Kubernetes Container Lifecycle
+14.1.3. Heroku
+14.1.4. OpenShift
+14.1.5. Amazon Web Services (AWS) 
+AWS Elastic Beanstalk
+Summary
+14.1.6. CloudCaptain and Amazon Web Services
+14.1.7. Azure
+14.1.8. Google Cloud
+14.2. Installing Spring Boot Applications
+14.2.1. Supported Operating Systems
+14.2.2. Unix/Linux Services
+Installation as an init.d Service (System V)
+Installation as a systemd Service
+Customizing the Startup Script
+14.2.3. Microsoft Windows Services
+14.3. What to Read Next
+15. Spring Boot CLI
+15.1. Installing the CLI
+15.2. Using the CLI
+15.2.1. Running Applications With the CLI
+Deduced “grab” Dependencies
+Deduced “grab” Coordinates
+Default Import Statements
+Automatic Main Method
+Custom Dependency Management 
+15.2.2. Applications With Multiple Source Files
+15.2.3. Packaging Your Application
+15.2.4. Initialize a New Project 
+15.2.5. Using the Embedded Shell
+15.2.6. Adding Extensions to the CLI
+15.3. Developing Applications With the Groovy Beans DSL
+15.4. Configuring the CLI With settings.xml
+15.5. What to Read Next 
+16. Build Tool Plugins 
+16.1. Spring Boot Maven Plugin
+16.2. Spring Boot Gradle Plugin
+16.3. Spring Boot AntLib Module
+16.3.1. Spring Boot Ant Tasks
+Using the “exejar” Task
+Examples 
+16.3.2. Using the “findmainclass” Task
+Examples
+16.4. Supporting Other Build Systems
+16.4.1. Repackaging Archives
+16.4.2. Nested Libraries
+16.4.3. Finding a Main Class 
+16.4.4. Example Repackage Implementation 
+16.5. What to Read Next 
+17. “How-to” Guides 
+17.1. Spring Boot Application
+17.1.1. Create Your Own FailureAnalyzer
+17.1.2. Troubleshoot Auto-configuration
+17.1.3. Customize the Environment or ApplicationContext Before It Starts
+17.1.4. Build an ApplicationContext Hierarchy (Adding a Parent or Root Context)
+17.1.5. Create a Non-web Application
+17.2. Properties and Configuration
+17.2.1. Automatically Expand Properties at Build Time
+Automatic Property Expansion Using Maven
+Automatic Property Expansion Using Gradle
+17.2.2. Externalize the Configuration of SpringApplication
+17.2.3. Change the Location of External Properties of an Application
+17.2.4. Use ‘Short’ Command Line Arguments
+17.2.5. Use YAML for External Properties
+17.2.6. Set the Active Spring Profiles
+17.2.7. Set the Default Profile Name
+17.2.8. Change Configuration Depending on the Environment
+17.2.9. Discover Built-in Options for External Properties
+17.3. Embedded Web Servers
+17.3.1. Use Another Web Server
+17.3.2. Disabling the Web Server
+17.3.3. Change the HTTP Port
+17.3.4. Use a Random Unassigned HTTP Port
+17.3.5. Discover the HTTP Port at Runtime
+17.3.6. Enable HTTP Response Compression
+17.3.7. Configure SSL
+17.3.8. Configure HTTP/2
+HTTP/2 With Tomcat
+HTTP/2 With Jetty
+HTTP/2 With Reactor Netty
+HTTP/2 With Undertow
+17.3.9. Configure the Web Server
+17.3.10. Add a Servlet, Filter, or Listener to an Application
+Add a Servlet, Filter, or Listener by Using a Spring Bean
+Add Servlets, Filters, and Listeners by Using Classpath Scanning
+17.3.11. Configure Access Logging
+17.3.12. Running Behind a Front-end Proxy Server
+Customize Tomcat’s Proxy Configuration
+17.3.13. Enable Multiple Connectors with Tomcat 
+17.3.14. Use Tomcat’s LegacyCookieProcessor 
+17.3.15. Enable Tomcat’s MBean Registry
+17.3.16. Enable Multiple Listeners with Undertow 
+17.3.17. Create WebSocket Endpoints Using @ServerEndpoint 
+17.4. Spring MVC 
+17.4.1. Write a JSON REST Service
+17.4.2. Write an XML REST Service
+17.4.3. Customize the Jackson ObjectMapper
+17.4.4. Customize the @ResponseBody Rendering
+17.4.5. Handling Multipart File Uploads
+17.4.6. Switch Off the Spring MVC DispatcherServlet 
+17.4.7. Switch off the Default MVC Configuration
+17.4.8. Customize ViewResolvers
+17.5. Jersey
+17.5.1. Secure Jersey endpoints with Spring Security
+17.5.2. Use Jersey Alongside Another Web Framework
+17.6. HTTP Clients
+17.6.1. Configure RestTemplate to Use a Proxy
+17.6.2. Configure the TcpClient used by a Reactor Netty-based WebClient 
+17.7. Logging
+17.7.1. Configure Logback for Logging
+Configure Logback for File-only Output
+17.7.2. Configure Log4j for Logging
+Use YAML or JSON to Configure Log4j 2
+Use Composite Configuration to Configure Log4j 2
+17.8. Data Access
+17.8.1. Configure a Custom DataSource
+17.8.2. Configure Two DataSources
+17.8.3. Use Spring Data Repositories
+17.8.4. Separate @Entity Definitions from Spring Configuration
+17.8.5. Configure JPA Properties
+17.8.6. Configure Hibernate Naming Strategy
+17.8.7. Configure Hibernate Second-Level Caching
+17.8.8. Use Dependency Injection in Hibernate Components
+17.8.9. Use a Custom EntityManagerFactory
+17.8.10. Using Multiple EntityManagerFactories
+17.8.11. Use a Traditional persistence.xml File
+17.8.12. Use Spring Data JPA and Mongo Repositories
+17.8.13. Customize Spring Data’s Web Support
+17.8.14. Expose Spring Data Repositories as REST Endpoint
+17.8.15. Configure a Component that is Used by JPA
+17.8.16. Configure jOOQ with Two DataSources
+17.9. Database Initialization
+17.9.1. Initialize a Database Using JPA
+17.9.2. Initialize a Database Using Hibernate
+17.9.3. Initialize a Database Using Basic SQL Scripts
+17.9.4. Initialize a Spring Batch Database
+17.9.5. Use a Higher-level Database Migration Tool
+Execute Flyway Database Migrations on Startup
+Execute Liquibase Database Migrations on Startup
+17.9.6. Depend Upon an Initialized Database
+Detect a Database Initializer
+Detect a Bean That Depends On Database Initialization
+17.10. NoSQL
+17.10.1. Use Jedis Instead of Lettuce
+17.11. Messaging
+17.11.1. Disable Transacted JMS Session
+17.12. Batch Applications
+17.12.1. Specifying a Batch Data Source
+17.12.2. Running Spring Batch Jobs on Startup
+17.12.3. Running From the Command Line
+17.12.4. Storing the Job Repository
+17.13. Actuator
+17.13.1. Change the HTTP Port or Address of the Actuator Endpoints
+17.13.2. Customize the ‘whitelabel’ Error Page
+17.13.3. Sanitize Sensitive Values
+Customizing Sanitization
+17.13.4. Map Health Indicators to Micrometer Metrics
+17.14. Security
+17.14.1. Switch off the Spring Boot Security Configuration
+17.14.2. Change the UserDetailsService and Add User Accounts
+17.14.3. Enable HTTPS When Running behind a Proxy Server
+17.15. Hot Swapping
+17.15.1. Reload Static Content
+17.15.2. Reload Templates without Restarting the Container
+Thymeleaf Templates
+FreeMarker Templates
+Groovy Templates
+17.15.3. Fast Application Restarts
+17.15.4. Reload Java Classes without Restarting the Container
+17.16. Testing
+17.16.1. Testing With Spring Security
+17.16.2. Use Testcontainers for Integration Testing
+17.16.3. Structure @Configuration classes for inclusion in slice tests
+17.17. Build
+17.17.1. Generate Build Information
+17.17.2. Generate Git Information
+17.17.3. Customize Dependency Versions
+17.17.4. Create an Executable JAR with Maven
+17.17.5. Use a Spring Boot Application as a Dependency
+17.17.6. Extract Specific Libraries When an Executable Jar Runs
+17.17.7. Create a Non-executable JAR with Exclusions
+17.17.8. Remote Debug a Spring Boot Application Started with Maven
+17.17.9. Build an Executable Archive From Ant without Using spring-boot-antlib
+17.18. Traditional Deployment
+17.18.1. Create a Deployable War File
+17.18.2. Convert an Existing Application to Spring Boot
+17.18.3. Deploying a WAR to WebLogic
+
+
+
+
 G:\source_code\spring-boot
 
 spring boot 2.0.4 maven组织的，可以跳转
