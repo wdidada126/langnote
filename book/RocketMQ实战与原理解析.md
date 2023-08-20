@@ -1,5 +1,8 @@
 # RocketMQ实战与原理解析
 
+RocketMQ实战与原理解析.pdf
+windows电脑上
+
 杨开元
 阿里巴巴数据专家，毕业于北京大学，有10年IT行业研发经验。对RocketMQ有深入的研究，是RocketMQ源码贡献者。曾就职于甲骨文和猎豹移动，专注于大数据和实时计算。在大量的工作实践中，对MySQL、J2EE、JVM、Spring、Hadoop、Kafka、Storm、Flink都有深入研究。喜欢剖析源码，分析原理，为开源项目贡献代码。
 云栖社区
