@@ -165,7 +165,7 @@ spring.task.scheduling namespace
 
 7.8. Testing
 
-jar包 spring-boot-test  spring-boottest-autoconfigure
+jar包 spring-boot-test  spring-boot test-autoconfigure
 
 spring-boot-starter-test
 

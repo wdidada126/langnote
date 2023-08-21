@@ -278,3 +278,33 @@ https://www.eclipse.org/aspectj/doc/released/progguide/examples-howto.html
 
 [AspectJ在Spring中的使](https://www.jianshu.com/p/958af6a90477)
 
+## 源码解读 v1.9.6
+
+org.aspectj.lang.annotation
+
+
+
+https://javadoc.dev/online/api/org.aspectj/aspectjweaver/1.9.6/index.html
+
+
+
+| Annotation Types   |      |        |
+| ------------------ | ---- | ------ |
+|                    |      |        |
+| AdviceName         |      |        |
+| After              | 注解 |        |
+| AfterReturning     |      |        |
+| AfterThrowing      |      |        |
+| Around             |      |        |
+| Aspect             | 注解 | 很重要 |
+| Before             | 注解 |        |
+| DeclareAnnotation  |      |        |
+| DeclareError       |      |        |
+| DeclareMixin       |      |        |
+| DeclareParents     |      |        |
+| DeclarePrecedence  |      |        |
+| DeclareWarning     |      |        |
+| Pointcut           | 注解 |        |
+| RequiredTypes      |      |        |
+| SuppressAjWarnings |      |        |
+
