@@ -1,7 +1,10 @@
 # doc
 
-
 bean的生命周期 《spring实战》
+
+1.2.2 bean的生命周期
+
+
 
 
 看英文文档
@@ -53,6 +56,7 @@ bean的创建
 - Instantiation by Using an Instance Factory Method
 
 
+
 xml bean的属性
 
 - factory-bean
@@ -64,7 +68,7 @@ xml bean的属性
 
 Spring doc bean
 
-Chap 1.6.1 Lifecycle Callbacks
+## Chap 1.6.1 Lifecycle Callbacks
 
 @PostConstruct
 @PreDestroy
@@ -80,7 +84,7 @@ SmartLifecycle
 
 Lifecycle
 
-Chap. 17
+## Chap. 17
 bean继承
 
 
@@ -88,7 +92,7 @@ bean继承
 Bean
 parent
 
-Chap.18 bean的其他定义方式
+## Chap.18 bean的其他定义方式
 
 beanpostprocessor
 beanfactorypostprocessor

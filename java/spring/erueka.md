@@ -7,7 +7,7 @@ ribbon -> netty
 jersey
 
 
-### log springcloudlogging
+### log spring cloud logging
 目前是在项目根路径下面
 linux部署，需要放在 /data/log路径下 如何处理
 
@@ -40,7 +40,7 @@ archaius
 
 ### erueka的数据存哪儿？
 内存 ConcurrentHashMap
-![erueka的数据](imgs/20200908131751554.png)
+![erueka的数据](../../imgs/spring/20200908131751554.png)
 
 ### lease
 

@@ -12,7 +12,7 @@ setter注入
 
 
 
-Bean的生命周期
+Bean的生命周期 spring实战这本书籍的说法
 
 1. Spring启动，查找并加载需要被Spring管理的bean，进行Bean的实例化
 2. Bean实例化后对将Bean的引入和值注入到Bean的属性中

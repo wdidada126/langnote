@@ -1,5 +1,15 @@
 # spring_aop_cglib
 
+
+
+cglib不支持java17，不更新了，推荐使用
+
+https://bytebuddy.net/#/
+
+
+
+
+
 Spring的两种动态代理：Jdk和Cglib 的区别和实现
 
 jdk只代理接口，cglib代理类
