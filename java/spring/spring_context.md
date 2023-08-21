@@ -1248,6 +1248,58 @@ public class MyService {
 | NumberFormat                          | @interface |      |
 | NumberFormat.Style                    | enum       |      |
 |                                       |            |      |
+在 Spring Framework 5.2.9 版本中，`org.springframework.format.annotation.DateTimeFormat` 是一个注解，用于指定日期时间格式的解析和格式化规则。
+使用 `@DateTimeFormat` 注解，我们可以将日期时间类型的字段或方法参数与特定的日期时间格式进行绑定，以便在 Spring 应用程序中进行日期时间的解析和格式化。
+以下是一个使用 `@DateTimeFormat` 的示例：
+
+```java
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class Event {
+
+    private String name;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate eventDate;
+
+    // Getter and Setter methods
+}
+```
+
+在上述示例中，我们定义了一个名为 `Event` 的类，其中包含了一个 `eventDate` 字段，它表示事件的日期。我们使用 `@DateTimeFormat` 注解来指定日期的格式为 "yyyy-MM-dd"。
+在使用 `@DateTimeFormat` 注解时，我们需要提供一个 `pattern` 参数，该参数指定日期时间的格式模式。在上述示例中，我们使用 "yyyy-MM-dd" 模式，表示日期的格式为年-月-日。
+通过使用 `@DateTimeFormat` 注解，当我们在 Spring 应用程序中绑定 `Event` 对象时，可以自动将日期字符串解析为 `LocalDate` 类型，并将其赋值给 `eventDate` 字段。
+```java
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Main {
+
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        Event event = new Event();
+        event.setName("Spring Conference");
+        event.setEventDate(LocalDate.parse("2023-08-21")); // 日期字符串解析为 LocalDate
+
+        EventService eventService = context.getBean(EventService.class);
+        eventService.createEvent(event);
+
+        context.close();
+    }
+}
+
+public class EventService {
+
+    public void createEvent(Event event) {
+        // 创建事件的逻辑
+        // ...
+    }
+}
+```
+在上述示例的 `Main` 类中，我们创建了一个 `Event` 对象，并将日期字符串 "2023-08-21" 解析为 `LocalDate` 类型，并设置给 `eventDate` 字段。
+然后，我们获取 `EventService` Bean，并调用 `createEvent` 方法，将 `Event` 对象传递给该方法进行处理。
+通过使用 `@DateTimeFormat` 注解，我们能够方便地在 Spring 应用程序中处理日期时间的解析和格式化，而无需手动编写解析和格式化的代码。这提供了一种简洁和易于使用的方式来处理日期时间数据。
+
 
 #### org.springframework.format.datetime
 
@@ -1266,8 +1318,10 @@ public class MyService {
 | DateTimeFormatAnnotationFormatterFactory       |      |      |
 |                                                |      |      |
 
+DateFormatter支持国际化的
 
-
+DateFormatterRegistrar是FormatterRegistrar接口实现类
+JodaTimeFormatterRegistrar
 ##### org.springframework.format.datetime.joda
 
 | org.springframework.format.datetime.joda     | 类型 | 详解 |
@@ -1289,11 +1343,17 @@ public class MyService {
 | ReadableInstantPrinter                       |      |      |
 | ReadablePartialPrinter                       |      |      |
 
+JodaTimeContext
+使用
+org.joda.time.Chronology;
+org.joda.time.DateTimeZone;
+org.joda.time.format.DateTimeFormatter;
+
+
 ##### org.springframework.format.datetime.standard
 
 | org.springframework.format.datetime.standard   | 类型 | 详解 |
 | ---------------------------------------------- | ---- | ---- |
-|                                                |      |      |
 | Classes                                        |      |      |
 |                                                |      |      |
 | DateTimeContext                                |      |      |
@@ -1310,7 +1370,6 @@ public class MyService {
 
 | org.springframework.format.number      | 类型 | 详解 |
 | -------------------------------------- | ---- | ---- |
-|                                        |      |      |
 | Classes                                |      |      |
 |                                        |      |      |
 | AbstractNumberFormatter                |      |      |
@@ -1323,13 +1382,16 @@ public class MyService {
 
 | org.springframework.format.number.money      | 类型 |      |
 | -------------------------------------------- | ---- | ---- |
-|                                              |      |      |
 | Classes                                      |      |      |
 |                                              |      |      |
 | CurrencyUnitFormatter                        |      |      |
 | Jsr354NumberFormatAnnotationFormatterFactory |      |      |
 | MonetaryAmountFormatter                      |      |      |
 
+Jsr354NumberFormatAnnotationFormatterFactory
+javax.money.CurrencyUnit;
+javax.money.Monetary;
+javax.money.MonetaryAmount;
 
 
 #### org.springframework.format.support
@@ -1347,7 +1409,6 @@ public class MyService {
 | FormattingConversionService.ParserConverter            |      |      |
 | FormattingConversionService.PrinterConverter           |      |      |
 | FormattingConversionServiceFactoryBean                 |      |      |
-|                                                        |      |      |
 
 
 
@@ -1359,13 +1420,10 @@ public class MyService {
 
 | org.springframework.instrument.classloading | 类型 | 详解 |
 | ------------------------------------------- | ---- | ---- |
-|                                             |      |      |
 | Interfaces                                  |      |      |
-|                                             |      |      |
 | LoadTimeWeaver                              |      |      |
 |                                             |      |      |
 | Classes                                     |      |      |
-|                                             |      |      |
 | InstrumentationLoadTimeWeaver               |      |      |
 | ReflectiveLoadTimeWeaver                    |      |      |
 | ResourceOverridingShadowingClassLoader      |      |      |
@@ -1384,8 +1442,6 @@ public class MyService {
 | org.springframework.instrument.classloading.glassfish | 类型 | 详解 |
 | ----------------------------------------------------- | ---- | ---- |
 | GlassFishLoadTimeWeaver                               |      |      |
-|                                                       |      |      |
-|                                                       |      |      |
 
 
 
@@ -1422,12 +1478,12 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 ### org.springframework.jmx
 
 
+JMX（Java Management Extensions，即Java管理扩展）是一个为应用程序、设备、系统等植入管理功能的框架。JMX可以跨越一系列异构操作系统平台、系统体系结构和网络传输协议，灵活的开发无缝集成的系统、网络和服务管理应用。
 
 | org.springframework.jmx      | 类型      | 详解 |
 | ---------------------------- | --------- | ---- |
 | JmxException                 |           |      |
 | MBeanServerNotFoundException | exception |      |
-|                              |           |      |
 
 
 
@@ -1435,7 +1491,6 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 | org.springframework.jmx.access | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
-|                                |      |      |
 | Classes                        |      |      |
 |                                |      |      |
 | MBeanClientInterceptor         |      |      |
@@ -1443,7 +1498,6 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | NotificationListenerRegistrar  |      |      |
 |                                |      |      |
 | Exceptions                     |      |      |
-|                                |      |      |
 | InvalidInvocationException     |      |      |
 | InvocationFailureException     |      |      |
 | MBeanConnectFailureException   |      |      |
@@ -1453,20 +1507,17 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 | org.springframework.jmx.export | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
-|                                |      |      |
 | Interfaces                     |      |      |
 |                                |      |      |
 | MBeanExporterListener          |      |      |
 | MBeanExportOperations          |      |      |
 |                                |      |      |
 | Classes                        |      |      |
-|                                |      |      |
 | MBeanExporter                  |      |      |
 | NotificationListenerBean       |      |      |
 | SpringModelMBean               |      |      |
 |                                |      |      |
 | Exceptions                     |      |      |
-|                                |      |      |
 | MBeanExportException           |      |      |
 | UnableToRegisterMBeanException |      |      |
 
@@ -1476,12 +1527,10 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | ----------------------------------------- | ---- | ---- |
 |                                           |      |      |
 | Classes                                   |      |      |
-|                                           |      |      |
 | AnnotationJmxAttributeSource              |      |      |
 | AnnotationMBeanExporter                   |      |      |
 |                                           |      |      |
 | Annotation Types                          |      |      |
-|                                           |      |      |
 | ManagedAttribute                          |      |      |
 | ManagedMetric                             |      |      |
 | ManagedNotification                       |      |      |
@@ -1497,12 +1546,10 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | ---------------------------------------- | ---- | ---- |
 |                                          |      |      |
 | Interfaces                               |      |      |
-|                                          |      |      |
 | AutodetectCapableMBeanInfoAssembler      |      |      |
 | MBeanInfoAssembler                       |      |      |
 |                                          |      |      |
 | Classes                                  |      |      |
-|                                          |      |      |
 | AbstractConfigurableMBeanInfoAssembler   |      |      |
 | AbstractMBeanInfoAssembler               |      |      |
 | AbstractReflectiveMBeanInfoAssembler     |      |      |
@@ -1516,13 +1563,10 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 | org.springframework.jmx.export.metadata | 类型 | 详解 |
 | --------------------------------------- | ---- | ---- |
-|                                         |      |      |
 | Interfaces                              |      |      |
-|                                         |      |      |
 | JmxAttributeSource                      |      |      |
 |                                         |      |      |
 | Classes                                 |      |      |
-|                                         |      |      |
 | AbstractJmxAttribute                    |      |      |
 | JmxMetadataUtils                        |      |      |
 | ManagedAttribute                        |      |      |
@@ -1533,7 +1577,6 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | ManagedResource                         |      |      |
 |                                         |      |      |
 | Exceptions                              |      |      |
-|                                         |      |      |
 | InvalidMetadataException                |      |      |
 
 ##### org.springframework.jmx.export.naming
@@ -1542,12 +1585,10 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | ------------------------------------- | ---- | ---- |
 |                                       |      |      |
 | Interfaces                            |      |      |
-|                                       |      |      |
 | ObjectNamingStrategy                  |      |      |
 | SelfNaming                            |      |      |
 |                                       |      |      |
 | Classes                               |      |      |
-|                                       |      |      |
 | IdentityNamingStrategy                |      |      |
 | KeyNamingStrategy                     |      |      |
 | MetadataNamingStrategy                |      |      |
@@ -1558,16 +1599,13 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | ------------------------------------------- | ---- | ---- |
 |                                             |      |      |
 | Interfaces                                  |      |      |
-|                                             |      |      |
 | NotificationPublisher                       |      |      |
 | NotificationPublisherAware                  |      |      |
 |                                             |      |      |
 | Classes                                     |      |      |
-|                                             |      |      |
 | ModelMBeanNotificationPublisher             |      |      |
 |                                             |      |      |
 | Exceptions                                  |      |      |
-|                                             |      |      |
 | UnableToSendNotificationException           |      |      |
 
 
@@ -1578,13 +1616,10 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 
 | org.springframework.jndi    | 类型 | 详解 |
 | --------------------------- | ---- | ---- |
-|                             |      |      |
 | Interfaces                  |      |      |
-|                             |      |      |
 | JndiCallback                |      |      |
 |                             |      |      |
 | Classes                     |      |      |
-|                             |      |      |
 | JndiAccessor                |      |      |
 | JndiLocatorDelegate         |      |      |
 | JndiLocatorSupport          |      |      |
@@ -1596,7 +1631,6 @@ WebSphereClassLoaderAdapter WebSphereClassPreDefinePlugin WebSphereClassPreDefin
 | JndiTemplateEditor          |      |      |
 |                             |      |      |
 | Exceptions                  |      |      |
-|                             |      |      |
 | JndiLookupFailureException  |      |      |
 | TypeMismatchNamingException |      |      |
 
@@ -1612,7 +1646,6 @@ SimpleJndiBeanFactory
 
 | org.springframework.remoting     | 类型 | 详解 |
 | -------------------------------- | ---- | ---- |
-|                                  |      |      |
 | Exceptions                       |      |      |
 |                                  |      |      |
 | RemoteAccessException            |      |      |
@@ -1630,13 +1663,10 @@ SimpleJndiBeanFactory
 
 | org.springframework.remoting.rmi    | 类型 | 详解 |
 | ----------------------------------- | ---- | ---- |
-|                                     |      |      |
 | Interfaces                          |      |      |
-|                                     |      |      |
 | RmiInvocationHandler                |      |      |
 |                                     |      |      |
 | Classes                             |      |      |
-|                                     |      |      |
 | CodebaseAwareObjectInputStream      |      |      |
 | JndiRmiClientInterceptor            |      |      |
 | JndiRmiProxyFactoryBean             |      |      |
@@ -1656,8 +1686,6 @@ SimpleJndiBeanFactory
 | org.springframework.remoting.soap | 类型     | 详解 |
 | --------------------------------- | -------- | ---- |
 | SoapFaultException                | abstract |      |
-|                                   |          |      |
-|                                   |          |      |
 
 
 
@@ -1669,12 +1697,10 @@ SimpleJndiBeanFactory
 | ------------------------------------ | ---- | ---- |
 |                                      |      |      |
 | Interfaces                           |      |      |
-|                                      |      |      |
 | RemoteInvocationExecutor             |      |      |
 | RemoteInvocationFactory              |      |      |
 |                                      |      |      |
 | Classes                              |      |      |
-|                                      |      |      |
 | DefaultRemoteInvocationExecutor      |      |      |
 | DefaultRemoteInvocationFactory       |      |      |
 | RemoteAccessor                       |      |      |
@@ -1697,20 +1723,70 @@ SimpleJndiBeanFactory
 
 | org.springframework.scheduling | 类型 | 详解 |
 | ------------------------------ | ---- | ---- |
-|                                |      |      |
 | Interfaces                     |      |      |
-|                                |      |      |
-| SchedulingAwareRunnable        |      |      |
-| SchedulingTaskExecutor         |      |      |
+| SchedulingAwareRunnable        | 接口  | Runnable子接口   |
+| SchedulingTaskExecutor         |      | AsyncTaskExecutor子接口   |
 | TaskScheduler                  |      |      |
 | Trigger                        |      |      |
 | TriggerContext                 |      |      |
 |                                |      |      |
 | Exceptions                     |      |      |
-|                                |      |      |
 | SchedulingException            |      |      |
 
+SchedulingAwareRunnable接口独有方法
+boolean isLongLived();
 
+
+
+在Spring中可以使用AsyncTaskExecutor接口实现异步任务执行。下面是一个使用SimpleAsyncTaskExecutor的例子:
+1. 定义一个任务类:
+```java
+public class AsyncTask {
+
+  public void doTask() {
+    // 执行异步任务 
+  }
+
+}
+```
+2. 创建AsyncTaskExecutor实现:
+```java  
+SimpleAsyncTaskExecutor asyncExecutor = new SimpleAsyncTaskExecutor();
+```
+3. 提交任务执行:
+```java
+AsyncTask task = new AsyncTask();
+asyncExecutor.submit(task::doTask);
+```
+4. 也可以使用lambda表达式简化:
+
+```java
+SimpleAsyncTaskExecutor asyncExecutor = new SimpleAsyncTaskExecutor();
+
+asyncExecutor.submit(() -> {
+  // 执行异步任务
+});
+```
+5. 如果需要执行有返回值的异步任务,可以使用Future:
+
+```java 
+Future<String> future = asyncExecutor.submit(() -> {
+  // 执行有返回值的异步任务 
+  return "result"; 
+});
+
+String result = future.get();
+```
+
+SimpleAsyncTaskExecutor使用调用线程进行异步执行,也可以使用线程池实现作为AsyncTaskExecutor。
+这样通过AsyncTaskExecutor就可以轻松实现异步任务处理。
+
+
+SchedulingTaskExecutor接口是AsyncTaskExecutor接口的子类
+SchedulingTaskExecutor独有方法
+default boolean prefersShortLivedTasks() {
+		return true;
+	}
 
 #### org.springframework.scheduling.annotation
 
@@ -1720,14 +1796,11 @@ SimpleJndiBeanFactory
 
 | org.springframework.scheduling.annotation | 类型 | 详解 |
 | ----------------------------------------- | ---- | ---- |
-|                                           |      |      |
 | Interfaces                                |      |      |
-|                                           |      |      |
 | AsyncConfigurer                           |      |      |
 | SchedulingConfigurer                      |      |      |
 |                                           |      |      |
 | Classes                                   |      |      |
-|                                           |      |      |
 | AbstractAsyncConfiguration                |      |      |
 | AnnotationAsyncExecutionInterceptor       |      |      |
 | AsyncAnnotationAdvisor                    |      |      |
@@ -1740,7 +1813,6 @@ SimpleJndiBeanFactory
 | SchedulingConfiguration                   |      |      |
 |                                           |      |      |
 | Annotation Types                          |      |      |
-|                                           |      |      |
 | Async                                     |      |      |
 | EnableAsync                               |      |      |
 | EnableScheduling                          |      |      |
@@ -1748,9 +1820,9 @@ SimpleJndiBeanFactory
 | Schedules                                 |      |      |
 
 
+ScheduledAnnotationBeanPostProcessor实现了 ScheduledTaskHolder接口
 
-
-
+MergedBeanDefinitionPostProcessor, DestructionAwareBeanPostProcessor接口
 #### org.springframework.scheduling.concurrent
 
 | org.springframework.scheduling.concurrent | 类型 | 详解 |

@@ -7,3 +7,5 @@ edidada555@gmail.com
 
 idea有插件，你输入代码，ta有提示，如果你满意，直接按tab键，据说有根据注释直接写代码的功能，没有实践过
 
+我没用过tabnine和kite，我觉得copilot很强
+

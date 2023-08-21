@@ -541,6 +541,14 @@ CommonAnnotationBeanPostProcessor处理PostConstruct PreDestroy两个注解
 | YamlProcessor.ResolutionMethod             | enum                         |                                  |
 
 
+DestructionAwareBeanPostProcessor接口是BeanPostProcessor接口子类，方法
+
+void postProcessBeforeDestruction(Object bean, String beanName)
+default boolean requiresDestruction(Object bean)
+
+DestructionAwareBeanPostProcessor接口实现类
+spring-context 包的ScheduledAnnotationBeanPostProcessor
+
 AbstractFactoryBean (org.springframework.beans.factory.config)
 SortedResourcesFactoryBean (org.springframework.jdbc.config)
 MapFactoryBean (org.springframework.beans.factory.config)
