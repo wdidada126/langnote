@@ -1,11 +1,11 @@
 # spring context support
 
 ## 四个模块
-- 缓存
+- 缓存 caffeine ehcache jcache
 - 邮件
-- 定时任务
+- 定时任务 quartz
 - ui模板freemarker
-- 
+
 ## 源码解读
 https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
@@ -14,7 +14,7 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 
 
-|                            |      |      |
+|  org.springframework.cache.caffeine     |      |      |
 |----------------------------| ---- | ---- |
 | CaffeineCache              |      |      |
 | CaffeineCache.LoadFunction              |      |      |

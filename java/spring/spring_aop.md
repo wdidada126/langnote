@@ -879,6 +879,143 @@ ProxyConfig (org.springframework.aop.framework)
                 InfrastructureAdvisorAutoProxyCreator (org.springframework.aop.framework.autoproxy)
 
 
+这四个类都是 Spring AOP 中的自动代理创建器（AutoProxyCreator），用于自动创建和管理 AOP 代理对象。它们在实现上存在一些异同点，下面对它们的使用场景和区别进行解释：
+
+1. DefaultAdvisorAutoProxyCreator：
+   - 使用场景：主要用于基于 Advisor 的 AOP 配置。它通过扫描 Spring 容器中的 Advisor 类型的 Bean，并为这些 Advisor 创建对应的 AOP 代理对象。通常与 `ProxyFactoryBean` 配合使用，用于声明式的配置 AOP。
+   - 异同点：与其他三个类相比，`DefaultAdvisorAutoProxyCreator` 是最基础的自动代理创建器，不支持 AspectJ 注解风格的切面。
+
+2. AspectJAwareAdvisorAutoProxyCreator：
+   - 使用场景：与 AspectJ 注解风格的切面结合使用。它扩展了 `DefaultAdvisorAutoProxyCreator`，提供了对 AspectJ 注解切面的支持。它能够识别并创建 AspectJ 注解切面的代理对象，同时也支持基于 Advisor 的配置。
+   - 异同点：在功能上，`AspectJAwareAdvisorAutoProxyCreator` 是对 `DefaultAdvisorAutoProxyCreator` 的扩展，增加了对 AspectJ 注解切面的支持。
+
+3. AnnotationAwareAspectJAutoProxyCreator：
+   - 使用场景：主要用于基于 AspectJ 注解风格的切面配置。它扩展了 `AspectJAwareAdvisorAutoProxyCreator`，允许使用 AspectJ 注解来定义切面，并根据注解配置创建相应的代理对象。
+   - 异同点：相对于前两个类，`AnnotationAwareAspectJAutoProxyCreator` 是更高级的自动代理创建器，它支持基于 AspectJ 注解的切面配置，并能够自动创建相应的代理对象。
+
+4. InfrastructureAdvisorAutoProxyCreator：
+   - 使用场景：主要用于内部基础架构的 AOP 配置。它是 `DefaultAdvisorAutoProxyCreator` 的子类，但只为特定类型的 Advisor 创建代理对象，如 Spring 内部的基础架构 Advisor。这些 Advisor 主要用于实现一些基础功能，如事务、缓存等。
+   - 异同点：`InfrastructureAdvisorAutoProxyCreator` 是专门为内部基础架构 Advisor 创建代理对象的自动代理创建器，它与其他三个类的主要区别在于所处理的 Advisor 类型不同。
+
+综上所述，这四个类在 Spring AOP 中分别针对不同的使用场景和配置风格，提供了自动创建和管理 AOP 代理对象的功能。它们的区别主要在于支持的 AOP 配置方式、创建代理对象的规则和处理的 Advisor 类型。根据具体的需求和配置方式，选择适合的自动代理创建器来实现 AOP 功能。
+
+
+AspectJ注解风格的切面具体是指？
+AspectJ 注解风格的切面是指使用 AspectJ 注解来定义和配置切面的一种方式。AspectJ 是一个功能强大的面向切面编程（AOP）框架，它提供了一套丰富的注解来定义切面、切点和通知等概念。
+
+在 AspectJ 注解风格的切面中，可以使用以下注解来定义和配置切面的各个组成部分：
+1. **@Aspect**：用于标识一个类为切面类。被该注解标记的类会被 Spring AOP 自动识别为切面，并用于创建相应的代理对象。
+2. **@Pointcut**：用于定义切点，即在哪些方法或连接点上应用切面的通知。可以通过表达式语言或方法定义来指定切点表达式。
+3. **@Before**：在目标方法执行前执行通知。可以定义通知方法的具体逻辑。
+4. **@AfterReturning**：在目标方法成功返回后执行通知。可以定义通知方法的具体逻辑。
+5. **@AfterThrowing**：在目标方法抛出异常后执行通知。可以定义通知方法的具体逻辑。
+6. **@After**：在目标方法执行后（无论成功返回还是抛出异常）执行通知。可以定义通知方法的具体逻辑。
+7. **@Around**：在目标方法执行前后执行通知，可以控制目标方法的执行流程。需要在通知方法中显式调用目标方法。
+使用 AspectJ 注解风格的切面可以更加简洁和直观地定义和配置切面逻辑，避免了传统 XML 配置的繁琐性。它提供了更灵活的切点表达式和通知定义方式，使得 AOP 的使用更加便捷和易于理解。同时，AspectJ 注解风格的切面也可以与 Spring AOP 整合使用，实现对 Spring 容器中的 Bean 的增强和切面逻辑的应用。
+
+
+以下是一个使用 AspectJ 注解风格定义切面的 Java 代码示例：
+
+```java
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+
+@Aspect
+public class LoggingAspect {
+
+    @Pointcut("execution(* com.example.service.*.*(..))")
+    public void serviceMethods() {}
+
+    @Before("serviceMethods()")
+    public void beforeServiceMethodExecution() {
+        System.out.println("Before executing service method");
+    }
+}
+```
+
+在这个示例中，我们定义了一个名为 `LoggingAspect` 的切面类，使用 `@Aspect` 注解将其标记为切面。切面类中的方法用于定义切点和通知。
+
+- `@Pointcut` 注解用于定义切点，指定了要拦截的方法或连接点。在这里，我们使用 `execution` 表达式来匹配 `com.example.service` 包中的所有方法，并使用 `(..)` 表示匹配任意参数的方法。
+
+- `@Before` 注解表示在目标方法执行前执行通知。在 `beforeServiceMethodExecution()` 方法中，我们可以定义通知的具体逻辑，这里简单地输出了一条日志信息。
+
+要使上述切面生效，还需要在 Spring 配置文件中进行相应的配置，以启用 AspectJ 注解风格的切面。
+
+```xml
+<beans xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+    
+    <bean id="loggingAspect" class="com.example.aspect.LoggingAspect"/>
+
+    <!-- 其他配置 -->
+</beans>
+```
+
+在配置文件中，我们需要使用 `<aop:aspectj-autoproxy/>` 元素启用 AspectJ 注解风格的切面自动代理功能。然后，将切面类 `LoggingAspect` 作为一个 Bean 进行配置。
+
+通过以上的配置和代码，`LoggingAspect` 切面将拦截 `com.example.service` 包中的所有方法，在方法执行前输出日志信息。当我们调用被拦截的服务方法时，切面的通知会被触发执行。
+
+请注意，以上示例仅展示了 AspectJ 注解风格切面的基本用法，实际使用时可以根据需要进行更复杂的配置和逻辑定义。
+
+
+以下是一个使用 Advisor 配置 AOP 的 Java 代码示例：
+
+```java
+import org.springframework.aop.Advisor;
+import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
+import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
+
+public class AopExample {
+
+    public static void main(String[] args) {
+        // 创建目标对象
+        MyService myService = new MyService();
+
+        // 创建切面对象
+        MyAspect myAspect = new MyAspect();
+
+        // 创建切点和通知的 Advisor 对象
+        AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
+        advisor.setExpression("execution(* com.example.service.MyService.*(..))");
+        advisor.setAdvice(myAspect);
+
+        // 创建代理工厂
+        ProxyFactory proxyFactory = new ProxyFactory();
+        proxyFactory.setTarget(myService);
+        proxyFactory.addAdvisor(advisor);
+
+        // 获取代理对象
+        MyService proxy = (MyService) proxyFactory.getProxy();
+
+        // 调用代理对象的方法
+        proxy.doSomething();
+    }
+}
+```
+
+在这个示例中，我们通过 `ProxyFactory` 和 `Advisor` 对象来配置 AOP。
+
+- 首先，我们创建了一个目标对象 `MyService`，它是我们要增强的业务逻辑类。
+
+- 然后，我们创建了一个切面对象 `MyAspect`，它实现了要添加到目标对象的增强逻辑。
+
+- 接下来，我们创建了一个切点和通知的 `Advisor` 对象。在这里，我们使用 `AspectJExpressionPointcutAdvisor`，并设置了切点表达式为 `"execution(* com.example.service.MyService.*(..))"`，即匹配 `com.example.service.MyService` 类中的所有方法。
+
+- 然后，我们将切点和通知的 `Advisor` 对象添加到 `ProxyFactory` 中。
+
+- 最后，我们通过 `ProxyFactory` 的 `getProxy()` 方法获取代理对象。该代理对象会代理目标对象的方法，并在方法执行前后应用切面的增强逻辑。
+
+当我们调用代理对象的方法时，切面的增强逻辑会被触发执行。
+
+请注意，上述示例中的 `MyService` 和 `MyAspect` 类需要根据实际的业务需求进行编写。同时，该示例中的 AOP 配置是基于 Spring 的原生 AOP，因此需要在项目中引入 Spring 相关的依赖和配置。
+
+此外，还可以使用其他类型的 Advisor，如 `DefaultPointcutAdvisor`，它支持更灵活的切点定义和多个通知的组合。在实际应用中，可以根据具体的需求选择合适的 Advisor 类型来配置 AOP。
+
+
 ### BeanNameAutoProxyCreator
 org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
 
@@ -1022,14 +1159,14 @@ Spring 中还提供了许多其他条件注解:
 - @ConditionalOnBean
 - @ConditionalOnMissingBean
 - @ConditionalOnProperty
-- @ConditionalOnExpression 等
+- @ConditionalOnExpression等
 并通过示例展示了如何使用这些条件注解实现条件切面。
 2. Spring Boot in Action
 该书专门讲解Spring Boot。其中有一章介绍了Spring Boot支持的条件配置。
 Spring Boot默认支持大部分Spring条件注解,并新增了一些自己的条件注解:
 - @ConditionalOnWebApplication 
 - @ConditionalOnNotWebApplication 
-- @ConditionalOnMissingBean 等
+- @ConditionalOnMissingBean等
 通过这些条件注解,可以实现只在特定Web环境、非Web环境下激活Bean或者切面等。
 3. Effective Java
 Joshua Bloch的这本经典书。虽然不专注Spring,但介绍了Java制定条件的一些最佳实践。
@@ -1041,7 +1178,6 @@ Joshua Bloch的这本经典书。虽然不专注Spring,但介绍了Java制定条
 如果需要建议字段访问和更新连接点，请考虑使用诸如 AspectJ 之类的语言。
 
 要使用 Java @Configuration启用@AspectJ 支持，请添加@EnableAspectJAutoProxy注解
-
 要通过基于 XML 的配置启用@AspectJ 支持，请使用aop:aspectj-autoproxy元素，如以下示例所示：
 
 <aop:aspectj-autoproxy/>
@@ -1082,6 +1218,8 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 |                                |           |      |
 | AopInvocationException         |           |      |
 
+Pointcut接口，在AspectMetadata类中被使用
+
 ### org.springframework.aop.aspectj
 | org.springframework.aop.aspectj                              | 类型      | 解释 |
 | ------------------------------------------------------------ | --------- | ---- |
@@ -1116,6 +1254,57 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | Exceptions                                                   |           |      |
 |                                                              |           |      |
 | AspectJAdviceParameterNameDiscoverer.AmbiguousBindingException |           |      |
+
+
+AspectJExpressionPointcut 分析源代码
+org.aspectj.weaver.tools.PointcutPrimitive中的变量
+
+execution
+args
+reference pointcut
+this
+target
+within
+@annotation
+@within
+@args
+@target
+
+
+AspectJExpressionPointcutAdvisor例子
+```java
+import org.springframework.aop.Advisor;
+import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
+import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
+
+public class AopExample {
+
+    public static void main(String[] args) {
+        // 创建目标对象
+        MyService myService = new MyService();
+
+        // 创建切面对象
+        MyAspect myAspect = new MyAspect();
+
+        // 创建切点和通知的 Advisor 对象
+        AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
+        advisor.setExpression("execution(* com.example.service.MyService.*(..))");
+        advisor.setAdvice(myAspect);
+
+        // 创建代理工厂
+        ProxyFactory proxyFactory = new ProxyFactory();
+        proxyFactory.setTarget(myService);
+        proxyFactory.addAdvisor(advisor);
+
+        // 获取代理对象
+        MyService proxy = (MyService) proxyFactory.getProxy();
+
+        // 调用代理对象的方法
+        proxy.doSomething();
+    }
+}
+```
 
 #### org.springframework.aop.aspectj.annotation
 
@@ -1152,9 +1341,31 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | NotAnAtAspectException                                       |           |      |
 
 
+AspectMetadata是普通类
+属性
+private final String aspectName;
+private final Class<?> aspectClass;
+private transient AjType<?> ajType;
+private final Pointcut perClausePointcut;
+
+ReflectiveAspectJAdvisorFactory AspectJAdvisorFactory接口实现类
+`org.springframework.aop.aspectj.annotation.ReflectiveAspectJAdvisorFactory` 是 Spring AOP 框架中的一个类，它的作用是根据 AspectJ 注解风格的切面定义创建 Advisor 对象。
+AspectJ 是一个功能强大的 AOP 框架，它支持通过注解方式定义切面和通知。在 Spring AOP 中，为了支持 AspectJ 注解风格的切面，需要将 AspectJ 注解转换为 Spring AOP 的 Advisor 对象，以便将切面逻辑应用到目标方法上。
+`ReflectiveAspectJAdvisorFactory` 正是负责这个转换过程的工厂类。它会解析 AspectJ 注解，检测切点表达式、通知类型和通知方法，并根据这些信息创建对应的 Advisor 对象。
+具体来说，`ReflectiveAspectJAdvisorFactory` 的主要作用包括：
+1. 解析 AspectJ 注解信息：它会解析 AspectJ 注解中的元数据，包括切点表达式、通知类型（如 Before、After、Around 等）和通知方法的相关信息。
+2. 创建 Advisor 对象：基于解析的 AspectJ 注解信息，`ReflectiveAspectJAdvisorFactory` 会创建对应的 Advisor 对象。Advisor 对象是 Spring AOP 中的核心元素，它包含了切点和通知的信息，用于将切面逻辑织入目标方法。
+3. 支持多个切面的组合：在 AspectJ 注解风格的切面中，很常见的情况是多个切面对同一个目标方法进行增强。`ReflectiveAspectJAdvisorFactory` 可以处理多个切面的组合，将多个 Advisor 对象合并为一个 CompositeAdvisor 对象，以确保所有切面的通知都能被正确应用。
+
+通过 `ReflectiveAspectJAdvisorFactory` 的工作，我们可以在 Spring AOP 中使用 AspectJ 注解风格的切面，并将切面逻辑应用到目标方法上。这样，我们可以更灵活地定义和管理切面，实现面向切面编程的目标。
+
+
 #### org.springframework.aop.aspectj.autoproxy
 AspectJAwareAdvisorAutoProxyCreator
 AspectJPrecedenceComparator
+
+
+AspectJAwareAdvisorAutoProxyCreator 跟AnnotationAwareAspectJAutoProxyCreator比较
 
 ### org.springframework.aop.config
 | org.springframework.aop.aspectj.annotation                   | 类型      | 解释 |
