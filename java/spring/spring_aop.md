@@ -7,8 +7,14 @@ Spring2教案_aop事务.docx
 
 ![可以用来拿方法返回值的通知](..\..\imgs\spring\可以用来拿方法返回值的通知.png)
 
-SpringAOP开发的引入.png
-cglib动态代理的实现原理和步骤.png
+![SpringAOP开发的引入](../../imgs/spring/SpringAOP开发的引入.png)
+
+
+
+
+![cglib动态代理的实现原理和步骤](../../imgs/spring/cglib动态代理的实现原理和步骤.png)
+
+
 
 https://gitee.com/edidada/spring-aopexample   spring aop，直接注解和xml两种方式
 https://gitee.com/edidada/springexample  com.samter.common.Main 这个是测试aop的
@@ -58,6 +64,9 @@ Bean必须是一个AOP代理的目标对象（Target Object）。
 Bean必须符合AOP代理的切点条件。
 由于InfrastructureAdvisorAutoProxyCreator是一个Bean后置处理器，它是在Bean实例化之后、初始化之前被调用的。因此，在使用InfrastructureAdvisorAutoProxyCreator时，需要确保代理的目标对象已经被实例化，但还没有被初始化。如果代理的目标对象已经被初始化，InfrastructureAdvisorAutoProxyCreator将无法创建代理对象。
 总的来说，InfrastructureAdvisorAutoProxyCreator是Spring AOP中非常重要的一个组件，它为Spring AOP提供了自动代理的能力，简化了AOP的配置和使用。
+
+
+
 InfrastructureAdvisorAutoProxyCreator在spring源码中对应的类
 
 在 Spring 源码中，`InfrastructureAdvisorAutoProxyCreator` 实际上是一个 BeanPostProcessor 接口的实现类，它的实现类为 `org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator`。`AbstractAutoProxyCreator` 是一个抽象类，它提供了自动代理创建的基本实现，而 `InfrastructureAdvisorAutoProxyCreator` 则是其子类的一种具体实现。

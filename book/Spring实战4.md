@@ -39,11 +39,35 @@ WPF MVVM
 
 
 bean的生命周期
-BeanName
-BeanFactory
-DisposeBean
+BeanNameAware    void setBeanName(String name);                org.springframework.beans.factory.BeanNameAware
+BeanFactoryAware void setBeanFactory(BeanFactory beanFactory)  
+ApplicationContextAware void setApplicationContext(ApplicationContext applicationContext)
+BeanPostProcessor  default Object postProcessBeforeInitialization(Object bean, String beanName)
+InitializingBean void afterPropertiesSet()
+
+xxx自定义方法 bean的生命周期 调用自定义初始化方法
 
 
+
+BeanPostProcessor  default Object postProcessAfterInitialization(Object bean, String beanName)
+
+DisposeBean void destroy()
+
+
+Bean的生命周期中,调用自定义初始化方法的地方有以下几个:
+1. 通过实现InitializingBean接口的afterPropertiesSet()方法
+InitializingBean是JavaBean的标准接口,实现这个接口可以重写afterPropertiesSet()方法,用于自定义Bean初始化逻辑。这个方法会在所有属性被设置完毕后被自动调用。
+2. 通过@PostConstruct注解标注的方法
+@PostConstruct注解标注的初始化方法会在Bean属性被赋值并依赖注入完成后执行。这是Java EE标准的注解,被各大框架支持。
+3. 自定义初始化方法
+可以定义一个没有任何注解的自定义初始化方法,然后在XML配置文件或JavaConfig中通过init-method属性指定这个方法作为初始化方法进行调用。
+4. BeanFactoryPostProcessor扩展点
+实现BeanFactoryPostProcessor接口,可以在Bean定义加载完成后处理所有Bean定义,包括调用自定义初始化逻辑。
+5. ApplicationContextAware扩展点
+实现ApplicationContextAware接口回调初始化方法,可以在容器初始化阶段调用自定义逻辑。
+6. 其他框架扩展点
+部分框架(如Spring Boot)还提供了其他生命周期回调点,用于执行自定义逻辑,比如CommandLineRunner。
+所以总的来说,通过上述几种方式都可以在Bean初始化阶段调用自定义逻辑进行额外初始化。其中@PostConstruct和InitializingBean是比较常用的实现方式。
 
 
 

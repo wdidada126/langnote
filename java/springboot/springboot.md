@@ -2,6 +2,10 @@
 
 https://docs.spring.io/spring-boot/docs/2.7.14/reference/html/using.html#using.devtools.property-defaults
 
+
+https://docs.spring.io/spring-boot/docs/2.7.14/reference/pdf/spring-boot-reference.pdf
+
+windows电脑上有spring-boot-reference.pdf
 ## springboot官方文档笔记
 
 ## Chapter 7. Core Features
