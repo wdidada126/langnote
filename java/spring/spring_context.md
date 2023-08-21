@@ -3,18 +3,11 @@
 org.springframework.context.annotation.ImportResource
 
 spring-context.xlsx
-
 spring-context2.xlsx
-
 spring-context_4.xlsx
-
 spring-context_cache.xlsx
-
 spring-context_remote.xlsx
-
 spring-context_jmx.xlsx
-
-
 
 
 
@@ -30,14 +23,9 @@ ComponentScanAnnotationParser
 org.springframework.context.annotation.ConfigurationClassParser#ConfigurationClassParser 中用ComponentScanAnnotationParser
 
 
-
-
-
 ## 源代码分包详解v5.2.9
 
 https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
-
-
 
 ### org.springframework.cache
 
@@ -90,7 +78,83 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | ConcurrentMapCacheFactoryBean        |      |      |
 | ConcurrentMapCacheManager            |      |      |
 
+在 Spring Framework 5.2.9 版本中，`ConcurrentMapCacheFactoryBean` 是一个用于创建基于 `ConcurrentHashMap` 的缓存的 FactoryBean。
 
+`ConcurrentMapCacheFactoryBean` 的作用是创建一个 `ConcurrentMapCache` 对象，该对象实现了 Spring 的 `Cache` 接口，用于在应用程序中进行缓存操作。该缓存对象使用 `ConcurrentHashMap` 作为底层数据结构，提供了并发访问和线程安全的功能。
+
+以下是使用 `ConcurrentMapCacheFactoryBean` 的示例代码：
+
+```java
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class CacheConfig {
+
+    @Bean
+    public CacheManager cacheManager() {
+        ConcurrentMapCacheManager cacheManager = new ConcurrentMapCacheManager();
+        cacheManager.setCacheNames("myCache"); // 设置缓存名称
+        cacheManager.setAllowNullValues(false); // 设置是否允许缓存中存储 null 值
+        cacheManager.setDefaultExpiration(3600); // 设置默认缓存过期时间（单位：秒）
+        cacheManager.setTransactionAware(true); // 设置是否支持事务感知
+
+        return cacheManager;
+    }
+
+    @Bean
+    public Cache myCache(CacheManager cacheManager) {
+        return cacheManager.getCache("myCache");
+    }
+}
+```
+
+在上述示例中，我们使用 `ConcurrentMapCacheFactoryBean` 创建了一个基于 `ConcurrentHashMap` 的缓存管理器 `ConcurrentMapCacheManager`。通过调用 `cacheManager.setCacheNames("myCache")` 方法，我们设置了一个名为 "myCache" 的缓存名称。
+
+然后，我们可以通过注入 `CacheManager` 对象，并调用 `getCache("myCache")` 方法来获取具体的缓存对象，如示例中的 `myCache` bean。
+
+在实际应用中，我们可以使用这个缓存对象来进行缓存操作，例如存储和获取数据。例如：
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+
+    @Autowired
+    private Cache myCache;
+
+    public String getData(String key) {
+        // 尝试从缓存中获取数据
+        Cache.ValueWrapper valueWrapper = myCache.get(key);
+        if (valueWrapper != null) {
+            return (String) valueWrapper.get();
+        }
+
+        // 从数据库或其他数据源获取数据
+        String data = fetchDataFromDataSource(key);
+
+        // 将数据存入缓存
+        myCache.put(key, data);
+
+        return data;
+    }
+
+    private String fetchDataFromDataSource(String key) {
+        // 从数据库或其他数据源获取数据的实现
+        // ...
+    }
+}
+```
+
+在上述示例中，我们在 `MyService` 类中注入了名为 `myCache` 的缓存对象。在 `getData` 方法中，我们首先尝试从缓存中获取数据，如果缓存中存在数据，则直接返回。如果缓存中不存在数据，则从数据源中获取数据，并将其存入缓存中。
+
+通过使用 `ConcurrentMapCacheFactoryBean` 创建缓存对象，我们可以方便地在 Spring 应用程序中使用基于 `ConcurrentHashMap` 的缓存来提高应用程序的性能和响应速度。
 
 #### org.springframework.cache.config
 
@@ -149,13 +213,51 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 |                                           |      |      |
 | CacheOperationInvoker.ThrowableWrapper    |      |      |
 
+
+
+CacheInterceptor
+在 Spring Framework 5.2.9 版本中，`CacheInterceptor` 是一个 AOP 拦截器，用于在方法调用前后进行缓存操作。
+`CacheInterceptor` 的作用是拦截被 `@Cacheable`、`@CachePut` 和 `@CacheEvict` 注解修饰的方法，并根据注解的配置进行缓存读取、写入和清除操作。它是 Spring Cache 抽象模块的一部分，用于与底层的缓存提供商（如`ConcurrentHashMap`、Redis 等）进行交互。
+以下是使用 `CacheInterceptor` 的示例代码：
+
+```java
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+@Configuration
+@EnableCaching
+@EnableAspectJAutoProxy
+public class CacheConfig {
+
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+
+public class MyService {
+
+    @Cacheable("myCache")
+    public String getData(String key) {
+        // 从数据库或其他数据源获取数据的实现
+        // ...
+    }
+}
+```
+
+在上述示例中，我们首先通过 `@EnableCaching` 注解启用 Spring 的缓存支持，并通过 `@EnableAspectJAutoProxy` 注解启用 AspectJ 自动代理。
+然后，在 `MyService` 类中，我们使用 `@Cacheable("myCache")` 注解修饰了 `getData` 方法。该注解指定了缓存名称为 "myCache"，表示该方法的返回值可以被缓存。
+当调用 `getData` 方法时，`CacheInterceptor` 拦截到方法调用，并根据注解配置进行缓存操作。如果缓存中存在对应的数据，则直接返回缓存中的数据；如果缓存中不存在对应的数据，则执行方法体内的逻辑，从数据库或其他数据源中获取数据，并将其存入缓存中。
+通过使用 `CacheInterceptor`，我们可以方便地在 Spring 应用程序中使用缓存注解来提高数据访问性能。它简化了缓存的配置和管理，使得开发者能够专注于业务逻辑而无需过多关注缓存的细节。
+
 #### org.springframework.cache.support
 
 | org.springframework.cache.support | 类型 | 详解 |
 | --------------------------------- | ---- | ---- |
-|                                   |      |      |
 | Classes                           |      |      |
-|                                   |      |      |
 | AbstractCacheManager              |      |      |
 | AbstractValueAdaptingCache        |      |      |
 | CompositeCacheManager             |      |      |
@@ -165,13 +267,25 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | SimpleCacheManager                |      |      |
 | SimpleValueWrapper                |      |      |
 
+CompositeCacheManager NoOpCacheManager SimpleCacheManager
+对于CompositeCacheManager、NoOpCacheManager和SimpleCacheManager这三个类的使用场景如下:
 
+1. CompositeCacheManager: 它可以组合多个CacheManager实例,并按顺序检查每个CacheManager是否包含key。这样就可以在多个CacheManager实例之间搜索cache。它通常用于在多个CacheManager实例之间进行cache的层层查找。
 
+2. NoOpCacheManager: 它是一个空实现,不提供任何caching功能。它主要用于在还没有cache实现的时候作为placeholder,或者在不需要cache的场景下使用。
+
+3. SimpleCacheManager: 它是一个使用ConcurrentHashMap作为cache存储的简单实现。它对cache的操作是线程安全的。它提供了基本的put/get/clear等方法,可以覆盖默认过期策略。它通常用于需要一个简单的本地缓存实现的场景。
+
+所以综上:
+
+- CompositeCacheManager用于跨多个CacheManager查找缓存。
+
+- NoOpCacheManager用于placeholder的场景。 
+
+- SimpleCacheManager用于需要一个简单线程安全的本地缓存的场景。
+
+根据实际需要选择使用不同的CacheManager实现。
 ### org.springframework.context
-
-
-
-
 
 | org.springframework.context    | 类型      | 详解 |
 | ------------------------------ | --------- | ---- |
@@ -273,7 +387,7 @@ ContextIdApplicationContextInitializer (org.springframework.boot.context)
 
 
 
-ConfigurableApplicationContext_struct.png
+![ConfigurableApplicationContext_struct.png](../../imgs/spring/ConfigurableApplicationContext_struct.png)
 
 
 
@@ -305,7 +419,7 @@ ConfigurableApplicationContext_struct.png
 |                                                 |            |      |                                                              |                                                              |      |
 | Bean                                            | @interface |      | Indicates that a method produces a bean to be managed by the Spring container. |                                                              |      |
 |                                                 |            |      |                                                              |                                                              |      |
-| **ClassPathBeanDefinitionScanner**              |            |      | A bean definition scanner that detects bean candidates on the classpath, registering corresponding bean definitions with a given registry (BeanFactory or ApplicationContext). | ClassPathScanningCandidateComponentProvider子类 scan() doScan() addIncludeFilter() 很多三方框架都自定义这个类的子类 |      |
+| ClassPathBeanDefinitionScanner              |            |      | A bean definition scanner that detects bean candidates on the classpath, registering corresponding bean definitions with a given registry (BeanFactory or ApplicationContext). | ClassPathScanningCandidateComponentProvider子类 scan() doScan() addIncludeFilter() 很多三方框架都自定义这个类的子类 |      |
 |                                                 |            |      |                                                              |                                                              |      |
 | ClassPathScanningCandidateComponentProvider     |            |      | A component provider that provides candidate components from a base package. |                                                              |      |
 |                                                 |            |      |                                                              |                                                              |      |
@@ -465,9 +579,7 @@ org.springframework.boot.BeanDefinitionLoader#annotatedReader 中有该类的对
 
 
 
-```
 ImportAware接口实现类 LoadTimeWeavingConfiguration
-```
 
 
 
@@ -521,6 +633,7 @@ AnnotatedBeanDefinitionReader
 
 
 ClassPathScanningCandidateComponentProvider
+cpsccp
 
 <context:component-scan base-package="cn.edidada.test.testspring32.scan.service" />
 
@@ -542,7 +655,7 @@ ClassPathScanningCandidateComponentProvider
 
 
 CommonAnnotationBeanPostProcessor
-处理PostConstruct
+处理@PostConstruct
 PreDestroy
 注解
 
@@ -562,9 +675,8 @@ public class MyBean {
 
 
 
-| org.springframework.context.config | 类型 |      |
+| org.springframework.context.config | 类型 | 解释 |
 | ---------------------------------- | ---- | ---- |
-|                                    |      |      |
 | Classes                            |      |      |
 |  AbstractPropertyLoadingBeanDefinitionParser          |  abstract    |      |
 | ContextNamespaceHandler            |      |      |
@@ -583,16 +695,13 @@ ContextNamespaceHandler继承NamespaceHandlerSupport来处理xml
 
 | org.springframework.context.event   | 类型 |      |
 | ----------------------------------- | ---- | ---- |
-|                                     |      |      |
 | Interfaces                          |      |      |
-|                                     |      |      |
 | ApplicationEventMulticaster         |      |      |
 | EventListenerFactory                |      |      |
 | GenericApplicationListener          |      |      |
 | SmartApplicationListener            |      |      |
 |                                     |      |      |
 | Classes                             |      |      |
-|                                     |      |      |
 | AbstractApplicationEventMulticaster |      |      |
 | ApplicationContextEvent             |      |      |
 | ApplicationListenerMethodAdapter    |      |      |
@@ -608,7 +717,6 @@ ContextNamespaceHandler继承NamespaceHandlerSupport来处理xml
 | SourceFilteringListener             |      |      |
 |                                     |      |      |
 | Annotation Types                    |      |      |
-|                                     |      |      |
 | EventListener                       |      |      |
 
 XXXEvent
@@ -636,25 +744,18 @@ SmartApplicationListener接口是Spring框架中的一个事件监听器接口�
 
 1. GenericApplicationListenerAdapter (org.springframework.context.event)：
 GenericApplicationListenerAdapter是一个适配器类，用于将普通的ApplicationListener适配成SmartApplicationListener。它实现了SmartApplicationListener接口，并将普通的ApplicationListener委托给其处理。
-
 2. RefreshEventListener (org.springframework.cloud.endpoint.event)：
 RefreshEventListener是用于监听Spring Cloud中的刷新事件的监听器。它负责处理应用程序中的RefreshEvent事件，通常与Spring Cloud Config等组件一起使用，用于动态刷新配置。
-
 3. CloseContextOnFailureApplicationListener in BootstrapApplicationListener (org.springframework.cloud.bootstrap)：
 CloseContextOnFailureApplicationListener是BootstrapApplicationListener中的一个内部类，用于在引导过程中处理应用程序启动失败的情况，关闭应用程序上下文。
-
 4. AwaitingNonWebApplicationListener (org.apache.dubbo.spring.boot.context.event)：
 AwaitingNonWebApplicationListener是Dubbo框架中的一个监听器，用于等待非Web应用程序上下文的加载完成。它主要用于Dubbo在Spring Boot环境下的初始化过程。
-
 5. RestartListener (org.springframework.cloud.context.restart)：
 RestartListener是用于监听Spring Cloud应用程序的重启事件的监听器。它负责处理应用程序的重启逻辑，通常与Spring Cloud的热加载和热部署功能一起使用。
-
 6. ConfigFileApplicationListener (org.springframework.boot.context.config)：
 ConfigFileApplicationListener是Spring Boot中的一个监听器，用于加载和解析应用程序的配置文件。它负责处理应用程序配置文件的加载和刷新，支持多种配置文件格式和位置。
-
 7. Anonymous in ConfigFileApplicationContextInitializer (org.springframework.boot.test.context)：
 Anonymous是ConfigFileApplicationContextInitializer中的一个匿名内部类，用于为测试环境中的应用程序上下文初始化提供配置文件的加载和解析功能。
-
 8. SourceFilteringListener (org.springframework.context.event)：
 SourceFilteringListener是一个用于过滤事件源的监听器。它可以根据特定的事件源类型来过滤掉不感兴趣的事件，只处理目标类型的事件。
 
@@ -668,6 +769,16 @@ DefaultEventListenerFactory
 
 ApplicationEventMulticaster接口
 
+ApplicationEventMulticaster接口的作用是在Spring应用程序内广播ApplicationEvent事件。
+主要功能有:
+1. 添加和移除ApplicationListener监听器。监听器可以接收并处理ApplicationEvent事件。
+2. 广播ApplicationEvent事件。当有事件发生时,Multicaster会通知所有的监听器进行处理。
+3. 支持同步和异步两种广播方式。同步方式立即调用监听器,异步方式使用线程池调度监听器。
+4. 支持指定事件的超时时间。如果监听器在超时时间内没有处理完事件,会中断处理。
+5. 继承自MessageSource,可以解析国际化消息。
+使用ApplicationEventMulticaster的好处是实现了事件机制的松耦合,事件发布者不需要知道哪些监听器存在,只需要通过Multicaster广播事件,由Multicaster通知适当的监听器即可。
+所以ApplicationEventMulticaster是一个事件广播器,它负责传递ApplicationEvent事件到注册的监听器,是Spring事件驱动模型的关键组件。
+
 子类
 AbstractApplicationEventMulticaster (org.springframework.context.event)
     SimpleApplicationEventMulticaster (org.springframework.context.event)
@@ -679,21 +790,15 @@ EventListenerMethodProcessor类 实现了 BeanFactoryPostProcessor接口
 在Spring 5.2.9版本中，EventListenerMethodProcessor是Spring框架中的一个事件监听器方法处理器。它用于处理使用@EventListener注解标记的方法，实现事件的发布与监听。
 
 EventListenerMethodProcessor的主要作用是将带有@EventListener注解的方法注册为事件监听器，并在相应的事件发生时触发这些方法的执行。
-
 具体功能和作用如下：
-
 1. 事件监听器的注册：
 EventListenerMethodProcessor会扫描Spring容器中的bean，检查bean中的方法是否带有@EventListener注解。如果发现带有@EventListener注解的方法，它会将这些方法注册为事件监听器。
-
 2. 事件发布与监听：
 一旦被注册为事件监听器，带有@EventListener注解的方法就能够监听到相应的事件。当事件被发布时，EventListenerMethodProcessor会根据事件类型找到对应的监听器方法，并触发其执行。
-
 3. 事件参数注入：
 带有@EventListener注解的方法可以定义参数，用于接收事件对象或其他相关参数。EventListenerMethodProcessor会根据方法参数的类型，将相应的事件对象或参数传递给监听器方法。
-
 4. 异步事件监听：
 EventListenerMethodProcessor还支持异步事件监听。当方法被标记为@EventListener并且使用@Async注解时，事件监听器方法将在异步线程中执行。
-
 通过使用EventListenerMethodProcessor，开发者可以方便地在Spring应用中使用事件驱动的编程模型。它提供了一种简洁的方式来定义和处理事件，让应用程序的不同组件之间能够通过事件进行解耦和交互，从而实现更灵活、可扩展的应用架构。
 
 
@@ -711,7 +816,11 @@ org.springframework.context.event.EventListenerMethodProcessor#postProcessBeanFa
 		this.eventListenerFactories = factories;
 	}
 
-是查找 EventListenerFactory 的ioc容器对象，不是EventListener对象
+是查找EventListenerFactory的ioc容器对象，不是EventListener对象
+
+EventListenerFactory创建的是ApplicationListener对象，ApplicationListener是EventListener子接口
+ApplicationListener<?> createApplicationListener(String beanName, Class<?> type, Method method);
+
 
 postProcessBeanFactory:93, EventListenerMethodProcessor (org.springframework.context.event)
 invokeBeanFactoryPostProcessors:291, PostProcessorRegistrationDelegate (org.springframework.context.support)
@@ -900,6 +1009,7 @@ run:1226, SpringApplication (org.springframework.boot)
 | MessageSourceAccessor                       |           |      |
 | MessageSourceResourceBundle                 |           |      |
 | MessageSourceSupport                        |           |      |
+| PostProcessorRegistrationDelegate        |           |  final 非public类，重要  |
 | PropertySourcesPlaceholderConfigurer        |           |      |
 | ReloadableResourceBundleMessageSource       |           |      |
 | ResourceBundleMessageSource                 |           |      |
@@ -927,22 +1037,167 @@ PropertySourcesPlaceholderConfigurer使用例子
     }
 ```
 
+在 Spring Framework 5.2.9 版本中，`org.springframework.context.support.PostProcessorRegistrationDelegate` 是一个辅助类，用于注册和应用 BeanPostProcessor（后置处理器）。
+`BeanPostProcessor` 是 Spring 容器中的一种扩展机制，它允许开发者在 Bean 实例化和初始化的过程中对 Bean 进行自定义处理。`PostProcessorRegistrationDelegate` 提供了一些静态方法，用于方便地注册和应用这些后置处理器。
+以下是一个使用 `PostProcessorRegistrationDelegate` 的示例：
+
+```java
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PostProcessorRegistrationDelegate;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public MyBeanPostProcessor myBeanPostProcessor() {
+        return new MyBeanPostProcessor();
+    }
+
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+
+    public static void main(String[] args) {
+        // 创建 Spring 应用上下文
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // 注册并应用 BeanPostProcessor
+        PostProcessorRegistrationDelegate.registerBeanPostProcessors(context, context.getBeanFactory());
+
+        // 获取 MyService Bean
+        MyService myService = context.getBean(MyService.class);
+
+        // 使用 MyService Bean
+        myService.doSomething();
+
+        // 关闭应用上下文
+        context.close();
+    }
+}
+
+public class MyBeanPostProcessor implements BeanPostProcessor {
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) {
+        // 在初始化之前对 Bean 进行自定义处理
+        // ...
+        return bean;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
+        // 在初始化之后对 Bean 进行自定义处理
+        // ...
+        return bean;
+    }
+}
+
+public class MyService {
+
+    public void doSomething() {
+        // 执行业务逻辑
+        // ...
+    }
+}
+```
+
+在上述示例中，我们首先定义了一个 `MyBeanPostProcessor` 类，它实现了 `BeanPostProcessor` 接口，并重写了 `postProcessBeforeInitialization` 和 `postProcessAfterInitialization` 方法，用于对 Bean 进行自定义处理。
+然后，在 `AppConfig` 类中，我们通过 `@Bean` 注解将 `MyBeanPostProcessor` 和 `MyService` 注册为 Bean。
+在 `main` 方法中，我们创建了一个 `AnnotationConfigApplicationContext` 应用上下文，并将 `AppConfig` 作为配置类传入。然后，我们使用 `PostProcessorRegistrationDelegate.registerBeanPostProcessors` 方法注册并应用 `BeanPostProcessor`。
+最后，我们通过 `context.getBean(MyService.class)` 获取 `MyService` Bean，并调用其方法执行业务逻辑。
+通过使用 `PostProcessorRegistrationDelegate`，我们可以方便地注册和应用 `BeanPostProcessor`，并对 Bean 进行自定义处理，如在初始化前后执行特定的逻辑或修改 Bean 实例。这为我们提供了更大的灵活性和扩展性，同时保持了代码的简洁性。
+
+
 #### org.springframework.context.weaving
 
-
-
-| Interfaces                   | 类型 | 详解 |
+| org.springframework.context.weaving   | 类型 | 详解 |
 | ---------------------------- | ---- | ---- |
-|                              |      |      |
-| LoadTimeWeaverAware          |      |      |
+| LoadTimeWeaverAware          |      | Aware子接口   |
 |                              |      |      |
 | Classes                      |      |      |
-|                              |      |      |
-| AspectJWeavingEnabler        |      |      |
+| AspectJWeavingEnabler        |      | BeanFactoryPostProcessor接口实现类  |
 | DefaultContextLoadTimeWeaver |      |      |
 | LoadTimeWeaverAwareProcessor |      |      |
 
+LoadTimeWeaverAware接口方法
+void setLoadTimeWeaver(LoadTimeWeaver loadTimeWeaver)
 
+
+在 Spring Framework 中，`AspectJWeavingEnabler` 是一个类，用于启用 AspectJ 编织（weaving）功能。AspectJ 编织是一种 AOP 技术，它允许在编译时或运行时将切面织入到目标对象中，以实现横切关注点的功能增强。
+
+`AspectJWeavingEnabler` 的作用是在 Spring 应用程序中启用 AspectJ 编织功能，使得可以使用 AspectJ 注解和配置来定义切面，并将切面织入到目标对象中。
+
+使用场景：
+1. 定义切面：使用 AspectJ 注解和配置定义切面，包括切点（Pointcut）和增强逻辑（Advice）等。
+2. 编写切面类：编写实现了切面逻辑的切面类，其中包含了在特定切点上要执行的增强逻辑。
+3. 启用 AspectJ 编织：在 Spring 配置中使用 `AspectJWeavingEnabler` 来启用 AspectJ 编织功能，以确保切面能够正确地织入到目标对象中。
+
+以下是一个使用 `AspectJWeavingEnabler` 的示例：
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.support.AspectJWeavingEnabler;
+
+@Configuration
+@EnableAspectJAutoProxy
+public class AppConfig {
+
+    @Bean
+    public MyAspect myAspect() {
+        return new MyAspect();
+    }
+
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+
+    @Bean
+    public AspectJWeavingEnabler aspectJWeavingEnabler() {
+        return new AspectJWeavingEnabler();
+    }
+
+    public static void main(String[] args) {
+        // 创建 Spring 应用上下文
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // 获取 MyService Bean
+        MyService myService = context.getBean(MyService.class);
+
+        // 调用 MyService 方法
+        myService.doSomething();
+
+        // 关闭应用上下文
+        context.close();
+    }
+}
+
+@Aspect
+public class MyAspect {
+
+    @Before("execution(* com.example.MyService.doSomething())")
+    public void beforeDoSomething() {
+        System.out.println("Before doSomething()");
+    }
+}
+
+public class MyService {
+
+    public void doSomething() {
+        System.out.println("Doing something...");
+    }
+}
+```
+
+在上述示例中，我们首先定义了一个 `MyAspect` 类，使用 AspectJ 注解 `@Aspect` 标记它为一个切面，并在 `beforeDoSomething()` 方法上使用 AspectJ 切点表达式来定义切点。
+然后，在 `AppConfig` 类中，我们使用 `@EnableAspectJAutoProxy` 注解启用 AspectJ 自动代理，并在 `aspectJWeavingEnabler()` 方法中创建了一个 `AspectJWeavingEnabler` bean，以启用 AspectJ 编织功能。
+在 `main` 方法中，我们创建了一个 `AnnotationConfigApplicationContext` 应用上下文，并获取 `MyService` Bean。当调用 `myService.doSomething()` 方法时，AspectJ 编织功能会拦截该方法，并在切点（`@Before`）处执行 `beforeDoSomething()` 方法中定义的增强逻辑。
+通过使用 `AspectJWeavingEnabler`，我们可以在 Spring 应用程序中使用 AspectJ 注解和配置来定义切面，并将其织入到目标对象中。这使得我们能够使用强大的 AspectJ 功能来实现更复杂的横切关注点的功能增强，如日志记录、性能监控等。
 
 ### org.springframework.ejb
 

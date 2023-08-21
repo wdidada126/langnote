@@ -1339,6 +1339,16 @@ private final Class<?> aspectClass;
 private transient AjType<?> ajType;
 private final Pointcut perClausePointcut;
 
+ReflectiveAspectJAdvisorFactory AspectJAdvisorFactory接口实现类
+`org.springframework.aop.aspectj.annotation.ReflectiveAspectJAdvisorFactory` 是 Spring AOP 框架中的一个类，它的作用是根据 AspectJ 注解风格的切面定义创建 Advisor 对象。
+AspectJ 是一个功能强大的 AOP 框架，它支持通过注解方式定义切面和通知。在 Spring AOP 中，为了支持 AspectJ 注解风格的切面，需要将 AspectJ 注解转换为 Spring AOP 的 Advisor 对象，以便将切面逻辑应用到目标方法上。
+`ReflectiveAspectJAdvisorFactory` 正是负责这个转换过程的工厂类。它会解析 AspectJ 注解，检测切点表达式、通知类型和通知方法，并根据这些信息创建对应的 Advisor 对象。
+具体来说，`ReflectiveAspectJAdvisorFactory` 的主要作用包括：
+1. 解析 AspectJ 注解信息：它会解析 AspectJ 注解中的元数据，包括切点表达式、通知类型（如 Before、After、Around 等）和通知方法的相关信息。
+2. 创建 Advisor 对象：基于解析的 AspectJ 注解信息，`ReflectiveAspectJAdvisorFactory` 会创建对应的 Advisor 对象。Advisor 对象是 Spring AOP 中的核心元素，它包含了切点和通知的信息，用于将切面逻辑织入目标方法。
+3. 支持多个切面的组合：在 AspectJ 注解风格的切面中，很常见的情况是多个切面对同一个目标方法进行增强。`ReflectiveAspectJAdvisorFactory` 可以处理多个切面的组合，将多个 Advisor 对象合并为一个 CompositeAdvisor 对象，以确保所有切面的通知都能被正确应用。
+
+通过 `ReflectiveAspectJAdvisorFactory` 的工作，我们可以在 Spring AOP 中使用 AspectJ 注解风格的切面，并将切面逻辑应用到目标方法上。这样，我们可以更灵活地定义和管理切面，实现面向切面编程的目标。
 
 
 #### org.springframework.aop.aspectj.autoproxy
