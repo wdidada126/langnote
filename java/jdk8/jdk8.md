@@ -149,7 +149,75 @@ javax.activity
 
 javax.annotation
 
+
+
+| javax.annotation            |      |      |
+| --------------------------- | ---- | ---- |
+| Enums                       |      |      |
+|                             |      |      |
+| Resource.AuthenticationType |      |      |
+|                             |      |      |
+| Annotation Types            |      |      |
+| Generated                   |      |      |
+| PostConstruct               |      |      |
+| PreDestroy                  |      |      |
+| Resource                    |      |      |
+| Resources                   |      |      |
+
+
+
+@Resource用法
+
+```java
+    @Resource
+    private ObjectMapper objectMapper;
+```
+
+
+
+@PostConstruct
+
+@PreDestroy
+
+```java
+    @PostConstruct
+    public void init() {
+    }
+
+    @PreDestroy
+    public void clean() {
+    }
+```
+
+
+
 javax.annotation.processing
+
+
+
+| javax.annotation.processing |      |      |
+| --------------------------- | ---- | ---- |
+| Interfaces                  |      |      |
+| Completion                  |      |      |
+| Filer                       |      |      |
+| Messager                    |      |      |
+| ProcessingEnvironment       |      |      |
+| Processor                   |      |      |
+| RoundEnvironment            |      |      |
+|                             |      |      |
+| Classes                     |      |      |
+| AbstractProcessor           |      |      |
+| Completions                 |      |      |
+|                             |      |      |
+| Exceptions                  |      |      |
+| FilerException              |      |      |
+|                             |      |      |
+| Annotation Types            |      |      |
+| SupportedAnnotationTypes    |      |      |
+| SupportedOptions            |      |      |
+| SupportedSourceVersion      |      |      |
+
+
 
 javax.crypto
 

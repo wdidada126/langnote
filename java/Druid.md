@@ -1,15 +1,15 @@
 # Druid
 
-### 功能
+## 功能
 查看执行的sql
 查看慢sql
 web查看
 
 
-### log
+## log
 com.alibaba.druid.support.logging.LogFactory
 
-### 核心类
+## 核心类
 
 ```shell
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1369)
@@ -25,7 +25,7 @@ com.alibaba.druid.support.logging.LogFactory
 	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:439)
 ```
 
-### spring boot druid多数据源
+## spring boot druid多数据源
 
 https://gitee.com/edidada/testspringbootdruid
 
@@ -47,11 +47,17 @@ DataSourceProperties
 DruidDataSourceAutoConfigure
 
 
-### 分package源代码详解
+## 分package源代码详解 v1.1.22
 
 
+### com.alibaba.druid.pool
+
+| com.alibaba.druid.pool |      |      |
+| ---------------------------------- | ---- | ---- |
+|      DruidDataSource            |      |      |
 
 
+### com.alibaba.druid.support
 
 | com.alibaba.druid.support.spring.stat.config |      |      |
 | ---------------------------------- | ---- | ---- |
