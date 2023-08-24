@@ -1,6 +1,6 @@
 # 高性能MySQL实战
 
-拉钩教育
+拉勾教育
 
 周彦伟
 
@@ -14,15 +14,11 @@
 
 分为五大部分。
 
-第一部分主要介绍 MySQL 的体系架构与存储引擎，也会介绍一些事务与锁的机制。从整体到细节地帮助你比较深入地去了解 MySQL 的内部机制和原理，这也是在面试过程中面试官比较喜欢问的。
-
+第一部分主要介绍 MySQL 的体系架构与存储引擎，也会介绍一些事务与锁的机制。从整体到细节地帮助你比较深入地去了解MySQL的内部机制和原理，这也是在面试过程中面试官比较喜欢问的。
 在第二部分里，我们会用两个课时来介绍 MySQL 库表设计和索引设计的一些思路。
-
 第三部分，我们会介绍 MySQL 的架构设计和查询优化，这也是在工作中最常碰到的。
-
 在第四部分，我们会来介绍 MySQL 的高可用架构方案和一些要点，同时，也会讲解一下 MySQL 自动化运维体系构建的一些思路和知识点。
-
-最后一部分，我们会通过一个亿级数据库的项目，用实战的方式来讲解怎么去规划或设计一个可扩展的 MySQL 架构。
+最后一部分，我们会通过一个亿级数据库的项目，用实战的方式来讲解怎么去规划或设计一个可扩展的MySQL架构。
 
 
 
@@ -30,25 +26,28 @@
 
 
 
+#### MySQL常见的坑
+
+![MySQL常见的坑](../imgs/lagou_edu/MySQL常见的坑.png)
+
+#### MySQL知识点全景图
+
+![MySQL知识点全景图](../imgs/lagou_edu/MySQL知识点全景图.png)
 
 
-MySQL 常见的坑 .png
+#### MySQL推荐书籍
 
-
-
-MySQL 知识点全景图.png
-
-
-
-MySQL推荐书籍.png
+![MySQL推荐书籍](../imgs/lagou_edu/MySQL推荐书籍.png)
 
 
 
 在运维数据库的过程中，你如果不小心把库删掉了，进行什么操作才能实现最大的弥补，不至于做出跑路这种无奈之举，当然，跑路只是开玩笑而已。还有在碰到断电或者是主键冲突的时候，你该怎么办？数据库延迟了，你该怎么办？忘记了数据库密码，你该怎么办？还有MySQL大小写敏感得用什么样的策略，另外，表空间有碎片，你该怎么解决，或者说怎么去巡检，怎么查看表空间和表数据的碎片？等等，还有很多，这里就不详细展开了。
-
-
-
 最重要的，就是 MySQL 的数据库属性，它支持事务、MVCC、4 种隔离级别等，同时易扩展、集群、高可用等也可以满足一般需求。
+
+
+
+### 第01讲：MySQL体系结构与存储引擎
+
 
 
 
@@ -66,13 +65,10 @@ ru rc rr s
 
 
 
-READ UNCOMMITTED
-
-READ COMMITTED
-
-REPEATABLE READ
-
-SERIALIZABLE
+- READ UNCOMMITTED
+- READ COMMITTED
+- REPEATABLE READ
+- SERIALIZABLE
 
 
 
@@ -89,40 +85,35 @@ SERIALIZABLE
 
 
 MVCC实现原理
-
 前文多次提到了MVCC这个概念，这里我们来讲解MVCC的实现原理。MySQL InnoDB存储引擎，实现的是基于多版本的并发控制协议——MVCC，而不是基于锁的并发控制。
-
- 
-
 MVCC最大的好处是读不加锁，读写不冲突。在读多写少的OLTP（On-Line Transaction Processing）应用中，读写不冲突是非常重要的，极大的提高了系统的并发性能，这也是为什么现阶段几乎所有的RDBMS（Relational Database Management System），都支持MVCC的原因。 
 
 
 
-第03讲：高性能数据库表该如何设计？
+### 第02讲：深入理解事务与锁机制（下）
+
+
+
+### 第03讲：高性能数据库表该如何设计？
 
 范式与反范式
-
 本节课主要讲解一些高性能表设计的规则和案例。
 以高性能为目标，库表设计以范式为主，根据特殊业务场景使用反范式，允许必要的空间换时间。
 规范数据库的使用原则，统一规范命名，减少性能隐患，减少隐式转换。
 
 高性能表设计的原则：合适的字段、合适的长度、NOT NULL。
-
 从不同角度思考 IP、timestamp 的转换，拓宽设计思路。
-
 规范的命名可提高可读性，反范式设计可提高查询性能。
-
 本课时到这里就结束了，主要讲了范式和反范式、基础规范、命名规范、表设计规范、高性能数据库表实践，下一课时将分享“高性能索引如何设计”。
 
 
 
 ### 第04讲：高性能索引该如何设计?
-
 我们学习了索引设计和工作原理、索引类型、 索引使用技巧、如何创建高性能索引和索引创建规范 ，需要重点掌握的是索引使用技巧和如何创建高性能索引，当然索引创建规范也很重要。
 
-第05讲：如何提高查询性能？
+### 第05讲：如何提高查询性能？
 
-第06讲：如何突破单库性能瓶颈？
+### 第06讲：如何突破单库性能瓶颈？
 
 
 
@@ -132,15 +123,7 @@ MVCC最大的好处是读不加锁，读写不冲突。在读多写少的OLTP（
 
 企业初期使用较多的高可用架构，一类是基于 Keepalived + VIP + MySQL 主从/双主，一类是封装好的 MMM 集群，两者本质是一样的，MMM 相比前者多了一套工具集来帮助运维。
 
-
-
-
-
-
-
 MMM也就是Master-Master replication Manager for MySQL，MySQL主主复制管理器。关于MySQL主主复制配置的监控，故障转移和管理的一套可伸缩的脚本套件，可以用这个套件在一组居于复制的服务器启动虚拟IP，除此以外，还有对从服务器的延迟监控，主从数据备份，节点之间重新同步功能。通过MMM方案可以实现MySQL服务器的故障转移，从而实现MySQL的高可用。但这个工具没有读负载均衡，这样会很难对主服务器进行读负载的分担，而且在进行主从切换时容易造成数据丢失。
-
-
 
 Multi-Master Replication Manager for MySQL
 
@@ -152,18 +135,9 @@ mmm官网
 
 https://mysql-mmm.org/
 
-
-
-**By now there are a some good alternatives to MySQL-MMM. Maybe you want to check out Galera Cluster which is part of MariaDB Galera Cluster.**
-
-
+By now there are a some good alternatives to MySQL-MMM. Maybe you want to check out Galera Cluster which is part of MariaDB Galera Cluster.
 
 Galera Cluster consists of two parts: the Galera Replication Library (galera-3) and a version of MySQL extended with the Write Set Replication (WSREP) API (mysql-wsrep).
-
-
-
-
-
 
 
 MHA
@@ -176,19 +150,9 @@ https://github.com/yoshinorim/mha4mysql-manager
 
 mha4mysql-manager - Master High Availability Manager and tools for MySQL (MHA) for automating master failover and fast master switch. This package contains manager scripts.
 
-
-
-
-
 去哪儿网 QMHA
 
-
-
 PXC/MGR
-
-
-
-
 
 ### 第08讲：搭建稳固的MySQL运维体系
 
@@ -196,7 +160,7 @@ Arkcontrol 的备份恢复中心就是一个 MySQL 自动化备份恢复系统
 
 
 
-# 9
+### 第09讲：如何做到MySQL高扩展性？
 
 
 
@@ -212,7 +176,7 @@ Shared Disk：系统中的各个处理单元使用私有 CPU 和 MEMORY，共享
 
 
 
-10
+### 第10 海量数据MySQL项目实战
 
 
 
@@ -235,25 +199,15 @@ Shared Disk：系统中的各个处理单元使用私有 CPU 和 MEMORY，共享
 
 
 在集群架构类别中，又可以分为 6 小类，分别是：
-
 MySQL Group Replication；
-
 Percona XtraDB Cluster；
-
 MySQL Galera Cluster；
-
 MySQL NDB Cluster，有时候也称为 MySQL Cluster；
-
 MySQL + 共享存储方案；
-
 MySQL + DRBD 方案。
 
-
-
 在分布式架构类别中，又可以分为 2 小类，分别是：
-
 基于分布式事务的数据库，如 Google Cloud Spanner 和 TiDB。
-
 基于分布式存储的数据库，如极数云舟的 ArkDB、Aurora、PolarDB。
 
 数据库高可用
@@ -262,11 +216,9 @@ MySQL + DRBD 方案。
 Keepalive、Heartbeat、Haproxy；
 
 MMM；
-
 MHA；
 
 Orchestrator、Raft；
 
 极数云舟的 Arksentinel；
-
 Zookeeper、Consul、Etcd。
