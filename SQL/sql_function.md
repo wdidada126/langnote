@@ -2,7 +2,7 @@
 
 
 
-function
+## function分类
 
 windows function
 
@@ -49,4 +49,4 @@ where and，optiname 执行计划，会根据索引来优化
 基本btree，不用hash？
 
 
-
+## Oracle function

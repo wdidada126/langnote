@@ -359,6 +359,15 @@ RowBounds
 	NO_ROW_LIMIT
 	DEFAULT
 
+
+在 MyBatis 源代码中，`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 这样的占位符表达式的解析和处理是由 `org.apache.ibatis.scripting.xmltags.TextSqlNode` 类实现的。
+`TextSqlNode` 类是 MyBatis 中用于解析 SQL 语句文本的节点类之一。它的作用是解析 SQL 语句中的文本内容，并处理其中的占位符和动态表达式。
+当 `TextSqlNode` 遇到 `${}` 形式的占位符时，它会将占位符的内容交给 `org.apache.ibatis.scripting.xmltags.ExpressionEvaluator` 类处理。`ExpressionEvaluator` 类负责解析和求值占位符中的表达式。
+在这个特定的占位符 `${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 中，`ExpressionEvaluator` 会解析表达式中的类名、常量名，并使用反射机制获取常量值。
+然后，`TextSqlNode` 将获取到的常量值作为字面值插入到最终生成的 SQL 语句中。
+
+因此，`org.apache.ibatis.scripting.xmltags.TextSqlNode` 类在 MyBatis 源代码中负责处理 `${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 这样的占位符表达式。
+
 ### SqlSessionFactoryBuilder
 
 build(Configuration config)

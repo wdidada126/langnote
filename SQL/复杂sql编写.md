@@ -37,6 +37,7 @@ auth_role.sort_value
 sql date timestamp 大小写比较 
 时间线后面的时间比时间线前面的时间大
 
+```sql
 SELECT paper_id paperId,sum( useTimes ) useTimes,sum( scoreRate ) scoreRate
 FROM
    (
@@ -46,7 +47,7 @@ FROM
 ) a
 GROUP BY
 paper_id;
-
+```
 
 
 concat("%",#{pattern},"%")
@@ -169,6 +170,35 @@ select ${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN} AS pla
 
 		AND townplan.plan_state ${@com.xxx.yyy.ems.common.util.state.PlanStateUtil@getUniteState(status)}
 连等于号都不用写
+
+
+`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 是一种自定义的占位符语法，由MyBatis特有的功能支持。
+在MyBatis中，`${}`语法用于在SQL语句中插入动态内容，包括参数、表达式或方法调用等。`${}`中的表达式会在运行时由MyBatis进行解析和求值，然后将结果插入到生成的SQL语句中。
+在这个特定的占位符`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}`中，它表示对Java常量`com.xxx.yyy.ems.common.constants.Constants.PlanType.UNITE_PLAN`的引用。在运行时，MyBatis会通过反射机制获取该常量的值，并将其插入到生成的SQL语句中作为字面值。
+因此，`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}`是MyBatis提供的一种自定义占位符语法，用于在SQL语句中插入Java常量的值。它不是基于底层SQL解析器的特性，而是由MyBatis自身实现和处理的。
+
+在 MyBatis 中，`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 这样的占位符表达式是由 MyBatis 内部的表达式解析器处理的。当解析器遇到这样的占位符时，它会执行以下步骤来处理它：
+
+1. 提取占位符中的表达式部分：`@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN`。
+1. 将表达式分为三个部分：
+   - `com.xxx.yyy.ems.common.constants.Constants$PlanType`：这是类的完全限定名，指定了要引用的 Java 类。
+   - `UNITE_PLAN`：这是类中的静态常量名，指定了要获取的常量值。
+1. 使用反射机制获取指定类中的静态常量值。在这个例子中，MyBatis 会通过反射获取 `com.xxx.yyy.ems.common.constants.Constants$PlanType` 类中名为 `UNITE_PLAN` 的静态常量的值。
+1. 将获取到的常量值作为字面值插入到生成的 SQL 语句中。
+
+总结来说，MyBatis 使用内部的表达式解析器解析 `${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 占位符，使用反射机制获取指定类中的静态常量值，并将其作为字面值插入到 SQL 语句中。这样可以在 SQL 语句中动态地引用 Java 类中的常量值。
+
+在 MyBatis 源代码中，`${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 这样的占位符表达式的解析和处理是由 `org.apache.ibatis.scripting.xmltags.TextSqlNode` 类实现的。
+
+`TextSqlNode` 类是 MyBatis 中用于解析 SQL 语句文本的节点类之一。它的作用是解析 SQL 语句中的文本内容，并处理其中的占位符和动态表达式。
+
+当 `TextSqlNode` 遇到 `${}` 形式的占位符时，它会将占位符的内容交给 `org.apache.ibatis.scripting.xmltags.ExpressionEvaluator` 类处理。`ExpressionEvaluator` 类负责解析和求值占位符中的表达式。
+
+在这个特定的占位符 `${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 中，`ExpressionEvaluator` 会解析表达式中的类名、常量名，并使用反射机制获取常量值。
+
+然后，`TextSqlNode` 将获取到的常量值作为字面值插入到最终生成的 SQL 语句中。
+
+因此，`org.apache.ibatis.scripting.xmltags.TextSqlNode` 类在 MyBatis 源代码中负责处理 `${@com.xxx.yyy.ems.common.constants.Constants$PlanType@UNITE_PLAN}` 这样的占位符表达式。
 
 
 	<select id="listPlanSchoolCountExamed" resultType="com.xxx.yyy.ems.api.model.common.PlanDetailDTO">
