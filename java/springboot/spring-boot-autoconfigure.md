@@ -335,6 +335,10 @@ org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
 使用DataSourceAutoConfiguration
 
 
+DataSourceTransactionManagerAutoConfiguration作用是往spring ioc容器注入DataSourceTransactionManager对象
+
+    @Resource
+    private DataSourceTransactionManager transactionManager;
 
 
 #### org.springframework.boot.autoconfigure.jdbc.metadata
