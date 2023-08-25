@@ -11,17 +11,14 @@
 sonar可以通过PMD,CheckStyle,Findbugs等等代码规则检测工具规范代码编写
 
 
-pmd 使用笔记
+pmd使用笔记
 pmd是一块开源的代码静态分析工具，使用java编写，可以自定义规则来进行自己想要的分析。pmd可以单独使用，也可以作为idea、eclipse的插件使用。它的规则分为xpath规则，和java规则。https://pmd.github.io/
 
 pmd内部工作机制比较简单，大概分为以下几个主要步骤。
-
 1、使用是通过dir参数指定要分析的源码目录，pmd会将要分析的源码文件全部解析成抽象语法树。
 2、遍历每一个文件，为每个文件的分析创建一个线程对象pmdrunable放到线程池。
 3、针对每个文件根据文件类型，应用指定的规则集里每一条规则。
 4、规则里可以根据自己关心的语法树节点类型进行分析处理，比较方便的是支持xpath的方式进行节点查找。
-
-
 不足之处：
 pmd将每个文件独立进行规则匹配，无法做到跨文件的关联分析，或者跨文件的数据流跟踪。
 pmd目前主要支持的语言就是java，其他的还有xml、js、velocity模版。一些比较流行的语言比如 PHP go 等是不支持的。 
@@ -37,7 +34,6 @@ C:\Users\Administrator\.IdeaIC2017.3\system\plugins\PMD-Intellij\   windows
 源码地址 https://github.com/amitdev/PMD-Intellij  ，自定义的规则，打包到jar文件后放在这个目录，重启idea即可生效。
 
 自定义规则：
-
 pmd将不同的规则放在不同的模块中，比如java的规则在 pmd-java模块中，如果想实现自己的java规则可以将自己的规则放在 pmd-java 模块的代码中，并配置到对应的 xml规则集里，然后将 pmd-java模块重新打包成jar文件，替换掉pmd中的 pmd-java的jar包即可。
 
 
@@ -88,7 +84,6 @@ sonar-pmd是sonar官方的支持pmd的插件，但是还不支持p3c，需要在
 https://github.com/SonarSource/sonarqube
 
 AuthorizationDaoTest单元测试
-
 1. 默认支持代码文本格式全为 UTF-8，其他编码可能会产生乱码；
 2. 目前支持 C#、C++、Go、Groovy、Java、JavaScript、Lua、PHP、Python、Ruby、TypeScript、Web、XML；
 3. 仅保存最近一次分析结果；
@@ -116,9 +111,7 @@ https://www.zhihu.com/answer/2472177310
 
 
 SonarQube是管理代码质量一个开放平台,可以快速的定位代码中潜在的或者明显的错误
-
 https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
-
 https://docs.sonarqube.org/pages/viewpage.action?pageId=7996665
 
 
@@ -126,7 +119,6 @@ https://docs.sonarqube.org/pages/viewpage.action?pageId=7996665
 
 
 ### sonar集成自定义规则
-
 下载p3c插件：https://github.com/caowenliang/sonar-pmd-p3c  （此插件兼容 sonarQube 7.7+ 以上版本，包括目前最新版8.4.2）
 执行以下命令：
 cd sonar-pmd-p3c
@@ -204,6 +196,278 @@ h2默认
 
 admin 5Edidada
 
+## docker 安装 sonarqube
+
+ubuntu操作系统
+
+https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository
+
+```
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo docker run hello-world
+```
+
+
+https://docs.sonarsource.com/sonarqube/8.9/try-out-sonarqube/
+
+sudo docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:7.9.5-community
+
+
+7.9.5-community
+
+
+SonarQube is starting
+
+
+
+
+http://113.31.107.240:9000/sessions/new?return_to=%2Fprojects
+
+
+token:
+8c01edfee9d89da5b6b27092e599c86c0c421eea
+
+sonar-scanner.bat -D"sonar.projectKey=restcpp" -D"sonar.sources=." -D"sonar.host.url=http://113.31.107.240:9000" -D"sonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea"
+
+sonar 10 已经废弃了
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=springboothttpserver \
+  -Dsonar.projectName='springboothttpserver' \
+  -Dsonar.host.url=http://113.31.107.240:9000 \
+  -Dsonar.token=sqp_06a845a3cdfbc574c1e541d7aa071c46bff0e027
+
+sonar 7.9
+mvn sonar:sonar \
+  -Dsonar.projectKey=springboothttpserver \
+  -Dsonar.host.url=http://113.31.107.240:9000 \
+  -Dsonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea
+
+mvn sonar:sonar -Dsonar.projectKey=erp-fi -Dsonar.host.url=http://113.31.107.240:9000 -Dsonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea
+
+
+```shell
+[INFO] --- sonar-maven-plugin:3.7.0.1746:sonar (default-cli) @ springboothttpserver ---
+[INFO] User cache: C:\Users\admin\.sonar\cache
+[INFO] SonarQube version: 7.9.5
+[INFO] Default locale: "zh_CN", source code encoding: "UTF-8"
+[WARNING] SonarScanner will require Java 11 to run starting in SonarQube 8.x
+[INFO] Load global settings
+[INFO] Load global settings (done) | time=3922ms
+[INFO] Server id: BF41A1F2-AYoriKh8F_C2AeaWEjrk
+[INFO] User cache: C:\Users\admin\.sonar\cache
+[INFO] Load/download plugins
+[INFO] Load plugins index
+[INFO] Load plugins index (done) | time=49ms
+[INFO] Load/download plugins (done) | time=1287505ms
+[INFO] Process project properties
+[INFO] Execute project builders
+[INFO] Execute project builders (done) | time=6ms
+[INFO] Project key: springboothttpserver
+[INFO] Base dir: D:\code_repo\IdeaProjects\springboothttpserver
+[INFO] Working dir: D:\code_repo\IdeaProjects\springboothttpserver\target\sonar
+[INFO] Load project settings for component key: 'springboothttpserver'
+[INFO] Load project settings for component key: 'springboothttpserver' (done) | time=40ms
+[INFO] Load quality profiles
+[INFO] Load quality profiles (done) | time=81ms
+[INFO] Load active rules
+[INFO] Load active rules (done) | time=2883ms
+[INFO] Indexing files...
+[INFO] Project configuration:
+[INFO] 38 files indexed
+[INFO] 0 files ignored because of scm ignore settings
+[INFO] Quality profile for java: Sonar way
+[INFO] Quality profile for xml: Sonar way
+[INFO] ------------- Run sensors on module springboothttpserver
+[INFO] Load metrics repository
+[INFO] Load metrics repository (done) | time=32ms
+[INFO] Sensor JavaSquidSensor [java]
+[INFO] Configured Java source version (sonar.java.source): 8
+[INFO] JavaClasspath initialization
+[INFO] JavaClasspath initialization (done) | time=32ms
+[INFO] JavaTestClasspath initialization
+[INFO] JavaTestClasspath initialization (done) | time=7ms
+[INFO] Java Main Files AST scan
+[INFO] 36 source files to be analyzed
+[INFO] Load project repositories
+[INFO] Load project repositories (done) | time=28ms
+[INFO] 36/36 source files have been analyzed
+[WARNING] Classes not found during the analysis : [javax.annotation.meta.When]
+[INFO] Java Main Files AST scan (done) | time=4996ms
+[INFO] Java Test Files AST scan
+[INFO] 1 source files to be analyzed
+[INFO] 1/1 source files have been analyzed
+[INFO] Java Test Files AST scan (done) | time=105ms
+[INFO] Sensor JavaSquidSensor [java] (done) | time=6243ms
+[INFO] Sensor JaCoCo XML Report Importer [jacoco]
+[INFO] Sensor JaCoCo XML Report Importer [jacoco] (done) | time=4ms
+[INFO] Sensor SurefireSensor [java]
+[INFO] parsing [D:\code_repo\IdeaProjects\springboothttpserver\target\surefire-reports]
+[INFO] Sensor SurefireSensor [java] (done) | time=2ms
+[INFO] Sensor JaCoCoSensor [java]
+[INFO] Sensor JaCoCoSensor [java] (done) | time=2ms
+[INFO] Sensor JavaXmlSensor [java]
+[INFO] 1 source files to be analyzed
+[INFO] Sensor JavaXmlSensor [java] (done) | time=247ms
+[INFO] 1/1 source files have been analyzed
+[INFO] Sensor HTML [web]
+[INFO] Sensor HTML [web] (done) | time=21ms
+[INFO] Sensor XML Sensor [xml]
+[INFO] 1 source files to be analyzed
+[INFO] 1/1 source files have been analyzed
+[INFO] Sensor XML Sensor [xml] (done) | time=168ms
+[INFO] ------------- Run sensors on project
+[INFO] Sensor Zero Coverage Sensor
+[INFO] Sensor Zero Coverage Sensor (done) | time=71ms
+[INFO] Sensor Java CPD Block Indexer
+[INFO] Sensor Java CPD Block Indexer (done) | time=95ms
+[INFO] SCM provider for this project is: git
+[INFO] 38 files to be analyzed
+[INFO] 38/38 files analyzed
+[INFO] 16 files had no CPD blocks
+[INFO] Calculating CPD for 20 files
+[INFO] CPD calculation finished
+[INFO] Analysis report generated in 199ms, dir size=227 KB
+[INFO] Analysis report compressed in 347ms, zip size=111 KB
+[INFO] Analysis report uploaded in 137ms
+[INFO] ANALYSIS SUCCESSFUL, you can browse http://113.31.107.240:9000/dashboard?id=springboothttpserver
+[INFO] Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[INFO] More about the report processing at http://113.31.107.240:9000/api/ce/task?id=AYoro7zPF_C2AeaWEl0K
+[INFO] Analysis total time: 15.667 s
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  25:55 min
+[INFO] Finished at: 2023-08-25T15:41:05+08:00
+[INFO] ------------------------------------------------------------------------
+
+Process finished with exit code 0
+```
+
+mvn sonar:sonar \
+  -Dsonar.projectKey=erp-fi \
+  -Dsonar.host.url=http://113.31.107.240:9000 \
+  -Dsonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea
+
+
+```shell
+[INFO] --- sonar-maven-plugin:3.7.0.1746:sonar (default-cli) @ erp-fi ---
+[INFO] User cache: C:\Users\admin\.sonar\cache
+[INFO] SonarQube version: 7.9.5
+[INFO] Default locale: "zh_CN", source code encoding: "UTF-8"
+[WARNING] SonarScanner will require Java 11 to run starting in SonarQube 8.x
+[INFO] Load global settings
+[INFO] Load global settings (done) | time=163ms
+[INFO] Server id: BF41A1F2-AYoriKh8F_C2AeaWEjrk
+[INFO] User cache: C:\Users\admin\.sonar\cache
+[INFO] Load/download plugins
+[INFO] Load plugins index
+[INFO] Load plugins index (done) | time=70ms
+[INFO] Load/download plugins (done) | time=94ms
+[INFO] Process project properties
+[INFO] Execute project builders
+[INFO] Execute project builders (done) | time=7ms
+[INFO] Project key: erp-fi
+[INFO] Base dir: D:\code_repo\IdeaProjects\putongjm-onlinepay\erp-fi
+[INFO] Working dir: D:\code_repo\IdeaProjects\putongjm-onlinepay\erp-fi\target\sonar
+[INFO] Load project settings for component key: 'erp-fi'
+[INFO] Load project settings for component key: 'erp-fi' (done) | time=44ms
+[INFO] Load quality profiles
+[INFO] Load quality profiles (done) | time=125ms
+[INFO] Load active rules
+[INFO] Load active rules (done) | time=2599ms
+[INFO] Indexing files...
+[INFO] Project configuration:
+[INFO] 855 files indexed
+[INFO] 0 files ignored because of scm ignore settings
+[INFO] Quality profile for java: Sonar way
+[INFO] Quality profile for xml: Sonar way
+[INFO] ------------- Run sensors on module ERP::FI
+[INFO] Load metrics repository
+[INFO] Load metrics repository (done) | time=26ms
+[INFO] Sensor JavaSquidSensor [java]
+[INFO] Configured Java source version (sonar.java.source): 8
+[INFO] JavaClasspath initialization
+[INFO] JavaClasspath initialization (done) | time=10ms
+[INFO] JavaTestClasspath initialization
+[INFO] JavaTestClasspath initialization (done) | time=9ms
+[INFO] Java Main Files AST scan
+[INFO] 766 source files to be analyzed
+[INFO] Load project repositories
+[INFO] Load project repositories (done) | time=311ms
+[INFO] 125/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/dao/FiMoveWeightingCostDao.java
+[INFO] 234/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/dto/FiExportSummaryDtlDTO.java
+[INFO] 357/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/entity/FI_BL_SUP_BILL_PRE_SET_DTL.java
+[INFO] 449/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/entity/FI_SOLIDIFIED_SUPPLY_ACCOUNT_DAILY.java
+[INFO] 566/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/jiameng/service/impl/JMFiRecOrderServiceImpl.java
+[INFO] 603/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/service/impl/FiBalanceFuncServiceImpl.java
+[INFO] 621/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/service/impl/FiBlSupPayFundServiceImpl.java
+[INFO] 639/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/service/impl/FiReportServiceImpl.java
+[INFO] 654/766 files analyzed, current file: src/main/java/com/ykcloud/soa/erp/fi/service/impl/FiVoucherManageServiceImpl.java
+[INFO] 766/766 source files have been analyzed
+[INFO] Java Main Files AST scan (done) | time=95855ms
+[INFO] Java Test Files AST scan
+[INFO] 88 source files to be analyzed
+[INFO] 88/88 source files have been analyzed
+[INFO] Java Test Files AST scan (done) | time=2217ms
+[INFO] Sensor JavaSquidSensor [java] (done) | time=98815ms
+[INFO] Sensor JaCoCo XML Report Importer [jacoco]
+[INFO] Sensor JaCoCo XML Report Importer [jacoco] (done) | time=4ms
+[INFO] Sensor SurefireSensor [java]
+[INFO] parsing [D:\code_repo\IdeaProjects\putongjm-onlinepay\erp-fi\target\surefire-reports]
+[INFO] Sensor SurefireSensor [java] (done) | time=2ms
+[INFO] Sensor JaCoCoSensor [java]
+[INFO] Sensor JaCoCoSensor [java] (done) | time=1ms
+[INFO] Sensor JavaXmlSensor [java]
+[INFO] 1 source files to be analyzed
+[INFO] Sensor JavaXmlSensor [java] (done) | time=142ms
+[INFO] Sensor HTML [web]
+[INFO] 1/1 source files have been analyzed
+[INFO] Sensor HTML [web] (done) | time=12ms
+[INFO] Sensor XML Sensor [xml]
+[INFO] 1 source files to be analyzed
+[INFO] Sensor XML Sensor [xml] (done) | time=122ms
+[INFO] 1/1 source files have been analyzed
+[INFO] ------------- Run sensors on project
+[INFO] Sensor Zero Coverage Sensor
+[INFO] Sensor Zero Coverage Sensor (done) | time=1002ms
+[INFO] Sensor Java CPD Block Indexer
+[INFO] Sensor Java CPD Block Indexer (done) | time=1302ms
+[INFO] SCM provider for this project is: git
+[INFO] 1 files to be analyzed
+[INFO] 0/1 files analyzed
+[WARNING] Missing blame information for the following files:
+[WARNING]   * pom.xml
+[WARNING] This may lead to missing/broken features in SonarQube
+[INFO] 133 files had no CPD blocks
+[INFO] Calculating CPD for 633 files
+[INFO] CPD calculation finished
+[INFO] Analysis report generated in 2463ms, dir size=13 MB
+[INFO] Analysis report compressed in 5022ms, zip size=4 MB
+[INFO] Analysis report uploaded in 806ms
+[INFO] ANALYSIS SUCCESSFUL, you can browse http://113.31.107.240:9000/dashboard?id=erp-fi
+[INFO] Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[INFO] More about the report processing at http://113.31.107.240:9000/api/ce/task?id=AYorrGFNF_C2AeaWEl0M
+[INFO] Analysis total time: 2:00.407 s
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:06 min
+[INFO] Finished at: 2023-08-25T15:50:34+08:00
+[INFO] ------------------------------------------------------------------------
+
+Process finished with exit code 0
+
+```
 
 #### sonar与jenkins的集成
 
@@ -211,13 +475,16 @@ admin 5Edidada
 版本兼容
 4.7
 
+SonarScanner will require Java 11 to run starting in SonarQube 8.x
+
 https://docs.sonarqube.org/8.9/analysis/scan/sonarscanner/
 
 
 https://blog.csdn.net/nikeylee/article/details/117367744
 
 
-sonarqube与IDEA
+## sonarqube与IDEA sonalint插件
+https://plugins.jetbrains.com/plugin/7973-sonarlint
 
 idea sonalint插件
 https://blog.csdn.net/zengmingen/article/details/106473012
@@ -303,12 +570,39 @@ admin
 
 `mvn clean verify sonar:sonar -Dsonar.projectKey=mytestsonarproject -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=9d7d2b7f76ef5353c4834875e6683912cc921daf`
 
+
 ```
  An API incompatibility was encountered while
  executing org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar: java.lang.UnsupportedClassVersionError: org/sonar/batch/bootstrapper
 /EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime
  only recognizes class file versions up to 52.0
 ```
+
+```
+org/sonar/batch/bootstrapper/EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+```
+
+类文件版本号是指 Java 编译器生成的字节码文件的版本。每个 Java 编译器版本都对应一个特定的类文件版本号。在你提到的情况中，`org/sonar/batch/bootstrapper/EnvironmentInformation` 类的类文件版本为 55.0。
+
+Java 类文件版本号的命名规则如下：
+
+- Java SE 1.1 对应类文件版本 45.0
+- Java SE 1.2 对应类文件版本 46.0
+- Java SE 1.3 对应类文件版本 47.0
+- Java SE 1.4 对应类文件版本 48.0
+- Java SE 5 对应类文件版本 49.0
+- Java SE 6 对应类文件版本 50.0
+- Java SE 7 对应类文件版本 51.0
+- Java SE 8 对应类文件版本 52.0
+- Java SE 9 对应类文件版本 53.0
+- Java SE 10 对应类文件版本 54.0
+- Java SE 11 对应类文件版本 55.0
+
+因此，类文件版本 55.0 对应于 Java SE 11。这意味着 `org/sonar/batch/bootstrapper/EnvironmentInformation` 类是使用 Java SE 11 编译器编译生成的类文件。
+
+如果你的 Java 运行时环境版本低于类文件版本（例如，你的运行时环境只支持 Java SE 8），则无法加载类文件版本为 55.0 的类，因为该版本超出了运行时环境的兼容范围。
+
+要解决这个问题，你需要确保你的 Java 运行时环境版本与编译生成的类文件版本兼容，或者升级你的 Java 运行时环境以支持更高的类文件版本。详细的解决方法已在之前的回答中提到。
 
 需要将JDK版本更换至 Java 11
 
