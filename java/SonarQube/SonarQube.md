@@ -1,5 +1,11 @@
 # SonarQube
 
+https://docs.sonarsource.com/sonarqube/8.9/requirements/prerequisites-and-overview/
+
+## sonarqube
+历史版本下载
+https://www.sonarsource.com/products/sonarqube/downloads/historical-downloads/
+
 参考
 代码规范和代码质量管理平台培训.pptx
 
@@ -54,7 +60,7 @@ run bin\linux-x86-64\sonar.sh
 Add new Quality Profiles - "p3c", click "Activate More" button, search keyword "[p3c]", active all rules.
 
 
-tls版本 7.9
+tls版本 7.9  SonarQube requires Java 11 to run
 8.9
 
 
@@ -88,8 +94,6 @@ AuthorizationDaoTest单元测试
 2. 目前支持 C#、C++、Go、Groovy、Java、JavaScript、Lua、PHP、Python、Ruby、TypeScript、Web、XML；
 3. 仅保存最近一次分析结果；
 4. Pull Request 合并或关闭后将会移除分析结果。
-
-
 
 
 https://github.com/SonarSource/sonarqube/tree/8.9.6.50800
@@ -135,11 +139,6 @@ travis 结合?
 
 
 Sonar 可以集成不同的测试工具，代码分析工具，以及持续集成工具，比如pmd-cpd、checkstyle、findbugs、Jenkins。sonar最大的特点就是插件化，可以根据不同的场景需求进行插件化安装，以Java代码检测为，但同时可以检测Python、C++等多种语言。
-
-
-
-
-
 
 
 sonarqube-9
@@ -239,7 +238,7 @@ token:
 
 sonar-scanner.bat -D"sonar.projectKey=restcpp" -D"sonar.sources=." -D"sonar.host.url=http://113.31.107.240:9000" -D"sonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea"
 
-sonar 10 已经废弃了
+sonar 10 的maven指令 已经废弃了
 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=springboothttpserver \
   -Dsonar.projectName='springboothttpserver' \
@@ -248,11 +247,11 @@ mvn clean verify sonar:sonar \
 
 sonar 7.9
 mvn sonar:sonar \
-  -Dsonar.projectKey=springboothttpserver \
-  -Dsonar.host.url=http://113.31.107.240:9000 \
-  -Dsonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea
+  -Dsonar.projectKey=springmvccurl \
+  -Dsonar.host.url=http://106.75.209.6:9000 \
+  -Dsonar.login=c32e6db16db6c71e5f187b63444e7721972f511b
 
-mvn sonar:sonar -Dsonar.projectKey=erp-fi -Dsonar.host.url=http://113.31.107.240:9000 -Dsonar.login=8c01edfee9d89da5b6b27092e599c86c0c421eea
+mvn sonar:sonar -Dsonar.projectKey=springmvccurl -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=c32e6db16db6c71e5f187b63444e7721972f511b
 
 
 ```shell
