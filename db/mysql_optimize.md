@@ -102,7 +102,8 @@ https://www.dnsstuff.com/mysql-optimize-database
 https://www.eversql.com/sql-performance-tuning-tips-for-mysql-query-optimization/
 
 D:\git\gitlab\langnote\MySQL性能调优与架构设计.pdf  对应的mysql版本是5.1 5.2的？
-第八章
+
+## 第八章
 
 8.5 Join 的实现原理及优化思路
  MySQL 中，只有一种 Join 算法，就是大名鼎鼎的 Nested Loop Join
