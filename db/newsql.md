@@ -1,18 +1,7 @@
 # newsql
 
-
-
 [分库分表 vs NewSQL数据库](https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247490311&idx=4&sn=67a74978857c4801056ca4f96b48b3e5&chksm=9bd0b69faca73f89a3a93536329504cfb33f38923358975b5cb10dd85eb8f25b460bf11dde26&scene=126&sessionid=1588123224&key=98ab45b1a9ff5acc7d11e6fb53fa7871fb9f036c5a2a3186b6d4bf2df05bd7005e76a186340bbe0729a5d30bab786d018249f02fbf505751d645baec174f9e7bc49702cafde2cd5e6602b759ffaf738d&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=AR%2BbLz7uAUTsVSkoWqdwoZc%3D&pass_ticket=TacpRgNtDQ50J8zLpuR5V8QLjYimCBDKpkJ2ZJqn0uW9AzH6MfkFtHwBGxSIrXzA)
-
-
-
-
 
 nosql 不支持事务
 
 newsql 支持事务
-
-
-
-
-

@@ -251,7 +251,7 @@ mvn sonar:sonar \
   -Dsonar.host.url=http://106.75.209.6:9000 \
   -Dsonar.login=c32e6db16db6c71e5f187b63444e7721972f511b
 
-mvn sonar:sonar -Dsonar.projectKey=springmvccurl -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=c32e6db16db6c71e5f187b63444e7721972f511b
+mvn sonar:sonar -Dsonar.projectKey=bhrpc-learning -Dsonar.host.url=http://106.75.209.6:9000 -Dsonar.login=c32e6db16db6c71e5f187b63444e7721972f511b
 
 
 ```shell

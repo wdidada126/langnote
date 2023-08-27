@@ -1,10 +1,9 @@
 # SQL
 
-
-
 where后面的列要注意隐式转换，会导致索引失效
-当 where 后面的列需要隐式转换时，会导致索引失效。例如，如果 where 后面的列是字符串类型，而查询条件是数字类型，则 MySQL 将数字转换为浮点数，然后执行全表扫描，这将导致索引失效12。
+当where后面的列需要隐式转换时，会导致索引失效。例如，如果where后面的列是字符串类型，而查询条件是数字类型，则 MySQL 将数字转换为浮点数，然后执行全表扫描，这将导致索引失效12。
 为了避免这种情况，你可以尽可能让 where 后面的列与查询条件的类型相同，或者将查询条件转换为与 where 后面的列相同的类型。这样可以避免隐式转换并确保索引有效。
+
 https://dev.mysql.com/doc/refman/5.7/en/type-conversion.html
 
 
@@ -35,10 +34,12 @@ drop     删除表（包括表结构和数据
 trunacte 无条件全部删除数据
 delete   有条件的删除数据
 
-
 [某音春招数据分析岗真题详解](https://www.zhihu.com/column/c_1352655958959734784)
 
-题目（1）有用户表行为记录表t_act_records表，包含两个字段：uid（用户ID），imp_date（日期）1. 计算2020年每个月，每个用户连续签到的最多天数2. 计算2020年每个月，连续2天都有登陆的用户名单3. 计算2020年每个月，连续5天都有登陆的用户数难度：★★★★★<1> 计算2020年每个月，每个用户连续签到的最多天数考点：1. 连续时间问题；2. 时间限定；3. 聚类第一步：从时间上限定出2020年数据where imp_date between 20200101 and 20201231第二步：解决连续时间问题排序：row_number() over (partition by month(imp_date), uid) as rank 相减：date_diff(imp_date, rank) as sign 第三步：按月聚类求出最大连续签到天数组装构成答案select month
+题目（1）有用户表行为记录表t_act_records表，包含两个字段：uid（用户ID），imp_date（日期）1. 计算2020年每个月，每个用户连续签到的最多天数2. 计算2020年每个月，连续2天都有登陆的用户名单3. 计算2020年每个月，连续5天都有登陆的用户数难度：★★★★★<1> 计算2020年每个月，每个用户连续签到的最多天数考点：1. 连续时间问题；2. 时间限定；3. 聚类第一步：从时间上限定出2020年数据where imp_date between 20200101 and 20201231第二步：解决连续时间问题排序：row_number() over (partition by month(imp_date), uid) as rank 相减：date_diff(imp_date, rank) as sign 第三步：按月聚类求出最大连续签到天数组装构成答案
+
+```sql
+select month
     ,uid
     ,max(cnt) 
 from (
@@ -61,8 +62,11 @@ from (
         )
 group by month
     ,uid
+```
 
-<2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案select month(imp_date) as month
+<2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案
+```sql
+select month(imp_date) as month
     ,uid
 from ( 
         select uid
@@ -79,29 +83,35 @@ from (
 group by month(imp_date)
     ,uid
 having count(diff)>=2;
-
+```
 
 sql子查询的例子
 1、单行子查询
-        select ename,deptno,sal
-        from emp
-        where deptno=(select deptno from dept where loc='NEW YORK')；
-     2、多行子查询
-        SELECT ename,job,sal
-        FROM EMP
-        WHERE deptno in ( SELECT deptno FROM dept WHERE dname LIKE 'A%')；
-     3、多列子查询
-        SELECT deptno,ename,job,sal
-        FROM EMP
-        WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
-     4、内联视图子查询
-       (1)SELECT ename,job,sal,rownum
-          FROM (SELECT ename,job,sal FROM EMP ORDER BY sal)；
-       (2)SELECT ename,job,sal,rownum
-          FROM ( SELECT ename,job,sal FROM EMP ORDER BY sal)
-          WHERE rownum<=5；
-     5、在HAVING子句中使用子查询
-        SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
+```sql
+select ename,deptno,sal
+from emp
+where deptno=(select deptno from dept where loc='NEW YORK')；
+```
+2、多行子查询
+```sql
+SELECT ename,job,sal
+FROM EMP
+WHERE deptno in ( SELECT deptno FROM dept WHERE dname LIKE 'A%')；
+```
+3、多列子查询
+```sql
+SELECT deptno,ename,job,sal
+FROM EMP
+WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
+```
+4、内联视图子查询
+(1)SELECT ename,job,sal,rownum
+    FROM (SELECT ename,job,sal FROM EMP ORDER BY sal)；
+(2)SELECT ename,job,sal,rownum
+    FROM ( SELECT ename,job,sal FROM EMP ORDER BY sal)
+    WHERE rownum<=5；
+5、在HAVING子句中使用子查询
+SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
 
 
 SQL92
@@ -137,11 +147,22 @@ INSERT语句的一个变种；
 
 [自己实现一个SQL解析引擎](https://blog.csdn.net/kxjrzyk/article/details/79341657)
 
+功能：将用户输入的SQL语句序列转换为一个可执行的操作序列，并返回查询的结果集。 
+SQL的解析引擎包括查询编译与查询优化和查询的运行，主要包括3个步骤：
+
+查询分析：
+制定逻辑查询计划（优化相关）
+制定物理查询计划（优化相关）
+查询分析： 将SQL语句表示成某种有用的语法树.
+制定逻辑查询计划： 把语法树转换成一个关系代数表达式或者类似的结构，这个结构通常称作逻辑计划。
+制定物理查询计划：把逻辑计划转换成物理查询计划，要求指定操作执行的顺序，每一步使用的算法，操作之间的传递方式等。
+查询分析各模块主要函数间的调用关系: 
+
+
+
 [SQL中Truncate的用法](https://www.cnblogs.com/zhoufangcheng04050227/p/7991759.html)
 
 DQL、DML、DDL、DCL、TCL和MySQL的部分DAL
-
-
 
 
 DQL
@@ -161,20 +182,15 @@ DML
 DDL
 
 CREATE：创建
-
 ALTER：修改表结构
-
 RENAME：修改表名或列名
-
 DROP：删除表中的数据和结构，删除后不能回滚
-
 TRUNCATE：删除表中的数据不删除表结构，删除后不能回滚，效率比DELETE高
 
 
 
 DCL
 1) GRANT：授权
-
 2) REVOKE ：回收权限
 
 

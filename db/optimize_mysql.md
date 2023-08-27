@@ -1,4 +1,4 @@
-# dd
+# optimize mysql
 
 mysql not in 优化成 left join 分析
 
@@ -10,4 +10,3 @@ VividCortex
 https://www.dnsstuff.com/mysql-tools
 
 https://www.eversql.com/top-5-mysql-monitoring-tools/
-
