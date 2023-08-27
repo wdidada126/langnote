@@ -5,8 +5,6 @@
 
 
 
-
-
 ## mybatis什么版本的？
 
 
@@ -176,13 +174,10 @@ c++ odb 目前不支持一个表多次操作？
 
 mybatis 自己写sql 方便优化 h生成sql，不方便优化
 
-
 ## Chap. 2 XML方式
 动态代理实现原理
 java.lang.Class#getCanonicalName
 java.lang.reflect.Proxy 静态代理
-
-
 
 ```java
 public static Object newProxyInstance(ClassLoader loader,
@@ -195,8 +190,6 @@ Java标准库的代理，必须要传接口
 ## Chap. 3 MyBatis注解方式
 
 Mybatis 3使用动态注解来实现
-
-
 
 MyBatis从入门到精通__刘增辉
 

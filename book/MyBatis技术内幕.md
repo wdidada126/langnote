@@ -11,9 +11,6 @@ Windows电脑上有pdf
 源码讲解，不是用法
 
 
-
-
-
 https://github.com/edidada/mybatis-3.4.2_src
 
 
@@ -27,13 +24,15 @@ MyBatis 小版本，大版本3.4  3.4.2版本代码
 [MyBatis技术内幕](https://book.douban.com/subject/27087564/)
 
 代理，如何实现
-
+MyBatis 3.4.2 是一个 Java 持久化框架，它提供了动态代理来实现 SQL 语句的映射和数据库操作。在 MyBatis 中，动态代理主要用于生成 DAO（Data Access Object）接口的实现类。
+在 MyBatis 3.4.2 中，可以使用动态代理实现以下类：
+1. `MapperProxy`：这是 MyBatis 的核心动态代理类，用于生成 DAO 接口的代理实现类。它会根据接口定义和映射配置文件（XML 或注解）来生成对应的 SQL 语句和数据库操作。
+2. `MapperProxyFactory`：这是 MapperProxy 的工厂类，用于创建 MapperProxy 实例。
+这两个类是 MyBatis 中动态代理的主要实现类，它们负责在运行时动态生成 DAO 接口的代理对象，并将方法调用转发到实际的 SQL 语句执行和数据库操作。
+需要注意的是，动态代理的具体工作方式和生成的代理代码结构在不同版本的 MyBatis 中可能会有所差异。上述提到的类名是基于 MyBatis 3.4.2 版本的命名，但在其他版本中可能会有所变化。
+如果您需要更深入地了解 MyBatis 动态代理的实现原理和具体类，请参考 MyBatis 的官方文档或源代码。官方文档提供了详细的说明和示例，可以帮助您理解和使用 MyBatis 的动态代理功能。
 
 #### 第1章　MyBatis快速入门
-
-
-
-
 
 
 

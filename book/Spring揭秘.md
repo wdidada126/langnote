@@ -1,10 +1,7 @@
 # Spring揭秘
 
-
-
 https://book.douban.com/subject/3897837/
 王福强
-
 
 Spring中bean的生命周期？
 
@@ -13,9 +10,7 @@ BeanPostProcess 实现propertity定义
 对应Spring 2.5
 Java 5还没有普及
 
-1 Spring框架的由来
-
-
+### 1 Spring框架的由来
 
 ### Chap. 2 IoC的基本概念
 
