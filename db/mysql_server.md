@@ -30,8 +30,6 @@ select * from setup_instruments where name like '%transaction%' limit 0,1;
 
 
 
-
-
 mysql bin log
 有可执行工具 binlog文件
 

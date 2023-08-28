@@ -23,8 +23,11 @@ Serial
 幻读
 不可重复读
 
-
 [MySQL必知必会](https://book.douban.com/subject/3354490/)
+
+ISBN: 9787115191120
+
+出版年: 2009-1
 
 ### Chap. 2 mysql简介
 

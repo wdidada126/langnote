@@ -32,13 +32,10 @@ https://blog.csdn.net/nmjhehe/article/details/113825736
 -- 我们得知是a表先和b表进行连接，会生成一张中间临时表，然后这张表的数据再和c表进行连接，最后生成的表的数据就是a left join b left join c 的。
 -- EXPLAIN  ALL, index,  range, ref, eq_ref, const, system, NULL
 
-
-
 学习Mysql的join算法：Index Nested-Loop Join和Block Nested-Loop Join
 https://blog.csdn.net/u010841296/article/details/89790399
 
 在Mysql的实现中，Nested-Loop Join有3种实现的算法：
-
 Simple Nested-Loop Join：SNLJ，简单嵌套循环连接
 Index Nested-Loop Join：INLJ，索引嵌套循环连接
 Block Nested-Loop Join：BNLJ，缓存块嵌套循环连接
@@ -47,7 +44,6 @@ Block Nested-Loop Join：BNLJ，缓存块嵌套循环连接
 只有内层表join的列有索引时，才能用到Index Nested-LoopJoin进行连接。
 原来的匹配次数 = 外层表行数 * 内层表行数
 优化后的匹配次数= 外层表的行数 * 内层表索引的高度
-
 
 Block Nested-Loop Join（减少内层表数据的循环次数）
 1、缓存块嵌套循环连接通过一次性缓存多条数据，把参与查询的列缓存到Join Buffer 里，然后拿join buffer里的数据批量与内层表的数据进行匹配，从而减少了内层循环的次数（遍历一次内层表就可以批量匹配一次Join Buffer里面的外层表数据）。
@@ -58,7 +54,6 @@ Block Nested-Loop Join（减少内层表数据的循环次数）
 （3）join_buffer_size的默认值是256K，join_buffer_size的最大值在MySQL 5.1.22版本前是4G-1，而之后的版本才能在64位操作系统下申请大于4G的Join Buffer空间。
 （4）使用Block Nested-Loop Join算法需要开启优化器管理配置的optimizer_switch的设置block_nested_loop为on，默认为开启。
 
-
 如何优化Join速度
 - 用小结果集驱动大结果集，减少外层循环的数据量，从而减少内层循环次数：
 如果小结果集和大结果集连接的列都是索引列，mysql在内连接时也会选择用小结果集驱动大结果集，因为索引查询的成本是比较固定的，这时候外层的循环越少，join的速度便越快。
@@ -67,8 +62,6 @@ Block Nested-Loop Join（减少内层表数据的循环次数）
 - 减少不必要的字段查询：
 （1）当用到BNLJ时，字段越少，join buffer 所缓存的数据就越多，内层表的循环次数就越少；
 （2）当用到INLJ时，如果可以不回表查询，即利用到覆盖索引，则可能可以提示速度。（未经验证，只是一个推论）
-
-
 
 MySQL 8 Query Performance Tuning
 A Systematic Method for Improving Execution Speeds
@@ -84,15 +77,9 @@ http://dev.mysql.com/doc/refman/5.7/en/optimization.html
 
 Query Execution Plan 查询执行计划
 
-
-
 SQL Tuning 2003出版的书籍
-
-
 SQL Server Query Performance Tuning,Fourth Edition
 2014 ms sql server的
-
-
 
 google query
 mysql server query sql optimize
@@ -102,7 +89,8 @@ https://www.dnsstuff.com/mysql-optimize-database
 https://www.eversql.com/sql-performance-tuning-tips-for-mysql-query-optimization/
 
 D:\git\gitlab\langnote\MySQL性能调优与架构设计.pdf  对应的mysql版本是5.1 5.2的？
-第八章
+
+## 第八章
 
 8.5 Join 的实现原理及优化思路
  MySQL 中，只有一种 Join 算法，就是大名鼎鼎的 Nested Loop Join
@@ -446,13 +434,14 @@ TEXT	65,535 bytes	~64kb               最大2147483647个字符
 MEDIUMTEXT	 16,777,215 bytes	~16MB
 LONGTEXT	4,294,967,295 bytes	~4GB        4294967295
 
-
 -----------       + -------------------------------------
 TINYTEXT      | 255（2 8 -1）个字节
 TEXT          | 65,535（2 16 -1）个字节= 64个KiB
 MEDIUMTEXT | 16,777,215（2 24 -1）字节= 16 MiB
 LONGTEXT    | 4,294,967,295（2 32 -1）个字节= 4个GiB
 需要注意的是数目将取决于字符编码。
+
+
 
 
 https://cloud.tencent.com/developer/ask/26839
@@ -499,8 +488,6 @@ IN，恐怖如斯，在 IN中每个内容就会视为一个 OR，如果有多个
 
 
 
-
-
 sort-union algorithm
 
 union algorithm
@@ -509,9 +496,9 @@ union algorithm
 
 icp 索引下推
 
-SET optimizer_switch = 'index_condition_pushdown=off'; SET optimizer_switch = 'index_condition_pushdown=on';
+SET optimizer_switch = 'index_condition_pushdown=off'; 
 
-
+SET optimizer_switch = 'index_condition_pushdown=on';
 
 
 

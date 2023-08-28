@@ -1,5 +1,7 @@
 # sql_in
 
+sql in后面没有值，写java代码的时候要注意
+
 SELECT - 从数据库中提取数据
 UPDATE - 更新数据库中的数据
 DELETE - 从数据库中删除数据

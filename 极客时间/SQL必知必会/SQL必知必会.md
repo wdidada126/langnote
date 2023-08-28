@@ -1,5 +1,9 @@
 # SQL必知必会
 
+SQL必知必会 极客时间
+## 网址
+https://time.geekbang.org/column/intro/100029501
+
 个人总结，测试
 mvvc原理有考题
 count(*) count(1) count(column_name)
@@ -12,7 +16,7 @@ ACID-> BASE
 清华大学计算机博士
 前IBM中国研究院工程师。IEEE & ACM Member，中国人工智能协会成员，中国计算机协会CCF大数据专委。
 
-专栏模块
+### 专栏模块
 专栏分为4大模块。
 基础篇
 以NBA球队球员数据和王者荣耀数据为案例基础，全面讲解SQL语言的基础语法知识，在实际操作中加深理解。
@@ -23,12 +27,32 @@ SQL语言是关系型数据库管理系统（RDBMS）的通用语言。在工作
 实战篇
 从实战角度出发，将前几个模块的内容系统整合，讲解如何用SQL完成数据分析中具体的项目，比如数据清洗、数据集成等。
 
-
 SQL提示（hint）
 https://blog.csdn.net/qq_17613195/article/details/82845361
 
 
-### 07 SQL函数
+
+### 核心概念
+
+- 聚集函数
+- 关联子查询
+- 非关联子查询
+- 
+
+
+
+## 第一章：SQL语法基础篇 (19讲)
+
+### 01丨了解SQL：一门半衰期很长的语言
+
+### 02丨DBMS的前世今生
+### 03丨学会用数据库的方式思考SQL是如何执行的
+### 04丨使用DDL创建数据库&数据表时需要注意什么？
+### 05丨检索数据：你还在SELECT * 么？
+
+### 06丨数据过滤：SQL数据过滤都有哪些方法？
+
+### 07丨什么是SQL函数？为什么使用SQL函数可能会带来问题？
 
 常用的 SQL 函数有哪些
 
@@ -37,84 +61,37 @@ https://blog.csdn.net/qq_17613195/article/details/82845361
 - 日期函数
 - 转换函数
 
-
-
-
-
-![算术函数](https://static001.geekbang.org/resource/image/19/e1/193b171970c90394576d3812a46dd8e1.png)
-
-
-
-
+![算术函数](../../imgs/lagou_edu/算术函数.webp)
 
 SELECT ABS(-2)，运行结果为 2。SELECT MOD(101,3)，运行结果 2。SELECT ROUND(37.25,1)，运行结果 37.3。
 
-
-
-![顶顶顶](https://static001.geekbang.org/resource/image/c1/4d/c161033ebeeaa8eb2436742f0f818a4d.png)
-
-
+![字符串函数](../../imgs/lagou_edu/字符串函数.webp)
 
 SELECT CONCAT('abc', 123)，运行结果为 abc123。SELECT LENGTH('你好')，运行结果为 6。SELECT CHAR_LENGTH('你好')，运行结果为 2。SELECT LOWER('ABC')，运行结果为 abc。SELECT UPPER('abc')，运行结果 ABC。SELECT REPLACE('fabcd', 'abc', 123)，运行结果为 f123d。SELECT SUBSTRING('fabcd', 1,3)，运行结果为 fab。
 
-
-
-![顶顶顶顶顶](https://static001.geekbang.org/resource/image/3d/45/3dec8d799b1363d38df34ed3fdd29045.png)
-
-
-
-
+![日期函数](../../imgs/lagou_edu/时间函数.webp)
 
 SELECT CURRENT_DATE()，运行结果为 2019-04-03。SELECT CURRENT_TIME()，运行结果为 21:26:34。SELECT CURRENT_TIMESTAMP()，运行结果为 2019-04-03 21:26:34。SELECT EXTRACT(YEAR FROM '2019-04-03')，运行结果为 2019。SELECT DATE('2019-04-01 12:00:05')，运行结果为 2019-04-01。
 
-
-
-
-
-![顶顶顶](https://static001.geekbang.org/resource/image/5d/59/5d977d747ed1fddca3acaab33d29f459.png)
-
-
+![转换函数](../../imgs/lagou_edu/函数x列表.webp)
 
 SELECT CAST(123.123 AS INT)，运行结果会报错。SELECT CAST(123.123 AS DECIMAL(8,2))，运行结果为 123.12。SELECT COALESCE(null,1,2)，运行结果为 1。
 
-
-
-
-
-
-
-
-SQL必知必会 极客时间
-
-https://time.geekbang.org/column/intro/100029501
-
-
-
 不过在 SQL 中，你还是要确定大小写的规范，因为在 Linux 和 Windows 环境下，你可能会遇到不同的大小写问题。比如 MySQL 在 Linux 的环境下，数据库名、表名、变量名是严格区分大小写的，而字段名是忽略大小写的。而 MySQL 在 Windows 的环境下全部不区分大小写。
-
-
 
 但是数据库名、表名和字段名在 Linux MySQL 环境下是区分大小写的
 
-
-
 CONCAT()是字符串拼接函数，在 MySQL 和 Oracle 中都有这个函数，但是在这两个 DBMS 中作用却不一样，CONCAT函数在 MySQL 中可以连接多个字符串，而在 Oracle 中CONCAT函数只能连接两个字符串，如果要连接多个字符串就需要用（||）连字符来解决。
 
+![SQL函数](../../imgs/lagou_edu/SQL函数.webp)
 
-
-![ddd](https://static001.geekbang.org/resource/image/8c/c9/8c5e316b466e8fa65789a9c6a220ebc9.jpg)
-
-### 08 SQL的聚集函数
+### 08丨什么是SQL的聚集函数，如何利用它们汇总表的数据？
 
 聚集函数，它是对一组数据进行汇总的函数，输入的是一组数据的集合，输出的是单个值。通常我们可以利用聚集函数汇总表的数据，如果稍微复杂一些，我们还需要先对数据做筛选，然后再进行聚集，比如先按照某个条件进行分组，对分组条件进行筛选，然后得到筛选后的分组的汇总信息。
 
-
-
 聚集函数都有哪些
 
-![聚集函数列表](https://static001.geekbang.org/resource/image/d1/15/d101026459ffa96504ba3ebb85054415.png)
-
-
+![聚集函数列表](../../imgs/lagou_edu/聚集函数列表.webp)
 
 COUNT(role_assist)会忽略值为 NULL 的数据行，而 COUNT(*) 只是统计数据行数，不管某个字段是否为 NULL。
 
@@ -136,17 +113,38 @@ SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ...limit
 
 
 
-![dd](https://static001.geekbang.org/resource/image/3a/de/3aa2b0626f5cfc64b4a7175de938d1de.png)
+![聚集函数](../../imgs/lagou_edu/聚集函数.webp)
 
 
 
 
 
-### 09 子查询
+### 09丨子查询：子查询的种类都有哪些，如何提高子查询的性能？
 
 
 
 子查询可以分为关联子查询和非关联子查询
+
+关联子查询（Correlated Subquery）和非关联子查询（Non-correlated Subquery）是在SQL查询中常见的两种子查询类型，它们在执行方式和结果集处理上有所不同。
+
+1. 关联子查询：
+
+   - 关联子查询是一种嵌套查询，内部查询的结果依赖于外部查询中的值。
+   - 在关联子查询中，内部查询的执行是基于外部查询的每一行进行的，内部查询的结果集对于每一行来说都是不同的。
+   - 关联子查询通常使用外部查询的字段与内部查询进行比较或连接操作，以确定内部查询的结果。
+   - 关联子查询的执行效率通常较低，特别是当外部查询的结果集较大时，会导致内外查询的嵌套循环执行。
+
+1. 非关联子查询：
+
+   - 非关联子查询是一种独立的子查询，它可以单独执行而不依赖于外部查询。
+   - 在非关联子查询中，内部查询的执行不受外部查询的影响，内部查询的结果集是固定的。
+   - 非关联子查询通常用于提供静态的、不依赖于外部查询的数据，可以用作计算、过滤、排序等操作的基础。
+
+关联子查询和非关联子查询的选择取决于具体的查询需求和数据情况。关联子查询适用于需要根据外部查询的每一行来动态计算结果的场景，但可能会影响查询性能。非关联子查询则适用于独立计算的场景，可以提供更高的查询效率。
+
+需要注意的是，优化查询性能时，可以考虑使用其他方法替代子查询，如使用连接（JOIN）操作、临时表或窗口函数等，以便更好地利用数据库系统的优化能力。
+
+
 
 ```
 SELECT player_name, height FROM player WHERE height = (SELECT max(height) FROM player);
@@ -154,11 +152,11 @@ SELECT player_name, height FROM player WHERE height = (SELECT max(height) FROM p
 
 
 
-![dddd	](https://static001.geekbang.org/resource/image/67/48/67dffabba0619fa4d311929c5d1c0f48.png)
+![子查询](../../imgs/lagou_edu/子查询.webp)
 
 
 
-### 10 SQL标准
+### 10丨常用的SQL标准有哪些，在SQL92中是如何使用连接的？
 
 
 
@@ -174,18 +172,23 @@ LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 �
 
 笛卡尔乘积是一个数学运算。假设我有两个集合 X 和 Y，那么 X 和 Y 的笛卡尔积就是 X 和 Y 的所有可能组合，也就是第一个对象来自于 X，第二个对象来自于 Y 的所有可能。
 
+### 11丨SQL99是如何使用连接的，与SQL92的区别是什么？
 
 
-### 12 视图
-### 13 存储过程
-### 14 事务处理
+### 12丨视图在SQL中的作用是什么，它是怎样工作的？
+### 13丨什么是存储过程，在实际项目中用得多么？
+
+### 14丨什么是事务处理，如何使用COMMIT和ROLLBACK进行操作？
+
 
 实际上，SQL-92 标准中已经对 3 种异常情况进行了定义，这些异常情况级别分别为脏读（Dirty Read）、不可重复读（Nonrepeatable Read）和幻读（Phantom Read）。
 这四种隔离级别从低到高分别是：读未提交（READ UNCOMMITTED ）、读已提交（READ COMMITTED）、可重复读（REPEATABLE READ）和可串行化（SERIALIZABLE）。
 
 使用MySQL客户端来模拟三种异常
 
-![dddd	](https://static001.geekbang.org/resource/image/aa/fb/aa2ae6682a571676b686509623a2a7fb.jpg)
+![事务隔离级别](../../imgs/lagou_edu/事务隔离级别.webp)
+
+
 脏读
 幻读
 不可重复读
@@ -194,8 +197,18 @@ LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 �
 读已提交
 可重复读
 序列化
+### 15丨初识事务隔离：隔离的级别有哪些，它们都解决了哪些异常问题？
 
-### 16 游标
+### 16 游标：当我们需要逐条处理数据时，该怎么做？
+
+
+
+### 17丨如何使用Python操作MySQL？
+### 18丨SQLAlchemy：如何使用Python ORM框架来操作MySQL？
+### 19丨基础篇总结：如何理解查询优化、通配符以及存储过程？
+
+
+## 第二章：SQL性能优化篇 (18讲)
 
 
 ### 20丨当我们思考数据库调优的时候，都有哪些维度可以选择？
@@ -205,7 +218,6 @@ LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 �
 日志分析
 服务器资源使用监控
 数据库内部状况监控
-
 
 对数据库进行调优，都有哪些维度可以进行选择？
 第一步，选择适合的 DBMS
@@ -222,7 +234,7 @@ LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 �
 首先，选择比努力更重要。
 另外，你可以把 SQL 查询优化分成两个部分，逻辑查询优化和物理查询优化。
 最后，我们可以通过外援来增强数据库的性能。
-![房东](https://static001.geekbang.org/resource/image/d3/b0/d3bc10314c3532f053304a00765183b0.jpg）
+![数据库调优](../../imgs/数据库调优.webp）
 
 
 ### 21丨范式设计：数据表的范式有哪些，3NF指的是什么
@@ -231,7 +243,9 @@ LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 �
 目前关系型数据库一共有6种范式，按照范式级别，从低到高分别是：1NF（第一范式）、2NF（第二范式）、3NF（第三范式）、BCNF（巴斯-科德范式）、4NF（第四范式）和5NF（第五范式，又叫做完美范式）。
 
 数据表中的那些键
-https://static001.geekbang.org/resource/image/42/9b/4299e5030169710d5b1d29fd0729879b.jpg
+
+6中设计范式及其关系.webp
+
 从1NF到3NF
 1NF指的是数据库表中的任何属性都是原子性的，不可再分。
 2NF指的数据表里的非主属性都要和这个数据表的候选键有完全依赖关系。
@@ -263,3 +277,27 @@ b+树只有叶子节点存储数据
 ### 28丨从磁盘I/O的角度理解SQL查询的成本
 
 ### 29丨为什么没有理想的索引
+
+### 30丨锁：悲观锁和乐观锁是什么？
+### 31丨为什么大部分RDBMS都会支持MVCC？
+
+### 32丨查询优化器是如何工作的？
+### 33丨如何使用性能分析工具定位SQL执行慢的原因？
+
+### 34丨答疑篇：关于索引以及缓冲池的一些解惑
+### 35丨数据库主从同步的作用是什么，如何解决数据不一致问题？
+### 36丨数据库没有备份，没有使用Binlog的情况下，如何恢复数据？
+### 37丨SQL注入：你的SQL是如何被注入的？
+
+
+### 38丨如何在Excel中使用SQL语言？
+### 39丨WebSQL：如何在H5中存储一个本地数据库？
+### 40丨SQLite：为什么微信用SQLite存储聊天记录？
+### 41丨初识Redis：Redis为什么会这么快？
+### 42丨如何使用Redis来实现多用户抢票问题
+### 43丨如何使用Redis搭建玩家排行榜？
+### 44丨DBMS篇总结和答疑：用SQLite做词云
+### 45丨数据清洗：如何使用SQL对数据进行清洗？
+### 46丨数据集成：如何对各种数据库进行集成和转换？
+### 47丨如何利用SQL对零售数据进行分析？
+

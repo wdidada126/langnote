@@ -1,5 +1,17 @@
 # mysql_function
 
+数据库内置函数的种类
+
+加减乘除 运算
+
+字符串
+
+日期时间
+
+转换
+
+
+
 now()
 version()
 mod()

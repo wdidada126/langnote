@@ -1,16 +1,8 @@
 # sql hint
 
-
-
-
-
 在SQL语句优化过程中，我们经常会用到hint
 
-
-
 mysql常用的hint
-
-
 
 hint表达式分类
 
@@ -22,9 +14,13 @@ hint表达式分类
 
 操作顺序
 
-
-
 对于经常使用oracle的朋友可能知道，oracle的hint功能种类很多，对于优化sql语句提供了很多方法。同样，在mysql里，也有类似的hint功能。下面介绍一些常用的。
+
+https://docs.oracle.com/cd/B10500_01/server.920/a96533/hintsref.htm
+
+
+https://dev.mysql.com/doc/refman/8.0/en/optimizer-hints.html
+
 **强制索引 FORCE INDEX** 
 SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …
 以上的SQL语句只使用建立在FIELD1上的索引，而不使用其它字段上的索引。
@@ -62,6 +58,8 @@ SELECT SQL_BUFFER_RESULT FIELD1, COUNT(*) FROM TABLE1 GROUP BY FIELD1;
 ss中使用了hint
 新特性解读 | MySQL 8.0 新增 HINT 模式
 https://zhuanlan.zhihu.com/p/69456261
+
+爱可生云数据库
 
 ### ob
 Hint 是 SQL 语句中将指令传递给 OceanBase 数据库优化器或服务器的一种注释。通过 Hint 可以使优化器或服务器生成某种特定的计划。 一般情况下，优化器会为用户查询选择最佳的执行计划，不需要用户主动使用 Hint 指定，但在某些场景下，优化器生成的执行计划可能不满足用户的要求，这时就需要用户使用 Hint 来主动指定并生成特殊的执行计划。

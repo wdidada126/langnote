@@ -38,13 +38,14 @@ Nexus私服Java配置
 Chap 1 2 3 是简介
 
 4是项目介绍
+## 1. Maven简介
 
-## Chap. 2
+## Chap. 2 Maven安装
 
 'mvn help:system'
 
 
-## Chap. 3
+## Chap. 3 Hello World
 
 mvn
 
@@ -54,11 +55,11 @@ compile test package install
 resource
 等步骤
 
-## Chap. 4
+## Chap. 4 背景案例
 
 项目简介
 
-Chap. 5
+## Chap. 5 坐标和依赖
 
 maven 5元素
 groupid
@@ -80,7 +81,7 @@ testng依赖jdk4
 
 
 
-## Chap. 6
+## Chap. 6 仓库
 
 maven仓库
 deploy
@@ -88,7 +89,7 @@ deploy
 快照版本
 开发时用
 
-## Chap. 7
+## Chap. 7 生命周期和插件
 
 LifeCycle
 goal
@@ -97,7 +98,7 @@ clean default site三个生命周期
 
 parent module不一定要是父文件夹
 
-## Chap. 8
+## Chap. 8 聚合与继承
 
 maven聚合 继承
 
@@ -108,6 +109,11 @@ Reactor maven反应堆
 
 maven cargo
 maven cafgo:deploy
+9. 使用 Nexus 创建私服
+10. 使用 Maven 进行测试
+11. 使用 Hudson 进行持续集成
+12. 构建 Web 应用
+13. 版本管理
 
 ## Chap. 14 多profile
 
@@ -116,9 +122,11 @@ maven 命令行激活配置
 问题：profile怎么引用？
 
 
-## Chap. 15
+## Chap. 15. 生成项目站点
+
 
 Maven生成项目站点 javadoc checkstyle项目报告
+16. m2eclipse
 
 ## Chap. 17
 maven plugin编写
@@ -126,7 +134,8 @@ maven plugin编写
 可以参考常用的maven plugin
 https://github.com/spotify/dockerfile-maven
 
-## Chap. 18
+## Chap. 18 Archetype
+
 archtype编写
 
 
