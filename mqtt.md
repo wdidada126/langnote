@@ -1,38 +1,37 @@
 # mqtt
 
-
-
+MQTT å‘å¸ƒè®¢é˜…æµ‹è¯•ï¼Œå¯ä»¥åœ¨ Chrome ä¸­ä¸‹è½½ MQTTBox æ’ä»¶ æˆ–è€… å‘½ä»¤è¡Œå®‰è£… mosquitto å·¥å…·
 
 
 https://mosquitto.org/
-IBM 1999Äê¿ª·¢µÄ
+IBM 1999å¹´å¼€å‘çš„
 
-mqtt javaÊµÏÖ
+mqtt javaå®ç°
 https://www.eclipse.org/paho/files/javadoc/org/eclipse/paho/client/mqttv3/package-summary.html
 https://github.com/mqtt/mqtt.github.io/wiki/SYS-Topics
 
-MQTT£¨Message Queuing Telemetry Transport£¬ÏûÏ¢¶ÓÁĞÒ£²â´«ÊäĞ­Òé£©
+MQTTï¼ˆMessage Queuing Telemetry Transportï¼Œæ¶ˆæ¯é˜Ÿåˆ—é¥æµ‹ä¼ è¾“åè®®ï¼‰
 
-»ùÓÚtcpµÄ
+åŸºäºtcpçš„
 
 MQTT vs WebSocket
 
 
-¸úkafkaÒ»Ñù£¬ÓĞtopicµÄ¸ÅÄî
+è·Ÿkafkaä¸€æ ·ï¼Œæœ‰topicçš„æ¦‚å¿µ
 
 
-MQTT·şÎñÆ÷¶¼ÊÇ½ĞBroker
+MQTTæœåŠ¡å™¨éƒ½æ˜¯å«Broker
 
-ÏÂÔØµØÖ·
+ä¸‹è½½åœ°å€
 http://archive.apache.org/dist/activemq/activemq-apollo/1.7.1/
 
 
-### mqtt¿ªÔ´ÏîÄ¿
+### mqttå¼€æºé¡¹ç›®
 
 
 D:\apache-apollo-1.7.1\bin
 
-¼û
+è§
 apollo.md
 
 
@@ -40,5 +39,5 @@ apollo.md
 
 https://mqttx.app/zh
 
-½Ì³Ì
+æ•™ç¨‹
 https://blog.csdn.net/qq_26545955/article/details/90346273
