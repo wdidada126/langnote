@@ -1,5 +1,10 @@
 # jsr
 
+JSR303 - Bean Validation 为JavaBean的验证定义了相关的元数据模型和API。
+
+在 java 8 之后，又推出了JSR380 - Bean Validation 2.0
+
+
 JSR-51
 nio
 aio

@@ -4,6 +4,8 @@
 https://www.jianshu.com/p/23e4a01bf8d5
 
 
+近日和相关安全专家交流时发现有不少同学把apollo-configservice和apollo-adminservice直接暴露在公网访问了，这里需要和大家再次提醒下，apollo-configservice和apollo-adminservice是基于内网可信网络设计的，所以出于安全考虑，禁止apollo-configservice和apollo-adminservice直接暴露在公网，同时也建议大家做好认证、授权和系统相关访问控制，更多信息可以参考『Apollo安全相关最佳实践』：https://github.com/ctripcorp/apollo/wiki/Apollo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97#71-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3
+
 
 
 C:\Users\edidada>cd/d D:\apache-apollo-1.7.1\bin
@@ -81,5 +83,4 @@ http://localhost:61680/console/index.html
 默认的登录id和密码是 admin 和 password 。
 
 
-MQTT 发布订阅测试，可以在 Chrome 中下载 MQTTBox 插件 或者 命令行安装 mosquitto 工具
 
