@@ -1,6 +1,14 @@
 # guava api
 
+guava MoreObjects.firstNonNull()
 
+1、其用法为如果两个参数都不为空，则返回第一个；
+2、如果都为空，则抛出空指针异常
+3、如果其中一个为空，返回不为空的那个
+
+https://www.jianshu.com/p/a1e78d569c0b
+
+Optional Ofnullable orElse
 
 testguava
 
