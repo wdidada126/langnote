@@ -8,6 +8,7 @@ https://golang.google.cn/
 
 Go是更好的c
 
+Godi是一个用来检查Go程序包依赖哪些其他包的
 
 ### 使用Go的地区
 美国 日本 中国

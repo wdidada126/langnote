@@ -1,16 +1,15 @@
 # derby
 
-
 https://gitee.com/edidada/testderby
 
-mvcc derby
+## mvcc derby
 
 https://db.apache.org/derby/
 
 4年没更新了
 https://github.com/apache/derby
 
-svn的
+svn组织代码的
 
 https://db.apache.org/derby/dev/derby_source.html
 
@@ -24,11 +23,8 @@ Derby 的 MVCC 实现是在 Derby 10.3 中引入的，它提供了一种多版�
 Derby 的 MVCC 机制基于快照技术实现，每个事务在开始时会创建自己的快照，这个快照包含了事务开始之前已经提交的修改。当事务进行查询操作时，Derby 会使用这个快照来获取数据库中的数据。如果事务进行修改操作，则 Derby 会创建一个新的版本，并将其保存在单独的位置，以避免对原始数据的修改。这样，其他事务仍然可以看到原始版本的数据。
 
 当多个事务同时修改相同的数据时，Derby 会使用锁来控制对数据的访问。如果一个事务正在修改数据，则其他事务必须等待，直到该事务提交或回滚。这样可以确保数据的一致性和正确性。
-
 Derby 的 MVCC 机制还支持快照隔离级别，这是一种高级别的隔离机制，它可以确保每个事务看到的数据都是一致的，并且不会受到其他事务的影响。在快照隔离级别下，每个事务都会创建自己的快照，而不是使用公共的快照。这意味着每个事务都可以看到独立的数据库版本，而不会受到其他事务的影响。因此，快照隔离级别可以避免许多常见的并发问题，例如“脏读”、“不可重复读”和“幻影读”。
-
 需要注意的是，Derby 的 MVCC 实现并不是完全的“纯” MVCC，它仍然使用了锁来控制对数据的访问，所以它也被称为“混合并发控制（HCC）”。这是因为对于某些操作，例如创建索引和删除表，Derby 仍然需要使用锁来确保数据的正确性。
-
 总的来说，Derby 的 MVCC 机制通过使用快照技术和锁机制来控制并发访问，提供了一种有效的方法来管理事务并避免常见的并发问题。在 Derby 10.13 中，MVCC 机制的实现与之前版本类似，并没有大的变化。
 
 
@@ -37,44 +33,28 @@ Derby 的 MVCC 机制还支持快照隔离级别，这是一种高级别的隔�
 Derby 10.13 的 MVCC 机制主要由以下几个 Java 类实现：
 
 1. `org.apache.derby.impl.store.access.conglomerate.TransactionManager`: 这个类是 Derby 的事务管理器，它负责管理事务的创建、提交、回滚等操作。在 MVCC 机制中，这个类还负责创建事务快照，并在查询操作中使用它们来获取数据。
-
 2. `org.apache.derby.impl.store.access.conglomerate.GenericConglomerateController`: 这个类是 Derby 的通用聚簇控制器，它负责管理聚簇（即存储数据库表的物理结构）。在 MVCC 机制中，这个类还负责管理数据的版本，并在修改操作中创建新的版本。
-
 3. `org.apache.derby.impl.store.access.conglomerate.RowPositionRetRowSource`: 这个类是 Derby 的结果集处理器，它负责处理查询结果并将其返回给客户端。在 MVCC 机制中，这个类使用正确的快照来获取数据，并确保返回的结果是一致的。
 
 MVCC 的核心代码位于 `org.apache.derby.impl.store.access.conglomerate`包中，其中最重要的类是 `GenericConglomerateController`，它实现了 MVCC 机制的核心逻辑。下面是 MVCC 的核心代码详解：
 
 1. 创建事务快照
-
 在 Derby 中，每个事务在开始时都会创建一个自己的快照，这个快照包含事务开始之前已经提交的修改。在 `TransactionManager` 类的 `startTransaction()` 方法中，Derby 会创建一个新的 `TransactionContext` 对象，其中包含了当前事务的上下文信息，包括快照信息。具体来说，`TransactionContext` 对象包含了一个 `RawStore` 对象，它是 Derby 存储引擎的核心组件，负责管理数据库文件、缓存、锁等。在 `RawStore` 对象中，Derby 会为当前事务创建一个 `Transaction` 对象，并将其与快照关联起来。
-
 2. 获取数据
-
 在查询操作中，Derby 会使用正确的快照来获取数据。具体来说，在 `GenericConglomerateController` 类的 `fetch()` 方法中，Derby 会获取当前事务的快照，并使用它来获取数据。如果当前事务需要读取一个已经被其他事务修改的数据，则 Derby 会使用该数据的旧版本，并在返回结果之前将其过滤掉。
-
 3. 创建新版本
-
 在修改操作中，Derby 会创建一个新版本，并将其保存在单独的位置，以避免对原始数据的修改。具体来说，在 `GenericConglomerateController` 类的 `replace()` 或 `insert()` 方法中，Derby 会创建一个新的 `BasePage` 对象，并将新版本的数据写入其中。在写入数据之前，Derby 会获取一个锁，并检查当前事务是否具有足够的权限进行修改操作。如果另一个事务正在修改相同的数据，则 Derby 会等待该事务完成或回滚，然后才开始进行修改操作。
-
 4. 版本清理
-
 为了避免数据库存储空间的浪费，Derby 会定期清理不再需要的数据版本。具体来说，在 `GenericConglomerateController` 类的 `purge()` 方法中，Derby 会检查当前聚簇中的每个数据版本，并将过期的版本从存储引擎中删除。删除操作会释放存储空间，并减少存储引擎的负载。
-
-以上是 Derby 10.13 MVCC 机制的核心代码详解。需要注意的是，Derby 的 MVCC 实现是比较复杂的，涉及到许多细节和优化，这里只是对其核心逻辑进行了简要介绍。如果您想深入了解 MVCC 机制的实现细节，建议查看 Derby 的源代码和文档。
+以上是 Derby 10.13 MVCC 机制的核心代码详解。需要注意的是，Derby 的 MVCC 实现是比较复杂的，涉及到许多细节和优化，这里只是对其核心逻辑进行了简要介绍。如果您想深入了解 MVCC 机制的实现细节，建议查看Derby的源代码和文档。
 
 
 
 Derby 最早是由 IBM 于 2004 年贡献给 Apache Software Foundation，开源之前的名称叫做 Cloudscape。 目前，Apache Derby 基本上保持每年一个版本更新
-
-
 MVCC（Multi-Version Concurrency Control）是一种数据库管理系统使用的并发控制机制。Derby 是一个支持 MVCC 的数据库，它提供了一些机制来处理并发事务，包括读取未提交数据、读取已提交数据和可重复读取数据。
-
 在 MVCC 中，每个并发事务都可以看到独立的数据库版本，这些版本是基于事务开始时的数据库状态创建的。因此，每个事务都可以在不受其他并发事务影响的情况下执行查询和修改操作。这种机制可以避免许多常见的并发问题，例如“脏读”、“不可重复读”和“幻影读”。
-
 在 Derby 中，当一个事务开始时，它会创建一个“快照”，该快照是基于当前数据库状态的。这个快照包含了所有在事务开始之前已经提交的修改，但是不包含在事务开始之后提交的修改。
-
 在 MVCC 中，每个事务对数据的读取都会针对它自己的快照进行，而不是针对整个数据库的当前状态。这意味着即使其他并发事务对数据进行了修改，当前事务也只会看到它自己的快照中的数据。如果当前事务要修改数据，它会创建一个新版本的数据，这个版本只有在当前事务提交之后才会对其他事务可见。
-
 下面是一个示例，演示了如何在 Derby 中使用 MVCC：
 
 ```sql
@@ -648,4 +628,5 @@ derby.log不覆盖，在后面继续写，如何实现
 
 idea vm option里面设置
 
-
+## sql优化bnl算法，derby是否实现
+问derby开源社区
