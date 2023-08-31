@@ -1,5 +1,7 @@
 # OceanBase
 
+https://www.oceanbase.com/docs/community-tutorials-cn-10000000000012249
+
 https://github.com/oceanbase/oceanbase
 
 据说在某个客户那里，出现了数据不一致 问题
@@ -18,7 +20,8 @@ https://www.zhihu.com/question/19841579/answer/131853733
 其实，虽然不是刻意设计的，但OceanBase确实比传统数据库更适合像双十一、聚划算、秒杀以及银行国库券销售等短时间突发大流量的场景：·短时间内大量用户涌入·短时间内业务流量非常大，数据库系统压力非常大·一段时间（几秒钟、几分钟、或半个小时等）后业务流量迅速或明显回落
 虽然2010年设计OceanBase架构时，其实并没有特别考虑到这个突发大流量的因素。让我们从OceanBase的架构说起。OceanBase是“基线数据（硬盘）”+“修改增量（内存）”的架构，如下图所示：
 
-v2-8b26e58eba0a0d0f5ead3e397b20fe78_b.png
+![ob_data](./imgs/ob_data.png)
+
 
 即整个数据库以硬盘（通常是SSD）为载体，新近的增、删、改数据（“修改增量”）在内存，而基线数据在保存在硬盘上，因此OceanBase可以看成一个准内存数据库。这样的好处是：·写事务在内存（除事务日志必须落盘外），性能大大提升·没有随机写硬盘，硬盘随机读不受干扰，高峰期系统性能提升明显；对于传统数据库，业务高峰期通常也是大量随机写盘（刷脏页）的高峰期，大量随机写盘消耗了大量的IO，特别是考虑到SSD的写入放大，对于读写性能都有较大的影响·基线数据只读，缓存（cache）简单且效果提升·线上OceanBase的内存配置是支撑平常两天的修改增量（从OceanBase 1.0开始，每台OceanBase都可以写入，都承载着部分的修改增量），因此即使突发大流量为平日的10-20倍，也可支撑1~2个小时以上。
 <img src="https://pic1.zhimg.com/v2-a9b596591401543db10953f18f4802c8_b.png" data-rawwidth="873" data-rawheight="257" class="origin_image zh-lightbox-thumb" width="873" data-original="https://pic1.zhimg.com/v2-a9b596591401543db10953f18f4802c8_r.jpg"/>
@@ -34,8 +37,6 @@ v2-8b26e58eba0a0d0f5ead3e397b20fe78_b.png
 3. 数据库自动分片功能（支持hash/range，一级二级等等分片方式），提供独立的proxy路由写入查询等操作到对应的分片。这意味着数据量再大也不需要手动分库分表了。并且分片能在线的在各个server之间迁移，解决热点问题（资源分配不均的问题，做到弹性加机器和减机器）。每个分片（确切的说是被选为主的分片）都支持读写，做到多点写入（高吞吐量，性能可线性扩展）。4. 数据库内部实现的无阻塞的两阶段提交（跨机事务）。参见论文Consensus on Transaction Commit 
 5. 数据库原生的多租户支持。能直接隔离租户之间的cpu，mem，io等资源。
 6. 基于代价的SQL查询优化和改写功能，对于复杂的分析型SQL做得比MySQL好（目前比Oracle差，正在努力追赶中）。支持各种类型的join算法（nestloop, merge, hash），优化器会自动选择最优的join类型。支持类似Oracle的SPM功能，用户能很轻松自如的管理查询计划。7. 自动化的集群管理，包括机器上下线，自动下故障盘等等。总之OB的设计理念就是只要是数据库需要解决的问题就不让用户操心。
-
-
 
 https://blog.csdn.net/michaelyang_yz/article/details/50821721
 Oracle SPM（SQL Plan Management）介绍及演示SQL
