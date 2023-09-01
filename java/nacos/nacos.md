@@ -1,5 +1,8 @@
 # nacos
 
+配置中心竞品
+super-diamond
+
 nacos有配置文件，debug的时候配置文件在哪儿？
 
 

@@ -1,5 +1,35 @@
 # maven
 
+maven parent
+
+parent-relativePath
+
+relativePath给出父项目相对于子项目的路径，这样在构件子项目时首先从该相对路径查找父项目，如果没有才会从本地库或进而远程库中查找父项目
+
+
+
+https://www.runoob.com/maven/maven-pom.html
+
+
+
+http://maven.apache.org/ref/3.0.4/maven-model-builder/super-pom.html
+
+Maven的pom.xml文件结构之基本配置parent和继承结构
+https://blog.csdn.net/taiyangdao/article/details/52357300
+
+
+
+http://maven.apache.org/ref/3.6.3/
+
+所有maven有默认有parent
+
+os.detected.classifier  环境变量
+${os.detected.classifier}
+
+https://www.oschina.net/p/os-maven-plugin
+
+https://github.com/trustin/os-maven-plugin 说明书
+
 nacos打包zip文件
 mvn -Prelease-nacos -Dmaven.test.skip=true install -U
 

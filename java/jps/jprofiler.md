@@ -24,3 +24,6 @@ https://www.cnblogs.com/jpfss/p/8488111.html
 http://www.32r.com/soft/73878.html
 
 JProfiler.11.1.4.zip
+
+
+2020 年的数据显示， 24% 的用户使用 VisualVM ，其他用户使用 JProfiler、Java Mission Control、NetBeans profiler 和 YourKit。数据来自所有使用Java作为主要语言的开发者。

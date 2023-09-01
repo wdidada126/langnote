@@ -1,5 +1,8 @@
 # Tars
 
+腾讯联合科大讯飞，TARS 正式支持 Google ProtoBuf
+讯飞用tars
+
 https://tarscloud.github.io/TarsDocs/installation/docker.html
 
 腾讯、阅文、虎牙、微软、微众、ARM、科大讯飞、好未来、优品财富、大唐移动

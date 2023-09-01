@@ -1,5 +1,7 @@
 # tidb
 
+tidb解决的是容量问题
+
 PingCAP 团队的论文《TiDB: A Raft-based HTAP Database 》入选 VLDB 2020 ，成为业界第一篇 Real-time HTAP 分布式数据库工业实现的论文。
 https://blog.csdn.net/tidb_pingcap/article/details/108401113
 

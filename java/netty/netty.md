@@ -1,6 +1,328 @@
 # netty
 
 
+
+
+Netty源码相关的类分类
+
+内存相关           ByteBuf
+线程相关 cpu    NioEventLoopGroup 默认构造函数是int类型，默认值是cpu个数
+网络相关 Channel
+
+client server
+
+
+
+Netty源码，是否引用三方jar包？
+日志库
+
+
+
+https://github.com/netty/netty/blob/4.1/pom.xml
+
+
+
+AbstractBootstrap.bind()  connect()
+
+
+
+做实验，看netty线程池，复习jdk二进制工具
+
+
+
+ChannelHandlerAdapter
+channelReader
+
+catchException
+
+
+
+ChannelHandlerContext
+
+
+
+ButeBuf构造函数
+
+
+
+Unpooled.buf
+
+
+
+LineBasedFrameDecoder TCP粘包
+LineBasedFrameDecoder构造函数 int参数
+
+
+
+StringDecoder
+
+
+
+
+
+LineBasedFrameDecoder的工作原理是它一次遍历ByteBuf中的可读字节，判断看是否有“\n”或者“\r\n”， 如果有，就以此位置为结束位置，从可读索引到结束位置区间的字节就组成了一行。它是以换行符为结束标志的解码器，支持携带结束符或者不携带结束符两种解码方式，同时支持配置单行的最大长度。如果连续读取到最大长度后仍然没有出现换行符，就会抛出异常，同时忽略掉之前读到的异常码流。
+StringDecoder的功能非常简单，就是将接收到的对象转换成字符串，然后继续调用后面的Handler。LineBasedFrameDecoder+StringDecoder组合就是按行切换的文本解码器，它被设计用来支持TCP的粘包和拆包。
+当然，如果发送的消息不是以换行符结束的，该怎么办呢？或者没有回车换行符，靠消息头中的长度字段来分包怎么办？是不是需要自己写半包解码器？
+
+答案是否定的，Netty提供了多种支持TCP粘包/拆包的解码器用来满足用户的不同诉求。
+
+
+
+
+
+
+
+
+
+NioServerSocketChannel            server
+NioSocketChannel                       client
+
+
+
+SocketChannel.pipeline()
+
+
+
+addLast()
+
+**Netty实战**
+
+**Netty权威指南（第2版）**
+
+DirectByteBuffe
+Channel
+ChannelHandler
+ChannelPinpile
+ChannelInHandler
+ChannelOutHandler
+
+Netty底层基于JDK 的NIO，我们为什么不直接基于JDK的NIO或者其他NIO框架：
+使用JDK自带的NIO需要了解太多的概念，编程复杂。
+Netty底层IO模型随意切换，而这一切只需要做微小的改动。
+Netty自带的拆包解包，异常检测等机制让我们从 NIO 的繁重细节中脱离出来，只需关心业务逻辑即可。
+Netty解决了JDK 的很多包括空轮训在内的 Bug。
+Netty底层对线程，Selector 做了很多细小的优化，精心设计的 Reactor 线程做到非常高效的并发处理。
+
+自带各种协议栈，让我们处理任何一种通用协议都几乎不用亲自动手。
+Netty社区活跃，遇到问题随时邮件列表或者 issue。
+Netty已经历各大RPC框架（Dubbo），消息中间件（RocketMQ），大数据通信（Hadoop）框架的广泛的线上验证，健壮性无比强大。
+Netty所用的堆外内存只是Java NIO的DirectByteBuffer类
+https://blog.csdn.net/u010359663/article/details/84816103
+
+Boostrap
+
+自定义解码器 编码器 tcp udp http websocket 自定义协议
+
+线程池
+
+netty 3/4 
+
+org.jboss.netty
+
+io.netty
+
+
+
+NioServerSocketChannel
+
+https://www.jianshu.com/p/97d38824b444
+
+lib_netty_transport_native_epoll_x86_64.so
+
+
+
+https://netty.io/wiki/native-transports.html
+
+
+
+\- bootstrap
+
+\- buffer
+
+\- channel
+
+\- traffic
+
+\- util
+
+
+
+找一下netty sample 自己写的 https://github.com/edidada/testnetty
+
+https://github.com/edidada/Netty-study
+
+https://github.com/edidada/nettybook2
+
+
+
+workGroup select
+
+bossGroup  io
+
+Output
+
+Input
+
+尽管本书是专门介绍NIO框架Netty的，但是，并不意味着所有的Java网络编程都必须要选择NIO和Netty，具体选择什么样的IO模型或者NIO框架，完全基于业务的实际应用场景和性能诉求，如果客户端并发连接数不多，周边对接的网元不多，服务器的负载也不重，那就完全没必要选择NIO做服务端；如果是相反情况，那就要考虑选择合适的NIO框架进行开发。
+
+http://ifeve.com/author/linfeng/
+
+java nio 1 1.4
+
+java nio 2 1.7
+
+
+
+没事多看看netty doc
+
+https://netty.io/4.1/api/index.html
+
+
+
+https://netty.io/wiki/user-guide-for-4.x.html
+
+netty example 指南
+
+
+
+netty
+
+4.1.43.Final 需要jdk11
+
+jdk8不行
+
+
+
+Netty权威指南
+
+
+
+c/c++中有channel概念
+
+Unix的5种I/O模型
+
+
+
+ByteBuf  缓冲区
+
+
+
+Char short buf
+一个多路复用器Selectior可以对接多个Channel
+突破1024/4028个数限制
+
+
+
+Channel子类
+
+
+
+ServerSocketChannel
+
+
+
+netty 已经实现http协议
+
+
+
+
+
+Nettt api
+
+BiteBuf
+
+
+
+Java api
+
+BiteBuffer
+
+二者不能混淆
+
+Netty 引用计数算法
+
+Netty 是一个高性能的异步事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。Netty 使用了一种称为引用计数的算法来管理内存。
+
+引用计数算法是一种内存管理技术。在这种算法中，对象有一个关联的引用计数，表示对该对象的引用数量。每当创建一个新的引用，计数就会增加，每当引用被销毁，计数就会减少。当引用计数达到零时，表示没有任何引用指向该对象，因此可以安全地回收该对象的内存。
+
+以下是 Netty 中引用计数的源码解析：
+
+在 Netty 中，ReferenceCountHandler 是所有需要进行引用计数的 Handler 的基类。它实现了 ReferenceCounted interface，这个 interface 定义了 decrement() 方法。
+
+java
+public interface ReferenceCounted {  
+    void decrement();  
+}
+ReferenceCountHandler 继承了 ChannelHandlerAdapter，其中 decrement() 方法被覆写为：
+
+java
+public class ReferenceCountHandler extends ChannelHandlerAdapter implements ReferenceCounted {  
+    private final AtomicInteger counter = new AtomicInteger();  
+  
+    public ReferenceCountHandler() {  
+        if (!increments()) {  
+            throw new IllegalStateException("Cannot construct without increments");  
+        }  
+    }  
+  
+    public ReferenceCountHandler(boolean increments) {  
+        if (increments) {  
+            this.counter.incrementAndGet();  
+        }  
+    }  
+  
+    @Override  
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  
+        if (!increments()) {  
+            throw new IllegalStateException("Cannot be added without increments");  
+        }  
+        ctx.fireHandlerAdded(this);  
+    }  
+  
+    @Override  
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  
+        ctx.fireHandlerRemoved(this);  
+    }  
+  
+    @Override  
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {  
+        ctx.fireChannelRead(msg);  
+    }  
+  
+    @Override  
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {  
+        ctx.fireChannelReadComplete();  
+    }  
+  
+    @Override  
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {  
+        ctx.fireExceptionCaught(cause);  
+    }  
+  
+    @Override  
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {  
+        ctx.fireChannelActive();  
+    }  
+  
+    @Override  
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {  
+        ctx.fireChannelInactive();  
+    }  
+  
+    @Override  
+    public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {  
+        ctx.fireChannelWritabilityChanged();  
+    }  
+  
+    @Override  
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {  
+        ctx.fireUserEventTriggered(evt);  
+    }  
+  
+    @Override  
+    public void channelReadComplete0(ChannelHandlerContext ctx) throws Exception { // private method! Do not use! For testing only! 0 for decrement is done in the public method. 1 is done in the fire method chain. 2 is done in the outbound buffer. 3 is done here. 4 is done in the channelRead method of the handler itself. 5 is done in the channelReadComplete method of the handler itself. 6 is done in the channelReadComplete method of the last handler in the pipeline. 7 is done in the channelReadComplete method of the first handler in the pipeline. 8 is done in the channelReadComplete0 method of the first handler in the pipeline. 9 is done in the channelReadComplete0 method of the last handler in the pipeline. 10 is done here. 11 is done in the channelReadComplete0 method of the handler itself. 12 is done in the channelReadComplete0 method of the last handler in the pipeline. 13 is done here. 14 is done in the channelReadComplete0 method of the first handler in the pipeline. 15 is done in the channelReadComplete0 method of the last handler in the pipeline. Finally we have channelReadComplete0 itself. It completes this circle. A whole circle has been completed without any event being processed so we have to call channelReadComplete on all channels that are listening for this event to make sure that all channels get their chance to process this event and that all channels are aware that this event has been processed so that when any channel is added later to the pipeline this event can be processed and that there won't be any "zombie" events anymore (like an event that has been added to the pipeline but will never be processed because all channels are listening for it and none of
+
+
 Trustin Lee的作品
 https://twitter.com/trustin
 https://speakerdeck.com/trustin

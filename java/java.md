@@ -1,5 +1,16 @@
 # Java标准库
 
+java spec
+https://docs.oracle.com/javase/specs/
+Java注解三要素
+java.lang.annotation.Annotation
+
+1.注解的定义
+2.注解的使用
+3.注解处理器
+
+
+接口默认方法的修饰符就是public abstract，所以可以省略
 
 
 Java
