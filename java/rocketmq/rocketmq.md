@@ -1,4 +1,107 @@
 # RocketMQ
+
+## 版本更新记录
+https://rocketmq.apache.org/zh/release-notes
+4.0.0-incubating
+2017年1月24日
+
+4.2.0
+2017年12月13日
+
+4.3.0
+2018年7月24日
+4.4.0
+2019年1月17日
+4.5.2
+2019年8月2日
+4.6.0
+2019年11月25日
+4.9.2
+2021年10月26日
+Version 5.0.0-PREVIEW
+2021年9月6日
+5.0.0-ALPHA
+2022年3月15日
+5.0.0
+2022年9月9日
+
+
+
+
+
+Apache RocketMQ Dashboard - Version 1.0.0
+2021年9月23日
+
+## 功能更新记录
+### 5.0.0
+Below is a summary of the issues addressed in the 5.0.0 release of RocketMQ. For full documentation of the release, a guide to get started, please refer to Quick Start.
+Feature
+[RIP-19] - Server side rebalance, lightweight consumer client support.
+[RIP-21] - Logical queue abstraction for fast scale out.
+[RIP-26] - Improve Batch Message Processing Throughput.
+[RIP-31] - RIP-31-Support-RocketMQ-BrokerContainer.
+[RIP-32] - Slave Acting Master Mode.
+[RIP-34] - Support quorum write and adaptive degradation in master slave architecture.
+[RIP-39] - Support gRPC protocol.
+[RIP-43] - Support timing messages with arbitrary time delay.
+[RIP-44] - Support DLedger Controller.
+Improvement
+[ISSUE-4993] - [ISSUE-4993] - Polish the documents for mq Dledger Quick Deployment
+[ISSUE-4982] - [ISSUE-4982] - Remove useless import in proxy module
+[ISSUE-4487] - [ISSUE-4487] - The trackType is wrong when the consumer in broadcasting subscription
+[ISSUE-5001] - [ISSUE-5001] - Sort the property when persist config.
+[ISSUE-4968] - [ISSUE-4968] - Add windows/macos into build matrix
+[ISSUE-4964] - [ISSUE-4964] - Remove Unnecessary Imports
+[ISSUE-4955] - [ISSUE-4955] - validate userProperties contain control character or not
+[ISSUE-4953] - [ISSUE-4953] - return INVALID_RECEIPT_HANDLE when cannot find the broker of handle
+[ISSUE-4936] - [ISSUE-4936] - Remove useless log output after the master and slave broker are started on the empty disk in controller mode
+[ISSUE-4934] - [ISSUE-4934] - Checking for violations as part of build
+[ISSUE-4374] - [ISSUE-4374] - Replace findbugs by spotbugs and make it applied during compile
+[ISSUE-4911] - [ISSUE-4911] - Make all admin command descriptions begin with capital letters
+[ISSUE-4904] - [ISSUE-4904] - Optimize store module test cases to reduce execution time
+[ISSUE-4897] - [ISSUE-4897] - Increase the retry interval of registration failure to prevent frequent log output
+[ISSUE-4879] - [ISSUE-4879] - Enable GitHub Action dependency caching for coverage
+[ISSUE-4870] - [ISSUE-4870] - Enhance the mergeability: add status checker about the protected branch
+[ISSUE-4855] - [ISSUE-4855] - Add example of timing messages with arbitrary time delay
+[ISSUE-4832] - [ISSUE-4832] - Remove innerProducer and innerConsumer in EscapeBridge
+[ISSUE-4817] - [ISSUE-4817] - Add a command to clear broker data from controller for CLI
+[ISSUE-4821] - [ISSUE-4821] - Add some integration tests for POP consumption in slave-acting-master mode
+[ISSUE-4810] - [ISSUE-4810] - Correction of spelling mistakes in TimerMessageStore
+[ISSUE-4785] - [ISSUE-4785] - Enable misspell check GitHub Action
+[ISSUE-3998] - [ISSUE-3998] - Enable Github Action for CI Build
+[ISSUE-4776] - [ISSUE-4776] - Support tag in litepullconsumer assign mode
+[ISSUE-4755] - [ISSUE-4755] - Some improvement about branch management
+[ISSUE-4725] - [ISSUE-4725] - Optimize the CK/ACK 's invisibleTime in POP consumption mode.
+[ISSUE-4746] - [ISSUE-4746] - add controller stand-alone and cluster 3 nodes config file
+[ISSUE-4732] - [ISSUE-4732] - Make new timer message can adapt to HA and brokerContainer
+[ISSUE-4167] - [ISSUE-4167] - Add unit test (EscapeBridgeTest、FilterServerManagerTest、PullRequestHoldServiceTest )
+[ISSUE-4167] - [ISSUE-4167] - Add unit test
+[ISSUE-4677] - [ISSUE-4677] - Optimize information when the variable is not set
+[ISSUE-4670] - [ISSUE-4670] - Modify the package path and fix typo
+[ISSUE-4650] - [ISSUE-4650] - Admin tool sendMsgStatus add more description
+[ISSUE-4579] - [ISSUE-4579] - Add unit test
+[ISSUE-4576] - [ISSUE-4576] - Upgrade dledger version to 0.2.7
+[ISSUE-4568] - [ISSUE-4568] - Improve performance of consume queue
+Bug
+[ISSUE-4995] - [ISSUE-4995] - Fix test case:BrokerPathConfigHelperTest#testGetLmqConsumerOffsetPath
+[ISSUE-5002] - [ISSUE-5002] - Fix code style in any net modules.
+[ISSUE-4987] - [ISSUE-4987] - fix test case:PlainAccessValidatorTest#testUpdateSpecifiedAclFileGlobalWhiteAddrsConfig
+[ISSUE-4985] - [ISSUE-4985] - Fix TimerMetrics#persist tmpFile can't rename to configFile
+[ISSUE-4979] - [ISSUE-4979] - Fix flaky integration test NormalMessageSendAndRecvIT
+[ISSUE-4977] - [ISSUE-4977] - Fix BrokerOuterAPITest#test_register_timeout
+[ISSUE-4972] - [ISSUE-4972] - Fix DefaultLitePullConsumerTest#testConsumerCommitSyncWithMQOffset
+[ISSUE-4920] - [ISSUE-4920] - Fix comment word typo
+[ISSUE-4841] - [ISSUE-4841] - Fix the reply message is the original request msg.
+[ISSUE-4894] - [ISSUE-4894] - Fix NPE in CommandUtil
+[ISSUE-4889] - [ISSUE-4889] - Fix controller test:DLedgerControllerTest#testChangeControllerLeader
+[ISSUE-4842] - [ISSUE-4842] - fix thread-safety problem of admin tools
+[ISSUE-4734] - [ISSUE-4734] - Fix DLedgerController startScheduling concurrency problem
+[ISSUE-4628] - [ISSUE-4628] - Fix bug in LMQ when checking multiple Dispatch Queue
+[ISSUE-4579] - [ISSUE-4579] - Fix ACL information update failed bugs
+[ISSUE-4522] - [ISSUE-4522] - Fix topic route info not found in some case
+[ISSUE-4507] - [ISSUE-4507] - fix message trace throws exception #4507
+[ISSUE-4501] - [ISSUE-4501] - fix Namesrv auto discovery not work
+
 ## 官方doc
 
 https://rocketmq.apache.org/zh/docs/4.x/
