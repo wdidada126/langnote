@@ -1,5 +1,12 @@
 # SQL
 
+sql 统计 体系 优化查询时间
+
+避免用null
+https://dzone.com/articles/how-to-optimize-mysql-queries-for-speed-and-perfor
+
+在where中可以包含任意数目的and和or操作符，在没有任何其他符号的时候，例如括号，SQL会首先执行and条件，然后才执行or语句
+
 表设计：主键，默认值，check
 https://blog.csdn.net/qq_61122628/article/details/123738200
 

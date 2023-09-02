@@ -1,5 +1,13 @@
 # jprofiler
 
+yourkit
+
+https://www.ej-technologies.com/download/jprofiler/files 支持mac
+
+https://www.jb51.net/softs/608640.html
+
+https://www.jb51.net/softs/609957.html#downintro2
+
 类对象数量
 
 A1.分析的数据主要来自于下面俩部分

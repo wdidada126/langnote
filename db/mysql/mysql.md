@@ -1,5 +1,25 @@
 # mysql
 
+
+mysql关闭ssl
+
+D:\Mysql\mysql-5.7.31-winx64\data\
+
+private_key.pem
+public_key.pem
+server-cert.pem
+server-key.pem
+
+
+
+net stop mysql
+
+
+
+skipssl
+
+useSSL=false
+
 通配符的分类:
 %百分号通配符: 表示任何字符出现任意次数(可以是0次).
 _下划线通配符:表示只能匹配单个字符,不能多也不能少,就是一个字符.

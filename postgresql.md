@@ -1,5 +1,10 @@
 # postgresql
 
+
+德歌
+https://github.com/digoal/blog
+
+
 ### pg scheme
 pg数据库下面有模式(scheme)，模式下面有表
 

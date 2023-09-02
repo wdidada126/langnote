@@ -1,5 +1,5 @@
 # java8
-
+String replaceAll() 需要写单元测试 一个字符串，出现特定字符替换掉 实现上述功能
 
 JDK 7提供了7个阻塞队列，如下。
 ·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。

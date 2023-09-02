@@ -1832,7 +1832,9 @@ MergedBeanDefinitionPostProcessor, DestructionAwareBeanPostProcessor接口
 |                                           |      |      |
 | ConcurrentTaskExecutor                    |      |      |
 | ConcurrentTaskExecutor.ManagedTaskBuilder |      |      |
+| ConcurrentTaskExecutor.ManagedTaskExecutorAdapter |      |      |
 | ConcurrentTaskScheduler                   |      |      |
+| ConcurrentTaskScheduler.EnterpriseConcurrentTriggerScheduler                   |      |      |
 | CustomizableThreadFactory                 |      |      |
 | DefaultManagedAwareThreadFactory          |      |      |
 | DefaultManagedTaskExecutor                |      |      |
@@ -1844,8 +1846,15 @@ MergedBeanDefinitionPostProcessor, DestructionAwareBeanPostProcessor接口
 | ThreadPoolExecutorFactoryBean             |      |      |
 | ThreadPoolTaskExecutor                    |      |      |
 | ThreadPoolTaskScheduler                   |      |      |
+| ThreadPoolTaskScheduler.DelegatingErrorHandlingCallable<V>                   |      |      |
 
 
+CustomizableThreadFactory是类，继承了CustomizableThreadCreator
+
+ExecutorConfigurationSupport抽象类，子类包括ThreadPoolTaskExecutor，继承了CustomizableThreadFactory接口
+
+ThreadPoolTaskExecutor
+实现了AsyncListenableTaskExecutor和SchedulingTaskExecutor接口，
 
 ####  org.springframework.scheduling.config
 
