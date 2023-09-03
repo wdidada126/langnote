@@ -1,6 +1,17 @@
 # mysql
 
 mysql
+varchar 字符串长度需要注意
+索引 char like %xx%看执行计划 不走
+
+mysql 共享锁 排他锁
+
+s锁
+
+x锁
+mysql的相关技术细节，需要搞清楚是mysql server的还是存储引擎的
+
+mysql
 pgsql如何实现sql join
 https://www.cnblogs.com/flying-tiger/p/8331425.html
 

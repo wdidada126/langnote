@@ -1,5 +1,8 @@
 # mybatis
 
+sql in 要判断集合是否为null
+update 不能直接使用set
+用<set></set>
 
 https://mybatis.org/mybatis-3/apidocs/index.html
 

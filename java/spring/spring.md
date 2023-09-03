@@ -1,14 +1,62 @@
 # Spring
 
 
+Spring aop
+
+Spring tx
+@Transnal
+
+Spring JDBC-Spring对事务管理的支持
+https://blog.csdn.net/yangshangwei/article/details/78050480
+
+xxxTransactionManager
+
+jdbc DataSourceTransactionManager
+
+事务	说明
+org.springframework.orm.jpa.JpaTransactionManager	使用JPA进行持久化时，使用该事务管理器
+org.springframework.orm.hibernateX.HibernateTransactionManager	使用HibernateX版本时使用该事务管理器
+org.springframework.jdbc.datasource.DataSourceTransactionManager	使用SpringJDBC或MyBatis等基于DataSource数据源的持久化技术时，使用该事务管理器
+org.springframework.orm.jdo.JdoTransactionManager	使用JDO进行持久化时，使用该事务管理器
+org.springframework.transaction.jta.JtaTransactionManager	具有多个数据源的全局事务使用该事务管理器（不管采用何种持久化技术）
+
+Springboot+Atomikos+Jpa+Mysql实现JTA分布式事务
+
+
+
+
+事务隔离级别：
+
+可串行化(serializable):保证可串行化调度。一些数据库系统对该隔离级别的实现，在某些情况下允许非可串行化执行。
+可重复读(repetable read):只允许读取已提交的事务，而且一个事务两次读取一个数据项期间，其他事务不得更新该数据
+已提交读(read commited):只允许读取已提交的数据，但不要求可重复读。（两次读取期间，其他事务可以更新数据）
+未提交读(read uncommitted):允许读取未提交的数据(会出现脏读取)
+MySQL隔离级别
+
+事务隔离级别	脏读	不可重复读	幻读
+读未提交（read-uncommitted）	是	是	是
+不可重复读（read-committed）	否	是	是
+可重复读（repeatable-read）	否	否	是
+串行化（serializable）	否	否	否
+JDBC
+在JDBC(Java DataBase Connectivity)连接中，使用命令声明事务的开始、提交和取消。它通过java.sql.Connection接口实现，可以启用AutoCommit。
+JDBC事务由Connnection对象控制管理，也就是说，事务管理实际上是在JDBC Connection中实现。事务周期限于Connection的生命周期。JDBC Connection接口(java.sql.Connection)提供了两种事务模式：自动提交和手工提交。
+自动提交：缺省是自动提交。一条对数据库的更新（增/删/改）代表一项事务操作，操作成功后，系统将自动调用commit()来提交，否则将调用rollback()来回滚。
+手工提交：通过调用setAutoCommit(false)来禁止自动提交。这样就可把多个数据库操作的表达式作为一个事务，在操作完成后调 用commit()来进行整体提交，其中任何一个操作失败，都不会执行到commit()，并产生异常；此时可在异常捕获时调用rollback()进行回滚，以保持多次更新操作后，相关数据的一致性。
+JDBC 事务的一个缺点是事务的范围局限于一个数据库连接，一个 JDBC 事务不能跨越多个数据库。
+
+JPA规范的实现主要是hibernate
+
+JPA(Java Persistence API)为 Java 开发人员提供了一个对象 / 关系映射工具，用于管理 Java 应用程序中的关系数据。为我们提供了：
+ORM映射元数据。JPA支持XML和注解两种元数据的形式，元数据描述对象和表之间的映射关系，框架据此将实体对象持久化到数据库表中。如：@Entity、@Table、@Column、@Transient等注解。
+JPA 的API。用来操作实体对象，执行CRUD操作，框架在后台替我们完成所有的事情，开发者从繁琐的JDBC和SQL代码中解脱出来。
+JPQL查询语言：通过面向对象而非面向数据库的查询语言查询数据，避免程序的SQL语句紧密耦合。
+
+https://www.cnblogs.com/xiaoyuanr/p/13904582.html
 
 ## sping两种代理
 
-
-
 ![spring两种代理方式](..\..\imgs\spring\spring两种代理方式.png)
-
-
 
 <init-method>效果跟实现InitializingBean接口是一样的吗？
 在Spring中，<init-method>标签和实现InitializingBean接口都可以用来指定Bean初始化之后执行的方法，但是它们的实现方式和用途是有些不同的。
