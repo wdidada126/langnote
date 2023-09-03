@@ -1,4 +1,11 @@
 # docker
+
+金融场景 docker相比vm，安全性不够
+
+docker run/exec/cp
+docker cp contain_id:/file_to_path local_path
+docker 　centos 7 'yum update'
+
 Portainer 图形化工具
 镜像重新命名
 docker tag 3fa112fd3642 oracle:11g
