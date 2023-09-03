@@ -15,3 +15,12 @@ Yandex在2016年6月15日开源了一个数据分析的数据库,名字叫做Cli
 
 如何看待yandex开源clickhouse这个列式文档数据库
 
+
+10月31日，ClickHouse将在亚洲举行第二次线上Meetup。在活动期间，Yandex的ClickHouse开发人员将讨论DBMS的新特性，社区贡献者们也将发表演讲并分享经验（包括来自快手、字节跳动以及青云QingCloud等多位ClickHouse技术专家）。可去活动行相关链接或等待群中直播链接。
+
+17:05    EXPLAIN query in ClickHouse — Nikolai  Kochetov（Yandeх）
+17:40    ClickHouse实践和贡献  “from academic to industry”—郑天祺（快手）
+18:10    MaterializeMySQL database engine in ClickHouse — 张健（青云QingCloud）--将用中文展示
+18:40    关于物化视图你需要知道的事—Denis Zhuravlev（revjet）
+19:30   ClickHouse内部实践 —Zhaojie Niu （ByteDance）
+20:00    令人惊艳的ClickHouse新功能— Alexey Milovidov（Yandex）

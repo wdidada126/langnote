@@ -1,6 +1,9 @@
 # MongoDB
 
+叶翔MongoDB
+叶翔：MongoDB江浙地区用户会主席 在此之前也是淘宝Tair分布式KV系统的技术负责人，负责过阿里云Memcache，Redis服务等，在阿里集团工作8年，一直在做NoSQL相关的技术。 
 
+https://mongoing.com/ychtiger
 
 面试题：分区 一致性hash
 

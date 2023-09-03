@@ -1,5 +1,11 @@
 # redis
 
+Redis中清除某个库中的所有数据**
+
+- 进入redis ：redis-cli -h 192.168.233.132 -p 6380
+- 选择其中某个库(比如2号库)：select 2
+- 输入命令：flushdb
+
 Redis之各版本特性
 
 **1.Redis2.6**
