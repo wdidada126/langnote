@@ -1,5 +1,14 @@
 # mysql
 
+mysql
+pgsql如何实现sql join
+https://www.cnblogs.com/flying-tiger/p/8331425.html
+
+matlab 关系运算
+
+a left join b on a.id = b.id
+a left join b on a.id > b.id
+
 
 mysql关闭ssl
 
