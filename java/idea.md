@@ -1,5 +1,9 @@
 # IDEA
 
+
+IDEA实现序列化接口Serializable自动生成serialVersionUID
+Settings->Editor->inspect->Serialable without id 选上
+
 java命令行执行程序，增加-D参数
 idea run configure ，vm options
 

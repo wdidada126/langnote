@@ -436,10 +436,7 @@ J
 -XX:+TraceClassUnloading:跟踪类的卸载
 -verbose:class:等于-XX:+TraceClassLoading和-XX:+TraceClassUnloading两个功能。
 
-作者：陈阳001
-链接：https://www.jianshu.com/p/7ecbb90478ef
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://www.jianshu.com/p/7ecbb90478ef
 
 
 -XX:+TraceClassLoading
