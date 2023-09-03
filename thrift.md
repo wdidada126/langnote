@@ -1,5 +1,7 @@
 # thrift
 
+.thrift
+https://thrift.apache.org/docs/idl.html
 
 idea maven thrift
 https://blog.csdn.net/weixin_38370441/article/details/121007996

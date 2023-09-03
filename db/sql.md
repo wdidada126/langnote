@@ -1,4 +1,8 @@
 # SQL
+
+强制索引 FORCE INDEX
+SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …
+
 知乎 sql优化收藏夹
 
 in不走索引
