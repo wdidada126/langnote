@@ -1,5 +1,16 @@
 # SQL
 
+多列组合不重复
+
+SQL中的DISTINCT关键字用于返回唯一的数据记录，即不重复的记录。DISTINCT关键字可以应用于一个或多个列，它将对所有列进行比较以确定是否为重复记录。
+如果你使用DISTINCT修饰第一个列，它将确保第一个列的数据不重复。例如，假设你有一个名为"employees"的表，其中包含"first_name"和"last_name"两列，你可以使用以下查询来返回不重复的"first_name"值：
+sql
+SELECT DISTINCT first_name FROM employees;
+如果你想限制所有列的数据都不重复，可以在SELECT子句中列出所有列，并使用DISTINCT关键字。例如，以下查询将返回不重复的"first_name"和"last_name"组合：
+sql
+SELECT DISTINCT first_name, last_name FROM employees;
+这将确保在结果中没有重复的组合（即相同的"first_name"和"last_name"组合）
+
 select 里面套 case when
 https://www.cnblogs.com/dshore123/p/8126418.html?ivk_sa=1024320u
 

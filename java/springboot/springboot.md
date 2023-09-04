@@ -1,4 +1,6 @@
 # Spring Boot
+SpringBoot使用fastJson作为json解析框架
+https://www.bbsmax.com/A/kmzLk0aKdG/
 
 https://docs.spring.io/spring-boot/docs/2.7.14/reference/html/using.html#using.devtools.property-defaults
 

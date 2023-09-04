@@ -1,5 +1,11 @@
 # mysql
 
+千金良方 mysql性能优化 
+
+从dba或者源码的角度，各种排查
+
+好在从MySQL 5.7版本开始提供了performance_schema.metadata_locks表，该表记录了各种Server层的锁信息（包括全局读锁和MDL锁等信息）
+
 MySQL源代码：从SQL语句到MySQL内部对象
 https://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-1/
 
