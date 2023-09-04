@@ -1,5 +1,13 @@
 # SQL
 
+select id ,user_name ,password ,name,age,sex from tb_user where user_name like '%${userName}%'
+正确
+
+```sql
+select id as id,user_name as userName,password as password,name,age,sex from tb_user where user_name like '%#{userName}%'
+```
+错误 
+
 SQL经典50题
 https://blog.csdn.net/u010226597/article/details/106334861/
 

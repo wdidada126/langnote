@@ -1,5 +1,28 @@
 # mybatis
 
+mybatis打印mysql执行的sql
+
+https://blog.csdn.net/weixin_41037319/article/details/117335049
+https://blog.csdn.net/ming_311/article/details/122881594
+
+使用IDEA插件 mybatis log plugin
+
+	<option :value="role.id" v-for="role in roleList">{{role.roleName}}</option>
+
+
+sql注入
+https://www.jb51.net/article/232026.htm
+
+Mybatis中Like 的使用方式以及一些注意点
+
+      select * from t_user where name like '%${name}%'   SQL注入风险
+      select * from t_user where name like concat('%',#{name,jdbcType=VARCHAR},'%')
+
+mybatis
+CDATA
+
+[MyBatis中*CDATA*的作用 - 简书](https://www.baidu.com/link?url=-vqdxT-JcYswI4IFz2Z_1tKMWcur1rjH5q2bSEFPSNTEK_K6B7dMbgtc5V7WXvzs&wd=&eqid=e65d6b3400148b5c0000000462f358bf)
+
 Mybatis中实现批量更新的几种姿势
 https://zhuanlan.zhihu.com/p/135839992
 

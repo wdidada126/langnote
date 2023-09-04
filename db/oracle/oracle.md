@@ -1,17 +1,16 @@
 # oracle
 
-
-
+资深dba 专家型dba推荐的学习Oracle的资料
+https://dbaplus.cn/news-10-1475-1.html
+https://dbaplus.cn/news-10-1475-1.html
+https://dbaplus.cn/news-10-1475-1.html
 
 Oracle 返回id
 https://blog.csdn.net/mlsama/article/details/106690730
 
-
-
 ### oracle 11g docker安装
 
 Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
-
 
 registry.aliyuncs.com/helowin/oracle_11g
 

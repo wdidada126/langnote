@@ -1,5 +1,284 @@
 # mysql
 
+flex/bison与antlr的联系与区别
+
+可执行程序
+flex bison
+anltr.bat
+
+.l .y
+.g4
+
+c、c++代码嵌入.y文件，自定义头文件。各种内置函数
+l y .a库
+
+yyparse
+localytext
+
+
+listener visit模式
+antlr-runtime 库
+
+antlr flex/bison都可以实现计算器
+
+
+### IDEA gateway
+
+你和答主说的不是同一个东西 答主说的是新的gateway 你说的是deployment
+
+unicoude云服务器错误，没有4G剩余空间
+
+miniob ob数据库跟华中科技合作的数据库竞赛 使用了flex bison
+
+mysql使用 .yy .ll
+
+sql_yacc.yy
+sql_hints.yy
+MySQL内核源码解读-SQL解析一
+https://blog.51cto.com/wangwei007/2300217
+
+京东商城数据库技术部傅志宇
+MySQL内核源码解读-SQL解析之解析器浅析
+https://blog.51cto.com/wangwei007/2300959
+京东商城数据库技术部郭光欣
+
+编译原理 极客时间 宫
+
+mvcc 多版本并发控制
+java代码实现
+https://blog.csdn.net/weixin_29132813/article/details/114537588
+
+https://github.com/edidada/MYDB
+
+yes的练级攻略
+
+mysql 锁的
+https://zhuanlan.zhihu.com/p/393683080
+
+
+	CREATE TABLE `yes` (
+	  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+	  `name` varchar(45) DEFAULT NULL,
+	  `address` varchar(45) DEFAULT NULL,
+	  PRIMARY KEY (`id`)
+	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
+
+查看事务隔离级别 mysql5.7.20 之后
+show variables like 'transaction_isolation';
+SELECT @@transaction_isolation;
+
+
+mysql5.7.20 之后
+SELECT @@tx_isolation;
+show variables like 'tx_isolation';
+
+
+
+https://blog.csdn.net/weixin_40964170/article/details/114958297
+
+CREATE TABLE `yes`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `yes` VALUES (1, 'yes', 'hz');
+INSERT INTO `yes` VALUES (2, 'xx', 'hz');
+INSERT INTO `yes` VALUES (3, 'aa', 'd');
+
+select * from yes where name = 'yes' for update;
+
+select * from yes where name = 'xx' for update;
+
+开启事务？
+
+mysql 日志
+
+redo log
+undo log
+bin log
+
+又一个是存储改变之前的数据，改变之后的数据
+区别如下： redo log 是InnoDB 引擎特有的；binlog 是MySQL 的Server 层实现的，所有引擎都可以使用。 redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原始逻辑。
+https://segmentfault.com/a/1190000023827696
+
+[MySQL]源码角度看redo log
+https://www.dazhuanlan.com/alaskawind/topics/1167481
+
+自己实现innodb wal机制？
+总的来说，MySQL中事务的原子性是通过 undo log 来实现的，事务的持久性性是通过 redo log 来实现的，事务的隔离性是通过读写锁+MVCC来实现的。
+
+https://www.modb.pro/db/234350
+http://catkang.github.io/2020/02/27/mysql-redo.html
+
+实验课
+https://gitee.com/edidada/naivedb
+https://www.writebug.com/git/goodwill/NaiveDB
+NaiveDB 是一个关系数据库管理系统，采用客户端/服务器架构。主要分为存储模块、查询模块、元数据管理模块、事务模块(https://www.writebug.com/git/goodwill/NaiveDB)
+
+
+##### 事务模块
+
+* 服务器支持多客户端并发
+* 实现 begin transaction 和 commit。
+* 使用二级锁协议，实现 read committed 隔离级别。
+* 实现单一事务的 WAL 机制，可以读写 log 并恢复数据。
+* 完善数据库存储模块与 bug 修改。
+
+## MySQL中有7种日志文件
+1. 重做日志（redo log）
+2. 回滚日志（undo log)
+3. 二进制日志（bin log）
+4. 错误日志（error log）
+5. 慢查询日志（slow query log）
+6. 一般查询日志（general log）
+7. 中继日志（relay log）
+
+https://github.com/bingoohuang/blog/issues/137
+
+redo日志文件名格式为 ib_logfile0或ib_logfile1
+
+可使用find命令模糊查找
+
+在Apache Ratis项目中，实现了一种更为高效的WAL机制
+
+WAL会被删除吗
+如果WAL内的transaction已经被成功apply到状态机里去了，就可以被删除掉了
+
+[Rocksdb 的 WAL实现 底层探索](https://blog.csdn.net/Z_Stand/article/details/108025338)
+
+update 一次更新多条数据，或者不是一条数据
+根据主键来更新
+方案1，先查询，只有一条再更新
+
+mysql server日志，显示封锁
+
+数据库4种隔离级别与3级封锁协议
+MySQL事务提出了4个不同的隔离级别，而这些隔离级别的实现本质上就是通过加锁，解锁来实现的。
+https://blog.csdn.net/weixin_44795128/article/details/119825139
+
+lock in share mode
+for update
+说到共享锁和排他锁，就会想到悲观锁，这两个都属于数据库带的悲观锁，乐观锁不是数据库带的。
+
+乐观锁：可以给表加一个version字段，先查询version字段放在缓存里，每次修改之前，在查询一次version字段，若跟缓存里的数值不一致，则回滚。
+
+https://zhuanlan.zhihu.com/p/372090999
+
+https://blog.csdn.net/gklifg/article/details/38752691
+
+意向锁
+对任何一个结点加锁时，必须先对它的上层结点加意向锁。
+
+三种常用的意向锁：
+1）意向共享锁（IS锁）：
+对一个数据对象加IS锁，表示它的后裔结点拟（意向）加S锁。
+事务T1对数据对象A加上IS锁后，事务T2可以继续加除X锁以外的锁。
+2）意向排他锁（IX锁）：
+对一个数据对象加IX锁，表示它的后裔结点拟（意向）加X锁。
+事务T1对数据对象A加上IX锁后，事务T2只能继续加IS或IX锁。
+3）共享意向排他锁（SIX = S+IX锁）：
+对一个数据对象先加S锁，再加IX锁。例如对某个表加SIX锁，则表示该事务要读（S）整个表，同时会更新（IX
+）个别元组。
+https://blog.csdn.net/Ha1f_Awake/article/details/84994697
+
+X > SIX > S / IX > IS
+
+
+Mysql 插入意向锁
+https://blog.csdn.net/u010648194/article/details/123659594
+
+
+三、锁的分类。
+数据库里有的锁有很多种，为了方面理解，所以我根据其相关性"人为"的对锁进行了一个分类，分别如下
+基于锁的属性分类：共享锁、排他锁。
+基于锁的粒度分类：表锁、行锁、记录锁、间隙锁、临键锁。
+基于锁的状态分类：意向共享锁、意向排它锁。
+1、属性锁
+共享锁(Share Lock)
+共享锁又称读锁，简称S锁；当一个事务为数据加上读锁之后，其他事务只能对该数据加读锁，而不能对数据加写锁，直到所有的读锁释放之后其他事务才能对其进行加持写锁。
+共享锁的特性主要是为了支持并发的读取数据，读取数据的时候不支持修改，避免出现重复读的问题。
+排他锁(eXclusive Lock)
+排他锁又称写锁，简称X锁；当一个事务为数据加上写锁时，其他请求将不能再为数据加任何锁，直到该锁释放之后，其他事务才能对数据进行加锁。
+排他锁的目的是在数据修改时候，不允许其他人同时修改，也不允许其他人读取。避免了出现脏数据和脏读的问题。
+2、粒度锁
+表锁
+表锁是指上锁的时候锁住的是整个表，当下一个事务访问该表的时候，必须等前一个事务释放了锁才能进行对表进行访问；
+特点： 粒度大，加锁简单，容易冲突；
+行锁
+行锁是指上锁的时候锁住的是表的某一行或多行记录，其他事务访问同一张表时，只有被锁住的记录不能访问，其他的记录可正常访问；
+特点：粒度小，加锁比表锁麻烦，不容易冲突，相比表锁支持的并发要高；
+记录锁(Record Lock)
+记录锁也属于行锁中的一种，只不过记录锁的范围只是表中的某一条记录，记录锁是说事务在加锁后锁住的只是表的某一条记录。
+触发条件：精准条件命中，并且命中的条件字段是唯一索引；
+例如：update user_info set name=’张三’ where id=1 ,这里的id是唯一索引。
+记录锁的作用：加了记录锁之后数据可以避免数据在查询的时候被修改的重复读问题，也避免了在修改的事务未提交前被其他事务读取的脏读问题。
+
+间隙锁(Gap Lock)
+间隙锁属于行锁中的一种，间隙锁是在事务加锁后其锁住的是表记录的某一个区间，当表的相邻ID之间出现空隙则会形成一个区间，遵循左开右闭原则。
+比如下面的表里面的数据ID 为 1,4,5,7,10 ,那么会形成以下几个间隙区间，-n-1区间，1-4区间，7-10区间，10-n区间 (-n代表负无穷大，n代表正无穷大)
+触发条件：范围查询并且查询未命中记录，查询条件必须命中索引、间隙锁只会出现在REPEATABLE_READ(重复读)的事务级别中。
+例如：对应上图的表执行select * from user_info where id>1 and id<4(这里的id是唯一索引) ，这个SQL查询不到对应的记录，那么此时会使用间隙锁。
+间隙锁作用：防止幻读问题，事务并发的时候，如果没有间隙锁，就会发生如下图的问题，在同一个事务里，A事务的两次查询出的结果会不一样。
+
+临键锁(Next-Key Lock)
+临键锁也属于行锁的一种，并且它是INNODB的行锁默认算法，总结来说它就是记录锁和间隙锁的组合，临键锁会把查询出来的记录锁住，同时也会把该范围查询内的所有间隙空间也会锁住，再之它会把相邻的下一个区间也会锁住。
+例如：下面表的数据执行 select * from user_info where id>1 and id<=13 for update ;
+会锁住ID为 1,5,10的记录；同时会锁住，1至5,5至10,10至15的区间。
+触发条件：范围查询并命中，查询命中了索引。
+临键锁的作用：结合记录锁和间隙锁的特性，临键锁避免了在范围查询时出现脏读、重复读、幻读问题。加了临键锁之后，在范围区间内数据不允许被修改和插入。
+
+3、状态锁
+状态锁包括意向共享锁和意向排它锁，把他们区分为状态锁的一个核心逻辑，是因为这两个锁都是都是描述是否可以对某一个表进行加表锁的状态。
+意向锁的解释：当一个事务试图对整个表进行加锁(共享锁或排它锁)之前，首先需要获得对应类型的意向锁(意向共享锁或意向共享锁)
+意向共享锁
+当一个事务试图对整个表进行加共享锁之前，首先需要获得这个表的意向共享锁。
+意向排他锁
+当一个事务试图对整个表进行加排它锁之前，首先需要获得这个表的意向排它锁。
+为什么我们需要意向锁？
+意向锁光从概念上可能有点难理解，所以我们有必要从一个案例来分析其作用，这里首先我们先要有一个概念那就是innodb加锁的方式是基于索引，并且加锁粒度是行锁，然后我们来看下面的案例。
+
+第一步：
+事务A对user_info表执行一个SQL:update user_info set name =”张三” where id=6 加锁情况如下图;
+第二步：
+与此同时数据库又接收到事务B修改数据的请求：SQL: update user_info set name =”李四”；
+1、因为事务B是对整个表进行修改操作，那么此SQL是需要对整个表进行加排它锁的(update加锁类型为排他锁)；
+2、我们首先做的第一件事是先检查这个表有没有被别的事务锁住，只要有事务对表里的任何一行数据加了共享锁或排他锁我们就无法对整个表加锁(排他锁不能与任何属性的锁兼容)。
+3、因为INNODB锁的机制是基于行锁，那么这个时候我们会对整个索引每个节点一个个检查，我们需要检查每个节点是否被别的事务加了共享锁或排它锁。
+4、最后检查到索引ID为6的节点被事务A锁住了，最后导致事务B只能等待事务A锁的释放才能进行加锁操作。
+
+思考：
+在A事务的操作过程中，后面的每个需要对user_info加持表锁的事务都需要遍历整个索引树才能知道自己是否能够进行加锁，这种方式是不是太浪费时间和损耗数据库性能了？
+所以就有了意向锁的概念：如果当事务A加锁成功之后就设置一个状态告诉后面的人，已经有人对表里的行加了一个排他锁了，你们不能对整个表加共享锁或排它锁了，那么后面需要对整个表加锁的人只需要获取这个状态就知道自己是不是可以对表加锁，避免了对整个索引树的每个节点扫描是否加锁，而这个状态就是我们的意向锁。
+https://blog.csdn.net/weixin_36372610/article/details/113300372
+
+
+
+
+Innodb存储引擎支持多粒度的锁定，换句话说，允许事务在表级和行级上同时持有锁。意向锁是一种表级锁，它是由存储引擎自己维护的，不需要用户手动命令干预。如果事务想要给表中几行数据加上行级共享锁，那么需要先在表级别加上意向共享锁（IS）；如果事务想要给表中几行数据加上行级排他锁，那么需要先在表级别加上意向排他锁（IX）
+
+https://blog.csdn.net/Chasing__Dreams/article/details/108847570
+
+
+
+锁 隔离级别 出现的问题 脏读，不可重复读 幻读
+
+
+```sql
+SELECT 
+        COLUMNS .column_name, 
+        COLUMNS .column_comment, 
+        COLUMNS .TABLE_NAME, 
+        TABLES .table_comment 
+FROM 
+        information_schema. COLUMNS COLUMNS 
+LEFT JOIN information_schema. TABLES TABLES ON TABLES .TABLE_NAME = COLUMNS .TABLE_NAME 
+WHERE 
+        COLUMNS .table_schema = 'paps' 
+AND COLUMNS .table_name LIKE 'paps%';
+```
+
 Mybatis插入时返回自增主键（selectKey和useGeneratedKeys）
 https://blog.csdn.net/qq_34122822/article/details/79254361
 
