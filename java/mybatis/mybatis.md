@@ -1,5 +1,27 @@
 # mybatis
 
+MyBatis debug源码 ResultHandler
+select * from xx 没有结果
+
+京东架构-小傅哥手撸MyBatis专栏
+https://www.cnblogs.com/xiaofuge/p/16223576.html
+有书籍
+
+mybatis的，也有文章
+https://zhuanlan.zhihu.com/p/613769992
+
+eclipse可以集成一个插件生成类图，也可以生成包图。
+ModelGoon插件
+https://www.cnblogs.com/qlqwjy/p/9146436.html
+
+ObjectAid插件
+AmaterasUML 文件夹中3个 jar 文件统统放进 Eclipse 安装目录下
+
+https://www.jianshu.com/p/6239c916fc83
+
+redis source code,unit test quicklist
+
+
 Unknown column 'a.CHG_PLAN_FLAG' in 'where clause'
 
 记住where clause

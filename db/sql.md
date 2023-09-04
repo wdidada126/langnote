@@ -1,5 +1,39 @@
 # SQL
 
+sql行转列
+在SQL中，可以使用Pivot操作将行转换为列。下面是一个例子：
+
+假设我们有一个名为"sales"的表，它包含以下列：
+
+region（地区）
+year（年份）
+sales_amount（销售额）
+我们想要将该表中的数据按照年份进行转置，以便每个年份成为列，地区成为行。
+
+以下是实现这个需求的SQL代码：
+
+sql
+SELECT  
+  region,  
+  MAX(CASE WHEN year = 2020 THEN sales_amount END) AS '2020',  
+  MAX(CASE WHEN year = 2021 THEN sales_amount END) AS '2021',  
+  MAX(CASE WHEN year = 2022 THEN sales_amount END) AS '2022'  
+FROM  
+  sales  
+GROUP BY  
+  region;
+在这个例子中，我们使用了CASE语句来根据年份选择相应的销售金额，然后使用MAX函数将它们汇总到每个地区的一行。通过这种方式，我们成功地将行转换为列。
+
+请注意，具体的列名（'2020'、'2021'和'2022'）需要根据您的实际情况进行调整。如果需要更多的年份，需要添加相应的列。此外，如果有多个地区，需要将GROUP BY子句中的"region"替换为适当的列，以便对所有地区进行分组。
+
+课程号 成绩号
+
+
+现在要查看语文课程成绩 数学成绩
+case c_no 1 语文
+case c_no 2 数学
+
+
 多列组合不重复
 
 SQL中的DISTINCT关键字用于返回唯一的数据记录，即不重复的记录。DISTINCT关键字可以应用于一个或多个列，它将对所有列进行比较以确定是否为重复记录。
