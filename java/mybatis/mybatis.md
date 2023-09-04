@@ -1,5 +1,207 @@
 # mybatis
 
+Unknown column 'a.CHG_PLAN_FLAG' in 'where clause'
+
+记住where clause
+
+复杂sql编写
+
+https://gitee.com/edidada/springbootmybatis2
+
+and is not exists
+
+where is exists也有
+
+resultType resultMap区别
+MyBatis中的resultType和resultMap都是用于映射查询结果的配置项，但它们在处理结果数据时的方式有所不同。
+
+resultType：
+
+resultType是一个简单的映射类型，通常用于简单的映射查询。
+它需要你提前定义一个类型（Java类型或者MyBatis的类型别名），这个类型需要有一个或多个属性，这些属性需要和查询结果中的列一一对应。
+例如：
+xml`<select id="selectPerson" resultType="Person">  
+  SELECT id, name FROM person  
+</select>`
+resultMap：
+
+resultMap比resultType更灵活，更复杂，可以处理更复杂的查询结果。
+当查询的结果集中有多个数据列映射到单个属性时，或者当查询的结果集中有某个数据列映射到对象的多个属性时，可以使用resultMap。
+例如：
+xml`<resultMap id="personResultMap" type="Person">  
+  <id property="id" column="person_id"/>  
+  <result property="name" column="person_name"/>  
+  <collection property="orders" column="order_id" javaType="ArrayList" ofType="Order" select="getOrders"/>  
+</resultMap>  
+  
+<select id="selectPerson" resultMap="personResultMap">  
+  SELECT id as person_id, name as person_name FROM person  
+</select>`
+总的来说，如果你的查询结果比较简单，每个列都直接映射到一个属性，那么使用resultType就可以了。如果你的查询结果比较复杂，比如涉及到联接查询、结果集映射到多个属性或者一个属性需要从多个列获取数据等情况，那么就需要使用resultMap。
+https://www.cnblogs.com/yeyuting/p/14182741.html#:~:text=resultma,%E5%90%8C%E3%80%81%E7%B1%BB%E5%9E%8B%E9%80%82%E7%94%A8%E4%B8%8D%E5%90%8C
+
+mybaits springboot项目
+Mapper类没有注入
+
+排查思路
+
+报错信息
+
+CDATA mybatis 时间 大于小于等于 符号
+
+信达新核心项目遇到的报错
+Invalid bound statement (not found)
+
+https://blog.csdn.net/qq_42087460/article/details/113248045
+
+从MyBatis中间件设计者的角度
+打印statement列表
+
+mybatis打印mysql执行的sql
+
+https://blog.csdn.net/weixin_41037319/article/details/117335049
+https://blog.csdn.net/ming_311/article/details/122881594
+
+使用IDEA插件 mybatis log plugin
+
+	<option :value="role.id" v-for="role in roleList">{{role.roleName}}</option>
+
+
+sql注入
+https://www.jb51.net/article/232026.htm
+
+Mybatis中Like 的使用方式以及一些注意点
+
+      select * from t_user where name like '%${name}%'   SQL注入风险
+      select * from t_user where name like concat('%',#{name,jdbcType=VARCHAR},'%')
+
+mybatis
+CDATA
+
+[MyBatis中*CDATA*的作用 - 简书](https://www.baidu.com/link?url=-vqdxT-JcYswI4IFz2Z_1tKMWcur1rjH5q2bSEFPSNTEK_K6B7dMbgtc5V7WXvzs&wd=&eqid=e65d6b3400148b5c0000000462f358bf)
+
+Mybatis中实现批量更新的几种姿势
+https://zhuanlan.zhihu.com/p/135839992
+
+<update id="updateBatch"  parameterType="java.util.List">  
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update tableName
+        <set>
+            name=${item.name},
+            name2=${item.name2}
+        </set>
+        where id = ${item.id}
+    </foreach>      
+</update>
+
+
+Mybatis插入时返回自增主键（selectKey和useGeneratedKeys）
+https://blog.csdn.net/qq_34122822/article/details/79254361
+
+GROUP BY关键字与WITH ROLLUP一起使用
+https://www.cnblogs.com/caicaizi/p/4988390.html
+
+MySQLfunction.xmind
+
+https://gitee.com/edidada/test-my-sqlbuilt-in-function
+
+https://dev.mysql.com/doc/refman/8.0/en/built-in-function-reference.html
+
+Flow Control Functions
+Name     Description
+CASE     Case operator
+IF()     If/else construct
+IFNULL() Null if/else construct
+NULLIF() Return NULL if expr1 = expr2
+
+cast as char
+COALESCE()
+GREATEST()
+IN()
+INTERVAL()
+IS
+IS NOT
+IS NOT NULL
+
+CASE
+IF()
+IFNULL()
+NULLIF()
+
+ABS()
+ACOS()
+ASIN()
+ATAN()
+CEIL()
+CEILING()
+CONV()
+COS()
+COT()
+CRC32()
+DEGREES()
+
+Arithmetic Operators
+%, MOD
+DIV
+
+12.6.2 Mathematical Functions
+12.7 Date and Time Functions
+DATE_FORMAT()
+NOW()
+12.8 String Functions and Operators
+
+CONCAT()
+
+12.8.1 String Comparison Functions and Operators
+
+
+LIKE
+NOT LIKE
+STRCMP()
+
+12.20 Aggregate Functions
+sum avg min max count
+
+12.20.1 Aggregate Function Descriptions
+12.20.2 GROUP BY Modifiers
+
+新特性解读 | GROUPING() 函数用法解析
+https://zhuanlan.zhihu.com/p/178817990
+
+12.20.3 MySQL Handling of GROUP BY
+12.20.4 Detection of Functional Dependence
+
+
+AVG()
+COUNT()
+MAX()
+MIN()
+SUM()
+
+工作流
+掌握Activiti，camunda等工作流框架中的至少一种
+
+stored procedure
+
+CREATE PROCEDURE p ()
+BEGIN
+  DECLARE i INT DEFAULT 0;
+  DECLARE d DECIMAL(10,4) DEFAULT 0;
+  DECLARE f FLOAT DEFAULT 0;
+  WHILE i < 10000 DO
+    SET d = d + .0001;
+    SET f = f + .0001E0;
+    SET i = i + 1;
+  END WHILE;
+  SELECT d, f;
+END;
+
+
+
+mysql explain 优化sql
+type
+https://dev.mysql.com/doc/refman/5.7/en/explain.html
+
 sql in 要判断集合是否为null
 update 不能直接使用set
 用<set></set>

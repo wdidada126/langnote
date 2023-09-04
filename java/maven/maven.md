@@ -1,5 +1,8 @@
 # maven
 
+mvn查看源码
+mvn dependency:sources
+
 maven parent
 
 parent-relativePath

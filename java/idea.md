@@ -1,8 +1,17 @@
 # IDEA
 
-
 IDEA实现序列化接口Serializable自动生成serialVersionUID
 Settings->Editor->inspect->Serialable without id 选上
+IDEA  generateAllSetter插件
+
+https://github.com/gejun123456/intellij-generateAllSetMethod
+
+Ctrl Enter
+
+IDEA插件
+
+1. FindBugs-IDEA 2. Maven Helper 3. VisualVM Launcher 4. GenerateAllSetter 5. Rainbow Brackets 6. Translation 7. P3c
+>>>>>>> c6db0881b466bda1d49639ccbd0c9939a6a39219
 
 java命令行执行程序，增加-D参数
 idea run configure ，vm options

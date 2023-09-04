@@ -1,6 +1,60 @@
 # Spring
 
 
+[Spring 源码分析 (三)Spring 是如何把元素解析成 BeanDefinition 对象的](https://xie.infoq.cn/article/17eff2d7b5ba2e37ad169f47c)
+
+[Sring 源码解析 (一)Spring 是怎么读取配置 Xml 文件的](https://xie.infoq.cn/article/de87256d3cc5823e8f3f83539)
+
+[开源一夏 | 一场由 serialVersionUID 引发的线上问题](https://xie.infoq.cn/article/15a5b2568d5ff4ea4a68ab434)
+
+
+Spring入参枚举类型转换
+org.springframework.core.convert.converter.ConverterFactory;
+
+SpringBoot 传参转换枚举
+https://blog.csdn.net/qq_32867467/article/details/86743586
+
+前端传的参数自动转换为枚举的方式——spring convert转换
+https://blog.csdn.net/qq_45473439/article/details/121595619
+
+Spring Converter入门之字符串转化为枚举
+https://blog.csdn.net/CHENYUFENG1991/article/details/78242369
+
+Spring框架在启动时，会在ConfigurationClassPostProcessor这个bean工厂后置处理器中将需要被加载到容器中的bean扫描到并创建BeanDefinition，然后缓存到BeanFactory的beanDefinitionMap中，beanDefinitionMap是一个Map，用于存放BeanDefinition，键为bean在容器中的名称，值为bean对应的BeanDefinition。
+https://segmentfault.com/a/1190000041588395
+
+打印Spring中所有的容器实例
+
+https://www.cnblogs.com/jun1019/p/10807575.html
+
+mybatis-spring在Spring容器中注入了哪些bean
+spring项目
+spring xml 注解定义的项目
+spring mvc
+spring boot
+
+@Controller()后面加url不生效
+@RequestMapping("")
+
+Spring中@Autowired注解的工作原理
+https://blog.csdn.net/Weixiaohuai/article/details/123005140
+
+用法：
+@Autowired注解可以应用在构造方法，普通方法，参数，字段，以及注解这五种类型的地方
+
+AutowiredAnnotationBeanPostProcessor
+
+总结：AutowiredAnnotationBeanPostProcessor#postProcessMergedBeanDefinition()方法的作用其实是，找到目标bean对象中的属性或者方法是否使用了@Autowired注解修饰，如果有@Autowired注解修饰，将会解析得到注解相关信息，将需要依赖注入的属性信息封装到InjectionMetadata类中，InjectionMetadata类中包含了哪些需要注入的元素及元素要注入到哪个目标类中。并将其存入到缓存injectionMetadataCache中，方便后面使用。说简单点，AutowiredAnnotationBeanPostProcessor#postProcessMergedBeanDefinition()方法其实就是找到那些需要自动装配的元素。
+
+通过前面的分析，我们已经知道了@Autowired完成自动装配主要是在AutowiredAnnotationBeanPostProcessor后置处理器中实现的，主要分为两个步骤：
+
+找出需要自动装配的元素：具体实现在AutowiredAnnotationBeanPostProcessor#postProcessMergedBeanDefinition()方法；
+注入属性：具体实现在AutowiredAnnotationBeanPostProcessor#postProcessProperties()方法
+
+
+有没有更好的设计方法
+
+
 Spring aop
 
 Spring tx

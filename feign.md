@@ -1,5 +1,7 @@
 # feign
 
+Spring Cloud feign例子
+GET POST 传文本参数 form参数
 
 Retrofit和Feign是两种常用的HTTP客户端库，用于在Java应用程序中进行服务间的通信。它们具有以下区别：
 1. 基于库的选择：Retrofit是Square公司开发的库，而Feign是Netflix公司开发的库。它们在设计和实现上有一些差异。
@@ -11,8 +13,6 @@ Retrofit和Feign是两种常用的HTTP客户端库，用于在Java应用程序�
 
 
 SpringCloud原理之feign.md
-
-
 Spring Boot提供了一种非常方便的方式来使用Feign来实现RESTful服务之间的通信。
 
 以下是使用Spring Boot配置Feign的步骤：

@@ -1,5 +1,74 @@
 # SQL
 
+多列组合不重复
+
+SQL中的DISTINCT关键字用于返回唯一的数据记录，即不重复的记录。DISTINCT关键字可以应用于一个或多个列，它将对所有列进行比较以确定是否为重复记录。
+如果你使用DISTINCT修饰第一个列，它将确保第一个列的数据不重复。例如，假设你有一个名为"employees"的表，其中包含"first_name"和"last_name"两列，你可以使用以下查询来返回不重复的"first_name"值：
+sql
+SELECT DISTINCT first_name FROM employees;
+如果你想限制所有列的数据都不重复，可以在SELECT子句中列出所有列，并使用DISTINCT关键字。例如，以下查询将返回不重复的"first_name"和"last_name"组合：
+sql
+SELECT DISTINCT first_name, last_name FROM employees;
+这将确保在结果中没有重复的组合（即相同的"first_name"和"last_name"组合）
+
+select 里面套 case when
+https://www.cnblogs.com/dshore123/p/8126418.html?ivk_sa=1024320u
+
+case 列 when 1 then 2 when 3 then 4
+
+对列数据作判断
+
+case when可以用在 select
+group by
+
+order by下面
+
+where 判断 xxx is not null
+
+select 查询的列 case when as xxx
+
+
+navicate 查询 美化SQL，格式化sql，很有用
+
+sql 条件判断 is null
+is not null
+
+select id ,user_name ,password ,name,age,sex from tb_user where user_name like '%${userName}%'
+正确
+
+```sql
+select id as id,user_name as userName,password as password,name,age,sex from tb_user where user_name like '%#{userName}%'
+```
+错误 
+
+SQL经典50题
+https://blog.csdn.net/u010226597/article/details/106334861/
+
+SQL中EXISTS的用法
+https://www.cnblogs.com/xuanhai/p/5810918.html
+
+比如在Northwind数据库中有一个查询为
+SELECT c.CustomerId,CompanyName FROM Customers c
+WHERE EXISTS(
+SELECT OrderID FROM Orders o WHERE o.CustomerID=c.CustomerID) 
+这里面的EXISTS是如何运作呢？子查询返回的是OrderId字段，可是外面的查询要找的是CustomerID和CompanyName字段，这两个字段肯定不在OrderID里面啊，这是如何匹配的呢？ 
+
+order by 子句 后面跟 case when
+https://blog.csdn.net/qianyuanruqu/article/details/87617517
+
+select 超过4张表join
+
+select结果作为一张表，参与join
+
+where a.xxx = b.xxx
+一旦a b的xxx yyy为空，就查不出来
+
+格式化sql
+navicat 查询 新建查询 ->  美化sql
+
+date_format(,'%Y-%m-%d %H:%:%s')
+
+常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
 强制索引 FORCE INDEX
 SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …
 
