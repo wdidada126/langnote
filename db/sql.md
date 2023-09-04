@@ -1,5 +1,7 @@
 # SQL
 
+常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
+
 sql 统计 体系 优化查询时间
 
 避免用null

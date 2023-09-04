@@ -1,5 +1,7 @@
 # SonarQube
 
+不能用管理员账户启动sonarqube，因为es不能用管理员账户启动
+
 https://docs.sonarsource.com/sonarqube/8.9/requirements/prerequisites-and-overview/
 
 ## sonarqube
