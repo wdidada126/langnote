@@ -16,7 +16,7 @@ next
 Children[]
 isLeaf()
 
-![B+ Tree](bplustree.png)
+![B+ Tree](../../imgs/mysql/bplustree.png)
 
 推荐的书籍太多了。除了几本业内的神书外，姜老师的书也非常推荐大家食用，还有就是阿里的数据库月报。
 
