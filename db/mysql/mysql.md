@@ -1,5 +1,68 @@
 # mysql
 
+
+select id from tableA where columnA = ''
+
+select * from tableb where XXid = 上面查出来的id
+
+
+select curdate() into @today;
+
+select @today;
+
+https://www.cnblogs.com/Fengge518/p/13451919.html
+
+https://www.cnblogs.com/bingco/p/11381107.html
+
+
+
+中国银行协同项目cims
+
+大量实用临时表
+
+
+
+select max (substr(columnName,13)) +1 from tableName where columnName like concat()
+
+
+
+
+
+mysql中的instr()函数的用法
+https://www.cnblogs.com/qingmuchuanqi48/articles/15418961.html
+
+
+
+`SELECT INSTR("abcd",'b');`
+INSTR(STR,SUBSTR) 在一个字符串(STR)中搜索指定的字符(SUBSTR),返回发现指定的字符的位置(INDEX);
+STR 被搜索的字符串
+SUBSTR 希望搜索的字符串
+结论：在字符串STR里面,字符串SUBSTR出现的第一个位置(INDEX)，INDEX是从1开始计算，如果没有找到就直接返回0，没有返回负数的情况
+
+
+
+
+
+MySQL软件支持的字符串函数表如下：
+
+| 函数                 | 功能                                                   |
+| -------------------------- | ------------------------------------------------------------ |
+| CONCAT(str1,str2,...,strn) | 将str1,str2,...,strn连接为一个完整的字符串                   |
+| INSERT(str,x,y,instr)      | 将字符串str从第x开始，y个字符串长度的子串替换为字符串instr   |
+| LOWER(str)                 | 将字符串str中的所有字母变成小写                              |
+| UPPER(str)                 | 将字符串str中的所有字母变成大写                              |
+| LEFT(str,x)                | 返回字符串最左边的x个字符                                    |
+| RIGHT(str,x)               | 返回字符串最右边的x个字符                                    |
+| LPAD(str,n,pad)            | 使用字符串pad对字符串str最左边进行填充，直到长度为n个字符长度 |
+| RPAD(str,n,pad)            | 使用字符串pad对字符串str最右边进行填充，直到长度为n个字符长度 |
+| LTRIM(str)                 | 去掉str左边的空格                                            |
+| RTRIM(str)                 | 去掉str右边的空格                                            |
+| REPEAT(str,x)              | 返回字符串str重复x次的结果                                   |
+| REPLACE(str,a,b)           | 使用字符串b替换字符串str中所有出现的字符串a                  |
+| STRCMP(str1,str2)          | 比较字符串str1和str2                                         |
+| TRIM(str)                  | 去掉字符串行头和行尾的空格                                   |
+| SUBSTRING(str,x,y)         | 返回字符串str中从x位置起y个字符串长度的字符串                |
+
 mysql架构
 连接管理器
 缓存
