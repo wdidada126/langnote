@@ -16,8 +16,6 @@ spring transaction xml配置
     <property name="dataSource" ref="dataSource"/>
 </bean>
 
-
-
 2 配置事务切面：
 <!-- 配置事务切面 -->
 <tx:advice id="txAdvice" transaction-manager="transactionManager">
