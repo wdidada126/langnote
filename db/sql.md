@@ -1,5 +1,32 @@
 # SQL
 
+SQL经典50题
+https://blog.csdn.net/u010226597/article/details/106334861/
+
+SQL中EXISTS的用法
+https://www.cnblogs.com/xuanhai/p/5810918.html
+
+比如在Northwind数据库中有一个查询为
+SELECT c.CustomerId,CompanyName FROM Customers c
+WHERE EXISTS(
+SELECT OrderID FROM Orders o WHERE o.CustomerID=c.CustomerID) 
+这里面的EXISTS是如何运作呢？子查询返回的是OrderId字段，可是外面的查询要找的是CustomerID和CompanyName字段，这两个字段肯定不在OrderID里面啊，这是如何匹配的呢？ 
+
+order by 子句 后面跟 case when
+https://blog.csdn.net/qianyuanruqu/article/details/87617517
+
+select 超过4张表join
+
+select结果作为一张表，参与join
+
+where a.xxx = b.xxx
+一旦a b的xxx yyy为空，就查不出来
+
+格式化sql
+navicat 查询 新建查询 ->  美化sql
+
+date_format(,'%Y-%m-%d %H:%:%s')
+
 常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
 强制索引 FORCE INDEX
 SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …

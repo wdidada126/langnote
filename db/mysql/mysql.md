@@ -1,5 +1,153 @@
 # mysql
 
+Mybatis插入时返回自增主键（selectKey和useGeneratedKeys）
+https://blog.csdn.net/qq_34122822/article/details/79254361
+
+GROUP BY关键字与WITH ROLLUP一起使用
+https://www.cnblogs.com/caicaizi/p/4988390.html
+
+MySQLfunction.xmind
+
+https://gitee.com/edidada/test-my-sqlbuilt-in-function
+
+https://dev.mysql.com/doc/refman/8.0/en/built-in-function-reference.html
+
+Flow Control Functions
+Name     Description
+CASE     Case operator
+IF()     If/else construct
+IFNULL() Null if/else construct
+NULLIF() Return NULL if expr1 = expr2
+
+cast as char
+COALESCE()
+GREATEST()
+IN()
+INTERVAL()
+IS
+IS NOT
+IS NOT NULL
+
+CASE
+IF()
+IFNULL()
+NULLIF()
+
+ABS()
+ACOS()
+ASIN()
+ATAN()
+CEIL()
+CEILING()
+CONV()
+COS()
+COT()
+CRC32()
+DEGREES()
+
+Arithmetic Operators
+%, MOD
+DIV
+
+12.6.2 Mathematical Functions
+12.7 Date and Time Functions
+DATE_FORMAT()
+NOW()
+12.8 String Functions and Operators
+
+CONCAT()
+
+12.8.1 String Comparison Functions and Operators
+
+
+LIKE
+NOT LIKE
+STRCMP()
+
+12.20 Aggregate Functions
+sum avg min max count
+
+12.20.1 Aggregate Function Descriptions
+12.20.2 GROUP BY Modifiers
+
+新特性解读 | GROUPING() 函数用法解析
+https://zhuanlan.zhihu.com/p/178817990
+
+12.20.3 MySQL Handling of GROUP BY
+12.20.4 Detection of Functional Dependence
+
+
+AVG()
+COUNT()
+MAX()
+MIN()
+SUM()
+
+工作流
+掌握Activiti，camunda等工作流框架中的至少一种
+
+stored procedure
+```
+CREATE PROCEDURE p ()
+BEGIN
+  DECLARE i INT DEFAULT 0;
+  DECLARE d DECIMAL(10,4) DEFAULT 0;
+  DECLARE f FLOAT DEFAULT 0;
+  WHILE i < 10000 DO
+    SET d = d + .0001;
+    SET f = f + .0001E0;
+    SET i = i + 1;
+  END WHILE;
+  SELECT d, f;
+END;
+```
+
+mysql explain 优化sql
+type
+https://dev.mysql.com/doc/refman/5.7/en/explain.html
+
+
+SpringBoot从配置文件中获取属性的四种方法
+https://wenku.baidu.com/view/de957e73ae02de80d4d8d15abe23482fb5da0252.html
+
+java代码 Boolean 默认 false
+bool 没有默认值
+
+Integer
+int 
+
+
+mysql查看所有表的所有字段
+
+```sql
+SELECT 
+    COLUMNS .column_name, 
+    COLUMNS .column_comment, 
+    COLUMNS .TABLE_NAME, 
+    TABLES .table_comment 
+FROM 
+    information_schema. COLUMNS COLUMNS 
+LEFT JOIN information_schema. TABLES TABLES ON TABLES .TABLE_NAME = COLUMNS .TABLE_NAME 
+WHERE 
+    COLUMNS .table_schema = 'paps' 
+AND COLUMNS .table_name LIKE 'paps%';
+```
+
+[mysql查看执行sql语句的记录日志 ](https://www.cnblogs.com/xcsn/p/11485939.html)
+
+```sql
+SET GLOBAL log_output = 'TABLE';
+SET GLOBAL general_log = 'ON';
+```
+
+mysql内置函数
+
+ifnull
+date_format
+
+需要整理，写demo
+
+product_name
 
 select id from tableA where columnA = ''
 

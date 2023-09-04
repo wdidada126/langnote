@@ -1,4 +1,11 @@
 # java8
+
+java代码 Boolean 默认 false
+bool 没有默认值
+
+BigDecimal 用法
+https://www.cnblogs.com/ansoncong/p/10448911.html
+
 String replaceAll() 需要写单元测试 一个字符串，出现特定字符替换掉 实现上述功能
 
 JDK 7提供了7个阻塞队列，如下。

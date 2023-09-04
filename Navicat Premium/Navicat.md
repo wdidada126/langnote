@@ -1,4 +1,8 @@
 # 激活
+
+格式化sql
+navicate 新建查询 美化sql
+
 navicat 15 windows 激活
 
 http://www.akseo.cn/jzrjxz/106.html

@@ -1,4 +1,13 @@
 # junit
+
+Junit 4.11里增加了指定测试方法执行顺序的特性
+测试类的执行顺序可通过对测试类添加注解 “@FixMethodOrder(value)” 来指定,其中value 为执行顺序
+三种执行顺序可供选择：默认（MethodSorters.DEFAULT），按方法名（MethodSorters.NAME_ASCENDING）和JVM（MethodSorters.JVM）
+当没有指定任何顺序时，按默认来执行
+
+[Junit] 测试方法执行顺序 
+https://www.cnblogs.com/lukehuang/p/3284766.html
+
 JUnit测试框架中没有`main`函数。相反，JUnit测试是由特殊的测试运行器（Test Runner）来运行的。测试运行器负责加载测试类、调用测试方法，并报告测试结果。JUnit 4中默认的测试运行器是`org.junit.runner.JUnitCore`，JUnit 5中默认的测试运行器是`org.junit.platform.console.ConsoleLauncher`。
 要运行JUnit测试，您可以使用各种工具和IDE，如Eclipse、IntelliJ IDEA、Maven、Gradle等，它们都提供了内置的JUnit测试运行器。
 在Eclipse中，您可以通过右键单击测试类，然后选择"Run as" -> "JUnit Test"来运行测试。在IntelliJ IDEA中，您可以右键单击测试类，然后选择"Run" -> "TestClass"来运行测试。
