@@ -1,5 +1,11 @@
 # jackson
 
+com.fasterxml.jackson.databind.ObjectMapper
+ObjectMapper
+
+readValue()
+writeValueAsString()               com.fasterxml.jackson.databind.ObjectMapper#writeValueAsString
+
 报错：
 ```shell
 com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String "2023-05-18": not a valid representation (error: Failed to parse Date value '2023-05-18': Unparseable date: "2023-05-18")

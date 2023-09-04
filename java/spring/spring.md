@@ -1,5 +1,25 @@
 # Spring
 
+
+[Spring 源码分析 (三)Spring 是如何把元素解析成 BeanDefinition 对象的](https://xie.infoq.cn/article/17eff2d7b5ba2e37ad169f47c)
+
+[Sring 源码解析 (一)Spring 是怎么读取配置 Xml 文件的](https://xie.infoq.cn/article/de87256d3cc5823e8f3f83539)
+
+[开源一夏 | 一场由 serialVersionUID 引发的线上问题](https://xie.infoq.cn/article/15a5b2568d5ff4ea4a68ab434)
+
+
+Spring入参枚举类型转换
+org.springframework.core.convert.converter.ConverterFactory;
+
+SpringBoot 传参转换枚举
+https://blog.csdn.net/qq_32867467/article/details/86743586
+
+前端传的参数自动转换为枚举的方式——spring convert转换
+https://blog.csdn.net/qq_45473439/article/details/121595619
+
+Spring Converter入门之字符串转化为枚举
+https://blog.csdn.net/CHENYUFENG1991/article/details/78242369
+
 Spring框架在启动时，会在ConfigurationClassPostProcessor这个bean工厂后置处理器中将需要被加载到容器中的bean扫描到并创建BeanDefinition，然后缓存到BeanFactory的beanDefinitionMap中，beanDefinitionMap是一个Map，用于存放BeanDefinition，键为bean在容器中的名称，值为bean对应的BeanDefinition。
 https://segmentfault.com/a/1190000041588395
 

@@ -1,5 +1,8 @@
 # java8
 
+JAVA8 STREAM COLLECT GROUPBY分组的简单例子
+https://www.cnblogs.com/theRhyme/p/12128652.html
+
 java代码 Boolean 默认 false
 bool 没有默认值
 

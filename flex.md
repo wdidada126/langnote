@@ -1,6 +1,6 @@
 # flex
 
-
+ftp://ftp.iecc.com/pub/file/flexbison.zip
 
 yum install flex flex-devel -y
 

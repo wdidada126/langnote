@@ -1,5 +1,22 @@
 # mybatis
 
+mybaits springboot项目
+Mapper类没有注入
+
+排查思路
+
+报错信息
+
+CDATA mybatis 时间 大于小于等于 符号
+
+信达新核心项目遇到的报错
+Invalid bound statement (not found)
+
+https://blog.csdn.net/qq_42087460/article/details/113248045
+
+从MyBatis中间件设计者的角度
+打印statement列表
+
 mybatis打印mysql执行的sql
 
 https://blog.csdn.net/weixin_41037319/article/details/117335049

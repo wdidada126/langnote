@@ -1,5 +1,27 @@
 # SQL
 
+select 里面套 case when
+https://www.cnblogs.com/dshore123/p/8126418.html?ivk_sa=1024320u
+
+case 列 when 1 then 2 when 3 then 4
+
+对列数据作判断
+
+case when可以用在 select
+group by
+
+order by下面
+
+where 判断 xxx is not null
+
+select 查询的列 case when as xxx
+
+
+navicate 查询 美化SQL，格式化sql，很有用
+
+sql 条件判断 is null
+is not null
+
 select id ,user_name ,password ,name,age,sex from tb_user where user_name like '%${userName}%'
 正确
 

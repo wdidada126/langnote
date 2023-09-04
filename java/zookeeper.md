@@ -1,6 +1,5 @@
 # zookeeper
 
-
 zkCli.cmd
 在Windows环境下，您可以使用ZooKeeper的命令行界面或API查看存储在ZooKeeper中的数据。以下是一些常用的命令：
 

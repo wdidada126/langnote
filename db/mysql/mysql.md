@@ -1,5 +1,14 @@
 # mysql
 
+MySQL源代码：从SQL语句到MySQL内部对象
+https://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-1/
+
+mysql sql_yacc.yy 命令行生成代码
+
+如何在修改mysql代码添加新SQL命令
+
+深入理解MySQL 书籍
+
 flex/bison与antlr的联系与区别
 
 可执行程序
