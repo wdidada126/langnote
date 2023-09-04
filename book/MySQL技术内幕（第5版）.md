@@ -4,8 +4,6 @@ https://book.douban.com/subject/26436525/
 
 没有涉及到如何写sql
 
-
-
 第2章 使用SQL管理数据 64
 
 2.8 使用连接实现多表检索 95

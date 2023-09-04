@@ -1,5 +1,51 @@
 # mysql
 
+mysql架构
+连接管理器
+缓存
+存储引擎
+文件系统
+
+innodb如何实现join操作
+InnoDB是MySQL的默认存储引擎，它支持事务、行级锁定和外键等特性。在InnoDB中，join操作主要通过以下几种方式实现：
+
+嵌套循环连接（Nested Loop Join）：这是最基本的连接方式，适用于小表和结果集较小的场景。在嵌套循环连接中，驱动表（outer table）的每一行都会与目标表（inner table）的每一行进行比较，直到找到匹配的记录。
+哈希连接（Hash Join）：哈希连接利用哈希表的特性，通过将两个表中的某个字段哈希，然后在哈希表中进行匹配。哈希连接适用于两个表按照一个共同的字段进行连接，并且这两个表的行数都比较大。
+排序合并连接（Sort-Merge Join）：对于两个已经按照连接字段排好序的表，可以使用排序合并连接。这种方式会先遍历两个表中的第一行，选择最小的那一行作为结果集的第一行，然后继续遍历两个表，选择下一个最小的行作为结果集的第二行，以此类推。
+索引连接（Index Join）：在InnoDB中，可以利用覆盖索引（Covering Index）来实现join操作。覆盖索引是指包含所有查询需要的数据的索引，不需要回表查询原表。通过在索引上执行join操作，可以避免访问原表的数据，从而提高查询效率。
+需要注意的是，InnoDB的join操作性能还受到其他因素的影响，如表的行数、索引的选择和使用、查询语句的优化等。在实际应用中，需要根据具体的业务场景和数据特点来选择适合的join方式，并进行相应的优化。
+frm
+ibd
+文件读写
+
+mvcc是个概念，不同rdbms实现不同，核心目的是提高软件系统并发量
+java里面也需要自己去实现
+
+
+数据库表外键，删除表的时候不方便
+
+实现了四个标准的隔离级别，默认级别是可重复读(REPEATABLE READ)。在可重复读隔离级别下，通过多版本并发控制(MVCC)+ 间隙锁(Next-Key Locking)防止幻影读。
+
+mysql
+varchar 字符串长度需要注意
+索引 char like %xx%看执行计划 不走
+
+mysql 共享锁 排他锁
+
+s锁
+
+x锁
+mysql的相关技术细节，需要搞清楚是mysql server的还是存储引擎的
+
+mysql
+pgsql如何实现sql join
+https://www.cnblogs.com/flying-tiger/p/8331425.html
+
+matlab 关系运算
+
+a left join b on a.id = b.id
+a left join b on a.id > b.id
+
 
 mysql关闭ssl
 

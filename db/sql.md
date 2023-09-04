@@ -1,6 +1,14 @@
 # SQL
 
 常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
+强制索引 FORCE INDEX
+SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …
+
+知乎 sql优化收藏夹
+
+in不走索引
+
+避免全表扫描
 
 sql 统计 体系 优化查询时间
 
