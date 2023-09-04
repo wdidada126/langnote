@@ -1,5 +1,7 @@
 # Java标准库
 
+java template技术动态生成html
+
 java spec
 https://docs.oracle.com/javase/specs/
 Java注解三要素

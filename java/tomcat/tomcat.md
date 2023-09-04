@@ -1,5 +1,15 @@
 # Tomcat
 
+#### Tomcat
+servlet-api实现
+arp nio
+.bat .sh来启动java程序的，需要jre环境
+自定义ClassLoader防止webapp跨应用访问class/jar文件
+war文件解压到webapp下面
+.conf配置项
+servlet-api 设计与实现分离
+Java EE
+vs ide如何打包成msi等格式的安装包
 
 ## 版本更新记录
 

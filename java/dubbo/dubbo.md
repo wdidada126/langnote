@@ -1,5 +1,7 @@
 # Dubbo
 
+微服务框架现在真是百花齐放，各个平台，各个公司，各个语言，都有一堆的框架和工具，涌现出来，除了dubbo，spring cloud，还有华为的service comb，蚂蚁金服的 SOFAStack ，oracle的Helidon，redhat的quarkus，scala的Lagom，grails的Micronaut，python的nameko，go的micro，多语言的Vert.X，腾讯的tars，百度的brpc，微博的motan。
+
 在dubbo RPC中，同时支持多种序列化方式，例如：
 dubbo序列化：阿里尚未开发成熟的高效java序列化实现，阿里不建议在生产环境使用它
 hessian2序列化：hessian是一种跨语言的高效二进制序列化方式。但这里实际不是原生的hessian2序列化，而是阿里修改过的hessian lite，它是dubbo RPC默认启用的序列化方式

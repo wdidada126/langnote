@@ -1,5 +1,107 @@
 # Spring
 
+尼恩java
+冰河
+马士兵
+Mick
+
+IDEA使用SequenceDiagram，使用非常简单，我们只需要在需要生成时序图的方法上，点击鼠标右键，在idea的弹出菜单里面找到菜单，点击就可以。具体使用可以参照详细使用文档。
+
+spring bean循环依赖 三级缓存 相关代码
+
+一文告诉你Spring是如何利用"三级缓存"巧妙解决Bean的循环依赖问题的【享学Spring】
+https://cloud.tencent.com/developer/article/1497692
+
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
+
+dsbr
+
+DefaultSingletonBeanRegistry类的属性
+
+	/** Cache of singleton objects: bean name --> bean instance */
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+	/** Cache of singleton factories: bean name --> ObjectFactory */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+	/** Cache of early singleton objects: bean name --> bean instance */
+	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+
+
+feign原理
+https://zhuanlan.zhihu.com/p/371343762
+
+spring全家桶课程资料，Windows电脑上有
+
+讯飞:搞业务的基本都是增删改查吧，产品平台的就少点。
+
+spring bean三级缓存
+https://www.zhihu.com/answer/2379147054
+
+手写spring的视频
+
+Spring中的后置处理器分为两大类：
+一类是针对Bean工厂的BeanFactoryPostProcessor
+一类是针对Bean的BeanPostProcessor
+
+```java
+public interface BeanFactoryPostProcessor {
+	void postProcessBeanFactory(BeanFactory beanFactory) throws BeansException;
+}
+```
+```java
+public interface BeanPostProcessor {
+	@Nullable
+	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+	@Nullable
+	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+}
+```
+
+[SpringBean生成流程详解 —— 由浅入深(附超精细流程图)
+](https://blog.csdn.net/u011709538/article/details/129303025)
+
+Spring声名式事务失效
+1、被类里面其他方法直接调用  解决方案，必须被类调用
+2、方法不是public
+上面说到的两个问题，其实就是@Transactional注解使用不当，导致失效的两种情形；除此之外，以下几种情况也会导致事务失效：
+业务代码中存在异常时，使用try…catch…语句块捕获，而catch语句块没有throw new RuntimeExecption异常;（最难被排查到问题且容易忽略）
+注解@Transactional中Propagation属性值设置错误即Propagation.NOT_SUPPORTED（一般不会设置此种传播机制）
+mysql关系型数据库，且存储引擎是MyISAM而非InnoDB，则事务会不起作用(比较少见)；
+业务代码抛出异常类型非RuntimeException，事务失效；Spring默认抛出未检查unchecked异常（继承自 RuntimeException 的异常）或者 Error才回滚事务；其他异常不会触发回滚事务。如果在事务中抛出其他类型的异常，但却期望 Spring 能够回滚事务，就需要指定 rollbackFor属性。
+
+https://www.zhihu.com/question/511211087/answer/2910590035
+
+TransactionInterceptor （事务拦截器）
+
+https://www.zhihu.com/answer/2910590035
+
+https://www.cnblogs.com/aurawing/articles/1887030.html
+
+
+spring三级缓存存了哪些信息
+在Spring框架中，三级缓存用于存储Bean实例化过程中的信息，主要包括以下三种信息：
+第一级缓存：单例对象缓存。存储已经实例化的单例Bean对象，以便下次使用时可以直接从缓存中获取，而不需要重新创建。
+第二级缓存：提前暴露的Bean实例缓存。存储已经实例化但还未进行依赖注入的Bean实例，以便在依赖注入之前可以提前暴露Bean实例，供其他Bean进行依赖注入。
+第三级缓存：早期Bean引用缓存。存储已经解析但还未实例化的Bean实例，以便在后续的实例化过程中可以避免循环依赖的问题。
+这三级缓存分别存储了不同阶段的Bean实例化信息，通过缓存可以避免重复实例化Bean，提高Spring框架的性能和效率，并且可以更好地处理循环依赖问题。
+
+DefaultSingletonBeanRegistry
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
+Spring框架为了提高性能，使用了三级缓存，分别是singletonObjects、earlySingletonObjects、singletonFactories缓存。这样设计的原因是因为：
+1. singletonObjects缓存：存储单例Bean实例化完成的对象，这些对象是可以被其他的Bean引用的，这部分缓存的主要目的是为了加快单例Bean的访问速度。
+2. earlySingletonObjects缓存：存储正在创建中的单例Bean对象，一旦这些对象创建完成并存入singletonObjects缓存中，就会从该缓存中清除。这部分缓存的主要目的是为了解决循环依赖。
+3. singletonFactories缓存：存储用于创建单例Bean的ObjectFactory，这个缓存的主要目的是为了解决BeanFactory单例Bean实现FactoryBean接口的情况，这里存储的是用于创建Bean的FactoryBean对象。
+
+spring为什么使用三级缓存而不是两级
+在Spring框架中，三级缓存是指用于Bean实例化的缓存，其目的是提高Spring的性能和效率。Spring框架之所以使用三级缓存而不是两级，是因为：
+三级缓存能够提高Spring框架的性能和效率。在Spring框架中，Bean实例化需要从配置文件中读取配置信息，然后根据配置信息创建Bean实例。如果每次都需要重新读取配置信息，那么会降低Spring的性能和效率。因此，Spring框架使用缓存来存储已经读取的配置信息，以便下次使用。使用三级缓存可以更好地利用缓存，提高Spring的性能和效率。
+三级缓存可以更好地处理循环依赖。在Spring框架中，Bean之间可能存在循环依赖，即Bean A依赖于Bean B，而Bean B又依赖于Bean A。如果使用两级缓存，那么循环依赖的处理可能会比较麻烦。而使用三级缓存，可以更好地处理循环依赖，避免出现循环依赖导致的死循环等问题。
+因此，Spring框架使用三级缓存可以更好地提高性能和效率，并且可以更好地处理循环依赖。
 
 [Spring 源码分析 (三)Spring 是如何把元素解析成 BeanDefinition 对象的](https://xie.infoq.cn/article/17eff2d7b5ba2e37ad169f47c)
 
