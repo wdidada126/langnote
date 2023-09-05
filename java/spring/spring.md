@@ -1,5 +1,77 @@
 # Spring
 
+## spring的使用场景
+- http springmvc soap cxf
+- rpc 跟dubbo结合使用
+
+## 不用spring，单纯用servlet api如何写web api
+servlet实现 tomcat
+
+自定义http server端口，tomcat里面设置
+其他配置项如何从文件读取？
+简单的
+java.util.Properties
+
+SpringBoot yaml格式的文件
+
+Cpp
+Go
+Rust
+
+在 C++ 中，有许多库可以用来读取配置文件。以下是其中的一些：
+Boost.PropertyTree：这是一个非常强大的库，可以从各种格式的文件中读取数据，包括 INI 文件、XML 文件、JSON 文件等。它能够处理嵌套的配置数据。
+Cascadia Code：Cascadia 是一个 Windows 平台的库，提供了一个 API 来处理 JSON 和 INI 文件。这个库被设计为易于使用，同时也能提供足够的灵活性和性能。
+libconfig++：这是一个用于解析 libconfig 文件的库的 C++ 版本。libconfig 是一个用于存储和读取配置信息的跨平台库。
+Simpleini：这是一个轻量级的库，专门用于处理 INI 文件。它支持注释、空行和嵌套的 section。
+INIReader：这是一个简单的、轻量级的库，专门用于读取 INI 文件。它提供了一个易于使用的 API，并且没有外部依赖。
+nlohmann/json：虽然 JSON 不是传统的配置文件格式，但 JSON 文件经常被用作配置文件。这个库可以方便地解析 JSON 文件，并且可以很容易地转换为 C++ 的数据结构。
+请根据你的需求选择合适的库。
+
+在Go语言中，可以使用第三方库来读取配置文件。一个常用的库是go-ini，它可以方便地读取和解析INI文件格式的配置文件。
+要使用go-ini库，首先需要安装它。可以通过在终端中运行以下命令来安装：
+
+```go
+go get gopkg.in/ini.v1
+```
+安装完成后，可以按照以下步骤使用go-ini库读取配置文件：
+导入库：
+
+```go
+import "gopkg.in/ini.v1"
+```
+加载配置文件：
+```go
+cfgFile := "config.ini" // 配置文件路径  
+cfg, err := ini.Load(cfgFile)  
+if err != nil {  
+    // 处理加载配置文件错误  
+}
+```
+获取配置项：
+```go
+section := cfg.Section("section_name") // 指定要读取的 section 名  
+name := section.Key("key_name").String() // 获取指定 key 的值
+```
+遍历配置文件中的所有section和key：
+```go
+cfg.SectionIterator().Each(func(section *ini.Section, key *ini.Key) {  
+    // 处理每个section和key的逻辑  
+})
+```
+以上是使用go-ini库读取配置文件的基本步骤。你可以根据自己的需求进一步探索该库的其他功能和用法。
+
+在Rust中，有许多库可以用来读取配置文件。以下是其中的一些：
+Config：Config 是一个功能完善的配置文件读取库，支持多种格式，如 TOML、JSON、YAML 等。它提供了一个简单易用的 API 来读取和操作配置数据。
+libconfig：libconfig 是一个专门用于处理配置文件的库，它提供了一个易于使用的 API 来读取和写入配置数据。
+env_logger：env_logger 是一个用于处理环境变量的库，可以方便地读取和操作环境变量。
+toml：toml 是一个专门用于处理 TOML 格式文件的库，它提供了一个简单易用的 API 来读取和操作 TOML 文件中的数据。
+serde：serde 是一个用于序列化和反序列化数据的库，可以用来读取和写入 JSON、TOML、YAML 等格式的配置文件。
+请根据你的需求选择合适的库。
+
+Spring Boot默认支持读取YAML格式的文件，这是通过Spring Boot的自动配置功能实现的。Spring Boot会自动配置一个PropertySourceLocator，用于将YAML文件加载到Spring应用程序上下文中。
+具体来说，Spring Boot使用了一个名为YamlPropertySource的类，该类继承自PropertySource，它实现了从YAML文件中读取属性的功能。当Spring Boot启动时，它会自动扫描和加载所有以.yml或.yaml结尾的文件，并将其注册为Spring应用程序上下文中的属性源。
+因此，你不需要额外的库或配置来读取YAML文件，只需将YAML文件放置在Spring Boot应用程序的配置目录中（默认是src/main/resources目录下的application.yml或application.yaml文件），Spring Boot就会自动将其加载到应用程序上下文中。
+
 尼恩java
 冰河
 马士兵
