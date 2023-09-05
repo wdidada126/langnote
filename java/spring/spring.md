@@ -1,5 +1,322 @@
 # Spring
 
+尼恩java
+冰河
+马士兵
+Mick
+
+
+spring事务
+
+跟我学spring 8章
+
+jdbc事务
+mybatis事务
+spring tx事务
+
+cxf
+
+webservice三件套
+
+SpringMvc接收multipart/form-data 传输的数据 及 PostMan各类数据类型的区别
+https://www.cnblogs.com/ifindu-san/p/8251370.html
+
+org.apache.ibatis.annotations.Mapper是MyBatis框架中的一个注解，用于标记一个接口作为Mapper接口. 该注解的作用是将接口标记为MyBatis Mapper接口，以便MyBatis框架可以扫描它并自动生成实现类 . 如果您想了解更多信息，请查看以下文章 .
+
+@Mapper @Repository区别
+https://blog.csdn.net/qq_44421399/article/details/109825479
+
+@Mapper是mybatis的
+@Repository是spring的
+
+@Repository是扫面类注入spring ioc
+需要配置mybatis接口所在的package
+
+
+
+testmybatisspring
+打印spring日志
+
+mybatis加载到spring
+soring容器有哪些类
+```
+>>>>>>dataSource
+>>>>>>hikariConfig
+>>>>>>sqlSessionFactory
+>>>>>>org.mybatis.spring.mapper.MapperScannerConfigurer#0
+>>>>>>cn.wdidada.test.testmybatisspring.beans.MyBean#0
+>>>>>>cn.wdidada.test.testmybatisspring.beans.MyBeanDefinitionRegistryPostProcessor#0
+>>>>>>personDao
+>>>>>>userDao
+>>>>>>userFeedBackMapper
+>>>>>>userMapper
+>>>>>>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+>>>>>>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+>>>>>>org.springframework.context.annotation.internalRequiredAnnotationProcessor
+>>>>>>org.springframework.context.event.internalEventListenerProcessor
+>>>>>>org.springframework.context.event.internalEventListenerFactory
+
+```
+
+在spring初始化的过程中会注册六个非常重要的beandefinition，他们的名字分别是：
+1.org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+2.org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+3.org.springframework.context.annotation.internalRequiredAnnotationProcessor
+4.org.springframework.context.annotation.internalCommonAnnotationProcessor
+5.org.springframework.context.event.internalEventListenerFactory
+6.org.springframework.context.event.internalEventListenerProcessor
+这六个名字他们分别对应了六个后置类他们分别是：
+1.ConfigurationClassPostProcessor
+2.AutowiredAnnotationBeanPostProcessor
+3.RequiredAnnotationBeanPostProcessor
+4.CommonAnnotationBeanPostProcessor
+5.EventListenerMethodProcessor
+6.DefaultEventListenerFactory
+
+每个类在spring容器启动的过程中都起着至关重要的作用
+(1)ConfigurationClassPostProcessor在之前的文章中提到过，他的作用就是扫描所有的类然后放入spring容器中；
+(2)AutowiredAnnotationBeanPostProcessor的作用就是解析所有的@Autwried @Value然后在给早期对象填充属性的时候会去使用它；
+(3)RequiredAnnotationBeanPostProcessor这个类的作用主要就是针对于@Required注解的解析；
+(4)CommonAnnotationBeanPostProcessor这个类的作用就是支持通用Java注解,尤其是JSR-250注解,也就是javax.annotation包内的那些注解。比如 @PostConstruct, @PreDestroy,@Resource和@WebServiceRef，很多人认为 @PostConstruct是由spring提供的其实不是的，执行顺序为 @Autowired(依赖注入) -> @PostConstruct(注释的方法)；
+(5)EventListenerMethodProcessor他的作用就是将@EventListener注解的方法作为单个ApplicationListener实例注册，它实现了SmartInitializingSingleton会在bean初始化完成以后调用，主要是执行所有@EventListener的方法；
+(6)DefaultEventListenerFactory他的作用就是支持@EventListener注解的，上边的类在创建ApplicationListener的时候需要DefaultEventListenerFactory来进行创建。
+
+https://blog.csdn.net/weixin_44225613/article/details/104503579
+
+
+名字是“org.springframework.context.annotation.internalConfigurationAnnotationProcessor”。这个ConfigurationClassPostProcessor就是用来处理@Configuration注解的
+
+https://blog.csdn.net/auerjds/article/details/111171150
+
+@LookUp作用
+https://blog.csdn.net/qq_25863845/article/details/123475147
+@Lookup用于单例组件引用prototype组件。单例组件使用@Autowired方式注入prototype组件时，被引入prototype组件也会变成单例的。@Lookup可以保证被引入的组件保持prototype模式。
+
+spring bean创建 三级缓存
+
+DefaultSingletonBeanRegistry这个类
+sdbr
+
+`internalConfigurationAnnotationProcessor` 是一个 Gradle 插件，它是由 Spring Boot Gradle 插件自动应用的一个注解处理器。
+该注解处理器的作用是处理 Spring Boot 应用程序中的 `@ConfigurationProperties` 注解。在 Spring Boot 应用程序中，`@ConfigurationProperties` 注解通常用于将配置文件中的属性绑定到 Java 对象中，以便于在应用程序中使用。该注解处理器会扫描应用程序中的所有 `@ConfigurationProperties` 注解，并为它们生成相应的 Java Bean 类，以便于将配置文件中的属性值注入到这些 Bean 对象中。
+具体来说，`internalConfigurationAnnotationProcessor` 的作用可以总结如下：
+- 扫描应用程序中的 `@ConfigurationProperties` 注解
+- 为这些注解生成相应的 Java Bean 类
+- 将配置文件中的属性值注入到生成的 Bean 对象中
+- 生成的 Bean 对象可以通过 Spring 的依赖注入机制在应用程序中使用
+
+需要注意的是，`internalConfigurationAnnotationProcessor` 是一个内部实现细节，它不应该被直接使用或配置。如果你需要自定义注解处理器行为，建议使用 Gradle 的 `annotationProcessor` 或 `kapt` 插件，并手动配置相应的注解处理器。
+
+AutowiredAnnotationBeanPostProcessor的作用就是解析所有的@Autwried @Value然后在给早期对象填充属性的时候会去使用它；
+
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+这个类没有继承啥接口或者父类
+
+public ExecutorService initializeExecutor()
+
+`org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor` 是 Spring 框架中的一个线程池实现，用于执行异步任务。它继承了 `java.util.concurrent.ThreadPoolExecutor` 类，并且实现了 Spring 的 `TaskExecutor` 接口。
+使用 `ThreadPoolTaskExecutor`，你可以配置线程池的大小、队列容量、线程前缀等属性，以及在任务执行前、执行后、执行过程中发生异常时的回调方法。通过在应用程序中使用 `ThreadPoolTaskExecutor`，可以将耗时的操作转移到后台线程中，以避免阻塞主线程，从而提高应用程序的性能和响应速度。
+具体来说，`ThreadPoolTaskExecutor` 的作用可以总结如下：
+- 管理线程池的创建和销毁
+- 处理异步任务，将其提交到线程池中执行
+- 配置线程池的属性，例如线程池大小、队列容量等
+- 提供回调方法，以便在任务执行前、执行后、执行过程中发生异常时进行处理
+
+在 Spring MVC 中，将返回的对象序列化成 JSON 的过程是通过 HttpMessageConverter 实现的。Spring MVC 提供了多种 HttpMessageConverter 实现，其中 MappingJackson2HttpMessageConverter 是将对象序列化成 JSON 的常用实现。
+在 Spring MVC 中，当一个请求处理方法返回一个对象时，Spring MVC 会使用 HandlerMethodReturnValueHandler 处理返回值。如果返回值的类型是需要序列化成 JSON 的类型，则会使用 HttpMessageConverter 将返回值序列化成 JSON。具体实现可以参考 RequestMappingHandlerAdapter 类中的 invokeHandlerMethod() 方法。
+
+HandlerInterceptor是Spring MVC框架中的拦截器接口，可以用于在控制器执行前、后或视图渲染前对请求进行处理，通常用于实现权限控制、日志记录、数据验证等功能。
+要获取请求头和请求尾并继续传递下去，可以在HandlerInterceptor的preHandle方法中进行处理。以下是一个示例代码：
+
+public class MyInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 获取请求头
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            System.out.println(headerName + ": " + headerValue);
+        }
+        
+        // 获取请求尾
+        String footer = request.getParameter("footer");
+        System.out.println("Footer: " + footer);
+        
+        // 继续传递下去
+        return true;
+    }
+}
+
+
+该类会将视图名解析为JSP文件名，并返回一个InternalResourceView对象，该对象负责将模型数据渲染到JSP视图中。在创建InternalResourceView对象时，InternalResourceViewResolver会将JSP文件名作为构造函数参数传递给InternalResourceView对象。同时，该类也支持配置视图前缀和后缀，以便更方便地引用JSP文件。
+以下是一个示例配置：
+
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="prefix" value="/WEB-INF/views/" />
+  <property name="suffix" value=".jsp" />
+</bean>
+
+这个配置告诉Spring MVC在解析视图名时，将使用/WEB-INF/views/作为前缀，并将.jsp作为后缀。当Controller返回一个视图名时，例如home，ViewResolver会将其解析为/WEB-INF/views/home.jsp。这个JSP文件将由InternalResourceView对象渲染。
+
+
+在 Spring MVC 中，View 是用来渲染模型数据的对象，可以是 JSP、Velocity、Freemarker 等模板技术，也可以是其他非模板技术如 PDF、Excel 等，甚至可以是其他 Web 层框架比如 Thymeleaf、React 等。View 是 Controller 处理完逻辑之后，根据返回的视图名字来渲染数据的一个组件。Spring MVC 提供了一些默认的 View 实现，比如 JstlView、InternalResourceView 等。
+在 Spring MVC 中，View 的实现可以分为两类：
+1. 基于模板技术的 View
+这种 View 的实现是依赖于具体的模板引擎的，如 JSP、Freemarker、Velocity 等，它们通过解析和处理模板文件，将模型数据和模板文件中的表达式绑定起来，生成最终的 HTML 文档。
+例如，Spring MVC 内置了一个 View 实现 JstlView，它是用来渲染 JSP 的。当控制器方法返回一个视图名字为“test”时，DispatcherServlet 会查找是否有名字为“test”的视图，如果有的话就会将模型数据和视图合并生成 HTML 页面，如果没有则抛出异常。在这个过程中，JstlView 会通过解析 JSP 页面，生成 Servlet，并将模型数据传递给这个 Servlet，最终得到渲染后的 HTML 页面。
+2. 基于非模板技术的 View
+这种 View 的实现不依赖于具体的模板引擎，而是通过编程方式生成 HTML 页面或其他格式的数据。例如，Spring MVC 提供了 AbstractExcelView 和 AbstractPdfView 两个 View 实现类，用于生成 Excel 和 PDF 格式的文件。
+这些 View 实现类都是继承自 AbstractView，其中最主要的方法是 renderMergedOutputModel()，该方法用于将模型数据和视图合并生成最终的响应数据。在这个方法中，View 实现类可以访问模型数据和响应对象，从而将模型数据填充到响应对象中。
+在Java中，也有一些开源的MVCC实现，如Infinispan和Apache Derby。这些实现通常都是基于Java语言自带的锁机制实现的，包括读写锁和乐观锁等。
+总的来说，实现MVCC需要考虑一些复杂的问题，如锁的粒度、锁的类型、版本控制、事务隔离等。因此，在实现MVCC时，需要深入理解数据库系统的工作原理和并发控制机制，以及Java语言中的锁机制。
+
+spring中文文档
+https://www.docs4dev.com/docs/zh/spring-framework/5.1.3.RELEASE/reference/core.html#beans
+
+comma (,), semicolon (;)
+
+org.springframework.boot.autoconfigure.SpringBootApplication
+
+@SpringBootApplication
+自动装配
+
+
+@SpringBootApplication是Spring Boot框架中的一个注解，表示一个Spring Boot应用程序的入口点。它是一个方便的注解，它将三个注解组合在一起：
+
+@Configuration：指示类是一个配置类，它包含Spring bean的定义。
+@EnableAutoConfiguration：启用Spring Boot的自动配置机制，根据类路径设置和其他条件自动配置Spring bean。
+@ComponentScan：扫描指定的包及其子包，寻找带有特定注解的组件，并将它们注册为Spring bean。
+@SpringBootApplication注解不仅简化了Spring Boot应用程序的配置，而且还能够自动配置很多Spring框架的功能，如自动配置Spring MVC、Spring Data JPA等。因此，使用@SpringBootApplication注解可以快速创建一个简单的Spring Boot应用程序。
+
+在一个Spring Boot应用程序中，通常将@SpringBootApplication注解放在应用程序的主类上。主类是指应用程序的入口点，包含main方法和其他Spring Boot应用程序的配置。在@SpringBootApplication注解所在的主类中，也可以通过其他注解来配置Spring Boot应用程序的行为和功能，如@Controller、@Service、@Repository等。
+
+
+基于xml的元数据
+基于注解的元数据 2.5开始
+基于Java的元数据 3.0
+
+@Configuration, @Bean, @Import, 和 @DependsOn 
+
+基于Java的元数据Spring容器，典型的使用@Bean修饰Java类的方法和@Configuration修饰的类
+
+
+Servlet API (JSR 340)
+WebSocket API (JSR 356)
+Concurrency Utilities (JSR 236)
+JSON Binding API (JSR 367)
+Bean Validation (JSR 303)
+JPA (JSR 338)
+JMS (JSR 914)
+as well as JTA/JCA setups for transaction coordination, if necessary.
+the Dependency Injection (JSR 330) and Common Annotations (JSR 250) specifications（spring同样支持依赖注入和通用注解规范）
+Spring5.0要求的最低Java版本为Java7
+
+spring aop代码
+https://zhuanlan.zhihu.com/p/617319712
+
+事务底层原理是aop  TransactionInterceptor
+https://www.zhihu.com/answer/2937095015
+事务失效
+
+IDEA使用SequenceDiagram，使用非常简单，我们只需要在需要生成时序图的方法上，点击鼠标右键，在idea的弹出菜单里面找到菜单，点击就可以。具体使用可以参照详细使用文档。
+
+spring bean循环依赖 三级缓存 相关代码
+
+一文告诉你Spring是如何利用"三级缓存"巧妙解决Bean的循环依赖问题的【享学Spring】
+https://cloud.tencent.com/developer/article/1497692
+
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
+
+dsbr
+
+DefaultSingletonBeanRegistry类的属性
+
+	/** Cache of singleton objects: bean name --> bean instance */
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+	/** Cache of singleton factories: bean name --> ObjectFactory */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+	/** Cache of early singleton objects: bean name --> bean instance */
+	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+
+
+feign原理
+https://zhuanlan.zhihu.com/p/371343762
+
+spring全家桶课程资料，Windows电脑上有
+
+讯飞:搞业务的基本都是增删改查吧，产品平台的就少点。
+
+spring bean三级缓存
+https://www.zhihu.com/answer/2379147054
+
+手写spring的视频
+
+Spring中的后置处理器分为两大类：
+一类是针对Bean工厂的BeanFactoryPostProcessor
+一类是针对Bean的BeanPostProcessor
+
+```java
+public interface BeanFactoryPostProcessor {
+	void postProcessBeanFactory(BeanFactory beanFactory) throws BeansException;
+}
+```
+```java
+public interface BeanPostProcessor {
+	@Nullable
+	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+	@Nullable
+	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+}
+```
+
+[SpringBean生成流程详解 —— 由浅入深(附超精细流程图)
+](https://blog.csdn.net/u011709538/article/details/129303025)
+
+Spring声名式事务失效
+1、被类里面其他方法直接调用  解决方案，必须被类调用
+2、方法不是public
+上面说到的两个问题，其实就是@Transactional注解使用不当，导致失效的两种情形；除此之外，以下几种情况也会导致事务失效：
+业务代码中存在异常时，使用try…catch…语句块捕获，而catch语句块没有throw new RuntimeExecption异常;（最难被排查到问题且容易忽略）
+注解@Transactional中Propagation属性值设置错误即Propagation.NOT_SUPPORTED（一般不会设置此种传播机制）
+mysql关系型数据库，且存储引擎是MyISAM而非InnoDB，则事务会不起作用(比较少见)；
+业务代码抛出异常类型非RuntimeException，事务失效；Spring默认抛出未检查unchecked异常（继承自 RuntimeException 的异常）或者 Error才回滚事务；其他异常不会触发回滚事务。如果在事务中抛出其他类型的异常，但却期望 Spring 能够回滚事务，就需要指定 rollbackFor属性。
+
+https://www.zhihu.com/question/511211087/answer/2910590035
+
+TransactionInterceptor （事务拦截器）
+
+https://www.zhihu.com/answer/2910590035
+
+https://www.cnblogs.com/aurawing/articles/1887030.html
+
+
+spring三级缓存存了哪些信息
+在Spring框架中，三级缓存用于存储Bean实例化过程中的信息，主要包括以下三种信息：
+第一级缓存：单例对象缓存。存储已经实例化的单例Bean对象，以便下次使用时可以直接从缓存中获取，而不需要重新创建。
+第二级缓存：提前暴露的Bean实例缓存。存储已经实例化但还未进行依赖注入的Bean实例，以便在依赖注入之前可以提前暴露Bean实例，供其他Bean进行依赖注入。
+第三级缓存：早期Bean引用缓存。存储已经解析但还未实例化的Bean实例，以便在后续的实例化过程中可以避免循环依赖的问题。
+这三级缓存分别存储了不同阶段的Bean实例化信息，通过缓存可以避免重复实例化Bean，提高Spring框架的性能和效率，并且可以更好地处理循环依赖问题。
+
+DefaultSingletonBeanRegistry
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
+Spring框架为了提高性能，使用了三级缓存，分别是singletonObjects、earlySingletonObjects、singletonFactories缓存。这样设计的原因是因为：
+1. singletonObjects缓存：存储单例Bean实例化完成的对象，这些对象是可以被其他的Bean引用的，这部分缓存的主要目的是为了加快单例Bean的访问速度。
+2. earlySingletonObjects缓存：存储正在创建中的单例Bean对象，一旦这些对象创建完成并存入singletonObjects缓存中，就会从该缓存中清除。这部分缓存的主要目的是为了解决循环依赖。
+3. singletonFactories缓存：存储用于创建单例Bean的ObjectFactory，这个缓存的主要目的是为了解决BeanFactory单例Bean实现FactoryBean接口的情况，这里存储的是用于创建Bean的FactoryBean对象。
+
+spring为什么使用三级缓存而不是两级
+在Spring框架中，三级缓存是指用于Bean实例化的缓存，其目的是提高Spring的性能和效率。Spring框架之所以使用三级缓存而不是两级，是因为：
+三级缓存能够提高Spring框架的性能和效率。在Spring框架中，Bean实例化需要从配置文件中读取配置信息，然后根据配置信息创建Bean实例。如果每次都需要重新读取配置信息，那么会降低Spring的性能和效率。因此，Spring框架使用缓存来存储已经读取的配置信息，以便下次使用。使用三级缓存可以更好地利用缓存，提高Spring的性能和效率。
+三级缓存可以更好地处理循环依赖。在Spring框架中，Bean之间可能存在循环依赖，即Bean A依赖于Bean B，而Bean B又依赖于Bean A。如果使用两级缓存，那么循环依赖的处理可能会比较麻烦。而使用三级缓存，可以更好地处理循环依赖，避免出现循环依赖导致的死循环等问题。
+因此，Spring框架使用三级缓存可以更好地提高性能和效率，并且可以更好地处理循环依赖。
 
 [Spring 源码分析 (三)Spring 是如何把元素解析成 BeanDefinition 对象的](https://xie.infoq.cn/article/17eff2d7b5ba2e37ad169f47c)
 

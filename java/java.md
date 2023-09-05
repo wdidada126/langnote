@@ -1,5 +1,31 @@
 # Java标准库
 
+重新学java
+java语法 关键字 包 类 接口 注解 标准库 三方库 ssh
+
+Java8为函数式接口引入了一个新注解@FunctionalInterface，主要用于编译级错误检查，加上该注解，当接口不符合函数式接口定义的时候，编译器会报错。
+
+Function接口概述
+java.util.function.Function<T,R> 接口用来根据一个类型的数据得到另一个类型的数据，前者称为前置条件，后者称为后置条件。
+
+Predicate
+根据接收参数进行断言，返回boolean类型
+
+Supplier
+返回一个结果，并不要求每次调用都返回一个新的或者独一的结果
+
+java 8
+stream api熟悉
+
+java.util.function包
+
+isbn
+9787115521484
+
+https://pan.baidu.com/s/1ej8BPxM-6YgFFf7x0zLbLg?pwd=6666 提取码:6666 如果有任何问题，记得留言告诉我哦！非常感谢您能在我店铺购买 1
+
+java template技术动态生成html
+
 java spec
 https://docs.oracle.com/javase/specs/
 Java注解三要素

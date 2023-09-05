@@ -1,8 +1,68 @@
 # javase
 
+https://blog.csdn.net/ye17186/article/details/89467919
+
+从源码中可以看出，线程池的构造函数有7个参数，分别是corePoolSize、maximumPoolSize、keepAliveTime、unit、workQueue、threadFactory、handler。下面会对这7个参数一一解释。
+一、corePoolSize 线程池核心线程大小
+线程池中会维护一个最小的线程数量，即使这些线程处理空闲状态，他们也不会被销毁，除非设置了allowCoreThreadTimeOut。这里的最小线程数量即是corePoolSize。任务提交到线程池后，首先会检查当前线程数是否达到了corePoolSize，如果没有达到的话，则会创建一个新线程来处理这个任务。
+二、maximumPoolSize 线程池最大线程数量
+当前线程数达到corePoolSize后，如果继续有任务被提交到线程池，会将任务缓存到工作队列（后面会介绍）中。如果队列也已满，则会去创建一个新线程来出来这个处理。线程池不会无限制的去创建新线程，它会有一个最大线程数量的限制，这个数量即由maximunPoolSize指定。
+三、keepAliveTime 空闲线程存活时间
+一个线程如果处于空闲状态，并且当前的线程数量大于corePoolSize，那么在指定时间后，这个空闲线程会被销毁，这里的指定时间由keepAliveTime来设定
+四、unit 空闲线程存活时间单位
+keepAliveTime的计量单位
+五、workQueue 工作队列
+新任务被提交后，会先进入到此工作队列中，任务调度时再从队列中取出任务。jdk中提供了四种工作队列：
+六、threadFactory 线程工厂
+创建一个新线程时使用的工厂，可以用来设定线程名、是否为daemon线程等等
+七、handler 拒绝策略
+当工作队列中的任务已到达最大限制，并且线程池中的线程数量也达到最大限制，这时如果有新任务提交进来，该如何处理呢。这里的拒绝策略，就是解决这个问题的，jdk中提供了4中拒绝策略：
+①CallerRunsPolicy
+该策略下，在调用者线程中直接执行被拒绝任务的run方法，除非线程池已经shutdown，则直接抛弃任务。
+②AbortPolicy
+该策略下，直接丢弃任务，并抛出RejectedExecutionException异常。
+
+③DiscardPolicy
+该策略下，直接丢弃任务，什么都不做。
+
+④DiscardOldestPolicy
+该策略下，抛弃进入队列最早的那个任务，然后尝试把这次拒绝的任务放入队列
 
 
+Java并发编程中的JUC（java.util.concurrent）包含了一些用于处理并发的类，包括：
+1. Locks（锁）：提供了比使用synchronized关键字更加灵活的锁实现，包括ReentrantLock、ReentrantReadWriteLock、StampedLock等。
+2. Atomic variables（原子变量）：提供了在多线程环境下进行原子操作的方式，包括AtomicBoolean、AtomicInteger、AtomicLong等。
+3. Concurrent collections（并发集合）：提供了一些线程安全的集合类，包括ConcurrentHashMap、ConcurrentSkipListMap、ConcurrentSkipListSet等。
+4. Synchronizers（同步器）：提供了一些基础的同步工具类，包括CountDownLatch、CyclicBarrier、Semaphore等。
+5. Executors（线程池）：提供了一些创建和管理线程池的工具类，包括Executor、ExecutorService、ThreadPoolExecutor、ScheduledExecutorService等。
+6. Others（其他）：还包括一些其他的并发编程相关的类，如CompletableFuture、ForkJoinPool、LockSupport等。
 
+AQS，即AbstractQueuedSynchronizer，是Java中用于构建锁和同步器的一个基础框架，它提供了一个底层的、基于FIFO队列的同步器，开发者可以使用AQS构建基于锁、信号量、计数器等的同步器。
+AQS框架的基本思想是，将一个线程的操作转化为一个或多个状态的操作，状态变更后，再将其它线程的操作进行阻塞或唤醒。AQS使用一个FIFO队列来存储等待线程，当线程请求访问某个资源时，如果该资源已经被占用，则将该线程加入到FIFO队列的末尾，然后进入阻塞状态。
+AQS框架包含两种同步模式：独占模式和共享模式。独占模式指的是同一时间只能有一个线程获得锁，而共享模式则允许多个线程同时访问同一资源。
+AQS框架中的重要类包括：
+* AbstractQueuedSynchronizer：AQS的核心类，提供了同步器的核心逻辑和状态管理。
+* ReentrantLock：可重入锁，基于AQS实现，支持独占模式。
+* ReentrantReadWriteLock：读写锁，基于AQS实现，支持共享模式和独占模式。
+* CountDownLatch：计数器，基于AQS实现，用于等待一个或多个操作完成。
+* Semaphore：信号量，基于AQS实现，用于限制并发访问的数量。
+* Condition：条件变量，基于AQS实现，用于线程间的通信。
+使用AQS框架可以构建出高效、灵活、可重入、可中断的同步器，是Java中并发编程的基础之一。
+
+
+Java 7引入了Fork/Join框架，是一种基于工作窃取算法的任务执行框架，用于处理递归式的并行问题。其核心是在一个大任务中递归地将其拆分成小任务，然后将每个小任务加入到一个队列中等待处理。当一个工作线程处理完自己的任务后，会从其它工作线程的队列中随机挑选一个任务进行处理，这个过程就是工作线程的“窃取”行为。这种工作线程之间的任务相互窃取的算法能够确保各个工作线程的负载基本平衡，提高并发处理能力。
+Fork/Join框架主要由下面几个类组成：
+1. ForkJoinTask：任务抽象类，实现了future和work-stealing算法；
+2. RecursiveTask：继承ForkJoinTask，有返回值的任务；
+3. RecursiveAction：继承ForkJoinTask，没有返回值的任务；
+4. ForkJoinPool：工作线程的线程池；
+5. ForkJoinWorkerThread：工作线程。
+
+Fork/Join框架的使用步骤大致如下：
+1. 创建ForkJoinPool；
+2. 创建ForkJoinTask（RecursiveTask或RecursiveAction）；
+3. 调用ForkJoinPool的submit()方法将任务提交给线程池；
+4. 调用ForkJoinTask的join()方法等待任务执行完毕并获取执行结果。
 
 ## java17新增api
 

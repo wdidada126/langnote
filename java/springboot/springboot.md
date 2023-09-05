@@ -1,4 +1,22 @@
 # Spring Boot
+/** fastJson 配置信息 **/
+@Bean
+public HttpMessageConverters fastJsonConfig(){
+
+    //新建fast-json转换器
+    FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+
+    //fast-json 配置信息
+    FastJsonConfig config = new FastJsonConfig();
+    config.setDateFormat("yyyy-MM-dd HH:mm:ss");
+    converter.setFastJsonConfig(config);
+
+    //设置响应的 Content-Type
+    converter.setSupportedMediaTypes(Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON_UTF8}));
+    return new HttpMessageConverters(converter);
+}
+
+
 SpringBoot使用fastJson作为json解析框架
 https://www.bbsmax.com/A/kmzLk0aKdG/
 

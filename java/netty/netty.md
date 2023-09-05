@@ -1,6 +1,64 @@
 # netty
+知乎电子书
+Netty的编码和解码除了解决TCP协议的粘包和拆包问题，还有一些编解码器做了很多额外的事情，如StringEncode（把字符串转换成字节流）、ProtobufDecoder（对Protobuf序列化数据进行解码）
+
+韩顺平早就不是尚硅谷的了，现在应该是单干，还做培训那块，卖线上课程的
+
+ChannelInboundHandlerAdapter
+
+但如果是一个基础扎实的科班生，看博客捋一遍netty的基本设计原理(有一张很经典的图，告诉你各组件的分工)，用socket从bio的服务端开始写起——>多线程处理的bio——>selector注册事件的nio——>reactor模型——>主从reactor模型，最多两天时间就基本理解了。我上学期写RPC框架时候为了使用nio通信从调研学习这部分知识到写demo练习三天左右就照着netty4.x用户手册开干了，后续的话还是要持续学习，比如想新增长连接心跳检测，重连机制等等。
+
+chatgpt
+netty开启多线程主从reactor
+
+netty定时任务心跳检测
+掉线重连
+
+知乎电子书 netty相关的
+
+对应于不同的协议，Netty中常见的通道类型如下：
+NioSocketChannel：异步非阻塞TCP Socket传输通道。
+NioServerSocketChannel：异步非阻塞TCP Socket服务器端监听通道。
+NioDatagramChannel：异步非阻塞的UDP传输通道。
+NioSctpChannel：异步非阻塞Sctp传输通道。
+NioSctpServerChannel：异步非阻塞Sctp服务器端监听通道。
+OioSocketChannel：同步阻塞式TCP Socket传输通道。
+OioServerSocketChannel：同步阻塞式TCP Socket服务器端监听通道。
+OioDatagramChannel：同步阻塞式UDP传输通道。
+OioSctpChannel：同步阻塞式Sctp传输通道。
+OioSctpServerChannel：同步阻塞式Sctp服务器端监听通道。
+
+https://www.jianshu.com/p/6e0c562cb53b
 
 
+Netty单线程
+ServerBootstrap bootstrap = new ServerBootstrap();
+bootstrap.group(bossGroup);
+
+在Netty中实现心跳机制涉及到以下类：
+1. io.netty.handler.timeout.IdleStateHandler：Netty提供的心跳处理器，可以根据一定的时间间隔检测连接的空闲状态，当连接空闲时间超过一定阈值时触发特定的事件。
+2. io.netty.handler.timeout.IdleStateEvent：Netty提供的空闲状态事件，触发特定的事件以便处理连接空闲状态。
+3. io.netty.channel.ChannelPipeline：Netty的数据处理管道，可以将不同的数据处理器按照特定的顺序组装成一个完整的数据处理链。
+4. io.netty.channel.ChannelHandlerContext：Netty的数据处理器上下文，每个数据处理器都有一个对应的上下文对象，可以通过上下文对象调用其他数据处理器进行数据处理。
+这些类共同组成了Netty中实现心跳机制的基础。
+
+
+Netty boss线程池大小不为1时候咋用，干什么用，有这么用过的吗?
+netty 中 bossgroup 线程池 大小为 1吗
+netty 中reactor主从多线程模型，bossgroup 线程池大小默认应该为1， 那大于1有没有用呢，具体干什么用。 网上两种说法：1：说是监听多个服务器端口用； 2： Main Reactor Thread Pool(Accept Pool) 做Auth/login/shake-hand/SLA用 这两种说法哪个是正确的？ 如果2是正确的， 有没有具体的代码示例，怎么用的，在addLast那块怎么添加handler? 是跟添加业务线程池一样吗（addLast(EventExcutorGroup group,String name, ChannleHandler handler）?
+bossgroup 对应使用的是主reactor吗？ workgroup对应使用的是从reactor吗
+bossGroup也是new NioEventLoopGroup，而NioEventLoopGroup默认的线程数量是cpu核心数*2还是+1我忘了。所以bossGroup本来就是多线程。一个eventLoop可以处理多个客户端链接，而一个客户端链接只能注册在同一个eventLoop上，这才是netty的实现。什么默认大小应该为1，看看源码，不要章口就来
+
+https://www.zhihu.com/question/330317976/answer/723690201
+
+嗯，看源码了。默认那个我弄错了，nioeventloopgroup，默认是cpu*2。作为服务器端bossgroup线程池,会选取一个线程来作为acceptor获取客户端连接。
+我想请教的是，作为开一个监听端口的服务器端来说，boss线程池其他的线程做什么去了，是不是就没用了(前提是bossgroup没再绑定别的serverbootstrap,服务端只开一个服务端口)。
+外网查了下，stackoverflow上有个说法是多个serverbootstrap共用一个bossgroup线程池时，应该是指服务端开多个端口情况。这个应该仔细研究下源码就能知道了。
+你后面说的确实没错。server启动一个端口确实只绑定一个boss线程。它是借用了线程池的execute提交一个bind任务新启动一个线程（未到达设置的上限的时候），线程池的初始化是懒加载的，即使你设置boss大小为10，在只绑定一个端口的情况下也只是新启动了一个线程。
+而由于select方法是一个死循环，当前线程不会退出，所以我认为boss线程池的最大线程数量等于能绑定的端口数（EpollEventLoopGroup不确定是不是这样，因为以前学习的时候mac不支持epoll，所以当时也没再去测试）。
+所以如果你想多线程去accept，那就只能多绑定几个端口了
+
+netty服务端应该绑定多个端口，bossGroup有多个线程
 
 
 Netty源码相关的类分类

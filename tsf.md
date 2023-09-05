@@ -1,5 +1,22 @@
 # tsf
 
+
+# 分布式事务 DTF
+
+分布式事务（Distributed Transaction Framework，DTF）是腾讯云自主研发的高性能、高可用的分布式事务中间件，用于提供分布式的场景中，特别是微服务架构下的事务一致性服务。分布式事务 DTF 拥抱 Spring Cloud、Spring Boot 开发框架
+
+https://cloud.tencent.com/document/product/1224/45969#.E4.B8.8E-tsf-.E7.BB.93.E5.90.88.E4.BD.BF.E7.94.A8
+TCC 模式 Spring Boot 开发
+TCC 模式 Spring Free 开发
+FMT 模式 Spring Boot 开发
+Saga 模式 Spring Boot 开发
+Saga 模式 Spring Free 开发
+
+
+@EnableTsf
+
+@EnableDtf
+
 工作流 金融
 
 不是用的hystrix

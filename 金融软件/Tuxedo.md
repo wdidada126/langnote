@@ -7,9 +7,7 @@ Tuxedo是BEA公司的交易中间件产品，1984年由贝尔实验室开发
 基于通用测试模拟器的Tuxedo扩展
 
 
-
-
-
+中间件厂商BEA，其标志性的产品是大名鼎鼎的Tuxedo和Weblogic。
 
 Tuxedo:Transaction for Unix has been Extended for Distributed Operation，即分布式操作扩展之后的Unix事务系统。
 Tuxedo是一个事务处理(TP)监督器（transaction processing monitor），它管理联机事务处理(OLTP)系统操作的事务。客户通过结构化查询语言(SQL)调用，或其它类型的请求，产生对服务器的请求。这个事务处理监督器确信，正确地进行了修改，以保证数据的完整性。

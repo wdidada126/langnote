@@ -1,5 +1,19 @@
 # redis
 
+redis redisson分布式锁
+
+### 分布式锁redis实现
+
+分布式锁的常见使用方法： 
+1：利用 ThreadLocal + mysql 主键冲突 
+2：手写 redis 锁 
+3：利用 Redisson 封装的锁 
+4：利用多个独立的redis,实现红锁 
+5：curator 封装 zookeeper 实现分布式锁 
+ps:还有其他的分布式锁，利用zookeeper 单独实现分布式锁
+
+https://gitee.com/jiang-qikun/distributed-lock
+
 Redis中清除某个库中的所有数据**
 
 - 进入redis ：redis-cli -h 192.168.233.132 -p 6380
