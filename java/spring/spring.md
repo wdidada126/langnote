@@ -18,6 +18,10 @@ Cpp
 Go
 Rust
 
+
+
+### C++如何读取配置文件
+
 在 C++ 中，有许多库可以用来读取配置文件。以下是其中的一些：
 Boost.PropertyTree：这是一个非常强大的库，可以从各种格式的文件中读取数据，包括 INI 文件、XML 文件、JSON 文件等。它能够处理嵌套的配置数据。
 Cascadia Code：Cascadia 是一个 Windows 平台的库，提供了一个 API 来处理 JSON 和 INI 文件。这个库被设计为易于使用，同时也能提供足够的灵活性和性能。
@@ -26,6 +30,10 @@ Simpleini：这是一个轻量级的库，专门用于处理 INI 文件。它支
 INIReader：这是一个简单的、轻量级的库，专门用于读取 INI 文件。它提供了一个易于使用的 API，并且没有外部依赖。
 nlohmann/json：虽然 JSON 不是传统的配置文件格式，但 JSON 文件经常被用作配置文件。这个库可以方便地解析 JSON 文件，并且可以很容易地转换为 C++ 的数据结构。
 请根据你的需求选择合适的库。
+
+
+
+### Go如何读取配置文件
 
 在Go语言中，可以使用第三方库来读取配置文件。一个常用的库是go-ini，它可以方便地读取和解析INI文件格式的配置文件。
 要使用go-ini库，首先需要安装它。可以通过在终端中运行以下命令来安装：
@@ -60,6 +68,10 @@ cfg.SectionIterator().Each(func(section *ini.Section, key *ini.Key) {
 ```
 以上是使用go-ini库读取配置文件的基本步骤。你可以根据自己的需求进一步探索该库的其他功能和用法。
 
+
+
+### Rust如何读取配置文件
+
 在Rust中，有许多库可以用来读取配置文件。以下是其中的一些：
 Config：Config 是一个功能完善的配置文件读取库，支持多种格式，如 TOML、JSON、YAML 等。它提供了一个简单易用的 API 来读取和操作配置数据。
 libconfig：libconfig 是一个专门用于处理配置文件的库，它提供了一个易于使用的 API 来读取和写入配置数据。
@@ -72,14 +84,11 @@ Spring Boot默认支持读取YAML格式的文件，这是通过Spring Boot的自
 具体来说，Spring Boot使用了一个名为YamlPropertySource的类，该类继承自PropertySource，它实现了从YAML文件中读取属性的功能。当Spring Boot启动时，它会自动扫描和加载所有以.yml或.yaml结尾的文件，并将其注册为Spring应用程序上下文中的属性源。
 因此，你不需要额外的库或配置来读取YAML文件，只需将YAML文件放置在Spring Boot应用程序的配置目录中（默认是src/main/resources目录下的application.yml或application.yaml文件），Spring Boot就会自动将其加载到应用程序上下文中。
 
-尼恩java
-冰河
-马士兵
-Mick
+
 
 spring事务
 
-跟我学spring 8章
+张开涛 跟我学spring 8章
 
 jdbc事务
 mybatis事务
@@ -108,6 +117,7 @@ testmybatisspring
 
 mybatis加载到spring
 soring容器有哪些类
+
 ```
 >>>>>>dataSource
 >>>>>>hikariConfig
@@ -270,7 +280,6 @@ org.springframework.boot.autoconfigure.SpringBootApplication
 
 基于Java的元数据Spring容器，典型的使用@Bean修饰Java类的方法和@Configuration修饰的类
 
-
 Servlet API (JSR 340)
 WebSocket API (JSR 356)
 Concurrency Utilities (JSR 236)
@@ -304,10 +313,10 @@ DefaultSingletonBeanRegistry类的属性
 
 	/** Cache of singleton objects: bean name --> bean instance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
-
+	
 	/** Cache of singleton factories: bean name --> ObjectFactory */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
-
+	
 	/** Cache of early singleton objects: bean name --> bean instance */
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 

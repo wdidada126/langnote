@@ -1190,6 +1190,13 @@ ApplicationObjectSupport (org.springframework.context.support)
 
 InternalResourceViewResolver 和 UrlBasedViewResolver 都是 Spring MVC 的 ViewResolver，用于将请求转发到相应的视图。
 
+```xml
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="prefix" value="/WEB-INF/views/" />
+  <property name="suffix" value=".jsp" />
+</bean>
+```
+
 InternalResourceViewResolver 是 Spring MVC 默认的 ViewResolver，它将请求转发到一个内部资源，例如 `/WEB-INF/jsp/index.jsp`。
 
 UrlBasedViewResolver 可以将请求转发到任何资源，包括内部资源和外部资源。
