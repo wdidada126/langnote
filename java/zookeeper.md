@@ -1,5 +1,7 @@
 # zookeeper
 
+![Zookeeper分布式框架学习图谱](../imgs/zk/Zookeeper分布式框架学习图谱.png)
+
 zkCli.cmd
 在Windows环境下，您可以使用ZooKeeper的命令行界面或API查看存储在ZooKeeper中的数据。以下是一些常用的命令：
 
@@ -13,7 +15,6 @@ zab协议
 
 ZooKeeper’s atomic broadcast protocol: Theory and practice
 
-
 AP?
 ZooKeeper是一个分布式协调服务，它既不是CP也不是AP，而是一种满足一致性和可用性的特殊类型的系统，通常被称为CA系统。
 在CAP理论中，CP和AP是两个极端的选项。CP系统强调一致性，即在分区情况下保证数据一致性，但可能会牺牲可用性，因为在分区情况下无法提供服务。AP系统强调可用性，即在分区情况下保证数据可用性，但可能会牺牲一致性，因为在分区情况下无法保证数据一致性。
@@ -23,19 +24,13 @@ ZooKeeper是一个分布式协调服务，它既不是CP也不是AP，而是一�
 
 zookeeper做dubbo的服务注册/发现，会出现40-60分钟(几十秒)的不可用
 
-
-
 选举的时候，也只是服务上线不可用
 
 服务信息在本地会做缓存
 
-
-
 为什么不应该使用ZooKeeper做服务发现
 
 http://dockone.io/article/78
-
-
 
 ZK实现分布式锁
 基于zookeeper临时有序节点可以实现的分布式锁。
@@ -45,17 +40,11 @@ ZK实现分布式锁
 
 Curator提供的InterProcessMutex是分布式锁的实现。acquire方法用户获取锁，release方法用于释放锁。
 
-
-
 非阻塞的，无论成功还是失败都直接返回
-
-
-
 
 源码是用什么语言写的？
 分别有什么功能，分布式，实现了Paxos？
 raft？
-
 
 自己写zk
 
@@ -72,21 +61,11 @@ java开发的
 
 October, 2008: release 3.0.0 available
 
-
-
 zk在dubbo hadoop中的应用
-
-
 
 ZooKeeper是一个开源的分布式协调服务，由雅虎创建，是Google Chubby的开源实现。分布式应用程序可以基于ZooKeeper实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、分布式锁和分布式队列等功能。
 
-
-
 https://blog.csdn.net/shmily_lsl/article/details/81479158
-
-
-
-
 
 书籍
 
@@ -98,10 +77,6 @@ https://blog.csdn.net/liweisnake/article/details/70045164
 ZooKeeper’s atomic broadcast protocol: Theory and practice
 
 Andr ́e Medeiros March 20, 2012
-
-
-
-
 
 zk上如何看到dubbo库中请求zk server的记录的
 
@@ -120,7 +95,7 @@ zkCli -server host:port
 dubbo的在向zookeeper注册服务时，放了些什么数据进去？
 dubbo的负载均衡是dubbo自己做的，还是zookeeper做的？
 
-![dubbo_zookeeper](dubbo_zookeeper.png)
+![dubbo_zookeeper](../imgs/dubbo_zookeeper.png)
 
 dubbo在zookeeper存储的格式
 1、根节点：dubbo

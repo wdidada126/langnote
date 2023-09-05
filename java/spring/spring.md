@@ -5,7 +5,6 @@
 马士兵
 Mick
 
-
 spring事务
 
 跟我学spring 8章
@@ -21,7 +20,7 @@ webservice三件套
 SpringMvc接收multipart/form-data 传输的数据 及 PostMan各类数据类型的区别
 https://www.cnblogs.com/ifindu-san/p/8251370.html
 
-org.apache.ibatis.annotations.Mapper是MyBatis框架中的一个注解，用于标记一个接口作为Mapper接口. 该注解的作用是将接口标记为MyBatis Mapper接口，以便MyBatis框架可以扫描它并自动生成实现类 . 如果您想了解更多信息，请查看以下文章 .
+org.apache.ibatis.annotations.Mapper是MyBatis框架中的一个注解，用于标记一个接口作为Mapper接口. 该注解的作用是将接口标记为MyBatis Mapper接口，以便MyBatis框架可以扫描它并自动生成实现类 . 如果您想了解更多信息，请查看以下文章.
 
 @Mapper @Repository区别
 https://blog.csdn.net/qq_44421399/article/details/109825479
@@ -31,8 +30,6 @@ https://blog.csdn.net/qq_44421399/article/details/109825479
 
 @Repository是扫面类注入spring ioc
 需要配置mybatis接口所在的package
-
-
 
 testmybatisspring
 打印spring日志
