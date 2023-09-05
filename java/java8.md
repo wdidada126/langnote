@@ -1,5 +1,39 @@
 # java8
 
+
+javax
+- javax-batch
+- javax-inject
+- javax-invidate
+
+
+javax.validation.constraints中@NotEmpty,@NotNull,@NotBlank的区别
+https://blog.csdn.net/m0_51176516/article/details/117456403
+
+
+
+@NotEmpty
+The annotated element must not be {@code null} nor empty. Supported types are:
+不能是null
+不能是空字符
+集合框架中的元素不能为空
+加了@NotEmpty注解的String类 ，Collection集合，Map ，数组，这些是不能为null或者长度为0的;
+(String ,Collection,Map的isEmpty()方法)
+
+@NotNull：主要用在基本数据类型上(Int，Integer，Double)
+被修饰元素不能为null
+举例：
+@NotNull(message = “年龄不能为空”)
+private Integer age;
+
+@NotBlank：主要用在String字符串上面(String)
+The annotated element must not be {@code null} and must contain at least one
+non-whitespace character.（必须包含至少一个非空白字符。）
+这个注解用来判断字符串或者字符
+举例：
+@NotBlank(message = “名字不能为空”)
+private String name
+
 JAVA8 STREAM COLLECT GROUPBY分组的简单例子
 https://www.cnblogs.com/theRhyme/p/12128652.html
 
