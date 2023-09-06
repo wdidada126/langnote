@@ -1,5 +1,7 @@
 # DDM
 
+数据库中间件DDM？后台是mysql吗？
+
 华为DDM是一款分布式关系型数据库中间件，全称为“Distributed Database Middleware”。它专注于解决数据库分布式扩展问题，突破了传统数据库的容量和性能瓶颈，实现海量数据高并发访问¹²。DDM是由华为云自主研发的云原生分布式数据库中间件，采用存算分离架构，提供分库分表、读写分离、弹性扩容等能力，具有稳定可靠、高度可扩展、持续可运维的特点。
 
 https://support.huaweicloud.com/qs-ddm/ddm_02_0005.html
