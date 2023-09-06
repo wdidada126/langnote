@@ -1,6 +1,54 @@
 # Spring Aop
 org.springframework.aop.interceptor.ExposeInvocationInterceptor
 
+
+
+`org.springframework.aop.interceptor.ExposeInvocationInterceptor` 是 Spring AOP（Aspect-Oriented Programming）中的一个拦截器，它的作用是暴露当前的方法调用。这个拦截器通常用于调试或跟踪应用程序中的方法调用。
+
+下面是一个使用 `ExposeInvocationInterceptor` 的例子：
+
+```java
+import org.aspectj.lang.JoinPoint;  
+import org.aspectj.lang.ProceedingJoinPoint;  
+import org.aspectj.lang.annotation.Around;  
+import org.aspectj.lang.annotation.Aspect;  
+import org.aspectj.lang.annotation.Pointcut;  
+import org.springframework.aop.interceptor.ExposeInvocationInterceptor;  
+import org.springframework.context.ApplicationContext;  
+import org.springframework.stereotype.Component;  
+  
+@Aspect  
+@Component  
+public class ExposeInvocationAspect {  
+  
+    @Pointcut("execution(* com.example.*.*(..))")  
+    public void anyMethodInComExample() { }  
+  
+    @Around("anyMethodInComExample()")  
+    public Object logExecution(ProceedingJoinPoint joinPoint) throws Throwable {  
+        // 获取当前的方法调用  
+        String methodName = joinPoint.getSignature().getName();  
+        Object[] args = joinPoint.getArgs();  
+  
+        // 获取 ApplicationContext  
+        ApplicationContext context = SpringUtil.getApplicationContext();  
+  
+        // 打印方法调用信息  
+        System.out.println("Method " + methodName + " is being executed with arguments: " + Arrays.toString(args));  
+        System.out.println("Context: " + context);  
+  
+        // 执行方法并返回结果  
+        return joinPoint.proceed();  
+    }  
+}
+```
+
+在上面的例子中，我们定义了一个 Aspect，它使用 `ExposeInvocationInterceptor` 来暴露当前的方法调用。通过使用 `@Around` 注解，我们可以在方法执行之前和之后执行一些额外的逻辑。在上面的例子中，我们在方法执行之前打印了方法名、参数和 ApplicationContext 信息。最后，我们调用 `joinPoint.proceed()` 来执行原始方法并返回结果。
+
+需要注意的是，`ExposeInvocationInterceptor` 通常与 `org.springframework.aop.interceptor.SimpleTraceInterceptor` 一起使用，后者提供了一个更简单的跟踪方法调用的功能。
+
+
+
 Spring2教案_aop事务.docx
 
 
