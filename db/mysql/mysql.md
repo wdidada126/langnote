@@ -1,10 +1,28 @@
 # mysql
 
-sql中 count 
-sum avg max min是不是函数？
+## mysql datetime如何比较大小？
+在MySQL中，可以使用比较运算符（<、>、<=、>=、==、!=）来比较datetime值的大小。
+例如，假设有两个datetime列date1和date2，可以使用以下语句比较它们的大小：
+```sql
+SELECT * FROM table_name WHERE date1 > date2;
+```
+这将返回table_name表中所有date1大于date2的记录。
+
+还可以使用其他比较运算符进行比较，例如：
+
+```sql
+SELECT * FROM table_name WHERE date1 < date2; -- 返回所有date1小于date2的记录  
+SELECT * FROM table_name WHERE date1 >= date2; -- 返回所有date1大于等于date2的记录  
+SELECT * FROM table_name WHERE date1 <= date2; -- 返回所有date1小于等于date2的记录  
+SELECT * FROM table_name WHERE date1 == date2; -- 返回所有date1等于date2的记录  
+SELECT * FROM table_name WHERE date1 != date2; -- 返回所有date1不等于date2的记录
+```
+请注意，datetime比较是基于时间戳进行的，因此在进行比较时，需要考虑时间戳的位置。
+
+
+## sql中 count sum avg max min是不是函数？
 
 group by才能使用的函数
-
 
 聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。
 
