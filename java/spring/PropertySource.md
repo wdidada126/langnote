@@ -4,10 +4,6 @@
 
 
 
-
-
-
-
 总结：配合Environment  StandardEnvironment
 Value
 使用，加载配置文件中的变量，使变量的值跟java源代码分离
@@ -16,13 +12,13 @@ Value
 
 
 
+spring-context包
+
 org.springframework.context.annotation.PropertySource是一个注解，可以标记在类上、接口上、枚举上，在运行时起作用。
 
 
 
 例子
-
-
 
 - 定义一个application.properties 来写入如下配置
 
@@ -68,7 +64,7 @@ com.spring.age=18
 
 ### DisposableBean
 
-org.springframework.beans.factory.DisposableBean
+org.springframework.beans.factory.DisposableBean spring-beans包
 
 
 
@@ -84,7 +80,7 @@ bean生命周期
 
 # Resource spring-core里面的类
 
-我们可能需要处理URL资源、File资源资源、ClassPath相关资源、服务器相关资源（JBoss AS 5.x上的VFS资源）等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且处理这些资源步骤都是类似的（打开资源、读取资源、关闭资源），因此如果能抽象出一个统一的接口来对这些底层资源进行统一访问，是不是很方便，而且使我们系统更加简洁，都是对不同的底层资源使用同一个接口进行访问。
+​       我们可能需要处理URL资源、File资源资源、ClassPath相关资源、服务器相关资源（JBoss AS 5.x上的VFS资源）等等很多资源。因此处理这些资源需要使用不同的接口，这就增加了我们系统的复杂性；而且处理这些资源步骤都是类似的（打开资源、读取资源、关闭资源），因此如果能抽象出一个统一的接口来对这些底层资源进行统一访问，是不是很方便，而且使我们系统更加简洁，都是对不同的底层资源使用同一个接口进行访问。
 
 ​       Spring 提供一个Resource接口来统一这些底层资源一致的访问，而且提供了一些便利的接口，从而能提供我们的生产力。
 

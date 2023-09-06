@@ -449,13 +449,12 @@ AutowiredAnnotationBeanPostProcessor
 
 有没有更好的设计方法
 
-
-Spring aop
+## Spring aop
 
 Spring tx
 @Transnal
 
-Spring JDBC-Spring对事务管理的支持
+##  Spring JDBC-Spring对事务管理的支持
 https://blog.csdn.net/yangshangwei/article/details/78050480
 
 xxxTransactionManager
@@ -507,7 +506,7 @@ https://www.cnblogs.com/xiaoyuanr/p/13904582.html
 
 ![spring两种代理方式](..\..\imgs\spring\spring两种代理方式.png)
 
-<init-method>效果跟实现InitializingBean接口是一样的吗？
+###  <init-method>效果跟实现InitializingBean接口是一样的吗？
 在Spring中，<init-method>标签和实现InitializingBean接口都可以用来指定Bean初始化之后执行的方法，但是它们的实现方式和用途是有些不同的。
 
 spring ioc中的bean，创建好之后执行特定方法
@@ -522,7 +521,10 @@ public class MyBean implements InitializingBean {
 }
 ```
 
+
+
 在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 Spring 提供的 `<init-method>` 和 `<destroy-method>` 元素。
+
 1. `<init-method>` 元素：该元素用于指定 Bean 创建完成后要执行的初始化方法。你可以在该方法中进行一些初始化操作，例如初始化成员变量、连接数据库等。例如：
 ```
 <bean id="myBean" class="com.example.MyBean" init-method="init">
@@ -565,6 +567,14 @@ public class MyBean {
 
 在这个例子中，我们定义了一个名为 `MyBean` 的 Bean，并使用 `@PreDestroy` 注解指定了一个名为 `cleanup()` 的方法。在该方法中，我们可以进行一些清理操作，例如关闭数据库连接、释放资源等。
 总之，在 Spring 的 XML 配置文件中，如果你需要在 Bean 创建好之后执行特定方法，可以使用 `<init-method>` 和 `<destroy-method>` 元素。如果你想使你的 Bean 更加独立和可重用，可以使用 Spring 提供的注解来实现。
+
+
+
+## 自己写spring
+
+
+
+github.com/edidada/minis
 
 
 
@@ -651,11 +661,7 @@ session：在一次会话中对应一个bean。
 <qualifier>
 
 
-
-
-
-
-
+## edidada/SpringExample
 
 
 https://github.com/edidada/SpringExample
@@ -709,8 +715,6 @@ Spring 3.x企业开发实战
 29. 什么是Spring的内部bean？当一个bean仅被用作另一个bean的属性时，它能被声明为一个内部bean，为了定义inner bean，在Spring 的 基于XML的 配置元数据中，可以在 <property/>或 <constructor-arg/> 元素内使用<bean/> 元素，内部bean通常是匿名的，它们的Scope一般是prototype。
 30. 在 Spring中如何注入一个java集合？Spring提供以下几种集合的配置元素：<list>类型用于注入一列值，允许有相同的值。<set> 类型用于注入一组值，不允许有相同的值。<map> 类型用于注入一组键值对，键和值都可以为任意类型。<props>类型用于注入一组键值对，键和值都只能为String类型。
 31. 什么是bean装配?装配，或bean 装配是指在Spring 容器中把bean组装到一起，前提是容器需要知道bean的依赖关系，如何通过依赖注入来把它们装配到一起。32. 什么是bean的自动装配？Spring 容器能够自动装配相互合作的bean，这意味着容器不需要<constructor-arg>和<property>配置，能通过Bean工厂自动处理bean之间的协作。33. 解释不同方式的自动装配 。有五种自动装配的方式，可以用来指导Spring容器用自动装配方式来进行依赖注入。no：默认的方式是不进行自动装配，通过显式设置ref 属性来进行装配。byName：通过参数名 自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byname，之后容器试图匹配、装配和该bean的属性具有相同名字的bean。byType：通过参数类型自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byType，*之后容器试图匹配、装配和该bean的属性具有相同类型的bean。如果有多个bean符合条件，则抛出错误。constructor：这个方式类似于byType， 但是要提供给构造器参数，如果没有确定的带参数的构造器参数类型，将会抛出异常。autodetect：首先尝试使用constructor来自动装配，如果无法工作，则使用byType方式。34.自动装配有哪些局限性 ?自动装配的局限性是：重写： 你仍需用 <constructor-arg>和 <property> 配置来定义依赖，意味着总要重写自动装配。基本数据类型：你不能自动装配简单的属性，如基本数据类型，String字符串，和类。模糊特性：自动装配不如显式装配精确，如果有可能，建议使用显式装配。
-
-
 
 35. @RequestMapping 注解
 该注解是用来映射一个URL到一个类或一个特定的方处理法上。
@@ -860,10 +864,6 @@ WebApplicationContext 继承了ApplicationContext 并增加了一些WEB应用必
 
 
 
-
-
-
-
 ### spring vs ejb
 spring更轻量
 
@@ -875,15 +875,15 @@ spring更轻量
 
 servlet的web.xml中必须配置一个监听器
     <listener>  
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
     </listener>  
 
 ContextLoaderListener 这个类代码就会启动initWebApplicationContext()，具体是XMLWebApplicationContext
 
-
 PropertyValues
 org.springframework.beans.PropertyValue
 spring-beans包里面的
+
 ```xml
     <bean id="wrapService" class="top.guoziyang.main.service.WrapService">
         <property name="helloWorldService" ref="helloWorldService"></property>
@@ -1053,12 +1053,11 @@ Spring用了注解 反射
 
 类加载器
 
-
-
-
-
-
 用Spring一年之后，懂了好多
+
+
+
+## seaswalker/spring-analysis
 
 https://github.com/seaswalker/spring-analysis
 
@@ -1097,7 +1096,7 @@ applicationContext.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
-<beans
+<beans></beans>
 ```
 
 
@@ -1133,11 +1132,7 @@ applicationContext.xml
 
 
 
-
-
-20180824
-
-
+## 本质
 
 spring bean的本质是内存 软件工程 解耦合
 
@@ -1149,8 +1144,6 @@ Spring能方便的与Java EE（如Java Mail、任务调度）整合，与更多�
 
 SpringBoot SpringCloud starter
 
-
-
 - spring doc
 - spring in action
 - 各种培训班材料
@@ -1158,24 +1151,22 @@ SpringBoot SpringCloud starter
 
 
 
-张开涛学Spring
+## 张开涛学Spring
 
 
 
-https://github.com/edidada/testmybatisspring
+
 
 https://github.com/edidada/spring-analysis
 
 
 
-spring 集成mybatis
+## spring 集成mybatis
 
-
+https://github.com/edidada/testmybatisspring
 
 控制反转    -------  定义bean
 依赖注入    -------  获取bean
-
-
 
 
 
@@ -1264,7 +1255,7 @@ public class ExampleBean {
 
 
 
-1. 在类中添加初始化方法：在需要执行初始化操作的方法上添加 `@PostConstruct` 注解。该方法可以有任意名称，但不能有任何参数。
+2. 在类中添加初始化方法：在需要执行初始化操作的方法上添加 `@PostConstruct` 注解。该方法可以有任意名称，但不能有任何参数。
 
    ````java
    import javax.annotation.PostConstruct;
@@ -1341,35 +1332,43 @@ LifecycleProcessor (org.springframework.context)
 
 
 
-public interface Lifecycle {
 
-	void start();
+
+	public interface Lifecycle {
+	    void start();
 	
-	void stop();
+	    void stop();
 	
-	boolean isRunning();
-}
+	    boolean isRunning();
+	}
 
 
-public interface LifecycleProcessor extends Lifecycle {
 
-	void onRefresh();
+
+
+	public interface LifecycleProcessor extends Lifecycle {
+	    void onRefresh();
 	
-	void onClose();
-}
+	    void onClose();
+	}
 
 
-public interface Phased {
 
-	int getPhase();
-}
 
-public interface SmartLifecycle extends Lifecycle, Phased {
 
-	boolean isAutoStartup();
+	public interface Phased {
+	    int getPhase();
+	}
+
+
+
+
+	public interface SmartLifecycle extends Lifecycle, Phased {
+	    boolean isAutoStartup();
 	
-	void stop(Runnable callback);
-}
+	    void stop(Runnable callback);
+	}
+
 
 
 <bean id="lifecycleProcessor" class="org.springframework.context.support.DefaultLifecycleProcessor">
@@ -1382,7 +1381,6 @@ public interface SmartLifecycle extends Lifecycle, Phased {
 
 
 ApplicationContextAware and BeanNameAware
-
 
 public interface ApplicationContextAware {
 	void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
@@ -1407,6 +1405,18 @@ public interface BeanNameAware {
 | `ResourceLoaderAware`            | Configured loader for low-level access to resources.         | [Resources](https://docs.spring.io/spring-framework/reference/web/webflux-webclient/client-builder.html#webflux-client-builder-reactor-resources) |
 | `ServletConfigAware`             | Current `ServletConfig` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html#mvc) |
 | `ServletContextAware`            | Current `ServletContext` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html#mvc) |
+
+
+
+## Features
+
+- [Core technologies](https://docs.spring.io/spring-framework/reference/core.html): dependency injection, events, resources, i18n, validation, data binding, type conversion, SpEL, AOP.
+- [Testing](https://docs.spring.io/spring-framework/reference/testing.html#testing): mock objects, TestContext framework, Spring MVC Test, `WebTestClient`.
+- [Data Access](https://docs.spring.io/spring-framework/reference/data-access.html): transactions, DAO support, JDBC, ORM, Marshalling XML.
+- [Spring MVC](https://docs.spring.io/spring-framework/reference/web.html) and [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web-reactive.html) web frameworks.
+- [Integration](https://docs.spring.io/spring-framework/reference/integration.html): remoting, JMS, JCA, JMX, email, tasks, scheduling, cache and observability.
+- [Languages](https://docs.spring.io/spring-framework/reference/languages.html): Kotlin, Groovy, dynamic languages.
+
 
 
 https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html
@@ -1487,7 +1497,7 @@ public class CustomFactoryBean implements FactoryBean<CustomObject> {
 
 <context:property-placeholder location="classpath:com/something/jdbc.properties"/>
 
-1.9. Annotation-based Container Configuration
+## 1.9. Annotation-based Container Configuration
 AutowiredAnnotationBeanPostProcessor
 
 spring beans定义的xml
@@ -1601,7 +1611,7 @@ org.springframework.context.annotation.ComponentScanBeanDefinitionParser#registe
 
 请注意，`<context:annotation-config/>` 是 Spring Framework 中的一个核心配置元素，用于启用注解驱动的功能。它类似于 `<context:component-scan/>`，后者用于启用组件扫描并自动注册带有特定注解的类。通过这些配置元素，您可以更方便地使用基于注解的 Spring 特性。
 
-1.9.7
+## 1.9.7
 @Resource
     <bean class="example.SimpleMovieCatalog">
         <qualifier value="main"/> 
@@ -1609,17 +1619,18 @@ org.springframework.context.annotation.ComponentScanBeanDefinitionParser#registe
         <!-- inject any dependencies required by this bean -->
     </bean>
 SimpleJndiBeanFactory
-1.9.8
+
+## 1.9.8
 
 PropertySourcesPlaceholderConfigurer
 
-1.9.9
+## 1.9.9
 
 @PostConstruct and @PreDestroy
 
 CommonAnnotationBeanPostProcessor
 
-1.10. Classpath Scanning and Managed Components
+## 1.10. Classpath Scanning and Managed Components
 
 
 @Configuration
@@ -1632,8 +1643,7 @@ xml
 
     <context:component-scan base-package="org.example"/>
 
-
-1.10.4. Using Filters to Customize Scanning
+## 1.10.4. Using Filters to Customize Scanning
 Filter Type	Example Expression	Description
 annotation (default)
 
@@ -1724,7 +1734,7 @@ public class AppConfig {
 
 @Offline
 
-1.11. Using JSR 330 Standard Annotations
+## 1.11. Using JSR 330 Standard Annotations
 
 
 
@@ -2375,14 +2385,14 @@ https://blog.csdn.net/zane3/article/details/63253281
 
 
 
+# XML解析 验证之XSD和DTD验证以及 SpringXML验证源码分析
+
 https://blog.csdn.net/GoSaint/article/details/101320827
 
 
 
 
 ##### jar包
-
-
 
 
 - spring-aop spring_aop.md
@@ -2427,7 +2437,16 @@ spring源码 gradle多模块怎么组织的?
 
 
 
-xml不能用正则表达式校验 形式语言表达式定理说明的	
+xml不能用正则表达式校验 形式语言表达式定理说明的
+
+XML（可扩展标记语言）是一种用于创建结构化文档的标记语言，而正则表达式是一种用于匹配和操作文本的模式匹配工具。尽管正则表达式在处理简单文本格式时非常有用，但它并不能很好地处理XML的嵌套结构和复杂的标签属性。
+
+形式语言表达式定理指出，正则表达式只能处理有限状态接受器类（即正则语言类）的字符串，而XML是一种上下文无关的语言，超出了正则表达式的处理能力。
+
+因此，虽然正则表达式可以用于处理一些简单的文本格式，但不建议使用它来校验XML文档的格式。对于XML格式验证，通常使用专门的XML解析器和校验工具，如XML Schema定义（XSD）或XML DTD（文档类型定义）。这些工具能够正确地解析和处理XML的语法和结构，确保文档的格式符合预期的标准。
+
+
+
 xml文件用.dtd校验
 
 
@@ -2487,12 +2506,6 @@ systemId: http://www.springframework.or...
 
 
 
-
-
-
-自己写spring
-
-github.com/edidada/minis
 
 
 
@@ -2935,7 +2948,6 @@ PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就�
 PropertyPlaceholderConfigurer 引入外部属性文件
 
 https://blog.csdn.net/weixin_43314519/article/details/109233365
-
 
 [util:properties](https://maidong660.iteye.com/blog/2363666)
 

@@ -1,7 +1,5 @@
 # cxf_wsdl
 
-
-
 Apache CXF是一个开源的Web服务框架，它提供了生成WebService和WSDL文件的工具，可以非常方便地生成.wsdl文件。
 下面是一个使用CXF生成.wsdl文件的示例：
 1. 首先，在Maven项目中添加CXF的相关依赖：
