@@ -1,4 +1,4 @@
-# spring_orm
+# spring orm
 
 ## spring orm 跟spring oxm的区别
 Spring ORM和Spring OXM是两个不同的模块,它们的区别如下:

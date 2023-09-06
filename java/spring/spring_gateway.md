@@ -1,6 +1,5 @@
 # spring_gateway
 
-
 微服务开发的dubbo或者http接口，前端如何访问，通过域名dns系统实现负载均衡？
 如何避免攻击？
 pgsql是可以设置ip白名单的

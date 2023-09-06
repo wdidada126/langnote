@@ -1,4 +1,4 @@
-# spring_jdbc_template
+# spring jdbc template
 
 
 org.springframework.jdbc.core.JdbcTemplate#batchUpdate(java.lang.String, org.springframework.jdbc.core.BatchPreparedStatementSetter)

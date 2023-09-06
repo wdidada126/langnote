@@ -7,10 +7,15 @@ springmvc开发http接口
 
 spring boot starter web快速开发http接口
 
-
 sping cloud 一整套企业级服务
 微服务http调用 分布式追踪，注册中心，配置中心，分布式事务 网关
 国内 阿里 腾讯 华为 卖云服务的，都有一套基于spring cloud的框架
+
+从Alibaba提供Spring Alibaba来看，国内在Spring使用上还是很强大的
+
+tsf
+
+edas
 
 
 
@@ -18,7 +23,7 @@ sping cloud 一整套企业级服务
 
 
 
-腾讯云 阿里云都有类似的微服务框架
+
 
 
 Spring Cloud
@@ -44,7 +49,7 @@ https://blog.csdn.net/forezp/article/details/69788938
 
 
 
-从Alibaba提供Spring Alibaba来看，国内在Spring使用上还是很强大的
+
 
 
 
@@ -64,10 +69,6 @@ xml文件定义${}变量，如何替换掉
 
 
 aoutconfig maven插件是生成properties插件
-
-
-
-从Alibaba提供Spring Alibaba来看，国内在Spring使用上还是很强大的
 
 
 
@@ -198,6 +199,24 @@ spring-cloud-openfeign-dependencies
 ```
 
 
+
+### spring cloud alibaba
+
+\```xml
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2022.0.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+\```
+
+
+
+https://gitee.com/edidada/myspringcloudalibaba
+
+spring aliubaba cloud 2022版本，使用spring 6
 
 
 

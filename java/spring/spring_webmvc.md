@@ -1,4 +1,4 @@
-# spring_webmvc
+# spring webmvc
 
 
 org.springframework.web.servlet.DispatcherServlet

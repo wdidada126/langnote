@@ -12,7 +12,7 @@ this.autowiredAnnotationTypes.add(Value.class);
 
 org.springframework.beans.factory
 BeanFactory
- 
+
 bean的配置
 
 <bean  name="user" class="top.edidada.springday01.bean.User" ></bean>
@@ -111,8 +111,6 @@ Spring容器支持的三种依赖注入的方式以及具体配置方法：
 •  属性注入方法
 •  构造函数注入方法
 •  工厂方法注入方法
-
-
 
 
 
@@ -309,9 +307,6 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 
 | org.springframework.beans                            | 类型 |      |
 | ---------------------------------------------------- |-----------| ---- |
-|                                                      |           |      |
-| Interfaces                                           |           |      |
-|                                                      |           |      |
 | BeanInfoFactory                                      | interface |      |
 | BeanMetadataElement                                  | interface |      |
 | BeanWrapper                                          | interface |      |
@@ -322,32 +317,26 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | PropertyEditorRegistry                               | interface |      |
 | PropertyValues                                       | interface |      |
 | TypeConverter                                        | interface |      |
-|                                                      |           |      |
-| Classes                                              |           |      |
-|                                                      |           |      |
-| AbstractNestablePropertyAccessor                     |           |      |
-| AbstractNestablePropertyAccessor.PropertyHandler     |           |      |
-| AbstractNestablePropertyAccessor.PropertyTokenHolder |           |      |
-| AbstractPropertyAccessor                             |           |      |
-| BeanMetadataAttribute                                |           |      |
-| BeanMetadataAttributeAccessor                        |           |      |
-| BeanUtils                                            |           | 重要 |
-| BeanWrapperImpl                                      |           |      |
-| CachedIntrospectionResults                           |           |      |
-| DirectFieldAccessor                                  |           |      |
-| ExtendedBeanInfoFactory                              |           |      |
-| MutablePropertyValues                                |           |      |
-| PropertyAccessorFactory                              |           |      |
-| PropertyAccessorUtils                                |           |      |
-| PropertyEditorRegistrySupport                        |           |      |
-| PropertyMatches                                      |           |      |
-| PropertyValue                                        |           |      |
-| PropertyValuesEditor                                 |           |      |
-| SimpleTypeConverter                                  |           |      |
-| TypeConverterSupport                                 |           |      |
-|                                                      |           |      |
-| Exceptions                                           |           |      |
-|                                                      |           |      |
+| AbstractNestablePropertyAccessor                     | classe |      |
+| AbstractNestablePropertyAccessor.PropertyHandler     | classe |      |
+| AbstractNestablePropertyAccessor.PropertyTokenHolder | classe |      |
+| AbstractPropertyAccessor                             | classe |      |
+| BeanMetadataAttribute                                | classe |      |
+| BeanMetadataAttributeAccessor                        | classe |      |
+| BeanUtils                                            | classe | 重要 |
+| BeanWrapperImpl                                      | classe |      |
+| CachedIntrospectionResults                           | classe |      |
+| DirectFieldAccessor                                  | classe |      |
+| ExtendedBeanInfoFactory                              | classe |      |
+| MutablePropertyValues                                | classe |      |
+| PropertyAccessorFactory                              | classe |      |
+| PropertyAccessorUtils                                | classe |      |
+| PropertyEditorRegistrySupport                        | classe |      |
+| PropertyMatches                                      | classe |      |
+| PropertyValue                                        | classe |      |
+| PropertyValuesEditor                                 | classe |      |
+| SimpleTypeConverter                                  | classe |      |
+| TypeConverterSupport                                 | classe |      |
 | BeanInstantiationException                           | exception         |      |
 | BeansException                                       |   exception        |      |
 | ConversionNotSupportedException                      |   exception        |      |
@@ -391,9 +380,6 @@ BeanUtils methods
 
 | org.springframework.beans.factory  | 类型 |      |
 | ---------------------------------- |-----------| ---- |
-|                                    |           |      |
-| Interfaces                         |           |      |
-|                                    |           |      |
 | Aware                              | interface |      |
 | BeanClassLoaderAware               | interface |      |
 | BeanFactory                        | interface |      |
@@ -409,14 +395,8 @@ BeanUtils methods
 | ObjectProvider                     | interface |      |
 | SmartFactoryBean                   | interface |      |
 | SmartInitializingSingleton         | interface |      |
-|                                    |           |      |
-| Classes                            |           |      |
-|                                    |           |      |
-| BeanFactoryUtils                   |           |      |
-| InjectionPoint                     |           |      |
-|                                    |           |      |
-| Exceptions                         |           |      |
-|                                    |           |      |
+| BeanFactoryUtils                   | classe |      |
+| InjectionPoint                     | classe |      |
 | BeanCreationException              | exception         |      |
 | BeanCreationNotAllowedException    |  exception         |      |
 | BeanCurrentlyInCreationException   |  exception         |      |
@@ -438,31 +418,19 @@ BeanUtils methods
 
 | org.springframework.beans.factory.annotation | 类型 |      |
 | -------------------------------------------- |-----------| ---- |
-|                                              |           |      |
-| Interfaces                                   |           |      |
-|                                              |           |      |
 | AnnotatedBeanDefinition                      | interface |      |
-|                                              |           |      |
-| Classes                                      |           |      |
-|                                              |           |      |
-| AnnotatedGenericBeanDefinition               |           |      |
-| AnnotationBeanWiringInfoResolver             |           |      |
-| AutowiredAnnotationBeanPostProcessor         |           |      |
-| BeanFactoryAnnotationUtils                   |           |      |
-| CustomAutowireConfigurer                     |           |      |
-| InitDestroyAnnotationBeanPostProcessor       |           |      |
-| InjectionMetadata                            |           |      |
-| InjectionMetadata.InjectedElement            |           |      |
-| ParameterResolutionDelegate                  |           |      |
-| QualifierAnnotationAutowireCandidateResolver |           |      |
-| RequiredAnnotationBeanPostProcessor          |           |      |
-|                                              |           |      |
-| Enums                                        |           |      |
-|                                              |           |      |
+| AnnotatedGenericBeanDefinition               | classe |      |
+| AnnotationBeanWiringInfoResolver             | classe |      |
+| AutowiredAnnotationBeanPostProcessor         | classe |      |
+| BeanFactoryAnnotationUtils                   | classe |      |
+| CustomAutowireConfigurer                     | classe |      |
+| InitDestroyAnnotationBeanPostProcessor       | classe |      |
+| InjectionMetadata                            | classe |      |
+| InjectionMetadata.InjectedElement            | classe |      |
+| ParameterResolutionDelegate                  | classe |      |
+| QualifierAnnotationAutowireCandidateResolver | classe |      |
+| RequiredAnnotationBeanPostProcessor          | classe |      |
 | Autowire                                     | enum      |      |
-|                                              |           |      |
-| Annotation Types                             |           |      |
-|                                              |           |      |
 | Autowired                                    |  @interface         |      |
 | Configurable                                 | @interface          |      |
 | Lookup                                       |  @interface         |      |

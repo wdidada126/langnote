@@ -147,12 +147,6 @@ NamedParameterJdbcTemplate使用SqlParameterSource接口来封装SQL语句中的
 
 
 
-
-
-
-
-
-
 SimpleJdbcCall是Spring框架中用于调用存储过程的类，它的作用是简化存储过程调用的过程，提高代码的可读性和可维护性。
 在使用JdbcTemplate调用存储过程时，需要使用CallMetaDataProvider接口来获取存储过程的元数据信息，并使用JdbcTemplate的CallHelper类来实现存储过程的调用。这种方式虽然灵活，但需要编写大量的代码来实现存储过程的调用，代码可读性和可维护性较差。
 SimpleJdbcCall类可以简化存储过程调用的过程，它封装了JdbcTemplate的CallHelper类，并提供了一些方法，用于设置存储过程的参数、执行存储过程、获取存储过程的执行结果等。例如：
@@ -194,20 +188,13 @@ jdbcInsert.execute(parameters);
 
 通过使用SimpleJdbcInsert，我们可以更加方便地执行插入操作，避免了手动编写SQL语句和设置参数的繁琐操作，从而提高了代码的可读性和可维护性。
 
-
-
 JdbcBeanDefinitionReader可以读取多种类型的JDBC元数据信息，包括但不限于以下对象：
 
 1. 数据库驱动程序提供的元数据信息，例如：数据库名称、数据库版本、数据库支持的SQL语法等。
-
 2. 数据库表的元数据信息，例如：表名、列名、数据类型、主键等。
-
 3. 数据库存储过程和函数的元数据信息，例如：存储过程名称、参数类型、返回类型等。
-
 4. 数据库触发器和约束的元数据信息，例如：触发器名称、触发事件、约束名称等。
-
 5. 其他自定义的元数据信息，例如：自定义的SQL语句、自定义的查询结果集等。
-
 通过读取这些元数据信息，JdbcBeanDefinitionReader可以生成相应的Bean定义，并将其注册到Spring容器中，从而简化应用程序的开发过程，提高代码的可读性和可维护性。
 
 
@@ -216,13 +203,9 @@ TransactionAwareDataSourceProxy tadsp
 TransactionAwareDataSourceProxy是Spring框架中用于支持事务的数据源代理类，它的作用是在多个事务之间共享同一个数据连接，避免事务之间的数据不一致。
 
 在使用Spring事务管理器时，通常需要使用PlatformTransactionManager接口来管理事务，而PlatformTransactionManager接口需要一个DataSource对象来获取数据库连接。当应用程序中存在多个事务时，每个事务都需要一个独立的数据连接，这可能会导致多个事务之间的数据不一致问题。
-
 TransactionAwareDataSourceProxy类可以解决这个问题，它是一个数据源代理，可以拦截所有的getConnection()方法调用，并返回同一个连接对象。当一个事务完成时，TransactionAwareDataSourceProxy会将连接还回给连接池，而不是关闭连接。这样，当下一个事务需要连接时，就可以重用已有的连接，避免了多个事务之间的数据不一致问题。
-
 TransactionAwareDataSourceProxy类还支持嵌套事务，当使用嵌套事务时，TransactionAwareDataSourceProxy会将嵌套事务绑定到当前事务中，从而确保所有事务都使用同一个连接，避免了事务之间的数据不一致问题。
-
 在配置事务管理器时，可以将DataSource对象传递给TransactionAwareDataSourceProxy类，从而将其包装成一个事务感知的数据源代理。例如：
-
 ```
 @Bean
 public DataSourceTransactionManager transactionManager(DataSource dataSource) {
@@ -231,7 +214,6 @@ public DataSourceTransactionManager transactionManager(DataSource dataSource) {
     return transactionManager;
 }
 ```
-
 在上面的示例中，我们首先定义了一个DataSourceTransactionManager对象，并将其注入到Spring容器中。然后，我们使用TransactionAwareDataSourceProxy类将DataSource对象包装成一个事务感知的数据源代理，并将其设置到DataSourceTransactionManager对象中。
 
 通过使用TransactionAwareDataSourceProxy，我们可以避免多个事务之间的数据不一致问题，从而提高了应用程序的可靠性和可维护性。
@@ -462,7 +444,7 @@ try {
 
 
 
-| org.springframework.jdbc.core.metadata                                  | 类型           | 作用                                                         |
+| org.springframework.jdbc.core.metadata    | 类型           | 作用                                                         |
 | ----------------------------------------- | -------------- | ------------------------------------------------------------ |
 | ArgumentPreparedStatementSetter           |                |                                                              |
 | ArgumentTypePreparedStatementSetter       |                | 将SQL语句中的占位符参数与Java对象中的属性值进行匹配和设置。  |
@@ -513,10 +495,6 @@ try {
 | SqlTypeValue                              |                |                                                              |
 | StatementCallback                         |                |                                                              |
 | StatementCreatorUtils                     | abstract class |                                                              |
-|                                           |                |                                                              |
-|                                           |                |                                                              |
-|                                           |                |                                                              |
-|                                           |                |                                                              |
 |                                           |                |                                                              |
 
 

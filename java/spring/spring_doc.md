@@ -1,7 +1,7 @@
 # doc
 
 
-bean的生命周期 《spring实战》
+bean的生命周期 《spring实战5》
 
 
 看英文文档
