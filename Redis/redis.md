@@ -1,5 +1,14 @@
 # redis
 
+another redis desktop manager
+https://github.com/qishibo/AnotherRedisDesktopManager
+
+支持windows
+linux
+mac
+支持redis版本？
+支持redis cluster？
+
 redis redisson分布式锁
 
 ### 分布式锁redis实现
