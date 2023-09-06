@@ -520,6 +520,17 @@ CommonAnnotationBeanPostProcessor处理PostConstruct PreDestroy两个注解
 | YamlProcessor.ResolutionMethod             | enum                         |                                  |
 
 
+一个使用PropertyPlaceholderConfigurer（PropertyResourceConfigurer的一个具体实现）的示例，它将属性占位符替换为实际的属性值：
+```
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:application.properties</value>
+        </list>
+    </property>
+</bean>
+
+
 DestructionAwareBeanPostProcessor接口是BeanPostProcessor接口子类，方法
 
 void postProcessBeforeDestruction(Object bean, String beanName)

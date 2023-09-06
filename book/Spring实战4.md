@@ -1,20 +1,17 @@
 # Spring实战4
 
-2016-4
-
+4 版本 2016-4
 Spring实战（第5版 ） 2020
 
 java实现一个功能，首先看spring是否内置支持
-
 spring支持发送邮件，就不用三方库了
-
 克雷格·沃斯（Craig Walls）
 Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持者，经常在各种技术会议上发表演讲。
 
 https://book.douban.com/subject/26767354/
 ## 1
-
-### Chap.1
+第1部分　Spring的核心
+### Chap.1 第1章　Spring之旅
 
 EJB
 
@@ -244,12 +241,11 @@ Spring中的c命名空间是一种用于设置Bean构造函数参数值的方式
 
 在3.1版本中，Spring引入了bean profile的功能。要使用profile，你首 先要将所有不同的bean定义整理到一个或多个profile之中，在将应用 部署到每个环境时，要确保对应的profile处于激活（active）的状态
 
-在Spring 4之前，很难实现这种级别的条件化配置，但是Spring 4引入 了一个新的@Conditional注解，它可以用到带有@Bean注解的方 法上。如果给定的条件计算结果为true，就会创建这个bean，否则的话，这个bean会被忽略。
+在Spring 4之前，很难实现这种级别的条件化配置，但是Spring 4引入 了一个新的@Conditional注解，它可以用到带有@Bean注解的方法上。如果给定的条件计算结果为true，就会创建这个bean，否则的话，这个bean会被忽略。
+org.springframework.context.annotation.Conditional spring-context包中
 
 ### Chap. 4 面向切面的Spring
-
 描述切面的常用术语有通知(advice)、切点(pointcut)和连接点(join point)
-
 如果你的AOP需求超过了简单的方法调用(如构造器或属性拦截)，那么你需要考虑使用AspectJ来实现切面。
 
 
@@ -257,7 +253,6 @@ Spring中的c命名空间是一种用于设置Bean构造函数参数值的方式
 源码不在
 
 aop的四种方式
-
 - 基于代理的经典Spring AOP
 - 纯POJO切面
 - @AspectJ注解驱动的切面
@@ -305,27 +300,32 @@ AOP配置元素            用途
 
 
 ## 第２部分　Web中的Spring
-
-
-
-
-
 ### Chap.5 构建Spring Web应用程序
-
 
 
 <mvc:annotation-driven>
 
-https://blog.csdn.net/qq_35029061/article/details/82945761
+[mvc:annotation-driven注解的作用](https://blog.csdn.net/qq_35029061/article/details/82945761)
+`mvc:annotation-driven`是Spring MVC框架中的一个配置元素，用于启用一些常用的注解驱动的功能。它的作用是自动注册和配置一些关键的注解驱动组件，以便在Spring MVC应用程序中使用它们。
 
+具体来说，`mvc:annotation-driven`的作用包括以下几个方面：
+1. 启用注解驱动的处理器映射器和处理器适配器：`mvc:annotation-driven`会自动注册`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`，它们分别负责处理控制器类的映射和方法的调用。这样，您可以使用`@RequestMapping`注解来定义请求映射和处理方法，而不需要显式配置XML文件。
+2. 支持数据绑定和类型转换：`mvc:annotation-driven`会自动注册`RequestMappingHandlerAdapter`中的一些关键组件，如`HandlerMethodArgumentResolver`和`HandlerMethodReturnValueHandler`，它们负责处理请求参数的绑定和响应结果的转换。通过这些组件，您可以在控制器方法中直接使用JavaBean对象作为参数，并让Spring MVC自动将请求参数绑定到该对象上。
+3. 支持请求验证和错误处理：`mvc:annotation-driven`会自动注册`Validator`和`ExceptionHandlerExceptionResolver`，它们用于请求验证和全局的异常处理。通过使用`@Valid`注解和`BindingResult`对象，您可以在控制器方法中进行请求参数验证，并获取验证结果。此外，您还可以定义`@ExceptionHandler`注解的方法来处理控制器中的异常。
+4. 支持异步请求处理：`mvc:annotation-driven`会自动注册`AsyncRequestTimeoutException`和`DeferredResultProcessingInterceptor`，以支持异步请求处理。这使得您可以在控制器方法中使用`DeferredResult`和`Callable`类型的返回值，实现异步处理请求和响应。
+通过使用`mvc:annotation-driven`，您可以轻松地启用并配置这些注解驱动的功能，减少了显式的XML配置，使得开发更加便捷和高效。
+
+<context:annotation-config/> 注解
+
+当我们需要使用BeanPostProcessor时，直接在Spring配置文件中定义这些Bean显得比较笨拙，例如：
+使用@Autowired注解，必须事先在Spring容器中声明AutowiredAnnotationBeanPostProcessor的Bean
+使用 @Required注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean
+类似地，使用@Resource、@PostConstruct、@PreDestroy等注解就必须声明 CommonAnnotationBeanPostProcessor；使用@PersistenceContext注解，就必须声明 PersistenceAnnotationBeanPostProcessor的Bean。
 
 
 GenericServlet？
-
 HttpServlet
-
 FrameworkServlet？
-
 DispatcherServlet
 
 HandlerMapping
@@ -349,69 +349,58 @@ https://stackoverflow.com/questions/37747449/no-cached-version-of-com-google-gms
 
 ### Chap. 6 渲染Web视图
 jsp
-th
+thymeleaf
 
+备注：springmvc支持excel和pdf
+AbstractPdfView
+
+返回json字符串
+MappingJackson2JsonView
+MappingJackson2XmlView
+
+FastJsonJsonView com.alibaba.fastjson.support.spring.FastJsonJsonView fastjson.jar
 
 ### Chap. 7 Spring MVC的高级技术
 
 SpringMVC
-
 处理异常
-
 java异常等报错 -> http状态码
 
 ### Chap. 8 使用Spring WebFlow
-
+异步 vert.x库
 WebFlux
-
 Spring Security在web应用
 
 Part 3
 
 backend
 
-
-
 ### 9 保护Web应用
-
-
+Spring Security
 
 ## 第3部分　后端中的Spring
 ### 第10章　通过Spring和JDBC征服数据库
 
-
+10.3.2　使用JDBC模板
 
 ### 第11章　使用对象-关系映射持久化数据
 
 Hibernate
 
 jpa
-
+Spring Data
 ### 第12章　使用NoSQL数据库
-
-
+使用MongoTemplate访问MongoDB
+使用Neo4jTemplat
+使用RedisTemplate
 
 MongoDB
-
-
-
 Neo4j
-
-
-
 Redis
-
-
 
 ### 第13章　缓存数据
 
-
-
-
-
 ### 第14章　保护方法应用
-
-
 
 spring security
 
@@ -430,13 +419,10 @@ amqp
 
 spring-jsm这个jar
 org.springframework.jms.core.JmsOperations
-
 convertAndSend()
-
+AMQP
 https://gitee.com/edidada/spring_jms
-
 ActiveMQ这个中间件
-
 
 <amq:connectionFactory id="connectionFactory" 
       brokerURL="tcp://localhost:61616" />
@@ -453,6 +439,8 @@ context-support jar
 org.springframework.mail.SimpleMailMessage
 https://gitee.com/edidada/spring_mail
 
+使用Thymeleaf构建Email消息
+使用Velocity构建Email消息
 ### 第20章　使用JMX管理Spring　Bean
 
 

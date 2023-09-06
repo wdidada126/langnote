@@ -838,7 +838,6 @@ public class UserController {
 @ControllerAdvice注解用于定义全局的Controller增强,它的典型使用示例如下:
 
 1. 定义一个注解了@ControllerAdvice的类
-
 ```java
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
@@ -852,13 +851,9 @@ public class GlobalControllerExceptionHandler {
 ```
 
 2. 在这个类中使用@ExceptionHandler注解定义全局的异常处理方法
-
 3. 这样的异常处理方法会应用到所有@RequestMapping注解的Controller中
-
 4. 也可以在@ControllerAdvice中使用其他切面注解:@InitBinder、@ModelAttribute等
-
 5. @ControllerAdvice可以定义多个,也可以通过annotations属性指定应用到哪些Controller
-
 综上,@ControllerAdvice定义全局的Controller增强机制,实现切面功能,包括异常处理、数据绑定等,可以应用到所有Controller中,简化重复代码。
 
 
@@ -1305,6 +1300,7 @@ httpSession.setAttribute("user", new User());
 | AsyncRequestTimeoutException                  |           |                                                              |
 
 
+`mvc:annotation-driven`会自动注册`AsyncRequestTimeoutException`和`DeferredResultProcessingInterceptor`，以支持异步请求处理。这使得您可以在控制器方法中使用`DeferredResult`和`Callable`类型的返回值，实现异步处理请求和响应。
 
 WebAsyncManager 是 Spring Framework 中的一个类，用于管理 Web 应用程序中的异步请求。它的作用是在 Web 应用程序中管理异步请求，包括 Callable 和 DeferredResult 等异步请求的处理。
 
@@ -2071,7 +2067,7 @@ CharacterEncodingFilter
 | InvocableHandlerMethod                   |           |      |
 | ModelAndViewContainer                    |           |      |
 
-
+`mvc:annotation-driven`会自动注册`RequestMappingHandlerAdapter`中的一些关键组件，如`HandlerMethodArgumentResolver`和`HandlerMethodReturnValueHandler`，它们负责处理请求参数的绑定和响应结果的转换。通过这些组件，您可以在控制器方法中直接使用JavaBean对象作为参数，并让Spring MVC自动将请求参数绑定到该对象上。
 
 #### org.springframework.web.multipart
 

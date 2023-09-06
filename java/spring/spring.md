@@ -1,5 +1,17 @@
 # Spring
 
+## spring的功能
+发送消息
+支持amqp协议，支持消息
+http server restful
+访问neo4j redis mongodb jdbc对应的mysql oracle 
+
+自定义bean，继承某些接口，bean生命周期
+
+网页安全 spring security
+单机定时任务 quartz
+
+
 ## spring的使用场景
 - http springmvc soap cxf
 - rpc 跟dubbo结合使用
@@ -1515,12 +1527,12 @@ EventListenerMethodProcessor
 
 在 Spring 框架中，上述提到的一些关键的组件和类在实现依赖注入、注解驱动和事件处理等方面发挥着重要作用。以下是对这些组件和类的简要解释以及它们的相关源代码位置的详细说明：
 
-1. **`<context:annotation-config/>`：** 这是一个 Spring XML 配置元素，用于启用默认的注解配置处理器。它告诉 Spring 在容器中自动检测和注册标注了注解（如 `@Autowired`、`@Component` 等）的类。
-2. **`ConfigurationClassPostProcessor`：** 这个类是用于处理 Spring 配置类的后置处理器。它负责处理 `@Configuration` 注解标记的配置类，将其中的 `@Bean` 方法注册为 Spring 的 Bean 定义。
-3. **`AutowiredAnnotationBeanPostProcessor`：** 这个类是一个后置处理器，负责处理 `@Autowired` 和 `@Value` 注解，进行依赖注入和属性注入。
-4. **`CommonAnnotationBeanPostProcessor`：** 这个后置处理器用于处理一些常见的 Java EE 注解，如 `@Resource`、`@PostConstruct`、`@PreDestroy` 等。
-5. **`PersistenceAnnotationBeanPostProcessor`：** 这个类是用于处理 JPA 注解的后置处理器，可以自动注册 JPA 实体类作为 Spring 的 Bean。
-6. **`EventListenerMethodProcessor`：** 这个类是用于处理事件监听方法的后置处理器。它检测标注了 `@EventListener` 注解的方法，将其注册为 Spring 事件监听器。
+1. `<context:annotation-config/>`： 这是一个 Spring XML 配置元素，用于启用默认的注解配置处理器。它告诉 Spring 在容器中自动检测和注册标注了注解（如 `@Autowired`、`@Component` 等）的类。
+2. `ConfigurationClassPostProcessor`： 这个类是用于处理 Spring 配置类的后置处理器。它负责处理 `@Configuration` 注解标记的配置类，将其中的 `@Bean` 方法注册为 Spring 的 Bean 定义。
+3. `AutowiredAnnotationBeanPostProcessor`： 这个类是一个后置处理器，负责处理 `@Autowired` 和 `@Value` 注解，进行依赖注入和属性注入。
+4. `CommonAnnotationBeanPostProcessor`： 这个后置处理器用于处理一些常见的 Java EE 注解，如 `@Resource`、`@PostConstruct`、`@PreDestroy` 等。
+5. `PersistenceAnnotationBeanPostProcessor`： 这个类是用于处理 JPA 注解的后置处理器，可以自动注册 JPA 实体类作为 Spring 的 Bean。
+6. `EventListenerMethodProcessor`： 这个类是用于处理事件监听方法的后置处理器。它检测标注了 `@EventListener` 注解的方法，将其注册为 Spring 事件监听器。
 这些组件和类的源代码都位于 Spring Framework 项目中，您可以在其 GitHub 仓库中找到它们的实现。以下是 Spring Framework 项目的 GitHub 仓库链接，您可以在这里找到相关的源代码：
 
 The RequiredAnnotationBeanPostProcessor must be registered as a bean to enable support for the @Required annotation.
@@ -1531,7 +1543,7 @@ The @Required annotation and RequiredAnnotationBeanPostProcessor are formally de
 @Autowired修饰数组 Set Map对象
 在 Spring Framework 中，`@Autowired` 注解可以用于自动注入数组、Set 和 Map 类型的对象。这意味着您可以使用 `@Autowired` 注解来让 Spring 自动为您创建和注入这些集合类型的对象。以下是如何在 Spring 中使用 `@Autowired` 注解来注入数组、Set 和 Map 对象的示例：
 
-1. **注入数组（Array）：**
+1. 注入数组（Array）：
 
 ```java
 @Component
@@ -1547,7 +1559,7 @@ public class MyBean {
 }
 ```
 
-2. **注入 Set：**
+2. 注入 Set：
 
 ```java
 @Component
@@ -1563,7 +1575,7 @@ public class MyBean {
 }
 ```
 
-3. **注入 Map：**
+3. 注入 Map：
 
 ```java
 @Component
@@ -1595,11 +1607,11 @@ org.springframework.context.annotation.ComponentScanBeanDefinitionParser#registe
 
 具体来说，`<context:annotation-config/>` 的作用是：
 
-1. **启用注解处理器：** 它启用了 Spring 框架中的各种注解处理器，用于处理不同类型的注解。这些处理器可以帮助 Spring 进行自动装配、AOP（面向切面编程）、事务管理等操作。
+1. 启用注解处理器： 它启用了 Spring 框架中的各种注解处理器，用于处理不同类型的注解。这些处理器可以帮助 Spring 进行自动装配、AOP（面向切面编程）、事务管理等操作。
 
-2. **激活组件扫描：** 当您使用注解标记 Spring 组件（如 `@Component`、`@Service`、`@Repository`、`@Controller` 等）时，`<context:annotation-config/>` 会激活组件扫描，让 Spring 自动发现并注册这些组件。
+2. 激活组件扫描： 当您使用注解标记 Spring 组件（如 `@Component`、`@Service`、`@Repository`、`@Controller` 等）时，`<context:annotation-config/>` 会激活组件扫描，让 Spring 自动发现并注册这些组件。
 
-3. **激活注解驱动功能：** 除了组件扫描，`<context:annotation-config/>` 也会激活其他注解驱动的功能，如 `@Autowired`、`@Value` 等注解的处理，以及事件监听、异步方法等功能。
+3. 激活注解驱动功能： 除了组件扫描，`<context:annotation-config/>` 也会激活其他注解驱动的功能，如 `@Autowired`、`@Value` 等注解的处理，以及事件监听、异步方法等功能。
 
 示例用法如下：
 
@@ -2550,12 +2562,7 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 Process finished with exit code 1
 ```
 
-
-
 Spring的核心是容器，容器有beanFactory和ApplicationContext，后者是更完善的，功能更齐备的容器
-
-
-
 
 
 spring注解处理器
@@ -3120,26 +3127,14 @@ singletonFactories中缓存的是ObjectFactory，表示对象⼯⼚，⽤来创�
 
 
 Spring Framework是一个大型的开源框架，它包含了许多不同的模块，每个模块都提供了不同的功能。以下是Spring Framework中一些常见的核心模块及其功能，以及相应的jar包：
-
 Spring Core：提供了Spring框架的核心功能，如IoC和DI容器。核心jar包为spring-core和spring-beans。
-
 Spring Context：扩展了Spring Core模块，提供了更多的IoC容器的功能，如ApplicationContext。核心jar包为spring-context。
-
 Spring AOP：提供了面向切面编程的支持，通过切面可以将业务逻辑模块化。核心jar包为spring-aop和spring-aspects。
-
 Spring DAO：提供了对JDBC和ORM框架的支持，如JdbcTemplate、NamedParameterJdbcTemplate等。核心jar包为spring-jdbc和spring-tx。
-
 Spring ORM：提供了对ORM框架的支持，如Hibernate、JPA、MyBatis等。核心jar包为spring-orm。
-
 Spring Web：提供了对Web应用程序的支持，包括Web MVC框架、Web Socket、Web Servlet等。核心jar包为spring-web和spring-webmvc。
-
 Spring Test：提供了对单元测试和集成测试的支持，包括JUnit和TestNG等测试框架的整合。核心jar包为spring-test。
-
 除了上述的核心模块，Spring Framework还有其他许多的模块，如Spring Security、Spring Integration、Spring Batch、Spring Mobile等，每个模块都提供了不同的功能和特性。对于每个模块所包含的jar包，可以在相应的文档中查找。
-
-
-
-
 
 BeanDefinition的实现类：
 在Spring框架中，BeanDefinition接口的实现类有两个，分别是GenericBeanDefinition和RootBeanDefinition。
@@ -3168,4 +3163,3 @@ AnnotationConfigApplicationContext是一个基于注解的应用上下文实现�
 XmlWebApplicationContext
 XmlWebApplicationContext是一个基于XML的Web应用上下文实现类，它是BeanDefinitionRegistry接口的实现类，用于管理基于XML的BeanDefinition对象。它支持基于XML的BeanDefinition的注册和管理，并可以创建和管理Spring IoC容器。
 除了上述几种实现类之外，还有其他一些BeanDefinitionRegistry接口的实现类，如GenericGroovyApplicationContext、ClassPathXmlApplicationContext等。这些实现类的区别在于注册和管理BeanDefinition的方式和创建和管理Spring IoC容器的方式不同。
-
