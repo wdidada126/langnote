@@ -1,4 +1,6 @@
 # SonarQube
+## sonarqube ucloud云主机启动不了
+方案：换临时主机，高配置的，需要的时候用
 
 不能用管理员账户启动sonarqube，因为es不能用管理员账户启动
 

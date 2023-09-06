@@ -9,6 +9,46 @@ mac
 支持redis版本？
 支持redis cluster？
 
+
+Feature Log
+2023-06-22: Export\Import keys support
+2023-05-26: Search support in Stream && Slow log support
+2023-04-01: Search support in List && Deflate raw support
+2022-10-07: Arrow Keys support in key list && Memory Analysis in folder
+2022-08-05: Clone Connection && Tabs Contextmenu\Mousewheel Support
+2022-04-01: Protobuf Support && Memory Analysis
+2022-03-03: Readonly Mode && Mointor Support
+2022-01-24: Command Dump Support
+2022-01-05: Support To Load All Keys
+2022-01-01: Brotli\Gzip\Deflate Support && RedisJSON Support
+2021-11-26: JSON Editable && Subscribe Support
+2021-08-30: Execution log Support && Add Hot Keys
+2021-08-16: Custom Formatter View Support!
+2021-06-30: Sentinel Support!!
+2021-06-24: ACL Support
+2021-05-03: Stream Support && Cli Command Tips Support
+2021-02-28: Connection Color Tag && Search History Support
+2021-02-03: Multiple Select\Delete && Msgpack Viewer Support
+2020-12-30: Tree View Support!!!
+2020-11-03: Binary View Support && SSH Passparse\Timeout Support
+2020-09-04: SSH Cluster Support && Extension Commands Support
+2020-06-18: SSL/TLS Support!!!
+2020-04-28: Page Zoom && Big Key Loads With Scan && Auto Json
+2020-04-18: Unvisible Key\Value Format Support
+2020-04-04: Cluster Support!!!
+2020-03-13: Dark Mode Support!!! && JsonView In Other Place
+2020-02-16: SSH Private Key Support
+2020-02-13: Open Cli Console In Tabs
+2019-06-14: Custom Font-Family Support
+2019-05-28: Key List Resizable
+2019-05-09: Search Support In Hash List Set Zset
+2019-04-26: Auto Updater
+2019-04-09: SSH Tunnel Connection Support
+2019-04-01: Extract Search Support
+2019-02-22: Single Connection Support
+2019-01-08: Project Start
+
+
 redis redisson分布式锁
 
 ### 分布式锁redis实现
