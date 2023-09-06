@@ -1,17 +1,14 @@
 # springmvc
 
+springmvc支持excel pdf文件
+
 spring-web
 spring-mvc这两个jar包的区别，相互调用关系
 
-
 `spring-web`和`spring-mvc`是两个不同的Spring模块，它们都属于Spring Framework的Web模块，用于构建Web应用程序。这两个模块之间存在相互依赖关系，但它们的主要功能和使用方式有所不同。
-
 `spring-web`模块提供了一些通用的Web支持类，例如`DispatcherServlet`、`WebApplicationInitializer`、`HttpMessageConverter`、`HandlerInterceptor`等。这些类提供了一些通用的Web功能，例如请求处理、HTTP消息转换、拦截器、异常处理等。`spring-web`模块还提供了一些与Web相关的工具类，例如`UriComponentsBuilder`、`UriTemplate`、`ServletServerHttpRequest`、`ServletServerHttpResponse`等。
-
 `spring-mvc`模块是基于`spring-web`模块构建的，它提供了一些特定于MVC的Web支持类，例如`RequestMappingHandlerMapping`、`RequestMappingHandlerAdapter`、`HandlerInterceptorAdapter`、`HandlerMethodReturnValueHandler`等。这些类提供了与MVC相关的Web功能，例如请求映射、控制器方法处理、视图解析、数据绑定等。`spring-mvc`模块还提供了一些与MVC相关的注解和接口，例如`@Controller`、`@RequestMapping`、`ModelAndView`等。
-
 可以说，`spring-mvc`模块是基于`spring-web`模块提供了更高级别的MVC功能。在使用Spring MVC框架时，通常需要同时使用`spring-web`和`spring-mvc`这两个模块。`spring-mvc`模块依赖于`spring-web`模块，并扩展了它的功能，提供了更丰富的MVC支持。当您需要使用MVC相关的功能时，可以只导入`spring-mvc`模块即可。如果您只需要使用通用的Web支持类，可以只导入`spring-web`模块。
-
 总之，`spring-web`和`spring-mvc`是两个不同的Spring模块，它们都属于Spring Framework的Web模块，用于构建Web应用程序。`spring-web`提供了一些通用的Web支持类和工具类，而`spring-mvc`则提供了更高级别的MVC功能，并扩展了`spring-web`的功能。在使用Spring MVC框架时，通常需要同时使用`spring-web`和`spring-mvc`这两个模块，`spring-mvc`依赖于`spring-web`模块，并扩展了它的功能，提供了更丰富的MVC支持。
 
 springmvc使用jsr303提供报错信息
