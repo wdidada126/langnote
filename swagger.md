@@ -3,8 +3,8 @@
 doxygen也支持Java
 一个是中间件文档，是个是http api文档
 
-但随着系统功能的不断增加，接口数量的爆炸式增长，Swagger 的使用体验就会变得越来越差，比如请求参数为 JSON 的时候没办法格式化，返回结果没办法折叠，还有就是没有提供搜索功能。
-刚好最近发现 Knife4j 弥补了这些不足，赋予了 Swagger 更强的生命力，于是就来给大家安利一波。
+但随着系统功能的不断增加，接口数量的爆炸式增长，Swagger的使用体验就会变得越来越差，比如请求参数为 JSON 的时候没办法格式化，返回结果没办法折叠，还有就是没有提供搜索功能。
+刚好最近发现Knife4j弥补了这些不足，赋予了Swagger更强的生命力，于是就来给大家安利一波。
 
 再见丑陋的 SwaggerUI，这款开源的API文档生成神器界面更炫酷，逼格更高！
 原文链接： https://xie.infoq.cn/article/7dcb5b517285456c904f9d0e2
@@ -17,3 +17,21 @@ doxygen也支持Java
 
 curl -X POST -H "" -H "" -d "{}"
 https://github.com/swagger-api
+
+
+## 使用方法
+
+io.swagger.annotations.ApiModelProperty
+io.swagger.annotations.ApiModel
+
+@ApiModelProperty
+@ApiModel
+
+
+@ApiModel("在线支付自动生成收款单响应")
+public class JmFiSettlementOrderResponse extends MessagePack {
+    private static final long serialVersionUID = 5139882688233018061L;
+    @ApiModelProperty("结算单号")
+    private String reconciliationNo;
+}
+
