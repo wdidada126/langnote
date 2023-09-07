@@ -45,7 +45,6 @@ InitializingBean void afterPropertiesSet()
 xxx自定义方法 bean的生命周期 调用自定义初始化方法
 
 
-
 BeanPostProcessor  default Object postProcessAfterInitialization(Object bean, String beanName)
 
 DisposeBean void destroy()

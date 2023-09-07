@@ -71,7 +71,6 @@ https://www.cnblogs.com/xrq730/category/941473.html
 org.springframework.beans.PropertyEditorRegistrar 接口
 	void registerCustomEditors(PropertyEditorRegistry registry);
 `org.springframework.beans.PropertyEditorRegistrar` 是 Spring 框架中的一个接口，用于注册自定义的 `PropertyEditor` 对象。它的作用是将自定义的属性编辑器与相应的属性类型进行关联，以便在属性绑定过程中进行类型转换和数据绑定。
-
 当 Spring MVC 或其他模块需要将字符串类型的请求参数绑定到目标对象的属性时，它会使用适当的 `PropertyEditor` 将字符串值转换为目标属性的实际类型。`PropertyEditorRegistrar` 提供了一种机制来注册这些自定义的 `PropertyEditor` 对象，以满足特定属性类型的转换需求。
 具体来说，`PropertyEditorRegistrar` 的作用如下：
 1. 注册自定义的 `PropertyEditor`：通过实现 `PropertyEditorRegistrar` 接口并实现其中的 `registerCustomEditors` 方法，可以将自定义的 `PropertyEditor` 对象注册到 Spring 容器中。在 `registerCustomEditors` 方法中，您可以使用 `PropertyEditorRegistry` 对象的 `registerCustomEditor` 方法，指定要处理的属性类型和相应的 `PropertyEditor` 实现。
