@@ -690,9 +690,7 @@ https://www.docs4dev.com/docs/zh/spring-framework/4.3.21.RELEASE/reference/aop.h
 
 Spring实战
 
-Spring 3.x企业开发实战
-
-
+## Spring 3.x企业开发实战
 
 
 1. 什么是spring?Spring 是个java企业级应用的开源开发框架。Spring主要用来开发Java应用，但是有些扩展是针对构建J2EE平台的web应用。Spring 框架目标是简化Java企业级应用开发，并通过POJO为基础的编程模型促进良好的编程习惯。
@@ -874,8 +872,6 @@ WebApplicationContext 继承了ApplicationContext 并增加了一些WEB应用必
 
 该注解表明该类扮演控制器的角色，Spring不需要你继承任何其他控制器基类或引用Servlet API。
 
-
-
 ### spring vs ejb
 spring更轻量
 
@@ -917,11 +913,11 @@ spring 中有多少种 IOC 容器？
 BeanFactory - BeanFactory 就像一个包含 bean 集合的工厂类。它会在客户端要求时实例化bean。
 ApplicationContext - ApplicationContext 接口扩展了BeanFactory接口。它在BeanFactory基础上提供了一些额外的功能。
 
-
 @Required 注解有什么用？
-@Required 应用于 bean 属性 setter 方法。此注解仅指示必须在配置时使用bean 定义中的显式属性值或使用自动装配填充受影响的 bean
+@Required 应用于bean属性 setter 方法。此注解仅指示必须在配置时使用bean定义中的显式属性值或使用自动装配填充受影响的 bean
 属性。如果尚未填充受影响的 bean 属性，则容器将抛出 eanInitializationException。 
 示例：
+
 ```java
 public class Employee {
 	private String name;
@@ -969,8 +965,6 @@ jsr250的注解
 @Resources
 
 spring JDBC API中存在哪些类？
-
-
 
 spring profile properties
 
@@ -1043,7 +1037,7 @@ https://www.jianshu.com/p/3b338dda2437
 
 
 
-
+### Spring-3.1.1
 
 https://tool.oschina.net/apidocs/apidoc?api=Spring-3.1.1
 
@@ -1053,7 +1047,7 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 
 
 
-按照学习Java Se的方法来学习Spring
+按照学习Java SE的方法来学习Spring
 
 先用，在看源码类，挨个写用例
 
@@ -1077,8 +1071,6 @@ https://github.com/edidada/spring-analysis
 
 
 
-
-
 spring-context
 
 ScopedProxyMode org.springframework.context.annotation.ScopedProxyMode
@@ -1087,17 +1079,11 @@ https://blog.csdn.net/weixin_37689658/article/details/122308798
 ```
 
 public enum ScopedProxyMode {
- 
    DEFAULT,
- 
    NO,
- 
    INTERFACES,
- 
    TARGET_CLASS
- 
 }
-
 ```
 
 
@@ -1122,10 +1108,6 @@ applicationContext.xml
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 </beans>
 ```
-
-
-
-
 
 
 
@@ -1164,10 +1146,6 @@ SpringBoot SpringCloud starter
 
 
 ## 张开涛学Spring
-
-
-
-
 
 https://github.com/edidada/spring-analysis
 
@@ -1261,11 +1239,6 @@ public class ExampleBean {
        <artifactId>javax.annotation-api</artifactId>
        <version>1.3.2</version>
    </dependency>
-   
-   
-   ```
-
-
 
 2. 在类中添加初始化方法：在需要执行初始化操作的方法上添加 `@PostConstruct` 注解。该方法可以有任意名称，但不能有任何参数。
 
@@ -1691,39 +1664,41 @@ A custom implementation of the org.springframework.core.type.TypeFilter interfac
 @RequestScope
 @Qualifier("public")
 
-@Component
-public class FactoryMethodComponent {
 
-    private static int i;
+
+    @Component
+    public class FactoryMethodComponent {
+        private static int i;
     
-    @Bean
-    @Qualifier("public")
-    public TestBean publicInstance() {
-        return new TestBean("publicInstance");
-    }
+        @Bean
+        @Qualifier("public")
+        public TestBean publicInstance() {
+            return new TestBean("publicInstance");
+        }
     
-    // use of a custom qualifier and autowiring of method parameters
-    @Bean
-    protected TestBean protectedInstance(
-            @Qualifier("public") TestBean spouse,
-            @Value("#{privateInstance.age}") String country) {
-        TestBean tb = new TestBean("protectedInstance", 1);
-        tb.setSpouse(spouse);
-        tb.setCountry(country);
-        return tb;
-    }
+        // use of a custom qualifier and autowiring of method parameters
+        @Bean
+        protected TestBean protectedInstance(
+                @Qualifier("public") TestBean spouse,
+                @Value("#{privateInstance.age}") String country) {
+            TestBean tb = new TestBean("protectedInstance", 1);
+            tb.setSpouse(spouse);
+            tb.setCountry(country);
+            return tb;
+        }
     
-    @Bean
-    private TestBean privateInstance() {
-        return new TestBean("privateInstance", i++);
-    }
+        @Bean
+        private TestBean privateInstance() {
+            return new TestBean("privateInstance", i++);
+        }
     
-    @Bean
-    @RequestScope
-    public TestBean requestScopedInstance() {
-        return new TestBean("requestScopedInstance", 3);
+        @Bean
+        @RequestScope
+        public TestBean requestScopedInstance() {
+            return new TestBean("requestScopedInstance", 3);
+        }
     }
-}
+
 
 DependencyDescriptor
 
@@ -2069,17 +2044,20 @@ https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.html#res
 
 org.springframework.aop.Pointcut
 
-public interface Pointcut {
 
-    ClassFilter getClassFilter();
-    
-    MethodMatcher getMethodMatcher();
-}
 
-public interface ClassFilter {
+    public interface Pointcut {
+        ClassFilter getClassFilter();
+        MethodMatcher getMethodMatcher();
+    }
 
-    boolean matches(Class clazz);
-}
+
+
+
+    public interface ClassFilter {
+    	boolean matches(Class clazz);
+    }
+
 
 public interface MethodMatcher {
 
@@ -2280,7 +2258,7 @@ org.springframework.aop.TargetSource
 </bean>
 ```
 
-6.9.4. ThreadLocal Target Sources
+### 6.9.4. ThreadLocal Target Sources
 <bean id="threadlocalTargetSource" class="org.springframework.aop.target.ThreadLocalTargetSource">
     <property name="targetBeanName" value="businessObjectTarget"/>
 </bean>
@@ -2291,10 +2269,9 @@ org.springframework.aop.TargetSource
 @NonNullApi: Annotation at the package level that declares non-null as the default semantics for parameters and return values.
 @NonNullFields: Annotation at the package level that declares non-null as the default semantics for fields.
 
-7.2. JSR-305 meta-annotations
+### 7.2. JSR-305 meta-annotations
 
 https://jcp.org/en/jsr/detail?id=305
-
 
 JSR 305是一项Java规范，用于提供一组注解，用于标记代码中的预期行为和约束。然而，JSR 305已经在2011年停止维护，并且不再推荐使用。因此，没有官方的Maven坐标可用于JSR 305。
 如果您的项目需要使用JSR 305的注解，可以考虑使用以下非官方的Maven坐标：
@@ -2521,18 +2498,27 @@ systemId: http://www.springframework.or...
 
 
 
+
+
+### 自己实现的一个简易Spring框架(IoC+AOP)
 github.com/edidada/festival
-对应的博客https://juejin.cn/post/6844903492667064334
+
+原仓库2020年更新
+ 对应的博客https://juejin.cn/post/6844903492667064334
+
+
+
+### 分布式数据源管理
 
 github.com/edidada/springboot-atomikos
 项目介绍： atomikos+tk.mybatis+druid实现配置化atomikos分布式数据源管理
-
 
 spring-beans jar包里面
 DefaultSingletonBeanRegistry
 org.springframework.beans.factory.support.DefaultSingletonBeanRegistry
 DefaultSingletonBeanRegistry是Spring框架中单例Bean的默认注册表实现，其中保存了所有已经初始化的单例Bean对象。
-​```shell
+
+```
 D:\Java\jdk1.8.0_231\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=13521:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\bin" -Dfile.encoding=UTF-8 -classpath xx cn.edidada.testss.spring.namespace.mybatis.nodep.SpringNamespaceExample
 Exception in thread "main" org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JDBCOrderRepositoryImpl' defined in file [D:\git\github\shardingspheretest_local\target\classes\cn\edidada\testss\repository\jdbc\repository\JDBCOrderRepositoryImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected single matching bean but found 5: demo_ds_2,demo_ds_0,demo_ds_1,demo_ds_3,shardingDataSource
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:749)
@@ -2574,7 +2560,7 @@ spring注解处理器
 
 
 
-过滤器
+### 过滤器
 
 https://blog.csdn.net/honghailiang888/article/details/74981445
 
@@ -2604,7 +2590,7 @@ spring如何打印源码中的日志
 
 
 
-​```java
+```java
 		if (logger.isDebugEnabled()) {
 			logger.debug("Eagerly caching bean '" + beanName +
 					"' to allow for resolving potential circular references");
@@ -2638,7 +2624,13 @@ MyBatis团队开发了mybatis-spring
 
 [Spring注解处理器](https://www.jianshu.com/p/acd1565510e3)
 
+
+
 ```java
+
+
+
+
 "D:\Program Files\Java\jdk1.8.0_161\bin\java.exe" -XX:TieredStopAtLevel=1 -noverify -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=10523 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=10524:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\bin" -Dfile.encoding=UTF-8 -classpath "D:\Program Files\Java\jdk1.8.0_161\jre\lib\charsets.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\deploy.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\access-bridge-64.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\cldrdata.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\dnsns.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\jaccess.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\jfxrt.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\localedata.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\nashorn.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\sunec.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\sunjce_provider.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\sunmscapi.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\sunpkcs11.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\ext\zipfs.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\javaws.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\jce.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\jfr.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\jfxswt.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\jsse.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\management-agent.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\plugin.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\resources.jar;D:\Program Files\Java\jdk1.8.0_161\jre\lib\rt.jar;D:\git\github\testhystrix\testhyxtrix-web\target\classes;D:\git\github\testhystrix\testhyxtrix-service\target\classes;D:\git\github\testhystrix\testhystrix-api\target\classes;D:\mavenrepository\201904\redis\clients\jedis\2.8.1\jedis-2.8.1.jar;D:\mavenrepository\201904\org\apache\commons\commons-pool2\2.4.2\commons-pool2-2.4.2.jar;D:\mavenrepository\201904\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;D:\mavenrepository\201904\com\google\guava\guava\18.0\guava-18.0.jar;D:\mavenrepository\201904\com\netflix\hystrix\hystrix-request-servlet\1.5.18\hystrix-request-servlet-1.5.18.jar;D:\mavenrepository\201904\com\netflix\hystrix\hystrix-metrics-event-stream\1.5.18\hystrix-metrics-event-stream-1.5.18.jar;D:\mavenrepository\201904\com\netflix\hystrix\hystrix-serialization\1.5.18\hystrix-serialization-1.5.18.jar;D:\mavenrepository\201904\com\fasterxml\jackson\module\jackson-module-afterburner\2.7.5\jackson-module-afterburner-2.7.5.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-core\2.7.5\jackson-core-2.7.5.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-annotations\2.7.5\jackson-annotations-2.7.5.jar;D:\mavenrepository\201904\com\netflix\hystrix\hystrix-core\1.5.18\hystrix-core-1.5.18.jar;D:\mavenrepository\201904\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;D:\mavenrepository\201904\com\netflix\archaius\archaius-core\0.4.1\archaius-core-0.4.1.jar;D:\mavenrepository\201904\commons-configuration\commons-configuration\1.8\commons-configuration-1.8.jar;D:\mavenrepository\201904\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;D:\mavenrepository\201904\commons-logging\commons-logging\1.1.1\commons-logging-1.1.1.jar;D:\mavenrepository\201904\io\reactivex\rxjava\1.2.0\rxjava-1.2.0.jar;D:\mavenrepository\201904\org\hdrhistogram\HdrHistogram\2.1.9\HdrHistogram-2.1.9.jar;D:\mavenrepository\201904\com\netflix\hystrix\hystrix-javanica\1.5.18\hystrix-javanica-1.5.18.jar;D:\mavenrepository\201904\org\aspectj\aspectjrt\1.8.6\aspectjrt-1.8.6.jar;D:\mavenrepository\201904\org\apache\commons\commons-lang3\3.1\commons-lang3-3.1.jar;D:\mavenrepository\201904\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;D:\mavenrepository\201904\org\aspectj\aspectjweaver\1.8.6\aspectjweaver-1.8.6.jar;D:\mavenrepository\201904\com\google\code\findbugs\jsr305\2.0.0\jsr305-2.0.0.jar;D:\mavenrepository\201904\org\projectlombok\lombok\1.18.4\lombok-1.18.4.jar;D:\mavenrepository\201904\cn\wdidada\commons\1.0.0\commons-1.0.0.jar;D:\mavenrepository\201904\org\springframework\spring-core\4.3.12.RELEASE\spring-core-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter\1.5.8.RELEASE\spring-boot-starter-1.5.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot\1.5.8.RELEASE\spring-boot-1.5.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-context\4.3.12.RELEASE\spring-context-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-autoconfigure\1.5.8.RELEASE\spring-boot-autoconfigure-1.5.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-logging\1.5.8.RELEASE\spring-boot-starter-logging-1.5.8.RELEASE.jar;D:\mavenrepository\201904\ch\qos\logback\logback-classic\1.1.11\logback-classic-1.1.11.jar;D:\mavenrepository\201904\ch\qos\logback\logback-core\1.1.11\logback-core-1.1.11.jar;D:\mavenrepository\201904\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;D:\mavenrepository\201904\org\slf4j\log4j-over-slf4j\1.7.25\log4j-over-slf4j-1.7.25.jar;D:\mavenrepository\201904\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;D:\mavenrepository\201904\org\springframework\data\spring-data-redis\1.8.8.RELEASE\spring-data-redis-1.8.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\data\spring-data-keyvalue\1.2.8.RELEASE\spring-data-keyvalue-1.2.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\data\spring-data-commons\1.13.8.RELEASE\spring-data-commons-1.13.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-tx\4.3.12.RELEASE\spring-tx-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-beans\4.3.12.RELEASE\spring-beans-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-oxm\4.3.12.RELEASE\spring-oxm-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-aop\4.3.12.RELEASE\spring-aop-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-context-support\4.3.12.RELEASE\spring-context-support-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-web\1.5.8.RELEASE\spring-boot-starter-web-1.5.8.RELEASE.jar;D:\mavenrepository\201904\org\springframework\boot\spring-boot-starter-tomcat\1.5.8.RELEASE\spring-boot-starter-tomcat-1.5.8.RELEASE.jar;D:\mavenrepository\201904\org\apache\tomcat\embed\tomcat-embed-core\8.5.23\tomcat-embed-core-8.5.23.jar;D:\mavenrepository\201904\org\apache\tomcat\tomcat-annotations-api\8.5.23\tomcat-annotations-api-8.5.23.jar;D:\mavenrepository\201904\org\apache\tomcat\embed\tomcat-embed-el\8.5.23\tomcat-embed-el-8.5.23.jar;D:\mavenrepository\201904\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.23\tomcat-embed-websocket-8.5.23.jar;D:\mavenrepository\201904\org\hibernate\hibernate-validator\5.3.5.Final\hibernate-validator-5.3.5.Final.jar;D:\mavenrepository\201904\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;D:\mavenrepository\201904\org\jboss\logging\jboss-logging\3.3.0.Final\jboss-logging-3.3.0.Final.jar;D:\mavenrepository\201904\com\fasterxml\classmate\1.3.1\classmate-1.3.1.jar;D:\mavenrepository\201904\com\fasterxml\jackson\core\jackson-databind\2.8.10\jackson-databind-2.8.10.jar;D:\mavenrepository\201904\org\springframework\spring-web\4.3.12.RELEASE\spring-web-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-webmvc\4.3.12.RELEASE\spring-webmvc-4.3.12.RELEASE.jar;D:\mavenrepository\201904\org\springframework\spring-expression\4.3.12.RELEASE\spring-expression-4.3.12.RELEASE.jar" cn.wdidada.testhystrix.web.RetryApplication
 
   .   ____          _            __ _ _
@@ -2725,15 +2717,22 @@ Caused by: java.lang.NoSuchMethodError: redis.clients.jedis.JedisPool.<init>(Lor
 
 ```
 
-
 JSR-330标准注解
 Java依赖注入标准（JSR-330，Dependency Injection for Java）1.0 规范主要是面向依赖注入使用者，而对注入器实现、配置并未作详细要求。目前 Spring 、Guice 已经开始兼容该规范，JSR-299（Contexts and Dependency Injection for Java EE platform，参考实现 Weld ）在依赖注入上也使用该规范。JSR-330 规范并未按 JSR 惯例发布规范文档，只发布了规范 API 源码。
 从Spring 3.0开始，Spring开始支持JSR-330标准的注解。这些注解和Spring注解扫描的方式是一直的，开发者只需要引入javax.inject即可。
+
+```xml
 <dependency>
     <groupId>javax.inject</groupId>
     <artifactId>javax.inject</artifactId>
     <version>xxx</version>
 </dependency>
+```
+
+
+
+
+
 JSR-330中的标准注解与Spring中的注解的对应关系如下：
 
 https://maxwell.gitbook.io/way-to-architect/java-yu-yan/zhu-jie/chang-yong-zhu-jie/jsr-330biao-zhun-zhu-jie
@@ -3107,8 +3106,7 @@ Spring中的循环依赖.pdf
 三级缓存为：singletonFactories
 先稍微解释⼀下这三个缓存的作⽤，后⾯详细分析：
 singletonObjects中缓存的是已经经历了完整⽣命周期的bean对象。
-earlySingletonObjects⽐singletonObjects多了⼀个early，表示缓存的是早期的bean对象。早期是
-什么意思？表示Bean的⽣命周期还没⾛完就把这个Bean放⼊了earlySingletonObjects。
+earlySingletonObjects⽐singletonObjects多了⼀个early，表示缓存的是早期的bean对象。早期是什么意思？表示Bean的⽣命周期还没⾛完就把这个Bean放⼊了earlySingletonObjects。
 singletonFactories中缓存的是ObjectFactory，表示对象⼯⼚，⽤来创建某个对象的。
 
 
