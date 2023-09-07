@@ -1,4 +1,11 @@
 # Java标准库
+
+java主要开发领域在web
+以前还有手机应用
+
+Go 云计算
+C++ 数据库 游戏引擎 搜索引擎
+
 java接口里面的方法，默认是public abstrace的？
 是的，Java接口中的方法默认是public abstract的。接口是一种完全抽象的类，它只包含抽象方法的定义，没有具体的实现。因此，接口中的方法默认都是public abstract的，不能是private或protected。
 当你实现一个接口时，必须实现其所有的抽象方法。如果某个实现类没有实现接口中的所有方法，那么该类必须声明为抽象类。
@@ -34,37 +41,22 @@ java spec
 https://docs.oracle.com/javase/specs/
 Java注解三要素
 java.lang.annotation.Annotation
-
 1.注解的定义
 2.注解的使用
 3.注解处理器
 
-
 接口默认方法的修饰符就是public abstract，所以可以省略
 
-
 Java
-
 STW
-
 Stop The World
-
 垃圾回收
-
 Cms
-
 Parnew
-
 垃圾回收，单线程
 
 gc.log
-
 https://blog.csdn.net/qq_32641659/article/details/88030753
-
-
-
-
-
 
 
 
@@ -155,16 +147,11 @@ P33
 
 P34
 【多线程与高并发】LongAdder
-
-P35
-【多线程与高并发】ReentrantLock
-
+P35 【多线程与高并发】ReentrantLock
 P36
 【多线程与高并发】CountDownLatch
-
 P37
 【多线程与高并发】CyclicBarrier
-
 P38
 【多线程与高并发】Phaser
 

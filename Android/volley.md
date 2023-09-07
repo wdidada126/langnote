@@ -17,3 +17,25 @@ java.net.HttpURLConnection
 
 
 ![HttpURLConnection](..\imgs\HttpURLConnection.png)
+
+## 源码分包解析
+以下是 Volley 的 Maven 坐标和 Gradle 坐标：
+
+Maven:
+
+```xml
+<dependency>
+    <groupId>com.android.volley</groupId>
+    <artifactId>volley</artifactId>
+    <version>1.2.1</version>
+</dependency>
+```
+
+Gradle:
+
+```groovy
+implementation 'com.android.volley:volley:1.2.1'
+```
+
+请注意，上述示例中的版本号是当前可用的最新版本。您可以根据需要调整版本号。
+

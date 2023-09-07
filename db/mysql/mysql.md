@@ -1,4 +1,20 @@
 # mysql
+## 表支持的数据类型
+tinyint
+int
+bitint
+varchar
+text
+date
+datetime
+timestamp
+
+约束
+int你输入汉字会报错
+正数，负数
+
+oracle数据库是个平台，你可以在上面写存储过程来对数据进行处理
+plsql pljson框架
 
 ## mysql datetime如何比较大小？
 在MySQL中，可以使用比较运算符（<、>、<=、>=、==、!=）来比较datetime值的大小。

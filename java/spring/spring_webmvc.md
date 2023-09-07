@@ -6,12 +6,20 @@ org.springframework.web.servlet.FrameworkServlet
 
 
 
-HandlerExecutionChain
+HandlerExecutionChain org.springframework.web.servlet.HandlerExecutionChain
+
+```java
+	private final Object handler;
+
+	@Nullable
+	private HandlerInterceptor[] interceptors;
+
+	@Nullable
+	private List<HandlerInterceptor> interceptorList;
+```
 
 这个也是重点类
-
 MvcNamespaceHandler
-
 
 
 ### org.springframework.web.servlet
@@ -21,7 +29,7 @@ MvcNamespaceHandler
 | Interfaces                      |           |                                                              |
 | AsyncHandlerInterceptor         | interface | extends HandlerInterceptor      void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response,  Object handler) |
 | FlashMapManager                 | interface | saveOutputFlashMap(FlashMap flashMap, HttpServletRequest request, HttpServletResponse response)  FlashMap retrieveAndUpdate(HttpServletRequest request, HttpServletResponse response) |
-| **HandlerAdapter**              | interface | ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)  boolean supports(Object handler) |
+| HandlerAdapter              | interface | ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)  boolean supports(Object handler) |
 | HandlerExceptionResolver        | interface | ModelAndView resolveException(       HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex); |
 | HandlerInterceptor              | interface | preHandle() postHandle() afterCompletion()                   |
 | HandlerMapping                  | interface | 处理器映射 url跟java对象的方法关联起来 HandlerExecutionChain getHandler(HttpServletRequest request)  还有常量 MATRIX_VARIABLES_ATTRIBUTE，见下面 |
@@ -44,6 +52,38 @@ MvcNamespaceHandler
 | Exceptions                      |           |                                                              |
 | ModelAndViewDefiningException   | exception |                                                              |
 | NoHandlerFoundException         | exception |                                                              |
+
+
+在Spring MVC中,org.springframework.web.servlet.FlashMap 可以用于在重定向之间传递短期的模型数据。典型的使用示例如下:
+1. 在Controller中创建FlashMap:
+
+```java
+@RequestMapping("/show")
+public String show(Model model) {
+  FlashMap flashMap = new FlashMap();
+  flashMap.put("successMsg", "Operation succeeded!");
+  
+  model.addAttribute(RequestContextUtils.OUTPUT_FLASH_MAP_ATTRIBUTE, flashMap);
+  return "redirect:/next";
+}
+```
+
+2. 在重定向的方法中读取FlashMap:
+
+```java  
+@RequestMapping("/next")
+public String next(Model model) {
+  FlashMap flashMap = (FlashMap)model.asMap().get(RequestContextUtils.OUTPUT_FLASH_MAP_ATTRIBUTE);
+  
+  if(flashMap != null) {
+    model.addAttribute("successMsg", flashMap.get("successMsg"));
+  }
+  return "nextView";
+}
+```
+3. 这样就可以在next()中得到show()传递的flash信息。
+4. 重定向后会自动清除FlashMap。
+综上,FlashMap用于重定向场景下的短期数据传递,避免RedirectAttributes限制。
 
 
 
@@ -75,33 +115,21 @@ BeanNameViewResolver (org.springframework.web.servlet.view)
 
 
 
-1. **DEFAULT_NAMESPACE_SUFFIX**
-
+1. DEFAULT_NAMESPACE_SUFFIX
 该属性定义了 Spring MVC 框架默认的命名空间后缀，默认值为 `/`。
-
-2. **DEFAULT_CONTEXT_CLASS**
-
+2. DEFAULT_CONTEXT_CLASS
 该属性定义了 Spring MVC 框架默认的上下文类，默认值为 `org.springframework.web.context.WebApplicationContext`。
-
-3. **SERVLET_CONTEXT_PREFIX**
-
+3. SERVLET_CONTEXT_PREFIX
 该属性定义了 Spring MVC 框架中 Servlet 上下文的名称前缀，默认值为 `servletContext`。
-
-4. **INIT_PARAM_DELIMITERS**
-
+4. INIT_PARAM_DELIMITERS
 该属性定义了 Spring MVC 框架中 Servlet 初始化参数的分隔符，默认值为 `=`。
-
 以下是这四个属性的使用场景：
-
-* **DEFAULT_NAMESPACE_SUFFIX**：如果您在 Spring MVC 框架中使用了自定义的命名空间，那么您可以通过设置该属性来指定自定义的命名空间后缀。
-* **DEFAULT_CONTEXT_CLASS**：如果您在 Spring MVC 框架中使用了自定义的上下文类，那么您可以通过设置该属性来指定自定义的上下文类。
-* **SERVLET_CONTEXT_PREFIX**：如果您在 Spring MVC 框架中使用了自定义的 Servlet 上下文名称，那么您可以通过设置该属性来指定自定义的 Servlet 上下文名称。
-* **INIT_PARAM_DELIMITERS**：如果您在 Spring MVC 框架中使用了自定义的 Servlet 初始化参数分隔符，那么您可以通过设置该属性来指定自定义的 Servlet 初始化参数分隔符。
-
-
+* DEFAULT_NAMESPACE_SUFFIX：如果您在 Spring MVC 框架中使用了自定义的命名空间，那么您可以通过设置该属性来指定自定义的命名空间后缀。
+* DEFAULT_CONTEXT_CLASS：如果您在 Spring MVC 框架中使用了自定义的上下文类，那么您可以通过设置该属性来指定自定义的上下文类。
+* SERVLET_CONTEXT_PREFIX：如果您在 Spring MVC 框架中使用了自定义的 Servlet 上下文名称，那么您可以通过设置该属性来指定自定义的 Servlet 上下文名称。
+* INIT_PARAM_DELIMITERS：如果您在 Spring MVC 框架中使用了自定义的 Servlet 初始化参数分隔符，那么您可以通过设置该属性来指定自定义的 Servlet 初始化参数分隔符。
 
 HttpServletBean子类
-
 GenericServlet (javax.servlet)
     HttpServlet (javax.servlet.http)
         HttpServletBean (org.springframework.web.servlet)
@@ -109,33 +137,19 @@ GenericServlet (javax.servlet)
                 DispatcherServlet (org.springframework.web.servlet)
                     TestDispatcherServlet (org.springframework.test.web.servlet)
 
-
-
-
-
 HandlerExecutionChain在Spring MVC中代表处理器执行链,包含处理器、拦截器等信息。它定义了四个方法:
 
 1. applyPreHandle():调用处理器拦截器的preHandle方法。
-
 - 使用场景:请求进入处理器前调用,常用于请求检查、准备等工作。
-
 2. applyPostHandle():调用处理器拦截器的postHandle方法。
-
 - 使用场景:请求处理后但视图渲染前调用,可用于清理工作。
-
 3. triggerAfterCompletion():调用处理器拦截器的afterCompletion方法。
-
 - 使用场景:整个请求处理完成后调用,进行最后清理工作。
-
 4. applyAfterConcurrentHandlingStarted():调用异步处理开始时的回调。
-
 - 使用场景:异步处理先后顺序需要控制的场景。
-
 这些方法将拦截器链和处理器连接起来,使得拦截器可以介入处理流程的多个点,实现功能增强等目的。
 
 配合拦截器使用,可以处理更多业务需求。
-
-
 
 MatchableHandlerMapping (org.springframework.web.servlet.handler)
     RequestMappingHandlerMapping (org.springframework.web.servlet.mvc.method.annotation)
@@ -151,18 +165,11 @@ AbstractHandlerMapping (org.springframework.web.servlet.handler)
             RequestMappingHandlerMapping (org.springframework.web.servlet.mvc.method.annotation)
     RouterFunctionMapping (org.springframework.web.servlet.function.support)
 
-
-
 AbstractHandlerMapping 类的，子类实现
-
 protected abstract Object getHandlerInternal(HttpServletRequest request)
 
-
-
 在Spring框架中,BeanFactoryUtils类提供了多种操作BeanFactory的工具方法。
-
 其中beansOfTypeIncludingAncestors方法的作用是获取BeanFactory中指定类型的所有bean,包括从父级工厂继承的bean。
-
 方法签名:
 
 ```java
@@ -179,51 +186,31 @@ public static <T> Map<String, T> beansOfTypeIncludingAncestors(ListableBeanFacto
 返回值:
 
 返回指定类型的所有bean映射,key为bean名称,value为bean实例。
-
 该方法通过遍历当前工厂及其所有父级工厂中的bean,筛选出指定类型的bean后返回。usefulll获取同一类型的所有bean实例。
-
 例如可以用来获取所有@Repository bean,进行某种统一处理。
 
-
-
-
-
 DispatcherServlet是Spring MVC的核心servlet,它主要协调Spring MVC的9大组件:
-
 1. HandlerMapping:请求映射器,根据请求找到对应的Handler。
-
 2. HandlerAdapter:处理适配器,执行Handler并处理返回值。 
-
 3. HandlerExceptionResolver:异常解析器,处理 Handler 执行过程中的异常。
-
 4. ViewResolver:视图解析器,将逻辑视图解析为实际视图对象。 
-
 5. LocaleResolver:区域解析器,解析客户端语言环境。
-
 6. ThemeResolver:主题解析器,解析页面主题。
-
 7. MultipartResolver:文件上传解析器,支持文件上传。
-
 8. FlashMapManager:FlashMap管理器,支持重定向数据传递。 
-
 9. RequestToViewNameTranslator:请求到视图名转换器。
-
 DispatcherServlet使用这些组件协同工作,实现核心的派发处理流程:
 
 1. 接收请求,交给HandlerMapping查找对应Handler。 
-
 2. HandlerAdapter调用Handler执行并处理返回值。
-
 3. 将逻辑视图解析成实际视图。
-
 4. 渲染模型数据,返回响应。
-
 DispatcherServlet将流程连接起来,实现MVC核心功能。
 
 
 
 
-
+DispatcherServlet的方法 9大金刚
 initMultipartResolver(context);
 initLocaleResolver(context);
 initThemeResolver(context);
@@ -237,51 +224,29 @@ initFlashMapManager(context);
 
 
 DispatcherServlet中定义了一些属性常量,主要作用如下:
-
 - EXCEPTION_ATTRIBUTE:存储处理中出现的异常。
-
 - FLASH_MAP_MANAGER_ATTRIBUTE:FlashMap管理器属性名。
-
 - FLASH_MAP_MANAGER_BEAN_NAME:FlashMap管理器bean名。
-
 - HANDLER_ADAPTER_BEAN_NAME:处理程序适配器bean名。
-
 - HANDLER_EXCEPTION_RESOLVER_BEAN_NAME:异常解析器bean名。 
-
 - HANDLER_MAPPING_BEAN_NAME:处理程序映射bean名。
-
 - INPUT_FLASH_MAP_ATTRIBUTE:输入FlashMap属性名。
-
 - LOCALE_RESOLVER_ATTRIBUTE:区域设置解析器属性名。
-
 - LOCALE_RESOLVER_BEAN_NAME:区域设置解析器bean名。
-
 - MULTIPART_RESOLVER_BEAN_NAME:多部分解析器bean名。
-
 - OUTPUT_FLASH_MAP_ATTRIBUTE:输出FlashMap属性名。
-
 - PAGE_NOT_FOUND_LOG_CATEGORY:404日志类别。
-
 - REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME:请求视图名转换器bean名。
-
 - THEME_RESOLVER_ATTRIBUTE:主题解析器属性名。
-
 - THEME_RESOLVER_BEAN_NAME:主题解析器bean名。 
-
 - THEME_SOURCE_ATTRIBUTE:主题源属性名。
-
 - VIEW_RESOLVER_BEAN_NAME: 视图解析器bean名。
-
 - WEB_APPLICATION_CONTEXT_ATTRIBUTE:Web应用上下文属性名。
-
 这些属性定义了DispatcherServlet使用的各processor/resolver的标识名,方便统一配置。
 
 
 
-
-
 在Spring MVC中,org.springframework.web.servlet.FlashMap 可以用于在重定向之间传递短期的模型数据。典型的使用示例如下:
-
 1. 在Controller中创建FlashMap:
 
 ```java
@@ -308,18 +273,13 @@ public String next(Model model) {
   return "nextView";
 }
 ```
-
 3. 这样就可以在next()中得到show()传递的flash信息。
-
 4. 重定向后会自动清除FlashMap。
-
 综上,FlashMap用于重定向场景下的短期数据传递,避免RedirectAttributes限制。
 
 
-
-
-
-HandlerInterceptor子类
+org.springframework.web.servlet.HandlerInterceptor 在HandlerExecutionChain类中被使用
+HandlerInterceptor接口子类
 
 MappedInterceptor (org.springframework.web.servlet.handler)
 AsyncHandlerInterceptor (org.springframework.web.servlet)
@@ -336,22 +296,12 @@ AsyncHandlerInterceptor (org.springframework.web.servlet)
 WebContentInterceptor (org.springframework.web.servlet.mvc)
 StatHandlerInterceptor (com.alibaba.druid.support.spring.mvc)
 
-
-
-
-
 在Spring MVC的HandlerMapping中,定义了一个名为_MATRIX_VARIABLES_ATTRIBUTE的常量字段,它的作用是:
-
 1. 用来保存请求URL中矩阵变量的属性名。
-
 2. 矩阵变量表示以分号';'分隔的URL路径参数。
-
 3. 如/books;genre=tech,其中genre=tech就是矩阵变量。
-
 4. HandlerMapping会提取这些矩阵变量,存入模型属性中。
-
 5. 这个常量定义了矩阵变量对应的属性名:_MATRIX_VARIABLES_ATTRIBUTE。
-
 6. 因此在Controller中可以通过这个属性名获得矩阵变量:
 
 ```java
@@ -363,15 +313,12 @@ public void handle(Model model) {
 ```
 
 7. 这样可以方便地在Controller中访问矩阵变量。
-
 总之,该常量让获取矩阵变量更加标准化和便捷。
-
 矩阵变量也可表示复杂的参数,配合注解驱动使用可以优化URL的设计。
 
 
 
 #### org.springframework.web.servlet.config
-
 
 
 | org.springframework.web.servlet.config       |          |                                                              |
@@ -387,12 +334,15 @@ public void handle(Model model) {
 | ViewResolversBeanDefinitionParser            |          | xml view-resolvers节点                                       |
 
 
-
-
-
 MvcNamespaceHandler
 
+public class MvcNamespaceHandler extends NamespaceHandlerSupport {
 
+	@Override
+	public void init() {
+        ···
+    }
+}
 
 ##### org.springframework.web.servlet.config.annotation
 
@@ -427,15 +377,9 @@ MvcNamespaceHandler
 | EnableWebMvc                                      | @interface | @Import(DelegatingWebMvcConfiguration.class)  没找到注解处理器，但是WebMvcConfigurationSupport类有一堆@Bean注解修饰的方法，生成类注入spring ioc? |
 
 
-
-
-
 Spring通过注解驱动来实现@EnableWebMvc的解析和应用,主要流程如下:
-
 1. 在Spring容器刷新时,会调用PostProcessor的postProcessBeanDefinitionRegistry方法。
-
 2. DelegatingWebMvcConfiguration这个PostProcessor实现了该方法。
-
 3. 在方法内部,会通过注解工具类查找是否存在@EnableWebMvc注解:
 
    ```java
@@ -452,11 +396,8 @@ Spring通过注解驱动来实现@EnableWebMvc的解析和应用,主要流程如
    ```
 
 5. WebMvcConfigurationSupport中实现了Spring MVC的自动配置逻辑。
-
 6. 如注册组件、添加内容协商解析器等,从而激活Spring MVC功能。
-
 7. 这样当启动容器时,通过查找@EnableWebMvc注解,实现了Spring MVC的自动配置。
-
 综上,Spring通过后处理器在容器刷新阶段解析注解,从而实现对应功能的激活。
 
 
@@ -464,11 +405,8 @@ Spring通过注解驱动来实现@EnableWebMvc的解析和应用,主要流程如
 
 
 @EnableWebMvc 注解可以用于 Spring MVC 项目中，也可以用于 Spring Boot 项目中。
-
 在 Spring MVC 项目中，可以通过在 `@Configuration` 注解的类上使用 `@EnableWebMvc` 注解来开启 Spring MVC 功能。
-
 在 Spring Boot 项目中，可以通过在 `@SpringBootApplication` 注解的类上使用 `@EnableWebMvc` 注解来开启 Spring MVC 功能。
-
 以下是使用 `@EnableWebMvc` 注解在 Spring MVC 项目中开启 Spring MVC 功能的示例代码：
 
 ```
@@ -507,7 +445,6 @@ Spring 源码根据是否加上 `@EnableWebMvc` 注解来注入 bean，相关源
 
 
 WebMvcAutoConfiguration WebMvcConfigurer
-
 @EnableWebMvc 注解处理器位于 `org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport` 类中。
 
 该类提供了一些方法来配置 Spring MVC 的组件，例如：
@@ -633,11 +570,8 @@ public class WebConfig {
 
 
 在Spring MVC中,MappedInterceptor是框架内建的一个拦截器适配器,它的主要作用是:
-
 1. 适配HandlerInterceptor接口,使拦截器可以与@ControllerAdvice注解配合使用。
-
 2. 通过@ControllerAdvice定义的拦截器可以被应用到所有Controller请求中。
-
 使用示例:
 
 1. 定义一个统一的日志记录拦截器:
@@ -670,9 +604,7 @@ public class GlobalConfig {
   }
 }
 ```
-
 3. 这样LoggingInterceptor就会应用到所有Controller中。
-
 综上,MappedInterceptor可以将自定义拦截器与@ControllerAdvice结合使用,实现全局配置。
 
 

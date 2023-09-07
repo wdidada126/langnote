@@ -1,5 +1,8 @@
 # Java8实战
 
+## String join()
+JdbcTemplate拼接 in List集合
+
 [Java8实战](https://book.douban.com/subject/26772632/)
 
 
@@ -20,20 +23,30 @@ https://github.com/edidada/Java8InAction
 排序、线程
 
 #### Chap. 3 Lambda表达式
+BaseStream接口子接口
+IntStream
+LongStream
+Stream<T>
+DoubleStream
 
+AbstractPipeline<E_IN, E_OUT, S extends BaseStream<E_OUT, S>>
+DoublePipeline<E_IN>
+LongPipeline<E_IN>
+IntPipeline<E_IN>
+ReferencePipeline<P_IN, P_OUT>
 
 lambda
 
 Stream 面试题
 
 list
-filter
+filter  Stream<T> filter(Predicate<? super T> predicate) 链式调用，返回自身对象，跟Builder差不多
 map
 keyStore
 
 函数式接口
 
-- java.util.function.Predicate  Predicate<T>                             返回boolean
+- java.util.function.Predicate  Predicate<T>                             返回boolean 跟filter()配合的
 - java.util.function.Consumer   Consumer<T>                        只有入参，没有出参
 - java.util.function.Function   Function<T, R>    R apply(T t)  有入参，有出参
 - java.util.function.Supplier                      T get()                      没有入参，有出参
@@ -57,22 +70,14 @@ https://blog.csdn.net/cyan20115/article/details/106548429
 java之Function、Consumer和Predicate用法及区别
 https://blog.csdn.net/weixin_39102174/article/details/102488702
 
-
-
-
 3.6 方法引用
-
 为了避免装箱操作，对Predicate<T>和Function<T, R>等通用函数式接口的原始类型特化：IntPredicate、IntToLongFunction等。
-
 函数式接口 新概念
 
-
 #### Chap. 4 引入流
-
 Java8中有两大最为重要得改变，其一时Lambda表达式，另外就是 Stream API了。在前面几篇中简单学习了Lambda表达式得语法，以及函数式接口。本文就来简单学习一下Stream API（java.util.stream.*）。
 　　Stream 是 Java8中处理集合得关键抽象概念，他可以指定你希望对集合进行得操作，可以执行非常复杂得查找、过滤和映射数据等操作。使用Stream API对集合数据进行操作，就类似使用SQL执行得数据库查询。也可以使用S他ream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用得处理数据得方式。
 　　在Stream操作过程中，可以对数据流做过滤，排序，切片等操作，但是操作之后会产生一个新的流，而数据源则不会发生改变。
-
 一、什么是 Stream
 　　Stream是数据渠道，用于操作数据源（集合，数组等）所生成得元素序列。而集合讲得是数据，流讲得是计算。
 　　注意：
@@ -80,13 +85,10 @@ Java8中有两大最为重要得改变，其一时Lambda表达式，另外就是
 　　　　②. Stream 不会改变源对象。相反，它会返回一个持有结果得新Stream
 　　　　③. Stream 操作时延迟执行得，这意味着它们会等到需要结果时才执行。（延迟加载）
 
-
-
 1）. 通过Collection得Stream（）方法（串行流）或者 parallelStream（）方法（并行流）创建Stream。
 2）.通过Arrays中得静态方法stream（）获取数组流
 3). 通过Stream类中得 of（）静态方法获取流
 4）. 创建无限流(迭代、生成)
-
 
 二、Stream 操作的三个步骤
 　　1）. 创建 Stream
@@ -100,19 +102,24 @@ Stream
 ![Stream](..\imgs\Stream.png)
 
 
-
+map
+flatMap
 filter()
 sort()
 limit()             截短流 跟数据库select limit一样的
 collect()
 distinct()
+peek()
 skip()               扔掉了前n个元素的流。如果流中元素不足n个，则返回一个空流。
+reduce()
+min()
+max()
+count()
 
 java.util.stream.Stream
 
 
-另一个常见的数据处理套路是看看数据集中的某些元素是否匹配一个给定的属性。Stream 
-API通过allMatch、anyMatch、noneMatch、findFirst和findAny方法提供了这样的工具。
+另一个常见的数据处理套路是看看数据集中的某些元素是否匹配一个给定的属性。Stream API通过allMatch、anyMatch、noneMatch、findFirst和findAny方法提供了这样的工具。
 
 
 findAny

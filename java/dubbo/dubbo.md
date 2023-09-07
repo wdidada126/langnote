@@ -1,5 +1,7 @@
 # Dubbo
 
+Community Over Code 2023 暨 ApacheCon Asia 2023 大会在 8月18 - 8月20日在北京举办，让我们一起回顾一下可观测、Native、协议、Kubernetes部署、企业微服务实践等 8 个议题的精彩分享！
+
 微服务框架现在真是百花齐放，各个平台，各个公司，各个语言，都有一堆的框架和工具，涌现出来，除了dubbo，spring cloud，还有华为的service comb，蚂蚁金服的 SOFAStack ，oracle的Helidon，redhat的quarkus，scala的Lagom，grails的Micronaut，python的nameko，go的micro，多语言的Vert.X，腾讯的tars，百度的brpc，微博的motan。
 
 在dubbo RPC中，同时支持多种序列化方式，例如：
@@ -17,7 +19,6 @@ java序列化：主要是采用JDK自带的Java序列化实现，性能很不理
 这些序列化方式的性能多数都显著优于hessian2（甚至包括尚未成熟的dubbo序列化）。
 有鉴于此，我们为dubbo引入Kryo和FST这两种高效Java序列化实现，来逐步取代hessian2。
 其中，Kryo是一种非常成熟的序列化实现，已经在Twitter、Groupon、Yahoo以及多个著名开源项目（如Hive、Storm）中广泛的使用。而FST是一种较新的序列化实现，目前还缺乏足够多的成熟使用案例，但我认为它还是非常有前途的。
-
 
 纠正一个观点
 Dubbo不跨语言？dubbo支持Go Rust
@@ -51,7 +52,6 @@ EchoFilter (org.apache.dubbo.rpc.filter)
 
 dubbo api版本1.0.0升级到1.0.1，线上生产环境部署的provicer都是1.0.1的，依赖1.0.0的customer会报错吗？
 
-
 没有。Dubbo采用的是软版本匹配,会向下兼容。
 也就是说:
 - Provider版本是1.0.1 
@@ -68,10 +68,7 @@ dubbo api版本1.0.0升级到1.0.1，线上生产环境部署的provicer都是1.
 该设计的目的是最大程度地支持服务消费方的滚动升级。
 希望这可以帮助您理解Dubbo的API版本升级。如果还有其他疑问,欢迎随时提出。
 
-
 1.0.0有个api类A 有a b c三个方法，1.0.1把c方法删除了，cumtomer是1.0.0的，如果调用了c方法会报错吗？
-
-
 
 不会。Dubbo采用的是软版本匹配,所以不会报错。
 具体来说:
@@ -118,7 +115,6 @@ interface DemoService {
 ```
 
 这种情况下:
-
 - Provider修改了接口名(`sayHello()` -->`sayHello2()`)
 - Provider修改了参数类型(增加了`int age`)
 
@@ -132,9 +128,6 @@ server.sayHello("John");
 
 这行代码就无法调用Provider,因为接口发生了变化。
 
-
-
-
 支持grpc protobuf
 https://zhuanlan.zhihu.com/p/101921347
 
@@ -145,7 +138,6 @@ spring boot starter
 
 doc
 https://dubbo.apache.org/zh/docs/v2.7/dev/source/dubbo-spi/
-
 
 dubbo 注册中心支持redis zk nacos
 负载均衡算法支持
@@ -164,22 +156,10 @@ https://blog.csdn.net/niugang0920/article/details/81975421
 
 Filter invoke invoketion
 
-
-
 获取调用方参数
 
-maven 多module，注意jar包引用情况，idea 整个项目的依赖包，不是单个module的依赖包
-
-
-
+maven多module，注意jar包引用情况，idea 整个项目的依赖包，不是单个module的依赖包
 dubbo main函数启动，不依赖servlet容器 Spring容器
-
-
-
-
-
-
-
 http://dubbo.apache.org/zh/docs/v2.7/dev/impls/protocol/
 
 - spring xsd
@@ -358,6 +338,61 @@ String result = service.sayHello("world");
 
 这与Dubbo底层RPC没太大关系,@DubboReference无法使用。
 
+## Dubbo的功能
+Dubbo服务端定义api和impl实现之后，把api（java的interface代码)
+网络通信
+provider把自己的ip port信息发往注册中心
+注册中心长链接？
+序列化 网络协议 dubbo grpc thrift Kryo、Hessian
+支持多种通信框架，netty mina
+监控中心
+
+## 调用方式
+
+Dubbo等会提供四种不同的调用方式，分别为：同步调用（Sync）、异步调用（Future）、回调（Callback）、单向调用（Oneway）。
+
+## Dubbo线程模型的分发策略
+
+dubbo线程策略.png
+
+常用的动态代理技术有：JDK 动态代理、Cglib、Javassist、ASM、Byte Buddy
+常用的负载均衡算法包括：轮询（Round-Robin）、加权轮询（Weighted Round-Robin）、最少连接数（Least Connections）、一致性Hash（Consistent Hash）。
+
+
+
+
+7.1 轮询（Round-Robin）
+
+
+
+轮询（Round-Robin）负载均衡算法是依次轮询服务提供者节点，并且不会考虑服务提供者节点的实际负载情况。
+
+
+
+
+7.2 加权轮询（Weighted Round-Robin）
+
+
+
+加权轮询（Weighted Round-Robin）负载均衡算法在轮询（Round-Robin）算法的基础上，为每个服务提供者节点增加了权重系数，根据权重系数来为每个服务提供者节点分配不同比例的流量。并且权重系数可以根据服务提供者节点的实时负载情况进行调整，使集群节点的负载相对来说比较均衡。
+
+
+
+
+7.3 最少连接数（Least Connections）
+
+
+
+最少连接数（Least Connections）负载均衡算法是服务消费者根据服务提供者节点当前的连接数进行负载均衡，服务消费者会选择连接数最少的一个服务提供者节点进行调用。
+
+
+
+
+7.4 一致性Hash（Consistent Hash）
+
+
+
+一致性Hash（Consistent Hash）负载均衡算法是一种特殊的Hash算法，它在逻辑上采用Hash环实现，通过Hash算法将对象和服务提供者节点放在Hash环上，为对象选择对应的服务提供者节点，例如，在Hash环上按照顺时针查找距离对象的Hash值最近的服务提供者节点。使用一致性Hash算法使得当服务提供者上线或下线时，不会造成Hash环上对象的大规模移动。
 
 ## dubbo cxf
 
@@ -1092,13 +1127,9 @@ https://www.cnblogs.com/feiqihang/p/4387330.html
 Dubbo的历史
 
 2011/10/27：阿里巴巴巴宣布 Dubbo 开源。
-
 2012/10/23：发布最后一个版本 2.5.3 并停止维护更新。
-
 2017/07/31：起死回生，官方宣布开启重新更新，并会得到重点维护。
-
 2017/09/07：发布起死回生的第一个版本：dubbo-2.5.4。
-
 
 Dubbo xsd
 

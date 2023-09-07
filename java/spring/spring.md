@@ -1,6 +1,9 @@
 # Spring
 
 ## spring的功能
+KafkaTemplate spring-kafka org.springframework.kafka.core.KafkaTemplate
+RedisTemplate spring-date-redis org.springframework.data.redis.core.RedisTemplate
+
 发送消息
 支持amqp协议，支持消息
 http server restful
@@ -10,7 +13,6 @@ http server restful
 
 网页安全 spring security
 单机定时任务 quartz
-
 
 ## spring的使用场景
 - http springmvc soap cxf
@@ -2624,7 +2626,47 @@ MyBatis团队开发了mybatis-spring
 
 [Spring注解处理器](https://www.jianshu.com/p/acd1565510e3)
 
+下面是一个简单的 Java 注解处理器的例子，它用于处理自定义注解 `@MyAnnotation`：
 
+```java
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import java.util.Set;
+
+@SupportedAnnotationTypes("com.example.MyAnnotation")
+public class MyAnnotationProcessor extends AbstractProcessor {
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        // 在初始化阶段进行一些必要的准备工作
+        // 可以获取编译参数、Messager、Filer 等工具类
+    }
+
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        for (TypeElement annotation : annotations) {
+            Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(annotation);
+            for (Element element : annotatedElements) {
+                // 处理每个被注解的元素
+                // 可以获取注解的属性值、元素类型、上下文信息等
+                // 进行相应的逻辑处理、代码生成等操作
+                System.out.println("Found element with @MyAnnotation: " + element.toString());
+            }
+        }
+        return false;
+    }
+}
+```
+
+上述代码示例中，我们定义了一个名为 `MyAnnotationProcessor` 的注解处理器，它继承自 `AbstractProcessor`。通过 `@SupportedAnnotationTypes` 注解，我们指定了该处理器要处理的注解类型，这里是 `com.example.MyAnnotation`。
+在 `init` 方法中，我们可以进行一些初始化操作，例如获取处理器的环境信息和工具类，如 `ProcessingEnvironment`、`Messager`、`Filer` 等。
+在 `process` 方法中，我们通过 `roundEnv.getElementsAnnotatedWith(annotation)` 获取被注解的元素集合，并遍历处理每个被注解的元素。在这个例子中，我们只是简单地打印了被注解元素的信息，您可以根据实际需求进行更复杂的处理，例如生成代码、验证约束等。
+请注意，上述代码只是一个简单的示例，实际应用中可能需要处理更复杂的注解和元素类型。此外，还需要将该处理器配置到您的构建工具或开发环境中，以便在编译时自动触发注解处理器的执行。
 
 ```java
 

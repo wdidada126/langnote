@@ -18,7 +18,6 @@ Spring ORM处理对象关系映射,Spring OXM处理对象XML映射。
 
 
 org.springframework.orm.hibernate5
-
 org.springframework.orm.jpa
 这两个包
 

@@ -56,8 +56,6 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 
 spring-jdbc
 
-
-
 ```
 org.springframework.jdbc.core.JdbcTemplate
 ```
@@ -65,23 +63,15 @@ org.springframework.jdbc.core.JdbcTemplate
 
 
 SQLErrorCodeSQLExceptionTranslator主要用于把数据库底层SQL异常翻译成友好的业务异常。
-
 其作用如下:
-
 1. 捕获JDBC SQLException
-
 当数据库执行SQL出现异常时,会抛出SQLException。
 SQLErrorCodeSQLExceptionTranslator会捕获到这个异常。
-
 2. 根据错误代码查找错误消息
-
 SQLErrorCodeSQLExceptionTranslator内置有数据库各种SQL错误代码对应的错误消息。
 通过SQLException获取到错误代码,就可以查到对应的错误消息。
-
 3. 抛出自定义的业务异常
-
 将错误代码翻译为友好的错误消息后,它会新建一个自定义的业务异常,抛给上层调用。
-
 这样上层代码就抛出和捕获的都是业务异常,而不是底层的JDBC异常。
 
 例如,一个典型的用法:
@@ -94,11 +84,9 @@ try {
 ```
 
 `translate()`方法会:
-
 1. 捕获SQLException 
 2. 根据错误代码查找错误消息    
 3. 抛出自定义的DataAccessException异常
-
 这样具体的SQL异常就被转化为友好的业务异常。
 总的来说,SQLErrorCodeSQLExceptionTranslator的主要作用是:
 将底层JDBC SQL异常翻译为业务异常,使异常信息更友好易懂。
@@ -112,6 +100,55 @@ CallMetaDataContext类提供了一些方法，用于获取存储过程的元数�
 - getOutParameterNames(StringcallString)：获取存储过程的所有输出参数的名称。
 - getReturnType(String callString)：获取存储过程的返回值类型。
 通过使用CallMetaDataContext，我们可以更加方便地管理存储过程的元数据信息，避免手动解析存储过程的参数信息带来的麻烦，从而提高了代码的可读性和可维护性。
+
+用JdbcTemplate调用存储 例子
+
+```java
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
+
+public class JdbcTemplateExample {
+    public static void main(String[] args) {
+        // 创建数据源
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
+        dataSource.setUsername("username");
+        dataSource.setPassword("password");
+
+        // 创建 JdbcTemplate 对象
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        // 创建 SimpleJdbcCall 对象，设置存储过程名称和数据源
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("my_stored_procedure");
+
+        // 设置存储过程的参数
+        Map<String, Object> inParams = new HashMap<>();
+        inParams.put("input_param1", "value1");
+        inParams.put("input_param2", 123);
+        jdbcCall.declareParameters(
+                new SqlParameter("input_param1", Types.VARCHAR),
+                new SqlParameter("input_param2", Types.INTEGER));
+
+        // 调用存储过程
+        Map<String, Object> outParams = jdbcCall.execute(inParams);
+
+        // 获取存储过程的输出参数值
+        String outputValue = (String) outParams.get("output_param");
+        int returnValue = (int) outParams.get("return_value");
+
+        // 打印输出结果
+        System.out.println("Output param value: " + outputValue);
+        System.out.println("Return value: " + returnValue);
+    }
+}
+```
 
 SqlParameter是Spring框架中用于封装SQL参数的类，它的作用是将SQL语句中的参数值和参数类型封装起来，方便在JdbcTemplate执行SQL语句时使用。
 SqlParameter类提供了多个构造函数，用于支持不同类型的参数值和参数类型，例如：
@@ -145,8 +182,6 @@ List<User> users = namedParameterJdbcTemplate.query(sql, parameterSource, new Be
 NamedParameterJdbcTemplate使用SqlParameterSource接口来封装SQL语句中的参数，它可以使用MapSqlParameterSource、BeanPropertySqlParameterSource等实现类来创建SqlParameterSource对象。在执行SQL语句时，NamedParameterJdbcTemplate会将SqlParameterSource对象中的参数值与SQL语句中的命名参数进行匹配，并将匹配的参数值设置到SQL语句中的对应位置上，从而执行SQL语句。
 除了支持查询操作，NamedParameterJdbcTemplate还支持更新操作、批量操作、存储过程调用等多种操作。通过使用NamedParameterJdbcTemplate，我们可以更加方便地管理SQL语句中的参数，避免使用裸露的参数值带来的安全隐患，并且提高了代码的可读性和可维护性。
 
-
-
 SimpleJdbcCall是Spring框架中用于调用存储过程的类，它的作用是简化存储过程调用的过程，提高代码的可读性和可维护性。
 在使用JdbcTemplate调用存储过程时，需要使用CallMetaDataProvider接口来获取存储过程的元数据信息，并使用JdbcTemplate的CallHelper类来实现存储过程的调用。这种方式虽然灵活，但需要编写大量的代码来实现存储过程的调用，代码可读性和可维护性较差。
 SimpleJdbcCall类可以简化存储过程调用的过程，它封装了JdbcTemplate的CallHelper类，并提供了一些方法，用于设置存储过程的参数、执行存储过程、获取存储过程的执行结果等。例如：
@@ -163,9 +198,7 @@ jdbcCall.execute(inParams);
 通过使用SimpleJdbcCall，我们可以更加方便地调用存储过程，避免了手动解析存储过程的元数据、拼接SQL语句等带来的麻烦，从而提高了代码的可读性和可维护性。
 
 
-
 SimpleJdbcInsert是Spring框架中用于执行插入操作的类，它的作用是简化插入操作的过程，提高代码的可读性和可维护性。
-
 在使用JdbcTemplate执行插入操作时，通常需要手动编写SQL语句，并使用JdbcTemplate的update()方法来执行SQL语句，例如：
 
 ```
