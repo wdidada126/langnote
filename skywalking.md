@@ -1,7 +1,5 @@
 # skywalking
 
-
-
 skywalking日志
 ```shell
 INFO 2023-09-08 14:38:01:862 main PluginResourcesResolver : find skywalking plugin define in jar:file:/usr/local/apps/skywalking-agent/activations/apm-toolkit-log4j-1.x-activation-7.0.0.jar!/skywalking-plugin.def 
@@ -96,19 +94,12 @@ pinpoint
 
 拉钩教育
 
-
-
 SkyWalking 基于 MonitorFilter 实现增强，从而透明化埋点监控。
 
 https://opentracing.io/registry/skywalking/
 
-
-
 [skywalking](https://github.com/apache/skywalking)
-
-
 
 支持哪些中间件？
 
 Dubbo
-
