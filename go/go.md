@@ -1,4 +1,7 @@
 # go
+
+一看评论就是半吊子技术，python那种混乱的包管理还有洗地的，go1.12以前是很混乱，但是1.13扶正用mod之后，一直到现在的1.20已经很好用了，用过python 的pip，java的maven gradle，php的composer，就问哪个能直接给你replace来改第三方代码调试，剔除依赖，语义化版本规范，我刚刚提的那些包管理，哪一个能打，是不是gomod最简洁，用起来最舒服
+
 Go知识体系
 https://www.processon.com/view/link/5ff500aa1e08531de81e1288
 
