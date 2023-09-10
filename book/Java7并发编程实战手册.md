@@ -1,9 +1,9 @@
 # Java7并发编程实战手册
 
-Java9并发编程实战手册
+新版本 Java9并发编程实战手册
 
 [Java7并发编程实战手册](https://book.douban.com/subject/25844475/)
-
+Java 7并发编程实战手册.pdf
 随书源码
 D:\git\github\testjdk8\docs\7881_code
 
@@ -30,8 +30,6 @@ join() 等待线程终止
 ThreadFactory接口
 
 
-
-Chap. 1
 
 1.2线程的创建
 
