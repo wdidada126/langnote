@@ -351,16 +351,17 @@ https://docs.spring.io/spring-framework/docs/5.2.x/javadoc-api/
 | TypeMismatchException                                |   exception        |      |
 
 
-
-
-
 BeanUtils methods
 
 ![BeanUtils_methods](..\..\imgs\spring\BeanUtils_methods.png)
 
-
-
-
+instantiateClass()
+findPrimaryConstructor()
+findMethod()
+findDeclaredMethod()
+findMethodWithMinimalParameters()
+resolveSignature()
+getWriteMethodParameter()
 
 #### org.springframework.beans.annotation
 
