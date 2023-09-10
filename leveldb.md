@@ -14,3 +14,6 @@ https://www.jianshu.com/p/7acdab85c722
 单个文件
 
 cpp写过demo
+
+rocksdb对leveldb做了哪些优化？
+https://www.zhihu.com/question/328622742/answer/3177961524
