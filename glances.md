@@ -1,3 +1,3 @@
 # glances
 
-htop 代替 top，glances 代替 htop：
+htop代替top，glances代替htop：
