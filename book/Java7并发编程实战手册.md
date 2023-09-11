@@ -1,6 +1,11 @@
-# Java 7并发编程实战手册
+# Java7并发编程实战手册
 
-[Java 7并发编程实战手册](https://book.douban.com/subject/25844475/)
+新版本 Java9并发编程实战手册
+
+[Java7并发编程实战手册](https://book.douban.com/subject/25844475/)
+Java 7并发编程实战手册.pdf
+随书源码
+D:\git\github\testjdk8\docs\7881_code
 
 ### chapter1 线程管理
 - java.lang.Runnable
@@ -25,8 +30,6 @@ join() 等待线程终止
 ThreadFactory接口
 
 
-
-Chap. 1
 
 1.2线程的创建
 
@@ -75,7 +78,7 @@ Lock
 ReadWriteLock
 
 2.8
-Condiction
+Condiction 拼写错误
 
 await（）
 
@@ -107,9 +110,11 @@ Exchanger java提供   Exchanger<V>
 
 
 
+#### CyclicBarrier和CountDownLatch
 
+#### Exchanger<V>
 
-Semaphore用法
+#### Semaphore用法
 
 - availablePermits()
 - tryAcquire()
@@ -130,13 +135,13 @@ Semaphore(int permits)
 
 ![Semaphore](..\imgs\javase\Semaphore.png)
 
-什么是相位器Phaser
+#### 什么是相位器Phaser
 jdk7中增加了一个用于多阶段同步控制的工具类，它包含了CyclicBarrier和CountDownLatch的相关功能，比它们更强大灵活。
 对Phaser阶段协同器的理解，Phaser适用于多个线程协作的任务，分为多个阶段，每个阶段都可以有任意个参与者，线程可以随时注册并参与某个阶段；当一个阶段中所有任务都成功完成后，Phaser的onAdvance()被调用，然后Phaser释放等待线程，自动进入下个阶段。如此循环，直到Phaser不再包含任何参与者。
 
 https://cloud.tencent.com/developer/article/1908152
 
-### Phaser API说明
+#### Phaser API说明
 
 -   构造方法
     -   `Phaser()` ：参与任务数0
@@ -163,7 +168,7 @@ https://cloud.tencent.com/developer/article/1908152
 
 
 
-### Phaser例子
+#### Phaser例子
 
 场景：公司组织郊游活动，大家各自从家出发到公司集合，大家都到了后，出发到公园各自游玩，然后在公园门口集合，再去餐厅就餐，大家都到了就开始用餐。有的员工白天有事，选择晚上的聚餐，有的员工则晚上有事，只参加白天的活动。编程模拟实现。
 
@@ -203,10 +208,6 @@ acdd 四个
 
 public static class AbortPolicy implements RejectedExecutionHandler
 
-
-
-
-
 ```java
 RejectedExecutionHandler接口
 java.util.concurrent.RejectedExecutionHandler
@@ -244,9 +245,12 @@ PriorityBlockingQueue (java.util.concurrent)
 
 ForkJoinPool.invoke()
 
+#### fjt ForkJoinPool
+#### RecursiveTask  rt
 
-fjt
-rt
+#### ForkJoinTask 
+
+#### RecursiveAction
 
 java.util.concurrent.ForkJoinTask abstract
 
@@ -273,6 +277,8 @@ mapreduce
 
 
 
+ForkJoinPool构造函数 四个函数
+
 public ForkJoinPool(int parallelism,
                         ForkJoinWorkerThreadFactory factory,
                         UncaughtExceptionHandler handler,
@@ -282,8 +288,6 @@ public ForkJoinPool(int parallelism,
 - factory：当Fork/Join框架创建一个新的线程时，同样会用到线程创建工厂。只不过这个线程工厂不再需要实现ThreadFactory接口，而是需要实现ForkJoinWorkerThreadFactory接口。后者是一个函数式接口，只需要实现一个名叫newThread的方法。在Fork/Join框架中有一个默认的ForkJoinWorkerThreadFactory接口实现：DefaultForkJoinWorkerThreadFactory。
 - handler：异常捕获处理器。当执行的任务中出现异常，并从任务中被抛出时，就会被handler捕获。
 - asyncMode：这个参数也非常重要，从字面意思来看是指的异步模式，它并不是说Fork/Join框架是采用同步模式还是采用异步模式工作。Fork/Join框架中为每一个独立工作的线程准备了对应的待执行任务队列，这个任务队列是使用数组进行组合的双向队列。即是说存在于队列中的待执行任务，即可以使用先进先出的工作模式，也可以使用后进先出的工作模式。
-
-
 
 
 
@@ -308,6 +312,8 @@ try {
 原子变量
 
 原子数组
+
+cas compare and swap是算法，对应cpu指令 go rust c++都有
 
 
 
@@ -379,6 +385,8 @@ shard
 excusive
 
 
+
+aqls
 
 public abstract class AbstractQueuedLongSynchronizer
     extends AbstractOwnableSynchronizer

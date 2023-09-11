@@ -1,5 +1,7 @@
 # nginx
 
+nginx开发出来之前，直接servlet
+
 互联网公司，nginx用
 
 反向代理，负载均衡，代理缓存，限流
@@ -14,17 +16,13 @@ lua
 
 openresty
 
-
-
 [ng load blance](http://nginx.org/en/docs/http/load_balancing.html)
 
 [Nginx负载均衡health_check分析](https://www.onmpw.com/tm/xwzj/network_132.html)
 
-
 - round-robin
 - least-connected
 - ip-hash
-
 
 
 ```shell

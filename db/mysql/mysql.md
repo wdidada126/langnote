@@ -1,4 +1,20 @@
 # mysql
+
+mysql索引使用b+树实现
+或者hash实现
+mysql为什么使用B+树实现，不用b树实现？
+
+在 B+ 树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是 B+ 树的一个重要参数，它决定了 B+ 树的分支因子和节点的容量。
+具体来说，对于一个度为 `d` 的 B+ 树：
+
+1. 非根节点（除了叶子节点）至少有 `d` 个子节点。
+2. 非根节点的关键字个数（除了叶子节点）可以是 `d-1` 到 `2d-1` 之间。
+3. 叶子节点可以包含 0 到 `2d-1` 个关键字。
+度的选择会影响 B+ 树的高度、磁盘访问次数和节点的利用率。较大的度可以减少树的高度，从而减少磁盘访问次数，但会增加节点的大小和内存开销。较小的度可以提高节点的利用率，减少内存开销，但会增加树的高度和磁盘访问次数。
+通常，在实际应用中，度的选择需要根据具体的场景和数据量进行权衡。常见的度取值为 50、100 或更大，但具体的最佳取值需要根据实际需求和性能测试来确定。
+
+
+
 ## 表支持的数据类型
 tinyint
 int
@@ -960,7 +976,7 @@ https://dev.mysql.com/doc/refman/5.7/en/json.html
 
 05 如何设计高性能的索引
 
-icp 索引下推
+## icp 索引下推
 
 
 索引下推的一个简单例子是使用SELECT语句查询一个包含多列的表，但只需要返回其中的一列数据。
@@ -1343,27 +1359,22 @@ select id from lyb_test where age = 12
 由于查询的值是ID，而id的值已经在age索引树上了，因此可以直接提供查询结果，不需要回表。也就是说，当SQL语句的所有查询字段(select列)和查询条件字段(where子句)全都包含在一个索引中，便可以直接使用索引查询而不需要回表。即在这个查询里，索引age已经“覆盖了”我们的查询需求，故称为索引覆盖。
 
 select * from user_table where username like 'b%' and age >= 13
-
 语句的执行过程有两种可能性：
-
 根据(username，age)联合索引查询所有满足名称以"b"开头的索引，然后回表查询出相应的全行数据，再筛选出满足年龄大于等于13的用户数据。如果表中user_name以b开头的数据有n条，则需要回表n次
 根据(username,age)联合索引查询所有满足名称以"b"开头的索引，然后直接再筛选出年龄大于等于13的索引，之后再回表查询全行数据。经过两次筛选之后，回表次数一定小于上述第一种情况
 我们把第二种语句执行的过程称之为索引下推
 在MySQL中，索引下推是默认启用的状态。在使用InnoDB存储引擎的数据表中，索引下推只能用于二级索引。我们可以通过修改MySQL系统变量来控制索引下推是否开启。设置如下：
 SET optimizer_switch = 'index_condition_pushdown=off';// 关闭
 SET optimizer_switch = 'index_condition_pushdown=on';// 开启
-索引下推一般可用于所求查询字段(select列)不是/不全是联合索引的字段，查询条件为多条件查询且查询条件子句(where/order by)字段全是联合索引。假设表t有联合索引（a,b）,下面语句可以使用索引下推提高效率
-
+索引下推一般可用于所求查询字段(select列)不是/不全是联合索引的字段，查询条件为多条件查询且查询条件子句(where/order by)字段全是联合索引。
 
 回表：顾名思义就是回到表中重新查询一次，也就是先通过二级索引查找到主键ID，然后在通过主键ID去查询聚簇索引找到一行的完整数据。
 所以回表的产生也是需要一定条件的，如果一次索引查询就能获得所有的select 记录就不需要回表，如果select 所需获得列中有其他的非索引列，就会发生回表动作。即基于非主键索引的查询需要多扫描一棵索引树。
-
 
 hash 索引
 平衡树
 b-树
 b+树
-
 
 InnoDB支持外键，而MyISAM不支持。
 3，InnoDB是聚集索引，使用B+Tree作为索引结构，数据文件是和（主键）索引绑在一起的（表数据文件本身就是按B+Tree组织的一个索引结构），必须要有主键，通过主键索引效率很高。MyISAM是非聚集索引，也是使用B+Tree作为索引结构，索引和数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。
@@ -1375,18 +1386,14 @@ InnoDB支持外键，而MyISAM不支持。
 Innodb：frm是表定义文件，ibd是数据文件。
 Myisam：frm是表定义文件，myd是数据文件，myi是索引文件。
 
-
 阿里 P8 架构师谈:MySQL 慢查询优化、索引优化、以及表等优化总结
 https://www.bilibili.com/video/av583428536/?vd_source=71b9c2a5f966942c83677c2110efde22
 
 根据红黑树的算法来分析TreeMap的实现
 https://www.cnblogs.com/coderising/articles/5719517.html
 
-
-
 二叉树是不是不能有重复的元素？
 没有重复元素
-
 
 二叉查找树 又叫 二叉排序树，二叉搜索树。Binary Search Tree(BST)
 
@@ -1395,12 +1402,6 @@ https://www.cnblogs.com/coderising/articles/5719517.html
 也就是说对于二叉查找树中的任何一个非叶子节点，左节点值小于当前节点值，右节点值大于当前节点值
 二叉查找树的任何一个非叶子节点的左子树中的任何一个节点的值都要小于当前节点值，右子树中的任何一个节点的值都要大于当前节点值。
 如果对二叉查找树进行中序遍历，可以得到一个从小到大的序列 ，所以也叫作二叉排序树
-
-
-
-
-
-
 
 一、二叉树-BST  (binary search/sort tree)
 二叉树又名二叉查找/搜索/排序树  
@@ -1433,21 +1434,11 @@ https://www.cnblogs.com/coderising/articles/5719517.html
 
 B-树是一种多路搜索树（并不一定是二叉的）
 
-
-
-
-
-
-
-
 单机 索引 实际操作
-
-
 
 mysql连接池
 
 具体到Java代码，Connection对象不能随便新建，需要池化复用
-
 
 下面对一些重要的数据字典表做一些说明：
 SCHEMATA表：提供了关于数据库的信息。
@@ -1467,8 +1458,6 @@ ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息
 VIEWS表：给出了关于数据库中的视图的信息。
 TRIGGERS表：提供了关于触发程序的信息。
 
-
-
 一个read commited下的死锁分析
 http://blog.itpub.net/30221425/viewspace-2134433
 
@@ -1481,19 +1470,9 @@ https://blog.csdn.net/michaelwubo/article/details/81476591
 Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
 
-
-
-
 Mysql Server的代码虽然多，但是比较好理解了，我看过下面这些
 
-
-
 https://www.zhihu.com/question/22364529
-
-
-
-
-
 
 线上业务先和DBA确认服务器磁盘是否是SSD
 
@@ -1503,15 +1482,9 @@ Mysql 为我们提供了分布式事务解决方案（https://dev.mysql.com/doc/
 事务管理器（transaction manager）：事务管理器是分布式事务的核心管理者。事务管理器与每个资源管理器（resource
 manager）进行通信，协调并完成事务的处理。事务的各个分支由唯一命名进行标识。
 
-版权声明：本文为CSDN博主「唐大麦」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/soonfly/article/details/70677138
-
-
-
-
+https://blog.csdn.net/soonfly/article/details/70677138
 
 XA的性能很低。一个数据库的事务和多个数据库间的XA事务性能对比可发现，性能差10倍左右。因此要尽量避免XA事务，例如可以将数据写入本地，用高性能的消息系统分发数据。或使用数据库复制等技术。只有在这些都无法实现，且性能不是瓶颈时才应该使用XA。
-
 
 MySQL XA 的限制
 在MySQL 5.7.7 之前，MySQL一直存在一个"bug"。在事务达到PREPARED状态后，客户端断开与MySQL的连接，MySQL 会自动回滚该事务，这个行为不符合分布式事务的规范，MySQL将PREPARED的事务丢失了。之所以MySQL这么实现是因为MySQL 5.7.7 之前PREPARED的事务并不会记录到binlog中。客户端退出后会丢失该信息，如果允许再提交，那么binlog缺少事务信息，会造成主从不一致。
@@ -1521,9 +1494,7 @@ MySQL XA 的限制
 MySQL XA 的实践
 本人曾在某公司的分布式数据库项目组中实践过基于MySQL XA的分布式事务。MySQL XA 要满足线上高并发的访问要求，在使用时还需要解决两个问题：分布式死锁问题和分布式读一致性问题。分布式死锁问题是指MySQL Server 是可以检测和解决单个MySQL实例中的死锁问题，但涉及到跨越多个MySQL 实例的分布式事务时候，需要程序层面实现死锁的检测和解决。分布式读一致性问题是指MySQL的read view 也是实例级别的，对于全局分布式事务来说无法实现读一致，只能通过select ... lock in share mode在读请求上加锁的串行化隔离级别来实现，这必然会带来并发性能的下降。这就需要在程序层面构建全局的read view来实现全局的MVCC 。当然这两个问题，当时团队的大牛们都已经解决了，我也很有幸参与其中。
 
-
 ddd：https://www.jianshu.com/p/7003d58ea182
-
 
 MySQL书籍
 http://mingxinglai.com/cn/2015/12/material-of-mysql/
