@@ -1,14 +1,14 @@
 # srpc
 
+https://zhuanlan.zhihu.com/p/619721187?utm_id=0
+
+## 编译和使用
 ucloud安装了 编译好了
 
 git clone 
 
 git submode
 
-
-
-https://gitee.com/sogou/srpc
 
 cmake组织的
 
@@ -19,10 +19,11 @@ centos 7
 protobuf-devel-2.5.0-8.el7.x86_64.rpm
 
 
-
+## 代码托管地址
 https://github.com/sogou/srpc
 
 https://gitee.com/mirrors/srpc
+
 centos 8
 yum install dnf-plugins-core
 yum config-manager --set-enabled powertools
@@ -75,9 +76,7 @@ https://www.cnblogs.com/tongongV/p/11014581.html
 
 
 源码下载gcc5.4 
-
 重新安装
-
 软连接替换
 
 
@@ -87,6 +86,3 @@ protobuf rpm包强制安装
 
 
 --nodeps --force
-
-
-

@@ -18,6 +18,29 @@ Java SDK里提供的 CountDownLatch、CyclicBarrier、Phaser、Exchanger
 
 ![java并发编程全景图之思维导图](../../imgs/java并发编程全景图之思维导图.png)
 
+
+
+Java并发编程实战王宝令极客时间
+
+
+
+Chap. 2
+
+
+
+多线程问题
+
+- 多线程协作
+- 多线程并发
+
+协作一般是和分工相关的。Java SDK 并发包里的 Executor、Fork/Join、Future 本质上 都是分工方法，但同时也能解决线程协作的问题。
+Java SDK 里提供的 CountDownLatch、CyclicBarrier、Phaser、 Exchanger 也都是用来解决线程协作问题的。
+
+future.get()
+主线程等待
+
+在 Java 并发编程领域，解决协作问题的核心技术是管程
+
 第二部分：并发工具类 (14讲)
 
 第三部分：并发设计模式 (10讲)

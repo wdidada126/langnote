@@ -12,7 +12,6 @@ Explain信息解读可参考 https://github.com/XiaoMi/soar/blob/master/doc/expl
 SOAR常用命令可参考 https://github.com/XiaoMi/soar/blob/master/doc/cheatsheet.md
 
 Go写的
-
 SOAR(SQL Optimizer And Rewriter) 
 
 https://gitter.im/xiaomi-dba/soar
@@ -24,7 +23,6 @@ soar
 https://github.com/xiyangxixian/soar-web
 
 soar是小米开源的一个对 SQL 进行优化和改写的自动化工具。
-
 跨平台支持（支持 Linux, Mac 环境，Windows 环境理论上也支持，不过未全面测试）
 目前只支持 MySQL 语法族协议的 SQL 优化
 支持基于启发式算法的语句优化

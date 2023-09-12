@@ -5,9 +5,6 @@ SoloPi是一个无线化、非侵入式的Android自动化工具，公测版拥�
 https://github.com/alipay/SoloPi
 
 
-
-
-
 android iOS FPS
 
 https://www.jianshu.com/p/2d138506ab50
