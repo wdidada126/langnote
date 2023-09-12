@@ -1,4 +1,7 @@
 # c++
+
+https://github.com/lkimuk/the-book-of-modern-cpp
+
 C++八股文.zip
 
 c++的最核心难点是拷贝构造触发机制。只要搞明白这一点，用c++开发很容易的。
