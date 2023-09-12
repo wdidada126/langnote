@@ -370,3 +370,8 @@ docker pull mysql:5.7.42
 docker exec -it 7c5f84ada3dc /bin/bash
 
 https://blog.csdn.net/qq_42971035/article/details/127831101
+
+## 提供加速Docker镜像下载的服务
+https://www.daocloud.io/mirror
+
+http://f1361db2.m.daocloud.io
