@@ -3,8 +3,14 @@
 ##### 0506看
 ##### 0915看
 
+作者: 【美】Cay S. Horstmann（凯.S.霍斯曼） 编
 
+译者: 张若飞
+出版年: 2014-11
 
+ISBN: 9787121227288
+
+https://book.douban.com/subject/26274206/
 
 
 Stream 面试题
@@ -24,7 +30,7 @@ Java.util.function包
 
 
 
-#### Chap. 1
+#### Chap. 1 第1章 lambda表达式
 
 lambda
 
@@ -44,7 +50,7 @@ Paths
 
 
 
-#### Chap. 2
+#### Chap. 2 第2章 Stream API 
 
 Stream.of()
 
@@ -85,13 +91,13 @@ FilePredicate vs Predicate<File>
 
 [写给大忙人的JavaSE8书后习题简析-第二章](https://blog.mythsman.com/post/5d2fef2c976abc05b34545f9/)
 
-#### Chap. 3
+#### Chap. 3 第3章使用lambda编程
 
 jjs jss
 
 
 
-#### Chap. 4
+#### Chap. 4 第4章 JavaFX
 JavaFX
 
 AWT 
@@ -100,7 +106,7 @@ Swing 自己绘制
 
 
 
-#### Chap. 5
+#### Chap. 5 第5章新的日期和时间API
 
 java.time
 Java事件中，没有闰秒
@@ -108,6 +114,13 @@ LocaldateTime没有时区
 TemporalAdjuster
 ZonedDateTime vs Gregorian Calendar
 DateTimeFormatter
+
+DateTimeFormatter不能用来format 2023-10这种不含有天数的日期
+
+```java
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+```
 
 java.time.Instant
 
@@ -124,7 +137,7 @@ LocalDate alonzosBirthday = LocalDate.of(1903,6,14);
 
 新Date api与之前的Date java.sql.Date/Time/Timestamp
 
-#### Chap. 6
+#### Chap. 6 第6章并发增强
 
 
 并发
@@ -132,7 +145,7 @@ java 5 java.util.concurrent 既有并发类，又有实现API开发者实现的�
 
 competeleFuture
 
-#### Chap. 7
+#### Chap. 7 第7章 JavaScript引擎——Nashorn
 
 nashorn js引擎
 
@@ -180,4 +193,6 @@ NULL检查
 re
 
 JDBC
+
+#### 第9章你可能错过的Java 7特性
 
