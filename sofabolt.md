@@ -23,8 +23,6 @@ https://github.com/sofastack/sofa-bolt-node
 
 网络心跳包
 
-
-
 SOFABolt 是蚂蚁金融服务集团开发的一套基于 [Netty](https://www.oschina.net/p/netty) 实现的网络通信框架。
 
 - 为了让 Java 程序员能将更多的精力放在基于网络通信的业务逻辑实现上，而不是过多的纠结于网络底层 NIO 的实现以及处理难以调试的网络问题，Netty 应运而生。

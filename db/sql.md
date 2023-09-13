@@ -1,5 +1,8 @@
 # SQL
 
+## 刷sql的网站
+SQL在线刷题神器,强推SQLZOO呀
+
 sql行转列
 在SQL中，可以使用Pivot操作将行转换为列。下面是一个例子：
 

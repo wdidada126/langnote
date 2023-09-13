@@ -1,5 +1,23 @@
 # java8
 
+Collectors.toList()
+Collectors.toSet()
+
+```java
+    Function<ApplyPayResultReferPoDTO, Object[]> convert = item -> new Object[]{
+            item.getApplyPayAmount(),
+            item.getApplyPayAmount(),
+            tenantNumId,dataSign,
+            item.getCortNumId(),
+            item.getSupplyNumId(),
+            item.getPoDtlSeries(),
+            item.getPoNumId(),
+            item.getPoBatchId(),
+            item.getPoBatchSeries(),
+            item.getPreSetSeries()
+    };
+    List<Object[]> args = entities.stream().map(convert).collect(Collectors.toList());
+```
 
 javax
 - javax-batch
