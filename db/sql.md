@@ -1,5 +1,9 @@
 # SQL
 
+select id,countryname,countrycode from country where countryname like '*中*'
+错误
+MySQL字符类型通配符是 _ %
+
 ## 刷sql的网站
 SQL在线刷题神器,强推SQLZOO呀
 

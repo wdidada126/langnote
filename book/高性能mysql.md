@@ -7,7 +7,7 @@ mysql 5.5
 5.6
 5.7
 
-
+Windows 电脑，高性能MySQL（第3版）.pdf
 
 Baron Schwartz  https://www.xaprb.com/blog/
 https://www.jianshu.com/p/52ffbadf6b12
@@ -15,28 +15,18 @@ https://www.jianshu.com/p/52ffbadf6b12
 
 Peter Zaitsev，曾经是MySQLAB公司高性能来组的经理，目前源在运作 baimysqlperformanceblog.com
 
-
-
 1、基于测试结果 进行性能提高
-
 2、数据库 值类型优化
-
 3、使用索引
-
 4、查询优化
-
 5、服务器设置
-
 6、os 硬件优化
-
 7、高可用 主从 避免单点失效
 
 
 
 mysql 历史
-
 2010 5.5
-
 innodb
 
 5.6
@@ -51,7 +41,6 @@ innodb
 explain 解释 说明
 show profile
 需要百度例子，做实验
-
 execute plan 执行计划
 
 
@@ -60,15 +49,10 @@ execute plan 执行计划
 MySQL-8.0执行器及其改进
 https://cloud.tencent.com/developer/article/1461353
 
-
-
-
-
 MySQL Internals Manual.pdf
 Understanding Mysql Internals(老外写的MySQL核心内幕).pdf
 MySQL核心内幕(国人写的).pdf
 MySQL技术内幕InnoDB存储引擎.pdf
-
 
 show variables xxx
 都有哪些变量
@@ -80,20 +64,14 @@ show variables xxx
 
 mysql的内部架构
 
-
-
 连接器
-
 一个连接有一个线程
-
 线程池 线程重用
 
 
 
 死锁
-
 事务日志
-
 事务是由存储引擎实现的
 myasma 不支持事务
 innodb实现事务
@@ -106,21 +84,14 @@ mysql server 服务器层也实现表锁
 select  ... lock in share mode
 select ... for update
 
-
-
 mysql 事务性数据引擎实现的都不是简单的行级锁，提升并发，使用mvcc
 
-
-
 oracle pgsql 等rdbms都实现了mvcc
-
 
 rdbms和nosql的区别包括事务支持与否
 
 可以认为mvcc是行级锁的一个变种
 mvcc没有规范，不同数据库厂商自己实现
-
-
 
 #### 1.5  schema 与数据类型优化
 windows
@@ -129,19 +100,12 @@ mysql新建一个数据库
 D:\mysql-5.7.17-winx64\data
 新建一个文件夹，文件夹名称是数据库名称
 
-
-
 数据字典保存在 .frm文件中
 ibd保存数据，索引
 innodb不支持hash索引
 
-
 .idb
 索引 数据保存在哪儿？ .ibd
-
-
-
-
 
 [mysql之frm,MYD,MYI.idb,par文件说明](https://www.cnblogs.com/jdbeyond/p/11373802.html)
 
@@ -156,28 +120,16 @@ b.frm ：描述表结构文件，字段长度等
 如果采用共存储模式的，数据信息和索引信息都存储在ibdata1中
 如果采用分区存储，data\a中还会有一个b.par文件（用来存储分区信息）
 
-
-
-
-
-
-
 ### mysql之 共享表空间与独立表空间
 
 https://blog.csdn.net/zhang123456456/article/details/72802056
 
-
-
 独立表空间：
 在配置文件（my.cnf）中设置： innodb_file_per_table 为 On
-
-
 
 数据库 schema
 
 performance_schema
-
-
 
 ### Chap.2 mysql基准测试
 
@@ -186,20 +138,14 @@ sysbench
 千金良方：MySQL性能优化金字塔法则.pdf
 上有例子
 
-
-
 ### Chap.3 服务器性能剖析
 
-
-
-*sysbench*压力测试工具简介: *sysbench*是一个开源的、模块化的、跨平台的多线程性能测试工具,可以用来进行CPU、内存、磁盘I/O、线程、数据库的性能测试。
+sysbench压力测试工具简介: sysbench是一个开源的、模块化的、跨平台的多线程性能测试工具,可以用来进行CPU、内存、磁盘I/O、线程、数据库的性能测试。
 
 https://github.com/akopytov/sysbench
 
 
 ### Chap.4 schema 与数据类型优化
-
-
 
  
 
@@ -210,13 +156,16 @@ hint表达式可以指定索引
 前缀索引和索引选择性
 
 聚簇索引
+聚簇索引是一种数据的存储方式，它描述的是数据的一种存储方式。
+在InnoDB中，数据以B+Tree的形式存储，聚簇索引的数据行都存储在索引的叶子节点中，非叶子节点上只存索引信息。
+这种索引和数据的存储方式就叫做聚簇索引，“聚簇”的意思是数据行和相邻的关键字挨着。
+InnoDB通过主键来聚集数据，聚簇索引的B+Tree上的叶子结点所存储的key总是主键，如果没有定义主键，InnoDB会选择一个唯一的非空索引代替，如果没有这样的索引，InnoDB会隐式地定义一个主键来聚集（存储）数据，这个隐式的主键被称为rowID。
 
+聚簇索引也叫簇类索引，是一种对磁盘上实际数据重新组织以按指定的一个或多个列的值排序。由于聚簇索引的索引页面指针指向数据页面，所以使用聚簇索引查找数据几乎总是比使用非聚簇索引快。每张表只能建一个聚簇索引，并且建聚簇索引需要至少相当该表120%的附加空间，以存放该表的副本和索引中间页。
 
-
-
-
+mysql表默认使用聚簇索引
+如果没有主键，mysql表会新建一个影藏列
 ### Chap. 6 查询性能优化
-
 
 MVCC
 

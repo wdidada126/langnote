@@ -1,4 +1,5 @@
 # oracle
+oracle 需要手动提交事务
 
 testoraclemybatis
 资深dba 专家型dba推荐的学习Oracle的资料

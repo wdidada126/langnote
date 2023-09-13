@@ -129,10 +129,8 @@ java.time.Instant
 LocalDate是一个带有年份、月份、当月天数的日期。
 
 ```java
-
 LocalDate today = LocalDate.now();
 LocalDate alonzosBirthday = LocalDate.of(1903,6,14);
-
 ```
 
 新Date api与之前的Date java.sql.Date/Time/Timestamp
@@ -143,7 +141,10 @@ LocalDate alonzosBirthday = LocalDate.of(1903,6,14);
 并发
 java 5 java.util.concurrent 既有并发类，又有实现API开发者实现的类 UnSafe 
 
-competeleFuture
+CompeteleFuture 错
+
+CompletableFuture java.util.concurrent.CompletableFuture
+public class CompletableFuture<T> implements Future<T>, CompletionStage<T>
 
 #### Chap. 7 第7章 JavaScript引擎——Nashorn
 

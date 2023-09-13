@@ -1,5 +1,12 @@
 # Spring
 
+Spring doc
+PropertityEditor
+
+AOP
+Spring加载properties文件的两种方式
+https://blog.csdn.net/eson_15/article/details/51365707
+
 ## spring的功能
 KafkaTemplate spring-kafka org.springframework.kafka.core.KafkaTemplate
 RedisTemplate spring-date-redis org.springframework.data.redis.core.RedisTemplate
