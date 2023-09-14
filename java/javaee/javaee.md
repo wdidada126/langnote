@@ -1,5 +1,8 @@
 # javaee
 
+jsp是强耦合的，不能前后端分离
+编译成Servlet
+
 jakartaee.md
 
 `lusrmgr.msc`

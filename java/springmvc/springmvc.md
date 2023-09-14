@@ -1,5 +1,10 @@
 # springmvc
 
+SpringMVC接收post的form表单
+@RequestParam
+
+@RequestMapping(value = abc.html,method = RequestMethod.POST)
+
 springmvc支持excel pdf文件
 
 spring-web

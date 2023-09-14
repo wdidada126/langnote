@@ -1,4 +1,13 @@
 # netty
+
+Netty
+
+java nio
+netty book
+
+ netty tcp传入http参数
+ 线程池 eventgroup
+ 
 知乎电子书
 Netty的编码和解码除了解决TCP协议的粘包和拆包问题，还有一些编解码器做了很多额外的事情，如StringEncode（把字符串转换成字节流）、ProtobufDecoder（对Protobuf序列化数据进行解码）
 

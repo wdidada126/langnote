@@ -1,5 +1,27 @@
 # Java标准库
 
+jsl
+
+- java.security
+- java.clipher
+- javax.annotation
+
+### annotation
+@Resource Spring项目中可以用
+@Resources @Resoource的组合 java annotation的组合
+@PostConstructor
+@ConstructorArgs
+
+### security
+java.security
+https访问
+
+java新项目访问本地文件，跨操作系统方案
+instance.getClass.getResourceAsStream("");
+
+java 指令重排序，现代理解到cpu优化这一层次了，大部分被优化的java代码都不会带来问题，是按照编码人员的意图来执行的，少部分优化违背了编码人员的意图，需要编码人员通过java编程语言相关的关键字api去修正
+涉及到编译
+
 java主要开发领域在web
 以前还有手机应用
 

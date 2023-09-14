@@ -1,5 +1,7 @@
 # Git
 
+git diff bc7e28c568f4af0bd39c26d71de6060c0baf7a5b e9b4f421e1f02d01ca6b4a0e5fee171a42fab5f9
+
 ## git跨分支合并
 
 git支持不同分支之间合并代码

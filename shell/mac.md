@@ -1,4 +1,5 @@
 # mac
+Pagers mac软件
 
 sudo spctl --master-disable
 

@@ -1,7 +1,11 @@
 # Spring Aop
 org.springframework.aop.interceptor.ExposeInvocationInterceptor
 
-
+aspectj jar包
+ProceedingJoinPoint org.aspectj.lang.ProceedingJoinPoint interface
+理解 可以执行代表的方法
+可以获取Class Methd信息
+可以获取参数列表
 
 `org.springframework.aop.interceptor.ExposeInvocationInterceptor` 是 Spring AOP（Aspect-Oriented Programming）中的一个拦截器，它的作用是暴露当前的方法调用。这个拦截器通常用于调试或跟踪应用程序中的方法调用。
 
