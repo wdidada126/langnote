@@ -6,14 +6,9 @@
 
 它提供SQL类型语言查询叫HiveQL或HQL
 
-
 debry
 hddfs
 hsql 分解为map reduce
-
-
-
-
 
 Apache Hive（TM）数据仓库软件有助于使用SQL读取，写入和管理驻留在分布式存储中的大型数据集。建立在Apache Hadoop（TM）之上，它提供：
 通过SQL轻松访问数据的工具，从而实现数据仓库任务，例如提取/转换/加载（ETL），报告和数据分析
