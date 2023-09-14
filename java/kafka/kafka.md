@@ -1,5 +1,17 @@
 # kafka
 
+kafka
+maven包
+
+kafka自身，待Main函数，有api Scala写的
+
+apache-kafka
+spring-kafka
+
+kafka brokeer
+一对多（包含一对一）
+多对一
+
 安徽省优质采 面试
 redis如何保证缓存一致性
 一致性问题主要包含两种情况
