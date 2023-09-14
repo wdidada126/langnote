@@ -1,20 +1,22 @@
 # grep
 
+学习grep保存信息到文件
+
+[grep查找的内容输出到文件](https://my.oschina.net/calmsnow/blog/2962160)
+grep -o OcrServiceImpl authcenter-medium-center.2019-07-28.*.log -c >> ./log/count.log
+
+grep -A -B -C
+grep -c
+
+
 https://github.com/BurntSushi/ripgrep
 
 grep -H
 
 grep命令执行后的结果 加上文件名：
 
-
-
-
-
-
-
 ```
 1、或操作
-
 awk '/123|abc/' filename   // awk 的实现方式
 ```
 
@@ -22,19 +24,7 @@ awk '/123|abc/' filename   // awk 的实现方式
 
 grep 查询多个关键字 关键字有顺序关系
 
-
-
 grep 同时满足多个关键字和满足任意关键字 grep 同时满足多个关键字和满足任意关键字 ① grep -E "word1|word2|word3"   file.txt 满足任意条件（word1、word2和word3之一）将匹配。 ② grep word1 file.txt | grep word2 |grep word3 必须同时满足三个条件（word1、word2和word3）才匹配。
-
-
-
-
-
-
-
-
-
-
 
 grep在匹配行之前显示文件名
 -H 显示匹配的文件名
@@ -52,7 +42,6 @@ SYNOPSIS
 
 grep 转义
 `grep 'ssServiceImpl\]\[access\]PARAMETER' micro-service-auth.log -c`
-
 [grep -A N 显示后几页](https://blog.csdn.net/guizishou00/article/details/64121792)
 
 grep -A 4 wikipedia 密码文件.txt 
@@ -163,20 +152,12 @@ less file1
 :n - 浏览下一个文件
 :p - 浏览前一个文件
 
-
 ```
 
 
 less搜索时，不能带有“[”???
 
 ‘[’不是转义字符
-
-
-
-
-
-
-
 
 authcenter-medium-center.2019-09-30.0.log:0
 authcenter-medium-center.2019-09-30.1.log:0
@@ -185,5 +166,3 @@ authcenter-medium-center.2019-09-30.3.log:0
 
 
 grep ' ExceptionHandler :' authcenter-medium-center.2019-09*log -c | awk -F ':' '{i+=$2} END {print i}'
-
-

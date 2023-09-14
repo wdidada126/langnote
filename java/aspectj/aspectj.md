@@ -1,5 +1,10 @@
 # aspectj
 
+Aspectj 
+
+https://blog.csdn.net/autfish/article/details/51184405
+https://blog.csdn.net/woshiyigeliangliang/article/details/81450443
+
 https://gitee.com/edidada/testaspectj  @Aspectj注解
 https://gitee.com/edidada/aspectj  .aj文件
 https://gitee.com/edidada/spring-aopexample spring使用@Aspectj注解

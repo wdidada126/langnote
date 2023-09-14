@@ -1,13 +1,8 @@
 # hystrix
 
-
-
 Sentinel
 
-
-
 最多支持多少个线程池？
-
 
 Hystrix 是一个用于实现服务容错和服务熔断的框架，其中的线程隔离是其实现服务容错的重要机制之一。
 在 Hystrix 中，线程隔离是通过使用线程池来实现的。当一个请求进入 Hystrix 保护的服务时，Hystrix 会将该请求封装成一个 HystrixCommand 对象，并在一个专门的线程池中执行。这个线程池被称为 Hystrix 线程池，它是一个单独的线程池，与服务本身的线程池是相互独立的。
@@ -17,7 +12,6 @@ Hystrix 线程池采用了信号量隔离和线程隔离两种隔离策略。其
 
 
 Hystrix 源码解析
-
 https://zhenbianshu.github.io/2018/08/_code_design_share.html
 
 ### 日志
@@ -87,6 +81,7 @@ doOnCompleted
 
 com.netflix.hystrix.HystrixThreadPool.HystrixThreadPoolDefault.threadPool
 
-
 com.netflix.hystrix.HystrixThreadPoolMetrics.metrics 是个map，key是
 
+继承HystrixCommand<T>
+[hystrix](http://kriszhang.com/hystrix_defend_your_webapp/#%E4%BB%8E%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90%E5%85%A5%E6%89%8B)
