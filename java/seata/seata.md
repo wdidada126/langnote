@@ -12,10 +12,8 @@ https://blog.csdn.net/zhangchangbin123/article/details/89310131
 Seata-AT
 https://zhuanlan.zhihu.com/p/340292579
 
-
-   @GlobalTransactional    
+@GlobalTransactional    
 注解
-
 
 seata
 
@@ -83,11 +81,7 @@ https://juejin.im/post/5e1ee7296fb9a0301942f3c9
 
 https://www.infoq.cn/video/typL12whoFf2RsDzUWDl
 
-
-
 [seata](https://segmentfault.com/a/1190000020639849)
-
-
 
 saga
 
