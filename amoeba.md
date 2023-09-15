@@ -2,8 +2,6 @@
 
 https://github.com/vispractice/Amoeba-Plus-For-MySQL
 
-
-
 Amoeba搭建Mysql集群(实现Mysql主从复制、读写分离、负载均衡)
 
 https://blog.51cto.com/10316297/2139138
@@ -12,13 +10,6 @@ Amoeba(变形虫)项目,该开源框架于2008年 开始发布一款 Amoeba for 
 
 为什么不用shardingsphere
 
-
-
-
-
 vip 互为主备 mmm
 
-
-
 mha
-
