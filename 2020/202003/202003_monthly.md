@@ -1,6 +1,8 @@
 # 202003 month
 
 在家工作
+汇编语言
+os的相关知识，不应该涉及
 
 java类加载机制 jvm spec
 
@@ -12,7 +14,6 @@ https://blog.csdn.net/m0_38075425/article/details/81627349
 
 ```
 	类加载器通过双亲委派机制将类的class文件载入内存
-1
 ```
 
 ### 2.Linking
