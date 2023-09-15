@@ -1,5 +1,8 @@
 # Git
 
+TortoiseGit和Git使用教程
+https://blog.csdn.net/hjwdz2015/article/details/90487554
+
 git diff bc7e28c568f4af0bd39c26d71de6060c0baf7a5b e9b4f421e1f02d01ca6b4a0e5fee171a42fab5f9
 
 ## git跨分支合并

@@ -1,4 +1,5 @@
 # seata
+Seata，意为Simple Extensible Autonomous Transaction Architecture
 
 springboot集成分布式事务Seata
 <dependency>
@@ -163,6 +164,24 @@ https://seata.io/zh-cn/
 选择时主要看中产品的功能和强项是否符合你的需求。如果你更看重多种事务场景的支撑或安全性,收费产品会是一个不错的选择。
 希望能给你一些参考,选择合适你的分布式事务中间件。有任何问题欢迎随时和我交流!
 
+## Fescar
+Fescar和Seata都是为了解决微服务场景下的分布式事务问题而产生的，它们有以下一些区别：
+
+名称：Fescar的原名是Fast&Easy Commit And Rollback，是阿里巴巴开源的分布式事务中间件。Seata则是Fescar的升级版本，从2019年4月起，更名位seata。
+解决问题的方式：Fescar使用的是二阶段提交协议，而Seata则采用了更优化的方式来解决分布式事务问题。
+除此之外，Fescar和Seata还有很多相似之处：
+
+都是为了解决微服务场景下面临的分布式事务问题。
+都支持高效并且对业务0侵入的方式。
+都提供了两种模式：AT和TCC，当然这两个模式也可以混用。
+总之，Fescar和Seata都是为了解决分布式事务问题而产生的，它们之间有一定的区别和相似之处。具体使用哪个可以根据实际需求来选择。
+Fescar更名为Seata的主要原因是为了打造更中立、更开放、生态更加丰富的分布式事务开源社区。
+
+在社区核心成员的投票下，Fescar升级为Seata，意为Simple Extensible Autonomous Transaction Architecture，即一套一站式分布式事务解决方案。这一更名也得到了社区的广泛认可和支持，旨在更好地推动分布式事务的发展和创新。
+
+同时，为了实现适用于所有的分布式事务业务场景的目标，社区也积极吸引更多的开发者、用户和贡献者加入，共同打造一个更加繁荣、开放和创新的分布式事务开源生态。
+
+因此，现在Fescar已经正式更名为Seata，标志着社区的进一步发展和壮大。
 ## 源代码分包解析 v1.3.0
 
 
