@@ -1,5 +1,7 @@
 # centos
 
+pkgs.org 一个方便的linux 软件包开放服务
+
 centos 8
 dnf命令行
 

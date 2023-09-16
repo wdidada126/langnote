@@ -1,35 +1,21 @@
 # jgossip
 
-
-
 redis cluster 是gossip？
 
 sentinal
 
-
-
 redis用到了gossip
 
-
-
 一致性是指：各个节点存储的数据完全一致
-
 gossip protocol 最初是由施乐公司帕洛阿尔托研究中心（Palo Alto Research Center）的研究员艾伦·德默斯（Alan Demers）于1987年创造的。
 
 https://www.iteblog.com/archives/2505.html
 
-
-
 Gossip协议已经是P2P网络中比较成熟的协议了。Gossip协议的最大的好处是，即使集群节点的数量增加，每个节点的负载也不会增加很多，几乎是恒定的。这就允许Consul管理的集群规模能横向扩展到数千个节点。
-
-
 
 Gossip算法又被称为反熵（Anti-Entropy），熵是物理学上的一个概念，代表杂乱无章，而反熵就是在杂乱无章中寻求一致，这充分说明了Gossip的特点：在一个有界网络中，每个节点都随机地与其他节点通信，经过一番杂乱无章的通信，最终所有节点的状态都会达成一致。每个节点可能知道所有其他节点，也可能仅知道几个邻居节点，只要这些节可以通过网络连通，最终他们的状态都是一致的，当然这也是疫情传播的特点。
 
-
-
 - **Gossip协议的使用**
-
 Redis 集群是去中心化的，彼此之间状态同步靠 gossip 协议通信，集群的消息有以下几种类型：
 
 - **Meet** 通过「cluster meet ip port」命令，已有集群的节点会向新的节点发送邀请，加入现有集群。
@@ -43,19 +29,9 @@ Redis 集群是去中心化的，彼此之间状态同步靠 gossip 协议通信
 
 由于 gossip 协议对服务器时间的要求较高，否则时间戳不准确会影响节点判断消息的有效性。另外节点数量增多后的网络开销也会对服务器产生压力，同时结点数太多，意味着达到最终一致性的时间也相对变长，因此官方推荐最大节点数为1000左右
 
-
-
 [gossip redis](https://zhuanlan.zhihu.com/p/92937061)
 
-
-
 官方集群版本在Redis3.0才出现，对其稳定性如何，很多公司都不愿做小白鼠，不过事实上经过迭代目前已经到了Redis5.x版本，官方集群版本还是很不错的
-
-
-
-
-
-
 
 实现了服务器层的Sharding分片技术，换句话说官方没有中间层，而是多个服务结点本身实现了分片，当然也可以认为实现sharding的这部分功能被融合到了Redis服务本身中，并没有单独的Sharding模块。
 
@@ -85,22 +61,19 @@ Cassandra 主要是使用 Gossip 完成三方面的功能：
 去中心化的弹性扩展
 Consul
 
-
-
-
-
 gossip分为客户端和service端？不是，对等节点
-
-
-
 
 一直找不到合适的MySQL监控工具，正好听同事无意中说起，Percona在2016年4月发布了一个监控套件，可以同时对多个MySQL、MongoDB实例进行监控。
 
-
-
 memberlist是HashiCorp公司开源的*Gossip*库，这个库被consul（也是HashiCorp公司开源的）所引用。 它是SWIM的一个扩展实现。
-
-
 
 ![udp](gossip_udp_data.png)
 
+## 代码托管
+一个 Java 版的 Gossip 协议实现
+
+https://gitee.com/mirrors/jgossip
+
+http://en.wikipedia.org/wiki/Gossip_protocol
+
+https://github.com/monkeymq/jgossip
