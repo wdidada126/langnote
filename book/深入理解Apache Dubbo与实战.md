@@ -184,7 +184,7 @@ dubbo定义源码编译器Compiler及实现类JdkCompiler、JavassistCompiler
 
 ### Chap. 5 Dubbo启停原理解析
 
-
+第五章 配置
 
 配置
 
@@ -196,20 +196,14 @@ Spring容器
 
 namespaceHandlersupport？？？
 
-
-
 invoke
 
 exporer dubbo 协议 rmi协议
 
 
-
 优雅停机
 
 不能kill -9
-
-
-
 
 
 ### 第6章 Dubbo远程调用
