@@ -15,29 +15,17 @@ L123 缓存
 手册
 intel
 
-
-
 栅栏 锁 内存屏
-
-
 
 翻译的不错.大部分内容来自于jsr-133和Doug Lea的jsr-133 Cookbook,如果想深入研究这方面的问题,推荐仔细研究一下上面的两个文献和本书里提及到的引用文献(当然还有Lea的另外两本书),本书文献的引用只提及于书的正文,末尾并没有参考文献.也许是书名的"著"导致的这个问题.
 
-
-
 ### 第1章　并发编程的挑战
-
-
 
 ### 第2章　Java并发机制的底层实现原理
 
 volatile、synchronized和原子操作的实现原理
 
-
-
 ### 第3章　Java内存模型
-
-
 
 ### 第4章　Java并发编程基础
 
@@ -45,17 +33,11 @@ volitale cas更新一个标量
 
 ### 第5章　Java中的锁
 
-
-
 ### 第6章　Java并发容器和框架
 
 ConcurrentHashMap
 
 HashTable容器使用synchronized来保证线程安全
-
-
-
-
 
 JDK 7提供了7个阻塞队列，如下。
 ·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。
@@ -65,10 +47,6 @@ JDK 7提供了7个阻塞队列，如下。
 ·SynchronousQueue：一个不存储元素的阻塞队列。
 ·LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。
 ·LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。
-
-
-
-
 
 工作窃取（work-stealing）算法
 
@@ -101,7 +79,6 @@ Semaphore工具类提供了一种并发流程控制的手段，Exchanger工具�
 `CyclicBarrier`的主要作用是在多个线程之间协调执行顺序，并且这些线程之间的协作方式比较复杂。例如，可以使用`CyclicBarrier`来等待多个线程执行完某个阶段的任务后再开始执行下一个阶段的任务。`CyclicBarrier`还支持自定义回调函数，在所有线程到达屏障点后执行特定的操作。
 
 1. 区别
-
 `CountDownLatch`和`CyclicBarrier`的主要区别可以总结如下：
 
 - 计数器的初始值不同：`CountDownLatch`的计数器初始值为一个正整数，`CyclicBarrier`的计数器初始值为一个正整数和一个屏障点。

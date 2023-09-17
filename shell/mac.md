@@ -21,3 +21,5 @@ fn+上方向键是page up
 
 fn+下方向键是page down
 
+alfred、coderunner、dash
+Mac工具

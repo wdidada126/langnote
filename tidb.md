@@ -37,3 +37,6 @@ tidb 在线试用
 无
 ## tikv
 https://github.com/tikv/tikv
+
+tidb 翼支付
+https://www.infoq.cn/article/dhwGsHXsoIcsF5kPsWoO

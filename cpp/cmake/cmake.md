@@ -1,9 +1,16 @@
 # CMake
 
+modern cmake
+配置期运行命令
+编译器运行命令 add_custom_command
+
+https://cliutils.gitlab.io/modern-cmake/
+https://github.com/onqtam/awesome-cmake
+https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
+
 cmake 太折磨了，喜欢xmake或者scons这种用已有脚本语言的模式
 
 https://github.com/parallel101/course/blob/master/11/01_source/00/CMakeLists.txt
-
 
 ### cmake
 
@@ -19,10 +26,8 @@ https://cmake.org/cmake/help/latest/command/option.html
 CMake之Option使用简介
 https://blog.csdn.net/lhl_blog/article/details/123553686
 
-
 message()
 https://cmake.org/cmake/help/latest/command/message.html
-
 
 include(TestBigEndian)
 test_big_endian(SNAPPY_IS_BIG_ENDIAN)
@@ -33,15 +38,10 @@ check_include_file("byteswap.h" HAVE_BYTESWAP_H)
 include(CheckLibraryExists)
 check_library_exists(z zlibVersion "" HAVE_LIBZ)
 
-
-
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("/arch:AVX" HAVE_VISUAL_STUDIO_ARCH_AVX)
 
-
-
 https://cmake.org/cmake/help/latest/command/include.html
-
 
 cmake变量
 CMAKE_CXX_FLAGS
@@ -52,15 +52,11 @@ ${PROJECT_VERSION_MAJOR}
 
 ${PROJECT_SOURCE_DIR}
 
-
 ${PROJECT_BINARY_DIR}
 
 ${PROJECT_SOURCE_DIR}
 
 https://cmake.org/cmake/help/v3.25/variable/PROJECT_BINARY_DIR.html#variable:PROJECT_BINARY_DIR
-
-
-
 
 grpc使用cmake
 grpc_build_log.txt
@@ -82,12 +78,10 @@ Install the project...
 -- Installing: /usr/local/lib/cmake/Snappy/SnappyConfig.cmake
 -- Installing: /usr/local/lib/cmake/Snappy/SnappyConfigVersion.cmake
 ```
-
 cmake -B build -S
 
 cmake --install
 cmake --build
-
 
 cmake 2
 cmake 3 现代cmake
@@ -139,9 +133,6 @@ https://cmake.org/cmake/help/v3.0/module/GenerateExportHeader.html
 generate_export_header()
 install()  虽然cmake提供了export函数，但是现在已经被 install(EXPORT) 所替代。在这里我只讲解后者。
 
-
-
-
 当然，还可以添加其他关键字例如：
 
 SHARED 声明该库仅被作为动态库生成
@@ -151,8 +142,6 @@ INTERFACE 声明该库仅是一个接口而并没有属于自己的binary
 ALIAS 声明该库仅是其他库的别名
 IMPORTED 声明该库不需要构建，而是已被导入具体配置。此方式一般存在于依赖提供的配置中。
 上述关键字只能在 add_library 中被声明。
-
-
 
 ```cmake
 # Install
@@ -193,13 +182,10 @@ SET(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib")
 例子
 https://gitee.com/edidada/cmake_library_install
 
-
 brpc
 cmake组织
 
 新近文件夹，新建CMakeFile.txt
-
-
 
 ```shell
 ibqodembp:~ ibqo$ cmake -h
@@ -325,12 +311,9 @@ The following generators are available on this platform (* marks default):
 作者：SynTimes https://www.bilibili.com/read/cv15986541/
 出处：bilibili
 
-
 ### 创建新项目
 
 cmake引用conan管理的库
-
-
 
 https://gitee.com/edidada/cmake_library_install
 https://cmake.org/cmake/help/v3.16/manual/cmake-buildsystem.7.html

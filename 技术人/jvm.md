@@ -1,0 +1,11 @@
+# JVM 性能专家Monica Beckwith
+https://twitter.com/mon_beck
+https://www.javaadvent.com/
+
+微软正努力将Java移植到苹果ARM Mac设备上
+https://www.cnbeta.com/articles/tech/1032405.htm
+
+https://community.oracle.com/community/groundbreakers/java/java-champions
+
+Monica Beckwith,就职于Java/JVM ,现任性能咨询专家一职。作为行业享有盛名的大咖，Monica Beckwith行事低调，对工作热情饱满，多次受邀作为嘉宾出席各类大会，并发表了精彩演讲。
+2016年08月18日,Monica Beckwith受邀参加了由听云在朝阳区东北三环圣中街12号云南大厦主办的《APMCON2016中国应用性能管理大会》,并发表了精彩演讲
