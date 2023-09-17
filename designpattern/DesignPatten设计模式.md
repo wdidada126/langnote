@@ -1,13 +1,8 @@
 # 设计模式
 
-
 https://blog.csdn.net/ttxs99989/article/details/81844135
 
 ![Java_Design_Patten](..\imgs\Java_Design_Patten.jpg)
-
-
-
-
 
 1、创建型模式
 对象实例化的模式，创建型模式用于解耦对象的实例化过程。
@@ -44,8 +39,6 @@ https://blog.csdn.net/ttxs99989/article/details/81844135
 
 原文链接：https://blog.csdn.net/guorui_java/article/details/104026988
 
-
-
 画图
 画类图
 设计模式相关的
@@ -74,32 +67,20 @@ SOLID是5个设计原则的统称，它们分别是：单一职责原则、开�
 5、依赖反转原则
 依赖反转，Dependency Inversion Principle，DIP，英文描述是：High-level modules shoudn't depend on low-level modules. Both modules should depend on abstractions. In addition, abstraction shouldn't depend on details. Details depend on abstractions。翻译成中文就是：高层模块不要依赖低层模块。高层和低层模块都要依赖抽象。除此之外，抽象不要依赖具体实现，具体实现要依赖抽象。
 
-
-
-
 设计原则总结评判代码质量的标准，比如可读性、可复用性、可扩展性等，这是从代码的整体质量的角度来评判。而设计原则就是我们要使用到的更加具体的对于代码进行评判的标准，比如, 我们说这段代码的可扩展性比较差，主要原因是违背了开闭原则。
 
 比较常用的三个原则
 
 1 ) 单一职责原则
-
 单一职责原则是类职责划分的重要参考依据，是保证代码”高内聚“的有效手段，是我们在进行面向对象设计时的主要指导原则。
-
 单一职责原则的难点在于，对代码职责是否足够单一的判定。这要根据具体的场景来具体分析。同一个类的设计，在不同的场景下，对职责是否单一的判定，可能是不同的。
-
 2 ) 开闭原则
-
 开闭原则是保证代码可扩展性的重要指导原则，是对代码扩展性的具体解读。很多设计模式诞生的初衷都是为了提高代码的扩展性，都是以满足开闭原则为设计目的的。
-
 开闭原则是所有设计模式的最核心目标，也是最难实现的目标，但是所有的软件设计模式都应该以开闭原则当作标准，才能使软件更加的稳定和健壮。
-
 3 ) 依赖倒置原则
-
 依赖倒置原则主要用来指导框架层面的设计。高层模块不依赖低层模块，它们共同依赖同一个抽象。
-
 依赖倒置原则其实也是实现开闭原则的重要途径之一，它降低了类之间的耦合，提高了系统的稳定性和可维护性，同时这样的代码一般更易读，且便于传承。
 https://blog.csdn.net/weixin_42151235/article/details/129025690
-
 
 左耳朵耗子
 看到有人说设计模式过时了，我得说设计模式非常非常有用，用Proxy做RAII，用Bridge解耦对象，用Observer 来Watch状态变化，用Strategy解耦实现和接口，用Adapter适配异构，用Command实现Undo/Redo，用Decorator实现无侵入式增强，Interpreter实现表达式，用Vistor分治一个大对象
@@ -112,15 +93,9 @@ http://www.runoob.com/design-pattern/template-pattern.html
 
 facade 门面模式 slf4j
 
-
-
-
 github
 
 面试必考
-
-
-
 注意啊
 
 委托模式
@@ -141,3 +116,5 @@ delegate iOS开发OC中经常使用
 工厂模式模式：SqlSessionFactory
 建造者模式：SqlSessionFactoryBuilder
 
+设计模式 B战尚学堂 视频
+https://www.bilibili.com/video/av96677119/

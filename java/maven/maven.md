@@ -1,5 +1,11 @@
 # maven
 
+https://www.findjar.com/
+根据类名找jar
+search.maven.org 找pom依赖，不用
+
+https://mvnrepository.com/
+
 mvn查看源码
 mvn dependency:sources
 

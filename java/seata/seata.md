@@ -1,4 +1,5 @@
 # seata
+seata需要学习相关的背景知识
 Seata，意为Simple Extensible Autonomous Transaction Architecture
 
 springboot集成分布式事务Seata
