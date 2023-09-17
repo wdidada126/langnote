@@ -1,5 +1,6 @@
 # postgresql
 
+https://zhuanlan.zhihu.com/p/656483356
 
 德歌
 https://github.com/digoal/blog
