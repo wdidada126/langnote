@@ -1,6 +1,9 @@
 # SQL
 [SQL中笛卡尔积－cross join的用法](https://blog.csdn.net/weixin_30883777/article/details/95208805)
 
+Sql优化挑战赛
+https://zhuanlan.zhihu.com/p/27934308
+
 sql commont
 
 [MySQL 添加注释 comment](https://blog.csdn.net/weixin_40169642/article/details/82562183)

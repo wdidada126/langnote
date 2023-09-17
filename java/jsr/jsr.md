@@ -1,4 +1,5 @@
 # jsr
+JSR-250规范定义的注解，它们分别是@Resource、@PostConstruct以及@PreDestroy。
 
 JSR303 - Bean Validation 为JavaBean的验证定义了相关的元数据模型和API。
 org.hibernate.validator.constraints.NotEmpty
