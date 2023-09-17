@@ -1,5 +1,6 @@
 # quarkus
-
+RedHat开源的Quarkus微服务框架
+https://www.zhihu.com/question/355952310
 Quarkus 主页：https://quarkus.io/
 Quarkus GitHub 仓库地址：https://github.com/quarkusio/quarkus
 

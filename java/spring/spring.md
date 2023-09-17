@@ -1,5 +1,194 @@
 # Spring
 
+
+```
+ProxyFactory factory = new ProxyFactory(new SimplePojo());
+
+factory.adddInterface(Pojo.class);
+
+factory.addAdvice(new RetryAdvice());
+
+factory.setExposeProxy(true);
+
+Pojo pojo = (Pojo) factory.getProxy();
+
+// this is a method call on the proxy! pojo.foo();
+```
+spring事务
+
+https://docs.spring.io/spring/docs/4.0.5.RELEASE/spring-framework-reference/html/transaction.html
+
+https://zhuanlan.zhihu.com/p/101396825
+
+single, highly scalable database (such as Oracle RAC)
+
+org.springframework.transaction.PlatformTransactionManager
+
+public interface PlatformTransactionManager {
+
+​      TransactionStatus getTransaction( TransactionDefinition definition) throws TransactionException;
+
+​      void commit(TransactionStatus status) throws TransactionException;
+
+​      void rollback(TransactionStatus status) throws TransactionException;
+}
+
+<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+
+​    <property name="dataSource" ref="dataSource"/>
+
+</bean>
+
+<tx:annotation-driven transaction-manager="txManager"/>
+
+tx:advice
+tx:attributes
+tx:method
+aop:config
+aop:pointcut
+aop:advisor
+
+Spring的事务处理中，通用的事务处理流程是由抽象事务管理器AbstractPlatformTransactionManager来提供的，而具体的底层事务处理实现，由PlatformTransactionManager的具体实现类来实现，如 DataSourceTransactionManager 、JtaTransactionManager和 HibernateTransactionManager等。
+
+spring编程式事务 声明式事务
+
+https://zhuanlan.zhihu.com/p/46599754
+
+对于只读查询，可以指定事务类型为readonly，即只读事务。
+
+​    由于只读事务不存在数据的修改，因此数据库将会为只读事务提供一些优化手段，例如Oracle对于只读事务，不启动回滚段，不记录回滚log。指定只读事务的办法如下：
+
+（1）在JDBC中，令connection.setReadOnly(true)；
+
+hadoop flink beam
+
+https://www.oschina.net/p/apachebeam
+
+https://github.com/apache/beam
+
+JSR303 - Bean Validation 为JavaBean的验证定义了相关的元数据模型和API。
+
+在java 8之后，又推出了JSR380-Bean Validation 2.0
+
+可以通过添加hibernate-validator-annotation-processor工具，在编译期就发现潜在错误使用约束的问题。maven依赖为：
+
+<dependency>
+  <groupId>org.hibernate</groupId>
+  <artifactId>hibernate-validator-annotation-processor</artifactId>
+  <version>6.1.5.Final</version>
+</dependency>
+
+添加此依赖后，编译时会提示相关的错误信息。
+https://zhuanlan.zhihu.com/p/194097505
+
+org.hibernate.validator.constraints.Length
+
+最后给大家推荐下hibernate validate中文文档:
+
+http://docs.jboss.org/hibernate/validator/4.2/reference/zh-CN/html_single/
+
+javax.validation.ConstraintViolation
+
+<dependency>
+  <groupId>javax.validation</groupId>
+  <artifactId>validation-api</artifactId>
+  <version>2.0.1.Final</version>
+</dependency>
+
+查看hibernate依赖项
+
+https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator/6.1.4.Final
+
+目前国内开发中间件产品的软件产商也在逐步增加，包括东方通，金蝶天燕，中创中间件，普元，宝兰德等。中间件承上启下，也会对国产软件甚至全球软件业起到促进作用
+
+https://zhuanlan.zhihu.com/p/222111163
+
+Spring框架事务处理技术研究
+http://61.175.198.136:8083/rwt/WEIPUBK/http/NSVXELUDPF5GT6BPMNYXN/
+Spring框架提供了强大的事务处理支持，包括声明式事务管理和编程式事务管理两种方式。下面是对这两种事务处理技术的简要介绍：
+1. 声明式事务管理：
+   - Spring的声明式事务管理是通过AOP（面向切面编程）实现的。
+   - 通过在配置文件或注解中声明事务的属性，例如事务的传播行为、隔离级别、超时设置等。
+   - 可以使用XML配置文件或基于注解的方式进行声明式事务管理。
+   - 声明式事务管理对业务逻辑代码的侵入性较低，通过配置和注解就能实现事务的管理。
+   - 声明式事务管理适用于需要将事务逻辑与业务逻辑解耦的场景。
+2. 编程式事务管理：
+   - 编程式事务管理是通过编写代码来管理事务的提交、回滚等操作。
+   - Spring提供了`TransactionTemplate`类，通过它可以编写事务处理的代码。
+   - 在编程式事务管理中，需要手动管理事务的开始、提交、回滚等操作。
+   - 编程式事务管理对业务逻辑代码的侵入性较高，需要显式地在代码中编写事务相关的操作。
+   - 编程式事务管理适用于需要更细粒度的事务控制或需要动态控制事务的场景。
+无论是声明式事务管理还是编程式事务管理，Spring框架都提供了对多种事务管理器的支持，包括JDBC事务、JTA事务、Hibernate事务等。可以根据具体的需求选择合适的事务管理器。
+
+Spring的事务处理技术使得开发者能够轻松地管理和控制事务，提供了灵活且可扩展的事务管理方式。同时，Spring还支持与其他框架和技术的集成，如Spring Boot、Spring Data等，使得事务处理更加便捷和高效。
+```java
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
+
+public class TransactionExample {
+    
+    private TransactionTemplate transactionTemplate;
+    
+    public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
+        this.transactionTemplate = transactionTemplate;
+    }
+    
+    public void performTransaction() {
+        transactionTemplate.execute(new TransactionCallback<Void>() {
+            public Void doInTransaction(TransactionStatus status) {
+                try {
+                    // 在此处编写需要在事务中执行的业务逻辑代码
+                    // 可能涉及数据库操作或其他资源访问
+                    // 如果发生异常，事务将被回滚，否则将提交事务
+                    // 可以在需要的地方使用status.setRollbackOnly()手动回滚事务
+                    
+                    // 示例：插入数据到数据库
+                    insertDataIntoDatabase();
+                    
+                    // 示例：更新数据到数据库
+                    updateDataInDatabase();
+                    
+                    // 在事务中执行的其他操作
+                    
+                } catch (Exception e) {
+                    // 发生异常，标记事务为回滚状态
+                    status.setRollbackOnly();
+                    throw e;
+                }
+                return null;
+            }
+        });
+    }
+    
+    private void insertDataIntoDatabase() {
+        // 插入数据到数据库的逻辑
+    }
+    
+    private void updateDataInDatabase() {
+        // 更新数据到数据库的逻辑
+    }
+}
+```
+
+声明式事务
+
+声明式事务 -- 编程式事务
+
+https://zhuanlan.zhihu.com/p/54067384
+
+https://blog.csdn.net/justloveyou_/article/details/73733278
+Spring对方法的增强有五种方式：
+前置增强（org.springframework.aop.BeforeAdvice）：在目标方法执行之前进行增强；
+后置增强（org.springframework.aop.AfterReturningAdvice）：在目标方法执行之后进行增强；
+环绕增强（org.aopalliance.intercept.MethodInterceptor）：在目标方法执行前后都执行增强；
+异常抛出增强（org.springframework.aop.ThrowsAdvice）：在目标方法抛出异常后执行增强；
+引介增强（org.springframework.aop.IntroductionInterceptor）：为目标类添加新的方法和属性。
+
+TransactionDefinition
+
+TransactionStatus
+
 Spring新功能
 3.0
 profile 多环境参数

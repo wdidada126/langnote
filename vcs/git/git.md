@@ -1,4 +1,7 @@
 # Git
+recursive git 循环克隆子项目
+git clone 重命名
+git clone xxx.git anothername
 
 TortoiseGit和Git使用教程
 https://blog.csdn.net/hjwdz2015/article/details/90487554

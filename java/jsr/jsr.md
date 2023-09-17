@@ -1,4 +1,19 @@
 # jsr
+
+JSR 366 – Java EE 8 Platform
+JSR 365 – Contexts and Dependency Injection (CDI) 2.0
+JSR 367 – The Java API for JSON Binding (JSON-B) 1.0
+JSR 369 – Java Servlet 4.0
+JSR 370 – Java API for RESTful Web Services (JAX-RS) 2.1
+JSR 372 – JavaServer Faces (JSF) 2.3
+JSR 374 – Java API for JSON Processing (JSON-P)1.1
+JSR 375 – Java EE Security API 1.0
+JSR 380 – Bean Validation 2.0
+JSR 250 – Common Annotations 1.3
+JSR 338 – Java Persistence 2.2
+JSR 356 – Java API for WebSocket 1.1
+JSR 919 – JavaMail 1.6
+
 JSR-250规范定义的注解，它们分别是@Resource、@PostConstruct以及@PreDestroy。
 
 JSR303 - Bean Validation 为JavaBean的验证定义了相关的元数据模型和API。

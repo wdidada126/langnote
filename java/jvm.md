@@ -1,4 +1,16 @@
 # jvm
+gc
+
+一般情况 。0.1s 级别
+1s级别 特殊情况 堆内存占用 85%
+由于在gc时候会停止处理，导致前端请求会超时，严重还会导致行程满。
+
+引用访问量 14亿
+
+可能原因 等待io gc
+jvm stop the world日志
+JVM GC中Stop the world案例实战
+https://blog.csdn.net/sinat_25306771/article/details/52374498
 
 jvm 打印类加载日志
 java -verbose:class cn.wdidada.test.Hello

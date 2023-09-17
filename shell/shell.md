@@ -1,6 +1,65 @@
 # shell
 
+系统命令
+cpup
+date
+dmesg
+exec
+free
+help
+hwi
+kill
+log
+memcheck
+oom
+pmm
+reset
+sem
+stack
+su
+swtmr
+systeminfo
+task
+uname
+vmm
+watch
 
+文件命令
+
+cat
+cd
+chgrp
+chmod
+chown
+cp
+format
+ls
+lsfd
+mkdir
+mount
+partinfo
+partition
+pwd
+rm
+rmdir
+statfs
+sync
+touch
+writeproc
+umount
+
+网络命令
+arp
+dhclient
+dns
+ifconfig
+ipdebug
+netstat
+ntpdate
+ping
+ping6
+telnet
+tftp
 
 yum list –showduplicates glibc
 
