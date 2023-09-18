@@ -1,5 +1,36 @@
 # mybatis
 
+Mybatis配置日志打印
+https://blog.csdn.net/qq_32786873/article/details/82019488
+
+mybatis打印sql日志	
+https://www.cnblogs.com/zhangmms/p/8973068.html
+
+mybatis-spring打印日志
+在logback-spring.xml中添加如下配置(我用的是logback，如果用的是其他日志框架，则在其对应的配置文件中修改)
+<logger name="com.solin.springmvc.mapper" level="DEBUG"></logger>
+
+总结
+mybatis
+xml配置方式
+select
+insert
+update
+delete
+
+引用java静态常量
+
+foreach
+set
+where
+trim
+
+MyBatis插件
+PageHeper
+
+MyBatis Java接口自定义注解
+
+MyBatis join写法
 MyBatis debug源码 ResultHandler
 select * from xx 没有结果
 

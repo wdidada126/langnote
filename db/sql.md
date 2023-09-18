@@ -1,4 +1,55 @@
 # SQL
+
+注意分组 实际上是把单个表搞成多个表
+join 表join本身
+临时表
+
+ifnull函数处理null
+
+今天我们分享了 show profile和trace的使用方法，我们来对比一下三种分析 SQL 方法的特点：
+explain：获取 MySQL 中 SQL 语句的执行计划，比如语句是否使用了关联查询、是否使用了索引、扫描行数等；
+profile：可以清楚了解到SQL到底慢在哪个环节；
+trace：查看优化器如何选择执行计划，获取每个可能的索引选择的代价。
+
+set profiling=1;  				//打开分析
+show profiles;					//查看sql1,sql2的语句分析
+show profile for query 1;		//查看sql1的具体分析
+show profile ALL for query 1;	//查看sql1相关的所有分析【主要看i/o与cpu,下边分析中有各项意义介绍】
+
+
+Mysql分析-profile详解_mysql profiles_时而宁靜的博客-CSDN博客.mhtml
+
+https://blog.csdn.net/ty_hf/article/details/54895026
+
+
+从 MySQL 5.6 开始，可以使用 trace 查看优化器如何选择执行计划。
+通过trace，能够进一步了解为什么优化器选择A执行计划而不是选择B执行计划，或者知道某个排序使用的排序模式，帮助我们更好地理解优化器行为。
+如果需要使用，先开启 trace，设置格式为 JSON，再执行需要分析的 SQL，最后查看 trace 分析结果（在 information_schema.OPTIMIZER_TRACE 中）。
+https://blog.csdn.net/qq_40026782/article/details/105772421
+
+```sql
+SET OPTIMIZER_TRACE="enabled=on",END_MARKERS_IN_JSON=on;
+SET OPTIMIZER_TRACE_MAX_MEM_SIZE=1000000;
+大致步骤如下：
+
+开启trace分析器执行要查询的sql查看分析结果关闭trace分析器
+NO.1 开启trace分析器
+MySQL [test]> set session optimizer_trace="enabled=on";
+NO.2 执行要查询的SQL
+MySQL [test]> select * from test_table where a=90000 and b=90000 order by a;
+NO.3 查询分析结果
+MySQL [test]> SELECT * FROM information_schema.OPTIMIZER_TRACE\G
+
+注意：在返回的steps数组中可以查看详细mysql都干了什么。
+不好意思，因为排版导致内容太长大家可以百度一下参数含义。
+NO.4 关闭trace分析器
+mysql> set session optimizer_trace="enabled=off";
+TRACE 字段中整个文本大致分为三个过程
+准备阶段：对应文本中的 join_preparation优化阶段：对应文本中的 join_optimization执行阶段：对应文本中的 join_execution
+
+使用时，重点关注优化阶段和执行阶段。
+https://blog.csdn.net/qq_40026782/article/details/105772421
+
 知乎上有复杂sql的教程
 sql联系
 w3c

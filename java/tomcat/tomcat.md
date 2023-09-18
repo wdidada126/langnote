@@ -1,11 +1,12 @@
 # Tomcat
 
+tomcat类加载机制
+Tomcat的类加载机制违反了双亲委托原则，对于一些未加载的非基础类（Object,String等），各个web应用自己的类加载器（WebAppClassLoader）会优先加载，加载不到时再交给CommonClassLoader走双亲委托。对于标准类库中的类，会让系统类加载器加载，然后一直委托到启动类加载器，这个过程是没有违背双亲委派的。Tomcat的类加载机制启动类加载器（Bootstrap）和扩展类加载器（Extension ClassLoader），应用程序类加载器（Application ClassLoader），这三个类加载器默认的一致。CommonClassLoader、CatalinaClassLoader、SharedClassLoader和WebappClassLoader则是Tomcat自己定义的类加载器。
 
 自己写tomcat
 https://www.liaoxuefeng.com/wiki/1545956031987744
 
 code repo
-
 https://gitee.com/edidada/jerrymouse
 
 对于Java后端开发的同学来说，Tomcat服务器肯定不陌生。开发Java Web App，最后通常都会部署到Tomcat这样的服务器上。

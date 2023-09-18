@@ -1,4 +1,29 @@
 # tsf
+tsf配置 分布式配置中心
+https://cloud.tencent.com/document/product/649/17956
+
+spring-cloud-tsf-auth 
+spring-cloud-tsf-circuitbreaker 
+spring-cloud-tsf-consul-config 
+spring-cloud-tsf-consul-core 
+spring-cloud-tsf-consul-discovery 
+spring-cloud-tsf-core 
+spring-cloud-tsf-dependencies 
+spring-cloud-tsf-encrypt 
+spring-cloud-tsf-fault-tolerance 
+spring-cloud-tsf-lane 
+spring-cloud-tsf-logger 
+spring-cloud-tsf-msgw-core 
+spring-cloud-tsf-msgw-scg 
+spring-cloud-tsf-msgw-zuul 
+spring-cloud-tsf-parent 
+spring-cloud-tsf-ratelimit 
+spring-cloud-tsf-route 
+spring-cloud-tsf-schedule 
+spring-cloud-tsf-sleuth 
+spring-cloud-tsf-starter 
+spring-cloud-tsf-swagger 
+spring-cloud-tsf-tagengine
 
 
 # 分布式事务 DTF

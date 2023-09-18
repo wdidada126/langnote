@@ -1,5 +1,25 @@
 # Spring
 
+查看java参数
+
+```shell
+java -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -version | wc -l
+java version "1.8.0_211"
+Java(TM) SE Runtime Environment (build 1.8.0_211-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.211-b12, mixed mode)
+```
+
+public interface InitializingBean {
+	void afterPropertiesSet() throws Exception;
+}
+
+public interface DisposableBean {
+	void destroy() throws Exception;
+}
+
+spring api要记忆
+SpringBoot之ApplicationRunner（一个spring容器启动完成执行的类）
+
 Spring aop
 
 Spring tx

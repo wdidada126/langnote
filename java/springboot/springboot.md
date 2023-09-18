@@ -1,4 +1,7 @@
 # Spring Boot
+
+任何Java框架 都可以用spring boot启动，兼容层
+
 /** fastJson 配置信息 **/
 @Bean
 public HttpMessageConverters fastJsonConfig(){

@@ -1,4 +1,9 @@
 # hive
+hive搭建
+https://www.bilibili.com/read/cv7220228/
+https://github.com/big-data-europe/docker-hive
+https://www.cnblogs.com/reasonzzy/p/11127359.html
+https://www.bilibili.com/read/cv7220228/
 
 数据仓库
 版本2

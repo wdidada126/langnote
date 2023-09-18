@@ -1,4 +1,16 @@
 # javase
+java.util.concurrent.SynchronousQueue
+
+java.util.concurrent.ThreadFactory
+Thread newThread(Runnable r);
+
+  public static ThreadFactory threadFactory(String name, boolean daemon) {
+    return runnable -> {
+      Thread result = new Thread(runnable, name);
+      result.setDaemon(daemon);
+      return result;
+    };
+  }
 
 https://blog.csdn.net/ye17186/article/details/89467919
 
