@@ -9,6 +9,9 @@ MySQL从5.0.3版本开始支持XA分布式事务，并且只有InnoDB存储引�
 
 请注意，以上信息仅涵盖了MySQL对XA的支持，并不包括其他数据库或存储系统的支持情况。如果您在使用不同的数据库系统或存储引擎，建议您查阅相应文档以获取准确信息。
 
+MySQL join
+图解MySQL 内连接、外连接、左连接、右连接、全连接
+https://blog.csdn.net/plg17/article/details/78758593
 
 mysql索引使用b+树实现
 或者hash实现

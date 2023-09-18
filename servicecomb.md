@@ -11,9 +11,25 @@ ServiceComb与业界流行生态互通:Zipkin、Skywalking、Prometheus等Tracin
 ServiceComb基于华为内部的CSE(Cloud Service Engine)框架开源而来
 
 微服务 单进程
-
+# code
 https://servicecomb.apache.org/
 
+https://github.com/apache/servicecomb-pack
+
+```xml
+    <dependency>
+      <groupId>org.apache.servicecomb.pack</groupId>
+      <artifactId>omega-spring-starter</artifactId>
+      <version>${pack.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.servicecomb.pack</groupId>
+      <artifactId>omega-transport-resttemplate</artifactId>
+      <version>${pack.version}</version>
+    </dependency>
+```
+
+TCC and Saga distributed transaction co-ordination solutions
 ## saga
 1987年普林斯顿大学的Hector Garcia-Molina和Kenneth Salem发表了一篇Paper Sagas，讲述的是如何处理long lived transaction（长活事务）。Saga是一个长活事务可被分解成可以交错运行的子事务集合。其中每个子事务都是一个保持数据库一致性的真实事务。
 
