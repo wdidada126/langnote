@@ -1,4 +1,8 @@
 # mysql
+sql 统计 体系 优化查询时间
+避免用null
+https://dzone.com/articles/how-to-optimize-mysql-queries-for-speed-and-perfor
+
 ## 书籍
 Understanding MySQL Internals
 
