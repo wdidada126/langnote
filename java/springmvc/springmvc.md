@@ -1,5 +1,228 @@
 # springmvc
 
+org.springframework.core.MethodParameter
+被RequestMapping注解修饰的方法的参数
+
+RequestResponseBodyMethodProcessor打断点
+
+springmvc
+
+HttpMethod 不是
+
+hm ihm sihm
+HandlerMethod
+	InvocableHandlerMethod
+		ServletInvocableHandlerMethod
+
+```shell
+org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#invokeHandlerMethod
+    org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod#invokeAndHandle  调用
+        org.springframework.web.method.support.InvocableHandlerMethod#invokeForRequest
+                org.springframework.web.method.support.InvocableHandlerMethod#getMethodArgumentValues 获取参数，controller注解修饰的类，方法获取http入参
+```
+org.springframework.web.method.support.InvocableHandlerMethod#doInvoke
+
+	private final Method bridgedMethod;
+
+DispatcherServlet
+
+九大组件
+String MULTIPART_RESOLVER_BEAN_NAME = "multipartResolver";
+String LOCALE_RESOLVER_BEAN_NAME = "localeResolver";
+String THEME_RESOLVER_BEAN_NAME = "themeResolver";
+String HANDLER_MAPPING_BEAN_NAME = "handlerMapping";
+String HANDLER_ADAPTER_BEAN_NAME = "handlerAdapter";
+String HANDLER_EXCEPTION_RESOLVER_BEAN_NAME = "handlerExceptionResolver";
+String REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME = "viewNameTranslator";
+String VIEW_RESOLVER_BEAN_NAME = "viewResolver";
+String FLASH_MAP_MANAGER_BEAN_NAME = "flashMapManager";
+
+
+	private MultipartResolver multipartResolver;
+	private LocaleResolver localeResolver;
+	private ThemeResolver themeResolver;
+	private List<HandlerMapping> handlerMappings;
+	private List<HandlerAdapter> handlerAdapters;
+	private List<HandlerExceptionResolver> handlerExceptionResolvers;
+	private RequestToViewNameTranslator viewNameTranslator;
+	private FlashMapManager flashMapManager;
+	private List<ViewResolver> viewResolvers;
+
+HttpRequestHandlerAdapter (org.springframework.web.servlet.mvc)
+SimpleServletHandlerAdapter (org.springframework.web.servlet.handler)
+AnnotationMethodHandlerAdapter (org.springframework.web.servlet.mvc.annotation)
+AbstractHandlerMethodAdapter (org.springframework.web.servlet.mvc.method)
+    RequestMappingHandlerAdapter (org.springframework.web.servlet.mvc.method.annotation)
+SimpleControllerHandlerAdapter (org.springframework.web.servlet.mvc)
+
+`RequestMappingHandlerAdapter`和`SimpleControllerHandlerAdapter`是Spring MVC框架中两个不同的处理器适配器（HandlerAdapter）。
+`RequestMappingHandlerAdapter`是一个较新的适配器，用于处理使用`@RequestMapping`注解定义的控制器方法。它支持使用注解处理器（Annotation-based Handler Method）和HTTP消息转换器（HTTP Message Converter），能够将请求参数转换为方法参数，将方法返回值转换为响应消息。`RequestMappingHandlerAdapter`还支持异步请求处理、文件上传等高级特性。
+`SimpleControllerHandlerAdapter`是一个旧的适配器，主要用于处理老式的控制器实现，如`Controller`接口和`AbstractController`类。它不支持注解处理器和HTTP消息转换器，使用较为简单，只能够将请求参数作为`ModelAndView`对象的属性传递给控制器方法，然后将返回的`ModelAndView`对象转换为响应消息。
+因此，如果您使用的是较新的Spring MVC版本，并且主要使用注解方式定义控制器方法，建议使用`RequestMappingHandlerAdapter`。如果您使用的是较老的Spring MVC版本，或者使用了老式的控制器实现，可以考虑使用`SimpleControllerHandlerAdapter`。
+
+DispatcherServlet.properties 文件中HandlerAdapter的内容
+```
+org.springframework.web.servlet.HandlerAdapter=org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,\
+	org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,\
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter,\
+	org.springframework.web.servlet.function.support.HandlerFunctionAdapter
+```
+
+四个处理器适配器（HandlerAdapter）的作用和适用范围如下：
+1. `HttpRequestHandlerAdapter`：用于处理`HttpRequestHandler`接口的实现类，这种实现方式通常用于处理静态资源文件、文件下载等请求。
+2. `SimpleControllerHandlerAdapter`：用于处理旧式的控制器实现，如`Controller`接口和`AbstractController`类。这种实现方式已过时，不建议再使用。
+3. `RequestMappingHandlerAdapter`：是Spring MVC框架中的默认适配器，用于处理使用注解方式定义的控制器方法。它支持使用注解处理器（Annotation-based Handler Method）和HTTP消息转换器（HTTP Message Converter），能够将请求参数转换为方法参数，将方法返回值转换为响应消息。`RequestMappingHandlerAdapter`还支持异步请求处理、文件上传等高级特性。
+4. `HandlerFunctionAdapter`：用于处理WebFlux框架中的函数式处理器（Handler Function）。`HandlerFunctionAdapter`将一个函数式处理器转换为一个处理器（Handler），并将其注册到WebFlux框架中。
+需要注意的是，以上处理器适配器的使用和适用范围是不同的。在Spring MVC框架中，通常只需要使用`RequestMappingHandlerAdapter`即可。在WebFlux框架中，使用`HandlerFunctionAdapter`处理函数式处理器比较常见。`HttpRequestHandlerAdapter`和`SimpleControllerHandlerAdapter`的使用较为少见，仅在某些特定场景下使用。
+
+ha supports()
+SimpleControllerHandlerAdapter Controller接口子类
+gitee上有例子 https://blog.csdn.net/andy_zhang2007/article/details/99433087
+
+https://blog.csdn.net/u013219087/article/details/80649654
+
+
+AnnotationMethodHandlerAdapter 弃用
+SimpleServletHandlerAdapter
+
+Spring MVC实例，使用Controller接口实现控制器
+https://blog.csdn.net/qq_28379809/article/details/76177343
+
+RequestMappingHandlerAdapter
+ha
+rmha
+
+support()
+handle()
+
+ModelAndView mav
+ModelAndViewContainer mavc
+
+HandlerMapping接口核心方法
+HandlerExecutionChain getHandler(HttpServletRequest request)
+
+HandlerExecutionChain hec
+ 属性 private final Object handler;
+ public Object getHandler() {
+		return this.handler;
+	}
+ applyPreHandle()
+ applyPostHandle()
+
+MatchableHandlerMapping (org.springframework.web.servlet.handler)
+    RequestMappingHandlerMapping (org.springframework.web.servlet.mvc.method.annotation)
+        StaticRequestMappingHandlerMapping in StandaloneMockMvcBuilder (org.springframework.test.web.servlet.setup)
+    AbstractUrlHandlerMapping (org.springframework.web.servlet.handler)
+        AbstractDetectingUrlHandlerMapping (org.springframework.web.servlet.handler)
+            DefaultAnnotationHandlerMapping (org.springframework.web.servlet.mvc.annotation)
+            BeanNameUrlHandlerMapping (org.springframework.web.servlet.handler)
+            AbstractControllerUrlHandlerMapping (org.springframework.web.servlet.mvc.support)
+                ControllerClassNameHandlerMapping (org.springframework.web.servlet.mvc.support)
+                ControllerBeanNameHandlerMapping (org.springframework.web.servlet.mvc.support)
+        SimpleUrlHandlerMapping (org.springframework.web.servlet.handler)
+AbstractHandlerMapping (org.springframework.web.servlet.handler)
+    EmptyHandlerMapping in WebMvcConfigurationSupport (org.springframework.web.servlet.config.annotation)
+    AbstractUrlHandlerMapping (org.springframework.web.servlet.handler)
+        AbstractDetectingUrlHandlerMapping (org.springframework.web.servlet.handler)
+            DefaultAnnotationHandlerMapping (org.springframework.web.servlet.mvc.annotation)
+            BeanNameUrlHandlerMapping (org.springframework.web.servlet.handler)
+            AbstractControllerUrlHandlerMapping (org.springframework.web.servlet.mvc.support)
+                ControllerClassNameHandlerMapping (org.springframework.web.servlet.mvc.support)
+                ControllerBeanNameHandlerMapping (org.springframework.web.servlet.mvc.support)
+        SimpleUrlHandlerMapping (org.springframework.web.servlet.handler)
+    AbstractHandlerMethodMapping (org.springframework.web.servlet.handler)
+        RequestMappingInfoHandlerMapping (org.springframework.web.servlet.mvc.method)
+            RequestMappingHandlerMapping (org.springframework.web.servlet.mvc.method.annotation)
+                StaticRequestMappingHandlerMapping in StandaloneMockMvcBuilder (org.springframework.test.web.servlet.setup)
+
+excel
+pdf
+等等html网页
+
+@Controller注解 产生http响应报文
+
+spring bean 扫描bean
+如果有requestMapping 等注解 解析 生成HandlerMethod
+
+上面是http返回参数
+下面考虑下http入参
+
+org.springframework.web.method.support.InvocableHandlerMethod#getMethodArgumentValues
+
+MethodParameter  形参有几个 就有几个变量
+
+HandlerMethodArgumentResolverComposite
+	List<HandlerMethodArgumentResolver> argumentResolvers
+	Map<MethodParameter, HandlerMethodArgumentResolver> argumentResolverCache
+resolveArgument()
+supportsParameter()
+
+HandlerMethodArgumentResolver
+
+MapMethodProcessor (org.springframework.web.method.annotation)
+PathVariableMapMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+ErrorsMethodArgumentResolver (org.springframework.web.method.annotation)
+AbstractNamedValueMethodArgumentResolver (org.springframework.web.method.annotation)
+    RequestHeaderMethodArgumentResolver (org.springframework.web.method.annotation)
+    RequestAttributeMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    RequestParamMethodArgumentResolver (org.springframework.web.method.annotation)
+    AbstractCookieValueMethodArgumentResolver (org.springframework.web.method.annotation)
+        ServletCookieValueMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    SessionAttributeMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    MatrixVariableMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    ExpressionValueMethodArgumentResolver (org.springframework.web.method.annotation)
+    PathVariableMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+RequestHeaderMapMethodArgumentResolver (org.springframework.web.method.annotation)
+ServletResponseMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+ModelMethodProcessor (org.springframework.web.method.annotation)
+ModelAttributeMethodProcessor (org.springframework.web.method.annotation)
+    ServletModelAttributeMethodProcessor (org.springframework.web.servlet.mvc.method.annotation)
+SessionStatusMethodArgumentResolver (org.springframework.web.method.annotation)
+RequestParamMapMethodArgumentResolver (org.springframework.web.method.annotation)
+AbstractMessageConverterMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    RequestPartMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+    AbstractMessageConverterMethodProcessor (org.springframework.web.servlet.mvc.method.annotation)
+        RequestResponseBodyMethodProcessor (org.springframework.web.servlet.mvc.method.annotation)
+        HttpEntityMethodProcessor (org.springframework.web.servlet.mvc.method.annotation)
+AbstractWebArgumentResolverAdapter (org.springframework.web.method.annotation)
+    ServletWebArgumentResolverAdapter (org.springframework.web.servlet.mvc.method.annotation)
+UriComponentsBuilderMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+ServletRequestMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+HandlerMethodArgumentResolverComposite (org.springframework.web.method.support)
+RedirectAttributesMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+MatrixVariableMapMethodArgumentResolver (org.springframework.web.servlet.mvc.method.annotation)
+
+PathVariableMapMethodArgumentResolver
+PathVariableMethodArgumentResolver
+
+https://blog.csdn.net/u013219087/article/details/109665561
+springmvc的PathVariableMethodArgumentResolver解析
+
+HandlerMethodArgumentResolver hmar
+spring-web这个jar下面的接口
+public interface HandlerMethodArgumentResolver {
+    boolean supportsParameter(MethodParameter parameter);
+
+    @Nullable
+    Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer, NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception;
+}
+
+springmvc自带的一些实现：
+ServletRequestMethodArgumentResolver和ServletResponseMethodArgumentResolver处理了自动绑定HttpServletRequest和HttpServletResponse
+RequestParamMapMethodArgumentResolver处理了@RequestParam
+RequestHeaderMapMethodArgumentResolver处理了@RequestHeader
+PathVariableMapMethodArgumentResolver处理了@PathVariable
+ModelAttributeMethodProcessor处理了@ModelAttribute
+RequestResponseBodyMethodProcessor处理了@RequestBody
+https://www.cnblogs.com/wangjing666/p/10770726.html
+
+https://tomcat.apache.org/lists.html
+dev-subscribe@tomcat.apache.org
+
+debug tomcat source code
+https://blog.csdn.net/wangjunjie0817/article/details/102944338
+https://juejin.cn/post/6844903859828031501
+
 SpringMVC接收post的form表单
 @RequestParam
 

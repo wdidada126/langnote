@@ -1,5 +1,260 @@
 # netty
 
+java.nio.channels.Selector 用法
+[Java NIO之Selector（选择器）](https://www.cnblogs.com/snailclimb/p/9086334.html)
+写进testjdk8
+
+java.nio.channels.spi.SelectorProvider#provider
+
+```shell
+    public static SelectorProvider provider() {
+        synchronized (lock) {
+            if (provider != null)
+                return provider;
+            return AccessController.doPrivileged(
+                new PrivilegedAction<SelectorProvider>() {
+                    public SelectorProvider run() {
+                            if (loadProviderFromProperty())
+                                return provider;
+                            if (loadProviderAsService())
+                                return provider;
+                            provider = sun.nio.ch.DefaultSelectorProvider.create();
+                            return provider;
+                        }
+                    });
+        }
+    }
+```
+
+java.nio.channels.spi.SelectorProvider#loadProviderAsService
+
+```java
+        ServiceLoader<SelectorProvider> sl =
+            ServiceLoader.load(SelectorProvider.class,
+                               ClassLoader.getSystemClassLoader());
+```
+
+Selector (java.nio.channels)
+    AbstractSelector (java.nio.channels.spi)
+        SelectorImpl (sun.nio.ch)
+            WindowsSelectorImpl (sun.nio.ch)
+
+
+java.nio.ByteBuffer用法小结
+https://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html
+https://blog.csdn.net/mrliuzhao/article/details/89453082
+
+AsynchronousByteChannel 接口 有read write方法
+
+AsynchronousChannel 接口 有close方法
+
+Channel
+
+public boolean isOpen();
+public void close() throws IOException;
+
+AsynchronousChannelGroup
+
+ScatteringByteChannel是一个接口，对应的File流、TCP、UDP及管道有四个实现，FileChannel、DatagramChannel、SocketChannel及Pipe.SourceChannel
+https://blog.csdn.net/u010659877/article/details/108983748
+
+JDK7新特性：MulticastChannel实现非阻塞式组播通信
+https://blog.csdn.net/code727/article/details/84419381
+
+FileChannel
+java.io.FileInputStream#getChannel
+
+java.nio.channels.FileChannel#transferTo
+
+java.nio.channels.FileChannel#write(java.nio.ByteBuffer)
+
+java.nio.channels.FileChannel#read(java.nio.ByteBuffer)
+
+java.nio.channels.FileLock#isValid()
+
+java.nio.channels.FileLock#release()
+
+java.nio.channels.FileChannel#tryLock()
+
+JSR-51
+
+AbstractInterruptibleChannel (java.nio.channels.spi)
+    SelectableChannel (java.nio.channels)
+        AbstractSelectableChannel (java.nio.channels.spi)
+            SctpMultiChannel (com.sun.nio.sctp)
+                SctpMultiChannelImpl (sun.nio.ch.sctp)
+            SocketChannel (java.nio.channels)
+                SocketChannelImpl (sun.nio.ch)
+            SctpChannel (com.sun.nio.sctp)
+                SctpChannelImpl (sun.nio.ch.sctp)
+            SctpServerChannel (com.sun.nio.sctp)
+                SctpServerChannelImpl (sun.nio.ch.sctp)
+            SinkChannel in Pipe (java.nio.channels)
+                SinkChannelImpl (sun.nio.ch)
+            DatagramChannel (java.nio.channels)
+                DatagramChannelImpl (sun.nio.ch)
+            SourceChannel in Pipe (java.nio.channels)
+                SourceChannelImpl (sun.nio.ch)
+            ServerSocketChannel (java.nio.channels)
+                ServerSocketChannelImpl (sun.nio.ch)
+
+ByteBufferAsCharBuffer
+B
+l
+rb
+rl
+
+ByteBufferAsDoubleBufferB
+ByteBufferAsFloatBufferL
+ByteBufferAsIntBufferL
+ByteBufferAsLongBufferB
+ByteBufferAsShortBufferRB
+
+DirectByteBuffer
+DirectCharBufferRU
+DirectDoubleBufferRS
+DirectFloatBufferRU
+DirectIntBufferRU
+DirectLongBufferS
+DirectShortBufferRU
+
+HeapByteBuffer
+HeapCharBuffer
+HeapDoubleBuffer
+HeapFloatBufferR
+HeapIntBufferR
+HeapLongBufferR
+HeapShortBufferR
+
+ChronoLocalDateTimeImpl  toInstant()
+ChronoLocalDateTime
+LocalDateTime
+
+ZoneOffset
+
+ChronoPeriodImpl
+ChronoPeriod 
+
+Java ChronoLocalDateTime get()用法及代码示例
+Java ChronoLocalDateTime until()用法及代码示例
+Java ChronoLocalDateTime getChronology()用法及代码示例
+Java ChronoLocalDateTime compareTo()用法及代码示例
+Java ChronoLocalDateTime toEpochSecond()用法及代码示例
+Java ChronoLocalDateTime equals()用法及代码示例
+Java ChronoLocalDateTime toLocalTime()用法及代码示例
+Java ChronoLocalDateTime with(TemporalAdjuster)用法及代码示例
+Java ChronoLocalDateTime hashCode()用法及代码示例
+Java ChronoLocalDateTime isBefore()用法及代码示例
+Java ChronoLocalDateTime isEqual()用法及代码示例
+Java ChronoLocalDateTime plus(TemporalAmount)用法及代码示例
+Java ChronoLocalDateTime toInstant()用法及代码示例
+Java ChronoLocalDateTime format()用法及代码示例
+Java ChronoLocalDateTime isAfter()用法及代码示例
+
+JDK8中的新时间API:Duration Period和ChronoUnit介绍
+C++11 std::chrono库详解
+
+Spring Cloud Gateway
+
+Spring Cloud Loadbalancer
+
+https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2020.0-Release-Notes
+
+D:\Java\jdk-11.0.4\bin\java.exe  --list-modules
+java.base@11.0.4
+java.compiler@11.0.4
+java.datatransfer@11.0.4
+java.desktop@11.0.4
+java.instrument@11.0.4
+java.logging@11.0.4
+java.management@11.0.4
+java.management.rmi@11.0.4
+java.naming@11.0.4
+java.net.http@11.0.4
+java.prefs@11.0.4
+java.rmi@11.0.4
+java.scripting@11.0.4
+java.se@11.0.4
+java.security.jgss@11.0.4
+java.security.sasl@11.0.4
+java.smartcardio@11.0.4
+java.sql@11.0.4
+java.sql.rowset@11.0.4
+java.transaction.xa@11.0.4
+java.xml@11.0.4
+java.xml.crypto@11.0.4
+jdk.accessibility@11.0.4
+jdk.aot@11.0.4
+jdk.attach@11.0.4
+jdk.charsets@11.0.4
+jdk.compiler@11.0.4
+jdk.crypto.cryptoki@11.0.4
+jdk.crypto.ec@11.0.4
+jdk.crypto.mscapi@11.0.4
+jdk.dynalink@11.0.4
+jdk.editpad@11.0.4
+jdk.hotspot.agent@11.0.4
+jdk.httpserver@11.0.4
+jdk.internal.ed@11.0.4
+jdk.internal.jvmstat@11.0.4
+jdk.internal.le@11.0.4
+jdk.internal.opt@11.0.4
+jdk.internal.vm.ci@11.0.4
+jdk.internal.vm.compiler@11.0.4
+jdk.internal.vm.compiler.management@11.0.4
+jdk.jartool@11.0.4
+jdk.javadoc@11.0.4
+jdk.jcmd@11.0.4
+jdk.jconsole@11.0.4
+jdk.jdeps@11.0.4
+jdk.jdi@11.0.4
+jdk.jdwp.agent@11.0.4
+jdk.jfr@11.0.4
+jdk.jlink@11.0.4
+jdk.jshell@11.0.4
+jdk.jsobject@11.0.4
+jdk.jstatd@11.0.4
+jdk.localedata@11.0.4
+jdk.management@11.0.4
+jdk.management.agent@11.0.4
+jdk.management.jfr@11.0.4
+jdk.naming.dns@11.0.4
+jdk.naming.rmi@11.0.4
+jdk.net@11.0.4
+jdk.pack@11.0.4
+jdk.rmic@11.0.4
+jdk.scripting.nashorn@11.0.4
+jdk.scripting.nashorn.shell@11.0.4
+jdk.sctp@11.0.4
+jdk.security.auth@11.0.4
+jdk.security.jgss@11.0.4
+jdk.unsupported@11.0.4
+jdk.unsupported.desktop@11.0.4
+jdk.xml.dom@11.0.4
+jdk.zipfs@11.0.4
+
+Java版本新特性.jpg
+
+seata
+sentinel
+都可以集成进spring boot
+
+java nio aio相关的类
+cpp 对比
+epoll
+
+“惊群现象”是指并发环境下，多线程或多进程等待同一个socket 事件，当这个事件发生时，多线程/多进程被同时唤醒，这就是“惊群现象”。
+
+linux 鸟哥
+test命令
+
+java 面向对象封装
+
+网络io
+Connection
+HttpEntiry
+Client
+
 Netty实战
 Netty权威指南（第2版）
 

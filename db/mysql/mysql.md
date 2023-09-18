@@ -1,4 +1,14 @@
 # mysql
+
+## 概念
+### 存储引擎
+myisam
+innodb
+
+### 隐式事务
+对于单条SQL语句，数据库系统自动将其作为一个事务执行，这种事务被称为隐式事务。
+要手动把多条SQL语句作为一个事务执行，使用BEGIN开启一个事务，使用COMMIT提交一个事务，这种事务被称为显式事务
+
 sql 统计 体系 优化查询时间
 避免用null
 https://dzone.com/articles/how-to-optimize-mysql-queries-for-speed-and-perfor

@@ -1,5 +1,127 @@
 # Tomcat
 
+org.apache.catalina.startup.Bootstrap#initClassLoaders
+这个方法有初始化类加载器
+
+https://blog.csdn.net/xyw591238/article/details/51900275
+java 的 AccessController.doPrivileged使用
+
+运行这个server类.注意这里要用上之前的my.policy文件 
+在vm参数中写上这样的: 
+-Djava.security.manager   
+-Djava.security.policy=/home/h/my.policy  
+运行,结果是 
+TestService has permission 
+在配置文件my.policy中我们没有允许server去读取/1.txt,但是现在却可以正常访问.这个就是 AccessController.doPrivileged的作用.
+
+这个很重要 加载特定路径下的jar
+hotswap
+
+"${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar"
+
+tomcat
+自定义类加载器
+jsp
+common
+
+    ClassLoader commonLoader = null;
+    ClassLoader catalinaLoader = null;
+    ClassLoader sharedLoader = null;
+
+    this.commonLoader = this.createClassLoader("common", (ClassLoader)null);
+    if (this.commonLoader == null) {
+        this.commonLoader = this.getClass().getClassLoader();
+    }
+
+    this.catalinaLoader = this.createClassLoader("server", this.commonLoader);
+    this.sharedLoader = this.createClassLoader("shared", this.commonLoader);
+
+ReentrantLock
+多次lock
+多次unlpck
+
+tryLock
+
+r2dbc springdata
+
+ForkJoinTask
+RecursiveTask
+
+ForkJoinPool
+
+java.util.concurrent.ForkJoinPool#submit(java.util.concurrent.ForkJoinTask<T>)
+
+java.util.concurrent.RecursiveTask#compute
+	java.util.concurrent.ForkJoinTask#get()
+
+recursive 递归的
+
+各平台安卓输入法
+https://www.cnblogs.com/lvkun/archive/2012/12/27/open-source-input-method.html
+rime 中州韻輸入法引擎
+https://github.com/osfans/trime
+
+https://www.zhihu.com/column/p/20661774
+
+章灏
+地图
+openGL
+
+java io -- FilterInputStream 与 装饰者模式
+
+Iterator remove()
+https://blog.csdn.net/lxh123456789asd/article/details/80248418
+
+
+https://blog.csdn.net/f641385712/article/details/81880711
+最后
+比如对于要保存的key，k1和k2，当且仅当k1== k2的时候，IdentityHashMap才会相等，而对于HashMap来说，相等的条件则是：对比两个key的hashCode等
+IdentityHashMap不是Map的通用实现，它有意违反了Map的常规协定。并且IdentityHashMap允许key和value都为null。
+同HashMap，IdentityHashMap也是无序的，并且该类不是线程安全的，如果要使之线程安全，可以调用Collections.synchronizedMap(new IdentityHashMap(…))方法来实现。
+https://blog.csdn.net/f641385712/article/details/81880711
+
+CompletionService与ExecutorService类似都可以用来执行线程池的任务，ExecutorService继承了Executor接口，而CompletionService则是一个接口，那么为什么CompletionService不直接继承Executor接口呢？主要是Executor的特性决定的，Executor框架不能完全保证任务执行的异步性，那就是如果需要实现任务（task）的异步性，只要为每个task创建一个线程就实现了任务的异步性。代码往往包含new Thread(task).start()。这种方式的问题在于，它没有限制可创建线程的数量（在ExecutorService可以限制），不过，这样最大的问题是在高并发的情况下，不断创建线程异步执行任务将会极大增大线程创建的开销、造成极大的资源消耗和影响系统的稳定性。另外，Executor框架还支持同步任务的执行，就是在execute方法中调用提交任务的run()方法就属于同步调用。
+一般情况下，如果需要判断任务是否完成，思路是得到Future列表的每个Future，然后反复调用其get方法，并将timeout参数设为0，从而通过轮询的方式判断任务是否完成。为了更精确实现任务的异步执行以及更简便的完成任务的异步执行，可以使用CompletionService。
+https://blog.csdn.net/qq_36898043/article/details/79733124
+
+ArrayBlockingQueue
+
+ConcurrentSkipListMap 跳表
+
+全國銀行間同業拆借中心（China Foreign Exchange Trade System (CFETS)
+ＣＩＦ（Ｃｕｓｔｏｍｅｒ Ｉｎｆｏｒｍａｔｉｏｎ Ｆｉｌｅ，客户信息文件）
+https://blog.csdn.net/csdnd2014061810/article/details/100489648
+
+https://blog.csdn.net/weixin_42800008/article/details/82148346
+
+sofastack
+单元化
+
+spring源码
+从bean元素着手
+
+getBean
+
+xml定义bean
+
+spring使用DefaultSingletonBeanRegistry来本地缓存来保存创建过的对象。
+https://blog.csdn.net/hotmocha/article/details/72935227
+private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(256);
+
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#containsSingleton断点
+
+import java.util.ServiceLoader;
+
+        ServiceLoader<MyPrinterAPI> printers = ServiceLoader.load(MyPrinterAPI.class);
+//        System.out.println(printers);
+        for (MyPrinterAPI printer : printers) {
+            printer.sayHello("SPI");
+        }
+https://blog.csdn.net/lenfranky/article/details/95880981
+
+自定义权限中心
+crud
+
 tomcat类加载机制
 Tomcat的类加载机制违反了双亲委托原则，对于一些未加载的非基础类（Object,String等），各个web应用自己的类加载器（WebAppClassLoader）会优先加载，加载不到时再交给CommonClassLoader走双亲委托。对于标准类库中的类，会让系统类加载器加载，然后一直委托到启动类加载器，这个过程是没有违背双亲委派的。Tomcat的类加载机制启动类加载器（Bootstrap）和扩展类加载器（Extension ClassLoader），应用程序类加载器（Application ClassLoader），这三个类加载器默认的一致。CommonClassLoader、CatalinaClassLoader、SharedClassLoader和WebappClassLoader则是Tomcat自己定义的类加载器。
 

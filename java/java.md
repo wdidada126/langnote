@@ -1,4 +1,12 @@
 # Java标准库
+
+java.util.SortedMap
+
+[JAVA SortedMap接口](https://www.cnblogs.com/jpfss/p/9772818.html)
+
+TreeMap实现了SortedMap接口，保证了有序性。默认的排序是根据key值进行升序排序，也可以重写comparator方法来根据value进行排序。
+https://blog.csdn.net/batuwuhanpei/article/details/50727227
+
 java历史
 jdk2
 jdk5 注解

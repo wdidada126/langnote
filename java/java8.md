@@ -1,4 +1,6 @@
 # java8
+JDK7新特性：MulticastChannel实现非阻塞式组播通信
+https://blog.csdn.net/code727/article/details/84419381
 
 final语义
 Java 8 接口 default方法实现

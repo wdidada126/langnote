@@ -1,4 +1,9 @@
 # SQL
+sql解析
+https://github.com/andialbrecht/sqlparse
+
+SQL面试题升级打怪
+https://www.zhihu.com/column/c_1284848724921765888
 
 注意分组 实际上是把单个表搞成多个表
 join 表join本身
