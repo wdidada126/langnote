@@ -1,5 +1,11 @@
 # svn
-
+svn
+svn checkout
+svn info
+svn add
+svn ci
+svn up
+svn 设置忽略文件夹
 ## statsvn
 statsvn 统计svn代码行数
 java -jar statsvn.jar D:\devtools\statsvn-0.7.1\Code\cuser-dubbo-service\logfile.log D:\devtools\statsvn-0.7.1\Code\cuser-dubbo-service-xml

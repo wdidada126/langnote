@@ -1,4 +1,22 @@
 # SQL
+知乎上有复杂sql的教程
+sql联系
+w3c
+牛客网
+leetcode
+临时表的使用
+
+找dba圈子
+
+知乎 sql优化收藏夹
+in不走索引
+避免全表扫描
+
+sql in 要判断集合是否为null
+
+update 不能直接使用set
+
+用<set></set>
 [SQL中笛卡尔积－cross join的用法](https://blog.csdn.net/weixin_30883777/article/details/95208805)
 
 Sql优化挑战赛
