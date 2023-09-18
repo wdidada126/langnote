@@ -1,5 +1,19 @@
 # svn
+svn
+svn checkout
+svn info
+svn add
+svn ci
+svn up
+svn 设置忽略文件夹
+## statsvn
+statsvn 统计svn代码行数
+java -jar statsvn.jar D:\devtools\statsvn-0.7.1\Code\cuser-dubbo-service\logfile.log D:\devtools\statsvn-0.7.1\Code\cuser-dubbo-service-xml
+12月 16, 2020 10:51:00 上午 net.sf.statsvn.util.JavaUtilTaskLogger info
+信息: StatSVN - SVN statistics generation
 
+12月 16, 2020 10:51:01 上午 net.sf.statsvn.util.JavaUtilTaskLogger error
+严重: Subversion binary is incorrect version. Found: 1.14.0, required: 1.3.0
 
 乌龟svn 查看某次提交更新了
 直接仓库远程 查看更新记录

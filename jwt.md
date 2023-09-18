@@ -1,6 +1,7 @@
 # jwt
 
-
+Jwt 知乎 性能收藏家 关键词 jwt
+JWT 的目的不是为了隐藏或者保密数据，而是为了确保数据确实来自被授权的人创建的（不被篡改）
 
 token，是一个字符串
 例子：eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKb2UifQ.1KP0SsvENi7Uz1oQc07aXTL7kpQG5jBNIybqr60AlD4

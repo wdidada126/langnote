@@ -3,6 +3,34 @@ sql 统计 体系 优化查询时间
 避免用null
 https://dzone.com/articles/how-to-optimize-mysql-queries-for-speed-and-perfor
 
+MySQL
+sysbench测试 腾讯云主机
+
+mysql
+
+varchar 字符串长度需要注意
+索引 char like %xx%看执行计划 不走
+
+架构之路 raod5858
+mysql 毛剑相关的文章
+
+MySQL MongoDB慢SQL分析，尝试提出解决方案
+
+pt
+mongod.log
+
+mysql vip 两个mysql节点，互为主从
+java程序连接其中一个
+keepalived
+
+https://blog.csdn.net/yabingshi_tech/article/details/50721841
+
+两个mysql程序端口都是3307
+
+KeepAlive VIP 配置高可用 Nginx 主备集群
+https://blog.csdn.net/shida_csdn/article/details/80739859
+https://www.cnblogs.com/yuanermen/p/3735263.html
+
 ## 书籍
 Understanding MySQL Internals
 
@@ -13,6 +41,9 @@ MySQL从5.0.3版本开始支持XA分布式事务，并且只有InnoDB存储引�
 
 请注意，以上信息仅涵盖了MySQL对XA的支持，并不包括其他数据库或存储系统的支持情况。如果您在使用不同的数据库系统或存储引擎，建议您查阅相应文档以获取准确信息。
 
+MySQL join
+图解MySQL 内连接、外连接、左连接、右连接、全连接
+https://blog.csdn.net/plg17/article/details/78758593
 
 mysql索引使用b+树实现
 或者hash实现

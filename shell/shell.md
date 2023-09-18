@@ -1,4 +1,10 @@
 # shell
+`tail -fn 300`
+-f 该参数用于监视File文件增长。
+-n Number 从 Number 行位置读取指定文件
+
+tail 退出
+Ctrl + C
 
 系统命令
 cpup

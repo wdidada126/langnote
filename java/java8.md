@@ -1,5 +1,8 @@
 # java8
 
+final语义
+Java 8 接口 default方法实现
+
 Collectors.toList()
 Collectors.toSet()
 
