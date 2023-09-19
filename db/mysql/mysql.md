@@ -3,13 +3,52 @@
 聚合函数
 max 没有group by的情况下使用
 
+MySQL中提供了多种聚合函数，包括：
+- AVG()：计算平均值。
+- SUM()：计算总和。
+- MAX()：返回最大值。
+- MIN()：返回最小值。
+- COUNT()：计算指定字段在查询结构中出现的个数。
+
+MySQL的AVG()函数在计算平均值时，会将NULL和0等值视为无效值，不会纳入计算范围。如果需要包括这些无效值，可以使用IFNULL()或COALESCE()函数将这些无效值转换为0或其他有效值。例如：
+```
+SELECT AVG(IFNULL(column_name, 0)) FROM table_name;
+```
+或者
+```
+SELECT AVG(COALESCE(column_name, 0)) FROM table_name;
+```
+这样可以将NULL和0等无效值转换为0，然后再计算平均值。
+
+这个说法是正确的。在SQL中，聚合函数（如MAX()、MIN()、SUM()等）通常与GROUP BY子句一起使用，以便对查询结果进行分组和汇总。
+当使用聚合函数时，如果没有指定GROUP BY子句，则会出现错误。这是因为聚合函数的目的是将数据按照指定的列进行分组，并对每个组应用相应的聚合函数。
+以下是一个示例，展示了在GROUP BY子句中使用聚合函数的情况：
+```sql
+SELECT category, MAX(price) AS max_price
+FROM products
+GROUP BY category;
+```
+在这个例子中，我们选择了"category"列，并使用MAX()函数计算了每个类别中的最高价格。通过GROUP BY子句，我们将结果按照"category"列进行了分组。
+如果你尝试在没有GROUP BY子句的情况下直接使用MAX()函数，就会出现错误。因此，在使用聚合函数之前，请确保你的查询中包含了适当的GROUP BY子句，以指定数据的分组方式。
+
+select max(sell_qty) from fi_jm_wholesale_accountcheck where cancelsign = 'N';
+聚合函数MAX()用于返回查询结果中指定列的最大值。
+
 dual
+DUAL是MySQL中的一个虚拟表，用于在没有表的情况下指定一个虚拟的表名。DUAL表的作用主要有以下几点：
+1. 用于计算表达式。在使用SELECT语句时，我们可以在FROM子句中使用dual表来计算一些简单的表达式。
+2. 用于生成一个单行数据。可以使用SELECT语句从dual表中选择一条记录，这对于测试和调试非常有用。
+3. 用于生成一个常量值。可以使用SELECT语句从dual表中选择一个常量值，这对于生成随机数或种子值非常有用。
+
+sql，用于运维
+select version() 
 
 在Mysql和SQL Server中可以直接select 1不需要加from 表名就可以执行
 mysql是支持Dual的
 
 select 1
 select 1 from dual
+## MySQL CAST() Function
 
 cast as int
 cast as s   字符串
@@ -26,9 +65,7 @@ https://blog.csdn.net/m0_37479246/article/details/79077143
 
 CAST(value as type);  
 CONVERT(value, type);  
-
 MySQL 的CAST()和CONVERT()函数可用来获取一个类型的值，并产生另一个类型的值。两者具体的语法如下：
-
 MySQL软件支持的字符串函数表如下：
 
 | 函数                 | 功能                                                   |
@@ -49,12 +86,87 @@ MySQL软件支持的字符串函数表如下：
 | TRIM(str)                  | 去掉字符串行头和行尾的空格                                   |
 | SUBSTRING(str,x,y)         | 返回字符串str中从x位置起y个字符串长度的字符串                |
 
+华为ddm
+5.6.29_ddm_3.0.6.3_f02d9f07a301c1eca1e666f4840badfc6458c89e_20211127
+
+## mysql支持的数据类型 5.7为例
+11.1 Numeric Data Types
+11.2 Date and Time Data Types
+11.3 String Data Types
+11.4 Spatial Data Types
+11.5 The JSON Data Type
+11.6 Data Type Default Values
+11.7 Data Type Storage Requirements
+11.8 Choosing the Right Type for a Column
+11.9 Using Data Types from Other Database Engines
+
+数字
+日期和时间
+字符
+空间数据
+json
+默认值
+
+11.1 Numeric Data Types
+
+11.1.1 Numeric Data Type Syntax
+11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
+11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC
+11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE
+11.1.5 Bit-Value Type - BIT
+11.1.6 Numeric Type Attributes
+11.1.7 Out-of-Range and Overflow Handling
+
+INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
+DECIMAL, NUMERIC
+FLOAT, DOUBLE
+BIT
+
+
+
+11.2 Date and Time Data Types
+
+11.2.1 Date and Time Data Type Syntax
+11.2.2 The DATE, DATETIME, and TIMESTAMP Types
+11.2.3 The TIME Type
+11.2.4 The YEAR Type
+11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR
+11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME
+11.2.7 Fractional Seconds in Time Values
+11.2.8 What Calendar Is Used By MySQL?
+11.2.9 Conversion Between Date and Time Types
+11.2.10 2-Digit Years in Dates
+
+DATE, DATETIME, and TIMESTAMP
+TIME
+YEAR
+
+11.3 String Data Types
+
+11.3.1 String Data Type Syntax
+11.3.2 The CHAR and VARCHAR Types
+11.3.3 The BINARY and VARBINARY Types
+11.3.4 The BLOB and TEXT Types
+11.3.5 The ENUM Type
+11.3.6 The SET Type
+
+CHAR
+VARCHAR
+BINARY
+VARBINARY
+BLOB
+TEXT
+ENUM
+SET
+
+https://dev.mysql.com/doc/refman/5.7/en/data-types.html
+
 ## 概念
 ### 存储引擎
 myisam
 innodb
 
-### 隐式事务
+### 隐式事务 显式事务
 对于单条SQL语句，数据库系统自动将其作为一个事务执行，这种事务被称为隐式事务。
 要手动把多条SQL语句作为一个事务执行，使用BEGIN开启一个事务，使用COMMIT提交一个事务，这种事务被称为显式事务
 
@@ -104,8 +216,7 @@ MySQL join
 图解MySQL 内连接、外连接、左连接、右连接、全连接
 https://blog.csdn.net/plg17/article/details/78758593
 
-mysql索引使用b+树实现
-或者hash实现
+mysql索引使用b+树实现，或者用hash实现
 mysql为什么使用B+树实现，不用b树实现？
 
 在 B+ 树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是 B+ 树的一个重要参数，它决定了 B+ 树的分支因子和节点的容量。
