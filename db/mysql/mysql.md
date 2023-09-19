@@ -1,5 +1,21 @@
 # mysql
 
+mysql查看所有表的所有字段
+
+```sql
+SELECT 
+    COLUMNS .column_name, 
+    COLUMNS .column_comment, 
+    COLUMNS .TABLE_NAME, 
+    TABLES .table_comment 
+FROM 
+    information_schema. COLUMNS COLUMNS 
+LEFT JOIN information_schema. TABLES TABLES ON TABLES .TABLE_NAME = COLUMNS .TABLE_NAME 
+WHERE 
+    COLUMNS .table_schema = 'paps' 
+AND COLUMNS .table_name LIKE 'paps%';
+```
+
 聚合函数
 max 没有group by的情况下使用
 
@@ -162,6 +178,9 @@ SET
 https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
 ## 概念
+
+### 意向锁
+
 ### 存储引擎
 myisam
 innodb
@@ -227,8 +246,6 @@ mysql为什么使用B+树实现，不用b树实现？
 度的选择会影响 B+ 树的高度、磁盘访问次数和节点的利用率。较大的度可以减少树的高度，从而减少磁盘访问次数，但会增加节点的大小和内存开销。较小的度可以提高节点的利用率，减少内存开销，但会增加树的高度和磁盘访问次数。
 通常，在实际应用中，度的选择需要根据具体的场景和数据量进行权衡。常见的度取值为 50、100 或更大，但具体的最佳取值需要根据实际需求和性能测试来确定。
 
-
-
 ## 表支持的数据类型
 tinyint
 int
@@ -252,8 +269,8 @@ plsql pljson框架
 ```sql
 SELECT * FROM table_name WHERE date1 > date2;
 ```
-这将返回table_name表中所有date1大于date2的记录。
 
+这将返回table_name表中所有date1大于date2的记录。
 还可以使用其他比较运算符进行比较，例如：
 
 ```sql
@@ -263,10 +280,10 @@ SELECT * FROM table_name WHERE date1 <= date2; -- 返回所有date1小于等于d
 SELECT * FROM table_name WHERE date1 == date2; -- 返回所有date1等于date2的记录  
 SELECT * FROM table_name WHERE date1 != date2; -- 返回所有date1不等于date2的记录
 ```
+
 请注意，datetime比较是基于时间戳进行的，因此在进行比较时，需要考虑时间戳的位置。
 
-
-## sql中 count sum avg max min是不是函数？
+## sql中 count() sum() avg() max() min()是不是函数？
 
 group by才能使用的函数
 
@@ -276,13 +293,13 @@ group by才能使用的函数
 使用GROUP BY关键字结合聚合函数将数据进行分组
 聚合函数作用于一组数据，并对一组数据返回一个值。
 
-MySQL提供了许多聚合函数，包括 AVG ， COUNT ， SUM ， MIN ， MAX 等。除 COUNT 函数外，其它聚合函数在执行计算时会忽略 NULL 值。
-聚合函数是多对一函数。 它们使用来自多个记录的值作为输入，并将这些值转换为一个值来汇总所有记录。 Sum(), Count(), Avg(), Min(), 和Only() 都是聚合函数。
+MySQL提供了许多聚合函数，包括AVG()，COUNT()，SUM()，MIN()，MAX()等。除COUNT函数外，其它聚合函数在执行计算时会忽略NULL值。
+聚合函数是多对一函数。它们使用来自多个记录的值作为输入，并将这些值转换为一个值来汇总所有记录。Sum(),Count(),Avg(),Min(),和Only()都是聚合函数。
 
 https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html
 https://blog.51cto.com/xdr630/5104122
 
-非法使用聚合函数 ： 不能在 WHERE 子句中使用聚合函数。
+非法使用聚合函数：不能在WHERE子句中使用聚合函数。
 
 
 select veresion() from dual;
@@ -349,7 +366,7 @@ innodb b+
 
 mysql没有主键自动加列
 
-如何保证redis缓存 后端db的数据一致性
+如何保证redis缓存后端db的数据一致性
 消息队列，保证接收者按照一定顺序消费消息
 慢索引优化
 
@@ -358,7 +375,7 @@ B树的节点中既存储着关键字，也存储着指向子节点的指针。�
 B+树的节点中仅存储着关键字，而指向子节点的指针都保存在叶子节点上。叶子节点形成了一个单向链表，通过链表连接起来的所有叶子节点可以直接访问整个B+树中的所有数据。B+树的内部节点只用于索引，不保存真正的数据，因此可以更大更稠密地存储关键字。B+树的叶子节点可以存储的关键字数范围为t到2t，其中t是B+树的阶。B+树的查找性能比B树更好，因为在查找数据时只需要遍历叶子节点即可。
 因此，B+树在大型数据库中得到广泛应用，特别是在需要支持高效范围查询的场景中，而B树则更适合存储少量数据的场景。
 
-千金良方 mysql性能优化 
+千金良方mysql性能优化
 
 从dba或者源码的角度，各种排查
 
@@ -370,7 +387,6 @@ https://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-
 mysql sql_yacc.yy 命令行生成代码
 
 如何在修改mysql代码添加新SQL命令
-
 深入理解MySQL 书籍
 
 flex/bison与antlr的联系与区别
@@ -388,12 +404,10 @@ l y .a库
 yyparse
 localytext
 
-
 listener visit模式
 antlr-runtime 库
 
 antlr flex/bison都可以实现计算器
-
 
 ### IDEA gateway
 
@@ -445,8 +459,6 @@ mysql5.7.20 之后
 SELECT @@tx_isolation;
 show variables like 'tx_isolation';
 
-
-
 https://blog.csdn.net/weixin_40964170/article/details/114958297
 
 CREATE TABLE `yes`  (
@@ -461,7 +473,6 @@ INSERT INTO `yes` VALUES (2, 'xx', 'hz');
 INSERT INTO `yes` VALUES (3, 'aa', 'd');
 
 select * from yes where name = 'yes' for update;
-
 select * from yes where name = 'xx' for update;
 
 开启事务？
@@ -519,7 +530,7 @@ redo日志文件名格式为 ib_logfile0或ib_logfile1
 WAL会被删除吗
 如果WAL内的transaction已经被成功apply到状态机里去了，就可以被删除掉了
 
-[Rocksdb 的 WAL实现 底层探索](https://blog.csdn.net/Z_Stand/article/details/108025338)
+[Rocksdb的WAL实现 底层探索](https://blog.csdn.net/Z_Stand/article/details/108025338)
 
 update 一次更新多条数据，或者不是一条数据
 根据主键来更新
@@ -558,10 +569,8 @@ https://blog.csdn.net/Ha1f_Awake/article/details/84994697
 
 X > SIX > S / IX > IS
 
-
 Mysql 插入意向锁
 https://blog.csdn.net/u010648194/article/details/123659594
-
 
 三、锁的分类。
 数据库里有的锁有很多种，为了方面理解，所以我根据其相关性"人为"的对锁进行了一个分类，分别如下

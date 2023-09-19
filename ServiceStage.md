@@ -1,6 +1,5 @@
-# 20220331
+# ServiceStage
 
-tsf edas 华为
 
 应用管理与运维平台ServiceStage
 ServiceStage是面向企业的应用管理与运维平台，提供应用开发、构建、发布、监控及运维等一站式解决方案。提供Java、Go、PHP、Node.js、Docker、Tomcat等运行环境，支持微服务应用、Web应用以及通用应用的托管与治理，让企业应用上云更简单
