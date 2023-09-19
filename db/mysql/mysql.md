@@ -1,5 +1,54 @@
 # mysql
 
+聚合函数
+max 没有group by的情况下使用
+
+dual
+
+在Mysql和SQL Server中可以直接select 1不需要加from 表名就可以执行
+mysql是支持Dual的
+
+select 1
+select 1 from dual
+
+cast as int
+cast as s   字符串
+
+cast as decimal
+
+https://dev.mysql.com/doc/refman/5.7/en/cast-functions.html
+
+MySQL CAST() Function
+https://www.w3schools.com/sql/func_mysql_cast.asp
+
+MySQL 字符串 转 int/double CAST与CONVERT 函数的用法
+https://blog.csdn.net/m0_37479246/article/details/79077143
+
+CAST(value as type);  
+CONVERT(value, type);  
+
+MySQL 的CAST()和CONVERT()函数可用来获取一个类型的值，并产生另一个类型的值。两者具体的语法如下：
+
+MySQL软件支持的字符串函数表如下：
+
+| 函数                 | 功能                                                   |
+| -------------------------- | ------------------------------------------------------------ |
+| CONCAT(str1,str2,...,strn) | 将str1,str2,...,strn连接为一个完整的字符串                   |
+| INSERT(str,x,y,instr)      | 将字符串str从第x开始，y个字符串长度的子串替换为字符串instr   |
+| LOWER(str)                 | 将字符串str中的所有字母变成小写                              |
+| UPPER(str)                 | 将字符串str中的所有字母变成大写                              |
+| LEFT(str,x)                | 返回字符串最左边的x个字符                                    |
+| RIGHT(str,x)               | 返回字符串最右边的x个字符                                    |
+| LPAD(str,n,pad)            | 使用字符串pad对字符串str最左边进行填充，直到长度为n个字符长度 |
+| RPAD(str,n,pad)            | 使用字符串pad对字符串str最右边进行填充，直到长度为n个字符长度 |
+| LTRIM(str)                 | 去掉str左边的空格                                            |
+| RTRIM(str)                 | 去掉str右边的空格                                            |
+| REPEAT(str,x)              | 返回字符串str重复x次的结果                                   |
+| REPLACE(str,a,b)           | 使用字符串b替换字符串str中所有出现的字符串a                  |
+| STRCMP(str1,str2)          | 比较字符串str1和str2                                         |
+| TRIM(str)                  | 去掉字符串行头和行尾的空格                                   |
+| SUBSTRING(str,x,y)         | 返回字符串str中从x位置起y个字符串长度的字符串                |
+
 ## 概念
 ### 存储引擎
 myisam
