@@ -76,12 +76,12 @@ https://dev.mysql.com/doc/refman/5.7/en/cast-functions.html
 MySQL CAST() Function
 https://www.w3schools.com/sql/func_mysql_cast.asp
 
-MySQL 字符串 转 int/double CAST与CONVERT 函数的用法
+MySQL字符串转int/double CAST与CONVERT函数的用法
 https://blog.csdn.net/m0_37479246/article/details/79077143
 
-CAST(value as type);  
-CONVERT(value, type);  
-MySQL 的CAST()和CONVERT()函数可用来获取一个类型的值，并产生另一个类型的值。两者具体的语法如下：
+CAST(value as type);
+CONVERT(value, type);
+MySQL的CAST()和CONVERT()函数可用来获取一个类型的值，并产生另一个类型的值。两者具体的语法如下：
 MySQL软件支持的字符串函数表如下：
 
 | 函数                 | 功能                                                   |
