@@ -349,24 +349,65 @@ group by month
 
 <2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案
 ```sql
-select month(imp_date) as month
-    ,uid
-from ( 
-        select uid
-            ,imp_date
-            ,date_sub(imp_date, rank) as diff
-        from(
-                select uid
-                    ,imp_date
-                    ,row_number() over (partition by month(imp_date), uid) as rank 
-                from t_act_records
-                where imp_date between 20200101 and 20201231
-            )
-    )
-group by month(imp_date)
-    ,uid
-having count(diff)>=2;
+SELECT MONTH
+	( imp_date ) AS MONTH,
+	uid 
+FROM
+	(
+	SELECT
+		uid,
+		imp_date,
+		date_sub( imp_date, rank ) AS diff 
+	FROM
+		(
+		SELECT
+			uid,
+			imp_date,
+			row_number() over ( PARTITION BY MONTH ( imp_date ), uid ) AS rank 
+		FROM
+			t_act_records 
+		WHERE
+			imp_date BETWEEN 20200101 
+			AND 20201231 
+		) 
+	) 
+GROUP BY
+	MONTH ( imp_date ),
+	uid 
+HAVING
+	count( diff )>= 2;
 ```
+
+## DATE_SUB()
+在 SQL 中，DATE_SUB() 函数用于从给定日期减去指定的时间间隔，生成一个新的日期。它的语法如下：
+
+
+DATE_SUB(date, INTERVAL value unit)
+参数说明：
+
+date：要进行减法运算的日期。
+value：要减去的时间间隔的值。
+unit：时间间隔的单位，可以是以下值之一：MICROSECOND，SECOND，MINUTE，HOUR，DAY，WEEK，MONTH，QUARTER，YEAR。
+这个函数会返回一个新的日期，该日期是通过从给定日期减去指定的时间间隔得到的。如果减去的时间间隔超过给定日期的范围，则返回的结果是 NULL。
+
+以下是一些示例：
+
+减去指定天数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 5 DAY);
+输出：'2023-07-14'
+
+减去指定月数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 3 MONTH);
+输出：'2023-04-19'
+
+减去指定年数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 1 YEAR);
+输出：'2022-07-19'
+
+通过使用 DATE_SUB() 函数，您可以方便地在 SQL 查询中对日期进行减法运算。
 
 sql子查询的例子
 1、单行子查询
