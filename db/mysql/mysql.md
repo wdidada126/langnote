@@ -2029,91 +2029,46 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
 
 ```
 
-
-
-
-
  在MYSQL 8以前，写日志被保护在一把大锁之下，本来并行事务日志写入被人为串行化处理。虽简化了逻辑，但也极大限制了整体的性能表现。8.0很大的一部分工作便是将日志系统并行化。 
-
-
-
-
 
 mysql -u用户名 -p --default-character-set=utf-8
 
-
-
 [mysql中的文件排序(filesort)](https://www.cnblogs.com/chafanbusi/p/10648026.html)
-
-
-
-
 
 mysql是server和存储引擎分离的
 
 mysql是一个c实现的客户端
-
 mysqld
-
 mysqld_safe
 
 自动开启事务，默认是开启的
-
 刚安装之后
-
 命名管道      ---------      Windows
-
 Unix套接字  ---------      nux
 
-
-
 授权的功能
-
 user pwd
 
-
-
 还有数据库 表权限控制
-
 访问来源（ip）控制
 
-
-
-
-
 默认的表：
-
 - mysql
-
 user表
-
 - perfermance_scheme
-
 - information_schema
 
 
 
 innodb存储的文件
-
 .frm
-
 .bgd
 
-
-
 .frm是表结构文件
-
 .bgd是数据文件
 
-
-
 Unix/Linus文件是区分大小写（大小写敏感）
-
 Windows Mac默认是不区分大小写的
-
-
-
-
 
 INDEX(普通索引)
 `mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` )`
@@ -2132,48 +2087,26 @@ create table test1(
 ```
 
 3，删除索引
-
 DROP INDEX index_name ON talbe_name
 
 ALTER TABLE table_name DROP INDEX index_name
-1
-2
-3
-4
 4，添加索引
 
 ALTER TABLE table_name ADD INDEX index_name (column_list)
-
 ALTER TABLE table_name ADD UNIQUE (column_list)
-
 ALTER TABLE table_name ADD PRIMARY KEY (column_list)
-————————————————
-
 
 refence：https://blog.csdn.net/sddh1988/article/details/78611949
 
-
 refence：https://blog.csdn.net/sddh1988/article/details/78611949
 
-版权声明：本文为CSDN博主「song_suo」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/sddh1988/article/details/78611949
-
-
-
-
-
+https://blog.csdn.net/sddh1988/article/details/78611949
 
 mysql执行.sql文件
 
-
-
 导入sql文件前，如果不存在数据库，一定要新建数据库.
 
-
-
 mysql -u root -pxxx database < xxx.sql
-
-
 
 ```shell
 mysql -u root -e 'CREATE DATABASE stockmarket;'
@@ -2181,85 +2114,47 @@ mysql -u root -e "CREATE USER 'makler'@'localhost' IDENTIFIED BY 'makler';"
 mysql -u root -e "GRANT ALL ON stockmarket.* TO 'makler'@'localhost';"
 ```
 
-
-
 tidb
 
 5.7.25-TiDB-v3.0.3
 
-
-
-
-
 [MySQL内核源码解读-SQL解析之解析器浅析](https://blog.51cto.com/wangwei007/2300959)
-
-
 
 先登录mysql数据库
-
 mysql -u root
-
 进入到mysql的目录下载进行操作
-
 use mysql
-
 select host, user from user;
-
-
 
 [MySQL内核源码解读-SQL解析之解析器浅析](https://blog.51cto.com/wangwei007/2300959)
 
-
-
 SQL规范与性能优化
-
 1.2.1、先提前声明，博主工作用到是MySQL，可能有些场景只针对MySQL。说到SQL优化，一些概念必须要理解，不然死记硬背一两天就忘记了。特别是执行计划的概念。
-
 1.2.2、什么是执行计划：a.决定如何访问表数据，是否通过索引，是否排序等。b.多表关联是先访问哪个表。c.多表关联时，使用哪种连接方式，不过现在MySQL只有嵌套连接（嵌套循环，顾名思义就是将一个表为出发点，将该表全部记录逐条去遍历另外一张表的记录）。
-
 1.2.3、SQL执行顺序：a.检查语法是否正确。b.检查表是否存在、权限是否满足等。c.根据统计信息(如data length,rows,index length、索引唯一度)，生成较优的执行计划。d.根据执行计划，进行数据检索、过滤、合并、排序等操作。访问数据时，内存中如存在表数据，则直接进行操作；否则，从磁带读取表数据，放入内存，再进行操作；如内存不足，则内存中较冷数据涮出内存，再从内存中读取数据。
-
 1.2.4、索引：查询的时候如果使用上了索引，可以提高效率，因为建立了索引后，可以理解为数据字典的结构存储，因此根据条件查询的时候更加高效。下面看一下MySQL常用的索引类型的概念。 
-
 a．普通索引：在创建普通索引时，不附加任何限制条件。这类索引可以创建在任何数据类型中，其值是否唯一和非空由字段本身的完整性约束条件决定。建立索引以后，查询时可以通过索引进行查询。例如，在student表的stu_id字段上建立一个普通索引。查询记录时，就可以根据该索引进行查询。
-
 b．唯一性索引:使用UNIQUE参数可以设置索引为唯一性索引。在创建唯一性索引时，限制该索引的值必须是唯一的。例如，在student表的stu_name字段中创建唯一性索引，那么stu_name字段的值就必需是唯一的。通过唯一性索引，可以更快速地确定某条记录。主键就是一种特殊唯一性索引。
-
 c．单列索引:在表中的单个字段上创建索引。单列索引只根据该字段进行索引。单列索引可以是普通索引，也可以是唯一性索引，还可以是全文索引。只要保证该索引只对应一个字段 即可。
-
 d．多列索引：多列索引是在表的多个字段上创建一个索引。该索引指向创建时对应的多个字段，可以通过这几个字段进行查询。但是，只有查询条件中使用了这些字段中第一个字段时，索引才会被使用。例如，在表中的id、name和sex字段上建立一个多列索引，那么，只有查询条件使用了id字段时该索引才会被使用。
-
 e . 全文索引：使用FULLTEXT参数可以设置索引为全文索引。全文索引只能创建在CHAR、VARCHAR或TEXT类型的字段上。查询数据量较大的字符串类型的字段时，使用全文索引可以提高查询速度。例如，student表的information字段是TEXT类型，该字段包含了很多的文字信息。在information字段上建立全文索引后，可以提高查询information字段的速度。MySQL数据库从3.23.23版开始支持全文索引，但只有MyISAM存储引擎支持全文检索。在默认情况下，全文索引的搜索执行方式不区分大小写。但索引的列使用二进制排序后，可以执行区分大小写的全文索引。
 
 还有空间索引，平时也比较少用。目前只有MyISAM存储引擎支持空间检索。目前博主也只接触过InnoDB存储引擎。
-
 1.2.5、一般一张表索引不要超过5个，而且避免重复索引，而且也不是建了索引，根据索引字段条件查询，索引就会起作用。
-
 1.2.6、一般哪些场景会导致索引失效：a.使用like关键字匹配字符串第一个为”%”的场景。b.条件中包含or、in、not in、<>关键字，默认不走索引的。c.访问表上的数据行超出表总记录数30%，变成全表扫描。d.查询条件使用函数在索引列上，或者对索引列进行运算。e.多列索引中，第一个索引列使用范围查询，只能用到部份或无法使用索引。f.多列索引中，第一个查询条件不是最左索引列，上面多列索引概念中也有提到。肯定还有更多的场景，但是博主现在能想到的场景就这些了。
-
 1.2.7、不能同时使用两个索引，一个过滤数据，一个用于排序（主键除外）。
-
 1.2.8、DML语句如果使用索引，会导致lock全表；如果使用了非唯一索引，可能只是锁住一定范围。对此，建议更新/删除数据尽量用上索引，如果可以最好用上主键或唯一索引，另外事务要及时提交。
-
 1.2.9、最后一点，如何看执行计划，分析SQL的性能。这个吧，三言两语说不清楚，直接看其他博主的博文吧：[mysql explain执行计划详解](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/xiaoboluo768/p/5400990.html)。一定要看！
 
 [启用mysql的sql日志](https://blog.csdn.net/aochijing0046/article/details/101493526)
 
-
 [如何在MySql中记录SQL日志](https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html)
 
-
-
-
-
 https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html
-
-
 
 在mysql命令行或者客户端管理工具中执行：SHOW VARIABLES LIKE "general_log%";
 
 结果：
-
 general_log OFF
 general_log_file /var/lib/mysql/localhost.log
 
@@ -2274,21 +2169,15 @@ SET GLOBAL general_log = 'ON';
 
 这时执行的所有sql都会别记录下来，方便查看，但是如果重启mysql就会停止记录需要重新设置
 
- 
-
 SHOW VARIABLES LIKE "log_output%";
 
 查询结果FILE
-
-
 
 [Mysql 配置慢查询日志（SlowQueryLog）以及使用日志分析工具](https://www.cnblogs.com/codelife1988/p/4159964.html)
 
 MySQL
 
 检查配置文件是否正确？？？
-
-
 
 MySQL日志主要包含：错误日志、查询日志、慢查询日志、事务日志、二进制日志。
 https://www.cnblogs.com/mungerz/p/10442791.html
@@ -2299,16 +2188,11 @@ show variables like 'general_log_file';
 show variables like 'slow_query_log_file';
 慢查询日志
 
-
-
 错误日志： -log-err
 查询日志： -log
 慢查询日志: -log-slow-queries
 更新日志: -log-update
 二进制日志： -log-bin
-
-
-
 
 [windows下启动mysql服务的命令行启动和手动启动方法](https://www.cnblogs.com/xuyou551/p/7998365.html)
 
@@ -2324,23 +2208,12 @@ show variables like 'slow_query_log_file';
 
 net start mysql （对应的服务关闭命令为 net stop mysql）
 
-
-
-
-
 #### 查看mysql版本
-
 centos 7
-
 mysql -V
 
-
-
 mysql 命令行
-
 `status;`
-
 `select version();`
 
 net start mysql （对应的服务关闭命令为 net stop mysql）
-
