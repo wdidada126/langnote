@@ -178,6 +178,8 @@ SET
 https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
 ## 概念
+### 执行计划
+MySQL执行计划对应的英文是"Execution Plan"。
 ### Phantom Problem 幻读
 
 ### 意向锁
@@ -2150,6 +2152,7 @@ e . 全文索引：使用FULLTEXT参数可以设置索引为全文索引。全�
 
 [如何在MySql中记录SQL日志](https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html)
 
+如何在MySql中记录SQL日志（例如Sql Server Profiler)
 https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html
 
 在mysql命令行或者客户端管理工具中执行：SHOW VARIABLES LIKE "general_log%";
@@ -2209,6 +2212,8 @@ show variables like 'slow_query_log_file';
 net start mysql （对应的服务关闭命令为 net stop mysql）
 
 #### 查看mysql版本
+登录mysql后
+select version() from dual;
 centos 7
 mysql -V
 
