@@ -1,4 +1,7 @@
 # SQL
+
+select ifnull(字段,0) from 表名
+
 sql解析
 https://github.com/andialbrecht/sqlparse
 

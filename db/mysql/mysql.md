@@ -178,6 +178,7 @@ SET
 https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
 ## 概念
+### Phantom Problem 幻读
 
 ### 意向锁
 
@@ -223,7 +224,9 @@ https://www.cnblogs.com/yuanermen/p/3735263.html
 
 ## 书籍
 Understanding MySQL Internals
-
+千金良方mysql性能优化
+深入理解MySQL
+深入理解MySQL核心技术
 https://blog.souche.com/mysql_optimize/
 
 ## xa
@@ -368,6 +371,11 @@ mysql索引实现方式，根据存储引擎的不同而不同
 myisam hash
 innodb b+
 
+正确，InnoDB引擎确实支持B+树索引，但并不支持哈希索引。
+
+InnoDB是MySQL的默认存储引擎，它使用B+树作为索引模型，主要原因在于B+树的特性能够有效地支持数据库的各项操作，如范围查询、排序等。
+B+树索引可以按照特定的顺序遍历索引中的内容，对于排序和范围查询等操作，相比于哈希索引，B+树能带来更好的性能。因为哈希函数的主要目的是将数据尽可能分散到不同的桶中进行存储，所以在遇到可能存在相同键值或者需要排序以及范围查询的情况时，哈希索引可能需要全表扫描，这在数据库查询中可能会产生性能瓶颈。
+
 mysql没有主键自动加列
 
 如何保证redis缓存后端db的数据一致性
@@ -379,7 +387,7 @@ B树的节点中既存储着关键字，也存储着指向子节点的指针。�
 B+树的节点中仅存储着关键字，而指向子节点的指针都保存在叶子节点上。叶子节点形成了一个单向链表，通过链表连接起来的所有叶子节点可以直接访问整个B+树中的所有数据。B+树的内部节点只用于索引，不保存真正的数据，因此可以更大更稠密地存储关键字。B+树的叶子节点可以存储的关键字数范围为t到2t，其中t是B+树的阶。B+树的查找性能比B树更好，因为在查找数据时只需要遍历叶子节点即可。
 因此，B+树在大型数据库中得到广泛应用，特别是在需要支持高效范围查询的场景中，而B树则更适合存储少量数据的场景。
 
-千金良方mysql性能优化
+
 
 从dba或者源码的角度，各种排查
 
@@ -391,7 +399,6 @@ https://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-
 mysql sql_yacc.yy 命令行生成代码
 
 如何在修改mysql代码添加新SQL命令
-深入理解MySQL 书籍
 
 flex/bison与antlr的联系与区别
 
@@ -1721,13 +1728,16 @@ MySQL XA 的限制
 MySQL XA 的实践
 本人曾在某公司的分布式数据库项目组中实践过基于MySQL XA的分布式事务。MySQL XA 要满足线上高并发的访问要求，在使用时还需要解决两个问题：分布式死锁问题和分布式读一致性问题。分布式死锁问题是指MySQL Server 是可以检测和解决单个MySQL实例中的死锁问题，但涉及到跨越多个MySQL 实例的分布式事务时候，需要程序层面实现死锁的检测和解决。分布式读一致性问题是指MySQL的read view 也是实例级别的，对于全局分布式事务来说无法实现读一致，只能通过select ... lock in share mode在读请求上加锁的串行化隔离级别来实现，这必然会带来并发性能的下降。这就需要在程序层面构建全局的read view来实现全局的MVCC 。当然这两个问题，当时团队的大牛们都已经解决了，我也很有幸参与其中。
 
-ddd：https://www.jianshu.com/p/7003d58ea182
+MySQL_XA介绍.mhtml
+https://www.jianshu.com/p/7003d58ea182
 
 MySQL书籍
 http://mingxinglai.com/cn/2015/12/material-of-mysql/
 
+MySQL索引背后的数据结构及算法原理.mhtml
 http://blog.codinglabs.org/articles/theory-of-mysql-index.html
 
+MySQL网络协议分析.mhtml
 https://segmentfault.com/a/1190000012166738
 
 ```
@@ -1790,7 +1800,6 @@ EXPLAIN select * from t_car_copy where 1=1 and org_id = '3';
 
  (B-TREE)
 
-
   File Name   What Name Stands For         Size     Comment Inside File
   ---------   --------------------         ------   -------------------
   btr0btr.c   B-tree / B-tree              82,400   B-tree
@@ -1805,7 +1814,6 @@ EXPLAIN select * from t_car_copy where 1=1 and org_id = '3';
 insert，返回值是：新插入行的主键（primary key）；需要包含<selectKey>语句，才会返回主键，否则返回值为null。
 update/delete，返回值是：更新或删除的行数；无需指明resultClass；但如果有约束异常而删除失败，只能去捕捉异常。
 
-
 MySQL 添加列，修改列，删除列
 ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
 
@@ -1818,7 +1826,6 @@ ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
 修改列名Oracle：lter table bbb rename column nnnnn to hh int;
 修改列属性：alter table t_book modify name varchar(22);
 sp_rename：SQLServer 内置的存储过程，用与修改表的定义。
-
 
 MySQL 查看约束，添加约束，删除约束 添加列，修改列，删除列
 
@@ -1841,6 +1848,7 @@ mysql出现unblock with 'mysqladmin flush-hosts'
 https://www.cnblogs.com/abclife/p/9469622.html
 
 ## 聚集索引
+
 每个InnoDB表有一个特殊的指数称为聚集索引所在的行的数据存储。通常，聚集索引是主键的同义词。从查询，插入性能最好，和其他的数据库操作，必须了解InnoDB使用聚集索引来优化每个表最常见的查询和DML操作。 当你定义你的表的主键，InnoDB使用它作为聚集索引。为您创建的每个表定义一个主键。如果没有逻辑唯一的和非空的列或列集，添加一个新的自动增量列，它的值自动填充。 如果你不确定你的表的主键、唯一索引，MySQL定位第一所有键列不为空，InnoDB使用它作为聚集索引。 如果表没有主键或唯一索引InnoDB。
 
 非聚集（unclustered）索引。
@@ -1848,7 +1856,6 @@ https://www.cnblogs.com/abclife/p/9469622.html
 其实按照定义，除了聚集索引以外的索引都是非聚集索引，只是人们想细分一下非聚集索引，分成普通索引，唯一索引，全文索引。如果非要把非聚集索引类比成现实生活中的东西，那么非聚集索引就像新华字典的偏旁字典，他结构顺序与实际存放顺序不一定一致。
 
 非聚集索引，分成普通索引，唯一索引，全文索引
-
 非聚集索引（Non-clustered Index）是指不按照物理存储顺序进行索引的数据库索引。与聚集索引（Clustered Index）不同，非聚集索引不改变表中数据的物理顺序，而是创建一个单独的数据结构（通常是B-Tree）来存储索引的值和行数据的位置信息。
 
 非聚集索引可以根据索引列的值进行排序，并且可以包含重复的值和空值。非聚集索引可以提高查询性能，因为它们可以帮助数据库引擎快速定位到表中满足特定条件的行数据，而不必扫描整个表。
@@ -1861,10 +1868,11 @@ https://www.cnblogs.com/abclife/p/9469622.html
 
 information_schema mysql元数据数据库 权限 密码 表引擎
 
-面试题1 ：为什么用 B/B+ 树这种结构来实现索引呢？
-红黑树等结构也可以用来实现索引，但是文件系统及数据库系统普遍使用 B/B+ 树结构来实现索引。MySQL 是基于磁盘的数据库，索引是以索引文件的形式存在于磁盘中的，索引的查找过程就会涉及到磁盘 IO 消耗，磁盘 IO 的消耗相比较于内存 IO 的消耗要高好几个数量级，所以索引的组织结构要设计得在查找关键字时要尽量减少磁盘 IO 的次数。为什么要使用 B/B+ 树，跟磁盘的存储原理有关。
-这里，局部性原理与磁盘预读。为了提升效率，要尽量减少磁盘 IO 的次数。实际过程中，磁盘并不是每次严格按需读取，而是每次都会预读。磁盘读取完需要的数据后，会按顺序再多读一部分数据到内存中，这样做的理论依据是计算机科学中注明的局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用。程序运行期间所需要的数据通常比较集中。（1）由于磁盘顺序读取的效率很高(不需要寻道时间，只需很少的旋转时间)，因此对于具有局部性的程序来说，预读可以提高 I/O 效率.预读的长度一般为页(page)的整倍数。（2）MySQL(默认使用InnoDB引擎),将记录按照页的方式进行管理,每页大小默认为16K(这个值可以修改)。Linux 默认页大小为4K。
-B-Tree 借助计算机磁盘预读的机制，并使用如下技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次 I/O。假设 B-Tree 的高度为 h, B-Tree 中一次检索最多需要 h-1 次 I/O（根节点常驻内存），渐进复杂度为 O(h)=O(logdN)O(h)=O(logdN)。一般实际应用中，出度 d 是非常大的数字，通常超过 100，因此 h 非常小（通常不超过3，也即索引的 B+ 树层次一般不超过三层，所以查找效率很高）。而红黑树这种结构，h 明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的 I/O 渐进复杂度也为 O(h)，效率明显比 B-Tree 差很多。
+## 面试题
+面试题1 ：为什么用B/B+树这种结构来实现索引呢？
+红黑树等结构也可以用来实现索引，但是文件系统及数据库系统普遍使用B/B+树结构来实现索引。MySQL是基于磁盘的数据库，索引是以索引文件的形式存在于磁盘中的，索引的查找过程就会涉及到磁盘IO消耗，磁盘IO的消耗相比较于内存IO的消耗要高好几个数量级，所以索引的组织结构要设计得在查找关键字时要尽量减少磁盘IO的次数。为什么要使用B/B+树，跟磁盘的存储原理有关。
+这里，局部性原理与磁盘预读。为了提升效率，要尽量减少磁盘IO的次数。实际过程中，磁盘并不是每次严格按需读取，而是每次都会预读。磁盘读取完需要的数据后，会按顺序再多读一部分数据到内存中，这样做的理论依据是计算机科学中注明的局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用。程序运行期间所需要的数据通常比较集中。（1）由于磁盘顺序读取的效率很高(不需要寻道时间，只需很少的旋转时间)，因此对于具有局部性的程序来说，预读可以提高I/O效率.预读的长度一般为页(page)的整倍数。（2）MySQL(默认使用InnoDB引擎),将记录按照页的方式进行管理,每页大小默认为16K(这个值可以修改)。Linux默认页大小为4K。
+B-Tree借助计算机磁盘预读的机制，并使用如下技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次I/O。假设B-Tree的高度为 h, B-Tree 中一次检索最多需要 h-1 次 I/O（根节点常驻内存），渐进复杂度为 O(h)=O(logdN)O(h)=O(logdN)。一般实际应用中，出度 d 是非常大的数字，通常超过 100，因此 h 非常小（通常不超过3，也即索引的 B+ 树层次一般不超过三层，所以查找效率很高）。而红黑树这种结构，h 明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的 I/O 渐进复杂度也为 O(h)，效率明显比 B-Tree 差很多。
 
 面试题2 ：为什么 MySQL 的索引使用 B+ 树而不是 B 树呢？
 （1）B+ 树更适合外部存储(一般指磁盘存储),由于内节点(非叶子节点)不存储 data，所以一个节点可以存储更多的内节点，每个节点能索引的范围更大更精确。也就是说使用 B+ 树单次磁盘 IO 的信息量相比较 B 树更大，IO 效率更高。（2）MySQL 是关系型数据库，经常会按照区间来访问某个索引列，B+ 树的叶子节点间按顺序建立了链指针，加强了区间访问性，所以B+树对索引列上的区间范围查询很友好。而 B 树每个节点的 key 和 data 在一起，无法进行区间查找。
@@ -1872,15 +1880,12 @@ B-Tree 借助计算机磁盘预读的机制，并使用如下技巧：每次新�
 官方文档
 
 菜鸟教程
-
 视频
-
 书籍
 
 https://dev.mysql.com/doc/refman/5.7/en/innodb-storage-engine.html
 
 25-MySQL数据库多实例的多种配置方案介绍
-
 同一台主机，3306 3307端口都用
 
 docker
@@ -1889,8 +1894,7 @@ docker
 docker run -p 3306:3306 --name mysql --restart=always --privileged=true -v /usr/local/mysql/log:/var/log/mysql -v /usr/local/mysql/data:/var/lib/mysql -v /usr/local/mysql/conf:/etc/mysql -v /etc/localtime:/etc/localtime:ro -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
 ```
 
-
-docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+`docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest`
 
 ng Redis都可以用
 
@@ -1909,12 +1913,12 @@ limit
 
 如果max有多个，limit只有一个
 
-
+## 源码的文件
 深入理解MySQL核心技术
 对源码的文件对应的功能有讲解
 分模块
 
-SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species FROM pet AS p1 INNER JOIN pet AS p2         ON p1.species = p2.species AND p1.sex = 'f' AND p1.death IS NULL  AND p2.sex = 'm' AND p2.death IS NULL;
+SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species FROM pet AS p1 INNER JOIN pet AS p2 ON p1.species = p2.species AND p1.sex = 'f' AND p1.death IS NULL  AND p2.sex = 'm' AND p2.death IS NULL;
 +--------+------+-------+------+---------+ 
 | name   | sex  | name  | sex  | species 
 | +--------+------+-------+------+---------+ 
@@ -1945,12 +1949,8 @@ void handle_connections_sockets();
 XA 分布式事务
 
 ```mysql
-
 SHOW VARIABLES LIKE '%xa%';
-
 ```
-
-
 后台开发中经常需要给前端提供接口，返回的字段为null的时候需要设置字段的默认值。
 
 select ifnull(字段,0) from 表名
