@@ -7,11 +7,8 @@ https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker
 
 https://www.jianshu.com/p/f57297abf820
 
-
 SQLServer中一些查看表信息的sql语句
 https://blog.csdn.net/weixin_43190860/article/details/101054160
-
-
 
 
 
@@ -20,10 +17,6 @@ sql server查看执行日志
 DBCC LOG('ufsub',2)
 
 go
-
-
-
-
 
 https://blog.csdn.net/gulingeagle/article/details/50725160
 
@@ -34,8 +27,6 @@ https://blog.csdn.net/xiaoyiaoyou/article/details/83788101
 sqlserver dba常用的sql语句
 
 http://blog.itpub.net/30126024/viewspace-2638523/
-
-
 
 
 
@@ -110,8 +101,6 @@ https://www.jianshu.com/p/12182a55d0d7
 
 SQLServer2008 安装找不到管理工具选项
 https://bbs.csdn.net/topics/392136524?list=54007255
-
-
 
 
 

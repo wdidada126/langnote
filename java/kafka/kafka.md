@@ -1,5 +1,12 @@
 # kafka
 
+## 源代码托管地址
+Scala
+https://github.com/apache/kafka
+
+
+## 版本
+
 ## mq实现延时队列
 
 kafka
@@ -111,8 +118,6 @@ A请求将从数据库中读到的老数据，更新到redis。此时产生数�
 如何设计合适的重试机制方案？
 
 kafka如何保证消息顺序处理
-
-
 kafka的特性
 1.kafka中，写入一个partion照片中的数据是一定有顺序的
 2.kafka中一个消费者消费一个partion的数据，消费者取出数据时，也是有顺序的
@@ -289,30 +294,27 @@ public ProducerFactory<String, String> producerFactory() {
 
 https://gitee.com/edidada/testkafkaspring
 
+```xml
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
             <version>2.8.0</version>
         </dependency>
+```
 依赖
+```xml
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
       <version>3.0.0</version>
     </dependency>
-
+```
 
 老版本
 
 https://gitee.com/edidada/kafka-examples
 
-
-
 https://gitee.com/edidada/testkafka
-
-
-
-
 
 kafka broker设置不能自动创建主题
 
@@ -325,8 +327,6 @@ Exception in thread "main" org.springframework.kafka.KafkaException: Send failed
 	at cn.wdidada.testkafkaspring.SpringKafkaMain.main(SpringKafkaMain.java:9)
 Caused by: org.apache.kafka.common.errors.TimeoutException: Topic my-topic not present in metadata after 60000 ms.
 ```
-
-
 
 ### kafka自带解码器
 
@@ -417,8 +417,6 @@ Kafka 中的序列化器可以支持自定义类型。这使得应用程序可�
 
 ### kafka支持json
 写个例子
-
-
 
 kafka stream
 
@@ -979,10 +977,6 @@ d-----        2019/11/14     10:40                windows
 -a----        2017/10/27     23:56            978 zookeeper-server-stop.sh
 -a----        2017/10/27     23:56            968 zookeeper-shell.sh
 ```
-
-
-
-
 
 
 - RabbitMQ 消费者默认是推模式（也支持拉模式）。

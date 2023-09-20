@@ -3,7 +3,7 @@
 select ifnull(字段,0) from 表名
 
 sql解析
-https://github.com/andialbrecht/sqlparse
+https://github.com/andialbrecht/sqlparse python语言的
 
 SQL面试题升级打怪
 https://www.zhihu.com/column/c_1284848724921765888
@@ -18,6 +18,32 @@ ifnull函数处理null
 explain：获取 MySQL 中 SQL 语句的执行计划，比如语句是否使用了关联查询、是否使用了索引、扫描行数等；
 profile：可以清楚了解到SQL到底慢在哪个环节；
 trace：查看优化器如何选择执行计划，获取每个可能的索引选择的代价。
+explain语法
+https://dev.mysql.com/doc/refman/8.0/en/explain.html
+EXPLAIN是MySQL中的一个关键字，用于模拟优化器执行SQL查询语句，从而知道MySQL是如何处理你的SQL语句的。
+EXPLAIN 是 MySQL 中用于获取查询语句执行计划的命令。它可以帮助你理解 MySQL 如何执行查询，从而优化查询性能。
+
+EXPLAIN 语句的基本语法如下：
+EXPLAIN SELECT column_name FROM table_name;
+你可以将任何有效的 SELECT 语句替换为上述语法中的 SELECT 语句。
+
+EXPLAIN 语句返回的结果集包含以下字段：
+id: 查询的标识符
+select_type: 查询的类型（例如 SIMPLE, SUBQUERY, UNION 等）
+table: 查询涉及的表名
+type: 访问类型，表示 MySQL 如何查找表中的行
+possible_keys: 可能使用的索引
+key: 实际使用的索引
+key_len: 使用的索引长度
+ref: 与索引比较的列或常量
+rows: MySQL 认为需要检查的行数
+Extra: 关于查询的额外信息
+通过分析 EXPLAIN 的结果，你可以确定查询是否使用了合适的索引，是否进行了全表扫描，以及是否需要优化查询等。
+
+以下是一个示例：
+
+EXPLAIN SELECT * FROM users WHERE id = 1;
+这将返回一个描述查询执行计划的表。
 
 set profiling=1;  				//打开分析
 show profiles;					//查看sql1,sql2的语句分析
@@ -26,18 +52,29 @@ show profile ALL for query 1;	//查看sql1相关的所有分析【主要看i/o�
 
 
 Mysql分析-profile详解_mysql profiles_时而宁靜的博客-CSDN博客.mhtml
-
 https://blog.csdn.net/ty_hf/article/details/54895026
 
+set profiling=1;  				//打开分析
+run your sql1;
+run your sql2;
+show profiles;					//查看sql1,sql2的语句分析
+show profile for query 1;		//查看sql1的具体分析
+show profile ALL for query 1;	//查看sql1相关的所有分析【主要看i/o与cpu,下边分析中有各项意义介绍】
+set profiling=0;  				//关闭分析
 
-从 MySQL 5.6 开始，可以使用 trace 查看优化器如何选择执行计划。
+Profiling是从 mysql5.0.3版本以后才开放的。 
+
+从MySQL5.6开始，可以使用trace查看优化器如何选择执行计划。
 通过trace，能够进一步了解为什么优化器选择A执行计划而不是选择B执行计划，或者知道某个排序使用的排序模式，帮助我们更好地理解优化器行为。
-如果需要使用，先开启 trace，设置格式为 JSON，再执行需要分析的 SQL，最后查看 trace 分析结果（在 information_schema.OPTIMIZER_TRACE 中）。
+如果需要使用，先开启trace，设置格式为JSON，再执行需要分析的SQL，最后查看trace分析结果（在information_schema.OPTIMIZER_TRACE中）。
 https://blog.csdn.net/qq_40026782/article/details/105772421
+
+
 
 ```sql
 SET OPTIMIZER_TRACE="enabled=on",END_MARKERS_IN_JSON=on;
 SET OPTIMIZER_TRACE_MAX_MEM_SIZE=1000000;
+```
 大致步骤如下：
 
 开启trace分析器执行要查询的sql查看分析结果关闭trace分析器
@@ -74,7 +111,7 @@ https://www.zhihu.com/collection/632564599
 in不走索引
 避免全表扫描
 
-sql in 要判断集合是否为null
+quayi公司自己写Dao层代码的时候，sql in 要判断集合是否为null
 
 join on 可以有多个条件，用and 连接
 
@@ -96,15 +133,16 @@ sql commont
 
 [MySQL 添加注释 comment](https://blog.csdn.net/weixin_40169642/article/details/82562183)
 
-```
-
 在MySQL数据库中， 字段或列的注释是用属性comment来添加。 
 创建新表的脚本中， 可在字段定义脚本中添加comment属性来添加注释。 
 示例代码如下：**
+
 ```sql
 create table test( 
     id int not null default 0 comment '用户id' ) 
 ```
+
+
 如果是已经建好的表， 也可以用修改字段的命令，然后加上comment属性定义，就可以添加上注释了。
 
 示例代码如下：
@@ -145,8 +183,6 @@ alter table test1 modify column field_name int comment '修改后的字段注释
 --在元数据的表里面看 
     select * from COLUMNS where TABLE_SCHEMA='my_db' and TABLE_NAME='test1'
 
-```
-
 mybatis xml文件
 org.apache.commons.lang3.StringUtils
 
@@ -180,6 +216,9 @@ FROM
 GROUP BY  
   region;
 ```
+
+
+
 在这个例子中，我们使用了CASE语句来根据年份选择相应的销售金额，然后使用MAX函数将它们汇总到每个地区的一行。通过这种方式，我们成功地将行转换为列。
 
 请注意，具体的列名（'2020'、'2021'和'2022'）需要根据您的实际情况进行调整。如果需要更多的年份，需要添加相应的列。此外，如果有多个地区，需要将GROUP BY子句中的"region"替换为适当的列，以便对所有地区进行分组。
@@ -233,7 +272,7 @@ select id as id,user_name as userName,password as password,name,age,sex from tb_
 ```
 错误 
 
-SQL经典50题
+## SQL经典50题
 https://blog.csdn.net/u010226597/article/details/106334861/
 
 SQL中EXISTS的用法
@@ -348,6 +387,7 @@ group by month
 ```
 
 <2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案
+
 ```sql
 SELECT MONTH
 	( imp_date ) AS MONTH,
@@ -438,6 +478,9 @@ WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
 SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
 
 
+
+## sql标准
+
 SQL92
 SQL99
 SQL标准是由国际标准化组织（ISO）和美国国家标准学会（ANSI）共同制定的。SQL标准的发展经历了多个版本，以下是其中一些重要的版本：
@@ -461,7 +504,7 @@ mysql> select * from "t_blog" limit 1;
 1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"t_blog" limit 1' at line 1
 ```
 
-SQL注释
+## SQL注释
 
 多行注释
 /*

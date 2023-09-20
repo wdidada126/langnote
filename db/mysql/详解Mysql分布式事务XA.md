@@ -12,6 +12,4 @@ https://blog.csdn.net/soonfly/article/details/70677138
 
 
 
-
-
 不光是MySQL支持xa，Oracle PGSQL也支持
