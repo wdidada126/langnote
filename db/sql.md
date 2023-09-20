@@ -73,6 +73,8 @@ in不走索引
 
 sql in 要判断集合是否为null
 
+join on 可以有多个条件，用and 连接
+
 update 不能直接使用set
 
 用<set></set>
