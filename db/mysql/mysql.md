@@ -178,6 +178,9 @@ SET
 https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
 ## 概念
+### 执行计划
+MySQL执行计划对应的英文是"Execution Plan"。
+### Phantom Problem 幻读
 
 ### 意向锁
 
@@ -223,10 +226,14 @@ https://www.cnblogs.com/yuanermen/p/3735263.html
 
 ## 书籍
 Understanding MySQL Internals
-
+千金良方mysql性能优化
+深入理解MySQL
+深入理解MySQL核心技术
 https://blog.souche.com/mysql_optimize/
 
 ## xa
+TP 事务处理
+DTP 分布式事务处理
 MySQL从5.0.3版本开始支持XA分布式事务，并且只有InnoDB存储引擎支持。XA是X/Open分布式事务处理(DTP)模型的一部分，在MySQL中，XA事务基本语法包括XA START、XA END、XA PREPARE、XA COMMIT和XA ROLLBACK等命令。
 
 请注意，以上信息仅涵盖了MySQL对XA的支持，并不包括其他数据库或存储系统的支持情况。如果您在使用不同的数据库系统或存储引擎，建议您查阅相应文档以获取准确信息。
@@ -237,6 +244,8 @@ https://blog.csdn.net/plg17/article/details/78758593
 
 mysql索引使用b+树实现，或者用hash实现
 mysql为什么使用B+树实现，不用b树实现？
+B+树 可以实现范围查询
+子节点 关键字
 
 在 B+ 树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是 B+ 树的一个重要参数，它决定了 B+ 树的分支因子和节点的容量。
 具体来说，对于一个度为 `d` 的 B+ 树：
@@ -364,6 +373,11 @@ mysql索引实现方式，根据存储引擎的不同而不同
 myisam hash
 innodb b+
 
+正确，InnoDB引擎确实支持B+树索引，但并不支持哈希索引。
+
+InnoDB是MySQL的默认存储引擎，它使用B+树作为索引模型，主要原因在于B+树的特性能够有效地支持数据库的各项操作，如范围查询、排序等。
+B+树索引可以按照特定的顺序遍历索引中的内容，对于排序和范围查询等操作，相比于哈希索引，B+树能带来更好的性能。因为哈希函数的主要目的是将数据尽可能分散到不同的桶中进行存储，所以在遇到可能存在相同键值或者需要排序以及范围查询的情况时，哈希索引可能需要全表扫描，这在数据库查询中可能会产生性能瓶颈。
+
 mysql没有主键自动加列
 
 如何保证redis缓存后端db的数据一致性
@@ -375,7 +389,7 @@ B树的节点中既存储着关键字，也存储着指向子节点的指针。�
 B+树的节点中仅存储着关键字，而指向子节点的指针都保存在叶子节点上。叶子节点形成了一个单向链表，通过链表连接起来的所有叶子节点可以直接访问整个B+树中的所有数据。B+树的内部节点只用于索引，不保存真正的数据，因此可以更大更稠密地存储关键字。B+树的叶子节点可以存储的关键字数范围为t到2t，其中t是B+树的阶。B+树的查找性能比B树更好，因为在查找数据时只需要遍历叶子节点即可。
 因此，B+树在大型数据库中得到广泛应用，特别是在需要支持高效范围查询的场景中，而B树则更适合存储少量数据的场景。
 
-千金良方mysql性能优化
+
 
 从dba或者源码的角度，各种排查
 
@@ -387,7 +401,6 @@ https://www.orczhou.com/index.php/2012/11/mysql-innodb-source-code-optimization-
 mysql sql_yacc.yy 命令行生成代码
 
 如何在修改mysql代码添加新SQL命令
-深入理解MySQL 书籍
 
 flex/bison与antlr的联系与区别
 
@@ -1717,13 +1730,16 @@ MySQL XA 的限制
 MySQL XA 的实践
 本人曾在某公司的分布式数据库项目组中实践过基于MySQL XA的分布式事务。MySQL XA 要满足线上高并发的访问要求，在使用时还需要解决两个问题：分布式死锁问题和分布式读一致性问题。分布式死锁问题是指MySQL Server 是可以检测和解决单个MySQL实例中的死锁问题，但涉及到跨越多个MySQL 实例的分布式事务时候，需要程序层面实现死锁的检测和解决。分布式读一致性问题是指MySQL的read view 也是实例级别的，对于全局分布式事务来说无法实现读一致，只能通过select ... lock in share mode在读请求上加锁的串行化隔离级别来实现，这必然会带来并发性能的下降。这就需要在程序层面构建全局的read view来实现全局的MVCC 。当然这两个问题，当时团队的大牛们都已经解决了，我也很有幸参与其中。
 
-ddd：https://www.jianshu.com/p/7003d58ea182
+MySQL_XA介绍.mhtml
+https://www.jianshu.com/p/7003d58ea182
 
 MySQL书籍
 http://mingxinglai.com/cn/2015/12/material-of-mysql/
 
+MySQL索引背后的数据结构及算法原理.mhtml
 http://blog.codinglabs.org/articles/theory-of-mysql-index.html
 
+MySQL网络协议分析.mhtml
 https://segmentfault.com/a/1190000012166738
 
 ```
@@ -1786,7 +1802,6 @@ EXPLAIN select * from t_car_copy where 1=1 and org_id = '3';
 
  (B-TREE)
 
-
   File Name   What Name Stands For         Size     Comment Inside File
   ---------   --------------------         ------   -------------------
   btr0btr.c   B-tree / B-tree              82,400   B-tree
@@ -1801,7 +1816,6 @@ EXPLAIN select * from t_car_copy where 1=1 and org_id = '3';
 insert，返回值是：新插入行的主键（primary key）；需要包含<selectKey>语句，才会返回主键，否则返回值为null。
 update/delete，返回值是：更新或删除的行数；无需指明resultClass；但如果有约束异常而删除失败，只能去捕捉异常。
 
-
 MySQL 添加列，修改列，删除列
 ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
 
@@ -1814,7 +1828,6 @@ ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
 修改列名Oracle：lter table bbb rename column nnnnn to hh int;
 修改列属性：alter table t_book modify name varchar(22);
 sp_rename：SQLServer 内置的存储过程，用与修改表的定义。
-
 
 MySQL 查看约束，添加约束，删除约束 添加列，修改列，删除列
 
@@ -1837,6 +1850,7 @@ mysql出现unblock with 'mysqladmin flush-hosts'
 https://www.cnblogs.com/abclife/p/9469622.html
 
 ## 聚集索引
+
 每个InnoDB表有一个特殊的指数称为聚集索引所在的行的数据存储。通常，聚集索引是主键的同义词。从查询，插入性能最好，和其他的数据库操作，必须了解InnoDB使用聚集索引来优化每个表最常见的查询和DML操作。 当你定义你的表的主键，InnoDB使用它作为聚集索引。为您创建的每个表定义一个主键。如果没有逻辑唯一的和非空的列或列集，添加一个新的自动增量列，它的值自动填充。 如果你不确定你的表的主键、唯一索引，MySQL定位第一所有键列不为空，InnoDB使用它作为聚集索引。 如果表没有主键或唯一索引InnoDB。
 
 非聚集（unclustered）索引。
@@ -1844,7 +1858,6 @@ https://www.cnblogs.com/abclife/p/9469622.html
 其实按照定义，除了聚集索引以外的索引都是非聚集索引，只是人们想细分一下非聚集索引，分成普通索引，唯一索引，全文索引。如果非要把非聚集索引类比成现实生活中的东西，那么非聚集索引就像新华字典的偏旁字典，他结构顺序与实际存放顺序不一定一致。
 
 非聚集索引，分成普通索引，唯一索引，全文索引
-
 非聚集索引（Non-clustered Index）是指不按照物理存储顺序进行索引的数据库索引。与聚集索引（Clustered Index）不同，非聚集索引不改变表中数据的物理顺序，而是创建一个单独的数据结构（通常是B-Tree）来存储索引的值和行数据的位置信息。
 
 非聚集索引可以根据索引列的值进行排序，并且可以包含重复的值和空值。非聚集索引可以提高查询性能，因为它们可以帮助数据库引擎快速定位到表中满足特定条件的行数据，而不必扫描整个表。
@@ -1857,10 +1870,11 @@ https://www.cnblogs.com/abclife/p/9469622.html
 
 information_schema mysql元数据数据库 权限 密码 表引擎
 
-面试题1 ：为什么用 B/B+ 树这种结构来实现索引呢？
-红黑树等结构也可以用来实现索引，但是文件系统及数据库系统普遍使用 B/B+ 树结构来实现索引。MySQL 是基于磁盘的数据库，索引是以索引文件的形式存在于磁盘中的，索引的查找过程就会涉及到磁盘 IO 消耗，磁盘 IO 的消耗相比较于内存 IO 的消耗要高好几个数量级，所以索引的组织结构要设计得在查找关键字时要尽量减少磁盘 IO 的次数。为什么要使用 B/B+ 树，跟磁盘的存储原理有关。
-这里，局部性原理与磁盘预读。为了提升效率，要尽量减少磁盘 IO 的次数。实际过程中，磁盘并不是每次严格按需读取，而是每次都会预读。磁盘读取完需要的数据后，会按顺序再多读一部分数据到内存中，这样做的理论依据是计算机科学中注明的局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用。程序运行期间所需要的数据通常比较集中。（1）由于磁盘顺序读取的效率很高(不需要寻道时间，只需很少的旋转时间)，因此对于具有局部性的程序来说，预读可以提高 I/O 效率.预读的长度一般为页(page)的整倍数。（2）MySQL(默认使用InnoDB引擎),将记录按照页的方式进行管理,每页大小默认为16K(这个值可以修改)。Linux 默认页大小为4K。
-B-Tree 借助计算机磁盘预读的机制，并使用如下技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次 I/O。假设 B-Tree 的高度为 h, B-Tree 中一次检索最多需要 h-1 次 I/O（根节点常驻内存），渐进复杂度为 O(h)=O(logdN)O(h)=O(logdN)。一般实际应用中，出度 d 是非常大的数字，通常超过 100，因此 h 非常小（通常不超过3，也即索引的 B+ 树层次一般不超过三层，所以查找效率很高）。而红黑树这种结构，h 明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的 I/O 渐进复杂度也为 O(h)，效率明显比 B-Tree 差很多。
+## 面试题
+面试题1 ：为什么用B/B+树这种结构来实现索引呢？
+红黑树等结构也可以用来实现索引，但是文件系统及数据库系统普遍使用B/B+树结构来实现索引。MySQL是基于磁盘的数据库，索引是以索引文件的形式存在于磁盘中的，索引的查找过程就会涉及到磁盘IO消耗，磁盘IO的消耗相比较于内存IO的消耗要高好几个数量级，所以索引的组织结构要设计得在查找关键字时要尽量减少磁盘IO的次数。为什么要使用B/B+树，跟磁盘的存储原理有关。
+这里，局部性原理与磁盘预读。为了提升效率，要尽量减少磁盘IO的次数。实际过程中，磁盘并不是每次严格按需读取，而是每次都会预读。磁盘读取完需要的数据后，会按顺序再多读一部分数据到内存中，这样做的理论依据是计算机科学中注明的局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用。程序运行期间所需要的数据通常比较集中。（1）由于磁盘顺序读取的效率很高(不需要寻道时间，只需很少的旋转时间)，因此对于具有局部性的程序来说，预读可以提高I/O效率.预读的长度一般为页(page)的整倍数。（2）MySQL(默认使用InnoDB引擎),将记录按照页的方式进行管理,每页大小默认为16K(这个值可以修改)。Linux默认页大小为4K。
+B-Tree借助计算机磁盘预读的机制，并使用如下技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次I/O。假设B-Tree的高度为 h, B-Tree 中一次检索最多需要 h-1 次 I/O（根节点常驻内存），渐进复杂度为 O(h)=O(logdN)O(h)=O(logdN)。一般实际应用中，出度 d 是非常大的数字，通常超过 100，因此 h 非常小（通常不超过3，也即索引的 B+ 树层次一般不超过三层，所以查找效率很高）。而红黑树这种结构，h 明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的 I/O 渐进复杂度也为 O(h)，效率明显比 B-Tree 差很多。
 
 面试题2 ：为什么 MySQL 的索引使用 B+ 树而不是 B 树呢？
 （1）B+ 树更适合外部存储(一般指磁盘存储),由于内节点(非叶子节点)不存储 data，所以一个节点可以存储更多的内节点，每个节点能索引的范围更大更精确。也就是说使用 B+ 树单次磁盘 IO 的信息量相比较 B 树更大，IO 效率更高。（2）MySQL 是关系型数据库，经常会按照区间来访问某个索引列，B+ 树的叶子节点间按顺序建立了链指针，加强了区间访问性，所以B+树对索引列上的区间范围查询很友好。而 B 树每个节点的 key 和 data 在一起，无法进行区间查找。
@@ -1868,15 +1882,12 @@ B-Tree 借助计算机磁盘预读的机制，并使用如下技巧：每次新�
 官方文档
 
 菜鸟教程
-
 视频
-
 书籍
 
 https://dev.mysql.com/doc/refman/5.7/en/innodb-storage-engine.html
 
 25-MySQL数据库多实例的多种配置方案介绍
-
 同一台主机，3306 3307端口都用
 
 docker
@@ -1885,8 +1896,7 @@ docker
 docker run -p 3306:3306 --name mysql --restart=always --privileged=true -v /usr/local/mysql/log:/var/log/mysql -v /usr/local/mysql/data:/var/lib/mysql -v /usr/local/mysql/conf:/etc/mysql -v /etc/localtime:/etc/localtime:ro -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
 ```
 
-
-docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+`docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest`
 
 ng Redis都可以用
 
@@ -1905,12 +1915,12 @@ limit
 
 如果max有多个，limit只有一个
 
-
+## 源码的文件
 深入理解MySQL核心技术
 对源码的文件对应的功能有讲解
 分模块
 
-SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species FROM pet AS p1 INNER JOIN pet AS p2         ON p1.species = p2.species AND p1.sex = 'f' AND p1.death IS NULL  AND p2.sex = 'm' AND p2.death IS NULL;
+SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species FROM pet AS p1 INNER JOIN pet AS p2 ON p1.species = p2.species AND p1.sex = 'f' AND p1.death IS NULL  AND p2.sex = 'm' AND p2.death IS NULL;
 +--------+------+-------+------+---------+ 
 | name   | sex  | name  | sex  | species 
 | +--------+------+-------+------+---------+ 
@@ -1941,12 +1951,8 @@ void handle_connections_sockets();
 XA 分布式事务
 
 ```mysql
-
 SHOW VARIABLES LIKE '%xa%';
-
 ```
-
-
 后台开发中经常需要给前端提供接口，返回的字段为null的时候需要设置字段的默认值。
 
 select ifnull(字段,0) from 表名
@@ -2025,91 +2031,46 @@ mysql>   select * from runoob_transaction_test;   # 因为回滚所以数据没�
 
 ```
 
-
-
-
-
  在MYSQL 8以前，写日志被保护在一把大锁之下，本来并行事务日志写入被人为串行化处理。虽简化了逻辑，但也极大限制了整体的性能表现。8.0很大的一部分工作便是将日志系统并行化。 
-
-
-
-
 
 mysql -u用户名 -p --default-character-set=utf-8
 
-
-
 [mysql中的文件排序(filesort)](https://www.cnblogs.com/chafanbusi/p/10648026.html)
-
-
-
-
 
 mysql是server和存储引擎分离的
 
 mysql是一个c实现的客户端
-
 mysqld
-
 mysqld_safe
 
 自动开启事务，默认是开启的
-
 刚安装之后
-
 命名管道      ---------      Windows
-
 Unix套接字  ---------      nux
 
-
-
 授权的功能
-
 user pwd
 
-
-
 还有数据库 表权限控制
-
 访问来源（ip）控制
 
-
-
-
-
 默认的表：
-
 - mysql
-
 user表
-
 - perfermance_scheme
-
 - information_schema
 
 
 
 innodb存储的文件
-
 .frm
-
 .bgd
 
-
-
 .frm是表结构文件
-
 .bgd是数据文件
 
-
-
 Unix/Linus文件是区分大小写（大小写敏感）
-
 Windows Mac默认是不区分大小写的
-
-
-
-
 
 INDEX(普通索引)
 `mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` )`
@@ -2128,48 +2089,26 @@ create table test1(
 ```
 
 3，删除索引
-
 DROP INDEX index_name ON talbe_name
 
 ALTER TABLE table_name DROP INDEX index_name
-1
-2
-3
-4
 4，添加索引
 
 ALTER TABLE table_name ADD INDEX index_name (column_list)
-
 ALTER TABLE table_name ADD UNIQUE (column_list)
-
 ALTER TABLE table_name ADD PRIMARY KEY (column_list)
-————————————————
-
 
 refence：https://blog.csdn.net/sddh1988/article/details/78611949
 
-
 refence：https://blog.csdn.net/sddh1988/article/details/78611949
 
-版权声明：本文为CSDN博主「song_suo」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/sddh1988/article/details/78611949
-
-
-
-
-
+https://blog.csdn.net/sddh1988/article/details/78611949
 
 mysql执行.sql文件
 
-
-
 导入sql文件前，如果不存在数据库，一定要新建数据库.
 
-
-
 mysql -u root -pxxx database < xxx.sql
-
-
 
 ```shell
 mysql -u root -e 'CREATE DATABASE stockmarket;'
@@ -2177,85 +2116,48 @@ mysql -u root -e "CREATE USER 'makler'@'localhost' IDENTIFIED BY 'makler';"
 mysql -u root -e "GRANT ALL ON stockmarket.* TO 'makler'@'localhost';"
 ```
 
-
-
 tidb
 
 5.7.25-TiDB-v3.0.3
 
-
-
-
-
 [MySQL内核源码解读-SQL解析之解析器浅析](https://blog.51cto.com/wangwei007/2300959)
-
-
 
 先登录mysql数据库
-
 mysql -u root
-
 进入到mysql的目录下载进行操作
-
 use mysql
-
 select host, user from user;
-
-
 
 [MySQL内核源码解读-SQL解析之解析器浅析](https://blog.51cto.com/wangwei007/2300959)
 
-
-
 SQL规范与性能优化
-
 1.2.1、先提前声明，博主工作用到是MySQL，可能有些场景只针对MySQL。说到SQL优化，一些概念必须要理解，不然死记硬背一两天就忘记了。特别是执行计划的概念。
-
 1.2.2、什么是执行计划：a.决定如何访问表数据，是否通过索引，是否排序等。b.多表关联是先访问哪个表。c.多表关联时，使用哪种连接方式，不过现在MySQL只有嵌套连接（嵌套循环，顾名思义就是将一个表为出发点，将该表全部记录逐条去遍历另外一张表的记录）。
-
 1.2.3、SQL执行顺序：a.检查语法是否正确。b.检查表是否存在、权限是否满足等。c.根据统计信息(如data length,rows,index length、索引唯一度)，生成较优的执行计划。d.根据执行计划，进行数据检索、过滤、合并、排序等操作。访问数据时，内存中如存在表数据，则直接进行操作；否则，从磁带读取表数据，放入内存，再进行操作；如内存不足，则内存中较冷数据涮出内存，再从内存中读取数据。
-
 1.2.4、索引：查询的时候如果使用上了索引，可以提高效率，因为建立了索引后，可以理解为数据字典的结构存储，因此根据条件查询的时候更加高效。下面看一下MySQL常用的索引类型的概念。 
-
 a．普通索引：在创建普通索引时，不附加任何限制条件。这类索引可以创建在任何数据类型中，其值是否唯一和非空由字段本身的完整性约束条件决定。建立索引以后，查询时可以通过索引进行查询。例如，在student表的stu_id字段上建立一个普通索引。查询记录时，就可以根据该索引进行查询。
-
 b．唯一性索引:使用UNIQUE参数可以设置索引为唯一性索引。在创建唯一性索引时，限制该索引的值必须是唯一的。例如，在student表的stu_name字段中创建唯一性索引，那么stu_name字段的值就必需是唯一的。通过唯一性索引，可以更快速地确定某条记录。主键就是一种特殊唯一性索引。
-
 c．单列索引:在表中的单个字段上创建索引。单列索引只根据该字段进行索引。单列索引可以是普通索引，也可以是唯一性索引，还可以是全文索引。只要保证该索引只对应一个字段 即可。
-
 d．多列索引：多列索引是在表的多个字段上创建一个索引。该索引指向创建时对应的多个字段，可以通过这几个字段进行查询。但是，只有查询条件中使用了这些字段中第一个字段时，索引才会被使用。例如，在表中的id、name和sex字段上建立一个多列索引，那么，只有查询条件使用了id字段时该索引才会被使用。
-
 e . 全文索引：使用FULLTEXT参数可以设置索引为全文索引。全文索引只能创建在CHAR、VARCHAR或TEXT类型的字段上。查询数据量较大的字符串类型的字段时，使用全文索引可以提高查询速度。例如，student表的information字段是TEXT类型，该字段包含了很多的文字信息。在information字段上建立全文索引后，可以提高查询information字段的速度。MySQL数据库从3.23.23版开始支持全文索引，但只有MyISAM存储引擎支持全文检索。在默认情况下，全文索引的搜索执行方式不区分大小写。但索引的列使用二进制排序后，可以执行区分大小写的全文索引。
 
 还有空间索引，平时也比较少用。目前只有MyISAM存储引擎支持空间检索。目前博主也只接触过InnoDB存储引擎。
-
 1.2.5、一般一张表索引不要超过5个，而且避免重复索引，而且也不是建了索引，根据索引字段条件查询，索引就会起作用。
-
 1.2.6、一般哪些场景会导致索引失效：a.使用like关键字匹配字符串第一个为”%”的场景。b.条件中包含or、in、not in、<>关键字，默认不走索引的。c.访问表上的数据行超出表总记录数30%，变成全表扫描。d.查询条件使用函数在索引列上，或者对索引列进行运算。e.多列索引中，第一个索引列使用范围查询，只能用到部份或无法使用索引。f.多列索引中，第一个查询条件不是最左索引列，上面多列索引概念中也有提到。肯定还有更多的场景，但是博主现在能想到的场景就这些了。
-
 1.2.7、不能同时使用两个索引，一个过滤数据，一个用于排序（主键除外）。
-
 1.2.8、DML语句如果使用索引，会导致lock全表；如果使用了非唯一索引，可能只是锁住一定范围。对此，建议更新/删除数据尽量用上索引，如果可以最好用上主键或唯一索引，另外事务要及时提交。
-
 1.2.9、最后一点，如何看执行计划，分析SQL的性能。这个吧，三言两语说不清楚，直接看其他博主的博文吧：[mysql explain执行计划详解](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/xiaoboluo768/p/5400990.html)。一定要看！
 
 [启用mysql的sql日志](https://blog.csdn.net/aochijing0046/article/details/101493526)
 
-
 [如何在MySql中记录SQL日志](https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html)
 
-
-
-
-
+如何在MySql中记录SQL日志（例如Sql Server Profiler)
 https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html
-
-
 
 在mysql命令行或者客户端管理工具中执行：SHOW VARIABLES LIKE "general_log%";
 
 结果：
-
 general_log OFF
 general_log_file /var/lib/mysql/localhost.log
 
@@ -2270,21 +2172,15 @@ SET GLOBAL general_log = 'ON';
 
 这时执行的所有sql都会别记录下来，方便查看，但是如果重启mysql就会停止记录需要重新设置
 
- 
-
 SHOW VARIABLES LIKE "log_output%";
 
 查询结果FILE
-
-
 
 [Mysql 配置慢查询日志（SlowQueryLog）以及使用日志分析工具](https://www.cnblogs.com/codelife1988/p/4159964.html)
 
 MySQL
 
 检查配置文件是否正确？？？
-
-
 
 MySQL日志主要包含：错误日志、查询日志、慢查询日志、事务日志、二进制日志。
 https://www.cnblogs.com/mungerz/p/10442791.html
@@ -2295,16 +2191,11 @@ show variables like 'general_log_file';
 show variables like 'slow_query_log_file';
 慢查询日志
 
-
-
 错误日志： -log-err
 查询日志： -log
 慢查询日志: -log-slow-queries
 更新日志: -log-update
 二进制日志： -log-bin
-
-
-
 
 [windows下启动mysql服务的命令行启动和手动启动方法](https://www.cnblogs.com/xuyou551/p/7998365.html)
 
@@ -2320,23 +2211,14 @@ show variables like 'slow_query_log_file';
 
 net start mysql （对应的服务关闭命令为 net stop mysql）
 
-
-
-
-
 #### 查看mysql版本
-
+登录mysql后
+select version() from dual;
 centos 7
-
 mysql -V
 
-
-
 mysql 命令行
-
 `status;`
-
 `select version();`
 
 net start mysql （对应的服务关闭命令为 net stop mysql）
-

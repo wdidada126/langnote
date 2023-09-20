@@ -48,7 +48,6 @@ in share mod
 
 
 InnoDB 支持 `多粒度锁（multiple granularity locking）`，它允许 `行级锁`与 `表级锁`共存，而意向锁就是其中的一种 `表锁`。
-
 https://juejin.cn/post/6844903666332368909
 
 

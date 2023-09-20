@@ -1,4 +1,7 @@
 # SQL
+
+select ifnull(字段,0) from 表名
+
 sql解析
 https://github.com/andialbrecht/sqlparse
 
@@ -65,18 +68,29 @@ leetcode
 找dba圈子
 
 知乎 sql优化收藏夹
+https://www.zhihu.com/collection/632564599
+
+
 in不走索引
 避免全表扫描
 
 sql in 要判断集合是否为null
 
+join on 可以有多个条件，用and 连接
+
 update 不能直接使用set
+
+
+## 慢sql例子
+slowsqldetails(6).xlsx
 
 用<set></set>
 [SQL中笛卡尔积－cross join的用法](https://blog.csdn.net/weixin_30883777/article/details/95208805)
 
 Sql优化挑战赛
 https://zhuanlan.zhihu.com/p/27934308
+
+玄惭，真名罗龙九，阿里云DBA专家，负责阿里云RDS线上稳定以及专家服务团队，人称“大师”！他，经历阿里历年双11考验，积累了6年对阿里云数据库用户的运维、调优、诊断等丰富的经验。他，就是本次挑战赛的出题人！
 
 sql commont
 
@@ -87,24 +101,22 @@ sql commont
 在MySQL数据库中， 字段或列的注释是用属性comment来添加。 
 创建新表的脚本中， 可在字段定义脚本中添加comment属性来添加注释。 
 示例代码如下：**
-
+```sql
 create table test( 
     id int not null default 0 comment '用户id' ) 
-1
-2
+```
 如果是已经建好的表， 也可以用修改字段的命令，然后加上comment属性定义，就可以添加上注释了。
 
 示例代码如下：
-
+```sql
 alter table test 
 modify column id id int not null default 0 comment '测试表id'
-1
-2
+```
 查看已有表的所有字段的注释呢？ 
 可以用命令：show full columns from table 来查看， 示例如下：
 
-show full columns from test;
-1
+`show full columns from test;`
+
 创建表的时候写注释
 create table test1 ( 
     field_name int comment '字段的注释' 
@@ -119,20 +131,14 @@ alter table test1 comment '修改后的表的注释';
 alter table test1 modify column field_name int comment '修改后的字段注释'; 
 
 --注意：字段名和字段类型照写就行
-1
-2
-3
+
 查看表注释的方法
 --在生成的SQL语句中看 
     show  create  table  test1; 
 --在元数据的表里面看
     use information_schema; 
     select * from TABLES where TABLE_SCHEMA='my_db' and TABLE_NAME='test1'
-1
-2
-3
-4
-5
+
 查看字段注释的方法
 --show 
     show  full  columns  from  test1; 
@@ -163,7 +169,7 @@ sales_amount（销售额）
 
 以下是实现这个需求的SQL代码：
 
-sql
+```sql
 SELECT  
   region,  
   MAX(CASE WHEN year = 2020 THEN sales_amount END) AS '2020',  
@@ -173,6 +179,7 @@ FROM
   sales  
 GROUP BY  
   region;
+```
 在这个例子中，我们使用了CASE语句来根据年份选择相应的销售金额，然后使用MAX函数将它们汇总到每个地区的一行。通过这种方式，我们成功地将行转换为列。
 
 请注意，具体的列名（'2020'、'2021'和'2022'）需要根据您的实际情况进行调整。如果需要更多的年份，需要添加相应的列。此外，如果有多个地区，需要将GROUP BY子句中的"region"替换为适当的列，以便对所有地区进行分组。
@@ -253,7 +260,8 @@ navicat 查询 新建查询 ->  美化sql
 
 date_format(,'%Y-%m-%d %H:%:%s')
 
-常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
+常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 
+SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
 强制索引 FORCE INDEX
 SELECT * FROM TABLE1 FORCE INDEX (FIELD1) …
 
@@ -279,7 +287,6 @@ where后面的列要注意隐式转换，会导致索引失效
 
 https://dev.mysql.com/doc/refman/5.7/en/type-conversion.html
 
-
 当操作符与不同类型的操作数一起使用时，会发生类型转换以使操作数兼容。某些转换是隐式发生的。例如，MySQL会根据需要自动将字符串转换为数字，反之亦然。以下规则描述了比较操作的转换方式：
 
 两个参数至少有一个是NULL时，比较的结果也是NULL，特殊的情况是使用<=>对两个NULL做比较时会返回1，这两种情况都不需要做类型转换
@@ -290,7 +297,6 @@ https://dev.mysql.com/doc/refman/5.7/en/type-conversion.html
 有一个参数是decimal类型，如果另外一个参数是decimal或者整数，会将整数转换为decimal后进行比较，如果另外一个参数是浮点数，则会把decimal转换为浮点数进行比较
 所有其他情况下，两个参数都会被转换为浮点数再进行比较
 
-
 分析和总结
 通过上面的测试我们发现MySQL使用操作符的一些特性：
 当操作符左右两边的数据类型不一致时，会发生隐式转换。
@@ -300,16 +306,20 @@ https://dev.mysql.com/doc/refman/5.7/en/type-conversion.html
 所以，我们在写SQL时一定要养成良好的习惯，查询的字段是什么类型，等号右边的条件就写成对应的类型。特别当查询的字段是字符串时，等号右边的条件一定要用引号引起来标明这是一个字符串，否则会造成索引失效触发全表扫描。
 https://www.cnblogs.com/guitu18/p/12113495.html
 
-
-
-
 drop     删除表（包括表结构和数据
 trunacte 无条件全部删除数据
 delete   有条件的删除数据
 
-[某音春招数据分析岗真题详解](https://www.zhihu.com/column/c_1352655958959734784)
+[SQL速学速练](https://www.zhihu.com/column/c_1352655958959734784)
 
-题目（1）有用户表行为记录表t_act_records表，包含两个字段：uid（用户ID），imp_date（日期）1. 计算2020年每个月，每个用户连续签到的最多天数2. 计算2020年每个月，连续2天都有登陆的用户名单3. 计算2020年每个月，连续5天都有登陆的用户数难度：★★★★★<1> 计算2020年每个月，每个用户连续签到的最多天数考点：1. 连续时间问题；2. 时间限定；3. 聚类第一步：从时间上限定出2020年数据where imp_date between 20200101 and 20201231第二步：解决连续时间问题排序：row_number() over (partition by month(imp_date), uid) as rank 相减：date_diff(imp_date, rank) as sign 第三步：按月聚类求出最大连续签到天数组装构成答案
+题目（1）有用户表行为记录表t_act_records表，包含两个字段：uid（用户ID），imp_date（日期）
+1. 计算2020年每个月，每个用户连续签到的最多天数
+2. 计算2020年每个月，连续2天都有登陆的用户名单
+3. 计算2020年每个月，连续5天都有登陆的用户数难度：★★★★★
+<1> 计算2020年每个月，每个用户连续签到的最多天数考点：
+1. 连续时间问题；
+2. 时间限定；
+3. 聚类第一步：从时间上限定出2020年数据where imp_date between 20200101 and 20201231第二步：解决连续时间问题排序：row_number() over (partition by month(imp_date), uid) as rank 相减：date_diff(imp_date, rank) as sign 第三步：按月聚类求出最大连续签到天数组装构成答案
 
 ```sql
 select month
@@ -339,24 +349,65 @@ group by month
 
 <2> 计算2020年每个月，连续2天都有登陆的用户名单考点：1. 连续时间问题；2. 时间限定；3. 聚类不同点：与上题考点相似，唯一不同点为要求连续两天都有登陆count(diff)>=2组装构成答案
 ```sql
-select month(imp_date) as month
-    ,uid
-from ( 
-        select uid
-            ,imp_date
-            ,date_sub(imp_date, rank) as diff
-        from(
-                select uid
-                    ,imp_date
-                    ,row_number() over (partition by month(imp_date), uid) as rank 
-                from t_act_records
-                where imp_date between 20200101 and 20201231
-            )
-    )
-group by month(imp_date)
-    ,uid
-having count(diff)>=2;
+SELECT MONTH
+	( imp_date ) AS MONTH,
+	uid 
+FROM
+	(
+	SELECT
+		uid,
+		imp_date,
+		date_sub( imp_date, rank ) AS diff 
+	FROM
+		(
+		SELECT
+			uid,
+			imp_date,
+			row_number() over ( PARTITION BY MONTH ( imp_date ), uid ) AS rank 
+		FROM
+			t_act_records 
+		WHERE
+			imp_date BETWEEN 20200101 
+			AND 20201231 
+		) 
+	) 
+GROUP BY
+	MONTH ( imp_date ),
+	uid 
+HAVING
+	count( diff )>= 2;
 ```
+
+## DATE_SUB()
+在 SQL 中，DATE_SUB() 函数用于从给定日期减去指定的时间间隔，生成一个新的日期。它的语法如下：
+
+
+DATE_SUB(date, INTERVAL value unit)
+参数说明：
+
+date：要进行减法运算的日期。
+value：要减去的时间间隔的值。
+unit：时间间隔的单位，可以是以下值之一：MICROSECOND，SECOND，MINUTE，HOUR，DAY，WEEK，MONTH，QUARTER，YEAR。
+这个函数会返回一个新的日期，该日期是通过从给定日期减去指定的时间间隔得到的。如果减去的时间间隔超过给定日期的范围，则返回的结果是 NULL。
+
+以下是一些示例：
+
+减去指定天数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 5 DAY);
+输出：'2023-07-14'
+
+减去指定月数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 3 MONTH);
+输出：'2023-04-19'
+
+减去指定年数：
+
+SELECT DATE_SUB('2023-07-19', INTERVAL 1 YEAR);
+输出：'2022-07-19'
+
+通过使用 DATE_SUB() 函数，您可以方便地在 SQL 查询中对日期进行减法运算。
 
 sql子查询的例子
 1、单行子查询
@@ -389,11 +440,19 @@ SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT 
 
 SQL92
 SQL99
-03
+SQL标准是由国际标准化组织（ISO）和美国国家标准学会（ANSI）共同制定的。SQL标准的发展经历了多个版本，以下是其中一些重要的版本：
+
+SQL-86：最初的SQL标准，于1986年发布。
+SQL-89：于1989年发布，增加了对视图（views）和域（domains）的支持。
+SQL-92（SQL2）：于1992年发布，增加了对事务处理、触发器（triggers）、存储过程（stored procedures）和嵌套子查询的支持。SQL-92是广泛使用的SQL标准版本之一。
+SQL-99（SQL3）：于1999年发布，增加了对对象关系特性、XML支持、OLAP操作、递归查询和通用表表达式（Common Table Expressions）的支持。
+SQL:2003（SQL4）：于2003年发布，进一步扩展了SQL-99的功能，包括窗口函数（Window Functions）、同义词（Synonyms）和XML相关的增强功能。
+SQL:2008（SQL5）：于2008年发布，增加了对行列转换、递归公共表表达式（Recursive Common Table Expressions）、条件表达式（Conditional Expressions）和窗口函数的增强支持。
+SQL:2011（SQL6）：于2011年发布，增加了对事务处理、全文搜索、数组和多维数组的支持。
+SQL:2016（SQL7）：于2016年发布，增加了对JSON支持、多分区表、并行查询和窗口函数的进一步增强。
+这些标准版本中的某些特性可能会随着时间的推移被其他标准或数据库系统采用或弃用。因此，特定的数据库管理系统可能不完全遵循某个特定的SQL标准版本，而是根据自己的需求和实现来选择支持哪些特性和功能。
 
 sqlzoo sql练习网站
-
-
 
 ```sql
 mysql> select * from 't_blog' limit 1;
@@ -402,21 +461,30 @@ mysql> select * from "t_blog" limit 1;
 1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"t_blog" limit 1' at line 1
 ```
 
-
-
 SQL注释
 
+多行注释
 /*
 
 */
 
+在SQL中，可以使用两个连续的减号（--）来编写单行注释。注释内容应放在两个减号后面，直到该行结束。
+
+以下是一个示例：
+
+```sql
+SELECT column1, column2  
+FROM table1  
+-- 这是一个单行注释  
+WHERE condition;
+```
+在上面的示例中，"-- 这是一个单行注释"是注释，它不会对查询产生任何影响，只是用于说明或解释代码的用途。
 
 REPLACE语句：替代已有的行
 INSERT语句的一个变种；
 当添加新行时：
 1、如果主键值重复，那么就覆盖表中已有的行
 2、如果没有主键值重复，则插入该行
-
 
 [自己实现一个SQL解析引擎](https://blog.csdn.net/kxjrzyk/article/details/79341657)
 
@@ -431,45 +499,29 @@ SQL的解析引擎包括查询编译与查询优化和查询的运行，主要�
 制定物理查询计划：把逻辑计划转换成物理查询计划，要求指定操作执行的顺序，每一步使用的算法，操作之间的传递方式等。
 查询分析各模块主要函数间的调用关系: 
 
-
-
 [SQL中Truncate的用法](https://www.cnblogs.com/zhoufangcheng04050227/p/7991759.html)
 
 DQL、DML、DDL、DCL、TCL和MySQL的部分DAL
-
-
 DQL
-
 select
 
-
-
 DML
-
 1) 插入：INSERT
 2) 更新：UPDATE
 3) 删除：DELETE（删除表中的数据不删除表结构，可以回滚）
 
-
-
 DDL
-
 CREATE：创建
 ALTER：修改表结构
 RENAME：修改表名或列名
 DROP：删除表中的数据和结构，删除后不能回滚
 TRUNCATE：删除表中的数据不删除表结构，删除后不能回滚，效率比DELETE高
 
-
-
 DCL
 1) GRANT：授权
 2) REVOKE ：回收权限
 
-
-
 TCL语句 : 事物控制语句
-
 - 用来维护数据一致性的语句
 - 包括：
   - Commit：提交，确认已经进行的数据改变
@@ -479,5 +531,15 @@ TCL语句 : 事物控制语句
 
 主键可以重复吗?
 不可以
+关系型数据库的主键是唯一且不能重复的。主键是用于标识表中每一行数据唯一性的字段，它的值在整张表中必须是唯一的，不能有重复。
+主键必须满足以下条件：
+主键的值不能重复。
+主键不能为NULL（即主键字段必须包含数据，不能为空）。
+如果在数据库表中主键重复，会导致以下两个主要问题：
+数据冲突：数据库中有重复的主键值，这将导致数据混乱，无法正确区分不同的数据，影响数据的准确性。
+索引异常：主键是一种特殊的索引，如果主键重复，将无法构建唯一的索引结构，导致索引查询时出现异常，并且会降低查询效率。
+因此，正确设置主键可以提高数据库的性能和数据安全性。在创建表时，可以使用PRIMARY KEY关键字来设置主键，例如：CREATE TABLE table_name (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL);。这将创建一个唯一的主键字段"id"，并且每当插入新记录时，该字段的值会自动递增。
 
-
+在MySQL中，主键（Primary Key）是唯一标识表中每一行数据的字段。主键的值在表中必须是唯一的，不能有重复。这意味着，如果您尝试插入一个与已存在的主键值相同的新记录，MySQL将会报错并阻止该操作。
+如果您需要在表中存储可以重复的值，可以考虑使用唯一索引（Unique Index）或者普通索引（Index）。唯一索引可以包含重复的值，但不允许有空值（NULL）。而普通索引则允许包含重复的值和空值。
+另外，如果您需要创建一个可以包含重复主键值的表，可以考虑使用复合主键（Composite Primary Key），它由多个字段组成，并且这些字段的组合值在表中必须是唯一的。

@@ -1,4 +1,5 @@
 # redis
+redis 7.2 上线了向量检索
 
 Redis之各版本特性
 
