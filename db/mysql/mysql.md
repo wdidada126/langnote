@@ -227,6 +227,8 @@ Understanding MySQL Internals
 https://blog.souche.com/mysql_optimize/
 
 ## xa
+TP 事务处理
+DTP 分布式事务处理
 MySQL从5.0.3版本开始支持XA分布式事务，并且只有InnoDB存储引擎支持。XA是X/Open分布式事务处理(DTP)模型的一部分，在MySQL中，XA事务基本语法包括XA START、XA END、XA PREPARE、XA COMMIT和XA ROLLBACK等命令。
 
 请注意，以上信息仅涵盖了MySQL对XA的支持，并不包括其他数据库或存储系统的支持情况。如果您在使用不同的数据库系统或存储引擎，建议您查阅相应文档以获取准确信息。
@@ -237,6 +239,8 @@ https://blog.csdn.net/plg17/article/details/78758593
 
 mysql索引使用b+树实现，或者用hash实现
 mysql为什么使用B+树实现，不用b树实现？
+B+树 可以实现范围查询
+子节点 关键字
 
 在 B+ 树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是 B+ 树的一个重要参数，它决定了 B+ 树的分支因子和节点的容量。
 具体来说，对于一个度为 `d` 的 B+ 树：
