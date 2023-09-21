@@ -1,5 +1,45 @@
 # mysql
 
+QEP
+QEP是MySQL的一个术语,全称是Query Execution Plan,即查询执行计划。
+QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划。
+
+当MySQL收到SQL语句时,它会做以下工作:
+
+1. 解析和验证SQL语句的语法
+2. 生成查询执行计划(QEP)
+3. 根据QEP执行查询操作
+4. 返回查询结果
+
+其中生成QEP是关键步骤。
+
+QEP决定了MySQL将会如何执行查询:
+
+- 是否使用索引
+- 访问的表顺序
+- 针对每个表使用的访问类型
+- 需要多少行扫描
+
+这些信息都包含在QEP中。
+
+所以QEP实际上就是MySQL如何最有效利用资源执行查询的蓝图。
+
+通过一个叫`EXPLAIN`的SQL语句,我们可以查看MySQL的执行计划,了解它的QEP。
+
+例如:
+
+```sql
+EXPLAIN SELECT * FROM users WHERE id = 1;
+```
+
+EXPLAIN会返回QEP相关信息,从中我们可以分析出:
+
+- MySQL将使用哪个索引
+- 预计需要扫描的行数
+- 访问类型等等
+
+通过分析QEP,我们就能分析查询性能,进而优化查询。
+
 mysql查看所有表的所有字段
 
 ```sql
@@ -225,6 +265,7 @@ https://blog.csdn.net/shida_csdn/article/details/80739859
 https://www.cnblogs.com/yuanermen/p/3735263.html
 
 ## 书籍
+Effective MySQL之SQL语句最优化
 Understanding MySQL Internals
 千金良方mysql性能优化
 深入理解MySQL
