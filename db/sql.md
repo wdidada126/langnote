@@ -217,19 +217,14 @@ GROUP BY
   region;
 ```
 
-
-
 在这个例子中，我们使用了CASE语句来根据年份选择相应的销售金额，然后使用MAX函数将它们汇总到每个地区的一行。通过这种方式，我们成功地将行转换为列。
-
 请注意，具体的列名（'2020'、'2021'和'2022'）需要根据您的实际情况进行调整。如果需要更多的年份，需要添加相应的列。此外，如果有多个地区，需要将GROUP BY子句中的"region"替换为适当的列，以便对所有地区进行分组。
 
 课程号 成绩号
 
-
 现在要查看语文课程成绩 数学成绩
 case c_no 1 语文
 case c_no 2 数学
-
 
 多列组合不重复
 
@@ -279,9 +274,11 @@ SQL中EXISTS的用法
 https://www.cnblogs.com/xuanhai/p/5810918.html
 
 比如在Northwind数据库中有一个查询为
+```sql
 SELECT c.CustomerId,CompanyName FROM Customers c
 WHERE EXISTS(
 SELECT OrderID FROM Orders o WHERE o.CustomerID=c.CustomerID) 
+```
 这里面的EXISTS是如何运作呢？子查询返回的是OrderId字段，可是外面的查询要找的是CustomerID和CompanyName字段，这两个字段肯定不在OrderID里面啊，这是如何匹配的呢？ 
 
 order by 子句 后面跟 case when
