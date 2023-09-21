@@ -5,6 +5,203 @@ https://blog.csdn.net/code727/article/details/84419381
 final语义
 Java 8 接口 default方法实现
 
+## Collectors
+Collectors，可以说是Java8的最常用操作了，用来实现对队列的各种操作，包括：分组、聚合等，官方描述是：
+
+```shell
+Implementations of {@link Collector} that implement various useful reduction
+operations, such as accumulating elements into collections, summarizing
+elements according to various criteria, etc.
+<p>The following are examples of using the predefined collectors to perform
+common mutable reduction tasks:
+<pre>{@code
+
+    // Accumulate names into a List
+    List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
+    
+    // Accumulate names into a TreeSet
+    Set<String> set = people.stream().map(Person::getName)
+                            .collect(Collectors.toCollection(TreeSet::new));
+    
+    // Convert elements to strings and concatenate them, separated by commas
+    String joined = things.stream()
+                          .map(Object::toString)
+                          .collect(Collectors.joining(", "));
+                          
+    // Compute sum of salaries of employee
+    int total = employees.stream()
+                         .collect(Collectors.summingInt(Employee::getSalary)));
+                         
+    // Group employees by department
+    Map<Department, List<Employee>> byDept
+        = employees.stream()
+                   .collect(Collectors.groupingBy(Employee::getDepartment));
+                   
+    // Compute sum of salaries by department
+    Map<Department, Integer> totalByDept
+        = employees.stream()
+                   .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.summingInt(Employee::getSalary)));
+                        
+    // Partition students into passing and failing
+    Map<Boolean, List<Student>> passingFailing =
+        students.stream()
+                .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
+                
+}</pre>
+@since 1.8
+```
+
+定义示例数据
+操作对象：
+
+```shell
+@Data
+@AllArgsConstructor
+public class Person implements Serializable {
+    private static final long serialVersionUID = -5996703909566682313L;
+    private Long id;
+    private String name;
+    private LocalDate birthday;
+    private Integer age;
+    private Double weight;
+}
+```
+
+测试数据：
+```shell
+List<Person> people = Lists.newArrayList(
+        new Person(1001L, "张三", LocalDate.of(1998, Month.JANUARY, 1), 25, 70.24D),
+        new Person(1002L, "李四", LocalDate.of(2000, Month.MARCH, 3), 23, 64.22),
+        new Person(1003L, "王五", LocalDate.of(2000, Month.SEPTEMBER, 7), 23, 59.91D),
+        new Person(1004L, "赵六", LocalDate.of(2002, Month.JUNE, 8), 21, 62.34D),
+        new Person(1005L, "钱七", LocalDate.of(2002, Month.DECEMBER, 2), 21, 75.55D)
+);
+```
+
+https://zhuanlan.zhihu.com/p/656502312
+
+一、数据统计1. 计算元素数量：counting 统计聚合结果的元素数量：people.stream().collect(Collectors.counting());
+// 5作用与people.stream().count();相同。 2. 求平均值：averagingDouble、averagingInt、averagingLong 这几个方法的作用都是一样的：计算聚合元素的平均值，区别在于入参类型不同。比如，求这几个人的体重平均值，因为体重是Double类型，所以在不转换类型的情况下，需要使用averagingDouble ：people.stream().collect(Collectors.averagingDouble(Person::getWeight));
+// 66.452不考虑精度，也可以用其他方法实现：people.stream().collect(Collectors.averagingInt(p -> p.getWeight().intValue()));
+// 66.0
+people.stream().collect(Collectors.averagingLong(p -> p.getWeight().longValue()))
+// 66.0如果是求平均年龄，因为年龄是Integer 类型，所以可以使用任一函数：people.stream().collect(Collectors.averagingInt(Person::getAge));
+// 22.6
+people.stream().collect(Collectors.averagingLong(Person::getAge));
+// 22.6
+people.stream().collect(Collectors.averagingDouble(Person::getAge));
+// 22.6注意：这三个方法的返回值都是Double类型。3. 求和：summingDouble、summingInt、summingLong 这三个方法和上面的平均值方法类似，也是需要注意元素的类型，在需要类型转换时，需要强制转换：people.stream().collect(Collectors.summingInt(p -> p.getWeight().intValue()));
+// 330
+people.stream().collect(Collectors.summingLong(p -> p.getWeight().longValue()));
+// 330
+people.stream().collect(Collectors.summingDouble(Person::getWeight));
+// 332.26对于不需要强制转换的类型，可以随意使用任何一个函数：people.stream().collect(Collectors.summingInt(Person::getAge)));
+// 113
+people.stream().collect(Collectors.summingLong(Person::getAge)));
+// 113
+people.stream().collect(Collectors.summingDouble(Person::getAge)));
+// 113.0注意：这三个方法返回值和平均值的三个方法不一样，summingInt返回的是Integer类型，summingDouble返回的是Double类型、summingLong返回的是Long类型。4. 求最大值/最小值元素：maxBy、minBy 这两个函数就是求聚合元素中指定比较器中的最大/最小元素。比如，求年龄最大/最小的Person对象：people.stream().collect(Collectors.minBy(Comparator.comparing(Person::getAge)));
+// Optional[Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34)], 注意返回类型是Optional
+people.stream().collect(Collectors.maxBy(Comparator.comparing(Person::getAge)));
+// Optional[Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24)], 注意返回类型是Optional5. 统计结果：summarizingDouble、summarizingInt、summarizingLong 统计操作一般包含了计数、求平局、求和、最大、最小这几个，所以对于统计JDK也给出了一个方便的API。这组方法与求和、求平均的方法类似，都需要注意方法类型。比如，按照体重统计的话，需要进行类型转换：people.stream().collect(Collectors.summarizingInt(p -> p.getWeight().intValue()));
+// IntSummaryStatistics{count=5, sum=330, min=59, average=66.000000, max=75}
+people.stream().collect(Collectors.summarizingLong(p -> p.getWeight().longValue()));
+// LongSummaryStatistics{count=5, sum=330, min=59, average=66.000000, max=75}
+people.stream().collect(Collectors.summarizingDouble(Person::getWeight));
+// DoubleSummaryStatistics{count=5, sum=332.260000, min=59.910000, average=66.452000, max=75.550000}如果是用年龄统计的话，三个方法通用：people.stream().collect(Collectors.summarizingInt(Person::getAge));
+// IntSummaryStatistics{count=5, sum=113, min=21, average=22.600000, max=25}
+people.stream().collect(Collectors.summarizingLong(Person::getAge));
+// LongSummaryStatistics{count=5, sum=113, min=21, average=22.600000, max=25}
+people.stream().collect(Collectors.summarizingDouble(Person::getAge));
+// DoubleSummaryStatistics{count=5, sum=113.000000, min=21.000000, average=22.600000, max=25.000000}注意：这三个方法返回值不一样，summarizingInt返回IntSummaryStatistics类型，summarizingDouble返回DoubleSummaryStatistics类型，summarizingLong返回LongSummaryStatistics类型。二、聚合、分组1. 聚合元素：toList、toSet、toCollection 这几个函数比较简单，是将聚合之后的元素，重新封装到队列中，然后返回。对象数组一般搭配map使用，是最经常用到的几个方法。比如，得到所有Person的 Id 列表，只需要根据需要的结果类型使用不同的方法即可：people.stream().map(Person::getId).collect(Collectors.toList());
+// List:[1001, 1002, 1003, 1004, 1005]
+people.stream().map(Person::getId).collect(Collectors.toSet());
+// Set:[1001, 1002, 1003, 1004, 1005]
+people.stream().map(Person::getId).collect(Collectors.toCollection(TreeSet::new));
+// TreeSet:[1001, 1002, 1003, 1004, 1005]注意：toList方法返回的是List子类，toSet返回的是Set子类，toCollection返回的是Collection子类。Collection的子类包括List、Set等众多子类，所以toCollection更加灵活。2. 聚合元素：toMap、toConcurrentMap 这两个方法的作用是将聚合元素，重新组装为Map结构，也就是 k-v 结构。两者用法一样，区别是toMap返回的是Map，toConcurrentMap返回ConcurrentMap，也就是说，toConcurrentMap返回的是线程安全的 Map 结构。比如，我们需要聚合Person的id：people.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+// {1001=Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24),
+// 1002=Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22),
+// 1003=Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91),
+// 1004=Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34),
+// 1005=Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)}但是，如果id有重复的，会抛出java.lang.IllegalStateException: Duplicate key异常，所以，为了保险起见，我们需要借助toMap另一个重载方法，告诉方法当id重复时该选择哪一条元素：people.stream().collect(Collectors.toMap(Person::getId, Function.identity(), (x, y) -> x));
+// {1001=Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24),
+// 1002=Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22),
+// 1003=Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91),
+// 1004=Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34),
+// 1005=Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)}toMap有不同的重载方法，可以实现比较复杂的逻辑。比如，根据id分组的Person的姓名：people.stream().collect(Collectors.toMap(Person::getId, Person::getName, (x, y) -> x));
+// {1001=张三, 1002=李四, 1003=王五, 1004=赵六, 1005=钱七}比如，得到相同年龄体重最高的Person对象集合：Map<Integer, Person> map = people.stream()
+                .collect(Collectors.toMap(Person::getAge, Function.identity(), 
+                        BinaryOperator.maxBy(Comparator.comparing(Person::getWeight))));
+// {21=Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55), 
+// 23=Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22), 
+// 25=Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24)}所以，toMap的功能很强大。3. 分组：groupingBy、groupingByConcurrentgroupingBy与toMap都是将聚合元素进行分组，区别在于toMap结果是 1:1 的 k-v 结构，groupingBy的结果是 1:n 的 k-v 结构。对Person的年龄分组：people.stream().collect(Collectors.groupingBy(Person::getAge);
+// {21=[Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34), 
+//     Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)], 
+// 23=[Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22), 
+//     Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91)], 
+// 25=[Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24)]}
+people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.toSet());
+// {21=[Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55), 
+//     Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34)], 
+// 23=[Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91), 
+//     Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22)], 
+// 25=[Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24)]}
+也能够实现与toMap类似的功能，比如对Person的id分组：people.stream()
+      .collect(Collectors.groupingBy(Person::getId, 
+              Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
+// {1001=Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24),
+// 1002=Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22),
+// 1003=Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91),
+// 1004=Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34),
+// 1005=Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)}4. 分组：partitioningBypartitioningBy与groupingBy的区别在于，partitioningBy借助Predicate断言，可以将集合元素分为true和false两部分。比如按照年龄是否大于 22分组：people.stream().collect(Collectors.partitioningBy(p -> p.getAge() > 22));
+// List: {false=[Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34), 
+//   Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)], 
+// true=[Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24), 
+//    Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22), 
+//    Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91)]}
+people.stream().collect(Collectors.partitioningBy(p -> p.getAge() > 22, Collectors.toSet()));
+// Set: {false=[Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34), 
+//   Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)], 
+// true=[Person(id=1001, name=张三, birthday=1998-01-01, age=25, weight=70.24), 
+//    Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22), 
+//    Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91)]}三、链接数据：joining 这个方法对String类型的元素进行聚合，拼接成一个字符串返回，作用与java.lang.String#join类似，提供了 3 个不同重载方法，可以实现不同的需要。people.stream().map(Person::getName).collect(Collectors.joining());
+// 张三李四王五赵六钱七
+people.stream().map(Person::getName).collect(Collectors.joining(","));
+// 张三,李四,王五,赵六,钱七
+people.stream().map(Person::getName).collect(Collectors.joining(",", "【", "】"));
+// 【张三,李四,王五,赵六,钱七】四、操作链：collectingAndThen 这个方法在groupingBy的例子中出现过，它是先对集合进行一次聚合操作，然后通过Function定义的函数，对聚合后的结果再次处理。找到聚合元素中00后的Person列表：people.stream().collect(
+        Collectors.collectingAndThen(Collectors.toList(), (
+                list -> list.stream()
+                        .filter(s -> s.getBirthday().getYear() >= 2000)
+                        .collect(Collectors.toList()))
+        )
+);
+// [Person(id=1002, name=李四, birthday=2000-03-03, age=23, weight=64.22), 
+// Person(id=1003, name=王五, birthday=2000-09-07, age=23, weight=59.91), 
+// Person(id=1004, name=赵六, birthday=2002-06-08, age=21, weight=62.34), 
+// Person(id=1005, name=钱七, birthday=2002-12-02, age=21, weight=75.55)]这里为了展示collectingAndThen的用法，其实上面这个例子可以简化为：people.stream().filter(s -> s.getBirthday().getYear() >= 2000).collect(Collectors.toList()); 五、操作后聚合：mapping mapping先通过Function函数处理数据，然后通过Collector方法聚合元素。比如获取获取Person的姓名列表：people.stream().collect(Collectors.mapping(Person::getName, Collectors.toList()));
+// [张三, 李四, 王五, 赵六, 钱七]这种计算与java.util.stream.Stream#map方式类似，在上面的例子中以及使用过：people.stream().map(Person::getName).collect(Collectors.toList());
+// [张三, 李四, 王五, 赵六, 钱七]IDE推荐第二种写法，更清晰。六、聚合后操作：reducing reducing提供了 3 个重载方法： public static <T> Collector<T, ?, Optional<T>> reducing(BinaryOperator<T> op)：直接通过BinaryOperator操作，返回值是Optional public static <T> Collector<T, ?, T> reducing(T identity, BinaryOperator<T> op)：预定默认值，然后通过BinaryOperator操作 public static <T, U> Collector<T, ?, U> reducing(U identity, Function<? super T, ? extends U> mapper, BinaryOperator<U> op)：预定默认值，通过Function操作元素，然后通过BinaryOperator操作计算所有Person的体重和：people.stream().map(Person::getWeight).collect(Collectors.reducing(Double::sum));
+// Optional[332.26]，注意返回类型是Optional
+people.stream().map(Person::getWeight).collect(Collectors.reducing(0.0, Double::sum));
+// 332.26
+people.stream().collect(Collectors.reducing(0.0, Person::getWeight, Double::sum));
+// 332.26同mapping，reducing的操作与java.util.stream.Stream#reduce方式类似：
+people.stream().map(Person::getWeight).reduce(Double::sum);
+// Optional[332.26]，注意返回类型是Optional
+people.stream().map(Person::getWeight).reduce(0.0,Double::sum);
+// 332.26maxBy和minBy这两个函数就是通过reducing实现的。mapping和reducing，可以参考map-reduce的概念。很多框架都是用的map-reduce方式进行操作和聚合。七、工作中常用的一些组合操作：
+1. 分组后操作：对Person的年龄进行分组后，再操作取姓名后聚合为列表：
+people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.mapping(Person::getName, Collectors.toList())));
+// {21=[赵六, 钱七], 23=[李四, 王五], 25=[张三]}
+2. 分组后记数
+people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.counting()));
+// {21=2, 23=2, 25=1}
+3. 分组后求和
+people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.summingDouble(Person::getWeight)));
+// {21=137.89, 23=124.13, 25=70.24}
+
 Collectors.toList()
 Collectors.toSet()
 
