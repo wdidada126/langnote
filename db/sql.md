@@ -294,7 +294,8 @@ where a.xxx = b.xxx
 格式化sql
 navicat 查询 新建查询 ->  美化sql
 
-date_format(,'%Y-%m-%d %H:%:%s')
+date_format(,'%Y-%m-%d %H:%:%s') 少了i
+正确的写法是 DATE_FORMAT(date_column, '%Y-%m-%d %H:%i:%s')，其中 date_column 是要格式化的日期列。 %Y 表示四位数的年份，%m 表示两位数的月份，%d 表示两位数的日期，%H 表示两位数的小时数（24小时制），%i 表示两位数的分钟数，%s 表示两位数的秒数。
 
 常见的SQL面试题：经典50题 - 知乎 https://zhuanlan.zhihu.com/p/38354000 
 SQL面试必会50题 - 知乎 https://zhuanlan.zhihu.com/p/43289968
