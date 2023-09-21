@@ -1,5 +1,7 @@
 # kuma
-s
+2019年9月10日，Kong正式宣布开源一款Service Mesh：Kuma。
+https://konghq.com/blog/product-releases/introducing-kuma-universal-service-mesh
+
 跟istio是竞品
 
 https://github.com/Kong/kuma
