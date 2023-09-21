@@ -34,22 +34,18 @@ ThreadFactory接口
 1.2线程的创建
 
 线程的创建
-
 1、 继承Thread重写run()方法
-
 2、创建一个实现Runnable接口的类。使用带参数的Thread构造器来创建Thread对象。
 
 1.3 线程状态的获取
 
 线程的优先级：
-
 Thread.MIN_PRIORITY
-
 Thread.NORM_PRIORITY
-
 Thread.MAX_PRIORITY
 
-java 7并发编程实战 第一章读书笔记
+java 7并发编程实战 
+### 第一章
 
 id
 
@@ -123,7 +119,13 @@ https://www.cnblogs.com/panshan-lurenjia/p/16124358.html
 限制线程对资源的并发访问量，比如数据库连接，当访问量超过设定的大小时，线程的执行就会被阻塞或受限。
 
 注意跟CountDownLatch比较，CountDownLatch强调等待
-
+Semaphore和CountDownLatch都是Java多线程编程中的同步工具，用于控制线程的执行顺序和对共享资源的访问控制。它们有一些相似之处，但也有一些区别。
+相似之处：
+它们都是用于控制线程的同步工具，可以用来确保线程在执行特定任务之前的等待时间，以及限制对共享资源的访问。
+不同之处：
+Semaphore用于限制同时访问共享资源的线程数量，它有一个许可证数量，每个线程在访问资源之前需要获取一个许可证，访问结束后释放该许可证。Semaphore可以重复使用，即许可证数量可以被释放和重新获取。
+CountDownLatch则用于等待其他线程完成某个操作。在CountDownLatch初始化时，设置一个计数器，每个线程完成任务后将计数器减1，当计数器变为0时，等待的线程将被唤醒。它的使用方式是“一个线程（多个线程）等待”，即一个或多个线程等待其他多个线程完成某件事情之后才能执行。
+综上所述，Semaphore和CountDownLatch虽然都是用于线程同步的工具，但它们的使用场景不同。Semaphore主要用于限制对共享资源的并发访问，而CountDownLatch则主要用于等待其他线程完成某个操作。
 
 构造函数
 Semaphore(int permits)
@@ -134,6 +136,17 @@ Semaphore(int permits)
 - release()
 
 ![Semaphore](..\imgs\javase\Semaphore.png)
+
+
+CyclicBarrier是Java中的一个类，它用于实现固定大小的线程等待，直到所有线程都达到某个屏障点后，才会继续执行。以下是CyclicBarrier类的API：
+
+CyclicBarrier(int parties)：构造函数，指定屏障处的线程数parties。
+CyclicBarrier(int parties, Runnable barrierAction)：构造函数，指定屏障处的线程数parties，barrierAction是屏障跳闸时执行的动作，由最后一个进入屏障的线程启动。
+int await()：方法，parties个线程执行await()方法后，程序继续向下执行。
+int await(long timeout, TimeUnit unit)：方法，如果在指定的时间内达到 parties 的数量，则程序继向下运行，否则如果出现超时，则抛出TimeoutException异常。
+int getNumberWaiting()：方法获取有几个线程到达了屏障点。
+reset()：方法，重置屏障。
+这些方法的使用场景可以在包含固定大小的线程的程序中非常有用，这些线程有时必须彼此等待。如果所有线程都到达栅栏位置，那么栅栏将打开，此时所有的线程都将被释放，而栅栏将被重置以便下次使用。
 
 #### 什么是相位器Phaser
 jdk7中增加了一个用于多阶段同步控制的工具类，它包含了CyclicBarrier和CountDownLatch的相关功能，比它们更强大灵活。
@@ -166,8 +179,6 @@ https://cloud.tencent.com/developer/article/1908152
     -   `void getPhase()`：获取当前阶段号
 
 
-
-
 #### Phaser例子
 
 场景：公司组织郊游活动，大家各自从家出发到公司集合，大家都到了后，出发到公园各自游玩，然后在公园门口集合，再去餐厅就餐，大家都到了就开始用餐。有的员工白天有事，选择晚上的聚餐，有的员工则晚上有事，只参加白天的活动。编程模拟实现。
@@ -177,12 +188,9 @@ https://cloud.tencent.com/developer/article/1908152
 -   第三阶段，餐厅集合，有另外4人参加聚餐，这是增加参与数，任务数变为7
 
 
-
-
 ### chapter4 线程执行器
 
 ES
-
 
 
 ScheduledExecutorService 接口
@@ -219,8 +227,6 @@ java.util.concurrent.RejectedExecutionHandler
 
 java.util.concurrent.BlockingQueue接口实现类
 
-
-
 ArrayBlockingQueue (java.util.concurrent)
 DelayedWorkQueue in ScheduledThreadPoolExecutor (java.util.concurrent)
 SynchronousQueue (java.util.concurrent)
@@ -232,11 +238,6 @@ TransferQueue (java.util.concurrent)
 LinkedBlockingQueue (java.util.concurrent)
 PriorityBlockingQueue (java.util.concurrent)
 
-
-
-
-
-
 ### chapter5 Fork/Join框架
 
 ```java
@@ -245,12 +246,12 @@ PriorityBlockingQueue (java.util.concurrent)
 
 ForkJoinPool.invoke()
 
-#### fjt ForkJoinPool
+#### fjp ForkJoinPool
 #### RecursiveTask  rt
 
-#### ForkJoinTask 
+#### ForkJoinTask fjt
 
-#### RecursiveAction
+#### RecursiveAction ra
 
 java.util.concurrent.ForkJoinTask abstract
 
@@ -261,7 +262,6 @@ java.util.concurrent.ForkJoinPool AbstractExecutorService子类
 
 
 `ForkJoinTask`提供了两种任务类型：`RecursiveAction`和`RecursiveTask`。其中，`RecursiveAction`用于没有返回值的任务，`RecursiveTask`用于有返回值的任务。这两种任务类型都继承自`ForkJoinTask`。
-
 `ForkJoinTask`框架的核心思想是“工作窃取”（Work Stealing）。具体来说，当一个线程完成了自己的任务后，如果它还有空闲时间，就会去“窃取”其他线程队列中的任务来执行，从而使得任务的执行更加高效。
 
 

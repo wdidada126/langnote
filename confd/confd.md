@@ -4,15 +4,7 @@
 
 Manage local application configuration files using templates and data from etcd or consul
 
-
-
-
 配置管理器
-
-
-
-
-
 
 `confd` is a lightweight configuration management tool focused on:
 
@@ -20,11 +12,8 @@ Manage local application configuration files using templates and data from etcd 
 
 - reloading applications to pick up new config file changes
 
-  
-
 [Etcd+Confd实现Nginx配置文件自动管理](https://blog.51cto.com/lizhenliang/1910150)
 
 用自动配置取代人工配置是一个趋势
 
 [Etcd+Confd实现Nginx配置文件自动管理](https://blog.51cto.com/lizhenliang/1910150)
-

@@ -1,13 +1,9 @@
 # 狂神说JUC
 
 
-
 Object wait
 
 Lock
-
-
-
 await()
 
 
@@ -36,13 +32,10 @@ wait 会释放锁，sleep 睡觉了，抱着锁睡觉，不会释放！
 3、使用的范围是不同的
 wait
 synchronized
-sleep 可以再任何地方睡
+sleep 可以再任何地方
 4、是否需要捕获异常
 wait 不需要捕获异常
 sleep 必须要捕获异常
-
-
-
 
 
 Lock锁
@@ -50,13 +43,7 @@ Lock锁
 传统 Synchronized
 
 
-
-
-
-
-
 ReentrantLock
-
 构造函数有一个参数boolean，引出公平锁和非公平锁
 
 
@@ -74,15 +61,10 @@ Synchronized 和 Lock 区别
 
 
 ##### 9.ReadWriteLock
-
 ReentrantReadWriteLock
-
 ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-
 readWriteLock.ReadLock()
-
 readWriteLock.WriteLock()
-
 
 
 
