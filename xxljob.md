@@ -1,5 +1,15 @@
 # xxl-job
 
+XXL-Job和Elastic-Job都是任务调度平台，都能做分片集群。以下是它们之间的一些区别： 
+- 背景：XXL-Job是徐雪里团队研发旗下还有其他相关的开源软件，Elastic-Job是当当网开发依赖于zookeeper。
+- 中心化思想：XXL-Job是中心化的，Elastic-Job是去中心化的。
+- 失败处理策略：XXL-Job支持失败重试，最多重试三次；Elastic-Job支持失败重试，最多重试十次。
+
+erp-fi是公司开发的业务代码，是集群部署的。Elastic-Job是一个无中心化的分布式定时调度框架，支持动态增加定时任务、动态修改定时任务。  
+在Elastic-Job中，可以通过配置sharding策略来实现定时任务的分片执行。在sharding策略中，可以指定每个sharding节点执行的作业名称和Cron表达式。因此，Elastic-Job的定时任务是集群中某一个节点执行的。
+
+正确。Elastic-Job-Lite是集群环境下应用的任务调度解决方案。在集群部署的时候，一个定时任务会有多个进程执行，如果不进行任何处理，会导致任务触发的时候每个进程重复执行一次。解决办法有两种：一种是加锁，保证同时只有一个进程执行任务，比如用分布式锁；另一种方式是分片，将任务分片到参与的多个进程中，每次执行多个进程一起分摊。ElasticJob-Lite实现的是后者。因此，这个说法是正确的。
+
 https://www.xuxueli.com/xxl-job/
 
 分布式任务调度平台XXL-JOB.mhtml
