@@ -1,5 +1,7 @@
 # c++
 
+在C++中，RVO是“返回值优化”（Return Value Optimization）的缩写。它是一种编译器优化技术，可以在不使用临时变量的情况下将对象的复制或移动从函数调用中返回。这样可以减少不必要的内存分配和释放，从而提高程序的性能。
+
 https://github.com/lkimuk/the-book-of-modern-cpp
 
 C++八股文.zip
