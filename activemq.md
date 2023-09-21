@@ -31,14 +31,11 @@ cd E:\apache-activemq-5.12.2\bin\win64
 
 登录用户名密码可在 `conf/jetty-realm.properties` 文件中修改
 
-
-
 Tasks provided by the sysv init script:
     kill            - terminate instance in a drastic way by sending SIGKILL
     restart         - stop running instance (if there is one), start new instance
     console         - start broker in foreground, useful for debugging purposes
     status          - check if activemq process is running
-
 
 编程语言java
 https://github.com/apache/activemq
@@ -52,7 +49,6 @@ activemq-cpp
 
 
 2019年 ActiveMQ-CPP v3.9.5 Released
-
 
 git clone https://gitbox.apache.org/repos/asf/activemq-cpp.git
 cd activemq-cpp
