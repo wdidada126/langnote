@@ -10,13 +10,12 @@ release-3.3.1   2021
 
 ## 源代码托管地址
 https://github.com/apache/hadoop
-For the latest information about Hadoop, please visit our website at:
 
-   http://hadoop.apache.org/
+For the latest information about Hadoop, please visit our website at:
+http://hadoop.apache.org/
 
 and our wiki, at:
-
-   https://cwiki.apache.org/confluence/display/HADOOP/
+https://cwiki.apache.org/confluence/display/HADOOP/
 
 ### 集群部署
 基于Docker快速搭建多节点Hadoop集群
@@ -43,6 +42,7 @@ hadoop 官网支支持linux
 yarn
 hdfs配置
 
-
 ## MapReduce算法
 是的，Hadoop实现了MapReduce算法。MapReduce是一种计算模型，被广泛使用的开源大数据技术Hadoop实现了这种模型。在Hadoop的MapReduce实现中，输入和输出都是以key-value键值对的形式体现的。 MapReduce将复杂的、运行于大规模集群上的并行计算过程高度地抽象到了两个函数——Map和Reduce上，并且允许用户在不了解分布式系统底层细节地情况下开发并行应用程序，并将其运行于廉价计算机集群上，完成海量数据地处理。
+
+## 官方example
