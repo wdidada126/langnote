@@ -14,8 +14,4 @@ https://avro.apache.org/docs/1.7.7/
 
 [Avro从入门到入土](https://www.cnblogs.com/wqbin/p/11228188.html)
 
-
-
-
-
 Avro是Hadoop的一个数据序列化系统，由Hadoop的创始人Doug Cutting（也是Lucene，Nutch等项目的创始人）开发，设计用于支持大批量数据交换的应用。
