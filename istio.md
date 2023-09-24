@@ -1,5 +1,12 @@
 # istio
 
+## 源代码
+Istio是一个开源的服务网格平台，它的源代码托管在GitHub上，地址为
+https://github.com/istio/istio
+
+makefile组织的
+Go语言的
+
 Istio因其性能表现疲软
 
 Istio 的设计目标
@@ -43,13 +50,7 @@ Sidecar模式
 
 https://www.jianshu.com/p/330b00dc40d7
 
-
-
-
-
 Init 容器：Pod 中的一种专用的容器，在应用程序容器启动之前运行，用来包含一些应用镜像中不存在的实用工具或安装脚本。
-
-
 
 iptables：流量劫持是通过 iptables 转发实现的。
 其他私有协议：在过去几个月间，我们收到需求，期望在 SOFAMesh 上运行其他 TCP 协议，大部分是私有协议
