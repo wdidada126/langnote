@@ -1,26 +1,25 @@
+# mi_cloud_2023
 
 斐讯k2p为什么有人说是神机？
 https://www.530311.com/know/show-1411117.html
 
 https://www.qt.io/offline-installers
 
-一本都不用，就看 CppCoreGuidelines
+一本都不用，就看CppCoreGuidelines
 
-
-
-linux 下makefile项目，qt creator支持吗？ qmake.pro
+linux下makefile项目，qt creator支持吗？qmake.pro
 https://www.it1352.com/1591751.html
 
 
 
 看书要带着面试题去问
 
-深入理解java虚拟机 看了跟没看一样
+深入理解java虚拟机看了跟没看一样
 
 
 netbeans
-8 支持makefile  sun公司搞得，捐给开源组织了apache
-微软 windows   VS
+8 支持makefilesun公司搞得，捐给开源组织了apache
+微软windows  VS
 苹果 mac ios XCode
 sun 类unix NetBeans
 
@@ -32,12 +31,7 @@ netbeans windows mingw make
 maven dell电脑搭建mvn server，实验 docker 
 上传jar
 
-
-
-
 https://www.likecs.com/show-203436390.html
-
-
 
 poco源码阅读
 isbn：9783639973624
@@ -48,11 +42,7 @@ https://book.douban.com/subject/20491097/
 
 建信金科，信达新核心项目，工作场合问同事c++问题，其他同事听到了告密说我工作不饱和
 
-
-
-
 .yml文件格式，注意空格符，占位符，输入内容不符合规范会报错的，肉眼不一定看得出来，多一个少一个空白符
-
 
 有什么编程的好习惯建议吗？
 https://www.zhihu.com/answer/2765882633
@@ -60,20 +50,15 @@ https://www.zhihu.com/answer/2765882633
 
 Martin Pol / Martin Fowler / Robert C Martin。做技术的艺名叫Martin感觉不错。
 
-
-
-
 https://github.com/edidada/mysql-5.6.26/blob/master/.github/workflows/cmake.yml
 报错了
 
 云计算、SaaS/IaaS架构取代传统硬件，对IT运维这个职业的打击是毁灭性的。外企收缩国内业务也有一定影响，应该不是主要因素。我十五年前在美资公司时就意识到这个职业的局限性，开始把时间和精力转向证券投资，回头看还是明智的。
 https://www.zheguisoft.com/staff_blogs/jacklondon_chen/2018/non_software_com_create_own_software_department_not_work_reason
 
-
 Docker hub上的映像 只支持ubuntu windows mac好像 centos-7不支持
 
-
-大兄弟逛 github 还是太少了啊，现在云原生好多知名项目都是用的 bazel. kubernetes, istio, envoy 等好多
+大兄弟逛github还是太少了啊，现在云原生好多知名项目都是用的bazel. kubernetes, istio, envoy等好多
 
 nginx学习构建工具
 
