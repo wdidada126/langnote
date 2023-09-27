@@ -1,7 +1,18 @@
 # Java7并发编程实战手册
 
-新版本 Java9并发编程实战手册
+作者: [西]Javier Fernández González
+出版社: 人民邮电出版社
+出品方: 异步图书
+原作名: Java 7 Concurrency Cookbook
+译者: 申绍勇/俞黎敏
+出版年: 2014-2
+页数: 339
+定价: 59.00元
+装帧: 平装
+ISBN: 9787115335296
 
+新版本 Java9并发编程实战手册
+https://book.douban.com/subject/34790228/
 
 [Java7并发编程实战手册](https://book.douban.com/subject/25844475/)
 Java 7并发编程实战手册.pdf
@@ -11,7 +22,6 @@ D:\git\github\testjdk8\docs\7881_code
 ### chapter1 线程管理
 - java.lang.Runnable
 - java.lang.Thread
-
 
 java.lang.Thread.State
 
