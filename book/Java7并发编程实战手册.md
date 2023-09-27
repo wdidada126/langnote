@@ -1,7 +1,7 @@
 # Java7并发编程实战手册
 
 新版本 Java9并发编程实战手册
-精通java并发编程 第二版
+
 
 [Java7并发编程实战手册](https://book.douban.com/subject/25844475/)
 Java 7并发编程实战手册.pdf
