@@ -5,6 +5,7 @@
 https://book.douban.com/subject/35169072/
 
 有pdf版本
+RocketMQ分布式消息中间件：核心原理与最佳实践@www.cmsblogs.cn.pdf
 
 https://book.douban.com/subject/35169072/
 
@@ -17,11 +18,7 @@ https://book.douban.com/subject/35169072/
 Apache RocketMQ北京社区联合发起人，RocketMQ项目Commiter，RocketMQ社区Python客户端项目负责人。目前就职于北京某在线教育公司，担任数据中间件架构师，负责公司内部消息和数据流平台，对分布式存储系统设计和研发有丰富经验，热衷于知识分享和社区活动。
 座右铭：Programming is not only a way to problems,but also to think！
 
-
-
 ## 目录
-
-
 
 第1章 RoketMQ综述 1
 1.1 什么是消息队列 2
@@ -138,10 +135,6 @@ Apache RocketMQ北京社区联合发起人，RocketMQ项目Commiter，RocketMQ�
 9.6.2 Python接入RocketMQ 249
 附录 252
 
-
-
-
-
 ## 笔记
 
 ### 第1章 RoketMQ综述
@@ -200,18 +193,18 @@ Apache RocketMQ北京社区联合发起人，RocketMQ项目Commiter，RocketMQ�
 
 异步刷盘
 
-
-
-
-
 ### 第5章 Namesrv
+brocker
+namesrv
 
 Namesrv架构
 
 rocketmq路由原理
 
+路由注册
+路由剔除
 
-
+namesrv有两种剔除brocker的方式
 
 
 
