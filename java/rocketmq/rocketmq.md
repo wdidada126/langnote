@@ -111,6 +111,37 @@ https://hub.docker.com/r/apache/rocketmq-operator
 
 docker pull apache/rocketmq:4.9.7
 
+
+可以通过以下步骤使用Docker启动RocketMQ：
+
+下载RocketMQ镜像：
+
+```bash
+docker pull apache/rocketmq:4.7.1
+```
+这里以4.7.1版本为例，根据需要选择合适的版本。
+
+下载RocketMQ控制台：
+```bash
+docker pull styletang/rocketmq-console-ng
+```
+该步骤可选，根据需要决定是否下载控制台。
+
+启动RocketMQ服务：
+首先，可以设置网络模式为host模式，使得容器内和宿主机在同一个网络中，以实现服务的正确注册和发现。命令如下：
+```bash
+docker run -d --net=host apache/rocketmq:4.7.1 namesrv
+```
+其中，namesrv是RocketMQ的NameServer模块，负责服务的寻址和注册。如果该模块不能在节点中被正确定位，整个RocketMQ的node都将无法正常工作。使用--net=host参数可以让容器内的网络与宿主机的网络环境相同，以保证服务的正确访问和使用。在容器内部执行的命令将与宿主机网络的实际情况相对应。
+5. 如果需要启动broker服务，请使用以下命令：
+
+```bash
+docker run -d --net=host apache/rocketmq:4.7.1 broker
+```
+其中，broker是RocketMQ的broker模块，负责接收和处理来自外部应用程序的请求和响应。
+
+以上步骤启动了RocketMQ的NameServer和broker模块，使用Docker容器运行RocketMQ服务。注意，在实际操作时，请根据实际情况和需要选择合适的版本和参数。
+
 ## 官方doc
 
 https://rocketmq.apache.org/zh/docs/4.x/
