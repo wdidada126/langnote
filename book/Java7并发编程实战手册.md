@@ -15,7 +15,7 @@ ISBN: 9787115335296
 https://book.douban.com/subject/34790228/
 
 [Java7并发编程实战手册](https://book.douban.com/subject/25844475/)
-Java 7并发编程实战手册.pdf
+Java7并发编程实战手册.pdf
 随书源码
 D:\git\github\testjdk8\docs\7881_code
 
