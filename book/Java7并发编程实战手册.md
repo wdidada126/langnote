@@ -106,7 +106,7 @@ Condition condition = lock.newCondition();
 Semaphore 大多数语言都提供
 CountDownLatch java提供
 一个线程等待另一个线程执行完
-CyclicBarries java提供
+CyclicBarrier java提供
 Phaser java提供   java.util.concurrent.Phaser 1.7
 
 Exchanger java提供   Exchanger<V>
@@ -145,8 +145,8 @@ Semaphore(int permits)
 ![Semaphore](..\imgs\javase\Semaphore.png)
 
 
-CyclicBarrier是Java中的一个类，它用于实现固定大小的线程等待，直到所有线程都达到某个屏障点后，才会继续执行。以下是CyclicBarrier类的API：
-
+CyclicBarrier是Java中的一个类，它用于实现固定大小的线程等待，直到所有线程都达到某个屏障点后，才会继续执行。
+以下是CyclicBarrier类的API：
 CyclicBarrier(int parties)：构造函数，指定屏障处的线程数parties。
 CyclicBarrier(int parties, Runnable barrierAction)：构造函数，指定屏障处的线程数parties，barrierAction是屏障跳闸时执行的动作，由最后一个进入屏障的线程启动。
 int await()：方法，parties个线程执行await()方法后，程序继续向下执行。
@@ -199,17 +199,13 @@ https://cloud.tencent.com/developer/article/1908152
 
 ES
 
-
 ScheduledExecutorService 接口
 ScheduledThreadPoolExecutor类
 
 Executor接口
 void execute(Runnable command)
 
-
-
 ![ScheduledExecutorService](..\imgs\javase\ScheduledExecutorService.png)
-
 
 拒绝策略
 acdd 四个
@@ -223,14 +219,13 @@ acdd 四个
 
 public static class AbortPolicy implements RejectedExecutionHandler
 
-```java
 RejectedExecutionHandler接口
+
+```java
 java.util.concurrent.RejectedExecutionHandler
 
     void rejectedExecution(Runnable r, ThreadPoolExecutor executor);
 ```
-
-
 
 java.util.concurrent.BlockingQueue接口实现类
 
@@ -266,23 +261,16 @@ java.util.concurrent.RecursiveTask abstract
 
 java.util.concurrent.ForkJoinPool AbstractExecutorService子类
 
-
-
 `ForkJoinTask`提供了两种任务类型：`RecursiveAction`和`RecursiveTask`。其中，`RecursiveAction`用于没有返回值的任务，`RecursiveTask`用于有返回值的任务。这两种任务类型都继承自`ForkJoinTask`。
 `ForkJoinTask`框架的核心思想是“工作窃取”（Work Stealing）。具体来说，当一个线程完成了自己的任务后，如果它还有空闲时间，就会去“窃取”其他线程队列中的任务来执行，从而使得任务的执行更加高效。
 
-
 https://blog.csdn.net/tyrroo/article/details/81390202
-
-
 
 fork join
 
 mapreduce
 
 并行计算
-
-
 
 ForkJoinPool构造函数 四个函数
 
@@ -296,8 +284,6 @@ public ForkJoinPool(int parallelism,
 - handler：异常捕获处理器。当执行的任务中出现异常，并从任务中被抛出时，就会被handler捕获。
 - asyncMode：这个参数也非常重要，从字面意思来看是指的异步模式，它并不是说Fork/Join框架是采用同步模式还是采用异步模式工作。Fork/Join框架中为每一个独立工作的线程准备了对应的待执行任务队列，这个任务队列是使用数组进行组合的双向队列。即是说存在于队列中的待执行任务，即可以使用先进先出的工作模式，也可以使用后进先出的工作模式。
 
-
-
 ```
 // 这是Fork/Join框架的线程池
 ForkJoinPool pool = new ForkJoinPool();
@@ -308,12 +294,6 @@ try {
 } 
 ```
 
-
-
-
-
-
-
 ### chapter6 并发集合 
 
 原子变量
@@ -321,8 +301,6 @@ try {
 原子数组
 
 cas compare and swap是算法，对应cpu指令 go rust c++都有
-
-
 
 java.util.concurrent.atomic.AtomicBoolean
 
@@ -357,8 +335,6 @@ java.util.concurrent.atomic.LongAdder java1.8
 
 java.util.concurrent.atomic.Striped64
 
-
-
 17个类
 
 
@@ -391,14 +367,10 @@ public abstract class AbstractQueuedSynchronizer
 shard
 excusive
 
-
-
-aqls
+aqls AbstractQueuedLongSynchronizer
 
 public abstract class AbstractQueuedLongSynchronizer
     extends AbstractOwnableSynchronizer
-
-
 
 
 ### chapter8 测试并发应用程序
@@ -409,7 +381,31 @@ MultithreadedTC 2007最新更新的
 
 https://code.google.com/archive/p/multithreadedtc/downloads
 
+FindBugs是一个静态分析工具，用于检测Java代码中的潜在错误和问题。它可以帮助测试并发应用程序，并发现可能导致错误或性能问题的潜在问题。
+以下是一个使用FindBugs测试并发应用程序的例子：
+假设你有一个简单的并发应用程序，其中包含一个线程类和一个主类。线程类负责执行一些任务，主类负责启动线程并等待任务完成。代码如下：
 
-
-
+```java
+public class MyThread extends Thread {  
+    public void run() {  
+        // 执行任务的代码  
+    }  
+}  
+  
+public class Main {  
+    public static void main(String[] args) {  
+        MyThread thread = new MyThread();  
+        thread.start();  
+        // 等待线程完成任务的代码  
+    }  
+}
+```
+你可以使用FindBugs来分析这个应用程序的代码。首先，将代码编译成.class文件或.jar文件。然后，运行FindBugs并指定要分析的代码路径：
+```bash
+findbugs -textui -low -longBugCodes -exclude . -output /path/to/output /path/to/compiled/code
+```
+这将生成一个包含潜在问题的报告。在这个例子中，FindBugs可能会报告以下问题：
+在MyThread类的run方法中，没有同步任何代码块，这可能导致线程安全问题。
+在Main类的main方法中，启动线程后没有正确等待线程完成任务，这可能导致死锁问题。
+你可以根据FindBugs的报告修复这些问题，并重新运行分析，直到没有潜在问题为止。
 
