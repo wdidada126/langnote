@@ -25,7 +25,6 @@ D:\git\github\testjdk8\docs\7881_code
 
 java.lang.Thread.State
 
-
 java.lang.Thread#setPriority
 
 java.lang.ThreadGroup
@@ -39,8 +38,6 @@ java.util.concurrent.TimeUnit#sleep
 
 join() 等待线程终止
 ThreadFactory接口
-
-
 
 1.2线程的创建
 
