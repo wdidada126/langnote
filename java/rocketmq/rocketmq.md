@@ -102,6 +102,15 @@ Bug
 [ISSUE-4507] - [ISSUE-4507] - fix message trace throws exception #4507
 [ISSUE-4501] - [ISSUE-4501] - fix Namesrv auto discovery not work
 
+## docker
+
+https://hub.docker.com/r/apache/rocketmq
+https://hub.docker.com/r/apache/rocketmq-ci
+https://hub.docker.com/r/apache/rocketmq-operator
+
+
+docker pull apache/rocketmq:4.9.7
+
 ## 官方doc
 
 https://rocketmq.apache.org/zh/docs/4.x/
