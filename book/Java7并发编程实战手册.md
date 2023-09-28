@@ -144,7 +144,6 @@ Semaphore(int permits)
 
 ![Semaphore](..\imgs\javase\Semaphore.png)
 
-
 CyclicBarrier是Java中的一个类，它用于实现固定大小的线程等待，直到所有线程都达到某个屏障点后，才会继续执行。
 以下是CyclicBarrier类的API：
 CyclicBarrier(int parties)：构造函数，指定屏障处的线程数parties。
