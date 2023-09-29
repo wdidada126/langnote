@@ -1,5 +1,17 @@
 # bitbucket
 
+
+bitbucket用其他算法的ssh 秘钥，不用rsa的
+https://bitbucket.org/blog/ssh-host-key-changes
+
+```shell
+ssh-keygen -R bitbucket.org
+
+ssh git@bitbucket.org host_key_info
+
+git clone git@bitbucket.org:sandisks/langnote.git
+```
+
 token对http/https开启
 
 `whoami`
