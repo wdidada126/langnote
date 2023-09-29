@@ -1,13 +1,11 @@
 # HotSpot实战
-
-
+出版年: 2014-3
+ISBN: 9787115343635
 
 https://book.douban.com/subject/25847620/
 
-
+HotSpot 实战 (陈涛) (Z-Library).pdf
 
 陈涛，硕士，毕业于中国科技大学。现就职于网易公司旗下的网易宝，从事在线支付系统的设计与开发工作。在从事Java工作之前 ，曾有过Linux内核及驱动开发工作经验。热衷于专研技术，对编程语言和JVM比较感兴趣。
-
-
 
 hotspot源码在openjdk中，openjsk包括jstat，jstack

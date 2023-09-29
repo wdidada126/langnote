@@ -20,13 +20,10 @@ https://gitee.com/edidada/hibernate_in_action2
 [Hibernate Tools](https://hibernate.org/tools "Hibernate Tools")
 
 
-
-
 9787302448082
 
 链接：https://pan.baidu.com/s/1m9UlIH_OCpBnX2u516fD7A?pwd=9sta 
 提取码：9sta 
---来自百度网盘超级会员V6的分享
 
 ## 第Ⅰ部分 ORM入门  
 
@@ -35,8 +32,6 @@ ORM和JPA
 
 ### 第2章 开启一个项目
 原生Hibernate配置
-
-
 
 ```
 import org.hibernate.Session;
@@ -81,7 +76,7 @@ org.hibernate.Session#persist(java.lang.Object)
 
 ### 第13章 数据过滤
 
-第IV部分 编写查询  
+## 第IV部分 编写查询  
 
 ### 第14章 创建和执行查询
 
