@@ -1,5 +1,5 @@
 # jmap
-
+jmap -permstat pid
 
 jprofile 都有展示
 arthas
