@@ -187,7 +187,7 @@ Spring框架提供了强大的事务处理支持，包括声明式事务管理�
    - 在编程式事务管理中，需要手动管理事务的开始、提交、回滚等操作。
    - 编程式事务管理对业务逻辑代码的侵入性较高，需要显式地在代码中编写事务相关的操作。
    - 编程式事务管理适用于需要更细粒度的事务控制或需要动态控制事务的场景。
-无论是声明式事务管理还是编程式事务管理，Spring框架都提供了对多种事务管理器的支持，包括JDBC事务、JTA事务、Hibernate事务等。可以根据具体的需求选择合适的事务管理器。
+   无论是声明式事务管理还是编程式事务管理，Spring框架都提供了对多种事务管理器的支持，包括JDBC事务、JTA事务、Hibernate事务等。可以根据具体的需求选择合适的事务管理器。
 
 Spring的事务处理技术使得开发者能够轻松地管理和控制事务，提供了灵活且可扩展的事务管理方式。同时，Spring还支持与其他框架和技术的集成，如Spring Boot、Spring Data等，使得事务处理更加便捷和高效。
 ```java
@@ -3302,7 +3302,6 @@ DefaultResourceLoader (org.springframework.core.io)
             AbstractRefreshableConfigApplicationContext (org.springframework.context.support)
                 AbstractXmlApplicationContext (org.springframework.context.support)
                     ClassPathXmlApplicationContext (org.springframework.context.support)
-
 ```
 
 

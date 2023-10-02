@@ -2,8 +2,6 @@
 
 [building-spark](https://spark.apache.org/docs/latest/building-spark.html)
 
-
-
 flink
 
 取代hadoop
