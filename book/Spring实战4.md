@@ -10,6 +10,13 @@ Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持�
 
 https://book.douban.com/subject/26767354/
 
+spring 官方对接三方库
+其他团队提供的对接库
+redis
+neo4j
+quartz
+elasticjob
+
 ## 第1部分　Spring的核心
 ### Chap.1 第1章　Spring之旅
 

@@ -1,10 +1,6 @@
 # webflux
 
-
-
 这俩不是一个层面的东西，你可以用WebFlux代替Servlet和SpringBoot结合使用
 
-
-
-
+是的，WebFlux框架是用来编写Web应用的。它是Spring5新添加的模块，功能和SpringMVC类似，主要用于Web开发。它使用响应式编程的方式实现异步非阻塞的框架，基于Reactor的相关API实现，可以更好地在有限资源下提高系统吞吐量和伸缩性。此外，由于Spring5基于Java8，WebFlux也可以使用Java8的函数式编程方式实现路由请求。相比SpringMVC的命令式编程，WebFlux更加灵活。
 
