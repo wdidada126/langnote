@@ -3,6 +3,12 @@
 ## spring 版本
 spring 5 异步支持 webflux
 
+Spring新功能
+3.0
+profile 多环境参数
+
+
+
 查看java参数
 
 ```shell
@@ -261,9 +267,7 @@ TransactionDefinition
 
 TransactionStatus
 
-Spring新功能
-3.0
-profile 多环境参数
+
 
 手写 Spring MVC
 https://github.com/xpwi/spring-custom
@@ -284,7 +288,7 @@ RedisTemplate spring-date-redis org.springframework.data.redis.core.RedisTemplat
 http server restful
 访问neo4j redis mongodb jdbc对应的mysql oracle 
 
-自定义bean，继承某些接口，bean生命周期
+自定义bean，继承某些接口 InitBean ApplicationAware Des BeanPostProcessor，bean生命周期
 
 网页安全 spring security
 单机定时任务 quartz
@@ -297,7 +301,7 @@ http server restful
 servlet实现 tomcat
 
 自定义http server端口，tomcat里面设置
-其他配置项如何从文件读取？
+## 其他配置项如何从文件读取？
 简单的
 java.util.Properties
 
@@ -458,9 +462,10 @@ spring bean创建 三级缓存
 DefaultSingletonBeanRegistry这个类
 sdbr
 
-`internalConfigurationAnnotationProcessor` 是一个 Gradle 插件，它是由 Spring Boot Gradle 插件自动应用的一个注解处理器。
+`internalConfigurationAnnotationProcessor`是一个 Gradle 插件，它是由 Spring Boot Gradle 插件自动应用的一个注解处理器。
 该注解处理器的作用是处理 Spring Boot 应用程序中的 `@ConfigurationProperties` 注解。在 Spring Boot 应用程序中，`@ConfigurationProperties` 注解通常用于将配置文件中的属性绑定到 Java 对象中，以便于在应用程序中使用。该注解处理器会扫描应用程序中的所有 `@ConfigurationProperties` 注解，并为它们生成相应的 Java Bean 类，以便于将配置文件中的属性值注入到这些 Bean 对象中。
 具体来说，`internalConfigurationAnnotationProcessor` 的作用可以总结如下：
+
 - 扫描应用程序中的 `@ConfigurationProperties` 注解
 - 为这些注解生成相应的 Java Bean 类
 - 将配置文件中的属性值注入到生成的 Bean 对象中
@@ -478,6 +483,7 @@ public ExecutorService initializeExecutor()
 `org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor` 是 Spring 框架中的一个线程池实现，用于执行异步任务。它继承了 `java.util.concurrent.ThreadPoolExecutor` 类，并且实现了 Spring 的 `TaskExecutor` 接口。
 使用 `ThreadPoolTaskExecutor`，你可以配置线程池的大小、队列容量、线程前缀等属性，以及在任务执行前、执行后、执行过程中发生异常时的回调方法。通过在应用程序中使用 `ThreadPoolTaskExecutor`，可以将耗时的操作转移到后台线程中，以避免阻塞主线程，从而提高应用程序的性能和响应速度。
 具体来说，`ThreadPoolTaskExecutor` 的作用可以总结如下：
+
 - 管理线程池的创建和销毁
 - 处理异步任务，将其提交到线程池中执行
 - 配置线程池的属性，例如线程池大小、队列容量等
@@ -849,11 +855,15 @@ public class MyBean {
 
 ## 自己写spring
 
-github.com/edidada/minis
+https://github.com/edidada/minis
+
+
+
+廖雪峰 自己写spring
 
 https://gitee.com/edidada/summer-framework
 
-廖雪峰 自己写spring
+
 https://www.liaoxuefeng.com/wiki/1539348902182944
 
 ![bean生命周期](../../imgs/spring/bean生命周期.png)
@@ -1613,6 +1623,16 @@ public interface BeanNameAware {
 
 
 
+https://docs.spring.io/spring-framework/docs/5.1.6.RELEASE/spring-framework-reference/index.html
+
+https://blog.csdn.net/yun6713/article/details/103291575/
+
+
+
+《Spring官方文档》_笔记_spring 官方文档-CSDN博客.mhtml
+
+
+
 ## Features
 
 - [Core technologies](https://docs.spring.io/spring-framework/reference/core.html): dependency injection, events, resources, i18n, validation, data binding, type conversion, SpEL, AOP.
@@ -1625,6 +1645,38 @@ public interface BeanNameAware {
 
 
 https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html
+
+## 1. The IoC Container
+
+
+
+###  1.1. Introduction to the Spring IoC Container and Beans
+
+### 1.2. Container Overview
+
+
+
+### 1.3. Bean Overview
+
+###  1.4. Dependencies
+
+
+
+###  1.5. Bean Scopes
+
+
+
+###  1.6. Customizing the Nature of a Bean
+
+
+
+### 1.7. Bean Definition Inheritance
+
+
+
+### 1.8. Container Extension Points
+
+
 
 AutowiredAnnotationBeanPostProcessor
 Customizing Configuration Metadata with a BeanFactoryPostProcessor
@@ -1684,7 +1736,12 @@ public class CustomFactoryBean implements FactoryBean<CustomObject> {
 这样，通过使用`FactoryBean`接口和自定义工厂类，我们可以在实例化Bean对象时添加额外的逻辑操作，以满足特定的需求。
 
 
-1.8.2
+
+####  1.8.1. Customizing Beans by Using a `BeanPostProcessor`
+
+
+
+1.8.2 Customizing Configuration Metadata with a `BeanFactoryPostProcessor`
 
 ```xml
 <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
@@ -1703,6 +1760,11 @@ public class CustomFactoryBean implements FactoryBean<CustomObject> {
 <context:property-placeholder location="classpath:com/something/jdbc.properties"/>
 
 ## 1.9. Annotation-based Container Configuration
+
+https://docs.spring.io/spring-framework/docs/5.1.6.RELEASE/spring-framework-reference/core.html#beans-annotation-config
+
+
+
 AutowiredAnnotationBeanPostProcessor
 
 spring beans定义的xml
@@ -1816,16 +1878,19 @@ org.springframework.context.annotation.ComponentScanBeanDefinitionParser#registe
 
 请注意，`<context:annotation-config/>` 是 Spring Framework 中的一个核心配置元素，用于启用注解驱动的功能。它类似于 `<context:component-scan/>`，后者用于启用组件扫描并自动注册带有特定注解的类。通过这些配置元素，您可以更方便地使用基于注解的 Spring 特性。
 
-## 1.9.7
+## 1.9.7 Injection with `@Resource`
 @Resource
-    <bean class="example.SimpleMovieCatalog">
-        <qualifier value="main"/> 
 
-        <!-- inject any dependencies required by this bean -->
-    </bean>
+
+```xml
+<bean class="example.SimpleMovieCatalog">
+    <qualifier value="main"/> 
+	<!-- inject any dependencies required by this bean -->
+</bean>
+```
 SimpleJndiBeanFactory
 
-## 1.9.8
+## 1.9.8 Using `@PostConstruct` and `@PreDestroy`
 
 PropertySourcesPlaceholderConfigurer
 
@@ -2017,6 +2082,12 @@ public class AppConfig {
 ```
 
 
+
+### 1.12. Java-based Container Configuration
+
+
+
+#### 1.12.1. Basic Concepts: `@Bean` and `@Configuration`
 
 
 
@@ -2721,7 +2792,7 @@ systemId: http://www.springframework.or...
 
 
 ### 自己实现的一个简易Spring框架(IoC+AOP)
-github.com/edidada/festival
+https://github.com/edidada/festival
 
 原仓库2020年更新
  对应的博客https://juejin.cn/post/6844903492667064334
