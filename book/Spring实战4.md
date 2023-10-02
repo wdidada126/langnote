@@ -76,7 +76,7 @@ field
 
 @Autowired注解可以用在类的成员变量上，Spring会自动将匹配的Bean注入到该成员变量中。例如：
 
-```
+```java
 @Component
 public class MyService {
     // 自动注入 MyRepository Bean
@@ -88,7 +88,7 @@ public class MyService {
 
 2. 构造方法上
 @Autowired注解也可以用在构造方法上，Spring会在创建Bean实例时，自动将匹配的Bean注入到构造方法参数中。例如：
-```
+```java
 @Component
 public class MyService {
     private MyRepository myRepository;
@@ -104,7 +104,7 @@ public class MyService {
 
 3. Setter方法上
 @Autowired注解也可以用在Setter方法上，Spring会在创建Bean实例后，自动调用Setter方法，并将匹配的Bean注入到Setter方法参数中。例如：
-```
+```java
 @Component
 public class MyService {
     private MyRepository myRepository;
@@ -122,7 +122,7 @@ public class MyService {
 
 另外，还可以使用@Qualifier注解来指定要注入的Bean的名称，例如：
 
-```
+```java
 @Component
 public class MyService {
     // 指定注入名称为 "myRepository2"
