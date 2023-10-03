@@ -1,5 +1,9 @@
 # C#
 
+dotnet-csharp.pdf
+
+https://learn.microsoft.com/zh-cn/dotnet/csharp/
+
 C# 8推出
 
 C# 11 包括对泛型数学、原始字符串字面量、文件范围类型和其他新功能的支持
