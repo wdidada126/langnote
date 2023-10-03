@@ -1,9 +1,7 @@
-# codespace
+# codespaces
 
 vsc
 
 ubuntu
 
 gcc 9
-
-

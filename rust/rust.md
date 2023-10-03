@@ -27,11 +27,7 @@ rust写os
 
 https://learningos.github.io/rcore_step_by_step_webdoc/
 
-
-
-
 rustup update
-
 
 实验楼rust教程
 
@@ -67,15 +63,12 @@ vcpkg
 
 环境变量设置OPENSSL_DIR=D:\vcpkg\installed\x64-windows-static
 
-
 ide智能提示
 rust-analyzer
-
 
 Rust开发操作系统
 不链接libc
 面向的平台不是已知的
-
 
 Rust没有class，用fleid引用父类对象来实现？
 
@@ -106,8 +99,6 @@ Process finished with exit code 101
   标准库
   三方库
 
-
-
 从LLVM bitcode生成Rust可执行文件
 
 ```shell
@@ -125,7 +116,6 @@ rustc --version --verbose
 rls --version
 rls 1.34.0 (0d6f53e 2019-02-14)
 ```
-
 
 跨文件调用
 
@@ -146,13 +136,7 @@ Compiling autocfg v0.1.7
 error[E0658]: use of unstable library feature 'alloc': this library is unlikely to be stabilized in its current form or name (see issue #27783)
   --> C:\Users\edidada\.cargo\registry\src\mirrors.ustc.edu.cn-61ef6e0cd06fb9b8\smallvec-1.0.0\lib.rs:38:1
 
-
-
-
-
 [awesome-rust]( https://github.com/rust-unofficial/awesome-rust)
-
-
 
 http-client     hyper
 
