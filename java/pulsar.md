@@ -105,5 +105,5 @@ Pulsar C++ Client
 ## 书籍 book
 
 Mastering Apache Pulsar Cloud Native Event Streaming at Scale 
-Apache Pulsar in Action (Final Release) (David... (Z-Library).pdf
+Apache Pulsar in Action (David... (Z-Library).pdf
 
