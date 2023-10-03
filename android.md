@@ -1,5 +1,10 @@
 # 编译系统源码
 
+https://www.androiddevtools.cn/ 错误，没更新
+
+https://developer.android.google.cn/studio/releases/platform-tools?hl=zh-cn
+
+
 安卓framework层代码
 https://www.zhihu.com/question/350047125/answer/859822575
 

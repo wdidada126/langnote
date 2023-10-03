@@ -1,5 +1,8 @@
 # CMake
 
+cmake支持c#吗？
+CMake 3.8版本开始支持生成Visual Studio C#项目，因此CMake支持C#。默认情况下，它将.csproj文件中的语言版本（" LangVersion"）设置为版本3。此外，CMake现在还可能支持C、C++、Fortran、Objective C和CUDA。
+
 modern cmake
 配置期运行命令
 编译器运行命令 add_custom_command
