@@ -1,4 +1,11 @@
 # visual studio
+
+msvc-160
+2019
+
+msvc-170
+2022
+
 Vs code团队负责人：Erich Gamma . JUnit 作者之一，《设计模式》作者之一， Eclipse 架构师。2011 加入微软，在瑞士苏黎世组建团队开发基于 web 技术的编辑器，也就是后来的 monaco-editor。VSCode 开发团队从 10 来个人开始，早期成员大多有 Eclipse 开发团队的背景。
 
 VS可以连接远程服务器调试，还要啥Clion啊
