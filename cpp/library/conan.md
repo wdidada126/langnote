@@ -1,5 +1,7 @@
 # conan
 
+合肥某车企，招聘conan ci/cd工程师
+
 conan可以支持cmake autotools
 qmake
 msbuild

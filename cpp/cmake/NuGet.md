@@ -1,4 +1,7 @@
 # NuGet
+
+python pip
+
 www.nuget.org
 类似与包管理中心仓库？
 
