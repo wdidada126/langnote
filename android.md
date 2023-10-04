@@ -1,5 +1,21 @@
 # 编译系统源码
 
+ffmpeg android
+
+http://trac.ffmpeg.org/wiki/CompilationGuide/Android
+
+./configure
+
+https://www.jianshu.com/p/feab970fd74c
+
+ndk历史版本
+
+https://developer.android.com/ndk/downloads/older_releases.html
+
+Android develop
+
+https://developer.android.google.cn/
+
 https://www.androiddevtools.cn/ 错误，没更新
 
 https://developer.android.google.cn/studio/releases/platform-tools?hl=zh-cn

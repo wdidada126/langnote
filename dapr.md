@@ -14,3 +14,5 @@ discord有社群
 [Dapr 简介 - 分布式应用运行时](https://xie.infoq.cn/article/c94eaef7b3e35ad484964be07)
 
 阿里用？
+
+Dapr与C#
