@@ -18,7 +18,6 @@ pip install --index https://pypi.mirrors.ustc.edu.cn/simple/ -r requirements.txt
 pip install下载的文件在哪里
 lib/site-packages
 
-
 pypi镜像使用帮助
 https://pypi.org/
 	
