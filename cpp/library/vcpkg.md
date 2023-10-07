@@ -154,10 +154,6 @@ mac thrift失败
 
 centos 7 gcc7 folley失败
 
-
-
-
-
 ```shell
 ./vcpkg/vcpkg install gtest
 The following packages will be built and installed:
@@ -187,21 +183,12 @@ The following files are placed in
 /Users/ibqo/vcpkg/packages/gtest_x64-osx:
 ```
 
-
-
-
-
 如果你指的是已有的库需要指定特定版本，请使用. /vcpkg x-history <portname> 来查看当前查询的库的更新记录。并根据版本号选择离下个版本最近的修正版，获取commit Id。再根据commit Id使用git reset命令回退版本至你指定的版本。
 
 最后build就完事啦！
 
-
-
 要是能vcpkg install curl(1.3)[openssl(1.0.2k),sspi] 就牛逼了，或者指定commitid
 未来不是没有可能。不过兼容性问题很麻烦。
-
-
-
 
 
 vcpkg查看库依赖
