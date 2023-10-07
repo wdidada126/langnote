@@ -1,16 +1,16 @@
 # cassandra
 
+## book书籍
+Cassandra The Definitive Guide, (Revised) Third... (Z-Library).pdf
+Cassandra实战
+
+特征处理里用的多，适合一对一检索，比如现在的人脸比对；还有现在时兴的图片搜索，人脸比对就是图片搜索中的其中一个应用
+
 datastax 基于cassandra的数据库？
-
-
-
-
 
 库：spring-data-cassandra
 
 https://blog.csdn.net/cnhome/article/details/85069997
-
-
 
 修改cassandra.yaml，将
 
@@ -19,16 +19,12 @@ authenticator: AllowAllAuthenticator
 authenticator: PasswordAuthenticator
 这样做的目的是为了，可以使用用户名和密码，进行远程连接。默认的策略，好像只能本地连接。
 
-
-
 cassandra 常用端口
 7199 - JMX（8080 pre Cassandra 0.8.xx）
 7000 - 节点间通信（如果启用了TLS，则不使用）
 7001 - TLS节点间通信（使用TLS时使用）
 9160 - Thrift客户端API
 9042 - CQL本地传输端口
-
-
 
 Cassandra传统上被人们认为是一个极为强大的数据库，可以在绝大多数使用场景中脱颖而出，然而也是比较难学习和操作的数据库之一。
 DataStax的团队由Cassandra数据库演进过程中的领军人物组成，他们贡献了Cassandra 3.0版本中大部分的代码。在4.0及之后的版本中，我们的团队也在持续积极地与开源社区紧密合作，为Cassandra的未来贡献所能。
@@ -44,8 +40,6 @@ https://github.com/apache/cassandra
 
 基于列，Java写的
 Cassandra是一套开源分布式NoSQL数据库系统。它最初由Facebook开发，用于储存收件箱等简单格式数据，集GoogleBigTable的数据模型与Amazon Dynamo的完全分布式的架构于一身Facebook于2008将Cassandra开源，此后，由于Cassandra良好的可扩展性，被等知名网站所采纳，成为了一种流行的分布式结构化数据存储方案。
-
-
 
 特征处理里用的多，适合一对一检索，比如现在的人脸比对；
 还有现在时兴的图片搜索，人脸比对就是图片搜索中的其中一个应用
@@ -71,8 +65,7 @@ Cassandra 最主要的使用场景是作为大数据量的高可用分布式数�
 - 实时读写
 这些需求的场景。只要能充分利用它的优点,Cassandra都能派上用场。
 
-
-```asciidoc
+```shell
 docker pull cassandra:latest
 ```
 
@@ -86,7 +79,6 @@ https://blog.csdn.net/itcast_cn/article/details/107559525
 
 cassandra -v
 4.0.1
-
 
 
 Cassandra中Gossip具体实现方式
@@ -111,8 +103,6 @@ cassandra@cqlsh>
 CREATE USER test WITH PASSWORD '123456' SUPERUSER; 
 Unauthorized: Error from server: code=2100 [Unauthorized] message="Only superusers can create a role with superuser status"
 ```
-
-
 
 java代码访问cassandra
 
@@ -181,10 +171,8 @@ Cassandra也可以作为数据源与Hadoop集成。使用Hive或Impala的SQL访�
 需要使用基于CQL的方式访问。
 
 
-
-```asciidoc
+```shell
 CREATE KEYSPACE IF NOT EXISTS store WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : '1' };
-
 
 CREATE TABLE IF NOT EXISTS store.shopping_cart (
 userid text PRIMARY KEY,
@@ -200,9 +188,6 @@ INSERT INTO store.shopping_cart
 (userid, item_count, last_update_timestamp)
 VALUES ('1234', 5, toTimeStamp(now()));
 ```
-
-
-
 
 
 .cql
@@ -250,9 +235,6 @@ cassandra@cqlsh> select release_version from system.local;
 
 4.1.2
 
-
-
-
 配置文件
 
 .yaml
@@ -262,13 +244,6 @@ cassandra@cqlsh> select release_version from system.local;
 
 
 https://github.com/apache/cassandra
-
-
-Cassandra实战
-
-
-
-
 
 https://www.bilibili.com/video/BV1aQ4y1Z7Nj
 

@@ -11,22 +11,22 @@ mvn dependency:sources
 
 maven parent
 
+Maven Parent POM解决了多模块项目中公共依赖和配置的问题。
+在多模块项目中，往往有很多模块的pom文件中存在相同的引用。如果声明一个父pom文件，将公用的依赖提取到父pom文件中，可以大大减少其他pom文件中的依赖的配置。
+使用Maven Parent POM，可以帮助项目组织和管理标准化。通过将公共的配置和依赖项放在Parent项目中，可以确保所有子项目都遵循相同的构建规范，减少了配置错误和维护成本。
+Parent项目还可以提供一些常用的插件配置，以及一些通用的构建和测试脚本，使得子项目的开发更加高效和一致。
+另一个重要的作用是，Parent项目可以管理和控制子项目的版本依赖。通过在Parent项目中定义依赖项的版本，所有子项目都可以共享这些版本，避免了每个子项目独立管理版本的问题。当需要更新或升级某个依赖项时，只需要在Parent项目中修改对应的版本号，所有子项目都会自动继承并使用最新的版本。这样可以避免每个子项目都需要去更新版本号的麻烦，简化了维护和升级的过程。
+
 parent-relativePath
 
 relativePath给出父项目相对于子项目的路径，这样在构件子项目时首先从该相对路径查找父项目，如果没有才会从本地库或进而远程库中查找父项目
 
-
-
 https://www.runoob.com/maven/maven-pom.html
-
-
 
 http://maven.apache.org/ref/3.0.4/maven-model-builder/super-pom.html
 
 Maven的pom.xml文件结构之基本配置parent和继承结构
 https://blog.csdn.net/taiyangdao/article/details/52357300
-
-
 
 http://maven.apache.org/ref/3.6.3/
 
@@ -41,8 +41,6 @@ https://github.com/trustin/os-maven-plugin 说明书
 
 nacos打包zip文件
 mvn -Prelease-nacos -Dmaven.test.skip=true install -U
-
-
 
 mvn deploy -Dmaven.test.skip -Dautoconfig.skip -pl app-api -am -Dskip.test=true -DaltDeploymentRepository=snapshots::default::http://xxx/content/repositories/snapshots/
 

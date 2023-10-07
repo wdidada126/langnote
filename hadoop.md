@@ -1,5 +1,8 @@
 # hadoop
 
+数据计算 mapreduce
+数据存储 hdfs
+
 ## 版本
 
 release-3.3.6

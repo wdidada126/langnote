@@ -1,5 +1,7 @@
 # db
 
+数据库完整性分为以下几类：实体完整性、域完整性、参照完整性和用户自定义完整性。其中，实体完整性是指关系的主关键字不能取“空值\"，一个关系对应现实世界中一个实体集，现实世界中的实体是可以相互区分、识别的，也即它们应具有某种惟一性标识。在关系模式中，以主关键字作为惟一性标识，而主关键字中的属性(称为主属性)不能取空值，否则，表明关系模式中存在着不可标识的实体(因空值是“不确定\"的)，这与现实世界的实际情况相矛盾，这样的实体就不是一个完整实体。 
+
 数据库不建议存哪些东西
 
 有的存储设备没有OS
@@ -25,65 +27,38 @@ https://www.zhihu.com/question/21536660
 蚂蚁金服 OceanBase
 
 腾讯 TDSQL
-
 中兴 GoldenDB
-
 华为 GaussDB200
-
 巨杉 SequoiaDB
-
 易鲸捷 EsgynDB
-
 万里开源 GreatDB
-
 星环科技 KunDB
 
 国产云数据库：
-
 阿里 AnalyticDB
-
 腾讯 CynosDB
-
 华为 HWSQL
-
 百度 TDB
-
 京东云DRDS
-
 金山 KTS
-
 阿里 PolarDB
-
 浪潮 K-DB
-
 东软 OpenBASE
-
 亚信 AntDB
-
 小米 Pegasus
-
 青云 RadonDB
 
 国外单机数据库：
-
 Oracle
-
 Microsoft SQL Server
-
 IBM DB2
-
 MySQL
 
 开源数据库：
-
 MySQL
-
 MariaDB
-
 PostgreSQL
-
 Greenplum
-
 TiDB
 
 另外还有一些高校也在从事数据库的开发，比如人大，南开，华科，华师。前段时间，OceanBase与华师成立联合实验室，探索产学研结合，希望以后能够发挥高校专长，推进数据库国产化进度。

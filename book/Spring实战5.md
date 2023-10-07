@@ -10,8 +10,7 @@ https://book.douban.com/subject/34949443/
 1.1 什么是Spring 4
 1.2 初始化Spring 应用 6
 1.2.1 使用Spring Tool Suite初始化Spring 项目 7
-1.2.2 检查Spring 项目的
-结构 10
+1.2.2 检查Spring 项目的结构 10
 1.3 编写Spring 应用 16
 1.3.1 处理Web 请求 16
 1.3.2 定义视图 17

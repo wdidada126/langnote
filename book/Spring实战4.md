@@ -9,31 +9,31 @@ spring支持发送邮件，就不用三方库了
 Pivotal的首席软件工程师、畅销书作者、Spring框架的热情支持者，经常在各种技术会议上发表演讲。
 
 https://book.douban.com/subject/26767354/
-## 1
-第1部分　Spring的核心
+
+spring 官方对接三方库
+其他团队提供的对接库
+redis
+neo4j
+quartz
+elasticjob
+
+## 第1部分　Spring的核心
 ### Chap.1 第1章　Spring之旅
 
 EJB
-
 JavaBean规范
-
 POJO 简单老Java对象
 
-
-
 应用上下文ApplicationContext
-Android里面也有Context QT WPF里面
+Android里面也有Context QT WPF里面也有Context
 Spring容器 Spring container
 WPF MVVM
-
 
 问Spring的应用上下文有几种实现？有什么区别
 
 主要是加载bean的方式不同
 1.xml
 2.注解
-
-
 
 bean的生命周期
 BeanNameAware    void setBeanName(String name);                org.springframework.beans.factory.BeanNameAware
@@ -44,11 +44,9 @@ InitializingBean void afterPropertiesSet()
 
 xxx自定义方法 bean的生命周期 调用自定义初始化方法
 
-
 BeanPostProcessor  default Object postProcessAfterInitialization(Object bean, String beanName)
 
 DisposeBean void destroy()
-
 
 Bean的生命周期中,调用自定义初始化方法的地方有以下几个:
 1. 通过实现InitializingBean接口的afterPropertiesSet()方法
@@ -65,45 +63,27 @@ InitializingBean是JavaBean的标准接口,实现这个接口可以重写afterPr
 部分框架(如Spring Boot)还提供了其他生命周期回调点,用于执行自定义逻辑,比如CommandLineRunner。
 所以总的来说,通过上述几种方式都可以在Bean初始化阶段调用自定义逻辑进行额外初始化。其中@PostConstruct和InitializingBean是比较常用的实现方式。
 
-
-
 aop
 jdbc
 Spring EL表达式
 `#{}`
 
-
-
 @componentScan
 @Bean
 
 ### Chap. 2 装配Bean
-
-
-
 @Autowired注解可以使用哪些地方
 field
 构造函数？
 方法？
 
-
-
-
-
-
-
-
 @Autowired注解可以使用哪些地方
-
 @Autowired注解可以用在以下几个地方：
-
 1. 类的成员变量上
 
 @Autowired注解可以用在类的成员变量上，Spring会自动将匹配的Bean注入到该成员变量中。例如：
 
-
-
-```
+```java
 @Component
 public class MyService {
     // 自动注入 MyRepository Bean
@@ -115,7 +95,7 @@ public class MyService {
 
 2. 构造方法上
 @Autowired注解也可以用在构造方法上，Spring会在创建Bean实例时，自动将匹配的Bean注入到构造方法参数中。例如：
-```
+```java
 @Component
 public class MyService {
     private MyRepository myRepository;
@@ -131,7 +111,7 @@ public class MyService {
 
 3. Setter方法上
 @Autowired注解也可以用在Setter方法上，Spring会在创建Bean实例后，自动调用Setter方法，并将匹配的Bean注入到Setter方法参数中。例如：
-```
+```java
 @Component
 public class MyService {
     private MyRepository myRepository;
@@ -149,9 +129,7 @@ public class MyService {
 
 另外，还可以使用@Qualifier注解来指定要注入的Bean的名称，例如：
 
-
-
-```
+```java
 @Component
 public class MyService {
     // 指定注入名称为 "myRepository2"
@@ -164,29 +142,20 @@ public class MyService {
 
 以上就是@Autowired注解可以使用的地方，使用@Autowired注解可以方便地实现自动装配Bean的功能。
 
-
-
-@Autowired 可以对成员变量、方法以及构造函数进行注释
+@Autowired可以对成员变量、方法以及构造函数进行注释
 https://www.cnblogs.com/acm-bingzi/p/springAutowired.html
 
 有多个bean时，配合Qualifier注解使用
 @Autowired
 @Qualifier("myRepository2")
 
-
-
 javax.inject.Inject
 javax.inject.Named
 javax.inject.Named是JSR 330中的注解之一，该JSR的全称为"Dependency Injection for Java"。JSR 330定义了一组标准的注解和API，用于支持依赖注入（Dependency Injection，DI）和控制反转（Inversion of Control，IoC）。
 
-
 @Autowired是Spring特有的注解。如果你不愿意在代码中到处使用Spring的特定注解来完成自动装配任务的话，那么你可以考虑将其替换 为@Inject:
 
-
-
 [Java 依赖注入标准 JSR-330 简介](https://blog.csdn.net/u010278882/article/details/50773687)
-
-
 
 @Inject注解来源于Java依赖注入规范
 @Inject
@@ -194,37 +163,28 @@ javax.inject.Named是JSR 330中的注解之一，该JSR的全称为"Dependency I
 
 maven依赖如下：
 
-
+```xml
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-
+```
 
 创建bean的name
 
 xml创建bean时如何确保配置信息正确
-
-
 https://www.cnblogs.com/yangming1996/p/7784615.html
-
-
 
 Spring为<constructor-arg>元素提供了c-命名空 间作为替代方案
 
 p
 
-
 Spring bean的生命周期
 
 在Spring中装配bean的三种主要方式：自动化 配置、基于Java的显式配置以及基于XML的显式配置。
 
-
-
 基于Java的显式配置，@Bean
-
-
 
 https://blog.csdn.net/qq_30038111/article/details/79611167
 
@@ -234,7 +194,6 @@ xml
 
 Spring中的c命名空间是一种用于设置Bean构造函数参数值的方式。
 在Spring中，p命名空间是一种用于简化XML配置文件中Bean属性设置的方式。通过使用p命名空间，可以直接在XML配置文件中设置Bean的属性值，而无需编写繁琐的<property>标签。
-
 
 ### Chap. 3 高级装配
 
@@ -246,8 +205,6 @@ org.springframework.context.annotation.Conditional spring-context包中
 ### Chap. 4 面向切面的Spring
 描述切面的常用术语有通知(advice)、切点(pointcut)和连接点(join point)
 如果你的AOP需求超过了简单的方法调用(如构造器或属性拦截)，那么你需要考虑使用AspectJ来实现切面。
-
-
 
 源码不在
 
@@ -263,7 +220,7 @@ org.springframework.aop.framework.ProxyFactoryBean
 
 Spring所创建的通知都是用标准的Java类编写。
 
-jionpoint
+joinpoint
 pointcut
 advice
 before
@@ -296,11 +253,8 @@ AOP配置元素            用途
 <aop:declareparents>   以透明的方式为被通知的对象引入额外的接口
 <aop:pointcut>         定义一个切点
 
-
-
 ## 第２部分　Web中的Spring
 ### Chap.5 构建Spring Web应用程序
-
 
 <mvc:annotation-driven>
 
@@ -321,7 +275,6 @@ AOP配置元素            用途
 使用 @Required注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean
 类似地，使用@Resource、@PostConstruct、@PreDestroy等注解就必须声明 CommonAnnotationBeanPostProcessor；使用@PersistenceContext注解，就必须声明 PersistenceAnnotationBeanPostProcessor的Bean。
 
-
 GenericServlet？
 HttpServlet
 FrameworkServlet？
@@ -329,13 +282,10 @@ DispatcherServlet
 
 HandlerMapping
 
-
-
 随书代码
 IDEA打开
 
 Could not determine the class-path for interface org.jetbrains.kotlin.gradle.KotlinGradleModel.
-
 
 Warning:<i><b>root project 'Spittr': Web Facets/Artifacts will not be configured properly</b>
 Details: org.gradle.api.artifacts.ResolveException: Could not resolve all dependencies for configuration ':runtime'.
@@ -445,10 +395,4 @@ https://gitee.com/edidada/spring_mail
 
 
 ### 第21章　借助Spring Boot简化Spring开发
-
-
-
-
-
-
 

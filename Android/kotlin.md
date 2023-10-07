@@ -3,7 +3,6 @@
 https://developer.android.google.cn/kotlin/overview?hl=ru
 https://developer.android.com/kotlin?hl=zh-cn
 
-
 ## 源代码
 https://github.com/JetBrains/kotlin
 
@@ -13,6 +12,8 @@ https://kotlinlang.org/
 ## doc
 
 https://kotlinlang.org/docs/getting-started.html
+
+https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/
 
 ## 标准库
 https://kotlinlang.org/api/latest/jvm/stdlib/
