@@ -1,4 +1,7 @@
 # IDEA
+
+IDEA 可以同时打开多个maven项目，不用挨个打开
+
 IDEA快捷键 等于号前面的类型可以自动生成
 
 IDEA实现序列化接口Serializable自动生成serialVersionUID

@@ -1,5 +1,8 @@
 # postman
 
+## 竞品
+apifox
+
 postman 设置变量
 https://www.cnblogs.com/ananmy/p/13062033.html
 
