@@ -1,4 +1,13 @@
 # 激活
+
+查看某个表的弹条数据
+
+格式化sql
+筛选数据
+
+少用left join，多用inner join，join on 后面有多个，可以跟and，也可以是某个值等于某个常量
+a join b on a.xx = '' and a.c = b.d
+
 navicat 15 windows 激活
 http://www.akseo.cn/jzrjxz/106.html
 
