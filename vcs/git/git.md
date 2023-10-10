@@ -1,4 +1,32 @@
 # Git
+
+## git pull 磁盘不够了
+error: The following untracked working tree files would be overwritten by merge:
+    .gitignore
+    2023/202308/202308_month.md
+
+你遇到的这个问题是因为你本地有一些未被跟踪（untracked）的文件，这些文件在远程仓库中可能已经发生了改变。如果你试图使用 git pull 命令，Git 会试图合并远程的更改到你的本地环境，这可能会导致你的本地文件被覆盖。因此，Git 阻止了这个操作并抛出了这个错误信息。
+
+你有以下几种解决方案：
+
+保存你的本地更改：你可以把这些未被跟踪的文件添加到Git，然后用git stash命令保存这些更改。这样你就可以安全地拉取远程的更改，而不会丢失你的本地更改。如果你已经添加了这些文件到Git，那么你可能需要把这些文件从Git中移除（使用git rm --cached <file>），然后再重新添加。
+丢弃你的本地更改：如果你确定这些未被跟踪的文件的更改不重要，你可以直接丢弃这些更改。使用 git clean -df 命令可以删除这些文件。
+分开操作：你可以在拉取远程更改之前，先把你的本地更改推送到远程仓库。使用 git commit -a 和 git push 可以完成这个操作。这样你的本地更改就会安全地保存在远程仓库，而不会在拉取远程更改时被覆盖。
+这是一个可能的流程：
+
+# 添加所有文件到暂存区  
+git add .  
+  
+# 提交所有暂存区的文件  
+git commit -a -m "Adding local changes"  
+  
+# 将你的更改推送到远程仓库  
+git push  
+  
+# 拉取远程的更改  
+git pull
+这样，你可以安全地拉取远程的更改，而不会丢失你的本地更改。
+
 recursive git 循环克隆子项目
 git clone 重命名
 git clone xxx.git anothername
