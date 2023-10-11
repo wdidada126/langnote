@@ -1,5 +1,35 @@
 # SQL
 
+如何掌握SQL语句_知乎.mhtml
+https://www.zhihu.com/question/564523541/answer/3124034014
+1.使用关键字distinct去重时，需要注意distinct关键字不能实现部分去重，它应用于所有的列而不仅仅是前置的列，
+比如：
+```sql
+select distinct a,b from table 
+```
+
+当两行a,b都相同时，distinct才会去除其中一行。
+2.having用于聚合函数的筛选，where不能使用聚合函数。
+例如：题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。
+题目要求取出平均发贴数低于5的学校或平均回帖数小于20的学校，也就是筛选条件为avg(question_cnt)<5或者avg(answer_cnt)<20,因为这里存在聚合函数avg(),所以该条件不能放在where子句中，只能放在having子句里，再结合题目要求的返回结果，综合得出以下代码：select university,
+       avg(question_cnt) as avg_question_cnt,
+       avg(answer_cnt) as avg_answer_cnt
+from user_profile
+group by university
+having avg_question_cnt<5 or avg_answer_cnt<20
+
+3.保留小数点位数round(x,n)
+round(x,n)表示x保留n位小数。
+
+从0到1——SQL即学即用
+https://book.douban.com/subject/36233883/
+
+## book
+Effective SQL：编写高质量SQL语句的61个有效方法
+
+having where的区别
+where不能用来过滤group by的数据
+
 select ifnull(字段,0) from 表名
 
 sql解析
@@ -475,10 +505,7 @@ WHERE (deptno,sal) IN (SELECT deptno,MAX(sal) FROM EMP GROUP BY deptno)；
 5、在HAVING子句中使用子查询
 SELECT deptno,job,AVG(sal) FROM EMP GROUP BY deptno,job HAVING AVG(sal)>(SELECT sal FROM EMP WHERE ename='MARTIN')；
 
-
-
 ## sql标准
-
 SQL92
 SQL99
 SQL标准是由国际标准化组织（ISO）和美国国家标准学会（ANSI）共同制定的。SQL标准的发展经历了多个版本，以下是其中一些重要的版本：
