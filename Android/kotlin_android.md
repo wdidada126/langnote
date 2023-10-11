@@ -1,4 +1,4 @@
-# kotlin
+# kotlin android
 
 https://developer.android.google.cn/kotlin/overview?hl=ru
 https://developer.android.com/kotlin?hl=zh-cn
