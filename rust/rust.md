@@ -1,5 +1,7 @@
 # rust
 
+脱离标准库 Rust可以写OS
+
 Rust ubuntu 16
 
 Struct
