@@ -1,20 +1,17 @@
 # mysql
 
-QEP
+## QEP
 QEP是MySQL的一个术语,全称是Query Execution Plan,即查询执行计划。
 QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划。
 
 当MySQL收到SQL语句时,它会做以下工作:
-
 1. 解析和验证SQL语句的语法
 2. 生成查询执行计划(QEP)
 3. 根据QEP执行查询操作
 4. 返回查询结果
 
 其中生成QEP是关键步骤。
-
 QEP决定了MySQL将会如何执行查询:
-
 - 是否使用索引
 - 访问的表顺序
 - 针对每个表使用的访问类型
@@ -23,7 +20,6 @@ QEP决定了MySQL将会如何执行查询:
 这些信息都包含在QEP中。
 
 所以QEP实际上就是MySQL如何最有效利用资源执行查询的蓝图。
-
 通过一个叫`EXPLAIN`的SQL语句,我们可以查看MySQL的执行计划,了解它的QEP。
 
 例如:
@@ -822,14 +818,47 @@ type
 https://dev.mysql.com/doc/refman/5.7/en/explain.html
 
 
-SpringBoot从配置文件中获取属性的四种方法
-https://wenku.baidu.com/view/de957e73ae02de80d4d8d15abe23482fb5da0252.html
+在MySQL的EXPLAIN结果中，select_type和type是两个不同的列，它们提供了有关查询执行计划的一些重要信息。
 
-java代码 Boolean 默认 false
-bool 没有默认值
+select_type：这个列描述了查询中的特殊查询类型。以下是select_type可能的值：
 
-Integer
-int 
+SIMPLE：这是最简单的情况，当查询只包含一个简单的SELECT语句，没有子查询或联合查询。
+PRIMARY：当查询包含子查询，并且子查询不能与主查询分开时，主查询被标记为PRIMARY。
+SUBQUERY：当主查询作为子查询的一部分，且子查询不能与主查询分开时，主查询被标记为SUBQUERY。
+UNION：当两个或更多的SELECT语句合并在一起时，每个SELECT语句的查询计划都会被列出，并且这个查询被标记为UNION。
+UNION ALL：类似于UNION，但是它不会去除重复的结果行。
+DEPENDENT UNION：当UNION或UNION ALL的任何一个子查询依赖于主查询中的列或常量时，这个查询被标记为DEPENDENT UNION。
+DEPENDENT UNION ALL：当UNION ALL的任何一个子查询依赖于主查询中的列或常量时，这个查询被标记为DEPENDENT UNION ALL。
+NULL：当没有从主查询返回任何结果行时，这个查询被标记为NULL。
+type：这个列描述了MySQL如何执行查询，给出了执行计划的详细信息。以下是type可能的值：
+
+ALL：全表扫描。MySQL将检查整个表来寻找匹配的结果行。
+index：全索引扫描。MySQL将扫描整个索引来寻找匹配的结果行。这通常比全表扫描快，但可能会增加内存使用。
+range：范围扫描。MySQL将使用索引来查找满足某个范围的行。这是在你知道结果行在一个范围内时最常用的方法。
+ref：索引引用。MySQL将使用索引来查找匹配某个单个列或多列的行。它通常比范围扫描和全表扫描快。
+eq_ref：唯一索引引用。这表示MySQL使用一个唯一索引来查找一个精确匹配的行。这是最快的查找方法，但仅适用于唯一索引或PRIMARY KEY。
+const、system和NULL：这些类型表示在执行查询时没有任何表或索引的读取操作。
+这些类型的主要区别在于它们描述了MySQL是如何访问和查找数据的。理解这些类型可以帮助你优化查询性能，特别是当你注意到查询执行得非常慢时。
+
+
+是的，MySQL 5.7对SQL语句是大小写敏感的。这意味着如果你在SQL语句中使用大写或小写字母，它们将被视为不同的字符。
+
+例如，以下两个SQL语句在MySQL 5.7中是不同的：
+
+sql
+SELECT * FROM mytable;  
+SELECT * FROM MYTABLE;
+第一个SQL语句将选择"mytable"表中的所有行，而第二个SQL语句将选择"MYTABLE"表中的所有行（如果存在）。这是因为MySQL将大写和小写视为不同的字符。
+
+然而，在某些情况下，MySQL对表和数据库的名称不区分大小写。例如，以下两个SQL语句在MySQL 5.7中是等效的：
+
+sql
+USE mydatabase;  
+USE MYDATABASE;
+这因为在MySQL中，表名和数据库名不区分大小写。但是，请注意，表的列名和函数名是区分大小写的。
+
+需要注意的是，MySQL的默认设置是不区分大小写，但也可以通过设置适当的配置参数来更改大小写敏感性。
+
 
 
 mysql查看所有表的所有字段
@@ -1461,13 +1490,12 @@ PVLDB指的是VLDB会议论文集，被VLDB会议接受的论文，按期将会�
 （2）*.MYD--"D"数据信息文件，是表的数据文件。
 （3）*.MYI--"I"索引信息文件，是表数据文件中任何索引的数据树。
 
-
-
 ibd InnoDB存储数据的物理文件通常以ibd作为其文件名后缀
 
 cvs
 
-https://dev.mysql.com/doc/refman/8.0/en/explain.html
+
+8.1 优化概述
 https://www.kancloud.cn/baoguoxiao0538/mysql-8-0-chinese-doc/1117563
 
 mysql 存储过程 源码实现

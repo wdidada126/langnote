@@ -1,5 +1,14 @@
 # Spring Boot
 
+SpringBoot从配置文件中获取属性的四种方法
+https://wenku.baidu.com/view/de957e73ae02de80d4d8d15abe23482fb5da0252.html
+
+java代码 Boolean 默认 false
+bool 没有默认值
+
+Integer
+int 
+
 任何Java框架 都可以用spring boot启动，兼容层
 
 /** fastJson 配置信息 **/
