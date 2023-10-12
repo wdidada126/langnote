@@ -1,9 +1,13 @@
 # Git
 
+## git remote add xxx之后，不能从新添加的分支检出
+git fetch一下
+git fetch xxx master:master
+
 ## git pull 磁盘不够了
 error: The following untracked working tree files would be overwritten by merge:
-    .gitignore
-    2023/202308/202308_month.md
+.gitignore
+2023/202308/202308_month.md
 
 你遇到的这个问题是因为你本地有一些未被跟踪（untracked）的文件，这些文件在远程仓库中可能已经发生了改变。如果你试图使用 git pull 命令，Git 会试图合并远程的更改到你的本地环境，这可能会导致你的本地文件被覆盖。因此，Git 阻止了这个操作并抛出了这个错误信息。
 
