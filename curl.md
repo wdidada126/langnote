@@ -1,19 +1,17 @@
 # curl log
 
+```
+curl -v --form user=user --form password=password http://localhost:8080/login
+```
+
 curl -o xxx.file o是小写
 wget -O O是大写
 
 [curl blog](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 
-
-
 --output？？？
 
-
-
 curl 文件传参
-
-
 
 url encoded传参
 
@@ -22,10 +20,6 @@ url encoded传参
 -d @filename
 man curl
 ```
-
-
-
-
 
 form-data传参
 curl -X POST -F "file=@1.jpg;orient=UP" http://127.0.0.1/OCR/ocr/general

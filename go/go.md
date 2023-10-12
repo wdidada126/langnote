@@ -1,4 +1,10 @@
 # go
+## go blog
+
+https://blog.golang.org/h2push
+
+## go Modules
+https://github.com/golang/go/wiki/Modules
 
 https://github.com/zeromicro/go-zero
 
