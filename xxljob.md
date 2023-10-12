@@ -1,5 +1,8 @@
 # xxl-job
 
+xxl-job-admin
+xxl-job-executor
+
 XXL-Job和Elastic-Job都是任务调度平台，都能做分片集群。以下是它们之间的一些区别： 
 - 背景：XXL-Job是徐雪里团队研发旗下还有其他相关的开源软件，Elastic-Job是当当网开发依赖于zookeeper。
 - 中心化思想：XXL-Job是中心化的，Elastic-Job是去中心化的。
