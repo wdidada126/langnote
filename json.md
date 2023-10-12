@@ -1,5 +1,9 @@
 # json
 
+## json格式化时间需要注意时区
+格式化后的值跟数据库里面的值相差8小时
+小时 13 -> 1 是12小时制 24小时制
+
 pljson库 支持pl/sql
 
 https://www.json.org/json-zh.html

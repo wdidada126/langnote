@@ -12,6 +12,7 @@ QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划
 
 其中生成QEP是关键步骤。
 QEP决定了MySQL将会如何执行查询:
+
 - 是否使用索引
 - 访问的表顺序
 - 针对每个表使用的访问类型
@@ -324,6 +325,7 @@ plsql pljson框架
 ## mysql datetime如何比较大小？
 在MySQL中，可以使用比较运算符（<、>、<=、>=、==、!=）来比较datetime值的大小。
 例如，假设有两个datetime列date1和date2，可以使用以下语句比较它们的大小：
+
 ```sql
 SELECT * FROM table_name WHERE date1 > date2;
 ```
@@ -340,6 +342,56 @@ SELECT * FROM table_name WHERE date1 != date2; -- 返回所有date1不等于date
 ```
 
 请注意，datetime比较是基于时间戳进行的，因此在进行比较时，需要考虑时间戳的位置。
+
+
+
+时间的精度
+
+时分秒 毫秒 微秒 纳秒
+
+date_format()
+
+quanyi 公司java源代码里面有
+
+
+
+```sql
+AND ? = DATE_FORMAT(day,'%Y-%m-%d')
+sql.append(" and create_dtme<= DATE_FORMAT('" + request.getEDate() + " 23:59:59" + "','%Y-%m-%d %H:%i:%s') ");
+
+```
+
+在MySQL 5.7中，可以使用以下日期格式：
+
+- DATE：格式为'YYYY-MM-DD'，例如'2023-02-27'
+- DATETIME：格式为'YYYY-MM-DD HH:MM:SS'，例如'2023-02-27 12:30:45'
+- TIMESTAMP：格式为'YYYY-MM-DD HH:MM:SS'，例如'2023-02-27 12:30:45'
+- YEAR：格式为'YYYY'，例如'2023'
+
+另外，MySQL还提供了一些日期函数来操作和格式化日期，例如：
+
+- DATE_FORMAT(date,format)：将日期格式化为指定的格式。
+- NOW()：返回当前日期和时间。
+- CURDATE()：返回当前日期。
+- CURTIME()：返回当前时间。
+
+例如，可以使用以下查询来获取当前日期和时间的格式化值：
+
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s');
+
+
+
+https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-format
+
+
+
+mysql_5_7_date_format.xlsx
+
+注意 月份 M m的区别 M是月份的英文字母 m是数字
+
+小时 H h的区别 H 0-23 h 0-12
+
+
 
 ## sql中 count() sum() avg() max() min()是不是函数？
 
