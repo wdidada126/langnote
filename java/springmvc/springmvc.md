@@ -146,6 +146,27 @@ multipart/form-data：这表示发送的数据包含多个部分（multipart）�
 application/json：这表示发送的数据是JSON格式。JSON是一种常用的数据格式，用于在应用程序之间传输结构化数据。
 text/xml：这表示发送的数据是XML格式。XML是一种标记语言，可以用来表示复杂的数据结构，如HTML。
 
+下面是一些常见的Content-Type字段的值。
+
+text/plain
+text/html
+text/css
+image/jpeg
+image/png
+image/svg+xml
+audio/mp4
+video/mp4
+application/javascript
+application/pdf
+application/zip
+application/atom+xml
+
+支持自定义
+application/vnd.debian.binary-package
+
+Content-Type: text/html; charset=utf-8
+
+;隔开
 
 Spring MVC实例，使用Controller接口实现控制器
 https://blog.csdn.net/qq_28379809/article/details/76177343
