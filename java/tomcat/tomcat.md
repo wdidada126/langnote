@@ -1,5 +1,12 @@
 # Tomcat
 
+https://tomcat.apache.org/lists.html
+dev-subscribe@tomcat.apache.org
+
+debug tomcat source code
+https://blog.csdn.net/wangjunjie0817/article/details/102944338
+https://juejin.cn/post/6844903859828031501
+
 org.apache.catalina.startup.Bootstrap#initClassLoaders
 这个方法有初始化类加载器
 
