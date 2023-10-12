@@ -399,7 +399,6 @@ group by才能使用的函数
 
 聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。
 
-
 使用GROUP BY关键字结合聚合函数将数据进行分组
 聚合函数作用于一组数据，并对一组数据返回一个值。
 
@@ -410,7 +409,6 @@ https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html
 https://blog.51cto.com/xdr630/5104122
 
 非法使用聚合函数：不能在WHERE子句中使用聚合函数。
-
 
 select veresion() from dual;
 select now() from dual;
@@ -529,6 +527,10 @@ antlr flex/bison都可以实现计算器
 
 unicoude云服务器错误，没有4G剩余空间
 
+
+
+## 源代码sql解析
+
 miniob ob数据库跟华中科技合作的数据库竞赛 使用了flex bison
 
 mysql使用 .yy .ll
@@ -568,8 +570,7 @@ https://zhuanlan.zhihu.com/p/393683080
 show variables like 'transaction_isolation';
 SELECT @@transaction_isolation;
 
-
-mysql5.7.20 之后
+mysql5.7.20 之前
 SELECT @@tx_isolation;
 show variables like 'tx_isolation';
 
@@ -591,7 +592,7 @@ select * from yes where name = 'xx' for update;
 
 开启事务？
 
-mysql 日志
+## mysql 日志
 
 redo log
 undo log
@@ -974,7 +975,7 @@ https://www.cnblogs.com/bingco/p/11381107.html
 
 中国银行协同项目cims
 
-大量实用临时表
+大量使用临时表
 
 
 
@@ -1324,6 +1325,8 @@ bin_alive 大致
 ubuntu 16
 centos 7/8
 
+cmake组织的
+
 MySQL Benchmark Tool
 DBT2
 SysBench
@@ -1430,6 +1433,8 @@ https://github.com/tmcallaghan/iibench-mysql
 http://lists.mysql.com/
 
 
+
+```sql
 mysql> select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
 +--------------------------------------------------------+
 | str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s') |
@@ -1445,6 +1450,7 @@ mysql> select date_format(now(), '%Y-%m-%d %h:%i:%s');
 | 2021-01-21 04:28:13                     |
 +-----------------------------------------+
 1 row in set (0.01 sec)
+```
 
 
 
