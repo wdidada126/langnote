@@ -1,5 +1,9 @@
 # kuboard
 
+## 竞品
+weavescope？
+Weave Scope 是 Weaveworks 公司开发的一款 Docker 和 Kubernetes 可视化监控工具。这款工具可以通过 Web UI 展示数据，并允许用户与之进行交互。其与 Kubernetes 集群内运行的容器进行交互，并获取容器的运行状态、性能表现、网络情况等各方面的信息，然后通过友好的 UI 界面将这些信息展示给用户，从而帮助用户更好地理解和监控 Kubernetes 集群的运行状态。
+
 ## kuboard-addon
 资源层监控套件
 kuboard-addon.png
