@@ -126,7 +126,6 @@ public String example(Locale locale) {
 AcceptHeaderLocaleResolver和CookieLocaleResolver都是Spring MVC中用于处理区域设置（Locale）的解析器。它们分别通过不同的方式获取浏览器发送的HTTP请求中的区域设置信息。
 
 AcceptHeaderLocaleResolver：
-
 AcceptHeaderLocaleResolver是通过解析HTTP请求头中的Accept-Language字段来获取浏览器所支持的区域设置信息。
 Accept-Language头部字段是HTTP请求中用于指定客户端所接受的语言和区域设置的信息。它通常包含一个或多个语言标签，以逗号分隔，每个标签后面可以跟一个可选的质量因子（q-factor）来指示该语言的优先级。例如：Accept-Language: en,fr;q=0.8,es;q=0.6。
 AcceptHeaderLocaleResolver会解析Accept-Language头部字段，提取出其中的语言和区域设置信息，并根据优先级选择一个最适合的区域设置作为解析结果。
@@ -167,6 +166,40 @@ application/vnd.debian.binary-package
 Content-Type: text/html; charset=utf-8
 
 ;隔开
+
+
+Spring MVC的AcceptHeaderLocaleResolver会解析HTTP请求头中的Accept-Language字段来确定客户端所接受的语言区域。下面是一个使用AcceptHeaderLocaleResolver区分中英文的示例：
+
+首先，在Spring MVC的配置文件中，添加AcceptHeaderLocaleResolver bean：
+
+``xml
+<bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver">  
+    <property name="defaultLocale" value="en_US" /> <!-- 默认语言为英文 -->  
+</bean>
+``
+然后，在控制器中使用@RequestMapping注解来处理请求：
+
+```java
+@Controller  
+public class ExampleController {  
+    @RequestMapping("/hello")  
+    public String hello(Locale locale) {  
+        if (locale.equals(Locale.CHINA)) {  
+            // 处理中文请求  
+            return "hello_zh_CN";  
+        } else if (locale.equals(Locale.US)) {  
+            // 处理英文请求  
+            return "hello_en_US";  
+        } else {  
+            // 处理其他情况  
+            return "hello";  
+        }  
+    }  
+}
+``
+在上面的示例中，当客户端发送的请求头中的Accept-Language字段为zh-CN时，Spring MVC会将其解析为Locale.CHINA，当Accept-Language字段为en-US时，会将其解析为Locale.US。然后，在控制器中的hello()方法中，我们可以根据Locale对象来判断请求的语言区域，并作出相应的处理。
+例如，当请求的语言区域为中文时，可以返回一个名为hello_zh_CN的视图，当请求的语言区域为英文时，可以返回一个名为hello_en_US的视图。在其他情况下，可以返回一个名为hello的通用视图。
+需要注意的是，为了让Spring MVC正确地解析Accept-Language字段中的语言代码，需要在请求头中设置正确的Accept-Language头部信息。例如，要发送英文请求，可以在请求头中设置Accept-Language: en-US，要发送中文请求，可以设置Accept-Language: zh-CN。
 
 Spring MVC实例，使用Controller接口实现控制器
 https://blog.csdn.net/qq_28379809/article/details/76177343
