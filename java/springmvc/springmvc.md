@@ -24,9 +24,9 @@ org.springframework.web.method.support.InvocableHandlerMethod#doInvoke
 
 	private final Method bridgedMethod;
 
-DispatcherServlet
+DispatcherServlet org.springframework.web.servlet.DispatcherServlet类
 
-九大组件
+九大组件 注意区分哪些是单个，哪些是列表
 String MULTIPART_RESOLVER_BEAN_NAME = "multipartResolver";
 String LOCALE_RESOLVER_BEAN_NAME = "localeResolver";
 String THEME_RESOLVER_BEAN_NAME = "themeResolver";
@@ -84,6 +84,68 @@ https://blog.csdn.net/u013219087/article/details/80649654
 
 AnnotationMethodHandlerAdapter 弃用
 SimpleServletHandlerAdapter
+
+springmvc LocaleResolver同时支持中文和英文，如何设置
+
+在Spring MVC中，可以使用LocaleResolver来设置同时支持中文和英文的区域设置。以下是一种常见的设置方法：
+
+首先，在你的 Spring MVC 配置文件中（例如web.xml），添加一个LocaleResolver Bean。可以选择使用AcceptHeaderLocaleResolver或CookieLocaleResolver，这里以AcceptHeaderLocaleResolver为例：
+
+```xml
+<bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver">  
+    <property name="defaultLocale" value="en" /> <!-- 默认语言为英文 -->  
+</bean>
+```
+然后，在你的 Spring MVC 配置文件中定义支持的语言范围。这可以通过ContentNegotiationManager来实现。示例如下：
+
+```xml
+<bean class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">  
+    <property name="favorPathExtension" value="true"/>  
+    <property name="favorParameter" value="true"/>  
+    <property name="defaultContentType" value="text/html"/>  
+    <property name="mediaTypes">  
+        <map>  
+            <entry key="html" value="text/html"/>  
+            <entry key="json" value="application/json"/>  
+            <entry key="xml" value="application/xml"/>  
+        </map>  
+    </property>  
+</bean>
+```
+在你的应用程序中，你需要在你的视图或者控制器中根据用户的请求头来设置或获取正确的区域设置。例如，在控制器中，你可以使用@RequestMapping注解的produces属性来指定返回的内容类型。示例如下：
+
+```java
+@RequestMapping(value = "/example", produces = "text/html")  
+public String example(Locale locale) {  
+    // 在这里你可以获取或设置正确的区域设置  
+    // 然后返回相应的视图  
+}
+```
+在上述步骤中，我们通过配置AcceptHeaderLocaleResolver和ContentNegotiationManager来支持中文和英文的区域设置。这种方式是基于请求头的解析，因此用户的浏览器必须正确地设置请求头信息才能正确地获取到对应的区域设置。
+
+AcceptHeaderLocaleResolver和CookieLocaleResolver都是Spring MVC中用于处理区域设置（Locale）的解析器。它们分别通过不同的方式获取浏览器发送的HTTP请求中的区域设置信息。
+
+AcceptHeaderLocaleResolver：
+
+AcceptHeaderLocaleResolver是通过解析HTTP请求头中的Accept-Language字段来获取浏览器所支持的区域设置信息。
+Accept-Language头部字段是HTTP请求中用于指定客户端所接受的语言和区域设置的信息。它通常包含一个或多个语言标签，以逗号分隔，每个标签后面可以跟一个可选的质量因子（q-factor）来指示该语言的优先级。例如：Accept-Language: en,fr;q=0.8,es;q=0.6。
+AcceptHeaderLocaleResolver会解析Accept-Language头部字段，提取出其中的语言和区域设置信息，并根据优先级选择一个最适合的区域设置作为解析结果。
+CookieLocaleResolver：
+
+CookieLocaleResolver是通过解析HTTP请求中的Cookie来获取浏览器所选择的区域设置信息。
+区域设置信息可以存储在名为locale的Cookie中。当浏览器发送HTTP请求时，该Cookie会被包含在请求中，并由服务器端的CookieLocaleResolver进行解析和提取区域设置信息。
+CookieLocaleResolver会根据Cookie中的locale属性值来解析对应的区域设置。例如，如果Cookie的值为locale=en_US，则解析器会将其解析为英语（美国）的区域设置。
+总之，AcceptHeaderLocaleResolver通过解析Accept-Language头部字段获取浏览器所支持的区域设置信息，而CookieLocaleResolver则通过解析Cookie中的locale属性值获取浏览器所选择的区域设置信息。
+
+http协议 content-type有哪些可选值?
+
+HTTP协议的Content-Type字段有多种可选值，以下是其中一些常见的类型：
+
+application/x-www-form-urlencoded：这表示发送的数据是键值对形式，类似于URL参数。
+multipart/form-data：这表示发送的数据包含多个部分（multipart），通常用于上传文件或发送包含照片、音频和视频等多媒体数据的表单。
+application/json：这表示发送的数据是JSON格式。JSON是一种常用的数据格式，用于在应用程序之间传输结构化数据。
+text/xml：这表示发送的数据是XML格式。XML是一种标记语言，可以用来表示复杂的数据结构，如HTML。
+
 
 Spring MVC实例，使用Controller接口实现控制器
 https://blog.csdn.net/qq_28379809/article/details/76177343
