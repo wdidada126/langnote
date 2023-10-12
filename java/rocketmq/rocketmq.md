@@ -1,5 +1,13 @@
 # RocketMQ
 
+## 端口号
+https://www.jianshu.com/p/616825a4269d
+
+https://zhuanlan.zhihu.com/p/558492754
+
+namesrv.addr:port 替换为 rocketmq 中配置的 nameserver 地址：端口号
+默认端口配置下，需开放端口号：控制台：8080；namesrv：9876；broker：10909、10911
+
 ## 版本更新记录
 https://rocketmq.apache.org/zh/release-notes
 4.0.0-incubating
@@ -151,11 +159,19 @@ https://rocketmq.apache.org/zh/docs/4.x/
 - RocketMQ技术内幕：RocketMQ架构设计
 - RocketMQ实战
 - 分布式中间件核心原理与RocketMQ
-- RocketMQ分布式消息中间件
+- RocketMQ分布式消息中间件  在读
 - RocketMQ实战与原理解析
 
 http://www.broadview.com.cn/book/6615
 
+
+## gui
+
+RocketMQ Assistant
+http://www.redisant.cn/rocketmq
+
+RocketMQ Dashboard
+https://github.com/apache/rocketmq-dashboard
 
 ## 客户端例子
 
