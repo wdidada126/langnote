@@ -4,7 +4,8 @@
 https://book.douban.com/subject/35169072/
 
 有pdf版本
-RocketMQ分布式消息中间件：核心原理与最佳实践@www.cmsblogs.cn.pdf
+RocketMQ分布式消息中间件：核心原理与最佳实践.pdf
+RocketMQ分布式消息中间件：核心原理与最佳实践 2020 (李伟).epub
 
 https://book.douban.com/subject/35169072/
 
@@ -151,8 +152,6 @@ Apache RocketMQ北京社区联合发起人，RocketMQ项目Commiter，RocketMQ�
 
 
 ### 第2章 RocketMQ的生产者原理和最佳实践
-
-
 
 消息发送者
 
