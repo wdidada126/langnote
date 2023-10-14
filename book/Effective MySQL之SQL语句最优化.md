@@ -3,8 +3,9 @@ https://zh.zlibrary-east.se/book/12156500/538abe
 
 https://book.douban.com/subject/20438822/
 
-作者: (美) 布拉德福(Bradford，R. )
+作者: (美) 布拉德福(Bradford，R.)
 ISBN: 9787302304296
+出版年: 2013-1
 
 https://effectivemysql.com/book/optimizing-sql-statements/
 
@@ -49,15 +50,9 @@ SHOW CREATE TABLE xxxTableName
 
 https://github.com/effectiveMySQL/OptimizingSQLStatements/blob/master/sql/chapter01.sql
 
-
-
 ## 第4章 创建MySQL索引
 
-
-
 尽管EXPLAIN命令不会执行SQL语句，但当执行计划确定时它会执行FROM语句中的子查询。
-
-
 
 QEP
 
@@ -65,23 +60,19 @@ QEP是MySQL的一个术语,全称是Query Execution Plan,即查询执行计划�
 QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划。
 
 当MySQL收到SQL语句时,它会做以下工作:
-
 1. 解析和验证SQL语句的语法
 2. 生成查询执行计划(QEP)
 3. 根据QEP执行查询操作
 4. 返回查询结果
 
 其中生成QEP是关键步骤。
-
 QEP决定了MySQL将会如何执行查询:
-
 - 是否使用索引
 - 访问的表顺序
 - 针对每个表使用的访问类型
 - 需要多少行扫描
 
 这些信息都包含在QEP中。
-
 所以QEP实际上就是MySQL如何最有效利用资源执行查询的蓝图。
 
 通过一个叫`EXPLAIN`的SQL语句,我们可以查看MySQL的执行计划,了解它的QEP。
@@ -99,8 +90,6 @@ EXPLAIN会返回QEP相关信息,从中我们可以分析出:
 - 访问类型等等
 
 通过分析QEP,我们就能分析查询性能,进而优化查询。
-
-
 
 ## 第5章 创建更好的MySQL索引
 
