@@ -1,5 +1,9 @@
 # SQL
 
+quanyi公司的慢sql
+slowsql_details.xlsx
+
+
 如何掌握SQL语句_知乎.mhtml
 https://www.zhihu.com/question/564523541/answer/3124034014
 1.使用关键字distinct去重时，需要注意distinct关键字不能实现部分去重，它应用于所有的列而不仅仅是前置的列，
