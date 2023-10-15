@@ -1,7 +1,10 @@
 # redis
 
-在Redis中，可以使用字节流（byte stream）来存储图片。以下是一个使用Java API存储图片的示例代码：
+## redis分布式锁
+Redisson是一个在Java中实现的Redis客户端，它提供了很多高级功能，包括分布式锁，信号量，队列等等。
 
+在Redis中，可以使用字节流（byte stream）来存储图片。以下是一个使用Java API存储图片的示例代码：
+```java
 // 创建Redis客户端  
 Jedis jedis = new Jedis("localhost", 6379);  
   
@@ -14,6 +17,7 @@ jedis.set("image:1", imageData);
   
 // 关闭Redis客户端  
 jedis.close();
+```
 在这个示例中，我们首先创建了一个Jedis客户端，指定了Redis服务器的地址和端口号。然后，我们使用Java的文件读取API将图片文件读取到字节数组中。最后，我们使用Jedis客户端的set命令将图片数据存储到Redis中，其中"image:1"是键，imageData是值。
 
 需要注意的是，在存储图片数据时，应该使用字节流（byte stream）而不是字符串（string）。如果使用字符串来存储二进制数据，可能会导致数据损坏或编码问题。
