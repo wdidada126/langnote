@@ -1,5 +1,10 @@
 # RocketMQ
 
+## 二次封装
+
+https://github.com/netease-lede/rocketmq-easyclient
+博时基金基于RocketMQ的互联网开放平台Matrix架构实践.mhtml
+
 ## Position Manager
 位点管理器
 远程位点管理器
