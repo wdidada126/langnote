@@ -1,4 +1,10 @@
 # kafka
+## 图形化工具
+Kafka 监控：KafkaTool
+https://www.kafkatool.com/download.html
+
+kafkalytic插件
+https://plugins.jetbrains.com/plugin/index?xmlId=org.ermadan.kafkalytic
 
 ## 源代码托管地址
 Scala
