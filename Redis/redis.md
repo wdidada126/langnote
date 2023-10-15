@@ -7,14 +7,14 @@ Redisson是一个在Java中实现的Redis客户端，它提供了很多高级功
 ```java
 // 创建Redis客户端  
 Jedis jedis = new Jedis("localhost", 6379);  
-  
+
 // 读取图片文件  
 File file = new File("path/to/image.jpg");  
 byte[] imageData = Files.readAllBytes(file.toPath());  
-  
+
 // 将图片数据存储到Redis中  
 jedis.set("image:1", imageData);  
-  
+
 // 关闭Redis客户端  
 jedis.close();
 ```
