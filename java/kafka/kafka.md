@@ -1,10 +1,37 @@
 # kafka
+
+EFAK(Eagle ForApacheKafka)是一个简单、高性能的Kafka集群监控系统,实现了监控、可视化操作Topic/Zookeeper、SQL查询、告警等功能,它以前的名字叫Kafka Eagle
+
+https://www.kafka-eagle.org/
+
+## 核心概念
+ISR
+Kafka的ISR（In-Sync Replicas）是指与leader副本保持同步的所有副本的集合。在Kafka中，每个分区都有自己的ISR集合，处于ISR集合中的副本意味着与leader副本保持同步状态，只有处于ISR集合中的副本才有资格被选举为leader。在ISR中，所有副本的状态都是“已同步”的，这意味着它们已经接收到并处理了与leader副本相同的消息。
+
 ## 图形化工具
+备注：当初在中国银行，就应该使用kafka图形化工具的
+
 Kafka 监控：KafkaTool
 https://www.kafkatool.com/download.html
 
 kafkalytic插件
 https://plugins.jetbrains.com/plugin/index?xmlId=org.ermadan.kafkalytic
+
+IDEA 安装和使用Kafka 可视化管理插件Kafkalytic
+投稿用户 • 2022年7月13日 上午10:06 • 科研百科 • 阅读 1780
+IDEA 提供的 Kafka 可视化管理插件Kafkalytic。这个插件为我们提供了下面这些功能：
+
+支持多个Kafka集群
+主题管理：创建/删除/更改分区
+使用正则表达式搜索主题
+发布字符串/字节序列化的消息
+使用不同的策略消费消息
+
+Kafka 消息消费有两种策略：
+pull（拉）模式：消费者采用 pull(拉)模式从 broker 中读取数据。 而 pull 模式则可以根据 consumer 的消费能力以适当的速率消费消息。但是，如果Kafka没有数据，消费者可能会陷入循环中，一直返回空数据。针对这一点，Kafka的消费者在消费数据时会传入一个时长参数 timeout，如果当前没有 数据可供消费，consumer 会等待一段时间之后再返回。这段时长即为 timeout。
+push（推）模式：在 push 模式下，broker 会将数据推送给 consumer。这种模式下，如果 broker 没有数据，consumer 可能无法获取到数据。
+
+IDEA安装和使用Zookeeper可视化管理插件Zoolytic
 
 ## 源代码托管地址
 Scala
@@ -12,6 +39,8 @@ https://github.com/apache/kafka
 
 
 ## 版本
+
+
 
 ## mq实现延时队列
 
