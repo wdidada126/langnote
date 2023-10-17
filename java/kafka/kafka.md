@@ -17,9 +17,8 @@ https://www.kafkatool.com/download.html
 kafkalytic插件
 https://plugins.jetbrains.com/plugin/index?xmlId=org.ermadan.kafkalytic
 
-IDEA 安装和使用Kafka 可视化管理插件Kafkalytic
-投稿用户 • 2022年7月13日 上午10:06 • 科研百科 • 阅读 1780
-IDEA 提供的 Kafka 可视化管理插件Kafkalytic。这个插件为我们提供了下面这些功能：
+IDEA安装和使用Kafka可视化管理插件Kafkalytic
+IDEA提供的Kafka可视化管理插件Kafkalytic。这个插件为我们提供了下面这些功能：
 
 支持多个Kafka集群
 主题管理：创建/删除/更改分区
@@ -27,7 +26,7 @@ IDEA 提供的 Kafka 可视化管理插件Kafkalytic。这个插件为我们提�
 发布字符串/字节序列化的消息
 使用不同的策略消费消息
 
-Kafka 消息消费有两种策略：
+Kafka消息消费有两种策略：
 pull（拉）模式：消费者采用 pull(拉)模式从 broker 中读取数据。 而 pull 模式则可以根据 consumer 的消费能力以适当的速率消费消息。但是，如果Kafka没有数据，消费者可能会陷入循环中，一直返回空数据。针对这一点，Kafka的消费者在消费数据时会传入一个时长参数 timeout，如果当前没有 数据可供消费，consumer 会等待一段时间之后再返回。这段时长即为 timeout。
 push（推）模式：在 push 模式下，broker 会将数据推送给 consumer。这种模式下，如果 broker 没有数据，consumer 可能无法获取到数据。
 
@@ -497,9 +496,7 @@ xxx.sh --topic
 
 
 Kafka Stream是Apache Kafka从0.10版本引入的一个新Feature。它是提供了对存储于Kafka内的数据进行流式处理和分析的功能。
-
 Kafka Stream的特点如下：
-
 - Kafka Stream提供了一个非常简单而轻量的Library，它可以非常方便地嵌入任意Java应用中，也可以任意方式打包和部署
 - 除了Kafka外，无任何外部依赖
 - 充分利用Kafka分区机制实现水平扩展和顺序性保证
@@ -606,7 +603,6 @@ scala
 java
 
 
-
 1. 在配置 KafkaTemplate 时，可以通过设置不同的参数来控制 Kafka 生产者的行为，例如 `acks`、`retries`、`batch.size` 等。这些参数的含义和用法可以参考 Kafka 生产者的配置文档。
 
 DefaultKafkaProducerFactory是否是自动创建topic？？
@@ -637,32 +633,18 @@ Apache kafka实战 (胡夕)
 https://www.jianshu.com/p/80a10811d5cb
 
 ```powershell
-
 cd D:\Program\kafka_2.12-0.11.0.3
-
 bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 bin\windows\kafka-server-start.bat config\server.properties
 bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
-
 bin\windows\kafka-topics.bat --delete --topic my-topics --zookeeper localhost:2181
-
-
 bin\windows\kafka-topics.bat --create --topic myDemo --zookeeper localhost:2181 --partitions 2 --replication-factor 1 
-
-
-
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
-
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test --property "parse.key=true" --property "key.separator=:" --property "partition.key=1"
-
-
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testDemo --from-beginning
-
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-topic --from-beginning
-
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --partition 1 --offset 2
-
 bin\windows\kafka-topics.bat --describe --zookeeper localhost:2181 --topic test
 Topic:test      PartitionCount:1        ReplicationFactor:1     Configs:
         Topic: test     Partition: 0    Leader: 0       Replicas: 0     Isr: 0
@@ -719,7 +701,7 @@ java.nio.file.FileSystemException: \tmp\kafka-logs\linlin-0\00000000000000000000
 
 ```shell
 cd D:\Program\kafka_2.11-1.0.0
-D:\Program\kafka_2.11-1.0.0> .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 cd D:\Program\kafka_2.11-1.0.0
 .\bin\windows\kafka-server-start.bat config\server.properties
 
