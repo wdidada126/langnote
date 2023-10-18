@@ -1,4 +1,22 @@
 # Tomcat
+org.apache.tomcat.util.threads.LimitLatch
+
+AbstractEndpoint这个类中使用LimitLatch
+AbstractEndpoint (org.apache.tomcat.util.net)
+    AprEndpoint (org.apache.tomcat.util.net)
+    AbstractJsseEndpoint (org.apache.tomcat.util.net)
+        NioEndpoint (org.apache.tomcat.util.net)
+        Nio2Endpoint (org.apache.tomcat.util.net)
+
+AbstractEndpoint这个类import的类
+
+import org.apache.tomcat.util.threads.LimitLatch;
+import org.apache.tomcat.util.threads.ResizableExecutor;
+import org.apache.tomcat.util.threads.TaskQueue;
+import org.apache.tomcat.util.threads.TaskThreadFactory;
+import org.apache.tomcat.util.threads.ThreadPoolExecutor;
+
+
 
 https://tomcat.apache.org/lists.html
 dev-subscribe@tomcat.apache.org
