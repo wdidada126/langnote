@@ -5,6 +5,10 @@ https://book.douban.com/subject/25900156/
 windows 10电脑上
 Redis设计与实现.pdf
 
+出版年: 2014-6
+作者: 黄健宏
+ISBN: 9787111464747
+
 string
 list
 hash
@@ -25,7 +29,7 @@ set a b
 
 a b就是字典
 
-10086个/很多歌kv对
+10086个/很多个kv对
 
 dict
 dictEntry
