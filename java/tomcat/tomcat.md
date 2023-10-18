@@ -1,5 +1,10 @@
 # Tomcat
 org.apache.tomcat.util.threads.LimitLatch
+org.apache.tomcat.util.threads.LimitLatch是Apache Tomcat提供的一个同步辅助类，它的作用是限制同时访问某个资源的线程数量。
+
+具体来说，LimitLatch内部维护了一个计数器和一个等待队列。当有线程请求访问某个资源时，如果计数器的值小于设定的最大值，则计数器加1，该线程可以继续执行；否则，该线程会被放入等待队列中，直到其他线程释放资源并使计数器的值大于0时，等待队列中的线程才能被唤醒并继续执行。
+
+LimitLatch的实现方式是基于AQS（AbstractQueuedSynchronizer）框架的，因此它的使用方法和原理与CountDownLatch类似，但是更加灵活和强大。
 
 AbstractEndpoint这个类中使用LimitLatch
 AbstractEndpoint (org.apache.tomcat.util.net)
