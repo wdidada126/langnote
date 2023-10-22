@@ -1,5 +1,22 @@
 # redis
 
+## redis高级数据结构
+hyperloglog
+
+## redis底层数据结构
+redis设计与实现 书籍
+
+动态字符串 sds
+链表 list listNode
+字典 符号表 map dictht dictEntry
+跳表 skipList
+整数集合
+压缩列表
+对象
+
+ziplist
+
+
 ## redis分布式锁
 Redisson是一个在Java中实现的Redis客户端，它提供了很多高级功能，包括分布式锁，信号量，队列等等。
 
