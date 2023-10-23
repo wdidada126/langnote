@@ -1,4 +1,6 @@
 # oracle
+Oracle中的Service_name和SID都是用于标识数据库实例的参数，但它们之间存在一些区别。首先，Service_name是在Oracle 8i版本中引入的。在8i之前，使用SID来表示一个数据库实例。但在Oracle的并行环境中，一个数据库可以有多个实例，这意味着需要为每个实例设置一个网络服务名，导致设置变得繁琐。为了简化并行环境中的设置，引入了Service_name。具体来说，ServiceName方式是Oracle推荐的。对于集群来说，每个节点的SID可能不一致，但ServiceName是一致的，包含所有节点。而SID方式是我们在实际部署时经常使用的连接方式，其格式为：jdbc:oracle:thin:@<地址：端口号：SID。
+简而言之，SID是数据库的一个实例，一个数据库可以有多个SID；而Service_name对应数据库，一个数据库也可以对应多个Service_name。在选择使用哪一种方式时，需要根据实际的应用场景和需求来决定。
 
 还是很有希望的，Oracle现在已经是屎山了。我记得邓侃从国外回来的时候他们那边就已经新代码铺旧代码，谁都不敢轻易改了。不过oracle的特性还是很强，估计当前开源的这批关系型数据库连oralce 10G的特性都没有完全实现。不过那时候我最喜欢看的还是oralce有个专栏叫做ask tom，他们的VP讲oracle的一些功能细节实现真的很棒。
 
@@ -36,6 +38,7 @@ dell刀片服务器
 
 docker镜像
 
+navicat连接oracle，服务名：helowinXDB
 登录服务器
 oracle
 
@@ -48,7 +51,7 @@ sqlplus登录
 
 sys system默认密码无
 
-新建账户wdidada
+新建账户ETS，密码ETS，字母大写
 
 
 wdidada账户 lock解除
@@ -172,9 +175,6 @@ commit;
 
 
 ![c## or C## ](oracle_users.jpeg)
-
-
-
 
 
 ### book

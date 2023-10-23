@@ -1,19 +1,11 @@
 # 深入理解Apache Dubbo与实战
 
-
-
 商宗海，花名诣极，Apache Dubbo PMC。曾就职于阿里巴巴、有赞，担任Dubbo框架技术负责人，长期活跃在Dubbo社区。现就职于蚂蚁金服中间件团队，负责sofa-rpc和云原生方向的产品研发。
 林琳，花名景竹，曾就职于华软集团、递四方等公司，担任技术经理、高级架构师等职位。现就职于蚂蚁金服支付宝事业群，负责工程平台架构工作。
 
-
-
 先看官方文档
 
-
-
 Hession好像是http层的东西，跟webservice差不多
-
-
 
 [深入理解Apache Dubbo与实战](https://book.douban.com/subject/34455777/)
 
