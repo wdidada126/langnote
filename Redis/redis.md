@@ -1,5 +1,8 @@
 # redis
 
+
+https://zhuanlan.zhihu.com/p/662883241
+
 ## redis高级数据结构
 hyperloglog
 

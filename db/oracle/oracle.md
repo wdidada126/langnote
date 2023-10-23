@@ -29,6 +29,7 @@ Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
 
 registry.aliyuncs.com/helowin/oracle_11g
 
+【Docker】拉取Oracle 11g镜像配置 - OLIVER_QIN - 博客园.mhtml
 https://www.cnblogs.com/OliverQin/p/9765808.html
 
 dell刀片服务器

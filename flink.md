@@ -1,5 +1,8 @@
 # flink
 
+https://flink.apache.org/
+`flink-1.16.2-bin-scala_2.12` 文件名中的 `scala_2.12` 表示这个 Flink 二进制包是用 Scala 2.12 版本编译的。这意味着 Flink 源代码是使用 Scala 2.12 版本开发的，并且这个二进制包也支持 Scala 2.12。
+
  flink设计蛮好
  是德国一个大学实验室的研究成果 被开源出来的 创始人已经从阿里离职
 

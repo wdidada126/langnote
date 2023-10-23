@@ -1,12 +1,14 @@
 # centos
 
+https://mirror.tuna.tsinghua.edu.cn/centos/7/isos/x86_64/
+
 pkgs.org 一个方便的linux 软件包开放服务
 
 centos 8
 dnf命令行
 
 rpm -q centos-release
-centos-release-6-10.el6.centos.12.3.x86_6'
+centos-release-6-10.el6.centos.12.3.x86_6
 centos-release-7-8.2003.0.el7.centos.x86_64
 
 查看CentOS版本方法
