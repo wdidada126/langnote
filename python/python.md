@@ -1,5 +1,9 @@
 # python
 
+而且数分用Python需要掌握的是Numpy、pandas这些数据分析的工具和统计学的知识，后端则是Flask或者Django这些框架以及web相关的知识，这是两个领域的知识。
+
+selenium是爬虫的
+
 python依赖库乱的一比，哪怕指定了版本，两年后，不处理都不一定还能跑
 
 ### Python学习路径
@@ -18,11 +22,9 @@ Web
 - Python源码剖析
 - Python核心编程（第二版）
 
-
-
 [【Python 训练营】Python 每日一练 ---- 第 31 天: k 倍区间](https://xie.infoq.cn/article/87f2f8859c800d72c2275b731)
 
-[python 方法——defaultdict 详解](https://xie.infoq.cn/article/6d7ec0675e2c673985a5ba5ec)
+[python 方法——defaultdict详解](https://xie.infoq.cn/article/6d7ec0675e2c673985a5ba5ec)
 
 
 
@@ -87,8 +89,6 @@ Theano
 
 
 [Python-100-Days](https://github.com/jackfrued/Python-100-Days/blob/master/Day91-100/100.Python面试题集.md)
-
-
 
 python tag符号和空格不能混用，否则会报错
 
