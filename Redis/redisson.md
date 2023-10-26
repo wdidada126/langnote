@@ -1,5 +1,9 @@
 # redisson
 
+resp 类比http
+连接 用户名密码登录
+
+
 ## 测试代码
 https://gitee.com/edidada/testredision
 

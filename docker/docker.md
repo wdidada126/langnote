@@ -1,5 +1,9 @@
 # docker
 
+## subnet
+# 创建一个名为tars的桥接(bridge)虚拟网络，网关172.25.0.1，网段为172.25.0.0
+docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars
+
 ## docker 私有仓库管理工具
 https://github.com/goharbor/harbor
 
