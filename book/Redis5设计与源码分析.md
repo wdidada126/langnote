@@ -1,5 +1,7 @@
 # Redis5设计与源码分析
 
+Redis5设计与源码分析(数据库技术丛书)(陈雷等)(Z-Library).epub
+
 https://book.douban.com/subject/34804798/
 作者: 陈雷
 出版年: 2019-8-1
