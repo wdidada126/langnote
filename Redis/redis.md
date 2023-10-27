@@ -1,5 +1,49 @@
 # redis
 
+Redis HyperLogLog是一种用于统计基数（cardinality）的数据结构，主要用于解决大数据集合中基数的估算问题。它的主要使用场景包括：
+1. 实时访问统计：例如网站实时访问量、页面浏览量等，可以使用HyperLogLog来存储每个IP地址的访问次数，从而快速估算出总访问量。
+2. 用户画像分析：在用户画像分析中，需要对用户的兴趣标签进行统计。由于用户可能拥有多个兴趣标签，因此可以使用HyperLogLog来统计每个用户的兴趣标签数量。
+3. 推荐系统：在推荐系统中，需要对用户的历史行为进行统计，以便为用户推荐相似的内容。可以使用HyperLogLog来统计每个用户的行为次数，从而快速估算出用户的偏好。
+4. 广告投放：在广告投放中，需要对广告的曝光量进行统计。可以使用HyperLogLog来存储每个广告的曝光次数，从而快速估算出广告的总曝光量。
+5. 社交网络：在社交网络中，需要对用户的好友关系进行统计。可以使用HyperLogLog来统计每个用户的好友数量，从而快速估算出社交网络的规模。
+
+在Redis Lettuce中，可以通过以下方式设置Sentinel的IP地址：
+1. 首先，创建一个`RedisURIBuilder`对象，并设置Sentinel的IP地址。例如：
+
+```java
+import io.lettuce.core.RedisURI;
+import io.lettuce.core.sentinel.api.RedisSentinelClient;
+import io.lettuce.core.sentinel.api.SentinelEndpoint;
+import io.lettuce.core.sentinel.api.builder.SentinelClientConfigurationBuilder;
+
+public class RedisLettuceSentinelExample {
+    public static void main(String[] args) {
+        // 设置Sentinel的IP地址
+        List<String> sentinelAddresses = Arrays.asList("127.0.0.1:26379", "127.0.0.1:26380", "127.0.0.1:26381");
+
+        // 创建RedisURIBuilder对象
+        RedisURIBuilder redisURIBuilder = RedisURI.SENTINEL_URI.builder()
+                .withSentinelAddresses(sentinelAddresses);
+
+        // 构建RedisURI对象
+        RedisURI redisURI = redisURIBuilder.build();
+
+        // 创建Sentinel客户端配置构建器
+        SentinelClientConfigurationBuilder builder = SentinelClientConfiguration.builder()
+                .masterName("mymaster")
+                .sentinelAddresses(sentinelAddresses);
+
+        // 创建RedisSentinelClient对象
+        RedisSentinelClient sentinelClient = RedisSentinelClient.create(builder.build(), redisURI);
+
+        // 使用RedisSentinelClient对象进行操作...
+    }
+}
+```
+
+在这个例子中，我们设置了三个Sentinel节点的IP地址（127.0.0.1:26379、127.0.0.1:26380和127.0.0.1:26381）。然后，我们创建了一个`RedisURIBuilder`对象，并使用`withSentinelAddresses()`方法设置了Sentinel的IP地址。接下来，我们构建了一个`RedisURI`对象，用于连接到Redis集群。最后，我们创建了一个`SentinelClientConfigurationBuilder`对象，并设置了主节点名称和Sentinel节点的IP地址。最后，我们使用这些配置创建了一个`RedisSentinelClient`对象，可以用于与Redis集群进行通信。
+
+
 尽量不做分片集群。因为集群维护起来比较麻烦，并且集群之间的心跳检测和数据通信会消耗大量的网络带宽，也没有办法使用lua脚本和事务
 
 bgsave
@@ -595,8 +639,8 @@ yum --enablerepo=remi install redis -y
 
 Redis协议里有大量冗余的回车换行符，但是这不影响它成为互联网技术领域非常受欢迎的一个文本协议。有很多开源项目使用阻SP作为它的通讯协议
 
-
-- Redis深度历险 书籍
+## 书籍
+- Redis深度历险 
 - Redis实战
 - Redis权威指南
 - Redis设计与实现
