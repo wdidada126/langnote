@@ -6,8 +6,6 @@ MQTT 发布订阅测试，可以在 Chrome 中下载 MQTTBox 插件 或者 命�
 
 MQTT和Websocket的区别是什么？
 链接：https://www.zhihu.com/question/21816631/answer/3145022789
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 引言
 工业系统需要确保数据的无缝交换，因此对于高效、安全的通信协议具有极高的依赖性。MQTT Sparkplug 和 OPC UA  是两个经常被提到的工业协议。本文将全面比较 MQTT Sparkplug 和 OPC UA  以及它们的衍生版本，帮助您更清楚地了解哪种协议更适合您的需求。
@@ -34,9 +32,7 @@ https://github.com/mqtt/mqtt.github.io/wiki/SYS-Topics
 
 MQTT vs WebSocket
 
-
 跟kafka一样，有topic的概念
-
 
 MQTT服务器都是叫Broker
 
@@ -60,4 +56,4 @@ MQTT X以消息聊天的交互形式收发消息，允许同时建立多个连�
 
 值得一提的是，MQTTX还提供了MQTT命令行测试工具，这个强大的工具不仅方便安装，还提供了丰富且完善的各类测试命令和较为完整的MQTT配置参数，可以方便用户快速集成到一些测试脚本中。因此，无论是对于开发人员还是普通用户来说，MQTT X都是一款非常实用的工具。
 
-MQTT_CONNECT报文协商会话.jpg
+![MQTT_CONNECT报文协商会话](./imgs/network/mqtt/MQTT_CONNECT报文协商会话.jpg)
