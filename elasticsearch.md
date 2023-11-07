@@ -1,9 +1,8 @@
 # elasticsearch
 
+## Rust写的竞品 meilisearch
 
-
-
-
+倒排索引
 
 
 elasticsearch
@@ -13,9 +12,7 @@ https://book.douban.com/subject/25868239/
 es其分布式设计理念和其他分布式Nosql数据库的设计理念都差不多
 nosql
 
-
-
-搜索，es 
+搜索，es
 
 wukong搜索
 
@@ -29,12 +26,6 @@ wukong搜索
 
 nosql
 
-
-
-
-
 windows电脑安装了
-
-
 
 ![es学习路线](imgs/es_study.jpg)
