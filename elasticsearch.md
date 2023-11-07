@@ -11,6 +11,8 @@ ik版本必须跟es版本一致
 
 
 
+https://github.com/medcl/elasticsearch-analysis-ik/releases?page=14
+
 
 **https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip**
 
