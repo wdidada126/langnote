@@ -1,18 +1,18 @@
 # elasticsearch
 
+
+## 官方文档
+
+es文档
+https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html
+
 ## analysis-ik分词器
 
 ik版本必须跟es版本一致
 
-
-
-
 ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v2.3.0/elasticsearch-analysis-ik-2.3.0.zip
 
-
-
 https://github.com/medcl/elasticsearch-analysis-ik/releases?page=14
-
 
 **https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip**
 

@@ -1,5 +1,9 @@
 # less
 
+zless
+
+
+
 ：G进入最后一行
 
 进入vi？
@@ -13,8 +17,6 @@ less comes with NO WARRANTY, to the extent permitted by law.
 For information about the terms of redistribution,
 see the file named README in the less distribution.
 Homepage: http://www.greenwoodsoftware.com/less
-
-
 
 在 Linux 系统中，可以使用 `less` 命令来编辑文件。当文件内容过长时，可以使用以下方法进入 Vim 编辑器进行编辑：
 
