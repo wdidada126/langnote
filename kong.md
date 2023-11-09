@@ -1,13 +1,19 @@
 # kong
 
+
+
+Kong 是基于 NGINX 和 OpenResty 的开源 API 网关。
+
+
+
 Kong是一个开源的API门户和微服务管理层。
 
 Kong的官方主页和源代码仓库如下:
 
 - 项目主页:https://konghq.com/
 - 下载:https://konghq.com/download/
-- 文档:https://docs.konghq.com/ 
--源代码:https://github.com/Kong/kong
+- 文档:https://docs.konghq.com/
+  -源代码:https://github.com/Kong/kong Lua语言编写的
 - issue追踪:https://github.com/Kong/kong/issues
 
 伦敦Kong提供了:
@@ -35,8 +41,7 @@ Kong的主要特点:
 Kong的主要网址如下总结:
 
 - 项目主页:https://konghq.com/
-- 下载地址:https://konghq.com/download/ 
-- 文档:https://docs.konghq.com/ 
+- 下载地址:https://konghq.com/download/
+- 文档:https://docs.konghq.com/
 - 源代码:https://github.com/Kong/kong
 - Issue追踪:https://github.com/Kong/kong/issues
-
