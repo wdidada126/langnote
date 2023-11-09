@@ -1,10 +1,46 @@
 # elasticsearch
 
 
+## 官方文档
 
+es文档
+https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html
 
+## analysis-ik分词器
 
+ik版本必须跟es版本一致
 
+./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v2.3.0/elasticsearch-analysis-ik-2.3.0.zip
+
+https://github.com/medcl/elasticsearch-analysis-ik/releases?page=14
+
+**https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip**
+
+## 核心概念
+
+文档 document
+
+item
+
+## books 书籍
+
+Elasticsearch 技术解析与实战 作者: 朱林
+
+[Elasticsearch源码解析与优化实战](https://book.douban.com/subject/30386800/)
+张超 / 电子工业出版社 / 2019-1 /
+
+[Elasticsearch实战与原理解析](https://book.douban.com/subject/35001679/)
+牛冬 / 电子工业出版社 / 2020-3
+
+[Elasticsearch搜索引擎构建入门与实战](https://book.douban.com/subject/35658411/)
+高印会 / 机械工业出版社 / 2021-10
+
+[Elasticsearch全面解析与实践](https://book.douban.com/subject/35702743/)
+张文亮 / 机械工业出版社 / 2021-12-14 / 79.00
+
+## Rust写的竞品 meilisearch
+
+倒排索引
 
 elasticsearch
 
@@ -13,9 +49,7 @@ https://book.douban.com/subject/25868239/
 es其分布式设计理念和其他分布式Nosql数据库的设计理念都差不多
 nosql
 
-
-
-搜索，es 
+搜索，es
 
 wukong搜索
 
@@ -29,12 +63,6 @@ wukong搜索
 
 nosql
 
-
-
-
-
 windows电脑安装了
-
-
 
 ![es学习路线](imgs/es_study.jpg)
