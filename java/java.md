@@ -1342,3 +1342,15 @@ http://dblab.xmu.edu.cn/post/google-bigtable/
 
 
 https://docs.oracle.com/en/java/javase/14/
+
+## 环境变量
+JAVA_HOME
+
+
+%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
+
+
+
+CLASSPATH
+.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\jre\lib\rt.jar;%JAVA_HOME%\lib\dt.jar
+
