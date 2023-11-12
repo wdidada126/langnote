@@ -14,7 +14,7 @@ ik版本必须跟es版本一致
 
 https://github.com/medcl/elasticsearch-analysis-ik/releases?page=14
 
-**https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip**
+https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip
 
 ## 核心概念
 
@@ -63,6 +63,33 @@ wukong搜索
 
 nosql
 
+## Windows电脑安装启动Elasticsearch
+
 windows电脑安装了
+
+db-engines
+
+search engine中排名
+
+
+
+https://db-engines.com/en/ranking/search+engine
+
+
+
+## Elasticsearch课程
+Elasticsearch 核心技术与实战
+
+https://time.geekbang.org/course/intro/100030501
+
+
+
+快速构建分布式搜索和分析引擎
+
+阮一鸣  eBay Pronto 平台技术负责人
+
+Pronto 平台目前管理了 eBay 内部上百个 Elasticsearch 集群，包含了 4000 多个数据节点。这些集群目前被广泛使用在 eBay 的生产环境之中。涵盖了网站搜索，商品推荐，日志管理，风险控制，IT 运维，安全监控等多个领域。
+
+
 
 ![es学习路线](imgs/es_study.jpg)
