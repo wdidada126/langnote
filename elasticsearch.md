@@ -1,6 +1,9 @@
 # elasticsearch
 
 
+
+## 竞品Splunk
+
 ## 官方文档
 
 es文档
@@ -22,7 +25,10 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elas
 
 item
 
+## 学习资料
+b站 
 ## books 书籍
+
 
 Elasticsearch 技术解析与实战 作者: 朱林
 
@@ -66,6 +72,44 @@ nosql
 ## Windows电脑安装启动Elasticsearch
 
 windows电脑安装了
+
+
+
+elasticsearch.bat
+
+
+
+D:\elasticsearch-7.3.2\bin\elasticsearch.bat
+
+需要java11
+
+
+
+http://127.0.0.1:9200/
+
+http://127.0.0.1:9200/
+
+{
+  "name" : "DESKTOP-DAF8ST0",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "IgkMeZyXQk2bmv4wbvgNpg",
+  "version" : {
+    "number" : "7.3.2",
+    "build_flavor" : "default",
+    "build_type" : "zip",
+    "build_hash" : "1c1faf1",
+    "build_date" : "2019-09-06T14:40:30.409026Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.1.0",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+https://blog.csdn.net/qq_34383510/article/details/128132503
+
+
 
 db-engines
 
