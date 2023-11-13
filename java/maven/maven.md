@@ -1136,7 +1136,7 @@ Maven权威指南 电纸书
 
 nexus Maven私服开源软件
 
-配置maven
+## 配置maven
 
 M2_HOME
 编辑PATH变量，添加Maven bin文件夹到PATH的最后，如：%M2_HOME%\bin，这样就可以在命令中的任何目录下运行Maven命令了
@@ -1154,9 +1154,7 @@ dependencies即使在子项目中不写该依赖项，那么子项目仍然会�
 dependencyManagement里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。
 
 ```
-
 maven项目打包成tar.gz格式
-
 ```
 
 使用mvn命令行查看maven依赖
