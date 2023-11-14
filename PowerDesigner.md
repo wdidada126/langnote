@@ -21,6 +21,10 @@ https://blog.csdn.net/weixin_42179326/article/details/80399400
 
 PowerDesigner 16 64bit
 http://www.xue51.com/soft/10174.html
+
+百度网盘 提取码
+提取码：04o0
+
 https://www.onlinedown.net/soft/577763.htm
 
 
