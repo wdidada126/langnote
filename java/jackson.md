@@ -96,6 +96,8 @@ public class MyController {
 支持json和xml
 springmvc默认的json序列化 反序列化工具
 
+## 测试代码 demo
+
 https://gitee.com/edidada/testjackson
 http接口入参 出参 json格式的，用这个
 日期参数，加上@JsonFormat @DateTimeFormat
