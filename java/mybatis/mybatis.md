@@ -1,5 +1,10 @@
 # mybatis
 
+## CDATA
+
+<![CDATA[ ]]>
+
+
 Mybatis配置日志打印
 https://blog.csdn.net/qq_32786873/article/details/82019488
 
@@ -104,7 +109,6 @@ CDATA mybatis 时间 大于小于等于 符号
 
 信达新核心项目遇到的报错
 Invalid bound statement (not found)
-
 https://blog.csdn.net/qq_42087460/article/details/113248045
 
 从MyBatis中间件设计者的角度
