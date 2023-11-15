@@ -1,5 +1,14 @@
 # SQL
 
+
+tidb能跑的sql
+
+```sql
+ select * from ( select @rownum:=@rownum+1 as rn, c.num as TOTAL_NUM,t.* from ( SELECT acc_book.BOOK_ID, acc_book.ACC_ID, acc_book.ETP_ID, acc_book.TRANS_TYPE, acc_book.TRANS_AMOUNT, acc_book.TRANS_TIME, acc_book.TRAD_FLOW_NO, acc_book.TRANS_BALANCE, acc_book.OPST_ACC_NO, acc_book.OPST_ACC_NAME,  acc_book.TRADE_AIM, acc_book.REMARK, acc_book.WRITEOFF_STAT, acc_info.ACC_NAME from HRBASE_UAT2.T_ETP_INNER_ACC_BOOK_D acc_book inner join HRBASE_UAT2.T_ETP_INNER_ACC_INFO_D acc_info on acc_book.ACC_ID = acc_info.ACC_ID where acc_book.ETP_ID = 'C2112070945031579433553164615686' AND acc_book.WRITEOFF_STAT = '1' AND acc_book.TRANS_TIME >= '2023-06-06 11:37:10' AND acc_book.TRANS_TIME <= '2023-06-08 11:37:10' order by acc_book.TRANS_TIME desc ) t,(select @rownum:=0) k, (select count(1) num from ( SELECT acc_book.BOOK_ID, acc_book.ACC_ID, acc_book.ETP_ID, acc_book.TRANS_TYPE, acc_book.TRANS_AMOUNT, acc_book.TRANS_TIME, acc_book.TRAD_FLOW_NO, acc_book.TRANS_BALANCE, acc_book.OPST_ACC_NO, acc_book.OPST_ACC_NAME, acc_book.TRADE_AIM, acc_book.REMARK, acc_book.WRITEOFF_STAT, acc_info.ACC_NAME from HRBASE_UAT2.T_ETP_INNER_ACC_BOOK_D acc_book inner join HRBASE_UAT2.T_ETP_INNER_ACC_INFO_D acc_info on acc_book.ACC_ID = acc_info.ACC_ID where acc_book.ETP_ID = 'C2112070945031579433553164615686' AND acc_book.WRITEOFF_STAT = '1' AND acc_book.TRANS_TIME >= '2023-06-06 11:37:10' AND acc_book.TRANS_TIME <= '2023-06-08 11:37:10' order by acc_book.TRANS_TIME desc ) rw) c ) row_ where row_.rn <=(6-1)
+ ```
+
+在SQL中，AND的优先级高于OR。
+
 quanyi公司的慢sql
 slowsql_details.xlsx
 
