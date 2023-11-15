@@ -63,6 +63,20 @@ Gradle自带了很多任务，以下是一些常见的任务：
 
 总的来说，Gradle自带了很多任务，可以通过这些任务来构建、测试和打包项目，以及管理依赖关系和发布构建产物等。
 
+https://gradle.org/
+
+要设置环境变量GRADLE_HOME和GRADLE_USER_HOME，可以按照以下步骤在Windows上进行操作：
+
+打开Windows操作系统的环境变量设置：
+在开始菜单中搜索"环境变量"，然后点击"编辑系统环境变量"；
+或者在"此电脑"上右键点击，选择"属性"，然后点击"高级系统设置"，在弹出的窗口中点击"环境变量"按钮。
+在"系统属性"窗口的"高级"选项卡中，点击"环境变量"按钮。
+在"环境变量"窗口中，可以编辑或添加新的系统环境变量。
+对于GRADLE_HOME，在"变量名"中输入GRADLE_HOME，在"变量值"中输入Gradle的安装目录路径。例如，如果Gradle安装在C:\gradle\gradle-6.7，那么将GRADLE_HOME设置为这个路径。
+对于GRADLE_USER_HOME，在"变量名"中输入GRADLE_USER_HOME，在"变量值"中输入你想要设置为用户主目录的路径。例如，可以将其设置为C:\Users\YourUsername\.gradle。
+点击"确定"保存更改。
+
+现在，你已经成功设置了环境变量GRADLE_HOME和GRADLE_USER_HOME。可以在命令行窗口中使用这些环境变量，例如运行Gradle命令时将使用这些路径。
 
 设置环境变量
 - GRADLE_HOME
