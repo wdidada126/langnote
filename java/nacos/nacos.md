@@ -266,13 +266,8 @@ Spring Cloud Alibaba Nacos Config 目前提供了三种配置能力从 Nacos 拉
 完全关闭配置
 通过设置 spring.cloud.nacos.config.enabled = false 来完全关闭 Spring Cloud Nacos Config
 
-
-
-
 spring.cloud.nacos.config项目配置使用properties还是yml根据什么配置项
 在Spring Cloud Alibaba Nacos中，Nacos Config除了支持.properties格式以外，也支持yaml格式。在客户端配置中，可以在bootstrap.properties文件中使用spring.cloud.nacos.config.file-extension属性声明从配置中心中读取的配置文件格式。该配置的缺省值为properties，即默认是读取properties格式的配置文件
-
-
 
 nacos的dataId invalid报错如何解决
 Nacos的dataId invalid报错可能是由于dataId不合法，例如包含了特殊字符或者长度超过了限制。另外，也有可能是由于Nacos server没有正确地配置。
@@ -291,7 +286,6 @@ public class ParamUtilsMain {
 }
 ```
 
-
 Nacos支持CP+AP模式，即Nacos可以根据配置识别为CP模式或AP模式，默认是AP模式。如果注册Nacos的client节点注册时ephemeral=true，那么Nacos集群对这个client节点的效果就是AP，采用distro协议实现；而注册Nacos的client节点注册时ephemeral=false，那么Nacos集群对这个节点的效果就是CP的，采用raft协议实现。根据client注册时的属性，AP，CP同时混合存在，只是对不同的client节点效果不同。Nacos可以很好的解决不同场景的业务需求。
 协议介绍
 distro协议
@@ -303,7 +297,6 @@ Nacos 每个节点是平等的都可以处理写请求，同时把新数据同�
 每个节点独立处理读请求，及时从本地发出响应。
 
 nacos配置单个文件的
-
 
 ### nacos server源代码解析
 http接口
