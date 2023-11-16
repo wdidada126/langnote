@@ -1,5 +1,13 @@
 # jackson
 
+jackson-datatype-bolts：对 Yandex Bolts collection types 的支持
+jackson-datatype-commons-lang3：支持Apache Commons Lang v3里面的一些类型
+jackson-datatype-money：支持javax.money
+jackson-datatype-json-lib：对久远的json-lib这个库的支持
+
+https://www.cnblogs.com/yourbatman/p/13261855.html
+
+
 com.fasterxml.jackson.databind.ObjectMapper
 ObjectMapper
 
