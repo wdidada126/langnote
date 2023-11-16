@@ -157,14 +157,9 @@ spring-cloud-starter-alibaba-nacos-discovery
 通过 Nacos Server 和 nacos-config-spring-boot-starter 实现配置的动态变更；
 通过 Nacos Server 和 nacos-discovery-spring-boot-starter 实现服务的注册与发现。
 
-
-
 http://192.168.56.1:8848/nacos
 
-
 用户名密码默认都是：nacos 不是admin
-
-
 
 最近几年，各种新的高效序列化方式层出不穷，不断刷新序列化性能的上限，最典型的包括：
 专门针对Java语言的：Kryo，FST等等
