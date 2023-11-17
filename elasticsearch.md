@@ -132,21 +132,52 @@ wukong搜索
 
 nosql
 
+github.com/elastic/elasticsearch
+gradle组织的
+
 ## Windows电脑安装启动Elasticsearch
 
 windows电脑安装了
 
-cd F:\elasticsearch-7.3.2
-
+cd I:\dev_tools\elasticsearch-7.3.2
+$env:JAVA_HOME = "I:\dev_tools\elasticsearch-7.3.2\jdk"
+$env:Path = "I:\dev_tools\elasticsearch-7.3.2\jdk\bin;$env:Path"
 .\bin\elasticsearch.bat
-
-$env:JAVA_HOME = "F:\elasticsearch-7.3.2\jdk"
-
-$env:Path = "F:\elasticsearch-7.3.2\jdk\bin;$env:Path"
-
-F:\elasticsearch-7.3.2\bin\elasticsearch.bat
+I:\dev_tools\elasticsearch-7.3.2\bin\elasticsearch.bat
 
 需要java11
+
+往索引里面插入数据 报错
+{
+    "error": {
+        "root_cause": [
+            {
+                "type": "cluster_block_exception",
+                "reason": "index [json_index] blocked by: [FORBIDDEN/12/index read-only / allow delete (api)];"
+            }
+        ],
+        "type": "cluster_block_exception",
+        "reason": "index [json_index] blocked by: [FORBIDDEN/12/index read-only / allow delete (api)];"
+    },
+    "status": 403
+}
+当Elasticsearch检测到磁盘空间不足时，也会进入read-only mode。
+https://www.elastic.co/cn/downloads/past-releases
+https://www.elastic.co/cn/downloads/past-releases/elasticsearch-7-3-2
+
+你遇到的问题与Elasticsearch相关。错误信息“index [json_index] blocked by: [FORBIDDEN/12/index read-only / allow delete (api)]”表明你试图在Elasticsearch中创建名为"json_index"的索引，但系统当前处于只读模式，不能执行写操作。
+
+Elasticsearch有一个内置的read-only mode，它会在以下情况下触发：
+默认情况下，Elasticsearch启动时会进入read-only mode，这是为了防止在启动过程中进行写操作导致数据不一致。
+当你进行一些特定操作，如删除所有索引、关闭所有节点、或者执行一些可能破坏数据的操作时，Elasticsearch会进入read-only mode。
+当Elasticsearch检测到磁盘空间不足时，也会进入read-only mode。
+要解决这个问题，你可以采取以下几种方法：
+
+等待一段时间后再次尝试。Elasticsearch在启动后会自动退出read-only mode。
+如果你需要立即进行写操作，可以尝试关闭Elasticsearch，然后重新启动。但请注意，这可能会导致数据丢失或损坏，所以只有在你确定这样做不会导致问题的情况下才应该这样做。
+如果是因为磁盘空间不足导致的read-only mode，你可以清理一些空间后再次尝试。
+如果这些方法都不能解决问题，可能需要检查你的Elasticsearch配置，或者考虑增加磁盘空间。
+希望这些信息能帮助你解决问题。如果你还有其他问题，欢迎随时提问。
 
 
 
