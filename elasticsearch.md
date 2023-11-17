@@ -139,11 +139,11 @@ gradle组织的
 
 windows电脑安装了
 
-cd I:\dev_tools\elasticsearch-7.3.2
-$env:JAVA_HOME = "I:\dev_tools\elasticsearch-7.3.2\jdk"
-$env:Path = "I:\dev_tools\elasticsearch-7.3.2\jdk\bin;$env:Path"
+cd D:\dev_tools\elasticsearch-7.3.2
+$env:JAVA_HOME = "D:\dev_tools\elasticsearch-7.3.2\jdk"
+$env:Path = "D:\dev_tools\elasticsearch-7.3.2\jdk\bin;$env:Path"
 .\bin\elasticsearch.bat
-I:\dev_tools\elasticsearch-7.3.2\bin\elasticsearch.bat
+D:\dev_tools\elasticsearch-7.3.2\bin\elasticsearch.bat
 
 需要java11
 
