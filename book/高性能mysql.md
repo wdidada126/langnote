@@ -7,11 +7,11 @@ mysql 5.5
 5.6
 5.7
 
-Windows 电脑，高性能MySQL（第3版）.pdf
+Windows电脑
+高性能MySQL（第3版）.pdf
 
 Baron Schwartz  https://www.xaprb.com/blog/
 https://www.jianshu.com/p/52ffbadf6b12
-
 
 Peter Zaitsev，曾经是MySQLAB公司高性能来组的经理，目前源在运作 baimysqlperformanceblog.com
 
@@ -23,8 +23,6 @@ Peter Zaitsev，曾经是MySQLAB公司高性能来组的经理，目前源在运
 6、os 硬件优化
 7、高可用 主从 避免单点失效
 
-
-
 mysql 历史
 2010 5.5
 innodb
@@ -35,16 +33,10 @@ innodb
 
 8.0
 
-
-
-
 explain 解释 说明
 show profile
 需要百度例子，做实验
 execute plan 执行计划
-
-
-
 
 MySQL-8.0执行器及其改进
 https://cloud.tencent.com/developer/article/1461353
@@ -57,9 +49,6 @@ MySQL技术内幕InnoDB存储引擎.pdf
 show variables xxx
 都有哪些变量
 
-
-
-
 ### Chap. 1 连接器
 
 mysql的内部架构
@@ -68,8 +57,6 @@ mysql的内部架构
 一个连接有一个线程
 线程池 线程重用
 
-
-
 死锁
 事务日志
 事务是由存储引擎实现的
@@ -77,7 +64,6 @@ myasma 不支持事务
 innodb实现事务
 
 mysql，提到事务，最先想到innodb存储引擎
-
 
 mysql server 服务器层也实现表锁
 
@@ -93,7 +79,7 @@ rdbms和nosql的区别包括事务支持与否
 可以认为mvcc是行级锁的一个变种
 mvcc没有规范，不同数据库厂商自己实现
 
-#### 1.5  schema 与数据类型优化
+#### 1.5 schema与数据类型优化
 windows
 
 mysql新建一个数据库
@@ -111,9 +97,9 @@ innodb不支持hash索引
 
 如数据库a，表b。
 1、如果表b采用MyISAM，data\a中会产生3个文件：
-b.frm ：描述表结构文件，字段长度等
-b.MYD(MYData)：数据信息文件，存储数据信息(如果采用独立表存储模式)
-b.MYI(MYIndex)：索引信息文件。
+a.frm ：描述表结构文件，字段长度等
+a.MYD(MYData)：数据信息文件，存储数据信息(如果采用独立表存储模式)
+a.MYI(MYIndex)：索引信息文件。
 2、如果表b采用InnoDB，data\a中会产生1个或者2个文件：
 b.frm ：描述表结构文件，字段长度等
 如果采用独立表存储模式，data\a中还会产生b.ibd文件（存储数据信息和索引信息）
@@ -145,7 +131,7 @@ sysbench压力测试工具简介: sysbench是一个开源的、模块化的、�
 https://github.com/akopytov/sysbench
 
 
-### Chap.4 schema 与数据类型优化
+### Chap.4 schema与数据类型优化
 
  
 
@@ -165,6 +151,13 @@ InnoDB通过主键来聚集数据，聚簇索引的B+Tree上的叶子结点所�
 
 mysql表默认使用聚簇索引
 如果没有主键，mysql表会新建一个影藏列
+
+非聚簇索引
+聚簇索引的叶子节点就是数据节点，而非聚簇索引的叶子节点仍然是索引节点，只不过有指向对应数据块的指针。
+
+1. 聚集索引（聚簇索引）：以innodb作为存储引擎的表，表中的数据都会有一个主键，即使你不创建主键，系统也会帮你创建一个隐式的主键。这是因为innodb是把数据存放在B+树中的，而B+树的键值就是主键，在B+树的叶子节点中，存储了表中所有的数据。这种以主键作为B+树索引的键值而构建的B+树索引，我们称之为聚集索引。 
+2. 非聚集索引（非聚簇索引）：以主键以外的列值作为键值构建的B+树索引，我们称之为非聚集索引。非聚集索引与聚集索引的区别在于非聚集索引的叶子节点不存储表中的数据，而是存储该列对应的主键，想要查找数据我们还需要根据主键再去聚集索引中进行查找，这个再根据聚集索引查找数据的过程，我们称为回表。
+
 ### Chap. 6 查询性能优化
 
 MVCC
@@ -172,7 +165,6 @@ MVCC
 MVCC 不是mvvc，mvvc是前端的概念
 
 mvcc对应的是lock base version control
-
 
 mvcc 加了三个隐藏的字段 
 事务id roll指针 行id
@@ -197,8 +189,6 @@ DB_TRX_ID是最重要的一个，可以通过语句“show engine innodb status�
 
 
 https://www.cnblogs.com/zzq-include/p/13532019.html
-
-### Chap. 9
 
 硬件
 
@@ -225,24 +215,15 @@ Cloud & MySQL
 
 15.3.4 存储引擎和一致性
 
-
-
 索引和实际的数据是分开的，只不过是用索引指向了实际的数据，这种索引就是所谓的非聚集索引
-
-
-
-
 
 SQL Sever索引类型有：唯一索引，主键索引，聚集索引，非聚集索引。
 MySQL 索引类型有：唯一索引，主键（聚集）索引，非聚集索引，全文索引。
 聚集（clustered）索引，也叫聚簇索引。
 > 定义：数据行的物理顺序与列值（一般是主键的那一列）的逻辑顺序相同，一个表中只能拥有一个聚集索引。
 
-
-
 非聚集（unclustered）索引。
-
-> 定义：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。
+定义：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。
 spatial index
 
 https://cloud.tencent.com/developer/news/199266

@@ -82,3 +82,424 @@ MICK
 3-1　习题解答　　　　274
 3-2　参考文献　　　　298
 后　记　　　　302
+
+三值逻辑和NULL
+
+```sql
+SELECT
+	P1.NAME,
+	MAX( P1.price ) AS price,
+	COUNT( P2.NAME ) + 1 AS rank_1 
+FROM
+	Products P1
+	LEFT OUTER JOIN Products P2 ON P1.price < P2.price 
+GROUP BY
+	P1.NAME 
+ORDER BY
+	rank_1;
+```
+
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A A 
+WHERE
+	NOT EXISTS ( SELECT * FROM Class_B B WHERE A.age = NULL AND B.city = '东京' );
+```
+
+
+```sql
+SELECT
+	P1.NAME,
+	P2.NAME 
+FROM
+	Products P1
+	LEFT OUTER JOIN Products P2 ON P1.price < P2.price;
+```
+
+```sql
+SELECT
+	P1.NAME,
+	MAX( P1.price ) AS price,
+	COUNT( P2.NAME ) + 1 AS rank_1 
+FROM
+	Products P1
+	INNER JOIN Products P2 ON P1.price < P2.price 
+GROUP BY
+	P1.NAME 
+ORDER BY
+	rank_1;
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Students 
+WHERE
+	age = NULL 
+	OR age <> NULL;
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	age NOT IN ( SELECT age FROM Class_B WHERE city = '东京' );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	age NOT IN ( 22, 23, NULL );
+```
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	NOT age IN ( 22, 23, NULL );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	NOT ( ( age = 22 ) OR ( age = 23 ) OR ( age = NULL ) );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	NOT ( age = 22 ) 
+	AND NOT ( age = 23 ) 
+	AND NOT ( age = NULL );
+```
+
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	( age <> 22 ) 
+	AND ( age <> 23 ) 
+	AND ( age <> NULL );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	( age <> 22 ) 
+	AND ( age <> 23 ) 
+	AND unknown;
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A A 
+WHERE
+	NOT EXISTS ( SELECT * FROM Class_B B WHERE A.age = B.age AND B.city = '东京' );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A A 
+WHERE
+	NOT EXISTS ( SELECT * FROM Class_B B WHERE A.age = NULL AND B.city = '东京' );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A A 
+WHERE
+	NOT EXISTS ( SELECT * FROM Class_B B WHERE unknown AND B.city = '东京' );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A A 
+WHERE
+	NOT EXISTS ( SELECT * FROM Class_B B WHERE FALSE 或 unknown );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	age < ALL ( SELECT age FROM Class_B WHERE city = '东京' );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	age < ALL ( 22, 23, NULL );
+```
+
+
+```sql
+SELECT
+	* 
+FROM
+	Class_A 
+WHERE
+	( age < 22 ) 
+	AND ( age < 23 ) 
+	AND ( age < NULL );
+```
+
+
+```sql
+SELECT
+	income,
+	COUNT( * ) AS cnt 
+FROM
+	Graduates 
+GROUP BY
+	income 
+HAVING
+	COUNT( * ) >= ALL ( SELECT COUNT( * ) FROM Graduates 　　 GROUP BY income );
+```
+
+
+```sql
+SELECT
+	income,
+	COUNT( * ) AS cnt 
+FROM
+	Graduates 
+GROUP BY
+	income 
+HAVING
+	COUNT( * ) >= ( SELECT MAX( cnt ) FROM ( SELECT COUNT( * ) AS cnt FROM Graduates GROUP BY income ) TMP );
+```
+
+
+```sql
+SELECT
+	AVG( DISTINCT income ) 
+FROM
+	(
+SELECT
+	T1.income 
+FROM
+	Graduates T1,
+	Graduates T2 
+GROUP BY
+	T1.income --S 1 的条件 
+HAVING
+	SUM( CASE WHEN T2.income >= T1.income THEN 1 ELSE 0 END ) >= COUNT( * ) / 2 --S 2 的条件 
+	AND SUM(
+CASE
+	
+	WHEN T2.income <= T1
+```
+
+```sql
+SELECT
+	dpt 
+FROM
+	Students 
+GROUP BY
+	dpt 
+HAVING
+	COUNT( * ) = SUM( CASE WHEN sbmt_date IS NOT NULL THEN 1 ELSE 0 END );
+```
+
+```sql
+SELECT DISTINCT
+	shop 
+FROM
+	ShopItems 
+WHERE
+	item IN ( SELECT item FROM Items );
+```
+
+
+```sql
+SELECT
+	SI.shop 
+FROM
+	ShopItems SI,
+	Items I 
+WHERE
+	SI.item = I.item 
+GROUP BY
+	SI.shop 
+HAVING
+	COUNT( SI.item ) = ( SELECT COUNT( item ) FROM Items );
+```
+
+
+```sql
+SELECT
+	SI.shop,
+	COUNT( SI.item ),
+	COUNT( I.item ) 
+FROM
+	ShopItems SI,
+	Items I 
+WHERE
+	SI.item = I.item 
+GROUP BY
+	SI.shop;
+```
+
+
+```sql
+SELECT
+	SI.shop 
+FROM
+	ShopItems SI
+	LEFT OUTER JOIN Items I ON SI.item = I.item 
+GROUP BY
+	SI.shop 
+HAVING
+	COUNT( SI.item ) = ( SELECT COUNT( item ) FROM Items ) 　　 -- 条件 1
+	
+	AND COUNT( I.item ) = ( SELECT COUNT( item ) FROM Items );-- 条件 2
+```
+
+
+```sql
+-- 水平展开求交叉表 (1)：使用外连接
+SELECT
+	C0.NAME,
+CASE
+	
+	WHEN C1.NAME IS NOT NULL THEN
+	'○' ELSE NULL 
+	END AS "SQL 入门",
+CASE
+		
+		WHEN C2.NAME IS NOT NULL THEN
+		'○' ELSE NULL 
+	END AS "UNIX 基础",
+CASE
+		
+		WHEN C3.NAME IS NOT NULL THEN
+		'○' ELSE NULL 
+	END AS "Java 中级" 
+FROM
+	( SELECT DISTINCT NAME FROM Courses ) C0 -- 这里的 C0 是侧栏
+	LEFT OUTER JOIN ( SELECT NAME FROM Courses WHERE course = 'SQL 入门' ) C1 ON C0.NAME = C1.
+	NAME LEFT OUTER JOIN ( SELECT NAME FROM Courses WHERE course = 'UNIX 基础' ) C2 ON C0.NAME = C2.
+NAME LEFT OUTER JOIN ( SELECT NAME FROM Courses WHERE course = 'Java 中级' ) C3 ON C0.NAME = C3.NAME;
+```
+
+
+```sql
+-- 水平展开 (2)：使用标量子查询
+SELECT
+	C0.NAME,
+	( SELECT '○' FROM Courses C1 WHERE course = 'SQL 入门' AND C1.NAME = C0.NAME ) AS "SQL 入门",
+	( SELECT '○' FROM Courses C2 WHERE course = 'UNIX 基础' AND C2.NAME = C0.NAME ) AS "UNIX 基础",
+	( SELECT '○' FROM Courses C3 WHERE course = 'Java 中级' AND C3.NAME = C0.NAME ) AS "Java 中级" 
+FROM
+	( SELECT DISTINCT NAME FROM Courses ) C0;-- 这里的 C0 是表侧栏
+```
+
+
+```sql
+-- 水平展开 (3)：嵌套使用 CASE 表达式
+SELECT NAME
+	,
+CASE
+	
+	WHEN SUM( CASE WHEN course = 'SQL 入门' THEN 1 ELSE NULL END ) = 1 THEN
+	'○' ELSE NULL 
+		END AS "SQL 入门",
+CASE
+		
+		WHEN SUM( CASE WHEN course = 'UNIX 基础' THEN 1 ELSE NULL END ) = 1 THEN
+			'○' ELSE NULL 
+		END AS "UNIX 基础",
+	CASE
+			
+			WHEN SUM( CASE WHEN course = 'Java 中级' THEN 1 ELSE NULL END ) = 1 THEN
+				'○' ELSE NULL 
+			END AS "Java 中级 " 
+		FROM
+			Courses 
+	GROUP BY
+NAME;
+```
+
+
+```sql
+-- 列数据转换成行数据 ：使用 UNION ALL
+SELECT
+	employee,
+	child_1 AS child 
+FROM
+	Personnel UNION ALL
+SELECT
+	employee,
+	child_2 AS child 
+FROM
+	Personnel UNION ALL
+SELECT
+	employee,
+	child_3 AS child 
+FROM
+	Personnel;
+```
+
+
+```sql
+-- 获取员工子女列表的 SQL 语句（没有孩子的员工也要输出）
+SELECT
+	EMP.employee,
+	CHILDREN.child 
+FROM
+	Personnel EMP
+	LEFT OUTER JOIN Children ON CHILDREN.child IN ( EMP.child_1, EMP.child_2, EMP.child_3 );
+```
+
+
+
