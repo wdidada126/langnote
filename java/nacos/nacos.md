@@ -72,9 +72,14 @@ nacos client版本需要跟nacos server版本相同？
 nacos github上有版本兼容性相关的描述？
 
 https://blog.csdn.net/ljl19930522/article/details/124746908
- D：（nacos解压的盘符）
-cd E:\nacos-server-2.2.0\bin   （nacos中bin文件的目录）
-./startup.cmd -m standalone  （cluster是集群启动）
+D：（nacos解压的盘符）
+
+（nacos中bin文件的目录）
+（cluster是集群启动）
+
+chcp 65001
+cd F:\nacos-server-2.2.0\bin
+./startup.cmd -m standalone
 
 1.41最低要求java8
 
