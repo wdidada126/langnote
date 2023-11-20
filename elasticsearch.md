@@ -3,7 +3,7 @@
 
 
 ## 竞品Splunk
-
+Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
 ## 官方文档
 
 es文档
@@ -108,6 +108,7 @@ Elasticsearch 技术解析与实战 作者: 朱林
 张文亮 / 机械工业出版社 / 2021-12-14 / 79.00
 
 ## Rust写的竞品 meilisearch
+全文搜索
 
 倒排索引
 
