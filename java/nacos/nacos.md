@@ -5,7 +5,6 @@ super-diamond
 
 nacos有配置文件，debug的时候配置文件在哪儿？
 
-
 Spring cloud alibaba nacos，默认dataID nacos-service.properties修改成自定义值
 
 如果你想将Spring Cloud Alibaba Nacos中默认的`dataId`（即`nacos-service.properties`）修改为自定义的值，你可以在`bootstrap.properties`或`bootstrap.yml`文件中配置`spring.cloud.nacos.config.prefix`和`spring.cloud.nacos.config.file-extension`属性。
@@ -27,26 +26,22 @@ spring:
 
 总之，如果你想将Spring Cloud Alibaba Nacos中默认的`dataId`修改为自定义的值，你可以在`bootstrap.properties`或`bootstrap.yml`文件中配置`spring.cloud.nacos.config.prefix`和`spring.cloud.nacos.config.file-extension`属性。需要注意的是，如果你修改了`dataId`，你需要在Nacos控制台上创建对应的配置文件，并将服务的元数据信息保存到这个文件中。
 
-
 注意，nacos配置中心的设置，在applicaion.yml中设置不生效，在在`bootstrap.properties`或`bootstrap.yml`中设置才生效
 
 默认端口号：8848
-
 
 https://gitee.com/edidada/nacos-config-example
 
 https://gitee.com/edidada/springcloudnacosdemo
 
 https://gitee.com/edidada/testnacosclient
+
 ## 官网
 https://nacos.io/zh-cn/
 
 ## windows启动nacos server
 
-
-
 startup.cmd
-
 
 source code
 https://github.com/alibaba/nacos
@@ -60,11 +55,9 @@ git checkout 1.4.2
 
 mvn -Prelease-nacos -Dmaven.test.skip=true install -U
 
-
 Java写的项目
 
 用了jraft
-
 
 nacos client版本需要跟nacos server版本相同？
 对
@@ -77,16 +70,17 @@ D：（nacos解压的盘符）
 （nacos中bin文件的目录）
 （cluster是集群启动）
 
+```powshell
 chcp 65001
 cd F:\nacos-server-2.2.0\bin
 ./startup.cmd -m standalone
+```
 
 1.41最低要求java8
 
 quanyi健康用nacos 1.40
 
 Windows 10电脑，nacos数据源配置成mysql的
-
 
 [windows下安装nacos](https://blog.csdn.net/q15102780705/article/details/102571353)
 
@@ -103,7 +97,6 @@ Tomcat started on port(s): 8848 (http) with context path '/nacos'
 2020-04-29 16:51:23,128 INFO Initializing Servlet 'dispatcherServlet'
 2020-04-29 16:51:23,165 INFO Completed initialization in 20 ms
 ```
-
 
 ## nacos library
 
