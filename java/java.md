@@ -1,5 +1,15 @@
 # Java标准库
 
+java.util.StringJoiner
+```java
+        StringJoiner joiner = new StringJoiner(",");
+        for (String s : treeSet) {
+            joiner.add(s);
+        }
+
+        String result = joiner.toString();
+```
+
 java.util.SortedMap
 
 [JAVA SortedMap接口](https://www.cnblogs.com/jpfss/p/9772818.html)
