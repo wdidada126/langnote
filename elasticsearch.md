@@ -56,10 +56,7 @@ POST
 NRT
 Near Realtime，近实时，有两个层面的含义，一是从写入一条数据到这条数据可以被搜索，有一段非常小的延迟（大约1秒左右），二是基于Elasticsearch的搜索和分析操作，耗时可以达到秒级。
 
-作者：阿甘
-链接：https://zhuanlan.zhihu.com/p/646455006
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://zhuanlan.zhihu.com/p/646455006
 
 Node单独一个Elasticsearch服务器实例称为一个node，node是集群的一部分，每个node有独立的名称，默认是启动时获取一个UUID作为名称，也可以自行配置，node名称特别重要，Elasticsearch集群是通过node名称进行管理和通信的，一个node只能加入一个Elasticsearch集群当中，集群提供完整的数据存储，索引和搜索的功能，它下面的每个node分摊上述功能（每条数据都会索引到node上）。shard分片，是单个Lucene索引，由于单台机器的存储容量是有限的（如1TB），而Elasticsearch索引的数据可能特别大（PB级别，并且30GB/天的写入量），单台机器无法存储全部数据，就需要将索引中的数据切分为多个shard，分布在多台服务器上存储。利用shard可以很好地进行横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升集群整体的吞吐量和性能。shard在使用时比较简单，只需要在创建索引时指定shard的数量即可，剩下的都交给Elasticsearch来完成，只是创建索引时一旦指定shard数量，后期就不能再更改了。replica索引副本，完全拷贝shard的内容，shard与replica的关系可以是一对多，同一个shard可以有一个或多个replica，并且同一个shard下的replica数据完全一样，replica作为shard的数据拷贝，承担以下三个任务：shard故障或宕机时，其中一个replica可以升级成shard。replica保证数据不丢失（冗余机制），保证高可用。replica可以分担搜索请求，提升整个集群的吞吐量和性能。shard的全称叫primary shard，replica全称叫replica shard，primary shard数量在创建索引时指定，后期不能修改，replica shard后期可以修改。默认每个索引的primary shard值为5，replica shard值为1，含义是5个primary shard，5个replica shard，共10个shard。因此Elasticsearch最小的高可用配置是2台服务器。
 
@@ -132,6 +129,8 @@ wukong搜索
 例如，广州机房到北京机房，正常情况下 RTT 大约是 50 毫秒左右，遇到网络波动之类的情况，RTT 可能飙升到 500 毫秒甚至 1 秒，更不用说经常发生的线路丢包问题，那延迟可能就是几秒几十秒了。
 
 nosql
+
+## 源代码
 
 github.com/elastic/elasticsearch
 gradle组织的

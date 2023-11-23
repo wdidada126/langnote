@@ -81,6 +81,7 @@ https://gradle.org/
 - GRADLE_HOME
 - GRADLE_USER_HOME
 
+G:\gradle
 
 gradle -v
 
