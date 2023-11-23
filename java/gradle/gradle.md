@@ -1,4 +1,11 @@
 # gradle
+## gradle版本和windows版本关系
+Gradle 8.4 需要的 Java 版本是 JDK 11。
+
+
+$env:JAVA_HOME = "D:\Java\jdk-11.0.4"
+
+
 
 ## 使用gradle的开源项目
 https://github.com/elastic/elasticsearch
@@ -256,3 +263,5 @@ gradle 发布 maven 仓库
 ## gradle不同版本大陆快速下载
 
 gradle安装包国内下载以及maven仓库配置以及其他注意点-CSDN博客.mhtml
+
+https://mirrors.cloud.tencent.com/gradle/
