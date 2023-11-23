@@ -113,12 +113,9 @@ caches/file-changes-2: 该文件夹包含Gradle对文件系统中的文件进行
 build.gradle
 apply plugin: 'antlr'
 
-
-
 gradle命令行
 
 gradle init --dsl kotli
-
 
 ```shell
 gradle -h
@@ -178,8 +175,6 @@ d-scans)
 -x, --exclude-task        Specify a task to be excluded from execution.
 ```
 
-
-
 文档中文翻译
 https://github.com/msdx/gradledoc
 
@@ -205,14 +200,11 @@ build.gradle文件有多个
 pom.xml文件有多个
 CmakeLists.txt也有多个
 
-
-
 jar包下载的位置
 Mac系统默认下载到：/Users/(用户名)/.gradle/caches/modules-2/files-2.1
 Windows系统默认下载到：C:\Users\(用户名)\.gradle\caches\modules-2\files-2.1
 
 https://book.douban.com/subject/26649087/
-
 
 gradle组织公司的项目
 

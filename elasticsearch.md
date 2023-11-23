@@ -1,7 +1,5 @@
 # elasticsearch
 
-
-
 ## 竞品Splunk
 Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
 ## 官方文档
@@ -19,7 +17,6 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases?page=14
 
 https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip
 
-
 ## 应用场景
 应用程序搜索
 网站搜索
@@ -30,7 +27,6 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elas
 地理空间数据分析和可视化
 安全分析
 业务分析
-
 
 ## 核心概念
 
@@ -81,7 +77,7 @@ Java High Level REST Client
   }
 }
 
-链接：https://zhuanlan.zhihu.com/p/646647762
+https://zhuanlan.zhihu.com/p/646647762
 
 _id mysql中存在的唯一id，可以手动指定
 
