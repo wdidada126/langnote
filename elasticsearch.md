@@ -131,6 +131,11 @@ nosql
 github.com/elastic/elasticsearch
 gradle组织的
 
+```powshell
+$env:JAVA_HOME = "D:\Java\jdk-14.0.1"
+.\gradlew.bat build
+```
+
 ## Windows电脑安装启动Elasticsearch
 
 windows电脑安装了
