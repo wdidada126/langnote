@@ -1,4 +1,11 @@
 # maven
+
+```shell
+mvn clean package -P test -Dmaven.test.skip=true
+```
+
+-P 的作用是在 Maven 命令中指定一个或多个 profile，这些 profile 定义了构建过程中的一些配置选项。在这个例子中，`-P test` 表示激活名为 "test" 的 profile，而 `-Dmaven.test.skip=true` 表示跳过测试阶段。
+
 https://mavenlibs.com/
 
 https://www.findjar.com/

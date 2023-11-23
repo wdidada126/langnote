@@ -1,5 +1,6 @@
 # PowerDesigner
 
+https://www.sybase.com/products/modeling-data-analysis/powerdesigner
 Sybase
 pdlegacyshell16.exe
 
@@ -18,13 +19,14 @@ windows 破解版导出sql文件有问题
 PowerDesigner 创建表格及导出SQL语句
 https://blog.csdn.net/weixin_42179326/article/details/80399400
 
-
-PowerDesigner 16 64bit
+PowerDesigner 16 32bit
 http://www.xue51.com/soft/10174.html
 
 百度网盘 提取码
 提取码：04o0
 
+32位的可以安装并激活
+64位的不可以
 https://www.onlinedown.net/soft/577763.htm
 
 ## PowerDesigner模块
