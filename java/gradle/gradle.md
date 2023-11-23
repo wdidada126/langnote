@@ -36,7 +36,6 @@ gradle dependencyInsight --dependency commons-collections
 
 gradle dependencies 打印jar包依赖
 Gradle自带了很多任务，以下是一些常见的任务：
-
 1. `build`：构建项目，包括编译、测试、打包等操作。
 2. `clean`：清除项目构建产物和临时文件。
 3. `assemble`：打包项目，生成可分发的应用程序或库。
@@ -48,7 +47,6 @@ Gradle自带了很多任务，以下是一些常见的任务：
 9. `help`：显示Gradle帮助信息。
 
 除了上述常用任务，还有一些其他的任务，例如：
-
 1. `init`：生成一个初始的Gradle构建文件。
 2. `wrapper`：生成Gradle Wrapper脚本，用于在没有安装Gradle的机器上执行Gradle构建。
 3. `eclipse`：生成Eclipse项目文件。
@@ -235,7 +233,6 @@ gradle init --type pom
 
 Gradle Task
 
-
 Java工程的任务
 Java插件在我们的构建中加入了很多任务，我们这篇教程涉及到的任务如下：
 
@@ -247,13 +244,15 @@ compileJava任务会编译程序中的源代码。
 
 gradle tasks
 
-
 java -cp build/classes/main/ cn.wdidada.easyexceltest.EasyexcelApp
 java -jar build/libs/GradleWorkSpace-0.1.jar
-
 
 ### spring是gradle组织的，如何发布jar包到本电脑上的maven仓库？
 
 参考gradle实战 这本书
 
 gradle 发布 maven 仓库
+
+## gradle不同版本大陆快速下载
+
+gradle安装包国内下载以及maven仓库配置以及其他注意点-CSDN博客.mhtml
