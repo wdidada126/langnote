@@ -2,10 +2,7 @@
 ## gradle版本和windows版本关系
 Gradle 8.4 需要的 Java 版本是 JDK 11。
 
-
 $env:JAVA_HOME = "D:\Java\jdk-11.0.4"
-
-
 
 ## 使用gradle的开源项目
 https://github.com/elastic/elasticsearch
