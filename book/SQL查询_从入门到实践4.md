@@ -1,22 +1,17 @@
 # SQL查询：从入门到实践4
 
-
 https://book.douban.com/subject/35025465/
-
 
 得到电子版
 Win 10电脑有随书代码
 
 sqlqfmm4_code-samples.zip
 
-
 市面上介绍数据库设计的图书很多，其中有些只涉及了数据库设计方法，如 Mike Hernandez 编著的 Database Design for Mere Mortals
 第3版只讨论了数据库设计方法，而有些兼顾了数据库理论和数据库设计，如C.J.Date编著的An Introduction to Database Systems
 第8版。需要指出的是，讨论数据库理论的图书阅读起来并不一定轻松。
 
-
 https://book.douban.com/subject/35025465/
-
 
 得到电子版
 Win 10电脑有随书代码
@@ -24,12 +19,10 @@ Win 10电脑 pdf
 
 sqlqfmm4_code-samples.zip
 
-
 市面上介绍数据库设计的图书很多，其中有些只涉及了数据库设计方法，如 Mike Hernandez 编著的 Database Design for Mere Mortals
 第3版只讨论了数据库设计方法，而有些兼顾了数据库理论和数据库设计，如C.J.Date编著的An Introduction to Database Systems第8版。需要指出的是，讨论数据库理论的图书阅读起来并不一定轻松。
 
 《SQL查询 从入门到实践 第4版》由多年从事SQL 方面研究和咨询工作的资深专家编写，重点讲解SQL 查询和数据操作的相关主题，包括关系型数据库和SQL、SQL 基础、多表操作、汇总和分组数据，以及修改数据集等内容，针对编写SQL 查询提供了轻松易懂的逐步指导，并包含上百个带有详细说明的例子。附录列出了所有SQL 语句的语法图和示例数据库的结构等。
-
 
 DI一部分 关系型数据库和SQL
 D 1 章 何谓关系型数据库 2
@@ -214,3 +207,4 @@ D 22 章 将数据划分到窗口中 　　 407
 附录C 与日期和时间相关的数据类型、运算和函数 　　 460
 附录D 推荐读物 　　 469
 结语 　　 470
+

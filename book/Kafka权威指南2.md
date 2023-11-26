@@ -13,11 +13,7 @@ https://www.ituring.com.cn/book/2931
 
 # 第 1 章 初识Kafka
 
-
-
 # 第 2 章 安装Kafka
-
-
 
 # 第 3 章 Kafka生产者——向Kafka写入数据
 参考

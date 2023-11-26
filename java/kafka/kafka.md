@@ -36,6 +36,8 @@ IDEA安装和使用Zookeeper可视化管理插件Zoolytic
 Scala
 https://github.com/apache/kafka
 
+cd D:\git\github\kafka
+git checkout 2.8.2
 
 ## 版本
 

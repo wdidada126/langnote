@@ -10,6 +10,7 @@ a join b on a.xx = '' and a.c = b.d
 
 navicat 15 windows 激活
 http://www.akseo.cn/jzrjxz/106.html
+关注微信公众号 [开源圈]，回复z003，即可领取navicat激活文件
 
 格式化sql
 navicate 新建查询 美化sql

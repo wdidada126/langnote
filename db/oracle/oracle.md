@@ -1,4 +1,24 @@
 # oracle
+
+
+Oracle sql merge 语法
+
+Oracle SQL中的MERGE语句用于将一个表的数据合并到另一个表中。它的基本语法如下：
+
+```sql
+MERGE INTO 目标表 AS T1
+USING 源表 AS T2
+ON (T1.匹配条件 = T2.匹配条件)
+WHEN MATCHED THEN
+    UPDATE SET T1.列名1 = T2.列名1, T1.列名2 = T2.列名2, ...
+WHEN NOT MATCHED THEN
+    INSERT (列名1, 列名2, ...)
+    VALUES (T2.列名1, T2.列名2, ...);
+```
+
+其中，`目标表`是要更新或插入数据的表，`源表`是包含要合并数据的另一个表。`匹配条件`是两个表中用于匹配的列。`WHEN MATCHED`部分表示当匹配成功时，需要更新的目标表中的列值；`WHEN NOT MATCHED`部分表示当匹配失败时，需要插入到目标表中的新列值。
+
+
 Oracle中的Service_name和SID都是用于标识数据库实例的参数，但它们之间存在一些区别。首先，Service_name是在Oracle 8i版本中引入的。在8i之前，使用SID来表示一个数据库实例。但在Oracle的并行环境中，一个数据库可以有多个实例，这意味着需要为每个实例设置一个网络服务名，导致设置变得繁琐。为了简化并行环境中的设置，引入了Service_name。具体来说，ServiceName方式是Oracle推荐的。对于集群来说，每个节点的SID可能不一致，但ServiceName是一致的，包含所有节点。而SID方式是我们在实际部署时经常使用的连接方式，其格式为：jdbc:oracle:thin:@<地址：端口号：SID。
 简而言之，SID是数据库的一个实例，一个数据库可以有多个SID；而Service_name对应数据库，一个数据库也可以对应多个Service_name。在选择使用哪一种方式时，需要根据实际的应用场景和需求来决定。
 

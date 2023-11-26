@@ -1,4 +1,11 @@
 # maven
+
+```shell
+mvn clean package -P test -Dmaven.test.skip=true
+```
+
+-P 的作用是在 Maven 命令中指定一个或多个 profile，这些 profile 定义了构建过程中的一些配置选项。在这个例子中，`-P test` 表示激活名为 "test" 的 profile，而 `-Dmaven.test.skip=true` 表示跳过测试阶段。
+
 https://mavenlibs.com/
 
 https://www.findjar.com/
@@ -283,7 +290,6 @@ mvn org.apache.maven.plugins:maven-archetype-plugin:2.2:generate
 
 1、本地存在的公共模板查看
 mvn archetype:generate 或 mvn org.apache.maven.plugins:maven-archetype-plugin:2.2:generate
-
 2、本地不存在的公共模板使用
 mvn archetype:generate \
  -DgroupId=com.alibaba.webx \
@@ -294,8 +300,6 @@ mvn archetype:generate \
  -DarchetypeGroupId=com.alibaba.citrus.sample \
  -DarchetypeVersion=1.8 \
  -DinteractiveMode=false
-
-
 3、查看本地私有模板
 `mvn archetype:generate -DarchetypeCatalog=local`
 
@@ -309,10 +313,9 @@ mvn archetype:generate \
 3、本地使用私有模板
 　　 mvn archetype:generate -DarchetypeCatalog=local
 注意：
-　　mvn eclipse:eclipse 将代码转化为eclipse项目
-　　mvn eclipse:clean 清除eclipse相关信息
+mvn eclipse:eclipse 将代码转化为eclipse项目
+mvn eclipse:clean 清除eclipse相关信息
 复制代码
- 
 
 5、maven常用命令，红色跳过是固定的
 复制代码
@@ -1166,27 +1169,19 @@ mvn dependency:tree
 `
 
 ```shell
-
 Unresolveable build extension: Plugin kr.motd.maven:os-maven-plugin
-
 ```
 
 [maven修改版本号](https://www.cnblogs.com/chn58/p/6554742.html)
 
-
-
 #### 1 设置新的版本号
-
 `mvn versions:set -DnewVersion=1.1.3`
 
 #### 2 当新版本号设置不正确时可以撤销新版本号的设置
-
 `mvn versions:revert`
 
 #### 3 确认新版本号无误后提交新版本号的设置
-
 `mvn versions:commit`
-
 
 IDEA
 execute maven goal
@@ -1195,62 +1190,37 @@ clean install
 
 [MAVEN-命令行创建工程](https://www.jianshu.com/p/1e2e263da088)
 
-
 ```shell
-
 mvn archetype:generate -DgroupId=com.zetcode -DartifactId=propertyplaceholder -Dversion=1.0-SNAPSHOT -Dpackage=com.zetcode
-
 ```
 
 [skip test](https://maven.apache.org/plugins-archives/maven-surefire-plugin-2.12.4/examples/skipping-test.html)
-
-
 
 spring-boot 2017年使用的还是maven
 
 https://my.oschina.net/hzchenyh/blog/678369
 
-
-
-
-
 Maven查看哪些插件生效
 
-
-
 mvn tree list
-
-
 
 depedenceManager 错
 
 pluginManager
 
-
-
 Maven中的DependencyManagement和Dependencies
 
 https://www.iteye.com/blog/liugang594-1687781
 
-
-
 Maven parent作用？
 
-**maven项目pom.xml中parent标签的使用**
-
-
+maven项目pom.xml中parent标签的使用
 
 使用maven是为了更好的帮项目管理包依赖，maven的核心就是pom.xml。当我们需要引入一个jar包时，在pom文件中加上<dependency></dependency>就可以从仓库中依赖到相应的jar包。
 
-
-
 现在有这样一个场景，有两个web项目A、B，一个java项目C，它们都需要用到同一个jar包：common.jar。如果分别在三个项目的pom文件中定义各自对common.jar的依赖，那么当common.jar的版本发生变化时，三个项目的pom文件都要改，项目越多要改的地方就越多，很麻烦。这时候就需要用到parent标签, 我们创建一个parent项目，打包类型为pom，parent项目中不存放任何代码，只是管理多个项目之间公共的依赖。在parent项目的pom文件中定义对common.jar的依赖，ABC三个子项目中只需要定义<parent></parent>，parent标签中写上parent项目的pom坐标就可以引用到common.jar了。
 
-
-
 上面的问题解决了，我们在切换一个场景，有一个springmvc.jar，只有AB两个web项目需要，C项目是java项目不需要，那么又要怎么去依赖。如果AB中分别定义对springmvc.jar的依赖，当springmvc.jar版本变化时修改起来又会很麻烦。解决办法是在parent项目的pom文件中使用<dependencyManagement></dependencyManagement>将springmvc.jar管理起来，如果有哪个子项目要用，那么子项目在自己的pom文件中使用
-
-
 
 ```java
 <dependency>
@@ -1259,11 +1229,7 @@ Maven parent作用？
 </dependency>
 ```
 
-
-
 标签中写上springmvc.jar的坐标，不需要写版本号，可以依赖到这个jar包了。这样springmvc.jar的版本发生变化时只需要修改parent中的版本就可以了。
-
-
 
 ```shell
 maven-compiler-plugin
@@ -1284,27 +1250,17 @@ maven-compiler-plugin
   </build>
 ```
 
-
-
 maven 安装本地的jar包到本地仓库
 
-
-
 [使用maven命令安装jar包到本地仓库](https://www.cnblogs.com/yadongliang/p/9829760.html)
-
-
 
 ```
 安装指定文件到本地仓库命令：mvn install:install-file
 
 -DgroupId=<groupId>       : 设置上传到仓库的包名
-
 -DartifactId=<artifactId> : 设置该包所属的模块名
-
 -Dversion=1.0.0           : 设置该包的版本号
-
 -Dpackaging=jar           : 设置该包的类型(很显然jar包)
-
 -Dfile=<myfile.jar>       : 设置该jar包文件所在的路径与文件名
 
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_API.jar
@@ -1312,48 +1268,31 @@ mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_API -Dversion=v2.
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_CARD_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_CARD_API.jar
 ```
 
-
-
 cmd not pwoershell
 
 `mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true`
 
-
-
-
-
 cd D:\git\github\shardingsphere\examples\sharding-jdbc-example\orchestration-example\orchestration-raw-jdbc-example
-
-
 
 ```shell
 mvn install:install-file -DgroupId=org.apache.shardingsphere.example -DartifactId=config-utility -Dversion=5.0.0-RC1-SNAPSHOT -Dpackaging=jar -Dfile=D:\git\github\shardingsphere\examples\example-core\config-utility\target\config-utility-5.0.0-RC1-SNAPSHOT.jar
 ```
 
-
-
-
-
 ```shell
 mvn install:install-file -DgroupId=org.apache.shardingsphere.example -DartifactId=example-spring-mybatis -Dversion=5.0.0-RC1-SNAPSHOT -Dpackaging=jar -Dfile=D:\git\github\shardingsphere\examples\example-core\example-spring-mybatis\target\example-spring-mybatis-5.0.0-RC1-SNAPSHOT.jar
 ```
-
-
 
 ```
 mvn install:install-file -DgroupId=org.apache.shardingsphere.example -DartifactId=example-raw-jdbc -Dversion=5.0.0-RC1-SNAPSHOT -Dpackaging=jar -Dfile=D:\git\github\shardingsphere\examples\example-core\example-raw-jdbc\target\example-raw-jdbc-5.0.0-RC1-SNAPSHOT.jar
 ```
 
-
-
-
-
 ```
 mvn -f pom.xml compile exec:java -Dexec.classpathScope=compile  -Dexec.mainClass="org.apache.shardingsphere.example.orchestration.spring.namespace.ExampleMain"
 ```
 
-
 mvn 设置jvm参数
 在系统的环境变量中，设置M2_OPTS，用以存放JVM的参数，具体设置的步骤，参数示例如下：
 MAVEN_OPTS=-Xms256m -Xmx768m -XX:PermSize=128m -XX:MaxPermSize=256M
+
+Maven pom.xml中的dependency scope默认值是compile。
 

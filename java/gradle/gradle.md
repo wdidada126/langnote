@@ -1,22 +1,22 @@
 # gradle
+## gradle版本和windows版本关系
+Gradle 8.4 需要的 Java 版本是 JDK 11。
+
+$env:JAVA_HOME = "D:\Java\jdk-11.0.4"
+
+## 使用gradle的开源项目
+https://github.com/elastic/elasticsearch
 
 ## 仓库
 gradle可以使用maven的库仓库
 mavenLocal() 使用本地仓库
 
-
-
 查看gradle插件是否存在？
 https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
 
-
 网页上显示 https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
 
-
-
 gradle如何解决依赖冲突
-
-
 
 ```grovvy
 task checkDependencyConflict {
@@ -40,7 +40,6 @@ gradle dependencyInsight --dependency commons-collections
 
 gradle dependencies 打印jar包依赖
 Gradle自带了很多任务，以下是一些常见的任务：
-
 1. `build`：构建项目，包括编译、测试、打包等操作。
 2. `clean`：清除项目构建产物和临时文件。
 3. `assemble`：打包项目，生成可分发的应用程序或库。
@@ -52,7 +51,6 @@ Gradle自带了很多任务，以下是一些常见的任务：
 9. `help`：显示Gradle帮助信息。
 
 除了上述常用任务，还有一些其他的任务，例如：
-
 1. `init`：生成一个初始的Gradle构建文件。
 2. `wrapper`：生成Gradle Wrapper脚本，用于在没有安装Gradle的机器上执行Gradle构建。
 3. `eclipse`：生成Eclipse项目文件。
@@ -63,11 +61,26 @@ Gradle自带了很多任务，以下是一些常见的任务：
 
 总的来说，Gradle自带了很多任务，可以通过这些任务来构建、测试和打包项目，以及管理依赖关系和发布构建产物等。
 
+https://gradle.org/
+
+要设置环境变量GRADLE_HOME和GRADLE_USER_HOME，可以按照以下步骤在Windows上进行操作：
+
+打开Windows操作系统的环境变量设置：
+在开始菜单中搜索"环境变量"，然后点击"编辑系统环境变量"；
+或者在"此电脑"上右键点击，选择"属性"，然后点击"高级系统设置"，在弹出的窗口中点击"环境变量"按钮。
+在"系统属性"窗口的"高级"选项卡中，点击"环境变量"按钮。
+在"环境变量"窗口中，可以编辑或添加新的系统环境变量。
+对于GRADLE_HOME，在"变量名"中输入GRADLE_HOME，在"变量值"中输入Gradle的安装目录路径。例如，如果Gradle安装在C:\gradle\gradle-6.7，那么将GRADLE_HOME设置为这个路径。
+对于GRADLE_USER_HOME，在"变量名"中输入GRADLE_USER_HOME，在"变量值"中输入你想要设置为用户主目录的路径。例如，可以将其设置为C:\Users\YourUsername\.gradle。
+点击"确定"保存更改。
+
+现在，你已经成功设置了环境变量GRADLE_HOME和GRADLE_USER_HOME。可以在命令行窗口中使用这些环境变量，例如运行Gradle命令时将使用这些路径。
 
 设置环境变量
 - GRADLE_HOME
 - GRADLE_USER_HOME
 
+G:\gradle
 
 gradle -v
 
@@ -99,12 +112,9 @@ caches/file-changes-2: 该文件夹包含Gradle对文件系统中的文件进行
 build.gradle
 apply plugin: 'antlr'
 
-
-
 gradle命令行
 
 gradle init --dsl kotli
-
 
 ```shell
 gradle -h
@@ -164,8 +174,6 @@ d-scans)
 -x, --exclude-task        Specify a task to be excluded from execution.
 ```
 
-
-
 文档中文翻译
 https://github.com/msdx/gradledoc
 
@@ -191,14 +199,11 @@ build.gradle文件有多个
 pom.xml文件有多个
 CmakeLists.txt也有多个
 
-
-
 jar包下载的位置
 Mac系统默认下载到：/Users/(用户名)/.gradle/caches/modules-2/files-2.1
 Windows系统默认下载到：C:\Users\(用户名)\.gradle\caches\modules-2\files-2.1
 
 https://book.douban.com/subject/26649087/
-
 
 gradle组织公司的项目
 
@@ -232,7 +237,6 @@ gradle init --type pom
 
 Gradle Task
 
-
 Java工程的任务
 Java插件在我们的构建中加入了很多任务，我们这篇教程涉及到的任务如下：
 
@@ -244,13 +248,17 @@ compileJava任务会编译程序中的源代码。
 
 gradle tasks
 
-
 java -cp build/classes/main/ cn.wdidada.easyexceltest.EasyexcelApp
 java -jar build/libs/GradleWorkSpace-0.1.jar
-
 
 ### spring是gradle组织的，如何发布jar包到本电脑上的maven仓库？
 
 参考gradle实战 这本书
 
 gradle 发布 maven 仓库
+
+## gradle不同版本大陆快速下载
+
+gradle安装包国内下载以及maven仓库配置以及其他注意点-CSDN博客.mhtml
+
+https://mirrors.cloud.tencent.com/gradle/

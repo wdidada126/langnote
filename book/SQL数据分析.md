@@ -6,8 +6,6 @@ ISBN: 9787121424182
 
 https://book.douban.com/subject/35689619/
 
-
-
 ## 个人总结的核心知识点
 
 上一条数据
@@ -88,7 +86,7 @@ group by a.company
 ```
 
 4、特定时间的商品价格
-```
+```sql
 select t1.commodity_id,
 	t1.new_price as price
 from commodity_price t1
@@ -109,7 +107,7 @@ where (commodity_id,adjust_date) in
 ```
 
 5、团队积分赛
-```
+```sql
 select team_id,
 	team_name,
 	sum(score) as score
@@ -133,7 +131,7 @@ order by score desc,team_id
 ```
 
 6、小程序体验分析
-```
+```sql
 select applet,
 	avg(new_ranking) as avg_ranking
 from(
@@ -154,7 +152,7 @@ group by applet
 ```
 
 7、用户购买渠道分析
-```
+```sql
 select t1.purchase_date,
 	t1.channel,
 	t2.sum_amount,
@@ -197,7 +195,7 @@ on t1.purchase_date=t2.purchase_date and t1.channel=t2.channel
 ```
 
 8、游戏关卡分析
-```
+```sql
 select count(*) as num
 from(
 	select a.user_id,
@@ -217,7 +215,7 @@ from(
 ```
 
 9、直播中最大在线观众数量
-```
+```sql
 select max(current_num) as max_num
 from(
 	select change_time,

@@ -1,5 +1,6 @@
 # PowerDesigner
 
+https://www.sybase.com/products/modeling-data-analysis/powerdesigner
 Sybase
 pdlegacyshell16.exe
 
@@ -15,15 +16,20 @@ join
 
 windows 破解版导出sql文件有问题
 
-
+PowerDesigner 创建表格及导出SQL语句
 https://blog.csdn.net/weixin_42179326/article/details/80399400
 
-
-PowerDesigner 16 64bit
+PowerDesigner 16 32bit
 http://www.xue51.com/soft/10174.html
+
+百度网盘 提取码
+提取码：04o0
+
+32位的可以安装并激活
+64位的不可以
 https://www.onlinedown.net/soft/577763.htm
 
-
+## PowerDesigner模块
 PowerDesigner包含六大模块：
 1. 用于数据发现的[ProcessAnalyst]模块
 2. 用于双层，交互式的数据库设计和构造的[ataArchitect]模块
@@ -35,7 +41,7 @@ PowerDesigner包含六大模块：
 
 数据库表修改后，能够直接映射到数据库表吗？
 
-
+PowerDesigner如何将设计的表更新到数据库中
 https://blog.csdn.net/weixin_34034261/article/details/94033219
 这样，你就完成了表的更新。但是，注意这种方法的缺点，这种更新是需要先删除掉表，再创建，如果你有重要数据，请先备份，不然后悔莫及。
 

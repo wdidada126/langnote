@@ -14,7 +14,7 @@ https://book.douban.com/subject/3012601/
 
 本书分为12章，每一章包含许多原则或准则，并通过举例的方式对原则进行解释说明。这些例子大多来自于实际案例，对九种SQL经典查询场景以及其性能影响讨论，非常便于实践，为你的实际工作提出了具体建议。本书适合SQL数据库开发者、软件架构师，也适合DBA，尤其是数据库应用维护人员阅读。
 
-作者简介  · · · · · ·
+作者简介
 Stéphane Faroult从1983年开始接触关系数据库。Oracle法国成立早期他即加入（此前是短暂的IBM经历和渥太华大学任教生涯），并在不久之后对性能和调优产生了兴趣。1988年他离开了Oracle，此后一年间，他进行调整，并研究过运筹学。之后，他重操旧业，一直从事数据库咨询工作，并于1998年创办了RoughSea公司（http://www. roughsea.com）。
 
 Stéphane Faroult出版了Fortran Structuré et Méthodes Numériques一书（法语，Dunod出版社，1986, 与Didier Simon合作），并在Oracle Scene和Select（分别为英国和北美Oracle用户组杂志）以及Oracle杂志在线版上发表了许多文章。他还是美国、英国、挪威等众多用户组大会的演讲者。

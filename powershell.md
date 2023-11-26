@@ -8,3 +8,8 @@
 
 
 "D:\Program Files\CMake\bin\cmake.exe" --version
+
+启动nacos，
+浣犵殑涓绘満涓殑杞欢涓浜嗕竴涓凡寤虹 珛鐨勮繛鎺ャ€?
+
+chcp 65001

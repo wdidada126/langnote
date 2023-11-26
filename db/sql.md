@@ -1,5 +1,107 @@
 # SQL
 
+
+mysql 字符串长度函数
+
+MySQL中常用的字符串长度函数是LENGTH()和CHAR_LENGTH()。
+
+1. LENGTH()函数：返回字符串的字节数，包括空格、标点符号等字符。
+
+语法：LENGTH(str)
+
+示例：
+```sql
+SELECT LENGTH('hello world');
+```
+
+2. CHAR_LENGTH()函数：返回字符串的字符数，不包括空格、标点符号等字符。
+
+语法：CHAR_LENGTH(str)
+
+示例：
+```sql
+SELECT CHAR_LENGTH('hello world');
+```
+
+tidb能跑的sql
+
+```sql
+ SELECT
+	* 
+FROM
+	(
+SELECT
+	@rownum := @rownum + 1 AS rn,
+	c.num AS TOTAL_NUM,
+	t.* 
+FROM
+	(
+SELECT
+	acc_book.BOOK_ID,
+	acc_book.ACC_ID,
+	acc_book.ETP_ID,
+	acc_book.TRANS_TYPE,
+	acc_book.TRANS_AMOUNT,
+	acc_book.TRANS_TIME,
+	acc_book.TRAD_FLOW_NO,
+	acc_book.TRANS_BALANCE,
+	acc_book.OPST_ACC_NO,
+	acc_book.OPST_ACC_NAME,
+	acc_book.TRADE_AIM,
+	acc_book.REMARK,
+	acc_book.WRITEOFF_STAT,
+	acc_info.ACC_NAME 
+FROM
+	HRBASE_UAT2.T_ETP_INNER_ACC_BOOK_D acc_book
+	INNER JOIN HRBASE_UAT2.T_ETP_INNER_ACC_INFO_D acc_info ON acc_book.ACC_ID = acc_info.ACC_ID 
+WHERE
+	acc_book.ETP_ID = 'C2112070945031579433553164615686' 
+	AND acc_book.WRITEOFF_STAT = '1' 
+	AND acc_book.TRANS_TIME >= '2023-06-06 11:37:10' 
+	AND acc_book.TRANS_TIME <= '2023-06-08 11:37:10' 
+ORDER BY
+	acc_book.TRANS_TIME DESC 
+	) t,
+	( SELECT @rownum := 0 ) k,
+	(
+SELECT
+	count( 1 ) num 
+FROM
+	(
+SELECT
+	acc_book.BOOK_ID,
+	acc_book.ACC_ID,
+	acc_book.ETP_ID,
+	acc_book.TRANS_TYPE,
+	acc_book.TRANS_AMOUNT,
+	acc_book.TRANS_TIME,
+	acc_book.TRAD_FLOW_NO,
+	acc_book.TRANS_BALANCE,
+	acc_book.OPST_ACC_NO,
+	acc_book.OPST_ACC_NAME,
+	acc_book.TRADE_AIM,
+	acc_book.REMARK,
+	acc_book.WRITEOFF_STAT,
+	acc_info.ACC_NAME 
+FROM
+	HRBASE_UAT2.T_ETP_INNER_ACC_BOOK_D acc_book
+	INNER JOIN HRBASE_UAT2.T_ETP_INNER_ACC_INFO_D acc_info ON acc_book.ACC_ID = acc_info.ACC_ID 
+WHERE
+	acc_book.ETP_ID = 'C2112070945031579433553164615686' 
+	AND acc_book.WRITEOFF_STAT = '1' 
+	AND acc_book.TRANS_TIME >= '2023-06-06 11:37:10' 
+	AND acc_book.TRANS_TIME <= '2023-06-08 11:37:10' 
+ORDER BY
+	acc_book.TRANS_TIME DESC 
+	) rw 
+	) c 
+	) row_ 
+WHERE
+	row_.rn <= ( 6-1 )
+ ```
+
+在SQL中，AND的优先级高于OR。
+
 quanyi公司的慢sql
 slowsql_details.xlsx
 

@@ -1,5 +1,8 @@
 # xshell
 
+免费版
+https://www.xshell.com/zh/free-for-home-school/
+
 Windows版本xshel内置命令行工具
 
 where gcc
