@@ -40,6 +40,7 @@ https://www.jb51.net/softs/822835.html#downintro2
 破解版
 
 淘宝上有购买破解版
+百度网盘 Understand文件夹下面 mac windows的都有
 
 Scientific Toolworks Understand是一种静态分析工具，用于维护、测量和分析关键或大型代码库。从指标和图表到依赖分析，用理解掌握您的源代码。
 
@@ -67,7 +68,6 @@ Scientific Toolworks Understand是一种静态分析工具，用于维护、测�
 * 继承的类计数
 * 实例方法数
 * 每个类的加权方法
-
 
 自带的例子
 https://github.com/TheAlgorithms/Java
