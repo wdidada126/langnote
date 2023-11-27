@@ -75,3 +75,11 @@ Tools（工具栏）
 customsize toolbars（自定义工具栏）
 palette(调色板)勾选
 https://blog.csdn.net/gulijiang2008/article/details/7836151?locationNum=1
+
+
+## sap powerdesigner导入表结构
+
+PowerDesigner导入SQL脚本_51CTO博客_powerdesigner导入sql文件.mhtml
+
+java 8 32位
+https://blog.csdn.net/aoeace/article/details/102545337
