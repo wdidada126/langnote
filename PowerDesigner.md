@@ -1,6 +1,30 @@
 # PowerDesigner
+
+## sap PowerDesigner vs sybase PowerDesigner
+SAP PowerDesigner和Sybase PowerDesigner都是数据建模工具，用于设计和优化数据库结构。它们都支持多种数据库系统，包括Oracle、Microsoft SQL Server、IBM DB2等。
+
+然而，SAP PowerDesigner是由SAP公司开发的，而Sybase PowerDesigner是由Sybase公司开发的。因此，它们在功能和界面上可能存在一些差异。
+
+以下是它们的一些主要区别：
+
+1. 厂商支持：SAP PowerDesigner由SAP公司提供支持，而Sybase PowerDesigner则由Sybase公司提供支持。这意味着如果您遇到问题或需要帮助，您可能需要联系不同的技术支持团队。
+
+2. 价格：SAP PowerDesigner和Sybase PowerDesigner的价格可能有所不同。具体价格取决于您购买的版本和许可类型。
+
+3. 功能：虽然两者都具有类似的功能，但在某些方面可能会有所不同。例如，SAP PowerDesigner可能具有一些特定于SAP应用程序的功能，而Sybase PowerDesigner可能具有一些特定于Sybase应用程序的功能。
+
+4. 兼容性：由于它们是针对不同的数据库系统进行设计的，因此它们可能在与某些数据库系统的兼容性方面存在差异。例如，SAP PowerDesigner可能更好地支持Oracle数据库，而Sybase PowerDesigner可能更好地支持Sybase数据库。
+
+总之，选择SAP PowerDesigner还是Sybase PowerDesigner取决于您的具体需求和偏好。建议您根据自己的情况仔细比较两者的功能、价格和支持等因素，并选择最适合您的工具。
+
+
+
+
+
 2023最新版本
 16.7 SP01
+
+https://www.sap.com/products/technology-platform/powerdesigner-data-modeling-tools.html#get-started
 
 https://www.sybase.com/products/modeling-data-analysis/powerdesigner
 Sybase
