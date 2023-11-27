@@ -13,7 +13,7 @@ SAP PowerDesigner和Sybase PowerDesigner都是数据建模工具，用于设计�
 总之，选择SAP PowerDesigner还是Sybase PowerDesigner取决于您的具体需求和偏好。建议您根据自己的情况仔细比较两者的功能、价格和支持等因素，并选择最适合您的工具。
 
 
-sap     2023最新版本
+sap 2023最新版本
 16.7 SP01
 
 https://www.sap.com/products/technology-platform/powerdesigner-data-modeling-tools.html#get-started

@@ -27,3 +27,8 @@ Visio2019在线安装+激活（简体/繁体/英文版，选择自己需要的�
 对ER图进行建模时提倡使用PowerDesigner（功能强大，形式多样），因为PowerDesigner能够直接将ER图导出为T-SQL代码。PowerDesigner能够做到Visio就不能吗？其实Visio本身没有太大的毛病，而且操作简单，但是功能相对较少和其他开发程序交互较弱。
 
 https://blog.csdn.net/kangguowei/article/details/50895703
+
+## 在线办公套件
+google docs
+腾讯文档
+金山文档
