@@ -132,8 +132,8 @@ github.com/elastic/elasticsearch
 gradle组织的
 
 ```powshell
-$env:JAVA_HOME = "D:\jdk_13.0.2"
-$env:Path = "D:\jdk_13.0.2\bin;$env:Path"
+$env:JAVA_HOME = "D:\Java\jdk-13.0.2+8"
+$env:Path = "D:\Java\jdk-13.0.2+8\bin;$env:Path"
 .\bin\elasticsearch.bat
 .\gradlew.bat build
 ```
