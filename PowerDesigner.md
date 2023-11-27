@@ -1,4 +1,8 @@
 # PowerDesigner
+windows电脑 sap PowerDesigner
+
+## odbc
+使用ODBC连接MySQL数据库是一个相对复杂的过程，因为ODBC是专为Windows操作系统设计的
 
 ## sap PowerDesigner vs sybase PowerDesigner
 SAP PowerDesigner和Sybase PowerDesigner都是数据建模工具，用于设计和优化数据库结构。它们都支持多种数据库系统，包括Oracle、Microsoft SQL Server、IBM DB2等。
