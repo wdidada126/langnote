@@ -8,6 +8,17 @@ https://www.sohu.com/a/256535222_494939
 
 实战Java虚拟机：JVM故障诊断与性能优化（第2版）
 
+第1章 走入并行世界
+第2章 Java并行程序基础 
+第3章 JDK并发包
+第4章 锁的优化及注意事项
+第5章 并行模式与算法
+第6章 Java 8/9/10与并发
+第7章 使用Akka构建高并发程序
+第8章 并行程序调试
+第9章 多线程优化示例—Jetty核心代码分析
+
+
 1、总览
 
 概念
@@ -192,6 +203,7 @@ arrayqueue
 linkqueue
 
 #### 4 锁的优化及注意事项
+个人补充 synchronized java
 
 AtomicInteger 
 
