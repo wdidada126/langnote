@@ -69,13 +69,12 @@ https://blog.csdn.net/weixin_34034261/article/details/94033219
 
 工具栏不见了
 调色板(Palette)快捷工具栏不见了
-PowerDesigner 快捷工具栏 palette 不见了，怎么重新打开，找回来呢
-上网搜索了一下”powerdesigner 图形工具栏”,找到了找回PowerDesigner工具栏palette的方法
+PowerDesigner快捷工具栏 palette不见了，怎么重新打开，找回来呢
+上网搜索了一下“powerdesigner图形工具栏”,找到了找回PowerDesigner工具栏palette的方法
 Tools（工具栏）
 customsize toolbars（自定义工具栏）
 palette(调色板)勾选
 https://blog.csdn.net/gulijiang2008/article/details/7836151?locationNum=1
-
 
 ## sap powerdesigner导入表结构
 
@@ -83,3 +82,14 @@ PowerDesigner导入SQL脚本_51CTO博客_powerdesigner导入sql文件.mhtml
 
 java 8 32位
 https://blog.csdn.net/aoeace/article/details/102545337
+
+## sap powerdesigner新建带箭头的外键
+toolbox 选择Physical Diagram，Reference，拖拽到画布上
+
+D:\git\github\langnote\imgs\pd_toolbox.png
+
+
+## 待解决的问题
+搜索table，知道哪些表在项目上，哪些表不在
+pk fk标志
+
