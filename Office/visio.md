@@ -1,11 +1,4 @@
-# office
-
-officeplus官网，那里很多实用模板的
-
-excel 2019固定第二行？
-
-
-## visio
+# visio
 
 ==
 
@@ -28,7 +21,6 @@ Visio2019在线安装+激活（简体/繁体/英文版，选择自己需要的�
 
 https://blog.csdn.net/kangguowei/article/details/50895703
 
-## 在线办公套件
-google docs
-腾讯文档
-金山文档
+
+## er图
+visio 软件 “数据库模型图”

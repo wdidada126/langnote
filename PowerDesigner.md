@@ -76,6 +76,8 @@ customsize toolbars（自定义工具栏）
 palette(调色板)勾选
 https://blog.csdn.net/gulijiang2008/article/details/7836151?locationNum=1
 
+对ER图进行建模时提倡使用PowerDesigner（功能强大，形式多样），因为PowerDesigner能够直接将ER图导出为T-SQL代码。
+
 ## sap powerdesigner导入表结构
 
 PowerDesigner导入SQL脚本_51CTO博客_powerdesigner导入sql文件.mhtml
