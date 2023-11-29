@@ -1,5 +1,8 @@
 # mysql
 
+
+https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
+
 ## 窗口函数 聚集函数
 MySQL中的窗口函数有很多，以下是一些常见的窗口函数：
 
@@ -1550,6 +1553,7 @@ https://mariadb.com/kb/en/aggregate-functions/
 不要光盯着mysql，关注下mariadb和percona等其他mysql分支
 
 String相关函数
+https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 Date相关函数
 
 李春 mysql

@@ -1,7 +1,11 @@
 # shardingsphere
 
+## 使用过程中遇到的问题
+分片数据不支持多线程读写
+
 ### 竞品
 华为的 Distributed Database Middleware（DDM）广播
+tidb
 
 ### 缺点
 太重了，引用了好多的jar包
@@ -22,8 +26,6 @@ DBCP，C3P0，Druid, HikariCP 数据库连接池
 
 
 5.0 快照版
-
-
 
 ```shell
 Exception in thread "main" org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 55 in XML document from class path resource [META-INF/nacos/local/application-sharding-databases-tables.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 55; columnNumber: 127; cvc-complex-type.2.4.c: 通配符的匹配很全面, 但无法找到元素 'sharding:inline-strategy' 的声明。

@@ -2,22 +2,16 @@
 
 
 mysql 字符串长度函数
-
+https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 MySQL中常用的字符串长度函数是LENGTH()和CHAR_LENGTH()。
-
 1. LENGTH()函数：返回字符串的字节数，包括空格、标点符号等字符。
-
 语法：LENGTH(str)
-
 示例：
 ```sql
 SELECT LENGTH('hello world');
 ```
-
 2. CHAR_LENGTH()函数：返回字符串的字符数，不包括空格、标点符号等字符。
-
 语法：CHAR_LENGTH(str)
-
 示例：
 ```sql
 SELECT CHAR_LENGTH('hello world');
