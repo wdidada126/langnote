@@ -1,5 +1,34 @@
 # conan
 
+
+## conan server
+bintray.com/conan是一个用于存储和分发C/C++语言依赖项和包的在线平台，它由Bincrafters团队维护并开放给OSS社区使用。你可以把它想象为一个仓库，这里包含了大量由贡献者创建的各种各样的Conan包。
+Conan本身是一款免费开源的依赖项和包管理器，适用于所有平台，包括Windows，Linux，OSX，FreeBSD，Solaris等。它使用起来非常灵活，可以应用于各种开发目标，包括嵌入式、移动（iOS，Android）和裸机。此外，它还与所有build系统集成，如CMake，Visual Studio（MSBuild），Makefiles，SCons等，以及其他专有系统。
+在分布式的架构中，Conan遵循客户端-服务器模式。在这种模式下，客户端可以从不同的远端服务器上获取或上传包。服务端主要负责包的存储，并不负责包的构建和生成。实际上，包的构建和生成都在客户端完成。
+
+JFrog，现更名为捷蛙科技（北京）有限公司，是一家全球领先的软件分发和管理解决方案提供商。公司成立十多年以来，在全球拥有成千上万的客户和数百万用户，已成为DevOps数据库与版本和更新管理领域不可忽视的标准。
+
+其主要产品包括JFrog Artifactory企业制品库和JFrog Platform混合DevOps平台。JFrog Artifactory支持所有开发语言，是整个DevOps流水线中所有软件包、容器映像和Helm图表的单一数据源。它具备丰富的元数据和资产可见性，可以自动化开发生命周期。而JFrog Platform则是一个通用的、端到端的混合DevOps平台，通过二进制文件管理、CI/CD流水线和DevSecOps工具自动执行从构建到生产的软件升级。
+
+这些产品和服务的核心目标是实现“流式软件”的愿景，即允许二进制制品从开发端无缝、安全地流向边缘应用节点。
+
+
+
+Conan是一个开源的、跨平台的、去中心化的C++包管理器，它允许您安装、解决构建依赖，更重要的是可以直接集成到Build System中使用。同时，它也支持私有仓库的搭建，以满足私有项目的需求。
+
+要搭建Conan私有仓库，首先需要在服务器上安装Conan。然后，可以使用以下命令创建一个新的私有仓库：
+
+```bash
+conan create . user/channel
+```
+
+其中，`.`表示要将新仓库创建在当前目录下，`user`是用户名，`channel`是频道名称。您可以根据实际需求自行更改这些值。
+
+此外，如果您正在使用Artifactory，也可以快速方便地搭建Conan私有仓库。具体来说，可以参考JFrog官网上的文档来进行设置和配置。
+
+在NVD（美国国家漏洞数据库）提供的CVE（公共漏洞和暴露）的基础上，JFrog还提供了VulnDB这一商业漏洞数据库。而VulnDB提供了更大范围的安全漏洞数据
+
+
 https://blog.csdn.net/qqqq123qqqqqqq/article/details/79421686
 
 https://blog.csdn.net/h511555/article/details/8904143
