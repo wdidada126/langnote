@@ -1,9 +1,14 @@
 # Tars
+trpc
 
 https://tarscloud.org/
 
 tars docker 部署
 https://tarscloud.github.io/TarsDocs/installation/docker.html
+
+只能Linux，
+docker run -d -p 3306:3306 --net=tars -e MYSQL_ROOT_PASSWORD="123456" --ip="172.25.0.2" -v /data/framework-mysql:/var/lib/mysql -v /etc/localtime:/etc/localtime --name=tars-mysql mysql:5.6
+
 tars 负载均衡
 https://xie.infoq.cn/article/c2ebc08fc1ace1da3421ed8e2
 

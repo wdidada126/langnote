@@ -11,8 +11,6 @@ https://github.com/apache/incubator-brpc/blob/master/docs/cn/getting_started.md
 brpc交流QQ群，committer在
 498837325
 
-
-
 0.9.5
 
 https://blog.csdn.net/wxj1992/article/details/95249044#comments
