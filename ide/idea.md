@@ -1,4 +1,6 @@
 # IDEA
+toolbox
+https://www.jetbrains.com/toolbox-app/
 
 IDEA 可以同时打开多个maven项目，不用挨个打开
 
