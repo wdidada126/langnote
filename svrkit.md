@@ -1,6 +1,6 @@
 # svrkit
 
-[微信架构（转）](https://www.cnblogs.com/SuperXJ/archive/2012/05/29/2523411.html)
+[微信架构](https://www.cnblogs.com/SuperXJ/archive/2012/05/29/2523411.html)
 
 [微信与朋友圈后台架构](https://blog.csdn.net/u013467442/article/details/51019691)
 
