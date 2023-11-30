@@ -1,4 +1,6 @@
 # vcpkg
+vs自动自vckpg
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
 
 https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B-windows
 
@@ -9,7 +11,6 @@ Could not locate a complete toolset.
 The following paths were examined:
 D:\Program Files\Microsoft Visual Studio\2022
 
-    
 解决办法，更新vcpkg到最新版本，因为版本不兼容
 
 

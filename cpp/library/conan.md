@@ -1,5 +1,11 @@
 # conan
 
+https://github.com/conan-io/conan
+
+油管博主 @Lötwig Fusel
+https://www.youtube.com/watch?v=T6RZ5On3xz8
+https://zhuanlan.zhihu.com/p/613174589
+
 合肥某车企，招聘conan ci/cd工程师
 
 
