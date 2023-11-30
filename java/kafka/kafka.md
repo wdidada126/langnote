@@ -39,6 +39,10 @@ https://github.com/apache/kafka
 cd D:\git\github\kafka
 git checkout 2.8.2
 
+### java doc
+
+https://kafka.apache.org/30/javadoc/index.html
+
 ## 版本
 
 
