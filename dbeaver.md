@@ -9,7 +9,8 @@ ddl里面
 
 可以格式化sql吗？
 不清楚
-
+Ctrl Shift F
 
 执行sql快捷键
 Ctrl Enter
+
