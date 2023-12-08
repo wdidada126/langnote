@@ -5,6 +5,9 @@
 
 $ ssh -T git@github.com
 
+ssh -T git@gitee.com
+ssh -T git@github.com
+不是-v，也不是-vvv
 
 ssh git@bitbucket.org host_key_info
 
