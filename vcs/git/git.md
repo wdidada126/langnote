@@ -168,6 +168,7 @@ git config --global user.email "xxx@qq.com"
 git config --global user.name "wdidada"
 ```
 
+git config user.email "1664884095@qq.com"
 
 
 
