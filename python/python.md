@@ -96,6 +96,13 @@ python tag符号和空格不能混用，否则会报错
 Anaconda3-5.3.1-Windows-x86_64
 pycharm 设置
 
+最近，由于原有Anaconda环境中的部分第三方库出现了冲突的情况，且基于“Anaconda Prompt (anaconda3)”也无法升级Anaconda与相关库了，因此决定将其卸载并重新安装。参考Anaconda官方网站给出的卸载方法，成功完成了其的卸载与随后的重装工作。首先，我们打开“Anaconda Prompt (anaconda3)”。
+
+https://www.anaconda.com/download
+
+链接：https://www.zhihu.com/question/393199176/answer/2872327488
+
+
 Python是面向对象的
 
 python build工具
