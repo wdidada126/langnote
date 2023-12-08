@@ -11,13 +11,13 @@ ssh git@bitbucket.org host_key_info
 ## 生成密钥
 Windows 用户建议使用 Windows PowerShell 或者 Git Bash，在 命令提示符 下无 cat 和 ls 命令。
 
-
 ssh-keygen -t ed25519 -C "1664884095@qq.com"
 
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
+ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_166_gitee
 
