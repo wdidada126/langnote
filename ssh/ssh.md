@@ -1,5 +1,20 @@
 # ssh
 
+https://help.gitee.com/repository/ssh-key/configure-multiple-ssh-keys
+
+在 ~/.ssh 目录下新建一个 config 文件，添加如下内容（其中 Host 和 HostName 填写 git 服务器的域名，IdentityFile 指定私钥的路径）
+# gitee
+Host gitee.com
+HostName gitee.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/gitee_id_rsa
+# github
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/github_id_rsa
+
+
 测试一下该SSH key
 在git Bash 中输入以下代码
 
