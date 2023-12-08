@@ -1,4 +1,8 @@
 # flink
+官方微信号：Ververica2019
+微信公众号：Apache Flink
+微信视频号：ApacheFlink
+学习网站：https://flink-learning.org.cn/
 
 https://flink.apache.org/
 `flink-1.16.2-bin-scala_2.12` 文件名中的 `scala_2.12` 表示这个 Flink 二进制包是用 Scala 2.12 版本编译的。这意味着 Flink 源代码是使用 Scala 2.12 版本开发的，并且这个二进制包也支持 Scala 2.12。
