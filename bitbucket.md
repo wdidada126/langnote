@@ -7,6 +7,11 @@ https://bitbucket.org/blog/ssh-host-key-changes
 ```shell
 ssh-keygen -R bitbucket.org
 
+-R hostname 
+从 known_hosts文件中删除所有属于 hostname 的密钥。
+
+ssh-keygen -R bitbucket.org && curl https://bitbucket.org/site/ssh >> ~/.ssh/known_hosts
+
 ssh git@bitbucket.org host_key_info
 
 git clone git@bitbucket.org:sandisks/langnote.git

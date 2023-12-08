@@ -1,5 +1,13 @@
 # ssh
 
+测试一下该SSH key
+在git Bash 中输入以下代码
+
+$ ssh -T git@github.com
+
+
+ssh git@bitbucket.org host_key_info
+
 ## 生成密钥
 Windows 用户建议使用 Windows PowerShell 或者 Git Bash，在 命令提示符 下无 cat 和 ls 命令。
 

@@ -349,6 +349,7 @@ https://www.jianshu.com/p/b00fea3ba207
 
 
 免密登录 ssh key
+gpt
 
 freebsd 免密登录
 
