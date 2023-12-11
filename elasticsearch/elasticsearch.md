@@ -3,7 +3,9 @@
 ## 竞品Splunk
 Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
 ## 官方文档
+doc文档
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
 es文档
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html
 
@@ -125,6 +127,7 @@ wukong搜索
 例如，广州机房到北京机房，正常情况下 RTT 大约是 50 毫秒左右，遇到网络波动之类的情况，RTT 可能飙升到 500 毫秒甚至 1 秒，更不用说经常发生的线路丢包问题，那延迟可能就是几秒几十秒了。
 
 nosql
+
 
 ## 源代码
 
