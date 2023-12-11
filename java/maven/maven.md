@@ -1,4 +1,22 @@
 # maven
+## 打包独立部署到服务器
+
+https://gitee.com/edidada/testmavenplugin
+
+maven-assembly-plugin这个插件
+
+### spring boot插件配置
+
+```xml
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <addResources>true</addResources>
+            <skip>true</skip>
+        </configuration>
+    </plugin>
+```
 
 D:\apache-maven-3.6.1\lib\maven-model-builder-3.6.1.jar
 里面
