@@ -2,6 +2,15 @@
 
 ## 竞品Splunk
 Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
+
+## 讨论组、社区
+
+https://discuss.elastic.co/t/announce-mailing-list/19899
+
+
+## Slack
+https://elasticstack.slack.com/
+
 ## 官方文档
 doc文档
 
