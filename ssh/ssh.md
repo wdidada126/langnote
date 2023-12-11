@@ -38,6 +38,7 @@ ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_166_gitee
+ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_edidada_gitee
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "wc@eteng.cn" -f id_rsa_coding_eteng
 
