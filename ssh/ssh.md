@@ -1,6 +1,10 @@
 # ssh
+ssh公钥文件存放的地方
+authorized_keys
 
 https://help.gitee.com/repository/ssh-key/configure-multiple-ssh-keys
+
+Linux全局SSH配置文件路径位置为：`/etc/ssh/ssh_config`。
 
 在 ~/.ssh 目录下新建一个 config 文件，添加如下内容（其中 Host 和 HostName 填写 git 服务器的域名，IdentityFile 指定私钥的路径）
 # gitee
@@ -10,9 +14,18 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/gitee_id_rsa
 # github
 Host github.com
-HostName github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/github_id_rsa
+   Port 22
+   HostName github.com
+   PreferredAuthentications publickey
+   IdentityFile ~/.ssh/github_id_rsa
+
+# gitlab key
+Host gitlab
+    Port 22
+    User git
+    HostName gitlab.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa_gitlab
 
 
 测试一下该SSH key

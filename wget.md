@@ -1,6 +1,5 @@
 # wget
 
-
 wget --no-check-certificate https://dlcdn.apache.org/geode/1.14.4/apache-geode-1.14.4.tgz
 
 

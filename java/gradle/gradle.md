@@ -1,4 +1,14 @@
 # gradle
+
+maven可以打包成jar包，gradle如何打包成jar包
+mvn可以使用antlr生成.java文件，gradle如何打包
+mvn可以调用本地的protoc命令行文件，gradle如何组织
+
+## 竞品
+apt
+dnf
+yun
+
 ## gradle版本和windows版本关系
 Gradle 8.4 需要的 Java 版本是 JDK 11。
 
