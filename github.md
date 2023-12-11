@@ -1,5 +1,8 @@
 # github
 
+## action
+https://docs.github.com/zh/actions
+
 ## Codespaces
 GitHub Codespaces于2022年5月正式推出，目前已经完全对外开放。 
 github需要配置一堆东西，使用github desktop
