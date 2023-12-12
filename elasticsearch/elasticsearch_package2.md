@@ -987,9 +987,103 @@ org.elasticsearch.common
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AsyncBiFunction<T,U,C>                                       |      |      |      |
+| A BiFunction-like interface designed to be used with asynchronous executions. |      |      |      |
+| CheckedBiConsumer<T,U,E extends Exception>                   |      |      |      |
+| A BiConsumer-like interface which allows throwing checked exceptions. |      |      |      |
+| CheckedBiFunction<T,U,R,E extends Exception>                 |      |      |      |
+| A BiFunction-like interface which allows throwing checked exceptions. |      |      |      |
+| CheckedIntFunction<T,E extends Exception>                    |      |      |      |
+|                                                              |      |      |      |
+| CheckedSupplier<R,E extends Exception>                       |      |      |      |
+| A Supplier-like interface which allows throwing checked exceptions. |      |      |      |
+| Classes                                                      |      |      |      |
+|                                                              |      |      |      |
+| Explicit<T>                                                  |      |      |      |
+| Holds a value that is either: a) set implicitly e.g.         |      |      |      |
+| ExponentiallyWeightedMovingAverage                           |      |      |      |
+| Implements exponentially weighted moving averages (commonly abbreviated EWMA) for a single value. |      |      |      |
+| FieldMemoryStats                                             |      |      |      |
+| A reusable class to encode field -&gt; memory size mappings  |      |      |      |
+| LocalTimeOffset                                              |      |      |      |
+| Converts utc into local time and back again.                 |      |      |      |
+| LocalTimeOffset.Gap                                          |      |      |      |
+|                                                              |      |      |      |
+| LocalTimeOffset.Lookup                                       |      |      |      |
+| How to get instances of LocalTimeOffset.                     |      |      |      |
+| LocalTimeOffset.Overlap                                      |      |      |      |
+|                                                              |      |      |      |
+| LocalTimeOffset.Strategy                                     |      |      |      |
+|                                                              |      |      |      |
+| LocalTimeOffset.Transition                                   |      |      |      |
+|                                                              |      |      |      |
+| MacAddressProvider                                           |      |      |      |
+|                                                              |      |      |      |
+| NamedRegistry<T>                                             |      |      |      |
+| A registry from String to some class implementation.         |      |      |      |
+| Numbers                                                      |      |      |      |
+| A set of utilities for numbers.                              |      |      |      |
+| ParsingException                                             |      |      |      |
+| Exception that can be used when parsing queries with a given XContentParser. |      |      |      |
+| PidFile                                                      |      |      |      |
+| Process ID file abstraction that writes the current pid into a file and optionally removes it on system exit. |      |      |      |
+| Priority                                                     |      |      |      |
+|                                                              |      |      |      |
+| Randomness                                                   |      |      |      |
+| Provides factory methods for producing reproducible sources of randomness. |      |      |      |
+| Rounding                                                     |      |      |      |
+| A strategy for rounding milliseconds since epoch.            |      |      |      |
+| Rounding.Builder                                             |      |      |      |
+|                                                              |      |      |      |
+| Rounding.DateTimeUnit                                        |      |      |      |
+|                                                              |      |      |      |
+| Rounding.Prepared                                            |      |      |      |
+| A strategy for rounding milliseconds since epoch.            |      |      |      |
+| StopWatch                                                    |      |      |      |
+| Simple stop watch, allowing for timing of a number of tasks, exposing total running time and running time for each named task. |      |      |      |
+| StopWatch.TaskInfo                                           |      |      |      |
+| Inner class to hold data about one task executed within the stop watch. |      |      |      |
+| Strings                                                      |      |      |      |
+|                                                              |      |      |      |
+| SuppressLoggerChecks                                         |      |      |      |
+| Annotation to suppress logging usage checks errors inside a whole class or a method. |      |      |      |
+| Table                                                        |      |      |      |
+|                                                              |      |      |      |
+| Table.Cell                                                   |      |      |      |
+|                                                              |      |      |      |
+| TriConsumer<S,T,U>                                           |      |      |      |
+| Represents an operation that accepts three arguments and returns no result. |      |      |      |
+| TriFunction<S,T,U,R>                                         |      |      |      |
+| Represents a function that accepts three arguments and produces a result. |      |      |      |
+| UUIDs                                                        |      |      |      |
+|                                                              |      |      |      |
+| ValidationException                                          |      |      |      |
+| Encapsulates an accumulation of validation errors            |      |      |      |
+
+
+
 org.elasticsearch.common.blobstore
 
 
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| BlobContainer                                                |      |      |
+| An interface for managing a repository of blob entries, where each blob entry is just a named group of bytes. |      |      |
+| BlobMetadata                                                 |      |      |
+| An interface for providing basic metadata about a blob.      |      |      |
+| BlobPath                                                     |      |      |
+| The list of paths where a blob can reside.                   |      |      |
+| BlobStore                                                    |      |      |
+| An interface for storing blobs.                              |      |      |
+| BlobStoreException                                           |      |      |
+|                                                              |      |      |
+| DeleteResult                                                 |      |      |
+| The result of deleting multiple blobs from a BlobStore.      |      |      |
 
 
 
@@ -999,56 +1093,899 @@ org.elasticsearch.common.blobstore.fs
 
 
 
-
+| Class                                                |      |      |
+| ---------------------------------------------------- | ---- | ---- |
+| Description                                          |      |      |
+| FsBlobContainer                                      |      |      |
+| A file system based implementation of BlobContainer. |      |      |
+| FsBlobStore                                          |      |      |
 
 
 
 
 
 org.elasticsearch.common.blobstore.support
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractBlobContainer                                        |      |      |      |
+| A base abstract blob container that implements higher level container methods. |      |      |      |
+| FilterBlobContainer                                          |      |      |      |
+|                                                              |      |      |      |
+| PlainBlobMetadata                                            |      |      |      |
+
+
+
 org.elasticsearch.common.breaker
+
+
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ChildMemoryCircuitBreaker                                    |      |      |      |
+| Breaker that will check a parent's when incrementing         |      |      |      |
+| CircuitBreaker                                               |      |      |      |
+| Interface for an object that can be incremented, breaking after some configured limit has been reached. |      |      |      |
+| CircuitBreaker.Durability                                    |      |      |      |
+| 聽                                                           |      |      |      |
+| CircuitBreaker.Type                                          |      |      |      |
+| 聽                                                           |      |      |      |
+| CircuitBreakingException                                     |      |      |      |
+| Exception thrown when the circuit breaker trips              |      |      |      |
+| NoopCircuitBreaker                                           |      |      |      |
+| A CircuitBreaker that doesn't increment or adjust, and all operations are basically noops |      |      |      |
+| PreallocatedCircuitBreakerService                            |      |      |      |
+| CircuitBreakerService聽that preallocates some bytes on construction. |      |      |      |
+
+
+
 org.elasticsearch.common.bytes
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractBytesReference                                       |      |      |      |
+|                                                              |      |      |      |
+| BytesArray                                                   |      |      |      |
+|                                                              |      |      |      |
+| BytesReference                                               |      |      |      |
+| A reference to bytes.                                        |      |      |      |
+| CompositeBytesReference                                      |      |      |      |
+| A composite BytesReference that allows joining multiple bytes references into one without copying. |      |      |      |
+| PagedBytesReference                                          |      |      |      |
+| A page based bytes reference, internally holding the bytes in a paged data structure. |      |      |      |
+| RecyclingBytesStreamOutput                                   |      |      |      |
+| An in-memory StreamOutput which first fills the given byte[] and then allocates more space from the given BigArrays if needed. |      |      |      |
+| ReleasableBytesReference                                     |      |      |      |
+| An extension to BytesReference that requires releasing its content. |      |      |      |
+
+
+
 org.elasticsearch.common.cache
+
+
+
+| Class                             |      |      |
+| --------------------------------- | ---- | ---- |
+| Description                       |      |      |
+| Cache<K,V>                        |      |      |
+| A simple concurrent cache.        |      |      |
+| Cache.CacheStats                  |      |      |
+|                                   |      |      |
+| CacheBuilder<K,V>                 |      |      |
+|                                   |      |      |
+| CacheLoader<K,V>                  |      |      |
+|                                   |      |      |
+| RemovalListener<K,V>              |      |      |
+|                                   |      |      |
+| RemovalNotification<K,V>          |      |      |
+|                                   |      |      |
+| RemovalNotification.RemovalReason |      |      |
+
+
+
 org.elasticsearch.common.collect
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| CopyOnWriteHashMap<K,V>                                      |      |      |
+| An immutable map whose writes result in a new copy of the map to be created. |      |      |
+| EvictingQueue<T>                                             |      |      |
+| An EvictingQueue is a non-blocking queue which is limited to a maximum size; when new elements are added to a full queue, elements are evicted from the head of the queue to accommodate the new elements. |      |      |
+| HppcMaps                                                     |      |      |
+|                                                              |      |      |
+| HppcMaps.Object                                              |      |      |
+|                                                              |      |      |
+| HppcMaps.Object.Integer                                      |      |      |
+|                                                              |      |      |
+| ImmutableOpenIntMap<VType>                                   |      |      |
+| An immutable map implementation based on open hash map.      |      |      |
+| ImmutableOpenIntMap.Builder<VType>                           |      |      |
+|                                                              |      |      |
+| ImmutableOpenMap<KType,VType>                                |      |      |
+| An immutable map implementation based on open hash map.      |      |      |
+| ImmutableOpenMap.Builder<KType,VType>                        |      |      |
+|                                                              |      |      |
+| Iterators                                                    |      |      |
+|                                                              |      |      |
+| MapBuilder<K,V>                                              |      |      |
+
+
+
+
+
 org.elasticsearch.common.component
+
+
+
+| Class                      |      |      |
+| -------------------------- | ---- | ---- |
+| Description                |      |      |
+| AbstractLifecycleComponent |      |      |
+|                            |      |      |
+| Lifecycle                  |      |      |
+| Lifecycle state.           |      |      |
+| Lifecycle.State            |      |      |
+|                            |      |      |
+| LifecycleComponent         |      |      |
+|                            |      |      |
+| LifecycleListener          |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.compress
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| CompressedXContent                                           |      |      |
+| Similar class to the String class except that it internally stores data using a compressed representation in order to require less permanent memory. |      |      |
+| Compressor                                                   |      |      |
+|                                                              |      |      |
+| CompressorFactory                                            |      |      |
+|                                                              |      |      |
+| DeflateCompressor                                            |      |      |
+| Compressor implementation based on the DEFLATE compression algorithm. |      |      |
+| NotCompressedException                                       |      |      |
+| Exception indicating that we were expecting something compressed, which was not compressed or corrupted so that the compression format could not be detected. |      |      |
+| NotXContentException                                         |      |      |
+| Exception indicating that we were expecting some XContent but could not detect its type. |      |      |
+
+
+
+
+
 org.elasticsearch.common.document
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| DocumentField                                                |      |      |
+| A single field name and values part of SearchHit and GetResult. |      |      |
+
+
+
+
+
 org.elasticsearch.common.filesystem
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| FileSystemNatives                                            |      |      |      |
+| This class provides utility methods for calling some native methods related to filesystems. |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.geo
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| GeoBoundingBox                                               |      |      |
+| A class representing a Geo-Bounding-Box for use by Geo queries and aggregations that deal with extents/rectangles representing rectangular areas of interest. |      |      |
+| GeoDistance                                                  |      |      |
+| Geo distance calculation.                                    |      |      |
+| GeoFormatterFactory<T>                                       |      |      |
+| Output formatters for geo fields support extensions such as vector tiles. |      |      |
+| GeoFormatterFactory.FormatterFactory<T>                      |      |      |
+| Defines an extension point for geometry formatter            |      |      |
+| GeoJson                                                      |      |      |
+| Utility class for converting libs/geo shapes to and from GeoJson |      |      |
+| GeoLineDecomposer                                            |      |      |
+| Splits lines by datelines.                                   |      |      |
+| GeometryFormatterFactory                                     |      |      |
+| Output formatters supported by geometry fields.              |      |      |
+| GeometryIO                                                   |      |      |
+| Utility class for binary serializtion/deserialization of libs/geo classes |      |      |
+| GeometryParser                                               |      |      |
+| An utility class with to read geometries from a XContentParser or generic object. |      |      |
+| GeometryParserFormat                                         |      |      |
+| Supported formats to read/write JSON geometries.             |      |      |
+| GeoPoint                                                     |      |      |
+| 聽                                                           |      |      |
+| GeoPolygonDecomposer                                         |      |      |
+| Splits polygons by datelines.                                |      |      |
+| GeoShapeUtils                                                |      |      |
+| Utility class that transforms Elasticsearch geometry objects to the Lucene representation |      |      |
+| GeoUtils                                                     |      |      |
+| 聽                                                           |      |      |
+| GeoUtils.EffectivePoint                                      |      |      |
+| Represents the point of the geohash cell that should be used as the value of geohash |      |      |
+| Orientation                                                  |      |      |
+| 聽                                                           |      |      |
+| ShapeRelation                                                |      |      |
+| Enum representing the relationship between a Query / Filter Shape and indexed Shapes that will be used to determine if a Document should be matched or not |      |      |
+| SimpleFeatureFactory                                         |      |      |
+| Transforms points and rectangles objects in WGS84 into mvt features. |      |      |
+| SimpleVectorTileFormatter                                    |      |      |
+| A facade for SimpleFeatureFactory that converts it into FormatterFactory for use in GeoPointFieldMapper |      |      |
+| SpatialStrategy                                              |      |      |
+| 聽                                                           |      |      |
+| SphericalMercatorUtils                                       |      |      |
+| Utility functions to transforms WGS84 coordinates into spherical mercator. |      |      |
+|                                                              |      |      |
+|                                                              |      |      |
+|                                                              |      |      |
+|                                                              |      |      |
+
+
+
+
+
 org.elasticsearch.common.hash
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| MessageDigests                                               |      |      |      |
+| This MessageDigests class provides convenience methods for obtaining thread local MessageDigest instances for MD5, SHA-1, SHA-256 and SHA-512 message digests. |      |      |      |
+| Murmur3Hasher                                                |      |      |      |
+| Wraps MurmurHash3 to provide an interface similar to MessageDigest that allows hashing of byte arrays passed through multiple calls to Murmur3Hasher.update(byte[]). |      |      |      |
+| MurmurHash3                                                  |      |      |      |
+| MurmurHash3 hashing functions.                               |      |      |      |
+| MurmurHash3.Hash128                                          |      |      |      |
+| A 128-bits hash.                                             |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.inject
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| AbstractModule                                               |      |      |
+| A support class for Modules which reduces repetition and results in a more readable configuration. |      |      |
+| Binder                                                       |      |      |
+| Collects configuration information (primarily bindings) which will be used to create an Injector. |      |      |
+| Binding<T>                                                   |      |      |
+| A mapping from a key (type and optional annotation) to the strategy for getting instances of the type. |      |      |
+| BindingAnnotation                                            |      |      |
+| Annotates annotations which are used for binding.            |      |      |
+| ConfigurationException                                       |      |      |
+| Thrown when a programming error such as a misplaced annotation, illegal binding, or unsupported scope is found. |      |      |
+| CreationException                                            |      |      |
+| Thrown when errors occur while creating a Injector.          |      |      |
+| Exposed                                                      |      |      |
+| Accompanies a @Provides method annotation in a private module to indicate that the provided binding is exposed. |      |      |
+| Guice                                                        |      |      |
+| The entry point to the Guice framework.                      |      |      |
+| ImplementedBy                                                |      |      |
+| A pointer to the default implementation of a type.           |      |      |
+| Inject                                                       |      |      |
+| Annotates members of your implementation class (constructors, methods and fields) into which the Injector should inject values. |      |      |
+| Injector                                                     |      |      |
+| Builds the graphs of objects that make up your application.  |      |      |
+| Key<T>                                                       |      |      |
+| Binding key consisting of an injection type and an optional annotation. |      |      |
+| MembersInjector<T>                                           |      |      |
+| Injects dependencies into the fields and methods on instances of type T. |      |      |
+| Module                                                       |      |      |
+| A module contributes configuration information, typically interface bindings, which will be used to create an Injector. |      |      |
+| ModulesBuilder                                               |      |      |
+|                                                              |      |      |
+| OutOfScopeException                                          |      |      |
+| Thrown from Provider.get() when an attempt is made to access a scoped object while the scope in question is not currently active. |      |      |
+| PreProcessModule                                             |      |      |
+| A module can implement this interface to allow to pre process other modules before an injector is created. |      |      |
+| PrivateBinder                                                |      |      |
+| Returns a binder whose configuration information is hidden from its environment by default. |      |      |
+| PrivateModule                                                |      |      |
+| A module whose configuration information is hidden from its environment by default. |      |      |
+| ProvidedBy                                                   |      |      |
+| A pointer to the default provider type for a type.           |      |      |
+| Provider<T>                                                  |      |      |
+| An object capable of providing instances of type T.          |      |      |
+| Provides                                                     |      |      |
+| Annotates methods of a Module to create a provider method binding. |      |      |
+| ProvisionException                                           |      |      |
+| Indicates that there was a runtime failure while providing an instance. |      |      |
+| Scope                                                        |      |      |
+| A scope is a level of visibility that instances provided by Guice may have. |      |      |
+| ScopeAnnotation                                              |      |      |
+| Annotates annotations which are used for scoping.            |      |      |
+| Scopes                                                       |      |      |
+| Built-in scope implementations.                              |      |      |
+| Singleton                                                    |      |      |
+| Apply this to implementation classes when you want only one instance (per Injector) to be reused for all injections for that binding. |      |      |
+| Stage                                                        |      |      |
+| The stage we're running in.                                  |      |      |
+| TypeLiteral<T>                                               |      |      |
+| Represents a generic type T.                                 |      |      |
+
+
+
+
+
 org.elasticsearch.common.inject.assistedinject
+
+
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| Assisted                                                     |      |      |
+| Annotates an injected parameter or field whose value comes from an argument to a factory method. |      |      |
+| AssistedInject                                               |      |      |
+| Deprecated.                                                  |      |      |
+| FactoryProvider now works better with the standard @Inject annotation. |      |      |
+| FactoryProvider<F>                                           |      |      |
+| Provides a factory that combines the caller's arguments with injector-supplied values to construct objects. |      |      |
+
+
+
 org.elasticsearch.common.inject.binder
+
+
+
+| Class                            |      |      |
+| -------------------------------- | ---- | ---- |
+| Description                      |      |      |
+| AnnotatedBindingBuilder<T>       |      |      |
+| See the EDSL examples at Binder. |      |      |
+| AnnotatedConstantBindingBuilder  |      |      |
+| See the EDSL examples at Binder. |      |      |
+| AnnotatedElementBuilder          |      |      |
+| See the EDSL examples at Binder. |      |      |
+| ConstantBindingBuilder           |      |      |
+| Binds to a constant value.       |      |      |
+| LinkedBindingBuilder<T>          |      |      |
+| See the EDSL examples at Binder. |      |      |
+| ScopedBindingBuilder             |      |      |
+| See the EDSL examples at Binder. |      |      |
+
+
+
+
+
 org.elasticsearch.common.inject.internal
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| AbstractBindingBuilder<T>                                    |      |      |
+| Bind a value or constant.                                    |      |      |
+| Annotations                                                  |      |      |
+| Annotation utilities.                                        |      |      |
+| BindingBuilder<T>                                            |      |      |
+| Bind a non-constant key.                                     |      |      |
+| BindingImpl<T>                                               |      |      |
+|                                                              |      |      |
+| ConstantBindingBuilderImpl<T>                                |      |      |
+| Bind a constant.                                             |      |      |
+| ConstructionContext<T>                                       |      |      |
+| Context of a dependency construction.                        |      |      |
+| ErrorHandler                                                 |      |      |
+| Handles errors in the Injector.                              |      |      |
+| Errors                                                       |      |      |
+| A collection of error messages.                              |      |      |
+| ErrorsException                                              |      |      |
+| Indicates that a result could not be returned while preparing or resolving a binding. |      |      |
+| ExposedBindingImpl<T>                                        |      |      |
+|                                                              |      |      |
+| ExposureBuilder<T>                                           |      |      |
+| For private binder's expose() method.                        |      |      |
+| FailableCache<K,V>                                           |      |      |
+| Lazily creates (and caches) values for keys.                 |      |      |
+| InstanceBindingImpl<T>                                       |      |      |
+|                                                              |      |      |
+| InternalContext                                              |      |      |
+| Internal context.                                            |      |      |
+| InternalFactory<T>                                           |      |      |
+| Creates objects which will be injected.                      |      |      |
+| InternalFactory.Instance<T>                                  |      |      |
+| ES: An factory that returns a pre created instance.          |      |      |
+| LinkedBindingImpl<T>                                         |      |      |
+|                                                              |      |      |
+| LinkedProviderBindingImpl<T>                                 |      |      |
+|                                                              |      |      |
+| MatcherAndConverter                                          |      |      |
+|                                                              |      |      |
+| MoreTypes                                                    |      |      |
+| Static methods for working with types that we aren't publishing in the public Types API. |      |      |
+| MoreTypes.GenericArrayTypeImpl                               |      |      |
+|                                                              |      |      |
+| MoreTypes.MemberImpl                                         |      |      |
+| We cannot serialize the built-in Java member classes, which prevents us from using Members in our exception types. |      |      |
+| MoreTypes.ParameterizedTypeImpl                              |      |      |
+|                                                              |      |      |
+| MoreTypes.WildcardTypeImpl                                   |      |      |
+| The WildcardType interface supports multiple upper bounds and multiple lower bounds. |      |      |
+| Nullability                                                  |      |      |
+| Whether a member supports null values injected.              |      |      |
+| PrivateElementsImpl                                          |      |      |
+|                                                              |      |      |
+| ProviderInstanceBindingImpl<T>                               |      |      |
+|                                                              |      |      |
+| ProviderMethod<T>                                            |      |      |
+| A provider that invokes a method and returns its result.     |      |      |
+| ProviderMethodsModule                                        |      |      |
+| Creates bindings to methods annotated with @Provides.        |      |      |
+| Scoping                                                      |      |      |
+| References a scope, either directly (as a scope instance), or indirectly (as a scope annotation). |      |      |
+| SourceProvider                                               |      |      |
+| Provides access to the calling line of code.                 |      |      |
+| StackTraceElements                                           |      |      |
+| Creates stack trace elements for members.                    |      |      |
+| Stopwatch                                                    |      |      |
+| Enables simple performance monitoring.                       |      |      |
+| Strings                                                      |      |      |
+| String utilities.                                            |      |      |
+| ToStringBuilder                                              |      |      |
+| Helps with toString() methods.                               |      |      |
+| UniqueAnnotations                                            |      |      |
+|                                                              |      |      |
+| UntargettedBindingImpl<T>                                    |      |      |
+
+
+
+
+
 org.elasticsearch.common.inject.matcher
+
+
+
+
+
+| Class                                    |      |      |
+| ---------------------------------------- | ---- | ---- |
+| Description                              |      |      |
+| AbstractMatcher<T>                       |      |      |
+| Implements and() and or().               |      |      |
+| Matcher<T>                               |      |      |
+| Returns true or false for a given input. |      |      |
+| Matchers                                 |      |      |
+| Matcher implementations.                 |      |      |
+
+
+
 org.elasticsearch.common.inject.multibindings
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| MapBinder<K,V>                                               |      |      |
+| An API to bind multiple map entries separately, only to later inject them as a complete map. |      |      |
+| MapBinder.RealMapBinder<K,V>                                 |      |      |
+| The actual mapbinder plays several roles:                    |      |      |
+| MapBinder.RealMapBinder.MapBinderProviderWithDependencies<K,V> |      |      |
+| 聽                                                           |      |      |
+| Multibinder<T>                                               |      |      |
+| An API to bind multiple values separately, only to later inject them as a complete collection. |      |      |
+| Multibinder.RealMultibinder<T>                               |      |      |
+| The actual multibinder plays several roles:                  |      |      |
+
+
+
+
+
 org.elasticsearch.common.inject.name
+
+| Class                                 |      |      |
+| ------------------------------------- | ---- | ---- |
+| Description                           |      |      |
+| Named                                 |      |      |
+| Annotates named things.               |      |      |
+| Names                                 |      |      |
+| Utility methods for use with聽@Named. |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.inject.spi
+
+
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| BindingScopingVisitor<V>                                     |      |      |
+| Visits each of the strategies used to scope an injection.    |      |      |
+| BindingTargetVisitor<T,V>                                    |      |      |
+| Visits each of the strategies used to find an instance to satisfy an injection. |      |      |
+| ConstructorBinding<T>                                        |      |      |
+| A binding to the constructor of a concrete clss.             |      |      |
+| ConvertedConstantBinding<T>                                  |      |      |
+| A binding created from converting a bound instance to a new type. |      |      |
+| DefaultBindingScopingVisitor<V>                              |      |      |
+| No-op visitor for subclassing.                               |      |      |
+| DefaultBindingTargetVisitor<T,V>                             |      |      |
+| No-op visitor for subclassing.                               |      |      |
+| DefaultElementVisitor<V>                                     |      |      |
+| No-op visitor for subclassing.                               |      |      |
+| Dependency<T>                                                |      |      |
+| A variable that can be resolved by an injector.              |      |      |
+| Element                                                      |      |      |
+| A core component of a module or injector.                    |      |      |
+| Elements                                                     |      |      |
+| Exposes elements of a module so they can be inspected, validated or聽rewritten. |      |      |
+| ElementVisitor<V>                                            |      |      |
+| Visit elements.                                              |      |      |
+| ExposedBinding<T>                                            |      |      |
+| A binding to a key exposed from an enclosed private environment. |      |      |
+| HasDependencies                                              |      |      |
+| Implemented by聽bindings,聽providers聽and instances that expose their dependencies explicitly. |      |      |
+| InjectionListener<I>                                         |      |      |
+| Listens for injections into instances of type聽I.            |      |      |
+| InjectionPoint                                               |      |      |
+| A constructor, field or method that can receive injections.  |      |      |
+| InjectionRequest<T>                                          |      |      |
+| A request to inject the instance fields and methods of an instance. |      |      |
+| InstanceBinding<T>                                           |      |      |
+| A binding to a single instance.                              |      |      |
+| LinkedKeyBinding<T>                                          |      |      |
+| A binding to a linked key.                                   |      |      |
+| MembersInjectorLookup<T>                                     |      |      |
+| A lookup of the members injector for a type.                 |      |      |
+| Message                                                      |      |      |
+| An error message and the context in which it occurred.       |      |      |
+| PrivateElements                                              |      |      |
+| A private collection of elements that are hidden from the enclosing injector or module by default. |      |      |
+| ProviderBinding<T extends聽Provider<?>>                      |      |      |
+| A binding to a聽Provider聽that delegates to the binding for the provided type. |      |      |
+| ProviderInstanceBinding<T>                                   |      |      |
+| A binding to a provider instance.                            |      |      |
+| ProviderKeyBinding<T>                                        |      |      |
+| A binding to a provider key.                                 |      |      |
+| ProviderLookup<T>                                            |      |      |
+| A lookup of the provider for a type.                         |      |      |
+| ProviderLookup.ProviderImpl<T>                               |      |      |
+| 聽                                                           |      |      |
+| ProviderWithDependencies<T>                                  |      |      |
+| A provider with dependencies on other injected types.        |      |      |
+| ScopeBinding                                                 |      |      |
+| Registration of a scope annotation with the scope that implements it. |      |      |
+| StaticInjectionRequest                                       |      |      |
+| A request to inject the static fields and methods of a type. |      |      |
+| TypeConverter                                                |      |      |
+| Converts constant string values to a different type.         |      |      |
+| TypeConverterBinding                                         |      |      |
+| Registration of type converters for matching target types.   |      |      |
+| TypeEncounter<I>                                             |      |      |
+| Context of an injectable type encounter.                     |      |      |
+| TypeListener                                                 |      |      |
+| Listens for Guice to encounter injectable types.             |      |      |
+| TypeListenerBinding                                          |      |      |
+| Binds types (picked using a Matcher) to an type listener.    |      |      |
+| UntargettedBinding<T>                                        |      |      |
+| An untargetted binding.                                      |      |      |
+
+
+
 org.elasticsearch.common.inject.util
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| Modules                                                      |      |      |
+| Static utility methods for creating and working with instances of Module. |      |      |
+| Modules.OverriddenModuleBuilder                              |      |      |
+| See the EDSL example at override().                          |      |      |
+| Providers                                                    |      |      |
+| Static utility methods for creating and working with instances of Provider. |      |      |
+| Types                                                        |      |      |
+| Static methods for working with types.                       |      |      |
+
+
+
+
+
 org.elasticsearch.common.io
+
+
+
+| Class                                               |      |      |
+| --------------------------------------------------- | ---- | ---- |
+| Description                                         |      |      |
+| Channels                                            |      |      |
+|                                                     |      |      |
+| DiskIoBufferPool                                    |      |      |
+|                                                     |      |      |
+| FileSystemUtils                                     |      |      |
+| Elasticsearch utils to work with Path               |      |      |
+| Streams                                             |      |      |
+| Simple utility methods for file and stream copying. |      |      |
+| UTF8StreamWriter                                    |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.io.stream
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ByteArrayStreamInput                                         |      |      |      |
+| Resettable StreamInput that wraps a byte array.              |      |      |      |
+| ByteBufferStreamInput                                        |      |      |      |
+|                                                              |      |      |      |
+| BytesStream                                                  |      |      |      |
+|                                                              |      |      |      |
+| BytesStreamOutput                                            |      |      |      |
+| A @link StreamOutput that uses BigArrays to acquire pages of bytes, which avoids frequent reallocation & copying of the internal data. |      |      |      |
+| DataOutputStreamOutput                                       |      |      |      |
+|                                                              |      |      |      |
+| DelayableWriteable<T extends Writeable>                      |      |      |      |
+| A holder for Writeables that delays reading the underlying object on the receiving end. |      |      |      |
+| DelayableWriteable.Serialized<T extends Writeable>           |      |      |      |
+| A Writeable stored in serialized form backed by a ReleasableBytesReference. |      |      |      |
+| FilterStreamInput                                            |      |      |      |
+| Wraps a StreamInput and delegates to it.                     |      |      |      |
+| InputStreamStreamInput                                       |      |      |      |
+|                                                              |      |      |      |
+| NamedWriteable                                               |      |      |      |
+| A Writeable object identified by its name.                   |      |      |      |
+| NamedWriteableAwareStreamInput                               |      |      |      |
+| Wraps a StreamInput and associates it with a NamedWriteableRegistry |      |      |      |
+| NamedWriteableRegistry                                       |      |      |      |
+| A registry for Writeable.Reader readers of NamedWriteable.   |      |      |      |
+| NamedWriteableRegistry.Entry                                 |      |      |      |
+| An entry in the registry, made up of a category class and name, and a reader for that category class. |      |      |      |
+| NotSerializableExceptionWrapper                              |      |      |      |
+| This exception can be used to wrap a given, not serializable exception to serialize via StreamOutput.writeException(Throwable). |      |      |      |
+| OutputStreamStreamOutput                                     |      |      |      |
+|                                                              |      |      |      |
+| PositionTrackingOutputStreamStreamOutput                     |      |      |      |
+|                                                              |      |      |      |
+| ReleasableBytesStreamOutput                                  |      |      |      |
+| An bytes stream output that allows providing a BigArrays instance expecting it to require releasing its content (BytesStreamOutput.bytes()) once done. |      |      |      |
+| StreamInput                                                  |      |      |      |
+| A stream from this node to another node.                     |      |      |      |
+| StreamOutput                                                 |      |      |      |
+| A stream from another node to this node.                     |      |      |      |
+| VersionedNamedWriteable                                      |      |      |      |
+| A NamedWriteable that has a minimum version associated with it. |      |      |      |
+| Writeable                                                    |      |      |      |
+| Implementers can be written to a StreamOutput and read from a StreamInput. |      |      |      |
+| Writeable.Reader<V>                                          |      |      |      |
+| Reference to a method that can read some object from a stream. |      |      |      |
+| Writeable.Writer<V>                                          |      |      |      |
+| Reference to a method that can write some object to a StreamOutput. |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.common.joda
+
+
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| Joda                                                         |      |      |
+| Deprecated.                                                  |      |      |
+| Joda.EpochTimeParser                                         |      |      |
+|                                                              |      |      |
+| Joda.EpochTimePrinter                                        |      |      |
+|                                                              |      |      |
+| JodaDateFormatter                                            |      |      |
+|                                                              |      |      |
+| JodaDateMathParser                                           |      |      |
+| A parser for date/time formatted text with optional date math. |      |      |
+| JodaDeprecationPatterns                                      |      |      |
+
+
+
+
+
 org.elasticsearch.common.logging
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ClusterIdConverter                                           |      |      |      |
+| Pattern converter to format the cluster_id variable into JSON fields cluster.id. |      |      |      |
+| DeprecatedMessage                                            |      |      |      |
+| A logger message used by DeprecationLogger.                  |      |      |      |
+| DeprecationCategory                                          |      |      |      |
+| Deprecation log messages are categorised so that consumers of the logs can easily aggregate them. |      |      |      |
+| DeprecationLogger                                            |      |      |      |
+| A logger that logs deprecation notices.                      |      |      |      |
+| ESJsonLayout                                                 |      |      |      |
+| Formats log events as strings in a json format.              |      |      |      |
+| ESJsonLayout.Builder<B extends ESJsonLayout.Builder<B>>      |      |      |      |
+|                                                              |      |      |      |
+| ESLogMessage                                                 |      |      |      |
+| A base class for custom log4j logger messages.               |      |      |      |
+| ESMessageFieldConverter                                      |      |      |      |
+| Pattern converter to populate ESMessageField in a pattern.   |      |      |      |
+| HeaderWarning                                                |      |      |      |
+| This is a simplistic logger that adds warning messages to HTTP headers. |      |      |      |
+| HeaderWarningAppender                                        |      |      |      |
+|                                                              |      |      |      |
+| JsonThrowablePatternConverter                                |      |      |      |
+| Outputs the Throwable portion of the LoggingEvent as a Json formatted field with array "exception": [ "stacktrace", "lines", "as", "array", "elements" ] Reusing @link org.apache.logging.log4j.core.pattern.ExtendedThrowablePatternConverter which already converts a Throwable from LoggingEvent into a multiline string |      |      |      |
+| LogConfigurator                                              |      |      |      |
+|                                                              |      |      |      |
+| LoggerMessageFormat                                          |      |      |      |
+| Format string for Elasticsearch log messages.                |      |      |      |
+| Loggers                                                      |      |      |      |
+| A set of utilities around Logging.                           |      |      |      |
+| NodeAndClusterIdConverter                                    |      |      |      |
+| Pattern converter to format the node_and_cluster_id variable into JSON fields node.id and cluster.uuid. |      |      |      |
+| NodeAndClusterIdStateListener                                |      |      |      |
+| The NodeAndClusterIdStateListener listens to cluster state changes and ONLY when receives the first update it sets the clusterUUID and nodeID in log4j pattern converter NodeAndClusterIdConverter. |      |      |      |
+| NodeIdConverter                                              |      |      |      |
+| Pattern converter to format the node_id variable into JSON fields node.id . |      |      |      |
+| NodeNamePatternConverter                                     |      |      |      |
+| Converts %node_name in log4j patterns into the current node name. |      |      |      |
+| ProductOriginConverter                                       |      |      |      |
+| Pattern converter to format the X-elastic-product-origin into plaintext logs. |      |      |      |
+| RateLimitingFilter                                           |      |      |      |
+| A filter used for throttling deprecation logs.               |      |      |      |
+| TraceIdConverter                                             |      |      |      |
+| Pattern converter to format the trace id provided in the traceparent header into JSON fields trace.id. |      |      |      |
+
+
+
 org.elasticsearch.common.lucene
+
+
+
 org.elasticsearch.common.lucene.index
+
+
+
 org.elasticsearch.common.lucene.search
+
+
+
 org.elasticsearch.common.lucene.search.function
+
+
+
 org.elasticsearch.common.lucene.store
+
+
+
 org.elasticsearch.common.lucene.uid
+
+
+
 org.elasticsearch.common.metrics
+
+
+
+
+
 org.elasticsearch.common.network
+
+
+
 org.elasticsearch.common.path
+
+
+
 org.elasticsearch.common.recycler
+
+
+
 org.elasticsearch.common.regex
+
+
+
+
+
 org.elasticsearch.common.rounding
+
+
+
 org.elasticsearch.common.settings
+
+
+
 org.elasticsearch.common.text
+
+
+
 org.elasticsearch.common.time
+
+
+
 org.elasticsearch.common.transport
+
+
+
 org.elasticsearch.common.unit
+
+
+
 org.elasticsearch.common.util
+
+
+
+
+
 org.elasticsearch.common.util.concurrent
+
+
+
 org.elasticsearch.common.util.iterable
+
+
+
 org.elasticsearch.common.util.set
+
+
+
 org.elasticsearch.common.xcontent
+
+
+
 org.elasticsearch.common.xcontent.support
