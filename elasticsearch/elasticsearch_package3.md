@@ -1943,11 +1943,46 @@ org.elasticsearch.index.snapshots
 
 
 
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+| IndexShardRestoreException                                   |             |      |      |
+| Generic shard restore exception                              |             |      |      |
+| IndexShardRestoreFailedException                             |             |      |      |
+| Thrown when restore of a shard fails                         |             |      |      |
+| IndexShardSnapshotException                                  |             |      |      |
+| Generic shard snapshot exception                             |             |      |      |
+| IndexShardSnapshotFailedException                            |             |      |      |
+| Thrown when snapshot process is failed on a shard level      |             |      |      |
+| IndexShardSnapshotStatus                                     |             |      |      |
+| Represent shard snapshot status                              |             |      |      |
+| IndexShardSnapshotStatus.Copy                                |             |      |      |
+| Returns an immutable state of聽IndexShardSnapshotStatus聽at a given point in time. |             |      |      |
+| IndexShardSnapshotStatus.Stage                               |             |      |      |
+| Snapshot stage                                               |             |      |      |
+
+
+
 
 
 org.elasticsearch.index.snapshots.blobstore
 
-
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| BlobStoreIndexShardSnapshot                                  |             |      |      |
+| Shard snapshot metadata                                      |             |      |      |
+| BlobStoreIndexShardSnapshot.FileInfo                         |             |      |      |
+| Information about snapshotted file                           |             |      |      |
+| BlobStoreIndexShardSnapshots                                 |             |      |      |
+| Contains information about all snapshots for the given shard in repository |             |      |      |
+| RateLimitingInputStream                                      |             |      |      |
+| Rate limiting wrapper for InputStream                        |             |      |      |
+| RateLimitingInputStream.Listener                             |             |      |      |
+|                                                              |             |      |      |
+| SlicedInputStream                                            |             |      |      |
+| A聽SlicedInputStream聽is a logical concatenation one or more input streams. |             |      |      |
+| SnapshotFiles                                                |             |      |      |
+| Contains a list of files participating in a snapshot         |             |      |      |
 
 
 
@@ -1957,9 +1992,41 @@ org.elasticsearch.index.stats
 
 
 
+| Class                 |      | Description |
+| --------------------- | ---- | ----------- |
+| IndexingPressureStats |      |             |
+
+
+
 org.elasticsearch.index.store
 
 
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| FsDirectoryFactory                                           |      |      |      |
+| 聽                                                           |      |      |      |
+| ImmutableDirectoryException                                  |      |      |      |
+| Exception thrown if trying to mutate files in an immutable directory. |      |      |      |
+| LuceneFilesExtensions                                        |      |      |      |
+| 聽                                                           |      |      |      |
+| Store                                                        |      |      |      |
+| A Store provides plain access to files written by an elasticsearch index shard. |      |      |      |
+| Store.MetadataSnapshot                                       |      |      |      |
+| Represents a snapshot of the current directory build from the latest Lucene commit. |      |      |      |
+| Store.OnClose                                                |      |      |      |
+| A listener that is executed once the store is closed and all references to it are released |      |      |      |
+| Store.RecoveryDiff                                           |      |      |      |
+| A class representing the diff between a recovery source and recovery target |      |      |      |
+| StoreFileMetadata                                            |      |      |      |
+| 聽                                                           |      |      |      |
+| StoreStats                                                   |      |      |      |
+| 聽                                                           |      |      |      |
+| VerifyingIndexOutput                                         |      |      |      |
+| abstract class for verifying what was written.               |      |      |      |
 
 
 
@@ -1967,9 +2034,69 @@ org.elasticsearch.index.termvectors
 
 
 
+| Class              | Description |      |
+| ------------------ | ----------- | ---- |
+|                    |             |      |
+| TermVectorsService |             |      |
+
 
 
 org.elasticsearch.index.translog
+
+
+
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| BaseTranslogReader                                           |             |      |      |
+| A base class for all classes that allows reading ops from translog files |             |      |      |
+| BufferedChecksumStreamInput                                  |             |      |      |
+| Similar to Lucene's BufferedChecksumIndexInput, however this wraps a StreamInput so anything read will update the checksum |             |      |      |
+| BufferedChecksumStreamOutput                                 |             |      |      |
+| Similar to Lucene's BufferedChecksumIndexOutput, however this wraps a StreamOutput so anything written will update the checksum |             |      |      |
+| ChannelFactory                                               |             |      |      |
+| only for testing until we have a disk-full FileSystem        |             |      |      |
+| TragicExceptionHolder                                        |             |      |      |
+|                                                              |             |      |      |
+| Translog                                                     |             |      |      |
+| A Translog is a per index shard component that records all non-committed index operations in a durable manner. |             |      |      |
+| Translog.Delete                                              |             |      |      |
+|                                                              |             |      |      |
+| Translog.Durability                                          |             |      |      |
+|                                                              |             |      |      |
+| Translog.Index                                               |             |      |      |
+|                                                              |             |      |      |
+| Translog.Location                                            |             |      |      |
+|                                                              |             |      |      |
+| Translog.NoOp                                                |             |      |      |
+|                                                              |             |      |      |
+| Translog.Operation                                           |             |      |      |
+| A generic interface representing an operation performed on the transaction log. |             |      |      |
+| Translog.Operation.Type                                      |             |      |      |
+|                                                              |             |      |      |
+| Translog.Snapshot                                            |             |      |      |
+| A snapshot of the transaction log, allows to iterate over all the transaction log operations. |             |      |      |
+| Translog.Source                                              |             |      |      |
+|                                                              |             |      |      |
+| Translog.TranslogGeneration                                  |             |      |      |
+| References a transaction log generation                      |             |      |      |
+| TranslogConfig                                               |             |      |      |
+|                                                              |             |      |      |
+| TranslogCorruptedException                                   |             |      |      |
+|                                                              |             |      |      |
+| TranslogDeletionPolicy                                       |             |      |      |
+|                                                              |             |      |      |
+| TranslogException                                            |             |      |      |
+|                                                              |             |      |      |
+| TranslogReader                                               |             |      |      |
+| an immutable translog filereader                             |             |      |      |
+| TranslogStats                                                |             |      |      |
+|                                                              |             |      |      |
+| TranslogWriter                                               |             |      |      |
+|                                                              |             |      |      |
+| TruncatedTranslogException                                   |             |      |      |
+|                                                              |             |      |      |
+| TruncateTranslogAction                                       |             |      |      |
 
 
 
@@ -1977,13 +2104,97 @@ org.elasticsearch.index.translog
 
 org.elasticsearch.index.warmer
 
-
+| Class                   |      |      |
+| ----------------------- | ---- | ---- |
+| Description             |      |      |
+| ShardIndexWarmerService |      |      |
+|                         |      |      |
+| WarmerStats             |      |      |
 
 
 
 org.elasticsearch.indices
 
 
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AliasFilterParsingException                                  |      |      |      |
+|                                                              |      |      |      |
+| AssociatedIndexDescriptor                                    |      |      |      |
+| An "associated index" is an index that is related to or derived from a system index, but should not be considered a system index, usually because it is meant to be visible to users. |      |      |      |
+| ESCacheHelper                                                |      |      |      |
+| Cache helper that allows swapping in implementations that are different to Lucene's IndexReader.CacheHelper which ties its lifecycle to that of the underlying reader. |      |      |      |
+| ESCacheHelper.ClosedListener                                 |      |      |      |
+|                                                              |      |      |      |
+| ESCacheHelper.Wrapper                                        |      |      |      |
+| Implementation of ESCacheHelper that wraps an IndexReader.CacheHelper. |      |      |      |
+| ExecutorNames                                                |      |      |      |
+| A class that gathers the names of thread pool executors that should be used for a particular system index or system data stream. |      |      |      |
+| ExecutorSelector                                             |      |      |      |
+| Some operations need to use different executors for different index patterns. |      |      |      |
+| IndexClosedException                                         |      |      |      |
+| Exception indicating that one or more requested indices are closed. |      |      |      |
+| IndexCreationException                                       |      |      |      |
+|                                                              |      |      |      |
+| IndexingMemoryController                                     |      |      |      |
+|                                                              |      |      |      |
+| IndexPatternMatcher                                          |      |      |      |
+| An IndexPatternMatcher holds an index pattern in a string and, given a Metadata object, can return a list of index names matching that pattern. |      |      |      |
+| IndexPrimaryShardNotAllocatedException                       |      |      |      |
+| Thrown when some action cannot be performed because the primary shard of some shard group in an index has not been allocated post api action. |      |      |      |
+| IndexTemplateMissingException                                |      |      |      |
+|                                                              |      |      |      |
+| IndicesModule                                                |      |      |      |
+| Configures classes and services that are shared by indices on each node. |      |      |      |
+| IndicesQueryCache                                            |      |      |      |
+|                                                              |      |      |      |
+| IndicesRequestCache                                          |      |      |      |
+| The indices request cache allows to cache a shard level request stage responses, helping with improving similar requests that are potentially expensive (because of aggs for example). |      |      |      |
+| IndicesService                                               |      |      |      |
+|                                                              |      |      |      |
+| IndicesService.ShardDeletionCheckResult                      |      |      |      |
+| result type returned by signaling different reasons why a shard can / cannot be deleted |      |      |      |
+| InvalidAliasNameException                                    |      |      |      |
+|                                                              |      |      |      |
+| InvalidIndexNameException                                    |      |      |      |
+|                                                              |      |      |      |
+| InvalidIndexTemplateException                                |      |      |      |
+|                                                              |      |      |      |
+| InvalidTypeNameException                                     |      |      |      |
+|                                                              |      |      |      |
+| NodeIndicesStats                                             |      |      |      |
+| Global information on indices stats running on a specific node. |      |      |      |
+| ShardLimitValidator                                          |      |      |      |
+| This class contains the logic used to check the cluster-wide shard limit before shards are created and ensuring that the limit is updated correctly on setting updates, etc. |      |      |      |
+| SystemDataStreamDescriptor                                   |      |      |      |
+| Describes a DataStream that is reserved for use by a system component. |      |      |      |
+| SystemDataStreamDescriptor.Type                              |      |      |      |
+|                                                              |      |      |      |
+| SystemIndexDescriptor                                        |      |      |      |
+| A system index descriptor describes one or more system indices. |      |      |      |
+| SystemIndexDescriptor.Builder                                |      |      |      |
+| Provides a fluent API for building a SystemIndexDescriptor.  |      |      |      |
+| SystemIndexDescriptor.Type                                   |      |      |      |
+| The specific type of system index that this descriptor represents. |      |      |      |
+| SystemIndexManager                                           |      |      |      |
+| This class ensures that all system indices have up-to-date mappings, provided those indices can be automatically managed. |      |      |      |
+| SystemIndices                                                |      |      |      |
+| This class holds the SystemIndexDescriptor objects that represent system indices the node knows about. |      |      |      |
+| SystemIndices.Feature                                        |      |      |      |
+| Class holding a description of a stateful feature.           |      |      |      |
+| SystemIndices.Feature.MigrationCompletionHandler             |      |      |      |
+| Type for the handler that's invoked when all of a feature's system indices have been migrated. |      |      |      |
+| SystemIndices.Feature.MigrationPreparationHandler            |      |      |      |
+| Type for the handler that's invoked prior to migrating a Feature's system indices. |      |      |      |
+| SystemIndices.SystemIndexAccessLevel                         |      |      |      |
+|                                                              |      |      |      |
+| TermsLookup                                                  |      |      |      |
+| Encapsulates the parameters needed to fetch terms.           |      |      |      |
+| TimestampFieldMapperService                                  |      |      |      |
+| Tracks the mapping of the @timestamp field of immutable indices that expose their timestamp range in their index metadata. |      |      |      |
+| TypeMissingException                                         |      |      |      |
 
 
 
@@ -1993,9 +2204,48 @@ org.elasticsearch.indices.analysis
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AnalysisModule                                               |      |      |      |
+| Sets up AnalysisRegistry.                                    |      |      |      |
+| AnalysisModule.AnalysisProvider<T>                           |      |      |      |
+| The basic factory interface for analysis components.         |      |      |      |
+| HunspellService                                              |      |      |      |
+| Serves as a node level registry for hunspell dictionaries.   |      |      |      |
+| PreBuiltAnalyzers                                            |      |      |      |
+|                                                              |      |      |      |
+| PreBuiltCacheFactory                                         |      |      |      |
+|                                                              |      |      |      |
+| PreBuiltCacheFactory.CachingStrategy                         |      |      |      |
+| The strategy of caching the analyzer ONE Exactly one version is stored. |      |      |      |
+| PreBuiltCacheFactory.PreBuiltCache<T>                        |      |      |      |
+|                                                              |      |      |      |
+| PreBuiltTokenizers                                           |      |      |      |
+
 
 
 org.elasticsearch.indices.breaker
+
+
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AllCircuitBreakerStats                                       |      |      |      |
+| Stats class encapsulating all of the different circuit breaker stats |      |      |      |
+| BreakerSettings                                              |      |      |      |
+| Settings for a聽CircuitBreaker                               |      |      |      |
+| CircuitBreakerService                                        |      |      |      |
+| Interface for Circuit Breaker services, which provide breakers to classes that load field data. |      |      |      |
+| CircuitBreakerStats                                          |      |      |      |
+| Class encapsulating stats about the circuit breaker          |      |      |      |
+| HierarchyCircuitBreakerService                               |      |      |      |
+| CircuitBreakerService that attempts to redistribute space between breakers if tripped |      |      |      |
+| NoneCircuitBreakerService                                    |      |      |      |
+| Class that returns a breaker that never breaks               |      |      |      |
 
 
 
@@ -2007,7 +2257,33 @@ org.elasticsearch.indices.cluster
 
 
 
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| IndicesClusterStateService                                   |             |      |      |
+|                                                              |             |      |      |
+| IndicesClusterStateService.AllocatedIndex<T extends IndicesClusterStateService.Shard> |             |      |      |
+|                                                              |             |      |      |
+| IndicesClusterStateService.AllocatedIndices<T extends IndicesClusterStateService.Shard,U extends IndicesClusterStateService.AllocatedIndex<T>> |             |      |      |
+|                                                              |             |      |      |
+| IndicesClusterStateService.AllocatedIndices.IndexRemovalReason |             |      |      |
+|                                                              |             |      |      |
+| IndicesClusterStateService.Shard                             |             |      |      |
+
+
+
 org.elasticsearch.indices.fielddata.cache
+
+
+
+| Class                                  |      | Description |      |
+| -------------------------------------- | ---- | ----------- | ---- |
+|                                        |      |             |      |
+| IndicesFieldDataCache                  |      |             |      |
+|                                        |      |             |      |
+| IndicesFieldDataCache.FieldDataWeigher |      |             |      |
+|                                        |      |             |      |
+| IndicesFieldDataCache.Key              |      |             |      |
 
 
 
@@ -2025,13 +2301,75 @@ org.elasticsearch.indices.recovery
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ShardsSyncedFlushResult                                      |      |      |      |
+| Result for all copies of a shard                             |      |      |      |
+| SyncedFlushService                                           |      |      |      |
+|                                                              |      |      |      |
+| SyncedFlushService.InFlightOpsRequest                        |      |      |      |
+|                                                              |      |      |      |
+| SyncedFlushService.PreShardSyncedFlushRequest                |      |      |      |
+|                                                              |      |      |      |
+| SyncedFlushService.ShardSyncedFlushRequest                   |      |      |      |
+|                                                              |      |      |      |
+| SyncedFlushService.ShardSyncedFlushResponse                  |      |      |      |
+| Response for third step of synced flush (writing the sync id) for one shard copy |      |      |      |
+
+
+
+
+
 org.elasticsearch.indices.recovery.plan
+
+
+
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| PeerOnlyRecoveryPlannerService                               |             |      |      |
+| Service in charge of computing a ShardRecoveryPlan using only the physical files from the source peer. |             |      |      |
+| RecoveryPlannerService                                       |             |      |      |
+|                                                              |             |      |      |
+| ShardRecoveryPlan                                            |             |      |      |
+|                                                              |             |      |      |
+| ShardRecoveryPlan.SnapshotFilesToRecover                     |             |      |      |
+|                                                              |             |      |      |
+| ShardSnapshot                                                |             |      |      |
+|                                                              |             |      |      |
+| ShardSnapshotsService                                        |             |      |      |
+|                                                              |             |      |      |
+| SnapshotsRecoveryPlannerService                              |             |      |      |
 
 
 
 
 
 org.elasticsearch.indices.store
+
+
+
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| CompositeIndexFoldersDeletionListener                        |             |      |      |
+|                                                              |             |      |      |
+| IndicesStore                                                 |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata                         |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata.NodeRequest             |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata.NodesStoreFilesMetadata |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata.NodeStoreFilesMetadata  |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata.Request                 |             |      |      |
+|                                                              |             |      |      |
+| TransportNodesListShardStoreMetadata.StoreFilesMetadata      |             |      |      |
+
+
 
 
 
@@ -2043,7 +2381,92 @@ org.elasticsearch.ingest
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractProcessor                                            |      |      |      |
+| An Abstract Processor that holds tag and description information about the processor. |      |      |      |
+| CompoundProcessor                                            |      |      |      |
+| A Processor that executes a list of other "processors".      |      |      |      |
+| ConditionalProcessor                                         |      |      |      |
+|                                                              |      |      |      |
+| ConfigurationUtils                                           |      |      |      |
+|                                                              |      |      |      |
+| DropProcessor                                                |      |      |      |
+| Drop processor only returns null for the execution result to indicate that any document executed by it should not be indexed. |      |      |      |
+| DropProcessor.Factory                                        |      |      |      |
+|                                                              |      |      |      |
+| IngestDocument                                               |      |      |      |
+| Represents a single document being captured before indexing and holds the source and metadata (like id, type and index). |      |      |      |
+| IngestDocument.Metadata                                      |      |      |      |
+|                                                              |      |      |      |
+| IngestInfo                                                   |      |      |      |
+|                                                              |      |      |      |
+| IngestMetadata                                               |      |      |      |
+| Holds the ingest pipelines that are available in the cluster |      |      |      |
+| IngestProcessorException                                     |      |      |      |
+| A dedicated wrapper for exceptions encountered executing an ingest processor. |      |      |      |
+| IngestService                                                |      |      |      |
+| Holder class for several ingest related services.            |      |      |      |
+| IngestStats                                                  |      |      |      |
+|                                                              |      |      |      |
+| IngestStats.PipelineStat                                     |      |      |      |
+| Container for pipeline stats.                                |      |      |      |
+| IngestStats.ProcessorStat                                    |      |      |      |
+| Container for processor stats.                               |      |      |      |
+| IngestStats.Stats                                            |      |      |      |
+|                                                              |      |      |      |
+| Pipeline                                                     |      |      |      |
+| A pipeline is a list of Processor instances grouped under a unique id. |      |      |      |
+| PipelineConfiguration                                        |      |      |      |
+| Encapsulates a pipeline's id and configuration as a blob     |      |      |      |
+| PipelineProcessor                                            |      |      |      |
+|                                                              |      |      |      |
+| PipelineProcessor.Factory                                    |      |      |      |
+|                                                              |      |      |      |
+| Processor                                                    |      |      |      |
+| A processor implementation may modify the data belonging to a document. |      |      |      |
+| Processor.Factory                                            |      |      |      |
+| A factory that knows how to construct a processor based on a map of maps. |      |      |      |
+| Processor.Parameters                                         |      |      |      |
+| Infrastructure class that holds services that can be used by processor factories to create processor instances and that gets passed around to all IngestPlugins. |      |      |      |
+| ProcessorInfo                                                |      |      |      |
+|                                                              |      |      |      |
+| TrackingResultProcessor                                      |      |      |      |
+| Processor to be used within Simulate API to keep track of processors executed in pipeline. |      |      |      |
+| ValueSource                                                  |      |      |      |
+| Holds a value.                                               |      |      |      |
+| ValueSource.ByteValue                                        |      |      |      |
+|                                                              |      |      |      |
+| ValueSource.ListValue                                        |      |      |      |
+|                                                              |      |      |      |
+| ValueSource.MapValue                                         |      |      |      |
+|                                                              |      |      |      |
+| ValueSource.ObjectValue                                      |      |      |      |
+|                                                              |      |      |      |
+| ValueSource.TemplatedValue                                   |      |      |      |
+|                                                              |      |      |      |
+| WrappingProcessor                                            |      |      |      |
+| A srapping processor is one that encapsulates an inner processor, or a processor that the wrapped processor enacts upon. |      |      |      |
+
+
+
 org.elasticsearch.monitor
+
+
+
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| MonitorService                                               |             |      |      |
+|                                                              |             |      |      |
+| NodeHealthService                                            |             |      |      |
+|                                                              |             |      |      |
+| Probes                                                       |             |      |      |
+|                                                              |             |      |      |
+| StatusInfo                                                   |             |      |      |
+| Class that represents the Health status for a node as determined by NodeHealthService and provides additional info explaining the reasons |             |      |      |
+| StatusInfo.Status                                            |             |      |      |
 
 
 
@@ -2053,15 +2476,101 @@ org.elasticsearch.monitor.fs
 
 
 
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| FsHealthService                                              |             |      |      |
+| Runs periodically and attempts to create a temp file to see if the filesystem is writable. |             |      |      |
+| FsInfo                                                       |             |      |      |
+|                                                              |             |      |      |
+| FsInfo.DeviceStats                                           |             |      |      |
+|                                                              |             |      |      |
+| FsInfo.IoStats                                               |             |      |      |
+|                                                              |             |      |      |
+| FsInfo.Path                                                  |             |      |      |
+|                                                              |             |      |      |
+| FsProbe                                                      |             |      |      |
+|                                                              |             |      |      |
+| FsService                                                    |             |      |      |
+
+
+
 
 
 org.elasticsearch.monitor.jvm
 
 
 
+| Class                         |      |      |
+| ----------------------------- | ---- | ---- |
+| Description                   |      |      |
+| DeadlockAnalyzer              |      |      |
+|                               |      |      |
+| DeadlockAnalyzer.Deadlock     |      |      |
+|                               |      |      |
+| GcNames                       |      |      |
+|                               |      |      |
+| HotThreads                    |      |      |
+|                               |      |      |
+| HotThreads.ReportType         |      |      |
+|                               |      |      |
+| HotThreads.SleepFunction<T,R> |      |      |
+|                               |      |      |
+| HotThreads.SortOrder          |      |      |
+|                               |      |      |
+| JvmGcMonitorService           |      |      |
+|                               |      |      |
+| JvmInfo                       |      |      |
+|                               |      |      |
+| JvmInfo.Mem                   |      |      |
+|                               |      |      |
+| JvmService                    |      |      |
+|                               |      |      |
+| JvmStats                      |      |      |
+|                               |      |      |
+| JvmStats.BufferPool           |      |      |
+|                               |      |      |
+| JvmStats.Classes              |      |      |
+|                               |      |      |
+| JvmStats.GarbageCollector     |      |      |
+|                               |      |      |
+| JvmStats.GarbageCollectors    |      |      |
+|                               |      |      |
+| JvmStats.Mem                  |      |      |
+|                               |      |      |
+| JvmStats.MemoryPool           |      |      |
+|                               |      |      |
+| JvmStats.Threads              |      |      |
+|                               |      |      |
+| SunThreadInfo                 |      |      |
+
+
+
 
 
 org.elasticsearch.monitor.os
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| OsInfo                                                       |      |      |
+|                                                              |      |      |
+| OsProbe                                                      |      |      |
+| The OsProbe class retrieves information about the physical and swap size of the machine memory, as well as the system load average and cpu load. |      |      |
+| OsService                                                    |      |      |
+|                                                              |      |      |
+| OsStats                                                      |      |      |
+|                                                              |      |      |
+| OsStats.Cgroup                                               |      |      |
+| Encapsulates basic cgroup statistics.                        |      |      |
+| OsStats.Cgroup.CpuStat                                       |      |      |
+| Encapsulates CPU time statistics.                            |      |      |
+| OsStats.Cpu                                                  |      |      |
+|                                                              |      |      |
+| OsStats.Mem                                                  |      |      |
+|                                                              |      |      |
+| OsStats.Swap                                                 |      |      |
+|                                                              |      |      |
 
 
 
@@ -2071,9 +2580,56 @@ org.elasticsearch.monitor.process
 
 
 
+| Class            | Description |      |
+| ---------------- | ----------- | ---- |
+|                  |             |      |
+| ProcessInfo      |             |      |
+|                  |             |      |
+| ProcessProbe     |             |      |
+|                  |             |      |
+| ProcessService   |             |      |
+|                  |             |      |
+| ProcessStats     |             |      |
+|                  |             |      |
+| ProcessStats.Cpu |             |      |
+|                  |             |      |
+| ProcessStats.Mem |             |      |
+
+
+
 
 
 org.elasticsearch.node
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AdaptiveSelectionStats                                       |      |      |      |
+| Class representing statistics about adaptive replica selection. |      |      |      |
+| InternalSettingsPreparer                                     |      |      |      |
+|                                                              |      |      |      |
+| Node                                                         |      |      |      |
+| A node represent a node within a cluster (cluster.name).     |      |      |      |
+| NodeClosedException                                          |      |      |      |
+| An exception indicating that node is closed.                 |      |      |      |
+| NodeRoleSettings                                             |      |      |      |
+|                                                              |      |      |      |
+| NodeService                                                  |      |      |      |
+|                                                              |      |      |      |
+| NodeValidationException                                      |      |      |      |
+| An exception thrown during node validation.                  |      |      |      |
+| ReportingService<I extends ReportingService.Info>            |      |      |      |
+|                                                              |      |      |      |
+| ReportingService.Info                                        |      |      |      |
+|                                                              |      |      |      |
+| ResponseCollectorService                                     |      |      |      |
+| Collects statistics about queue size, response time, and service time of tasks executed on each node, making the EWMA of the values available to the coordinating node. |      |      |      |
+| ResponseCollectorService.ComputedNodeStats                   |      |      |      |
+| Struct-like class encapsulating a point-in-time snapshot of a particular node's statistics. |      |      |      |
+
+
 
 
 
@@ -2083,9 +2639,94 @@ org.elasticsearch.persistent
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AllocatedPersistentTask                                      |      |      |      |
+| Represents a executor node operation that corresponds to a persistent task |      |      |      |
+| AllocatedPersistentTask.State                                |      |      |      |
+|                                                              |      |      |      |
+| CompletionPersistentTaskAction                               |      |      |      |
+| ActionType that is used by executor node to indicate that the persistent action finished or failed on the node and needs to be removed from the cluster state in case of successful completion or restarted on some other node in case of failure. |      |      |      |
+| CompletionPersistentTaskAction.Request                       |      |      |      |
+|                                                              |      |      |      |
+| CompletionPersistentTaskAction.RequestBuilder                |      |      |      |
+|                                                              |      |      |      |
+| CompletionPersistentTaskAction.TransportAction               |      |      |      |
+|                                                              |      |      |      |
+| NodePersistentTasksExecutor                                  |      |      |      |
+| This component is responsible for execution of persistent tasks. |      |      |      |
+| PersistentTaskParams                                         |      |      |      |
+| Parameters used to start persistent task                     |      |      |      |
+| PersistentTaskResponse                                       |      |      |      |
+| Response upon a successful start or an persistent task       |      |      |      |
+| PersistentTasksClusterService                                |      |      |      |
+| Component that runs only on the master node and is responsible for assigning running tasks to nodes |      |      |      |
+| PersistentTasksCustomMetadata                                |      |      |      |
+| A cluster state record that contains a list of all running persistent tasks |      |      |      |
+| PersistentTasksCustomMetadata.Assignment                     |      |      |      |
+|                                                              |      |      |      |
+| PersistentTasksCustomMetadata.Builder                        |      |      |      |
+|                                                              |      |      |      |
+| PersistentTasksCustomMetadata.PersistentTask<P extends PersistentTaskParams> |      |      |      |
+| A record that represents a single running persistent task    |      |      |      |
+| PersistentTasksExecutor<Params extends PersistentTaskParams> |      |      |      |
+| An executor of tasks that can survive restart of requesting or executing node. |      |      |      |
+| PersistentTasksExecutorRegistry                              |      |      |      |
+| Components that registers all persistent task executors      |      |      |      |
+| PersistentTasksNodeService                                   |      |      |      |
+| This component is responsible for coordination of execution of persistent tasks on individual nodes. |      |      |      |
+| PersistentTasksNodeService.Status                            |      |      |      |
+|                                                              |      |      |      |
+| PersistentTasksService                                       |      |      |      |
+| This service is used by persistent tasks and allocated persistent tasks to communicate changes to the master node so that the master can update the cluster state and can track of the states of the persistent tasks. |      |      |      |
+| PersistentTasksService.WaitForPersistentTaskListener<P extends PersistentTaskParams> |      |      |      |
+|                                                              |      |      |      |
+| PersistentTaskState                                          |      |      |      |
+| PersistentTaskState represents the state of the persistent tasks, as it is persisted in the cluster state. |      |      |      |
+| RemovePersistentTaskAction                                   |      |      |      |
+|                                                              |      |      |      |
+| RemovePersistentTaskAction.Request                           |      |      |      |
+|                                                              |      |      |      |
+| RemovePersistentTaskAction.RequestBuilder                    |      |      |      |
+|                                                              |      |      |      |
+| RemovePersistentTaskAction.TransportAction                   |      |      |      |
+|                                                              |      |      |      |
+| StartPersistentTaskAction                                    |      |      |      |
+| This action can be used to add the record for the persistent action to the cluster state. |      |      |      |
+| StartPersistentTaskAction.Request                            |      |      |      |
+|                                                              |      |      |      |
+| StartPersistentTaskAction.RequestBuilder                     |      |      |      |
+|                                                              |      |      |      |
+| StartPersistentTaskAction.TransportAction                    |      |      |      |
+|                                                              |      |      |      |
+| UpdatePersistentTaskStatusAction                             |      |      |      |
+|                                                              |      |      |      |
+| UpdatePersistentTaskStatusAction.Request                     |      |      |      |
+|                                                              |      |      |      |
+| UpdatePersistentTaskStatusAction.RequestBuilder              |      |      |      |
+|                                                              |      |      |      |
+| UpdatePersistentTaskStatusAction.TransportAction             |      |      |      |
+
+
+
 
 
 org.elasticsearch.persistent.decider
+
+
+
+| Class                                                        | Description |      |      |
+| ------------------------------------------------------------ | ----------- | ---- | ---- |
+|                                                              |             |      |      |
+| AssignmentDecision                                           |             |      |      |
+| AssignmentDecision represents the decision made during the process of assigning a persistent task to a node of the cluster. |             |      |      |
+| AssignmentDecision.Type                                      |             |      |      |
+|                                                              |             |      |      |
+| EnableAssignmentDecider                                      |             |      |      |
+| EnableAssignmentDecider is used to allow/disallow the persistent tasks to be assigned to cluster nodes. |             |      |      |
+| EnableAssignmentDecider.Allocation                           |             |      |      |
+| Allocation values or rather their string representation to be used used with EnableAssignmentDecider.CLUSTER_TASKS_ALLOCATION_ENABLE_SETTING via cluster settings. |             |      |      |
 
 
 
@@ -2095,7 +2736,109 @@ org.elasticsearch.plugins
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ActionPlugin                                                 |      |      |      |
+| An additional extension point for Plugins that extends Elasticsearch's scripting functionality. |      |      |      |
+| ActionPlugin.ActionHandler<Request extends ActionRequest,Response extends ActionResponse> |      |      |      |
+|                                                              |      |      |      |
+| AnalysisPlugin                                               |      |      |      |
+| An additional extension point for Plugins that extends Elasticsearch's analysis functionality. |      |      |      |
+| CircuitBreakerPlugin                                         |      |      |      |
+| An extension point for Plugin implementations to add custom circuit breakers |      |      |      |
+| ClusterPlugin                                                |      |      |      |
+| An extension point for Plugin implementations to customer behavior of cluster management. |      |      |      |
+| DiscoveryPlugin                                              |      |      |      |
+| An additional extension point for Plugins that extends Elasticsearch's discovery functionality. |      |      |      |
+| EnginePlugin                                                 |      |      |      |
+| A plugin that provides alternative engine implementations.   |      |      |      |
+| ExtensiblePlugin                                             |      |      |      |
+| An extension point for Plugin implementations to be themselves extensible. |      |      |      |
+| ExtensiblePlugin.ExtensionLoader                             |      |      |      |
+|                                                              |      |      |      |
+| IndexStorePlugin                                             |      |      |      |
+| A plugin that provides alternative directory implementations. |      |      |      |
+| IndexStorePlugin.DirectoryFactory                            |      |      |      |
+| An interface that describes how to create a new directory instance per shard. |      |      |      |
+| IndexStorePlugin.IndexFoldersDeletionListener                |      |      |      |
+| IndexStorePlugin.IndexFoldersDeletionListener are invoked before the folders of a shard or an index are deleted from disk. |      |      |      |
+| IndexStorePlugin.RecoveryStateFactory                        |      |      |      |
+| An interface that allows to create a new RecoveryState per shard. |      |      |      |
+| IndexStorePlugin.SnapshotCommitSupplier                      |      |      |      |
+| An interface that allows plugins to override the IndexCommit of which a snapshot is taken. |      |      |      |
+| IngestPlugin                                                 |      |      |      |
+| An extension point for Plugin implementations to add custom ingest processors |      |      |      |
+| MapperPlugin                                                 |      |      |      |
+| An extension point for Plugin implementations to add custom mappers |      |      |      |
+| MetadataUpgrader                                             |      |      |      |
+| Upgrades Metadata on startup on behalf of installed Plugins  |      |      |      |
+| NetworkPlugin                                                |      |      |      |
+| Plugin for extending network and transport related classes   |      |      |      |
+| PersistentTaskPlugin                                         |      |      |      |
+| Plugin for registering persistent tasks executors.           |      |      |      |
+| Platforms                                                    |      |      |      |
+| Encapsulates platform-dependent methods for handling native components of plugins. |      |      |      |
+| Plugin                                                       |      |      |      |
+| An extension point allowing to plug in custom functionality. |      |      |      |
+| PluginDescriptor                                             |      |      |      |
+| An in-memory representation of the plugin descriptor.        |      |      |      |
+| PluginsService                                               |      |      |      |
+|                                                              |      |      |      |
+| PluginsService.Bundle                                        |      |      |      |
+|                                                              |      |      |      |
+| PluginsSynchronizer                                          |      |      |      |
+| This is a marker interface for classes that are capable of synchronizing the currently-installed ES plugins with those that ought to be installed according to a configuration file. |      |      |      |
+| PluginType                                                   |      |      |      |
+| Indicates the type of an Elasticsearch plugin.               |      |      |      |
+| ReloadablePlugin                                             |      |      |      |
+| An extension point for Plugins that can be reloaded.         |      |      |      |
+| RepositoryPlugin                                             |      |      |      |
+| An extension point for Plugin implementations to add custom snapshot repositories. |      |      |      |
+| ScriptPlugin                                                 |      |      |      |
+| An additional extension point for Plugins that extends Elasticsearch's scripting functionality. |      |      |      |
+| SearchPlugin                                                 |      |      |      |
+| Plugin for extending search time behavior.                   |      |      |      |
+| SearchPlugin.AggregationSpec                                 |      |      |      |
+| Specification for an Aggregation.                            |      |      |      |
+| SearchPlugin.FetchPhaseConstructionContext                   |      |      |      |
+| Context available during fetch phase construction.           |      |      |      |
+| SearchPlugin.PipelineAggregationSpec                         |      |      |      |
+| Specification for a PipelineAggregator.                      |      |      |      |
+| SearchPlugin.QuerySpec<T extends QueryBuilder>               |      |      |      |
+| Specification of custom Query.                               |      |      |      |
+| SearchPlugin.RescorerSpec<T extends RescorerBuilder<T>>      |      |      |      |
+|                                                              |      |      |      |
+| SearchPlugin.ScoreFunctionSpec<T extends ScoreFunctionBuilder<T>> |      |      |      |
+| Specification of custom ScoreFunction.                       |      |      |      |
+| SearchPlugin.SearchExtensionSpec<W extends NamedWriteable,P> |      |      |      |
+| Specification of search time behavior extension like a custom MovAvgModel or ScoreFunction. |      |      |      |
+| SearchPlugin.SearchExtSpec<T extends SearchExtBuilder>       |      |      |      |
+| Specification for a SearchExtBuilder which represents an additional section that can be parsed in a search request (within the ext element). |      |      |      |
+| SearchPlugin.SignificanceHeuristicSpec<T extends SignificanceHeuristic> |      |      |      |
+| Specification of custom SignificanceHeuristic.               |      |      |      |
+| SearchPlugin.SuggesterSpec<T extends SuggestionBuilder<T>>   |      |      |      |
+| Specification for a Suggester.                               |      |      |      |
+| ShutdownAwarePlugin                                          |      |      |      |
+| A ShutdownAwarePlugin is a plugin that can be made aware of a shutdown. |      |      |      |
+| SystemIndexPlugin                                            |      |      |      |
+| Plugin for defining system indices.                          |      |      |      |
+
+
+
+
+
 org.elasticsearch.plugins.spi
+
+
+
+| Class                            | Description |      |
+| -------------------------------- | ----------- | ---- |
+|                                  |             |      |
+| NamedXContentProvider            |             |      |
+| Provides named XContent parsers. |             |      |
+
+
 
 
 
@@ -2103,7 +2846,96 @@ org.elasticsearch.repositories
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| FilterRepository                                             |      |      |      |
+|                                                              |      |      |      |
+| FinalizeSnapshotContext                                      |      |      |      |
+| Context for finalizing a snapshot.                           |      |      |      |
+| GetSnapshotInfoContext                                       |      |      |      |
+| Describes the context of fetching one or more SnapshotInfo via Repository.getSnapshotInfo(GetSnapshotInfoContext). |      |      |      |
+| IndexId                                                      |      |      |      |
+| Represents a single snapshotted index in the repository.     |      |      |      |
+| IndexMetaDataGenerations                                     |      |      |      |
+| Tracks the blob uuids of blobs containing IndexMetadata for snapshots as well an identifier for each of these blobs. |      |      |      |
+| IndexSnapshotsService                                        |      |      |      |
+|                                                              |      |      |      |
+| RepositoriesModule                                           |      |      |      |
+| Sets up classes for Snapshot/Restore.                        |      |      |      |
+| RepositoriesService                                          |      |      |      |
+| Service responsible for maintaining and providing access to snapshot repositories on nodes. |      |      |      |
+| RepositoriesStatsArchive                                     |      |      |      |
+|                                                              |      |      |      |
+| Repository                                                   |      |      |      |
+| An interface for interacting with a repository in snapshot and restore. |      |      |      |
+| Repository.Factory                                           |      |      |      |
+| An factory interface for constructing repositories.          |      |      |      |
+| RepositoryCleanupResult                                      |      |      |      |
+|                                                              |      |      |      |
+| RepositoryData                                               |      |      |      |
+| A class that represents the data in a repository, as captured in the repository's index blob. |      |      |      |
+| RepositoryData.SnapshotDetails                               |      |      |      |
+| A few details of an individual snapshot stored in the top-level index blob, so they are readily accessible without having to load the corresponding SnapshotInfo blob for each snapshot. |      |      |      |
+| RepositoryException                                          |      |      |      |
+| Generic repository exception                                 |      |      |      |
+| RepositoryInfo                                               |      |      |      |
+|                                                              |      |      |      |
+| RepositoryMissingException                                   |      |      |      |
+| Repository missing exception                                 |      |      |      |
+| RepositoryOperation                                          |      |      |      |
+| Coordinates of an operation that modifies a repository, assuming that repository at a specific generation. |      |      |      |
+| RepositoryShardId                                            |      |      |      |
+| Represents a shard snapshot in a repository.                 |      |      |      |
+| RepositoryStats                                              |      |      |      |
+|                                                              |      |      |      |
+| RepositoryStatsSnapshot                                      |      |      |      |
+|                                                              |      |      |      |
+| RepositoryVerificationException                              |      |      |      |
+| Repository verification exception                            |      |      |      |
+| ShardGeneration                                              |      |      |      |
+| The generation ID of a shard, used to name the shard-level index-$SHARD_GEN file that represents a BlobStoreIndexShardSnapshots instance. |      |      |      |
+| ShardGenerations                                             |      |      |      |
+| Represents the current ShardGeneration for each shard in a repository. |      |      |      |
+| ShardGenerations.Builder                                     |      |      |      |
+|                                                              |      |      |      |
+| ShardSnapshotInfo                                            |      |      |      |
+|                                                              |      |      |      |
+| ShardSnapshotResult                                          |      |      |      |
+| The details of a successful shard-level snapshot that are used to build the overall snapshot during finalization. |      |      |      |
+| SnapshotShardContext                                         |      |      |      |
+| Context holding the state for creating a shard snapshot via Repository.snapshotShard(SnapshotShardContext). |      |      |      |
+| VerificationFailure                                          |      |      |      |
+|                                                              |      |      |      |
+| VerifyNodeRepositoryAction                                   |      |      |      |
+|                                                              |      |      |      |
+| VerifyNodeRepositoryAction.VerifyNodeRepositoryRequest       |      |      |      |
+
+
+
+
+
 org.elasticsearch.repositories.blobstore
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| BlobContainer                                                |      |      |      |
+| An interface for managing a repository of blob entries, where each blob entry is just a named group of bytes. |      |      |      |
+| BlobMetadata                                                 |      |      |      |
+| An interface for providing basic metadata about a blob.      |      |      |      |
+| BlobPath                                                     |      |      |      |
+| The list of paths where a blob can reside.                   |      |      |      |
+| BlobStore                                                    |      |      |      |
+| An interface for storing blobs.                              |      |      |      |
+| BlobStoreException                                           |      |      |      |
+|                                                              |      |      |      |
+| DeleteResult                                                 |      |      |      |
+| The result of deleting multiple blobs from a BlobStore.      |      |      |      |
+
+
 
 
 
@@ -2111,9 +2943,61 @@ org.elasticsearch.repositories.fs
 
 
 
-
+| Class                                                |      |      |
+| ---------------------------------------------------- | ---- | ---- |
+| Description                                          |      |      |
+| FsBlobContainer                                      |      |      |
+| A file system based implementation of BlobContainer. |      |      |
+| FsBlobStore                                          |      |      |
 
 org.elasticsearch.rest
+
+
+
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| AbstractRestChannel                                          |      |      |
+|                                                              |      |      |
+| BaseRestHandler                                              |      |      |
+| Base handler for REST requests.                              |      |      |
+| BaseRestHandler.RestChannelConsumer                          |      |      |
+| REST requests are handled by preparing a channel consumer that represents the execution of the request against a channel. |      |      |
+| BaseRestHandler.Wrapper                                      |      |      |
+|                                                              |      |      |
+| BytesRestResponse                                            |      |      |
+|                                                              |      |      |
+| DeprecationRestHandler                                       |      |      |
+| DeprecationRestHandler provides a proxy for any existing RestHandler so that usage of the handler can be logged using the DeprecationLogger. |      |      |
+| FilterRestHandler                                            |      |      |
+|                                                              |      |      |
+| RestChannel                                                  |      |      |
+| A channel used to construct bytes / builder based outputs, and send responses. |      |      |
+| RestController                                               |      |      |
+|                                                              |      |      |
+| RestHandler                                                  |      |      |
+| Handler for REST requests                                    |      |      |
+| RestHandler.Route                                            |      |      |
+|                                                              |      |      |
+| RestHandler.Route.RouteBuilder                               |      |      |
+|                                                              |      |      |
+| RestHeaderDefinition                                         |      |      |
+| A definition for an http header that should be copied to the ThreadContext when reading the request on the rest layer. |      |      |
+| RestRequest                                                  |      |      |
+|                                                              |      |      |
+| RestRequest.BadParameterException                            |      |      |
+|                                                              |      |      |
+| RestRequest.ContentTypeHeaderException                       |      |      |
+|                                                              |      |      |
+| RestRequest.Method                                           |      |      |
+|                                                              |      |      |
+| RestRequestFilter                                            |      |      |
+| Identifies an object that supplies a filter for the content of a RestRequest. |      |      |
+| RestResponse                                                 |      |      |
+|                                                              |      |      |
+| RestStatus                                                   |      |      |
+|                                                              |      |      |
+| RestUtils                                                    |      |      |
 
 
 
