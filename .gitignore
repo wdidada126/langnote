@@ -5,3 +5,4 @@
 .DS_Store
 *.iml
 .obsidian
+elasticsearch/elasticsearch-7.17.13-javadoc/
