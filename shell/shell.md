@@ -71,39 +71,21 @@ yum list –showduplicates glibc
 
 yum list glibc*
 
-
-
 lrzsz
 
 sudo apt-get install lrzse -y
 
-
-
 #!/bin/bash`
 
-
-
-
-
 `#!/usr/bin/env bash`
-
-
 
 shell 定义变量 等号左右两边不能有空格
 
 https://blog.csdn.net/qq_20975027/article/details/78343972
 
-
-
-
-
-
-
 `arp -a`
 
 ar
-
-
 
 [如何从虚拟机上的linux使用sz命令传输windows大于4G的文件](https://blog.csdn.net/qq_36396104/article/details/82688286)
 
@@ -114,7 +96,6 @@ gstack vs pstack
 `echo $SHELL`
 
 `mysqladmin flush-hosts -u root -p5Edidada`
-
 
 poll epoll区别
 https://www.cnblogs.com/anker/p/3265058.html
