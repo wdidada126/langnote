@@ -127,7 +127,72 @@ org.elasticsearch.discovery.zen
 | ZenPing.PingResponse                                         |      |      |
 
 
+ZenDiscovery
+`ZenDiscovery` 类是 Elasticsearch 中的一个关键组件，负责集群的发现和节点的加入。它实现了 Elasticsearch 的自动发现和节点协调功能，确保集群中的节点能够相互发现和通信。
 
+`ZenDiscovery` 类的主要作用如下：
+1. 集群发现：`ZenDiscovery` 通过使用 Zen 协议（基于 gossip 协议）来实现集群中的节点发现。它通过在集群中的节点之间传播状态信息和变更事件，使得节点能够相互感知和发现彼此。这种自动发现机制使得新的节点能够加入集群，而无需手动配置节点信息。
+2. 节点加入：一旦节点发现了集群中的其他节点，`ZenDiscovery` 负责协调新节点的加入过程。它将新节点的信息发送给集群中的主节点，并与主节点进行通信以完成加入过程。这包括分配节点ID、获取集群状态、同步索引等操作。
+3. 节点通信：`ZenDiscovery` 确保集群中的节点能够相互通信和交互。它维护节点之间的连接和通信通道，使得节点能够发送和接收索引数据、搜索请求和集群状态信息等。
+4. 主节点选举：在集群中，只有一个节点被选举为主节点，负责集群的决策和协调工作。`ZenDiscovery` 在主节点选举过程中起到重要的作用，它通过与其他节点进行竞选和协商，最终确定主节点。一旦主节点选举完成，集群中的其他节点将向该主节点报告并接受其指导。
+总的来说，`ZenDiscovery` 类在 Elasticsearch 中扮演着集群发现和节点协调的核心角色。它通过自动发现和节点加入机制，确保集群中的节点能够相互发现和通信，以实现分布式的数据存储和处理能力。
+
+org.elasticsearch.discovery.zen.ZenDiscovery#doStart
+`org.elasticsearch.discovery.zen.ZenDiscovery#doStart` 是 Elasticsearch 中负责协调集群发现和节点加入的核心类的方法。下面是对该方法的源代码分析：
+
+```java
+protected synchronized void doStart() {
+    if (transportService.getLocalNode().isMasterNode()) {
+        // If this node is the elected master node, start the ZenDiscovery process
+        logger.trace("starting to ping");
+        pingTask = threadPool.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Send a ping request to other nodes in the cluster
+                    ping();
+                } catch (Throwable e) {
+                    logger.warn("unexpected failure during [zen-disco-join (elected_as_master) [" + getNodeAddress() + "]]", e);
+                }
+            }
+        }, randomInitialDelay(), pingInterval, ThreadPool.Names.SAME);
+    } else {
+        // If this node is not the elected master node, start the join process
+        logger.trace("starting to join");
+        joinTask = threadPool.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Send a join request to the master node
+                    joinCluster();
+                } catch (Throwable e) {
+                    logger.warn("unexpected failure during [zen-disco-join (not_master) [" + getNodeAddress() + "]]", e);
+                }
+            }
+        }, randomInitialDelay(), pingInterval, ThreadPool.Names.SAME);
+    }
+}
+```
+
+在这个方法中，根据当前节点是否为选举的主节点，采取不同的动作：
+
+1. 如果当前节点是选举的主节点（`transportService.getLocalNode().isMasterNode()` 返回 `true`），则启动 ZenDiscovery 过程。这个过程将定期发送 ping 请求给集群中的其他节点。
+
+2. 如果当前节点不是选举的主节点，则启动加入集群的过程。这个过程将定期发送 join 请求给主节点。
+
+这两个过程都是由 `Runnable` 对象在后台线程中执行的，并通过 `threadPool.scheduleWithFixedDelay` 方法定期执行。执行时间间隔由 `pingInterval` 参数指定。
+
+在方法的实现中，还包含了异常处理和日志记录，以捕获和处理在执行过程中可能发生的异常。
+
+总的来说，`doStart` 方法是 ZenDiscovery 类的核心方法之一，负责启动集群发现和节点加入过程，以确保集群的正常运行和节点的连通性。
+
+
+
+Zen 协议是 Elasticsearch 中使用的基于 gossip 协议的集群发现和节点协调协议。它允许节点在集群中自动发现和通信，以便进行数据复制、故障检测和集群状态同步等操作。
+Zen 协议基于 gossip 协议的概念，其中节点通过相互交换状态信息和变更事件来传播集群的状态。节点定期选择随机的一组对等节点进行通信，并将自己的状态信息传播给这些节点。这种信息传播的随机性和分散性，使得集群中的节点能够快速地相互发现和了解彼此的状态。
+Zen 协议的具体实现涉及到节点之间的网络通信和消息传递。节点通常通过多播或单播方式发送和接收消息，以确保消息能够在集群中传播。消息通常包含节点的状态信息、集群的状态、索引的分片信息、节点的加入和离开事件等。
+要进行 Zen 协议的抓包操作，你可以使用网络抓包工具（如 Wireshark）来捕获节点之间的网络通信流量。通过设置过滤器和捕获规则，你可以选择捕获与 Zen 协议相关的网络流量，以便进一步分析和调试。
+请注意，Zen 协议是 Elasticsearch 中较低层次的网络协议，它的具体实现可能会随着 Elasticsearch 版本的更新而有所变化。因此，在进行抓包操作时，你可能需要参考具体版本的 Elasticsearch 文档或相关资源，以了解 Zen 协议的详细信息和特定版本的实现细节。
 
 
 org.elasticsearch.env

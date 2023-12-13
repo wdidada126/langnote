@@ -1,4 +1,25 @@
 # elasticsearch
+
+## IDEA调试代码
+
+https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/ 404
+
+https://mirrors.huaweicloud.com/elasticsearch/
+
+https://jdk.java.net/archive/
+
+https://www.jianshu.com/p/d218613cbe21
+命令行编译
+./gradlew localDistro
+
+https://blog.51cto.com/u_15812686/5738580
+
+1、idea导入Elasticsearch 7.10.2源码和编译运行，https://copyfuture.com/blogs-details/20210327133933335M
+2、在Windows环境IDEA下编译运行Elasticsearch 7.14.1，https://blog.csdn.net/weixin_43820556/article/details/120165948
+3、IDEA 编译 ElasticSearch 7.8.1，https://blog.csdn.net/ShelleyLittlehero/article/details/107642951
+4、ElasticSearch-7.8.0 源码编译调试 (详细)，https://zhuanlan.zhihu.com/p/188725714
+5、idea源码调试的问题，https://elasticsearch.cn/question/8243
+
 ## 架构图
 Elasticsearch分布式搜索引擎的总体框架图.png
 
