@@ -3005,7 +3005,126 @@ org.elasticsearch.rest.action
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| DispatchingRestToXContentListener<Response extends StatusToXContentObject> |      |      |      |
+| Response listener for REST requests which dispatches the serialization of the response off of the thread on which the response was received, since that thread is often a transport thread and XContent serialization might be expensive. |      |      |      |
+| RestActionListener<Response>                                 |      |      |      |
+| An action listener that requires RestActionListener.processResponse(Object) to be implemented and will automatically handle failures. |      |      |      |
+| RestActions                                                  |      |      |      |
+|                                                              |      |      |      |
+| RestActions.NodesResponseRestListener<NodesResponse extends BaseNodesResponse<?> & ToXContent> |      |      |      |
+| NodesResponseRestBuilderListener automatically translates any BaseNodesResponse (multi-node) response that is ToXContent-compatible into a RestResponse with the necessary header info (e.g., "cluster_name"). |      |      |      |
+| RestBuilderListener<Response>                                |      |      |      |
+| A REST action listener that builds an XContentBuilder based response. |      |      |      |
+| RestCancellableNodeClient                                    |      |      |      |
+| A Client that cancels tasks executed locally when the provided HttpChannel is closed before completion. |      |      |      |
+| RestFieldCapabilitiesAction                                  |      |      |      |
+|                                                              |      |      |      |
+| RestMainAction                                               |      |      |      |
+|                                                              |      |      |      |
+| RestResponseListener<Response>                               |      |      |      |
+| A REST enabled action listener that has a basic onFailure implementation, and requires sub classes to only implement RestResponseListener.buildResponse(Object). |      |      |      |
+| RestStatusToXContentListener<Response extends StatusToXContentObject> |      |      |      |
+| Content listener that extracts that RestStatus from the response. |      |      |      |
+| RestToXContentListener<Response extends ToXContentObject>    |      |      |      |
+| A REST based action listener that requires the response to implement ToXContentObject and automatically builds an XContent based response. |      |      |      |
+
+
+
+
+
 org.elasticsearch.rest.action.admin.cluster
+
+
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| RestAddVotingConfigExclusionAction                           |      |      |      |
+|                                                              |      |      |      |
+| RestCancelTasksAction                                        |      |      |      |
+|                                                              |      |      |      |
+| RestCleanupRepositoryAction                                  |      |      |      |
+| Cleans up a repository                                       |      |      |      |
+| RestClearVotingConfigExclusionsAction                        |      |      |      |
+|                                                              |      |      |      |
+| RestCloneSnapshotAction                                      |      |      |      |
+| Clones indices from one snapshot into another snapshot in the same repository |      |      |      |
+| RestClusterAllocationExplainAction                           |      |      |      |
+| Class handling cluster allocation explanation at the REST level |      |      |      |
+| RestClusterGetSettingsAction                                 |      |      |      |
+|                                                              |      |      |      |
+| RestClusterHealthAction                                      |      |      |      |
+|                                                              |      |      |      |
+| RestClusterRerouteAction                                     |      |      |      |
+|                                                              |      |      |      |
+| RestClusterSearchShardsAction                                |      |      |      |
+|                                                              |      |      |      |
+| RestClusterStateAction                                       |      |      |      |
+|                                                              |      |      |      |
+| RestClusterStatsAction                                       |      |      |      |
+|                                                              |      |      |      |
+| RestClusterUpdateSettingsAction                              |      |      |      |
+|                                                              |      |      |      |
+| RestCreateSnapshotAction                                     |      |      |      |
+| Creates a new snapshot                                       |      |      |      |
+| RestDeleteRepositoryAction                                   |      |      |      |
+| Unregisters a repository                                     |      |      |      |
+| RestDeleteSnapshotAction                                     |      |      |      |
+| Deletes a snapshot                                           |      |      |      |
+| RestDeleteStoredScriptAction                                 |      |      |      |
+|                                                              |      |      |      |
+| RestGetFeatureUpgradeStatusAction                            |      |      |      |
+| Endpoint for getting the system feature upgrade status       |      |      |      |
+| RestGetRepositoriesAction                                    |      |      |      |
+| Returns repository information                               |      |      |      |
+| RestGetScriptContextAction                                   |      |      |      |
+|                                                              |      |      |      |
+| RestGetScriptLanguageAction                                  |      |      |      |
+|                                                              |      |      |      |
+| RestGetSnapshotsAction                                       |      |      |      |
+| Returns information about snapshot                           |      |      |      |
+| RestGetStoredScriptAction                                    |      |      |      |
+|                                                              |      |      |      |
+| RestGetTaskAction                                            |      |      |      |
+|                                                              |      |      |      |
+| RestListTasksAction                                          |      |      |      |
+|                                                              |      |      |      |
+| RestNodesHotThreadsAction                                    |      |      |      |
+|                                                              |      |      |      |
+| RestNodesInfoAction                                          |      |      |      |
+|                                                              |      |      |      |
+| RestNodesStatsAction                                         |      |      |      |
+|                                                              |      |      |      |
+| RestNodesUsageAction                                         |      |      |      |
+|                                                              |      |      |      |
+| RestPendingClusterTasksAction                                |      |      |      |
+|                                                              |      |      |      |
+| RestPostFeatureUpgradeAction                                 |      |      |      |
+| Endpoint for triggering a system feature upgrade             |      |      |      |
+| RestPutRepositoryAction                                      |      |      |      |
+| Registers repositories                                       |      |      |      |
+| RestPutStoredScriptAction                                    |      |      |      |
+|                                                              |      |      |      |
+| RestReloadSecureSettingsAction                               |      |      |      |
+|                                                              |      |      |      |
+| RestRemoteClusterInfoAction                                  |      |      |      |
+|                                                              |      |      |      |
+| RestResetFeatureStateAction                                  |      |      |      |
+| Rest handler for feature state reset requests                |      |      |      |
+| RestRestoreSnapshotAction                                    |      |      |      |
+| Restores a snapshot                                          |      |      |      |
+| RestSnapshotsStatusAction                                    |      |      |      |
+| Returns status of currently running snapshot                 |      |      |      |
+| RestSnapshottableFeaturesAction                              |      |      |      |
+|                                                              |      |      |      |
+| RestVerifyRepositoryAction                                   |      |      |      |
+
+
 
 
 
@@ -3013,7 +3132,123 @@ org.elasticsearch.rest.action.admin.cluster.dangling
 
 
 
+| Class                         |      | Description |
+| ----------------------------- | ---- | ----------- |
+|                               |      |             |
+| RestDeleteDanglingIndexAction |      |             |
+|                               |      |             |
+| RestImportDanglingIndexAction |      |             |
+|                               |      |             |
+| RestListDanglingIndicesAction |      |             |
+
+
+
+
+
 org.elasticsearch.rest.action.admin.indices
+
+
+
+| Class                                                     |      |      |      |
+| --------------------------------------------------------- | ---- | ---- | ---- |
+| Description                                               |      |      |      |
+| AliasesNotFoundException                                  |      |      |      |
+|                                                           |      |      |      |
+| RestAddIndexBlockAction                                   |      |      |      |
+|                                                           |      |      |      |
+| RestAnalyzeAction                                         |      |      |      |
+|                                                           |      |      |      |
+| RestAnalyzeIndexDiskUsageAction                           |      |      |      |
+|                                                           |      |      |      |
+| RestClearIndicesCacheAction                               |      |      |      |
+|                                                           |      |      |      |
+| RestCloseIndexAction                                      |      |      |      |
+|                                                           |      |      |      |
+| RestCreateIndexAction                                     |      |      |      |
+|                                                           |      |      |      |
+| RestDeleteComponentTemplateAction                         |      |      |      |
+|                                                           |      |      |      |
+| RestDeleteComposableIndexTemplateAction                   |      |      |      |
+|                                                           |      |      |      |
+| RestDeleteIndexAction                                     |      |      |      |
+|                                                           |      |      |      |
+| RestDeleteIndexTemplateAction                             |      |      |      |
+|                                                           |      |      |      |
+| RestFieldUsageStatsAction                                 |      |      |      |
+|                                                           |      |      |      |
+| RestFlushAction                                           |      |      |      |
+|                                                           |      |      |      |
+| RestForceMergeAction                                      |      |      |      |
+|                                                           |      |      |      |
+| RestGetAliasesAction                                      |      |      |      |
+| The REST handler for get alias and head alias APIs.       |      |      |      |
+| RestGetComponentTemplateAction                            |      |      |      |
+|                                                           |      |      |      |
+| RestGetComposableIndexTemplateAction                      |      |      |      |
+|                                                           |      |      |      |
+| RestGetFieldMappingAction                                 |      |      |      |
+|                                                           |      |      |      |
+| RestGetIndexTemplateAction                                |      |      |      |
+| The REST handler for get template and head template APIs. |      |      |      |
+| RestGetIndicesAction                                      |      |      |      |
+| The REST handler for get index and head index APIs.       |      |      |      |
+| RestGetMappingAction                                      |      |      |      |
+|                                                           |      |      |      |
+| RestGetSettingsAction                                     |      |      |      |
+|                                                           |      |      |      |
+| RestIndexDeleteAliasesAction                              |      |      |      |
+|                                                           |      |      |      |
+| RestIndexPutAliasAction                                   |      |      |      |
+|                                                           |      |      |      |
+| RestIndicesAliasesAction                                  |      |      |      |
+|                                                           |      |      |      |
+| RestIndicesSegmentsAction                                 |      |      |      |
+|                                                           |      |      |      |
+| RestIndicesShardStoresAction                              |      |      |      |
+| Rest action for IndicesShardStoresAction                  |      |      |      |
+| RestIndicesStatsAction                                    |      |      |      |
+|                                                           |      |      |      |
+| RestOpenIndexAction                                       |      |      |      |
+|                                                           |      |      |      |
+| RestPutComponentTemplateAction                            |      |      |      |
+|                                                           |      |      |      |
+| RestPutComposableIndexTemplateAction                      |      |      |      |
+|                                                           |      |      |      |
+| RestPutIndexTemplateAction                                |      |      |      |
+|                                                           |      |      |      |
+| RestPutMappingAction                                      |      |      |      |
+|                                                           |      |      |      |
+| RestRecoveryAction                                        |      |      |      |
+| REST handler to report on index recoveries.               |      |      |      |
+| RestRefreshAction                                         |      |      |      |
+|                                                           |      |      |      |
+| RestResizeHandler                                         |      |      |      |
+|                                                           |      |      |      |
+| RestResizeHandler.RestCloneIndexAction                    |      |      |      |
+|                                                           |      |      |      |
+| RestResizeHandler.RestShrinkIndexAction                   |      |      |      |
+|                                                           |      |      |      |
+| RestResizeHandler.RestSplitIndexAction                    |      |      |      |
+|                                                           |      |      |      |
+| RestResolveIndexAction                                    |      |      |      |
+|                                                           |      |      |      |
+| RestRolloverIndexAction                                   |      |      |      |
+|                                                           |      |      |      |
+| RestSimulateIndexTemplateAction                           |      |      |      |
+|                                                           |      |      |      |
+| RestSimulateTemplateAction                                |      |      |      |
+|                                                           |      |      |      |
+| RestSyncedFlushAction                                     |      |      |      |
+|                                                           |      |      |      |
+| RestUpdateSettingsAction                                  |      |      |      |
+|                                                           |      |      |      |
+| RestUpgradeActionDeprecated                               |      |      |      |
+|                                                           |      |      |      |
+| RestUpgradeStatusActionDeprecated                         |      |      |      |
+|                                                           |      |      |      |
+| RestValidateQueryAction                                   |      |      |      |
+
+
 
 
 
@@ -3021,9 +3256,63 @@ org.elasticsearch.rest.action.cat
 
 
 
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| AbstractCatAction                                            |      |      |
+|                                                              |      |      |
+| RestAliasAction                                              |      |      |
+|                                                              |      |      |
+| RestAllocationAction                                         |      |      |
+|                                                              |      |      |
+| RestCatAction                                                |      |      |
+|                                                              |      |      |
+| RestCatRecoveryAction                                        |      |      |
+| RestRecoveryAction provides information about the status of replica recovery in a string format, designed to be used at the command line. |      |      |
+| RestCountAction                                              |      |      |
+|                                                              |      |      |
+| RestFielddataAction                                          |      |      |
+| Cat API class to display information about the size of fielddata fields per node |      |      |
+| RestHealthAction                                             |      |      |
+|                                                              |      |      |
+| RestIndicesAction                                            |      |      |
+|                                                              |      |      |
+| RestMasterAction                                             |      |      |
+|                                                              |      |      |
+| RestNodeAttrsAction                                          |      |      |
+|                                                              |      |      |
+| RestNodesAction                                              |      |      |
+|                                                              |      |      |
+| RestPendingClusterTasksAction                                |      |      |
+|                                                              |      |      |
+| RestPluginsAction                                            |      |      |
+|                                                              |      |      |
+| RestRepositoriesAction                                       |      |      |
+| Cat API class to display information about snapshot repositories |      |      |
+| RestSegmentsAction                                           |      |      |
+|                                                              |      |      |
+| RestShardsAction                                             |      |      |
+|                                                              |      |      |
+| RestSnapshotAction                                           |      |      |
+| Cat API class to display information about snapshots         |      |      |
+| RestTable                                                    |      |      |
+|                                                              |      |      |
+| RestTasksAction                                              |      |      |
+|                                                              |      |      |
+| RestTemplatesAction                                          |      |      |
+|                                                              |      |      |
+| RestThreadPoolAction                                         |      |      |
+
+
+
+
+
 org.elasticsearch.rest.action.datastreams
 
-
+| Class                       |      |      |      |
+| --------------------------- | ---- | ---- | ---- |
+| Description                 |      |      |      |
+| RestModifyDataStreamsAction |      |      |      |
 
 
 
@@ -3031,17 +3320,81 @@ org.elasticsearch.rest.action.document
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| RestBulkAction                                               |      |      |      |
+| { "index" : { "_index" : "test", "_type" : "type1", "_id" : "1" } { "type1" : { "field1" : "value1" } } { "delete" : { "_index" : "test", "_type" : "type1", "_id" : "2" } } { "create" : { "_index" : "test", "_type" : "type1", "_id" : "1" } { "type1" : { "field1" : "value1" } } |      |      |      |
+| RestDeleteAction                                             |      |      |      |
+|                                                              |      |      |      |
+| RestGetAction                                                |      |      |      |
+|                                                              |      |      |      |
+| RestGetSourceAction                                          |      |      |      |
+| The REST handler for get source and head source APIs.        |      |      |      |
+| RestIndexAction                                              |      |      |      |
+|                                                              |      |      |      |
+| RestIndexAction.AutoIdHandler                                |      |      |      |
+|                                                              |      |      |      |
+| RestIndexAction.CreateHandler                                |      |      |      |
+|                                                              |      |      |      |
+| RestMultiGetAction                                           |      |      |      |
+|                                                              |      |      |      |
+| RestMultiTermVectorsAction                                   |      |      |      |
+|                                                              |      |      |      |
+| RestTermVectorsAction                                        |      |      |      |
+| This class parses the json request and translates it into a TermVectorsRequest. |      |      |      |
+| RestUpdateAction                                             |      |      |      |
+
+
+
+
+
 org.elasticsearch.rest.action.ingest
+
+
+
+
+
+| Class                      |      |      |      |
+| -------------------------- | ---- | ---- | ---- |
+| Description                |      |      |      |
+| RestDeletePipelineAction   |      |      |      |
+|                            |      |      |      |
+| RestGetPipelineAction      |      |      |      |
+|                            |      |      |      |
+| RestPutPipelineAction      |      |      |      |
+|                            |      |      |      |
+| RestSimulatePipelineAction |      |      |      |
+
+
 
 
 
 org.elasticsearch.rest.action.search
 
-
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| RestClearScrollAction                                        |      |      |      |
+|                                                              |      |      |      |
+| RestCountAction                                              |      |      |      |
+|                                                              |      |      |      |
+| RestExplainAction                                            |      |      |      |
+| Rest action for computing a score explanation for specific documents. |      |      |      |
+| RestMultiSearchAction                                        |      |      |      |
+|                                                              |      |      |      |
+| RestSearchAction                                             |      |      |      |
+|                                                              |      |      |      |
+| RestSearchScrollAction                                       |      |      |      |
 
 org.elasticsearch.rollup
 
 
+
+| Class       |      |      |
+| ----------- | ---- | ---- |
+| Description |      |      |
+| RollupV2    |      |      |
 
 
 
@@ -3049,7 +3402,291 @@ org.elasticsearch.script
 
 
 
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| AbstractFieldScript                                          |      |      |      |      |
+| Abstract base for scripts to execute to build scripted fields. |      |      |      |      |
+| AbstractLongFieldScript                                      |      |      |      |      |
+| Common base class for script field scripts that return long values. |      |      |      |      |
+| AggregationScript                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| AggregationScript.Factory                                    |      |      |      |      |
+| A factory to construct stateful AggregationScript factories for a specific index. |      |      |      |      |
+| AggregationScript.LeafFactory                                |      |      |      |      |
+| A factory to construct AggregationScript instances.          |      |      |      |      |
+| BooleanFieldScript                                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| BooleanFieldScript.Emit                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| BooleanFieldScript.Factory                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| BooleanFieldScript.LeafFactory                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketAggregationScript                                      |      |      |      |      |
+| A script used in bucket aggregations that returns a double value. |      |      |      |      |
+| BucketAggregationScript.Factory                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketAggregationSelectorScript                              |      |      |      |      |
+| A script used in bucket aggregations that returns a boolean value. |      |      |      |      |
+| BucketAggregationSelectorScript.Factory                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| ClassPermission                                              |      |      |      |      |
+| Checked by scripting engines to allow loading a java class.  |      |      |      |      |
+| CompositeFieldScript                                         |      |      |      |      |
+| A script that emits a map of multiple values, that can then be accessed by child runtime fields. |      |      |      |      |
+| CompositeFieldScript.EmitField                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| CompositeFieldScript.EmitMap                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| CompositeFieldScript.Factory                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| CompositeFieldScript.LeafFactory                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| DateFieldScript                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| DateFieldScript.Emit                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| DateFieldScript.Factory                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| DateFieldScript.LeafFactory                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| DateFieldScript.Parse                                        |      |      |      |      |
+| Temporary parse method that takes into account the date format. |      |      |      |      |
+| DocBasedScript                                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| DocReader                                                    |      |      |      |      |
+| Access the document in a script, provides both old-style, doc['fieldname'], and new style field('fieldname') access to the fields. |      |      |      |      |
+| DocValuesDocReader                                           |      |      |      |      |
+| Provide access to DocValues for script field api and doc API. |      |      |      |      |
+| DoubleFieldScript                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| DoubleFieldScript.Emit                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| DoubleFieldScript.Factory                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| DoubleFieldScript.LeafFactory                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| DynamicMap                                                   |      |      |      |      |
+| DynamicMap is used to wrap a Map for a script parameter.     |      |      |      |      |
+| ExplainableScoreScript                                       |      |      |      |      |
+| To be implemented by ScoreScript which can provided an Explanation of the score This is currently not used inside elasticsearch but it is used, see for example here: https://github.com/elastic/elasticsearch/issues/8561 |      |      |      |      |
+| FieldScript                                                  |      |      |      |      |
+| A script to produce dynamic values for return fields.        |      |      |      |      |
+| FieldScript.Factory                                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| FieldScript.LeafFactory                                      |      |      |      |      |
+| A factory to construct FieldScript instances.                |      |      |      |      |
+| FilterScript                                                 |      |      |      |      |
+| A script implementation of a query filter.                   |      |      |      |      |
+| FilterScript.Factory                                         |      |      |      |      |
+| A factory to construct stateful FilterScript factories for a specific index. |      |      |      |      |
+| FilterScript.LeafFactory                                     |      |      |      |      |
+| A factory to construct FilterScript instances.               |      |      |      |      |
+| GeneralScriptException                                       |      |      |      |      |
+| Deprecated.                                                  |      |      |      |      |
+| Use ScriptException for exceptions from the scripting engine, otherwise use a more appropriate exception (e.g. |      |      |      |      |
+| GeoPointFieldScript                                          |      |      |      |      |
+| Script producing geo points.                                 |      |      |      |      |
+| GeoPointFieldScript.Emit                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoPointFieldScript.Factory                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoPointFieldScript.LeafFactory                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| IngestConditionalScript                                      |      |      |      |      |
+| A script used by ConditionalProcessor.                       |      |      |      |      |
+| IngestConditionalScript.Factory                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| IngestScript                                                 |      |      |      |      |
+| A script used by the Ingest Script Processor.                |      |      |      |      |
+| IngestScript.Factory                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| IpFieldScript                                                |      |      |      |      |
+| Script producing IP addresses.                               |      |      |      |      |
+| IpFieldScript.Emit                                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| IpFieldScript.Factory                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| IpFieldScript.LeafFactory                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| JodaCompatibleZonedDateTime                                  |      |      |      |      |
+| A wrapper around ZonedDateTime that exposes joda methods for backcompat. |      |      |      |      |
+| LeafReaderContextSupplier                                    |      |      |      |      |
+| Provides direct access to a LeafReaderContext                |      |      |      |      |
+| LongFieldScript                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| LongFieldScript.Emit                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| LongFieldScript.Factory                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| LongFieldScript.LeafFactory                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| NumberSortScript                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| NumberSortScript.Factory                                     |      |      |      |      |
+| A factory to construct stateful NumberSortScript factories for a specific index. |      |      |      |      |
+| NumberSortScript.LeafFactory                                 |      |      |      |      |
+| A factory to construct NumberSortScript instances.           |      |      |      |      |
+| ScoreScript                                                  |      |      |      |      |
+| A script used for adjusting the score on a per document basis. |      |      |      |      |
+| ScoreScript.ExplanationHolder                                |      |      |      |      |
+| A helper to take in an explanation from a script and turn it into an Explanation |      |      |      |      |
+| ScoreScript.Factory                                          |      |      |      |      |
+| A factory to construct stateful ScoreScript factories for a specific index. |      |      |      |      |
+| ScoreScript.LeafFactory                                      |      |      |      |      |
+| A factory to construct ScoreScript instances.                |      |      |      |      |
+| ScoreScriptUtils                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayDateExp                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayDateGauss                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayDateLinear                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayGeoExp                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayGeoGauss                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayGeoLinear                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayNumericExp                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayNumericGauss                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.DecayNumericLinear                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.RandomScoreDoc                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScoreScriptUtils.RandomScoreField                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| Script                                                       |      |      |      |      |
+| Script represents used-defined input that can be used to compile and execute a script from the ScriptService based on the ScriptType. |      |      |      |      |
+| ScriptCache                                                  |      |      |      |      |
+| Script cache and compilation rate limiter.                   |      |      |      |      |
+| ScriptCache.CompilationRate                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptCacheStats                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptCompiler                                               |      |      |      |      |
+| Takes a Script definition and returns a compiled script factory |      |      |      |      |
+| ScriptContext<FactoryType>                                   |      |      |      |      |
+| The information necessary to compile and run a script.       |      |      |      |      |
+| ScriptContextInfo                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptContextInfo.ScriptMethodInfo                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptContextInfo.ScriptMethodInfo.ParameterInfo             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptContextStats                                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptContextStats.TimeSeries                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.CombineScript                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.CombineScript.Factory              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.InitScript                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.InitScript.Factory                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.MapScript                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.MapScript.Factory                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.MapScript.LeafFactory              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.ReduceScript                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptedMetricAggContexts.ReduceScript.Factory               |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptEngine                                                 |      |      |      |      |
+| A script language implementation.                            |      |      |      |      |
+| ScriptException                                              |      |      |      |      |
+| Exception from a scripting engine.                           |      |      |      |      |
+| ScriptException.Position                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptFactory                                                |      |      |      |      |
+| Contains utility methods for compiled scripts without impacting concrete script signatures |      |      |      |      |
+| ScriptLanguagesInfo                                          |      |      |      |      |
+| The allowable types, languages and their corresponding contexts. |      |      |      |      |
+| ScriptMetadata                                               |      |      |      |      |
+| ScriptMetadata is used to store user-defined scripts as part of the ClusterState using only an id as the key. |      |      |      |      |
+| ScriptMetadata.Builder                                       |      |      |      |      |
+| A builder used to modify the currently stored scripts data held within the ClusterState. |      |      |      |      |
+| ScriptMetrics                                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptModule                                                 |      |      |      |      |
+| Manages building ScriptService.                              |      |      |      |      |
+| ScriptService                                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptService.ContextSettings                                |      |      |      |      |
+| Collect settings related to script context and general caches. |      |      |      |      |
+| ScriptStats                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| ScriptType                                                   |      |      |      |      |
+| ScriptType represents the way a script is stored and retrieved from the ScriptService. |      |      |      |      |
+| SignificantTermsHeuristicScoreScript                         |      |      |      |      |
+| A script used in significant terms heuristic scoring.        |      |      |      |      |
+| SignificantTermsHeuristicScoreScript.Factory                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| SimilarityScript                                             |      |      |      |      |
+| A script that is used to build ScriptedSimilarity instances. |      |      |      |      |
+| SimilarityScript.Factory                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| SimilarityWeightScript                                       |      |      |      |      |
+| A script that is used to compute scoring factors that are the same for all documents. |      |      |      |      |
+| SimilarityWeightScript.Factory                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| StoredScriptSource                                           |      |      |      |      |
+| StoredScriptSource represents user-defined parameters for a script saved in the ClusterState. |      |      |      |      |
+| StringFieldScript                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringFieldScript.Emit                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringFieldScript.Factory                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringFieldScript.LeafFactory                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringSortScript                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringSortScript.Factory                                     |      |      |      |      |
+| A factory to construct stateful StringSortScript factories for a specific index. |      |      |      |      |
+| StringSortScript.LeafFactory                                 |      |      |      |      |
+| A factory to construct StringSortScript instances.           |      |      |      |      |
+| TemplateScript                                               |      |      |      |      |
+| A string template rendered as a script.                      |      |      |      |      |
+| TemplateScript.Factory                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsSetQueryScript                                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsSetQueryScript.Factory                                  |      |      |      |      |
+| A factory to construct stateful TermsSetQueryScript factories for a specific index. |      |      |      |      |
+| TermsSetQueryScript.LeafFactory                              |      |      |      |      |
+| A factory to construct TermsSetQueryScript instances.        |      |      |      |      |
+| UpdateScript                                                 |      |      |      |      |
+| An update script.                                            |      |      |      |      |
+| UpdateScript.Factory                                         |      |      |      |      |
+
+
+
+
+
 org.elasticsearch.script.field
+
+
+
+| Class                                                      |      |      |      |
+| ---------------------------------------------------------- | ---- | ---- | ---- |
+| Description                                                |      |      |      |
+| DocValuesField                                             |      |      |      |
+|                                                            |      |      |      |
+| EmptyField                                                 |      |      |      |
+| Script field with no mapping, always returns defaultValue. |      |      |      |
+| Field                                                      |      |      |      |
+| A field in a document accessible via scripting.            |      |      |      |
 
 
 
@@ -3059,13 +3696,244 @@ org.elasticsearch.search
 
 
 
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| CanMatchShardResponse                                        |      |      |      |      |
+| Shard-level response for can-match requests                  |      |      |      |      |
+| DocValueFormat                                               |      |      |      |      |
+| A formatter for values as returned by the fielddata/doc-values APIs. |      |      |      |      |
+| DocValueFormat.BinaryDocValueFormat                          |      |      |      |      |
+| Singleton, stateless formatter, for representing bytes as base64 strings |      |      |      |      |
+| DocValueFormat.BooleanDocValueFormat                         |      |      |      |      |
+| Stateless, Singleton formatter for boolean values.           |      |      |      |      |
+| DocValueFormat.DateTime                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| DocValueFormat.Decimal                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| DocValueFormat.GeoHashDocValueFormat                         |      |      |      |      |
+| Singleton, stateless formatter for geo hash values           |      |      |      |      |
+| DocValueFormat.GeoTileDocValueFormat                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| DocValueFormat.IpDocValueFormat                              |      |      |      |      |
+| Stateless, singleton formatter for IP address data           |      |      |      |      |
+| DocValueFormat.RawDocValueFormat                             |      |      |      |      |
+| Singleton, stateless formatter for "Raw" values, generally taken to mean keywords and other strings. |      |      |      |      |
+| DocValueFormat.UnsignedLongShiftedDocValueFormat             |      |      |      |      |
+| DocValues format for unsigned 64 bit long values, that are stored as shifted signed 64 bit long values. |      |      |      |      |
+| LeafNestedDocuments                                          |      |      |      |      |
+| Manages loading information about nested documents for a single index segment |      |      |      |      |
+| MultiValueMode                                               |      |      |      |      |
+| Defines what values to pick in the case a document contains multiple values for a particular field. |      |      |      |      |
+| NestedDocuments                                              |      |      |      |      |
+| Manages loading information about nested documents           |      |      |      |      |
+| NestedUtils                                                  |      |      |      |      |
+| Utility methods for dealing with nested mappers              |      |      |      |      |
+| RescoreDocIds                                                |      |      |      |      |
+| Since SearchContext no longer hold the states of search, the top K results (i.e., documents that will be rescored by query rescorers) need to be serialized/ deserialized between search phases. |      |      |      |      |
+| Scroll                                                       |      |      |      |      |
+| A scroll enables scrolling of search request.                |      |      |      |      |
+| SearchContextMissingException                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchContextSourcePrinter                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchException                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchExtBuilder                                             |      |      |      |      |
+| Intermediate serializable representation of a search ext section. |      |      |      |      |
+| SearchHit                                                    |      |      |      |      |
+| A single search hit.                                         |      |      |      |      |
+| SearchHit.Fields                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchHit.NestedIdentity                                     |      |      |      |      |
+| Encapsulates the nested identity of a hit.                   |      |      |      |      |
+| SearchHits                                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchHits.Fields                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchModule                                                 |      |      |      |      |
+| Sets up things that can be done at search time like queries, aggregations, and suggesters. |      |      |      |      |
+| SearchParseException                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchPhaseResult                                            |      |      |      |      |
+| This class is a base class for all search related results.   |      |      |      |      |
+| SearchService                                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchShardTarget                                            |      |      |      |      |
+| The target that the search request was executed on.          |      |      |      |      |
+| SearchSortValues                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchSortValuesAndFormats                                   |      |      |      |      |
+
+
+
+
+
 
 
 org.elasticsearch.search.aggregations
 
 
 
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| AbstractAggregationBuilder<AB extends AbstractAggregationBuilder<AB>> |      |      |      |      |
+| Base implementation of a AggregationBuilder.                 |      |      |      |      |
+| AdaptingAggregator                                           |      |      |      |      |
+| An Aggregator that delegates collection to another Aggregator and then translates its results into the results you'd expect from another aggregation. |      |      |      |      |
+| Aggregation                                                  |      |      |      |      |
+| An aggregation.                                              |      |      |      |      |
+| Aggregation.CommonFields                                     |      |      |      |      |
+| Common xcontent fields that are shared among addAggregation  |      |      |      |      |
+| AggregationBuilder                                           |      |      |      |      |
+| A factory that knows how to create an Aggregator of a specific type. |      |      |      |      |
+| AggregationBuilder.BucketCardinality                         |      |      |      |      |
+| A rough count of the number of buckets that Aggregators built by this builder will contain per parent bucket used to validate sorts and pipeline aggregations. |      |      |      |      |
+| AggregationBuilder.CommonFields                              |      |      |      |      |
+| Common xcontent fields shared among aggregator builders      |      |      |      |      |
+| AggregationBuilders                                          |      |      |      |      |
+| Utility class to create aggregations.                        |      |      |      |      |
+| AggregationExecutionException                                |      |      |      |      |
+| Thrown when failing to execute an aggregation                |      |      |      |      |
+| AggregationInitializationException                           |      |      |      |      |
+| Thrown when failing to execute an aggregation                |      |      |      |      |
+| AggregationPhase                                             |      |      |      |      |
+| Aggregation phase of a search request, used to collect aggregations |      |      |      |      |
+| Aggregations                                                 |      |      |      |      |
+| Represents a set of Aggregations                             |      |      |      |      |
+| Aggregator                                                   |      |      |      |      |
+| An Aggregator.                                               |      |      |      |      |
+| Aggregator.BucketComparator                                  |      |      |      |      |
+| Compare two buckets by their ordinal.                        |      |      |      |      |
+| Aggregator.Parser                                            |      |      |      |      |
+| Parses the aggregation request and creates the appropriate aggregator factory for it. |      |      |      |      |
+| Aggregator.SubAggCollectionMode                              |      |      |      |      |
+| Aggregation mode for sub aggregations.                       |      |      |      |      |
+| AggregatorBase                                               |      |      |      |      |
+| Base implementation for concrete aggregators.                |      |      |      |      |
+| AggregatorFactories                                          |      |      |      |      |
+| An immutable collection of AggregatorFactories.              |      |      |      |      |
+| AggregatorFactories.Builder                                  |      |      |      |      |
+| A mutable collection of AggregationBuilders and PipelineAggregationBuilders. |      |      |      |      |
+| AggregatorFactory                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| BaseAggregationBuilder                                       |      |      |      |      |
+| Interface shared by AggregationBuilder and PipelineAggregationBuilder so they can conveniently share the same namespace for XContentParser.namedObject(Class, String, Object). |      |      |      |      |
+| BucketCollector                                              |      |      |      |      |
+| A Collector that can collect data in separate buckets.       |      |      |      |      |
+| BucketOrder                                                  |      |      |      |      |
+| MultiBucketsAggregation.Bucket ordering strategy.            |      |      |      |      |
+| CardinalityUpperBound                                        |      |      |      |      |
+| Upper bound of how many owningBucketOrds that an Aggregator will have to collect into. |      |      |      |      |
+| DelayedBucket<B extends InternalMultiBucketAggregation.InternalBucket> |      |      |      |      |
+| A wrapper around reducing buckets with the same key that can delay that reduction as long as possible. |      |      |      |      |
+| HasAggregations                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalAggregation                                          |      |      |      |      |
+| An internal implementation of Aggregation.                   |      |      |      |      |
+| InternalAggregation.ReduceContext                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalAggregation.ReduceContextBuilder                     |      |      |      |      |
+| Builds InternalAggregation.ReduceContext.                    |      |      |      |      |
+| InternalAggregations                                         |      |      |      |      |
+| An internal implementation of Aggregations.                  |      |      |      |      |
+| InternalMultiBucketAggregation<A extends InternalMultiBucketAggregation,B extends InternalMultiBucketAggregation.InternalBucket> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMultiBucketAggregation.InternalBucket                |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalOrder                                                |      |      |      |      |
+| Implementations for MultiBucketsAggregation.Bucket ordering strategies. |      |      |      |      |
+| InternalOrder.Aggregation                                    |      |      |      |      |
+| MultiBucketsAggregation.Bucket ordering strategy to sort by a sub-aggregation. |      |      |      |      |
+| InternalOrder.CompoundOrder                                  |      |      |      |      |
+| MultiBucketsAggregation.Bucket ordering strategy to sort by multiple criteria. |      |      |      |      |
+| InternalOrder.Parser                                         |      |      |      |      |
+| Contains logic for parsing a BucketOrder from a XContentParser. |      |      |      |      |
+| InternalOrder.Streams                                        |      |      |      |      |
+| Contains logic for reading/writing BucketOrder from/to streams. |      |      |      |      |
+| InvalidAggregationPathException                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| KeyComparable<T extends MultiBucketsAggregation.Bucket & KeyComparable<T>> |      |      |      |      |
+| Defines behavior for comparing bucket keys to imposes a total ordering of buckets of the same type. |      |      |      |      |
+| LeafBucketCollector                                          |      |      |      |      |
+| Collects results for a particular segment.                   |      |      |      |      |
+| LeafBucketCollectorBase                                      |      |      |      |      |
+| A LeafBucketCollector that delegates all calls to the sub leaf aggregator and sets the scorer on its source of values if it implements ScorerAware. |      |      |      |      |
+| MultiBucketCollector                                         |      |      |      |      |
+| A BucketCollector which allows running a bucket collection with several BucketCollectors. |      |      |      |      |
+| MultiBucketConsumerService                                   |      |      |      |      |
+| An aggregation service that creates instances of MultiBucketConsumerService.MultiBucketConsumer. |      |      |      |      |
+| MultiBucketConsumerService.MultiBucketConsumer               |      |      |      |      |
+| An IntConsumer that throws a MultiBucketConsumerService.TooManyBucketsException when the sum of the provided values is above the limit (`search.max_buckets`). |      |      |      |      |
+| MultiBucketConsumerService.TooManyBucketsException           |      |      |      |      |
+|                                                              |      |      |      |      |
+| NonCollectingAggregator                                      |      |      |      |      |
+| An aggregator that is not collected, this can typically be used when running an aggregation over a field that doesn't have a mapping. |      |      |      |      |
+| ParsedAggregation                                            |      |      |      |      |
+| An implementation of Aggregation that is parsed from a REST response. |      |      |      |      |
+| ParsedMultiBucketAggregation<B extends MultiBucketsAggregation.Bucket> |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedMultiBucketAggregation.ParsedBucket                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| PipelineAggregationBuilder                                   |      |      |      |      |
+| A factory that knows how to create an PipelineAggregator of a specific type. |      |      |      |      |
+| PipelineAggregationBuilder.ValidationContext                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| PipelineAggregatorBuilders                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| SearchContextAggregations                                    |      |      |      |      |
+| The aggregation context that is part of the search context.  |      |      |      |      |
+| TopBucketBuilder<B extends InternalMultiBucketAggregation.InternalBucket> |      |      |      |      |
+| Merges many buckets into the "top" buckets as sorted by BucketOrder. |      |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.search.aggregations.bucket
+
+
+
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| BestBucketsDeferringCollector                                |      |      |      |      |
+| A specialization of DeferringBucketCollector that collects all matches and then is able to replay a given subset of buckets which represent the survivors from a pruning process performed by the aggregator that owns this collector. |      |      |      |      |
+| BucketsAggregator                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketsAggregator.BucketBuilderForFixedCount<B>              |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketsAggregator.BucketBuilderForVariable<B>                |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketsAggregator.ResultBuilderForVariable<B>                |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketsAggregator.SingleBucketResultBuilder                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketUtils                                                  |      |      |      |      |
+| Helper functions for common Bucketing functions              |      |      |      |      |
+| DeferableBucketAggregator                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| DeferringBucketCollector                                     |      |      |      |      |
+| A BucketCollector that records collected doc IDs and buckets and allows to replay a subset of the collected buckets. |      |      |      |      |
+| DocCountProvider                                             |      |      |      |      |
+| An implementation of a doc_count provider that reads the value of the _doc_count field in the document. |      |      |      |      |
+| InternalSingleBucketAggregation                              |      |      |      |      |
+| A base class for all the single bucket aggregations.         |      |      |      |      |
+| IteratorAndCurrent<B extends InternalMultiBucketAggregation.InternalBucket> |      |      |      |      |
+|                                                              |      |      |      |      |
+| MultiBucketsAggregation                                      |      |      |      |      |
+| An aggregation that returns multiple buckets                 |      |      |      |      |
+| MultiBucketsAggregation.Bucket                               |      |      |      |      |
+| A bucket represents a criteria to which all documents that fall in it adhere to. |      |      |      |      |
+| ParsedSingleBucketAggregation                                |      |      |      |      |
+| A base class for all the single bucket aggregations.         |      |      |      |      |
+| SingleBucketAggregation                                      |      |      |      |      |
+| A single bucket aggregation                                  |      |      |      |      |
+| SingleBucketAggregator                                       |      |      |      |      |
+| A bucket aggregator that doesn't create new buckets.         |      |      |      |      |
 
 
 
@@ -3075,9 +3943,85 @@ org.elasticsearch.search.aggregations.bucket.adjacency
 
 
 
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| AdjacencyMatrix                                              |      |      |
+| A multi bucket aggregation where the buckets are defined by a set of filters (a bucket is produced per filter plus a bucket for each non-empty filter intersection so A, B and A&B). |      |      |
+| AdjacencyMatrix.Bucket                                       |      |      |
+| A bucket associated with a specific filter or pair (identified by its key) |      |      |
+| AdjacencyMatrixAggregationBuilder                            |      |      |
+|                                                              |      |      |
+| AdjacencyMatrixAggregator                                    |      |      |
+| Aggregation for adjacency matrices.                          |      |      |
+| AdjacencyMatrixAggregator.KeyedFilter                        |      |      |
+|                                                              |      |      |
+| AdjacencyMatrixAggregatorFactory                             |      |      |
+|                                                              |      |      |
+| InternalAdjacencyMatrix                                      |      |      |
+|                                                              |      |      |
+| InternalAdjacencyMatrix.InternalBucket                       |      |      |
+|                                                              |      |      |
+| ParsedAdjacencyMatrix                                        |      |      |
+|                                                              |      |      |
+| ParsedAdjacencyMatrix.ParsedBucket                           |      |      |
+
+
+
 
 
 org.elasticsearch.search.aggregations.bucket.composite
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| CompositeAggregation                                         |      |      |      |
+|                                                              |      |      |      |
+| CompositeAggregation.Bucket                                  |      |      |      |
+|                                                              |      |      |      |
+| CompositeAggregationBuilder                                  |      |      |      |
+|                                                              |      |      |      |
+| CompositeAggregator                                          |      |      |      |
+|                                                              |      |      |      |
+| CompositeValuesSourceBuilder<AB extends CompositeValuesSourceBuilder<AB>> |      |      |      |
+| A ValuesSource builder for CompositeAggregationBuilder       |      |      |      |
+| CompositeValuesSourceConfig                                  |      |      |      |
+|                                                              |      |      |      |
+| CompositeValuesSourceConfig.SingleDimensionValuesSourceProvider |      |      |      |
+|                                                              |      |      |      |
+| CompositeValuesSourceParserHelper                            |      |      |      |
+|                                                              |      |      |      |
+| DateHistogramValuesSource                                    |      |      |      |
+| A SingleDimensionValuesSource for date histogram values.     |      |      |      |
+| DateHistogramValuesSourceBuilder                             |      |      |      |
+| A CompositeValuesSourceBuilder that builds a RoundingValuesSource from a Script or a field name using the provided interval. |      |      |      |
+| DateHistogramValuesSourceBuilder.DateHistogramCompositeSupplier |      |      |      |
+|                                                              |      |      |      |
+| GeoTileGridValuesSourceBuilder                               |      |      |      |
+|                                                              |      |      |      |
+| GeoTileGridValuesSourceBuilder.GeoTileCompositeSuppier       |      |      |      |
+|                                                              |      |      |      |
+| HistogramValuesSourceBuilder                                 |      |      |      |
+| A CompositeValuesSourceBuilder that builds a HistogramValuesSource from another numeric values source using the provided interval. |      |      |      |
+| HistogramValuesSourceBuilder.HistogramCompositeSupplier      |      |      |      |
+|                                                              |      |      |      |
+| InternalComposite                                            |      |      |      |
+|                                                              |      |      |      |
+| InternalComposite.InternalBucket                             |      |      |      |
+|                                                              |      |      |      |
+| MissingOrder                                                 |      |      |      |
+|                                                              |      |      |      |
+| ParsedComposite                                              |      |      |      |
+|                                                              |      |      |      |
+| ParsedComposite.ParsedBucket                                 |      |      |      |
+|                                                              |      |      |      |
+| TermsValuesSourceBuilder                                     |      |      |      |
+| A CompositeValuesSourceBuilder that builds a ValuesSource from a Script or a field name. |      |      |      |
+| TermsValuesSourceBuilder.TermsCompositeSupplier              |      |      |      |
+
+
 
 
 
@@ -3087,9 +4031,116 @@ org.elasticsearch.search.aggregations.bucket.filter
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| Filter                                                       |      |      |      |
+| A filter aggregation.                                        |      |      |      |
+| FilterAggregationBuilder                                     |      |      |      |
+|                                                              |      |      |      |
+| FilterAggregator                                             |      |      |      |
+| Aggregate all docs that match a filter.                      |      |      |      |
+| FilterAggregatorFactory                                      |      |      |      |
+|                                                              |      |      |      |
+| FilterByFilterAggregator                                     |      |      |      |
+| Collects results by running each filter against the searcher and doesn't build any LeafBucketCollectors which is generally faster than FiltersAggregator.Compatible but doesn't support when there is a parent aggregator or any child aggregators. |      |      |      |
+| FilterByFilterAggregator.AdapterBuilder<T>                   |      |      |      |
+| Builds FilterByFilterAggregator when the filters are valid and it would be faster than a "native" aggregation implementation. |      |      |      |
+| Filters                                                      |      |      |      |
+| A multi bucket aggregation where the buckets are defined by a set of filters (a bucket per filter). |      |      |      |
+| Filters.Bucket                                               |      |      |      |
+| A bucket associated with a specific filter (identified by its key) |      |      |      |
+| FiltersAggregationBuilder                                    |      |      |      |
+|                                                              |      |      |      |
+| FiltersAggregator                                            |      |      |      |
+| Aggregator for filters.                                      |      |      |      |
+| FiltersAggregator.KeyedFilter                                |      |      |      |
+|                                                              |      |      |      |
+| FiltersAggregatorFactory                                     |      |      |      |
+|                                                              |      |      |      |
+| InternalFilter                                               |      |      |      |
+|                                                              |      |      |      |
+| InternalFilters                                              |      |      |      |
+|                                                              |      |      |      |
+| InternalFilters.InternalBucket                               |      |      |      |
+|                                                              |      |      |      |
+| MergedPointRangeQuery                                        |      |      |      |
+| Query merging two point in range queries.                    |      |      |      |
+| ParsedFilter                                                 |      |      |      |
+|                                                              |      |      |      |
+| ParsedFilters                                                |      |      |      |
+|                                                              |      |      |      |
+| ParsedFilters.ParsedBucket                                   |      |      |      |
+|                                                              |      |      |      |
+| QueryToFilterAdapter<Q extends org.apache.lucene.search.Query> |      |      |      |
+| Adapts a Lucene Query to the behaviors used be the FiltersAggregator. |      |      |      |
+
+
+
+
+
+
+
 
 
 org.elasticsearch.search.aggregations.bucket.geogrid
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| GeoGrid                                                      |      |      |      |
+| A geo-grid aggregation.                                      |      |      |      |
+| GeoGrid.Bucket                                               |      |      |      |
+| A bucket that is associated with a geo-grid cell.            |      |      |      |
+| GeoGridAggregationBuilder                                    |      |      |      |
+|                                                              |      |      |      |
+| GeoGridAggregationBuilder.PrecisionParser                    |      |      |      |
+|                                                              |      |      |      |
+| GeoGridAggregator<T extends InternalGeoGrid<?>>              |      |      |      |
+| Aggregates data expressed as longs (for efficiency's sake) but formats results as aggregation-specific strings. |      |      |      |
+| GeoHashCellIdSource                                          |      |      |      |
+| Class to help convert MultiGeoPointValues to GeoHash bucketing. |      |      |      |
+| GeoHashGridAggregationBuilder                                |      |      |      |
+|                                                              |      |      |      |
+| GeoHashGridAggregator                                        |      |      |      |
+| Aggregates data expressed as GeoHash longs (for efficiency's sake) but formats results as Geohash strings. |      |      |      |
+| GeoHashGridAggregatorFactory                                 |      |      |      |
+|                                                              |      |      |      |
+| GeoTileCellIdSource                                          |      |      |      |
+| Class to help convert MultiGeoPointValues to GeoTile bucketing. |      |      |      |
+| GeoTileGridAggregationBuilder                                |      |      |      |
+|                                                              |      |      |      |
+| GeoTileGridAggregator                                        |      |      |      |
+| Aggregates data expressed as geotile longs (for efficiency's sake) but formats results as geotile strings. |      |      |      |
+| GeoTileGridAggregatorFactory                                 |      |      |      |
+|                                                              |      |      |      |
+| GeoTileUtils                                                 |      |      |      |
+| Implements geotile key hashing, same as used by many map tile implementations. |      |      |      |
+| InternalGeoGrid<B extends InternalGeoGridBucket>             |      |      |      |
+| Represents a grid of cells where each cell's location is determined by a specific geo hashing algorithm. |      |      |      |
+| InternalGeoGridBucket                                        |      |      |      |
+|                                                              |      |      |      |
+| InternalGeoHashGrid                                          |      |      |      |
+| Represents a grid of cells where each cell's location is determined by a geohash. |      |      |      |
+| InternalGeoHashGridBucket                                    |      |      |      |
+|                                                              |      |      |      |
+| InternalGeoTileGrid                                          |      |      |      |
+| Represents a grid of cells where each cell's location is determined by a geohash. |      |      |      |
+| InternalGeoTileGridBucket                                    |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoGrid                                                |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoGridBucket                                          |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoHashGrid                                            |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoHashGridBucket                                      |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoTileGrid                                            |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoTileGridBucket                                      |      |      |      |
 
 
 
@@ -3099,13 +4150,144 @@ org.elasticsearch.search.aggregations.bucket.global
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| Global                                                       |      |      |      |
+| A global aggregation.                                        |      |      |      |
+| GlobalAggregationBuilder                                     |      |      |      |
+|                                                              |      |      |      |
+| GlobalAggregator                                             |      |      |      |
+|                                                              |      |      |      |
+| GlobalAggregatorFactory                                      |      |      |      |
+|                                                              |      |      |      |
+| InternalGlobal                                               |      |      |      |
+| A global scope get (the document set on which we aggregate is all documents in the search context (ie. |      |      |      |
+| ParsedGlobal                                                 |      |      |      |
+
+
+
 
 
 org.elasticsearch.search.aggregations.bucket.histogram
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractHistogramAggregator                                  |      |      |      |
+| Base class for functionality shared between aggregators for this histogram aggregation. |      |      |      |
+| AutoDateHistogramAggregationBuilder                          |      |      |      |
+|                                                              |      |      |      |
+| AutoDateHistogramAggregationBuilder.RoundingInfo             |      |      |      |
+|                                                              |      |      |      |
+| AutoDateHistogramAggregatorFactory                           |      |      |      |
+|                                                              |      |      |      |
+| AutoDateHistogramAggregatorSupplier                          |      |      |      |
+|                                                              |      |      |      |
+| DateHistogramAggregationBuilder                              |      |      |      |
+| A builder for histograms on date fields.                     |      |      |      |
+| DateHistogramAggregationSupplier                             |      |      |      |
+|                                                              |      |      |      |
+| DateHistogramAggregatorFactory                               |      |      |      |
+|                                                              |      |      |      |
+| DateHistogramInterval                                        |      |      |      |
+| The interval the date histogram is based on.                 |      |      |      |
+| DateIntervalConsumer<T>                                      |      |      |      |
+| A shared interface for aggregations that parse and use "interval" parameters. |      |      |      |
+| DateIntervalWrapper                                          |      |      |      |
+| A class that handles all the parsing, bwc and deprecations surrounding date histogram intervals. |      |      |      |
+| DateIntervalWrapper.IntervalTypeEnum                         |      |      |      |
+|                                                              |      |      |      |
+| DoubleBounds                                                 |      |      |      |
+| Represent hard_bounds and extended_bounds in histogram aggregations. |      |      |      |
+| Histogram                                                    |      |      |      |
+| A histogram aggregation.                                     |      |      |      |
+| Histogram.Bucket                                             |      |      |      |
+| A bucket in the histogram where documents fall in            |      |      |      |
+| HistogramAggregationBuilder                                  |      |      |      |
+| A builder for histograms on numeric fields.                  |      |      |      |
+| HistogramAggregatorFactory                                   |      |      |      |
+| Constructs the per-shard aggregator instance for histogram aggregation. |      |      |      |
+| HistogramAggregatorSupplier                                  |      |      |      |
+|                                                              |      |      |      |
+| HistogramFactory                                             |      |      |      |
+| Implemented by histogram aggregations and used by pipeline aggregations to insert buckets. |      |      |      |
+| InternalAutoDateHistogram                                    |      |      |      |
+| Implementation of Histogram.                                 |      |      |      |
+| InternalAutoDateHistogram.Bucket                             |      |      |      |
+|                                                              |      |      |      |
+| InternalDateHistogram                                        |      |      |      |
+| Implementation of Histogram.                                 |      |      |      |
+| InternalDateHistogram.Bucket                                 |      |      |      |
+|                                                              |      |      |      |
+| InternalHistogram                                            |      |      |      |
+| Implementation of Histogram.                                 |      |      |      |
+| InternalHistogram.Bucket                                     |      |      |      |
+|                                                              |      |      |      |
+| InternalHistogram.EmptyBucketInfo                            |      |      |      |
+|                                                              |      |      |      |
+| InternalVariableWidthHistogram                               |      |      |      |
+|                                                              |      |      |      |
+| InternalVariableWidthHistogram.Bucket                        |      |      |      |
+|                                                              |      |      |      |
+| InternalVariableWidthHistogram.Bucket.BucketBounds           |      |      |      |
+|                                                              |      |      |      |
+| LongBounds                                                   |      |      |      |
+| Represent hard_bounds and extended_bounds in date-histogram aggregations. |      |      |      |
+| NumericHistogramAggregator                                   |      |      |      |
+| An aggregator for numeric values.                            |      |      |      |
+| ParsedAutoDateHistogram                                      |      |      |      |
+|                                                              |      |      |      |
+| ParsedAutoDateHistogram.ParsedBucket                         |      |      |      |
+|                                                              |      |      |      |
+| ParsedDateHistogram                                          |      |      |      |
+|                                                              |      |      |      |
+| ParsedDateHistogram.ParsedBucket                             |      |      |      |
+|                                                              |      |      |      |
+| ParsedHistogram                                              |      |      |      |
+|                                                              |      |      |      |
+| ParsedVariableWidthHistogram                                 |      |      |      |
+|                                                              |      |      |      |
+| ParsedVariableWidthHistogram.ParsedBucket                    |      |      |      |
+|                                                              |      |      |      |
+| RangeHistogramAggregator                                     |      |      |      |
+|                                                              |      |      |      |
+| SizedBucketAggregator                                        |      |      |      |
+| An aggregator capable of reporting bucket sizes in requested units. |      |      |      |
+| SizedBucketAggregatorBuilder                                 |      |      |      |
+| An aggregator capable of reporting bucket sizes in milliseconds. |      |      |      |
+| VariableWidthHistogramAggregationBuilder                     |      |      |      |
+|                                                              |      |      |      |
+| VariableWidthHistogramAggregator                             |      |      |      |
+|                                                              |      |      |      |
+| VariableWidthHistogramAggregatorFactory                      |      |      |      |
+|                                                              |      |      |      |
+| VariableWidthHistogramAggregatorSupplier                     |      |      |      |
+
+
+
 org.elasticsearch.search.aggregations.bucket.missing
+
+
+
+| Class                     |      |      |      |
+| ------------------------- | ---- | ---- | ---- |
+| Description               |      |      |      |
+| InternalMissing           |      |      |      |
+|                           |      |      |      |
+| Missing                   |      |      |      |
+| A missing aggregation.    |      |      |      |
+| MissingAggregationBuilder |      |      |      |
+|                           |      |      |      |
+| MissingAggregator         |      |      |      |
+|                           |      |      |      |
+| MissingAggregatorFactory  |      |      |      |
+|                           |      |      |      |
+| MissingAggregatorSupplier |      |      |      |
+|                           |      |      |      |
+| ParsedMissing             |      |      |      |
 
 
 
@@ -3115,15 +4297,168 @@ org.elasticsearch.search.aggregations.bucket.nested
 
 
 
+| Class                                  |      |      |      |
+| -------------------------------------- | ---- | ---- | ---- |
+| Description                            |      |      |      |
+| InternalNested                         |      |      |      |
+| Result of the NestedAggregator.        |      |      |      |
+| InternalReverseNested                  |      |      |      |
+| Result of the ReverseNestedAggregator. |      |      |      |
+| Nested                                 |      |      |      |
+| A nested aggregation.                  |      |      |      |
+| NestedAggregationBuilder               |      |      |      |
+|                                        |      |      |      |
+| NestedAggregator                       |      |      |      |
+|                                        |      |      |      |
+| NestedAggregatorFactory                |      |      |      |
+|                                        |      |      |      |
+| ParsedNested                           |      |      |      |
+|                                        |      |      |      |
+| ParsedReverseNested                    |      |      |      |
+|                                        |      |      |      |
+| ReverseNested                          |      |      |      |
+| A reverse nested aggregation.          |      |      |      |
+| ReverseNestedAggregationBuilder        |      |      |      |
+|                                        |      |      |      |
+| ReverseNestedAggregator                |      |      |      |
+|                                        |      |      |      |
+| ReverseNestedAggregatorFactory         |      |      |      |
+
+
+
 
 
 org.elasticsearch.search.aggregations.bucket.range
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractRangeAggregatorFactory<R extends RangeAggregator.Range> |      |      |      |
+|                                                              |      |      |      |
+| AbstractRangeBuilder<AB extends AbstractRangeBuilder<AB,R>,R extends RangeAggregator.Range> |      |      |      |
+|                                                              |      |      |      |
+| BinaryRangeAggregator                                        |      |      |      |
+| A range aggregator for values that are stored in SORTED_SET doc values. |      |      |      |
+| BinaryRangeAggregator.Range                                  |      |      |      |
+|                                                              |      |      |      |
+| BinaryRangeAggregatorFactory                                 |      |      |      |
+|                                                              |      |      |      |
+| DateRangeAggregationBuilder                                  |      |      |      |
+|                                                              |      |      |      |
+| DateRangeAggregatorFactory                                   |      |      |      |
+|                                                              |      |      |      |
+| GeoDistanceAggregationBuilder                                |      |      |      |
+|                                                              |      |      |      |
+| GeoDistanceAggregationBuilder.Range                          |      |      |      |
+|                                                              |      |      |      |
+| GeoDistanceAggregatorSupplier                                |      |      |      |
+|                                                              |      |      |      |
+| GeoDistanceRangeAggregatorFactory                            |      |      |      |
+|                                                              |      |      |      |
+| InternalBinaryRange                                          |      |      |      |
+| A range aggregation for data that is encoded in doc values using a binary representation. |      |      |      |
+| InternalBinaryRange.Bucket                                   |      |      |      |
+|                                                              |      |      |      |
+| InternalDateRange                                            |      |      |      |
+|                                                              |      |      |      |
+| InternalDateRange.Bucket                                     |      |      |      |
+|                                                              |      |      |      |
+| InternalDateRange.Factory                                    |      |      |      |
+|                                                              |      |      |      |
+| InternalGeoDistance                                          |      |      |      |
+|                                                              |      |      |      |
+| InternalGeoDistance.Factory                                  |      |      |      |
+|                                                              |      |      |      |
+| InternalRange<B extends InternalRange.Bucket,R extends InternalRange<B,R>> |      |      |      |
+|                                                              |      |      |      |
+| InternalRange.Bucket                                         |      |      |      |
+|                                                              |      |      |      |
+| InternalRange.Factory<B extends InternalRange.Bucket,R extends InternalRange<B,R>> |      |      |      |
+|                                                              |      |      |      |
+| IpRangeAggregationBuilder                                    |      |      |      |
+|                                                              |      |      |      |
+| IpRangeAggregationBuilder.Range                              |      |      |      |
+|                                                              |      |      |      |
+| IpRangeAggregatorSupplier                                    |      |      |      |
+|                                                              |      |      |      |
+| ParsedBinaryRange                                            |      |      |      |
+|                                                              |      |      |      |
+| ParsedBinaryRange.ParsedBucket                               |      |      |      |
+|                                                              |      |      |      |
+| ParsedDateRange                                              |      |      |      |
+|                                                              |      |      |      |
+| ParsedDateRange.ParsedBucket                                 |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoDistance                                            |      |      |      |
+|                                                              |      |      |      |
+| ParsedGeoDistance.ParsedBucket                               |      |      |      |
+|                                                              |      |      |      |
+| ParsedRange                                                  |      |      |      |
+|                                                              |      |      |      |
+| ParsedRange.ParsedBucket                                     |      |      |      |
+|                                                              |      |      |      |
+| Range                                                        |      |      |      |
+| A range aggregation.                                         |      |      |      |
+| Range.Bucket                                                 |      |      |      |
+| A bucket associated with a specific range                    |      |      |      |
+| RangeAggregationBuilder                                      |      |      |      |
+|                                                              |      |      |      |
+| RangeAggregator                                              |      |      |      |
+| Aggregator for range.                                        |      |      |      |
+| RangeAggregator.Range                                        |      |      |      |
+|                                                              |      |      |      |
+| RangeAggregator.Unmapped<R extends RangeAggregator.Range>    |      |      |      |
+|                                                              |      |      |      |
+| RangeAggregatorFactory                                       |      |      |      |
+|                                                              |      |      |      |
+| RangeAggregatorSupplier                                      |      |      |      |
+
+
+
+
+
 
 
 org.elasticsearch.search.aggregations.bucket.sampler
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| BestDocsDeferringCollector                                   |      |      |      |
+| A specialization of DeferringBucketCollector that collects all matches and then replays only the top scoring documents to child aggregations. |      |      |      |
+| DiversifiedAggregationBuilder                                |      |      |      |
+|                                                              |      |      |      |
+| DiversifiedAggregatorFactory                                 |      |      |      |
+|                                                              |      |      |      |
+| DiversifiedAggregatorSupplier                                |      |      |      |
+|                                                              |      |      |      |
+| DiversifiedBytesHashSamplerAggregator                        |      |      |      |
+| Alternative, faster implementation for converting String keys to longs but with the potential for hash collisions. |      |      |      |
+| DiversifiedMapSamplerAggregator                              |      |      |      |
+|                                                              |      |      |      |
+| DiversifiedNumericSamplerAggregator                          |      |      |      |
+|                                                              |      |      |      |
+| DiversifiedOrdinalsSamplerAggregator                         |      |      |      |
+|                                                              |      |      |      |
+| InternalSampler                                              |      |      |      |
+|                                                              |      |      |      |
+| ParsedSampler                                                |      |      |      |
+|                                                              |      |      |      |
+| Sampler                                                      |      |      |      |
+| A filter aggregation that defines a single bucket to hold a sample of top-matching documents. |      |      |      |
+| SamplerAggregationBuilder                                    |      |      |      |
+|                                                              |      |      |      |
+| SamplerAggregator                                            |      |      |      |
+| Aggregate on only the top-scoring docs on a shard.           |      |      |      |
+| SamplerAggregator.ExecutionMode                              |      |      |      |
+|                                                              |      |      |      |
+| SamplerAggregatorFactory                                     |      |      |      |
+|                                                              |      |      |      |
+| UnmappedSampler                                              |      |      |      |
 
 
 
@@ -3135,7 +4470,248 @@ org.elasticsearch.search.aggregations.bucket.terms
 
 
 
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| AbstractInternalTerms<A extends AbstractInternalTerms<A,B>,B extends AbstractInternalTerms.AbstractTermsBucket> |      |      |      |      |
+| Base class for terms and multi_terms aggregation that handles common reduce logic |      |      |      |      |
+| AbstractInternalTerms.AbstractTermsBucket                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| AbstractRareTermsAggregator                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketPriorityQueue<B>                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| BucketSignificancePriorityQueue<B extends SignificantTerms.Bucket> |      |      |      |      |
+|                                                              |      |      |      |      |
+| BytesKeyedBucketOrds                                         |      |      |      |      |
+| Maps BytesRef bucket keys to bucket ordinals.                |      |      |      |      |
+| BytesKeyedBucketOrds.BucketOrdsEnum                          |      |      |      |      |
+| An iterator for buckets inside a particular owningBucketOrd. |      |      |      |      |
+| DoubleTerms                                                  |      |      |      |      |
+| Result of the TermsAggregator when the field is some kind of decimal number like a float, double, or distance. |      |      |      |      |
+| GlobalOrdinalsStringTermsAggregator                          |      |      |      |      |
+| An aggregator of string values that relies on global ordinals in order to build buckets. |      |      |      |      |
+| GlobalOrdinalsStringTermsAggregator.GlobalOrdLookupFunction  |      |      |      |      |
+|                                                              |      |      |      |      |
+| IncludeExclude                                               |      |      |      |      |
+| Defines the include/exclude regular expression filtering for string terms aggregation. |      |      |      |      |
+| IncludeExclude.Filter                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| IncludeExclude.LongFilter                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| IncludeExclude.OrdinalsFilter                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| IncludeExclude.SetBackedLongFilter                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| IncludeExclude.StringFilter                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMappedRareTerms<A extends InternalRareTerms<A,B>,B extends InternalRareTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMappedSignificantTerms<A extends InternalMappedSignificantTerms<A,B>,B extends InternalSignificantTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMappedTerms<A extends InternalTerms<A,B>,B extends InternalTerms.Bucket<B>> |      |      |      |      |
+| Common superclass for results of the terms aggregation on mapped fields. |      |      |      |      |
+| InternalRareTerms<A extends InternalRareTerms<A,B>,B extends InternalRareTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalRareTerms.Bucket<B extends InternalRareTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalRareTerms.Bucket.Reader<B extends InternalRareTerms.Bucket<B>> |      |      |      |      |
+| Reads a bucket.                                              |      |      |      |      |
+| InternalSignificantTerms<A extends InternalSignificantTerms<A,B>,B extends InternalSignificantTerms.Bucket<B>> |      |      |      |      |
+| Result of the significant terms aggregation.                 |      |      |      |      |
+| InternalSignificantTerms.Bucket<B extends InternalSignificantTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalSignificantTerms.Bucket.Reader<B extends InternalSignificantTerms.Bucket<B>> |      |      |      |      |
+| Reads a bucket.                                              |      |      |      |      |
+| InternalTerms<A extends InternalTerms<A,B>,B extends InternalTerms.Bucket<B>> |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTerms.Bucket<B extends InternalTerms.Bucket<B>>      |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTerms.Bucket.Reader<B extends InternalTerms.Bucket<B>> |      |      |      |      |
+| Reads a bucket.                                              |      |      |      |      |
+| LongKeyedBucketOrds                                          |      |      |      |      |
+| Maps owning bucket ordinals and long bucket keys to bucket ordinals. |      |      |      |      |
+| LongKeyedBucketOrds.BucketOrdsEnum                           |      |      |      |      |
+| An iterator for buckets inside a particular owningBucketOrd. |      |      |      |      |
+| LongKeyedBucketOrds.FromMany                                 |      |      |      |      |
+| Implementation that works properly when collecting from many buckets. |      |      |      |      |
+| LongKeyedBucketOrds.FromManySmall                            |      |      |      |      |
+| Implementation that packs the owningbucketOrd into the top bits of a long and uses the bottom bits for the value. |      |      |      |      |
+| LongKeyedBucketOrds.FromSingle                               |      |      |      |      |
+| Implementation that only works if it is collecting from a single bucket. |      |      |      |      |
+| LongRareTerms                                                |      |      |      |      |
+| Result of the RareTerms aggregation when the field is some kind of whole number like a integer, long, or a date. |      |      |      |      |
+| LongRareTerms.Bucket                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| LongRareTermsAggregator                                      |      |      |      |      |
+| An aggregator that finds "rare" string values (e.g.          |      |      |      |      |
+| LongTerms                                                    |      |      |      |      |
+| Result of the TermsAggregator when the field is some kind of whole number like a integer, long, or a date. |      |      |      |      |
+| LongTerms.Bucket                                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| MapStringTermsAggregator                                     |      |      |      |      |
+| An aggregator of string values that hashes the strings on the fly rather than up front like the GlobalOrdinalsStringTermsAggregator. |      |      |      |      |
+| MapStringTermsAggregator.CollectConsumer                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| MapStringTermsAggregator.CollectorSource                     |      |      |      |      |
+| Abstraction on top of building collectors to fetch values so terms, significant_terms, and significant_text can share a bunch of aggregation code. |      |      |      |      |
+| MapStringTermsAggregator.ValuesSourceCollectorSource         |      |      |      |      |
+| Fetch values from a ValuesSource.                            |      |      |      |      |
+| NumericTermsAggregator                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedDoubleTerms                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedDoubleTerms.ParsedBucket                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedLongRareTerms                                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedLongRareTerms.ParsedBucket                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedLongTerms                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedLongTerms.ParsedBucket                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedRareTerms                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedRareTerms.ParsedBucket                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantLongTerms                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantLongTerms.ParsedBucket                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantStringTerms                                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantStringTerms.ParsedBucket                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantTerms                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedSignificantTerms.ParsedBucket                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedStringRareTerms                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedStringRareTerms.ParsedBucket                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedStringTerms                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedStringTerms.ParsedBucket                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedTerms                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| ParsedTerms.ParsedBucket                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| RareTerms                                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| RareTerms.Bucket                                             |      |      |      |      |
+| A bucket that is associated with a single term               |      |      |      |      |
+| RareTermsAggregationBuilder                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| RareTermsAggregatorFactory                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| RareTermsAggregatorFactory.ExecutionMode                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantLongTerms                                         |      |      |      |      |
+| Result of the running the significant terms aggregation on a numeric field. |      |      |      |      |
+| SignificantLongTerms.Bucket                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantStringTerms                                       |      |      |      |      |
+| Result of the running the significant terms aggregation on a String field. |      |      |      |      |
+| SignificantStringTerms.Bucket                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTerms                                             |      |      |      |      |
+| An aggregation that collects significant terms in comparison to a background set. |      |      |      |      |
+| SignificantTerms.Bucket                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTermsAggregationBuilder                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTermsAggregatorFactory                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTermsAggregatorFactory.ExecutionMode              |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTextAggregationBuilder                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| SignificantTextAggregatorFactory                             |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringRareTerms                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringRareTerms.Bucket                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringRareTermsAggregator                                    |      |      |      |      |
+| An aggregator that finds "rare" string values (e.g.          |      |      |      |      |
+| StringTerms                                                  |      |      |      |      |
+| Result of the TermsAggregator when the field is a String.    |      |      |      |      |
+| StringTerms.Bucket                                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| StringTermsAggregatorFromFilters                             |      |      |      |      |
+| Adapts a terms aggregation into a filters aggregation.       |      |      |      |      |
+| Terms                                                        |      |      |      |      |
+| A terms aggregation.                                         |      |      |      |      |
+| Terms.Bucket                                                 |      |      |      |      |
+| A bucket that is associated with a single term               |      |      |      |      |
+| TermsAggregationBuilder                                      |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsAggregator                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsAggregator.BucketCountThresholds                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsAggregatorFactory                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| TermsAggregatorFactory.ExecutionMode                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| UnmappedRareTerms                                            |      |      |      |      |
+| Result of the RareTerms aggregation when the field is unmapped. |      |      |      |      |
+| UnmappedRareTerms.Bucket                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| UnmappedSignificantTerms                                     |      |      |      |      |
+| Result of the running the significant terms aggregation on an unmapped field. |      |      |      |      |
+| UnmappedSignificantTerms.Bucket                              |      |      |      |      |
+| Concrete type that can't be built because Java needs a concrete type so InternalTerms.Bucket can have a self type but UnmappedTerms doesn't ever need to build it because it never returns any buckets. |      |      |      |      |
+| UnmappedTerms                                                |      |      |      |      |
+| Result of the TermsAggregator when the field is unmapped.    |      |      |      |      |
+| UnmappedTerms.Bucket                                         |      |      |      |      |
+| Concrete type that can't be built because Java needs a concrete type so InternalTerms.Bucket can have a self type but UnmappedTerms doesn't ever need to build it because it never returns any buckets. |      |      |      |      |
+
+
+
+
+
 org.elasticsearch.search.aggregations.bucket.terms.heuristic
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ChiSquare                                                    |      |      |      |
+|                                                              |      |      |      |
+| ChiSquare.ChiSquareBuilder                                   |      |      |      |
+|                                                              |      |      |      |
+| GND                                                          |      |      |      |
+|                                                              |      |      |      |
+| GND.GNDBuilder                                               |      |      |      |
+|                                                              |      |      |      |
+| JLHScore                                                     |      |      |      |
+|                                                              |      |      |      |
+| JLHScore.JLHScoreBuilder                                     |      |      |      |
+|                                                              |      |      |      |
+| MutualInformation                                            |      |      |      |
+|                                                              |      |      |      |
+| MutualInformation.MutualInformationBuilder                   |      |      |      |
+|                                                              |      |      |      |
+| NXYSignificanceHeuristic                                     |      |      |      |
+|                                                              |      |      |      |
+| NXYSignificanceHeuristic.Frequencies                         |      |      |      |
+|                                                              |      |      |      |
+| NXYSignificanceHeuristic.NXYBuilder                          |      |      |      |
+|                                                              |      |      |      |
+| PercentageScore                                              |      |      |      |
+|                                                              |      |      |      |
+| PercentageScore.PercentageScoreBuilder                       |      |      |      |
+|                                                              |      |      |      |
+| ScriptHeuristic                                              |      |      |      |
+|                                                              |      |      |      |
+| SignificanceHeuristic                                        |      |      |      |
+| Heuristic for that SignificantTerms uses to pick out significant terms. |      |      |      |
+| SignificanceHeuristicBuilder                                 |      |      |      |
+
+
 
 
 
@@ -3145,7 +4721,251 @@ org.elasticsearch.search.aggregations.metrics
 
 
 
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| AbstractHyperLogLog                                          |      |      |      |      |
+| Hyperloglog counter, implemented based on pseudo code from http://static.googleusercontent.com/media/research.google.com/fr//pubs/archive/40671.pdf and its appendix https://docs.google.com/document/d/1gyjfMHy43U9OWBXxfaeG-3MjGzejW1dlpyMwEYAAWEI/view?fullscreen Trying to understand what this class does without having read the paper is considered adventurous. |      |      |      |      |
+| AbstractHyperLogLog.RunLenIterator                           |      |      |      |      |
+| Iterator over a HyperLogLog register                         |      |      |      |      |
+| AbstractHyperLogLogPlusPlus                                  |      |      |      |      |
+| Base class for HLL++ algorithms.                             |      |      |      |      |
+| AbstractLinearCounting                                       |      |      |      |      |
+| Linear counter, implemented based on pseudo code from http://static.googleusercontent.com/media/research.google.com/fr//pubs/archive/40671.pdf and its appendix https://docs.google.com/document/d/1gyjfMHy43U9OWBXxfaeG-3MjGzejW1dlpyMwEYAAWEI/view?fullscreen Trying to understand what this class does without having read the paper is considered adventurous. |      |      |      |      |
+| AbstractLinearCounting.HashesIterator                        |      |      |      |      |
+| Iterator over the hash values                                |      |      |      |      |
+| AbstractPercentilesAggregationBuilder<T extends AbstractPercentilesAggregationBuilder<T>> |      |      |      |      |
+| This provides a base class for aggregations that are building percentiles or percentiles-like functionality (e.g. |      |      |      |      |
+| Avg                                                          |      |      |      |      |
+| An aggregation that computes the average of the values in the current bucket. |      |      |      |      |
+| AvgAggregationBuilder                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| Cardinality                                                  |      |      |      |      |
+| An aggregation that computes approximate numbers of unique terms. |      |      |      |      |
+| CardinalityAggregationBuilder                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| CardinalityAggregator                                        |      |      |      |      |
+| An aggregator that computes approximate counts of unique values. |      |      |      |      |
+| CardinalityAggregatorSupplier                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| CompensatedSum                                               |      |      |      |      |
+| Used to calculate sums using the Kahan summation algorithm.  |      |      |      |      |
+| ExtendedStats                                                |      |      |      |      |
+| Statistics over a set of values (either aggregated over field data or scripts) |      |      |      |      |
+| ExtendedStats.Bounds                                         |      |      |      |      |
+|                                                              |      |      |      |      |
+| ExtendedStatsAggregationBuilder                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| ExtendedStatsAggregatorProvider                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoBounds                                                    |      |      |      |      |
+| An aggregation that computes a bounding box in which all documents of the current bucket are. |      |      |      |      |
+| GeoBoundsAggregationBuilder                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoBoundsAggregatorSupplier                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoCentroid                                                  |      |      |      |      |
+| Interface for GeoCentroidAggregator                          |      |      |      |      |
+| GeoCentroidAggregationBuilder                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| GeoGridAggregatorSupplier                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| GlobalOrdCardinalityAggregator                               |      |      |      |      |
+| An aggregator that computes approximate counts of unique values using global ords. |      |      |      |      |
+| HyperLogLogPlusPlus                                          |      |      |      |      |
+| Hyperloglog++ counter, implemented based on pseudo code from http://static.googleusercontent.com/media/research.google.com/fr//pubs/archive/40671.pdf and its appendix https://docs.google.com/document/d/1gyjfMHy43U9OWBXxfaeG-3MjGzejW1dlpyMwEYAAWEI/view?fullscreen This implementation is different from the original implementation in that it uses a hash table instead of a sorted list for linear counting. |      |      |      |      |
+| InternalAvg                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalCardinality                                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalExtendedStats                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalGeoBounds                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalGeoCentroid                                          |      |      |      |      |
+| Serialization and merge logic for GeoCentroidAggregator.     |      |      |      |      |
+| InternalHDRPercentileRanks                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalHDRPercentileRanks.Iter                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalHDRPercentiles                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalHDRPercentiles.Iter                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMax                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMedianAbsoluteDeviation                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMin                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalMultiValueAggregation                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalNumericMetricsAggregation                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalNumericMetricsAggregation.MultiValue                 |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalNumericMetricsAggregation.SingleValue                |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalScriptedMetric                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalStats                                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalSum                                                  |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTDigestPercentileRanks                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTDigestPercentileRanks.Iter                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTDigestPercentiles                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTDigestPercentiles.Iter                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| InternalTopHits                                              |      |      |      |      |
+| Results of the TopHitsAggregator.                            |      |      |      |      |
+| InternalValueCount                                           |      |      |      |      |
+| An internal implementation of ValueCount.                    |      |      |      |      |
+| InternalWeightedAvg                                          |      |      |      |      |
+|                                                              |      |      |      |      |
+| Max                                                          |      |      |      |      |
+| An aggregation that computes the maximum of the values in the current bucket. |      |      |      |      |
+| MaxAggregationBuilder                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| MedianAbsoluteDeviation                                      |      |      |      |      |
+| An aggregation that approximates the median absolute deviation of a numeric field |      |      |      |      |
+| MedianAbsoluteDeviationAggregationBuilder                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| MedianAbsoluteDeviationAggregator                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| MedianAbsoluteDeviationAggregatorFactory                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| MedianAbsoluteDeviationAggregatorSupplier                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| MetricAggregatorSupplier                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| MetricInspectionHelper                                       |      |      |      |      |
+| Counterpart to AggregationInspectionHelper, providing helpers for some aggs that have package-private getters. |      |      |      |      |
+| MetricsAggregator                                            |      |      |      |      |
+|                                                              |      |      |      |      |
+| Min                                                          |      |      |      |      |
+| An aggregation that computes the minimum of the values in the current bucket. |      |      |      |      |
+| MinAggregationBuilder                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| MinAggregator                                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| MultiValueAggregation                                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| NumericMetricsAggregation                                    |      |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.search.aggregations.pipeline
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractPipelineAggregationBuilder<PAB extends AbstractPipelineAggregationBuilder<PAB>> |      |      |      |
+| Base implementation of a PipelineAggregationBuilder.         |      |      |      |
+| AvgBucketPipelineAggregationBuilder                          |      |      |      |
+|                                                              |      |      |      |
+| AvgBucketPipelineAggregator                                  |      |      |      |
+|                                                              |      |      |      |
+| BucketHelpers                                                |      |      |      |
+| A set of static helpers to simplify working with aggregation buckets, in particular providing utilities that help pipeline aggregations. |      |      |      |
+| BucketHelpers.GapPolicy                                      |      |      |      |
+| A gap policy determines how "holes" in a set of buckets should be handled. |      |      |      |
+| BucketMetricsParser                                          |      |      |      |
+| A parser for parsing requests for a BucketMetricsPipelineAggregator |      |      |      |
+| BucketMetricsPipelineAggregationBuilder<AF extends BucketMetricsPipelineAggregationBuilder<AF>> |      |      |      |
+|                                                              |      |      |      |
+| BucketMetricsPipelineAggregator                              |      |      |      |
+| A class of sibling pipeline aggregations which calculate metrics across the buckets of a sibling aggregation |      |      |      |
+| BucketMetricValue                                            |      |      |      |
+|                                                              |      |      |      |
+| BucketScriptPipelineAggregationBuilder                       |      |      |      |
+|                                                              |      |      |      |
+| BucketScriptPipelineAggregator                               |      |      |      |
+|                                                              |      |      |      |
+| BucketSelectorPipelineAggregationBuilder                     |      |      |      |
+|                                                              |      |      |      |
+| BucketSelectorPipelineAggregator                             |      |      |      |
+|                                                              |      |      |      |
+| BucketSortPipelineAggregationBuilder                         |      |      |      |
+| Builds a pipeline aggregation that allows sorting the buckets of its parent aggregation. |      |      |      |
+| BucketSortPipelineAggregator                                 |      |      |      |
+|                                                              |      |      |      |
+| CumulativeSumPipelineAggregationBuilder                      |      |      |      |
+|                                                              |      |      |      |
+| CumulativeSumPipelineAggregator                              |      |      |      |
+|                                                              |      |      |      |
+| Derivative                                                   |      |      |      |
+|                                                              |      |      |      |
+| DerivativePipelineAggregationBuilder                         |      |      |      |
+|                                                              |      |      |      |
+| DerivativePipelineAggregator                                 |      |      |      |
+|                                                              |      |      |      |
+| EwmaModel                                                    |      |      |      |
+| Calculate a exponentially weighted moving average            |      |      |      |
+| EwmaModel.EWMAModelBuilder                                   |      |      |      |
+|                                                              |      |      |      |
+| ExtendedStatsBucket                                          |      |      |      |
+| Extended Statistics over a set of buckets                    |      |      |      |
+| ExtendedStatsBucketParser                                    |      |      |      |
+|                                                              |      |      |      |
+| ExtendedStatsBucketPipelineAggregationBuilder                |      |      |      |
+|                                                              |      |      |      |
+| ExtendedStatsBucketPipelineAggregator                        |      |      |      |
+|                                                              |      |      |      |
+| HoltLinearModel                                              |      |      |      |
+| Calculate a doubly exponential weighted moving average       |      |      |      |
+| HoltLinearModel.HoltLinearModelBuilder                       |      |      |      |
+|                                                              |      |      |      |
+| HoltWintersModel                                             |      |      |      |
+| Calculate a triple exponential weighted moving average       |      |      |      |
+| HoltWintersModel.HoltWintersModelBuilder                     |      |      |      |
+|                                                              |      |      |      |
+| HoltWintersModel.SeasonalityType                             |      |      |      |
+|                                                              |      |      |      |
+| InternalBucketMetricValue                                    |      |      |      |
+|                                                              |      |      |      |
+| InternalDerivative                                           |      |      |      |
+|                                                              |      |      |      |
+| InternalExtendedStatsBucket                                  |      |      |      |
+|                                                              |      |      |      |
+| InternalPercentilesBucket                                    |      |      |      |
+|                                                              |      |      |      |
+| InternalPercentilesBucket.Iter                               |      |      |      |
+|                                                              |      |      |      |
+| InternalSimpleValue                                          |      |      |      |
+|                                                              |      |      |      |
+| InternalStatsBucket                                          |      |      |      |
+|                                                              |      |      |      |
+| LinearModel                                                  |      |      |      |
+| Calculate a linearly weighted moving average, such that older values are linearly less important. |      |      |      |
+| LinearModel.LinearModelBuilder                               |      |      |      |
+|                                                              |      |      |      |
+| MaxBucketPipelineAggregationBuilder                          |      |      |      |
+|                                                              |      |      |      |
+| MaxBucketPipelineAggregator                                  |      |      |      |
+|                                                              |      |      |      |
+| MinBucketPipelineAggregationBuilder                          |      |      |      |
+|                                                              |      |      |      |
+| MinBucketPipelineAggregator                                  |      |      |      |
+|                                                              |      |      |      |
+| MovAvgModel                                                  |      |      |      |
+|                                                              |      |      |      |
+| MovAvgModel.AbstractModelParser                              |      |      |      |
+| Abstract class which also provides some concrete parsing functionality. |      |      |      |
+| MovAvgModelBuilder                                           |      |      |      |
+| Represents the common interface that all moving average models share. |      |      |      |
+| MovAvgPipelineAggregationBuilder                             |      |      |      |
+
+
 
 
 
@@ -3155,9 +4975,118 @@ org.elasticsearch.search.aggregations.support
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AggregationContext                                           |      |      |      |
+| Everything used to build and execute aggregations and the data sources that power them. |      |      |      |
+| AggregationContext.ProductionAggregationContext              |      |      |      |
+| Implementation of AggregationContext for production usage that wraps our ubiquitous SearchExecutionContext and anything else specific to aggregations. |      |      |      |
+| AggregationInfo                                              |      |      |      |
+|                                                              |      |      |      |
+| AggregationInspectionHelper                                  |      |      |      |
+| Provides a set of static helpers to determine if a particular type of InternalAggregation "has a value" or not. |      |      |      |
+| AggregationPath                                              |      |      |      |
+| A path that can be used to sort/order buckets (in some multi-bucket aggregations, e.g. |      |      |      |
+| AggregationPath.PathElement                                  |      |      |      |
+|                                                              |      |      |      |
+| AggregationUsageService                                      |      |      |      |
+|                                                              |      |      |      |
+| AggregationUsageService.Builder                              |      |      |      |
+|                                                              |      |      |      |
+| CoreValuesSourceType                                         |      |      |      |
+| CoreValuesSourceType holds the ValuesSourceType implementations for the core aggregations package. |      |      |      |
+| FieldContext                                                 |      |      |      |
+| Used by all field data based aggregators.                    |      |      |      |
+| MissingValues                                                |      |      |      |
+| Utility class that allows to return views of ValuesSources that replace the missing value with a configured value. |      |      |      |
+| MultiValuesSource<VS extends ValuesSource>                   |      |      |      |
+| Class to encapsulate a set of ValuesSource objects labeled by field name |      |      |      |
+| MultiValuesSource.NumericMultiValuesSource                   |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceAggregationBuilder<AB extends MultiValuesSourceAggregationBuilder<AB>> |      |      |      |
+| Similar to ValuesSourceAggregationBuilder, except it references multiple ValuesSources (e.g. |      |      |      |
+| MultiValuesSourceAggregationBuilder.LeafOnly<AB extends MultiValuesSourceAggregationBuilder<AB>> |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceAggregatorFactory                           |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceFieldConfig                                 |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceFieldConfig.Builder                         |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceFieldConfig.ParserBuilder                   |      |      |      |
+|                                                              |      |      |      |
+| MultiValuesSourceParseHelper                                 |      |      |      |
+|                                                              |      |      |      |
+| ValuesSource                                                 |      |      |      |
+| A unified interface to different ways of getting input data for Aggregators like DocValues from Lucene or script output. |      |      |      |
+| ValuesSource.Bytes                                           |      |      |      |
+| ValuesSource for fields who's values are best thought of as byte arrays without any other meaning like keyword or ip. |      |      |      |
+| ValuesSource.Bytes.FieldData                                 |      |      |      |
+|                                                              |      |      |      |
+| ValuesSource.Bytes.Script                                    |      |      |      |
+| ValuesSource implementation for stand alone scripts returning a Bytes value |      |      |      |
+| ValuesSource.Bytes.WithOrdinals                              |      |      |      |
+| Specialization of ValuesSource.Bytes who's underlying storage de-duplicates its bytes by storing them in a per-leaf sorted lookup table. |      |      |      |
+| ValuesSource.Bytes.WithOrdinals.FieldData                    |      |      |      |
+|                                                              |      |      |      |
+| ValuesSource.Bytes.WithScript                                |      |      |      |
+| ValuesSource subclass for Bytes fields with a Value Script applied |      |      |      |
+| ValuesSource.GeoPoint                                        |      |      |      |
+| ValuesSource for fields who's values are best thought of as points on a globe. |      |      |      |
+| ValuesSource.GeoPoint.Fielddata                              |      |      |      |
+|                                                              |      |      |      |
+| ValuesSource.Numeric                                         |      |      |      |
+| ValuesSource for fields who's values are best thought of as numbers. |      |      |      |
+| ValuesSource.Numeric.FieldData                               |      |      |      |
+|                                                              |      |      |      |
+| ValuesSource.Numeric.Script                                  |      |      |      |
+| ValuesSource implementation for stand alone scripts returning a Numeric value |      |      |      |
+| ValuesSource.Numeric.WithScript                              |      |      |      |
+| ValuesSource subclass for Numeric fields with a Value Script applied |      |      |      |
+| ValuesSource.Range                                           |      |      |      |
+| ValuesSource for fields who's values are best thought of as ranges of numbers, dates, or IP addresses. |      |      |      |
+| ValuesSourceAggregationBuilder<AB extends ValuesSourceAggregationBuilder<AB>> |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceAggregationBuilder.LeafOnly<VS extends ValuesSource,AB extends ValuesSourceAggregationBuilder<AB>> |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceAggregationBuilder.MetricsAggregationBuilder<VS extends ValuesSource,AB extends ValuesSourceAggregationBuilder<AB>> |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceAggregationBuilder.SingleMetricAggregationBuilder<VS extends ValuesSource,AB extends ValuesSourceAggregationBuilder<AB>> |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceAggregatorFactory                                |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceConfig                                           |      |      |      |
+| A configuration that tells aggregations how to retrieve data from the index in order to run a specific aggregation. |      |      |      |
+| ValuesSourceRegistry                                         |      |      |      |
+| ValuesSourceRegistry holds the mapping from ValuesSourceTypes to functions for building aggregation components. |      |      |      |
+| ValuesSourceRegistry.Builder                                 |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceRegistry.RegistryKey<T>                          |      |      |      |
+|                                                              |      |      |      |
+| ValuesSourceType                                             |      |      |      |
+| ValuesSourceType represents a collection of fields that share a common set of operations, for example all numeric fields. |      |      |      |
+| ValueType                                                    |      |      |      |
+
+
+
+
+
 
 
 org.elasticsearch.search.aggregations.support.values
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ScriptBytesValues                                            |      |      |      |
+| SortedBinaryDocValues implementation that reads values from a script. |      |      |      |
+| ScriptDoubleValues                                           |      |      |      |
+| SortingNumericDoubleValues implementation which is based on a script |      |      |      |
+| ScriptLongValues                                             |      |      |      |
+| LongValues implementation which is based on a script         |      |      |      |
 
 
 
@@ -3167,9 +5096,36 @@ org.elasticsearch.search.builder
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| PointInTimeBuilder                                           |      |      |      |
+| A search request with a point in time will execute using the reader contexts associated with that point time instead of the latest reader contexts. |      |      |      |
+| SearchSourceBuilder                                          |      |      |      |
+| A search source builder allowing to easily build search source. |      |      |      |
+| SearchSourceBuilder.IndexBoost                               |      |      |      |
+|                                                              |      |      |      |
+| SearchSourceBuilder.ScriptField                              |      |      |      |
+|                                                              |      |      |      |
+| SearchSourceBuilderException                                 |      |      |      |
+
+
+
 
 
 org.elasticsearch.search.collapse
+
+
+
+| Class                                                      |      |      |      |
+| ---------------------------------------------------------- | ---- | ---- | ---- |
+| Description                                                |      |      |      |
+| CollapseBuilder                                            |      |      |      |
+| A builder that enables field collapsing on search request. |      |      |      |
+| CollapseContext                                            |      |      |      |
+| Context used for field collapsing                          |      |      |      |
+
+
 
 
 
@@ -3179,9 +5135,58 @@ org.elasticsearch.search.dfs
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AggregatedDfs                                                |      |      |      |
+|                                                              |      |      |      |
+| DfsPhase                                                     |      |      |      |
+| Dfs phase of a search request, used to make scoring 100% accurate by collecting additional info from each shard before the query phase. |      |      |      |
+| DfsPhaseExecutionException                                   |      |      |      |
+|                                                              |      |      |      |
+| DfsSearchResult                                              |      |      |      |
+
+
+
 
 
 org.elasticsearch.search.fetch
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| FetchContext                                                 |      |      |      |
+| Encapsulates state required to execute fetch phases          |      |      |      |
+| FetchPhase                                                   |      |      |      |
+| Fetch phase of a search request, used to fetch the actual top matching documents to be returned to the client, identified after reducing all of the matches returned by the query phase |      |      |      |
+| FetchPhaseExecutionException                                 |      |      |      |
+|                                                              |      |      |      |
+| FetchProfiler                                                |      |      |      |
+|                                                              |      |      |      |
+| FetchSearchResult                                            |      |      |      |
+|                                                              |      |      |      |
+| FetchSubPhase                                                |      |      |      |
+| Sub phase within the fetch phase used to fetch things *about* the documents like highlighting or matched queries. |      |      |      |
+| FetchSubPhase.HitContext                                     |      |      |      |
+|                                                              |      |      |      |
+| FetchSubPhaseProcessor                                       |      |      |      |
+| Executes the logic for a FetchSubPhase against a particular leaf reader and hit |      |      |      |
+| QueryFetchSearchResult                                       |      |      |      |
+|                                                              |      |      |      |
+| ScrollQueryFetchSearchResult                                 |      |      |      |
+|                                                              |      |      |      |
+| ShardFetchRequest                                            |      |      |      |
+| Shard level fetch base request.                              |      |      |      |
+| ShardFetchSearchRequest                                      |      |      |      |
+| Shard level fetch request used with search.                  |      |      |      |
+| StoredFieldsContext                                          |      |      |      |
+| Context used to fetch the stored_fields.                     |      |      |      |
+
+
+
+
 
 
 
@@ -3189,11 +5194,151 @@ org.elasticsearch.search.fetch.subphase
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ExplainPhase                                                 |      |      |      |
+| Explains the scoring calculations for the top hits.          |      |      |      |
+| FetchDocValuesContext                                        |      |      |      |
+| All the required context to pull a field from the doc values. |      |      |      |
+| FetchDocValuesPhase                                          |      |      |      |
+| Fetch sub phase which pulls data from doc values.            |      |      |      |
+| FetchFieldsContext                                           |      |      |      |
+| The context needed to retrieve fields.                       |      |      |      |
+| FetchFieldsPhase                                             |      |      |      |
+| A fetch sub-phase for high-level field retrieval.            |      |      |      |
+| FetchScorePhase                                              |      |      |      |
+|                                                              |      |      |      |
+| FetchSourceContext                                           |      |      |      |
+| Context used to fetch the _source.                           |      |      |      |
+| FetchSourcePhase                                             |      |      |      |
+|                                                              |      |      |      |
+| FetchVersionPhase                                            |      |      |      |
+|                                                              |      |      |      |
+| FieldAndFormat                                               |      |      |      |
+| Wrapper around a field name and the format that should be used to display values of this field. |      |      |      |
+| FieldFetcher                                                 |      |      |      |
+| A helper class to FetchFieldsPhase that's initialized with a list of field patterns to fetch. |      |      |      |
+| InnerHitsContext                                             |      |      |      |
+| Context used for inner hits retrieval                        |      |      |      |
+| InnerHitsContext.InnerHitSubContext                          |      |      |      |
+| A SubSearchContext that associates TopDocs to each SearchHit in the parent search context |      |      |      |
+| InnerHitsPhase                                               |      |      |      |
+|                                                              |      |      |      |
+| MatchedQueriesPhase                                          |      |      |      |
+|                                                              |      |      |      |
+| ScriptFieldsContext                                          |      |      |      |
+|                                                              |      |      |      |
+| ScriptFieldsContext.ScriptField                              |      |      |      |
+|                                                              |      |      |      |
+| ScriptFieldsPhase                                            |      |      |      |
+|                                                              |      |      |      |
+| SeqNoPrimaryTermPhase                                        |      |      |      |
+|                                                              |      |      |      |
+| UnmappedFieldFetcher                                         |      |      |      |
+| Class to fetch all unmapped fields from a Source that match a set of patterns Takes a set of mapped fields to ignore when matching, which should include any nested mappers. |      |      |      |
+
+
+
+
+
 org.elasticsearch.search.fetch.subphase.highlight
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractHighlighterBuilder<HB extends AbstractHighlighterBuilder<?>> |      |      |      |
+| This abstract class holds parameters shared by HighlightBuilder and HighlightBuilder.Field and provides the common setters, equality, hashCode calculation and common serialization |      |      |      |
+| CustomQueryScorer                                            |      |      |      |
+|                                                              |      |      |      |
+| FastVectorHighlighter                                        |      |      |      |
+|                                                              |      |      |      |
+| FieldHighlightContext                                        |      |      |      |
+|                                                              |      |      |      |
+| FragmentBuilderHelper                                        |      |      |      |
+| Simple helper class for FastVectorHighlighter FragmentsBuilder implementations. |      |      |      |
+| HighlightBuilder                                             |      |      |      |
+| A builder for search highlighting.                           |      |      |      |
+| HighlightBuilder.BoundaryScannerType                         |      |      |      |
+|                                                              |      |      |      |
+| HighlightBuilder.Field                                       |      |      |      |
+|                                                              |      |      |      |
+| HighlightBuilder.Order                                       |      |      |      |
+|                                                              |      |      |      |
+| Highlighter                                                  |      |      |      |
+| Highlights a search result.                                  |      |      |      |
+| HighlightField                                               |      |      |      |
+| A field highlighted with its highlighted fragments.          |      |      |      |
+| HighlightPhase                                               |      |      |      |
+|                                                              |      |      |      |
+| HighlightUtils                                               |      |      |      |
+|                                                              |      |      |      |
+| HighlightUtils.Encoders                                      |      |      |      |
+|                                                              |      |      |      |
+| LimitTokenOffsetAnalyzer                                     |      |      |      |
+| This analyzer limits the highlighting once it sees a token with a start offset <= the configured limit, which won't pass and will end the stream. |      |      |      |
+| PlainHighlighter                                             |      |      |      |
+|                                                              |      |      |      |
+| SearchHighlightContext                                       |      |      |      |
+|                                                              |      |      |      |
+| SearchHighlightContext.Field                                 |      |      |      |
+|                                                              |      |      |      |
+| SearchHighlightContext.FieldOptions                          |      |      |      |
+|                                                              |      |      |      |
+| SimpleFragmentsBuilder                                       |      |      |      |
+| Direct Subclass of Lucene's org.apache.lucene.search.vectorhighlight.SimpleFragmentsBuilder that corrects offsets for broken analysis chains. |      |      |      |
+| SourceScoreOrderFragmentsBuilder                             |      |      |      |
+|                                                              |      |      |      |
+| SourceSimpleFragmentsBuilder                                 |      |      |      |
+|                                                              |      |      |      |
+| UnifiedHighlighter                                           |      |      |      |
+
+
+
+
+
 org.elasticsearch.search.internal
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AliasFilter                                                  |      |      |      |
+| Represents a QueryBuilder and a list of alias names that filters the builder is composed of. |      |      |      |
+| ContextIndexSearcher                                         |      |      |      |
+| Context-aware extension of IndexSearcher.                    |      |      |      |
+| FieldUsageTrackingDirectoryReader                            |      |      |      |
+| Wraps a DirectoryReader and tracks all access to fields, notifying a FieldUsageTrackingDirectoryReader.FieldUsageNotifier upon access. |      |      |      |
+| FieldUsageTrackingDirectoryReader.FieldUsageNotifier         |      |      |      |
+|                                                              |      |      |      |
+| FilteredSearchContext                                        |      |      |      |
+|                                                              |      |      |      |
+| FilterFieldNamesProvidingStoredFieldsVisitor                 |      |      |      |
+|                                                              |      |      |      |
+| FilterStoredFieldVisitor                                     |      |      |      |
+|                                                              |      |      |      |
+| InternalScrollSearchRequest                                  |      |      |      |
+|                                                              |      |      |      |
+| InternalSearchResponse                                       |      |      |      |
+| SearchResponseSections subclass that can be serialized over the wire. |      |      |      |
+| LegacyReaderContext                                          |      |      |      |
+|                                                              |      |      |      |
+| ReaderContext                                                |      |      |      |
+| Holds a reference to a point in time Engine.Searcher that will be used to construct SearchContext. |      |      |      |
+| ScrollContext                                                |      |      |      |
+| Wrapper around information that needs to stay around when scrolling. |      |      |      |
+| SearchContext                                                |      |      |      |
+| This class encapsulates the state needed to execute a search. |      |      |      |
+| ShardSearchContextId                                         |      |      |      |
+|                                                              |      |      |      |
+| ShardSearchRequest                                           |      |      |      |
+| Shard level request that represents a search.                |      |      |      |
+| SubSearchContext                                             |      |      |      |
+
+
 
 
 
@@ -3203,9 +5348,56 @@ org.elasticsearch.search.lookup
 
 
 
+| Class                                  |      |      |      |
+| -------------------------------------- | ---- | ---- | ---- |
+| Description                            |      |      |      |
+| FieldLookup                            |      |      |      |
+|                                        |      |      |      |
+| FieldValues<T>                         |      |      |      |
+| Represents values for a given document |      |      |      |
+| LeafDocLookup                          |      |      |      |
+|                                        |      |      |      |
+| LeafSearchLookup                       |      |      |      |
+| Per-segment version of SearchLookup.   |      |      |      |
+| LeafStoredFieldsLookup                 |      |      |      |
+|                                        |      |      |      |
+| SearchLookup                           |      |      |      |
+|                                        |      |      |      |
+| SourceLookup                           |      |      |      |
+
+
+
 
 
 org.elasticsearch.search.profile
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractInternalProfileTree<PB extends聽AbstractProfileBreakdown<?>,E> |      |      |      |
+| 聽                                                           |      |      |      |
+| AbstractProfileBreakdown<T extends聽Enum<T>>                 |      |      |      |
+| A record of timings for the various operations that may happen during query execution. |      |      |      |
+| AbstractProfiler<PB extends聽AbstractProfileBreakdown<?>,E>  |      |      |      |
+| 聽                                                           |      |      |      |
+| ProfileResult                                                |      |      |      |
+| The result of a profiled *thing*, like a query or an aggregation. |      |      |      |
+| Profilers                                                    |      |      |      |
+| Wrapper around all the profilers that makes management easier. |      |      |      |
+| SearchProfileQueryPhaseResult                                |      |      |      |
+| Profile results from a shard for the search phase.           |      |      |      |
+| SearchProfileResults                                         |      |      |      |
+| Profile results for all shards.                              |      |      |      |
+| SearchProfileResultsBuilder                                  |      |      |      |
+| Profile results for the query phase run on all shards.       |      |      |      |
+| SearchProfileShardResult                                     |      |      |      |
+| Profile results from a particular shard for all search phases. |      |      |      |
+| Timer                                                        |      |      |      |
+| Helps measure how much time is spent running some methods.   |      |      |      |
+
+
 
 
 
@@ -3213,11 +5405,74 @@ org.elasticsearch.search.profile.aggregation
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AggregationProfileBreakdown                                  |      |      |      |
+| AbstractProfileBreakdown customized to work with aggregations. |      |      |      |
+| AggregationProfiler                                          |      |      |      |
+|                                                              |      |      |      |
+| AggregationProfileShardResult                                |      |      |      |
+| A container class to hold the profile results for a single shard in the request. |      |      |      |
+| AggregationTimingType                                        |      |      |      |
+|                                                              |      |      |      |
+| InternalAggregationProfileTree                               |      |      |      |
+|                                                              |      |      |      |
+| ProfilingAggregator                                          |      |      |      |
+|                                                              |      |      |      |
+| ProfilingLeafBucketCollector                                 |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.search.profile.query
 
 
 
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| CollectorResult                                              |      |      |      |
+| Public interface and serialization container for profiled timings of the Collectors used in the search. |      |      |      |
+| InternalProfileCollector                                     |      |      |      |
+| This class wraps a Lucene Collector and times the execution of: - setScorer() - collect() - doSetNextReader() - needsScores() InternalProfiler facilitates the linking of the Collector graph |      |      |      |
+| ProfileWeight                                                |      |      |      |
+| Weight wrapper that will compute how much time it takes to build the Scorer and then return a Scorer that is wrapped in order to compute timings as well. |      |      |      |
+| QueryProfileBreakdown                                        |      |      |      |
+| A record of timings for the various operations that may happen during query execution. |      |      |      |
+| QueryProfiler                                                |      |      |      |
+| This class acts as a thread-local storage for profiling a query. |      |      |      |
+| QueryProfileShardResult                                      |      |      |      |
+| A container class to hold the profile results for a single shard in the request. |      |      |      |
+| QueryTimingType                                              |      |      |      |
+
+
+
+
+
 org.elasticsearch.search.query
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| EarlyTerminatingCollector                                    |      |      |      |
+| A Collector that early terminates collection after maxCountHits docs have been collected. |      |      |      |
+| QueryPhase                                                   |      |      |      |
+| Query phase of a search request, used to run the query and get back from each shard information about the matching documents (document ids and score or sort criteria) so that matches can be reduced on the coordinating node |      |      |      |
+| QueryPhaseExecutionException                                 |      |      |      |
+|                                                              |      |      |      |
+| QuerySearchRequest                                           |      |      |      |
+|                                                              |      |      |      |
+| QuerySearchResult                                            |      |      |      |
+|                                                              |      |      |      |
+| ScrollQuerySearchResult                                      |      |      |      |
+
+
 
 
 
@@ -3225,11 +5480,90 @@ org.elasticsearch.search.query
 
 org.elasticsearch.search.rescore
 
-
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| QueryRescoreMode                                             |      |      |      |
+|                                                              |      |      |      |
+| QueryRescorer                                                |      |      |      |
+|                                                              |      |      |      |
+| QueryRescorer.QueryRescoreContext                            |      |      |      |
+|                                                              |      |      |      |
+| QueryRescorerBuilder                                         |      |      |      |
+|                                                              |      |      |      |
+| RescoreContext                                               |      |      |      |
+| Context available to the rescore while it is running.        |      |      |      |
+| RescorePhase                                                 |      |      |      |
+| Rescore phase of a search request, used to run potentially expensive scoring models against the top matching documents. |      |      |      |
+| Rescorer                                                     |      |      |      |
+| A query rescorer interface used to re-rank the Top-K results of a previously executed search. |      |      |      |
+| RescorerBuilder<RB extends RescorerBuilder<RB>>              |      |      |      |
+| The abstract base builder for instances of RescorerBuilder.  |      |      |      |
 
 
 
 org.elasticsearch.search.runtime
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractScriptFieldQuery<S extends AbstractFieldScript>      |      |      |      |
+| Abstract base class for building queries based on script fields. |      |      |      |
+| AbstractStringScriptFieldAutomatonQuery                      |      |      |      |
+|                                                              |      |      |      |
+| BooleanScriptFieldExistsQuery                                |      |      |      |
+|                                                              |      |      |      |
+| BooleanScriptFieldTermQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| DoubleScriptFieldExistsQuery                                 |      |      |      |
+|                                                              |      |      |      |
+| DoubleScriptFieldRangeQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| DoubleScriptFieldTermQuery                                   |      |      |      |
+|                                                              |      |      |      |
+| DoubleScriptFieldTermsQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| GeoPointScriptFieldDistanceFeatureQuery                      |      |      |      |
+|                                                              |      |      |      |
+| GeoPointScriptFieldExistsQuery                               |      |      |      |
+|                                                              |      |      |      |
+| GeoPointScriptFieldGeoShapeQuery                             |      |      |      |
+|                                                              |      |      |      |
+| IpScriptFieldExistsQuery                                     |      |      |      |
+|                                                              |      |      |      |
+| IpScriptFieldRangeQuery                                      |      |      |      |
+|                                                              |      |      |      |
+| IpScriptFieldTermQuery                                       |      |      |      |
+|                                                              |      |      |      |
+| IpScriptFieldTermsQuery                                      |      |      |      |
+|                                                              |      |      |      |
+| LongScriptFieldDistanceFeatureQuery                          |      |      |      |
+|                                                              |      |      |      |
+| LongScriptFieldExistsQuery                                   |      |      |      |
+|                                                              |      |      |      |
+| LongScriptFieldRangeQuery                                    |      |      |      |
+|                                                              |      |      |      |
+| LongScriptFieldTermQuery                                     |      |      |      |
+|                                                              |      |      |      |
+| LongScriptFieldTermsQuery                                    |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldExistsQuery                                 |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldFuzzyQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldPrefixQuery                                 |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldRangeQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldRegexpQuery                                 |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldTermQuery                                   |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldTermsQuery                                  |      |      |      |
+|                                                              |      |      |      |
+| StringScriptFieldWildcardQuery                               |      |      |      |
 
 
 
@@ -3241,13 +5575,92 @@ org.elasticsearch.search.searchafter
 
 
 
+
+
+| Class              |      |      |
+| ------------------ | ---- | ---- |
+| Description        |      |      |
+| SearchAfterBuilder |      |      |
+
+
+
+
+
 org.elasticsearch.search.slice
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| DocIdSliceQuery                                              |      |      |      |
+| A SliceQuery that partitions documents based on their Lucene ID. |      |      |      |
+| DocValuesSliceQuery                                          |      |      |      |
+| A SliceQuery that uses the numeric doc values of a field to do the slicing. |      |      |      |
+| SliceBuilder                                                 |      |      |      |
+| A slice builder allowing to split a scroll in multiple partitions. |      |      |      |
+| SliceQuery                                                   |      |      |      |
+| An abstract Query that defines an hash function to partition the documents in multiple slices. |      |      |      |
+| TermsSliceQuery                                              |      |      |      |
+| A SliceQuery that uses the terms dictionary of a field to do the slicing. |      |      |      |
+
+
 
 
 
 
 
 org.elasticsearch.search.sort
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| BucketedSort                                                 |      |      |      |
+| Type specialized sort implementations designed for use in aggregations. |      |      |      |
+| BucketedSort.ExtraData                                       |      |      |      |
+| Callbacks for storing extra data along with competitive sorts. |      |      |      |
+| BucketedSort.ExtraData.Loader                                |      |      |      |
+|                                                              |      |      |      |
+| BucketedSort.ForDoubles                                      |      |      |      |
+| Superclass for implementations of BucketedSort for double keys. |      |      |      |
+| BucketedSort.ForFloats                                       |      |      |      |
+| Superclass for implementations of BucketedSort for float keys. |      |      |      |
+| BucketedSort.ForLongs                                        |      |      |      |
+| Superclass for implementations of BucketedSort for long keys. |      |      |      |
+| BucketedSort.ResultBuilder<T>                                |      |      |      |
+| Used with BucketedSort.getValues(long, ResultBuilder) to build results from the sorting operation. |      |      |      |
+| FieldSortBuilder                                             |      |      |      |
+| A sort builder to sort based on a document field.            |      |      |      |
+| GeoDistanceSortBuilder                                       |      |      |      |
+| A geo distance based sorting on a geo point like field.      |      |      |      |
+| MinAndMax<T extends Comparable<? super T>>                   |      |      |      |
+| A class that encapsulates a minimum and a maximum, that are of the same type and Comparable. |      |      |      |
+| NestedSortBuilder                                            |      |      |      |
+|                                                              |      |      |      |
+| ScoreSortBuilder                                             |      |      |      |
+| A sort builder allowing to sort by score.                    |      |      |      |
+| ScriptSortBuilder                                            |      |      |      |
+| Script sort builder allows to sort based on a custom script expression. |      |      |      |
+| ScriptSortBuilder.ScriptSortType                             |      |      |      |
+|                                                              |      |      |      |
+| ShardDocSortField                                            |      |      |      |
+| A SortField that first compares the shard index and then uses the document number (_doc) to tiebreak if the value is the same. |      |      |      |
+| SortAndFormats                                               |      |      |      |
+|                                                              |      |      |      |
+| SortBuilder<T extends SortBuilder<T>>                        |      |      |      |
+|                                                              |      |      |      |
+| SortBuilders                                                 |      |      |      |
+| A set of static factory methods for SortBuilders.            |      |      |      |
+| SortFieldAndFormat                                           |      |      |      |
+|                                                              |      |      |      |
+| SortMode                                                     |      |      |      |
+| Elasticsearch supports sorting by array or multi-valued fields. |      |      |      |
+| SortOrder                                                    |      |      |      |
+| A sorting order.                                             |      |      |      |
+| SortValue                                                    |      |      |      |
+| A Comparable, DocValueFormat aware wrapper around a sort value. |      |      |      |
+
+
 
 
 
@@ -3257,7 +5670,71 @@ org.elasticsearch.search.suggest
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| DirectSpellcheckerSettings                                   |      |      |      |
+|                                                              |      |      |      |
+| SortBy                                                       |      |      |      |
+| An enum representing the valid sorting options               |      |      |      |
+| Suggest                                                      |      |      |      |
+| Top level suggest result, containing the result for each suggestion. |      |      |      |
+| Suggest.Suggestion<T extends Suggest.Suggestion.Entry>       |      |      |      |
+| The suggestion responses corresponding with the suggestions in the request. |      |      |      |
+| Suggest.Suggestion.Entry<O extends Suggest.Suggestion.Entry.Option> |      |      |      |
+| Represents a part from the suggest text with suggested options. |      |      |      |
+| Suggest.Suggestion.Entry.Option                              |      |      |      |
+| Contains the suggested text with its document frequency and score. |      |      |      |
+| SuggestBuilder                                               |      |      |      |
+| Defines how to perform suggesting.                           |      |      |      |
+| SuggestBuilders                                              |      |      |      |
+| A static factory for building suggester lookup queries       |      |      |      |
+| Suggester<T extends SuggestionSearchContext.SuggestionContext> |      |      |      |
+|                                                              |      |      |      |
+| SuggestionBuilder<T extends SuggestionBuilder<T>>            |      |      |      |
+| Base class for the different suggestion implementations.     |      |      |      |
+| SuggestionSearchContext                                      |      |      |      |
+|                                                              |      |      |      |
+| SuggestionSearchContext.SuggestionContext                    |      |      |      |
+|                                                              |      |      |      |
+| SuggestPhase                                                 |      |      |      |
+| Suggest phase of a search request, used to collect suggestions |      |      |      |
+
+
+
 org.elasticsearch.search.suggest.completion
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| CompletionStats                                              |      |      |      |
+|                                                              |      |      |      |
+| CompletionSuggester                                          |      |      |      |
+|                                                              |      |      |      |
+| CompletionSuggestion                                         |      |      |      |
+| Suggestion response for CompletionSuggester results Response format for each entry: { "text" : STRING "score" : FLOAT "contexts" : CONTEXTS } CONTEXTS : { "CONTEXT_NAME" : ARRAY, .. |      |      |      |
+| CompletionSuggestion.Entry                                   |      |      |      |
+|                                                              |      |      |      |
+| CompletionSuggestion.Entry.Option                            |      |      |      |
+|                                                              |      |      |      |
+| CompletionSuggestionBuilder                                  |      |      |      |
+| Defines a suggest command based on a prefix, typically to provide "auto-complete" functionality for users as they type search terms. |      |      |      |
+| CompletionSuggestionContext                                  |      |      |      |
+|                                                              |      |      |      |
+| FuzzyOptions                                                 |      |      |      |
+| Fuzzy options for completion suggester                       |      |      |      |
+| FuzzyOptions.Builder                                         |      |      |      |
+| Options for fuzzy queries                                    |      |      |      |
+| RegexOptions                                                 |      |      |      |
+| Regular expression options for completion suggester          |      |      |      |
+| RegexOptions.Builder                                         |      |      |      |
+| Options for regular expression queries                       |      |      |      |
+
+
+
+
 
 
 
@@ -3265,7 +5742,89 @@ org.elasticsearch.search.suggest.completion.context
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| CategoryContextMapping                                       |      |      |      |
+| A ContextMapping that uses a simple string as a criteria The suggestions are boosted and/or filtered by their associated category (string) value. |      |      |      |
+| CategoryContextMapping.Builder                               |      |      |      |
+| Builder for CategoryContextMapping                           |      |      |      |
+| CategoryQueryContext                                         |      |      |      |
+| Defines the query context for CategoryContextMapping         |      |      |      |
+| CategoryQueryContext.Builder                                 |      |      |      |
+|                                                              |      |      |      |
+| ContextBuilder<E extends ContextMapping<?>>                  |      |      |      |
+| Builder for ContextMapping                                   |      |      |      |
+| ContextMapping<T extends ToXContent>                         |      |      |      |
+| A ContextMapping defines criteria that can be used to filter and/or boost suggestions at query time for CompletionFieldMapper. |      |      |      |
+| ContextMapping.InternalQueryContext                          |      |      |      |
+|                                                              |      |      |      |
+| ContextMapping.Type                                          |      |      |      |
+|                                                              |      |      |      |
+| ContextMappings                                              |      |      |      |
+| ContextMappings indexes context-enabled suggestion fields and creates context queries for defined ContextMappings for a CompletionFieldMapper |      |      |      |
+| GeoContextMapping                                            |      |      |      |
+| A ContextMapping that uses a geo location/area as a criteria. |      |      |      |
+| GeoContextMapping.Builder                                    |      |      |      |
+|                                                              |      |      |      |
+| GeoQueryContext                                              |      |      |      |
+| Defines the query context for GeoContextMapping              |      |      |      |
+| GeoQueryContext.Builder                                      |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.search.suggest.phrase
+
+
+
+| Class                                                        |      |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- | ---- |
+| Description                                                  |      |      |      |      |
+| CandidateGenerator                                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| Correction                                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| DirectCandidateGenerator                                     |      |      |      |      |
+|                                                              |      |      |      |      |
+| DirectCandidateGenerator.Candidate                           |      |      |      |      |
+|                                                              |      |      |      |      |
+| DirectCandidateGenerator.CandidateSet                        |      |      |      |      |
+|                                                              |      |      |      |      |
+| DirectCandidateGenerator.TokenConsumer                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| DirectCandidateGeneratorBuilder                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| Laplace                                                      |      |      |      |      |
+| An additive smoothing model.                                 |      |      |      |      |
+| LinearInterpolatingScorer                                    |      |      |      |      |
+|                                                              |      |      |      |      |
+| LinearInterpolation                                          |      |      |      |      |
+| Linear interpolation smoothing model.                        |      |      |      |      |
+| MultiCandidateGeneratorWrapper                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| PhraseSuggester                                              |      |      |      |      |
+|                                                              |      |      |      |      |
+| PhraseSuggestion                                             |      |      |      |      |
+| Suggestion entry returned from the PhraseSuggester.          |      |      |      |      |
+| PhraseSuggestion.Entry                                       |      |      |      |      |
+|                                                              |      |      |      |      |
+| PhraseSuggestion.Entry.Option                                |      |      |      |      |
+|                                                              |      |      |      |      |
+| PhraseSuggestionBuilder                                      |      |      |      |      |
+| Defines the actual suggest command for phrase suggestions ( phrase). |      |      |      |      |
+| PhraseSuggestionBuilder.CandidateGenerator                   |      |      |      |      |
+| PhraseSuggestionBuilder.CandidateGenerator interface.        |      |      |      |      |
+| SmoothingModel                                               |      |      |      |      |
+|                                                              |      |      |      |      |
+| StupidBackoff                                                |      |      |      |      |
+| A "stupid-backoff" smoothing model similar to Katz's Backoff. |      |      |      |      |
+| WordScorer                                                   |      |      |      |      |
+|                                                              |      |      |      |      |
+| WordScorer.WordScorerFactory                                 |      |      |      |      |
 
 
 
@@ -3273,11 +5832,35 @@ org.elasticsearch.search.suggest.phrase
 
 org.elasticsearch.search.suggest.term
 
-
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| TermSuggester                                                |      |      |      |
+|                                                              |      |      |      |
+| TermSuggestion                                               |      |      |      |
+| The suggestion responses corresponding with the suggestions in the request. |      |      |      |
+| TermSuggestion.Entry                                         |      |      |      |
+| Represents a part from the suggest text with suggested options. |      |      |      |
+| TermSuggestion.Entry.Option                                  |      |      |      |
+| Contains the suggested text with its document frequency and score. |      |      |      |
+| TermSuggestion.Frequency                                     |      |      |      |
+|                                                              |      |      |      |
+| TermSuggestion.Score                                         |      |      |      |
+|                                                              |      |      |      |
+| TermSuggestionBuilder                                        |      |      |      |
+| Defines the actual suggest command.                          |      |      |      |
+| TermSuggestionBuilder.StringDistanceImpl                     |      |      |      |
+| An enum representing the valid string edit distance algorithms for determining suggestions. |      |      |      |
+| TermSuggestionBuilder.SuggestMode                            |      |      |      |
+| An enum representing the valid suggest modes.                |      |      |      |
 
 org.elasticsearch.shutdown
 
-
+| Class                                                        |      |      |
+| ------------------------------------------------------------ | ---- | ---- |
+| Description                                                  |      |      |
+| PluginShutdownService                                        |      |      |
+| The PluginShutdownService is used for the node shutdown infrastructure to signal to plugins that a shutdown is occurring, and to check whether it is safe to shut down. |      |      |
 
 
 
@@ -3285,11 +5868,163 @@ org.elasticsearch.snapshots
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbortedSnapshotException                                     |      |      |      |
+|                                                              |      |      |      |
+| ConcurrentSnapshotExecutionException                         |      |      |      |
+| Thrown when a user tries to multiple conflicting snapshot/restore operations at the same time. |      |      |      |
+| EmptySnapshotsInfoService                                    |      |      |      |
+|                                                              |      |      |      |
+| InFlightShardSnapshotStates                                  |      |      |      |
+| Holds information about currently in-flight shard level snapshot or clone operations on a per-shard level. |      |      |      |
+| InternalSnapshotsInfoService                                 |      |      |      |
+|                                                              |      |      |      |
+| InternalSnapshotsInfoService.SnapshotShard                   |      |      |      |
+|                                                              |      |      |      |
+| InvalidSnapshotNameException                                 |      |      |      |
+| Thrown on the attempt to create a snapshot with invalid name |      |      |      |
+| RestoreInfo                                                  |      |      |      |
+| Information about successfully completed restore operation.  |      |      |      |
+| RestoreService                                               |      |      |      |
+| Service responsible for restoring snapshots                  |      |      |      |
+| RestoreService.RestoreCompletionResponse                     |      |      |      |
+|                                                              |      |      |      |
+| RestoreService.RestoreInProgressUpdater                      |      |      |      |
+|                                                              |      |      |      |
+| SearchableSnapshotsSettings                                  |      |      |      |
+|                                                              |      |      |      |
+| Snapshot                                                     |      |      |      |
+| Basic information about a snapshot - a SnapshotId and the repository that the snapshot belongs to. |      |      |      |
+| SnapshotCreationException                                    |      |      |      |
+| Deprecated.                                                  |      |      |      |
+| This exception isn't thrown anymore.                         |      |      |      |
+| SnapshotException                                            |      |      |      |
+| Generic snapshot exception                                   |      |      |      |
+| SnapshotFeatureInfo                                          |      |      |      |
+|                                                              |      |      |      |
+| SnapshotId                                                   |      |      |      |
+| SnapshotId - snapshot name + snapshot UUID                   |      |      |      |
+| SnapshotInfo                                                 |      |      |      |
+| Information about a snapshot                                 |      |      |      |
+| SnapshotInfo.IndexSnapshotDetails                            |      |      |      |
+|                                                              |      |      |      |
+| SnapshotInfo.SnapshotInfoBuilder                             |      |      |      |
+|                                                              |      |      |      |
+| SnapshotInProgressException                                  |      |      |      |
+| Thrown on the attempt to execute an action that requires that no snapshot is in progress. |      |      |      |
+| SnapshotMissingException                                     |      |      |      |
+| Thrown if requested snapshot doesn't exist                   |      |      |      |
+| SnapshotRestoreException                                     |      |      |      |
+| Snapshot restore exception                                   |      |      |      |
+| SnapshotShardFailure                                         |      |      |      |
+| Stores information about failures that occurred during shard snapshotting process |      |      |      |
+| SnapshotShardSizeInfo                                        |      |      |      |
+|                                                              |      |      |      |
+| SnapshotShardsService                                        |      |      |      |
+| This service runs on data nodes and controls currently running shard snapshots on these nodes. |      |      |      |
+| SnapshotsInfoService                                         |      |      |      |
+|                                                              |      |      |      |
+| SnapshotsService                                             |      |      |      |
+| Service responsible for creating snapshots.                  |      |      |      |
+| SnapshotState                                                |      |      |      |
+| Represents the state that a snapshot can be in               |      |      |      |
+| SnapshotUtils                                                |      |      |      |
+| Snapshot utilities                                           |      |      |      |
+| UpdateIndexShardSnapshotStatusRequest                        |      |      |      |
+| Internal request that is used to send changes in snapshot status to master |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.tasks
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| CancellableTask                                              |      |      |      |
+| A task that can be cancelled                                 |      |      |      |
+| CancellableTask.CancellationListener                         |      |      |      |
+| This interface is implemented by any class that needs to react to the cancellation of this task. |      |      |      |
+| CancellableTasksTracker<T>                                   |      |      |      |
+| Tracks items that are associated with cancellable tasks, supporting efficient lookup by task ID and by parent task ID |      |      |      |
+| LoggingTaskListener<Response>                                |      |      |      |
+| A TaskListener that just logs the response at the info level. |      |      |      |
+| RawTaskStatus                                                |      |      |      |
+| Raw, unparsed status from the task results index.            |      |      |      |
+| Task                                                         |      |      |      |
+| Current task information                                     |      |      |      |
+| Task.Status                                                  |      |      |      |
+| Report of the internal status of a task.                     |      |      |      |
+| TaskAwareRequest                                             |      |      |      |
+| An interface for a request that can be used to register a task manager task |      |      |      |
+| TaskCancellationService                                      |      |      |      |
+| 聽                                                           |      |      |      |
+| TaskCancelledException                                       |      |      |      |
+| A generic exception that can be thrown by a task when it's cancelled by the task manager API |      |      |      |
+| TaskId                                                       |      |      |      |
+| Task id that consists of node id and id of the task on the node |      |      |      |
+| TaskInfo                                                     |      |      |      |
+| Information about a currently running task.                  |      |      |      |
+| TaskListener<Response>                                       |      |      |      |
+| Listener for Task success or failure.                        |      |      |      |
+| TaskManager                                                  |      |      |      |
+| Task Manager service for keeping track of currently running tasks on the nodes |      |      |      |
+| TaskResult                                                   |      |      |      |
+| Information about a running task or a task that stored its result. |      |      |      |
+| TaskResultsService                                           |      |      |      |
+| Service that can store task results.                         |      |      |      |
+
+
+
+
+
 org.elasticsearch.threadpool
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AutoQueueAdjustingExecutorBuilder                            |      |      |      |
+| A builder for executors that automatically adjust the queue length as needed, depending on Little's Law. |      |      |      |
+| ExecutorBuilder<U extends org.elasticsearch.threadpool.ExecutorBuilder.ExecutorSettings> |      |      |      |
+| Base class for executor builders.                            |      |      |      |
+| FixedExecutorBuilder                                         |      |      |      |
+| A builder for fixed executors.                               |      |      |      |
+| ScalingExecutorBuilder                                       |      |      |      |
+| A builder for scaling executors.                             |      |      |      |
+| Scheduler                                                    |      |      |      |
+| Scheduler that allows to schedule one-shot and periodic commands. |      |      |      |
+| Scheduler.Cancellable                                        |      |      |      |
+| This interface represents an object whose execution may be cancelled during runtime. |      |      |      |
+| Scheduler.ReschedulingRunnable                               |      |      |      |
+| This class encapsulates the scheduling of a Runnable that needs to be repeated on a interval. |      |      |      |
+| Scheduler.SafeScheduledThreadPoolExecutor                    |      |      |      |
+| This subclass ensures to properly bubble up Throwable instances of both type Error and Exception thrown in submitted/scheduled tasks to the uncaught exception handler |      |      |      |
+| Scheduler.ScheduledCancellable                               |      |      |      |
+| A scheduled cancellable allow cancelling and reading the remaining delay of a scheduled task. |      |      |      |
+| ThreadPool                                                   |      |      |      |
+|                                                              |      |      |      |
+| ThreadPool.Info                                              |      |      |      |
+|                                                              |      |      |      |
+| ThreadPool.Names                                             |      |      |      |
+|                                                              |      |      |      |
+| ThreadPool.ThreadPoolType                                    |      |      |      |
+|                                                              |      |      |      |
+| ThreadPoolInfo                                               |      |      |      |
+|                                                              |      |      |      |
+| ThreadPoolStats                                              |      |      |      |
+|                                                              |      |      |      |
+| ThreadPoolStats.Stats                                        |      |      |      |
+
+
 
 
 
@@ -3299,7 +6034,171 @@ org.elasticsearch.transport
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| ActionNotFoundTransportException                             |      |      |      |
+| An exception indicating that a transport action was not found. |      |      |      |
+| ActionTransportException                                     |      |      |      |
+| An action invocation failure.                                |      |      |      |
+| BindTransportException                                       |      |      |      |
+|                                                              |      |      |      |
+| BytesTransportRequest                                        |      |      |      |
+| A specialized, bytes only request, that can potentially be optimized on the network layer, specifically for the same large buffer send to several nodes. |      |      |      |
+| CloseableConnection                                          |      |      |      |
+| Abstract Transport.Connection that provides common close logic. |      |      |      |
+| ClusterConnectionManager                                     |      |      |      |
+| This class manages node connections within a cluster.        |      |      |      |
+| Compression                                                  |      |      |      |
+|                                                              |      |      |      |
+| Compression.Enabled                                          |      |      |      |
+|                                                              |      |      |      |
+| Compression.Scheme                                           |      |      |      |
+|                                                              |      |      |      |
+| ConnectionManager                                            |      |      |      |
+|                                                              |      |      |      |
+| ConnectionManager.ConnectionValidator                        |      |      |      |
+|                                                              |      |      |      |
+| ConnectionManager.DelegatingNodeConnectionListener           |      |      |      |
+|                                                              |      |      |      |
+| ConnectionProfile                                            |      |      |      |
+| A connection profile describes how many connection are established to specific node for each of the available request types. |      |      |      |
+| ConnectionProfile.Builder                                    |      |      |      |
+| A builder to build a new ConnectionProfile                   |      |      |      |
+| ConnectTransportException                                    |      |      |      |
+|                                                              |      |      |      |
+| DeflateTransportDecompressor                                 |      |      |      |
+|                                                              |      |      |      |
+| EmptyTransportResponseHandler                                |      |      |      |
+|                                                              |      |      |      |
+| FutureTransportResponseHandler<T extends TransportResponse>  |      |      |      |
+| A response handler to be used when all interaction will be done through the TransportFuture. |      |      |      |
+| Header                                                       |      |      |      |
+|                                                              |      |      |      |
+| InboundAggregator                                            |      |      |      |
+|                                                              |      |      |      |
+| InboundDecoder                                               |      |      |      |
+|                                                              |      |      |      |
+| InboundHandler                                               |      |      |      |
+| Handles inbound messages by first deserializing a TransportMessage from an InboundMessage and then passing it to the appropriate handler. |      |      |      |
+| InboundMessage                                               |      |      |      |
+|                                                              |      |      |      |
+| InboundPipeline                                              |      |      |      |
+|                                                              |      |      |      |
+| Lz4TransportDecompressor                                     |      |      |      |
+| This file is forked from the https://netty.io project.       |      |      |      |
+| NetworkMessage                                               |      |      |      |
+| Represents a transport message sent over the network.        |      |      |      |
+| NetworkTraceFlag                                             |      |      |      |
+|                                                              |      |      |      |
+| NodeDisconnectedException                                    |      |      |      |
+|                                                              |      |      |      |
+| NodeNotConnectedException                                    |      |      |      |
+| An exception indicating that a message is sent to a node that is not connected. |      |      |      |
+| NoSeedNodeLeftException                                      |      |      |      |
+| Thrown after completely failing to connect to any node of the remote cluster. |      |      |      |
+| NoSuchRemoteClusterException                                 |      |      |      |
+| An exception that remote cluster is missing or connectivity to the remote connection is failing |      |      |      |
+| NotSerializableTransportException                            |      |      |      |
+|                                                              |      |      |      |
+| PlainTransportFuture<V extends TransportResponse>            |      |      |      |
+|                                                              |      |      |      |
+| ProxyConnectionStrategy                                      |      |      |      |
+|                                                              |      |      |      |
+| ProxyConnectionStrategy.ProxyModeInfo                        |      |      |      |
+|                                                              |      |      |      |
+| RawIndexingDataTransportRequest                              |      |      |      |
+| Requests that implement this interface will be compressed when TransportSettings.TRANSPORT_COMPRESS is configured to Compression.Enabled.INDEXING_DATA and isRawIndexingData() returns true. |      |      |      |
+| ReceiveTimeoutTransportException                             |      |      |      |
+|                                                              |      |      |      |
+| RemoteClusterAware                                           |      |      |      |
+| Base class for all services and components that need up-to-date information about the registered remote clusters |      |      |      |
+| RemoteClusterAwareRequest                                    |      |      |      |
+|                                                              |      |      |      |
+| RemoteClusterService                                         |      |      |      |
+| Basic service for accessing remote clusters via gateway nodes |      |      |      |
+| RemoteConnectionInfo                                         |      |      |      |
+| This class encapsulates all remote cluster information to be rendered on _remote/info requests. |      |      |      |
+| RemoteConnectionInfo.ModeInfo                                |      |      |      |
+|                                                              |      |      |      |
+| RemoteConnectionManager                                      |      |      |      |
+|                                                              |      |      |      |
+| RemoteConnectionStrategy                                     |      |      |      |
+|                                                              |      |      |      |
+| RemoteTransportException                                     |      |      |      |
+| A remote exception for an action.                            |      |      |      |
+| RequestHandlerRegistry<Request extends TransportRequest>     |      |      |      |
+|                                                              |      |      |      |
+| ResponseHandlerFailureTransportException                     |      |      |      |
+| A failure to handle the response of a transaction action.    |      |      |      |
+| ReuseBuffersLZ4BlockOutputStream                             |      |      |      |
+| This file is forked from https://github.com/lz4/lz4-java.    |      |      |      |
+| SendRequestTransportException                                |      |      |      |
+|                                                              |      |      |      |
+| SniffConnectionStrategy                                      |      |      |      |
+|                                                              |      |      |      |
+| SniffConnectionStrategy.SniffModeInfo                        |      |      |      |
+|                                                              |      |      |      |
+| StatsTracker                                                 |      |      |      |
+|                                                              |      |      |      |
+| TaskTransportChannel                                         |      |      |      |
+|                                                              |      |      |      |
+| TcpChannel                                                   |      |      |      |
+| This is a tcp channel representing a single channel connection to another node. |      |      |      |
+| TcpChannel.ChannelStats                                      |      |      |      |
+|                                                              |      |      |      |
+| TcpHeader                                                    |      |      |      |
+|                                                              |      |      |      |
+| TcpServerChannel                                             |      |      |      |
+| This is a tcp channel representing a server channel listening for new connections. |      |      |      |
+| TcpTransport                                                 |      |      |      |
+|                                                              |      |      |      |
+| TcpTransport.HttpRequestOnTransportException                 |      |      |      |
+| A helper exception to mark an incoming connection as potentially being HTTP so an appropriate error code can be returned |      |      |      |
+| TcpTransport.ProfileSettings                                 |      |      |      |
+| Representation of a transport profile settings for a transport.profiles.$profilename.* |      |      |      |
+| TcpTransportChannel                                          |      |      |      |
+|                                                              |      |      |      |
+| Transport                                                    |      |      |      |
+|                                                              |      |      |      |
+| Transport.Connection                                         |      |      |      |
+| A unidirectional connection to a DiscoveryNode               |      |      |      |
+| Transport.RequestHandlers                                    |      |      |      |
+|                                                              |      |      |      |
+| Transport.ResponseContext<T extends TransportResponse>       |      |      |      |
+| This class represents a response context that encapsulates the actual response handler, the action and the connection it was executed on. |      |      |      |
+
+
+
+
+
+
+
 org.elasticsearch.upgrades
+
+
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| FeatureMigrationResults                                      |      |      |      |
+| Holds the results of the most recent attempt to migrate system indices. |      |      |      |
+| FeatureMigrationResults.ResultsDiff                          |      |      |      |
+|                                                              |      |      |      |
+| MigrationResultsUpdateTask                                   |      |      |      |
+| Handles updating the FeatureMigrationResults in the cluster state. |      |      |      |
+| SingleFeatureMigrationResult                                 |      |      |      |
+| Holds the results of migrating a single feature.             |      |      |      |
+| SystemIndexMigrationExecutor                                 |      |      |      |
+| Starts the process of migrating system indices.              |      |      |      |
+| SystemIndexMigrationTaskParams                               |      |      |      |
+| The params used to initialize SystemIndexMigrator when it's initially kicked off. |      |      |      |
+| SystemIndexMigrationTaskState                                |      |      |      |
+| Contains the current state of system index migration progress. |      |      |      |
+| SystemIndexMigrator                                          |      |      |      |
+| This is where the logic to actually perform the migration lives - SystemIndexMigrator.run(SystemIndexMigrationTaskState) will be invoked when the migration process is started, plus any time the node running the migration drops from the cluster/crashes/etc. |      |      |      |
 
 
 
@@ -3309,12 +6208,50 @@ org.elasticsearch.usage
 
 
 
+| Class                                                 |      |      |      |
+| ----------------------------------------------------- | ---- | ---- | ---- |
+| Description                                           |      |      |      |
+| UsageService                                          |      |      |      |
+| A service to monitor usage of Elasticsearch features. |      |      |      |
+
+
+
 
 
 org.elasticsearch.watcher
 
 
 
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| AbstractResourceWatcher<Listener>                            |      |      |      |
+| Abstract resource watcher framework, which handles adding and removing listeners and calling resource observer. |      |      |      |
+| FileChangesListener                                          |      |      |      |
+| Callback interface that file changes File Watcher is using to notify listeners about changes. |      |      |      |
+| FileWatcher                                                  |      |      |      |
+| File resources watcher The file watcher checks directory and all its subdirectories for file changes and notifies its listeners accordingly |      |      |      |
+| ResourceWatcher                                              |      |      |      |
+| Abstract resource watcher interface.                         |      |      |      |
+| ResourceWatcherService                                       |      |      |      |
+| Generic resource watcher service Other elasticsearch services can register their resource watchers with this service using ResourceWatcherService.add(ResourceWatcher) method. |      |      |      |
+| ResourceWatcherService.Frequency                             |      |      |      |
+|                                                              |      |      |      |
+| WatcherHandle<W extends ResourceWatcher>                     |      |      |      |
+
+
+
 
 
 org.joda.time.format
+
+
+
+
+
+| Class                                                        |      |      |      |
+| ------------------------------------------------------------ | ---- | ---- | ---- |
+| Description                                                  |      |      |      |
+| StrictISODateTimeFormat                                      |      |      |      |
+| Factory that creates instances of DateTimeFormatter based on the ISO8601 standard. |      |      |      |
+
