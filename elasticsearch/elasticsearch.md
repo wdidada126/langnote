@@ -1,4 +1,15 @@
 # elasticsearch
+## 架构图
+Elasticsearch分布式搜索引擎的总体框架图.png
+
+https://github.com/edidada/elasticsearch-full
+
+## 数据类型
+https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#_multi_fields_2
+常用数据类型：
+text、keyword、number、array、range、boolean、date、geo_point、ip、nested、object
+
+ElasticSearch基本概念_-yanqi_vip-博客园.mhtml
 
 ## 竞品Splunk
 Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
@@ -7,13 +18,12 @@ Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed�
 
 https://discuss.elastic.co/t/announce-mailing-list/19899
 
-
 ## Slack
 https://elasticstack.slack.com/
 
 ## 官方文档
 doc文档
-
+https://www.elastic.co/guide/en/elasticsearch/reference/6.2/index.html
 https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
 es文档
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html
