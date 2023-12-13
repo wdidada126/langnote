@@ -1364,3 +1364,12 @@ JAVA_HOME
 CLASSPATH
 .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\jre\lib\rt.jar;%JAVA_HOME%\lib\dt.jar
 
+
+/etc/bashrc
+~/.bashrc
+
+#JAVA环境变量
+export JAVA_HOME=/opt/jdk1.8.0_391
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH

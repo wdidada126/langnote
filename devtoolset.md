@@ -4,8 +4,6 @@
 
 Gcc 10 centos平台 2021年1月开放
 
-
-
 ```
 rpm -ql devtoolset-7-gcc-c++
 /opt/rh/devtoolset-7/root/usr/bin/c++
@@ -177,6 +175,7 @@ sudo yum remove devtoolset-7*
 如果要长期使用gcc 7.3的话：
 
 echo "source /opt/rh/devtoolset-7/enable" >>/etc/profile
+echo "source /opt/rh/devtoolset-10/enable" >>/etc/profile
 
 yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++ devtoolset-8-binutils devtoolset-8-gdb
 
