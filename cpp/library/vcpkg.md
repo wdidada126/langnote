@@ -417,8 +417,6 @@ eclipse
 
 自己写的库，如何支持vcpkg
 
-
-
 -DCMAKE-BUILD-TYPE=Debug
 
 -DCMAKE-BUILD-TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -458,7 +456,7 @@ vcpkg 支持linux Widnows Mac
 
 xxx-dev
 
-
+https://github.com/microsoft/vcpkg
 
 https://github.com/microsoft/vcpkg/issues/9386
 

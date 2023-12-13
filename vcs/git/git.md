@@ -1,5 +1,7 @@
 # Git
 
+https://github.com/git/git/releases
+
 ## git remote add xxx之后，不能从新添加的分支检出
 git fetch一下
 git fetch xxx master:master
@@ -20,7 +22,7 @@ error: The following untracked working tree files would be overwritten by merge:
 
 # 添加所有文件到暂存区  
 git add .  
-  
+
 # 提交所有暂存区的文件  
 git commit -a -m "Adding local changes"  
   
