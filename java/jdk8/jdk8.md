@@ -11,6 +11,31 @@ ac abstrct class
 
 https://docs.oracle.com/javase/8/docs/api/
 
+https://openjdk.org/projects/jdk7/
+
+JDK 7
+The primary goal of this Project was to produce an open-source implementation of the seventh edition of the Java SE Platform, as defined by JSR 336 in the Java Community Process.
+
+JDK 7 reached General Availability on 28 July 2011. Production-ready binary distributions based on the JDK 7 code base are available now from Oracle and will be available soon in most Linux distributions and from Oracle's Java SE licensees.
+
+Detailed information on the main features of the release can be found on the features page. The JDK 7 development schedule was divided into a sequence of milestone cycles. A complete calendar of the entire development timeline is also available.
+
+Development of JDK 7 update releases is being done in the nearby JDK 7 Updates Project.
+
+History
+After Oracle acquired Sun we replanned JDK 7 according to the "Plan B" proposal in order to accelerate its release while maintaining performance and quality. Features that needed more time to mature were deferred to JDK 8 or later releases as explained here. A handful of small, high-impact features which were not previously part of the plan but were finished, or nearly so, were added to the release.
+
+The high-level schedule for the endgame of the release was as follows:
+
+2010/12/23	Feature Complete (M11)
+2011/02/17	Developer Preview (M12)
+2011/04/12	Rampdown start: P1-P3 bugs only
+2011/04/28	API/interface changes: Showstoppers only
+2011/05/11	All targeted bugs addressed
+2011/05/18	Bug fixes: Showstoppers only
+2011/06/02	Last scheduled build (M13)
+Final test cycle starts
+2011/07/28	General Availability
 
 ## JDK 8
 https://openjdk.org/projects/jdk8/
@@ -38,6 +63,448 @@ The original schedule aimed to ship the release in early September 2013, but due
 2014/01/23	M9	Final Release Candidate
 2014/03/18	GA	General Availability
 Further information on milestone content and the final phases of the release can be found on the milestones page.
+
+JDK 8
+Features
+JEPS are grouped according to the area and component taxonomy used in the JEP Process. On this page a JEP number links directly to the cited JEP document, while a JEP title links to the corresponding short summary below.
+
+--/--	126	Lambda Expressions & Virtual Extension Methods
+138	Autoconf-Based Build System
+160	Lambda-Form Representation for Method Handles
+161	Compact Profiles
+162	Prepare for Modularization
+164	Leverage CPU Instructions for AES Cryptography
+174	Nashorn JavaScript Engine
+176	Mechanical Checking of Caller-Sensitive Methods
+179	Document JDK API Support and Stability
+vm/--	142	Reduce Cache Contention on Specified Fields
+vm/gc	122	Remove the Permanent Generation
+173	Retire Some Rarely-Used GC Combinations
+vm/rt	136	Enhanced Verification Errors
+147	Reduce Class Metadata Footprint
+148	Small VM
+171	Fence Intrinsics
+core/--	153	Launch JavaFX Applications
+core/lang	101	Generalized Target-Type Inference
+104	Annotations on Java Types
+105	DocTree API
+106	Add Javadoc to javax.tools
+117	Remove the Annotation-Processing Tool (apt)
+118	Access to Parameter Names at Runtime
+120	Repeating Annotations
+139	Enhance javac to Improve Build Speed
+172	DocLint
+core/libs	103	Parallel Array Sorting
+107	Bulk Data Operations for Collections
+109	Enhance Core Libraries with Lambda
+112	Charset Implementation Improvements
+119	javax.lang.model Implementation Backed by Core Reflection
+135	Base64 Encoding & Decoding
+149	Reduce Core-Library Memory Usage
+150	Date & Time API
+155	Concurrency Updates
+170	JDBC 4.2
+177	Optimize java.text.DecimalFormat.format
+178	Statically-Linked JNI Libraries
+180	Handle Frequent HashMap Collisions with Balanced Trees
+core/i18n	127	Improve Locale Data Packaging and Adopt Unicode CLDR Data
+128	BCP 47 Locale Matching
+133	Unicode 6.2
+core/net	184	HTTP URL Permissions
+core/sec	113	MS-SFU Kerberos 5 Extensions
+114	TLS Server Name Indication (SNI) Extension
+115	AEAD CipherSuites
+121	Stronger Algorithms for Password-Based Encryption
+123	Configurable Secure Random-Number Generation
+124	Enhance the Certificate Revocation-Checking API
+129	NSA Suite B Cryptographic Algorithms
+130	SHA-224 Message Digests
+131	PKCS#11 Crypto Provider for 64-bit Windows
+140	Limited doPrivileged
+166	Overhaul JKS-JCEKS-PKCS12 Keystores
+web/jaxp	185	Restrict Fetching of External XML Resources
+A summary of the changes to this list over time is available at the bottom of this page.
+
+--/--
+126 Lambda Expressions & Virtual Extension Methods
+Add lambda expressions (closures) and supporting features, including method references, enhanced type inference, and virtual extension methods, to the Java programming language and platform.
+Owner: Brian Goetz
+Author: Joseph D. Darcy
+Discussion: lambda dash dev at openjdk dot java dot net
+Milestone target: M7
+138 Autoconf-Based Build System
+Introduce autoconf (./configure-style) build setup, refactor the Makefiles to remove recursion, and leverage JEP 139: Enhance javac to Improve Build Speed.
+Author: Magnus Ihse Bursie
+Discussion: jdk8 dash dev at openjdk dot java dot net
+Milestone target: M6
+160 Lambda-Form Representation for Method Handles
+Improve the implementation of method handles by replacing assembly language paths with an optimizable intermediate representation and then refactoring the implementation so that more work is done in portable Java code than is hardwired into the JVM.
+Author: John Rose
+Discussion: mlvm dash dev at openjdk dot java dot net
+Milestone target: M6
+161 Compact Profiles
+Define a few subset Profiles of the Java SE Platform Specification so that applications that do not require the entire Platform can be deployed and run on small devices.
+Owner: Bob Vandette
+Author: Bob Vandette, Mark Reinhold
+Discussion: jdk8 dash dev at openjdk dot java dot net
+Milestone target: M7
+162 Prepare for Modularization
+Undertake changes to smooth the eventual transition to modules in a future release, provide new tools to help developers prepare for the modular platform, and deprecate certain APIs that are a significant impediment to modularization.
+Author: Alan Bateman
+Discussion: jigsaw dash dev at openjdk dot java dot net
+Milestone target: M7
+164 Leverage CPU Instructions for AES Cryptography
+Improve the out-of-box AES Crypto performance by using x86 AES instructions when available, and by avoiding unnecessary re-expansion of the AES key.
+Author: Vladimir Kozlov
+Discussion: hotspot dash compiler dash dev at openjdk dot java dot net
+Milestone target: M6
+174 Nashorn JavaScript Engine
+Design and implement a new lightweight, high-performance implementation of JavaScript, and integrate it into the JDK. The new engine will be made available to Java applications via the existing javax.script API, and also more generally via a new command-line tool.
+Author: Jim Laskey
+Discussion: nashorn dash dev at openjdk dot java dot net
+Milestone target: M7
+176 Mechanical Checking of Caller-Sensitive Methods
+Improve the security of the JDK’s method-handle implementation by replacing the existing hand-maintained list of caller-sensitive methods with a mechanism that accurately identifies such methods and allows their callers to be discovered reliably.
+Owner: John Rose
+Author: John Rose, Christian Thalinger, Mandy Chung
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+179 Document JDK API Support and Stability
+There is a long-standing shortcoming in the JDK in terms of clearly specifying the support and stability usage contract for com.sun.* types and other types shipped with the JDK that are outside of the Java SE specification. These contracts and potential evolution policies should be clearly captured both in the source code of the types and in the resulting class files. This information can be modeled with JDK-specific annotation types.
+Author: Joseph D. Darcy
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+vm/--
+142 Reduce Cache Contention on Specified Fields
+Define a way to specify that one or more fields in an object are likely to be highly contended across processor cores so that the VM can arrange for them not to share cache lines with other fields, or other objects, that are likely to be independently accessed.
+Owner: Tony Printezis
+Author: Jesper Wilhelmsson, Tony Printezis
+Discussion: hotspot dash dev at openjdk dot java dot net
+Milestone target: M6
+vm/gc
+122 Remove the Permanent Generation
+Remove the permanent generation from the Hotspot JVM and thus the need to tune the size of the permanent generation.
+Author: Jon Masamitsu
+Discussion: hotspot dash dev at openjdk dot java dot net
+Milestone target: M5
+173 Retire Some Rarely-Used GC Combinations
+Remove three rarely-used combinations of garbage collectors in order to reduce ongoing development, maintenance, and testing costs.
+Author: Bengt Rutisson
+Discussion: hotspot dash gc dash dev at openjdk dot java dot net
+Milestone target: M6
+vm/rt
+136 Enhanced Verification Errors
+Provide additional contextual information about bytecode-verification errors to ease diagnosis of bytecode or stackmap deficiencies in the field.
+Author: Keith McGuigan
+Discussion: hotspot dash runtime dash dev at openjdk dot java dot net
+Milestone target: M5
+147 Reduce Class Metadata Footprint
+Reduce HotSpot’s class metadata memory footprint in order to improve performance on small devices.
+Author: Jiangli Zhou
+Discussion: hotspot dash runtime dash dev at openjdk dot java dot net
+Milestone target: M6
+148 Small VM
+Support the creation of a small VM that is no larger than 3MB.
+Author: Joe Provino
+Discussion: hotspot dash dev at openjdk dot java dot net
+Milestone target: M6
+171 Fence Intrinsics
+Add three memory-ordering intrinsics to the sun.misc.Unsafe class.
+Author: Doug Lea
+Discussion: hotspot dash dev at openjdk dot java dot net
+Milestone target: M7
+core/--
+153 Launch JavaFX Applications
+Enhance the java command-line launcher to launch JavaFX applications.
+Author: Kumar Srinivasan
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M5
+core/lang
+101 Generalized Target-Type Inference
+Smoothly expand the scope of method type-inference to support (i) inference in method context and (ii) inference in chained calls.
+Author: Maurizio Cimadamore
+Discussion: lambda dash dev at openjdk dot java dot net
+Milestone target: M7
+104 Annotations on Java Types
+Extend the set of annotatable locations in the syntax of the Java programming language to include names which indicate the use of a type as well as (per Java SE 5.0) the declaration of a type.
+Author: Michael Ernst, Alex Buckley
+Discussion: type dash annotations dash dev at openjdk dot java dot net
+Milestone target: M7
+105 DocTree API
+Extend the Compiler Tree API to provide structured access to the content of javadoc comments.
+Author: Jonathan Gibbons
+Discussion: compiler dash dev at openjdk dot java dot net
+Milestone target: M5
+106 Add Javadoc to javax.tools
+Extend the javax.tools API to provide access to javadoc.
+Author: Jonathan Gibbons
+Discussion: compiler dash dev at openjdk dot java dot net
+Milestone target: M5
+117 Remove the Annotation-Processing Tool (apt)
+Remove the apt tool, associated API, and documentation from the JDK.
+Author: Joseph D. Darcy
+Discussion: compiler dash dev at openjdk dot java dot net
+Milestone target: M1
+118 Access to Parameter Names at Runtime
+Provide a mechanism to easily and reliably retrieve the parameter names of methods and constructors at runtime via core reflection.
+Owner: Alex Buckley
+Author: Joseph D. Darcy
+Discussion: enhanced dash metadata dash spec dash discuss at openjdk dot java dot net
+Milestone target: M7
+120 Repeating Annotations
+Change the Java programming language to allow multiple application of annotations with the same type to a single program element.
+Owner: Alex Buckley
+Author: Joseph D. Darcy
+Discussion: enhanced dash metadata dash spec dash discuss at openjdk dot java dot net
+Milestone target: M7
+139 Enhance javac to Improve Build Speed
+Reduce the time required to build the JDK and enable incremental builds by modifying the Java compiler to run on all available cores in a single persistent process, track package and class dependences between builds, automatically generate header files for native methods, and clean up class and header files that are no longer needed.
+Author: Magnus Ihse Bursie
+Discussion: compiler dash dev at openjdk dot java dot net
+Milestone target: M6
+172 DocLint
+Provide a means to detect errors in Javadoc comments early in the development cycle and in a way that is easily linked back to the source code.
+Author: Jonathan Gibbons
+Discussion: javadoc dash dev at openjdk dot java dot net
+Milestone target: M6
+core/libs
+103 Parallel Array Sorting
+Add additional utility methods to java.util.Arrays that use the JSR 166 Fork/Join parallelism common pool to provide sorting of arrays in parallel.
+Owner: Chris Hegarty
+Author: David Holmes, Chris Hegarty
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M6
+107 Bulk Data Operations for Collections
+Add functionality to the Java Collections Framework for bulk operations upon data. This is commonly referenced as “filter/map/reduce for Java.” The bulk data operations include both serial (on the calling thread) and parallel (using many threads) versions of the operations. Operations upon data are generally expressed as lambda functions.
+Author: Mike Duigou
+Discussion: lambda dash dev at openjdk dot java dot net
+Milestone target: M7
+109 Enhance Core Libraries with Lambda
+Enhance the Java core library APIs using the new lambda language feature to improve the usability and convenience of the library.
+Owner: Stuart W. Marks
+Author: Stuart W. Marks, Mike Duigou
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+112 Charset Implementation Improvements
+Improve the maintainability and performance of the standard and extended charset implementations.
+Author: Xueming Shen
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M4
+119 javax.lang.model Implementation Backed by Core Reflection
+Provide an implementation of the javax.lang.model.* API backed by core reflection rather than by javac. In other words, provide an alternate API to access and process the reflective information about loaded classes provided by core reflection.
+Author: Joseph D. Darcy
+Discussion: compiler dash dev at openjdk dot java dot net
+Milestone target: M7
+135 Base64 Encoding & Decoding
+Define a standard API for Base64 encoding and decoding.
+Author: Alan Bateman
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M6
+149 Reduce Core-Library Memory Usage
+Reduce the dynamic memory used by core-library classes without adversely impacting performance.
+Owner: Roger Riggs
+Author: Roger Riggs, Hinkmond Wong, David Holmes
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M6
+150 Date & Time API
+Define a new date, time, and calendar API for the Java SE platform.
+Owner: Xueming Shen
+Author: Stephen Colebourne
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M6
+155 Concurrency Updates
+Scalable updatable variables, cache-oriented enhancements to the ConcurrentHashMap API, ForkJoinPool improvements, and additional Lock and Future classes.
+Owner: Chris Hegarty
+Author: Doug Lea
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+170 JDBC 4.2
+Minor enhancements to JDBC to improve usability and portability
+Author: Lance Andersen
+Discussion: jdbc dash spec dash discuss at openjdk dot java dot net
+Milestone target: M6
+177 Optimize java.text.DecimalFormat.format
+Optimize java.text.DecimalFormat.format by taking advantage of numerical properties of integer and floating-point arithmetic to accelerate cases with two or three digits after the decimal point.
+Author: Joseph D. Darcy
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M5
+178 Statically-Linked JNI Libraries
+Enhance the JNI specification to support statically linked native libraries.
+Author: Bob Vandette
+Discussion: jdk8 dash dev at openjdk dot java dot net
+Milestone target: M7
+180 Handle Frequent HashMap Collisions with Balanced Trees
+Improve the performance of java.util.HashMap under high hash-collision conditions by using balanced trees rather than linked lists to store map entries. Implement the same improvement in the LinkedHashMap class.
+Owner: Brent Christian
+Author: Mike Duigou
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+core/i18n
+127 Improve Locale Data Packaging and Adopt Unicode CLDR Data
+Create a tool to convert LDML (Locale Data Markup Language) files into a format usable directly by the runtime library, define a way to package the results into modules, and then use these to incorporate the de-facto standard locale data published by the Unicode Consortium’s CLDR project into the JDK.
+Author: Naoto Sato
+Discussion: i18n dash dev at openjdk dot java dot net
+Milestone target: M5
+128 BCP 47 Locale Matching
+Define APIs so that applications that use BCP 47 language tags (see RFC 5646) can match them to a user’s language preferences in a way that conforms to RFC 4647.
+Owner: Yuka Kamiya
+Author: Naoto Sato
+Discussion: i18n dash dev at openjdk dot java dot net
+Milestone target: M5
+133 Unicode 6.2
+Extend existing platform APIs to support version 6.2 of the Unicode Standard.
+Author: Yuka Kamiya
+Discussion: i18n dash dev at openjdk dot java dot net
+Milestone target: M5
+core/net
+184 HTTP URL Permissions
+Define a new type of network permission which grants access in terms of URLs rather than low-level IP addresses.
+Author: Michael McMahon
+Discussion: net dash dev at openjdk dot java dot net
+Milestone target: M7
+core/sec
+113 MS-SFU Kerberos 5 Extensions
+Add the MS-SFU extensions to the JDK’s Kerberos 5 implementation.
+Author: Weijun Wang
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M5
+114 TLS Server Name Indication (SNI) Extension
+Add support for the TLS Server Name Indication (SNI) Extension to allow more flexible secure virtual hosting and virtual-machine infrastructure based on SSL/TLS protocols.
+Author: Xuelei Fan
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M5
+115 AEAD CipherSuites
+Support the AEAD/GCM cipher suites defined by SP-800-380D, RFC 5116, RFC 5246, RFC 5288, RFC 5289 and RFC 5430.
+Owner: Bradford Wetmore
+Author: Xuelei Fan
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M7
+121 Stronger Algorithms for Password-Based Encryption
+Provide stronger Password-Based-Encryption (PBE) algorithm implementations in the SunJCE provider.
+Owner: Vincent Ryan
+Author: Valerie Peng
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M5
+123 Configurable Secure Random-Number Generation
+Enhance the API for secure random-number generation so that it can be configured to operate within specified quality and responsiveness constraints.
+Author: Bradford Wetmore
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M7
+124 Enhance the Certificate Revocation-Checking API
+Improve the certificate revocation-checking API to support best-effort checking, end-entity certificate checking, and mechanism-specific options and parameters.
+Author: Sean Mullan
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M3
+129 NSA Suite B Cryptographic Algorithms
+Provide implementations of the cryptographic algorithms required by NSA Suite B.
+Author: Valerie Peng
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M4
+130 SHA-224 Message Digests
+Implement the SHA-224 message-digest algorithm and related algorithms.
+Author: Valerie Peng
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M3
+131 PKCS#11 Crypto Provider for 64-bit Windows
+Include the SunPKCS11 provider in the JDK for 64-bit Windows.
+Author: Valerie Peng
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M3
+140 Limited doPrivileged
+Enable code to assert a subset of its privileges without otherwise preventing the full access-control stack walk to check for other permissions.
+Author: Sean Mullan
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M7
+166 Overhaul JKS-JCEKS-PKCS12 Keystores
+Facilitate migrating data from JKS and JCEKS keystores by adding equivalent support to the PKCS#12 keystore. Enhance the KeyStore API to support new features such as entry metadata and logical views spanning several keystores. Enable the strong crypto algorithms introduced in JEP-121 to be used to protect keystore entries.
+Author: Vincent Ryan
+Discussion: security dash dev at openjdk dot java dot net
+Milestone target: M6
+web/jaxp
+185 Restrict Fetching of External XML Resources
+Enhance the JAXP APIs to add the ability to restrict the set of network protocols that may be used to fetch external resources.
+Author: Joe Wang
+Discussion: core dash libs dash dev at openjdk dot java dot net
+Milestone target: M7
+Change history
+2012/9/11
+
+103 Parallel Array Sorting — Targeted to M5
+127 Improve Locale Data Packaging — Targeted to M5
+150 JSR 310: Date and Time API — Targeted to M6
+2012/11/6
+
+121 Stronger Algorithms for Password-Based Encryption — Retargeted to M5
+129 NSA Suite B Cryptographic Algorithms — Retargeted to M5
+133 Unicode 6.2 — Retargeted to M5
+2012/12/4
+
+103 Parallel Array Sorting — Retargeted to M6
+110 New HTTP Client — Retargeted to M6
+111 Additional Unicode Constructs for Regular Expressions — Dropped
+112 Charset Implementation Improvements — Retargeted to M4
+119 javax.lang.model Implementation Backed by Core Reflection — Retargeted to M6
+136 Enhanced Verification Errors — Targeted to M5
+140 Limited doPrivileged — Retargeted to M6
+2012/12/6
+
+138 Autoconf-Based Build System — Targeted to M6
+142 Reduce Cache Contention on Specified Fields — Targeted to M6
+143 Improve Contended Locking — Targeted to M6
+147 Reduce Class Metadata Footprint — Targeted to M6
+148 Small VM — Targeted to M6
+149 Reduce Core-Library Memory Usage — Targeted to M6
+155 Concurrency Updates (jsr166e) — Targeted to M6
+161 Compact Profiles — Targeted to M6
+162 Prepare for Modularization — Targeted to M6
+165 Compiler Control — Targeted to M6
+166 Overhaul JKS-JCEKS-PKCS12 Keystores — Targeted to M6
+170 JDBC 4.2 — Targeted to M6
+171 Fence Intrinsics — Targeted to M6
+172 DocLint — Targeted to M6
+2012/12/20
+
+139 Enhance javac to Improve Build Speed — Targeted to M6
+2013/1/14
+
+108 Collections Enhancements from Third-Party Libraries — Dropped
+110 New HTTP Client — Dropped
+156 G1 GC: Reduce need for full GCs — Dropped
+107 Bulk Data Operations for Collections — Retargeted to M7
+123 Configurable Secure Random-Number Generation — Retargeted to M7
+155 Concurrency Updates — Retargeted to M7
+171 Fence Intrinsics — Retargeted to M7
+164 Leverage CPU Instructions for AES Cryptography — Targeted to M6
+173 Retire Some Rarely-Used GC Combinations — Targeted to M6
+2013/1/30
+
+101 Generalized Target-Type Inference — Retargeted to M7
+109 Enhance Core Libraries with Lambda — Retargeted to M7
+118 Access to Parameter Names at Runtime — Retargeted to M7
+119 javax.lang.model Implementation Backed by Core Reflection — Retargeted to M7
+120 Repeating Annotations — Retargeted to M7
+126 Lambda Expressions & Virtual Extension Methods — Retargeted to M7
+140 Limited doPrivileged — Retargeted to M7
+161 Compact Profiles — Retargeted to M7
+174 Nashorn JavaScript Engine — Targeted to M7
+2013/2/20
+
+104 Annotations on Java Types — Retargeted to M7
+115 AEAD CipherSuites — Retargeted to M7
+162 Prepare for Modularization — Retargeted to M7
+2013/4/30
+
+143 Improve Contended Locking — Dropped
+165 Compiler Control — Dropped
+176 Mechanical Checking of Caller-Sensitive Methods — Targeted to M7
+177 Optimize java.text.DecimalFormat.format — Targeted to M5
+178 Statically-Linked JNI Libraries — Targeted to M7
+179 Document JDK API Support and Stability — Targeted to M7
+180 Handle Frequent HashMap Collisions with Balanced Trees — Targeted to M7
+184 HTTP URL Permissions — Targeted to M7
+2013/6/13
+
+185 JAXP 1.5: Restrict Fetching of External Resources — Targeted to M7
 
 ## JDK 9
 https://openjdk.org/projects/jdk9/

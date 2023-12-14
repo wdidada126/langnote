@@ -33,3 +33,12 @@ rg 搜索的字符串中间有空格
 
 
 
+### insall
+https://github.com/BurntSushi/ripgrep
+
+https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/
+
+
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+sudo yum install ripgrep -y

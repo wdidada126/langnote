@@ -1,5 +1,7 @@
 # jdk21
 
+IntelliJ IDEA 2023.3 提供了对最新 Java 21 功能的完全支持。这些更新包括虚拟线程、记录模式、switch 表达式的模式匹配和序列化集合等重要新特性，以及对字符串模板、作用域值等新引入的语言功能的预览。
+
 https://openjdk.org/projects/jdk/21/
 
 JDK 21

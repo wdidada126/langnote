@@ -2,15 +2,11 @@
 debian xmake 包做到一半，发现 xmake 依赖的库 tbox libsv 啥的都已经在 debian 仓库里了。
 sudo apt install libtbox-dev 可以直接装了
 
-
-
 安装
 非root用户
 
 - xmake
 - xrepo
-
-
 
 xrepo自动下载依赖
 
@@ -98,8 +94,6 @@ if you want to get more verbose errors, please see:
   -> /home/wdidada/.xmake/cache/packages/2204/p/poco/1.11.1/installdir.failed/logs/install.txt
 error: install failed!
 error: execv(xmake require -j 2 --extra={system=false} poco) failed(255
-
-
 
 
 例子

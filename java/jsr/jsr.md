@@ -1,5 +1,13 @@
 # jsr
 
+lambda表达式
+com_annotations-1_0-fr-spec.pdf
+jsr335-final.zip
+
+https://www.jcp.org/en/jsr/detail?id=335
+
+JSR 250 – Common Annotations 1.3
+JSR 335: Lambda Expressions for the JavaTM Programming Language
 JSR 366 – Java EE 8 Platform
 JSR 365 – Contexts and Dependency Injection (CDI) 2.0
 JSR 367 – The Java API for JSON Binding (JSON-B) 1.0
@@ -9,7 +17,6 @@ JSR 372 – JavaServer Faces (JSF) 2.3
 JSR 374 – Java API for JSON Processing (JSON-P)1.1
 JSR 375 – Java EE Security API 1.0
 JSR 380 – Bean Validation 2.0
-JSR 250 – Common Annotations 1.3
 JSR 338 – Java Persistence 2.2
 JSR 356 – Java API for WebSocket 1.1
 JSR 919 – JavaMail 1.6

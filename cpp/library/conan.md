@@ -104,7 +104,7 @@ sudo yum install -y python-pip
 接下来，使用pip安装Conan Server：
 
 ```shell
-sudo pip install conanserver
+    sudo pip install conanserver
 ```
 安装完成后，您可以使用以下命令启动Conan Server：
 

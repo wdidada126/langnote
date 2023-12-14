@@ -1,9 +1,51 @@
 # elasticsearch
 
+## IDEA调试代码
+
+https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/ 404
+
+https://mirrors.huaweicloud.com/elasticsearch/
+
+https://jdk.java.net/archive/
+
+https://www.jianshu.com/p/d218613cbe21
+命令行编译
+./gradlew localDistro
+
+https://blog.51cto.com/u_15812686/5738580
+
+1、idea导入Elasticsearch 7.10.2源码和编译运行，https://copyfuture.com/blogs-details/20210327133933335M
+2、在Windows环境IDEA下编译运行Elasticsearch 7.14.1，https://blog.csdn.net/weixin_43820556/article/details/120165948
+3、IDEA 编译 ElasticSearch 7.8.1，https://blog.csdn.net/ShelleyLittlehero/article/details/107642951
+4、ElasticSearch-7.8.0 源码编译调试 (详细)，https://zhuanlan.zhihu.com/p/188725714
+5、idea源码调试的问题，https://elasticsearch.cn/question/8243
+
+## 架构图
+Elasticsearch分布式搜索引擎的总体框架图.png
+
+https://github.com/edidada/elasticsearch-full
+
+## 数据类型
+https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#_multi_fields_2
+常用数据类型：
+text、keyword、number、array、range、boolean、date、geo_point、ip、nested、object
+
+ElasticSearch基本概念_-yanqi_vip-博客园.mhtml
+
 ## 竞品Splunk
 Splunk 是一款顶级的日志分析软件,如果你经常用 grep、awk、sed、sort、uniq、tail、head 来分析日志,那么你需要 Splunk。能处理常规的日志格式,比如 apache、squid、系统日志、mail.log 这些
-## 官方文档
 
+## 讨论组、社区
+
+https://discuss.elastic.co/t/announce-mailing-list/19899
+
+## Slack
+https://elasticstack.slack.com/
+
+## 官方文档
+doc文档
+https://www.elastic.co/guide/en/elasticsearch/reference/6.2/index.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
 es文档
 https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index.html
 
@@ -125,6 +167,7 @@ wukong搜索
 例如，广州机房到北京机房，正常情况下 RTT 大约是 50 毫秒左右，遇到网络波动之类的情况，RTT 可能飙升到 500 毫秒甚至 1 秒，更不用说经常发生的线路丢包问题，那延迟可能就是几秒几十秒了。
 
 nosql
+
 
 ## 源代码
 

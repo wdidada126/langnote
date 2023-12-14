@@ -1,4 +1,22 @@
 # maven
+## 打包独立部署到服务器
+
+https://gitee.com/edidada/testmavenplugin
+
+maven-assembly-plugin这个插件
+
+### spring boot插件配置
+
+```xml
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <addResources>true</addResources>
+            <skip>true</skip>
+        </configuration>
+    </plugin>
+```
 
 D:\apache-maven-3.6.1\lib\maven-model-builder-3.6.1.jar
 里面
@@ -84,6 +102,8 @@ https://www.cnblogs.com/hiver/p/7850954.html
 
 ### 打包成tar.gz
 
+https://gitee.com/edidada/testmavenplugin
+
 assembly
 
 ```xml
@@ -120,7 +140,9 @@ assembly
     </build>
 ```
 
+```shell
 /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/bin/java -Dmaven.multiModuleProjectDirectory=/Users/ibqo/development/IdeaProjects/springmvccurl -Dmaven.home=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3 -Dclassworlds.conf=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin/m2.conf -Dmaven.ext.class.path=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=53261:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8 -classpath /Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds.license:/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar org.codehaus.classworlds.Launcher -Didea.version=2021.2.3 org.apache.maven.plugins:maven-dependency-plugin:3.2.0:copy
+```
 
 Maven 依赖的遍历方式是深度优先遍历
 mvn dependency:tree -Dverbose

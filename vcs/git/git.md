@@ -1,5 +1,24 @@
 # nGit
 
+```shell
+git pull
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+https://github.com/git/git/releases
+
 ## git remote add xxx之后，不能从新添加的分支检出
 
 git fetch一下
@@ -19,6 +38,20 @@ error: The following untracked working tree files would be overwritten by merge:
 丢弃你的本地更改：如果你确定这些未被跟踪的文件的更改不重要，你可以直接丢弃这些更改。使用 git clean -df 命令可以删除这些文件。
 分开操作：你可以在拉取远程更改之前，先把你的本地更改推送到远程仓库。使用 git commit -a 和 git push 可以完成这个操作。这样你的本地更改就会安全地保存在远程仓库，而不会在拉取远程更改时被覆盖。
 这是一个可能的流程：
+
+添加所有文件到暂存区
+
+git add .
+
+# 提交所有暂存区的文件
+
+git commit -a -m "Adding local changes"
+
+# 将你的更改推送到远程仓库
+
+git push
+
+# 拉取远程的更改
 
 # 添加所有文件到暂存区
 
@@ -178,18 +211,15 @@ git config user.email "wdidada@qq.com"
 git config user.name "wdidada"
 ```
 
-
 ```
 git config  --global user.email "wdidada@qq.com"
 git config  --global user.name "wdidada"
 ```
 
-
 ```
 git config --global user.email "xxx@qq.com"
 git config --global user.name "WuCheng"
 ```
-
 
 ```
 git config user.email "xxx@qq.com"
@@ -495,7 +525,7 @@ Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
         modified:   README.txt
-        modified:   benchmarks.rb	
+        modified:   benchmarks.rb
 ```
 
 [Git 修改已提交的commit注释](https://www.jianshu.com/p/098d85a58bf1)

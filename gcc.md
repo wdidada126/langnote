@@ -1,4 +1,28 @@
 # gcc
+
+## centos
+No CMAKE_CXX_COMPILER could be found.
+
+这个错误提示表示在CMake中找不到CMAKE_CXX_COMPILER。要解决这个问题，你需要确保已经安装了C++编译器，并将其添加到系统的环境变量中。
+
+对于Windows系统，你可以安装Visual Studio或MinGW等编译器。对于Linux系统，你可以安装g++或clang++等编译器。
+
+安装完成后，重新运行CMake并指定编译器路径。例如，如果你使用的是g++，可以在CMake命令中添加`-DCMAKE_CXX_COMPILER=/usr/bin/g++`参数。
+
+在 CentOS 7.9 上安装 g++，可以通过以下步骤进行：
+
+1. 首先，更新系统软件包列表：
+```
+sudo yum update
+```
+
+2. 接下来，安装 GCC（GNU Compiler Collection）：
+```
+sudo yum groupinstall "Development Tools"
+```
+
+3. 安装完成后，你可以使用 `g++ --version` 命令来检查 g++ 是否已经成功安装。如果看到版本信息，说明安装成功。
+
 GCC编译器插件的一个例子是GCC的VCG插件，该插件可以图形化GCC编译过程的内部数据结构，例如控制流图、函数调用图、支配图、Tree结构、Gimple结构、RTX结构、Pass列表等，方便开发人员分析应用程序。
 GCC编译器插件还有用于动态安全分析、安全加固的功能，通过修改中间数据的能力，可以不用修改源代码就能添加新功能。这对于安全测试非常有用，可以通过动态插装来实现监控程序执行路径，但需要注意动态插装可能会对程序的运行性能产生影响，降低程序运行效率。
 以上信息仅供参考，如有需要，建议咨询专业技术人员。
@@ -128,6 +152,9 @@ https://blog.csdn.net/tglg/article/details/4041019
 
 
 https://cbs.centos.org/koji/buildinfo?buildID=31753
+
+sudo yum install centos-release-scl
+sudo yum install devtoolset-8
 
 devtoolset-9
 

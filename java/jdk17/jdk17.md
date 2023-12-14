@@ -2,8 +2,10 @@
 
 JDK15在2020年9月15日正式发布了，这次的JDK15给我们带了隐藏类，EdDSA，模式匹配，Records，封闭类和Text
 
-
 ## JDK 17
+
+https://openjdk.org/projects/jdk/17/
+
 JDK 17 is the open-source reference implementation of version 17 of the Java SE Platform, as specified by by JSR 390 in the Java Community Process.
 
 JDK 17 reached General Availability on 14 September 2021. Production-ready binaries under the GPL are available from Oracle; binaries from other vendors will follow shortly.
