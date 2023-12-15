@@ -1,5 +1,6 @@
 # conan
 
+Conan是一款免费开源的C/C++语言的依赖项和包管理器，适用于所有平台，包括Windows、Linux、OSX、FreeBSD、Solaris等。它集成了所有构建系统，例如：CMake、Visual Studio（MSBuild）、Makefiles、SCons等。
 
 ## conan server
 bintray.com/conan是一个用于存储和分发C/C++语言依赖项和包的在线平台，它由Bincrafters团队维护并开放给OSS社区使用。你可以把它想象为一个仓库，这里包含了大量由贡献者创建的各种各样的Conan包。
@@ -212,3 +213,5 @@ python
 ```
 
 ~/.conan/profiles/default
+
+~/.conan2/profiles/default

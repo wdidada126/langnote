@@ -1,5 +1,13 @@
 # vcpkg
-vs自动自vckpg
+
+## vcpkg 安装
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+git checkout 2023.12.12
+chmod +x ./bootstrap-vcpkg.sh
+./bootstrap-vcpkg.sh
+
+vs自带vckpg
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
 
 https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B-windows

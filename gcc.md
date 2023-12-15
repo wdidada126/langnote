@@ -105,6 +105,9 @@ yum install gcc gcc-c++
 
 yum install glibc-static libstdc++-static -y
 
+sudo apt update
+sudo apt install g++ -y
+
 
 2020年5月7日发布 GCC 10.1.1
 clang 12
