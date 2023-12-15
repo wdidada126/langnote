@@ -12,8 +12,6 @@ JFrog，现更名为捷蛙科技（北京）有限公司，是一家全球领先
 
 这些产品和服务的核心目标是实现“流式软件”的愿景，即允许二进制制品从开发端无缝、安全地流向边缘应用节点。
 
-
-
 Conan是一个开源的、跨平台的、去中心化的C++包管理器，它允许您安装、解决构建依赖，更重要的是可以直接集成到Build System中使用。同时，它也支持私有仓库的搭建，以满足私有项目的需求。
 
 要搭建Conan私有仓库，首先需要在服务器上安装Conan。然后，可以使用以下命令创建一个新的私有仓库：
@@ -23,9 +21,7 @@ conan create . user/channel
 ```
 
 其中，`.`表示要将新仓库创建在当前目录下，`user`是用户名，`channel`是频道名称。您可以根据实际需求自行更改这些值。
-
 此外，如果您正在使用Artifactory，也可以快速方便地搭建Conan私有仓库。具体来说，可以参考JFrog官网上的文档来进行设置和配置。
-
 在NVD（美国国家漏洞数据库）提供的CVE（公共漏洞和暴露）的基础上，JFrog还提供了VulnDB这一商业漏洞数据库。而VulnDB提供了更大范围的安全漏洞数据
 
 
@@ -128,8 +124,9 @@ sudo conan env activate myenv
 创建和管理Conan仓库
 Conan Server可以用于创建和管理Conan仓库。您可以使用以下命令创建一个新的Conan仓库：
 
-shell
+```shell
 sudo conan new myrepo/1.0.0 -g=BASIC -u=myusername -p=mypassword --url=https://myrepo.com
+```
 其中，myrepo是您为仓库取的名称，1.0.0是您为仓库设置的版本号。-g=BASIC表示使用基本认证方式，-u=myusername和-p=mypassword表示设置用户名和密码，--url=https://myrepo.com表示设置仓库的URL。您需要将myrepo、1.0.0、myusername、mypassword和https://myrepo.com替换为您自己的值。然后，使用以下命令激活虚拟环境：source activate myenv。
 
 conan可以支持cmake autotools
@@ -163,7 +160,21 @@ conan search grpc -r conancenter
 conan install .
 
 conan install -c conxxx.txt
+conanfile.txt
+```
+[requires]
+# gtest/1.8.0@lasote/stable
+# zlib/1.2.11@conan/stable
+# Poco/1.8.1@pocoproject/stable
+pistache/d5608a1@conan/stable
+# opencv/3.4.1@garrick/stable
 
+[generators]
+cmake
+
+[options]
+# opencv:shared=True
+```
 
 conan remote add/remove xxx
 
@@ -186,6 +197,18 @@ If you want Conan to use the new ABI for the default profile, run:
 Or edit '/home/wdidada/.conan/profiles/default' and set compiler.libcxx=libstdc++11
 ************************************************************************************
 
-conan 添加自定义的库
-
+## conan 添加自定义的库
+创建包
 https://blog.csdn.net/hezhanran/article/details/112170151
+
+## conan 2
+
+```shell
+conan version
+version: 2.0.14
+python
+  version: 3.10.13
+  sys_version: 3.10.13 (main, Nov 16 2023, 19:48:55) [GCC 9.4.0]
+```
+
+~/.conan/profiles/default

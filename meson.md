@@ -15,6 +15,7 @@ $ meson setup build \
     -DPISTACHE_BUILD_DOCS=false \
     --prefix="/usr"
 $ meson compile -C build
+$ meson compile
 $ meson install -C build
 ```
 
