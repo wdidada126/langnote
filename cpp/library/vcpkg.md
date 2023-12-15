@@ -6,6 +6,7 @@ cd vcpkg
 git checkout 2023.12.12
 chmod +x ./bootstrap-vcpkg.sh
 ./bootstrap-vcpkg.sh
+./vcpkg integrate install
 
 vs自带vckpg
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
