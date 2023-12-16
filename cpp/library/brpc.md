@@ -3,15 +3,17 @@
 
 cmake -B build && cmake --build build -j6
 
-
 git checkout 0.9.7
 
-https://github.com/apache/incubator-brpc/blob/master/docs/cn/getting_started.md
+https://github.com/apache/brpc/blob/master/docs/cn/getting_started.md
 
 brpc交流QQ群，committer在
 498837325
 
 0.9.5
+
+2023年 1.4.0
+vcpkg install brpc
 
 https://blog.csdn.net/wxj1992/article/details/95249044#comments
 
@@ -87,11 +89,8 @@ bvar是Brpc使用的多线程环境下的计数器类库，作为一个完善的
 bvar的官方文档对于bvar的使用介绍已经很详细，我这边打算接下来用几篇文章从源码层面入手介绍这个优秀的数值统计类库，学习下优秀的设计思想。本篇主要会根据源码先整体分析bvar的组织和实现方式，后续将会深入各个类的实现。
 
 以前一直用 grpc，最近重新看了一下百度的 brpc，对比了一下优缺点。
-
 brpc 优点，支持 status,lb,bvar,sessionlocal，threadlocal,logging,redis,http 等。 感觉这些是一个工程应用必须有的，比如状态监控，负载均衡，日志，常用的传输协议支持。
-
 brpc 缺点，上手难度大，文档写的二流，很多功能要边猜边验证，支持的语言就要是 c++。
 
 grpc 优点，支持的语言非常全，文档写的非常完善。
-
 grpc 缺点，各种传输协议不支持（ http/2，reids ）之类的    //grpc支持http2
