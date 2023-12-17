@@ -3,9 +3,6 @@
 cpp stl成为规范，cpp已经大面积应用了
 stl容器类不是线程安全的
 
-
-
-
 srpc
 brpc .a 静态库
 
@@ -39,6 +36,8 @@ Install required packages:
 - conan
 - xmake
 - bazel
+- meson
+- msbuild
 
 vs
 xcode 新建项目
