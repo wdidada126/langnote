@@ -1,5 +1,14 @@
 # xmake
 
+xmake类似maven，定义文件
+xmake.lua
+pom.xml
+然后再下载xmake . 
+mvn package
+会下载库文件，找不到库文件会报错
+
+xrepo install  zlib tbox -y可以下载库文件到本地
+
 强制编译
 xmake -P . -y
 
@@ -29,6 +38,8 @@ sudo apt install libtbox-dev -y
 安装
 非root用户
 
+
+二进制工具
 - xmake
 - xrepo
 
