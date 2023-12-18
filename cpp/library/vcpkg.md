@@ -13,6 +13,9 @@ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
 
 https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B-windows
 
+若您希望在 Visual Studio 中使用 vcpkg，请运行以下命令 (可能需要管理员权限)
+.\vcpkg\vcpkg integrate install
+
 ### windows vs 2022安装后报错
 找不到完整的构建工具
 ./vcpkg install grpc
