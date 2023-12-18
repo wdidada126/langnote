@@ -1,10 +1,45 @@
 # xmake
+
+xmake类似maven，定义文件
+xmake.lua
+pom.xml
+然后再下载xmake . 
+mvn package
+会下载库文件，找不到库文件会报错
+
+xrepo install  zlib tbox -y可以下载库文件到本地
+
+强制编译
+xmake -P . -y
+
+搜索库
+xrepo search grpc
+
+xmake search_libs <库名>
+
+error: execv(/usr/bin/curl -SL -A "Xmake/2.8.5+20231218 (Linux;5.15.133.1-microsoft-standard-WSL2) curl/7.81.0" https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip -o protobuf-cpp-3.19.4.zip) failed(28)
+  => download https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip .. failed
+
+we can also download these packages manually:
+  - https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip
+to the local search directories:
+  - protobuf-cpp-3.19.4.zip
+and we can run `xmake g --pkg_searchdirs=/xxx` to set the search directories.
+
+Xmake ~= Make/Ninja + CMake/Meson + Vcpkg/Conan + distcc + ccache
+
 debian xmake 包做到一半，发现 xmake 依赖的库 tbox libsv 啥的都已经在 debian 仓库里了。
-sudo apt install libtbox-dev 可以直接装了
+```shell
+sudo apt install libtbox-dev -y
+```
+
+可以直接装了
 
 安装
 非root用户
 
+
+二进制工具
 - xmake
 - xrepo
 

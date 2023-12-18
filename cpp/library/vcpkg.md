@@ -1,8 +1,20 @@
 # vcpkg
-vs自动自vckpg
+
+## vcpkg 安装
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+git checkout 2023.12.12
+chmod +x ./bootstrap-vcpkg.sh
+./bootstrap-vcpkg.sh
+./vcpkg integrate install
+
+vs自带vckpg
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
 
 https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B-windows
+
+若您希望在 Visual Studio 中使用 vcpkg，请运行以下命令 (可能需要管理员权限)
+.\vcpkg\vcpkg integrate install
 
 ### windows vs 2022安装后报错
 找不到完整的构建工具
@@ -12,8 +24,6 @@ The following paths were examined:
 D:\Program Files\Microsoft Visual Studio\2022
 
 解决办法，更新vcpkg到最新版本，因为版本不兼容
-
-
 
 库作者如何添加自己的库到本地的vcpkg
 
@@ -25,9 +35,7 @@ vcpkg编译下载的库报错，解决思路：
 vcpkg search apache
 rbmq的cpp库
 
-
 `cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
-
 
 CMake给交叉编译预留了一个很好的变量即CMAKE_TOOLCHAIN_FILE,它定义了一个文件的路径，这个文件即toolChain,里面set了一系列你需要改变的变量和属性，包括C_COMPILER,CXX_COMPILER。CMake为了不让用户每次交叉编译都要重新输入这些命令，因此它带来toolChain机制，简而言之就是一个cmake脚本，内嵌了你需要改变以及需要set的所有交叉环境的设置。
 
@@ -96,7 +104,6 @@ add_link_options
 添加链接参数
 
 https://www.jianshu.com/p/03a0ba0578ad
-
 
 C++ ORM框架:SQLPP11教程 使用vcpkg
 https://blog.csdn.net/linyilong3/article/details/100853675

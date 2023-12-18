@@ -2,6 +2,8 @@
 
 配置中心竞品
 super-diamond
+https://github.com/melin/super-diamond
+截止2023年，5年没更新了
 
 nacos有配置文件，debug的时候配置文件在哪儿？
 

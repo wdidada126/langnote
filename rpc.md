@@ -1,5 +1,9 @@
 # rpc
 
+## rpc的功能
+qos 监控 兼容开源监控方案Prometheus
+
+openfigen相当于rpc
 
 一个完善的rpc框架，在实际生产环境中统计诸如qps、连接数等各种数值是必须的，也是服务监控的很重要的一部分
 
@@ -26,16 +30,8 @@ bhrpc
 简单
 https://github.com/edidada/EasyRPC
 
+找比较流行的RPC框架（例如Protobuf，Thrift，Avro），从API Document开始读，然后到Stackoverflow上读相关的热门讨论，自己动手写些toy，还想深入就读源码。
 
-找比较流行的 RPC 框架（例如 Protobuf，Thrift，Avro）， 从 API Document 开始读， 然后到 Stackoverflow 上读相关的热门讨论， 自己动手写些 toy， 还想深入就读源码。
-
-这是我能找到的最有效的方法。 每一本出版的书都有对你来说是废话的篇章， 以及你想知道却没有包括的内容。
-
-
+这是我能找到的最有效的方法。每一本出版的书都有对你来说是废话的篇章，以及你想知道却没有包括的内容。
 
 https://www.ibm.com/developerworks/cn/aix/library/au-rpc_programming/
-
-
-
-
-
