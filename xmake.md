@@ -1,4 +1,8 @@
 # xmake
+
+强制编译
+xmake -P . -y
+
 搜索库
 xrepo search grpc
 
