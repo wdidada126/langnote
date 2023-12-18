@@ -45,3 +45,10 @@ mkdir cmake-build
 cd cmake-build
 cmake ..
 cmake --build . --config Release
+
+
+git clone https://github.com/edidada/poco-cmake-sample.git
+cd poco-cmake-sample
+cmake -S . -B build-output
+cmake --build build-output --target all
+build-output/pocoex
