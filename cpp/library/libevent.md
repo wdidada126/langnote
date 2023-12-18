@@ -44,3 +44,15 @@ Released 2015-01-05
 Changelog to follow
 libevent-1.4.14b-stable.tar.gz [GPG Sig] ChangeLog
 Released 2010-06-07
+
+https://github.com/edidada/testlibevent
+
+https://libevent.org/
+
+https://github.com/libevent/libevent/tags
+
+
+libevent 2.1.12
+release-2.1.8-stable
+
+sudo apt install libevent-dev -y

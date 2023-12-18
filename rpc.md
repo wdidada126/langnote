@@ -1,9 +1,10 @@
 # rpc
 
+
+一个完善的rpc框架，在实际生产环境中统计诸如qps、连接数等各种数值是必须的，也是服务监控的很重要的一部分
+
 其实rpc不是一种协议，rpc是一种调用过程的方案/范式/实现。
-
 http+retrofit同样也可以实现rpc风格的http调用。
-
 dubbo框架同样也支持http(2)传输协议。
 
 拿rpc和http对比没啥意义，应该是拿rpc底层的通信协议（如dubbo/grpc）对http，序列化协议（如hessian/protobuf）对json这样比较才有意义。
@@ -18,6 +19,11 @@ dubbo框架同样也支持http(2)传输协议。
 mq http比较
 
 架构师的例子
+
+复杂
+bhrpc
+
+简单
 https://github.com/edidada/EasyRPC
 
 

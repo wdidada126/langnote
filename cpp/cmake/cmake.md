@@ -1,4 +1,14 @@
 # CMake
+sudo yum install cmake3 -y
+
+`include(FetchContent)` 是 CMake 中的一条指令，用于包含 FetchContent 模块。FetchContent 模块是 CMake 3.11 版本引入的功能，用于在构建过程中自动下载和构建依赖项。
+`FetchContent_Declare` 是 FetchContent 模块提供的命令之一，用于声明要下载的依赖项。在你的示例中，它声明了一个名为 "Poco" 的依赖项，并指定了其下载地址为 https://github.com/pocoproject/poco/archive/refs/tags/poco-1.10.1-release.zip。
+`FetchContent_MakeAvailable` 是 FetchContent 模块提供的另一个命令，用于下载和构建声明的依赖项，并使其可用于当前的 CMake 构建过程。在你的示例中，它将下载并构建名为 "Poco" 的依赖项，并将其添加到当前的 CMake 构建中，以供你的项目使用。
+使用 FetchContent 模块可以方便地管理和自动下载依赖项，而无需手动下载和配置它们。这对于简化项目的构建过程和确保依赖项的一致性非常有用。
+
+mkdir build && cd build && cmake .. && cmake --build . -j6
+对于 cmake 3.13+ 也可以使用如下命令进行编译:
+cmake -B build && cmake --build build -j6
 
 cmake支持c#吗？
 CMake 3.8版本开始支持生成Visual Studio C#项目，因此CMake支持C#。默认情况下，它将.csproj文件中的语言版本（" LangVersion"）设置为版本3。此外，CMake现在还可能支持C、C++、Fortran、Objective C和CUDA。
