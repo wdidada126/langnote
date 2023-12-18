@@ -1,5 +1,11 @@
 # conan
 
+conan server
+virtual = local + remote
+local仅仅是本地的
+remote是远程的
+这个跟maven不一样
+https://blog.51cto.com/u_15926338/5979962
 
 ## conan server
 bintray.com/conan是一个用于存储和分发C/C++语言依赖项和包的在线平台，它由Bincrafters团队维护并开放给OSS社区使用。你可以把它想象为一个仓库，这里包含了大量由贡献者创建的各种各样的Conan包。
