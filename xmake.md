@@ -1,4 +1,8 @@
 # xmake
+搜索库
+xrepo search grpc
+
+xmake search_libs <库名>
 
 error: execv(/usr/bin/curl -SL -A "Xmake/2.8.5+20231218 (Linux;5.15.133.1-microsoft-standard-WSL2) curl/7.81.0" https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip -o protobuf-cpp-3.19.4.zip) failed(28)
   => download https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip .. failed
