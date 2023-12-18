@@ -1,8 +1,25 @@
 # conan
 
+https://github.com/conan-io/conan
+
+Decentralized, open-source (MIT), C/C++ package manager.
+
+Homepage: https://conan.io/
+Github: https://github.com/conan-io/conan
+Docs: https://docs.conan.io
+Slack: https://cpplang.slack.com (#conan channel. Please, click here to get an invitation)
+Twitter: https://twitter.com/conan_io
+
+https://conan.io/center
+
+
+
 Conan是一款免费开源的C/C++语言的依赖项和包管理器，适用于所有平台，包括Windows、Linux、OSX、FreeBSD、Solaris等。它集成了所有构建系统，例如：CMake、Visual Studio（MSBuild）、Makefiles、SCons等。
 
 ## conan server
+
+JFrog Artifactory Community Edition
+
 bintray.com/conan是一个用于存储和分发C/C++语言依赖项和包的在线平台，它由Bincrafters团队维护并开放给OSS社区使用。你可以把它想象为一个仓库，这里包含了大量由贡献者创建的各种各样的Conan包。
 Conan本身是一款免费开源的依赖项和包管理器，适用于所有平台，包括Windows，Linux，OSX，FreeBSD，Solaris等。它使用起来非常灵活，可以应用于各种开发目标，包括嵌入式、移动（iOS，Android）和裸机。此外，它还与所有build系统集成，如CMake，Visual Studio（MSBuild），Makefiles，SCons等，以及其他专有系统。
 在分布式的架构中，Conan遵循客户端-服务器模式。在这种模式下，客户端可以从不同的远端服务器上获取或上传包。服务端主要负责包的存储，并不负责包的构建和生成。实际上，包的构建和生成都在客户端完成。
@@ -227,3 +244,7 @@ python
 ~/.conan/profiles/default
 
 ~/.conan2/profiles/default
+
+## vcpkg和conan
+conan支持选择库版本，vcpkg默认安装最新版本
+apt yum也是安装特定版本
