@@ -1,6 +1,10 @@
 # xmake
 debian xmake 包做到一半，发现 xmake 依赖的库 tbox libsv 啥的都已经在 debian 仓库里了。
-sudo apt install libtbox-dev 可以直接装了
+```shell
+sudo apt install libtbox-dev -y
+```
+
+可以直接装了
 
 安装
 非root用户
