@@ -37,8 +37,6 @@ libaddress_sorting.a  libgrpc.a    libgrpc_cronet.a       libgrpc++_error_detail
 libgpr.a              libgrpc++.a  libgrpc_csharp_ext.so  libgrpc_plugin_support.a   libgrpc++_reflection.a  libgrpc++_unsecure.a
 ```
 
-
-
 ```shell
 find_package(gRPC CONFIG REQUIRED)
     # Note: 8 target(s) were omitted.
