@@ -1,5 +1,12 @@
 # conan
 
+conan server
+virtual = local + remote
+local仅仅是本地的
+remote是远程的
+这个跟maven不一样
+https://blog.51cto.com/u_15926338/5979962
+
 https://github.com/conan-io/conan
 
 Decentralized, open-source (MIT), C/C++ package manager.
@@ -11,7 +18,6 @@ Slack: https://cpplang.slack.com (#conan channel. Please, click here to get an i
 Twitter: https://twitter.com/conan_io
 
 https://conan.io/center
-
 
 
 Conan是一款免费开源的C/C++语言的依赖项和包管理器，适用于所有平台，包括Windows、Linux、OSX、FreeBSD、Solaris等。它集成了所有构建系统，例如：CMake、Visual Studio（MSBuild）、Makefiles、SCons等。
