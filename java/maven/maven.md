@@ -1,4 +1,27 @@
 # maven
+
+
+## maven 扩展extension
+```xml
+    <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.4.1.Final</version>
+            </extension>
+        </extensions>
+    </build>
+```
+
+maven 打包一堆jar文件
+jar文件可以看做是class文件的集合
+
+parent pom，多个jar的集合，这些jar的依赖可以是同一个版本
+
+grpc库 一堆库文件，一堆可执行文件
+对应java 一堆main函数，一个maven parent，core、 lang（php csharp python等）、proto、compiler
+
 ## 打包独立部署到服务器
 
 https://gitee.com/edidada/testmavenplugin
@@ -1344,3 +1367,33 @@ MAVEN_OPTS=-Xms256m -Xmx768m -XX:PermSize=128m -XX:MaxPermSize=256M
 
 Maven pom.xml中的dependency scope默认值是compile。
 
+## profiles
+https://maven.apache.org/pom.html#profiles
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  ...
+  <profiles>
+    <profile>
+      <id>test</id>
+      <activation>...</activation>
+      <build>...</build>
+      <modules>...</modules>
+      <repositories>...</repositories>
+      <pluginRepositories>...</pluginRepositories>
+      <dependencies>...</dependencies>
+      <reporting>...</reporting>
+      <dependencyManagement>...</dependencyManagement>
+      <distributionManagement>...</distributionManagement>
+    </profile>
+  </profiles>
+</project>
+
+
+基于Maven的profiles多环境配置
+https://blog.csdn.net/weixin_43888891/article/details/130794308
+
+判断jdk版本
+os版本
+之前testjdk8版本，windows系统上好好的，mac系统上不行
