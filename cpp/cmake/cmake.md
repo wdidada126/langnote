@@ -1,5 +1,9 @@
 # CMake
 
+## cmake与vcpkg conan conan2集成
+conan
+提供cmake函数
+conan_basic_setup()
 
 cmake是如何支持多profile的
 
@@ -547,8 +551,6 @@ include_directories(../../../thirdparty/comm/include)
 - 引用依赖 find
 - 执行本地命令 protoc maven是通过插件实现的
 
-
-
 cmake新建一个项目，mysqlclient pthread
 
 libmysqlclient.so.20
@@ -559,43 +561,27 @@ CMakeLists.txt
 
 project(cmaketest VERSION 1.0.0 LANGUAGES C CXX)
 
-
 maven标记一个项目groupId architect artifactId version
-
-
 
 设置版本号
 
 https://blog.csdn.net/lianshaohua/article/details/107980612
 
-
-
 `include_directories(mylib1name PUBLIC include)`
-
-
 
 .h .cc/.cpp分开的 
 
-
-
 rpmbuild spec CMake 创建项目的rpm 包
 
-
-
 https://blog.csdn.net/henry860916/article/details/50443574
+
 https://blog.csdn.net/wudongxu/article/details/6804536
-
-
 
 CMake中包含的三个工具（cmake cpack ctest）
 
 cpack
 
 ctest ctest连接gtest boost.test
-
-
-
-
 
 rpm
 
