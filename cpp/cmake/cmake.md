@@ -1,4 +1,70 @@
 # CMake
+
+
+cmake是如何支持多profile的
+
+CMake支持多profile的方式是通过配置文件（如CMakeLists.txt）中的条件判断语句来实现的。
+
+例如，假设有test、dev、uat和prod四个环境，每个环境中都有不同的变量设置。可以在CMakeLists.txt文件中使用if语句来判断当前所处的环境，然后设置相应的变量值。
+
+以下是一个示例：
+
+```cmake
+# 判断当前环境
+if(ENV{ENV_TYPE} STREQUAL "test")
+    # 设置test环境的变量值
+    set(VAR1 "value1")
+    set(VAR2 "value2")
+elseif(ENV{ENV_TYPE} STREQUAL "dev")
+    # 设置dev环境的变量值
+    set(VAR1 "value3")
+    set(VAR2 "value4")
+elseif(ENV{ENV_TYPE} STREQUAL "uat")
+    # 设置uat环境的变量值
+    set(VAR1 "value5")
+    set(VAR2 "value6")
+elseif(ENV{ENV_TYPE} STREQUAL "prod")
+    # 设置prod环境的变量值
+    set(VAR1 "value7")
+    set(VAR2 "value8")
+else()
+    # 如果环境类型不是test、dev、uat或prod，则输出错误信息并退出
+    message(FATAL_ERROR "Invalid environment type: ${ENV{ENV_TYPE}}")
+endif()
+```
+
+在执行CMake时，可以通过设置`ENV{ENV_TYPE}`环境变量来指定当前所处的环境。例如，如果要使用test环境，可以执行以下命令：
+
+```bash
+export ENV_TYPE=test && cmake ..
+```
+
+cmake脚本判断不同的c++编译器版本，os版本
+
+在CMakeLists.txt文件中，可以使用`CMAKE_CXX_COMPILER_VERSION`变量来获取当前使用的C++编译器版本。同时，可以使用`CMAKE_SYSTEM_NAME`和`CMAKE_SYSTEM_VERSION`变量来获取操作系统的名称和版本。
+
+以下是一个示例：
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(MyProject)
+
+# 获取C++编译器版本
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    message("使用GCC编译器")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    message("使用Clang编译器")
+else()
+    message("使用其他编译器")
+endif()
+
+# 获取操作系统名称和版本
+message("操作系统： ${CMAKE_SYSTEM_NAME}")
+message("操作系统版本： ${CMAKE_SYSTEM_VERSION}")
+```
+
+这个脚本首先检查C++编译器的类型，然后输出相应的信息。接下来，它输出操作系统的名称和版本。
+
 sudo yum install cmake3 -y
 
 `include(FetchContent)` 是 CMake 中的一条指令，用于包含 FetchContent 模块。FetchContent 模块是 CMake 3.11 版本引入的功能，用于在构建过程中自动下载和构建依赖项。
