@@ -1,18 +1,115 @@
 # maven
 
-
 ## maven 扩展extension
 ```xml
     <build>
         <extensions>
             <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+这个Maven扩展的作用是添加Apache Maven Wagon库的FTP传输支持。Wagon是一个用于实现各种传输协议（如HTTP、FTP等）的Java库，它允许Maven在构建过程中与远程服务器进行通信。在这个例子中，wagon-ftp扩展提供了FTP传输的支持，版本为2.10。
+
+```xml
+            <plugin>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
                 <version>1.4.1.Final</version>
-            </extension>
-        </extensions>
-    </build>
+            </plugin>
 ```
+
+os.detected.name: windows
+os.detected.arch: x86_64
+os.detected.classifier: windows-x86_64
+
+${os.detected.classifier}
+
+Tomcat插件：这个插件为基于Maven开发的Web项目提供一个内置的Tomcat服务器支持，开发阶段可以不依赖外部的Tomcat来运行Web项目。
+Cobertura插件：用于生成代码覆盖率报告，帮助开发者评估测试的完整性。
+FindBugs插件：用于静态代码分析，帮助开发者发现可能的问题。
+
+cmake是如何支持多profile的
+
+CMake支持多profile的方式是通过配置文件（如CMakeLists.txt）中的条件判断语句来实现的。
+
+例如，假设有test、dev、uat和prod四个环境，每个环境中都有不同的变量设置。可以在CMakeLists.txt文件中使用if语句来判断当前所处的环境，然后设置相应的变量值。
+
+以下是一个示例：
+
+```cmake
+# 判断当前环境
+if(ENV{ENV_TYPE} STREQUAL "test")
+    # 设置test环境的变量值
+    set(VAR1 "value1")
+    set(VAR2 "value2")
+elseif(ENV{ENV_TYPE} STREQUAL "dev")
+    # 设置dev环境的变量值
+    set(VAR1 "value3")
+    set(VAR2 "value4")
+elseif(ENV{ENV_TYPE} STREQUAL "uat")
+    # 设置uat环境的变量值
+    set(VAR1 "value5")
+    set(VAR2 "value6")
+elseif(ENV{ENV_TYPE} STREQUAL "prod")
+    # 设置prod环境的变量值
+    set(VAR1 "value7")
+    set(VAR2 "value8")
+else()
+    # 如果环境类型不是test、dev、uat或prod，则输出错误信息并退出
+    message(FATAL_ERROR "Invalid environment type: ${ENV{ENV_TYPE}}")
+endif()
+```
+
+在执行CMake时，可以通过设置`ENV{ENV_TYPE}`环境变量来指定当前所处的环境。例如，如果要使用test环境，可以执行以下命令：
+
+```bash
+export ENV_TYPE=test && cmake ..
+```
+
+cmake脚本判断不同的c++编译器版本，os版本
+
+在CMakeLists.txt文件中，可以使用`CMAKE_CXX_COMPILER_VERSION`变量来获取当前使用的C++编译器版本。同时，可以使用`CMAKE_SYSTEM_NAME`和`CMAKE_SYSTEM_VERSION`变量来获取操作系统的名称和版本。
+
+以下是一个示例：
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(MyProject)
+
+# 获取C++编译器版本
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    message("使用GCC编译器")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    message("使用Clang编译器")
+else()
+    message("使用其他编译器")
+endif()
+
+# 获取操作系统名称和版本
+message("操作系统： ${CMAKE_SYSTEM_NAME}")
+message("操作系统版本： ${CMAKE_SYSTEM_VERSION}")
+```
+
+这个脚本首先检查C++编译器的类型，然后输出相应的信息。接下来，它输出操作系统的名称和版本。
+
+Maven Profile和Spring Profile都是用于配置管理的工具，但它们的作用和使用场景有所不同。
+Maven Profile主要用于管理Maven项目在不同环境下的构建配置。这种配置可以涉及到代码编译版本、依赖库版本、构建环境等等。通过定义不同的profile，我们可以为不同环境生成不同的构建结果，例如开发环境、测试环境和生产环境等。在POM.xml文件中，我们可以定义多个profile以及各自的属性。
+而Spring Profile则主要用于管理Spring应用程序在不同环境下的运行配置。它主要关心的是应用启动时的参数配置，如数据源、事务管理器、日志级别等。这些配置通常保存在application.yml或者application-{profile}.yml文件中，并通过spring.profiles.active属性指定当前使用哪个配置文件。
+尽管Maven Profile和Spring Profile可以独立使用，但在实际开发中，我们往往会结合两者一起使用。在pom.xml中定义多个profile及自己的属性，然后通过resource filtering来控制jar中包含的资源文件，并允许@XX@的变量替换。这样我们就可以根据不同的环境和需求，灵活地切换应用的配置了。
 
 maven 打包一堆jar文件
 jar文件可以看做是class文件的集合
