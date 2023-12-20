@@ -12,7 +12,7 @@ https://blog.csdn.net/Tencent_Bugly/article/details/53157830
 
 https://github.com/Tencent/mars
 
-windows clion
+windows Clion
 尝试下
 失败 需要vs
 
