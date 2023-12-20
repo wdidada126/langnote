@@ -1,5 +1,8 @@
 # feign
 
+## 脉脉网友遇到的bug
+header里面传很长的json，bug
+
 Spring Cloud feign例子
 GET POST 传文本参数 form参数
 

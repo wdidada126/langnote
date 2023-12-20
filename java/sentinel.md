@@ -1,4 +1,8 @@
 # sentinel
+b站视频，sentinel团队离职转岗了
+dubbo3进入维护状态了，不更新新功能了
+dubbo进入apache了
+nacos有bug
 
 https://gitee.com/edidada/testsentinelcloud
 https://github.com/edidada/testsentinel
