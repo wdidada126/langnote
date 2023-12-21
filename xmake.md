@@ -1,5 +1,7 @@
 # xmake
 
+xmake 从零开始创建一个 hello world 单文件真的是我见过最快的，从这点来说它就很适合学校教学
+
 xmake类似maven，定义文件
 xmake.lua
 pom.xml

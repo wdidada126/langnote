@@ -1,4 +1,5 @@
-sqlite
+# android_sqlite
+
 ./system/lib/libsqlite.so
 ./system/lib/libsqlite_jni.so
 
@@ -84,5 +85,4 @@ vcard.jar
 voip-common.jar
 wifi-service.jar
 wm.jar
-
 

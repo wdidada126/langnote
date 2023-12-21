@@ -1,6 +1,8 @@
 # elasticsearch
+基于ElasticSearch大宽表存储关键业务数据
 
-## IDEA调试代码
+## windows操作系统IDEA调试代码
+注意下载的jdk是linux操作系统的，坑
 
 https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/ 404
 

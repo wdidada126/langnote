@@ -16,11 +16,9 @@ fastboot flash recovery twrtXXX.img
 ```
 Nexus 5X，安卓8.1的系统，重启之后会恢复官方recovery
 
-
 ## 安装
 在安装三方recovery之后，可以刷入Magisk的压缩包。
 注意，从16.2开始，Magisk的安装包不再包含32位的文件，在Nexus 5X 安卓8.1系统的时候，termux会报错，找不到32位的su文件。因此建议刷16.0版本的。
-
 
 ## 体验
 安装好进入系统之后，会安装一个应用：MagiskManager
