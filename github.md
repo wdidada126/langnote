@@ -1,32 +1,41 @@
 # github
 
+## github cli
+
+gh repo clone edidada/odb
+gh auth login
+
 ## action
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners
 
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
-### 可选的操作系统
-Available GitHub-hosted runner types are:
 
-ubuntu-latest, ubuntu-22.04, ubuntu-20.04
-windows-latest, windows-2022, windows-2019
-macos-latest, macos-12, macos-11
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
 
-https://docs.github.com/zh/actions
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ SkipList ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ SkipList ---
+[INFO] Installing D:\git\github\SkipList2\target\SkipList-1.0-SNAPSHOT.jar to D:\mavenrepository\201904\com\github\mottox\SkipList\1.0-SNAPSHOT\SkipList-1.0-SNAPSHOT.jar
+[INFO] Installing D:\git\github\SkipList2\pom.xml to D:\mavenrepository\201904\com\github\mottox\SkipList\1.0-SNAPSHOT\SkipList-1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] --- maven-deploy-plugin:2.7:deploy (default-deploy) @ SkipList ---
+Downloading from github: https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/maven-metadata.xml
+Uploading to github: https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.jar
+Uploading to github: https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.pom
+[IJ]-1-MojoFailed-[IJ]-source=LIFECYCLE-[IJ]-goal=deploy-[IJ]-id=com.github.mottox:SkipList:jar:1.0-SNAPSHOT-[IJ]-error=Failed to transfer file https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.jar with status code 422
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.265 s
+[INFO] Finished at: 2023-12-22T19:52:10+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy (default-deploy) on project SkipList: Failed to deploy artifacts: Could not transfer artifact com.github.mottox:SkipList:jar:1.0-20231222.115208-1 from/to github (https://maven.pkg.github.com/edidada/SkipList): Failed to transfer file https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.jar with status code 422 -> [Help 1]
 
-## Codespaces
-GitHub Codespaces于2022年5月正式推出，目前已经完全对外开放。 
-github需要配置一堆东西，使用github desktop
-使用Codespaces为开发者解决这样的痛点：
+别人的项目
 
-为项目设置和维护一个或一组开发工作站。
-在“第一次提交”发生之前浪费的时间。
-开发工作站之间的配置/工具/设置不一致。
-版本控制工具/扩展、调试器和依赖项。
-基于个人或团队的设置和自定义。
-安全和漏洞。
-硬件规格要求。
-github添加token，http/https有效，git直接访问
+
 
 github topic
 
