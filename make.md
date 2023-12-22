@@ -64,7 +64,7 @@ Makefile文件由一系列规则（rules）构成。每条规则的形式如下�
 Make命令提供一系列内置变量，比如，$(CC) 指向当前使用的编译器，$(MAKE) 指向当前使用的Make工具。这主要是为了跨平台的兼容性
 
 
-Makefile提供了许多内置函数
+## Makefile提供了许多内置函数
 http://www.gnu.org/software/make/manual/html_node/Functions.html
 cmake也有内置函数
 
@@ -73,6 +73,7 @@ http://www.gnu.org/software/make/
 
 make 官方
 
+## make本质
 make编译java go c/cpp nodejs
 本质是对命令行/shell的封装
 
