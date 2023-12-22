@@ -1,5 +1,7 @@
 # github_codeql
 
+只对pulic库有用
+
 https://codeql.github.com/
 
 

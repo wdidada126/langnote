@@ -1,5 +1,38 @@
 # makefile
+在 Makefile 中定义变量后，你可以使用 `$(`和`)` 或 `${`和`}` 来引用这些变量。以下是两种常用的引用变量的方式：
 
+1. 使用 `$(` 和 `)`：
+```
+VARIABLE_NAME = value
+
+target:
+    $(VARIABLE_NAME)
+```
+
+在上述示例中，`$(VARIABLE_NAME)` 会被替换为变量 `VARIABLE_NAME` 的值。
+
+2. 使用 `${` 和 `}`：
+```
+VARIABLE_NAME = value
+
+target:
+    ${VARIABLE_NAME}
+```
+
+在这个示例中，`${VARIABLE_NAME}` 也会被替换为变量 `VARIABLE_NAME` 的值。
+
+无论使用哪种方式，当 Makefile 执行时，这些变量的引用部分都会被替换为其对应的值。
+
+请注意，变量引用区分大小写。确保在引用变量时使用正确的大小写和变量名称。
+
+此外，你还可以在变量引用中添加其他文本和命令，例如：
+```
+target:
+    echo $(VARIABLE_NAME) is the value
+```
+这将在执行 `target` 目标时打印变量的值。
+
+希望这个解释对你有所帮助！如果还有其他问题，请随时提问。
 
 
 http://blog.csdn.net/haoel/article/details/2886/
