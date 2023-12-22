@@ -1,4 +1,20 @@
 # git
+.gitmodules
+
+```
+[submodule "node_modules/loader"]
+	path = node_modules/loader
+	url = git://github.com/jonlb/node-jxLoader.git
+[submodule "node_modules/uglifyjs"]
+	path = node_modules/uglifyjs
+	url = https://github.com/mishoo/UglifyJS.git
+[submodule "node_modules/pkginfo"]
+	path = node_modules/pkginfo
+	url = git://github.com/indexzero/node-pkginfo.git
+```
+
+git submodule init
+git submodule update
 
 hint: You have divergent branches and need to specify how to reconcile them.
 hint: You can do so by running one of the following commands sometime before

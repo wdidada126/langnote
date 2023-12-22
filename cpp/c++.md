@@ -1,5 +1,10 @@
 # c++
 
+我有一个VS2015+QT5的程序，加入了QT的网页WebEngine功能，release版本除了在编译的电脑能够正常运行，其他的电脑都无法运行，也没有任何报错，程序压根就无法启动一样。能给个排查的思路吗
+很简单，在有问题的电脑上用dependency walker工具打开主程序，查看哪些依赖的库找不到
+在没问题的电脑上，用process ecplorer工具看一下库的目录，拷贝出来
+我的问题找到了，不是缺少DLL依赖库，是缺少一个QT的EXE，程序需要调用这个QT EXE来调用浏览器打开网页
+
 java
 import
 c++ using namespace
