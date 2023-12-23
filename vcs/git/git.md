@@ -1,5 +1,10 @@
 # git
 
+## ubuntu 安装不同版本git
+Git 的官方 PPA（Personal Package Archive）
+sudo add-apt-repository ppa:git-core/ppa
+
+
 .gitmodules
 
 ```
