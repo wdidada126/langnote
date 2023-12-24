@@ -65,3 +65,48 @@ Can't locate Test/More.pm in @INC
 
 安装必备包：
 yum install perl-IPC-Cmd perl-Data-Dumper perl-Test-Taint
+
+## 源代码仓库
+
+要在Ubuntu 20上编译OpenSSL 1.1.1o版本，请按照以下步骤操作：
+
+1. 首先，确保已经安装了必要的依赖项。在终端中运行以下命令：
+
+```bash
+sudo apt-get update
+sudo apt-get install -y build-essential libssl-dev zlib1g-dev libreadline-dev libyaml-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+```
+
+2. 接下来，从GitHub上克隆OpenSSL源代码仓库：
+
+```bash
+git clone https://github.com/openssl/openssl.git
+cd openssl
+```
+
+3. 检出所需的版本（例如，1.1.1o）：
+
+```bash
+git checkout OpenSSL_1_1_1o
+```
+
+4. 配置并编译OpenSSL：
+
+```bash
+./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib enable-camellia enable-idea enable-seed enable-sm2 enable-sm4 enable-tls13 enable-weak-ssl-ciphers no-comp no-dso no-hw no-mdc2 no-rc5 no-rfc3779 no-sctp no-ssl-trace no-zlib no-tests
+make
+```
+
+5. 安装编译好的OpenSSL：
+
+```bash
+sudo make install
+```
+
+6. 更新系统库路径：
+
+```bash
+sudo ldconfig
+```
+
+现在，您已经在Ubuntu 20上成功编译了OpenSSL 1.1.1o版本。
