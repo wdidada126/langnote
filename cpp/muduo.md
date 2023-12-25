@@ -38,3 +38,18 @@ nginx 又不是天王老子，nginx 做得就一定是对的？你只要手工�
 ## muduo依赖
 boost
 protoc
+
+## muduo安装
+https://github.com/chenshuo/muduo
+
+```shell
+
+git clone https://github.com/chenshuo/muduo.git
+sudo update
+sudo apt install libboost-all-dev -y
+sudo apt install protobuf-compiler -y
+export Boost_INCLUDE_DIR=/usr/include
+cd muduo
+chmod +x ./build.sh
+./build.sh
+```
