@@ -1,5 +1,11 @@
 # RocketMQ
 
+## github action编译rocketmq
+git clone https://github.com/apache/rocketmq.git
+cd rocketmq
+git checkout rocketmq-all-4.3.0
+mvn clean package
+
 RocketMQ 是一个分布式消息系统，用于在应用程序之间传递消息。它由阿里巴巴开发，并开源在 GitHub 上。以下是 RocketMQ 的核心概念：
 
 Producer：生产者负责发送消息到消息队列。RocketMQ 支持四种类型的生产者。

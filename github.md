@@ -51,3 +51,7 @@ github topic
 ipconfig /flushdns
 
 [GitHub 私人private仓库添加成员（协作者Collaborators）](https://blog.csdn.net/chenbetter1996/article/details/82871518)
+
+
+## github国内下载镜像代理地址
+https://kgithub.com/apache/rocketmq.git
