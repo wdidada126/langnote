@@ -5,6 +5,11 @@ IDEA有bazel插件
 
 Bazel 默认支持多种开发语言，如Java，C++，Javascript, Android
 
+iOS官方构建工具不支持增量编译
+使用bazel
+
+https://bazel.google.cn/about/intro?hl=zh-cn
+
 为什么我要使用Bazel？
 Bazel可以成倍提高构建速度，因为它只重新编译需要重新编译的文件。类似的，它会跳过没有被改变的测试。
 Bazel产出确定的结果。这消除了增量和干净构建，开发机器和持续集成之间的构建结果的差异。
@@ -13,14 +18,58 @@ Bazel可以使用同一个工程下的相同的工具来构建不同的客户端
 是的，一个简单的例子，见：
 https://github.com/google/bazel/blob/master/examples/cpp/BUILD
 
+https://github.com/bazelbuild/bazel
+
 Bazel源代码本身提供了更复杂的例子，例如：
 https://github.com/google/bazel/blob/master/src/main/java/BUILD
 https://github.com/google/bazel/blob/master/src/test/java/BUILD
 
 
 ### 安装
- yum install bazel4 -y
+类似rvm ruby的工具
+bazelisk
+https://github.com/bazelbuild/bazelisk
+
+https://github.com/bazelbuild/bazelisk/releases
+1.19.0
+
+
+yum install bazel4 -y
 
 
 
 windows上支持java？
+官方支持的
+ubuntu
+使用 Bazelisk 安装 / 更新 Bazel
+
+```shell
+
+```
+
+### 私有仓库
+https://registry.bazel.build/
+
+自己构建仓库
+https://github.com/bazelbuild/bazel-central-registry/
+#### 私有仓库
+
+自己编译运行
+bazel-central-registry
+--registry 到自己的地址
+
+### 依赖追踪
+使用 Bazel 的查询语言跟踪代码中的依赖项。
+https://bazel.google.cn/query/guide?hl=zh-cn
+
+
+### 核心概念
+bcr
+bazel center register 中央仓库
+
+Bzlmod 将在未来的 Bazel 版本中取代旧版 WORKSPACE 系统
+
+### bazelrc
+
+### windows最佳实践
+自 2020 年 1 月 15 日起，不要从 bash 运行 Bazel，要么是通过 MSYS2 shell、Git Bash、Cygwin 或任何其他 Bash 变体运行。
