@@ -1,5 +1,63 @@
 # git
 
+Git的commit id是通过哈希算法（如SHA-1、SHA-256等）对提交信息进行摘要生成的。具体步骤如下：
+
+1. 将提交信息进行编码，通常是UTF-8编码。
+2. 使用哈希算法（如SHA-1、SHA-256等）对编码后的提交信息进行摘要计算。
+3. 将摘要结果转换为16进制字符串，作为commit id。
+
+在Git中，可以使用`git rev-parse HEAD`命令查看当前分支的最新commit id。
+
+## 二级命令行
+branch
+merge
+push
+pull
+fetch
+diff
+revert
+restore
+
+git merge -h
+usage: git merge [<options>] [<commit>...]
+   or: git merge --abort
+   or: git merge --continue
+
+    -n                    do not show a diffstat at the end of the merge
+    --stat                show a diffstat at the end of the merge
+    --summary             (synonym to --stat)
+    --log[=<n>]           add (at most <n>) entries from shortlog to merge commit message
+    --squash              create a single commit instead of doing a merge
+    --commit              perform a commit if the merge succeeds (default)
+    -e, --edit            edit message before committing
+    --cleanup <mode>      how to strip spaces and #comments from message
+    --ff                  allow fast-forward (default)
+    --ff-only             abort if fast-forward is not possible
+    --rerere-autoupdate   update the index with reused conflict resolution if possible
+    --verify-signatures   verify that the named commit has a valid GPG signature
+    -s, --strategy <strategy>
+                          merge strategy to use
+    -X, --strategy-option <option=value>
+                          option for selected merge strategy
+    -m, --message <message>
+                          merge commit message (for a non-fast-forward merge)
+    -F, --file <path>     read message from file
+    --into-name <name>    use <name> instead of the real target
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --abort               abort the current in-progress merge
+    --quit                --abort but leave index and working tree alone
+    --continue            continue the current in-progress merge
+    --allow-unrelated-histories
+                          allow merging unrelated histories
+    --progress            force progress reporting
+    -S, --gpg-sign[=<key-id>]
+                          GPG sign commit
+    --autostash           automatically stash/stash pop before and after
+    --overwrite-ignore    update ignored files (default)
+    --signoff             add a Signed-off-by trailer
+    --no-verify           bypass pre-merge-commit and commit-msg hooks
+
 ## ubuntu 安装不同版本git
 Git 的官方 PPA（Personal Package Archive）
 sudo add-apt-repository ppa:git-core/ppa
@@ -285,6 +343,99 @@ a分支 merge b
 a分支之前的改动直接提交
 
 testgit 仓库
+要查看已添加到暂存区的文件列表，可以使用以下命令：
+git diff --cached --name-only
+
+
+git diff -h       
+usage: git diff [<options>] [<commit>] [--] [<path>...]
+   or: git diff [<options>] --cached [--merge-base] [<commit>] [--] [<path>...]
+   or: git diff [<options>] [--merge-base] <commit> [<commit>...] <commit> [--] [<path>...]
+   or: git diff [<options>] <commit>...<commit> [--] [<path>...]
+   or: git diff [<options>] <blob> <blob>
+   or: git diff [<options>] --no-index [--] <path> <path>
+
+common diff options:
+  -z            output diff-raw with lines terminated with NUL.
+  -p            output patch format.
+  -u            synonym for -p.
+  --patch-with-raw
+                output both a patch and the diff-raw format.
+  --stat        show diffstat instead of patch.
+  --numstat     show numeric diffstat instead of patch.
+  --patch-with-stat
+                output a patch and prepend its diffstat.
+  --name-only   show only names of changed files.
+  --name-status show names and status of changed files.
+                try unchanged files as candidate for copy detection.
+  -l<n>         limit rename attempts up to <n> paths.
+  -O<file>      reorder diffs according to the <file>.
+  -S<string>    find filepair whose only one side contains the string.
+  --pickaxe-all
+                show all files diff when -S is used and hit is found.
+  -a  --text    treat all files as text.
+
+`git diff` 命令用于比较工作区和暂存区之间的差异。以下是一些典型的用法：
+
+1. 查看工作区与暂存区的差异：
+```
+git diff
+```
+
+2. 查看工作区与最近一次提交的差异：
+```
+git diff HEAD
+```
+
+3. 查看工作区与指定提交之间的差异：
+```
+git diff <commit_id>
+```
+
+4. 查看工作区与暂存区的差异，并显示详细的文件差异信息：
+```
+git diff --stat
+```
+
+5. 查看工作区与暂存区的差异，并显示详细的文件差异信息，包括行数变化：
+```
+git diff --stat -M
+```
+
+6. 查看工作区与暂存区的差异，并显示详细的文件差异信息，包括新增、修改和删除的文件：
+```
+git diff --name-status
+```
+
+7. 查看工作区与暂存区的差异，并显示详细的文件差异信息，包括新增、修改和删除的文件，以及具体的文件内容差异：
+```
+git diff --name-status -C
+```
+
+git restore --staged .
+`git restore --staged .`命令的作用是撤销已经暂存（add）的文件。
+
+git restore -h
+usage: git restore [<options>] [--source=<branch>] <file>...
+
+    -s, --source <tree-ish>
+                          which tree-ish to checkout from
+    -S, --staged          restore the index
+    -W, --worktree        restore the working tree (default)
+    --ignore-skip-worktree-bits
+                          do not limit pathspecs to sparse entries only
+    --pathspec-from-file <file>
+                          read pathspec from file
+    --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
+
+具体来说，这个命令会将当前目录下所有已经通过`git add`命令添加到暂存区的文件还原到工作区，同时保留这些文件的修改状态。也就是说，这些文件并没有被删除，只是不再作为下一次提交的内容。如果需要再次提交这些文件，可以使用`git add`命令重新将它们添加到暂存区。
+
+如果你想要取消已经使用`git add`命令添加（即暂存）的文件，你可以采取以下步骤：
+1. 如果你想撤销已经添加（git add）到暂存区的单个文件，可以使用 `git reset` 命令。具体的命令格式是：`git reset <file>`。在这里，`<2009-11-28 20:55:48Z d36078e8c3d9$ git add *.txt`
+To unstage all the "*.txt" files that were added, you can use the command `git reset *.txt`. This will remove these files from the staging area and leave them in your working directory.
+2. 另一种方法是使用`git restore`命令来取消Git add操作并删除已添加到暂存区的文件。你可以使用`git restore --staged <file>`命令，其中`<file>`是你想要从暂存区中移除的文件名。
+3. 如果你误添加了整个目录，你可以使用`git restore --staged .`来取消暂存所有文件。
+4. 如果你不想保留对已暂存文件的修改，可以使用`git reset --hard HEAD~1`命令来取消暂存并还原文件到上一次提交的状态。
 
 git revert和reset
 
