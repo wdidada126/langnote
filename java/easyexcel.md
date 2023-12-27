@@ -11,3 +11,8 @@ https://easyexcel.opensource.alibaba.com/
 
 https://gitee.com/edidada/easyexceltest
 
+
+excel文件空格 12后面跟空格，直接trim了，现在需要取消trim
+https://easyexcel.opensource.alibaba.com/docs/current/api/
+
+现在版本中，autotrim开启时，去除的只有半角空格。如果是其他空白字符（比如全角空格、office换行空格等），默认是不会去除的，如果在导入的为数字类型下会直接报错，让用户一个个手动去除的话，大数据量下几乎没法完成。如果社区需要这个功能，我很高兴提供PR
