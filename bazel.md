@@ -1,6 +1,5 @@
 # bazel
 
-
 IDEA有bazel插件
 
 Bazel 默认支持多种开发语言，如Java，C++，Javascript, Android
@@ -35,8 +34,6 @@ https://github.com/bazelbuild/bazelisk/releases
 
 
 yum install bazel4 -y
-
-
 
 windows上支持java？
 官方支持的

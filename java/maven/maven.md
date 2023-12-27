@@ -1463,6 +1463,9 @@ maven 安装本地的jar包到本地仓库
 -Dpackaging=jar           : 设置该包的类型(很显然jar包)
 -Dfile=<myfile.jar>       : 设置该jar包文件所在的路径与文件名
 
+-Dpackaging：指定 Maven 项目的打包方式（例如：jar、war、pom 等）。
+mvn install:install-file -Dfile=/path/to/my-project.pom -DgroupId=com.example -DartifactId=my-project -Dversion=1.0 -Dpackaging=pom
+
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_API.jar
 
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_CARD_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_CARD_API.jar
