@@ -73,3 +73,53 @@ Bzlmod 将在未来的 Bazel 版本中取代旧版 WORKSPACE 系统
 
 ### windows最佳实践
 自 2020 年 1 月 15 日起，不要从 bash 运行 Bazel，要么是通过 MSYS2 shell、Git Bash、Cygwin 或任何其他 Bash 变体运行。
+
+
+C:\Users\edida\_bazel_edida\install\643682887d9f8f9c0037a92d6b552571
+
+
+----                 -------------         ------ ----
+d-----        2023/12/25      9:19                embedded_tools
+d-----        2023/12/25      9:19                platforms
+d-----        2023/12/25      9:19                rules_java
+-a----        2033/12/22      9:19      121624003 A-server.jar
+-a----        2033/12/22      9:19              5 build-label.txt
+-a----        2033/12/22      9:19          92160 build-runfiles.exe
+-a----        2033/12/22      9:19           9728 cpu_profiler.dll
+-a----        2033/12/22      9:19             32 install_base_key
+-a----        2033/12/22      9:19           9216 linux-sandbox.exe
+-a----        2033/12/22      9:19          12288 process-wrapper.exe
+-a----        2033/12/22      9:19            698 xcode-locator
+
+
+
+embedded_tools
+d-----        2023/12/25      9:19                jdk
+d-----        2023/12/25      9:19                src
+d-----        2023/12/25      9:19                third_party
+d-----        2023/12/25      9:19                tools
+-a----        2033/12/22      9:19           2010 MODULE.bazel
+-a----        2033/12/22      9:19             32 WORKSPACE
+
+
+
+
+
+platforms
+d-----        2023/12/25      9:19                cpu
+d-----        2023/12/25      9:19                os
+-a----        2033/12/22      9:19            977 BUILD
+-a----        2033/12/22      9:19             30 WORKSPACE
+
+
+## bazel java引入依赖BUILD文件写法
+
+java_library(
+    name = "your_library_name",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "//path/to/dependency1:dependency1_jar",
+        "//path/to/dependency2:dependency2_jar",
+        # ...
+    ],
+)
