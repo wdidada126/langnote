@@ -7,7 +7,9 @@ gh auth login
 
 ## action
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners
-
+ubuntu-latest, ubuntu-22.04, ubuntu-20.04
+windows-latest, windows-2022, windows-2019
+macos-latest, macos-12, macos-11
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 
