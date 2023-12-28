@@ -1462,8 +1462,22 @@ maven 安装本地的jar包到本地仓库
 -Dversion=1.0.0           : 设置该包的版本号
 -Dpackaging=jar           : 设置该包的类型(很显然jar包)
 -Dfile=<myfile.jar>       : 设置该jar包文件所在的路径与文件名
+-Dpackaging             ：指定 Maven 项目的打包方式（例如：jar、war、pom 等）。
+-DlocalRepositoryPath=path-to-specific-local-repo
+-DpomFile=path-to-pom  如果pom.xml在jar包META-INF文件夹下面，可以省略。JAR was built by Apache Maven，jar包里面就是自带pom.xml
 
--Dpackaging：指定 Maven 项目的打包方式（例如：jar、war、pom 等）。
+fuyao-hr-api.jar\META-INF\maven\com.fuyao.salary\fuyao-salary
+有文件：
+pom.properties  
+pom.xml
+
+其中pom.properties  内容如下
+#Created by Apache Maven 3.6.1
+version=1.0.1
+groupId=com.fuyao.salary
+artifactId=fuyao-salary
+
+
 mvn install:install-file -Dfile=/path/to/my-project.pom -DgroupId=com.example -DartifactId=my-project -Dversion=1.0 -Dpackaging=pom
 
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_API.jar
