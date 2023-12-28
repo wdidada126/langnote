@@ -1,11 +1,38 @@
 # regular
 
+https://blog.csdn.net/zhongqingtian/article/details/124557473
+
+[]
+
++
+
+|
+
+?
+
+*
+
+字符串通配符
+SQL
+Unix shell
+
+正则表达式工具 Match Tracer（v2.1.5）
+工具：正则表达式编写及调试工具。
+
+Windows下最好的正则测试工具RegexBuddy
+
+https://hiregex.com/download.html
+
+判断一个java文件是否符合Java语言语法
+
+正则表达式的语法在大多数情况下是通用的，因此，在不同的编程语言中，其基本结构和用法是相似的。然而，由于执行正则表达式的环境及其对正则表达式语法的支持状况可能因语言而异，这导致了一些细微的差别。
+
 (Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day 可以匹配任何一天的名称.
 
 [-/\\ ]
 - / \ 空格的正则
 
-
+## 正则表达式工具RegexBuddy
 RegexBuddy是一款强大的正则表达式编辑器和测试工具，用于创建、编辑、测试和分析正则表达式。这个软件的主要目的是帮助用户轻松地构建和理解正则表达式，以便用于文本搜索、数据提取、字符串替换和其他文本处理任务。
 
 RegexBuddy作为一款强大且用户友好的正则表达式工具，尤其适用于那些需要在日常工作中处理文本数据并进行高级搜索和替换操作的人员，它可用于多个平台，包括Windows和Wine（在Linux和macOS上运行Windows版本）
