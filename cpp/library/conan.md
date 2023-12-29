@@ -1,5 +1,8 @@
 # conan
 
+## 安装特定版本的conan
+pip3 install conan==1.62.0
+
 conan server
 virtual = local + remote
 local仅仅是本地的
