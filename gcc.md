@@ -276,3 +276,6 @@ cd gcc-11.2.0
 make all-gcc all-target-libgcc
 sudo make install-gcc install-target-libgcc
 ```
+
+
+以上 gcc、g++、cpp 都叫做 compiler driver 。这些都不负责编译代码，只负责调用真正的编译器（compiler proper）。gcc 这个项目中，真正负责编译 C 代码的程序叫做 cc1，负责编译 C++ 代码的程序叫做 cc1plus 。
