@@ -1,4 +1,29 @@
 # conan
+Options
+我们看到在执行conan install的时候可以指定配置。例如conan install .. -s build_type=Debug。这里指定的一般都是客户机器上的项目级别的配置，一般没法在包配置中指定默认值。例如，在包配置中指定使用“Visual Studio”作为默认编译期就不合理，因为类似这些配置最好由最终用户指定，否则对于在linux工作上的用户就不友好。
+
+但是包配置中的[options]最好用于指定包普遍适用的配置，以及指定默认值。例如一个包可以指定默认为静态链接，这样用户一般情况就不用再指定了。
+
+可以使用类似conan get poco/1.9.4@的命令查看指定包的的options。也可以通过conan inspect命令，如下：
+
+$ conan inspect poco/1.9.4@ -a=options
+$ conan inspect poco/1.9.4@ -a=default_options
+
+## conan profiles
+https://ccup.github.io/conan-docs-zh/04-using-package.html#%E4%BD%BF%E7%94%A8profiles
+
+https://docs.conan.io/1/reference/profiles.html
+
+
+cat .conan2/profiles/default
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu14
+compiler.libcxx=libstdc++11
+compiler.version=9
+os=Linux
 
 conan 需要python文件去定义
 xmake 需要lua文件去定义

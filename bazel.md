@@ -1,5 +1,8 @@
 # bazel
 
+11月18日， 特斯拉Autopilot工程师Romi Phadte和Gabriel Gheorghian在2022BazelCon会议上，作了题为“运行数百万次仿真和构建，大规模开发和评估autopilot”的演讲。
+https://m.bilibili.com/video/av390471884
+
 IDEA有bazel插件
 
 Bazel 默认支持多种开发语言，如Java，C++，Javascript, Android

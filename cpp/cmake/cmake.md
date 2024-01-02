@@ -1,5 +1,13 @@
 # CMake
 
+```shell
+mkdir temp
+cd temp
+wget -O cmake.tar.gz https://cmake.org/files/v3.24/cmake-3.24.4-linux-x86_64.tar.gz
+tar zxvf cmake.tar.gz -C ./
+export PATH=${{github.workspace}}/temp/cmake-3.24.4-linux-x86_64/bin:$PATH
+```
+
 cmake 3.18.0不支持vs 2022
 CMake Error: Could not create named generator Visual Studio 17 2022
 

@@ -6,6 +6,9 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+cmake默认版本，最新版
+3.28
+
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners
 ubuntu-latest, ubuntu-22.04, ubuntu-20.04
 windows-latest, windows-2022, windows-2019
