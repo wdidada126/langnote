@@ -1,5 +1,17 @@
 # conan
 
+conan 需要python文件去定义
+xmake 需要lua文件去定义
+
+## template
+templates: basic,
+cmake_lib, cmake_exe, meson_lib, meson_exe,
+msbuild_lib, msbuild_exe, bazel_lib, bazel_exe,
+autotools_lib, autotools_exe. E.g. 'conan new
+cmake_lib -d name=hello -d version=0.1'. You can
+define your own templates too by inputting an absolute
+path as your template, or a path relative to your
+conan home folder.
 ## 安装特定版本的conan
 pip3 install conan==1.62.0
 

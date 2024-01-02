@@ -1,4 +1,18 @@
 # CMake
+
+cmake 3.18.0不支持vs 2022
+CMake Error: Could not create named generator Visual Studio 17 2022
+
+https://blog.csdn.net/weixin_49486457/article/details/125763660
+
+
+cmake -G "MinGW Makefiles" ..      
+CMake Error: Error: generator : MinGW Makefiles
+Does not match the generator used previously: Ninja
+Either remove the CMakeCache.txt file and CMakeFiles directory or choose a different binary directory.
+
+
+
 ## cmake使用的例子
 
 SQLiteCpp
