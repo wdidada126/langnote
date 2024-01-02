@@ -6,8 +6,13 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
-https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners
+cmake默认版本，最新版
+3.28
 
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners
+ubuntu-latest, ubuntu-22.04, ubuntu-20.04
+windows-latest, windows-2022, windows-2019
+macos-latest, macos-12, macos-11
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 
@@ -51,3 +56,7 @@ github topic
 ipconfig /flushdns
 
 [GitHub 私人private仓库添加成员（协作者Collaborators）](https://blog.csdn.net/chenbetter1996/article/details/82871518)
+
+
+## github国内下载镜像代理地址
+https://kgithub.com/apache/rocketmq.git

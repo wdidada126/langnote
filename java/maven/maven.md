@@ -1,5 +1,27 @@
 # maven
 
+Core Classloader (Core Extensions)
+the Project Classloader (Build Extensions)
+Maven 是一个用于软件项目构建和依赖管理的工具，它使用不同的类加载器来加载不同的组件和扩展。在 Maven 中，有两个主要的类加载器：核心类加载器（Core Classloader）和项目类加载器（Project Classloader），它们有不同的作用和职责。
+
+1. 核心类加载器（Core Classloader）：
+   核心类加载器是负责加载 Maven 核心组件和插件的类加载器。这个类加载器加载的是 Maven 自身的类和扩展，包括 Maven 的核心插件和构建生命周期的实现。核心类加载器位于 Maven 运行时环境中，通常由 Maven 的启动类加载器负责加载。核心类加载器的类路径包含了 Maven 安装目录下的 lib 目录中的 JAR 文件。
+
+   核心类加载器的主要作用是提供 Maven 的基本功能和核心插件，如编译、测试、打包等。它是 Maven 运行时环境的一部分，不受项目的影响，无法被项目的依赖所修改。
+
+2. 项目类加载器（Project Classloader）：
+   项目类加载器是负责加载项目依赖和自定义插件的类加载器。每个 Maven 项目都有自己的项目类加载器，用于加载项目中的类和依赖。项目类加载器的类路径由项目的依赖配置决定，通常包括项目的编译依赖、测试依赖等。项目类加载器在构建过程中动态创建，并且会根据项目的依赖关系进行相应的加载。
+
+   项目类加载器的主要作用是提供项目特定的类和依赖，使其可在项目构建过程中使用。它可以加载项目的插件、构建扩展和其他依赖项。项目类加载器是针对每个项目的独立实例，不会干扰其他项目的类加载器。
+
+区别：
+- 职责：核心类加载器负责加载 Maven 自身的核心组件和插件，提供基本功能和核心插件；项目类加载器负责加载项目的类和依赖，提供项目特定的类和插件。
+- 类路径：核心类加载器的类路径由 Maven 安装目录下的 lib 目录中的 JAR 文件组成；项目类加载器的类路径由项目的依赖配置决定，包括项目的编译依赖、测试依赖等。
+- 影响范围：核心类加载器是 Maven 运行时环境的一部分，不受项目的影响；项目类加载器是针对每个项目的独立实例，不会干扰其他项目的类加载器。
+
+通过核心类加载器和项目类加载器的区分，Maven 可以实现对核心功能和项目定制功能的隔离和管理。核心类加载器提供了 Maven 的基本功能和核心插件，而项目类加载器提供了项目特定的类和插件，使得 Maven 可以根据项目的需求进行灵活的构建和扩展。
+
+
 ## maven 扩展extension
 ```xml
     <build>
@@ -118,6 +140,16 @@ parent pom，多个jar的集合，这些jar的依赖可以是同一个版本
 
 grpc库 一堆库文件，一堆可执行文件
 对应java 一堆main函数，一个maven parent，core、 lang（php csharp python等）、proto、compiler
+
+maven官网插件列表
+https://maven.apache.org/plugins/index.html
+
+Maven Assembly插件是Apache Maven的一个功能，它允许开发人员将项目的输出组合成一个单一的可分发的存档。这个存档不仅包含依赖项、模块、站点文档和其他文件，还支持使用预构建的组装描述符轻松构建分发“组装”。 为了使用此插件，您需要在项目的pom.xml文件中引入并配置maven-assembly-plugin。
+
+https://maven.apache.org/plugins/maven-assembly-plugin/assembly
+
+assembly
+装配
 
 ## 打包独立部署到服务器
 
@@ -1430,6 +1462,23 @@ maven 安装本地的jar包到本地仓库
 -Dversion=1.0.0           : 设置该包的版本号
 -Dpackaging=jar           : 设置该包的类型(很显然jar包)
 -Dfile=<myfile.jar>       : 设置该jar包文件所在的路径与文件名
+-Dpackaging             ：指定 Maven 项目的打包方式（例如：jar、war、pom 等）。
+-DlocalRepositoryPath=path-to-specific-local-repo
+-DpomFile=path-to-pom  如果pom.xml在jar包META-INF文件夹下面，可以省略。JAR was built by Apache Maven，jar包里面就是自带pom.xml
+
+fuyao-hr-api.jar\META-INF\maven\com.fuyao.salary\fuyao-salary
+有文件：
+pom.properties  
+pom.xml
+
+其中pom.properties  内容如下
+#Created by Apache Maven 3.6.1
+version=1.0.1
+groupId=com.fuyao.salary
+artifactId=fuyao-salary
+
+
+mvn install:install-file -Dfile=/path/to/my-project.pom -DgroupId=com.example -DartifactId=my-project -Dversion=1.0 -Dpackaging=pom
 
 mvn install:install-file -DgroupId=com.zebra -DartifactId=ZSDK_API -Dversion=v2.12.3782 -Dpackaging=jar -Dfile=E:\perslib\ZSDK_API.jar
 

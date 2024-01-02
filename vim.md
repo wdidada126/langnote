@@ -9,3 +9,5 @@ https://www.cnblogs.com/z-x-y/p/10088224.html
 查找
 
 ？sed/soure/target/g
+
+vim搜索空格，直接输入

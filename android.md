@@ -1,5 +1,7 @@
 # 编译系统源码
 
+https://developer.android.com/studio/releases/gradle-plugin?hl=zh-cn
+
 ffmpeg android
 
 http://trac.ffmpeg.org/wiki/CompilationGuide/Android

@@ -1,5 +1,8 @@
 # rust
 
+本书为《Programming Rust - Fast, Safe Systems Development》第2版的个人中文翻译，仅供学习和交流使用，如有侵权请联系作者删除
+https://github.com/MeouSker77/ProgrammingRust
+
 脱离标准库 Rust可以写OS
 
 Rust ubuntu 16

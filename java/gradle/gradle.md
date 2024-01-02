@@ -1,5 +1,9 @@
 # gradle
 
+gradle init --type pom
+`gradle init --type pom`命令行的作用是初始化一个Gradle项目，并将项目类型设置为POM（Project Object Model）。
+执行`gradle init --type pom`命令行后，会在当前目录下生成一个名为`build.gradle`的Gradle构建脚本文件和一个名为`settings.gradle`的Gradle设置文件。同时，还会在项目根目录下生成一个`src`源代码文件夹。这些文件是Gradle项目的基础结构，用于定义项目的构建规则和依赖管理等。
+
 maven可以打包成jar包，gradle如何打包成jar包
 mvn可以使用antlr生成.java文件，gradle如何打包
 mvn可以调用本地的protoc命令行文件，gradle如何组织
@@ -7,7 +11,9 @@ mvn可以调用本地的protoc命令行文件，gradle如何组织
 ## 竞品
 apt
 dnf
-yun
+yum
+ant
+maven
 
 ## gradle版本和windows版本关系
 Gradle 8.4 需要的 Java 版本是 JDK 11。
@@ -16,6 +22,7 @@ $env:JAVA_HOME = "D:\Java\jdk-11.0.4"
 
 ## 使用gradle的开源项目
 https://github.com/elastic/elasticsearch
+spring
 
 ## 仓库
 gradle可以使用maven的库仓库

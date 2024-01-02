@@ -1,4 +1,61 @@
 # conan
+https://ccup.github.io/conan-docs-zh/05-creating-packages.html
+
+conan new会在当前文件夹下生成conanfile.py
+如果开发人员要作为生产者角色(producer),把自己的项目也封装成conan包上传到conan服务器供第三方使用，conanfile.txt是不能满足要求的，必须使用全能的confile.py脚本来定义包的配置,事实上conan在分发包时就是基于python脚本的灵活性通过conanfile.py来定义包的全部配置的。所以当我们执行conan new命令创建一个新的conan配置时，自动生成的是conanfile.py脚本。
+https://docs.conan.io/1/reference/conanfile.html
+
+Options
+我们看到在执行conan install的时候可以指定配置。例如conan install .. -s build_type=Debug。这里指定的一般都是客户机器上的项目级别的配置，一般没法在包配置中指定默认值。例如，在包配置中指定使用“Visual Studio”作为默认编译期就不合理，因为类似这些配置最好由最终用户指定，否则对于在linux工作上的用户就不友好。
+
+但是包配置中的[options]最好用于指定包普遍适用的配置，以及指定默认值。例如一个包可以指定默认为静态链接，这样用户一般情况就不用再指定了。
+
+可以使用类似conan get poco/1.9.4@的命令查看指定包的的options。也可以通过conan inspect命令，如下：
+
+$ conan inspect poco/1.9.4@ -a=options
+$ conan inspect poco/1.9.4@ -a=default_options
+
+## conan profiles
+https://ccup.github.io/conan-docs-zh/04-using-package.html#%E4%BD%BF%E7%94%A8profiles
+
+https://docs.conan.io/1/reference/profiles.html
+
+
+cat .conan2/profiles/default
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu14
+compiler.libcxx=libstdc++11
+compiler.version=9
+os=Linux
+
+`libstdc++` 是 GNU C++ 标准库的实现，它提供了 C++ 标准库的各种功能和特性。而 `libstdc++11`、`libstdc++14`、`libstdc++17` 是 `libstdc++` 的不同版本，它们对应于不同的 C++ 标准。
+下面是它们之间的区别：
+1. `libstdc++11`：这是对应 C++11 标准的 `libstdc++` 版本。C++11 是 C++ 标准的一个重要版本，引入了许多新的语言功能和库特性，如 lambda 表达式、右值引用、线程支持等。`libstdc++11` 包含了 C++11 标准库的实现。
+2. `libstdc++14`：这是对应 C++14 标准的 `libstdc++` 版本。C++14 是 C++ 标准的下一个版本，对 C++11 进行了一些扩展和改进。它添加了一些新功能，如二进制字面量、泛型 lambda 表达式、`constexpr` 函数的放宽要求等。`libstdc++14` 包含了 C++14 标准库的实现。
+3. `libstdc++17`：这是对应 C++17 标准的 `libstdc++` 版本。C++17 是 C++ 标准的下一个版本，引入了一系列新功能和改进，如结构化绑定、`if constexpr`、折叠表达式等。`libstdc++17` 包含了 C++17 标准库的实现。
+每个版本的 `libstdc++` 实现了相应版本的 C++ 标准，并提供了相应的功能和特性。因此，选择使用哪个版本取决于您的项目需求和目标平台的支持情况。通常情况下，您应该选择与您的编译器和目标平台兼容的版本。
+
+需要注意的是，不同的编译器可能具有不同的命名约定和默认版本。因此，确保在编译代码时正确配置编译器选项，以便使用所需的 `libstdc++` 版本。
+ERROR: Invalid setting 'libstdc++17' is not a valid 'settings.compiler.libcxx' value.
+Possible values are ['libstdc++', 'libstdc++11']
+
+conan 需要python文件去定义
+xmake 需要lua文件去定义
+
+## template
+templates: basic,
+cmake_lib, cmake_exe, meson_lib, meson_exe,
+msbuild_lib, msbuild_exe, bazel_lib, bazel_exe,
+autotools_lib, autotools_exe. E.g. 'conan new
+cmake_lib -d name=hello -d version=0.1'. You can
+define your own templates too by inputting an absolute
+path as your template, or a path relative to your
+conan home folder.
+## 安装特定版本的conan
+pip3 install conan==1.62.0
 
 conan server
 virtual = local + remote
@@ -111,7 +168,7 @@ Conan服务端是一个基于Python的Web应用程序，它提供了Conan仓库�
 配置Conan服务端。
 安装完成后，需要对Conan服务端进行配置。配置内容包括设置仓库名称、设置仓库中保存的包信息、设置用户和权限等。
 部署Conan客户端。
-Conan客户端是用于与Conan服务端进行交互的工具。在公司内部，需要为每个开发人员部署Conan客户端，并确保他们使用相同的配置。
+Conan客户端是用于与Conan服务端进行 交互的工具。在公司内部，需要为每个开发人员部署Conan客户端，并确保他们使用相同的配置。
 上传包到Conan仓库。
 当开发人员完成了C++库的开发后，可以使用Conan客户端将库文件上传到Conan服务端。上传时需要指定包的名称、版本号和相关信息。
 配置其他开发工具使用内部仓库。
