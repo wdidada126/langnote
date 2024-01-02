@@ -1,5 +1,20 @@
 # regular
 
+在形式语言理论中，形式语言是一个字母表上的某些有限长字符串的集合。一个形式语言可以包含无限多个字符串。
+形式语言（英语：Formal language）是用精确的数学或机器可处理的公式定义的语言。
+
+正则表达式由常量和算子组成，它们分别表示字符串的集合和在这些集合上的运算。
+常量 a-z
+0-9
+A-Z
+
+不同的编程语言，正则表达式不同。
+正则表达式在不同编程语言上的统一工作进展缓慢
+
+java正则表达式
+https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+Pattern (Java Platform SE 8 ).mhtml
+
 最全常用正则表达式大全
 最全常用正则表达式大全-CSDN博客.mhtml
 https://blog.csdn.net/zhongqingtian/article/details/124557473

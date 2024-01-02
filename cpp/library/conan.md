@@ -1,4 +1,10 @@
 # conan
+https://ccup.github.io/conan-docs-zh/05-creating-packages.html
+
+conan new会在当前文件夹下生成conanfile.py
+如果开发人员要作为生产者角色(producer),把自己的项目也封装成conan包上传到conan服务器供第三方使用，conanfile.txt是不能满足要求的，必须使用全能的confile.py脚本来定义包的配置,事实上conan在分发包时就是基于python脚本的灵活性通过conanfile.py来定义包的全部配置的。所以当我们执行conan new命令创建一个新的conan配置时，自动生成的是conanfile.py脚本。
+https://docs.conan.io/1/reference/conanfile.html
+
 Options
 我们看到在执行conan install的时候可以指定配置。例如conan install .. -s build_type=Debug。这里指定的一般都是客户机器上的项目级别的配置，一般没法在包配置中指定默认值。例如，在包配置中指定使用“Visual Studio”作为默认编译期就不合理，因为类似这些配置最好由最终用户指定，否则对于在linux工作上的用户就不友好。
 
@@ -24,6 +30,17 @@ compiler.cppstd=gnu14
 compiler.libcxx=libstdc++11
 compiler.version=9
 os=Linux
+
+`libstdc++` 是 GNU C++ 标准库的实现，它提供了 C++ 标准库的各种功能和特性。而 `libstdc++11`、`libstdc++14`、`libstdc++17` 是 `libstdc++` 的不同版本，它们对应于不同的 C++ 标准。
+下面是它们之间的区别：
+1. `libstdc++11`：这是对应 C++11 标准的 `libstdc++` 版本。C++11 是 C++ 标准的一个重要版本，引入了许多新的语言功能和库特性，如 lambda 表达式、右值引用、线程支持等。`libstdc++11` 包含了 C++11 标准库的实现。
+2. `libstdc++14`：这是对应 C++14 标准的 `libstdc++` 版本。C++14 是 C++ 标准的下一个版本，对 C++11 进行了一些扩展和改进。它添加了一些新功能，如二进制字面量、泛型 lambda 表达式、`constexpr` 函数的放宽要求等。`libstdc++14` 包含了 C++14 标准库的实现。
+3. `libstdc++17`：这是对应 C++17 标准的 `libstdc++` 版本。C++17 是 C++ 标准的下一个版本，引入了一系列新功能和改进，如结构化绑定、`if constexpr`、折叠表达式等。`libstdc++17` 包含了 C++17 标准库的实现。
+每个版本的 `libstdc++` 实现了相应版本的 C++ 标准，并提供了相应的功能和特性。因此，选择使用哪个版本取决于您的项目需求和目标平台的支持情况。通常情况下，您应该选择与您的编译器和目标平台兼容的版本。
+
+需要注意的是，不同的编译器可能具有不同的命名约定和默认版本。因此，确保在编译代码时正确配置编译器选项，以便使用所需的 `libstdc++` 版本。
+ERROR: Invalid setting 'libstdc++17' is not a valid 'settings.compiler.libcxx' value.
+Possible values are ['libstdc++', 'libstdc++11']
 
 conan 需要python文件去定义
 xmake 需要lua文件去定义
