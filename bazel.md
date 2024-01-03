@@ -1,5 +1,7 @@
 # bazel
 
+Bazel 6 新增了 bzlmod ，支持了包的多版本管理，可以解决菱形依赖的问题。已经完全成熟可用了。
+https://bazel.build/build/bzlmod
 11月18日， 特斯拉Autopilot工程师Romi Phadte和Gabriel Gheorghian在2022BazelCon会议上，作了题为“运行数百万次仿真和构建，大规模开发和评估autopilot”的演讲。
 https://m.bilibili.com/video/av390471884
 
@@ -26,8 +28,12 @@ Bazel源代码本身提供了更复杂的例子，例如：
 https://github.com/google/bazel/blob/master/src/main/java/BUILD
 https://github.com/google/bazel/blob/master/src/test/java/BUILD
 
+## bazel6
 
 ### 安装
+<<<<<<< HEAD
+yum install bazel4 -y
+=======
 类似rvm ruby的工具
 bazelisk
 https://github.com/bazelbuild/bazelisk
@@ -90,9 +96,18 @@ d-----        2023/12/25      9:19                rules_java
 -a----        2033/12/22      9:19           9216 linux-sandbox.exe
 -a----        2033/12/22      9:19          12288 process-wrapper.exe
 -a----        2033/12/22      9:19            698 xcode-locator
+>>>>>>> 211f32a9c196c750f376cee323e36c9631852fdf
 
+windows上支持java？
 
+sudo apt install apt-transport-https curl gnupg -y
+curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
+sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+sudo apt update && sudo apt install bazel
 
+<<<<<<< HEAD
+=======
 embedded_tools
 d-----        2023/12/25      9:19                jdk
 d-----        2023/12/25      9:19                src
@@ -123,3 +138,4 @@ java_library(
         # ...
     ],
 )
+>>>>>>> 211f32a9c196c750f376cee323e36c9631852fdf
