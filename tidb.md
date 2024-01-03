@@ -1,4 +1,8 @@
 # tidb
+
+tidb oracle语法差异对照表
+https://docs.pingcap.com/zh/tidb/stable/oracle-functions-to-tidb
+
 屹tong
 5.7.25-TiDB-v4.0.16
 
