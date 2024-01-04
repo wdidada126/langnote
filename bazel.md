@@ -31,9 +31,7 @@ https://github.com/google/bazel/blob/master/src/test/java/BUILD
 ## bazel6
 
 ### 安装
-<<<<<<< HEAD
 yum install bazel4 -y
-=======
 类似rvm ruby的工具
 bazelisk
 https://github.com/bazelbuild/bazelisk
@@ -96,7 +94,6 @@ d-----        2023/12/25      9:19                rules_java
 -a----        2033/12/22      9:19           9216 linux-sandbox.exe
 -a----        2033/12/22      9:19          12288 process-wrapper.exe
 -a----        2033/12/22      9:19            698 xcode-locator
->>>>>>> 211f32a9c196c750f376cee323e36c9631852fdf
 
 windows上支持java？
 
@@ -106,8 +103,6 @@ sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 sudo apt update && sudo apt install bazel
 
-<<<<<<< HEAD
-=======
 embedded_tools
 d-----        2023/12/25      9:19                jdk
 d-----        2023/12/25      9:19                src
@@ -138,4 +133,3 @@ java_library(
         # ...
     ],
 )
->>>>>>> 211f32a9c196c750f376cee323e36c9631852fdf
