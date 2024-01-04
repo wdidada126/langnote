@@ -1,5 +1,43 @@
 # SQL
 
+```sql
+
+			SELECT
+				USER_ID,
+				MONTH,
+				PAY_TYPE,
+				CASE
+					WHEN STATUS = '0'
+						AND MONTH >= ? THEN '3'
+						WHEN STATUS = '0'
+						AND MONTH < ? THEN '2'
+						WHEN STATUS = '1' THEN '1'
+					END STATUS
+				FROM
+					(
+					SELECT
+						A.USER_ID,
+						A.MONTH,
+						A.STATUS,
+						A.PAY_TYPE,
+						ROW_NUMBER() over (PARTITION BY USER_ID
+					ORDER BY
+						MONTH DESC,
+						STATUS) RN
+					FROM
+						(
+						SELECT
+							USER_ID,
+							DATE_FORMAT(CONCAT(MONTH, '-', '01'), '%Y-%m') MONTH,
+							STATUS,
+							PAY_TYPE
+						FROM
+							HRBASE_UAT2.T_RECORD_FUND_TD
+						WHERE
+							ETP_ID = ?) A)BK
+				WHERE
+					BK.RN = 1
+```
 
 mysql 字符串长度函数
 https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
