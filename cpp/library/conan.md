@@ -1,5 +1,19 @@
 # conan
+
+查看它的包描述。
+$ conan inspect poco/1.9.4
+ conan profile new default --detect  # Generates default profile detecting > GCC and sets old ABI
+$ conan profile update settings.compiler.libcxx=libstdc++11 default  # Sets libcxx to C++11 ABI
+
+如果特定配置的二进制包不存在conan将会抛出一个错误。
+使用conan install .. --build=missing来从源码构建你需要的二进制包，当然这需要你要的二进制配置被包的说明文件所支持。
+
 https://ccup.github.io/conan-docs-zh/05-creating-packages.html
+
+## conan generators
+
+https://docs.conan.io/en/latest/reference/generators.html#generators-reference
+
 
 conan new会在当前文件夹下生成conanfile.py
 如果开发人员要作为生产者角色(producer),把自己的项目也封装成conan包上传到conan服务器供第三方使用，conanfile.txt是不能满足要求的，必须使用全能的confile.py脚本来定义包的配置,事实上conan在分发包时就是基于python脚本的灵活性通过conanfile.py来定义包的全部配置的。所以当我们执行conan new命令创建一个新的conan配置时，自动生成的是conanfile.py脚本。
