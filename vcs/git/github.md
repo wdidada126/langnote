@@ -1,5 +1,9 @@
 # github
 
+## 2fa
+
+github-edidada-recovery-codes.txt
+
 ## github cli
 
 gh repo clone edidada/odb

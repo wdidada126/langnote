@@ -12,6 +12,15 @@ tags:
 
 ## chap 13
 
+https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F
+
+https://www.zhihu.com/question/637413724/answer/3344230189
+
+x86、MOS Technology 6502、Z80、VAX、PDP-11、RISC-V等处理器为小端序；
+Motorola 6800、Motorola 68000、PowerPC 970、System/370、SPARC（除V9外）等处理器为大端序；
+ARM、PowerPC（除PowerPC 970外）、DEC Alpha、SPARC V9、MIPS、PA-RISC及IA64的字节序是可配置的。
+
+
 小端(Little-endian)模式，操作数的存放方式为高地址存放高字节。
 大端(Big-endian)模式，操作数的存放方式为高地址存放低字节。
 目前，X86平台采用小端模式，网络字节顺序采用大端模式，而部分其他处理器，例如ARM处理机，既支持大端模式，亦支持小端模式。
