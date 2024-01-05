@@ -123,8 +123,16 @@ com.alibaba.excel.converters.longconverter
 com.alibaba.excel.converters.shortconverter	 
 com.alibaba.excel.converters.string	 
 com.alibaba.excel.converters.url	 
-### com.alibaba.excel.enums	 
+### com.alibaba.excel.enums	
+
+CellDataTypeEnum
+
+
+
+
+
 com.alibaba.excel.enums.poi	 
+
 ### com.alibaba.excel.event	 
 ### com.alibaba.excel.exception	 
 ### com.alibaba.excel.metadata	 
@@ -132,6 +140,7 @@ com.alibaba.excel.metadata.csv
 com.alibaba.excel.metadata.data	 
 com.alibaba.excel.metadata.format	 
 com.alibaba.excel.metadata.property	 
+
 ### com.alibaba.excel.read.builder	 
 com.alibaba.excel.read.listener	 
 com.alibaba.excel.read.metadata	 
@@ -141,6 +150,7 @@ com.alibaba.excel.read.metadata.holder.xls
 com.alibaba.excel.read.metadata.holder.xlsx	 
 com.alibaba.excel.read.metadata.property	 
 com.alibaba.excel.read.processor	 
+
 ### com.alibaba.excel.support	 
 ### com.alibaba.excel.util	 
 ### com.alibaba.excel.write	 

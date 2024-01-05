@@ -1,5 +1,54 @@
 # maven
 
+## maven pom的信息，如何跟java其他构建工具共享
+gradle组织spring代码，编译后如何存到本地的maven仓库文件夹下？
+
+
+要将Gradle组织Spring代码编译后存储到本地的Maven仓库文件夹下，可以按照以下步骤操作：
+
+1. 在项目的`build.gradle`文件中添加Maven插件和仓库配置：
+
+```groovy
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.example'
+version = '1.0.0'
+
+repositories {
+    mavenLocal()
+}
+```
+
+2. 使用`publishing`任务发布项目到本地Maven仓库：
+
+```groovy
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = group
+            artifactId = 'spring-demo'
+            version = version
+        }
+    }
+    repositories {
+        maven {
+            url "file://${System.getProperty('user.home')}/.m2/repository"
+        }
+    }
+}
+```
+
+3. 执行`publish`任务，将项目发布到本地Maven仓库：
+
+```bash
+./gradlew publish
+```
+
+执行完以上步骤后，你的Spring代码将被编译并存储到本地Maven仓库文件夹下。
+
+
 Core Classloader (Core Extensions)
 the Project Classloader (Build Extensions)
 Maven 是一个用于软件项目构建和依赖管理的工具，它使用不同的类加载器来加载不同的组件和扩展。在 Maven 中，有两个主要的类加载器：核心类加载器（Core Classloader）和项目类加载器（Project Classloader），它们有不同的作用和职责。
