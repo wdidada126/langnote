@@ -1,5 +1,9 @@
 # easyexcel
+
+DataFormatData(index=44, format=_("￥"* #,##0.00_);_("￥"* (#,##0.00);_("￥"* "-"??_);_(@_))
+
 在Java栈中，常用的是JXL（目前改名为JExcel）和Apache POI。其中jxl最后的更新时间是2012，除了老系统中能看到影子，几乎见不到踪迹了。目前基本上是POI一统天下。
+https://poi.apache.org/
 
 ```xml
     <dependency>
