@@ -1,5 +1,9 @@
 # python
 
+Ip2region (2.0 - xdb) is a offline IP address manager framework and locator, support billions of data segments, ten microsecond searching performance. xdb engine implementation for many programming languages
+
+https://github.com/lionsoul2014/ip2region
+
 而且数分用Python需要掌握的是Numpy、pandas这些数据分析的工具和统计学的知识，后端则是Flask或者Django这些框架以及web相关的知识，这是两个领域的知识。
 
 selenium是爬虫的

@@ -1,5 +1,13 @@
 # github
 
+## 2fa
+当让 GitHub 告诉我无法获取一次性密码（TOTP）的时候可以使用 recovery code 进行恢复，然而理想很丰满现实很骨感，这种一年不用一次的 recovery code 等你真用的时候真的找得到吗？
+那 GitHub 为什么不提供手机验证码呢？
+查看了 GitHub 的 F2A 文档，原来是在国内不支持
+github-edidada-recovery-codes.txt
+
+https://zhuanlan.zhihu.com/p/671682341
+
 ## github cli
 
 gh repo clone edidada/odb
