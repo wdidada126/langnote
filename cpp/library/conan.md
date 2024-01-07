@@ -1,5 +1,74 @@
 # conan
 
+文档
+
+案例
+例子
+Poco
+Zlib
+Grpc conan的例子
+
+Conan 1.52使用本地缓存来存储下载的库文件和构建的二进制文件。这些缓存文件根据不同的规则进行组织，以便于管理和查找。
+在Conan 1.52中，本地缓存的组织方式如下：
+分版本：Conan将每个库的每个版本存储在本地缓存中。这样，当你需要构建特定版本的库时，Conan可以在本地缓存中找到对应的版本，避免了重新下载和构建的过程。
+分编译器：Conan根据不同的编译器对库进行分类。这意味着，如果你使用不同的编译器构建同一个库，Conan将在本地缓存中为每个编译器保存一个独立的版本。这样可以确保不同编译器之间的兼容性和正确性。
+分配置：Conan还根据不同的构建配置对库进行分类。构建配置可以包括不同的优化选项、警告级别等。Conan在本地缓存中为每个配置保存一个独立的版本，以便于进行定制化的构建和测试。
+分平台：对于跨平台的库，Conan将根据不同的操作系统和架构对库进行分类。这样可以确保不同平台之间的兼容性和正确性。
+在Conan 1.52中，本地缓存的文件结构大致如下：
+bash
+复制
+conan_cache/
+├── packages/
+│   ├── <package_name>/
+│   │   ├── <version>/
+│   │   │   ├── <os>/
+│   │   │   │   ├── <arch>/
+│   │   │   │   │   ├── <compiler>/
+│   │   │   │   │   │   ├── <build_type>/
+│   │   │   │   │   │   │   ├── <package_id>.conan
+│   │   │   │   │   │   └── <package_id>.info
+│   │   │   │   └── <package_id>.conan
+│   │   └── <package_id>.info
+└── binaries/
+    ├── <package_name>/
+    │   ├── <version>/
+    │   │   ├── <os>/
+    │   │   │   ├── <arch>/
+    │   │   │   └── <compiler>/
+    │   └── <package_id>.info
+    └── <package_name>.info
+上述文件结构中，<package_name>表示库的名称，<version>表示库的版本，<os>表示操作系统，<arch>表示架构，<compiler>表示编译器，<build_type>表示构建类型，<package_id>表示库的唯一标识符。
+通过这种方式，Conan可以在本地缓存中快速找到所需的库文件，并确保正确性和一致性。这大大减少了重新下载和构建的时间，提高了开发效率。
+
+
+conan可以直接使用make gcc，不使用cmake等构件工具吗？
+
+是的，Conan可以用来直接调用gcc或其他编译器进行构建，而不需要使用CMake等构建工具。Conan提供了一种简单的方式来管理依赖关系和构建配置，它能够根据不同的编译器和配置生成相应的构建文件，并在构建过程中进行适当的配置和调整。
+Conan的构建脚本可以指定要使用的编译器和其版本，以及相关的编译标志和选项。通过在Conan配置文件中指定这些信息，Conan可以生成适合特定编译器和构建需求的构建文件（例如Makefile或Visual Studio项目文件）。
+一旦Conan生成了适合的构建文件，您可以使用常规的构建命令（如make、nmake或msbuild）来执行构建过程。这将直接调用指定的编译器，并根据构建文件的指示进行编译和链接。
+因此，使用Conan可以简化构建过程，减少对外部构建工具的依赖，并为您提供更灵活的方式来管理依赖关系和构建配置。
+
+
+
+Conan是C/C++的包管理器，用于构建和管理C/C++的软件包。Conan flow是Conan的自动化构建和部署工具，用于自动化构建、测试、发布和部署C/C++的软件包。它可以帮助开发人员快速构建和发布软件包，并确保软件包的质量和稳定性。
+
+
+在Conan中，-s 参数用于指定构建系统的配置。例如，您可以使用以下命令指定要使用的编译器：
+```bash
+conan create -s "compiler.version=14"
+```
+在这里，compiler.version=14 指定了要使用的编译器版本为14。您可以使用其他配置选项来指定构建系统的其他方面，例如平台、工具链等。
+-t 参数用于指定要使用的测试套件。例如，您可以使用以下命令指定要使用的测试套件：
+```bash
+conan create -t my_test_suite
+```
+在这里，my_test_suite 是要使用的测试套件的名称。您可以根据需要选择适合您项目的测试套件。
+所以，conan create -s -t 命令将使用指定的构建系统配置和测试套件来创建软件包。
+
+Conan的source函数用于源代码的拉取和准备，例如对源码进行一些修改。这是Conan构建流程的一部分，确保源代码是正确的版本，并且已经准备好进行构建。
+
+conan需要c标准库 cpp标准库 nasm库
+
 查看它的包描述。
 $ conan inspect poco/1.9.4
  conan profile new default --detect  # Generates default profile detecting > GCC and sets old ABI
