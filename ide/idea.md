@@ -11,6 +11,7 @@ toolbox
 https://www.jetbrains.com/toolbox-app/
 
 IDEA 可以同时打开多个maven项目，不用挨个打开
+eclipse可以同时打开多个项目
 
 IDEA快捷键 等于号前面的类型可以自动生成
 
@@ -25,7 +26,6 @@ Ctrl Enter
 IDEA插件
 
 1. FindBugs-IDEA 2. Maven Helper 3. VisualVM Launcher 4. GenerateAllSetter 5. Rainbow Brackets 6. Translation 7. P3c
->>>>>>> c6db0881b466bda1d49639ccbd0c9939a6a39219
 
 java命令行执行程序，增加-D参数
 idea run configure ，vm options

@@ -1,4 +1,12 @@
 # maven
+mvn -B package --file pom.xml
+`mvn -B,--batch-mode` 是 Maven 命令行工具的一个选项，用于在非交互模式下运行 Maven。
+
+具体来说，`-B` 或 `--batch-mode` 参数告诉 Maven 以批处理模式运行，这意味着它不会与用户进行交互，而是以静默方式执行操作。在这种模式下，Maven 将输出结果以纯文本形式显示，不包含任何颜色或其他格式。
+
+使用 `mvn -B,--batch-mode` 可以加快构建过程，因为它不需要等待用户输入或处理交互式提示。这对于自动化构建、持续集成和批量处理任务非常有用。
+
+-f,--file <arg>                        Force the use of an alternate POM file (or directory with pom.xml)
 
 ## maven pom的信息，如何跟java其他构建工具共享
 gradle组织spring代码，编译后如何存到本地的maven仓库文件夹下？
@@ -1588,6 +1596,49 @@ https://maven.apache.org/pom.html#profiles
 
 基于Maven的profiles多环境配置
 https://blog.csdn.net/weixin_43888891/article/details/130794308
+
+在Maven中，可以使用`${os.name}`和`${os.arch}`来获取当前操作系统的名称和架构信息。
+
+例如，如果你想在pom.xml文件中使用这些变量，可以这样写：
+
+```xml
+<project>
+  ...
+  <properties>
+    <os.name>${os.name}</os.name>
+    <os.arch>${os.arch}</os.arch>
+  </properties>
+  ...
+</project>
+```
+
+然后，你可以在命令行中使用`mvn help:evaluate -Dexpression=os.name`和`mvn help:evaluate -Dexpression=os.arch`来获取当前操作系统的名称和架构信息。
+
+powershell
+mvn help:evaluate -Dexpression='os.name'
+mvn help:evaluate -Dexpression='os.arch'
+mvn help:evaluate -Dexpression='os.family'
+mvn help:evaluate -Dexpression='os.version'
+
+
+`mvn help:evaluate` 是 Maven 提供的一个命令行工具，用于计算表达式的值。
+
+该命令可以用于在 Maven 项目中动态地获取一些属性值、系统属性值或其他表达式的值。通过使用 `-Dexpression` 参数指定要计算的表达式，Maven 会在运行时计算该表达式的值并将其输出到控制台。
+
+例如，可以使用以下命令来获取当前操作系统的名称：
+
+```shell
+mvn help:evaluate -Dexpression=os.name
+```
+
+该命令将输出类似以下内容的结果：
+
+```
+Windows 10
+```
+
+除了 `os.name`，还可以使用其他预定义的属性和表达式，如 `java.version`、`project.groupId` 等。此外，也可以编写自定义的表达式来计算任意值。
+
 
 判断jdk版本
 os版本
