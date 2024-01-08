@@ -1,5 +1,10 @@
 # mysql
 
+如何查看mysql数据库
+blob数据的值
+
+navicat 点击
+“文本”
 
 https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 
