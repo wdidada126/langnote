@@ -27,11 +27,4 @@ github需要配置一堆东西，使用github desktop
 硬件规格要求。
 github添加token，http/https有效，git直接访问
 
-### 可选的操作系统
-Available GitHub-hosted runner types are:
 
-ubuntu-latest, ubuntu-22.04, ubuntu-20.04
-windows-latest, windows-2022, windows-2019
-macos-latest, macos-12, macos-11
-
-https://docs.github.com/zh/actions

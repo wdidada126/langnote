@@ -14,6 +14,15 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+### 可选的操作系统
+Available GitHub-hosted runner types are:
+
+ubuntu-latest, ubuntu-22.04, ubuntu-20.04
+windows-latest, windows-2022, windows-2019
+macos-latest, macos-12, macos-11
+
+https://docs.github.com/zh/actions
+
 cmake默认版本，最新版
 3.28
 
