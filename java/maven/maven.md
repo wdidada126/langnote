@@ -1,4 +1,58 @@
 # maven
+
+https://maven.apache.org/plugins/index.html
+
+直接点击clean 等maven二级命令
+https://maven.apache.org/plugins/maven-resources-plugin/
+
+goal
+resources:resources
+resources:testResources
+resources:copy-resources
+
+默认值
+src/main/resources
+修改
+pom.xml
+```xml
+<project>
+ ...
+ <build>
+   ...
+   <resources>
+     <resource>
+       <directory>[your folder here]</directory>
+     </resource>
+   </resources>
+   ...
+ </build>
+ ...
+</project>
+```
+
+
+```xml
+<project>
+   ...
+   <resources>
+     <resource>
+       <directory>resource1</directory>
+     </resource>
+     <resource>
+       <directory>resource2</directory>
+     </resource>
+     <resource>
+       <directory>resource3</directory>
+     </resource>
+   </resources>
+   ...
+</project>
+```
+
+clean plugin
+
+project.build.directory, project.build.outputDirectory, project.build.testOutputDirectory, and project.reporting.outputDirectory.
+
 mvn -B package --file pom.xml
 `mvn -B,--batch-mode` 是 Maven 命令行工具的一个选项，用于在非交互模式下运行 Maven。
 
