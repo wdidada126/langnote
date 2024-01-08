@@ -1,5 +1,17 @@
 # xmake
 
+brpc muduo添加进xmake
+提交pr
+https://github.com/xmake-io/xmake-repo/pull/2887
+
+https://github.com/xmake-io/xmake-repo/tree/dev/packages/m/muduo/xmake.lua
+
+专注于跨平台c开发解决方案（QQ技术交流群：343118190）
+https://t.me/tbooxorg
+https://twitter.com/waruqi
+
+编写.lua文件
+
 xmake 从零开始创建一个 hello world 单文件真的是我见过最快的，从这点来说它就很适合学校教学
 
 xmake类似maven，定义文件
