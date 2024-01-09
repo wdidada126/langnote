@@ -1,5 +1,9 @@
 # git
 
+## 版本
+git version 2.42.0.windows.2
+
+
 要在 Git 中合并 patch 文件，您可以使用 `git apply` 命令。以下是在命令行中合并 patch 文件的示例：
 1. 使用 `git apply` 命令合并 patch 文件：
 ```
@@ -175,6 +179,8 @@ sudo add-apt-repository ppa:git-core/ppa
 
 git submodule init
 git submodule update
+git submodule update --init --recursive <commit_id>
+git submodule指定commit id
 
 hint: You have divergent branches and need to specify how to reconcile them.
 hint: You can do so by running one of the following commands sometime before
