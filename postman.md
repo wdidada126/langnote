@@ -1,4 +1,10 @@
 # postman
+历史版本
+
+https://dl.pstmn.io/download/version/7.36.7/win64
+https://dl.pstmn.io/download/version/6.7.4/win64
+https://dl.pstmn.io/download/version/9.31.0/win64
+https://dl.pstmn.io/download/version/9.20.0/win64
 
 ## 竞品
 apifox
