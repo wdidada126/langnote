@@ -1,5 +1,11 @@
 # C++CoreGuidelines解析
 
+
+https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
+https://github.com/isocpp/CppCoreGuidelines
+
+https://github.com/edidada/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md
+
 https://book.douban.com/subject/36513376/
 ISBN: 9787302635772
 

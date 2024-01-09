@@ -648,7 +648,10 @@ mvn install -X　　　　　　　　  想要查看完整的依赖踪迹，包�
 mvn install文档
 https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html
 
-maven生命周期
+maven构建生命周期 build lifecycle
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+7 个
+
 - validate - validate the project is correct and all necessary information is available
 - compile - compile the source code of the project
 - test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
@@ -1576,6 +1579,11 @@ maven 安装本地的jar包到本地仓库
 -Dpackaging             ：指定 Maven 项目的打包方式（例如：jar、war、pom 等）。
 -DlocalRepositoryPath=path-to-specific-local-repo
 -DpomFile=path-to-pom  如果pom.xml在jar包META-INF文件夹下面，可以省略。JAR was built by Apache Maven，jar包里面就是自带pom.xml
+
+mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=path-to-your-artifact-jar -DpomFile=path-to-pom
+官方文档
+https://maven.apache.org/plugins/maven-install-plugin/examples/custom-pom-installation.html
+
 
 fuyao-hr-api.jar\META-INF\maven\com.fuyao.salary\fuyao-salary
 有文件：
