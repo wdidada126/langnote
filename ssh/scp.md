@@ -82,3 +82,7 @@ scp -P 22 file.txt user@example.com:/home/user/
 1. 打开目标主机的authorized_keys文件：`vim ~/.ssh/authorized_keys`
 2. 查看源主机公钥：一般在源主机上执行`cat ~/.ssh/id_rsa.pub`命令即可
 3. 将源主机公钥追加到文件中：将公钥内容复制，然后在authorized_keys文件的最后一行粘贴并保存退出。
+
+sshpass
+仅仅支持linux
+askpass支持windows
