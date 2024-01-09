@@ -1,5 +1,13 @@
 # git
+git 一次性merge多个分支?
 
+```shell
+git merge localbranchA localbranchB
+git merge localbranchA remoteName/branchB
+
+git fetch origin new_branch
+git merge origin/new_branch
+```
 ## 版本
 git version 2.42.0.windows.2
 
