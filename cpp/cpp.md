@@ -1,5 +1,15 @@
 # cpp
+https://github.com/fffaraz/awesome-cpp
 
+https://github.com/alphaSeclab/awesome-rat
+
+https://github.com/rigtorp/awesome-modern-cpp
+
+高质量程序设计指南
+
+google C++ 风格指南 - 内容目录
+
+https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents/
 
 0级：掌握常见C++语法和语言构造，能够顺溜地写清楚各种语言构造（很多小白鼠死在这里）
 1级：掌握基本的编程范式：面向过程、面向对象、泛型编程、以及C++11/14支持的函数式编程
