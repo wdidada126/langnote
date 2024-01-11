@@ -1,5 +1,12 @@
 # gradle
 
+es代码使用gradle构建
+es项目的build.gradle
+用了groovy编程语言，有File类，有eclipse插件的的groovy api
+xmake lua
+conan python
+gradle groovy
+
 G:\gradle\cache\caches\modules-2\files-2.1
 ## 依赖版本管理
     testCompile group: 'junit', name: 'junit', version: '4.+'

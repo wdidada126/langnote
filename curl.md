@@ -93,3 +93,25 @@ https://stackoverflow.com/questions/54090784/curl-argument-list-too-long
 
 
 [curl add argument](https://stackoverflow.com/questions/19116016/what-is-the-right-way-to-post-multipart-form-data-using-curl)
+
+## source code源代码
+
+https://github.com/curl/curl
+
+autoconf is already the newest version (2.69-11.1).
+automake is already the newest version (1:1.16.1-4ubuntu6).
+libtool is already the newest version (2.4.6-14).
+m4 is already the newest version (1.4.18-4).
+
+
+## 编译
+https://everything.curl.dev/build/cmake
+
+git clone https://github.com/curl/curl.git
+cd curl
+git checkout curl-8_5_0
+autoreconf -fi
+chmod +x configure
+./configure --with-openssl
+make
+sudo make install
