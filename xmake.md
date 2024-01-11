@@ -1,5 +1,7 @@
 # xmake
 
+issue提在github上，matainer不怎么看gitee上的问题
+
 brpc muduo添加进xmake
 提交pr
 https://github.com/xmake-io/xmake-repo/pull/2887

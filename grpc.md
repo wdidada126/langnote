@@ -45,14 +45,18 @@ find_package(gRPC CONFIG REQUIRED)
 
 vcpkg install grpc
 
-2005年开源的
+Feb 26, 2015年开源的
+Feb 26, 2015 -> release-0_5_0
+Apr 8, 2015 -> release-0_6_0
+https://github.com/grpc/grpc/releases?page=28
+
 
 HTTP/2 based RPC
 high performance RPC framework
 
 
 grpc为什么用http2，不用tcp，甚至是quic
-
+go也支持http2
 
 grpc与spring
 grpc-client-spring-boot-starter

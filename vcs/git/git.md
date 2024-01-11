@@ -1,4 +1,9 @@
 # git
+
+## minigit
+
+github.com/DQNEO/minigit
+
 git 一次性merge多个分支?
 
 ```shell
