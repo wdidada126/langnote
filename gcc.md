@@ -1,4 +1,6 @@
 # gcc
+gnu compiler collection
+可以编译多种语言
 
 ## centos
 No CMAKE_CXX_COMPILER could be found.

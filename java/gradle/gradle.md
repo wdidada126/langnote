@@ -1,5 +1,19 @@
 # gradle
 
+G:\gradle\cache\caches\modules-2\files-2.1
+## 依赖版本管理
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+
+    版本号支持通配符
+    maven支持通配符吗？
+    npm是支持的
+
+局部变量
+https://dongchuan.gitbooks.io/gradle-user-guide-/content/writing_build_scripts/local_variables.html
+
+## slack
+https://gradle-community.slack.com/
+
 gradle init --type pom
 `gradle init --type pom`命令行的作用是初始化一个Gradle项目，并将项目类型设置为POM（Project Object Model）。
 执行`gradle init --type pom`命令行后，会在当前目录下生成一个名为`build.gradle`的Gradle构建脚本文件和一个名为`settings.gradle`的Gradle设置文件。同时，还会在项目根目录下生成一个`src`源代码文件夹。这些文件是Gradle项目的基础结构，用于定义项目的构建规则和依赖管理等。
@@ -27,6 +41,40 @@ spring
 ## 仓库
 gradle可以使用maven的库仓库
 mavenLocal() 使用本地仓库
+
+## 插件
+antlr
+java
+eclipse
+idea
+spring-boot
+war 网页应用
+protoc
+https://github.com/google/protobuf-gradle-plugin
+
+### android plugin
+https://developer.android.com/build/releases/gradle-plugin?hl=zh-cn
+
+### java插件
+https://docs.gradle.org/7.3/userguide/java_plugin.html
+https://docs.gradle.org/current/userguide/java_plugin.html
+
+src/sourceSet/java
+src/sourceSet/resources
+Java 插件引入了资源设置 (Source Set) 的概念, 资源设置就是一组被编译和执行在一起的源文件. 这些源文件可能包含 Java 的源文件以及一些资源文件. 其他的插件可能还会在资源设置中包含 Groovy 和 Scala 的源文件. 资源设置有一个与之关联的关于编译的 classpath 和有关运行的 classpath.
+
+资源设置的用法之一就是将源文件归档到描述它们目的的各个逻辑组, 举个例子, 你可以使用一个资源设置来定义一个集成测试套件 也可以使用另外的资源设来定义你项目的 API 和实现类.
+
+Java 插件定义了两个标准资源设置, 分别称为main和test, main资源设置中包含最终面向客户的代码, 也就是编译和集成为一个 Jar 文件. test资源设置包括了测试阶段的代码, 也就是使用 JUnit 或者 TestNG 编译和执行的代码. 它们可以是单元测试, 集成测试, 验收测试或者任何对你有用的测试集.
+https://dongchuan.gitbooks.io/gradle-user-guide-/content/the_java_plugin/java_plugin_source_sets.html
+
+java 插件-任务
+compileJava
+processResources
+https://dongchuan.gitbooks.io/gradle-user-guide-/content/the_java_plugin/java_plugin_tasks.html
+
+Gradle 默认在 src/main/java 目录下寻找到你的正式（生产）源码, 在 src/test/java 目录下寻找到你的测试源码, 并在src/main/resources目录下寻找到你准备打包进jar的资源文件。测试代码会被加入到环境变量中设置的目录里运行。所有的输出文件都会被创建在构建目录里, 生成的JAR文件会被存放在 build/libs 目录下.
+
 
 查看gradle插件是否存在？
 https://plugins.gradle.org/plugin/com.gradle.build-scan/3.2.2
@@ -225,6 +273,10 @@ https://book.douban.com/subject/26649087/
 gradle组织公司的项目
 
 testgradle github项目
+https://github.com/edidada/testcomplexgradle
+https://github.com/edidada/testgradle
+https://github.com/edidada/protocExampleProject
+构建产物在build/文件夹下
 
 build.gradle 配置文件
 
@@ -274,8 +326,19 @@ java -jar build/libs/GradleWorkSpace-0.1.jar
 
 gradle 发布 maven 仓库
 
-## gradle不同版本大陆快速下载
+## gradle不同版本大陆快速下载 版本
 
 gradle安装包国内下载以及maven仓库配置以及其他注意点-CSDN博客.mhtml
 
 https://mirrors.cloud.tencent.com/gradle/
+
+8.5, released on 29 Nov 2023
+v8.4 Oct 04, 2023
+
+v7.6.3 Oct 04, 2023
+
+v7.0 Apr 09, 2021
+
+v6.0 Nov 08, 2019
+
+v5.0 Nov 26, 2018

@@ -8,3 +8,4 @@ https://bazelbuild.slack.com/
 
 ## es
 
+https://gradle-community.slack.com/
