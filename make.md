@@ -5,18 +5,13 @@ make -j4 2>&1 | tee out.txt
 
 多看官网文档
 
-
-
 make
-
 
 redis的makefile值得学习，有make uninstall
 
 https://www.gnu.org/software/make/manual/make.pdf
 
 GNU make Version 4.3
-
-
 
 make 3.8.2 中文文档
 
@@ -27,9 +22,6 @@ https://hacker-yhj.github.io/resources/gun_make.pdf
 
 
 https://blog.csdn.net/weixin_42645653/article/details/114887822
-
-
-
 
 
 srpc GNUmakefile
@@ -45,6 +37,7 @@ xxx : xxx.cc
 Make命令教程
 http://www.ruanyifeng.com/blog/2015/02/make.html
 
+make -C /home/user/project
 make -f xxxfile
 make默认会找makefile来进行build操作
 

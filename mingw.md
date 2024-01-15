@@ -1,23 +1,22 @@
 # mingw
 
+https://www.mingw-w64.org/
 
+https://github.com/mingw-w64
 
+https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/
 
 MinGW，是Minimalist GNU for Windows的缩写。它是一个可自由使用和自由发布的Windows特定头文件和使用GNU工具集导入库的集合，允许你在GNU/Linux和Windows平台生成本地的Windows程序而不需要第三方C运行时（C Runtime）库。
 
 以下答案截止至 2021/06/01：MinGW: 编译目标仅兼容 32 位应用程序，最新的官方二进制版本为 GCC 9.2.0。(OSDN)MinGW-w64: 衍生自 MinGW 的项目，编译目标兼容 32 位应用程序与64 位应用程序，最新的官方二进制版本为 GCC 8.1.0。(SourceForge)TDM-GCC: 衍生自 MinGW 和 MinGW-w64 的项目，分为 32 位与 64 位两个版本，32 位版本的编译目标仅兼容 32 位应用程序，64位版本的编译目标兼容 32 位应用程序与 64 位应用程序，最新的官方二进制版本为 GCC 10.3.0。以上三个 GCC 编译器的 Windows 发行版均兼容 POSIX 线程标准 。("pthread.h")个人推荐优先选择 TDM-GCC 作为首选 C / C++ 编译器。
 
-作者：砂漠的毒虫
-链接：https://www.zhihu.com/question/39952667/answer/1133837727
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://www.zhihu.com/question/39952667/answer/1133837727
 
 
 https://github.com/jmeubank/tdm-gcc-src/releases
 
 
 ```powershell
-
 gcc --version
 gcc.exe (x86_64-posix-sjlj-rev0, Built by MinGW-W64 project) 8.1.0
 Copyright (C) 2018 Free Software Foundation, Inc.

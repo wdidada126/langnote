@@ -50,16 +50,14 @@ c 头文件
 glibc 库函数
 
 c语言没有为常见的操作，如：输入输出、内存管理、字符串操作等提供内置的支持。这些功能一般由标准的库函数来支持。
+coreutils 库也没有介绍
+CP命令的源代码是包含在coreutils里的，上gnu网站看看： http://www.gnu.org/software/coreutils/coreutils.html
 
-
-
-
+gnu有介绍
 
 man
 
 info
-
-
 
 tar
 
@@ -68,10 +66,6 @@ expand
 grep
 
 find
-
-
-
-
 
 #### Chap. 2 Linux c语言开发工具
 
@@ -84,26 +78,23 @@ gcc
 vim/source insight  /免费的VSCode装完clangd等插件，吊打SI
 
 
-
-
-
-Chap. 3 进程存储管理 跟Chap7对比
+#### Chap. 3 进程存储管理 跟Chap7对比
 mcheck
 https://www.cnblogs.com/cyssmile/p/14003900.html
 Valgrind
 见md文件
 
-Chap. 4 ansi c文件管理
+#### Chap. 4 ansi c文件管理
 
-Chap. 5 posix c文件管理
+#### Chap. 5 posix c文件管理
 
-Chap. 6 普通文件管理
+#### Chap. 6 普通文件管理
 
-Chap. 7 进程管理与开发
+#### Chap. 7 进程管理与开发
 
 
 
-#### Chap. 8
+#### #### Chap. 8
 
 
 
@@ -113,7 +104,7 @@ epoll是linux 2007年开始支持的
 
 
 
-8.2进程管理及控制
+##### 8.2进程管理及控制
 
 111111111 fork()函数可以创建一个新的进程
 
@@ -136,17 +127,17 @@ __pid_t int
 
 
 
-Chap. 10 多线程编程
+#### Chap. 10 多线程编程
 
-Chap. 11 线程同步机制
+#### Chap. 11 线程同步机制
 
 - 
 - 
 - 
 
-Chap. 12 socket
+#### Chap. 12 socket
 
-Chap. 13 网络编程工具
+#### Chap. 13 网络编程工具
 
 tcpdump
 
@@ -156,4 +147,4 @@ netstat
 
 
 
-Chap. 14
+#### Chap. 14
