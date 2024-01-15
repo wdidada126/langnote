@@ -22,3 +22,8 @@ hg up -C central
 
 https://github.com/mozilla/gecko-dev
 
+https://hg.mozilla.org/mozilla-central/
+
+echo | python3 bootstrap.py
+
+Python headers are required to build Mercurial but weren't found in /opt/rh/rh-python38/root/usr/include/python3.8/Python.h

@@ -61,3 +61,30 @@ curl -o xxxfilename url
 
 --no-check-certificate
 https不检测tls证书
+
+## 源代码 source code
+
+https://www.gnu.org/software/wget/
+
+https://www.gnu.org/software/wget/manual/
+
+https://mirrors.ustc.edu.cn/gnu/wget/
+
+
+### 编译脚本
+
+wget https://mirrors.ustc.edu.cn/gnu/wget/wget2-2.1.0.tar.gz -O wget2-2.1.0.tar.gz
+tar -zxvf wget2-2.1.0.tar.gz
+ls
+cd wget2-2*
+cd +x configure
+./configure
+make -j4
+sudo make install
+
+
+报错：
+ssl_openssl.c:1625:26: error: 'X509_CHECK_FLAG_NEVER_CHECK_SUBJECT' undeclared (first use in this function); did you mean 'X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT'?
+   SSL_set_hostflags(ssl, X509_CHECK_FLAG_NEVER_CHECK_SUBJECT);
+
+初步判断原因：wget对

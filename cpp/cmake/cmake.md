@@ -1,5 +1,88 @@
 # CMake
 
+property
+分类
+项目
+文件夹
+目标
+https://cmake.org/cmake/help/v3.20/manual/cmake-properties.7.html
+
+CMAKE_C_KNOWN_FEATURES
+
+
+## Command
+Scripting Command
+Project Command
+CTest Command
+
+
+判断
+if()
+endif
+
+message()
+get_target_property()
+
+get_target_property(_aliased Upstream::lib1 ALIASED_TARGET)
+if(_aliased)
+  message(STATUS "The name Upstream::lib1 is an ALIAS for ${_aliased}.")
+endif()
+
+target_compile_definitions()
+DEBUG_BUILD
+
+`target_compile_definitions()`是CMake中的一个命令，它的主要作用是向特定的目标（例如程序、库等）的编译器添加编译定义。这些定义在编译过程中会被“输出”到生成的C源码中。
+
+该命令的基本语法格式如下：
+```cmake
+target_compile_definitions(<target> <INTERFACE|PUBLIC|PRIVATE> [items1...] [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+```
+其中，`<target>`参数代表需要添加定义的目标，这个目标通常是由诸如`add_executable`或`add_library`之类的CMake命令创建的，需要注意的是，这个命名的目标不能是一个ALIAS target。而`<INTERFACE|PUBLIC|PRIVATE>`参数则用于指定这些定义的作用范围，可以是接口(INTERFACE)，公共(PUBLIC)或私有(PRIVATE)。最后的`[items1...] [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...]`则是需要添加的具体编译定义项。
+
+## CMake Generators
+cmake -G
+make
+ninja
+vs
+Green Hills MULTI
+Xcode
+
+##  variable
+分类
+Control the Build
+Languages
+CTest
+
+https://cmake.org/cmake/help/v3.16/manual/cmake-env-variables.7.html
+CMAKE_MODULE_PATH
+
+## package 分享包给其他项目引用
+
+cmake 模块module
+gcc
+qt
+wxWidgets
+cuda啥的
+android
+Fortran
+Dart
+include(AndroidTestUtilities)  -> android_add_test_data()
+
+
+configure_package_config_file()
+<PackageName>Config.cmake
+set_and_check()
+check_required_components()
+
+write_basic_package_version_file()
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
+  VERSION 1.2.3
+  COMPATIBILITY SameMajorVersion)
+
+
+
 ```shell
 mkdir temp
 cd temp
@@ -9,6 +92,8 @@ export PATH=${{github.workspace}}/temp/cmake-3.24.4-linux-x86_64/bin:$PATH
 ```
 
 cmake 3.18.0不支持vs 2022
+cmake 3.21开始，支持vs 2022
+https://cmake.org/cmake/help/v3.18/manual/cmake-generators.7.html
 CMake Error: Could not create named generator Visual Studio 17 2022
 
 https://blog.csdn.net/weixin_49486457/article/details/125763660

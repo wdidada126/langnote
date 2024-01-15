@@ -130,7 +130,10 @@ AS4538 教育网
 
 python3
 
-yum -y install python3
+sudo yum -y install python3
+centos 7.9升级python3.6到3.8
+sudo yum -y install rh-python38
+scl enable rh-python38 bash
 
 pip show socketio
 查看安装的socketio版本信息

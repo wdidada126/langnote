@@ -9,7 +9,9 @@ gradle groovy
 
 G:\gradle\cache\caches\modules-2\files-2.1
 ## 依赖版本管理
+```groovy
     testCompile group: 'junit', name: 'junit', version: '4.+'
+```
 
     版本号支持通配符
     maven支持通配符吗？
