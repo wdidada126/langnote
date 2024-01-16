@@ -2,6 +2,9 @@
 
 https://www.gnu.org/software/#allgnupkgs
 
+## gnu软件列表
+https://www.gnu.org/software/software.html
+
 https://www.gnu.org/software/libtool/
 
 文档是manual

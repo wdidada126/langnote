@@ -80,22 +80,147 @@ v1.1
 ## 源代码 3.0.1
 https://javadoc.dev/online/api/com.alibaba/easyexcel/3.0.1/index.html
 
-## com.alibaba.excel	 
-### com.alibaba.excel.analysis	 
-com.alibaba.excel.analysis.csv	 
-com.alibaba.excel.analysis.v03	 
-com.alibaba.excel.analysis.v03.handlers	 
-com.alibaba.excel.analysis.v07	 
-com.alibaba.excel.analysis.v07.handlers	 
-com.alibaba.excel.analysis.v07.handlers.sax	 
-### com.alibaba.excel.annotation	 
-com.alibaba.excel.annotation.format	 
-com.alibaba.excel.annotation.write.style	 
-### com.alibaba.excel.cache	 
-com.alibaba.excel.cache.selector	 
-### com.alibaba.excel.constant	 
-### com.alibaba.excel.context
 
+设计思路
+氛围read
+write
+这两块是独立的
+
+metadata
+属性，excel的属性
+不同excel文件的格式
+csv
+xls
+xlsx
+
+03版本
+07版本
+
+## com.alibaba.excel
+EasyExcel
+EasyExcelFactory
+ExcelReader
+ExcelWriter
+
+### com.alibaba.excel.analysis
+接口
+ExcelAnalyser
+ExcelReadExecutor
+类
+ExcelAnalyserImpl
+
+#### com.alibaba.excel.analysis.csv
+类
+CsvExcelReadExecutor
+
+#### com.alibaba.excel.analysis.v03
+
+接口
+IgnorableXlsRecordHandler
+XlsRecordHandler
+类
+XlsListSheetListener
+XlsSaxAnalyser
+
+##### com.alibaba.excel.analysis.v03.handlers
+
+类
+AbstractXlsRecordHandler
+BlankRecordHandler
+BofRecordHandler
+BoolErrRecordHandler
+BoundSheetRecordHandler
+DummyRecordHandler
+EofRecordHandler
+FormulaRecordHandler
+HyperlinkRecordHandler
+IndexRecordHandler
+LabelRecordHandler
+LabelSstRecordHandler
+MergeCellsRecordHandler
+NoteRecordHandler
+NumberRecordHandler
+ObjRecordHandler
+RkRecordHandler
+SstRecordHandler
+StringRecordHandler
+TextObjectRecordHandler
+
+#### com.alibaba.excel.analysis.v07
+类
+XlsxSaxAnalyser
+
+##### com.alibaba.excel.analysis.v07.handlers
+接口
+XlsxTagHandler
+类
+AbstractCellValueTagHandler
+AbstractXlsxTagHandler
+CellFormulaTagHandler
+CellInlineStringValueTagHandler
+CellTagHandler
+CellValueTagHandler
+CountTagHandler
+HyperlinkTagHandler
+MergeCellTagHandler
+RowTagHandler
+
+###### com.alibaba.excel.analysis.v07.handlers.sax
+类
+SharedStringsTableHandler
+XlsxRowHandler
+
+### com.alibaba.excel.annotation
+注释类型
+ExcelIgnore
+ExcelIgnoreUnannotated
+ExcelProperty
+
+#### com.alibaba.excel.annotation.format
+注释类型
+DateTimeFormat
+NumberFormat
+
+#### com.alibaba.excel.annotation.write.style
+注释类型
+ColumnWidth
+ContentFontStyle
+ContentLoopMerge
+ContentRowHeight
+ContentStyle
+HeadFontStyle
+HeadRowHeight
+HeadStyle
+OnceAbsoluteMerge
+
+### com.alibaba.excel.cache
+接口
+ReadCache
+类
+Ehcache
+MapCache
+XlsCache
+
+#### com.alibaba.excel.cache.selector
+接口
+ReadCacheSelector
+类
+EternalReadCacheSelector
+SimpleReadCacheSelector
+
+### com.alibaba.excel.constant
+类
+BuiltinFormats
+ExcelXmlConstants
+OrderConstant
+
+### com.alibaba.excel.context
+接口
+AnalysisContext
+WriteContext
+类
+AnalysisContextImpl
+WriteContextImpl
 
 XlsxReadContext (com.alibaba.excel.context.xlsx)
     DefaultXlsxReadContext (com.alibaba.excel.context.xlsx)
@@ -110,69 +235,449 @@ AnalysisContextImpl (com.alibaba.excel.context)
 
 
 
-com.alibaba.excel.context.csv	 
-com.alibaba.excel.context.xls	 
-com.alibaba.excel.context.xlsx	 
-### com.alibaba.excel.converters	 
-com.alibaba.excel.converters.bigdecimal	 
-com.alibaba.excel.converters.biginteger	 
-com.alibaba.excel.converters.booleanconverter	 
-com.alibaba.excel.converters.bytearray	 
-com.alibaba.excel.converters.byteconverter	 
-com.alibaba.excel.converters.date	 
-com.alibaba.excel.converters.doubleconverter	 
-com.alibaba.excel.converters.file	 
-com.alibaba.excel.converters.floatconverter	 
-com.alibaba.excel.converters.inputstream	 
-com.alibaba.excel.converters.integer	 
-com.alibaba.excel.converters.localdatetime	 
-com.alibaba.excel.converters.longconverter	 
-com.alibaba.excel.converters.shortconverter	 
-com.alibaba.excel.converters.string	 
-com.alibaba.excel.converters.url	 
+#### com.alibaba.excel.context.csv
+
+接口
+CsvReadContext
+类
+DefaultCsvReadContext
+
+#### com.alibaba.excel.context.xls
+
+接口
+XlsReadContext
+类
+DefaultXlsReadContext
+
+#### com.alibaba.excel.context.xlsx
+
+接口
+XlsxReadContext
+类
+DefaultXlsxReadContext
+
+
+### com.alibaba.excel.converters
+
+接口
+Converter
+NullableObjectConverter
+类
+AutoConverter
+ConverterKeyBuild
+DefaultConverterLoader
+ReadConverterContext
+WriteConverterContext
+
+#### com.alibaba.excel.converters.bigdecimal
+类
+BigDecimalBooleanConverter
+BigDecimalNumberConverter
+BigDecimalStringConverter
+
+#### com.alibaba.excel.converters.biginteger
+类
+BigIntegerBooleanConverter
+BigIntegerNumberConverter
+BigIntegerStringConverter
+
+#### com.alibaba.excel.converters.booleanconverter
+类
+BooleanBooleanConverter
+BooleanNumberConverter
+BooleanStringConverter
+
+#### com.alibaba.excel.converters.bytearray
+类
+BoxingByteArrayImageConverter
+ByteArrayImageConverter
+
+#### com.alibaba.excel.converters.byteconverter
+类
+ByteBooleanConverter
+ByteNumberConverter
+ByteStringConverter
+
+#### com.alibaba.excel.converters.date
+类
+DateDateConverter
+DateNumberConverter
+DateStringConverter
+
+#### com.alibaba.excel.converters.doubleconverter
+
+类
+DoubleBooleanConverter
+DoubleNumberConverter
+DoubleStringConverter
+
+#### com.alibaba.excel.converters.file
+
+类
+FileImageConverter
+
+#### com.alibaba.excel.converters.floatconverter
+类
+FloatBooleanConverter
+FloatNumberConverter
+FloatStringConverter
+
+#### com.alibaba.excel.converters.inputstream
+类
+InputStreamImageConverter
+
+#### com.alibaba.excel.converters.integer
+
+类
+IntegerBooleanConverter
+IntegerNumberConverter
+IntegerStringConverter	 
+
+#### com.alibaba.excel.converters.localdatetime
+类
+LocalDateNumberConverter
+LocalDateTimeDateConverter
+LocalDateTimeStringConverter
+
+#### com.alibaba.excel.converters.longconverter
+类
+LongBooleanConverter
+LongNumberConverter
+LongStringConverter
+
+#### com.alibaba.excel.converters.shortconverter
+
+类
+ShortBooleanConverter
+ShortNumberConverter
+ShortStringConverter
+
+#### com.alibaba.excel.converters.string
+类
+StringBooleanConverter
+StringErrorConverter
+StringImageConverter
+StringNumberConverter
+StringStringConverter
+
+#### com.alibaba.excel.converters.url
+类
+UrlImageConverter
+
 ### com.alibaba.excel.enums	
+
+枚举
+BooleanEnum
+CellDataTypeEnum
+CellExtraTypeEnum
+HeadKindEnum
+HolderEnum
+NumericCellTypeEnum
+RowTypeEnum
+WriteDirectionEnum
+WriteLastRowTypeEnum
+WriteTemplateAnalysisCellTypeEnum
+WriteTypeEnum
 
 CellDataTypeEnum
 
+#### com.alibaba.excel.enums.poi	 
+枚举
+BorderStyleEnum
+FillPatternTypeEnum
+HorizontalAlignmentEnum
+VerticalAlignmentEnum
+### com.alibaba.excel.event
+
+接口
+Handler
+Listener
+NotRepeatExecutor
+Order
+类
+AbstractIgnoreExceptionReadListener
+AnalysisEventListener
+SyncReadListener
 
 
+### com.alibaba.excel.exception
+
+异常错误
+ExcelAnalysisException
+ExcelAnalysisStopException
+ExcelCommonException
+ExcelDataConvertException
+ExcelGenerateException
+
+### com.alibaba.excel.metadata
+接口
+Cell
+ConfigurationHolder
+Holder
+类
+AbstractCell
+AbstractHolder
+AbstractParameterBuilder
+BasicParameter
+CellExtra
+CellRange
+Font
+GlobalConfiguration
+Head
+NullObject
+
+#### com.alibaba.excel.metadata.csv
+类
+CsvCell
+CsvCellStyle
+CsvDataFormat
+CsvRichTextString
+CsvRow
+CsvSheet
+CsvWorkbook
+
+#### com.alibaba.excel.metadata.data
+类
+CellData
+ClientAnchorData
+CommentData
+CoordinateData
+DataFormatData
+FormulaData
+HyperlinkData
+ImageData
+ReadCellData
+RichTextStringData
+RichTextStringData.IntervalFont
+WriteCellData
+枚举
+ClientAnchorData.AnchorType
+HyperlinkData.HyperlinkType
+ImageData.ImageType
+ 
+#### com.alibaba.excel.metadata.format
+类
+DataFormatter
+ExcelGeneralNumberFormat
+
+#### com.alibaba.excel.metadata.property
+
+类
+ColumnWidthProperty
+DateTimeFormatProperty
+ExcelContentProperty
+ExcelHeadProperty
+FontProperty
+LoopMergeProperty
+NumberFormatProperty
+OnceAbsoluteMergeProperty
+RowHeightProperty
+StyleProperty
+
+### com.alibaba.excel.read.builder
+类
+AbstractExcelReaderParameterBuilder
+ExcelReaderBuilder
+ExcelReaderSheetBuilder
+
+### com.alibaba.excel.read.listener
+接口
+ReadListener
+类
+ModelBuildEventListener
+PageReadListener
+
+### com.alibaba.excel.read.metadata
+
+类
+ReadBasicParameter
+ReadSheet
+ReadWorkbook
+
+#### com.alibaba.excel.read.metadata.holder
+
+接口
+ReadHolder
+类
+AbstractReadHolder
+ReadRowHolder
+ReadSheetHolder
+ReadWorkbookHolder
 
 
-com.alibaba.excel.enums.poi	 
+##### com.alibaba.excel.read.metadata.holder.csv
+类
+CsvReadSheetHolder
+CsvReadWorkbookHolder
 
-### com.alibaba.excel.event	 
-### com.alibaba.excel.exception	 
-### com.alibaba.excel.metadata	 
-com.alibaba.excel.metadata.csv	 
-com.alibaba.excel.metadata.data	 
-com.alibaba.excel.metadata.format	 
-com.alibaba.excel.metadata.property	 
+##### com.alibaba.excel.read.metadata.holder.xls
+类
+XlsReadSheetHolder
+XlsReadWorkbookHolder
 
-### com.alibaba.excel.read.builder	 
-com.alibaba.excel.read.listener	 
-com.alibaba.excel.read.metadata	 
-com.alibaba.excel.read.metadata.holder	 
-com.alibaba.excel.read.metadata.holder.csv	 
-com.alibaba.excel.read.metadata.holder.xls	 
-com.alibaba.excel.read.metadata.holder.xlsx	 
-com.alibaba.excel.read.metadata.property	 
-com.alibaba.excel.read.processor	 
+##### com.alibaba.excel.read.metadata.holder.xlsx
+类
+XlsxReadSheetHolder
+XlsxReadWorkbookHolder
 
-### com.alibaba.excel.support	 
-### com.alibaba.excel.util	 
-### com.alibaba.excel.write	 
-com.alibaba.excel.write.builder	 
-com.alibaba.excel.write.executor	 
-com.alibaba.excel.write.handler	 
-com.alibaba.excel.write.handler.context	 
-com.alibaba.excel.write.handler.impl	 
-com.alibaba.excel.write.merge	 
-com.alibaba.excel.write.metadata	 
-com.alibaba.excel.write.metadata.fill	 
-com.alibaba.excel.write.metadata.holder	 
-com.alibaba.excel.write.metadata.style	 
-com.alibaba.excel.write.property	 
-com.alibaba.excel.write.style	 
-com.alibaba.excel.write.style.column	 
-com.alibaba.excel.write.style.row	 
+#### com.alibaba.excel.read.metadata.property
+类
+ExcelReadHeadProperty
+
+### com.alibaba.excel.read.processor	 
+接口
+AnalysisEventProcessor
+类
+DefaultAnalysisEventProcessor
+
+### com.alibaba.excel.support
+
+枚举
+ExcelTypeEnum
+
+### com.alibaba.excel.util
+
+类
+BeanMapUtils
+BeanMapUtils.EasyExcelNamingPolicy
+BooleanUtils
+ClassUtils
+ConverterUtils
+DateUtils
+FieldUtils
+FileTypeUtils
+FileUtils
+IntUtils
+IoUtils
+ListUtils
+MapUtils
+MemberUtils
+NumberDataFormatterUtils
+NumberUtils
+PositionUtils
+SheetUtils
+StringUtils
+StyleUtil
+Validate
+WorkBookUtil
+WriteHandlerUtils
+
+### com.alibaba.excel.write
+
+接口
+ExcelBuilder
+类
+ExcelBuilderImpl
+
+#### com.alibaba.excel.write.builder
+
+类
+AbstractExcelWriterParameterBuilder
+ExcelWriterBuilder
+ExcelWriterSheetBuilder
+ExcelWriterTableBuilder
+
+#### com.alibaba.excel.write.executor
+
+接口
+ExcelWriteExecutor
+类
+AbstractExcelWriteExecutor
+ExcelWriteAddExecutor
+ExcelWriteFillExecutor
+
+#### com.alibaba.excel.write.handler
+接口
+CellWriteHandler
+RowWriteHandler
+SheetWriteHandler
+WorkbookWriteHandler
+WriteHandler
+类
+AbstractCellWriteHandler
+AbstractRowWriteHandler
+AbstractSheetWriteHandler
+AbstractWorkbookWriteHandler
+DefaultWriteHandlerLoader
+
+#### com.alibaba.excel.write.handler.context
+类
+CellWriteHandlerContext
+RowWriteHandlerContext
+SheetWriteHandlerContext
+WorkbookWriteHandlerContext
+
+#### com.alibaba.excel.write.handler.impl
+
+类
+DefaultRowWriteHandler
+DimensionWorkbookWriteHandler
+FillStyleCellWriteHandler
+
+#### com.alibaba.excel.write.merge
+类
+AbstractMergeStrategy
+LoopMergeStrategy
+OnceAbsoluteMergeStrategy
+
+#### com.alibaba.excel.write.metadata
+接口
+RowData
+类
+CollectionRowData
+MapRowData
+WriteBasicParameter
+WriteSheet
+WriteTable
+WriteWorkbook
+
+##### com.alibaba.excel.write.metadata.fill
+类
+AnalysisCell
+FillConfig
+FillWrapper
+
+##### com.alibaba.excel.write.metadata.holder
+接口
+WriteHolder
+类
+AbstractWriteHolder
+WriteSheetHolder
+WriteTableHolder
+WriteWorkbookHolder
+
+##### com.alibaba.excel.write.metadata.style
+类
+WriteCellStyle
+WriteFont
+
+#### com.alibaba.excel.write.property
+类
+ExcelWriteHeadProperty
+
+#### com.alibaba.excel.write.style
+类
+AbstractCellStyleStrategy
+AbstractVerticalCellStyleStrategy
+DefaultStyle
+HorizontalCellStyleStrategy
+
+##### com.alibaba.excel.write.style.column
+类
+AbstractColumnWidthStyleStrategy
+AbstractHeadColumnWidthStyleStrategy
+LongestMatchColumnWidthStyleStrategy
+SimpleColumnWidthStyleStrategy
+
+##### com.alibaba.excel.write.style.row
+类
+AbstractRowHeightStyleStrategy
+SimpleRowHeightStyleStrategy
+
 ### org.apache.poi.hssf.usermodel	 
+类
+PoiUtils
+
+
+## 读写excel优化思路
+利用硬件新特性，api新特性
