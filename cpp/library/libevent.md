@@ -1,5 +1,18 @@
 # libevent
+an event notification library
+
+## 官方文档
+https://libevent.org/doc
+
+
+## 参考书籍
+Linux高性能服务器编程 游双
+
+## 源代码
 https://libevent.org/
+
+eventop结构体
+event_base结构体
 
 libevent
 ubuntu20上面有项目
@@ -10,6 +23,32 @@ libevent项目源码可以在GitHub上找到，地址为：https://github.com/li
 
 https://gitee.com/edidada/libevent_test
 https://github.com/downloads/libevent/libevent/libevent-2.0.20-stable.tar.gz
+
+### sample例子 example
+https://github.com/libevent/libevent/tree/master/sample
+
+### cmake 构建 autoconf（截止2.2）
+
+```cmake
+mkdir build && cd build
+cmake ..     # Default to Unix Makefiles.
+make
+make verify  # (optional)
+```
+
+```shell
+./configure
+make
+make verify   # (optional)
+sudo make install
+```
+
+### 例子模块
+dns
+http
+rpc
+
+跟brpc好像
 
 ## 版本历史
 libevent-2.1.12-stable.tar.gz [GPG Sig] ChangeLog
@@ -56,3 +95,4 @@ libevent 2.1.12
 release-2.1.8-stable
 
 sudo apt install libevent-dev -y
+sudo yum install libevent-devel -y
