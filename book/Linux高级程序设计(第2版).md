@@ -1,5 +1,5 @@
 # Linux高级程序设计(第2版)
-
+c语言的，不是c++的
 https://gitee.com/edidada/linuxadvancec
 
 本书以Linux操作系统（内核为2.6版本）为开发平台、GCC 4.0/GDB 6.3为开发调试环境，详细介绍了Linux系统下编程环境及编程工具、文件管理（文件类型、ANSI以及POSIX标准下文件读写操作）、进程管理（创建、退出、执行、等待、属性控制）、进程间通信（管道、消息队列、共享内存）、进程间同步机制（信号量）、进程间异步机制（信号）、线程管理（创建、退出、取消等以及属性控制）、线程间同步（互斥锁、读写锁、条件变量）以及网络基本编程、高级应用等内容。
@@ -15,7 +15,10 @@ ppt和代码 Linux高级程序设计2资源.zip
 
 https://book.douban.com/subject/2364656/
 第二版 2008年
+9787115171696
+
 2012年第三版
+https://book.douban.com/subject/20273594/
 
 介绍linux环境下c应用程序编程的
 
@@ -68,7 +71,8 @@ grep
 find
 
 #### Chap. 2 Linux c语言开发工具
-
+2.3 Make工具与Makefile文件
+2.6Autoconf/Automake自动化工具
 make
 
 gdb
@@ -78,25 +82,48 @@ gcc
 vim/source insight  /免费的VSCode装完clangd等插件，吊打SI
 
 
-#### Chap. 3 进程存储管理 跟Chap7对比
+#### Chap. 3 Linux进程存储管理 跟Chap7对比
 mcheck
 https://www.cnblogs.com/cyssmile/p/14003900.html
 Valgrind
 见md文件
 
 #### Chap. 4 ansi c文件管理
+fopen()
+fwrite()
+rewind()
+fclose()
+fgetc()
+fputs()
 
-#### Chap. 5 posix c文件管理
+#### Chap. 5 posix c文件管理 POSIX文件及目录管理
+getcwd()
+open()
+fcntl()
+write()
+close()
+creat()
+lseek()
+mmap()
+munmap()
 
-#### Chap. 6 普通文件管理
+#### Chap. 6 普通文件管理 普通文件．连接文件及目录文件属性管理
+chmod
+unlink
+#include<utime.h>
+#include<time.h>
 
-#### Chap. 7 进程管理与开发
+time
+ctime
+utime
+#### Chap. 7 Linux进程管理与程序开发
+signal
+wait
+fork
+vfork
+#### #### Chap. 8 进程间通信——管道和信号
 
-
-
-#### #### Chap. 8
-
-
+popen
 
 epoll是linux 2007年开始支持的
 
@@ -123,19 +150,22 @@ __pid_t int
 
 缓冲区是在用户空间，根据第4章的相关内容，子进程会复制父进程所有用户空间的
 
-#### Chap. 9
+#### Chap. 9 SystemV进程间通信
 
 
 
 #### Chap. 10 多线程编程
+- 10.1线程基本概念与线程操作
+- 10.2线程属性控制
+- 10.3线程调度策略
 
 #### Chap. 11 线程同步机制
+- 11.1互斥锁通信机制
+- 11.2条件变量通信机制
+- 11.3读写锁通信机制
+- 11.4线程与信号
 
-- 
-- 
-- 
-
-#### Chap. 12 socket
+#### Chap. 12 socket网络编程
 
 #### Chap. 13 网络编程工具
 

@@ -2,8 +2,7 @@
 
 centos 7 ubuntu安装
 
-sudo yum install autoconf automake
-
+sudo yum install autoconf automake -y
 
 https://gitee.com/edidada/testautotools
 
