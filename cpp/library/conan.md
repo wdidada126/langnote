@@ -1,4 +1,13 @@
 # conan
+## conan1
+SET(CONAN_DISABLE_CHECK_COMPILER true)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+opengl/system: WARN: System requirements: 'libgl-dev' are missing but can't install because tools.system.package_manager:mode is 'check'.Please update packages manually or set 'tools.system.package_manager:mode' to 'install' in the [conf] section of the profile, or in the command line using '-c tools.system.package_manager:mode=install'
+
+/home/codespace/.conan/conan.conf
 
 文档
 

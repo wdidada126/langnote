@@ -1,5 +1,8 @@
 # git
 
+## 官网
+https://git-scm.com/
+
 ## minigit
 
 github.com/DQNEO/minigit
@@ -928,3 +931,12 @@ git push origin --delete feature/branch1
 ```
 
 请注意，此命令将从远程仓库中永久删除指定的分支。确保在执行此操作之前，你已经确认了要删除的分支，并且在删除之前进行了必要的备份或合并操作。
+
+## 源代码
+git clone https://github.com/git/git
+git clone https://github.com/git/git.git
+cd git
+git checkout v2.43.0
+git submodule init
+git submodule update
+make prefix=/usr/local install install-doc install-html install-info
