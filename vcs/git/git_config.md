@@ -16,7 +16,6 @@ git config --global user.email "xxx@xxx.com"
 [Windows下Git-preview中文乱码的解决方法](https://www.cnblogs.com/kuyuecs/articles/2400292.html)
 
 ```shell
-
 git config --global i18n.commitencoding utf-8
 git config --global i18n.logoutputencoding gbk
 

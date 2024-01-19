@@ -17,7 +17,8 @@ Host github.com
    Port 22
    HostName github.com
    PreferredAuthentications publickey
-   IdentityFile ~/.ssh/github_id_rsa
+   IdentityFile ~/.ssh/github_id_rsa  
+   IdentityFile ~/.ssh/id_rsa_github_2
 
 # gitlab key
 Host gitlab
@@ -47,6 +48,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com"
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab
+ssh-keygen -t rsa -C "edidada555@gmail.com" -f id_rsa_sandisks_github
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 

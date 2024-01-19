@@ -5,6 +5,7 @@
 那 GitHub 为什么不提供手机验证码呢？
 查看了 GitHub 的 F2A 文档，原来是在国内不支持
 github-edidada-recovery-codes.txt
+github-recovery-codes_sandisks.txt
 
 https://zhuanlan.zhihu.com/p/671682341
 
