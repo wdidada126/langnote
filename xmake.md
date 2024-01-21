@@ -1,5 +1,7 @@
 # xmake
 
+C:\Users\edida\AppData\Local\.xmake\repositories\xmake-repo
+
 xmake l find_package pthread
 
 issue提在github上，matainer不怎么看gitee上的问题
