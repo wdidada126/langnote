@@ -1,5 +1,7 @@
 # git
 
+.git/config纯文本文件下，有config remote等信息
+
 ## 官网
 https://git-scm.com/
 
