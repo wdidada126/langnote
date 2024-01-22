@@ -1,9 +1,9 @@
 # dig
 
 ubuntu系
-apt-get install dnsutils
+sudo apt-get install dnsutils
 centos系
-yum install bind-utils -y
+sudo yum install bind-utils -y
 
 
 https://www.jianshu.com/p/f6ef04bf6af2

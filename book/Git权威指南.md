@@ -202,6 +202,30 @@ git apply --check patchfile.patch
 
 
 ### 第29章　使用 SSH 协议/ 409
+~/.ssh/config
+```
+host bj
+  user git
+  hostname bj.ossxp.com
+  port 22
+  identityfile ~/.ssh/jiangxin
+```
+
+ssh bj
+git clone bj:/path/to/repos/myrepos.git
+
+实际操作例子
+
+ucloud服务器
+git remote remove githubsandisks
+git remote add githubsandisks git@github-sandisks:sandisks/myqt6app.git
+git fetch githubsandisks
+
+时序图
+githubsandisks -> git@github-sandisks:sandisks/myqt6app.git -> 读取~/.ssh/config或者/etc/ssh/config文件，替换Host，github-sandisks替换成github.com
+
+git权威指南 第29章
+
 ### 第30章　Gitolite 服务架设/ 413
 ### 第31章　Gitosis 服务架设/ 441
 ### 第32章　Gerrit 代码审核服务器/ 452

@@ -1,5 +1,52 @@
 # github
 
+
+ucloud服务器，同时配置两个github账户ssh免密码通信复制数据，只能注释掉一个，使用另一个
+
+在同一台主机上配置两个 GitHub 密钥对可以实现通过不同的密钥对进行 `git clone`。要做到这一点，您可以使用 SSH 配置文件（`~/.ssh/config`）来指定不同的密钥对与不同的主机关联。
+
+以下是一个示例 `~/.ssh/config` 文件的配置：
+
+```plaintext
+# 默认的 SSH 配置
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+
+# 第二个密钥对的 SSH 配置
+Host github-edidada
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_second
+```
+
+在上面的配置中，我们使用了两个不同的 Host 条目。第一个 Host 条目是默认的配置，使用默认的密钥对文件 `~/.ssh/id_rsa`。第二个 Host 条目是针对第二个密钥对的配置，使用密钥对文件 `~/.ssh/id_rsa_second`。
+
+现在，您可以使用 `git clone` 命令时，通过指定不同的远程主机别名来选择使用不同的密钥对。
+例如，使用第一个密钥对进行克隆：
+```shell
+git clone git@github.com:username/repo.git
+```
+使用第二个密钥对进行克隆：
+```shell
+git clone git@github-second:username/repo.git
+```
+通过在 `git clone` 命令中指定不同的远程主机别名，可以选择使用不同的密钥对进行身份验证。
+请确保将 `username/repo.git` 替换为实际的 GitHub 用户名和存储库名称。
+这样，您就可以在同一台主机上使用不同的 GitHub 密钥对进行 `git clone` 操作了。
+
+
+ucloud服务器
+git remote remove githubsandisks
+git remote add githubsandisks git@github-sandisks:sandisks/myqt6app.git
+git fetch githubsandisks
+
+时序图
+githubsandisks -> git@github-sandisks:sandisks/myqt6app.git -> 读取~/.ssh/config或者/etc/ssh/config文件，替换Host，github-sandisks替换成github.com
+
+git权威指南 第29章
+
 edidada555@gmail.com https方式使用的应用密码
 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
 
