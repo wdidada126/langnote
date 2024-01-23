@@ -1,5 +1,7 @@
 # codespaces
 
+可以stop，然后恢复，不用始终delete
+
 vsc
 
 ubuntu
