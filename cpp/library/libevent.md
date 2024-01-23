@@ -30,10 +30,14 @@ https://github.com/libevent/libevent/tree/master/sample
 ### cmake 构建 autoconf（截止2.2）
 
 ```cmake
+git clone https://github.com/libevent/libevent.git
+cd libevent
+git checkout release-2.1.12-stable
 mkdir build && cd build
-cmake ..     # Default to Unix Makefiles.
+cmake ..
 make
-make verify  # (optional)
+sudo make install
+make verify
 ```
 
 ```shell

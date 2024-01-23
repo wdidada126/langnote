@@ -1,5 +1,7 @@
 # git
 
+git clone https://github.com/tfussell/xlnt.git xlnt --recurse-submodules
+
 .git/config纯文本文件下，有config remote等信息
 
 ## 官网

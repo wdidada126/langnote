@@ -1,4 +1,45 @@
 # gcc
+
+## releases
+https://mirror.linux-ia64.org/gnu/gcc/releases/
+
+gcc 4.8编译gcc11不行吧？
+g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+要在CentOS 7.9上编译GCC 11，您需要确保您的系统上安装了适当的GCC版本。GCC 11要求使用GCC 9或更高版本进行编译。因此，您需要安装GCC 9或更高版本。
+
+编译openjdk 8，需要安装java7
+
+sudo yum update
+sudo yum groupinstall "Development Tools"
+sudo yum install glibc-devel -y
+wget https://mirror.linux-ia64.org/gnu/gcc/releases/gcc-11.4.0/gcc-11.4.0.tar.gz -O gcc-11.4.0.tar.gz --no-check-certificate
+tar xzvf gcc-11.4.0.tar.gz
+
+cd gcc-11.4.0
+
+# 下载依赖
+./contrib/download_prerequisites
+
+# 配置。可以通过 prefix 参数设置编译完成的 GCC 的安装目录，如果不指定，会安装在 /usr/local下
+# 可以配置为当前用户的某个目录
+./configure --prefix=/home/wdidada/gcc11 --enable-threads=posix --disable-checking \
+    --enable--long-long --with-system-zlib --enable-languages=c,c++ --enable-multilib
+
+# 开始编译
+make -j4
+
+# 安装
+# 编译产生物会安装到 configure --prefix 指定的目录中，或系统默认目录下
+make install
+
+# 修改环境变量
+# 可以将下面的配置写到 .bashrc 或 .bash_profile 中，这样每次登录都会自动生效
+export PATH=/home/wdidada/gcc11/bin:$PATH
+export LD_LIBRARY_PATH=/home/wdidada/gcc11/lib64:$LD_LIBRARY_PATH
+export CC=/home/wdidada/gcc11/bin/gcc
+export CXX=/home/wdidada/gcc11/bin/g++
+
+
 gnu compiler collection
 可以编译多种语言
 
@@ -24,6 +65,7 @@ sudo yum groupinstall "Development Tools"
 ```
 
 3. 安装完成后，你可以使用 `g++ --version` 命令来检查 g++ 是否已经成功安装。如果看到版本信息，说明安装成功。
+g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44
 
 GCC编译器插件的一个例子是GCC的VCG插件，该插件可以图形化GCC编译过程的内部数据结构，例如控制流图、函数调用图、支配图、Tree结构、Gimple结构、RTX结构、Pass列表等，方便开发人员分析应用程序。
 GCC编译器插件还有用于动态安全分析、安全加固的功能，通过修改中间数据的能力，可以不用修改源代码就能添加新功能。这对于安全测试非常有用，可以通过动态插装来实现监控程序执行路径，但需要注意动态插装可能会对程序的运行性能产生影响，降低程序运行效率。
@@ -57,7 +99,8 @@ rm -f /usr/lib64/libstdc++.so.6
 ln -s /usr/local/lib64/libstdc++.so.6.0.29 /usr/lib64/libstdc++.so.6
 #查看更新后的动态库
 strings /usr/lib64/libstdc++.so.6 | grep CXXABI
-# 安装后的动态库会位于/usr/local/lib64目录下，
+
+## 安装后的动态库会位于/usr/local/lib64目录下，
 #其他版本在该目录下寻找对应的动态库libstdc++.so.6.X.XX
 
 https://blog.csdn.net/qq_41054313/article/details/119453611
@@ -67,13 +110,9 @@ configure: error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
 GCC 源码里自带脚本可以轻松下载依赖包。
 ./contrib/download_prerequisites
 
-
 以上软件各版本源码在https://ftp.gnu.org/gnu/链接中可下载
 
-
 https://muzing.top/posts/16a16b69/
-
-
 
 Redis里面有ruby脚本
 

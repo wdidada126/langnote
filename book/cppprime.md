@@ -1,5 +1,10 @@
 # cpp prime
 
+E:\c++prime
+F:\db_sourcecode\cpp_primer5_sourcecode
+
+F:\oldf\c++ prime5th.pdf
+
 &
 *
 
@@ -575,6 +580,27 @@ typedef 别名
 https://www.cnblogs.com/klb561/p/13801342.html
 
 
+头文件不应包含using声明
+
+指针和数组
+多维数组
+
+chap 4 表达式
+
+lvalue
+左值(value)是指那些求值结果为对象或函数的表达式。一个表示对象的非常量左值可以作为赋值运算符的左侧运算对象。
+rvalue
+是指一种表达式，其结果是表达式的值而非其位置
+
+在编程中，prvalue指的是"pure rvalue"的缩写，也就是纯右值。这是一种表达式的值，其特点是可以被移动到另一个对象中，或者其资源可以被重用。具体来说，prvalue有以下几个特点：
+
+prvalue是右值的一种，它具有潜在的可移动性。这意味着在某些情况下，prvalue的资源可以被安全地转移到另一个对象中，而不会导致数据的复制或不必要的开销。
+prvalue通常是临时的，没有固定的存储位置。它们通常是在表达式求值过程中创建的，用于初始化其他对象或作为函数的返回值。
+prvalue可以包括字面量（如整数、浮点数、字符串字面量等）、临时对象以及通过某些表达式（如函数调用或类型转换）生成的值。
+在C++中，prvalue的概念与右值引用和移动语义紧密相关。通过使用右值引用和std::move函数，可以实现对象资源的有效转移，从而提高程序的性能和效率。
+
+需要注意的是，prvalue只是右值的一种类型，还有其他类型的右值，如xvalue（expiring value，即将过期的值）。这些概念在理解C++的移动语义和完美转发等高级特性时非常重要。
+https://en.cppreference.com/w/cpp/language/value_category
 chap 6 第6章 函数
 
 constexpr函数
@@ -647,7 +673,7 @@ regex_replace
 bernoulli_distribution
 
 第18章 用于大型程序的工具
-异常
+异常 noexcept
 命名空间
 多重继承
 
