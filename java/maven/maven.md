@@ -1,5 +1,12 @@
 # maven
 
+必须在有pom.xml的文件夹下面，不然找不到install的插件吗？
+```powershell```
+mvn install:install-file -DgroupId="cn.com.yitong.mail" -DartifactId=sendmail-sdk -Dversion="1.0.1" -Dpackaging=jar -D
+file="sendmail-sdk-1.0.1.jar"
+```
+
+
 https://maven.apache.org/plugins/index.html
 
 直接点击clean 等maven二级命令
