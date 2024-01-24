@@ -435,6 +435,11 @@ git config --global user.name "WuCheng"
 ```
 
 ```
+git config user.email "wc@eteng.cn"
+git config user.name "WuCheng"
+```
+
+```
 git config user.email "xxx@qq.com"
 git config user.name "wdidada"
 ```
