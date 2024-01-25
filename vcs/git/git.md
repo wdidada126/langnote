@@ -1,4 +1,6 @@
 # git
+git --version
+git version 2.37.1 (Apple Git-137.1)
 
 git clone https://github.com/tfussell/xlnt.git xlnt --recurse-submodules
 
