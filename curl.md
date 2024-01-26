@@ -115,3 +115,7 @@ chmod +x configure
 ./configure --with-openssl
 make
 sudo make install
+
+## doc manul
+man curl
+https://everything.curl.dev/project
