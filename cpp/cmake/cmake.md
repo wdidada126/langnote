@@ -1,5 +1,13 @@
 # CMake
 
+```
+wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.9/cmake-3.27.9-linux-x86_64.tar.gz
+tar -xvf cmake-3.27.9-linux-x86_64.tar.gz > /dev/null
+mv cmake-3.27.9-linux-x86_64 cmake-install
+pwd_path=$(pwd)
+PATH=${pwd_path}/cmake-install:${pwd_path}/cmake-install/bin:$PATH
+cmake --version
+```
 property
 分类
 项目
