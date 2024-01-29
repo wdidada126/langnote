@@ -1,5 +1,18 @@
 # IDEA
 
+
+## App Password
+If you use non-latest JetBrains products and it isn't prompting you to enter a one-time password, use App Password instead of your regular password for sign in.
+
+947s3bed7v8puusfz4f0xe66h
+
+## 官方文档
+https://www.jetbrains.com/zh-cn/opensource/idea/
+
+https://plugins.jetbrains.com/docs/intellij/welcome.html?from=jetbrains.org
+
+https://www.jetbrains.com/help/idea/remote-development-starting-page.html#space_integration
+
 ## EasyCode
 
 https://plugins.jetbrains.com/plugin/10954-easycode

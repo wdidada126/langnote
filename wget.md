@@ -1,8 +1,7 @@
 # wget
+rsync_rename.sh
 
 wget --no-check-certificate https://dlcdn.apache.org/geode/1.14.4/apache-geode-1.14.4.tgz
-
-
 
 该错误表明wget无法信任dlcdn.apache.org的SSL证书。
 
