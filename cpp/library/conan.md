@@ -57,7 +57,960 @@ Conan的构建脚本可以指定要使用的编译器和其版本，以及相关
 一旦Conan生成了适合的构建文件，您可以使用常规的构建命令（如make、nmake或msbuild）来执行构建过程。这将直接调用指定的编译器，并根据构建文件的指示进行编译和链接。
 因此，使用Conan可以简化构建过程，减少对外部构建工具的依赖，并为您提供更灵活的方式来管理依赖关系和构建配置。
 
+  ```shell
+conan graph info  .
 
+======== Computing dependency graph ========
+Graph root
+    conanfile.txt: /workspaces/myqt6app/conanfile.txt
+Requirements
+    brotli/1.1.0#d56d7bb9ca722942aba17369cb5c0519 - Cache
+    bzip2/1.0.8#457c272f7da34cb9c67456dd217d36c4 - Cache
+    freetype/2.13.2#c9ee90dc6f88356febac6fcdba0b2249 - Cache
+    libpng/1.6.40#06f726bd4bfd83f5cdc10587826093f0 - Cache
+    qt/6.4.1#37219eaac385e2969ded4b47563c71c2 - Cache
+    zlib/1.3.1#af8f2ef3d8e0fddf1975281d7fe43bf6 - Cache
+Resolved version ranges
+    freetype/[>=2.13.2]: freetype/2.13.2
+    zlib/[>=1.2.11 <2]: zlib/1.3.1
+Graph error
+    Version conflict: qt/6.4.1->zlib/1.2.13, None->zlib/1.3.1.
+
+======== Basic graph information ========
+conanfile:
+  ref: conanfile
+  id: 0
+  recipe: Consumer
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: None
+  user: None
+  channel: None
+  url: None
+  license: None
+  author: None
+  description: None
+  homepage: None
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options: None
+  options_description: None
+  version: None
+  topics: None
+  package_type: unknown
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.cppstd: gnu17
+    compiler.libcxx: libstdc++11
+    compiler.version: 9
+    build_type: Release
+  options:
+  options_definitions:
+  generators: ['CMakeDeps']
+  system_requires:
+  recipe_folder: None
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: conanfile.txt
+  dependencies:
+    1:
+      ref: freetype/2.13.2
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+    2:
+      ref: libpng/1.6.40
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: False
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: False
+      package_id_mode: None
+      visible: True
+    3:
+      ref: zlib/1.3.1
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: False
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: False
+      package_id_mode: None
+      visible: True
+    4:
+      ref: bzip2/1.0.8
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: False
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: False
+      package_id_mode: None
+      visible: True
+    5:
+      ref: brotli/1.1.0
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+    6:
+      ref: qt/6.4.1
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+  context: host
+  test: False
+freetype/2.13.2#c9ee90dc6f88356febac6fcdba0b2249:
+  ref: freetype/2.13.2#c9ee90dc6f88356febac6fcdba0b2249
+  id: 1
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: freetype
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: FTL
+  author: None
+  description: FreeType is a freely available software library to render fonts.
+  homepage: https://www.freetype.org
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    fPIC: True
+    with_png: True
+    with_zlib: True
+    with_bzip2: True
+    with_brotli: True
+    subpixel: False
+  options_description: None
+  version: 2.13.2
+  topics: ['freetype', 'fonts']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.version: 9
+    build_type: Release
+  options:
+    fPIC: True
+    shared: False
+    subpixel: False
+    with_brotli: True
+    with_bzip2: True
+    with_png: True
+    with_zlib: True
+  options_definitions:
+    shared: ['True', 'False']
+    fPIC: ['True', 'False']
+    with_png: ['True', 'False']
+    with_zlib: ['True', 'False']
+    with_bzip2: ['True', 'False']
+    with_brotli: ['True', 'False']
+    subpixel: ['True', 'False']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/freetdf27971e4a016/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: freetype/2.13.2
+  dependencies:
+    2:
+      ref: libpng/1.6.40
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+    3:
+      ref: zlib/1.3.1
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+    4:
+      ref: bzip2/1.0.8
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+    5:
+      ref: brotli/1.1.0
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+  context: host
+  test: False
+libpng/1.6.40#06f726bd4bfd83f5cdc10587826093f0:
+  ref: libpng/1.6.40#06f726bd4bfd83f5cdc10587826093f0
+  id: 2
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: libpng
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: libpng-2.0
+  author: None
+  description: libpng is the official PNG file format reference library.
+  homepage: http://www.libpng.org
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    fPIC: True
+    neon: True
+    msa: True
+    sse: True
+    vsx: True
+    api_prefix: 
+  options_description: None
+  version: 1.6.40
+  topics: ['png', 'graphics', 'image']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.version: 9
+    build_type: Release
+  options:
+    api_prefix: 
+    fPIC: True
+    shared: False
+    sse: True
+  options_definitions:
+    shared: ['True', 'False']
+    fPIC: ['True', 'False']
+    sse: ['True', 'False']
+    api_prefix: ['ANY']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/libpncf17c2d1c5008/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: libpng/1.6.40
+  dependencies:
+    3:
+      ref: zlib/1.3.1
+      run: False
+      libs: True
+      skip: False
+      test: False
+      force: False
+      direct: True
+      build: False
+      transitive_headers: None
+      transitive_libs: None
+      headers: True
+      package_id_mode: None
+      visible: True
+  context: host
+  test: False
+zlib/1.3.1#af8f2ef3d8e0fddf1975281d7fe43bf6:
+  ref: zlib/1.3.1#af8f2ef3d8e0fddf1975281d7fe43bf6
+  id: 3
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: zlib
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: Zlib
+  author: None
+  description: A Massively Spiffy Yet Delicately Unobtrusive Compression Library (Also Free, Not to Mention Unencumbered by Patents)
+  homepage: https://zlib.net
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    fPIC: True
+  options_description: None
+  version: 1.3.1
+  topics: ['zlib', 'compression']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.version: 9
+    build_type: Release
+  options:
+    fPIC: True
+    shared: False
+  options_definitions:
+    shared: ['True', 'False']
+    fPIC: ['True', 'False']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/zlib7bf0f3bfff70f/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: zlib/1.3.1
+  dependencies:
+  context: host
+  test: False
+bzip2/1.0.8#457c272f7da34cb9c67456dd217d36c4:
+  ref: bzip2/1.0.8#457c272f7da34cb9c67456dd217d36c4
+  id: 4
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: bzip2
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: bzip2-1.0.8
+  author: None
+  description: bzip2 is a free and open-source file compression program that uses the Burrows Wheeler algorithm.
+  homepage: https://sourceware.org/bzip2
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    fPIC: True
+    build_executable: True
+  options_description: None
+  version: 1.0.8
+  topics: ['data-compressor', 'file-compression']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.version: 9
+    build_type: Release
+  options:
+    build_executable: True
+    fPIC: True
+    shared: False
+  options_definitions:
+    shared: ['True', 'False']
+    fPIC: ['True', 'False']
+    build_executable: ['True', 'False']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/bzip232e122e5f0e0b/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: bzip2/1.0.8
+  dependencies:
+  context: host
+  test: False
+brotli/1.1.0#d56d7bb9ca722942aba17369cb5c0519:
+  ref: brotli/1.1.0#d56d7bb9ca722942aba17369cb5c0519
+  id: 5
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: brotli
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: ['MIT']
+  author: None
+  description: Brotli compression format
+  homepage: https://github.com/google/brotli
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    fPIC: True
+    target_bits: None
+    endianness: None
+    enable_portable: False
+    enable_rbit: True
+    enable_debug: False
+    enable_log: False
+  options_description: None
+  version: 1.1.0
+  topics: ['brotli', 'compression']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.version: 9
+    build_type: Release
+  options:
+    enable_debug: False
+    enable_log: False
+    enable_portable: False
+    enable_rbit: True
+    endianness: None
+    fPIC: True
+    shared: False
+    target_bits: None
+  options_definitions:
+    shared: ['True', 'False']
+    fPIC: ['True', 'False']
+    target_bits: ['64', '32', None]
+    endianness: ['big', 'little', 'neutral', None]
+    enable_portable: ['True', 'False']
+    enable_rbit: ['True', 'False']
+    enable_debug: ['True', 'False']
+    enable_log: ['True', 'False']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/brotl01cfbaf421d56/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: brotli/1.1.0
+  dependencies:
+  context: host
+  test: False
+qt/6.4.1#37219eaac385e2969ded4b47563c71c2:
+  ref: qt/6.4.1#37219eaac385e2969ded4b47563c71c2
+  id: 6
+  recipe: Cache
+  package_id: None
+  prev: None
+  build_id: None
+  binary: None
+  invalid_build: False
+  info_invalid: None
+  name: qt
+  user: None
+  channel: None
+  url: https://github.com/conan-io/conan-center-index
+  license: LGPL-3.0-only
+  author: None
+  description: Qt is a cross-platform framework for graphical user interfaces.
+  homepage: https://www.qt.io
+  build_policy: None
+  upload_policy: None
+  revision_mode: hash
+  provides: None
+  deprecated: None
+  win_bash: None
+  win_bash_run: None
+  default_options:
+    shared: False
+    opengl: desktop
+    with_vulkan: False
+    openssl: True
+    with_pcre2: True
+    with_glib: False
+    with_doubleconversion: True
+    with_freetype: True
+    with_fontconfig: True
+    with_icu: True
+    with_harfbuzz: True
+    with_libjpeg: False
+    with_libpng: True
+    with_sqlite3: True
+    with_mysql: False
+    with_pq: True
+    with_odbc: True
+    with_zstd: False
+    with_brotli: True
+    with_dbus: False
+    with_libalsa: False
+    with_openal: True
+    with_gstreamer: False
+    with_pulseaudio: False
+    with_gssapi: False
+    with_md4c: True
+    with_x11: True
+    gui: True
+    widgets: True
+    device: None
+    cross_compile: None
+    sysroot: None
+    multiconfiguration: False
+    disabled_features: 
+    qtsvg: False
+    qtdeclarative: False
+    qttools: False
+    qttranslations: False
+    qtdoc: False
+    qtwayland: False
+    qtquickcontrols2: False
+    qtquicktimeline: False
+    qtquick3d: False
+    qtshadertools: False
+    qt5compat: False
+    qtactiveqt: False
+    qtcharts: False
+    qtdatavis3d: False
+    qtlottie: False
+    qtscxml: False
+    qtvirtualkeyboard: False
+    qt3d: False
+    qtimageformats: False
+    qtnetworkauth: False
+    qtcoap: False
+    qtmqtt: False
+    qtopcua: False
+    qtmultimedia: False
+    qtlocation: False
+    qtsensors: False
+    qtconnectivity: False
+    qtserialbus: False
+    qtserialport: False
+    qtwebsockets: False
+    qtwebchannel: False
+    qtwebengine: False
+    qtwebview: False
+    qtremoteobjects: False
+    qtpositioning: False
+    qtlanguageserver: False
+    qtspeech: False
+    qthttpserver: False
+    qtquick3dphysics: False
+    qtgrpc: False
+    qtquickeffectmaker: False
+  options_description: None
+  version: 6.4.1
+  topics: ['framework', 'ui']
+  package_type: static-library
+  settings:
+    os: Linux
+    arch: x86_64
+    compiler: gcc
+    compiler.cppstd: gnu17
+    compiler.libcxx: libstdc++11
+    compiler.version: 9
+    build_type: Release
+  options:
+    cross_compile: None
+    device: None
+    disabled_features: 
+    gui: True
+    multiconfiguration: False
+    opengl: desktop
+    openssl: True
+    qt3d: False
+    qt5compat: False
+    qtactiveqt: False
+    qtcharts: False
+    qtcoap: False
+    qtconnectivity: False
+    qtdatavis3d: False
+    qtdeclarative: False
+    qtdoc: False
+    qthttpserver: False
+    qtimageformats: False
+    qtlanguageserver: False
+    qtlottie: False
+    qtmqtt: False
+    qtmultimedia: False
+    qtnetworkauth: False
+    qtopcua: False
+    qtpositioning: False
+    qtquick3d: False
+    qtquick3dphysics: False
+    qtquicktimeline: False
+    qtremoteobjects: False
+    qtscxml: False
+    qtsensors: False
+    qtserialbus: False
+    qtserialport: False
+    qtshadertools: False
+    qtspeech: False
+    qtsvg: False
+    qttools: False
+    qttranslations: False
+    qtvirtualkeyboard: False
+    qtwayland: False
+    qtwebchannel: False
+    qtwebengine: False
+    qtwebsockets: False
+    qtwebview: False
+    shared: False
+    sysroot: None
+    widgets: True
+    with_brotli: True
+    with_dbus: False
+    with_doubleconversion: True
+    with_fontconfig: True
+    with_freetype: True
+    with_glib: False
+    with_gssapi: False
+    with_harfbuzz: True
+    with_icu: True
+    with_libjpeg: False
+    with_libpng: True
+    with_md4c: True
+    with_mysql: False
+    with_odbc: True
+    with_pcre2: True
+    with_pq: True
+    with_sqlite3: True
+    with_vulkan: False
+    with_x11: True
+    with_zstd: False
+  options_definitions:
+    shared: ['True', 'False']
+    opengl: ['no', 'desktop', 'dynamic']
+    with_vulkan: ['True', 'False']
+    openssl: ['True', 'False']
+    with_pcre2: ['True', 'False']
+    with_glib: ['True', 'False']
+    with_doubleconversion: ['True', 'False']
+    with_freetype: ['True', 'False']
+    with_fontconfig: ['True', 'False']
+    with_icu: ['True', 'False']
+    with_harfbuzz: ['True', 'False']
+    with_libjpeg: ['libjpeg', 'libjpeg-turbo', 'False']
+    with_libpng: ['True', 'False']
+    with_sqlite3: ['True', 'False']
+    with_mysql: ['True', 'False']
+    with_pq: ['True', 'False']
+    with_odbc: ['True', 'False']
+    with_zstd: ['True', 'False']
+    with_brotli: ['True', 'False']
+    with_dbus: ['True', 'False']
+    with_gssapi: ['True', 'False']
+    with_md4c: ['True', 'False']
+    with_x11: ['True', 'False']
+    gui: ['True', 'False']
+    widgets: ['True', 'False']
+    device: [None, 'ANY']
+    cross_compile: [None, 'ANY']
+    sysroot: [None, 'ANY']
+    multiconfiguration: ['True', 'False']
+    disabled_features: [None, 'ANY']
+    qtsvg: ['True', 'False']
+    qtdeclarative: ['True', 'False']
+    qttools: ['True', 'False']
+    qttranslations: ['True', 'False']
+    qtdoc: ['True', 'False']
+    qtwayland: ['True', 'False']
+    qtquicktimeline: ['True', 'False']
+    qtquick3d: ['True', 'False']
+    qtshadertools: ['True', 'False']
+    qt5compat: ['True', 'False']
+    qtactiveqt: ['True', 'False']
+    qtcharts: ['True', 'False']
+    qtdatavis3d: ['True', 'False']
+    qtlottie: ['True', 'False']
+    qtscxml: ['True', 'False']
+    qtvirtualkeyboard: ['True', 'False']
+    qt3d: ['True', 'False']
+    qtimageformats: ['True', 'False']
+    qtnetworkauth: ['True', 'False']
+    qtcoap: ['True', 'False']
+    qtmqtt: ['True', 'False']
+    qtopcua: ['True', 'False']
+    qtmultimedia: ['True', 'False']
+    qtsensors: ['True', 'False']
+    qtconnectivity: ['True', 'False']
+    qtserialbus: ['True', 'False']
+    qtserialport: ['True', 'False']
+    qtwebsockets: ['True', 'False']
+    qtwebchannel: ['True', 'False']
+    qtwebengine: ['True', 'False']
+    qtwebview: ['True', 'False']
+    qtremoteobjects: ['True', 'False']
+    qtpositioning: ['True', 'False']
+    qtlanguageserver: ['True', 'False']
+    qtspeech: ['True', 'False']
+    qthttpserver: ['True', 'False']
+    qtquick3dphysics: ['True', 'False']
+  generators: []
+  system_requires:
+  recipe_folder: /home/codespace/.conan2/p/qtc38dc2f86b9ea/e
+  source_folder: None
+  build_folder: None
+  generators_folder: None
+  package_folder: None
+  cpp_info:
+    root:
+      includedirs: ['include']
+      srcdirs: None
+      libdirs: ['lib']
+      resdirs: None
+      bindirs: ['bin']
+      builddirs: None
+      frameworkdirs: None
+      system_libs: None
+      frameworks: None
+      libs: None
+      defines: None
+      cflags: None
+      cxxflags: None
+      sharedlinkflags: None
+      exelinkflags: None
+      objects: None
+      sysroot: None
+      requires: None
+      properties: None
+  label: qt/6.4.1
+  dependencies:
+  context: host
+  test: False
+
+  ```
 
 Conan是C/C++的包管理器，用于构建和管理C/C++的软件包。Conan flow是Conan的自动化构建和部署工具，用于自动化构建、测试、发布和部署C/C++的软件包。它可以帮助开发人员快速构建和发布软件包，并确保软件包的质量和稳定性。
 
