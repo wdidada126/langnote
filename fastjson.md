@@ -1,5 +1,10 @@
 # fastjson
 
+
+			JSONArray jsonArray = JSONArray.parseArray(fixListStr);
+			List<Map> fixList = jsonArray.toJavaList(Map.class);
+
+			
 相信大家都用过 fastjson，初次接触 fastjson 肯定会被它简单的 API 所吸引，常用的序列化/反序列化统统一行代码搞定，比如 JSON.toJSONString()。通常来说，这种通过静态方法暴露的 API，其背后的设计与实现都是线程安全的，也就是在多线程环境中，你可以安心的使用 fastjson 的静态方法进行序列化和反序列化
     
 https://github.com/alibaba/fastjson/

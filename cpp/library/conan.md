@@ -1,4 +1,5 @@
 # conan
+
 ## conan1
 SET(CONAN_DISABLE_CHECK_COMPILER true)
 
@@ -1354,3 +1355,8 @@ python
 ## vcpkg和conan
 conan支持选择库版本，vcpkg默认安装最新版本
 apt yum也是安装特定版本
+
+## conan2
+conan new cmake_exe -d name=mypkg -d version=0.1 -f
+
+conan graph info  .
