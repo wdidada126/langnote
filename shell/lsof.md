@@ -4,6 +4,11 @@ lsof yum 安装
 
 yum install lsof -y
 
+lsof 4.76
+ latest revision: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/
+ latest FAQ: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/FAQ
+ latest man page: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/lsof_man
+
 ## 离线安装
 which gcc
 which make
