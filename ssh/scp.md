@@ -86,3 +86,6 @@ scp -P 22 file.txt user@example.com:/home/user/
 sshpass
 仅仅支持linux
 askpass支持windows
+
+scp文件夹，去掉特定路径的文件
+
