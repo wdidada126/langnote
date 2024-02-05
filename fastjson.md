@@ -15,17 +15,14 @@ JSON
 
 JSONObject.toJSONString()
 
-
-
 com.alibaba.fastjson.JSON
 com.alibaba.fastjson.JSON.toJSONString(java.lang.Object)
 com.alibaba.fastjson.JSON.parseObject(java.lang.String, com.alibaba.fastjson.TypeReference<T>, com.alibaba.fastjson.parser.Feature...)
 com.alibaba.fastjson.TypeReference
 
+Map<String, Object> map = JSON.parseObject(errMsg, new TypeReference<Map<String, Object>>() {});
 
 public class JSONObject extends JSON
-
-
 
 Fastjson的SerializerFeature序列化属性：
 QuoteFieldNames———-输出key时是否使用双引号,默认为true
