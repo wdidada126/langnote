@@ -1,7 +1,17 @@
 # vcpkg
 
 ## vcpkg设置
+vcpkg edit
 
+config-environment.md
+环境变量
+VCPKG_DOWNLOADS
+VCPKG_FEATURE_FLAGS
+EDITOR
+VCPKG_ROOT
+VCPKG_VISUAL_STUDIO_PATH
+VCPKG_DEFAULT_TRIPLET
+VCPKG_DEFAULT_HOST_TRIPLET
 
 ### triple
 vcpkg install xlnt --triplet=x64-windows

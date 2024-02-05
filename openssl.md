@@ -1,5 +1,13 @@
 # openssl
 
+使用 openssl 验证 SHA512 校验值：
+
+openssl dgst -r -sha512 xxx.tar.xz
+
+D:\git\github\vcpkg\buildtrees\openssl\x64-windows-dbg\apps\openssl.exe
+
+## 版本
+
 conan search openssl
 conancenter
   openssl

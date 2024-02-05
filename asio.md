@@ -12,8 +12,18 @@ https://think-async.com/Asio/
 
 https://think-async.com/Asio/asio-1.28.0/doc/
 
+https://think-async.com/Asio/asio-1.28.0/doc/asio/reference.html
+
 
 https://github.com/chriskohlhoff/asio/
 
 
 ## github action编译
+
+head only，不需要编译
+也可以用
+./configure
+
+## 更新情况
+
+https://think-async.com/Asio/asio-1.28.0/doc/asio/history.html
