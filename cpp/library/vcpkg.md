@@ -1,5 +1,9 @@
 # vcpkg
 
+## vcpkg设置
+
+
+### triple
 vcpkg install xlnt --triplet=x64-windows
 vcpkg help triplet
 查看vcpkg支持的triplet列表
