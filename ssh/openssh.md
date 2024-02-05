@@ -1,5 +1,17 @@
 # openssh
 
+## mail list
+https://www.openssh.com/list.html
+sandisks gmail
+
+You can also make such adjustments via email by sending a message to:
+
+  openssh-unix-dev-request@mindrot.org
+
+with the word `help' in the subject or body (don't include the
+quotes), and you will get back a message with instructions.
+
+## windows
 C:\Windows\System32\OpenSSH
 
 scp.exe
@@ -15,13 +27,11 @@ sudo apt install openssh-server -y
 sudo lsof -i:22
 不是lsof -i:22
 
-
 OpenSSH服务器的配置文件位于`/etc/ssh/sshd_config`。你可以使用文本编辑器（如nano或vim）打开该文件并编辑它，以更改OpenSSH服务器的配置选项。
 
 例如，要更改SSH服务器监听的端口号，可以按照以下步骤操作：
 
 1. 打开终端（Ctrl+Alt+T）。
-
 2. 输入以下命令以使用nano编辑器打开sshd_config文件：
 
 ```bash
@@ -41,7 +51,6 @@ Port 2222
 ```
 
 5. 保存文件并退出nano编辑器（按Ctrl+X，然后按Y，最后按Enter）。
-
 6. 重启SSH服务以使更改生效：
 
 ```bash
@@ -57,7 +66,6 @@ ubuntu 20主机 openssh开启，现在要ssh登录，为什么是能public key�
 如果你希望使用用户名和密码进行登录，可以按照以下步骤修改OpenSSH服务器的配置文件：
 
 1. 打开终端（Ctrl+Alt+T）。
-
 2. 输入以下命令以编辑sshd_config文件：
 
 ```bash

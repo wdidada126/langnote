@@ -1,4 +1,9 @@
 # maven
+## mail list
+
+sandisks555 gmail 已经订阅
+
+## maven install
 
 必须在有pom.xml的文件夹下面，不然找不到install的插件吗？
 ```powershell```

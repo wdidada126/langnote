@@ -12,6 +12,8 @@ https://think-async.com/Asio/
 
 https://think-async.com/Asio/asio-1.28.0/doc/
 
+https://think-async.com/Asio/asio-1.28.0/doc/asio/reference.html
+
 
 https://github.com/chriskohlhoff/asio/
 
@@ -29,3 +31,11 @@ Asio库是一个跨平台的C++网络库，它是Boost库的一部分，主要�
 5. 串口通信：Asio库还提供了对串口通信的支持，可以用于读取和写入串口数据。这使得应用程序可以通过串口与其他设备或硬件进行通信。
 
 总的来说，Asio库是一个功能强大且灵活的C++网络库，它提供了异步I/O操作、事件循环、多线程支持、定时器和串口通信等功能，使得应用程序可以更加高效地处理网络和I/O操作。
+
+head only，不需要编译
+也可以用
+./configure
+
+## 更新情况
+
+https://think-async.com/Asio/asio-1.28.0/doc/asio/history.html

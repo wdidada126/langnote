@@ -1,5 +1,7 @@
 # CMake
 
+lwip是cmake组织的
+
 ```
 wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.9/cmake-3.27.9-linux-x86_64.tar.gz
 tar -xvf cmake-3.27.9-linux-x86_64.tar.gz > /dev/null
@@ -17,12 +19,10 @@ https://cmake.org/cmake/help/v3.20/manual/cmake-properties.7.html
 
 CMAKE_C_KNOWN_FEATURES
 
-
 ## Command
 Scripting Command
 Project Command
 CTest Command
-
 
 判断
 if()
