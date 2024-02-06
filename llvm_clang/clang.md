@@ -250,3 +250,23 @@ clang-format命令行工具，Clion支持
 
 ## 编译源码
 
+cmake
+make
+zlib
+python
+
+
+```shell
+git clone https://github.com/llvm/llvm-project.git
+cd llvm-project
+git checkout llvmorg-17.0.6
+mkdir build && cd build
+cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm
+make
+```
+
+## 社区
+
+https://discord.com/invite/xS7Z362
+
+https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm
