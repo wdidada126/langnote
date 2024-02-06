@@ -56,6 +56,7 @@ https://icode.best/i/42074744400777
 ## vcpkg
 https://www.jetbrains.com/help/clion/2023.1/package-management.html
 Select View | Tool Windows | Vcpkg from the main menu to open the Vcpkg tool window.
+标准模式切换到清单模式，生成vcpkg.json
 
 https://www.jetbrains.com/help/clion/2023.1/package-management.html#install-packages
 
@@ -66,4 +67,5 @@ https://www.jetbrains.com/clion/whatsnew/#scope-2023-2-vcpkg
 clion_vcpkg.png
 
 对标vs
+
 

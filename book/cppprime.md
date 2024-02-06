@@ -561,11 +561,11 @@ https://github.com/edidada/Cpp_Primer_Answers
 
 2-7章节
 
-chap 2 第2章 变量和基本类型
+## chap 2 第2章 变量和基本类型
 
 const
 
-chap 3 第3章 字符串、向量和数组
+## chap 3 第3章 字符串、向量和数组
 
 迭代器 任何编程语言集合类都需要
 
@@ -573,7 +573,7 @@ chap 3 第3章 字符串、向量和数组
 
 数组初始化
 
-cstring
+cstring 头文件
 
 typedef 别名
 
@@ -585,7 +585,7 @@ https://www.cnblogs.com/klb561/p/13801342.html
 指针和数组
 多维数组
 
-chap 4 表达式
+## chap 4 表达式
 
 lvalue
 左值(value)是指那些求值结果为对象或函数的表达式。一个表示对象的非常量左值可以作为赋值运算符的左侧运算对象。
@@ -593,7 +593,6 @@ rvalue
 是指一种表达式，其结果是表达式的值而非其位置
 
 在编程中，prvalue指的是"pure rvalue"的缩写，也就是纯右值。这是一种表达式的值，其特点是可以被移动到另一个对象中，或者其资源可以被重用。具体来说，prvalue有以下几个特点：
-
 prvalue是右值的一种，它具有潜在的可移动性。这意味着在某些情况下，prvalue的资源可以被安全地转移到另一个对象中，而不会导致数据的复制或不必要的开销。
 prvalue通常是临时的，没有固定的存储位置。它们通常是在表达式求值过程中创建的，用于初始化其他对象或作为函数的返回值。
 prvalue可以包括字面量（如整数、浮点数、字符串字面量等）、临时对象以及通过某些表达式（如函数调用或类型转换）生成的值。
@@ -601,7 +600,8 @@ prvalue可以包括字面量（如整数、浮点数、字符串字面量等）�
 
 需要注意的是，prvalue只是右值的一种类型，还有其他类型的右值，如xvalue（expiring value，即将过期的值）。这些概念在理解C++的移动语义和完美转发等高级特性时非常重要。
 https://en.cppreference.com/w/cpp/language/value_category
-chap 6 第6章 函数
+
+## chap 6 第6章 函数
 
 constexpr函数
 
@@ -609,7 +609,7 @@ constexpr函数
 
 https://blog.csdn.net/qq_22660775/article/details/89336997
 
-chap 7 类
+## chap 7 类
 
 委托构造函数delegating constructor
 构造函数重载
@@ -630,12 +630,12 @@ vector
 对随机访问的速度很快，对头插元素速度很慢，尾插元素速度很快
 新添加的元素，vector有一套算法。
 
-chap 11 关联容器
+## chap 11 关联容器
 8个关联容器
 含有multi 关键字可以重复
 map
 set
-multimap
+multimap  加强记忆
 multiset
 
 unordered_map
@@ -646,6 +646,71 @@ unordered_multiset
 pair类型
 
 map
+
+在C++标准库中，`pair`类型和`map`类型都是用于存储关联数据的，但它们在使用和目的上有一些区别。
+
+### `pair` 类型
+
+`pair`是一个模板类，它允许你将两个不同类型的对象组合成一个单一的实体。这个实体可以包含任意两个类型的值，它们分别被称为`first`和`second`。`pair`常用于返回两个值的方法或函数，也用作关联容器（如`map`、`set`、`multimap`、`multiset`）中的元素。
+
+示例：
+
+```cpp
+#include <utility> // pair 类型定义在 utility 头文件中
+
+int main() {
+    std::pair<int, std::string> p;
+    p.first = 1;
+    p.second = "example";
+
+    // 或者可以在创建 pair 对象时初始化
+    std::pair<int, std::string> p2(2, "another example");
+
+    return 0;
+}
+```
+
+### `map` 类型
+
+`map`是一个关联容器，它存储的元素是键值对（key-value pairs），其中每个键都是唯一的，并且按键的顺序存储元素。`map`使用红黑树（在C++17及之前的版本中）或平衡搜索树（在C++17及之后的版本中）来组织数据，因此它提供了对数时间复杂度的查找、插入和删除操作。
+
+示例：
+
+```cpp
+#include <map>
+
+int main() {
+    std::map<int, std::string> m;
+
+    // 插入元素
+    m[1] = "example";
+    m[2] = "another example";
+
+    // 查找元素
+    if (m.find(1) != m.end()) {
+        std::cout << m[1] << std::endl;
+    }
+
+    // 删除元素
+    m.erase(1);
+
+    return 0;
+}
+```
+
+### 区别
+
+1. **存储方式**：`pair`只是简单地将两个对象捆绑在一起，而`map`是一个有序集合，其中的每个元素都是一个键值对，键用于唯一标识元素。
+
+2. **用途**：`pair`通常用于临时存储两个相关的值，或者作为关联容器中的元素。而`map`用于存储一个键和与之关联的值，允许你通过键快速查找对应的值。
+
+3. **访问方式**：`pair`可以通过`first`和`second`成员来访问其元素。`map`则通过键来访问对应的值，可以使用`[]`操作符或`find`成员函数。
+
+4. **性能**：`map`提供了高效的查找、插入和删除操作，其时间复杂度通常是O(log n)。而`pair`则没有这些操作，它只是简单地将两个值组合在一起。
+
+5. **有序性**：`map`中的元素按键的顺序存储，因此迭代`map`会按照键的顺序进行。`pair`则没有这种有序性保证。
+
+总的来说，`pair`和`map`都是C++标准库中的关联数据结构，但`pair`更简单，只用于存储两个值，而`map`则是一个有序的键值对集合，提供了更丰富的操作和更高的性能。
 
 第12章 动态内存
 

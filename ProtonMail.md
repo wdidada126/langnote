@@ -17,3 +17,5 @@ Attention required
 Toggle settings
 tomzjohn
 tomzjohn@protonmail.com
+
+不付费不支持三方客户端
