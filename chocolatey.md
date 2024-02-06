@@ -7,11 +7,87 @@ https://chocolatey.org/
 
 cmd.exe
 
+```shell
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-
+```
 
 powershell
 
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
+
+## 卸载
+
+## 安装的软件列表
+choco search xxx
+
+cmd
+powershell
+需要管理员权限
+
+
+choco install graphviz 
+
+```shell
+PS C:\Windows\system32> choco install graphviz
+Chocolatey v2.2.2
+Installing the following packages:
+graphviz
+By installing, you accept licenses for the packages.
+Progress: Downloading Graphviz 9.0.0... 100%
+
+graphviz v9.0.0 [Approved]
+graphviz package files install completed. Performing other installation steps.
+The package graphviz wants to run 'chocolateyInstall.ps1'.
+Note: If you don't run this script, the installation will fail.
+Note: To confirm automatically next time, use '-y' or consider:
+choco feature enable -n allowGlobalConfirmation
+Do you want to run the script?([Y]es/[A]ll - yes to all/[N]o/[P]rint): Y
+
+Attempt to use original download file name failed for 'C:\ProgramData\chocolatey\lib\Graphviz\tools\graphviz-9.0.0 (64-bit) EXE installer.exe'.
+Copying graphviz
+  from 'C:\ProgramData\chocolatey\lib\Graphviz\tools\graphviz-9.0.0 (64-bit) EXE installer.exe'
+Installing graphviz...
+graphviz has been installed.
+graphviz installed to 'C:\Program Files\Graphviz'
+Added C:\ProgramData\chocolatey\bin\acyclic.exe shim pointed to 'c:\program files\graphviz\bin\acyclic.exe'.
+Added C:\ProgramData\chocolatey\bin\bcomps.exe shim pointed to 'c:\program files\graphviz\bin\bcomps.exe'.
+Added C:\ProgramData\chocolatey\bin\ccomps.exe shim pointed to 'c:\program files\graphviz\bin\ccomps.exe'.
+Added C:\ProgramData\chocolatey\bin\circo.exe shim pointed to 'c:\program files\graphviz\bin\circo.exe'.
+Added C:\ProgramData\chocolatey\bin\cluster.exe shim pointed to 'c:\program files\graphviz\bin\cluster.exe'.
+Added C:\ProgramData\chocolatey\bin\dijkstra.exe shim pointed to 'c:\program files\graphviz\bin\dijkstra.exe'.
+Added C:\ProgramData\chocolatey\bin\dot.exe shim pointed to 'c:\program files\graphviz\bin\dot.exe'.
+Added C:\ProgramData\chocolatey\bin\dot2gxl.exe shim pointed to 'c:\program files\graphviz\bin\dot2gxl.exe'.
+Added C:\ProgramData\chocolatey\bin\dot_builtins.exe shim pointed to 'c:\program files\graphviz\bin\dot_builtins.exe'.
+Added C:\ProgramData\chocolatey\bin\edgepaint.exe shim pointed to 'c:\program files\graphviz\bin\edgepaint.exe'.
+Added C:\ProgramData\chocolatey\bin\fdp.exe shim pointed to 'c:\program files\graphviz\bin\fdp.exe'.
+Added C:\ProgramData\chocolatey\bin\gc.exe shim pointed to 'c:\program files\graphviz\bin\gc.exe'.
+Added C:\ProgramData\chocolatey\bin\gml2gv.exe shim pointed to 'c:\program files\graphviz\bin\gml2gv.exe'.
+Added C:\ProgramData\chocolatey\bin\graphml2gv.exe shim pointed to 'c:\program files\graphviz\bin\graphml2gv.exe'.
+Added C:\ProgramData\chocolatey\bin\gv2gml.exe shim pointed to 'c:\program files\graphviz\bin\gv2gml.exe'.
+Added C:\ProgramData\chocolatey\bin\gv2gxl.exe shim pointed to 'c:\program files\graphviz\bin\gv2gxl.exe'.
+Added C:\ProgramData\chocolatey\bin\gvcolor.exe shim pointed to 'c:\program files\graphviz\bin\gvcolor.exe'.
+Added C:\ProgramData\chocolatey\bin\gvgen.exe shim pointed to 'c:\program files\graphviz\bin\gvgen.exe'.
+Added C:\ProgramData\chocolatey\bin\gvmap.exe shim pointed to 'c:\program files\graphviz\bin\gvmap.exe'.
+Added C:\ProgramData\chocolatey\bin\gvpack.exe shim pointed to 'c:\program files\graphviz\bin\gvpack.exe'.
+Added C:\ProgramData\chocolatey\bin\gvpr.exe shim pointed to 'c:\program files\graphviz\bin\gvpr.exe'.
+Added C:\ProgramData\chocolatey\bin\gxl2dot.exe shim pointed to 'c:\program files\graphviz\bin\gxl2dot.exe'.
+Added C:\ProgramData\chocolatey\bin\gxl2gv.exe shim pointed to 'c:\program files\graphviz\bin\gxl2gv.exe'.
+Added C:\ProgramData\chocolatey\bin\mm2gv.exe shim pointed to 'c:\program files\graphviz\bin\mm2gv.exe'.
+Added C:\ProgramData\chocolatey\bin\neato.exe shim pointed to 'c:\program files\graphviz\bin\neato.exe'.
+Added C:\ProgramData\chocolatey\bin\nop.exe shim pointed to 'c:\program files\graphviz\bin\nop.exe'.
+Added C:\ProgramData\chocolatey\bin\osage.exe shim pointed to 'c:\program files\graphviz\bin\osage.exe'.
+Added C:\ProgramData\chocolatey\bin\patchwork.exe shim pointed to 'c:\program files\graphviz\bin\patchwork.exe'.
+Added C:\ProgramData\chocolatey\bin\prune.exe shim pointed to 'c:\program files\graphviz\bin\prune.exe'.
+Added C:\ProgramData\chocolatey\bin\sccmap.exe shim pointed to 'c:\program files\graphviz\bin\sccmap.exe'.
+Added C:\ProgramData\chocolatey\bin\sfdp.exe shim pointed to 'c:\program files\graphviz\bin\sfdp.exe'.
+Added C:\ProgramData\chocolatey\bin\tred.exe shim pointed to 'c:\program files\graphviz\bin\tred.exe'.
+Added C:\ProgramData\chocolatey\bin\twopi.exe shim pointed to 'c:\program files\graphviz\bin\twopi.exe'.
+Added C:\ProgramData\chocolatey\bin\unflatten.exe shim pointed to 'c:\program files\graphviz\bin\unflatten.exe'.
+  graphviz may be able to be automatically uninstalled.
+```
+## 源代码
+
+## 编译
+

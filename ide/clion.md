@@ -2,8 +2,6 @@
 
 ### 插件
 
-
-
 2021版本支持make
 https://blog.csdn.net/qiuyeyijian/article/details/109267543
 
@@ -20,22 +18,15 @@ cmake
 
 [CLion开发编译调试Makefile项目](https://blog.csdn.net/lylwo317/article/details/86673912)
 
-
-Clion支持makefile
-
-
+Clion支持makefile，meson
 
 ThoughtWorks
-如何评价 TAPIR 分布式事务协议
+如何评价TAPIR分布式事务协议
 
 论文地址：[http://syslab.cs.washington.edu/papers/tapir-tr14.pdf](http://syslab.cs.washington.edu/papers/tapir-tr14.pdf)
 通过区分 inconsistent 和 consensus 两种操作来放宽对事务中操作顺序的要求，另外通过一个 sync 过程来同步各副本间的记录。似乎有很多的限制条件，有很多 corner case 需要考虑。
 
 有没有哪个已知生产系统使用了这个协议？
-
-
-
-
 
 https://www.youtube.com/watch?v=yE3eMxYJDiE
 
@@ -45,17 +36,9 @@ https://www.youtube.com/watch?v=yE3eMxYJDiE
 
 没想得很明白的是 abort 要怎么做, 总感觉哪里有问题. 求教
 
-
-
 https://www.zhihu.com/question/56763641/answer/1016947765
 
-
-
-
-
-
 ThoughtWorks
-
 
 ### 快捷键
 双击两次shift
@@ -70,7 +53,19 @@ https://icode.best/i/42074744400777
 1. 最常用的技巧：全局搜索。
 按住shift 二次即可。同时，也可以使用正则表达式
 
+## vcpkg
+https://www.jetbrains.com/help/clion/2023.1/package-management.html
+Select View | Tool Windows | Vcpkg from the main menu to open the Vcpkg tool window.
+标准模式切换到清单模式，生成vcpkg.json
 
+https://www.jetbrains.com/help/clion/2023.1/package-management.html#install-packages
 
+https://www.jetbrains.com/clion/whatsnew/#scope-2023-2-vcpkg
+
+使用vcpkg，自动创建vcpkg.json文件
+
+clion_vcpkg.png
+
+对标vs
 
 
