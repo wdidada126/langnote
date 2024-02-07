@@ -257,12 +257,44 @@ python
 
 
 ```shell
-git clone https://github.com/llvm/llvm-project.git
+git clone -b llvmorg-17.0.6 https://github.com/llvm/llvm-project.git
 cd llvm-project
-git checkout llvmorg-17.0.6
 mkdir build && cd build
 cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm
-make
+make -j5
+cd bin
+ls
+```
+
+```shell
+ls
+FileCheck                    clang-scan-deps          llvm-diff                       llvm-min-tblgen                llvm-strings
+UnicodeNameMappingGenerator  clang-tblgen             llvm-dis                        llvm-ml                        llvm-strip
+amdgpu-arch                  count                    llvm-dlang-demangle-fuzzer      llvm-modextract                llvm-symbolizer
+analyze-build                diagtool                 llvm-dlltool                    llvm-mt                        llvm-tapi-diff
+apinotes-test                dsymutil                 llvm-dwarfdump                  llvm-nm                        llvm-tblgen
+arcmt-test                   intercept-build          llvm-dwarfutil                  llvm-objcopy                   llvm-tli-checker
+bugpoint                     llc                      llvm-dwp                        llvm-objdump                   llvm-undname
+c-arcmt-test                 lli                      llvm-exegesis                   llvm-opt-fuzzer                llvm-windres
+c-index-test                 lli-child-target         llvm-extract                    llvm-opt-report                llvm-xray
+clang                        llvm-PerfectShuffle      llvm-gsymutil                   llvm-otool                     llvm-yaml-numeric-parser-fuzzer
+clang++                      llvm-addr2line           llvm-ifs                        llvm-pdbutil                   llvm-yaml-parser-fuzzer
+clang-17                     llvm-ar                  llvm-install-name-tool          llvm-profdata                  not
+clang-ast-dump               llvm-as                  llvm-isel-fuzzer                llvm-profgen                   nvptx-arch
+clang-check                  llvm-bcanalyzer          llvm-itanium-demangle-fuzzer    llvm-ranlib                    obj2yaml
+clang-cl                     llvm-bitcode-strip       llvm-jitlink                    llvm-rc                        opt
+clang-cpp                    llvm-c-test              llvm-jitlink-executor           llvm-readelf                   sancov
+clang-diff                   llvm-cat                 llvm-lib                        llvm-readobj                   sanstats
+clang-extdef-mapping         llvm-cfi-verify          llvm-libtool-darwin             llvm-reduce                    scan-build
+clang-format                 llvm-config              llvm-link                       llvm-remark-size-diff          scan-build-py
+clang-fuzzer-dictionary      llvm-cov                 llvm-lipo                       llvm-remarkutil                scan-view
+clang-import-test            llvm-cvtres              llvm-lit                        llvm-rtdyld                    split-file
+clang-linker-wrapper         llvm-cxxdump             llvm-locstats                   llvm-rust-demangle-fuzzer      verify-uselistorder
+clang-offload-bundler        llvm-cxxfilt             llvm-lto                        llvm-sim                       yaml-bench
+clang-offload-packager       llvm-cxxmap              llvm-lto2                       llvm-size                      yaml2obj
+clang-refactor               llvm-debuginfo-analyzer  llvm-mc                         llvm-special-case-list-fuzzer
+clang-rename                 llvm-debuginfod          llvm-mca                        llvm-split
+clang-repl                   llvm-debuginfod-find     llvm-microsoft-demangle-fuzzer  llvm-stress
 ```
 
 ## 社区

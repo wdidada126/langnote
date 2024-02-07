@@ -11,9 +11,13 @@ g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
 
 sudo yum update
 sudo yum groupinstall "Development Tools"
-sudo yum install glibc-devel -y
-wget https://mirror.linux-ia64.org/gnu/gcc/releases/gcc-11.4.0/gcc-11.4.0.tar.gz -O gcc-11.4.0.tar.gz --no-check-certificate
+sudo yum install glibc-devel zlib-devel -y
+wget https://mirror.linux-ia64.org/gnu/gcc/releases/gcc-11.4.0/gcc-11.4.0.tar.gz -O gcc-11.4.0.tar.gz 
+--no-check-certificate
+或者
+wget https://ftp.gnu.org/gnu/gcc/gcc-11.4.0/gcc-11.4.0.tar.gz -O gcc-11.4.0.tar.gz --no-check-certificate
 tar xzvf gcc-11.4.0.tar.gz
+
 
 cd gcc-11.4.0
 
