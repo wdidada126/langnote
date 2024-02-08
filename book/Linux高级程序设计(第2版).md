@@ -32,19 +32,15 @@ https://book.douban.com/subject/20273594/
 
 没有用开源库 libevent
 
-libpng libjpeg只是简单的介绍了下
+libpng libjpeg只是简单的介绍了下 math库 pthread
 
-工具比较经典，但是不使用，工业界使用的图形工具 qt clion eclipse netbeans
-
+工具比较经典，但是不使用，工业界使用的图形工具 vs qt clion eclipse netbeans
+介绍了vi vim sourceinsight gcc g++
 autotools -> bazel cmake vcpkg meson conan xmake
 
 make ->ninja
 
-
-
 apt yum安装开发库也没介绍
-
-
 
 #### Chap. 1 Linux c开发环境
 
@@ -69,6 +65,16 @@ expand
 grep
 
 find
+
+个人补充：
+sed
+cat
+cp
+ls
+mv
+ssh
+scp
+
 
 #### Chap. 2 Linux c语言开发工具
 2.3 Make工具与Makefile文件
@@ -96,6 +102,7 @@ fclose()
 fgetc()
 fputs()
 
+注意头文件和库文件
 #### Chap. 5 posix c文件管理 POSIX文件及目录管理
 getcwd()
 open()
@@ -106,6 +113,8 @@ creat()
 lseek()
 mmap()
 munmap()
+
+注意头文件和库文件
 
 #### Chap. 6 普通文件管理 普通文件．连接文件及目录文件属性管理
 chmod
@@ -164,6 +173,8 @@ __pid_t int
 - 11.2条件变量通信机制
 - 11.3读写锁通信机制
 - 11.4线程与信号
+
+OS中会介绍三种互斥算法，即锁，条件变量，信号量
 
 #### Chap. 12 socket网络编程
 
