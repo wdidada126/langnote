@@ -1,4 +1,7 @@
 # CMake
+
+cmake核心概念，target install()的时候用
+
 llvm clang也是用cmake
 lwip是cmake组织的
 
