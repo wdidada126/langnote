@@ -58,6 +58,9 @@ cd C:\Users\admin\Documents\GitHub\nacos
 git checkout 1.4.2
 
 mvn -Prelease-nacos -Dmaven.test.skip=true install -U
+```shell
+Error:  Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.2:repackage (default) on project nacos-console: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:3.2.2:repackage failed: Unable to load the mojo 'repackage' in the plugin 'org.springframework.boot:spring-boot-maven-plugin:3.2.2' due to an API incompatibility: org.codehaus.plexus.component.repository.exception.ComponentLookupException: org/springframework/boot/maven/RepackageMojo has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0
+```
 
 Java写的项目
 
