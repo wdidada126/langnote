@@ -12,3 +12,8 @@ c++
 doc
 https://github.com/trojan-gfw/trojan/wiki/Binary-&-Package-Distributions
 
+
+https://trojan-gfw.github.io/trojan/
+
+
+https://trojan-gfw.github.io/trojan/build
