@@ -1,5 +1,36 @@
 # mysql
 
+
+centos 7安装mysql server并且修改root密码，ip访问权限
+sudo rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+sudo yum update -y
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo yum install mysql-community-server -y
+sudo systemctl enable mysqld
+sudo systemctl start mysqld
+sudo grep 'temporary password' /var/log/mysqld.log
+mysql -u root -p
+GwkgoB8Udo(o
+ALTER USER 'root'@'localhost' IDENTIFIED BY '5%Edidadas';
+ALTER USER 'root'@'%' IDENTIFIED BY '5%Edidadas';
+FLUSH PRIVILEGES;
+exit;
+
+CREATE USER 'wdidada'@'*' IDENTIFIED BY '5%Edidadas';
+GRANT ALL PRIVILEGES ON *.* TO 'wdidada'@'*';
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'wdidada'@'%' IDENTIFIED BY '5%Edidadas' WITH GRANT OPTION;
+FLUSH   PRIVILEGES;
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '5%Edidadas' WITH GRANT OPTION;
+FLUSH   PRIVILEGES;
+
+
+https://blog.csdn.net/qq_37502106/article/details/80207052
+
+
 如何查看mysql数据库
 blob数据的值
 
