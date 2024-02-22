@@ -5,6 +5,10 @@ https://github.com/MeouSker77/ProgrammingRust
 
 脱离标准库 Rust可以写OS
 
+https://github.com/Svetlitski/fcp
+
+git clone -b v0.2.1 https://github.com/Svetlitski/fcp.git
+
 Rust ubuntu 16
 
 Struct
@@ -15,7 +19,6 @@ err
 
 cloudwego字节跳动开源Rust框架
 https://github.com/cloudwego/volo
-
 
 「Rust日报」2019每周精选 • 第九期
 
@@ -40,13 +43,9 @@ print相关函数
 format
 宏
 
-
 - [kafka-rust](https://github.com/edidada/kafka-rust)
-
 - [Rocket0.4.2](https://github.com/edidada/Rocket0.4.2)
-
 - [testiron](https://github.com/edidada/testiron)
-
 - ### [testrustspin](https://github.com/edidada/testrustspin)
 
 https://learnku.com/docs/cargo-book/2018/specifying-dependencies/4773
@@ -54,10 +53,11 @@ https://learnku.com/docs/cargo-book/2018/specifying-dependencies/4773
 你配置的是cargo的源，不是rustup的源
 
 ### 路线图
+
 http Rocket
 log  ？ std::log是api，env_log实现
 mysql ？libmysql 绑定c
-json ? 
+json ?
 
 `rustup override set nightly`
 
@@ -94,7 +94,6 @@ Process finished with exit code 101
 ```
 
 /home/edidada/.cargo/bin/cargo run --color=always --package iron --bin iron
-
 
 开发ide
 
@@ -141,41 +140,27 @@ Compiling autocfg v0.1.7
 error[E0658]: use of unstable library feature 'alloc': this library is unlikely to be stabilized in its current form or name (see issue #27783)
   --> C:\Users\edidada\.cargo\registry\src\mirrors.ustc.edu.cn-61ef6e0cd06fb9b8\smallvec-1.0.0\lib.rs:38:1
 
-[awesome-rust]( https://github.com/rust-unofficial/awesome-rust)
+[awesome-rust](https://github.com/rust-unofficial/awesome-rust)
 
 http-client     hyper
 
 http-server	[Rocket](https://github.com/SergioBenitez/Rocket)
 
-
-
-
-
 将错误信息输出到标准错误而不是标准输出
 
-想起来还有个ripgrep，性能很好的命令行正则表达式搜索工具，已被atom和vscode集成为默认搜索工具。 
+想起来还有个ripgrep，性能很好的命令行正则表达式搜索工具，已被atom和vscode集成为默认搜索工具。
 
-deno 
+deno
 
-马上Facebook libra 再助攻一把 
+马上Facebook libra 再助攻一把
 
 Tikv servo
 
-
-
-
-
-我上次还见谁把 rust 的 unicode 支持吹得无人能及来着，可能他就没听说过 swift 和 perl 
+我上次还见谁把 rust 的 unicode 支持吹得无人能及来着，可能他就没听说过 swift 和 perl
 
 Rust 语言层面对 unicode 的支持也只是比较基础的东西，吹那么高干啥
 
-
-
-
-
- RustFest 2018大会上Alex Crichton 和 David Tolnay两位大佬 
-
-
+ RustFest 2018大会上Alex Crichton 和 David Tolnay两位大佬
 
 rust
 
@@ -185,42 +170,25 @@ ml ir
 
 optimize
 
-
-
-
-
-
-
 为了和现有的生态系统良好地集成，Rust 支持非常方便且零成本的 FFI 机制，兼容 C-ABI，并且从语言架构层面上将 Rust 语言分成 Safe Rust 和 Unsafe Rust 两部分。其中 Unsafe Rust 专门和外部系统打交道，比如操作系统内核。
 
-
-
 百度开源的 brpc 框架新增 Rust 语言支持
-
-
 
 http://smallcultfollowing.com/babysteps/blog/2015/12/18/rayon-data-parallelism-in-rust/
 
 Rayon: data parallelism in Rust
 
-
-
-
-
 https://github.com/rustcc/awesome-rust
 
-
-
-
-
 https://github.com/rajasekarv/vega
+
 # Rayon: data parallelism in Rust
 
 安装Windows环境
 https://www.cnblogs.com/qq67579722/p/12897819.html
 
-
 ### Rust toolschan
+
 - stable-x86_64-pc-windows-msvc
 - stable-x86_64-pc-windows-gnu updated
 
