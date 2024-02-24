@@ -99,6 +99,9 @@ b2 工具主要用于构建和安装 Boost 库。它提供了一种简单而灵�
 希望这个解答能够帮助你理解 b2 工具的作用。如有任何进一步的问题，请随时提问！
 
 ## 源代码安装
+
+zip/gz格式代码下载
+
 https://www.boost.org/doc/libs/1_65_0/doc/html/bbv2.html#bbv2.installation
 
 https://www.baeldung.com/linux/boost-install-on-ubuntu
