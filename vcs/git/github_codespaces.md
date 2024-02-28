@@ -29,4 +29,4 @@ github需要配置一堆东西，使用github desktop
 硬件规格要求。
 github添加token，http/https有效，git直接访问
 
-
+一个月保存github codespace仓库的时长也有限制，不用了就删掉
