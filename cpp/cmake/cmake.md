@@ -1,5 +1,7 @@
 # CMake
 
+opencv是cmake组织的
+
 cmake核心概念，target install()的时候用
 
 llvm clang也是用cmake

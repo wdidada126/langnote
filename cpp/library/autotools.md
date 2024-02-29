@@ -23,3 +23,6 @@ autotools生成makefile
 4、 新建Makefile.am文件 automake --add-missing 
 5、运行configure 生成makefile
 
+
+sudo apt install autoconf -y
+autoconf is already the newest version (2.69-11.1).

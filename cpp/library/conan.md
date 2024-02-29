@@ -1360,3 +1360,5 @@ apt yum也是安装特定版本
 conan new cmake_exe -d name=mypkg -d version=0.1 -f
 
 conan graph info  .
+
+conan new cmake_exe -d name=conan2opencvtest -d version=0.1 -f

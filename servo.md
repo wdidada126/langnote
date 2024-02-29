@@ -1,7 +1,5 @@
 # servo
 
-
-
 `     Running `rustc --crate-name android_injected_glue /usr/local/cargo/registry/src/github.com-1ecc6299db9ec823/android_injected_glue-0.2.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi --crate-type lib --emit=dep-info,metadata,link -C debuginfo=2 -C metadata=ef8ae9b622025074 -C extra-filename=-ef8ae9b622025074 --out-dir /opt/atlassian/pipelines/agent/build/target/debug/deps -L dependency=/opt/atlassian/pipelines/agent/build/target/debug/deps --cap-lints allow``
 
 ```
@@ -16,7 +14,9 @@
    --> /usr/local/cargo/registry/src/github.com-1ecc6299db9ec823/android_injected_glue-0.2.3/src/lib.rs:162:5
 ```
 
+webkit
 
-
-
-
+git clone https://github.com/servo/servo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo apt install python3-pip python3-venv
+./mach bootstrap
