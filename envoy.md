@@ -39,3 +39,5 @@ sudo yum install yum-utils -y
 sudo yum-config-manager --add-repo https://getenvoy.io/linux/centos/tetrate-getenvoy.repo
 sudo yum install getenvoy-envoy  -y
 ```
+
+## 编译

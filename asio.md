@@ -3,6 +3,8 @@
 其实C++里面功能强大的网络库有很多，asio
 这和C++的用户生态有关。1、C++用户很多人不仅仅会调库而且会写库；
 2、C++的玩家不喜欢臃肿的全家桶，所以那些所谓的大框架在C++里面并不受欢迎。
+qt
+opencv
 
 https://think-async.com/Asio/
 ？
@@ -23,7 +25,6 @@ https://github.com/chriskohlhoff/asio/
 Asio is a header-only library.
 
 Asio库是一个跨平台的C++网络库，它是Boost库的一部分，主要用于实现异步I/O操作。以下是Asio库的主要功能：
-
 1. 异步I/O操作：Asio库提供了一组异步的I/O操作，包括TCP和UDP的socket、定时器、串口等。它使用异步模式，使得应用程序可以在等待I/O操作完成时执行其他任务，提高了程序的效率和响应性。
 2. 事件循环：Asio的核心是一个事件循环，它使用epoll、kqueue、IOCP等系统调用来实现异步I/O操作。通过事件循环，Asio可以监听多个I/O事件，并对其进行统一的处理和管理。
 3. 多线程支持：Asio库并不要求使用多线程和锁，有效地避免了多线程编程带来的诸多有害副作用（如条件竞争、死锁等)。它通过异步模式实现多线程的并发操作，避免了线程间的同步问题。
@@ -37,5 +38,13 @@ head only，不需要编译
 ./configure
 
 ## 更新情况
-
 https://think-async.com/Asio/asio-1.28.0/doc/asio/history.html
+
+
+## 库
+### 版本 version
+1.28.0
+
+### conan
+### vcpkg
+### cmake 

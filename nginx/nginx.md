@@ -40,6 +40,9 @@ configure arguments: --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --mod
 
 ### 安装与启动
 
+#### rpm源码编译
+wget http://nginx.org/download/nginx-1.8.1.tar.gz
+
 1. gcc环境 `yum install gcc-c++`
 2. 第三方的开发包
     - PCRE `yum install -y pcre pcre-devel`

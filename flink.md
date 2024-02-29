@@ -47,3 +47,15 @@ spark不火了
 2. 熟悉Java编程，具备扎实的数据结构和算法基础     
 3、深入了解Flink，向社区贡献过patch者优先。
 4、熟悉HadoopEcoSystem常用开源框架，有实时流计算开发经验者优先。
+
+## 源码编译
+git clone -b release-1.18.1 https://github.com/apache/flink.git
+cd flink
+./mvnw clean package -DskipTests
+
+## 版本
+v1.18.1
+
+
+## 讨论
+https://issues.apache.org/jira/projects/FLINK/issues/FLINK-34522?filter=allopenissues

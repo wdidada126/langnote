@@ -30,9 +30,13 @@ https://www.selenium.dev/zh-cn/
 
 https://github.com/seleniumhq/selenium
 
+bazel组织的
+
 https://www.selenium.dev/selenium/docs/api/py/index.html
 
-
+% git clone git@github.com:username/selenium.git --depth 1
+% cd selenium
+% git remote add upstream git://github.com/seleniumhq/selenium.git
 
 `pip install selenium`
 
