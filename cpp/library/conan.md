@@ -1362,3 +1362,40 @@ conan new cmake_exe -d name=mypkg -d version=0.1 -f
 conan graph info  .
 
 conan new cmake_exe -d name=conan2opencvtest -d version=0.1 -f
+
+conan new cmake_exe -d name=conan2grpctest -d version=0.1 -f
+
+conan new cmake_exe -d name=conan2thrifttest -d version=0.1 -f
+
+conan new cmake_exe -d name=conan2pocotest -d version=0.1 -f
+conan new cmake_exe -d name=conan2zlibtest -d version=0.1 -f
+
+
+cmake > 3.23
+
+cmake --preset conan-release
+
+cmake <path> -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/Develop/git/github/conan2prjs/conan2grpctest/build/Release/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+
+conan install -u ../ --build=missing
+conan install -u ./ --build=missing
+cmake --build .
+
+
+-DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/Develop/git/github/conan2prjs/conan2zlibtest/build/Release/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+
+
+-DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/Develop/git/github/conan2prjs/conan2pocotest/build/Release/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+
+-DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/Develop/git/github/myqt6app/build/Release/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+
+
+conan install -u ./ --build=missing -pr=default_debug
+conan profile show -pr default_debug
+conan profile detect --name default_debug2
+conan create . -pr=default_debug2
+
+
+设置成debug模式
+conan install -u ./ --build=missing -pr:a=default_debug
+conan install --help
