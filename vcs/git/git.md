@@ -450,6 +450,9 @@ git add -A
 git add .
 相同点 不同点
 
+git config --global pull.rebase false  # merge
+
+
 ### 查看
 
 查看某个人的git提交记录
