@@ -1,5 +1,16 @@
 # conan
 
+
+https://blog.conan.io/introducing-new-conan-clion-plugin/
+
+
+## conan设置build type为Debug
+conan2
+新建或者更改profile
+
+## conan2 python api
+https://docs.conan.io/2.0/reference/extensions/python_api.html#reference-python-api
+
 ## conan1
 SET(CONAN_DISABLE_CHECK_COMPILER true)
 
