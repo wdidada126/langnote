@@ -1411,3 +1411,14 @@ conan create . -pr=default_debug2
 设置成debug模式
 conan install -u ./ --build=missing -pr:a=default_debug
 conan install --help
+
+## clion conan插件
+
+Debug模式下可以自动下载依赖
+
+https://blog.conan.io/introducing-new-conan-clion-plugin/
+https://github.com/conan-io/conan-clion-plugin
+
+真的好用
+conan_provider.cmake
+https://github.com/conan-io/cmake-conan/blob/develop2/conan_provider.cmake
