@@ -1,5 +1,16 @@
 # conan
 
+
+https://blog.conan.io/introducing-new-conan-clion-plugin/
+
+
+## conan设置build type为Debug
+conan2
+新建或者更改profile
+
+## conan2 python api
+https://docs.conan.io/2.0/reference/extensions/python_api.html#reference-python-api
+
 ## conan1
 SET(CONAN_DISABLE_CHECK_COMPILER true)
 
@@ -1102,7 +1113,8 @@ path as your template, or a path relative to your
 conan home folder.
 ## 安装特定版本的conan
 pip3 install conan==1.62.0
-
+pip3 install --user conan==2.0.6
+pip3 install conan==2.0.6
 conan server
 virtual = local + remote
 local仅仅是本地的

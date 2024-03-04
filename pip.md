@@ -1,5 +1,8 @@
 # pip
 
+pip3 install --user conan==2.0.6
+pip3 install conan==2.0.6
+
 https://www.runoob.com/w3cnote/python-pip-install-usage.html
 
 pip

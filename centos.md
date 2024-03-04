@@ -4,7 +4,8 @@
 sudo adduser wdidada
 sudo passwd wdidada
 sudo vi /etc/sudoers
-sudo visudo -cf /etc/sudoers
+sudo vi
+sudo -cf /etc/sudoers
 
 
 https://mirror.tuna.tsinghua.edu.cn/centos/7/isos/x86_64/
