@@ -1,5 +1,29 @@
 # CMake
 
+
+CMakeLists.txt
+
+引用target_link_libraries()
+zlib::zlib
+qt
+grpc:grpc
+等等符号，由什么定？
+
+在 CMakeLists.txt 文件中，引用到的符号（例如 `target_link_libraries()` 中的库名）通常由以下几个因素决定：
+1. 库的名称: 该符号是指要链接的库的名称。库的名称通常由库的开发人员或项目的文档指定。例如，对于常见的库，如 zlib、Qt 和 gRPC，您可以在它们的官方文档或文档中找到相应的库名称。
+2. 导入目标名称: 在 CMake 中，当使用 `find_package()` 命令查找并导入库时，会创建一个导入目标。导入目标的名称通常与库的名称相关联，但也可以在 CMakeLists.txt 文件中进行自定义。在 `target_link_libraries()` 中引用库时，可以使用导入目标的名称来指定要链接的库。
+   例如，对于 `zlib` 库，您可能会使用 `find_package(ZLIB REQUIRED)` 来查找并导入库，然后使用 `target_link_libraries(your_target_name PRIVATE ZLIB::ZLIB)` 将 `your_target_name` 与导入目标 `ZLIB::ZLIB` 进行链接。
+3. 库的别名: 在某些情况下，库可能会定义一个别名，用于更简洁地引用该库。例如，在 Qt 中，库通常定义了一个别名 `Qt::<module>`，其中 `<module>` 是 Qt 库的模块名称。您可以使用这些别名来链接库。
+   例如，对于 Qt 的 Core 模块，您可以使用 `target_link_libraries(your_target_name PRIVATE Qt::Core)` 来链接 Core 模块。
+总之，这些符号的使用方式是由库的开发人员定义的，并且通常在库的文档中有所描述。您需要根据库的名称、导入目标名称或别名来引用相应的库，并在 CMakeLists.txt 文件中使用 `target_link_libraries()` 命令将其与目标进行链接。
+
+
+SQLite3Targets.cmake
+ZLIBTargets.cmake
+Qt6Targets.cmake
+
+xxxTargets.cmake文件里面有
+
 CMake preset是一个用于指定构建系统配置的JSON文件。CMake支持两个主要的配置文件：CMakePresets.json和CMakeUserPresets.json。
 CMakePresets.json文件旨在指定项目范围的构建细节，它位于项目的根目录中。这个文件可以用来定义构建目标、构建类型（如Debug或Release）、构建工具链等。它还可以包含预设（presets），这些预设是一组配置选项的组合，可以方便地用于不同的构建场景。
 CMakeUserPresets.json文件则旨在让开发人员自定义他们自己的本地构建细节。这个文件也位于项目的根目录中，并且可以包含用户定义的预设。这些预设可以覆盖CMakePresets.json中的相应设置，以满足开发人员的个性化需求。
