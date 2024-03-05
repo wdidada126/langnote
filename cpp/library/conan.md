@@ -1,4 +1,7 @@
+
 # conan
+wdidada@10-23-29-39:~/myqt6app$ sudo conan install -u ./ --build=missing
+ERROR: Ambiguous command, both conanfile.py and conanfile.txt exist
 
 
 https://blog.conan.io/introducing-new-conan-clion-plugin/
@@ -25,6 +28,8 @@ opengl/system: WARN: System requirements: 'libgl-dev' are missing but can't inst
 
 案例
 例子
+qt
+opencv
 Poco
 Zlib
 Grpc conan的例子
@@ -36,8 +41,7 @@ Conan 1.52使用本地缓存来存储下载的库文件和构建的二进制文�
 分配置：Conan还根据不同的构建配置对库进行分类。构建配置可以包括不同的优化选项、警告级别等。Conan在本地缓存中为每个配置保存一个独立的版本，以便于进行定制化的构建和测试。
 分平台：对于跨平台的库，Conan将根据不同的操作系统和架构对库进行分类。这样可以确保不同平台之间的兼容性和正确性。
 在Conan 1.52中，本地缓存的文件结构大致如下：
-bash
-复制
+```bash
 conan_cache/
 ├── packages/
 │   ├── <package_name>/
@@ -58,6 +62,7 @@ conan_cache/
     │   │   │   └── <compiler>/
     │   └── <package_id>.info
     └── <package_name>.info
+```
 上述文件结构中，<package_name>表示库的名称，<version>表示库的版本，<os>表示操作系统，<arch>表示架构，<compiler>表示编译器，<build_type>表示构建类型，<package_id>表示库的唯一标识符。
 通过这种方式，Conan可以在本地缓存中快速找到所需的库文件，并确保正确性和一致性。这大大减少了重新下载和构建的时间，提高了开发效率。
 
@@ -1167,6 +1172,7 @@ https://blog.csdn.net/qqqq123qqqqqqq/article/details/79421686
 
 https://blog.csdn.net/h511555/article/details/8904143
 
+## 官网
 https://conan.io/
 
 通用的 C++ 软件包管理器
@@ -1215,7 +1221,7 @@ https://github.com/conan-io/conan
 https://www.youtube.com/watch?v=T6RZ5On3xz8
 https://zhuanlan.zhihu.com/p/613174589
 
-合肥某车企，招聘conan ci/cd工程师
+合肥某车企weilai，招聘conan ci/cd工程师
 
 conan支持企业内部自建库管理，conan下载一个库，先编写conanfile文件，然后下载到本地文件夹
 
@@ -1285,10 +1291,12 @@ msbuild
 
 nget支持windows
 
+### 例子
 Conan_examples
 https://github.com/conan-io/examples
 
-https://gitee.com/edidada/estconan
+https://gitee.com/edidada/testconan
+https://github.com/edidada/conan2prjs
 
 pip install conan
 pip3 install conan
@@ -1335,6 +1343,9 @@ conan inspect poco/1.9.4
 `conan install packagename/1.0@`
 @很重要，有这个后缀才conan install才会把输入参数当做一个包名，如果没有@,conan install 会把 cjson/1.7.13当做一个路径
 
+PS D:\git\github\career> conan install cjson/1.7.13@
+ERROR: Conanfile not found at D:\git\github\career\cjson\1.7.13@
+
 
 ************************* WARNING: GCC OLD ABI COMPATIBILITY ***********************
  
@@ -1345,6 +1356,9 @@ If you want Conan to use the new ABI for the default profile, run:
     $ conan profile update settings.compiler.libcxx=libstdc++11 default
 Or edit '/home/wdidada/.conan/profiles/default' and set compiler.libcxx=libstdc++11
 ************************************************************************************
+
+conan profile update settings.compiler.libcxx=libstdc++11 default
+
 
 ## conan 添加自定义的库
 创建包
@@ -1381,11 +1395,13 @@ conan new cmake_exe -d name=conan2thrifttest -d version=0.1 -f
 
 conan new cmake_exe -d name=conan2pocotest -d version=0.1 -f
 conan new cmake_exe -d name=conan2zlibtest -d version=0.1 -f
+conan new cmake_exe -d name=conan2leveldbtest -d version=0.1 -f
 
 
 cmake > 3.23
 
 cmake --preset conan-release
+cmake --preset conan-debug
 
 cmake <path> -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/Develop/git/github/conan2prjs/conan2grpctest/build/Release/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
 
@@ -1422,3 +1438,6 @@ https://github.com/conan-io/conan-clion-plugin
 真的好用
 conan_provider.cmake
 https://github.com/conan-io/cmake-conan/blob/develop2/conan_provider.cmake
+
+
+-DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="D:\dev_tools\Conan\conan\conan.exe"

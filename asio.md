@@ -46,5 +46,9 @@ https://think-async.com/Asio/asio-1.28.0/doc/asio/history.html
 1.28.0
 
 ### conan
+#### conan2
+
+class io_context
+
 ### vcpkg
 ### cmake 
