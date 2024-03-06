@@ -1,5 +1,12 @@
 # vcpkg
 
+## manifests模式
+cmake项目，添加vcpkg.json文件，重新运行 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake
+自动下载vcpkg中声明的依赖
+mkdir build
+cd build
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake
+
 ## vcpkg设置
 vcpkg edit
 

@@ -1,5 +1,7 @@
 # asio
 
+1、asio有独立版本，不需要boost，我一直都用独立版本；2、asio已经进不了标准库了。
+
 其实C++里面功能强大的网络库有很多，asio
 这和C++的用户生态有关。1、C++用户很多人不仅仅会调库而且会写库；
 2、C++的玩家不喜欢臃肿的全家桶，所以那些所谓的大框架在C++里面并不受欢迎。
@@ -16,9 +18,7 @@ https://think-async.com/Asio/asio-1.28.0/doc/
 
 https://think-async.com/Asio/asio-1.28.0/doc/asio/reference.html
 
-
 https://github.com/chriskohlhoff/asio/
-
 
 ## github action编译
 

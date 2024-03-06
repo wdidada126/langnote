@@ -1,5 +1,11 @@
 # apache commons
 
+FileUtils
+        String fileContent;  
+
+            fileContent = FileUtils.readFileToString(file, "UTF-8"); // 读取文件内容  
+
+
 mvn
 搜索之后，有20多个jar包
 

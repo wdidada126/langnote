@@ -1,5 +1,6 @@
 
 # conan
+
 wdidada@10-23-29-39:~/myqt6app$ sudo conan install -u ./ --build=missing
 ERROR: Ambiguous command, both conanfile.py and conanfile.txt exist
 

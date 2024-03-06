@@ -26,3 +26,6 @@ autotools生成makefile
 
 sudo apt install autoconf -y
 autoconf is already the newest version (2.69-11.1).
+
+autoconf-2.69
+autoconf-2.71
