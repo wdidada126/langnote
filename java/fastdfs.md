@@ -1,4 +1,5 @@
 # fastdfs
+FastDFS is an open source high performance distributed file system (DFS). It's major functions include: file storing, file syncing and file accessing, and design for high capacity and load balance. Wechat/Weixin public account (Chinese Language): fastdfs
 
 fastdfs源码分析
 
@@ -47,8 +48,19 @@ bfs:支撑Bilibili的小文件存储系统
 实际需求：
 120天前上传的文件”进行删除操作，以释放空间，请各位知悉。
 
-
-
 保证数据强一致性且高性能的[FastCFS](https://gitee.com/fastdfs100/FastCFS)
 
 https://gitee.com/fastdfs100/FastCFS
+
+## 源代码编译
+sudo apt-get update
+git clone https://github.com/happyfish100/libfastcommon.git
+cd libfastcommon
+git checkout V1.0.56
+./make.sh clean && ./make.sh && ./make.sh install
+cd ../
+git clone https://github.com/happyfish100/fastdfs.git
+cd fastdfs
+git checkout V6.08
+./make.sh clean && ./make.sh && ./make.sh install
+./setup.sh /etc/fdfs

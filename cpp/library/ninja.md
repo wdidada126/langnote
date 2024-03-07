@@ -1,5 +1,7 @@
 # ninja
 
+ceph使用ninja
+
 yum install cmake -y
 yum install ninja-build -y
 
@@ -58,4 +60,25 @@ ninja 的语法格式是：
 
 ninja [options] TARGETs
 上述 options 如果没有则可以省略。比如，直接执行 ./ninja ninja_test 将会生成可执行文件 ninja_test，然后再执行 ninja_test 就可以看到测试结果。
+
+克隆Ninja的Github仓库：
+git clone https://github.com/ninja-build/ninja.git
+进入克隆的仓库目录：
+cd ninja
+运行配置脚本：
+./configure.py --bootstrap
+将Ninja复制到系统路径中：
+cp ./ninja /usr/bin
+检查安装版本：
+ninja --version
+
+
+
+git clone -b v1.11.1 https://github.com/ninja-build/ninja.git
+cd ninja
+cmake -Bbuild-cmake
+cmake --build build-cmake
+./build-cmake/ninja --version
+
+## github上有编译好的二进制
 

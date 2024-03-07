@@ -24,6 +24,8 @@ https://mosquitto.org/
 IBM 1999年开发的
 
 mqtt java实现
+
+Paho is an Eclipse IoT project.
 https://www.eclipse.org/paho/files/javadoc/org/eclipse/paho/client/mqttv3/package-summary.html
 https://github.com/mqtt/mqtt.github.io/wiki/SYS-Topics
 
@@ -37,7 +39,8 @@ MQTT vs WebSocket
 MQTT服务器都是叫Broker
 
 ### mqtt开源项目
-
+thingsboard
+https://github.com/thingsboard/thingsboard
 
 https://mqttx.app/zh
 

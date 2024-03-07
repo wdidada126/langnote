@@ -1,5 +1,12 @@
 # netty
 
+## source code
+git clone -b netty-4.1.99.Final https://github.com/netty/netty.git
+cd netty
+sudo apt-get update
+sudo apt-get install autoconf automake libtool make tar gcc
+./mvnw install -DskipTests -T1C
+
 java.nio.channels.Selector 用法
 [Java NIO之Selector（选择器）](https://www.cnblogs.com/snailclimb/p/9086334.html)
 写进testjdk8

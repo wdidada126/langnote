@@ -66,10 +66,33 @@ ANTLR是一款强大的语法分析器生成工具，可用于读取、处理、
 
 BNF范式（巴科斯范式）
 
-BNF范式是一种用递归的思想来表述计算机语言符号集的定义规范法则：::=表示定义；“  ”双引号里的内容表示字符；<>尖括号里的内容表示必选内容；| 竖线两边的是可选内容，相当于or；示例定义java中的switch语句：<switch statement> ::= switch ( <expression> ) <switch block><switch block> ::= { <switch block statement groups><switch labels> }<switch block statement groups> ::= <switch block statement group> | <switch block statement groups> <switch block statement group><switch block statement group> ::= <switch labels><block statements><switch labels> ::= <switch label> | <switch labels> <switch label><switch label> ::= case <constant expression> :<……> | default :< ……>现在在网络上大多数能搜出来的都是extended BNF ，允许使用循环，但正真的BNF只需要递归就够了。
+BNF范式是一种用递归的思想来表述计算机语言符号集的定义规范法则：::=表示定义；“  ”双引号里的内容表示字符；<>尖括号里的内容表示必选内容；| 竖线两边的是可选内容，相当于or；示例定义java中的switch语句：
+<switch statement> ::= switch ( <expression> ) <switch block><switch block> ::= { <switch block statement groups><switch labels> }<switch block statement groups> ::= <switch block statement group> | <switch block statement groups> <switch block statement group><switch block statement group> ::= <switch labels><block statements><switch labels> ::= <switch label> | <switch labels> <switch label><switch label> ::= case <constant expression> :<……> | default :< ……>
+现在在网络上大多数能搜出来的都是extended BNF ，允许使用循环，但正真的BNF只需要递归就够了。
 
 这个是java的BNF定义
 http://cs.au.dk/~amoeller/RegAut/JavaBNF.html
+
+“巴克斯-诺尔形式”（BNF）是一种简单而强大的元语言。它是一种上下文无关的语法，根据终端字符（源文本的内容）和非终端元素（源语言的语法）定义语法规则。BNF支持替代定义和递归。
+
+是的，BNF（巴科斯-诺尔范式）是CFG（上下文无关文法）的一种表示方法。它主要用于描述编程语言的语法规则，具有递归性质，可以精确地描述语言的语法结构。CFG则是一种形式化的方法，用于描述语言的语法规则，但不涉及语言的语义。
+
+BNF起源于20世纪50年代，由美国计算机科学家巴科斯和诺尔共同提出。BNF具有特定的形式，如“symbol ::= expression”，其中symbol是非终结符，expression是一个包含symbol的表达式，可以由“|”连接。只有在BNF的右边出现的symbol是终结符。BNF在编程语言设计、数据交换格式和文本处理等领域具有广泛的应用。
+
+
+
+ANTLR4 的 .g4 文件使用的语法并不是严格的 BNF（巴科斯-诺尔范式），而是更接近于 EBNF（扩展巴科斯-诺尔范式）。EBNF 是 BNF 的一个扩展，它提供了更多的元语法构造，使得描述语法时更为简洁和灵活。
+在 ANTLR4 的 .g4 文件中，你可以使用各种 EBNF 特性，比如：
+* 表示前面的元素可以出现零次或多次。
++ 表示前面的元素必须至少出现一次。
+? 表示前面的元素是可选的，可以出现零次或一次。
+() 用于分组元素。
+| 表示选择，即可以匹配其中任意一个元素。
+=> 用于语义谓词。
+以及其他一些 ANTLR 特有的构造和语法。
+这些特性使得 .g4 文件能够更简洁地描述复杂的语法结构，同时也为 ANTLR 工具链提供了更多的灵活性来生成高效的解析器。
+
+虽然 ANTLR4 的 .g4 文件不是严格的 BNF，但它们确实基于相同的元语法思想，即使用递归规则来描述语言的语法结构。因此，如果你熟悉 BNF，那么理解 ANTLR4 的 .g4 文件应该不会太困难。不过，由于 EBNF 提供了更多的特性和灵活性，所以在实际使用中可能会遇到一些 BNF 中没有的概念和构造。
 
 
 .g4格式的文件
@@ -87,6 +110,14 @@ stringtemplate
 What is StringTemplate?
 StringTemplate is a java template engine (with ports for C#, Objective-C, JavaScript, Scala) for generating source code, web pages, emails, or any other formatted text output. StringTemplate is particularly good at code generators, multiple site skins, and internationalization / localization.
 
+https://github.com/antlr/stringtemplate4
+https://www.stringtemplate.org/
+
+
+ANTLR4与StringTemplate4之间的关系主要体现在它们可以协同工作以生成目标代码或其他文本输出。ANTLR4是一个解析器生成器，用于读取、处理、执行或翻译结构化文本或二进制文件。它根据输入的语法规则生成词法分析器和语法分析器，用于解析符合这些规则的文本。
+而StringTemplate4是一个轻量级的模板引擎，主要用于生成各种文本输出，如代码、配置文件、HTML页面等。它使用模板文件和数据填充来生成最终的文本输出，并拥有灵活的模板语法，支持循环、条件语句等功能。
+在ANTLR4项目中，开发者可以利用ANTLR4生成的解析器从输入文本中提取所需的数据，然后将这些数据传递给StringTemplate4。StringTemplate4使用这些数据填充预定义的模板，最终生成所需的输出，如Java代码。这种协同工作的方式使得ANTLR4和StringTemplate4能够高效地结合使用，实现文本生成和代码生成的任务。
+综上所述，ANTLR4和StringTemplate4之间的关系是协同工作关系，它们可以结合在一起使用，利用ANTLR4的解析能力和StringTemplate4的模板生成能力，实现复杂文本和代码生成的需求。
 
 Antlr如何解析json g4文件格式
 
@@ -103,9 +134,9 @@ yacc/flex
 
 
 
+hplsql
 
-
- https://github.com/apache/hive/tree/master/hplsql/src/main/antlr4/org/apache/hive/hplsql 
+https://github.com/apache/hive/tree/master/hplsql/src/main/antlr4/org/apache/hive/hplsql 
 
 
 
@@ -140,25 +171,21 @@ Antlr 通过优先选择靠前的备选分支
 
 
 right recursive
-
 右递归
 
 
 
 计算机语言中的常见模式
-
 使用Antlr编辑来表达这些模式
 
 
 
 语法规则
-
 词法符号
 
 
 
 语法模式
-
 词法结构
 
 

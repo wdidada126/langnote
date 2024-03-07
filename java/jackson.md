@@ -123,7 +123,10 @@ json规范，需要读一下
 Spring用
 Jackson是一个 Java 的用来处理 JSON 格式数据的类库，性能非常好。
 
+https://github.com/FasterXML/jackson 重点看
 
+https://github.com/FasterXML/jackson-databind
+https://github.com/FasterXML/jackson-annotations
 https://github.com/FasterXML/jackson-core/
 http://wiki.fasterxml.com/JacksonDownload
 

@@ -1,5 +1,23 @@
 # BNF
 
+上下文无关语法（Context-Free Grammar, CFG）是描述语言结构的一种形式化表示方法，而BNF是CFG的一种常见表示方法之一。除了BNF之外，还有其他几种表示CFG的标准和变种，包括：
+1. 扩展巴克斯-诺尔范式（Extended Backus-Naur Form, EBNF）：EBNF是BNF的扩展形式，引入了一些额外的语法元素和操作符，使得语法规则的表达更加方便和灵活。EBNF的一个常见扩展是使用方括号 `[]` 表示可选项，使用大括号 `{}` 表示重复项，以及使用圆括号 `()` 用于分组。
+2. 巴克斯-诺尔范式扩展（Augmented Backus-Naur Form, ABNF）：ABNF是一种用于描述网络协议语法的扩展形式，基于BNF。它引入了额外的元素和语法规则，以满足网络协议的特定需求。ABNF在描述规则时允许使用ASCII字符和范围，以及其他一些特定的操作符和扩展。
+3. 巴克斯-诺尔范式形式化语法（Backus-Naur Form Formally Specified, BNF-FS）：BNF-FS是一种形式化描述语言的CFG表示方法。它在BNF的基础上增加了一些标记和操作符，以支持更精确的语义规范和形式化验证。
+4. 巴克斯-诺尔范式扩展形式化语法（Backus-Naur Form Extension for Formal Syntax, ISO/IEC 14977）：这是国际标准ISO/IEC 14977定义的一种扩展形式的BNF，用于形式化语法的描述。它支持更丰富的语法元素和操作符，包括可选项、重复项、分组和引用等。
+这些形式化语法表示方法在不同的领域和应用中有各自的用途和特点。选择适合特定需求和上下文的表示方法可以更清晰地描述语法规则，并支持进一步的语法分析和解析工作。
+
+
+EBNF还支持空序列，表示没有符号的序列。
+
+很抱歉，我无法直接提供ISO/IEC 14977:1996(E)文档的网址。ISO/IEC 14977:1996(E)是关于信息技术语法元语言——扩展的BNF（EBNF）的国际标准。为了获取该标准的文档，您通常需要访问国际标准化组织（ISO）或国际电工委员会（IEC）的官方网站，或者通过他们指定的国家标准化机构进行购买或下载。
+您可以通过以下步骤尝试找到该标准的文档：
+
+访问ISO或IEC的官方网站，并使用网站的搜索功能来查找ISO/IEC 14977:1996(E)标准。
+如果您所在的国家有参与ISO或IEC的国家标准化机构，您也可以访问该机构的网站，他们可能提供该标准的购买或下载服务。
+您还可以尝试在专业的标准文献数据库或图书馆中搜索该标准，这些资源可能提供该标准的全文或摘要。
+请注意，获取国际标准文档可能需要付费，并且需要遵守相关的版权和使用规定。确保您有权访问和使用该文档，并遵守相关的法律法规。
+https://www.iso.org/obp/ui/en/#iso:std:iso-iec:14977:ed-1:v1:en
 
 
 https://www.zhihu.com/question/27051306/answer/579820547
@@ -24,13 +42,13 @@ http://bnf-for-java.sourceforge.net/
 
 
 
-The "Backus-Naur Form" (**[BNF](http://bnf-for-java.sourceforge.net/AboutBNF/AboutBNF.html)**) is a simple yet powerful meta-language. It is a *context-free* grammar that defines syntax rules in terms of terminal characters (the content of the source text) and non-terminal elements (the syntax of the source language). BNF supports alternative definitions and recursion.
+The "Backus-Naur Form" ([BNF](http://bnf-for-java.sourceforge.net/AboutBNF/AboutBNF.html)) is a simple yet powerful meta-language. It is a *context-free* grammar that defines syntax rules in terms of terminal characters (the content of the source text) and non-terminal elements (the syntax of the source language). BNF supports alternative definitions and recursion.
 
-**[Extended BNF](http://bnf-for-java.sourceforge.net/AboutBNF/AboutExtendedBNF.html)** conforms to the International Standard [ISO-14977](http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=26153&ICS1=35&ICS2=60&ICS3=). The improved language is expressive and easy to use.
+[Extended BNF](http://bnf-for-java.sourceforge.net/AboutBNF/AboutExtendedBNF.html) conforms to the International Standard [ISO-14977](http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=26153&ICS1=35&ICS2=60&ICS3=). The improved language is expressive and easy to use.
 
-**[BNF for Java](http://bnf-for-java.sourceforge.net/)** implements Extended BNF as a working compiler and parser, providing command-line tools, as well as the complete Java API. BNF for Java implements context, and allows you to add your own powerful *extensions*, such as custom code generation, or database lookup during parsing.
+[BNF for Java](http://bnf-for-java.sourceforge.net/) implements Extended BNF as a working compiler and parser, providing command-line tools, as well as the complete Java API. BNF for Java implements context, and allows you to add your own powerful *extensions*, such as custom code generation, or database lookup during parsing.
 
-The **[BNF for Java Project](http://sourceforge.net/projects/bnf-for-java/)**, hosted on [SourceForge](http://sourceforge.net/), is an open-source, community-based team project. The goal is to deliver this useful technology to the world's community of programmers.
+The [BNF for Java Project](http://sourceforge.net/projects/bnf-for-java/), hosted on [SourceForge](http://sourceforge.net/), is an open-source, community-based team project. The goal is to deliver this useful technology to the world's community of programmers.
 
 
 
@@ -38,7 +56,7 @@ The **[BNF for Java Project](http://sourceforge.net/projects/bnf-for-java/)**, h
 
 
 
-　　**解释：LL(1)的意思是，第一个L,指的是从左往右处理输入，第二个L,指的是它为输入生成一个最左推导**。**1指的是向前展望1个符号**。
+　　解释：LL(1)的意思是，第一个L,指的是从左往右处理输入，第二个L,指的是它为输入生成一个最左推导。1指的是向前展望1个符号。
 
 
 

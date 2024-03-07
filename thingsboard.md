@@ -16,3 +16,7 @@ http://localhost:8080
 
 用户名 tenant@thingsboard.org
 password tenant
+
+git clone -b v3.6.2 https://github.com/thingsboard/thingsboard.git
+cd thingsboard
+mvn clean package  -DskipTests

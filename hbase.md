@@ -32,3 +32,14 @@ hbase可以基于zk
 hbase可以基于本地文件系统或者hdfs
 https://apachecn.gitee.io/hbase-doc-zh/#/docs/2
 
+
+
+## source code
+
+https://github.com/apache/hbase
+
+
+
+git clone -b rel/2.5.7 https://github.com/apache/hbase.git
+cd hbase
+mvn clean install -DskipTests

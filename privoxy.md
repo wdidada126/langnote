@@ -32,3 +32,14 @@ autoconf
 ./configure
 make -j4
 sudo make -n install
+
+
+## win10配置
+cd D:\dev_tools\privoxy_3.0.34
+privoxy.exe --no-daemon config.txt
+
+
+
+$env:HTTP_PROXY="http://127.0.0.1:8118"
+$env:HTTPS_PROXY="https://127.0.0.1:8118"
+  
