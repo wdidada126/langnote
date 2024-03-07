@@ -1,4 +1,7 @@
 # Understand工具
+
+https://blog.csdn.net/qwang24/article/details/4064975
+
 understand和doxygen。understand擅长基于语法结构浏览代码，doxygen除了基于语法结构外还支持基于注释提供的功能结构浏览代码。如果coder能在注释中利用doxygen提供的group指令描述代码的层次，则doxygen可以根据这些指令在文档中生成相应的链接。另外，doxygen支持的语言相当多，这点比understand强。understand强在生成各种关系图，查询定位准确，支持代码质量分析和统计等doxygen没有或较弱的功能。
 除了understand和doxygen以外，ea和visio也能浏览代码，他们强在能自动生成uml图，对于快速浏览类体系结构有帮助。但是在语法分析方面较弱，如果程序中宏定义较多的话，往往会报错，比如qt的代码经常能把ea玩死。
 https://blog.csdn.net/eagle11235/article/details/125210975
