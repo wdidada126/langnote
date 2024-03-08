@@ -1,5 +1,20 @@
 # db
 
+https://dbdb.io/db/tidb
+https://dbdb.io/db/oracle-rdbms
+
+从哪些维度分析一款数据库
+并发控制 -> mvcc 乐观 悲观
+数据模型 kv 关系表  Relational Key/Value Document/XML Graph Triplestore/RDF
+外键
+隔离级别
+join
+日志
+查询计划 Query Execution
+查询接口 sql
+Storage Architecture 
+
+
 数据库完整性分为以下几类：实体完整性、域完整性、参照完整性和用户自定义完整性。其中，实体完整性是指关系的主关键字不能取“空值\"，一个关系对应现实世界中一个实体集，现实世界中的实体是可以相互区分、识别的，也即它们应具有某种惟一性标识。在关系模式中，以主关键字作为惟一性标识，而主关键字中的属性(称为主属性)不能取空值，否则，表明关系模式中存在着不可标识的实体(因空值是“不确定\"的)，这与现实世界的实际情况相矛盾，这样的实体就不是一个完整实体。 
 
 数据库不建议存哪些东西
@@ -79,25 +94,12 @@ MySQL的RSS RSS什么鬼？
 
 https://github.com/pingcap/awesome-database-learning
 
-
-
 金融级分布式数据库 TDSQL：在微众银行的大规模实践之路
-
-
 
 [腾讯推出的 TDSQL(TencentDistributed SQL) 金融级分布式数据库架构](
 
-
-
-
-
-
-
- [DynamoDB](https://en.wikipedia.org/wiki/Amazon_DynamoDB), [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra) or [Riak](https://en.wikipedia.org/wiki/Riak)
-
-
-
-
+ [DynamoDB](https://en.wikipedia.org/wiki/Amazon_DynamoDB),
+ [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra) or [Riak](https://en.wikipedia.org/wiki/Riak)
 
 [我们为什么放弃了TiDB，选择自研NewSQL](https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&mid=2650784647&idx=1&sn=bfcdbfc2d81bea8b08289453f0c52a8f&chksm=f3f97612c48eff04816c65258e3a9040a623f021eb2698b195268cfa8320b5264cd1c081f39c&mpshare=1&scene=1&srcid=&sharer_sharetime=1579142520564&sharer_shareid=fda52355dcc136785a322db49091f33f&key=80835432ad7ecc2c6650a1fee594ab4162c2432b015ec052293884f5dd7c458742b87c0cf107ec8ef6f5ffdc968321c241cd1bc0e33237f602214755e89c0bf7fb3f734df934ed1de3cb9e8bfd310b55&ascene=1&uin=MjY1MTA3MzYyMQ%3D%3D&devicetype=Windows+10&version=62070158&lang=zh_CN&exportkey=Af0mVBrBZE3AbKCZloFvmU4%3D&pass_ticket=S5ME3darOKtxQuEhoespl3tBDIp9h3EgzeRvYqa8Y2q66xb60VjtjrwDQ5z2sibD)
 
@@ -162,19 +164,11 @@ https://m.jb51.net/article/125918.htm
 
 [数据库内核杂谈（四）：执行模式](https://www.infoq.cn/article/spfiSuFZENC6UtrftSDD)
 
-
-
-
-
 #### 数据库方向的三大顶级国际会议
 
-
-  https://www.jianshu.com/p/65570efd0ca3 
-
-
+https://www.jianshu.com/p/65570efd0ca3 
 
 IEEE的数据库会议。IEEE的会议一般都比ACM对应会议差一些，ICDE也不例外。
-
 
 多关注数据库的三大顶级会议, 还有OSDI等.
 
@@ -190,11 +184,7 @@ IEEE的数据库会议。IEEE的会议一般都比ACM对应会议差一些，ICD
 
 没有广谱的系统, 凡系统都有自己典型的workload.
 
-
-
 建议看先阅读下面两本书: 
-
-
 1. Stonebraker的Architecture of a database system.
 
 2. Jim Gray的Transaction.
@@ -202,8 +192,6 @@ IEEE的数据库会议。IEEE的会议一般都比ACM对应会议差一些，ICD
 1. Stonebraker的Architecture of a database system.
 
 2. Jim Gray的Transaction.
-
-
 
 学习分布式的RoadMap
 

@@ -1,3 +1,4 @@
+
 # lex
 lex使用正则表达式
 
@@ -19,3 +20,11 @@ lex vs flex
 了解哪些开源项目用了
 
 
+centos安装lex yacc
+
+sudo yum install byacc -y
+sudo yum install flex -y
+
+ubuntu也是类似？对
+
+sudo apt install flex byacc -y

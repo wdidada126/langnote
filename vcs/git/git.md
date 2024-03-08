@@ -1,4 +1,15 @@
 # git
+
+Netty
+
+And need to pay attention to the configuration of git. If using Windows, when you checkout code, LF will be automatically converted to CRLF:
+
+git config --global core.autocrlf true
+
+Or if using MacOS, when you commit code, CRLF will be automatically converted to LF:
+git config --global core.autocrlf input
+
+
 git --version
 git version 2.37.1 (Apple Git-137.1)
 

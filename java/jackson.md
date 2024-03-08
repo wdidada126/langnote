@@ -1,5 +1,9 @@
 # jackson
 
+http://fasterxml.com/
+Faster, better open source XML and JSON parsing for the Java platform.
+同时支持xml和json
+
 jackson-datatype-bolts：对 Yandex Bolts collection types 的支持
 jackson-datatype-commons-lang3：支持Apache Commons Lang v3里面的一些类型
 jackson-datatype-money：支持javax.money

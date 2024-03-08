@@ -1,5 +1,27 @@
 # mysql
 
+COALESCE() coalesce 合并
+https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#function_coalesce
+
+Miscellaneous Functions 其他函数
+ipv4 字符串 整形相互转换
+uuid
+uuid_short
+
+
+order子句语法 多个用逗号连接
+order_clause:
+    ORDER BY expr [ASC|DESC] [, expr [ASC|DESC]] ...
+
+
+MySQL四大排名函数(MySQL8版本支持)
+一、ROW_NUMBER ()
+二、RANK()
+三、DENSE_RANK()
+四、NTILE() 
+常用的使用场景： 取每个学科的前3名
+
+这里得区分和ROW_NUMBER()不一样的地方，ROW_NUMBER()是排序，当存在相同成绩的学生时，ROW_NUMBER()会依次进行排序，他们序号不相同，而使用Rank()时，出现相同成绩时，他们的排名是一样的。
 
 centos 7安装mysql server并且修改root密码，ip访问权限
 sudo rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
@@ -40,6 +62,27 @@ navicat 点击
 https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 
 ## 窗口函数 聚集函数
+
+窗口函数概念和语法
+https://dev.mysql.com/doc/refman/8.0/en/window-functions-usage.html
+
+
+SELECT A.USER_ID, A.MONTH,A.STATUS, ROW_NUMBER() over (PARTITION BY USER_ID ORDER BY MONTH DESC,STATUS) RN
+                    FROM xxx;
+
+
+SELECT
+        A.USER_ID,
+        A.MONTH,
+        A.STATUS,
+        ROW_NUMBER ( ) over ( PARTITION BY USER_ID ORDER BY MONTH DESC, STATUS ) RN
+        FROM
+        ( SELECT USER_ID, DATE_FORMAT(CONCAT(MONTH,'-','01'), '%Y-%m') MONTH, STATUS
+        FROM ${defaultSchema}.T_RECORD_FUND_TD WHERE ETP_ID = #{enterpriseId} ) A
+
+给临时表起名字
+
+https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html
 MySQL中的窗口函数有很多，以下是一些常见的窗口函数：
 
 ROW_NUMBER()：为每个窗口中的行分配一个唯一的序号，通常用于对窗口中的行进行排序。

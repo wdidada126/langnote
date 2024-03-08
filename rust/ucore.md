@@ -16,3 +16,4 @@ git clone https://github.com/kiukotsu/ucore.git
 cd ucore
 cd labcodes/lab1
 make
+
