@@ -1,5 +1,7 @@
 # mysql mvcc
 
+slides08并发控制.pdf
+
 https://gitee.com/edidada/mydb
 
 mvcc 加了三个隐藏的字段 
