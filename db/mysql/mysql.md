@@ -1,5 +1,7 @@
 # mysql
 
+tidb大量使用mysql8中的函数，聚集函数，窗口函数
+
 COALESCE() coalesce 合并
 https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#function_coalesce
 
