@@ -1,8 +1,123 @@
 # mysql
+大多数聚合（聚集）函数也可以用作窗口函数；
+
+流程控制函数和操作
+CASE	Case operator
+IF()	If/else construct
+IFNULL()	Null if/else construct
+NULLIF()	Return NULL if expr1 = expr2
+
+数字函数和操作
+Name	Description
+%, MOD	Modulo operator
+*	Multiplication operator
++	Addition operator
+-	Minus operator
+-	Change the sign of the argument
+/	Division operator
+ABS()	Return the absolute value
+ACOS()	Return the arc cosine
+ASIN()	Return the arc sine
+ATAN()	Return the arc tangent
+ATAN2(), ATAN()	Return the arc tangent of the two arguments
+CEIL()	Return the smallest integer value not less than the argument
+CEILING()	Return the smallest integer value not less than the argument
+CONV()	Convert numbers between different number bases
+COS()	Return the cosine
+COT()	Return the cotangent
+CRC32()	Compute a cyclic redundancy check value
+DEGREES()	Convert radians to degrees
+DIV	Integer division
+EXP()	Raise to the power of
+FLOOR()	Return the largest integer value not greater than the argument
+LN()	Return the natural logarithm of the argument
+LOG()	Return the natural logarithm of the first argument
+LOG10()	Return the base-10 logarithm of the argument
+LOG2()	Return the base-2 logarithm of the argument
+MOD()	Return the remainder
+PI()	Return the value of pi
+POW()	Return the argument raised to the specified power
+POWER()	Return the argument raised to the specified power
+RADIANS()	Return argument converted to radians
+RAND()	Return a random floating-point value
+ROUND()	Round the argument
+SIGN()	Return the sign of the argument
+SIN()	Return the sine of the argument
+SQRT()	Return the square root of the argument
+TAN()	Return the tangent of the argument
+TRUNCATE()	Truncate to specified number of decimal places
+
+日期时间函数
+Name	Description
+ADDDATE()	Add time values (intervals) to a date value
+ADDTIME()	Add time
+CONVERT_TZ()	Convert from one time zone to another
+CURDATE()	Return the current date
+CURRENT_DATE(), CURRENT_DATE	Synonyms for CURDATE()
+CURRENT_TIME(), CURRENT_TIME	Synonyms for CURTIME()
+CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP	Synonyms for NOW()
+CURTIME()	Return the current time
+DATE()	Extract the date part of a date or datetime expression
+DATE_ADD()	Add time values (intervals) to a date value
+DATE_FORMAT()	Format date as specified
+DATE_SUB()	Subtract a time value (interval) from a date
+DATEDIFF()	Subtract two dates
+DAY()	Synonym for DAYOFMONTH()
+DAYNAME()	Return the name of the weekday
+DAYOFMONTH()	Return the day of the month (0-31)
+DAYOFWEEK()	Return the weekday index of the argument
+DAYOFYEAR()	Return the day of the year (1-366)
+EXTRACT()	Extract part of a date
+FROM_DAYS()	Convert a day number to a date
+FROM_UNIXTIME()	Format Unix timestamp as a date
+GET_FORMAT()	Return a date format string
+HOUR()	Extract the hour
+LAST_DAY	Return the last day of the month for the argument
+LOCALTIME(), LOCALTIME	Synonym for NOW()
+LOCALTIMESTAMP, LOCALTIMESTAMP()	Synonym for NOW()
+MAKEDATE()	Create a date from the year and day of year
+MAKETIME()	Create time from hour, minute, second
+MICROSECOND()	Return the microseconds from argument
+MINUTE()	Return the minute from the argument
+MONTH()	Return the month from the date passed
+MONTHNAME()	Return the name of the month
+NOW()	Return the current date and time
+PERIOD_ADD()	Add a period to a year-month
+PERIOD_DIFF()	Return the number of months between periods
+QUARTER()	Return the quarter from a date argument
+SEC_TO_TIME()	Converts seconds to 'hh:mm:ss' format
+SECOND()	Return the second (0-59)
+STR_TO_DATE()	Convert a string to a date
+SUBDATE()	Synonym for DATE_SUB() when invoked with three arguments
+SUBTIME()	Subtract times
+SYSDATE()	Return the time at which the function executes
+TIME()	Extract the time portion of the expression passed
+TIME_FORMAT()	Format as time
+TIME_TO_SEC()	Return the argument converted to seconds
+TIMEDIFF()	Subtract time
+TIMESTAMP()	With a single argument, this function returns the date or datetime expression; with two arguments, the sum of the arguments
+TIMESTAMPADD()	Add an interval to a datetime expression
+TIMESTAMPDIFF()	Return the difference of two datetime expressions, using the units specified
+TO_DAYS()	Return the date argument converted to days
+TO_SECONDS()	Return the date or datetime argument converted to seconds since Year 0
+UNIX_TIMESTAMP()	Return a Unix timestamp
+UTC_DATE()	Return the current UTC date
+UTC_TIME()	Return the current UTC time
+UTC_TIMESTAMP()	Return the current UTC date and time
+WEEK()	Return the week number
+WEEKDAY()	Return the weekday index
+WEEKOFYEAR()	Return the calendar week of the date (1-53)
+YEAR()	Return the year
+YEARWEEK()	Return the year and week
+
+字符串函数
+
+聚集函数
+窗口函数
 
 tidb大量使用mysql8中的函数，聚集函数，窗口函数
 
-COALESCE() coalesce 合并
+COALESCE() coalesce 合并 coalesce coalesce coalesce
 https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#function_coalesce
 
 Miscellaneous Functions 其他函数
@@ -10,11 +125,9 @@ ipv4 字符串 整形相互转换
 uuid
 uuid_short
 
-
 order子句语法 多个用逗号连接
 order_clause:
     ORDER BY expr [ASC|DESC] [, expr [ASC|DESC]] ...
-
 
 MySQL四大排名函数(MySQL8版本支持)
 一、ROW_NUMBER ()
