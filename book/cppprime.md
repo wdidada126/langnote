@@ -605,8 +605,7 @@ https://en.cppreference.com/w/cpp/language/value_category
 
 constexpr函数
 
-# C++ 11 新特性： constexpr变量和constexpr函数
-
+C++ 11 新特性： constexpr变量和constexpr函数
 https://blog.csdn.net/qq_22660775/article/details/89336997
 
 ### chap 7 类
@@ -614,7 +613,7 @@ https://blog.csdn.net/qq_22660775/article/details/89336997
 委托构造函数delegating constructor
 构造函数重载
 
-第Ⅱ部 C++标准库
+## 第Ⅱ部 C++标准库
 
 list vector
 queue
