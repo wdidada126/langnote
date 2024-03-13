@@ -1,4 +1,7 @@
 # vsc
+
+vsc的同步，当有多个remote的时候，是跟某一个remote同步
+
 ## mac vsc安装了vim？
 vim插件导出pdf文件
 visual studio code根据文件名查找 快捷键

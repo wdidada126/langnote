@@ -607,7 +607,7 @@ git revert -n commit_id_3
 使用该命令可以撤回到commit_id_1和commit_id_3的提交
 
 1.git删除远程分支 git push origin --delete [branch_name]
-2.删除本地分支区别 git branch -d 会在删除前检查merge状态(其与上游分支或者与head)。 git b
+2.删除本地分支区别 git branch -d 会在删除前检查merge状态(其与上游分支或者与head)。 
 3.git查看分支: 查看本地分支 git branch 查看远程分支 git branch -r 查看本地和远程分支 git branch -a
 4.git删除分支: 删除本地分支 git branch -d 本地分支名 删除远程分支 git push origin --delete [branch_name]
 

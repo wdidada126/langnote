@@ -608,10 +608,133 @@ constexpr函数
 C++ 11 新特性： constexpr变量和constexpr函数
 https://blog.csdn.net/qq_22660775/article/details/89336997
 
+decltype
+
+分离式编译
+separate compilation
+
+分离式编译（Separate Compilation）在C++编程中是一个重要的概念，它允许程序员将代码分解为多个源文件，每个源文件单独编译成目标文件，最后通过链接器将这些目标文件链接在一起生成可执行文件。这种方式可以提高代码的开发和维护效率，减少编译时间和资源消耗。
+
+下面是一个简单的C++分离式编译的示例：
+
+1. 创建头文件（Header File）
+
+首先，我们创建一个头文件example.h，其中声明了一个函数add：
+
+```cpp
+// example.h  
+#ifndef EXAMPLE_H  
+#define EXAMPLE_H  
+  
+int add(int a, int b); // 函数声明  
+  
+#endif // EXAMPLE_H
+```
+注意，我们使用预处理器指令#ifndef、#define和#endif来防止头文件被重复包含，这是一种常见的做法，称为包含守卫（Include Guard）。
+
+2. 实现源文件（Source File）
+
+接下来，我们创建一个源文件example.cpp，其中实现了在头文件中声明的add函数：
+
+```cpp
+// example.cpp  
+#include "example.h"  
+  
+int add(int a, int b) { // 函数定义  
+    return a + b;  
+}
+```
+3. 创建主程序文件（Main Program File）
+
+然后，我们创建一个主程序文件main.cpp，其中包含main函数，并调用了在example.h中声明的add函数：
+
+```cpp
+// main.cpp  
+#include <iostream>  
+#include "example.h"  
+  
+int main() {  
+    int sum = add(2, 3); // 调用add函数  
+    std::cout << "The sum is: " << sum << std::endl;  
+    return 0;  
+}
+```
+4. 编译和链接
+
+现在，我们可以使用C++编译器来单独编译这些源文件。假设我们使用g++编译器，那么编译命令如下：
+
+```bash
+g++ -c example.cpp -o example.o   # 编译example.cpp为example.o  
+g++ -c main.cpp -o main.o         # 编译main.cpp为main.o
+```
+这将会生成两个目标文件：example.o和main.o。
+
+最后，我们使用链接器将这些目标文件链接在一起，生成可执行文件：
+
+bash
+g++ example.o main.o -o my_program # 链接生成可执行文件my_program
+现在，我们就得到了一个名为my_program的可执行文件，它可以运行并输出The sum is: 5。
+
+通过分离式编译，我们可以将代码组织成多个逻辑单元，每个单元负责不同的功能。这有助于代码的模块化、重用和维护，也提高了编译效率，因为当我们修改某个源文件时，只需要重新编译那个源文件及其依赖项，而不需要重新编译整个项目。
+
+`prog -d o ofile data0`
+
+//或者argv[0]也可以指向一个空字符串
+argv[0]= "prog";
+argv[1]= “-d";
+argv[2]= "-o";
+argv[3]= "ofile";
+argv[4]="data0";
+argv[5]=0;
+
+gflags
+
 ### chap 7 类
 
 委托构造函数delegating constructor
 构造函数重载
+
+### chap 9
+
+swap()
+`std::swap` 是 C++ 标准库中的一个函数模板，用于交换两个对象的值。它在 `<algorithm>` 或 `<utility>` 头文件中定义。你可以用它来交换任何类型的两个对象的值，只要该类型支持赋值操作。
+
+使用 `std::swap` 的基本语法如下：
+
+
+```cpp
+std::swap(a, b);
+```
+在这里，`a` 和 `b` 是要交换值的两个对象。交换操作会修改 `a` 和 `b`，使得 `a` 的值变成原来 `b` 的值，而 `b` 的值变成原来 `a` 的值。
+
+下面是一个简单的示例，演示如何使用 `std::swap` 来交换两个整数的值：
+
+
+```cpp
+#include <iostream>
+#include <algorithm> // 包含 std::swap 的头文件
+
+int main() {
+    int x = 5;
+    int y = 10;
+
+    std::cout << "Before swap: x = " << x << ", y = " << y << std::endl;
+
+    std::swap(x, y);
+
+    std::cout << "After swap: x = " << x << ", y = " << y << std::endl;
+
+    return 0;
+}
+```
+输出将会是：
+
+
+```yaml
+Before swap: x = 5, y = 10
+After swap: x = 10, y = 5
+```
+除了 `std::swap` 之外，一些类型（如 `std::vector`、`std::string` 等）还提供了自己的 `swap` 成员函数，这些函数通常比 `std::swap` 更高效，因为它们可以直接交换内部数据而不需要复制整个对象。因此，对于这些类型，通常建议使用其成员函数 `swap` 而不是 `std::swap`。
 
 ## 第Ⅱ部 C++标准库
 
