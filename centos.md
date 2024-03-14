@@ -1,5 +1,6 @@
 # centos
 
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 sudo adduser wdidada
 sudo passwd wdidada

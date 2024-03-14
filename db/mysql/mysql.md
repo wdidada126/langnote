@@ -1,5 +1,10 @@
 # mysql
 
+## 核心概念
+
+Query Execution Plan,即查询执行计划。
+幻读（Phantom Read）是一种在事务执行过程中，由于其他事务的插入或删除操作，导致当前事务读取到的行数发生了变化的现象。幻读通常发生在范围查询（如SELECT * FROM table WHERE column BETWEEN value1 AND value2）中。
+
 
 数据事务并发带来的问题：
 脏读(Drity Read)：事务A更新记录但未提交，事务B查询出A未提交记录。
@@ -157,6 +162,7 @@ sudo systemctl start mysqld
 sudo grep 'temporary password' /var/log/mysqld.log
 mysql -u root -p
 GwkgoB8Udo(o
+UKzuUZIZw4=s
 ALTER USER 'root'@'localhost' IDENTIFIED BY '5%Edidadas';
 ALTER USER 'root'@'%' IDENTIFIED BY '5%Edidadas';
 FLUSH PRIVILEGES;
@@ -193,16 +199,39 @@ https://dev.mysql.com/doc/refman/8.0/en/window-functions-usage.html
 
 SELECT A.USER_ID, A.MONTH,A.STATUS, ROW_NUMBER() over (PARTITION BY USER_ID ORDER BY MONTH DESC,STATUS) RN
                     FROM xxx;
+```sql
+SELECT
+    A.USER_ID,
+    A.MONTH,
+    A.STATUS,
+    ROW_NUMBER() over (PARTITION BY USER_ID
+ORDER BY
+    MONTH DESC,
+    STATUS) RN
+FROM
+    xxx;
+```
 
 
 SELECT
-        A.USER_ID,
-        A.MONTH,
-        A.STATUS,
-        ROW_NUMBER ( ) over ( PARTITION BY USER_ID ORDER BY MONTH DESC, STATUS ) RN
-        FROM
-        ( SELECT USER_ID, DATE_FORMAT(CONCAT(MONTH,'-','01'), '%Y-%m') MONTH, STATUS
-        FROM ${defaultSchema}.T_RECORD_FUND_TD WHERE ETP_ID = #{enterpriseId} ) A
+    A.USER_ID,
+    A.MONTH,
+    A.STATUS,
+    ROW_NUMBER ( ) over ( PARTITION BY USER_ID
+ORDER BY
+    MONTH DESC,
+    STATUS ) RN
+FROM
+    (
+    SELECT
+        USER_ID,
+        DATE_FORMAT(CONCAT(MONTH, '-', '01'), '%Y-%m') MONTH,
+        STATUS
+    FROM
+        ${defaultSchema}.T_RECORD_FUND_TD
+    WHERE
+        ETP_ID =
+        #{enterpriseId} ) A
 
 给临时表起名字
 
@@ -1755,6 +1784,7 @@ https://mariadb.com/kb/en/aggregate-functions/
 
 不要光盯着mysql，关注下mariadb和percona等其他mysql分支
 
+内置函数
 String相关函数
 https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 Date相关函数
@@ -1771,6 +1801,7 @@ DB2 大型机
 VLDB、SIGMOD
 https://www.cnblogs.com/oxspirt/p/6208912.html
 清华大学李国良教授写的"大数据下的数据管理领域研究体会"一文。
+
 ICDE
 PVLDB指的是VLDB会议论文集，被VLDB会议接受的论文，按期将会刊登在PVLDB中。VLDBJ则是VLDB基金会主管的期刊，其论文篇幅长，审稿周期长。
 关于POLARDB的一篇论文《PolarFS： An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database》就被数据库顶级学术会议VLDB 2018接收
