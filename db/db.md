@@ -1,5 +1,8 @@
 # db
 
+阿里数据库开发
+https://zhuanlan.zhihu.com/p/686713613
+
 OCC
 乐观并行控制协议（OCC）-知乎.mhtml
 

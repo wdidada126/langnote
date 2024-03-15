@@ -1,6 +1,12 @@
 # mysql mvcc
 
-
+MVCC原理详解.mhtml
+1、事务版本号
+2、隐藏字段
+3、undo log
+4、版本链
+5、快照读和当前读
+6、ReadView
 
 slides08并发控制.pdf
 
