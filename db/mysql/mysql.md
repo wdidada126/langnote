@@ -1,9 +1,6 @@
 # mysql
 
-## 核心概念
-
-Query Execution Plan,即查询执行计划。
-幻读（Phantom Read）是一种在事务执行过程中，由于其他事务的插入或删除操作，导致当前事务读取到的行数发生了变化的现象。幻读通常发生在范围查询（如SELECT * FROM table WHERE column BETWEEN value1 AND value2）中。
+https://dev.mysql.com/doc/refman/8.3/en/
 
 
 数据事务并发带来的问题：
@@ -345,6 +342,7 @@ DUAL是MySQL中的一个虚拟表，用于在没有表的情况下指定一个�
 
 sql，用于运维
 select version() 
+select version() from dual
 
 在Mysql和SQL Server中可以直接select 1不需要加from 表名就可以执行
 mysql是支持Dual的
@@ -464,7 +462,34 @@ SET
 
 https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
-## 概念
+## 核心概念
+
+### 存储引擎
+innodb myasam
+
+### mvcc
+innodb自带的，不能舍弃不要
+
+### MVCC的两种读形式 当前读 快照读
+
+### Query Execution Plan,即查询执行计划。
+### 幻读
+幻读（Phantom Read）是一种在事务执行过程中，由于其他事务的插入或删除操作，导致当前事务读取到的行数发生了变化的现象。幻读通常发生在范围查询（如SELECT * FROM table WHERE column BETWEEN value1 AND value2）中。
+
+### 间隙锁(Next-Key Locking)
+
+Gap Lock确实是一种锁的算法。它是InnoDB存储引擎在行级锁定中使用的三种算法之一，另外两种是Record Lock和Next-Key Lock。
+Gap Lock主要锁定一个范围，但不包含记录本身。它的主要作用是阻止多个事务将记录插入到同一范围内，从而防止幻读现象的发生。当查询的索引为辅助索引时，InnoDB会对前一个辅助索引节点加Next Key Lock，对索引下一个键值加Gap Lock。
+因此，Gap Lock是InnoDB用于实现高并发性和数据一致性的重要机制之一。需要注意的是，正确理解和使用这些锁算法对于优化数据库性能和避免并发问题至关重要。
+
+Gap Lock、Record Lock和Next-Key Lock的汉语翻译分别为：
+
+Gap Lock：间隙锁
+Record Lock：记录锁
+Next-Key Lock：临键锁
+这些术语是InnoDB存储引擎在行级锁定中使用的锁算法。间隙锁主要锁定一个范围，但不包含记录本身，用于防止幻读现象的发生。记录锁则是锁定单个记录。临键锁是记录锁与间隙锁的结合，它锁定一个记录以及该记录前的间隙。这些锁算法有助于确保并发事务中的数据一致性和正确性。
+
+
 ### 执行计划
 MySQL执行计划对应的英文是"Execution Plan"。
 ### Phantom Problem 幻读
@@ -541,19 +566,19 @@ MySQL 使用 B+ 树作为索引结构，而不是 B 树，主要是因为 B+ 树
 3. 高查询性能：B+ 树的查询性能通常比 B 树更高。在 B+ 树中，数据按照键值顺序存储，这使得查找和范围查询操作更加高效。特别是在范围查询中，B+ 树只需遍历叶子节点链表即可，而 B 树可能需要多次查找和遍历。
 4. 数据稳定性：B+ 树相比于 B 树具有更好的数据稳定性。由于 B+ 树的叶子节点是顺序存储的，并且每个节点包含指向下一个和上一个叶子节点的指针，因此即使发生崩溃或断电等意外情况，数据也可以更快地恢复。
 
-总之，MySQL 选择使用 B+ 树而不是 B 树来实现索引，主要是因为 B+ 树更适合数据库系统中的大规模数据存储和检索，具有更好的磁盘友好性、数据压缩能力、高查询性能以及数据稳定性。
+总之，MySQL 选择使用 B+ 树而不是 B 树来实现索引，主要是因为B+树更适合数据库系统中的大规模数据存储和检索，具有更好的磁盘友好性、数据压缩能力、高查询性能以及数据稳定性。
 
 
 
 子节点 关键字
 
-在 B+ 树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是 B+ 树的一个重要参数，它决定了 B+ 树的分支因子和节点的容量。
+在B+树中，度（degree）是指每个非根节点（除了叶子节点）所包含的子节点的最小数量。度是B+树的一个重要参数，它决定了B+树的分支因子和节点的容量。
 具体来说，对于一个度为 `d` 的 B+ 树：
 1. 非根节点（除了叶子节点）至少有 `d` 个子节点。
 2. 非根节点的关键字个数（除了叶子节点）可以是 `d-1` 到 `2d-1` 之间。
 3. 叶子节点可以包含 0 到 `2d-1` 个关键字。
 度的选择会影响 B+ 树的高度、磁盘访问次数和节点的利用率。较大的度可以减少树的高度，从而减少磁盘访问次数，但会增加节点的大小和内存开销。较小的度可以提高节点的利用率，减少内存开销，但会增加树的高度和磁盘访问次数。
-通常，在实际应用中，度的选择需要根据具体的场景和数据量进行权衡。常见的度取值为 50、100 或更大，但具体的最佳取值需要根据实际需求和性能测试来确定。
+通常，在实际应用中，度的选择需要根据具体的场景和数据量进行权衡。常见的度取值为50、100或更大，但具体的最佳取值需要根据实际需求和性能测试来确定。
 
 ## 表支持的数据类型
 tinyint
@@ -1132,7 +1157,6 @@ mysql explain 优化sql
 type
 https://dev.mysql.com/doc/refman/5.7/en/explain.html
 
-
 在MySQL的EXPLAIN结果中，select_type和type是两个不同的列，它们提供了有关查询执行计划的一些重要信息。
 
 select_type：这个列描述了查询中的特殊查询类型。以下是select_type可能的值：
@@ -1173,8 +1197,6 @@ USE MYDATABASE;
 这因为在MySQL中，表名和数据库名不区分大小写。但是，请注意，表的列名和函数名是区分大小写的。
 
 需要注意的是，MySQL的默认设置是不区分大小写，但也可以通过设置适当的配置参数来更改大小写敏感性。
-
-
 
 mysql查看所有表的所有字段
 
@@ -1227,13 +1249,7 @@ https://www.cnblogs.com/bingco/p/11381107.html
 
 大量使用临时表
 
-
-
 select max (substr(columnName,13)) +1 from tableName where columnName like concat()
-
-
-
-
 
 mysql中的instr()函数的用法
 https://www.cnblogs.com/qingmuchuanqi48/articles/15418961.html
@@ -1245,10 +1261,6 @@ INSTR(STR,SUBSTR) 在一个字符串(STR)中搜索指定的字符(SUBSTR),返回
 STR 被搜索的字符串
 SUBSTR 希望搜索的字符串
 结论：在字符串STR里面,字符串SUBSTR出现的第一个位置(INDEX)，INDEX是从1开始计算，如果没有找到就直接返回0，没有返回负数的情况
-
-
-
-
 
 MySQL软件支持的字符串函数表如下：
 
@@ -1291,10 +1303,22 @@ ibd
 mvcc是个概念，不同rdbms实现不同，核心目的是提高软件系统并发量
 java里面也需要自己去实现
 
-
 数据库表外键，删除表的时候不方便
 
 实现了四个标准的隔离级别，默认级别是可重复读(REPEATABLE READ)。在可重复读隔离级别下，通过多版本并发控制(MVCC)+ 间隙锁(Next-Key Locking)防止幻影读。
+在可重复读（REPEATABLE READ）隔离级别下，MySQL通过多版本并发控制（MVCC）和间隙锁（Gap Locking）以及临键锁（Next-Key Locking）来防止不可重复读和幻读。但需要注意，对于幻读的防止，仅仅依赖间隙锁是不够的。
+
+MVCC保证了在同一个事务内多次读取同一行数据时，看到的是一致的版本，这有助于防止不可重复读。然而，MVCC并不能直接防止幻读，因为幻读是指由于其他事务的插入或删除操作，导致满足某些条件的数据行数发生了变化。
+
+为了防止幻读，InnoDB在可重复读隔离级别下使用了临键锁（Next-Key Locking）。临键锁是记录锁和间隙锁的结合，它锁定一个索引记录以及该记录前的间隙。这种锁定策略确保了在一个事务内，按照相同的条件进行范围查询时，得到的结果集是一致的，从而防止了幻读的发生。
+
+因此，上面的说法“通过多版本并发控制(MVCC)+间隙锁(Next-Key Locking)防止幻影读”是不准确的。应该是“通过多版本并发控制(MVCC)和临键锁(Next-Key Locking)防止不可重复读和幻读”。间隙锁本身只是临键锁的一个组成部分，它主要用于锁定一个范围但不包括记录本身，而临键锁则结合了记录锁和间隙锁的功能来防止幻读。
+
+是的，间隙锁（Gap Lock）本身是临键锁（Next-Key Lock）的一个组成部分。临键锁是InnoDB在行级锁定中使用的锁算法之一，它结合了记录锁（Record Lock）和间隙锁的功能。
+具体来说，临键锁锁定一个索引记录以及该记录前的间隙。这意味着它不仅锁定一个具体的索引记录，还锁定一个范围，以防止其他事务在这个范围内插入新的记录。这种锁定策略有助于防止幻读的发生，因为幻读是由于其他事务的插入或删除操作导致满足某些条件的数据行数发生了变化。
+间隙锁作为临键锁的一部分，主要用于锁定一个范围但不包括记录本身。它确保在这个范围内不会有新的记录被插入，从而保持了数据的一致性。
+因此，可以说间隙锁是临键锁的一个组件，而临键锁则是结合了记录锁和间隙锁的功能来提供更全面的锁定策略，以防止不可重复读和幻读的发生。
+
 
 mysql
 varchar 字符串长度需要注意
@@ -1320,17 +1344,12 @@ a left join b on a.id > b.id
 mysql关闭ssl
 
 D:\Mysql\mysql-5.7.31-winx64\data\
-
 private_key.pem
 public_key.pem
 server-cert.pem
 server-key.pem
 
-
-
 net stop mysql
-
-
 
 skipssl
 
@@ -1364,8 +1383,6 @@ SELECT * FROM products WHERE products.prod_name like 'yves__';
 不要过度使用通配符。如果其他操作符能达到相同的目的，应该 使用其他操作符。
 在确实需要使用通配符时，除非绝对有必要，否则不要把它们用 在搜索模式的开始处。把通配符置于搜索模式的开始处，搜索起 来是最慢的。
 仔细注意通配符的位置。如果放错地方，可能不会返回想要的数.
-
-
 
 expain出来的信息有10列，分别是id、select_type、table、type、possible_keys、key、key_len、ref、rows、extra
 下面对这些字段出现的可能进行解释：
@@ -1416,17 +1433,10 @@ Using join buffer：改值强调了在获取连接条件时没有使用索引，
 Impossible where：这个值强调了where语句会导致没有符合条件的行。
 Select tables optimized away：这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行
 
-
-
-
-
 Heal表的大小可通过称为 max_heap_table_size 的 Mysql 配置变量来控制。
-
 
 mysql gtid
 https://www.cnblogs.com/zhang-ding-1314/p/15125188.html
-
-
 
 家人们mysql每天几十万的数据同步，从一个库到另一个库，有没有什么好的方案
 canal也行
@@ -1436,8 +1446,6 @@ canal也行
 
 自建mysql数据库主从同步(GTID方式)
 https://www.cnblogs.com/zhang-ding-1314/p/15125188.html
-
-
 
 https://baijiahao.baidu.com/s?id=1741371045827915061
 
@@ -1468,6 +1476,10 @@ select @@tx_isolation;
 可重复读 RR
 串行化 S
 
+在MySQL中，MVCC（多版本并发控制）是InnoDB存储引擎的核心特性之一，它用于支持高并发访问，同时保持数据的一致性。由于MVCC是InnoDB存储引擎内置的一部分，因此你不能直接“关闭”MVCC。它是InnoDB用来管理事务并发访问的基础机制，没有MVCC，InnoDB就无法正常工作。
+如果你不希望使用MVCC或InnoDB的其他特性，你可以选择使用MySQL的其他存储引擎，比如MyISAM。但是，请注意，MyISAM存储引擎不支持事务和行级锁定，这可能会限制你的应用程序的并发性和数据一致性能力。
+总之，MVCC是InnoDB存储引擎的基础特性，你不能直接关闭它。如果你对数据库的性能或特性有特定的需求，你应该选择合适的存储引擎和配置选项来满足这些需求。
+
 现象
 
 脏读。读到的是另一个事物未提交的事物
@@ -1478,12 +1490,15 @@ select @@tx_isolation;
 幻读（Phantom Read），是指当事务不是独立执行时发生的一种现象。
 幻读问题在 “当前读” 下才会出现。
 
-
+MySQL的当前读和快照读这些概念的产生背景主要源于数据库并发控制的需求。在多个事务同时访问和修改数据库的情况下，为了确保数据的一致性和完整性，需要采用适当的并发控制机制。
+快照读的概念是基于多版本并发控制（MVCC，Multi-Version Concurrency Control）的。MVCC是数据库管理系统中的一种并发控制方法，它通过保存数据的多个版本来实现并发读取，从而避免了读操作和写操作之间的锁竞争。在MVCC机制下，当事务读取数据时，它实际上读取的是数据的某个历史版本，而不是最新的数据。这个历史版本就像是数据的一个“快照”，因此被称为快照读。这种读取方式不需要等待其他事务完成，因此可以提高并发性能。
+与快照读相对的是当前读。当前读是读取数据的最新版本，并且会加上锁，保证其他事务不会并发的修改这条记录。这种读取方式通常用于需要确保数据一致性的场景，比如修改数据或进行需要精确数据的查询。
+这些概念的产生背景是数据库在处理并发操作时需要解决数据一致性和并发性能之间的权衡。通过引入快照读和当前读等机制，MySQL可以在保证数据一致性的同时，提高并发性能，从而更好地支持高并发的应用场景。
 
 什么是当前读、什么是快照读。
-快照读：读取快照中的数据，不需要进行加锁。看到快照这两个字，各位肯定马上就想到 MVCC 了，是这样，MVCC 作用于读取已提交和可重复读（默认）这两个隔离级别，这俩隔离级别下的普通 select 操作就是快照读。
-
+快照读：读取快照中的数据，不需要进行加锁。看到快照这两个字，各位肯定马上就想到MVCC了，是这样，MVCC 作用于读取已提交和可重复读（默认）这两个隔离级别，这俩隔离级别下的普通select操作就是快照读。
 当前读：读取的是最新版本的数据, 并且对读取的记录加锁, 阻塞其他事务同时改动相同记录，避免出现安全问题。
+当前读，读取效率高
 
 除了读取已提交和可重复读这俩隔离级别下的普通 select 操作，其余操作都是当前读：
 
@@ -1493,9 +1508,18 @@ select...for update
 update, delete, insert
 ```
 
-
 mysql脏读和幻读区别
 Mysql之脏读、不可重复读、幻读的区别
+MySQL中的脏读、不可重复读和幻读是三种不同的并发读取问题，它们之间的主要区别如下：
+脏读（Dirty Read）：
+脏读发生在当一个事务正在访问并修改数据，但这种修改还没有提交到数据库时，另一个事务访问了这些数据并使用了它们。简单来说，就是读取到了另一个事务还未提交的数据。这种情况下，如果第一个事务回滚，那么第二个事务就读取到了“脏”数据，即不正确或不一致的数据。
+不可重复读（Non-repeatable Read）：
+不可重复读是指在一个事务内，多次读取同一数据，但由于在此期间有其他事务修改了该数据，导致每次读取的结果可能不一致。这意味着，在同一个事务中，同样的查询条件，可能会得到不同的结果。
+幻读（Phantom Read）：
+幻读发生在当事务不是独立执行时，它涉及到在一个事务内，按照某个条件查询数据，但在查询之间，另一个事务插入了或删除了满足这个条件的数据，导致第一个事务在再次执行相同的查询时，发现数据的数量发生了变化。即数据的行数发生了改变，好像出现了“幻影”一样。
+总结来说，脏读涉及读取未提交的数据，不可重复读涉及同一事务中多次读取同一数据但结果不一致，而幻读则涉及满足特定条件的数据行数在事务执行期间发生变化。这三种问题都是MySQL进行事务并发控制时可能遇到的问题，需要采取相应的隔离级别来避免或解决。
+
+
 数据库在在高并发时，事务会出现三种异常问题。
 
 脏读：在事物还没有提交前，修改的数据可以被其他事物所看到。
@@ -1533,13 +1557,18 @@ select a from t where id = 1 for update;
 
 可以认为 多版本并发控制（MVCC） 是行级锁的一个变种
 MySQL中的MDL锁
+MDL锁，全称为Metadata Lock，即元数据锁，是从MySQL 5.5版本开始引入的一种锁机制。其主要目的是为了解决DDL（数据定义语言，如CREATE、ALTER等）操作和DML（数据操作语言，如SELECT、INSERT等）操作之间的一致性问题，以及处理不同线程操作同一元数据对象的同步与互斥问题。
+MDL锁是一种表级锁，也是一个server层的锁。其加锁过程是系统自动控制，无法直接干预。当我们对一个表做增删改查操作时，系统会自动加上MDL读锁；而当我们需要更新表结构时，系统会自动加上MDL写锁。
+在MDL锁的机制下，读锁是共享的，意味着可以多个线程同时对一张表进行增删改查的操作；而写锁是独占的，当要对表进行结构修改时，需要先等待其他所有的MDL锁释放，获取到MDL写锁后才能进行。在写锁释放前，其他线程无法获取到MDL读锁和写锁，即修改表结构的过程中会阻塞其他线程对表的操作。
+总的来说，MDL锁的存在是为了保证数据的一致性，避免在数据操作过程中发生错误或冲突。如需更多关于MDL锁的信息，建议查阅数据库相关书籍或咨询数据库管理员。
+
 S锁和X锁。
 
 S锁，英文为Shared Lock，中文译作共享锁，有时候我们也称之为读锁，即Read Lock。S 锁之间是共享的，或者说是互不阻塞的。
 X锁，英文为Exclusive Lock，中文译作排他锁，有时候我们也称之为写锁，即Write Lock。如同它的名字，X锁是具有排他性的，即一个写锁会阻塞其他的X锁和S锁。
 
 MySQL是server和engine分离的
-Driv的engine是？
+Driver的engine是？
 
 Cluster index聚集索引
 Unclusrer index 非聚集索引
@@ -1549,8 +1578,6 @@ covering index 覆盖索引
 https://blog.csdn.net/yinni11/article/details/81812309
 
 https://www.hollischuang.com/archives/3818
-
-
 
 最左匹配
 
@@ -1578,9 +1605,9 @@ centos 7/8
 cmake组织的
 
 MySQL Benchmark Tool
-DBT2
+DBT2 dbt2是一款免费的TPC-C测试工具,用于模拟复杂的OLTP系统。
 SysBench
-flexAsynch
+flexAsynch MySQL集群的flexAsynch测试工具
 
 
 mysql支持的数据类型 json
@@ -1592,6 +1619,8 @@ timestamp
 
 https://dev.mysql.com/doc/refman/5.7/en/json.html
 
+索引下推和覆盖索引都是优化MySQL查询性能的方法
+索引下推和覆盖索引都是优化MySQL查询性能的方法
 索引下推和覆盖索引都是优化MySQL查询性能的方法，但它们的实现方式有所不同。
 索引下推是指MySQL在执行查询时，尽可能地利用索引来减少需要扫描的行数，从而提高查询性能。具体来说，当MySQL使用一个覆盖索引来执行一个查询时，它会首先扫描索引，然后只返回满足查询条件的索引列，而不需要再去检查数据行，因为索引列已经包含了需要的数据。这种方法可以减少磁盘I/O和CPU开销，从而提高查询性能。
 覆盖索引是指一个索引包含了查询所需要的所有列，因此MySQL可以直接从索引中获取需要的数据，而不需要再去检查数据行。这种方法可以减少磁盘I/O和CPU开销，从而提高查询性能。覆盖索引通常用于查询只需要返回少量列数据的情况下，例如只需要返回某些列的值或者只需要计算总数的情况下。
@@ -1642,6 +1671,677 @@ http://c.biancheng.net/view/7266.html
 https://www.cnblogs.com/caoshousong/p/10845396.html
 
 show processlist;
+
+677277  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1073    2   
+678077  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   178 2   
+677262  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1101    2   
+678190  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677904  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   335 2   
+678216  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677979  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   280 2   
+676781  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1729    2   
+677565  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   720 2   
+677933  hrbase  172.16.10.18    nacos_test  Sleep   315 2   
+677257  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1105    2   
+678283  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   14  2   
+678152  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+677317  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1048    2   
+678171  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   3   2   
+608972  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   159 2   
+678198  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678148  ytfs    172.16.2.111    YTFS    Sleep   102 2   
+676981  eolinker_os 172.16.10.16    eolinker_os Sleep   1473    2   
+678057  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   207 2   
+677206  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   177 2   
+677479  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   844 2   
+676761  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   7   2   
+677321  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1041    2   
+677222  root    172.16.10.70    dmcp    Sleep   1128    2   
+677897  root    172.16.10.16    ares_ent_service_dev    Sleep   343 2   
+677978  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   280 2   
+677434  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   894 2   
+676959  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1500    2   
+677949  fuyao_user_dev  172.16.10.16    fuyao_user_dev  Sleep   299 2   
+674958  root    192.168.10.114  app_market_dev  Sleep   3822    2   
+674548  root    192.168.10.121  ares_ent_service_dev    Sleep   4254    2   
+677850  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   387 2   
+678252  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   51  2   
+677584  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   695 2   
+677047  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   116 2   
+677700  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   557 2   
+677118  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1292    2   
+677274  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1080    2   
+676950  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1512    2   
+678289  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   0   2   
+677953  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   296 2   
+677951  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   298 2   
+677541  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   745 2   
+677559  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   724 2   
+676770  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1742    2   
+677336  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1022    2   
+678267  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   36  2   
+677619  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   661 2   
+677996  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   270 2   
+677744  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   506 2   
+678062  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   203 2   
+648645  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   19535   2   
+678255  app_market_dev  172.16.10.17    app_market_dev  Sleep   49  2   
+677800  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   436 2   
+677183  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1184    2   
+677830  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   408 2   
+678013  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   251 2   
+676864  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1626    2   
+676858  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1635    2   
+677381  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   979 2   
+678173  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+388803  root    172.16.10.70    dmcp    Sleep   369786  2   
+677466  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   866 2   
+676779  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1734    2   
+677567  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   716 2   
+678123  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   131 2   
+678041  ytfs_console    172.16.10.17    ytfs_console    Sleep   216 2   
+677283  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1062    2   
+677715  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   531 2   
+677890  fuyao_user_dev  172.16.10.16    fuyao_user_dev  Sleep   349 2   
+677589  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   692 2   
+677169  eolinker_os 172.16.10.16    eolinker_os Sleep   1216    2   
+677711  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   535 2   
+677913  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   333 2   
+677264  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1094    2   
+641059  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   6741    2   
+388810  root    172.16.10.70    dmcp    Sleep   527 2   
+677923  hrbase  172.16.10.70    nacos_test  Sleep   327 2   
+1215    ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   1013    2   
+677574  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   709 2   
+678186  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678184  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677901  ytfs_console    172.16.10.17    ytfs_console    Sleep   339 2   
+677980  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   278 2   
+639874  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   34  2   
+677533  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   761 2   
+677398  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   951 2   
+677234  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   22  2   
+677562  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   721 2   
+675594  root    172.16.10.16    cloud_gateway_console   Sleep   94  2   
+677957  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   295 2   
+676847  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1647    2   
+677639  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   632 2   
+640245  root    192.168.10.110  HRBASE_UAT2 Sleep   40899   2   
+677863  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   376 2   
+676936  eolinker_os 172.16.10.16    eolinker_os Sleep   1532    2   
+678195  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677709  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   538 2   
+677900  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   339 2   
+677631  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   648 2   
+678275  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   26  2   
+678147  ytfs    172.16.1.70 YTFS_OP Sleep   104 2   
+677298  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1055    2   
+677606  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   673 2   
+677591  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   691 2   
+677955  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   295 2   
+678239  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   67  2   
+677251  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   22  2   
+677854  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   384 2   
+677462  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   873 2   
+677540  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   748 2   
+678086  ytfs    172.16.2.111    YTFS    Sleep   171 2   
+677338  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1020    2   
+678241  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   63  2   
+678253  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   51  2   
+677922  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   329 2   
+677963  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   291 2   
+676771  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1742    2   
+677962  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   291 2   
+677034  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1395    2   
+678210  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678180  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677945  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   303 2   
+677851  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   387 2   
+678215  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+641620  hrbase  112.26.202.18   HRBASE_UAT2 Sleep   9883    2   
+677382  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   979 2   
+678211  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678268  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   35  2   
+677248  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1114    2   
+677478  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   845 2   
+678055  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   211 2   
+677254  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1108    2   
+676794  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1712    2   
+677888  fuyao_user_dev  172.16.10.16    fuyao_user_dev  Sleep   8   2   
+677145  ytfs    172.16.2.110    YTFS    Sleep   1239    2   
+678217  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+676827  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1671    2   
+678158  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+677340  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1018    2   
+677999  ytfs    172.16.1.70 YTFS_OP Sleep   269 2   
+677801  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   436 2   
+678183  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+676822  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1678    2   
+677857  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   24  2   
+677227  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1124    2   
+678265  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   36  2   
+678207  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+642502  root    192.168.10.143  fuyao_application_dev   Sleep   27582   2   
+678269  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   35  2   
+678228  root    172.16.10.16    ares_ent_service_dev    Sleep   81  2   
+677747  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   502 2   
+388808  root    172.16.10.70    dmcp    Sleep   72856   2   
+677362  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   997 2   
+678273  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   33  2   
+678091  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   162 2   
+588744  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   1095    2   
+678166  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   95  2   
+677504  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   813 2   
+677725  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   520 2   
+678277  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   21  2   
+677971  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   284 2   
+676814  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1684    2   
+677811  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   419 2   
+677480  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   839 2   
+641531  root    192.168.10.9    ent_fserver_env_fuyao   Sleep   22075   2   
+637444  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   13684   2   
+678223  ytfs    172.16.10.17    YTFS    Sleep   89  2   
+677966  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   288 2   
+678248  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   54  2   
+677476  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   847 2   
+678278  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   19  2   
+678039  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   219 2   
+388809  root    172.16.10.70    dmcp    Sleep   72856   2   
+675492  root    192.168.10.114      Sleep   3199    2   
+678251  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   52  2   
+641537  root    192.168.10.9    ent_fserver_env_fuyao   Sleep   22075   2   
+674954  root    192.168.10.114  app_market_dev  Query   0   2   show processlist
+677907  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   335 2   
+677358  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   999 2   
+676889  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1593    2   
+678245  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   58  2   
+677379  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   982 2   
+677080  root    192.168.11.188  fuyao_user_dev  Sleep   1337    2   
+677623  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   655 2   
+677164  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1231    2   
+677807  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   430 2   
+678124  fuyao_user_dev  172.16.10.16    fuyao_user_dev  Sleep   126 2   
+677506  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   809 2   
+677208  ytfs    172.16.10.17    YTFS    Sleep   1152    2   
+677534  app_market_dev  172.16.10.16    app_market_dev  Sleep   50  2   
+677703  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   553 2   
+678280  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   18  2   
+678279  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   18  2   
+657740  root    192.168.10.143  fuyao_approval_dev  Sleep   23095   2   
+677325  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1034    2   
+589554  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   23421   2   
+677273  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1082    2   
+677808  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   430 2   
+676753  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1757    2   
+673612  root    172.16.10.18    cloud_gateway_console   Sleep   46  2   
+677615  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   665 2   
+678093  fuyao_user_dev  172.16.10.16    fuyao_user_dev  Sleep   160 2   
+676941  eolinker_os 172.16.10.16    eolinker_os Sleep   1532    2   
+677423  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   921 2   
+671425  root    192.168.11.157  HRBASE_UAT2 Sleep   7503    2   
+671428  root    192.168.11.157  HRBASE_UAT2 Sleep   7503    2   
+676911  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1562    2   
+677525  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   770 2   
+677374  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   988 2   
+676762  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1752    2   
+677867  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   372 2   
+677968  ytfs    172.16.1.70 YTFS_OP Sleep   286 2   
+588745  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2633    2   
+671859  root    192.168.10.131  fuyao_approval_dev  Sleep   1332    2   
+678286  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   4   2   
+677424  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   917 2   
+677527  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   768 2   
+678174  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+44624   ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   814 2   
+677727  ytfs    172.16.0.100    YTFS    Sleep   514 2   
+678072  ytfs    172.16.2.111    YTFS    Sleep   190 2   
+678081  root    172.16.10.16    cloud_gateway_console   Sleep   34  2   
+676764  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1752    2   
+677343  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1014    2   
+677522  eolinker_os 172.16.10.16    eolinker_os Sleep   773 2   
+678003  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   262 2   
+641619  hrbase  112.26.202.18   HRBASE_UAT2 Sleep   9883    2   
+677921  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   331 2   
+677602  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   677 2   
+601102  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   5707    2   
+672520  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   415 2   
+677563  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   720 2   
+678006  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   258 2   
+677245  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1115    2   
+677616  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   665 2   
+677389  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   967 2   
+675495  root    192.168.10.114  HRBASE_UAT2 Sleep   3198    2   
+677429  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   910 2   
+677033  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1395    2   
+674547  root    192.168.10.121  app_market_dev  Sleep   2187    2   
+641644  root    192.168.10.132  cloud_gateway_console   Sleep   18367   2   
+678125  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   124 2   
+671427  root    192.168.11.157  HRBASE_UAT2 Sleep   7502    2   
+678016  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   248 2   
+678203  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+676829  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1670    2   
+677668  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   592 2   
+677182  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   36  2   
+677903  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   335 2   
+676839  root    112.26.202.18   ent_fserver_env_fuyao   Sleep   1652    2   
+678007  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   258 2   
+677107  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1296    2   
+677519  eolinker_os 172.16.10.16    eolinker_os Sleep   778 2   
+678029  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   234 2   
+678218  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677376  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   985 2   
+588742  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2633    2   
+678025  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   237 2   
+677995  ytfs    172.16.10.17    YTFS    Sleep   271 2   
+677780  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   454 2   
+657082  root    192.168.10.143  fuyao_application_dev   Sleep   24198   2   
+678044  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   216 2   
+678000  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   264 2   
+678213  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677835  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   399 2   
+677876  ytfs    172.16.1.70 YTFS_OP Sleep   359 2   
+678177  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+678257  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   39  2   
+677832  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   406 2   
+677422  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   924 2   
+678199  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677282  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   1066    2   
+677868  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   104 2   
+676835  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1656    2   
+676837  root    112.26.202.18   ent_fserver_env_fuyao   Sleep   1654    2   
+678282  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   15  2   
+678250  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   52  2   
+677261  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1101    2   
+677367  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   995 2   
+678153  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+678212  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677646  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   621 2   
+677853  ytfs    172.16.0.100    YTFS    Sleep   385 2   
+677959  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   293 2   
+678263  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   36  2   
+677202  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   177 2   
+641645  root    192.168.10.132  ares_ent_service_cloud  Sleep   18371   2   
+677547  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   735 2   
+677342  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1018    2   
+677642  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   631 2   
+388811  root    172.16.10.70    dmcp    Sleep   0   2   
+677940  eolinker_os 172.16.10.16    eolinker_os Sleep   305 2   
+678015  app_market_dev  172.16.10.16    app_market_dev  Sleep   250 2   
+678009  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   255 2   
+677561  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   722 2   
+677681  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   578 2   
+677778  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   455 2   
+677733  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   511 2   
+678111  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   145 2   
+677741  root    172.16.10.70    dmcp    Sleep   510 2   
+677723  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   521 2   
+678075  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   181 2   
+677596  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   686 2   
+677550  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   733 2   
+388807  root    172.16.10.70    dmcp    Sleep   6   2   
+639871  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   177 2   
+678208  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677915  ytfs    172.16.2.110    YTFS    Sleep   332 2   
+678129  root    172.16.10.16    ares_ent_service_dev    Sleep   122 2   
+678272  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   34  2   
+671660  root    192.168.11.161      Sleep   614 2   
+677178  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1194    2   
+676899  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1580    2   
+678201  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677956  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   295 2   
+678168  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   21  2   
+677633  root    172.16.10.70    dmcp    Sleep   646 2   
+676841  root    112.26.202.18   ent_fserver_env_fuyao   Sleep   1654    2   
+676730  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1780    2   
+678018  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   245 2   
+677675  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   587 2   
+677255  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1108    2   
+677544  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   738 2   
+677564  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   720 2   
+388804  root    172.16.10.70    dmcp    Sleep   7   2   
+677383  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   975 2   
+677774  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   466 2   
+676954  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1504    2   
+678270  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   35  2   
+639872  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   5706    2   
+388802  root    172.16.10.70    dmcp    Sleep   369786  2   
+671661  root    192.168.11.161      Sleep   5200    2   
+677319  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1046    2   
+588751  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2081    2   
+677882  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   28  2   
+678065  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   200 2   
+677794  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   447 2   
+677607  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   671 2   
+677132  hrbase  172.16.10.18    nacos_test  Sleep   0   2   
+677081  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1337    2   
+678027  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   237 2   
+677765  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   475 2   
+677998  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   270 2   
+674629  root    172.16.10.16    cloud_gateway_console   Sleep   27  2   
+678222  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   93  2   
+676862  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1632    2   
+668057  root    192.168.10.158  ares_ent_service_cloud  Sleep   6922    2   
+677972  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   284 2   
+677287  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1060    2   
+677776  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   464 2   
+677621  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   657 2   
+678237  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   72  2   
+677349  ytfs    172.16.10.17    YTFS    Sleep   1004    2   
+677493  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   28  2   
+677377  ytfs    172.16.0.100    YTFS    Sleep   983 2   
+677977  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   282 2   
+676778  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1736    2   
+677656  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   603 2   
+678155  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+678274  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   27  2   
+388805  root    172.16.10.70    dmcp    Sleep   5816    2   
+676993  app_market_dev  172.16.10.70    app_market_dev  Sleep   142 2   
+677974  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   283 2   
+677941  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   305 2   
+678160  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   50  2   
+678261  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   38  2   
+677569  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   714 2   
+678281  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   17  2   
+677613  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   668 2   
+675590  root    172.16.10.16    cloud_gateway_console   Sleep   49  2   
+676964  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1492    2   
+677598  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   682 2   
+588749  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   1948    2   
+677973  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   284 2   
+677332  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1028    2   
+678058  hrbase  112.26.202.18   ares_ent_service_dev    Sleep   205 2   
+678219  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677879  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   28  2   
+677926  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   322 2   
+678108  root    172.16.10.16    cloud_gateway_console   Sleep   149 2   
+678204  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677520  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   777 2   
+678189  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677463  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   870 2   
+676805  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1699    2   
+676826  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1673    2   
+677852  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   386 2   
+675494  root    192.168.10.114      Sleep   3198    2   
+678235  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   75  2   
+639858  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   5706    2   
+677899  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   340 2   
+677627  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   650 2   
+678243  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   62  2   
+676831  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1669    2   
+678056  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   209 2   
+676907  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1570    2   
+676925  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1536    2   
+677671  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   590 2   
+677028  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1404    2   
+677762  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   482 2   
+677161  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1233    2   
+676898  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1580    2   
+677745  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   504 2   
+677855  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   384 2   
+678226  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   83  2   
+677752  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   500 2   
+678256  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   45  2   
+677328  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1032    2   
+677791  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   451 2   
+677944  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   304 2   
+675593  root    172.16.10.16    cloud_gateway_console   Sleep   177 2   
+677323  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1036    2   
+677452  eolinker_os 172.16.10.16    eolinker_os Sleep   878 2   
+678254  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   49  2   
+677252  root    172.16.10.70    dmcp    Sleep   1111    2   
+676873  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1618    2   
+678038  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   226 2   
+676807  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1695    2   
+677810  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   422 2   
+677570  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   712 2   
+678023  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   239 2   
+676951  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   73  2   
+677893  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   347 2   
+677938  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   127 2   
+677213  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   1147    2   
+639875  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   6742    2   
+677753  eolinker_os 172.16.10.16    eolinker_os Sleep   499 2   
+657053  hrbase  192.168.10.122  HRBASE_UAT2 Sleep   7868    2   
+677779  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   455 2   
+677997  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   270 2   
+388806  root    172.16.10.70    dmcp    Sleep   7   2   
+677392  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   965 2   
+677680  ytfs    172.16.2.111    YTFS    Sleep   580 2   
+677394  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   962 2   
+677345  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1011    2   
+677748  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   502 2   
+677990  app_market_dev  172.16.10.70    app_market_dev  Sleep   28  2   
+677870  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   366 2   
+677743  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   507 2   
+674727  root    172.16.10.18    cloud_gateway_console   Sleep   106 2   
+678229  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   80  2   
+677749  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   501 2   
+677898  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   100 2   
+677361  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   998 2   
+677044  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1372    2   
+678079  root    172.16.10.16    cloud_gateway_console   Sleep   177 2   
+677512  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   791 2   
+678036  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   227 2   
+677943  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   304 2   
+677620  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   657 2   
+677769  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   471 2   
+677763  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   480 2   
+678130  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   122 2   
+677320  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   1042    2   
+678233  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   77  2   
+671662  root    192.168.11.161  smart_hro   Sleep   6999    2   
+678014  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   250 2   
+678034  app_market_dev  172.16.10.17    app_market_dev  Sleep   229 2   
+677649  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   617 2   
+678133  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   121 2   
+678170  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   3   2   
+677862  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   377 2   
+677149  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1238    2   
+588748  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2633    2   
+677579  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   705 2   
+677946  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   302 2   
+678287  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   3   2   
+676380  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   93  2   
+677588  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   692 2   
+677976  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   283 2   
+678206  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678159  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   49  2   
+678161  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   49  2   
+678156  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+678214  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678185  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+638779  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   177 2   
+588747  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2627    2   
+677952  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   297 2   
+678284  root    172.16.10.16    ares_ent_service_dev    Sleep   11  2   
+677931  root    172.16.10.16    ares_ent_service_dev    Sleep   317 2   
+657904  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   3326    2   
+678066  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   199 2   
+678260  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   38  2   
+677538  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   750 2   
+677628  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   649 2   
+677860  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   379 2   
+678109  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   149 2   
+677682  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   576 2   
+677556  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   729 2   
+638493  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   7261    2   
+677352  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1003    2   
+677618  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   662 2   
+677468  eolinker_os 172.16.10.16    eolinker_os Sleep   859 2   
+677226  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1125    2   
+676919  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   20  2   
+678157  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+677304  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   1053    2   
+677396  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   953 2   
+678117  root    172.16.10.16    ares_ent_service_dev    Sleep   139 2   
+677599  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   681 2   
+676890  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1588    2   
+677594  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   689 2   
+676846  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1648    2   
+677697  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   563 2   
+677086  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1327    2   
+677906  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   335 2   
+678276  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   22  2   
+677535  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   759 2   
+678078  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   178 2   
+677291  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   1058    2   
+677930  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   318 2   
+678017  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   245 2   
+677344  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1014    2   
+678024  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   238 2   
+677278  root    172.16.10.70    dmcp    Sleep   1072    2   
+678060  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   204 2   
+677324  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1035    2   
+678179  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678172  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   33  2   
+678073  root    172.16.10.16    ares_ent_service_dev    Sleep   190 2   
+588743  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2633    2   
+678288  hrbase  172.16.10.16    HRBASE_UAT2 Sleep   3   2   
+677985  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   274 2   
+677928  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   320 2   
+677726  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   518 2   
+676790  ytfs_console    172.16.10.17    ytfs_console    Sleep   1714    2   
+677448  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   881 2   
+677306  ytfs    172.16.2.110    YTFS    Sleep   1050    2   
+677871  ytfs    172.16.2.110    YTFS    Sleep   364 2   
+677339  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1019    2   
+678063  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   202 2   
+677077  root    192.168.11.188  app_market_dev  Sleep   1337    2   
+677259  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1103    2   
+588750  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2627    2   
+676844  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1650    2   
+678176  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+678209  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677516  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   789 2   
+677249  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   35  2   
+677840  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   393 2   
+676942  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1531    2   
+678019  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   245 2   
+678192  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678106  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   153 2   
+678266  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   36  2   
+677947  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   302 2   
+677337  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1022    2   
+660877  hrbase  192.168.10.122  HRBASE_UAT2 Sleep   19515   2   
+677593  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   690 2   
+676772  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1740    2   
+678200  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678022  root    172.16.10.16    ares_ent_service_dev    Sleep   239 2   
+677643  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   626 2   
+677551  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   731 2   
+677872  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   363 2   
+677970  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   284 2   
+668058  root    192.168.10.158  app_market_dev  Sleep   7207    2   
+677902  root    172.16.10.16    ares_ent_service_dev    Sleep   337 2   
+677597  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   683 2   
+657054  hrbase  192.168.10.122  HRBASE_UAT2 Sleep   6198    2   
+677065  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1346    2   
+677276  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1076    2   
+677894  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   346 2   
+677399  ytfs    172.16.0.100    YTFS    Sleep   950 2   
+677260  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1102    2   
+677560  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   722 2   
+678246  root    172.16.10.16    ares_ent_service_dev    Sleep   54  2   
+677878  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   357 2   
+677443  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   883 2   
+677225  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1126    2   
+677207  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   177 2   
+677258  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   1104    2   
+640238  root    192.168.10.110  HRBASE_UAT2 Sleep   984 2   
+677795  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   445 2   
+678194  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678187  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+674546  root    192.168.10.121  ares_ent_service_dev    Sleep   4254    2   
+678202  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+657746  root    192.168.10.143  fuyao_approval_dev  Sleep   23095   2   
+655942  root    192.168.10.110  HRBASE_UAT2 Sleep   19377   2   
+677875  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   360 2   
+678196  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677078  root    192.168.11.188  app_market_dev  Sleep   1338    2   
+678247  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   54  2   
+671857  root    192.168.10.131      Sleep   1416    2   
+640236  root    192.168.10.110  HRBASE_UAT2 Sleep   46011   2   
+677761  ytfs    172.16.2.110    YTFS    Sleep   483 2   
+677885  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   28  2   
+677644  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   626 2   
+678154  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   97  2   
+677360  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   998 2   
+677553  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   730 2   
+677638  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   636 2   
+678259  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   38  2   
+677614  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   666 2   
+678175  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+678205  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+676793  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1713    2   
+676786  ytfs_console    172.16.10.17    ytfs_console    Sleep   1722    2   
+677975  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   283 2   
+674817  hrbase  172.16.10.18    PIECE_WORK_UAT  Sleep   213 2   
+676970  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1480    2   
+678262  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   38  2   
+677007  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1429    2   
+677419  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   929 2   
+678238  hrbase  112.26.202.18   ares_ent_service_dev    Sleep   70  2   
+678271  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   34  2   
+677942  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   304 2   
+639873  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   5706    2   
+677595  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   687 2   
+676967  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1487    2   
+678181  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677189  ytfs_console    172.16.10.17    ytfs_console    Sleep   1177    2   
+677708  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   542 2   
+677102  hrbase  172.16.10.18    ares_ent_service_dev    Sleep   236 2   
+676744  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1770    2   
+677934  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   315 2   
+677873  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   361 2   
+671858  root    192.168.10.131      Sleep   1416    2   
+676824  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1678    2   
+677006  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1430    2   
+677683  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   573 2   
+677754  ytfs    172.16.2.111    YTFS    Sleep   498 2   
+677836  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   396 2   
+677881  hrbase  192.168.10.136  ares_ent_service_dev    Sleep   356 2   
+676737  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1773    2   
+677546  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   736 2   
+678285  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   4   2   
+677031  fuyao_pursale_dev   172.16.10.16    fuyao_pursale_dev   Sleep   1397    2   
+677239  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1116    2   
+676785  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1722    2   
+677436  ytfs    172.16.1.70 YTFS_OP Sleep   891 2   
+677874  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   20  2   
+677286  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   1061    2   
+676947  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1516    2   
+677831  ytfs    172.16.10.17    YTFS    Sleep   408 2   
+676990  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   1466    2   
+678193  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677891  fuyao_application_dev   172.16.10.17    fuyao_application_dev   Sleep   349 2   
+678178  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   35  2   
+678112  root    172.16.10.17    ares_ent_service_dev    Sleep   144 2   
+678249  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   54  2   
+677600  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   680 2   
+678197  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+677079  root    192.168.11.188  fuyao_user_dev  Sleep   1337    2   
+678107  root    172.16.10.16    cloud_gateway_console   Sleep   149 2   
+677543  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   738 2   
+678040  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   217 2   
+677378  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   983 2   
+678264  hrbase  192.168.10.110  HRBASE_UAT2 Sleep   36  2   
+676801  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   1703    2   
+678092  hrbase  192.168.10.136  ares_ent_service_dev    Sleep   161 2   
+677939  root    172.16.10.17    ares_ent_service_dev    Sleep   309 2   
+678138  fuyao_approval_dev  172.16.10.17    fuyao_approval_dev  Sleep   115 2   
+677485  ytfs    172.16.0.100    YTFS    Sleep   828 2   
+678258  ent_fserver_env 172.16.10.17    ent_fserver_env Sleep   39  2   
+677554  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   730 2   
+678191  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678145  fuyao_invoice_dev   172.16.10.17    fuyao_invoice_dev   Sleep   108 2   
+588746  hrbase  172.16.10.18    HRBASE_UAT2 Sleep   2527    2   
+638495  ares_ent_service_cloud  172.16.10.17    ares_ent_service_cloud  Sleep   43  2   
+677617  ent_fserver_env 172.16.10.16    ent_fserver_env_fuyao   Sleep   664 2   
+677236  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   21  2   
+676819  hrbase  172.16.10.70    nacos_test  Sleep   1   2   
+678182  fuyao_approval_dev  172.16.10.16    fuyao_approval_dev  Sleep   94  2   
+678134  fuyao_costcontrol_dev   172.16.10.16    fuyao_costcontrol_dev   Sleep   120 2   
+
 +------+------+----------------------+---------+---------+------+----------+------------------+
 | Id   | User | Host                 | db      | Command | Time | State    | Info             |
 +------+------+----------------------+---------+---------+------+----------+------------------+
@@ -1671,8 +2371,6 @@ mysql 5.0中文翻译
 QQ:362606856
 http://www.deituicms.com/mysql8cn/cn/web.html
 
-
-
 gitbook
 https://github.com/mowangjuanzi/mysql-chinese-doc
 
@@ -1681,8 +2379,6 @@ https://github.com/jobbole/awesome-mysql-cn
 https://github.com/tmcallaghan/iibench-mysql
 
 http://lists.mysql.com/
-
-
 
 ```sql
 mysql> select str_to_date('2016-09-09 15:43:28','%Y-%m-%d %H:%i:%s');
@@ -1702,8 +2398,6 @@ mysql> select date_format(now(), '%Y-%m-%d %h:%i:%s');
 1 row in set (0.01 sec)
 ```
 
-
-
 Mysql中字符串互转时间类型,date_format()和str_to_date()函数
 字符串 日期对象相互转换
 
@@ -1719,14 +2413,7 @@ select date_format(now(), '%Y-%m-%d %h:%i:%s');
 now()函数是通用的
 https://www.w3school.com.cn/sql/func_now.asp
 
-
-
-
-
 SELECT function(列) FROM 表
-
-
-
 
 SQL 函数
 - SQL avg()       平均数
@@ -1795,8 +2482,6 @@ XtraBackup和pt-Toolkits
 innodb Oracle 收紧
 用户返回的问题，test case，Oracle不反馈给社区
 
-
-
 DB2 大型机
 VLDB、SIGMOD
 https://www.cnblogs.com/oxspirt/p/6208912.html
@@ -1805,9 +2490,7 @@ https://www.cnblogs.com/oxspirt/p/6208912.html
 ICDE
 PVLDB指的是VLDB会议论文集，被VLDB会议接受的论文，按期将会刊登在PVLDB中。VLDBJ则是VLDB基金会主管的期刊，其论文篇幅长，审稿周期长。
 关于POLARDB的一篇论文《PolarFS： An Ultra-low Latency and Failure Resilient Distributed File System for Shared Storage Cloud Database》就被数据库顶级学术会议VLDB 2018接收
-国际数据工程会议（International Conference on Data Engineering，简称ICDE）是全球范围内顶级三大数据 库学术会议之一
-
-
+国际数据工程会议（International Conference on Data Engineering，简称ICDE）是全球范围内顶级三大数据库学术会议之一
 
 （1）*.frm--表定义，是描述表结构的文件。
 （2）*.MYD--"D"数据信息文件，是表的数据文件。
@@ -1865,6 +2548,9 @@ mysqlbinlog
 
 
 show variables like 'log_bin';
+
+log_bin 0
+
 general_log
 general_log_file
 log_output  FILE
@@ -1892,8 +2578,6 @@ X Protocol
 mysql protocol
 https://blog.csdn.net/caisini_vc/article/details/5356136
 
-
-
 mysql 存储过程 函数
 
 http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html
@@ -1902,29 +2586,18 @@ https://blog.csdn.net/u013488847/article/details/53819976
 http://www.cnblogs.com/xuanzhi201111/p/4175635.html
 
 
-
 mysql select 查询时间测试
-
-
 
 导入数据的方式
 1 sql文件 在使用syslog导入
 2 写存储过程
 
-
-
 https://www.cnblogs.com/1175429393wljblog/p/5918150.html
-
-
 
 生成插入数据库的sql备份文件
 
-
-
 sqlyog
 导出 导入脚本
-
-
 
 https://blog.csdn.net/qq_20975027/article/details/78343972
 
@@ -1932,16 +2605,12 @@ https://blog.csdn.net/qq_20975027/article/details/78343972
 
 命令行测试select查询效率
 
-
-
 https://blog.csdn.net/weixin_37288522/article/details/79710909
 https://blog.csdn.net/blueheart20/article/details/51007659
 
 
 
 数据库图形工具
-
-
 
 navicate 导入失败
 sqlyog 数据库必须存在 导入sql文件
@@ -1970,15 +2639,17 @@ alter table 表名 add spatial index 索引名 (列名);
 聚簇索引就是一个正常的B+树结构，其叶子节点中的data存放数据表中所有每一行的完整数据。
 非聚簇索引其叶子节点的 data 中存的不是完整的数据，而是主键值。
 
-因索引结构会产生两个情况：索引覆盖 和 回表。
+因索引结构会产生两个情况：索引覆盖和回表。
 
 索引覆盖：创建一个索引，该索引包含查询中用到的所有字段，只需要通过索引就可以查找和返回查询所需要的数据。
 可以一次性完成查询工作，有效减少IO，提高查询效率。
+covering index
+https://dev.mysql.com/doc/refman/8.3/en/glossary.html#glos_covering_index
 
 索引覆盖
 结合上面的知识储备，我们进一步来优化一下刚才的SQL
 
-select *from lyb_test where age = 12
+select * from lyb_test where age = 12
 
 当这条语句执行时，我们知道会进行两次索引树查询，第一次在二级索引上查询到主键索引的引用，然后到主键索引树中查询到所需要的数据，这个过程我们称之为回表。那为什么要有回表操作呢？由于查询的结果是所有字段，所需要的数据只有主键上才有，所以不得不回表。我们如果将sql改造为下面这种方式：
 
@@ -2014,6 +2685,13 @@ InnoDB支持外键，而MyISAM不支持。
 Innodb：frm是表定义文件，ibd是数据文件。
 Myisam：frm是表定义文件，myd是数据文件，myi是索引文件。
 
+在 InnoDB 存储引擎中，索引文件不是以单独的文件形式存在，而是与数据文件（.ibd 文件）一起存储在表空间（tablespace）中。
+InnoDB 使用表空间来组织和管理数据和索引。每个 InnoDB 表都有一个对应的表空间，其中包含了表的数据和索引。
+在 InnoDB 存储引擎中，数据和索引是按照 B+ 树的结构组织的。B+ 树索引的数据存储在数据文件（.ibd 文件）中，而索引结构本身被存储在共享的表空间中。
+因此，索引文件并不是独立存在的文件，而是与数据文件一同存储在表空间中。这种设计可以提高数据和索引之间的一致性，并提供更好的性能和可管理性。
+需要注意的是，InnoDB 存储引擎还支持压缩表和分区表等特性，这些特性可能会对数据和索引的存储方式有所影响。但无论如何，索引文件都是与数据文件一起存储在表空间中。
+
+
 阿里 P8 架构师谈:MySQL 慢查询优化、索引优化、以及表等优化总结
 https://www.bilibili.com/video/av583428536/?vd_source=71b9c2a5f966942c83677c2110efde22
 
@@ -2038,15 +2716,12 @@ https://www.cnblogs.com/coderising/articles/5719517.html
 （1）若它的左子树不空，则左子树上所有结点的值均小于它的父结点的值；
 （2）若它的右子树不空，则右子树上所有结点的值均大于它的父结点的值；
 （3）它的左、右子树也分别为二叉排序树。
-
 二、平衡二叉树（Self-balancing binary search tree）  
 自平衡二叉查找树  又被称为AVL树（有别于AVL算法）  字母是发明者的名字
 它是一棵空树或它的左右两个子树的高度差(平衡因子)的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树，平衡二叉树必定是二叉搜索树，反之则不一定
-
 平衡因子（平衡度）：平衡度为1，既每个结点的平衡因子都为 1、－1、0 的二叉排序树。或者说每个结点的左右子树的高度最多差1的二叉排序树。
 平衡二叉树的目的是为了减少二叉查找树层次，提高查找速度
 平衡二叉树的常用实现方法有AA树、AVL树、红黑树、树堆Treap、伸展树等
-
 三、红黑树-R-B Tree，全称是Red-Black Tree
 又称为“红黑树”，它一种平衡二叉树。红黑树的每个节点上都有存储位表示节点的颜色，可以是红(Red)或黑(Black)。
 红黑树的特性:
@@ -2116,8 +2791,7 @@ XA的性能很低。一个数据库的事务和多个数据库间的XA事务性�
 
 MySQL XA 的限制
 在MySQL 5.7.7 之前，MySQL一直存在一个"bug"。在事务达到PREPARED状态后，客户端断开与MySQL的连接，MySQL 会自动回滚该事务，这个行为不符合分布式事务的规范，MySQL将PREPARED的事务丢失了。之所以MySQL这么实现是因为MySQL 5.7.7 之前PREPARED的事务并不会记录到binlog中。客户端退出后会丢失该信息，如果允许再提交，那么binlog缺少事务信息，会造成主从不一致。
-
-在MySQL 5.7.7 之后，MySQL 新增了一个XA_prepare_log_event的事件，会把xa start到xa prepare中间的操作记录到Binlog中。Slave读取Relay log 进行回放，当SQL Thread读取到PREPARED的事务后，在读取xa commit或者xa rollback前，会进行一个类似客户端断开的操作，继续读取后续的事务信息，不会阻塞SQL Thread的执行。从以上的结果看，Oracle在MySQL 5.7.7 上确实完美的解决了MySQL XA一直存在的一个"bug"。
+在MySQL5.7.7之后，MySQL新增了一个XA_prepare_log_event的事件，会把xa start到xa prepare中间的操作记录到Binlog中。Slave读取Relay log 进行回放，当SQL Thread读取到PREPARED的事务后，在读取xa commit或者xa rollback前，会进行一个类似客户端断开的操作，继续读取后续的事务信息，不会阻塞SQL Thread的执行。从以上的结果看，Oracle在MySQL 5.7.7 上确实完美的解决了MySQL XA一直存在的一个"bug"。
 
 MySQL XA 的实践
 本人曾在某公司的分布式数据库项目组中实践过基于MySQL XA的分布式事务。MySQL XA 要满足线上高并发的访问要求，在使用时还需要解决两个问题：分布式死锁问题和分布式读一致性问题。分布式死锁问题是指MySQL Server 是可以检测和解决单个MySQL实例中的死锁问题，但涉及到跨越多个MySQL 实例的分布式事务时候，需要程序层面实现死锁的检测和解决。分布式读一致性问题是指MySQL的read view 也是实例级别的，对于全局分布式事务来说无法实现读一致，只能通过select ... lock in share mode在读请求上加锁的串行化隔离级别来实现，这必然会带来并发性能的下降。这就需要在程序层面构建全局的read view来实现全局的MVCC 。当然这两个问题，当时团队的大牛们都已经解决了，我也很有幸参与其中。
@@ -2135,7 +2809,6 @@ MySQL网络协议分析.mhtml
 https://segmentfault.com/a/1190000012166738
 
 ```
-
 查询Mysql最大连接数和当前连接数
 最大连接数
 `show variables like '%max_connections%'; `
@@ -2146,15 +2819,13 @@ https://segmentfault.com/a/1190000012166738
 
 ```
 
-[MySQL查看 InnoDB表中每个索引的高度](https://www.cnblogs.com/waterystone/p/6638531.html)
+[MySQL查看InnoDB表中每个索引的高度](https://www.cnblogs.com/waterystone/p/6638531.html)
 
 [files-in-innodb-sources](https://dev.mysql.com/doc/internals/en/files-in-innodb-sources.html)
 
 在select窗口中，执行以下语句：
-
 set profiling =1; -- 打开profile分析工具
 show variables like '%profil%'; -- 查看是否生效
-
 
 +------------------------+-------+
 | Variable_name          | Value |
@@ -2188,21 +2859,15 @@ EXPLAIN select * from t_car_copy ; ##查看执行计划中的sql性能
 EXPLAIN select * from t_car_copy where org_id = '3';
 EXPLAIN select * from t_car_copy where 1=1 and org_id = '3';
 
-
-
 ```shell
-
  (B-TREE)
-
   File Name   What Name Stands For         Size     Comment Inside File
   ---------   --------------------         ------   -------------------
   btr0btr.c   B-tree / B-tree              82,400   B-tree
   btr0cur.c   B-tree / Cursor             103,233   index tree cursor
   btr0sea.c   B-tree / Search              41,788   index tree adaptive search
   btr0pcur.c  B-tree / persistent cursor   16,720   index tree persistent cursor
-
 ```
-
 
 ### sql语句执行返回值
 insert，返回值是：新插入行的主键（primary key）；需要包含<selectKey>语句，才会返回主键，否则返回值为null。
@@ -2237,11 +2902,14 @@ MySQL 查看约束，添加约束，删除约束 添加列，修改列，删除�
 修改列名Oracle：alter table bbb rename column nnnnn to hh int;
 修改列属性：alter table t_book modify name varchar(22);
 
-
 mysql出现unblock with 'mysqladmin flush-hosts'
 https://www.cnblogs.com/abclife/p/9469622.html
 
 ## 聚集索引
+clustered index
+https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html
+
+https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_clustered_index
 
 每个InnoDB表有一个特殊的指数称为聚集索引所在的行的数据存储。通常，聚集索引是主键的同义词。从查询，插入性能最好，和其他的数据库操作，必须了解InnoDB使用聚集索引来优化每个表最常见的查询和DML操作。 当你定义你的表的主键，InnoDB使用它作为聚集索引。为您创建的每个表定义一个主键。如果没有逻辑唯一的和非空的列或列集，添加一个新的自动增量列，它的值自动填充。 如果你不确定你的表的主键、唯一索引，MySQL定位第一所有键列不为空，InnoDB使用它作为聚集索引。 如果表没有主键或唯一索引InnoDB。
 
@@ -2266,7 +2934,7 @@ information_schema mysql元数据数据库 权限 密码 表引擎
 数据库的acid属性分别由什么实现？
 原子性 undo log
 一致性 undo log
-隔离性 mvcc 锁
+隔离性 mvcc 锁(悲观锁 乐观锁)
 持久性 redo log
 
 面试题1 ：为什么用B/B+树这种结构来实现索引呢？
@@ -2275,7 +2943,8 @@ information_schema mysql元数据数据库 权限 密码 表引擎
 B-Tree借助计算机磁盘预读的机制，并使用如下技巧：每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个结点只需一次I/O。假设B-Tree的高度为 h, B-Tree 中一次检索最多需要 h-1 次 I/O（根节点常驻内存），渐进复杂度为 O(h)=O(logdN)O(h)=O(logdN)。一般实际应用中，出度 d 是非常大的数字，通常超过 100，因此 h 非常小（通常不超过3，也即索引的 B+ 树层次一般不超过三层，所以查找效率很高）。而红黑树这种结构，h 明显要深的多。由于逻辑上很近的节点（父子）物理上可能很远，无法利用局部性，所以红黑树的 I/O 渐进复杂度也为 O(h)，效率明显比 B-Tree 差很多。
 
 面试题2 ：为什么 MySQL 的索引使用 B+ 树而不是 B 树呢？
-（1）B+ 树更适合外部存储(一般指磁盘存储),由于内节点(非叶子节点)不存储 data，所以一个节点可以存储更多的内节点，每个节点能索引的范围更大更精确。也就是说使用 B+ 树单次磁盘 IO 的信息量相比较 B 树更大，IO 效率更高。（2）MySQL 是关系型数据库，经常会按照区间来访问某个索引列，B+ 树的叶子节点间按顺序建立了链指针，加强了区间访问性，所以B+树对索引列上的区间范围查询很友好。而 B 树每个节点的 key 和 data 在一起，无法进行区间查找。
+（1）B+ 树更适合外部存储(一般指磁盘存储),由于内节点(非叶子节点)不存储 data，所以一个节点可以存储更多的内节点，每个节点能索引的范围更大更精确。也就是说使用 B+ 树单次磁盘 IO 的信息量相比较 B 树更大，IO 效率更高。
+（2）MySQL 是关系型数据库，经常会按照区间来访问某个索引列，B+ 树的叶子节点间按顺序建立了链指针，加强了区间访问性，所以B+树对索引列上的区间范围查询很友好。而 B 树每个节点的key和data在一起，无法进行区间查找。
 
 官方文档
 
@@ -2313,12 +2982,28 @@ limit
 
 如果max有多个，limit只有一个
 
+dbeaver可以格式化sql
+
 ## 源码的文件
 深入理解MySQL核心技术
 对源码的文件对应的功能有讲解
 分模块
 
-SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species FROM pet AS p1 INNER JOIN pet AS p2 ON p1.species = p2.species AND p1.sex = 'f' AND p1.death IS NULL  AND p2.sex = 'm' AND p2.death IS NULL;
+SELECT
+    p1.name,
+    p1.sex,
+    p2.name,
+    p2.sex,
+    p1.species
+FROM
+    pet AS p1
+INNER JOIN pet AS p2 ON
+    p1.species = p2.species
+    AND p1.sex = 'f'
+    AND p1.death IS NULL
+    AND p2.sex = 'm'
+    AND p2.death IS NULL;
+
 +--------+------+-------+------+---------+ 
 | name   | sex  | name  | sex  | species 
 | +--------+------+-------+------+---------+ 
@@ -2347,10 +3032,13 @@ void handle_connections_sockets();
 
 
 XA 分布式事务
-
 ```mysql
 SHOW VARIABLES LIKE '%xa%';
 ```
+innodb_support_xa   1
+min_examined_row_limit  0
+
+
 后台开发中经常需要给前端提供接口，返回的字段为null的时候需要设置字段的默认值。
 
 select ifnull(字段,0) from 表名
@@ -2358,7 +3046,6 @@ select ifnull(字段,0) from 表名
 [java se transactions](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html)
 
 ```java
-
 Connection conn = DriverManager.getConnection(...);
 try{
   con.setAutoCommit(false);
@@ -2372,7 +3059,6 @@ try{
 }finally{
    con.close();
 }
-
 ```
 
 
@@ -2515,8 +3201,9 @@ mysql -u root -e "GRANT ALL ON stockmarket.* TO 'makler'@'localhost';"
 ```
 
 tidb
-
 5.7.25-TiDB-v3.0.3
+屹通：
+5.7.25-TiDB-v4.0.16
 
 [MySQL内核源码解读-SQL解析之解析器浅析](https://blog.51cto.com/wangwei007/2300959)
 
@@ -2530,8 +3217,15 @@ select host, user from user;
 
 SQL规范与性能优化
 1.2.1、先提前声明，博主工作用到是MySQL，可能有些场景只针对MySQL。说到SQL优化，一些概念必须要理解，不然死记硬背一两天就忘记了。特别是执行计划的概念。
-1.2.2、什么是执行计划：a.决定如何访问表数据，是否通过索引，是否排序等。b.多表关联是先访问哪个表。c.多表关联时，使用哪种连接方式，不过现在MySQL只有嵌套连接（嵌套循环，顾名思义就是将一个表为出发点，将该表全部记录逐条去遍历另外一张表的记录）。
-1.2.3、SQL执行顺序：a.检查语法是否正确。b.检查表是否存在、权限是否满足等。c.根据统计信息(如data length,rows,index length、索引唯一度)，生成较优的执行计划。d.根据执行计划，进行数据检索、过滤、合并、排序等操作。访问数据时，内存中如存在表数据，则直接进行操作；否则，从磁带读取表数据，放入内存，再进行操作；如内存不足，则内存中较冷数据涮出内存，再从内存中读取数据。
+1.2.2、什么是执行计划：
+a.决定如何访问表数据，是否通过索引，是否排序等。
+b.多表关联是先访问哪个表。
+c.多表关联时，使用哪种连接方式，不过现在MySQL只有嵌套连接（嵌套循环，顾名思义就是将一个表为出发点，将该表全部记录逐条去遍历另外一张表的记录）。
+1.2.3、SQL执行顺序：
+a.检查语法是否正确。
+b.检查表是否存在、权限是否满足等。
+c.根据统计信息(如data length,rows,index length、索引唯一度)，生成较优的执行计划。
+d.根据执行计划，进行数据检索、过滤、合并、排序等操作。访问数据时，内存中如存在表数据，则直接进行操作；否则，从磁带读取表数据，放入内存，再进行操作；如内存不足，则内存中较冷数据涮出内存，再从内存中读取数据。
 1.2.4、索引：查询的时候如果使用上了索引，可以提高效率，因为建立了索引后，可以理解为数据字典的结构存储，因此根据条件查询的时候更加高效。下面看一下MySQL常用的索引类型的概念。 
 a．普通索引：在创建普通索引时，不附加任何限制条件。这类索引可以创建在任何数据类型中，其值是否唯一和非空由字段本身的完整性约束条件决定。建立索引以后，查询时可以通过索引进行查询。例如，在student表的stu_id字段上建立一个普通索引。查询记录时，就可以根据该索引进行查询。
 b．唯一性索引:使用UNIQUE参数可以设置索引为唯一性索引。在创建唯一性索引时，限制该索引的值必须是唯一的。例如，在student表的stu_name字段中创建唯一性索引，那么stu_name字段的值就必需是唯一的。通过唯一性索引，可以更快速地确定某条记录。主键就是一种特殊唯一性索引。
@@ -2544,7 +3238,7 @@ e . 全文索引：使用FULLTEXT参数可以设置索引为全文索引。全�
 1.2.6、一般哪些场景会导致索引失效：a.使用like关键字匹配字符串第一个为”%”的场景。b.条件中包含or、in、not in、<>关键字，默认不走索引的。c.访问表上的数据行超出表总记录数30%，变成全表扫描。d.查询条件使用函数在索引列上，或者对索引列进行运算。e.多列索引中，第一个索引列使用范围查询，只能用到部份或无法使用索引。f.多列索引中，第一个查询条件不是最左索引列，上面多列索引概念中也有提到。肯定还有更多的场景，但是博主现在能想到的场景就这些了。
 1.2.7、不能同时使用两个索引，一个过滤数据，一个用于排序（主键除外）。
 1.2.8、DML语句如果使用索引，会导致lock全表；如果使用了非唯一索引，可能只是锁住一定范围。对此，建议更新/删除数据尽量用上索引，如果可以最好用上主键或唯一索引，另外事务要及时提交。
-1.2.9、最后一点，如何看执行计划，分析SQL的性能。这个吧，三言两语说不清楚，直接看其他博主的博文吧：[mysql explain执行计划详解](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/xiaoboluo768/p/5400990.html)。一定要看！
+1.2.9、最后一点，如何看执行计划，分析SQL的性能。这个吧，三言两语说不清楚，直接看其他博主的博文吧：[mysql explain执行计划详解](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/xiaoboluo768/p/5400990.html)。
 
 [启用mysql的sql日志](https://blog.csdn.net/aochijing0046/article/details/101493526)
 
@@ -2556,6 +3250,9 @@ https://www.cnblogs.com/liuliu/archive/2009/09/04/1560327.html
 在mysql命令行或者客户端管理工具中执行：SHOW VARIABLES LIKE "general_log%";
 
 结果：
+general_log 0
+general_log_file    /usr/local/mysql/data/localhost.log
+
 general_log OFF
 general_log_file /var/lib/mysql/localhost.log
 
@@ -2577,16 +3274,20 @@ SHOW VARIABLES LIKE "log_output%";
 [Mysql 配置慢查询日志（SlowQueryLog）以及使用日志分析工具](https://www.cnblogs.com/codelife1988/p/4159964.html)
 
 MySQL
-
 检查配置文件是否正确？？？
 
 MySQL日志主要包含：错误日志、查询日志、慢查询日志、事务日志、二进制日志。
+MySQL日志查看详解
 https://www.cnblogs.com/mungerz/p/10442791.html
 
 show variables like 'general_log_file';
 查看本地日志路径
 
 show variables like 'slow_query_log_file';
+
+/usr/local/mysql/data/localhost-slow.log
+
+
 慢查询日志
 
 错误日志： -log-err
@@ -2619,4 +3320,3 @@ mysql 命令行
 `status;`
 `select version();`
 
-net start mysql （对应的服务关闭命令为 net stop mysql）
