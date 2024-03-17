@@ -1,4 +1,6 @@
-# mysql mvcc
+# mvcc
+
+mvcc的根本目的是让读写不加锁
 
 MVCC原理详解.mhtml
 1、事务版本号
