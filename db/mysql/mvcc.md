@@ -1,5 +1,6 @@
 # mvcc
 
+mysql等数据库实现mvcc
 mvcc的根本目的是让读写不加锁
 
 MVCC原理详解.mhtml
