@@ -1,5 +1,58 @@
 # lombok
 
+使用了lombok后如何生成正确源码包_并发编程网–ifeve.com.mhtml
+
+lombok.SneakyThrows
+
+```java
+                @SneakyThrows
+                @Override
+                public void run() {
+                    // 预备状态
+                    System.out.println("参赛者"+Thread.currentThread().getName()+ "已经准备好了");
+                    // 等待裁判吹哨
+                    begin.await();
+                    // 开始跑步
+                    System.out.println("参赛者"+Thread.currentThread().getName() + "开始跑步");
+                    Thread.sleep(3000);
+                    // 跑步结束, 跑完了
+                    System.out.println("参赛者"+Thread.currentThread().getName()+ "到达终点");
+                    // 跑到终点, 计数器就减一
+                    end.countDown();
+                }
+```
+
+lombok.SneakyThrows 是 Lombok 库提供的一个注解，用于简化异常处理。当你想要在一个方法中抛出异常，但又不想显式地在方法签名中声明这个异常时，可以使用这个注解。使用这个注解后，Lombok 会在编译时自动为你添加异常抛出的代码，使得你的代码看起来更简洁。
+
+通常，Java 要求如果一个方法内部抛出了一个检查型异常（checked exception），那么这个方法必须在其签名中声明这个异常。这样做的好处是强制调用者处理这些可能发生的异常，但有时候这会导致代码变得冗余和复杂。
+
+使用 SneakyThrows 注解可以绕过这个限制。它允许你抛出一个检查型异常，而不需要在方法签名中声明它。这通常用于那些你确定调用者会妥善处理的异常，或者你想要避免方法签名变得过于复杂的情况。
+
+下面是一个使用 SneakyThrows 注解的示例：
+
+```java
+import lombok.SneakyThrows;  
+  
+public class Example {  
+      
+    @SneakyThrows  
+    public void doSomething() {  
+        // 这里调用了一个可能抛出 IOException 的方法  
+        Files.readAllLines(Paths.get("somefile.txt"));  
+          
+        // 由于使用了 @SneakyThrows，我们不需要在方法签名中声明 IOException  
+    }  
+      
+    public static void main(String[] args) {  
+        Example example = new Example();  
+        example.doSomething(); // 调用时不需要处理 IOException  
+    }  
+}
+```
+在这个示例中，doSomething方法内部调用了Files.readAllLines，这个方法可能会抛出IOException。由于我们使用了SneakyThrows注解，我们不需要在doSomething方法的签名中声明这个异常。然而，需要注意的是，尽管在代码中看起来没有处理这个异常，实际上Lombok在编译时会自动插入异常抛出的代码。因此，调用doSomething方法的代码仍然需要能够处理这个潜在的异常，尽管它看起来像是被忽略了。
+
+需要注意的是，使用 SneakyThrows 可能会使代码更难理解和维护，因为它隐藏了异常处理的部分。因此，在使用这个注解时需要谨慎考虑是否真的有必要这样做，以及是否真的确定调用者会妥善处理这些异常。
+
 ### annotation
 
 RequiredArgsConstructor
