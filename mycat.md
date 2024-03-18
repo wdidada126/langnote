@@ -26,3 +26,6 @@ MyCat最后一个版本是在2017年8月发布的2.0版本。之后MyCat基本�
 虽然MyCat已经停止更新几年了,但是对于理解数据库中间件和分布式事务的原理,MyCat是一个很好的学习案例。
 
 你可以从MyCat的设计和实现中,了解数据库中间件和分布式事务相关技术背后的思想和优化策略。
+
+市面上的数据库中间件有很多，如MyCAT、Atlas、Sharding Sphere、Kingshard、Vitess等等，它们各有各的特点和使用场景。
+https://zhuanlan.zhihu.com/p/679354952
