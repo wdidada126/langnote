@@ -17,8 +17,8 @@ Widnows Mac电脑上
 
 #### 核心概念/专有名词
 
-- 两阶段锁协议
-- 覆盖索引 coving index
+- 两阶段锁协议 1pl 3pl
+- 覆盖索引 coving index 索引下推
 - WAL
 - redo log
 - bin log
@@ -26,7 +26,7 @@ Widnows Mac电脑上
 - 不可重复读（non-repeatable read）
 - 幻读（phantom read）
 - 索引下推
-- 
+- mdl 锁 表锁 行锁 锁的粒度 MDL(Metadata Locking)
 
 two-phase locking protocol 2PL协议，两段封锁协议
 Two-phase transaction and two-phase locking protocol
@@ -200,9 +200,9 @@ mysql自动选择索引
 
 邮箱字段加索引
 
-**使用前缀索引，定义好长度，就可以做到既节省空间，又不用额外增加太多的查询成本。**
+使用前缀索引，定义好长度，就可以做到既节省空间，又不用额外增加太多的查询成本。
 
-**覆盖索引**
+覆盖索引
 
 覆盖索引是select的数据列只用从索引中就能够取得，不必读取数据行，换句话说查询列要被所建的索引覆盖。
 
