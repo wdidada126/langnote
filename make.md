@@ -1,5 +1,43 @@
 # make
 
+https://github.com/adamdunkels/uip
+
+make多个文件夹，分离式编译吗？
+app/hello-world/Makefile.hello-world
+unix/Makefile
+lib/
+uip/Makefile.include
+
+在C或C++项目中，make是一个常用的构建工具，用于自动化编译过程。使用make时，通常会在项目的不同部分定义多个Makefile文件，以组织构建过程。这种做法通常被称为分离式编译。
+
+在您给出的例子中，我们有以下文件和目录结构：
+
+app/  
+    hello-world/  
+        Makefile.hello-world  
+unix/  
+    Makefile  
+lib/  
+    ... (可能是库文件或库源代码)  
+uip/  
+    Makefile.include
+根据这个结构，我们可以推测以下几点：
+
+app/hello-world/Makefile.hello-world：这个文件可能是用来构建app/hello-world目录下的程序的。它可能定义了构建hello-world程序所需的依赖项、源文件列表、编译器选项等。
+
+unix/Makefile：这个文件可能是用来构建unix目录下的内容或整个项目在Unix-like系统上的构建规则。它可能调用其他Makefile（例如uip/Makefile.include），或者处理特定于Unix系统的编译和链接选项。
+
+lib/：这个目录可能包含库文件或库的源代码。通常，库会有自己的构建系统，但也可以由其他Makefile调用其构建过程。
+
+uip/Makefile.include：这个文件可能被其他Makefile包含，提供了一些通用的构建规则或变量定义。通常，这样的文件包含了编译和链接的通用设置，以便在不同的Makefile中重用。
+
+分离式编译意味着每个组件（或模块）都有自己的构建脚本，这有助于保持构建规则的模块化，使得每个组件都可以独立构建，而不需要关心其他组件的详细信息。这也有助于维护大型项目，因为不同部分的开发人员可以专注于他们自己的构建脚本，而不必担心影响其他部分。
+
+在实践中，你可能还会看到在顶层目录（例如项目的根目录）有一个Makefile，它协调各个子目录的构建过程。这种顶层Makefile可能会调用各个子目录中的Makefile，并处理任何跨模块的依赖关系。
+
+总的来说，make的灵活性和模块化特性使得它能够适应各种复杂的项目结构，而分离式编译是这种灵活性的一个重要体现。
+
+
 make -j4 2>&1 | tee out.txt
 
 

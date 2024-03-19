@@ -42,3 +42,5 @@ tbpartition MOD_HASH() tbpartitions 8
 skywalking
 docker
 tomcat
+
+https://support.huaweicloud.com/bestpractice-ddm/ddm_01_0014.html
