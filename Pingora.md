@@ -1,7 +1,5 @@
 # Pingora
 
-
-
 Cloudflare表示，多年来在NGINX的使用上遇到了很多限制，包括损害性能的架构，某些类型的功能难以添加等。在Rust编写的Pingora上使用，消耗的CPU和内存能减少约70%和67%，除了性能优势外，还很安全。
 
 
@@ -12,3 +10,10 @@ https://www.zhihu.com/answer/2683364208
 
 “在nginx已经足够强劲” 强劲还能省出 70% CPU 和 67% 内存的吗 
 
+git clone https://github.com/cloudflare/pingora.git
+cd pingora
+
+
+env:
+  BUILD_TYPE: Release
+  CARGO_TERM_COLOR: always

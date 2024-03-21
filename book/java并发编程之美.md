@@ -10,6 +10,8 @@ ISBN: 9787121349478
 StampedLock类是Java 8中引入的一个用于替代synchronized关键字的锁机制，它提供了更高的并发性能和更灵活的锁定操作。StampedLock的主要作用是在多线程环境下实现读写锁的功能，同时避免了synchronized关键字带来的性能开销。
 java.util.concurrent.locks.StampedLock
 
+Condition不需要monitor对象
+Object需要在同步代码块（synchronized block）或同步方法（synchronized method）内部调用。这是因为这些方法依赖于对象的内置监视器（monitor）来实现线程间的同步。
 
 ## 第一部分 Java 并发编程基础篇
 ### 第1 章 并发编程线程基础 2
@@ -97,6 +99,8 @@ rl 可重入锁
 rrwl
 sl 
 #### 6.1 LockSupport工具类 115
+LockSupport`是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
+主要有两类方法：`park`和`unpark`。park英文意思为停车，unpark就是让车启动然后跑起来。
 #### 6.2 抽象同步队列AQS概述 122
 6.2.1 AQS——锁的底层支持 122
 6.2.2 AQS——条件变量的支持 128
@@ -111,6 +115,62 @@ java.util.concurrent.locks.Condition 接口
     public final native void notify();
     public final native void wait(long timeout) throws InterruptedException;
 
+
+Condition不需要monitor对象
+Object需要在同步代码块（synchronized block）或同步方法（synchronized method）内部调用。这是因为这些方法依赖于对象的内置监视器（monitor）来实现线程间的同步。
+
+java.util.concurrent.locks.Condition 接口和 Object 类的 wait/notify/notifyAll 方法都是 Java 中用于多线程同步的工具，但它们之间存在一些重要的区别。
+
+java.util.concurrent.locks.Condition
+Condition 接口是 Java 并发包（java.util.concurrent.locks）中的一个接口，通常与 Lock 接口一起使用，提供了比 Object 类的 wait/notify 更灵活、更强大的线程同步机制。
+
+灵活性：一个 Lock 可以有多个 Condition 实例，每个 Condition 实例都可以独立地管理等待线程集合。这使得 Condition 非常适合于实现更复杂的同步模式，例如多个等待集合或优先级等待。
+响应中断：Condition 的 await() 方法会响应中断，而 Object 的 wait() 方法在等待期间不会响应中断。
+超时等待：Condition 提供了带超时参数的 await() 方法，而 Object 的 wait() 方法只有无参数版本和带超时参数的版本。
+顺序保证：Condition 的 signal() 和 signalAll() 方法在唤醒等待线程时，按照它们等待的顺序进行。而 Object 的 notify() 和 notifyAll() 方法不保证唤醒顺序。
+Object 类的 wait/notify/notifyAll
+这些方法是从 Java 早期版本开始就一直存在的，它们是基于对象监视器（monitor）的同步机制。
+
+简单性：每个对象都有一个内置的监视器，可以通过 wait/notify/notifyAll 方法进行同步。这提供了一种简单直接的同步方式，适用于简单的同步需求。
+不响应中断：wait() 方法在等待期间不会响应中断，这可能导致线程在等待时无法被外部因素唤醒。
+无超时等待：wait() 方法只有无参数版本和带超时参数的版本，没有像 Condition 那样的灵活的超时控制。
+唤醒顺序不确定：notify() 和 notifyAll() 方法在唤醒等待线程时，不保证特定的唤醒顺序。
+联系与区别
+联系：Condition 和 wait/notify 都用于线程间的协调，以实现多线程同步。它们都允许线程在等待某个条件成立时阻塞，并在条件成立时被唤醒。
+区别：Condition 提供了更灵活、更强大的同步机制，支持多个等待集合、响应中断、超时等待和有序的唤醒。而 wait/notify 则提供了一种简单直接的同步方式，但功能相对有限。在选择使用哪种同步机制时，应根据具体的应用场景和需求来决定。
+
+是的，Object 类的 wait(), notify(), 和 notifyAll() 方法必须在同步代码块（synchronized block）或同步方法（synchronized method）内部调用。这是因为这些方法依赖于对象的内置监视器（monitor）来实现线程间的同步。
+
+当一个线程调用一个对象的 wait() 方法时，它必须持有该对象的监视器锁。这意味着该线程必须已经通过 synchronized 关键字获得了对该对象的访问权限。调用 wait() 方法会导致当前线程释放对象的监视器锁，并进入等待状态，直到其他线程调用该对象的 notify() 或 notifyAll() 方法，或者等待超时（如果使用了带超时参数的 wait() 方法）。
+
+同样地，调用 notify() 或 notifyAll() 方法的线程也必须持有对象的监视器锁。这两个方法用于唤醒等待在该对象上的线程。notify() 方法唤醒等待集合中的一个线程（随机选择），而 notifyAll() 方法则唤醒等待集合中的所有线程。
+
+如果在没有同步的情况下调用这些方法，会导致 IllegalMonitorStateException。这是因为这些方法的设计就是要在对象的监视器锁的保护下使用，以确保线程间的正确同步和互斥。
+
+下面是一个简单的示例，展示了如何在同步代码块中使用 wait() 和 notify()：
+
+java
+public class SynchronizedExample {  
+    private final Object lock = new Object();  
+    private boolean ready = false;  
+  
+    public void waitForSignal() throws InterruptedException {  
+        synchronized (lock) {  
+            while (!ready) {  
+                lock.wait(); // 等待条件成立，释放锁并进入等待状态  
+            }  
+            // 条件成立后继续执行后续操作  
+        }  
+    }  
+  
+    public void signalReady() {  
+        synchronized (lock) {  
+            ready = true;  
+            lock.notify(); // 唤醒等待的线程  
+        }  
+    }  
+}
+在这个示例中，waitForSignal() 方法在同步代码块中调用 wait() 方法来等待 ready 变量变为 true。而 signalReady() 方法在同步代码块中设置 ready 变量为 true 并调用 notify() 方法来唤醒等待的线程。注意，这两个方法都使用了同一个 lock 对象来同步，确保线程间的正确交互。
 
 c++里面是 condiction_variable
 condition_variable
