@@ -1,5 +1,43 @@
 # SQL
 
+在SQL中，CROSS JOIN（也称为笛卡尔积）是一种联接两个或多个表的方式，它返回两个表中每一行与另一个表中每一行的组合。换句话说，它会生成两个表中所有可能行的组合。如果表A有a行，表B有b行，那么CROSS JOIN的结果将有a * b行。
+
+通常，我们并不经常使用CROSS JOIN，因为它可能生成大量的结果集，除非我们确实需要所有的组合。但在某些情况下，比如你提供的例子中，CROSS JOIN可以用来将一个表的结果与另一个表中的一个单一值（或少量聚合值）结合起来。
+
+在你之前的例子中，CROSS JOIN被用来将每个INDUSTRY的Amt（来自subquery）与所有Amt的总和（来自total子查询）结合起来。因为total子查询只返回一行（总和），所以CROSS JOIN实际上只是简单地将这个总和值附加到subquery的每一行上，使得我们可以在外部查询中计算每个Amt的百分比。
+
+下面是一个简化的例子来说明CROSS JOIN是如何工作的：
+
+假设我们有两个表：
+
+Table A:
+
+id | value  
+---|------  
+1  | 10  
+2  | 20
+Table B:
+
+total_value  
+-----------  
+30
+如果我们执行以下查询：
+
+sql
+SELECT A.id, A.value, B.total_value  
+FROM TableA A  
+CROSS JOIN TableB B;
+结果会是：
+
+id | value | total_value  
+---|-------|------------  
+1  | 10    | 30  
+2  | 20    | 30
+在这个例子中，TableA中的每一行都与TableB中的每一行（实际上只有一行）进行了组合。因此，我们得到了两个结果行，每行都包含了TableA中的id和value以及TableB中的total_value。
+
+在你的例子中，使用CROSS JOIN来结合Amt和TotalAmt是一个有效的方法，尤其是当你不希望使用子查询作为外部查询的一部分时（这可能会使查询更难以阅读或维护）。
+
+
 ```sql
 
 			SELECT

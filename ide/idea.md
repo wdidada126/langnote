@@ -1,5 +1,8 @@
 # IDEA
 
+查看一个类的类图，查看类有哪些方法
+在Windows/Linux上，可以按下 Ctrl + Alt + Shift + U 快捷键。
+
 
 ## App Password
 If you use non-latest JetBrains products and it isn't prompting you to enter a one-time password, use App Password instead of your regular password for sign in.
