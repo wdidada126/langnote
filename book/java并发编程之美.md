@@ -103,7 +103,19 @@ sl
 6.2.3 基于AQS 实现自定义同步器 131
 NonReentrantLock
 
+java.util.concurrent.locks.Condition 接口
+    void await() throws InterruptedException;
+    void signal();
+
+跟Object类的
+    public final native void notify();
+    public final native void wait(long timeout) throws InterruptedException;
+
+
 c++里面是 condiction_variable
+condition_variable
+    cv.notify_all();
+    cv.wait(lck);
 
 在C++中，条件变量（condition_variable）是一种同步原语，用于在多线程环境中实现线程间的同步。而在Java中，条件变量被称为`Condition`对象。
 
@@ -214,6 +226,7 @@ public class ConditionExample {
 }
 ```
 
+见NonReentrantLock.java
 #### 6.3 独占锁ReentrantLock的原理 136
 6.3.1 类图结构 136
 6.3.2 获取锁 137
