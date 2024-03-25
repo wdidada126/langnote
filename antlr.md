@@ -1,5 +1,80 @@
 # antlr
 
+G4 编码规范
+公共规范
+每行长度不超过 200 个字符，保证每一行语义完整以便于理解。
+词法解析规范
+每个规则一行，规则间无需空行。
+规则名称使用大写字母。如果名称由多个单词组成，用 下划线 间隔。DataType 和 Symbol 的规则命名以 下划线 结尾。与 ANTLR 内置变量或关键字重名的规则在结尾加 下划线 以示区分。
+不对外暴露的规则使用 fragment，fragment 定义的规则需在其服务的规则之后声明。
+公用规则定义放在 Keyword.g4，每个数据库可以有自己特有的规则定义。例如：MySQLKeyword.g4。
+语法解析规范
+每个规则结束后空一行，空行无需缩进。
+规则名称前面不空格，冒号 后空一格再开始写规则，分号 在单独一行并保持和上一行相同缩进。
+如果一个规则的分支超过 5 个，则每个分支一行。
+规则命名采用 java 变量的驼峰形式。
+为每种 SQL 语句类型定义一个独立的语法文件，文件名称由 数据库名称 + 语句类型名称 + Statement。例如：MySQLDQLStatement.g4
+
+
+[antlr](https://www.antlr.org/)
+
+[开源语法分析器--ANTLR](https://www.cnblogs.com/blfshiye/p/4359390.html)
+
+词法分析是计算机科学中将字符序列转换为标记（token）序列的过程。从输入字符流中生成标记的过程叫作标记化（tokenization），在这个过程中，词法分析器还会对标记进行分类。
+
+antlr可以对接多种语言
+runtime
+
+
+
+
+
+
+#### antlr的概述
+
+
+antlr是一个包含了`词法分析`,`语法分析`两大模块的工具，并且提供了大量主流语言的现成的语法描述`grammar`文件
+
+使用antlr你可以将某种语言的代码文件，以纯文本字符串的方式输入，被antlr整理分析成一个语法树，一个可以清晰地从树状结构里，看到代码真正的逻辑的结构化数据。
+
+通俗易懂的说，antlr的作用就是将计算机不明白，无法读取，无法执行的字符串代码，一个字一个字`读`，一行一行的`分析`，最后把`字符串`读明白了，分析明白了，转化成了计算机程序能`弄懂`(也就是能遍历，能执行，能运行的)的结构化数据`语法树`
+
+听起来是不是很神秘？没错，这里面其实是编译原理里面的概念，我们所写的C++,OC,JAVA各种知名语言，我们其实写的都是一行一行字符串，这一行行的字符是怎么编译成可以运行的app的，这都是要经过这样的一个步骤，但这也只是编译原理中的一环，经过了`词法,语法解析`，后面还有很多重要的环节
+
+- 有了`词法,语法解析`，我们甚至还可以独创我们自己的语言
+- 有了`词法,语法解析`，再引入编译原理中的其他概念，我们甚至还可以自己写我们独创语言的编译器
+
+看起来是不是很神秘很牛逼~我们今天深入讨论一下
+
+
+#### antlr的基本使用
+
+
+antlr包含以下几个部分
+
+- antlr 主工程
+- antlr 语法描述 grammer
+- antlr 运行时 runtime
+
+
+
+目标语言的语法描述grammer文件，在antlr官网可以下载,https://github.com/antlr/grammars-v4，从里面可以看到，我们可以找到几乎所有主流语言的语法描述，换句话说，如果我们要分析的语言有现成的grammar文件，那我们可以直接拿来输入给antlr就能搞起词法语法分析。
+
+antlr主工程虽然是Java，但是antlr运行可以在Java，JavaScript，Python，C#等语言里，原因就是官网开放了这四种语言的antlr运行时，[www.antlr.org/download](http://www.antlr.org/download.html)。
+
+举个通俗点的例子，如果我打算用JavaScript语言，用来分析Oc语法，那么
+
+- 我需要先去官网下载`ObjectiveC.g4`grammer语法描述文件
+- 我需要用antlr的Java主程序，输入OC的grammer，选择JavaScript语言输出，生成`ObjectiveCParser.js`这个用js代码写出来的，OC解析器
+- 我需要开始搭建我的JS程序，将一整个antlr的JavaScript运行时都import进来，并且import进来刚刚生成的`ObjectiveCParser.js`，在JS代码里开始编写JSPatchConvertor的代码逻辑
+
+
+antlr书籍
+
+测试用例推荐熟悉的json sql
+
+不要看cvs
+
 Antlr简介
 ANTLR 语言识别的一个工具 (ANother Tool for Language Recognition ) 是一种语言工具，它提供了一个框架，可以通过包含 Java, C++, 或 C# 动作（action）的语法描述来构造语言识别器，编译器和解释器。 计算机语言的解析已经变成了一种非常普遍的工作，在这方面的理论和工具经过近 40 年的发展已经相当成熟，使用 Antlr 等识别工具来识别，解析，构造编译器比手工编程更加容易，同时开发的程序也更易于维护。
 语言识别的工具有很多种，比如大名鼎鼎的 Lex 和 YACC，Linux 中有他们的开源版本，分别是 Flex 和 Bison。在 Java 社区里，除了 Antlr 外，语言识别工具还有 JavaCC 和 SableCC 等。
@@ -119,8 +194,6 @@ https://www.thinbug.com/q/46798136
 
 
 
-
-
 https://github.com/apache/groovy
 antlr groovy解析
 
@@ -211,7 +284,18 @@ https://www.beichengjiu.com/informationscience/172297.html
 
 
 熟悉SQL语言（关系代数、RBO、CBO）、编译原理，熟悉ANTLR、JavaCC、Calcite、SystemML或类似的开源框架，有DSL实现经验是加分项。
+在数据库领域中，RBO（Rule-Based Optimization）和CBO（Cost-Based Optimization）是两种重要的查询优化技术，它们的主要目的是生成最佳的执行计划以提高查询效率。
 
+RBO（基于规则优化）
+RBO是一种根据预先定义的一套规则来选择执行计划的方法。它不考虑数据的分布和统计信息，仅根据操作符的类型和顺序来决定优先级。RBO的优点在于简单易懂，不依赖于数据的变化，适合于数据量小或者统计信息不准确的情况。然而，RBO的缺点也很明显，它不能适应复杂的查询场景，不能充分利用数据的特征，可能导致执行效率低下。
+
+CBO（基于代价优化）
+
+CBO则是一种根据数据的分布和统计信息来估算每个执行计划的代价，并选择代价最低的执行计划的方法。CBO的优点在于能够根据数据的实际情况来做出最优的选择，适合于数据量大或者查询复杂的情况。然而，CBO的缺点是需要维护数据的统计信息，否则可能导致代价估算不准确，影响执行效果。
+
+在实际应用中，随着数据库技术的发展和数据的增长，CBO逐渐成为主流的优化方法。它可以根据数据的实际情况进行灵活调整，以获取更好的查询性能。同时，随着技术的进步，一些数据库系统也提供了更先进的优化策略，如动态调整执行计划、优化子查询和连接操作等，以进一步提高查询效率。
+
+需要注意的是，无论是RBO还是CBO，都有其适用的场景和限制。在选择使用哪种优化方法时，需要根据具体的数据库环境、数据特点和查询需求进行综合考虑。
 
 
 
@@ -337,14 +421,8 @@ Fri Oct 25 15:47:44 CST 2019 AnOtherVisitor visitString
 Fri Oct 25 15:47:44 CST 2019 AnOtherVisitor visitChildren
 Fri Oct 25 15:47:44 CST 2019 AnOtherVisitor visitTerminal
 Fri Oct 25 15:47:44 CST 2019 AnOtherVisitor visitTerminal
-
 ```
 
-```
-
-```
-
-```
 
 
 Antlr IDEA使用
@@ -379,7 +457,7 @@ profile 主要是看性能和语法是不是有歧义，目前还没怎么用它
 
 
 
-[ANTLR4的IntelliJ插件安装及示例Hello.g4   ](https://www.cnblogs.com/wynjauu/articles/9873231.html)
+[ANTLR4的IntelliJ插件安装及示例Hello.g4](https://www.cnblogs.com/wynjauu/articles/9873231.html)
 
 
 Antlr Preview
@@ -400,7 +478,7 @@ pom.xml中
 src/main/antlr4/文件夹下相对路径就是java代码的package名称
 
 
-​```shell
+```shell
 
 @header {
 package cn.wdidada;
@@ -418,7 +496,7 @@ double x, y; // keep column sums in these fields
 @members {
 double x, y; // keep column sums in these fields
 }
-
+```
 
 
 
@@ -435,8 +513,8 @@ target\generated-sources\antlr4
 
 选项
 
-idea_antlr_opion.png
 
+![idea_antlr_opion](./imgs/idea_antlr_opion.png)
 
 
 [ANTLR4使用](https://blog.csdn.net/qq_37255629/article/details/85239156)
@@ -448,20 +526,7 @@ idea_antlr_opion.png
 
 ### ArrayInit
 
-
-
-
-
-
-
 从2.7.3版本开始，ANTLR开始支持C#
-
-
-
-
-
-
-
 
 ### ArrayInit 例子 testantlr 这个github repo
 
@@ -476,24 +541,17 @@ antlr-v4-grammar-plugin idea插件，有图形界面
 Java grammar view
 antlr语法中的fragment
 
-
 https://www.crifan.com/
 
 
-
-
 https://www.crifan.com/
-
-
-
-
 
 #### .g4
 
 
 
 
-​```shell
+```shell
 
 *
 ```
@@ -534,9 +592,6 @@ antlr
 P.91
 
 
-
-
-
 ```
 fragment 
 ```
@@ -545,11 +600,7 @@ https://abcdabcd987.com/notes-on-antlr4/
 
 用 `fragment` 可以给 Lexer 规则中的公共部分命名
 
-
-
 ANTLR4 笔记.mhtml
-
-
 
 https://www.cnblogs.com/chunzhulovefeiyue/p/7577199.html
 

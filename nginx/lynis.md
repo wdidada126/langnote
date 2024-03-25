@@ -1,0 +1,5 @@
+# lynis
+
+
+天气调用服务
+map{PRATE_instant={daymin=0.0, data=0.0, daymax=0.0, yubaotime=2024-03-22 23:00:00}, SDE_instant={daymin=0.0, data=0.0, daymax=0.0, yubaotime=2024-03-22 23:00:00}, 2R_instant={daymin=8.4, data=14.4, daymax=48.8, yubaotime=2024-03-22 23:00:00}, SDE_instant_24={daymin=0.0, data=0.0, daymax=0.0, yubaotime=2024-03-22 23:00:00}, calculationPM=[{time=2024-03-22 23:00:00, pm=阴}], 2T_instant={daymin=6.708500000000015, data=14.73275000000001, daymax=21.06600000000003, yubaotime=2024-03-22 23:00:00}, VIS_instant={daymin=24134.818, data=24135.064, daymax=24135.37, yubaotime=2024-03-22 23:00:00}, CRAIN_instant={daymin=0.0, data=0.0, daymax=0.0, yubaotime=2024-03-22 23:00:00}, CSNOW_instant={daymin=0.0, data=0.0, daymax=0.0, yubaotime=2024-03-22 23:00:00}, 10U_instant={daymin=-0.12592041, data=1.2348706, daymax=2.8486571, yubaotime=2024-03-22 23:00:00}, TCC_instant={daymin=0.0, data=94.8, daymax=100.0, yubaotime=2024-03-22 23:00:00}, UV_instant={daymin=0.4597127735663842, data=1.2915709277091871, daymax=5.4647361034330295, yubaotime=2024-03-22 23:00:00}, 10V_instant={daymin=-4.663528, data=0.3784839, daymax=1.2122437, yubaotime=2024-03-22 23:00:00}}

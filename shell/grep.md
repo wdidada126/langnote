@@ -1,5 +1,7 @@
 # grep
 
+grep "fileDownload"  *.log
+
 学习grep保存信息到文件
 
 [grep查找的内容输出到文件](https://my.oschina.net/calmsnow/blog/2962160)

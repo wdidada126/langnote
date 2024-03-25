@@ -231,6 +231,6 @@ nginx: [error] open() "/var/run/nginx.pid" failed (2: No such file or directory)
 进入`/var/run`新建`nginx`文件夹：`mkdir nginx`
 
 
-ngx里面红黑树实现得多漂亮简直是c的典范
+ngx里面红黑树实现得多漂亮，简直是c的典范
 
 

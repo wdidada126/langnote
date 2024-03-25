@@ -286,6 +286,81 @@ public class ConditionExample {
 }
 ```
 
+在Go和Python中，条件变量（通常称为条件或条件同步原语）是用于协调多个goroutines或线程之间活动的机制，特别是在一个或多个goroutines或线程需要等待某个条件成立时。虽然Go和Python的API在语法和具体实现上有所不同，但它们的基本概念是相似的。
+
+Go中的条件变量
+在Go中，通常使用sync包中的Cond类型来实现条件变量。下面是一个基本示例：
+
+```go
+package main  
+  
+import (  
+    "fmt"  
+    "sync"  
+    "time"  
+)  
+  
+func main() {  
+    var mu sync.Mutex  
+    var cond = sync.NewCond(&mu)  
+    var ready = false  
+  
+    go func() {  
+        mu.Lock()  
+        defer mu.Unlock()  
+        ready = true  
+        cond.Signal() // 发送信号通知等待的goroutine  
+    }()  
+  
+    mu.Lock()  
+    for !ready {  
+        cond.Wait() // 等待信号  
+    }  
+    mu.Unlock()  
+  
+    fmt.Println("Ready now!")  
+}
+```
+在上面的代码中，我们创建了一个互斥锁mu和一个条件变量cond。一个goroutine设置ready变量为true并发送一个信号。主goroutine等待这个信号，并在收到信号后继续执行。
+
+Python中的条件变量
+在Python中，threading模块提供了Condition类来实现条件变量。下面是一个基本示例：
+
+```python
+import threading  
+import time  
+  
+def worker():  
+    with cond:  
+        cond.wait()  # 等待通知  
+        print("Worker thread is notified and starting work")  
+  
+cond = threading.Condition()  
+  
+# 创建并启动worker线程  
+t = threading.Thread(target=worker)  
+t.start()  
+  
+# 主线程中，让worker线程有机会开始执行并等待  
+time.sleep(1)  
+  
+with cond:  
+    print("Notifying the worker thread")  
+    cond.notify()  # 发送通知  
+  
+t.join()  
+print("Main thread exits")
+```
+在这个Python示例中，我们创建了一个Condition对象cond，并在一个单独的线程中调用cond.wait()。主线程稍后会调用cond.notify()来唤醒等待的线程。注意，我们使用with语句来管理条件变量的锁，以确保线程安全。
+
+注意事项
+在Go中，Cond.Wait方法会自动释放关联的互斥锁，并在收到信号后重新获取它。这允许其他goroutines在等待的goroutine被阻塞时获取锁并执行操作。
+在Python中，Condition.wait()方法也会释放锁，并在被唤醒时重新获取它。
+在使用条件变量时，重要的是要确保在调用Wait或notify方法时持有锁，以避免竞态条件。
+在Go中，通常建议将条件变量与互斥锁一起使用，而不是单独使用条件变量。
+在Python中，Condition对象本身封装了锁，因此不需要单独管理锁。
+这些示例展示了如何在Go和Python中使用条件变量进行同步。在实际应用中，可能需要根据具体需求进行更复杂的同步操作。
+
 见NonReentrantLock.java
 #### 6.3 独占锁ReentrantLock的原理 136
 6.3.1 类图结构 136

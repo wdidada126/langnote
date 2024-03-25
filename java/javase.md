@@ -1,4 +1,7 @@
 # javase
+java.text.SimpleDateFormat
+不是线程安全的
+
 java.util.concurrent.SynchronousQueue
 
 java.util.concurrent.ThreadFactory
