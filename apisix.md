@@ -5,11 +5,8 @@ https://apisix.apache.org/
 API Gateway, Ingress Controller, etc.
 Apache APISIX provides rich traffic management features like Load Balancing, Dynamic Upstream, Canary Release, Circuit Breaking, Authentication, Observability, etc.
 
-API 网关 Apache APISIX 和 Kong 的选型对比 - 知乎
+API网关Apache APISIX和Kong的选型对比 - 知乎
 
 [基金交易场景下，如何利用 Apache APISIX 来稳固 API 安全](https://www.infoq.cn/article/3FUgUiSw2fL7Pjv0hrqk)
 
-
-
 王晔倞，现任 API7 VP，Apache APISIX Committer。公众号「头哥侃码」作者，曾在好买财富、大智慧、中通服软件、东方购物任职，21 年 IT 从业经验，对技术管理和架构设计有一定的经验。TGO 鲲鹏会上海理事会成员，腾讯云 TVP，QCon 北京 2017 明星讲师，QCon 北京 2018 优秀出品人。
-
