@@ -4,8 +4,6 @@ apisix
 
 gateway的作用是？
 
-
-
 流量过滤？
 后端项目有多个，映射到多个后端项目，前端同意url
 
@@ -132,4 +130,14 @@ CREATE TABLE `gw_api_route_mapping` (
 
 INSERT INTO `cloud_gateway_console`.`gw_back_api_info`(`BACK_API_ID`, `BACK_GROUP_ID`, `BACK_SYS_ID`, `BACK_API_CODE`, `BACK_API_NAME`, `BACK_API_VERSION`, `BACK_PATH`, `BACK_METHOD`, `CONTENT_TYPE`, `BACK_TIMEOUT`, `ERR_CODE_NAME`, `ERR_MSG_NAME`, `SUCC_CODE_VALUE`, `SESS_ID_NAME`, `RST_DEMO`, `RST_ERR_DEMO`, `STATE`, `ADD_DATE`, `ADD_DATE_TIME`, `ADD_USER_ID`, `MOD_DATE`, `MOD_DATE_TIME`, `MOD_USER_ID`, `AUTH_DATE`, `AUTH_DATE_TIME`, `AUTH_USER_ID`, `DEL_FLAG`) VALUES ('42b8bbe99952b850', 'b8b7998ab350e950', '508ae9b7b84f9952', NULL, '智能薪酬文件透传', '', '/api/salary/smartRouter.do', 'POST', '5', 10000, '', '', '', '', '', '', '1', '2024-03-01', '2024-03-01 19:13:05', '系统管理员', NULL, NULL, NULL, NULL, NULL, NULL, '0');
 INSERT INTO `cloud_gateway_console`.`gw_back_api_info`(`BACK_API_ID`, `BACK_GROUP_ID`, `BACK_SYS_ID`, `BACK_API_CODE`, `BACK_API_NAME`, `BACK_API_VERSION`, `BACK_PATH`, `BACK_METHOD`, `CONTENT_TYPE`, `BACK_TIMEOUT`, `ERR_CODE_NAME`, `ERR_MSG_NAME`, `SUCC_CODE_VALUE`, `SESS_ID_NAME`, `RST_DEMO`, `RST_ERR_DEMO`, `STATE`, `ADD_DATE`, `ADD_DATE_TIME`, `ADD_USER_ID`, `MOD_DATE`, `MOD_DATE_TIME`, `MOD_USER_ID`, `AUTH_DATE`, `AUTH_DATE_TIME`, `AUTH_USER_ID`, `DEL_FLAG`) VALUES ('ac2265c8b9921945', 'a5fd480ea960eacf', '1c485eddb93360ad', NULL, '智能薪酬服务透传', '1.0.0', '/api/salary/smartRouter.do', 'POST', '1', 60000, '', '', '', '', '', '', '1', '2024-01-31', '2024-01-31 10:12:28', '系统管理员', '2024-01-31', '2024-01-31 10:13:06', '系统管理员', NULL, NULL, NULL, '0');
+
+
+```java
+PathMatcher pathMatcher = new AntPathMatcher(); // Ant匹配器
+String method=request.getMethodValue();
+String path =request.getURI().getPath();
+String restfulPath = method +":"+ path; // Restful接囗权限设计
+```
+
+
 
