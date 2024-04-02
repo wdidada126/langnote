@@ -17,7 +17,6 @@ FractalTree	分型树
 
 [rocksdb](https://github.com/facebook/rocksdb)
 
-
 Facebook Database Engineering Team
 
 http://rocksdb.org/
@@ -25,7 +24,6 @@ http://rocksdb.org/
 http://rocksdb.org/docs/getting-started.html
 
 C++写的，Java有库
-
 
 <dependency>
     <groupId>org.rocksdb</groupId>
@@ -36,7 +34,6 @@ https://wanghenshui.github.io/rocksdb-doc-cn/doc/RocksJava-Basics.html
 
 vcpkg Win 10可以一键安装c++库
 
-
 ```shell
 Exception in thread "main" java.lang.UnsatisfiedLinkError: org.rocksdb.RocksDB.closeDatabase(J)V
 at org.rocksdb.RocksDB.closeDatabase(Native Method)
@@ -45,3 +42,7 @@ at org.example.testrocksdbjni.RocksDBMain.main(RocksDBMain.java:30)
 ```
 
 https://github.com/facebook/rocksdb/issues/6480
+
+git clone https://github.com/facebook/rocksdb.git
+cd rocksdb
+make

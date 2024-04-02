@@ -26,40 +26,40 @@ Name	Description
 
 - Minus operator
 - Change the sign of the argument
-  /	Division operator
-  ABS()	Return the absolute value
-  ACOS()	Return the arc cosine
-  ASIN()	Return the arc sine
-  ATAN()	Return the arc tangent
-  ATAN2(), ATAN()	Return the arc tangent of the two arguments
-  CEIL()	Return the smallest integer value not less than the argument
-  CEILING()	Return the smallest integer value not less than the argument
-  CONV()	Convert numbers between different number bases
-  COS()	Return the cosine
-  COT()	Return the cotangent
-  CRC32()	Compute a cyclic redundancy check value
-  DEGREES()	Convert radians to degrees
-  DIV	Integer division
-  EXP()	Raise to the power of
-  FLOOR()	Return the largest integer value not greater than the argument
-  LN()	Return the natural logarithm of the argument
-  LOG()	Return the natural logarithm of the first argument
-  LOG10()	Return the base-10 logarithm of the argument
-  LOG2()	Return the base-2 logarithm of the argument
-  MOD()	Return the remainder
-  PI()	Return the value of pi
-  POW()	Return the argument raised to the specified power
-  POWER()	Return the argument raised to the specified power
-  RADIANS()	Return argument converted to radians
-  RAND()	Return a random floating-point value
-  ROUND()	Round the argument
-  SIGN()	Return the sign of the argument
-  SIN()	Return the sine of the argument
-  SQRT()	Return the square root of the argument
-  TAN()	Return the tangent of the argument
-  TRUNCATE()	Truncate to specified number of decimal places
+/	Division operator
+ABS()	Return the absolute value
+ACOS()	Return the arc cosine
+ASIN()	Return the arc sine
+ATAN()	Return the arc tangent
+ATAN2(), ATAN()	Return the arc tangent of the two arguments
+CEIL()	Return the smallest integer value not less than the argument
+CEILING()	Return the smallest integer value not less than the argument
+CONV()	Convert numbers between different number bases
+COS()	Return the cosine
+COT()	Return the cotangent
+CRC32()	Compute a cyclic redundancy check value
+DEGREES()	Convert radians to degrees
+DIV	Integer division
+EXP()	Raise to the power of
+FLOOR()	Return the largest integer value not greater than the argument
+LN()	Return the natural logarithm of the argument
+LOG()	Return the natural logarithm of the first argument
+LOG10()	Return the base-10 logarithm of the argument
+LOG2()	Return the base-2 logarithm of the argument
+MOD()	Return the remainder
+PI()	Return the value of pi
+POW()	Return the argument raised to the specified power
+POWER()	Return the argument raised to the specified power
+RADIANS()	Return argument converted to radians
+RAND()	Return a random floating-point value
+ROUND()	Round the argument
+SIGN()	Return the sign of the argument
+SIN()	Return the sine of the argument
+SQRT()	Return the square root of the argument
+TAN()	Return the tangent of the argument
+TRUNCATE()	Truncate to specified number of decimal places
 
-日期时间函数
+日期时间函数 DATE_FORMAT DATE_ADD DATEDIFF 用的多
 Name	Description
 ADDDATE()	Add time values (intervals) to a date value
 ADDTIME()	Add time
@@ -183,11 +183,29 @@ blob数据的值
 navicat 点击
 “文本”
 
+aggregate functions ignore NULL values
+
 https://dev.mysql.com/doc/refman/5.7/en/string-functions.html
 
 ## 窗口函数 聚集函数
 
 窗口函数概念和语法
+窗口函数（Window Functions）是 SQL 中的一个重要概念，用于在数据查询的结果集上执行计算，而这些计算是基于一组相关的行（称为窗口）来进行的，而不是单独地基于每一行。窗口函数允许用户执行诸如运行总计、移动平均等计算，这些计算需要跨越多行数据。
+窗口函数通常与 OVER() 子句一起使用，以定义窗口的范围和顺序。OVER() 子句可以包含 PARTITION BY 和 ORDER BY 子句，用于将数据分成不同的分区，并在每个分区内定义行的顺序。
+以下是一些常见的窗口函数及其用途：
+ROW_NUMBER()：为结果集的每一行分配一个唯一的序号。
+RANK() 和 DENSE_RANK()：为结果集的每一行分配一个排名。RANK() 在遇到相同值时会跳过下一个排名，而 DENSE_RANK() 则不会。
+NTILE(n)：将结果集分成大致相等的 n 个部分，并为每一行分配一个桶号。
+SUM(), AVG(), MIN(), MAX()：这些聚合函数也可以作为窗口函数使用，以计算窗口内行的聚合值。
+LEAD() 和 LAG()：访问结果集中当前行的前一行或后一行的值。
+FIRST_VALUE() 和 LAST_VALUE()：返回窗口内第一行或最后一行的值。
+CUME_DIST()：返回当前行在窗口内的相对位置（作为 0 到 1 之间的值）。
+使用窗口函数时，需要注意以下几点：
+窗口函数通常与 SELECT 语句一起使用，并且经常与 GROUP BY 子句结合使用，以在分组数据上执行计算。
+窗口函数的结果不会改变结果集中的行数，每一行都会有一个对应的窗口函数值。
+窗口函数的结果通常依赖于行的顺序，因此在使用窗口函数时，需要确保数据的顺序是正确的，通常通过使用 ORDER BY 子句来实现。
+窗口函数为数据分析师和数据库管理员提供了强大的工具，使他们能够执行复杂的计算并深入了解数据的特性和趋势。
+
 https://dev.mysql.com/doc/refman/8.0/en/window-functions-usage.html
 
 SELECT A.USER_ID, A.MONTH,A.STATUS, ROW_NUMBER() over (PARTITION BY USER_ID ORDER BY MONTH DESC,STATUS) RN
@@ -206,6 +224,7 @@ FROM
     xxx;
 ```
 
+```sql
 SELECT
     A.USER_ID,
     A.MONTH,
@@ -225,7 +244,7 @@ FROM
     WHERE
         ETP_ID =
         #{enterpriseId} ) A
-
+```
 给临时表起名字
 
 https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html
@@ -249,7 +268,6 @@ QEP是MySQL的一个术语,全称是Query Execution Plan,即查询执行计划�
 QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划。
 
 当MySQL收到SQL语句时,它会做以下工作:
-
 1. 解析和验证SQL语句的语法
 2. 生成查询执行计划(QEP)
 3. 根据QEP执行查询操作
@@ -257,31 +275,26 @@ QEP描述了MySQL服务器如何解析和执行特定的SQL查询语句的计划
 
 其中生成QEP是关键步骤。
 QEP决定了MySQL将会如何执行查询:
-
 - 是否使用索引
 - 访问的表顺序
 - 针对每个表使用的访问类型
 - 需要多少行扫描
 
 这些信息都包含在QEP中。
-
 所以QEP实际上就是MySQL如何最有效利用资源执行查询的蓝图。
 通过一个叫 `EXPLAIN`的SQL语句,我们可以查看MySQL的执行计划,了解它的QEP。
 
 例如:
-
 ```sql
 EXPLAIN SELECT * FROM users WHERE id = 1;
 ```
 
 EXPLAIN会返回QEP相关信息,从中我们可以分析出:
-
 - MySQL将使用哪个索引
 - 预计需要扫描的行数
 - 访问类型等等
 
 通过分析QEP,我们就能分析查询性能,进而优化查询。
-
 mysql查看所有表的所有字段
 
 ```sql
@@ -300,7 +313,6 @@ AND COLUMNS .table_name LIKE 'paps%';
 
 聚合函数
 max 没有group by的情况下使用
-
 MySQL中提供了多种聚合函数，包括：
 
 - AVG()：计算平均值。
@@ -341,7 +353,6 @@ select max(sell_qty) from fi_jm_wholesale_accountcheck where cancelsign = 'N';
 
 dual
 DUAL是MySQL中的一个虚拟表，用于在没有表的情况下指定一个虚拟的表名。DUAL表的作用主要有以下几点：
-
 1. 用于计算表达式。在使用SELECT语句时，我们可以在FROM子句中使用dual表来计算一些简单的表达式。
 2. 用于生成一个单行数据。可以使用SELECT语句从dual表中选择一条记录，这对于测试和调试非常有用。
 3. 用于生成一个常量值。可以使用SELECT语句从dual表中选择一个常量值，这对于生成随机数或种子值非常有用。
@@ -350,7 +361,7 @@ sql，用于运维
 select version()
 select version() from dual
 
-在Mysql和SQL Server中可以直接select 1不需要加from 表名就可以执行
+在Mysql和SQL Server中可以直接select 1不需要加from表名就可以执行
 mysql是支持Dual的
 
 select 1
@@ -359,7 +370,7 @@ select 1 from dual
 ## MySQL CAST() Function
 
 cast as int
-cast as s   字符串
+cast as s 字符串
 
 cast as decimal
 
@@ -475,7 +486,6 @@ https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 innodb myasam
 
 ### mvcc
-
 innodb自带的，不能舍弃不要
 
 ### MVCC的两种读形式 当前读 快照读
@@ -483,26 +493,20 @@ innodb自带的，不能舍弃不要
 ### Query Execution Plan,即查询执行计划。
 
 ### 幻读
-
 幻读（Phantom Read）是一种在事务执行过程中，由于其他事务的插入或删除操作，导致当前事务读取到的行数发生了变化的现象。幻读通常发生在范围查询（如SELECT * FROM table WHERE column BETWEEN value1 AND value2）中。
 
 ### 间隙锁(Next-Key Locking)
-
 Gap Lock确实是一种锁的算法。它是InnoDB存储引擎在行级锁定中使用的三种算法之一，另外两种是Record Lock和Next-Key Lock。
 Gap Lock主要锁定一个范围，但不包含记录本身。它的主要作用是阻止多个事务将记录插入到同一范围内，从而防止幻读现象的发生。当查询的索引为辅助索引时，InnoDB会对前一个辅助索引节点加Next Key Lock，对索引下一个键值加Gap Lock。
 因此，Gap Lock是InnoDB用于实现高并发性和数据一致性的重要机制之一。需要注意的是，正确理解和使用这些锁算法对于优化数据库性能和避免并发问题至关重要。
-
 Gap Lock、Record Lock和Next-Key Lock的汉语翻译分别为：
-
 Gap Lock：间隙锁
 Record Lock：记录锁
 Next-Key Lock：临键锁
 这些术语是InnoDB存储引擎在行级锁定中使用的锁算法。间隙锁主要锁定一个范围，但不包含记录本身，用于防止幻读现象的发生。记录锁则是锁定单个记录。临键锁是记录锁与间隙锁的结合，它锁定一个记录以及该记录前的间隙。这些锁算法有助于确保并发事务中的数据一致性和正确性。
 
 ### 执行计划
-
 MySQL执行计划对应的英文是"Execution Plan"。
-
 ### Phantom Problem 幻读
 
 ### 意向锁
@@ -665,6 +669,8 @@ sql.append(" and create_dtme<= DATE_FORMAT('" + request.getEDate() + " 23:59:59"
 例如，可以使用以下查询来获取当前日期和时间的格式化值：
 
 SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s');
+
+m代表month 月份
 
 https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-format
 
@@ -889,6 +895,11 @@ http://catkang.github.io/2020/02/27/mysql-redo.html
 https://gitee.com/edidada/naivedb
 https://www.writebug.com/git/goodwill/NaiveDB
 NaiveDB 是一个关系数据库管理系统，采用客户端/服务器架构。主要分为存储模块、查询模块、元数据管理模块、事务模块(https://www.writebug.com/git/goodwill/NaiveDB)
+NaiveDB:清华软院大三下《数据库原理》大作业
+找测试用例
+
+https://github.com/cmu-db/bustub
+https://github.com/duckdb/duckdb
 
 ##### 事务模块
 
@@ -911,15 +922,12 @@ NaiveDB 是一个关系数据库管理系统，采用客户端/服务器架构�
 https://github.com/bingoohuang/blog/issues/137
 
 redo日志文件名格式为 ib_logfile0或ib_logfile1
-
 可使用find命令模糊查找
-
 在Apache Ratis项目中，实现了一种更为高效的WAL机制
-
 WAL会被删除吗
 如果WAL内的transaction已经被成功apply到状态机里去了，就可以被删除掉了
 
-[Rocksdb的WAL实现 底层探索](https://blog.csdn.net/Z_Stand/article/details/108025338)
+[Rocksdb的WAL实现底层探索](https://blog.csdn.net/Z_Stand/article/details/108025338)
 
 update 一次更新多条数据，或者不是一条数据
 根据主键来更新
