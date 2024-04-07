@@ -55,7 +55,6 @@ https://blog.csdn.net/ttxs99989/article/details/81844135
 
 SOLID是5个设计原则的统称，它们分别是：单一职责原则、开闭原则、里式替换原则、接口隔离原则和依赖反转原则，依次对应SOLID中的S、O、L、I、D。
 
-
 1、单一职责原则
 单一职责原则，Single Responsibility Principle，SRP，英文描述是：A class or module should have a single responsibility。翻译成中文就是：一个类或者模块只负责完成一个职责（或者功能）。
 2、开闭原则
@@ -70,7 +69,6 @@ SOLID是5个设计原则的统称，它们分别是：单一职责原则、开�
 设计原则总结评判代码质量的标准，比如可读性、可复用性、可扩展性等，这是从代码的整体质量的角度来评判。而设计原则就是我们要使用到的更加具体的对于代码进行评判的标准，比如, 我们说这段代码的可扩展性比较差，主要原因是违背了开闭原则。
 
 比较常用的三个原则
-
 1 ) 单一职责原则
 单一职责原则是类职责划分的重要参考依据，是保证代码”高内聚“的有效手段，是我们在进行面向对象设计时的主要指导原则。
 单一职责原则的难点在于，对代码职责是否足够单一的判定。这要根据具体的场景来具体分析。同一个类的设计，在不同的场景下，对职责是否单一的判定，可能是不同的。
@@ -84,7 +82,6 @@ https://blog.csdn.net/weixin_42151235/article/details/129025690
 
 左耳朵耗子
 看到有人说设计模式过时了，我得说设计模式非常非常有用，用Proxy做RAII，用Bridge解耦对象，用Observer 来Watch状态变化，用Strategy解耦实现和接口，用Adapter适配异构，用Command实现Undo/Redo，用Decorator实现无侵入式增强，Interpreter实现表达式，用Vistor分治一个大对象
-
 
 参考文章
 https://www.cnblogs.com/qq-361807535/p/6854191.html
@@ -101,7 +98,31 @@ github
 委托模式
 delegate iOS开发OC中经常使用
 
+java se中的设计模式
+
+装饰器（Decorator）模式 可以在不改变原有对象的情况下拓展其功能。
+对于字节流来说， `FilterInputStream` （对应输入流）和 `FilterOutputStream`（对应输出流）是装饰器模式的核心，分别用于增强 `InputStream` 和 `OutputStream`子类对象的功能。
+适配器（Adapter Pattern）模式 主要用于接口互不兼容的类的协调工作，你可以将其联想到我们日常经常使用的电源适配器。
+适配器模式和装饰器模式有什么区别呢？
+
+装饰器模式 更侧重于动态地增强原始类的功能，装饰器类需要跟原始类继承相同的抽象类或者实现相同的接口。并且，装饰器模式支持对原始类嵌套使用多个装饰器。
+
+适配器模式 更侧重于让接口不兼容而不能交互的类可以一起工作，当我们调用适配器对应的方法时，适配器内部会调用适配者类或者和适配类相关的类的方法，这个过程透明的。就比如说 `StreamDecoder` （流解码器）和 `StreamEncoder`（流编码器）就是分别基于 `InputStream` 和 `OutputStream` 来获取 `FileChannel`对象并调用对应的 `read` 方法和 `write` 方法进行字节数据的读取和写入。
+
+工厂模式
+
+工厂模式用于创建对象，NIO 中大量用到了工厂模式，比如 `Files` 类的 `newInputStream` 方法用于创建 `InputStream` 对象（静态工厂）、 `Paths` 类的 `get` 方法创建 `Path` 对象（静态工厂）、`ZipFileSystem` 类（`sun.nio`包下的类，属于 `java.nio` 相关的一些内部实现）的 `getPath` 的方法创建 `Path` 对象（简单工厂）。
+
+观察者模式
+
+NIO 中的文件目录监听服务使用到了观察者模式。
+
+NIO 中的文件目录监听服务基于 `WatchService` 接口和 `Watchable` 接口。`WatchService` 属于观察者，`Watchable` 属于被观察者。
+
+`Watchable` 接口定义了一个用于将对象注册到 `WatchService`（监控服务） 并绑定监听事件的方法 `register` 。
+
 ### Spring中用到了哪些设计模式
+
 代理模式：AOP中
 单例模式：bean的单例模式 BeanFactory对象
 模板模式：JdbcTemplate refresh方法  RedisTemplate
@@ -110,6 +131,7 @@ delegate iOS开发OC中经常使用
 适配器模式：Controller
 
 ### MyBatis中使用的设计模式
+
 代理模式：Mapper接口，jdbc日志打印 Connection Statement 代理对象 拦截器
 装饰器模式：缓存 Executor
 适配器模式：日志

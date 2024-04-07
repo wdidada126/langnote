@@ -1,5 +1,7 @@
 # IDEA
 
+idea，debug断点的时候，选择变量，watch
+
 查看一个类的类图，查看类有哪些方法
 在Windows/Linux上，可以按下 Ctrl + Alt + Shift + U 快捷键。
 
