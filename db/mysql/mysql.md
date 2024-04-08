@@ -894,6 +894,8 @@ http://catkang.github.io/2020/02/27/mysql-redo.html
 实验课
 https://gitee.com/edidada/naivedb
 https://www.writebug.com/git/goodwill/NaiveDB
+
+https://www.writebug.com/git/goodwill/NaiveDB.git
 NaiveDB 是一个关系数据库管理系统，采用客户端/服务器架构。主要分为存储模块、查询模块、元数据管理模块、事务模块(https://www.writebug.com/git/goodwill/NaiveDB)
 NaiveDB:清华软院大三下《数据库原理》大作业
 找测试用例
