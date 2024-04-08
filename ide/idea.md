@@ -1,5 +1,7 @@
 # IDEA
 
+升级IDEA会与lombok版本不匹配，会出现这个问题，java 找不到符号
+
 idea，debug断点的时候，选择变量，watch
 
 查看一个类的类图，查看类有哪些方法
