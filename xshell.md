@@ -1,5 +1,12 @@
 # xshell
 
+文本文件，一行有几千几万个字符，如果复制这一样数据
+
+vim
+yy
+p
+
+
 免费版
 https://www.xshell.com/zh/free-for-home-school/
 
