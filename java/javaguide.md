@@ -63,3 +63,20 @@ Java语言并没有直接实现CAS，CAS相关的实现是通过C++内联汇编�
 
 
 
+mysql索引下推原理
+server过滤，改成enginer层过滤
+https://javaguide.cn/database/mysql/mysql-index.html#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8
+
+
+
+Redis 5 种基本数据类型对应的底层数据结构
+https://javaguide.cn/database/redis/redis-data-structures-01.html
+
+
+https://javaguide.cn/database/mysql/mysql-questions-01.html#datetime-%E5%92%8C-timestamp-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88
+
+sql里面，null跟''
+
+
+https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html#%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B
+
