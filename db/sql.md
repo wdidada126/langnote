@@ -1,4 +1,7 @@
 # SQL
+
+生产环境sql，几千行，教科书上的sql，几行
+
 Sql标准梳理.mhtml
 
 ```sql
