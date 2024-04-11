@@ -1,5 +1,9 @@
 # Java面试八股文
 
+javaguide
+
+分库分表，直接用tidb
+
 https://book.douban.com/subject/36436109/
 
 ISBN: 9787121455582

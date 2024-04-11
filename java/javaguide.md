@@ -62,14 +62,13 @@ Java语言并没有直接实现CAS，CAS相关的实现是通过C++内联汇编�
 ### 虚拟线程极简入门
 
 
-
 mysql索引下推原理
 server过滤，改成enginer层过滤
 https://javaguide.cn/database/mysql/mysql-index.html#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8
 
 
 
-Redis 5 种基本数据类型对应的底层数据结构
+Redis 5种基本数据类型对应的底层数据结构
 https://javaguide.cn/database/redis/redis-data-structures-01.html
 
 
