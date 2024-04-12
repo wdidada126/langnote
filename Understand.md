@@ -1,6 +1,51 @@
 # Understand工具
 
 
+https://support.scitools.com/support/home
+
+下载页面，收费的
+https://licensing.scitools.com/download
+
+
+vsc上使用Understand
+https://marketplace.visualstudio.com/items?itemName=scitools.understand
+
+源代码
+https://github.com/stinb/UnderstandForVSCode
+
+安装vsc扩展
+https://github.com/stinb/UnderstandForVSCode/wiki/Installing-the-Extension
+
+
+1.0.3 2024/4/2 Download
+1.0.2 2024/4/1 Download
+1.0.1 2024/3/13 Download
+1.0.0 2024/3/13 Download
+
+Understand中的图表
+https://blog.scitools.com/graphlist/
+
+Control Flow Graphs
+Call Trees
+Call-By Trees
+Include Tree
+Butterfly Graph
+Declaration Graphs
+Depends On and Depended on By
+Everything this file depends on
+Data Members
+Object References
+UML Class Diagram
+UML Sequence Diagrams
+Overrides
+Dependency Graphs
+Base and Derived Graphs
+Architecture Graphs
+Compare – Butterfly Graph
+Compare – Control Flow
+Project Overview Graphs
+Custom Graphs
+
 https://scitools.com/
 
 https://blog.csdn.net/qwang24/article/details/4064975
@@ -92,5 +137,8 @@ _//www.scitools.com/perl_scripts/uperl/invocation.upl
 它支持C/C++与Java，支持CFG流程图，类图，类成员与类之间的调用关系显示效果都还不错，可以试试。
 
 ## 官方文档
-
 www.scitools.com/
+
+### 官方文档
+https://blog.scitools.com/graphlist/
+

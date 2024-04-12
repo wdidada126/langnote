@@ -1,5 +1,9 @@
 # IDEA
 
+watch 变量
+
+可以修改代码，热更新的
+
 升级IDEA会与lombok版本不匹配，会出现这个问题，java 找不到符号
 
 idea，debug断点的时候，选择变量，watch
