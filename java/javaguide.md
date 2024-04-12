@@ -48,7 +48,7 @@ Java语言并没有直接实现CAS，CAS相关的实现是通过C++内联汇编�
 像 Java 中synchronized和ReentrantLock等独占锁就是悲观锁思想的实现。
 
 
-具体方法可以使用版本号机制或 CAS 算法。
+具体方法可以使用版本号机制或CAS算法。
 像 Java 中java.util.concurrent.atomic包下面的原子变量类（比如AtomicInteger、LongAdder）就是使用了乐观锁的一种实现方式 CAS 实现的。
 
 ### JMM（Java 内存模型）详解
