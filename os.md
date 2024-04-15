@@ -1,4 +1,6 @@
 # os
+
+
 Unix/Linus文件是区分大小写（大小写敏感）
 Windows Mac默认是不区分大小写的
 
@@ -30,3 +32,5 @@ https://www.zhihu.com/question/22463820/answer/37931074
 
 uCore
 uCore是清华大学操作系统课程的实验内核，也是一个开源项目，是非常好的操作系统学习资源。
+
+## xv6

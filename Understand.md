@@ -1,5 +1,40 @@
-# Understand工具
+# scitools Understand工具
 
+20240415
+java代码，用Understand 不如用idea
+
+ScitoolsUnderstand破解版.mhtml
+
+html
+https://documentation.scitools.com/html/understand/wwhelp/wwhimpl/js/html/wwhelp.htm
+
+pdf
+https://documentation.scitools.com/pdf/understand.pdf
+
+spring支持
+Understand build 1168 开始支持
+windows安装的是Understand 1092
+https://support.scitools.com/support/solutions/articles/70000659561-java-spring-support
+
+git
+https://support.scitools.com/support/solutions/articles/70000582795-git-integration
+
+cmake
+https://support.scitools.com/support/solutions/articles/70000582647-cmake-and-understand
+
+windows understand
+java源代码是utf8编码，乱码
+中文乱码
+中文乱码主要是因为文件的编码格式原因引起，设置的位置:
+project->configure project->file options ->File encode->utf-8
+
+参考文档 https://blog.csdn.net/lvwx369/article/details/120464128
+
+java标准库的代码，关联不上
+
+netty.und
+G:\source_code\netty\netty.und
+D:\git\gitlab\spring-framework-5.0.x\spring-framework-5.0.x.und
 
 https://support.scitools.com/support/home
 

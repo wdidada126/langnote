@@ -8,28 +8,33 @@ sandisks555 gmail 已经订阅
 ## maven install
 
 必须在有pom.xml的文件夹下面，不然找不到install的插件吗？
-```powershell```
+
+```powershell
+mvn install:install-file -DgroupId="cn.com.yitong" -DartifactId=ares-fusing-hystrix -Dversion="6.0.5" -Dpackaging=jar -Dfile="ares-fusing-hystrix-6.0.5.jar"
+```
+
+```powershell
 mvn install:install-file -DgroupId="cn.com.yitong.mail" -DartifactId=sendmail-sdk -Dversion="1.0.1" -Dpackaging=jar -D
 file="sendmail-sdk-1.0.1.jar"
 ```
 
 
-```powershell```
+```powershell
 mvn install:install-file -DgroupId="com.gexin.platform" -DartifactId=gexin-rp-sdk-http -Dversion="4.1.0.1" -Dpackaging=jar -D file="gexin-rp-sdk-http-4.1.0.1.jar"
 ```
 
 
-```powershell```
+```powershell
 mvn install:install-file -DgroupId="com.gexin.platform" -DartifactId=gexin-rp-sdk-template -Dversion="4.0.0.20" -Dpackaging=jar -D file="gexin-rp-sdk-template-4.0.0.20.jar"
 ```
 
 
-```powershell```
+```powershell
 mvn install:install-file -DgroupId="com.gexin.platform" -DartifactId=gexin-rp-sdk-base -Dversion="4.0.0.26" -Dpackaging=jar -D file="gexin-rp-sdk-base-4.0.0.26.jar"
 ```
 
 
-```powershell```
+```powershell
 mvn install:install-file -DgroupId="com.gexin.platform" -DartifactId=gexin-rp-fastjson -Dversion="1.0.0.1" -Dpackaging=jar -D file="gexin-rp-fastjson-1.0.0.1.jar"
 ```
 

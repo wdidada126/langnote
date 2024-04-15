@@ -58,6 +58,30 @@ idea自动调用所有set开头的方法
 安装使用GenerateAllSetter插件
 https://blog.csdn.net/dkm123456/article/details/122999227
 
+你可以使用像Soot这样的框架来分析Java字节码并生成控制流图。Soot 是一个用于分析和转换 Java 和 Android 应用程序的框架，它提供了丰富的API来构建和操作控制流图。
+其他类似的工具包括JDT（Java Development Tools）和Jimple，它们也可以用来分析 Java 代码并生成控制流图。
+
+Control Flow Graphs  https://plugins.jetbrains.com/plugin/23074-javaflowdiagram/versions#tabs
+Call Trees           IDEA看代码必备插件Call Graph
+Call-By Trees
+Include Tree
+Butterfly Graph
+Declaration Graphs
+Depends On and Depended on By
+Everything this file depends on
+Data Members
+Object References
+UML Class Diagram  自带
+UML Sequence Diagrams 插件 安装插件 - SequenceDiagram
+Overrides
+Dependency Graphs
+Base and Derived Graphs
+Architecture Graphs
+Compare – Butterfly Graph
+Compare – Control Flow
+Project Overview Graphs
+Custom Graphs
+
 ### 自带的类图
 类图不显示方法，可以设置显示方法
 
@@ -132,35 +156,26 @@ https://blog.csdn.net/fanrenxiang/article/details/80497977
 https://www.iteye.com/blog/baowp-1989575
 
 #### IDEA debug时，可以改变变量的值
+条件变量
 
 Mac 回到上一次光标的位置
-
 Alt command 箭头
 
 mac windows下的IDEA快捷键不同
-
 [IDEA Debug模式下改变各类型变量值](https://blog.csdn.net/Peng_Hong_fu/article/details/79994860)
 
 Ctrl P
-
 copy reference 复制类的全路径
-
 [IDEA中右侧出现hidden字样的处理方法](https://blog.csdn.net/budaoweng0609/article/details/87860205)
-
 [IDEA中修改文件的默认打开方式](https://blog.csdn.net/u010814849/article/details/77675532)
-
 [如何在IDEA中高效地使用和查找TODO标签](https://jingyan.baidu.com/article/ff42efa9c25811c19e2202ef.html)
-
 [IDEA maven 无法下载源码](https://blog.csdn.net/weixin_33709590/article/details/92383254)
-
 `mvn dependency:resolve -Dclassifier=sources`
 
 IDEA Spring bean是否存在 提示信息
-
 Windows，IntelliJ IDEA中用快捷键自动创建测类的默认按键为：
 
 ctrl+shift+T  --> create new test
-
 IntelliJ IDEA中用快捷键自动创建测类的默认按键为：
 
 ctrl+shift+t  --> create new test
@@ -218,9 +233,7 @@ failed: Unable to find main class -> [Help 1]
 [ERROR]
 [ERROR] After correcting the problems, you can resume the build with the command
 [ERROR]   mvn <goals> -rf :sumodule
-
 ```
-
 
 submodule中添加main方法
 

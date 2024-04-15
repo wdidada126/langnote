@@ -965,3 +965,6 @@ git checkout v2.43.0
 git submodule init
 git submodule update
 make prefix=/usr/local install install-doc install-html install-info
+
+## git-lfs
+

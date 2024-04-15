@@ -420,3 +420,13 @@ https://www.zhihu.com/people/zhaowei-db/activities
 
 数据库与新硬件
 https://zedware.github.io/NEW-HARDWARE/
+
+## 教学的db
+
+清华大学李国良
+huadb
+github.com/thu-db/huadb.git
+
+https://github.com/cmu-db/bustub
+c++的
+
