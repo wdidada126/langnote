@@ -1,5 +1,7 @@
 # scitools Understand工具
 
+windows understand 6.1.1086 升级成
+
 20240415
 java代码，用Understand 不如用idea
 
@@ -13,7 +15,7 @@ https://documentation.scitools.com/pdf/understand.pdf
 
 spring支持
 Understand build 1168 开始支持
-windows安装的是Understand 1092
+windows安装的是Understand 1092/1159
 https://support.scitools.com/support/solutions/articles/70000659561-java-spring-support
 
 git
