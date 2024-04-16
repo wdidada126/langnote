@@ -1,5 +1,34 @@
 # mysql
 
+5.7 官方文档
+
+分区表
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(25) NOT NULL,
+  `lname` varchar(25) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+/*!50100 PARTITION BY RANGE (id)
+(PARTITION p0 VALUES LESS THAN (5) ENGINE = InnoDB,
+ PARTITION p1 VALUES LESS THAN (10) ENGINE = InnoDB,
+ PARTITION p2 VALUES LESS THAN (15) ENGINE = InnoDB,
+ PARTITION p3 VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+
+
+INSERT INTO employees VALUES
+    ('', 'Bob', 'Taylor', 3, 2), ('', 'Frank', 'Williams', 1, 2),
+    ('', 'Ellen', 'Johnson', 3, 4), ('', 'Jim', 'Smith', 2, 4),
+    ('', 'Mary', 'Jones', 1, 1), ('', 'Linda', 'Black', 2, 3),
+    ('', 'Ed', 'Jones', 2, 1), ('', 'June', 'Wilson', 3, 1),
+    ('', 'Andy', 'Smith', 1, 3), ('', 'Lou', 'Waters', 2, 4),
+    ('', 'Jill', 'Stone', 1, 4), ('', 'Roger', 'White', 3, 2),
+    ('', 'Howard', 'Andrews', 1, 2), ('', 'Fred', 'Goldberg', 3, 3),
+    ('', 'Barbara', 'Brown', 2, 3), ('', 'Alice', 'Rogers', 2, 2),
+    ('', 'Mark', 'Morgan', 3, 3), ('', 'Karen', 'Cole', 3, 2);
+
 但在5.6版本(也可能更早几个版本)以后这个问题被优化了，在写“where 1=1”时，查询分析器会将“1=1”处理掉，所以不会对查询造成性能影响，感兴趣的小伙伴可以试验一下，反正我试过了。
 
 
@@ -14,7 +43,6 @@
 
 mysql索引下推
 https://zhuanlan.zhihu.com/p/687602096?utm_psn=1754048077135220736
-
 
 
 https://dev.mysql.com/doc/refman/8.3/en/

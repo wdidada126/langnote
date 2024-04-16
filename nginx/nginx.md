@@ -7,7 +7,18 @@ nginx开发出来之前，直接servlet
 反向代理，负载均衡，代理缓存，限流
 
 http://nginx.org/en/docs/
-bloghttps://www.nginx.com/blog/
+
+nginx中文翻译
+
+blog
+
+https://www.nginx.com/blog/
+
+校验nginx配置文件的项目
+nginx -t
+
+https://blog.redis.com.cn/doc/
+
 
 Tengine
 
@@ -213,6 +224,7 @@ server {
 
     }
 ```
+
 ### 踩坑解决问题
 - [emerg]: getpwnam("nginx") failed
 
@@ -225,11 +237,12 @@ server {
 - [emerg] mkdir() "/var/temp/nginx/client" failed (2: No such file or directory)
 root下手动创建即可：`mkdir -p /var/temp/nginx/client`
 - 重启服务器后启动提示/var/run/nginx找不到
+
 ```
 nginx: [error] open() "/var/run/nginx.pid" failed (2: No such file or directory)
 ```
-进入`/var/run`新建`nginx`文件夹：`mkdir nginx`
 
+进入`/var/run`新建`nginx`文件夹：`mkdir nginx`
 
 ngx里面红黑树实现得多漂亮，简直是c的典范
 
