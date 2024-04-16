@@ -1,5 +1,16 @@
 # git
 
+```shell
+PS D:\git\github\testjdk8> git rm -r --cached testjdk8.und/
+error: the following file has staged content different from both the
+file and the HEAD:
+    testjdk8.und/settings.xml
+(use -f to force removal)
+PS D:\git\github\testjdk8> git rm -r --cached testjdk8.und/ -f
+rm 'testjdk8.und/id.txt'
+rm 'testjdk8.und/settings.xml'
+```
+
 Netty
 
 And need to pay attention to the configuration of git. If using Windows, when you checkout code, LF will be automatically converted to CRLF:
