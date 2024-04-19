@@ -1,5 +1,7 @@
 # brpc
 
+https://github.com/ysj1173886760/Learning/blob/master/brpc_notes/1.md
+
 bRPC简介
 https://brpc.apache.org/zh/docs/overview/
 
