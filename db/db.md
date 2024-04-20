@@ -430,3 +430,7 @@ github.com/thu-db/huadb.git
 https://github.com/cmu-db/bustub
 c++的
 
+risinglight
+Rust的
+
+https://github.com/ruc-deke/rucbase-lab
