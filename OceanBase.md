@@ -1,5 +1,7 @@
 # OceanBase
 
+OcenBase 4.3 打造 PB 级实时分析数据库，可实现秒级实时分析。
+
 https://www.oceanbase.com/docs/community-tutorials-cn-10000000000012249
 
 https://github.com/oceanbase/oceanbase

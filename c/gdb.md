@@ -1,5 +1,48 @@
 # gdb
 
+## ubuntu/debian安装gdb
+在Ubuntu 20.04上安装GDB（GNU Debugger）的步骤如下：
+打开终端，可以通过按下Ctrl + Alt + T组合键来快速打开终端。
+运行以下命令更新软件包列表：
+
+```bash
+sudo apt update
+```
+
+安装GDB：
+
+```bash
+sudo apt install gdb -y
+```
+
+在安装过程中，系统可能会要求您提供管理员密码进行确认。
+4. 安装完成后，您可以通过运行以下命令来验证GDB是否成功安装：
+
+```bash
+gdb --version
+```
+
+如果成功安装，终端将显示GDB的版本信息。
+现在，您已经成功在Ubuntu 20.04上安装了GDB。您可以使用它来调试和分析程序，以帮助您解决软件开发中的问题。
+如果您想在GDB中安装并使用PEDA插件（一个用于GDB的Python脚本，用于增强调试功能），可以按照以下步骤进行：
+确保已安装gdb-multiarch和gcc：
+
+```bash
+sudo apt-get install gdb-multiarch  
+sudo apt-get install gcc
+```
+
+下载gdb-peda的源文件：
+```bash
+git clone https://github.com/longld/peda.git ~/peda
+```
+
+将PEDA添加到GDB的初始化脚本中：
+```bash
+echo "sour
+```
+
+
 问：g++ 生成gdb调试信息
 答：
 

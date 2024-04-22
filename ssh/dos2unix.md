@@ -1,0 +1,27 @@
+# dos2unix
+
+在 Linux 系统中，换行符通常是 `\n`（LF，Line Feed），而在 Windows 系统中，换行符通常是 `\r\n`（CRLF，Carriage Return Line Feed）。如果你有一个在 Windows 上编写的脚本（可能是 DOS 格式的），并且在 Linux 上运行它时遇到问题，那么你可能需要将换行符从 CRLF 转换为 LF。
+
+Sublime Text 是一个非常流行的文本编辑器，你可以使用它来轻松地转换文件的换行符。以下是如何在 Sublime Text 中将换行符从 CRLF 转换为 LF 的步骤：
+
+1. 打开 Sublime Text。
+2. 打开你的启动脚本文件。
+3. 在菜单栏上，选择 `View`（视图） -> `Line Endings`（行尾）。
+4. 在弹出的子菜单中，选择 `Unix`（或 `LF`）。
+
+这样，Sublime Text 就会自动将文件中的 `\r\n` 替换为 `\n`。
+
+另外，如果你不想使用图形界面或者经常使用这样的转换，你也可以使用命令行工具 `dos2unix` 来完成这个任务。首先，你需要安装这个工具。在基于 Debian 的系统（如 Ubuntu）上，你可以使用以下命令安装：
+
+```bash
+sudo apt-get install dos2unix
+```
+
+安装完成后，你可以使用以下命令将文件从 DOS 格式转换为 Unix 格式：
+
+```bash
+dos2unix your_script_file.sh
+```
+
+这条命令会将 `your_script_file.sh` 文件中的 `\r\n` 替换为 `\n`。
+
