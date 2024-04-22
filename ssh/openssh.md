@@ -69,7 +69,7 @@ ubuntu 20主机 openssh开启，现在要ssh登录，为什么是能public key�
 2. 输入以下命令以编辑sshd_config文件：
 
 ```bash
-sudo nano /etc/ssh/sshd_config
+sudo vim /etc/ssh/sshd_config
 ```
 
 3. 找到以下行：
