@@ -1,7 +1,7 @@
 # mac
+https://www.bilibili.com/video/BV1Ps4y1R7Lo/?spm_id_from=333.337.search-card.all.click&vd_source=71b9c2a5f966942c83677c2110efde22
 
-
-
+https://support.apple.com/zh-cn/guide/mac-pro/apdc6980d3be/2022/mac/12.2
 
 mac 无法打开“xxx”,因为无法验证开发者。
 
