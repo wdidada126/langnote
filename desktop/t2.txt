@@ -1,0 +1,18 @@
+一些支持 WebSocket 协议的图形化工具：
+
+SoapUI：SoapUI 是一款免费的功能齐全的测试工具，它支持多种协议，包括 WebSocket 协议。
+
+Postman：Postman 是一款常用的 RESTful API 测试工具，支持 WebSocket 协议。
+
+Paw：Paw 是一款 Mac 平台上的 API 开发工具，它支持多种协议，包括 WebSocket 协议。
+
+Wscat：Wscat 是一款开源的命令行工具，用于与 WebSocket 服务器进行通信，可以在终端中进行 WebSocket 消息的发送和接收。
+
+Smart Websocket Client：Smart Websocket Client 是一款 Chrome 浏览器扩展程序，它提供了一个简单易用的用户界面，用于测试和调试 WebSocket 连接。
+
+需要注意的是，由于 WebSocket 协议的特殊性，一些通用的网络抓包工具（例如 Wireshark）可能无法直接对 WebSocket 数据包进行分析和解码。如果需要分析 WebSocket 数据包，可以使用专门的 WebSocket 抓包工具（例如 WebSocket Monitor 插件）。
+
+
+
+WebSocket King支持windows吗？
+网页工具

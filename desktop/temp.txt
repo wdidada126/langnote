@@ -1,0 +1,377 @@
+
+5.
+Mysql(版本8.0.25)中表student_table(id,name,birth,sex)，插入如下记录：
+('1004' , '张三' ,'2000-08-06' , '男');
+('1009' , '李四', '2000-01-01', '男');
+('1010' , '李四', '2001-01-01', '男');
+('1006' , '王五', '2000-08-06' , '女');
+('1008' , '张三', '2002-12-01', '女');
+('1012' , '张三', '2001-12-01', '女');
+('1011' , '李四', '2002-08-06' , '女');
+('1013' , '赵六' ,'2000-09-06' , '男');
+现有SQL:
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1 
+full join 
+(select * from student_table where sex = '女')t2 
+on  t1.name = t2.name ; 
+如下SQL中与上述SQL实现的语义和结果一致的是（）？
+A
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+inner join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+left join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+right join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name ;
+B
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+inner join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+left join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+where t2.name is null
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+right join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name ;
+C
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+inner join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+left join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+where t2.name is null
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+right join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+where t1.name is null ;
+D
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+inner join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+left join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+union all
+select t1.*,t2.*
+from (
+select * from student_table where sex = '男' ) t1
+right join
+(select * from student_table where sex = '女')t2
+on t1.name = t2.name
+where t1.name is null ;
+
+
+
+
+RedPacket：一个基于Java语言开发的红包系统
+
+
+美团leaf id详解
+
+
+
+美团Leaf是一款分布式ID生成器，它可以生成全局唯一的64位ID。其中，Leaf的ID生成器可以水平扩展，支持高并发的ID生成请求。
+在Leaf中，ID生成器使用的是Snowflake算法，该算法的ID结构如下：
+第一位（最高位）是符号位，由于ID生成器只生成正整数，因此该位始终为0。
+接下来的41位是时间戳，用于记录生成ID的时间。这里的时间戳表示从Leaf的开始时间点（epoch）算起，到生成ID的时间点，经过的毫秒数。由于使用41位记录时间戳，因此Leaf的时间戳可以使用约69年，也就是说，如果从Leaf的开始时间点开始，一直使用该ID生成器生成ID，那么约69年后，该ID生成器将无法继续使用。
+接下来的10位是机器码，用于标识不同的机器。Leaf支持使用多个数据中心和机器集群，因此这10位可以分为5位数据中心编号和5位机器编号。
+最后的12位是序列号，用于表示在同一毫秒内，生成的不同ID的序列号。由于使用12位，因此每毫秒最多可以生成4096个不同的ID。
+在实际使用中，Leaf的ID生成器需要配置机器码，同时将不同的机器部署在不同的数据中心中，以保证生成的ID是唯一的。此外，为了提高ID生成的效率，Leaf还支持批量生成ID，每次可以生成多个ID，缓存在本地，以减少对ID生成器的请求。
+
+
+
+
+RocketMQ的性能与机器配置、网络环境、消息大小、存储介质等多个因素有关，因此并没有一个固定的标准来描述其性能表现。不过，以下是一个参考的 RocketMQ 4C8G 机器的性能数据：
+
+单机 100w TPS 左右（消息大小 1KB 左右）
+消费端单机拉取 20w 左右（消息大小 1KB 左右）
+集群模式下可支持上万级别的 TPS，具体数值取决于机器配置和网络环境等因素
+需要注意的是，这些数据仅供参考，实际使用中应该根据自己的业务需求和环境条件进行测试和优化。
+
+
+火警系统，消息队列确保消息可达
+
+在火警系统中，确保消息队列中的消息可达至关重要，因为消息的丢失可能导致对人员和财产造成不可预估的损失。以下是几种确保消息可达的方法：
+消息队列的持久化：将消息队列中的消息持久化到磁盘，即使系统崩溃或断电，消息也不会丢失，可以在系统重启后重新发送。
+消息队列的确认机制：生产者将消息发送到消息队列后，等待消息队列的确认，以确保消息已经被成功接收。如果消息队列无法确认，生产者可以重试或采取其他措施。
+消息队列的重试机制：在消息无法被消费者成功消费时，消息队列应该提供重试机制，允许消息再次被消费者消费，直到消费者成功消费消息。
+消息队列的监控与报警：监控消息队列的状态和性能，并在出现异常情况时及时报警，以便运维人员及时处理问题。
+消息队列的备份与恢复：对于重要的消息队列，应该进行备份，以便在系统崩溃或数据丢失时进行恢复，保证消息的可靠性和持久性。
+
+
+
+
+不良资产处置核心系统架构设计
+不良资产处置核心系统是一个重要的金融系统，旨在有效地处理不良资产并将其转化为有益的资产。以下是一个基本的不良资产处置核心系统的架构设计：
+
+数据库层：负责存储不良资产的各种信息，包括不良资产的来源、属性、评估信息、交易信息等。
+业务层：负责处理不良资产的相关业务，包括不良资产评估、价格确定、财务分析、拍卖、清算等。
+风险控制层：负责风险控制和评估，通过风险控制模型对不良资产的风险进行评估，并对风险进行管理和控制。
+接口层：负责与其他系统进行数据交互，包括与评估机构、拍卖机构、金融机构等的数据交互。
+安全层：负责系统安全性能，包括数据加密、用户认证、权限控制等。
+监控层：负责系统性能的监控和管理，包括对系统的运行状况、资源利用率、性能指标等的监控和管理。
+在设计不良资产处置核心系统时，需要考虑以下因素：
+数据安全：在不良资产处置过程中，需要保护数据的安全性，包括保护不良资产的信息和交易数据的安全。
+高并发处理：不良资产处置系统需要处理大量的数据和交易，并需要支持高并发处理能力。
+系统稳定性：不良资产处置系统需要具备高可用性和容错能力，以确保系统的稳定性和可靠性。
+系统性能：不良资产处置系统需要具备良好的性能，包括响应速度、数据处理能力等。
+数据交互：不良资产处置系统需要与其他系统进行数据交互，需要设计良好的数据接口和数据交互协议。
+业务流程：不良资产处置系统需要支持不良资产处置的各种业务流程，需要设计良好的业务流程管理和控制机制。
+
+
+
+
+
+
+可以使用maven-dependency-plugin插件的copy-dependencies goal将依赖包拷贝到指定目录下，例如：
+mvn dependency:copy-dependencies -DoutputDirectory=./lib
+java -cp lib/*:myproject.jar com.myproject.MainClass
+
+
+Kafka消费者监控工具可以监控以下指标：
+
+1.消费者的消费速率：记录了每个消费者组的消费速率，即每秒钟消费的消息数量。
+2.消费者组的Offset提交速率：记录了消费者组Offset提交速率的平均值、最大值和最小值。
+3.消费者组的Lag：记录了每个分区的Lag值（即分区末尾的Offset减去消费者组提交的Offset），以及整个消费者组的Lag值。
+4.消费者组的活跃成员数：记录了当前活跃的消费者组成员数。
+5.消费者组的消费者数量：记录了消费者组中的消费者数量。
+6.消费者组的Rebalance延迟：记录了消费者组进行Rebalance的延迟时间。
+7.消费者组的Partition分配情况：记录了消费者组中的每个消费者被分配到哪些分区。
+8.消费者组的Partition分配速率：记录了消费者组中每个消费者被重新分配分区的速率。
+9.消费者组的消费者偏移量分配情况：记录了消费者组中每个消费者的偏移量分配情况。
+10.消费者组的消费者偏移量提交情况：记录了消费者组中每个消费者提交偏移量的情况。
+
+在 Kafka 中，同一个组内的消费者共同消费一个主题的消息，每个消费者消费的消息是不同的，而且 Kafka 通过 offset 来跟踪每个消费者的消费进度。当消费者加入到一个组中时，它会自动向 Kafka 的 __consumer_offsets 主题中提交自己的 offset，Kafka 会将 offset 存储到 ZooKeeper 或者 Kafka 本地文件中。
+
+当同一个组内的不同消费者配置的 consumer.id 不同时，Kafka 认为这些消费者是不同的，每个消费者都会向 __consumer_offsets 主题提交自己的 offset，并且 Kafka 会为每个消费者单独维护 offset。这样，即使多个消费者消费同一个主题的消息，也不会互相干扰。
+
+需要注意的是，如果 consumer.id 相同，但是消费者的其他配置项不同，例如消费者所在的机器 IP 地址不同，Kafka 会将它们视为同一个消费者，并且只会维护一个 offset。因此，在配置消费者时，需要确保每个消费者的 consumer.id 唯一，其他配置项都相同。
+
+
+
+
+public class KafkaConsumerThread implements Runnable {
+    private final KafkaConsumer<String, String> consumer;
+
+    public KafkaConsumerThread(Properties props, String topic) {
+        this.consumer = new KafkaConsumer<>(props);
+        this.consumer.subscribe(Collections.singletonList(topic));
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+                for (ConsumerRecord<String, String> record : records) {
+                    // 处理每条消息的逻辑
+                }
+            }
+        } catch (WakeupException e) {
+            // 消费者关闭，不做处理
+        } finally {
+            consumer.close();
+        }
+    }
+
+    public void shutdown() {
+        consumer.wakeup();
+    }
+}
+
+public class KafkaConsumerManager {
+    private final int numThreads;
+    private final String topic;
+    private final String group;
+    private final Properties props;
+    private List<KafkaConsumerThread> consumers;
+
+    public KafkaConsumerManager(int numThreads, String topic, String group, Properties props) {
+        this.numThreads = numThreads;
+        this.topic = topic;
+        this.group = group;
+        this.props = props;
+    }
+
+    public void start() {
+        consumers = new ArrayList<>();
+        for (int i = 0; i < numThreads; i++) {
+            KafkaConsumerThread consumerThread = new KafkaConsumerThread(props, topic);
+            new Thread(consumerThread).start();
+            consumers.add(consumerThread);
+        }
+    }
+
+    public void shutdown() {
+        for (KafkaConsumerThread consumerThread : consumers) {
+            consumerThread.shutdown();
+        }
+    }
+}
+
+
+Kafka的两地三中心部署（2DC-3AZ deployment）是一种常见的高可用性架构，可以提供更高的可用性和容错性。在这种部署中，Kafka集群在两个不同的数据中心（DC）内，每个数据中心又有三个可用区（AZ），总共六个Kafka集群。
+以下是在两地三中心部署中的一些关键点：
+在两个数据中心中各部署三个Kafka集群，每个Kafka集群在不同的可用区，保证数据的容错性和可用性。
+在两个数据中心中各部署一个ZooKeeper集群，这两个ZooKeeper集群通过异地双活的方式互联，保证了数据的强一致性。
+在生产者和消费者端，需要在配置中指定多个Kafka集群的地址，以便在一个集群故障时能够切换到另一个可用的集群。
+在数据复制方面，Kafka提供了多种复制模式，例如异步复制和同步复制等，可以根据实际情况选择不同的复制模式。
+总体来说，两地三中心部署是一种高可用性架构，可以有效地提高Kafka集群的可用性和容错性。但是，在部署过程中需要考虑诸多因素，例如网络延迟、数据一致性、数据复制等问题，需要进行详细的规划和测试，确保部署方案的正确性和可行性。
+
+
+
+
+在Kafka中，offset是用于标识每个消费者已经消费的消息位置的一个整数值。每个主题分区中的每条消息都会有一个唯一的offset。消费者可以使用这个offset来跟踪它们已经消费的消息，并在之后从它们留下的位置继续消费。
+Kafka的offset机制具有以下几个作用：
+确保消息顺序性：offset机制使得Kafka能够保证消息的顺序性，即使多个消费者从同一个主题中消费消息，也可以保证每个消费者按照相同的顺序消费消息。
+支持消费者负载均衡：在消费者组中，offset机制支持消费者负载均衡，使得消费者可以同时消费同一个主题的不同分区中的消息。
+支持容错性：offset机制还支持容错性，如果一个消费者宕机，它的offset不会丢失，而是由另一个消费者接管它的工作，从它停止的位置继续消费消息。
+总之，offset机制是Kafka实现高性能、高可靠、分布式消息传递的重要手段。
+
+
+
+kafka java代码，查看offset数值
+可以通过Kafka Consumer API的position()方法来获取当前消费者的offset值。下面是一个简单的Java代码示例：
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.Arrays;
+import java.util.Properties;
+
+public class OffsetViewer {
+    public static void main(String[] args) {
+        // 定义Kafka Consumer的配置信息
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+
+        // 创建Kafka Consumer实例
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+
+        // 订阅要消费的Topic
+        consumer.subscribe(Arrays.asList("test-topic"));
+
+        // 遍历所有分区获取offset
+        for (TopicPartition partition : consumer.assignment()) {
+            long offset = consumer.position(partition);
+            System.out.println("Topic: " + partition.topic() + ", Partition: " + partition.partition() + ", Offset: " + offset);
+        }
+
+        // 关闭Kafka Consumer实例
+        consumer.close();
+    }
+}
+
+这段代码会输出指定Topic的每个分区的offset值。注意，这里的offset是消费者当前已经读取到的最新的消息的offset值，而不是存储在Kafka服务器上的消息offset。因此，如果消费者在读取到消息后还未提交offset，那么这里获取到的offset值可能会小于实际存储在Kafka服务器上的消息offset。
+
+
+
+Kafka消费者分组的主要作用是将多个消费者组织在一起，以协同消费Kafka的消息。当Kafka的消息被发布到主题时，它们被广播到每个消费者组中的所有消费者。每个组中的消费者都将接收到相同的消息，但每个消费者只能处理一部分消息。这种方式可以提高消息的并发处理能力，也保证了消息的有序性，因为每个消费者只会处理它所接收到的一部分消息。
+通过使用消费者分组，还可以实现水平扩展和负载均衡。当需要消费的消息数量增加时，可以通过增加消费者数量来扩展系统的处理能力。每个消费者将消费它所属组中的一部分消息，从而实现消息的负载均衡，避免了某些消费者负载过重的情况。同时，每个消费者可以独立地处理消息，这也有助于提高系统的可靠性和容错性。如果某个消费者出现故障，它所接收到的消息可以被其他消费者处理，从而避免了消息的丢失。
+
+
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
+import java.util.Collections;
+import java.util.Properties;
+
+public class ConsumerExample {
+
+    public static void main(String[] args) {
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+        
+        // 订阅某个topic
+        consumer.subscribe(Collections.singletonList("test-topic"));
+        
+        // 手动分配某个topic和分区
+        TopicPartition partition = new TopicPartition("test-topic", 0);
+        consumer.assign(Collections.singletonList(partition));
+        
+        // 消费消息
+        while (true) {
+            // 消费消息的代码
+        }
+    }
+}
+
+
+一个Kafka消费者可以订阅多个Topic和Partition，但是只能属于一个Consumer Group，一个Consumer Group内的多个消费者可以共同消费一个或多个Topic。因此，一个Kafka消费者不能订阅多个Consumer Group。如果需要同时消费多个Consumer Group，需要创建多个Kafka消费者，每个消费者属于一个Consumer Group。
+
+kafka消费者可以不设置消费组吗？
+不可以。Kafka中的消费者必须加入到一个消费者组中才能进行消费。消费者组中的消费者共同消费一个或多个主题下的所有分区，每个分区只能被同一个消费者组中的一个消费者消费，从而保证每个分区只会被一个消费者消费，避免重复消费和消息丢失。如果消费者不设置消费者组，将无法加入到消费者组中，也就无法进行消费。
+
+
+
+
+
+kafka不设置消费组报啥错
+如果在使用 Kafka 消费者时不设置消费组，则会抛出以下异常：
+
+
+org.apache.kafka.common.errors.InvalidGroupIdException: The configured groupId is invalid
+这是因为 Kafka 要求每个消费者必须隶属于一个消费组，如果没有设置消费组，就会抛出该异常。
+
+
+
+kafka消费者可以不设置消费者id吗？
+在Kafka消费者中，消费者ID是一个可选的配置项。如果没有显式地为消费者分配ID，Kafka消费者将使用默认ID "consumer-1"、"consumer-2"、"consumer-3" 等等。消费者ID的作用是确保在同一个消费者组中的所有消费者都拥有唯一的ID。这个ID被用来在同一个消费者组中进行负载均衡和协调。因此，建议在配置消费者时为其指定一个唯一的ID，以确保正确的负载均衡和消费者协调。
+
