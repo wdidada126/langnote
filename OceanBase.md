@@ -1,6 +1,12 @@
 # OceanBase
 
-OcenBase 4.3 打造 PB 级实时分析数据库，可实现秒级实时分析。
+2024 OceanBase 开发者大会
+上海市闵行区 3199 号宝龙艾美酒店
+2024年4月20日
+
+2023 OceanBase开发者大会在京召开，国泰产险资深数据库专家舒明分享了《国泰产险的 OceanBase上云实践》的主题演讲
+
+OcenBase 4.3打造PB级实时分析数据库，可实现秒级实时分析。
 
 https://www.oceanbase.com/docs/community-tutorials-cn-10000000000012249
 
