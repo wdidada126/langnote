@@ -22,14 +22,9 @@ kvm虚机
 
 性能损耗
 
-
-
 [linux tcpdump抓取HTTP包的详细解释](https://www.jb51.net/LINUXjishu/600345.html)
 
-
-
 [使用tcpdump+Wireshark抓包分析kafka通信协议](https://blog.csdn.net/icycode/article/details/80034774)
-
 
 ```shell
 tcpdump -n -i eth0
@@ -56,16 +51,12 @@ tcpdump -n -i eth0
 ```
 
 tcpdump -ni eth0 host 192.168.1.100
-
 tcpdump -ni eth0 src host 10.1.1.2
-
 tcpdump -ni eth0 dst host 10.1.1.2
 
 tcpdump -ni eth0 -c 10 dst host 192.168.1.200   7. 抓取 eth0 网卡上发往指定主机的数据包，抓到 10 个包就停止，这个参数也比较常用
 
 tcpdump -ni eth0 dst port 22 8. 抓取 eth0 网卡上所有 SSH 请求数据包，SSH 默认端口是 22
-
-
 
 ```shell
 tcpdump --version

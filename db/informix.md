@@ -1,5 +1,43 @@
 # informix
+Informix是IBM公司出品的关系数据库管理系统（RDBMS）家族。作为一个集成解决方案，它被定位为作为IBM在线事务处理（OLTP）旗舰级数据服务系统。 IBM对Informix和DB2都有长远的规划，两个数据库产品互相吸取对方的技术优势。在2005年早些时候，IBM推出了Informix Dynamic Server（IDS）第10版。
 
+发展历程
+1980
+在一家早期的S-100/CP/M公司Cromemco工作的Roger Sippl和Laura King开发了一个基于ISAM技术的小型的关系数据库，作为一个报表记录器软件的一部分。
+1980年，Sippl和King离开Cromemco去开发关系数据库系统（RDS）。他们的第一个产品叫做马拉松（Marathon），本质上是一个他们以前那个ISAM作品的16位版本，并且在Onyx操作系统上发布，这种Onyx操作系统是一个为早期的ZiLOG微处理器开发的Unix操作系统。
+在开发RDS的时候，他们把目光转移到了新兴的RDBMS市场，并且在1981年发布了他们自己的一个产品：Informix（INFORMation on unIX）。它包含了他们自己的Informer语言。它具备了ACE报表记录器的特性，用来把数据从数据库里释放出来，并且呈现给用户以供读取。它还具备了PERFORM屏幕格式工具的特性，可以让用户实现交互式的查询并且编辑数据库里的数据。这个产品的最终版本是1986年的3.30版。
+在1985年，他们引进了一种新的基于SQL的查询引擎，作为INFORMIX-SQL（或ISQL）1.10版（1.00版一直没有发行）的一部分。这个产品同样包括了SQL和PERFORM的SQL变量。ISQL和早期的Informix产品最显著的区别就在于将数据库存取码分散至一个引擎进程中（sqlexec），而不是将其直接嵌入客户端，这样来为和用户的电脑分离开的数据库服务器上的客户端-服务端运算创造条件。而基础的基于ISAM的文件存储引擎就被称作C-ISAM。
+尽管在上世纪80年代Informix一直扮演一个小角色，但是随着Unix和SQL在80年代走向流行，他们的命运随之改变。在1986年，他们已经强大到自己独立募股，而且将公司改名为Informix Software。他们的产品包括INFORMIX-SQL 2.00版和INFORMIX-4GL 1.00版，两个产品都包含了数据库引擎和开发工具（为程序员准备的I4GL，和为普通用户准备的ISQL）。
+一系列的产品随之发布，包括最初被认为是INFORMIX-Turbo的新的查询引擎。Turbo利用了新式的，比C-ISAM更对多用户性能有好处的RSAM。在1989年的4.00版出版后，Turbo被命名为INFORMIX-OnLine（一部分原因是因为它允许服务器运行在运行时，并且用户正在修改数据，而数据库的备份照样连贯进行），而且最初的基于C-ISAM的服务器被工具（ISQL和I4GL）所分割开来，并且被命名为INFORMIX-SE（标准版）。在1990年年末的时候，Informix OnLine 5.00版本问世，而且包括了完整的对拥有两步式工作提交和存储过程的分布式交易的支持。在5.01版中增加了对触发器的支持。
+
+1988
+在1988年，Informix将Innovative Software公司收购，后者研发了著名的基于DOS和Unix的办公系统软件SmartWare，和具有革新意义基于Apple Macintosh平台的的电子制表软件WingZ。
+
+1994
+随着Informix在办公自动化领域的失败，1994年他们重新把精力集中到发展当中的数据库服务器市场。同年，在与Sequent Computer Systems的协作下，Informix发布了具备动态可扩展结构（DSA）的6.00版的数据库服务器。
+DSA将产品的核心引擎做了很大改动，支持了横向和纵向的并行功能。并且基于和很多先驱与软件生产商（比如Sun Microsystems，Hewlett-Packard）都相继追随的对称多处理系统完美搭配的多线程核心。这两种并行模式让产品在扩展性上处于市场领先地位，不论是OLTP还是data warehousing。
+如今我们熟知的Informix Dynamic Server（当初考虑过命名为Obsidian，而后来命名为Informix OnLine Dynamic Server），它的第7版在1994年震撼了市场。当时正式对称多处理技术（SMP）系统刚刚开始盛行，而且Unix已经开始变为服务器操作系统的主流。第7版基本上成为领先于其他竞争者的一代产品，而且不断地在性能评测上胜出。这场胜利的结果使得Informix在1997年轻而易举地将Sybase挤下去，登上了数据库世界的亚军宝座。
+在第7版的成功的基础上，Informix将他们核心数据库研发的投资分为两个焦点。第一个是一开始所谓的XMP（for eXtended Multi-Processing），后来演变成了第8版的生产线，也被称作 XPS（for eXtended Parallel Server）。这个焦点致力于data warehousing和高端平台的并行处理，包括像IBM的RS-6000/SP这样的shared-nothing平台。
+
+1995
+在1995年收购了IIIustra后，第二个焦点集中在object-relational数据库（O-R）技术。Informix在7.x版本的OnLine产品中集成了IIIustra的O-R映射和DataBlades，结果变成了Informix Universal Server（IUS），或者简单地说，就是第9版。
+第8版（XPS）和第9版（IUS）都出现在1996年的市场上，令Informix成为第一个内建O-R支持的“big three”数据库公司（另外两个是Oracle和Sybase）。评论家们花了很多心思在DataBlades上，DataBlades后来非常流行，继与IIIustra的合伙后，又有了新架构。这让其他的软件生产商很着急，Oracle在1997年发布了支持时间序列的“嫁接”包，而Sybase让一家第三方公司为其制作了一个没有竞争力的附加产品包。
+
+1997
+在市场上的失败和公司的管理不当，掩盖了Informix技术上的成功。在1997年愚人节那天，Informix宣布他们第一个季度的收入比预期少了10亿美元。公司CEO Phillip White把这些差额怪罪在未能投入足够的精力在核心数据库业务上，而在object-relational技术上投入了太多资源。紧接着，大量的营业损失和裁员相继而来。Informix重审了1994年到1996年的利润，1990年代中期包括给合伙公司的软件许可证其实很大一部分都没有真正售出到终极用户手中，这样不规范的操作致使公司财政产生了超过20亿美元的泡沫。即使在White 1997年7月离开后，公司在1998年又来了一次财务重审。
+
+2001
+从2000年开始，Informix历史上的大事件再也不是集中在技术革新上了。从那一年开始，三月份，Informix购买了Ardent Software，一家自己本来就是收购和合并而来的公司。这次收购为他们那个时候已经很多了的数据库引擎又增加了两个多维引擎UniVerse和UniData（被简称为U2），不仅包括Informix传统的产品，还有Red Brick的面向datawarehouse的SQL引擎、100% Java版本的SQL，Cloudscape（后来被绑定在J2EE的参考安装包内）。
+
+IBM接管
+2000年7月，Ardent公司的前任CEO，Peter Gyenes，成为Informix的CEO，并且迅速重整了Informix以让其成为一个更诱人的期待别被别人收购的“猎物”。这样重要的一个决定是要把所有的数据库引擎技术，和应用程序与工具分离开来。
+在2001年4月，IBM趁着这次重整，提出了一项来自于沃尔玛（Informix最大的客户）的建议，从Informix购买了数据库技术、品牌、未来开发计划（代码名为“Arrowhead”的内部工程）以及和这些相关的超过10万余计的用户基础。剩下的生产应用程序和工具的公司重新命名为Ascential Software。在2005年5月，IBM买下了Ascential，在IBM的Information Management Software的投资组合下重新聚合了Informix的资产。
+
+官网：http://www.ibm.com/software/data/informix/
+
+https://www.modb.pro/wiki/19
 
 docker安装informix
 https://blog.csdn.net/qq_34412985/article/details/117076911
+
+首发时间	1980-01-01

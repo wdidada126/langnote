@@ -1,5 +1,30 @@
 # gradle
 
+gradle tasks
+
+
+在build.gradle文件中添加一个新的任务（task）非常简单。下面是一个例子，展示了如何添加一个名为myTask的新任务：
+打开你的项目的build.gradle文件（通常在项目的根目录下或者模块的子目录下）。
+在文件中找到合适的位置，添加一个新的任务定义。通常，所有的任务定义都放在tasks闭包中，或者作为顶级元素直接放在build.gradle文件的根级别。
+下面是一个简单的例子，演示了如何添加一个打印消息的myTask任务：
+
+```gradle
+// 在build.gradle文件的顶部或合适的位置添加任务定义  
+task myTask {  
+    doLast {  
+        println '这是我的自定义任务，它正在执行！'  
+    }  
+}
+```
+在上面的例子中，task关键字用于定义一个新任务，myTask是任务的名称。doLast是一个动作，表示这个任务在所有的其他动作之后执行。在这个例子中，doLast闭包中的代码将打印一条消息到控制台。
+保存build.gradle文件。
+打开命令行或终端，并导航到你的项目目录。
+运行gradle tasks命令。你应该能在任务列表中看到你的新任务myTask。
+要执行你的新任务，运行gradle myTask命令。这将触发你定义的任务，并执行你在doLast闭包中定义的代码。
+如果你需要更复杂的任务，比如依赖于其他任务，或者需要执行一些构建逻辑，你可以使用Gradle提供的更强大的任务配置选项。例如，你可以使用dependsOn来指定任务依赖，或者使用doFirst和doLast来指定任务执行的顺序。
+记住，Gradle的构建脚本是用Groovy或Kotlin DSL编写的，因此你可以利用这些语言的特性来编写更复杂的构建逻辑。如果你使用的是Kotlin DSL来编写build.gradle.kts文件，语法会有所不同，但基本的概念和步骤是相似的。
+
+
 es代码使用gradle构建
 es项目的build.gradle
 用了groovy编程语言，有File类，有eclipse插件的的groovy api

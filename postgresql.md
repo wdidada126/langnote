@@ -1,5 +1,7 @@
 # postgresql
 
+产品架构  Shared-Everything
+
 https://zhuanlan.zhihu.com/p/656483356
 
 德歌
