@@ -1,5 +1,12 @@
 # mac
 
+https://www.zhihu.com/question/37544123/answer/3426479727
+
+
+https://www.bilibili.com/video/BV1Ps4y1R7Lo/?spm_id_from=333.337.search-card.all.click&vd_source=71b9c2a5f966942c83677c2110efde22
+
+https://support.apple.com/zh-cn/guide/mac-pro/apdc6980d3be/2022/mac/12.2
+
 mac 无法打开“xxx”,因为无法验证开发者。
 
 当您在Mac上尝试打开第三方软件时，可能会遇到“无法验证开发者”的提示。这种情况通常出现在新安装的非AppStore软件上。这个警告并不意味着该应用有问题，可能是因为开发者未向Apple注册其ID。为了解决这个问题，您可以按照以下步骤操作：
