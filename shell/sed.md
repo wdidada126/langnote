@@ -1,7 +1,5 @@
 # sed
 
-
-
 /proc/meminfo
 
 /proc/cpuinfo
