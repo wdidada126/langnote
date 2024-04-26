@@ -1,5 +1,7 @@
 # mac
 
+Windows的逻辑是，复制(ctrl+c)——粘贴(ctrl+v)，剪切(ctrl+x)——粘贴(ctrl+v)。macOS的逻辑是：拷贝(CMD+C)——粘贴(CMD+V)，拷贝(CMD+C)——剪切(CMD+OPTION+V)
+
 https://www.zhihu.com/question/37544123/answer/3426479727
 
 

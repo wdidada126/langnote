@@ -1,5 +1,12 @@
 # os
 
+# lab 清华
+https://jyywiki.cn/OS/2023/labs/L0.html
+https://jyywiki.cn/OS/2022/index.html
+
+## 哈工大
+https://nachen95.github.io/2023/07/09/HITOS/
+
 
 Unix/Linus文件是区分大小写（大小写敏感）
 Windows Mac默认是不区分大小写的
