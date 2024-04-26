@@ -21,6 +21,29 @@ Or if using MacOS, when you commit code, CRLF will be automatically converted to
 git config --global core.autocrlf input
 
 
+
+git config core.autocrlf input
+
+git config core.autocrlf 的配置选项有三个可能的值：true、input 和 false。这些值决定了 Git 在检出（checkout）和提交（commit）代码时如何处理行尾字符（换行符）。
+
+true：
+检出时：将行尾从 LF 转换为 CRLF。
+提交时：将行尾从 CRLF 转换回 LF。
+这个设置通常用于 Windows 系统，因为 Windows 系统通常使用 CRLF（即 \r\n）作为行尾字符，而 Git 仓库和其他 UNIX-like 系统（如 Linux 和 macOS）则通常使用 LF（即 \n）。
+
+input：
+检出时：不转换行尾字符。
+提交时：将行尾从 CRLF 转换回 LF。
+这个设置对于跨平台协作开发很有用。例如，在 Windows 上检出代码时保留原有的行尾字符（可能是 LF 或 CRLF），但在提交代码到仓库时总是转换为 LF。这有助于避免因为行尾字符不同而导致的代码变化和冲突。
+
+false：
+检出时：不转换行尾字符。
+提交时：也不转换行尾字符。
+这个设置意味着 Git 不会自动处理行尾字符的转换。所有文件的行尾字符将保持原样。
+
+在选择合适的 core.autocrlf 设置时，你需要考虑你的工作环境和你的团队成员使用的操作系统。通常，在 Windows 系统上设置为 true，在 Linux 和 macOS 上设置为 input 是比较保险的选择。如果所有使用者都在同一系统下工作，并且希望保持行尾字符的一致性，可以设置为 false。
+
+
 git --version
 git version 2.37.1 (Apple Git-137.1)
 
