@@ -1,5 +1,19 @@
 # CMake
 
+```cmake
+add_library (spongechecks STATIC send_equivalence_checker.cc tcp_fsm_test_harness.cc byte_stream_test_harness.cc network_interface_test_harness.cc)
+
+macro (add_test_exec exec_name)
+    add_executable ("${exec_name}" "${exec_name}.cc")
+    target_link_libraries ("${exec_name}" spongechecks ${ARGN})
+    target_link_libraries ("${exec_name}" sponge ${ARGN})
+endmacro (add_test_exec)
+
+add_test_exec (tcp_parser ${LIBPCAP})
+add_test_exec (ipv4_parser ${LIBPCAP})
+add_test_exec (fsm_active_close)
+add_test_exec (fsm_passive_close)
+```
 
 https://vimeo.com/kitware
 
