@@ -39,3 +39,6 @@ Mac工具
 
 XCode是连其他开发工具一起装的
 mac可以下载安装包安装软件，iPhone还没有开放安装软件安装
+
+## mac book pro
+mbp 2015 
