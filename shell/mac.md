@@ -1,5 +1,12 @@
 # mac
 
+mbp 切换icloud账户
+设置 系统偏好设置
+apple id
+概览
+退出登录
+
+
 Windows的逻辑是，复制(ctrl+c)——粘贴(ctrl+v)，剪切(ctrl+x)——粘贴(ctrl+v)。macOS的逻辑是：拷贝(CMD+C)——粘贴(CMD+V)，拷贝(CMD+C)——剪切(CMD+OPTION+V)
 
 https://www.zhihu.com/question/37544123/answer/3426479727

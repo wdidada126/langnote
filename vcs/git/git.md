@@ -1,5 +1,10 @@
 # git
 
+
+本地main分支，远程master分支，强行推送
+error: src refspec master does not match any
+
+
 ```shell
 PS D:\git\github\testjdk8> git rm -r --cached testjdk8.und/
 error: the following file has staged content different from both the

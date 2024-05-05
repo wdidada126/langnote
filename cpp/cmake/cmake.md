@@ -150,6 +150,7 @@ wget -O cmake.tar.gz https://cmake.org/files/v3.24/cmake-3.24.4-linux-x86_64.tar
 tar zxvf cmake.tar.gz -C ./
 export PATH=${{github.workspace}}/temp/cmake-3.24.4-linux-x86_64/bin:$PATH
 ```
+export PATH=/cmake-3.24.4-linux-x86_64/bin:$PATH
 
 export PATH=/home/wdidada/cmake-3.24.4-linux-x86_64/bin:$PATH
 
