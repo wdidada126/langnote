@@ -1,5 +1,26 @@
 # esim
 
+eSIM购买地址 https://www.redpocket.com/shop/sim
+2,5美金套餐购买地址 https://www.ebay.com/itm/133196831828?mkcid=16&mkevt=1&mkrid=711-127632-2357-0&ssspo=Z-zthPgvQ1W&sssrc=2047675&ssuid=&var=433400683934&widget_ver=artemis&media=COPY
+
+
+优惠2.5美金5ber 购买链接 https://esim.5ber.com/?utm_source=sharingman
+
+0元开卡链接 https://www.asinx.io/#/pages/member/register/register?code=9j2om5u9
+
+tello手机卡
+
+不如tello，虽然5美刀一个月但是Wi-Ficalling无限短信和100分钟通话，自己在官网就能开esim，实体卡2美金就能寄回国
+
+t mobile是邮箱注册买卡，如果卖家不提供你他买卡的邮箱那要注意了有可能会触发T-Mobile的风控的，而且在邮箱上可以很轻松的做到锁卡或者挂丢失申请补卡，所以最好还是自己办理
+
+你这个太贵了，中国移动香港储值卡，月费2HKD，内地漫游接听免费，用了5年了，MyLink移动官方APP就可以微信支付宝都可充值话费
+
+有便宜的esim卡推荐么
+一个月3美元，一年就是36美元，在国内与其花这个钱，不如去买香港3hk的卡，268港币包年，有40+5G的流量。
+knowroadming免月租，但银行不认
+
+
 新加坡华侨银行（OCBC）
 年费120+人民币
 护照，身份证激活

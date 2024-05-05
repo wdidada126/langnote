@@ -4,7 +4,6 @@ nc — arbitrary TCP and UDP connections and listens
 
 我是在测试sparkStreaming时候用到
 
-
 https://netcat.sourceforge.net/
 
 wget -O netcat-0.7.1.tar.gz https://zenlayer.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gz?viasf=1

@@ -1,5 +1,4 @@
-# 20240501
-
+# dos2unix
 
 在Ubuntu 20上安装dos2unix，你可以通过以下步骤进行：
 
@@ -38,3 +37,4 @@ dos2unix Hello.txt
 ```bash
 unix2dos Hello.txt
 ```
+
