@@ -1,5 +1,7 @@
 # antlr
 
+看antlr是如何从支持mysql 5.7到支持mysql 8的
+
 G4 编码规范
 公共规范
 每行长度不超过 200 个字符，保证每一行语义完整以便于理解。
@@ -25,11 +27,6 @@ G4 编码规范
 antlr可以对接多种语言
 runtime
 
-
-
-
-
-
 #### antlr的概述
 
 
@@ -46,17 +43,13 @@ antlr是一个包含了`词法分析`,`语法分析`两大模块的工具，并�
 
 看起来是不是很神秘很牛逼~我们今天深入讨论一下
 
-
 #### antlr的基本使用
-
 
 antlr包含以下几个部分
 
 - antlr 主工程
 - antlr 语法描述 grammer
 - antlr 运行时 runtime
-
-
 
 目标语言的语法描述grammer文件，在antlr官网可以下载,https://github.com/antlr/grammars-v4，从里面可以看到，我们可以找到几乎所有主流语言的语法描述，换句话说，如果我们要分析的语言有现成的grammar文件，那我们可以直接拿来输入给antlr就能搞起词法语法分析。
 
@@ -67,7 +60,6 @@ antlr主工程虽然是Java，但是antlr运行可以在Java，JavaScript，Pyth
 - 我需要先去官网下载`ObjectiveC.g4`grammer语法描述文件
 - 我需要用antlr的Java主程序，输入OC的grammer，选择JavaScript语言输出，生成`ObjectiveCParser.js`这个用js代码写出来的，OC解析器
 - 我需要开始搭建我的JS程序，将一整个antlr的JavaScript运行时都import进来，并且import进来刚刚生成的`ObjectiveCParser.js`，在JS代码里开始编写JSPatchConvertor的代码逻辑
-
 
 antlr书籍
 
@@ -90,7 +82,6 @@ lr vs ll
 
 ll(0)
 ll(k)
-
 
 antlr有两个部分
 lex 语法分析
@@ -144,8 +135,6 @@ sql必须大写
 
 IDEA Preview
 
-
-
 Lex
 
 token
@@ -156,15 +145,9 @@ parser
 
 dfn
 
-
-
-
-
 ANTLR与与编译原理学习笔记
 
 https://blog.csdn.net/qq_38835878/article/details/82355616
-
-
 
 DFA
 
@@ -172,15 +155,7 @@ DFA
 
 org.antlr.v4.runtime.dfa.DFA
 
-
-
-
-
 antlr的maven插件给生成的代码设置包名
-
-
-
-
 
 LL
 
