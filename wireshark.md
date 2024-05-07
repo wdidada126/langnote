@@ -1,5 +1,28 @@
 # wireshark
 
+## 实现原理
+pcap
+
+https://www.winpcap.org/install/
+
+https://www.tcpdump.org/manpages/pcap.3pcap.html
+
+Wireshark和pcap（Packet Capture）之间存在密切的关系。简单来说，pcap是一种用于捕获网络数据包的技术，而Wireshark则是一个广泛使用的网络封包分析软件，它使用pcap技术来捕获和分析网络数据包。
+
+以下是关于Wireshark和pcap的详细解释：
+
+pcap（Packet Capture）：
+pcap是一种捕获代理网络数据包的技术，它基于操作系统内核层的实现来进行数据包的捕获。
+pcap技术可以捕获数据包并进行多种操作，如过滤、深度分析等，从而帮助管理员、开发人员进行网络故障诊断与分析。
+pcap通常用于抓取广域网（WAN）或局域网（LAN）上的数据包，并且支持多种操作系统和编程语言。
+Wireshark（前称Ethereal）：
+Wireshark是一个开源的网络封包分析软件，它使用pcap技术来捕获和分析网络数据包。
+Wireshark可以截取网络封包，并尽可能显示出最为详细的网络封包资料，包括源地址、目的地址、协议类型、数据内容等。
+Wireshark适用于各种网络环境，如以太网、WiFi、蓝牙等，并支持多种网络协议，如TCP、UDP、HTTP、FTP等。
+Wireshark的使用者包括网络管理员、网络安全工程师、开发者等，他们可以使用Wireshark来检测网络问题、检查信息安全问题、为新的通讯协定除错等。
+在Wireshark中，pcap文件（通常以.pcap、.cap或.dmp为扩展名）是用来存储捕获到的网络数据包的。这些文件可以在Wireshark中打开并进行分析，从而帮助用户了解网络行为、诊断网络问题等。同时，Wireshark也支持使用捕获过滤器来只捕获符合特定条件的网络数据包，以便更精确地分析网络流量。
+
+总之，pcap是一种捕获网络数据包的技术，而Wireshark则是一个使用pcap技术来捕获和分析网络数据包的软件工具。它们在网络故障诊断、网络安全分析等领域发挥着重要作用。
 
 https://www.cnblogs.com/softidea/p/10446388.html
 
