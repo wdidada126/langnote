@@ -1,5 +1,8 @@
 # mac
 
+mac app store 取消下载
+Command option
+
 mbp 切换icloud账户
 设置 系统偏好设置
 apple id
