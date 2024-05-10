@@ -7,3 +7,7 @@ https://github.com/plantuml/plantuml
 支持UML 图
 也支持json yaml等图
 
+https://plantuml.com/zh/
+
+https://plantuml.com/zh/guide
+
