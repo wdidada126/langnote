@@ -1,5 +1,7 @@
 # mac
 
+2024-05-08 苹果发布了新款 iPad Pro
+
 mbp 切换icloud账户
 设置 系统偏好设置
 apple id

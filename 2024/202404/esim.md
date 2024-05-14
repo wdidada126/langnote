@@ -21,9 +21,6 @@ t mobile是邮箱注册买卡，如果卖家不提供你他买卡的邮箱那要
 knowroadming免月租，但银行不认
 
 
-新加坡华侨银行（OCBC）
-年费120+人民币
-护照，身份证激活
 
 ClubSim实名认证结果查询
 https://www.clubsim.com.hk/zh/profile
@@ -35,7 +32,7 @@ https://www.clubsim.com.hk/zh/profile
 
 保号：
 clubsim保号方式是什么和如何计费
-每年消费一次即延长一年有效期，最低消费金额 6HKD 。clubSim保号方式，推荐购买“短訊組合”，只需要6HKD费用， 相当于6HKD/年。
+每年消费一次即延长一年有效期，最低消费金额6HKD 。clubSim保号方式，推荐购买“短訊組合”，只需要6HKD费用， 相当于6HKD/年。
 
 客户需按以下收费以订购发送短讯服务。于香港传送至香港其他网络的用户之文字短讯则为网外短讯。由香港传送至海外网络的用户之文字短讯则为国际短讯。每个网内短讯将收取$0.3，每个网外短讯将收取$0.6，每个国际短讯将收取$3。每个短讯最多可包括连空白位及标点符号在内160个英文字母或70个非英文字母。如短讯内同时包含英文及非英文字母，字数上限为70。如超过此字数上限，您的短讯将被分拆为几个短讯发送，每个短讯均需收费。
 
@@ -52,7 +49,8 @@ Club SIM
 參考編號
 OPP24042509532211433284
 
-港澳通行证 激活
+港澳通行证 激活 club sim手机卡
+
 (852) 183 3123
 手机app
 https://api.whatsapp.com/send?phone=85255875123&text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%BB%A5%E4%B8%8B%E4%BA%8B%E9%A0%85:
@@ -72,7 +70,23 @@ https://esim.5ber.com/help?language=en-US
 多多买了个，3hk的diy和clubsim都能用。不急的等estk，能在ios切换配置文件，这款ios不能切换。
 estk和5ber功能一样 但是功能更多 更便宜，说是3月末批量上市，目前还没消息
 
+发行版本
+当下 eSTK.me 发行了以下版本：
+公测版 1、2、3
+固件版本 1.x
+支持除 rLPA 和 Profile Emulator 外的所有功能
+ES 版
+固件版本 2.x
+支持所有功能，但封装工艺较脆弱，寿命较短
+正式版
+于 2024 年 4 月发布
+支持所有功能，使用 SiP 封装，寿命长
+
+
 https://esim.me/
+https://esim.me/eSIM-for-your-smartphone
+
+eSIM.me 电话卡
 
 cmlink英国卡
 
