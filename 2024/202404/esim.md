@@ -1,8 +1,23 @@
 # esim
 
+Clubsim是香港运营商CSL推出的子品牌
+
+香港移动万众 120费
+
+3diy
+3diy北京联通5g
+
+3HK-DIY储值卡特色
+这张储值卡主打其高性价比和便利性，尤其适合频繁往返于香港、澳门和中国大陆的用户。以下是其一些显著的特点：
+三地共用流量：提供在香港、澳门和中国大陆三地共用的数据流量，非常适合跨地区使用。
+全面功能：支持在中国大陆漫游时接打电话、发送短信，以及上网。
+支持eSIM：对于支持eSIM的手机用户，可以直接购买eSIM套餐，避免了实体SIM卡的快递和转运。就算你的手机不支持eSIM，也有解决办法。
+推荐购买“365日數據通行證 - 大灣區 45GB”这个套餐比较实惠。268港币可以使用一年，有45g流量，可以直接在大陆-香港-澳门三地使用。
+https://www.three.com.hk/tc/home.html
+https://www.three.com.hk/prepaid/DIY/tc/offer/travel
+
 eSIM购买地址 https://www.redpocket.com/shop/sim
 2,5美金套餐购买地址 https://www.ebay.com/itm/133196831828?mkcid=16&mkevt=1&mkrid=711-127632-2357-0&ssspo=Z-zthPgvQ1W&sssrc=2047675&ssuid=&var=433400683934&widget_ver=artemis&media=COPY
-
 
 优惠2.5美金5ber 购买链接 https://esim.5ber.com/?utm_source=sharingman
 
