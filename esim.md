@@ -1,8 +1,25 @@
 # esim
 
+可以搜Textr eSIM，邮箱注册就能领取免费eSIM
+
+Clubsim是香港运营商CSL推出的子品牌
+
+香港移动万众 120费
+
+3diy
+3diy北京联通5g
+
+3HK-DIY储值卡特色
+这张储值卡主打其高性价比和便利性，尤其适合频繁往返于香港、澳门和中国大陆的用户。以下是其一些显著的特点：
+三地共用流量：提供在香港、澳门和中国大陆三地共用的数据流量，非常适合跨地区使用。
+全面功能：支持在中国大陆漫游时接打电话、发送短信，以及上网。
+支持eSIM：对于支持eSIM的手机用户，可以直接购买eSIM套餐，避免了实体SIM卡的快递和转运。就算你的手机不支持eSIM，也有解决办法。
+推荐购买“365日數據通行證 - 大灣區 45GB”这个套餐比较实惠。268港币可以使用一年，有45g流量，可以直接在大陆-香港-澳门三地使用。
+https://www.three.com.hk/tc/home.html
+https://www.three.com.hk/prepaid/DIY/tc/offer/travel
+
 eSIM购买地址 https://www.redpocket.com/shop/sim
 2,5美金套餐购买地址 https://www.ebay.com/itm/133196831828?mkcid=16&mkevt=1&mkrid=711-127632-2357-0&ssspo=Z-zthPgvQ1W&sssrc=2047675&ssuid=&var=433400683934&widget_ver=artemis&media=COPY
-
 
 优惠2.5美金5ber 购买链接 https://esim.5ber.com/?utm_source=sharingman
 
@@ -20,22 +37,16 @@ t mobile是邮箱注册买卡，如果卖家不提供你他买卡的邮箱那要
 一个月3美元，一年就是36美元，在国内与其花这个钱，不如去买香港3hk的卡，268港币包年，有40+5G的流量。
 knowroadming免月租，但银行不认
 
-
-新加坡华侨银行（OCBC）
-年费120+人民币
-护照，身份证激活
-
 ClubSim实名认证结果查询
 https://www.clubsim.com.hk/zh/profile
 
 如何查看手机号
 
-852
-93075571
+852 93075571
 
 保号：
 clubsim保号方式是什么和如何计费
-每年消费一次即延长一年有效期，最低消费金额 6HKD 。clubSim保号方式，推荐购买“短訊組合”，只需要6HKD费用， 相当于6HKD/年。
+每年消费一次即延长一年有效期，最低消费金额6HKD 。clubSim保号方式，推荐购买“短訊組合”，只需要6HKD费用， 相当于6HKD/年。
 
 客户需按以下收费以订购发送短讯服务。于香港传送至香港其他网络的用户之文字短讯则为网外短讯。由香港传送至海外网络的用户之文字短讯则为国际短讯。每个网内短讯将收取$0.3，每个网外短讯将收取$0.6，每个国际短讯将收取$3。每个短讯最多可包括连空白位及标点符号在内160个英文字母或70个非英文字母。如短讯内同时包含英文及非英文字母，字数上限为70。如超过此字数上限，您的短讯将被分拆为几个短讯发送，每个短讯均需收费。
 
@@ -52,7 +63,8 @@ Club SIM
 參考編號
 OPP24042509532211433284
 
-港澳通行证 激活
+港澳通行证 激活 club sim手机卡
+
 (852) 183 3123
 手机app
 https://api.whatsapp.com/send?phone=85255875123&text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E6%9F%A5%E8%A9%A2%E4%BB%A5%E4%B8%8B%E4%BA%8B%E9%A0%85:
@@ -72,7 +84,23 @@ https://esim.5ber.com/help?language=en-US
 多多买了个，3hk的diy和clubsim都能用。不急的等estk，能在ios切换配置文件，这款ios不能切换。
 estk和5ber功能一样 但是功能更多 更便宜，说是3月末批量上市，目前还没消息
 
+发行版本
+当下 eSTK.me 发行了以下版本：
+公测版 1、2、3
+固件版本 1.x
+支持除 rLPA 和 Profile Emulator 外的所有功能
+ES 版
+固件版本 2.x
+支持所有功能，但封装工艺较脆弱，寿命较短
+正式版
+于 2024 年 4 月发布
+支持所有功能，使用 SiP 封装，寿命长
+
+
 https://esim.me/
+https://esim.me/eSIM-for-your-smartphone
+
+eSIM.me 电话卡
 
 cmlink英国卡
 

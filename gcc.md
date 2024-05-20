@@ -1,6 +1,12 @@
 # gcc
 
 ## releases
+
+gcc 14.1
+GCC 14.1 编译器计划在2024年5月7日左右发布
+https://gcc.gnu.org/pipermail/gcc/2024-May/243921.html
+
+
 https://mirror.linux-ia64.org/gnu/gcc/releases/
 
 gcc 4.8编译gcc11不行吧？

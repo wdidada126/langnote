@@ -1,5 +1,6 @@
 # mac
 
+2024-05-08 苹果发布了新款 iPad Pro
 mac app store 取消下载
 Command option
 
