@@ -1,5 +1,7 @@
 # esim
 
+可以搜Textr eSIM，邮箱注册就能领取免费eSIM
+
 Clubsim是香港运营商CSL推出的子品牌
 
 香港移动万众 120费
