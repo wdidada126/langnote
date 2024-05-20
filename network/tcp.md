@@ -103,11 +103,11 @@ https://kiprey.github.io/2021/11/cs144-lab4/
 
 stanford
 
-## netstat
+## netstat命令行工具
+netstat -tunpl
 
 lwip
 
 Twip（Tencent WEB Real-Time Communication Protocol）是腾讯公司开发的一种实时通信协议，用于在互联网上传输实时音视频数据。Twip基于UDP协议，提供了实时、高效和低延迟的通信能力。
 
 KCP（KCP over UDP）是一种快速可靠的数据传输协议，它使用UDP协议进行传输，但在传输过程中采用了类似于TCP的可靠性和流量控制机制。KCP通过快速重传、快速恢复和拥塞控制等技术，提高了数据传输的可靠性和效率。
-
