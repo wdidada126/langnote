@@ -4,7 +4,7 @@
 年费120+人民币
 护照，身份证激活
 
-妳可以發郵件找ocbc客服，選擇網上銀行咨詢，不需要肉身去。
+妳可以發郵件找ocbc客服，選擇網上銀行咨詢，不需要肉身去。一个星期之内回复你
 
 新加坡免签
 
@@ -15,7 +15,6 @@
 
 • 结单储蓄账户（新加坡元）
 • 环球储蓄账户（美元） 
-
 
 wiseism@126.com
 
@@ -40,6 +39,66 @@ Pay。
 
 +86 755 2583 3688（港澳台地区及海外）
 
-客户服务邮箱
+hk 客户服务邮箱
 CustomerVoice@ocbc.com
 https://www.ocbc.com.cn/CN/personal_banking/
+
+
+sg
+Get in touch with us
+Contact Us
++65 6363 3333
+Call us
+Call us to speak to a customer service executive.
+
+From 12am to 7.59am, we can only assist with urgent enquiries, such as those relating to fraud and lost cards. This will allow us to keep our lines clear for fraud and scam-related enquiries.
+
+If you have questions about other matters, please call us from 8am to 11:59pm.
+
+Personal Banking
+Call 6363 3333 or +65 6363 3333 from overseas
+
+Premier Banking
+Call 1800 Premier (1800 773 6437) or +65 6530 5930 from overseas
+
+Premier Private Client
+Call 1800 424 8888 or +65 6424 8888 from overseas
+
+Voyage Exchange (Concierge)
+Call 6593 9999 or +65 6593 9999 from overseas
+
+OCBC Voyage Customer Service
+Call 6438 6088 or +65 6438 6088 from overseas
+
+Bank of Singapore Voyage Customer Service
+Call 6363 3888 or +65 6363 3888 from overseas
+
+Collections hotline
+Call 6319 9756 (Home Loan, Car Loan) or +65 6319 9756 from overseas
+Call 6319 9753 (Cards, EasiCredit, Student Loan, Renovation Loan) or +65 6319 9753 from overseas
+
+Card Fraud Management
+Call 6535 7677 or +65 6535 7677 from overseas
+
+72323 
+
+英语客服
+
+我昨天打两次  第二个是说中文的
+
+美国的客服电话
++1 800-363-3333
+
+https://www.ocbc.com/personal-banking/contact-us
+
+ocbc手机app
+安全邮箱
+内容必须是英文
+
+
+不建议非工作日去弄
+
+签注费一般多少？
+几十
+深户有一年多次
+80可以每周一次通行
