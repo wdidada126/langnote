@@ -1,5 +1,172 @@
 # Java标准库
 
+
+AQS
+
+
+https://m.jb51.net/program/308100tm3.htm
+
+
+
+wrk -t2 -c100 -d10s http://0.0.0.0:8000/
+wrk 是一个比较先进的 HTTP 压力测试工具
+
+
+tomcat和netty都可以用nio+线程池作为woker，tomcat从6开始就已经改成用nio模型了（要配置NIO Connector，到了tomcat 8 改成了默认值）。因此问题可以化简为两个：
+
+同步异步区别：是否立即返回结果
+阻塞非阻塞区别：线程是否需要等待任务完成。
+
+https://www.zhihu.com/question/322233601
+
+
+https://www.zhihu.com/question/26943938/answer/1856426252
+
+
+Netty 的线程模型主要是基于Reactor 模型，但是可以灵活配置，单reactor 单线程，单reactor多线程，和多reactor 多线程模型。
+
+
+work boss线程池
+
+kafka采用的是主从Reactor多线程模型，因为Kafka主要与磁盘IO交互，因此真正的读写数据不是从Reactor处理的，而是有一个worker线程池，专门处理磁盘IO，从Reactor负责网络IO，然后把任务交给worker线程池处理。
+
+
+
+
+首先muduo的Reactor模式是multi-Reactor模式，可能和你在网络上看到的单Reactor模式有一点点不一样。
+我觉得Reactor模式主要就是三个组件。
+1. Handler或者叫Event，muduo里叫Channel，实际上就是对IO事件的抽象。实际上就是对fd进行了包装。
+2. Demultiplexer，实际上就是epoll或者select的抽象。
+3. Reactor。这个稍后谈
+
+全村最好的剑
+https://www.zhihu.com/question/320829696/answer/916954817
+
+
+
+我认为reactor模式就像其名字一样，当有一个事件开始驱动的时候，就会陆续驱动多个事件，最后就像核反应堆一样，产生巨大的能量，在网络里就是高效地处理并发。
+
+
+
+
+【基于Epoll的Server服务器 14.0 day12-将服务器改写为主从Reactor多线程模式-哔哩哔哩】 https://b23.tv/adBDK4d
+
+
+
+
+github搜索waking up
+
+
+
+我也是java转的trpc go ，难得不是框架吧，rpc框架都是类似的
+
+那士兵教育 八股文面试题
+
+工作年限长的，肯定更侧重项目和架构能力，但是其实八股文和算法应该也会考的，除非你面的岗位不是大头兵
+
+https://maimai.cn/article/detail?fid=1741439387&efid=jp9YJ3i3et_427TqWIXskw&share_channel=5&webid=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1IjoxNzE3NTMwNjksImZpZCI6MTc0MTQzOTM4N30.3CsCqbdFEnZ_dN3yVMDn4bfH_OoabZhsPV1aHbt0W4w&use_rn=1&_share_channel=copy_link
+
+
+https://maimai.cn/article/detail?fid=1741439387&efid=jp9YJ3i3et_427TqWIXskw&share_channel=5&webid=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1IjoxNzE3NTMwNjksImZpZCI6MTc0MTQzOTM4N30.3CsCqbdFEnZ_dN3yVMDn4bfH_OoabZhsPV1aHbt0W4w&use_rn=1&_share_
+
+https://www.nowcoder.com/discuss/987609
+
+https://www.nowcoder.com/discuss/986165
+
+
+
+
+
+
+
+RocksDB 事务及MVCC实现分析
+
+
+https://blog.csdn.net/GugeMichael/article/details/78673613
+
+BoltDB 介绍与源代码分析（八）：MVCC 多版本并发控制
+
+
+https://blog.csdn.net/u013272009/article/details/121599500
+
+
+
+https://github.com/niteshkumartiwari/B-Plus-Tree
+
+https://github.com/topics/mvcc?l=c%2B%2B
+
+https://github.com/topics/mvcc?l=java
+
+
+
+
+
+读写锁
+信号量 条件变量
+
+AQS java
+Go channel
+
+
+Linux c api
+
+1. 互斥锁
+1.1 创建
+pthread_mutex_t mutex;  // 创建一个互斥锁，需要定义为全局变量
+1.2 初始化
+#include <pthread.h>
+
+int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
+
+1.3 加锁
+#include <pthread.h>
+int pthread_mutex_lock(pthread_mutex_t *mutex); // 获取不到会阻塞
+
+1.4 解锁
+#include <pthread.h>
+int pthread_mutex_unlock(pthread_mutex_t *mutex);
+
+以下行为会报错:
+* 		对处于未锁定的互斥锁进行解锁操作
+* 		解锁其他线程锁定的互斥锁
+1.5 非阻塞加锁
+#include <pthread.h>
+int pthread_mutex_trylock(pthread_mutex_t *mutex);
+
+参数 mutex 指向目标互斥锁，成功返回 0，失败返回一个非 0 值的错误码，如果目标互斥锁已经被其它线程锁住，则调用失败返回 EBUSY
+1.6 销毁
+#include <pthread.h>
+
+int pthread_mutex_destroy(pthread_mutex_t *mutex);
+
+* 		不能销毁没有解锁的互斥锁
+* 		不能销毁没有初始化的互斥锁
+1.7 互斥锁属性
+1.7.1 初始化和销毁
+#include <pthread.h>
+int pthread_mutexattr_destroy(pthread_mutexattr_t *attr);
+int pthread_mutexattr_init(pthread_mutexattr_t *attr);
+
+1.7.2 类型
+#include <pthread.h>
+int pthread_mutexattr_gettype(const pthread_mutexattr_t *attr, int *type);
+int pthread_mutexattr_settype(pthread_mutexattr_t *attr, int type);
+
+* 		PTHREAD_MUTEX_NORMAL：一种标准的互斥锁类型，不做任何的错误检查或死锁检测。如果线程试图对已经由自己锁定的互斥锁再次进行加锁，则发生死锁；互斥锁处于未锁定状态，或者已由其它线程锁定，对其解锁会导致不确定结果。
+* 		PTHREAD_MUTEX_ERRORCHECK：此类互斥锁会提供错误检查。譬如这三种情况都会导致返回错误：线程试图对已经由自己锁定的互斥锁再次进行加锁（同一线程对同一互斥锁加锁两次），返回错误；线程对由其它线程锁定的互斥锁进行解锁，返回错误；线程对处于未锁定状态的互斥锁进行解锁，返回错误。这类互斥锁运行起来比较慢，因为它需要做错误检查，不过可将其作为调试工具，以发现程序哪里违反了互斥锁使用的基本原则。
+* 		PTHREAD_MUTEX_RECURSIVE：此类互斥锁允许同一线程在互斥锁解锁之前对该互斥锁进行多次加锁，然后维护互斥锁加锁的次数，把这种互斥锁称为递归互斥锁，但是如果解锁次数不等于加速次数，则是不会释放锁的；所以，如果对一个递归互斥锁加锁两次，然后解锁一次，那么这个互斥锁依然处于锁定状态，对它再次进行解锁之前不会释放该锁。
+* 		PTHREAD_MUTEX_DEFAULT ： 此类互斥锁提供默认的行为和特性 。 使 用 PTHREAD_MUTEX_INITIALIZER 初 始 化 的互斥锁 ， 或者调用参数arg为NULL 的pthread_mutexattr_init()函数所创建的互斥锁，都属于此类型。此类锁意在为互斥锁的实现保留最大灵活性， Linux 上 ， PTHREAD_MUTEX_DEFAULT 类型互斥锁的行为与PTHREAD_MUTEX_NORMAL 类型相仿。
+
+https://blog.csdn.net/weixin_47024013/article/details/125166464
+
+https://www.cnblogs.com/dayq/p/15970292.html
+
+
+【Linux多线程详解（线程的实现、线程回收、线程取消、线程清理，线程信号、线程调试，线程日志），多线程并发的网络服务端示例-哔哩哔哩】 https://b23.tv/7ne6Ljc
+
+
+
+
 java.util.StringJoiner
 ```java
         StringJoiner joiner = new StringJoiner(",");
