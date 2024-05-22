@@ -1,5 +1,8 @@
 # scitools Understand工具
 
+https://licensing.scitools.com/student
+facebook上有联系，messenger上可以看到
+
 windows understand 6.1.1086 升级成
 
 20240415

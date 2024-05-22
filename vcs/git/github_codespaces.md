@@ -1,5 +1,18 @@
 # codespaces
 
+
+
+github codespace有用
+https://github.com/codespaces/templates
+
+
+github 自动编译
+
+grpc-hello-cpp/.github/workflows/cmake.yml
+
+注意是workflows，不是workflow，有s
+
+
 可以stop，然后恢复，不用始终delete
 
 vsc

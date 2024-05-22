@@ -1,4 +1,61 @@
 # java8
+
+Java8实战 Future CompelwteFuture
+RecsiveTask forkloinpool
+
+Spring
+两大
+BeanPostProcessor
+BeanFactoryPostProcessor
+
+
+
+mybatis批量插入 三种方法 最终方案，开启ExecutorType.BATCH
+foreach会预编译 遍历太多会耗时
+https://www.zhihu.com/answer/2245413885
+
+
+https://zhuanlan.zhihu.com/p/419228460
+
+
+spring三级缓存
+https://www.zhihu.com/answer/2955320178
+
+HashMap 不能保证取里面元素时的顺序
+LinkedHashMap 可以保证按添加的顺序去取
+TreeMap 可以保证按 key 的排序顺序去取(key 需要实现 Comparable, 否则会报错 cannot be cast to java.lang.Comparable)
+
+SortMap接口
+
+Atomic原子类怎么实现
+
+
+
+线程池拒绝策略
+
+mybatis批量插入策略区别
+https://zhuanlan.zhihu.com/p/35305211
+
+
+Stream
+
+forEach
+map
+peak
+
+
+
+mybatis批量提交
+
+
+
+
+
+java代码质量相关插件(PMD|JaCoCo|sonar)关于maven及IDEA使用及配置
+https://blog.csdn.net/liuzhupeng/article/details/106907422
+
+
+
 JDK7新特性：MulticastChannel实现非阻塞式组播通信
 https://blog.csdn.net/code727/article/details/84419381
 

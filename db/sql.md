@@ -1,5 +1,13 @@
 # SQL
 
+在SQL中增加 HAVING 子句原因是，WHERE 关键字无法与聚合分组函数一起使用。
+HAVING子句可以让我们在用GROUP BY分组后筛选各组数据。
+
+参照完整性 就是外键
+
+避免频繁创建和删除临时表，以减少系统表资源的消耗；在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert；
+如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。
+
 生产环境sql，几千行，教科书上的sql，几行
 
 Sql标准梳理.mhtml

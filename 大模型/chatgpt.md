@@ -1,5 +1,16 @@
 # chatgpt
 
+llm
+
+openai.com
+
+现有的搜索引擎，现有的网站，给搜索人
+cahtgpt，自己分析网站数据，直接给搜索人
+chatgpt整合知识
+
+## 4o
+免费使用，按天限制次数
+
 ## 4
 
 ## 3.5
@@ -18,3 +29,4 @@ windows 10电脑查看不了某些wifi，是windows10电脑wifi驱动没有安�
 
 20230828 chatgpt是实时的了？
 不是
+2024.05 chatgpt 4o，2022的数据

@@ -1,5 +1,7 @@
 # Spring
 
+BeanFactoryPostProcessor 实现类
+
 Spring5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。
 
 ## 自己写spring

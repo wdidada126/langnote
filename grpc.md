@@ -1,5 +1,7 @@
 # grpc
 
+最近在研究gRPC,主要想用他来替代传统的HTTP通讯，以提升server间的通讯效率，中间也接触到了JSON-RPC，都有现成的库做支持，但考虑到最后，还是决定用gRPC，主要还是行业内，他还是主流，虽然有些学习成本，但熟悉之后倒还好，其他的方案毕竟没有接触过，不知道会遇到什么坑。
+
 https://github.com/grpc/grpc/
 
 https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip

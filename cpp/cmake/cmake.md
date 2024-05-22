@@ -1,5 +1,193 @@
 # CMake
 
+.pc cmake生成
+pkg-config介绍 通常我们在写程序时需要依赖一些库以及头文件，比如我今天用到的opencv，但库的安装位置可能不同，这时就需要一个工具能够管理并能搜索这些库的路径（头文件路径/include，库文件路径 /lib）。 pkg-config 就是通过库提供的一个 .pc 文件获得库的各种必要信息的，包括版本信息、编译和连接需要的参数等。通过 pkg-config 提供的参数(–cflags, –libs)，将所需信息提取出来供编译和连接使用。这样，不管库文件安装在哪，通过库对应的.pc文件就可以准确定位。 它提供的主要功能有：
+ <1> 检查库的版本号。如果所需库的版本不满足要求，打印出错误信息，避免连接错误版本的库文件。
+ <2> 获得编译预处理参数，如宏定义，头文件的路径。
+ <3> 获得编译参数，如库及其依赖的其他库的位置，文件名及其他一些连接参数。
+ <4> 自动加入所依赖的其他库的设置。
+
+
+知乎存在的逻辑
+提高交流的频率，效率
+不是严肃出版物，科普，通俗介绍性的文字
+包括的范围更大
+推荐，方便读者查阅资料
+
+分类，有标签，标签之间有包括关系
+
+非法集资，大部分是合法注册(只批条，不监管?)，有公众人物站台(包括明星，专家，官员)，甚至有地方国资入股(0元购，斐讯，联壁，华夏万家金服，松江国资委)，部分官员的家属在里边工作(盛晓春系盛亚飞的女儿)，请问一句已提示风险，就轻飘飘的过去了，您觉得合适吗？
+
+
+自己写redis
+
+
+JAVA自己的数据结构到redis网络协议，再到redis内存。
+
+
+cmake学习材料
+intel tbb    Intel Thread Building Blocks (TBB)
+https://github.com/oneapi-src/oneTBB/tree/v2021.7.0
+
+
+if (NOT DEFINED BUILD_SHARED_LIBS)
+    set(BUILD_SHARED_LIBS ON)
+endif()
+
+
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(zeno VERSION 1.0.0 LANGUAGES C CXX)
+
+
+
+【【公开课】现代CMake高级教程（持续更新中）-哔哩哔哩】 https://b23.tv/GUFOCko
+课件：https://github.com/parallel101/course
+作业：https://github.com/parallel101/hw11（还在准备中）
+
+set_target_properties()
+target_include_directories()
+
+cmake install()函数用法
+https://blog.csdn.net/weixin_42398658/article/details/121672529
+https://zhuanlan.zhihu.com/p/102955723
+
+make 2>&1 | tee out.txt把所有输出都定向到文件同时保留屏幕显示
+sudo make install 2>&1 | tee out.txt
+
+muduo doc使用doxygen
+doxygen用法？
+
+windows支持posix
+
+posix 标准定义了一套操作系统必须实现的api，这样的话，当你写的代码只使用了posix标准定义的接口时，那么你的代码相对于所有支持posix标准的操作系统来说，都是可移植的，最多重新编译一下就可以使用。
+至于为什么Windows也要支持他？应该是为了使用符合posix标准的应用程序吧，实现了posix标准，就意味着很多只有在Linux、Unix、MAC 等操作系统的应用程序都可以在Windows下使用了。
+更多的应用，就代表着更多的用户，你懂的。
+
+github查看当前登录用户有哪些codepace
+
+https://edidada-zany-happiness-jw6qv69vrjhpq45.github.dev/
+
+git clone https://github.com/grpc/grpc
+cd grpc/
+git checkout v1.48.0
+git submodule update --init
+mkdir -p cmake/build
+cd cmake/build
+cmake ../..
+make
+
+undefined reference to xxx某个函数
+怎么知道这个函数是那个库里面的？
+怎么知道.cc文件被打包进哪个so文件里面
+
+make怎么打包成库文件 g++怎么打包库文件
+
+mvn package
+
+
+leveldb需要snappy
+https://www.oschina.net/p/snappy?hmsr=aladdin1e1
+https://src.fedoraproject.org/repo/pkgs/snappy/
+
+git remote set-url origin https://gitee.com/edidada/testrust.git
+
+
+其实nevovim + spavevim撸也还行
+
+apue unp
+陈硕
+
+C++服务器开发精髓
+https://book.douban.com/subject/35491437/
+
+https://book.douban.com/subject/25900403/
+
+https://gitee.com/edidada/unix-linux-program
+https://gitee.com/edidada/essential_cpp_code
+
+ansic
+fopen
+
+posix
+fnctl.h open
+
+进程 fork
+线程 pthread_create
+
+人世间
+电视剧
+
+真没必要这么麻烦，再穷逼现在组个e5洋垃圾1200元就有16c32t的规格，多线程性能堪比10900k，编程完全没有任何压力甚至绰绰有余
+
+https://www.linuxquestions.org/questions/linux-general-1/ubuntu-20-04-blocking-google-signin-4175688411/
+
+回形针也是理中客，混乱博物馆更是搞科普的，其背后都有境外反华势力参与。
+回形针是被自媒体曝光的，插图事件也是网络舆论发酵才引发关注的，塔里木盆地教科书的事件更是持续了十几年。
+渗透和控制已经非常严重了，情报系统可能已经失能。网络平台不可能不受此影响，它们完全可以通过后台操作使拥有反华背景的自媒体成为主流。
+美国过去几十年通过各种渠道引导、操控我国国民认只，整个文学影视界全面亲美，不可能错过网络时代。
+睡前消息极有可能跟意林回形针一样，参考消息主持人长的很像台湾人。
+
+CatalyzeX chrome插件
+
+https://www.zhihu.com/answer/2779480241
+
+严店中学旁边就是百大周谷堆
+
+https://github.com/Kr328/ClashForAndroid
+
+企业级ssd
+
+企业级，航天级 民用的，不一样
+你一说话，别人就默认你是在为自己谋利
+
+
+答主可能没有实际操作过向各大平台申请信息披露吧，我向抖音、微信、小红书都申请过，前两个都明确告知需要法院调查令，小红书是因为不强制要求实名制，他们也没有对方的个人信息
+
+武汉地铁我参与建设很多条线，还是比较有发言权的...
+5.6k能上车地铁房不一定值得，位置真的太偏了，举个例子，21号线（阳逻线）武生院到金台这一段，价格不高，但是完全不推荐。
+低价上车可能只有四新白沙洲这种没啥上涨空间，自住凑合的区域。
+
+学习c++最新版本特性，不一定要装编译器，有线上编译环境
+
+工业软件市场太小，就算做出来也未必有人会买账，欧特克多厉害，几乎算是工业软件里的一哥了，一年营收也就接近30亿美元
+
+
+业务开发
+技术应用
+两个方向
+
+整理资料，定期复习，repo
+
+gcc是编译c的，我却在mac上用gcc编译c++代码，报错了
+
+sonic是开源的，推荐sonic无可厚非啊。在字节跑路前用sonic优化过项目下发端的代码，对于计算密集型服务性能确实有一定提升，不过我负责的项目优化后没图中那么明显，印象中图中的项目还同时用了tango？
+
+cmake需要手动新建CMakefile.txt吗？
+
+mvn init
+
+pom.xml设置jdk版本
+.cmake文件
+
+设置变量
+pom.xml properries节点
+cmakefile.txt
+生命式
+set
+
+pom.xml一堆插件，cmake有插件吗？
+
+conanfile.py
+xmake.lua
+
+https://blog.csdn.net/Gabriel576282253/article/details/104826413
+
+减少重复造轮子，开源Java微信小程序商城 (前后台开源) 。快速搭建一个属于自己的微信小程序商城。QQ交流群：66502035、870579539、151602347欢迎大家进群交流技术。
+
+
+
 ```cmake
 add_library (spongechecks STATIC send_equivalence_checker.cc tcp_fsm_test_harness.cc byte_stream_test_harness.cc network_interface_test_harness.cc)
 
