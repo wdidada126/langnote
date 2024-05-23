@@ -1,5 +1,20 @@
 # docker
 
+
+docker save -o k8s-1.12.3.tar
+
+docker load
+
+service docker start
+
+systemctl
+
+docker 启动日志
+
+service docker status
+
+Docker is not running
+
 ## subnet
 # 创建一个名为tars的桥接(bridge)虚拟网络，网关172.25.0.1，网段为172.25.0.0
 docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars

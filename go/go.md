@@ -1,4 +1,8 @@
 # go
+
+ginkgo
+go测试库
+
 ## go blog
 
 https://blog.golang.org/h2push

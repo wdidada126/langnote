@@ -1,5 +1,5 @@
 # quic
-
+QUIC 并没有解决 HoL blocking，只是缓解。里外高低都得先从多路复用开始说。
 
 Quick UDP Internet Connections
 

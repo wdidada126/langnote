@@ -1,5 +1,12 @@
 # windows 命令行
 
+
+
+因为win系统很实诚的把你卸载的过程给你看。
+而手机系统不太老实，它先把图标删了，然后再到你看不见的后台暗戳戳的删文件。
+
+
+
 NETSTAT.EXE
 C:\Windows\System32\NETSTAT.EXE
 

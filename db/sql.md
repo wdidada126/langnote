@@ -1,7 +1,20 @@
 # SQL
 
-在SQL中增加 HAVING 子句原因是，WHERE 关键字无法与聚合分组函数一起使用。
-HAVING子句可以让我们在用GROUP BY分组后筛选各组数据。
+https://github.com/gupaoedu-tom/netty4-samples
+
+规范上说避免使用JOIN
+https://zhuanlan.zhihu.com/p/424051070
+
+nested loop join，block nested loop join和index nested loop join。
+1. nested loop join就是分别从两个表读一行数据进行两两对比，复杂度是n^2
+2. block nested loop join是分别从两个表读很多行数据，然后进行两两对比，复杂度也是n^2，只是少了些函数调用等overhead
+3. index nested loop join是从第一个表读一行，然后在第二个表的索引中查找这个数据，索引是B+树索引，复杂度可以近似认为是nlogn，比上面两个好很多，这就是要保证关联字段有索引的原因
+4. 如果有hash join，就不用做这种限制了，用第一个表（小表）建hash table，第二个表在hash table中查找匹配的项，复杂度是n。缺点是hash table占的内存可能会比较大，不过也有基于磁盘的hash join，实现起来比较复杂
+
+MYSQL经典50题16-20
+www.bilibili.com/video/BV1rN411A7nQ/
+
+在SQL中增加 HAVING 子句原因是，WHERE 关键字无法与聚合分组函数一起使用。HAVING子句可以让我们在用GROUP BY分组后筛选各组数据。
 
 参照完整性 就是外键
 

@@ -1,6 +1,10 @@
 # powershell
 
+powershell 汉字乱码
 
+https://blog.csdn.net/weixin_43426860/article/details/83348284
+
+搞定了
 
 给 Windows 的终端配置代理
 

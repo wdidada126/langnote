@@ -1,5 +1,7 @@
 # mqtt
 
+嵌入式硬件肯定选MQTT。AMQP更适合服务端。
+
 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）
 
 MQTT 发布订阅测试，可以在 Chrome 中下载 MQTTBox 插件 或者 命令行安装 mosquitto 工具
