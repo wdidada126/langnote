@@ -1,5 +1,16 @@
 # mac
 
+mac连接外部显示器 竖屏
+https://blog.csdn.net/KingJin_CSDN_/article/details/106497347
+
+dell主机第一个有线数据线的接口
+mac地址
+ec:f4:bb:eb:fe:48
+EC:F4:BB:EB:FE:48
+
+招聘
+奇瑞控股集团有限公司
+
 [Sublime Mac快捷键](https://segmentfault.com/q/1010000002397241)
 
 https://segmentfault.com/q/1010000002397241
