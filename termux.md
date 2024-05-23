@@ -1,6 +1,9 @@
 # termux
 
 
+android系统都可以安装termux。然后在里面可以通过chroot的方式安装fedora或者ubuntu。可以直接使用命令行。图形界面也是可以装的，但是要通过vnc程序传递图形界面。
+
+
 apt基础上封装pkg，默认执行apt update apt upgradle操作
 
 

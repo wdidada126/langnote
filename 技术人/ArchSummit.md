@@ -1,5 +1,7 @@
 # ArchSummit
 
+作为后端的同学，更需要关注业界的动态和方向，包括QCon技术峰会、架构峰会以及github和技术社区。
+
 archsummit ddd
 
 https://archsummit.infoq.cn/2020/shenzhen/presentation/2308

@@ -1,6 +1,9 @@
 # bitbucket
 
 
+Bitbucket
+GuRgMJbvzmmB4QLfHnF5
+
 bitbucket用其他算法的ssh 秘钥，不用rsa的
 https://bitbucket.org/blog/ssh-host-key-changes
 

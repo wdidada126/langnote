@@ -1,6 +1,60 @@
 # aix
 
 
+# Aix p275 淘宝二手
+
+大型机
+
+小型机
+
+2021年推出Power CPU的全新版本——Power 10
+
+
+IBM i
+Os
+
+Power 9芯片首席架构师Brian Thompto
+Power是Power Optimization With Enhanced RISC的缩写，是由IBM开发的一种RISC指令集架构(ISA)。
+
+POWER 1 发布于1990年
+POWER 2 发布于1993年
+POWER 3发布于1998年
+POWER 4发布于2001年
+POWER 5 2004 年发布
+POWER 6在 2007年5月发布
+2010年发布了POWER 7
+Power 8处理器 2013
+2017 Power 9
+
+
+先进交互运行系统（英语：Advanced Interactive executive，缩写为）
+
+AIX 5L 5.1, 2001年5月
+AIX 5L 5.2, 2002年10月
+AIX 5L 5.3, 2004年8月
+AIX 6.1, 2007年11月9号
+AIX 7.1, 2010年发布
+AIX 7.2 2015
+AIX 7.3 2021
+
+# 20200530
+
+了解ibm power 9发布时间
+
+Ibm i os
+
+Arm ip授权模式
+
+开源指令集架构
+
+二手p750淘宝买，没找到店铺
+
+树莓派 arm
+
+Posix pthread 公开的接口
+
+Mutex condiction
+
 
 1986年的AIX Version 1到2010年的AIX Version 7
 

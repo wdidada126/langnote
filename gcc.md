@@ -1,4 +1,5 @@
 # gcc
+其实Windows还有一个由RAD Studio附带的bcc编译器，效率也很好
 
 ## releases
 

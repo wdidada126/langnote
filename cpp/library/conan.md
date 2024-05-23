@@ -1,5 +1,6 @@
-
 # conan
+
+而且另外一个讨厌的问题是C++没有包管理器，好不容易有个conan挺好用的大家又不爱用，导致小功能全都自己搓轮子
 
 wdidada@10-23-29-39:~/myqt6app$ sudo conan install -u ./ --build=missing
 ERROR: Ambiguous command, both conanfile.py and conanfile.txt exist

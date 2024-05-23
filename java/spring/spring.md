@@ -1,5 +1,7 @@
 # Spring
 
+开发效率影响太大了，不然为什么spring性能不佳但仍然是主流？不带gc的语言写服务端就是来折腾团队的。开发效率blazor完胜。
+
 BeanFactoryPostProcessor 实现类
 
 Spring5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。

@@ -1,5 +1,10 @@
 # llvm
 
+
+非常希望在有生之年能看懂v8
+回复: 易读不是大部分项目的追求……
+不过，话说回来，LLVM的libc++可读性是相当好的，至少比GCC和MSVC的标准库实现容易理解多了。
+
 brew install llvm
 
 If you need to have llvm first in your PATH, run:

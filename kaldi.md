@@ -1,5 +1,9 @@
 # kaldi
 
+感觉语音需求不多呀，而且方案是开源的，数据是企业自己的，除了少数优秀的算法工程师，感觉其他老员工相比应届生也没太大优势
+
+语音识别引擎还有kaldi这些都是c++,相对来说对c++还比较熟悉
+
 http://www.kaldi-asr.org/
 http://kaldi-asr.org/doc/
 http://kaldi-asr.org/doc/annotated.html

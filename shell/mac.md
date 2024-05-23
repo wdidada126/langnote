@@ -1,5 +1,23 @@
 # mac
 
+[Sublime Mac快捷键](https://segmentfault.com/q/1010000002397241)
+
+https://segmentfault.com/q/1010000002397241
+
+Ctrl+A：到行首（达到Home键的效果）
+Ctrl+E：到行尾（达到End键的效果）
+Ctrl+N：到下一行
+Ctrl+P：到上一行
+Ctrl+K：从光标处开始删除，直到行尾
+fn键+左方向键是HOME
+fn键+右方向键是END
+fn+上方向键是page up
+fn+下方向键是page down
+
+使用电脑有记录
+
+
+
 nvme转接卡苹果
 
 回复 @超级喜欢成宝拉 :需要m.2转苹果的转接卡
