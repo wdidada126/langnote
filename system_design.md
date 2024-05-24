@@ -1,50 +1,37 @@
 # system design
 
-
+学习系统设计最好的几个站点
+1. Educative - bit.ly/3Mnh6UR
+2. Udemy - bit.ly/3vFNPid
+3. ByteByteGo - bit.ly/3P3eqMN
+4. Exponent - bit.ly/3cNF0vw
+5. ZTM - bit.ly/3zEPZ3j
+6. Coursera - bit.ly/3BxMXzr
 
 系统扩展方式
 https://blog.csdn.net/kepa520/article/details/82791470
-
-
 
 哪种Scale out架构能更有效满足分布式计算
 
 https://baijiahao.baidu.com/s?id=1611494409859582577&wfr=spider&for=pc
 
-
-
 [横向扩展存储](https://baike.baidu.com/item/横向扩展存储/17583162?fr=aladdin)
 
-
-
-
-
 https://www.sohu.com/a/206625689_165716
-
-
 
 https://github.com/xingshaocheng/architect-awesome
 
 https://github.com/sorenduan/awesome-java-books
 
-
-
-
 ##### 电商系统
 
 SKU
 
-
-
 [商品规格SKU算法实现](https://www.toutiao.com/i6760837222372475405/)
-
-
 
 ##### Consistency Model
 
 [面试必问：怎么保证缓存与数据库的双写一致性](https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&mid=2247488169&idx=2&sn=fa362cbb3fa97e97283e42d7cffde243&chksm=9bd0bf31aca73627fee22c0fff950e2492f8fce243c95de73a23ba068f7179872bd31894a091&scene=21#wechat_redirect)
-
-
 
 ##### Cache Aside Pattern
 
@@ -64,13 +51,13 @@ SKU
 
 
 
-- **Strict Consistency** Strict Consistency是最强的一致性模型，要求任何读取操作都能读取到最新的值，换句话说，要求任何写入操作立即同步给所有进程。在分布式系统中，数据的同步是需要时间的，因此在分布式系统下无法严格实现Strict Consistency。除非让所有的读写操作都只在一个进程的一个线程中执行或者，读写操作被锁保护起来。(根据CAP的原理，这个一致性模型在没有牺牲可用性的前提下是不能得到满足的。 性能也是不可接受的：所有的写操作需要同步到所有节点之后再返回给客户端。)
+- Strict Consistency Strict Consistency是最强的一致性模型，要求任何读取操作都能读取到最新的值，换句话说，要求任何写入操作立即同步给所有进程。在分布式系统中，数据的同步是需要时间的，因此在分布式系统下无法严格实现Strict Consistency。除非让所有的读写操作都只在一个进程的一个线程中执行或者，读写操作被锁保护起来。(根据CAP的原理，这个一致性模型在没有牺牲可用性的前提下是不能得到满足的。 性能也是不可接受的：所有的写操作需要同步到所有节点之后再返回给客户端。)
 
-- **Sequential Consistency** Sequential Consistency是比Strict Consistency弱一些的一致性模型，要求：
+- Sequential Consistency Sequential Consistency是比Strict Consistency弱一些的一致性模型，要求：
 1. 进程内，对同一个变量的读写保持顺序
   2. 进程间，“看到”的变量的变更顺序是一致的（不要求和“物理时间”下的顺序保持一致）
 
-- **Linearizable Consistency** Linearizable Consistency比Sequential Consistency更严格一些：
+- Linearizable Consistency Linearizable Consistency比Sequential Consistency更严格一些：
 1. 进程内，对同一个变量的读写操作保持顺序
   2. 进程间，“看到”的变量的变更顺序和全局“物理时钟”下的顺序是一致的
 
@@ -185,33 +172,14 @@ Let's design a URL shortening service like TinyURL. This service will provide sh
 
 ##### b. Generating keys offline 
 
-**7. Data Partitioning and Replication**
-
-
-
-**8. Cache**
-
-
-
-**9. Load Balancer (LB)**
-
-
-
-**10. Purging or DB cleanup**
-
-
-
-**11. Telemetry**
-
+7. Data Partitioning and Replication
+8. Cache
+9. Load Balancer (LB)
+10. Purging or DB cleanup
+11. Telemetry
 
 
 ### 12. Security and Permissions
-
-
-
-
-
-
 
 # Designing Instagram
 
@@ -219,11 +187,11 @@ Let's design a photo-sharing service like Instagram, where users can upload phot
 
 ### 1. What is Instagram?
 
-**2. Requirements and Goals of the System**
+2. Requirements and Goals of the System
 
-**Functional Requirements**
+Functional Requirements
 
- **Non-functional Requirements**
+Non-functional Requirements
 
 ### 3.Some Design Considerations
 
@@ -232,27 +200,12 @@ Let's design a photo-sharing service like Instagram, where users can upload phot
 5. High Level System Design
 
 ### 6. Database Schema
-
 ### 7. Data Size Estimation
-
 ### 8. Component Design
-
 ### 9. Reliability and Redundancy
-
-
-
 ### 10. Data Sharding
-
-
-
 ### 11. Ranking and News Feed Generation
-
-
-
 ### 12. News Feed Creation with Sharded Data
-
-
-
 ### 13. Cache and Load balancing
 
 
