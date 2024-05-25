@@ -2,13 +2,11 @@
 
 https://www.jianshu.com/p/c5f655273d39
 
-
-
 skia
 
 The Skia Graphics Engine is an open-source graphics library written in C++. Skia Inc. originally developed the library; Google acquired it in 2005, and then released the software as open source licensed under the New BSD free software license. [Wikipedia](https://en.wikipedia.org/wiki/Skia_Graphics_Engine)
 
-**[License](https://www.google.com/search?sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479&q=skia+graphics+engine+license&sa=X&ved=2ahUKEwiG77u1k_jlAhXDqp4KHX6uAEgQ6BMoADAjegQIDRAG&sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479):** New [BSD License](https://www.google.com/search?sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479&q=BSD+License&stick=H4sIAAAAAAAAAONgVuLQz9U3MLQoNlnEyu0U7KLgk5mcmlecCgCD23a3GgAAAA&sa=X&ved=2ahUKEwiG77u1k_jlAhXDqp4KHX6uAEgQmxMoATAjegQIDRAH&sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479)
+[License](https://www.google.com/search?sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479&q=skia+graphics+engine+license&sa=X&ved=2ahUKEwiG77u1k_jlAhXDqp4KHX6uAEgQ6BMoADAjegQIDRAG&sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479):** New [BSD License](https://www.google.com/search?sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479&q=BSD+License&stick=H4sIAAAAAAAAAONgVuLQz9U3MLQoNlnEyu0U7KLgk5mcmlecCgCD23a3GgAAAA&sa=X&ved=2ahUKEwiG77u1k_jlAhXDqp4KHX6uAEgQmxMoATAjegQIDRAH&sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479)
 
 **[Original author(s)](https://www.google.com/search?sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479&q=skia+graphics+engine+original+authors&sa=X&ved=2ahUKEwiG77u1k_jlAhXDqp4KHX6uAEgQ6BMoADAkegQIDRAK&sxsrf=ACYBGNSntOXwd0UCyWkbwrtDQEWH8egefg:1574230985479):** Skia Inc
 

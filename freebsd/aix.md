@@ -1,6 +1,5 @@
 # aix
 
-
 # Aix p275 淘宝二手
 
 大型机
@@ -8,7 +7,6 @@
 小型机
 
 2021年推出Power CPU的全新版本——Power 10
-
 
 IBM i
 Os
@@ -26,7 +24,6 @@ POWER 6在 2007年5月发布
 Power 8处理器 2013
 2017 Power 9
 
-
 先进交互运行系统（英语：Advanced Interactive executive，缩写为）
 
 AIX 5L 5.1, 2001年5月
@@ -40,24 +37,16 @@ AIX 7.3 2021
 # 20200530
 
 了解ibm power 9发布时间
-
 Ibm i os
-
 Arm ip授权模式
-
 开源指令集架构
-
 二手p750淘宝买，没找到店铺
-
 树莓派 arm
-
 Posix pthread 公开的接口
-
 Mutex condiction
 
 
 1986年的AIX Version 1到2010年的AIX Version 7
-
 https://www.cnblogs.com/mzline/p/15637418.html
 
 AIX 全名为（Advanced Interactive Executive），它是IBM 公司的UNIX操作系统，整个系统的设计从网络、主机硬件系统，到操作系统完全遵守开放系统的原则。

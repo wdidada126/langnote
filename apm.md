@@ -1,13 +1,8 @@
 # apm
 
-
-
 http://www.infoq.com/cn/articles/apm-Pinpoint-practice
 
-
-
 全链路追踪技术选型：pinpoint vs skywalking
-
 
 naver/pinpoint(github上2148个star)
 
@@ -20,5 +15,3 @@ naver/pinpoint(github上2148个star)
 sky-walking(github上374个star)
 
 开发团队加入了OneAPM,目前看使用的公司不多，整体技术采用agent方式，对java友好。提供了对dubbo等的支持，属于soa时代的产品
- 
-
