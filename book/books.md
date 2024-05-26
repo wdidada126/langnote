@@ -1,6 +1,106 @@
 # books
 
 
+dive into design patterns
+https://book.douban.com/subject/26877699/
+http://www.java1234.com/a/javabook/javabase/2019/0901/14465.html
+
+微服务设计四个原则：AKF拆分原则
+
+前后端分离
+无状态服务
+Restful通信风格
+
+其中：
+AKF扩展立方体(参考《The Art of Scalability》)，是一个叫AKF的公司的技术专家抽象总结的应用扩展的三个维度。理论上按照这三个扩展模式，可以将一个单体系统，进行无限扩展。
+
+X 轴 ：指的是水平复制，很好理解，就是讲单体系统多运行几个实例，做个集群加负载均衡的模式。
+
+Z 轴 ：是基于类似的数据分区，比如一个互联网打车应用突然或了，用户量激增，集群模式撑不住了，那就按照用户请求的地区进行数据分区，北京、上海、四川等多建几个集群。
+
+Y 轴 ：就是我们所说的微服务的拆分模式，就是基于不同的业务拆分。
+
+场景说明：比如打车应用，一个集群撑不住时，分了多个集群，后来用户激增还是不够用，经过分析发现是乘客和车主访问量很大，就将打车应用拆成了三个乘客服务、车主服务、支付服务。三个服务的业务特点各不相同，独立维护，各自都可以再次按需扩展。
+
+
+
+https://book.douban.com/subject/20458253/
+
+https://book.douban.com/subject/4160830/
+
+https://zhuanlan.zhihu.com/p/79055107
+
+
+
+AKF可扩展立方
+
+Cube
+
+
+
+https://github.com/dylanninin/dylanninin.github.com/issues/5/
+
+
+
+
+
+联邦学习
+
+金融
+
+
+
+
+
+
+
+The Art of Scalability
+
+
+
+Vp
+
+Cto
+architect 需要考虑的因素
+
+cost effeict quality
+
+The Art of Scalability
+
+Chap. 12
+RASCI模型
+
+AKF的十二条架构设计原则
+
+
+Chap. 13
+
+JAd流程
+
+
+
+Chap. 23
+
+
+
+AKF扩展立方
+
+Chap. 24
+
+AKF扩展立方 数据库方向
+
+
+
+Chap. 26
+应用中的状态
+消除状态
+状态机
+米利机
+摩尔机
+
+
+
+
 
 - Introduction to algorithms，作者首字母缩写 CLRS ，讲算法的。
 - Structure and Interpretation of Computer Programs， 简称 SICP，一本有些被神化的书，不过的确值得一读。多数人初读此书，两章后会有眼前豁然开朗的感觉。虽然这书已经不再是教材了。封面是魔术师和 lamda 。什么是经典，这就是经典。计算机程序的构造和解释-SICP中文第2版
