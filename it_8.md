@@ -4,13 +4,6 @@ rcu解决线程问题，java标准库需要解决
 https://zhuanlan.zhihu.com/p/386422612
 
 
-
-
-
-
-
-
-
 Idea格式化json
 Ctrl+Alt+L 格式化的对象一定要是.json文件
 
@@ -24,14 +17,7 @@ git log --pretty=oneline　//如果嫌上面的输出信息过多可以使用这
 git reset --hard HEAD^ //回到上个版本，git reset --hard HEAD^^是上上个版本
 
 
-
-
-
 《Python工匠：案例、技巧与工程实践》
-
-
-
-
 
 rcu解决线程问题
 
@@ -41,22 +27,10 @@ https://www.zhihu.com/answer/768612070
 
 RCU(Read-Copy Update)，顾名思义就是读-拷贝修改，它是基于其原理命名的。对于被RCU保护的共享数据结构，读者不需要获得任何锁就可以访问它，但写者在访问它时首先拷贝一个副本，然后对副本进行修改，最后使用一个回调（callback）机制在适当的时机把指向原来数据的指针替换为新的被修改的数据。这个时机就是所有引用该数据的CPU都退出对共享数据的访问。
 
-
 我记得十几年前华为编内核就是 -j 64了，确实有钱
 
 2019 核心128个了
 肯定不是一个CPU，现在好多服务器一般是几个u。我买的一台就是64核心，里面是两个u，每个32核心
-
-
-
-
-
-
-
-如何评价阿里云多隆成为阿里巴巴集团合伙人？
-
-https://www.zhihu.com/answer/30523381
-
 
 
 外部接口没有数据的，隐藏
@@ -64,15 +38,6 @@ https://www.zhihu.com/answer/30523381
 都改为HQCINDA了
 
 我们现在数据法人标识都是HQCINDA的了，统一修改后测试的，能帮忙改下你们的数据这个标识么@陈浩
-
-
-
-
-
-
-
-
-
 
 
 一个在线学习 JavaSE的好仓库
@@ -85,30 +50,9 @@ https://github.com/auula/TTS_docs
 
 https://shikey.com/2022/02/18/explain-the-principles-of-distributed-technology-in-a-simple-way.html/comment-page-1
 
-
-
-
-
-
-
-
-
-
 Tcp
 
 https://blog.csdn.net/solstice/article/details/6579232
-
-
-
-
-
-
-
-
-
-
-
-
 
 GenerateAllSetter
 IDEA插件
@@ -117,26 +61,10 @@ JUnitGenerator：单元测试测试生成工具；
 Iedis：Redis可视化；
 以前关注逻辑思维，关注了一个频道，晓书童，全部免费解读书的。还是很不错的，在蜻蜓和喜马拉雅都有
 
-
-除了极个别优质新盘（比如瑞源名嘉荷府、绿地凤栖澜月等大平层高端住宅）和瑞源名嘉汇等优质二手房外，其他房子就不要想啦。
-
-
-
-
 Cry on  my shoulder
 
-
-
 apipost
-
 https://www.apipost.cn/
-
-
-
-
-
-
-
 
 
 Ubuntu 20安装中文输入法
@@ -153,84 +81,43 @@ log4cxx 使用源码编译，需要手动安装编译几个依赖的库，比较
 举例： 使用 vcpkg build log4cxx
 
 编译特定版本的log4cxx
-
 1. 使用vcpkg git log 找到log4cxx 0.12.1 版本的更新日期或者tag
-
 2. 拉取对于的tag代码，git checkout -b branch_name tag_name
-
 3. ./vcpkg search log4cxx 查看版本是否正确
-
 4. 如果已经安装了不正确的版本，需要先使用 vcpkg 卸载
     ./vcpkg.exe remove log4cxx:x64-windwos
-    
 5. 继续安装想要的版本
     ./vcpkg.exe install log4cxx:x64-windwos
-
 
 
 原文链接：https://blog.csdn.net/Ljfzhifuwa/article/details/126245837
 
 ​    
-
-
-
-
-
 不一定，现在好多无人车都是autoware或者waymo他们那套的，都是类似于ROS或者相似的玩意，都是linux做操作系统的。并不是真正意义上的rtos
 
 
 
 ### Autoware: 世界第一款自动驾驶开源框架
 
-
-
 https://gitlab.com/autowarefoundation/autoware.ai/autoware/-/tree/master
 
-毒蝰V2 PRO 紧随罗技步伐，好在象征性更换了传感器3399为3395。科技以换壳为本，真就有人为此买账？是否这就是鼠标厂商摆烂的原因？
 
 IntelliJ IDEA 中有什么让你相见恨晚的技巧？
 https://www.zhihu.com/question/300830746/answer/2475789273
-
-
-
-
 
 海纳云
 
 https://www.hainayun.net/
 
-
-
-
-
-
-
-
-
 纸上得来终觉浅，绝知此事要躬行
 
 亲自动手写mybatis sql
-
-
 
 paps_displ  处置表
 处置效果与预期收益
 处置后资产明细
 
-
-
 跨境支付的玩家已经有了PayPal、Adyen、支付宝、连连、Payoneer、WorldFirst等优秀的玩家，后来者还有机会么？
-
-
-
-在讯飞
-
-前端升不到p5
-
-
-
-
-
 
 
   <result column="VLD_STAT" jdbcType="BOOLEAN" property="vldStat" /> 
@@ -245,49 +132,20 @@ paps_displ  处置表
  org.springframework.beans.BeanUtils 需要判空 
 
 
-
-
-
-
-
-
-
 讯飞 基础架构组
 
 还有架构师训练营
 
-
-
-
-
 C#发展 单靠tesla很难，因为tesla有规定不能对外share技术session，之前有人被开除过。只能说带动一部分.net就业，net社区基本靠不了tesla。
 
-
-
-
-
 作为曾经的db2和sqlserver开发者，所谓的重写标准库其实不准确，这两个项目刚开始的时候，还没有标准库
-
-
-
-
-
-
-
 
 
 邮储银行正常是八点半到五点半，项目加班会到晚上八点，有时候需要出差北京。薪资应该是银行中上游了，比一般的高20%左右
 
 
-
-
-
-
-
 台账
 台账，英文是standing book，原指摆放在台上供人翻阅的账簿，故名台账。久而久之，这个名词就固定下来，实际上就是流水账。它包括文件、工作计划、工作汇报。
-
-
 
 idea 查看类的方法列表 Alt 7
 https://blog.csdn.net/weixin_51098159/article/details/118239267
@@ -298,94 +156,46 @@ https://blog.csdn.net/weixin_51098159/article/details/118239267
 北京，心理测试，行测，技术题
 
 
-
-
-
 出现了集合描述语言：正则表达式和CFG，但他们的描述能力强弱却有差别。正则式可以线性描述语言，而CFG则可以树状地描述语言。
 
-
-
-
-
 如何理解LL(1)文法分析？
-
 https://www.zhihu.com/answer/2254706002
 
 
-
-
-
 至于已经有无数的json parser，再自己手写一遍，有什么用处。
-
 当然是锻炼工程能力。
-
 我个人以为，学习东西，明白概念是基本，能用API能做项目是入门，搞明白原理看完论文是深入，自己动手做个高性能轮子算是吃透。
-
 上面从深入到吃透，图的就是个锻炼工程能力。
 新人经历这么个过程，比起整天玩API，会有显著提高。
 
-
 JSON库，状态机/字符串/递归/反射？ Python如果只转字典反射可以节约了。
-
-
-
-
-
-
 
 4399是“小游戏 公司”不是“小 游戏公司”，米哈游挣宅男钱，叠纸挣女性钱，4399挣孩子的钱。
 
-
-
-
-
 信达资管新核心项目
-
-
-
 两者最大的区别是独立法人地位。
 分公司是公司的分支机构 ，具有营业资格不具有法人资格。
 子公司是具有独立法人资格的公司。之所以叫子公司，是因股份部分或全部被其它公司持有或控制的公司。持有其股份并能控股的是母公司。母公司与子公司是股份控制的经济关系。
 
 分公司 未分家的儿子
-
 子公司 分家的儿子
-
-
-
-
 
 操作系统
 LwIP
-
 https://www.zhihu.com/answer/1510949848
 
 
 
 rtos资料.rar win 10电脑上
-
 提取码：umig
 https://pan.baidu.com/s/1x3XBQ77V50oVRPNKshIVjA
 
 
 
-
-
-
-
-
-
-
 git 根据用户名搜索	 --author
-
 git 删除分支 git branch -d dev
-
-
 
 邮储不允许跨处室推荐的，我(合肥的)连成都都推不了，就别说中油理财了
 
-
-
 git 根据用户名搜索	
 git 删除分支 git branch -d dev
-
