@@ -25,4 +25,5 @@ https://www.youbianku.com/baidu_search_results?address=%E5%90%88%E8%82%A5&loc=&c
 
 ocbc往sandisks555 wise充值了20新加坡元
 
-
+tg上说，中国护照激活不了wise，只能往里面转账。
+问一下客服吧

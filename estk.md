@@ -1,5 +1,9 @@
 # estk
 
+试试android上能不能通过app管理
+https://www.estk.me/downloads/
+
+
 Copyright © ESTKme Technology Limited
 E-mail: inquiry###estk.me(Replace ### to @)
 Telegram: @estkme
@@ -9,6 +13,9 @@ inquiry@estk.me
 
 https://www.estk.me/
 Telegram: @estkme
+
+补货提醒
+https://t.me/estkstock
 
 https://www.estk.me/product/
 
