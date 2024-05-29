@@ -1,6 +1,5 @@
 # jstat
 
-
 1、jstat -gc pid 5000 20 : 垃圾回收统计
 2、jstat -gccapacity pid 5000 20 : 堆内存统计
 3、jstat -gcnew pid 5000 20 : 新生代垃圾回收统计
@@ -9,8 +8,6 @@
 6、jstat -gcoldcapacity pid 5000 20 : 老年代内存统计
 7、jstat -gcmetacapacity pid 5000 20 : 元数据空间统计
 8、jstat -gcutil pid 5000 20 : 总结垃圾回收统计
-
-
 
 [root@leryltdllllwew9a ~]# jstat -gcutil 20371  5000 20
   S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT   
@@ -64,4 +61,3 @@ jstat -options
 -gcutil
 -printcompilation
 ```
-

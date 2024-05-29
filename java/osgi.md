@@ -6,15 +6,7 @@ https://www.cnblogs.com/boboooo/p/8057680.html
 
 [使用Equinox开发OSGi应用程序](https://www.ibm.com/developerworks/cn/education/opensource/os-eclipse-osgi/index.html)
 
-
-
-
 https://www.eclipse.org/equinox/documents/quickstart.php
-
-
-
-
-
 
 OSGi 是目前动态模块系统的事实上的工业标准，虽然一开始只是作为嵌入式设备和家庭网关的框架来使用，但是实际上它适用于任何需要模块化、面向服务、面向组件的应用程序。
 
@@ -23,15 +15,7 @@ Open Services Gateway Initiative
 https://www.jishuwen.com/d/2V8j#tuit
 dubbo vs hsf(OSGI)
 
-
-
 hsf 2弃用osgi
-
-
-
-
-
-
 
 equinox
 
@@ -42,8 +26,6 @@ The Dynamic Module System for Java
 基于OSGi的框架大概有4个：Knopflerfish  Apache Felix Equinox Spring DM
 
 https://www.cnblogs.com/kaqike/archive/2011/06/09/2076519.html
-
-
 
 OSGI的全称是Open Service Gateway Initiative，直译就是开放服务网关。最新的OSGI定义是The Dynamic Module System for Java，即面向java的动态模块化系统。
 

@@ -6,17 +6,10 @@ Oracle
 
 使用了antlr
 
-
-
 websphere
-
-
 [安装以及部署Weblogic](https://blog.csdn.net/qq_36868342/article/details/79967606)
 
-
-
 使用了antlr
-
 
 Oracle WebLogic Server is the industry leading application server for building enterprise applications using Java EE standards, and deploying them on a reliable, scalable runtime with low cost of ownership. It is strategically integrated with Oracle’s full product and cloud service portfolio. Oracle WebLogic Server provides compatibility with prior versions, and supports new features for developer productivity, high availability, manageability and deployment to cloud native Kubernetes-based environments.
 

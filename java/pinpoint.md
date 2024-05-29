@@ -22,22 +22,13 @@ https://github.com/pinpoint-apm/pinpoint
 
 [pinpoint插件开发之二：从零开始新建一个插件](https://blog.csdn.net/boling_cavalry/article/details/78568073)
 
-
-
-
-
 [Pinpoint 插件开发](https://juejin.im/post/5b0a4afaf265da0dd110cce5)
-
-
-
-
 
 公司是基于pinpoint开发的监控系统
 
 [pinpoint](https://github.com/naver/pinpoint)
 
 APM, (Application Performance Management) tool for large-scale distributed systems written in Java. 
-
 
 Java程序启动参数 agent 非侵入
 
@@ -86,13 +77,7 @@ https://research.google/pubs/pub36356/
 
 https://skyao.gitbooks.io/learning-pinpoint/
 
-
-
 https://github.com/olivere/dapper
-
-
-
-
 
 windows
 

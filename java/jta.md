@@ -1,6 +1,5 @@
 # JTA
 
-
 JTA（Java Transaction API）和 JPA（Java Persistence API）是 Java 平台上两个不同的规范，它们分别用于事务管理和持久化数据的操作。
 
 JTA 是 Java 平台上的一个标准 API，它提供了一个标准的接口和协议，用于在分布式环境中管理事务。JTA 可以用于管理跨越多个资源管理器（如数据库、消息队列等）的事务，通过标准的 XA 接口来实现分布式事务管理。JTA 通常与 JPA 或者 JDBC 等 API 一起使用，以提供分布式事务管理的能力。
@@ -9,19 +8,12 @@ JPA 是 Java 平台上的一个标准 API，它是 Java EE 5 规范的一部分�
 
 因此，JTA 和 JPA 是两个不同的规范，它们的作用和应用场景也不同。JTA 主要用于管理分布式事务，而 JPA 主要用于进行面向对象的数据库访问和操作。在实际应用中，JTA 和 JPA 可以配合使用，以提供完整的事务管理和持久化数据的能力，同时也可以与其他 Java EE 技术和框架进行集成，如 EJB、Spring 等。
 
-
-
 atomikos
-
 在上面JTA实现多数据源的事务管理，使用方式还是相对简单，通过两阶段的提交，可以同时管理多个数据源的事务。但是暴露出的问题也非常明显，就是比较严重的性能问题,由于同时操作多个数据源,如果其中一个数据源获取数据的时间过长,会导致整个请求都非常的长,事务时间太长,锁数据的时间就会太长，自然就会导致低性能和低吞吐量。
-
 因此在实际开发过程中，对性能要求比较高的系统很少使用JTA组件做事务管理。作为一个轻量级的分布式事务解决方案，在小的系统中还是值得推荐尝试的。
-
 最后作为Java下的API，原理和用法还是值得学习一下，开阔眼界和思路。
 
-*JTA*，即Java Transaction API，*JTA*允许应用程序执行分布式事务处理——在两个或多个网络计算机资源上访问并且更新数据。JDBC驱动程序的*JTA*支持极大地增强了数据访问能力。
-
-
+JTA，即Java Transaction API，JTA允许应用程序执行分布式事务处理——在两个或多个网络计算机资源上访问并且更新数据。JDBC驱动程序的JTA支持极大地增强了数据访问能力。
 
 <dependency>
     <groupId>javax.transaction</groupId>
@@ -29,21 +21,11 @@ atomikos
     <version>1.1</version>
 </dependency>
 
-
-
 ![java_spring_tx](imgs/java_spring_tx.png)
-
-
 
 https://blog.csdn.net/qingmuluoyang/article/details/82961801
 
-
-
 https://blog.csdn.net/weixin_30409927/article/details/105438267
-
-
-
-
 
 java.tranzaction.UserTransaction
 
@@ -54,17 +36,11 @@ javax.persistence.EntityManagerFactory
 javax.persistence.EntityTransaction
 javax.persistence.Persistence
 
-
-
 <dependency>
     <groupId>javax.persistence</groupId>
     <artifactId>javax.persistence-api</artifactId>
     <version>2.2</version>
 </dependency>
-
-
-
-
 
 <dependency>
     <groupId>javax.persistence</groupId>
@@ -73,8 +49,6 @@ javax.persistence.Persistence
 </dependency>
 
 Java Transaction API，简称JTA
-
-
 
 由于JDBC无法实现分布式事务，而如今的分布式场景越来越多，所以，JTA事务就应运而生。
 

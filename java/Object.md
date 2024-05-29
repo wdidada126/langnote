@@ -1,22 +1,16 @@
 # Object
 
-
-
 toString
 
 notify
 
 wait （Condition的await方法对比
 
-
-
 notifyAll
 
 finalize
 
 clone
-
-
 
 Java之wait、await、sleep的区别和联系
 

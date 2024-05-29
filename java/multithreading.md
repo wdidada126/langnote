@@ -11,6 +11,4 @@ JAVA多线程实现方式主要有三种：
 jdk7
 ForkJoinPool
 
-
-
 java.util.concurrent.ForkJoinPool 是es接口的实现类

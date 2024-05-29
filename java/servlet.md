@@ -3,7 +3,6 @@
 官方文档
 servlet-3_0-mrel-spec.pdf
 
-
 ```xml
 <!--        <dependency>
             <groupId>javax.servlet</groupId>
@@ -49,8 +48,6 @@ Jakarta Servlet 6.0
 Release for Jakarta EE 10
 
 ### javax.servlet
-
-
 
 | javax.servlet                   | 类型 | 解释 |
 | ------------------------------- | ---- | ---- |
@@ -141,15 +138,11 @@ Jakarta Servlet 6.0
 2.4
 2.3
 
-
 [结合源码谈谈Servlet的实例化、变量以及多线程](https://www.iteye.com/blog/angelbill3-2374280)
-
-
 
 - java规范servlet servlet版本
 - web.xml配置文件内容 校验文件 重要参数
 - maven package
-
 
 <dependency>
     <groupId>javax.servlet</groupId>
@@ -163,19 +156,11 @@ Jakarta Servlet 6.0
     <scope>provided</scope>
 </dependency>
 
-
-
-
-
 maven
 
 src/main/webapp
 
-
-
 src/main/webapp/WEB-INF/web.xml
-
-
 
 #### web.xml
 
@@ -240,20 +225,10 @@ xml文件通过dtd校验的
 </web-app>
 ```
 
-
-
-
-
-
-
 servlet是java ee标准
 http的
 
-
-
 servlet-api
-
-
 
 JavaEE就是提供了一堆API
 
@@ -261,13 +236,7 @@ Tomcat实现了servlet-api
 
 SpringMVC扩展实现了
 
-
-
 HttpServletBean是一个class直接实现了HttpServlet,这个类主要负责配置文件
-
-
-
-
 
 ```xml
         <dependency>
@@ -277,8 +246,6 @@ HttpServletBean是一个class直接实现了HttpServlet,这个类主要负责配
             <scope>provided</scope>
         </dependency>
 ```
-
-
 
 ### source package
 
@@ -295,8 +262,6 @@ Listener
 
 Filter
 
-
-
 javax.servlet.http.HttpServlet
 
 继承
@@ -312,9 +277,6 @@ javax.servlet.ServletContext
 含有
 
 javax.servlet.RequestDispatcher
-
-
-
 
 javax.servlet.http.HttpServletRequestWrapper
 请求包装器 自定义继承这个类
@@ -345,4 +307,3 @@ org.springframework.web.servlet.HandlerInterceptor
 
 
 ### servlet与springmvc
-

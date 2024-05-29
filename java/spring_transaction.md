@@ -82,7 +82,3 @@ public void save(User user) {
     userDao.save(user);
 }
 这样，当调用save方法时，Spring将会在方法执行前创建一个新的事务，在方法执行完成后根据方法执行结果进行提交或回滚。通过这种方式，我们就可以方便地使用注解来声明式管理事务。
-
-
-
-

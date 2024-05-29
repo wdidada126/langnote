@@ -13,6 +13,13 @@ vsc的同步，当有多个remote的时候，是跟某一个remote同步
 
 ## mac vsc安装了vim？
 vim插件导出pdf文件
+扩展名字叫做Office Viewer是因为一开始是为了增强VSCode的预览功能, 增加了Excel, svg, pdf等的支持, 后来才增加了markdown的编辑器
+Markdown编辑器使用了Vditor, 相关说明
+https://github.com/Vanessa219/vditor
+
+通过Ctrl+单击或者双击打开超链接
+默认为白色, 如果想让背景色和VSCode主题一样, 可将以下设置加入到VSCode的设置中(会导致代码块的高亮丢失, 所以默认不启用)
+
 visual studio code根据文件名查找 快捷键
 
 按快捷键ctrl+p可以弹出一个小窗,在上面的输入框输入文件名,下拉框点击一个文件
@@ -21,7 +28,7 @@ visual studio code根据文件名查找 快捷键
 Vscode 快速格式化代码: shift+alt+f
 
 
-### 查看单个文件某一行是谁提交的
+## 查看单个文件某一行是谁提交的
 
 git提交记录查看
 
@@ -30,7 +37,7 @@ gitlens插件
 https://blog.csdn.net/qq_37899792/article/details/118090971
 
 
-### c++程序远程调试
+## c++程序远程调试
 remote-ssh，让vscode能够远程登陆远程开发机(我们的开发、编译、部署、调试都在这个环境中)
 clangd: 一款优秀的c++插件，功能完备，支持重构，跳转，自动补全等功能
 CodeLLDB: vscode调试器插件

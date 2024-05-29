@@ -22,10 +22,7 @@ error: Failed dependencies:
 	libstdc++.so.6(GLIBCXX_3.4.21)(64bit) is needed by protobuf-3.11.2-2.el8.x86_64
 ```
 
-
 base http
-
-
 
 brpc
 从其他语言通过HTTP+json访问基于protobuf的协议.
@@ -59,14 +56,11 @@ maven idea先装插件
 
 会依赖target下面的java类，不会报错
 
-
 [基于http协议使用protobuf进行前后端交互](https://segmentfault.com/a/1190000018161715)
 
 "Content-Type"："application/x-protobuf"
 
-
 基于http协议的
-
 
 ### protobuf-wireshark plugins
 

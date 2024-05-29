@@ -14,7 +14,6 @@ Pulsar通过将存储和计算分离，实现了更高的可扩展性和灵活�
 
 https://pulsar.apache.org/
 
-
 https://github.com/apache/pulsar
 
 Java写的
@@ -88,7 +87,6 @@ Pulsar也不是特别年轻的项目了，2013年开始开发，2017年正式开
 消息队列需要存储哪些数据？
 需要哪些计算？
 
-
 Pulsar shell 
 
 Offloaders
@@ -100,7 +98,6 @@ Pulsar Manager
 Pulsar Adapters
 
 Pulsar C++ Client
-
 
 ## 书籍 book
 

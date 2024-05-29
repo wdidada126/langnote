@@ -13,3 +13,6 @@ https://blog.csdn.net/sandwichsauce/article/details/79807019
 浙大计算机各个实验室 详细介绍
 
 https://blog.csdn.net/sandwichsauce/article/details/79807019
+
+上海交通大学并行与分布式系统研究所官方知乎账号
+https://zhuanlan.zhihu.com/p/643401930

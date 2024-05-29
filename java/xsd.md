@@ -4,46 +4,25 @@
 
 Spring xsd文件自定义标签
 
-
-
 beans
 
 tx
 
-
-
-
-
-
-
 以Dubbo的xsd文件为例
 
 xsd:element
-
 - annotation
-
 - application
-
 - module
-
 - registry
-
 - monitor
-
 - provider
-
 - consumer
-
 - protocol
-
 - service
-
 - reference
-
 - method
-
 - argument
-
 - parameter
 
 <xsd:element name="annotation" type="annotationType">

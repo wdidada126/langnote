@@ -4,21 +4,14 @@ jmap -permstat pid
 jprofile 都有展示
 arthas
 
-
 javap
-
-
 
 javah
 
-
-
 jps
-
 
 命令：jmap pid
 描述：查看进程的内存映像信息,
-
 
 https://www.jianshu.com/p/a4ad53179df3
 ### 示例二：heap
@@ -42,8 +35,6 @@ histo[:live]
 ### 示例五：finalizerinfo
 命令：jmap -finalizerinfo pid
 描述：打印等待终结的对象信息
-
-
 
 ```shell
 jps -l

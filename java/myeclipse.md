@@ -6,11 +6,9 @@ MyEclipse 是在 Eclipse 基础上加上自己的插件开发而成的功能强�
 
 目前已支持 PHP、Python、Vue、Angular、React、Java、Java EE 等语言，以及 Java Servlet,AJAX, JSP, JSF, Struts,Spring, Hibernate,EJB3,JDBC 数据库链接工具和框架开发等。可以说 MyEclipse 几乎囊括了目前所有主流开元产品的专属 eclipse 开发工具。
 
-
 https://www.genuitec.com/products/myeclipse/
 
 https://www.myeclipsecn.com/
-
 
 基本授权	MyEclipse Standard	MyEclipse Professional	MyEclipse Spring	MyEclipse Blue	MyEclipse Bling
 核心功能	

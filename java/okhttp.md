@@ -1,20 +1,13 @@
 # OkHTTP
 
-
 okhttp api doc
 https://square.github.io/okhttp/4.x/okhttp/okhttp3/
-
-
 
 okhttp example
 
 https://github.com/edidada/testokhttp
 
-
-
-
 Platform.get().log(INFO, "Callback failure for " + toLoggableString(), e);
-
 
 JakeWharton
 
@@ -77,9 +70,7 @@ Timeout
 Utf8
 Util
 
-
 https://www.cnblogs.com/could-deng/p/8378796.html
-
 
 ### java 自带log 写进testjdk8
 
@@ -90,23 +81,18 @@ Level
     logger.log(Level.WARNING, "Failed to close timed out socket ", e);
 ```
 
-
 sink 下沉
 deflater 放气阀
-
 
 Timeout (okio)
     AsyncTimeout (okio)
     ForwardingTimeout (okio)
     PushableTimeout (okio)
 
-
 - Base64 final类
 - Utf8   final类
 
-
 Pipe
-
 
 https://blog.csdn.net/p892848153/article/details/51214054
 
@@ -122,8 +108,6 @@ https://www.ucloud.cn/yun/68256.html
 
 https://blog.csdn.net/dmy17356716992/article/details/88690640
 
-
-
 java.nio.charset.Charset
 
 ```java
@@ -131,9 +115,7 @@ MediaType mediaType = MediaType.get("text/plain");
 MediaType mediaType = MediaType.parse("text/plain");
 ```
 
-
 https://www.w3school.com.cn/media/media_mimeref.asp
-
 
 RequestBody静态创建方法 本身是抽象方法
 okhttp3.RequestBody.create(okhttp3.MediaType, java.io.File)

@@ -22,8 +22,6 @@ OGNL表达式的基本使用:
 
 mybatis ognl表达式
 
-
-
 ognl表达式的作用
 从java list bean中获取某个属性的值
 不再用java代码，而是用dsl
