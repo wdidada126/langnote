@@ -1,5 +1,45 @@
 # matlab
 
+
+Matlab
+
+https://ww2.mathworks.cn/help/matlab/set-operations.html?w.mathworks.com&ue
+
+
+intersect	设置两个数组的交集
+
+ismember	判断数组元素是否为集数组成员
+
+setdiff	设置两个数组的差集
+
+setxor	设置两个数组的异或
+
+union	设置两个数组的并集
+
+unique	数组中的唯一值
+
+ismembertol	容差范围内的集合成员
+
+uniquetol	容差内的唯一值
+
+join	使用键变量按行合并两个表或时间表
+
+innerjoin	两个表或时间表之间的内联
+
+outerjoin	两个表或时间表之间的外联
+
+
+
+
+
+https://blog.csdn.net/ll20246033/article/details/107885655
+
+
+
+数组是矩阵的特殊情况
+
+
+
 最好跑在大型机上
 
 解常微分方程

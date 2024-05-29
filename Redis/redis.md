@@ -1,5 +1,7 @@
 # redis
 
+从社招面试来看，很多小伙伴分不清redis的内存淘汰机制和过期键值清理机制，不管问什么，开口就是LRU。
+记英文不舒服么，eviction和expiration
 
 redis map filed是否可以设置过期时间
 list是单向链表还是双向链表
