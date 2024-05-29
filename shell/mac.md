@@ -1,5 +1,34 @@
 # mac
 
+
+[WebStorm快捷键（Mac版）](https://www.cnblogs.com/xjchenhao/p/4430544.html)
+
+#  
+
+# ⌘——Command
+# ⌃ ——Control
+# ⌥——alt
+# ⇧——Shift
+# ⇪——Caps Lock
+# fn——功能键就是fn
+
+
+
+# Mac必备软件
+Shuttle
+
+Shadowsockt-NG
+Telegram
+Xcode
+Texmaker
+Typora
+ezip
+Clash
+xmind
+jprofile
+
+
+
 mac连接外部显示器 竖屏
 https://blog.csdn.net/KingJin_CSDN_/article/details/106497347
 
