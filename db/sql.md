@@ -1,5 +1,11 @@
 # SQL
 
+实现连续七天签到sql
+
+连续两天签到
+select a a inner join a b on a.day = a.day-1 where a.issign =1 and b.issign=1
+
+
 https://github.com/gupaoedu-tom/netty4-samples
 
 规范上说避免使用JOIN
