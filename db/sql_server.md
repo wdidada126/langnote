@@ -1,5 +1,8 @@
 # ms sql server
 
+ms sql server
+什么一年一万多，没有这种概念啊，一次性一个标准版本，而且跟CPU绑定的那种是九万多
+
 ### docker
 
 https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker

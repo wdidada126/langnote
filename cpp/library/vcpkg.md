@@ -1,5 +1,16 @@
 # vcpkg
 
+a依赖b
+b依赖c
+
+vcpkg可以处理库依赖吗？头文件是可以的
+coan可以处理依赖库吗？
+
+打包的时候，这些库是怎么处理的？
+
+现在考虑部署？源码编译部署吗？
+还是打包成安装文件部署？
+
 ## manifests模式
 cmake项目，添加vcpkg.json文件，重新运行 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake
 自动下载vcpkg中声明的依赖
