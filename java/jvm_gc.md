@@ -9,57 +9,31 @@
 　　　　　　标记-压缩（老年代）
   　　分代收集
 
-
-
 Java虚拟机详解04----GC算法和种类
 https://www.cnblogs.com/qianguyihao/p/4744233.html
-
-
-
 
 jdk7 cms g1 笨神 内存70G 反射原理
 https://www.sohu.com/a/124124072_494943
 
-
 https://www.jianshu.com/p/43c1b262d36b
 
-
-
 GC之ParNew收集器
-
-
 
 ParNew 收集器
 
 CMS 收集器
 
-
-
-
-
 https://www.jianshu.com/p/477fe3e21a74
 
-
-
 使用方式：-XX:+UseParNewGC，打开该开关后，使用ParNew(年轻代)+Serial Old(老年代)组合进行GC。另外，ParNew是CMS收集器的默认年轻代收集器。
-
-
-
-
 
 JVM之ParNew和CMS日志分析
 
 https://www.jianshu.com/p/8ccab4c10da2
 
-
-
 ```
 2018-04-12T13:48:26.134+0800: 15578.050: [GC2018-04-12T13:48:26.135+0800: 15578.050: [ParNew: 3412467K->59681K(3774912K), 0.0971990 secs] 9702786K->6354533K(24746432K), 0.0974940 secs] [Times: user=0.95 sys=0.00, real=0.09 secs]
 ```
-
-
-
-
 
 依次分析一下上面日志信息的含义：
 

@@ -2,7 +2,6 @@
 
 Suppliy
 
-
 // Java 8之前：
 new Thread(new Runnable() {
     @Override

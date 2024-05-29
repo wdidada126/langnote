@@ -52,8 +52,6 @@ Java Transaction API，简称JTA
 
 由于JDBC无法实现分布式事务，而如今的分布式场景越来越多，所以，JTA事务就应运而生。
 
-
-
 JTA和它的同胞Java事务服务(JTS；Java TransactionService)，为J2EE平台提供了分布式事务服务。不过JTA只是提供了一个接口，并没有提供具体的实现，而是由j2ee服务器提供商 根据JTS规范提供的，常见的JTA实现有以下几种：
 
 - 1.J2EE容器所提供的JTA实现(JBoss)
