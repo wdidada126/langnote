@@ -1,5 +1,17 @@
 # SQL
 
+两个日期间隔天数，使用datediff()函数
+https://blog.csdn.net/weixin_39788131/article/details/113150967
+datediff()函数
+
+结合源码来了解mysql聚合函数
+https://blog.csdn.net/matrixyy/article/details/77692843
+https://blog.csdn.net/weixin_36283702/article/details/114326932
+
+id username
+name出现多次的
+group by count having
+
 实现连续七天签到sql
 
 连续两天签到
