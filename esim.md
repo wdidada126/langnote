@@ -134,6 +134,18 @@ st33和5ber可以去闲鱼找，estk的话老板预计三月底出正式版。 �
 5ber客服态度极差，不解决问题。建议买giffgaff，180天内发一次短信就能续，一年发两次短信才0.6英镑，无限续，而且接收短信免费，可转esim
 giffgaff是一个英国的移动虚拟网络运营商，成立于2009年。与其他运营商相比，他们采用了不同的经营方式。
 
+https://community.giffgaff.com/d/34049108-an-update-on-wifi-calling-and-volte
+
+Your SIM has been ordered
+Your giffgaff SIM will be with you soon. Check out our delivery timings below to see when it will arrive.
+Europe	3-5 business days
+Rest of the World	5+ business days
+What's next?
+Your SIM on its way by first class post
+It'll pop through your letter box
+Then follow the instructions on the pack
+You'll be up and running in no time
+
 新西兰ONE nz保号神卡，0月租免实名，2年只需要8元永久保号，旧版5ber如何升级
 新西兰esim卡：https://one.nz/
 没货了，关了，过段时间就好
