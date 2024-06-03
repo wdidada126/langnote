@@ -1,16 +1,11 @@
 # Java标准库
 
-
 AQS
-
 
 https://m.jb51.net/program/308100tm3.htm
 
-
-
 wrk -t2 -c100 -d10s http://0.0.0.0:8000/
 wrk 是一个比较先进的 HTTP 压力测试工具
-
 
 tomcat和netty都可以用nio+线程池作为woker，tomcat从6开始就已经改成用nio模型了（要配置NIO Connector，到了tomcat 8 改成了默认值）。因此问题可以化简为两个：
 
@@ -19,19 +14,13 @@ tomcat和netty都可以用nio+线程池作为woker，tomcat从6开始就已经�
 
 https://www.zhihu.com/question/322233601
 
-
 https://www.zhihu.com/question/26943938/answer/1856426252
 
-
 Netty 的线程模型主要是基于Reactor 模型，但是可以灵活配置，单reactor 单线程，单reactor多线程，和多reactor 多线程模型。
-
 
 work boss线程池
 
 kafka采用的是主从Reactor多线程模型，因为Kafka主要与磁盘IO交互，因此真正的读写数据不是从Reactor处理的，而是有一个worker线程池，专门处理磁盘IO，从Reactor负责网络IO，然后把任务交给worker线程池处理。
-
-
-
 
 首先muduo的Reactor模式是multi-Reactor模式，可能和你在网络上看到的单Reactor模式有一点点不一样。
 我觉得Reactor模式主要就是三个组件。
@@ -42,17 +31,9 @@ kafka采用的是主从Reactor多线程模型，因为Kafka主要与磁盘IO交�
 全村最好的剑
 https://www.zhihu.com/question/320829696/answer/916954817
 
-
-
 我认为reactor模式就像其名字一样，当有一个事件开始驱动的时候，就会陆续驱动多个事件，最后就像核反应堆一样，产生巨大的能量，在网络里就是高效地处理并发。
 
-
-
-
 【基于Epoll的Server服务器 14.0 day12-将服务器改写为主从Reactor多线程模式-哔哩哔哩】 https://b23.tv/adBDK4d
-
-
-
 
 github搜索waking up
 

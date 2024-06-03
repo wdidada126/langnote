@@ -1,4 +1,5 @@
-# 20240602
+# java_gc
+
 JTA分布式事务处理
 https://www.jianshu.com/p/029f28c060f6
 
