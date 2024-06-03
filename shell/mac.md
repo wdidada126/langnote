@@ -1,5 +1,9 @@
 # mac
 
+港区Apple ID注册流程
+以下注册流程较繁琐，你也可以到第三方平台如：https://taohao.me/product/、https://fk.appledi.com/product/ 购买Apple ID。
+
+
 
 [WebStorm快捷键（Mac版）](https://www.cnblogs.com/xjchenhao/p/4430544.html)
 

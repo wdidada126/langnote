@@ -1,10 +1,6 @@
 # icloud
 
-而 C/C++ 编译器版本多于一个，并没有某个编译器占据了绝对统治地位。至少，intel的icc，微软的msvc，gnu的gcc，以及后起之秀clang，都各自有各自的地位，要协调多方意见制作大家认可的标准并不容易，改变起来自然更加耗时。
-
-主要是大部分人认知不准确，软件开源的目的从来就不是做出好东西，而是为了在大公司用垄断软件强x用户自由的时候，有可以凑合用的替代品，但是却有一部人鼓吹开源的就一定好，不可否认开源软件（自由软件）阵营里的确有非常多的优秀作品，但不是全部。
-
-如何设计并实现一个 DBMS
+如何设计并实现一个DBMS
 
 Go语言有很多kv形式的DB
 https://github.com/boltdb/bolt
@@ -16,11 +12,6 @@ https://www.zhihu.com/question/25405073/answer/36693843
 https://www.zhihu.com/question/420936903/answer/1641687267
 
 MySQL RDS实例虽然没有阿里云那么高级的用云SSD，但是他们重金堆硬件，主备机直接用pci-e的ssd卡做raid，然后在那时单实例就可以提供及其高的IOPS能力。
-
-
-太谨慎了，像我就直接不同意了。程序员解决的是工程问题，其重点是让大规模的，时间跨度很长，各种水平高低不一的各种模块和各种系统相互配合，大致正常在可控的时间范围内解决业务需求。我大学老师说计算机其实是一门管理学。这个问题没整明白，上来就吹算法，好多人还觉得有道理，我只能觉得很魔幻了。一个行业，95%的从业人员都不会不精通的技术也不会是多么重要的技术
-至于算法导论这本书么，其实跟大多数公认优秀的技术书籍一样，不是什么武林秘籍，咬着牙反复读几遍就能脱胎换骨。建议初读时跳过太艰深啃不动的细节，多尝试理解一些概念和算法本身要解决的问题，日后遇到刷不懂的算法题或者实际项目中的难点，不妨回来当工具书参考一下，很可能就恍然大悟茅塞顿开了。
-
 
 不能在网络上学习表达
 
@@ -49,17 +40,14 @@ AB测试
 
 行业应用
 
-
 腾讯员工谈腾讯开源社区贡献
 技术项目从启动到成熟一般都长达几年，而我司的考核制度只能让人做一些短平快的东西。而且组织架构变化很快，经常换了个业务就导致原来的技术项目凉凉了。
 
 DirectXMath
 微软的C++ SIMD 库 Microsoft/DirectXMath
 
-
 Antlr .g4 语法 ss看编译后的java文件，测试
 IDEA antlr preview测试
-
 
 侯捷
 C++
@@ -85,8 +73,6 @@ https://www.zhihu.com/column/c_1099707347118718976
 Go ducktype
 主要几点：duck type带来的隐式interface满天飞，一个函数要求入参某个interface，结果在开发过程里面你完全没法知道这个interface有几个实现，连传什么都不知道。有毛病的错误处理机制：也就是err != nil的问题，导致满屏if err != null { return err }这样的代码 ，而且这err没堆栈！！！我是log出来的，根本不知道是里面哪段代码爆出来的，想要堆栈还要依赖个pkg/errors。没有泛型，也就是你struct/interface里面声明的所有容器类型没法泛化，也就是你想封装自定义容器，所有方法的出入参都只能是interface{} 现在都0202年了，这个语言在闭包上连个lambda表达式都不支持，非得是个匿名函数，做个简单对比：// javalist.stream()  .filter(x -> x != null)// gofilter(slice, func(x interface{}) {  return x != nil})对比之后高下立判。。。golang坚持他的「如无必要勿增实体」理念，让这个语言做到极致的简约（写作简约，读作简陋）。所以说这个语言对于非性能极度敏感（大多数原来JVM平台的用户）来说根本没有意义。因为根本不能提升任何效率（开发效率，运行效率，运维效率）反而对于C/C艹用户，他们已经受够了各种编译问题，各种神语法带来的神奇的bug。这时候golang的出现能极大提升他们的开发效率，而且运行效率和运维效率能几乎保持不变甚至有提高。
 
-
-
 个人感觉MIT的《[算法导论](https://www.zhihu.com/search?q=算法导论&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A1114533385})》太过注重证明和分析，对初学者不太友善，普林斯顿的那本红皮《[算法](https://www.zhihu.com/search?q=算法&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A1114533385})》讲的有点浅而且implementation一般般。推荐Jon Kleinberg & Eva Tardos 的 Algorithm Design。真的是目前见过的最好的算法书没有之一。读起来非常非常舒服而且语言通俗易懂，证明也很好理解，且涵盖的知识点范围也算比较广泛。
 
 MySQL关闭ssl
@@ -101,7 +87,6 @@ IDEA
 
 分布式数据库 vs 分库分表
 
-
 帐套型数据，分表其实不止是性能问题，结算后数据就不能动了，分表会更好管理
 
 号称高可用强一致，高性能，其实水分很大。比如高性能的时候就不能强一致。总之，每个功能都可以实现，但是叠加使用是不行的
@@ -109,8 +94,6 @@ IDEA
 Jdbc 存储过程 类
 
 https://blog.csdn.net/wodedipang_/article/details/55680653
-
-
 
 Jdbc 储存过程 类 callstate
 PrepareStatement
@@ -147,8 +130,6 @@ shell脚本是一种比python更“糙”、因此性能等方面更为受限的
 内核的bug
 https://askubuntu.com/questions/967441/17-1-wlp6s0-failed-to-remove-key-1-ffffffffffff-from-hardware-22
 
-
-
 https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1720930
 
 https://blog.csdn.net/weixin_40641735/article/details/89019657
@@ -160,14 +141,9 @@ https://bugzilla.kernel.org/show_bug.cgi?id=198357
 sudo dpkg -i *.deb
 uname -r
 
-
-
 # Cap
 
 https://blog.csdn.net/u013332124/java/article/details/82874178
-
-
-
 
 一个操作系统，如何支持c/c++语言
 
@@ -188,18 +164,10 @@ gcc g++ gdb
 libstdc++
 libstdc
 
-
-
-
 android如何支持c/c++
-
 
 Repology, the packaging hub
 https://repology.org/
-
-
-
-
 
 腾讯课堂，图灵学院，架构师课
 CPU 的工作原理是什么
@@ -221,26 +189,12 @@ Redis
 原来是这个意思
 其实一直在交付的是测试版
 
-
-
 ###### AI
 
 模型
 大佬回归学界
 负责落地的是博士
 知识点比较高深
-
-
-
-
-
-
-
-
-
-
-
-
 
 ###### 回过头来看安卓开发
 
@@ -253,28 +207,9 @@ AS原生支持c/c++开发了
 讯飞启明 kotlin sdk开发
 前端了
 
-
-
-
 ###### Trello to do icloud mi cloud记笔记要注意
 
 不能敏感信息
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ###### 数据库 sql优化
 
@@ -283,16 +218,8 @@ explain 关键字
 
 Oracle 优化 公司有培训
 
-
-
-
-
 大家好，请教一个问题：当flink job中存在两个sink分别为mysql和phoenix。在初始化获取jdbc连接时遇到以下情况，Class.forName(driver);无法加载类，陷入阻塞状态。若去掉两者中的一个则能正常加载。代码如下：
 帮忙解答一下，感谢
-
-
-
-
 
 @星语 看起来像低版本JDK并发加载JDBC 驱动的bug，参考
 
@@ -311,20 +238,6 @@ Condition根据和Lock的结合
 lock.lock();
 
 lock.unlock();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ###### 软件系统如何排错
 
@@ -367,13 +280,8 @@ Java可以实现
 ###### 35岁换工作，领导级别
 好多人都这样讲
 
-
-
-
-
 ###### 过年要喊人，不然不礼貌
 别人喊我要回应
-
 
 中国银行it base合肥
 找渠道
@@ -420,7 +328,6 @@ https://zhuanlan.zhihu.com/p/128006449
 
 有个地方是三种，补充一种虚引用
 
-
 ###### 为什么会有那么多烂尾的开源项目
 
 开源作者没时间搞这个了
@@ -447,7 +354,6 @@ https://book.douban.com/subject/19980692/
 
 看了asm的 data text
 想想c的内存模型
-
 
 银行
 
@@ -517,8 +423,6 @@ Java面试也没多少
 驼背管理也没多少
 
 不能抓头发
-
-
 
 从学习编译原理的过程来看，先理解概念，然后做实现，跑开源代码
 

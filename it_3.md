@@ -44,7 +44,7 @@ http://db.lcs.mit.edu/6.830/sched.php 
 
 https://github.com/edidada/CreatorDB
 
-众所周知，CMU 15-445/721 是数据库的入门神课，类似于 MIT 6.824 之于分布式系统一样。由于前半年学习了 MIT 6.824 课程后感觉个人收获很大，因此在今年暑假，我抽时间学习完了 CMU 15-445 的网课，现做一概要总结。
+众所周知，CMU15-445/721是数据库的入门神课，类似于MIT 6.824之于分布式系统一样。由于前半年学习了MIT 6.824课程后感觉个人收获很大，因此在今年暑假，我抽时间学习完了CMU 15-445的网课，现做一概要总结。
 
 
 6.5830/6.5831 Labs
@@ -55,8 +55,7 @@ https://github.com/MIT-DB-Class/simple-db-hw
 java
 https://github.com/MIT-DB-Class/simple-db-hw-2022
 
-
-Go写的 2023
+Go写的2023
 https://github.com/MIT-DB-Class/go-db-hw-2023
 
 https://tanxinyu.work/15-445/
@@ -67,24 +66,17 @@ http://db.lcs.mit.edu/6.5830/2021/syllabus.php
 
 http://db.lcs.mit.edu/6.5830/
 
-
-
-
-源码: gitlab.com/yzzy/rust_project
-
+源码:gitlab.com/yzzy/rust_project
 
 https://gitee.com/chengxumiaodaren/cpp-learning
 go里面的是协程，这里用go的协程代替线程，所以不用纠结线程还是协程
 文章链接：https://mp.weixin.qq.com/s/YcSfQXpgb-Trb77wrRpkJg
 
-
-
-
 物联网书单
 【总体技术】
 
-《企业物联网设计[Enterprise IoT]》Dirk，Slama，Frank，Puhlmann 著
-《Internet of Things for Architects》Perry Lee 著
+《企业物联网设计[Enterprise IoT]》Dirk，Slama，Frank，Puhlmann著
+《Internet of Things for Architects》Perry Lee著
 《从M2M到物联网:架构、技术及应用》瑞典杨 霍勒，希腊弗洛肖斯 齐阿 著，李长乐 译
 《国际信息工程先进技术译丛：M2M通信》[法] David Boswarthick，[法] Omar Elloumi，[法] Olivier Hersent 著，薛建彬 译
 《Digital Business Models Driving Transformation and Innovation》Annabeth Aagaard 编
@@ -148,18 +140,13 @@ go里面的是协程，这里用go的协程代替线程，所以不用纠结线�
 
 atomic_queue 库地址：https://github.com/max0x7ba/atomic_queue
 
-
-
 我最初是从读写分离，到Cobar，mycat，再到shardingJDBC确实发现近几年关注度变低了。各种分布式的，列式存储的，时序的，实时入仓入湖等等新技术的出现
 
 数据仓库 一百亿数据量
 
 优化的方案里有几种还是分库分表，真是什么人都出来拍视频。技术架构一定是要根据需求来设计的，up听说过tidb、flink吗？
 
-
-
 https://cplusplus.com/reference/thread/thread/?kw=thread
-
 
 Java类加载器
 bea
@@ -172,18 +159,14 @@ Tomcat自定义类加载器
 
 https://javaguide.cn/java/basis/java-basic-questions-02.html#string-s1-new-string-abc-这句话创建了几个字符串对象
 
-
-
 Java乐观锁
 Cas
 悲观所
 Syn Lock
 
-
 AQS定义两种资源共享方式
 1. Exclusive（独占）：只有一个线程能执行，如ReentrantLock。又可分为公平锁和非公平锁： - 公平锁：按照线程在队列中的排队顺序，先到者先拿到锁 - 非公平锁：当线程要获取锁时，无视队列顺序直接去抢锁，谁抢到就是谁的
 2. share（共享）：多个线程都可以同时获取到锁，如Semaphore/CountDownLatch。Semaphore、CountDownLatch、 CyclicBarrier、ReadWriteLock 我们都会在后面讲到。
-
 
 https://javaguide.cn/java/jvm/memory-area.html#运行时数据区域
 
@@ -193,17 +176,12 @@ Idea断点调试时候的图
 需要程序计数器
 方法列表，就是调用栈
 
-
 CompletionStage 接口描述了一个异步计算的阶段。很多计算可以分成多个阶段或步骤，此时可以通过它将所有步骤组合起来，形成异步计算的流水线。
 
 不要贪多，贪多记不住
 https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy
 
-
-
-
 Chat2db
-
 
 https://deepmind.google/technologies/gemini/#introduction
 Bringing Gemini Pro to Bard
@@ -219,10 +197,7 @@ Bing是gpt4和搜索引擎
 
 虽然理论上是一个整合了4.0和搜索功能的超级ai，但实际上使用感只是在3.5和4.0之间，好处是绝对免费，3.5存在就没什么意义了
 
-
-
 确实是这样 现在都是搞内部grpc 服务，只要是能提供接口服务就好 其他什么并发扩容限流都不需要操心，全部都由istio 运维管理
-
 
 Spring cloud alibaba
 回复 @IT老齐 :dubbo，fastdfs，fastdfs，哪一个没被坑过，nacos里也有bug
@@ -244,45 +219,34 @@ logstash同步数据库数据到elasticsearch中，使用kibana可视化工具�
 
 序列化框架Fury
 
-
 Idea easycoder插件 代码生成器
 
 oms系统
 wms系统
 tms运输管理系统
 
-
 deer-wms是基于自动化输送线、机械臂、点数机、提升机、堆垛机等自动化设备和现代化仓储精益管理思想开发出来的仓库管理系统。通过对接工厂的EBS(erp中一种)、MES（生产执行系统）、deer-wcs（设备调度系统）等系统接口，实现仓储上下游的数据打通，也是实现完全自动化的基础。
 
-
-
 source  code  hunter
-
 
 https://github.com/doocs/source-code-hunter/blob/main/docs/JDK/concurrentCoding/%E8%AF%A6%E8%A7%A3AbstractQueuedSynchronizer.md
 
 大佬们，批量往es中插入数据脚本有吗？
 bulk
 
-
 msearch
 
 相关阅读 Document API https://www.elastic.co/guide/en/elasticsearch/reference/7.1/docs.html 
-
 
 在Elasticsearch中，索引是一个重要概念，它是文档的容器，即一类文档的集合。每个索引可以包含多个类型（type），这在旧版本中是类似于关系型数据库中的表的概念。然而，随着Elasticsearch的更新，从6.x版本开始，一个索引下只能有一个type。这是为了简化使用过程，因为多type的情况在实践中可能会带来困扰。到了7.0之后的版本，这种设计被完全移除。
 
 另外值得一提的是文档的唯一标识_id，它与_index和_type一起，共同唯一标识和定位一个文档。总的来说，了解这些基本概念对于使用Elasticsearch非常有帮助。
 【【尚硅谷】ElasticSearch教程入门到精通（基于ELK技术栈elasticsearch 7.x+8.x新特性）-哔哩哔哩】 https://b23.tv/0xjmfU3
 【【黑马java】ElasticSearch教程入门到精通-哔哩哔哩】 https://b23.tv/9b3ONI6
-
 【【Elastic开源社区】Elasticsearch 8.x（100小时合集 每周更新）基础+底层+源码+ELK-哔哩哔哩】 https://b23.tv/RMPj3K8
-
 【2023重讲Elasticsearch入门到实战，基于ES的千亿级数据搜索服务-哔哩哔哩】 https://b23.tv/3py42IH
 
-
 数电票根本不需要发送，电局的税务数字账户里就有了，个人接受也很方便只要输入身份证和姓名，个税app的票夹立即收到
-
 
 【数据库管理系统（数据库内核技术，数据库系统，造数据库，数据硬核技术，详解数据库核心技术，事务处理，故障恢复，查询优化，查询执行，数据新技术，清华大学，硬核技术）-哔哩哔哩】 https://b23.tv/zUlhDL9
 
@@ -291,7 +255,6 @@ msearch
 涉及东西比较多，从rpc背景，通信协议，序列化协议，注册中心，路由分发，负载均衡都可以答一下，结合熟悉的rpc框架
 https://github.com/Snailclimb/guide-rpc-framework
 
-
 三个包管理工具都用过。
 xmake（自带包管理工具）国内大佬开发，从编译构建，到包管理全是自己实现，不依赖cmake，使用简便。但是文档太简略，很多功能无法实现，比如加载一个mingw架构特定版本的静态库，文档中找不到相应指令。与ide集成比较差，可以体验体验，工程化开发还是不够成熟。未来可期吧。
 conan：依赖cmake，比较强大，库比较丰富，库版本控制灵活方便，库的编译参数比较丰富。2.0版本使用上做了一些简化，但是目前很多库不支持2.0构建，文档看似很简单，使用起来也是各种问题。
@@ -299,11 +262,8 @@ vcpkg：依赖cmake，你想要的功能基本都有，xmake的理念是简便�
 
 字节阿里用的是魔改的bazel
 
-
-
 https://en.greatfire.org/stackoverflow.com
 查看网站可达性的网站
-
 
 apt yum install
 mvn package 刷新
@@ -319,7 +279,6 @@ mvn是统一的
 github.com/0voice
 https://github.com/0voice/introduce_c-cpp_manual
 
-
 直接navicat一站式解决redis gui client不香吗
 navicat官方文档
 https://navicat.com/en/
@@ -332,9 +291,6 @@ C cpp
 * Parasoft C / C ++ test
 * PVS-Studio
 * VectorCAST
-
-
-
 
 NSIS (Nullsoft Scriptable Install System）是一种在Windows系统下的开源安装程序制作软件。 它提供了安装、卸载、系统设置、文件解压缩等功能。 正如其名字所指出的那样，NSIS 是通过它的脚本语言来描述安装程序的行为和逻辑的。
 
@@ -388,26 +344,18 @@ Ultra版目前还无法使用，pro已经接入到谷歌的Bard，已经试过�
 
 【【尚硅谷】Gradle教程入门到进阶（从gradle安装到项目实战）-哔哩哔哩】 https://b23.tv/B2RIPPl
 
-
 Pr
 
 https://github.com/TarsCloud/TarsGo/pull/505 修复pr
 
 看pr学中间件
 
-
-
-
-
 2020年我离开百度加入VIVO，参与某推荐业务的在线工程开发，在VIVO工作期间，除了个人技术上的提升外，我个人的工程方法论也在逐步成形。
 从开发一个模块变成了负责这个模块，接着负责了四个模块，这几个模块演化成了我们组的三大方向之一，我变成方向负责人来统筹安排，自己开周会。
 有十多个算法同学在我负责模块上进行策略迭代。而在起初的近一年的时间内只有一名20届毕业生同学在跟着我做事，我们不仅要参与业务开发也要和日益增长的策略逻辑做对抗，去提升模块稳定性、提升性能，提升研发效率等等。在很长时间内我们方向保持着用最少的工程同学人数但维持了最高的稳定性和研发效率的记录，我个人在2021年年中获得了S绩效。今天要谈的是我认为我在VIVO期间提炼的最重要的一个方法论，其实两年前就有想法动笔，但一直拖稿，如今我离开VIVO的时间已经超过了在VIVO工作的时间，在这个有点里程碑意义的节点上，利用国庆假期我终于写完了这篇，也算是对VIVO的一场漫长的告别。
 
-
-
 现在阿里面试不做题了，想去的去投，三轮面试，流程很快
 年底hc，不用浪费
-
 
 偏向锁
 
@@ -421,7 +369,6 @@ https://github.com/TarsCloud/TarsGo/pull/505 修复pr
 此外，还有一些第三方库和组件，如Boost库、Intel的Threading Building Blocks（TBB）等，它们提供了更丰富的同步原语和高级功能，可以用于构建复杂的并发程序。
 请注意，虽然这些同步组件在功能上与Java的AQS有所不同，但它们可以实现相似的并发控制和同步目标。具体选择使用哪种同步组件取决于你的需求和偏好。
 
-显眼包，网络流行词，中性词，特指那些在人群中脱颖而出获取关注的人。喜欢的人是显眼包，那显眼包就是可爱外向活跃气氛的意思，讨厌的人显眼包，那显眼包就是爱出风头傻X的意思
 
 现在conan升级到2了，很多地方都改了，都得重新学一下。
 

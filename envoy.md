@@ -1,4 +1,5 @@
 # envoy
+Envoy对libc有要求
 
 c++写的
 

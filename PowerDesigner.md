@@ -1,4 +1,12 @@
 # PowerDesigner
+
+
+看数据库表结构设计
+数据库建模
+
+Powerdesign oracle 12c
+https://blog.csdn.net/nqmysbd/article/details/86545701
+
 windows电脑 sap PowerDesigner
 
 ## odbc
