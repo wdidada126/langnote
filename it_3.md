@@ -369,11 +369,7 @@ https://github.com/TarsCloud/TarsGo/pull/505 修复pr
 此外，还有一些第三方库和组件，如Boost库、Intel的Threading Building Blocks（TBB）等，它们提供了更丰富的同步原语和高级功能，可以用于构建复杂的并发程序。
 请注意，虽然这些同步组件在功能上与Java的AQS有所不同，但它们可以实现相似的并发控制和同步目标。具体选择使用哪种同步组件取决于你的需求和偏好。
 
-
 现在conan升级到2了，很多地方都改了，都得重新学一下。
-
-一本《深入理解高并发编程：核心原理与案例实战》，让你彻底理解并发编程产生各种诡异Bug问题的根源，掌握问题的根本解决方案，并深度剖析并发编程的底层核心原理和企业级架构实战，一本《深入理解高并发编程：JDK核心技术》，让你从源码级别彻底吃透JDK中的各种并发类库和线程池，并带你实战手写一款属于自己的线程池。
-一本深度剖析并发编程底层原理，一本深度解密JDK对于并发原理的实现，两本相辅相成，让你既懂原理，又懂实现，总之，一句话：要知其然，更要知其所以然。掌握这两本书的核心知识，应该在并发领域能超越大部分人吧
 
 可直接进入这个仓库：https://github.com/chengxumiaodaren/cpp-learning 学习
 
@@ -386,9 +382,6 @@ https://github.com/TarsCloud/TarsGo/pull/505 修复pr
 比啃书效果强十倍！小米大佬带你3天刷完Java面试八股文，面试前光是刷完就已经赢麻了！视频可以帮你在短期内快速掌握面试必问的核心java八股文面试题知识点！
 给大家准备了80W字面试宝典+V：tuling06 备注100 即可领取，需要的自行领取。
 
-
-
-
 bazel google在推，而且我觉得比cmake简单，编译速度也很快
 
 collide
@@ -400,11 +393,9 @@ https://www.coze.com/explore
 
 Arxv
 
-
 origin
 https://e.coding.net/yitongjinfushiyebu/SMART_SALARY_1_0/b-salary-piecework-center.git
  (fetch)
-
 
 
 arthas idea插件
@@ -430,10 +421,6 @@ mqtt框架
 
 https://www.zhihu.com/question/461642533?utm_id=0
 
-Apache Uniffle (incubating) 是一个通用的Remote Shuffle Service，已经支持Spark和MapReduce框架（Tez框架支持正在研发中）,可以在K8S上部署运行，支持内存 本地盘 HDFS混合存储，提高大Shuffle的稳定性
-目前 0.6.1版本 已经release，可以下载使用，欢迎大家使用，star，提issue，刚了解项目想给项目贡献代码的也可以从项目的good first issue入手
-https://uniffle.apache.org/download/
-
 主要依赖flinkcdc+paimon+dinky+海豚调度
 +minio
 
@@ -443,14 +430,6 @@ CDC (Change Data Capture) 是一种用于捕捉数据库变更数据的技术
 更好地集成实时数仓、数据湖的下游生态，包括 Hudi、Iceberg、ClickHouse、Doris 等。
 进一步降低 CDC 数据入湖入仓的门槛，解决整库同步、表结构变更同步等痛点。
 特别感谢来自 Cloudera 公司的 Marton Balassi, Tamas Kiss 贡献的 Oracle CDC 连接器，来自 XTransfer 公司的 Jiabao Sun 贡献的 MongoDB CDC 连接器。
-
-
-多易大数据
-课程更新
-新增 阿里云dataworks新增 保险数仓项目新增 hudi数据湖实战新增 ETL工程师班新增 P8级架构班优化 sparksql执行原理新增 presto快速教程重构 实时动态规则营销系统 升级 dorisdb快速教程升级 flink教程升级 实时数仓项目v3.0升级 动态规则营销系统v4.0
-
-crud
-你下一个jeesite，自己加点功能
 
 纯干货分享，一节课让您彻底理解分布式锁的意义
 从底层原理到项目场景，干货满满！
@@ -466,12 +445,6 @@ crud
 新增 阿里云dataworks新增 保险数仓项目新增 hudi数据湖实战新增 ETL工程师班新增 P8级架构班优化 sparksql执行原理新增 presto快速教程重构 实时动态规则营销系统 升级 dorisdb快速教程升级 flink教程升级 实时数仓项目v3.0升级 动态规则营销系统v4.0
 
 
-
-
 1-2个项目代码堆积
-
-港区Apple ID注册流程
-以下注册流程较繁琐，你也可以到第三方平台如：https://taohao.me/product/、https://fk.appledi.com/product/ 购买Apple ID。
-
 
 
