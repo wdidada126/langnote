@@ -30,3 +30,12 @@ windows 10电脑查看不了某些wifi，是windows10电脑wifi驱动没有安�
 20230828 chatgpt是实时的了？
 不是
 2024.05 chatgpt 4o，2022的数据
+
+
+chatgpt 4o
+
+chatgpt plus
+
+cuhk521@gmail.com
+GPT更新密码QA5EPOFXY1MSU
+6.1 WUXAMBKQITSJU

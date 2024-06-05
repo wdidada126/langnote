@@ -1,5 +1,34 @@
 # postgresql
 
+https://www.postgresql.org/docs/9.1/transaction-iso.html
+
+db/pg_ssi.jpg
+
+A Critique of ANSI SQL Isolation Levels
+https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf
+
+CLOG管理
+CLOG（Commit Log）在数据库系统中，特别是PostgreSQL中，用于记录事务的最终状态。以下是对CLOG管理的简要概述：
+
+概述：
+CLOG日志记录的是事务的最终状态，包括事务的提交、终止等状态。
+CLOG日志管理器负责管理CLOG日志缓冲池，该缓冲池基于SLRU（Sequential LRU）策略实现。
+日志结构：
+PostgreSQL中事务系统一共记录了四种事务状态，包括事务正在运行、已提交、被终止和子事务已提交。
+由于需要记录的事务状态只有四种，因此只需要2个字节就能记录一个事务状态信息。
+一个页面（8K）能保存32K个日志记录，每个CLOG日志文件段由32个页组成，因此能保存1M个日志记录。
+日志文件：
+CLOG日志文件保存在PGDATA/pg_xact目录下。
+文件命名使用段号（segment number），以4位16进制数字命名。
+理论上可以存在的CLOG日志文件数量受限于事务ID的范围，但实际数量会少于理论值。
+日志定位：
+给定一个事务ID（xid），可以通过一个四元组（<segmentno, Pageno, Byte, Bindex>）定位到其在日志中的位置。
+其中，segmentno是段号，Pageno是页号，Byte是页面偏移，Bindex是字节内偏移。
+
+
+串行快照隔离 SSI
+Serial Snapshot Isolation
+
 Posgres的MVCC实现牛逼不，牛。serial snapshot isolation是很强。
 是的,PostgreSQL的MVCC(Multiversion Concurrency Control,多版本并发控制)实现确实非常强大和出色。其中的串行快照隔离(Serial Snapshot Isolation)是PostgreSQL MVCC的核心机制之一,是它支持高并发读写的关键所在。
 具体来说,PostgreSQL的MVCC及串行快照隔离机制有以下几个优点:
@@ -16,7 +45,6 @@ Posgres的MVCC实现牛逼不，牛。serial snapshot isolation是很强。
    - MVCC的快照机制有利于数据库的恢复和审计,可以轻松地实现点in时间恢复。
 5. 低锁开销
    - MVCC不需要对数据行加锁即可实现并发控制,大大降低了锁的开销。
-
 总的来说,PostgreSQL的MVCC及串行快照隔离机制是其数据库引擎的核心优势之一,确实是非常出色的并发控制技术。这也是PostgreSQL广受欢迎的重要原因之一。
 
 好的,让我来详细介绍一下串行快照隔离(Serializable Snapshot Isolation,SSI)的论文和代码实现。
@@ -39,6 +67,163 @@ Posgres的MVCC实现牛逼不，牛。serial snapshot isolation是很强。
 - 除了PostgreSQL,Oracle数据库和某些NoSQL数据库如FaunaDB也采用了类似的SSI机制。
 
 总的来说,串行快照隔离是一种非常强大的并发控制技术,通过精心设计的算法和数据结构实现,确保了数据库事务的正确性和高并发性能。PostgreSQL在这方面的实现可以说是业界的标杆之一。
+
+可串行化冲突
+确保即使多个事务同时执行，每个事务的执行结果也应该与它们按某种顺序串行执行的结果相同
+在数据库系统中，可串行化冲突是指两个或多个事务的操作可能导致数据不一致或读取错误的一种情况，尤其是在并发环境下。可串行化是数据库并发控制的一个目标，旨在确保即使多个事务同时执行，每个事务的执行结果也应该与它们按某种顺序串行执行的结果相同。下面我将进一步解释这个概念。
+
+### 什么是可串行化？
+在英文中，“可串行化冲突”通常被称为 Serializable Conflict。这个术语主要用来描述在数据库并发控制中，保证事务执行结果与按某种顺序串行执行的结果相同的一种机制。此外，当提到具体的冲突类型时，通常会使用以下英文术语：
+1. Write-Read Conflict - 写读冲突
+2. Write-Write Conflict - 写写冲突
+3. Read-Write Conflict - 读写冲突
+
+这些术语帮助描述并发事务中可能发生的不同类型的数据访问冲突，这些冲突需要通过并发控制机制如锁定或时间戳排序来管理，以实现事务的可串行化。
+可串行化是衡量数据库并发事务执行结果正确性的一个标准。如果一个并发执行的事务集合可以被重排为一个不产生冲突的串行执行序列，那么这个事务集合就是可串行化的。
+
+### 冲突与可串行化
+在并发环境中，冲突通常发生在以下两个事务之间：
+1. 读写冲突（Write-Read Conflict）：当事务A修改了一个数据项，而事务B随后读取了同一个数据项，这种情况下，如果事务A和B是并发执行的，事务B可能会读取到错误的数据。
+2. 写写冲突（Write-Write Conflict）：当两个事务都试图修改同一个数据项时，如果没有适当的同步机制，最终的数据可能会反映两个事务中的任何一个或两个事务都没有正确执行。
+3. 读写冲突（Read-Write Conflict）：如果事务A读取了一个数据项，而事务B随后修改了同一个数据项，在事务A基于旧数据做出决策后，事务B的修改可能会导致事务A的决策失效。
+
+### 如何实现可串行化？
+
+数据库系统通常通过两种主要的并发控制技术来实现事务的可串行化：
+
+1. 锁定机制（Locking）：数据库管理系统使用锁来控制对数据项的访问。基本策略包括共享锁（用于读取操作）和排他锁（用于写入操作）。通过这种方式，锁定机制确保没有其他事务可以访问同一数据项进行冲突操作。
+
+2. 时间戳排序（Timestamp Ordering）：每个事务在开始时分配一个唯一的时间戳。数据库系统根据事务的时间戳来决定事务的执行顺序，确保时间戳较早的事务能够在时间戳较晚的事务之前执行相关操作。
+
+### 总结
+
+可串行化冲突的管理对于确保数据库操作的正确性和一致性至关重要。通过有效的并发控制机制，如锁定和时间戳排序，数据库系统能够提供可靠和一致的数据访问，即使在多个用户和应用程序并发访问的情况下也是如此。
+
+在C++中，有许多开源库可以帮助实现线程同步和可串行化冲突。一个常用的库是Intel的Threading Building Blocks (TBB)。TBB提供了高级并行编程抽象，可以方便地实现线程安全和高效的并行计算。
+
+下面是一个使用TBB实现可串行化冲突的示例代码：
+
+### 使用Intel TBB实现可串行化冲突
+
+首先，你需要安装Intel TBB库。如果你还没有安装，可以通过以下方式安装：
+
+- 在Linux上，你可以使用包管理器安装，比如`apt-get`：
+```bash
+sudo apt-get install libtbb-dev
+```
+
+- 在Windows上，你可以从Intel官网下载安装包。
+
+接下来，是示例代码：
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <tbb/tbb.h>
+
+// 共享资源
+int shared_resource = 0;
+
+// 一个线程执行的函数
+void increment(int thread_id) {
+    tbb::mutex::scoped_lock lock(mtx);  // 锁定互斥锁
+    
+    // 访问和修改共享资源
+    std::cout << "Thread " << thread_id << " is incrementing the shared resource." << std::endl;
+    shared_resource++;
+    std::cout << "Shared resource after increment: " << shared_resource << std::endl;
+}
+
+int main() {
+    const int num_threads = 10;
+    std::vector<std::thread> threads;
+
+    // 使用tbb::parallel_for并行执行线程
+    tbb::parallel_for(0, num_threads, [](int i) {
+        increment(i);
+    });
+
+    std::cout << "Final value of shared resource: " << shared_resource << std::endl;
+    return 0;
+}
+```
+
+### 代码解释：
+
+1. 共享资源：`shared_resource`是所有线程访问和修改的共享变量。
+2. TBB库：包括头文件`tbb/tbb.h`来使用TBB库中的功能。
+3. 互斥锁：使用`tbb::mutex`来保护共享资源的访问。
+4. 线程函数：`increment`函数在访问和修改共享资源前锁定互斥锁。
+5. 主函数：
+    - 使用`tbb::parallel_for`并行执行线程，避免了手动管理线程的创建和同步。
+    - 打印最终的共享资源值。
+
+TBB库提供了更高层次的抽象，使并行编程更加简洁和高效。通过使用`tbb::parallel_for`，我们可以轻松地并行执行多个线程，并保证线程安全。
+
+在C++中实现可串行化冲突（Serializable Conflict）通常涉及使用线程锁（如互斥锁）来确保多个线程不会同时访问和修改共享资源。以下是一个示例代码，演示了如何在C++中实现可串行化冲突。
+
+这个例子使用了`std::mutex`来保护对共享资源的访问。`std::mutex`是一个标准的互斥锁，它可以确保同时只有一个线程可以访问共享资源。
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <vector>
+
+// 共享资源
+int shared_resource = 0;
+
+// 互斥锁
+std::mutex mtx;
+
+// 一个线程执行的函数
+void increment(int thread_id) {
+    // 锁定互斥锁
+    std::lock_guard<std::mutex> lock(mtx);
+    
+    // 访问和修改共享资源
+    std::cout << "Thread " << thread_id << " is incrementing the shared resource." << std::endl;
+    shared_resource++;
+    std::cout << "Shared resource after increment: " << shared_resource << std::endl;
+}
+
+int main() {
+    const int num_threads = 10;
+    std::vector<std::thread> threads;
+
+    // 创建并启动多个线程
+    for (int i = 0; i < num_threads; ++i) {
+        threads.push_back(std::thread(increment, i));
+    }
+
+    // 等待所有线程完成
+    for (auto& th : threads) {
+        th.join();
+    }
+
+    std::cout << "Final value of shared resource: " << shared_resource << std::endl;
+    return 0;
+}
+```
+
+### 代码解释：
+
+1. 共享资源：`shared_resource`是所有线程访问和修改的共享变量。
+2. 互斥锁：`std::mutex mtx`用来保护对共享资源的访问。
+3. 线程函数：`increment`函数是每个线程执行的代码，它在访问和修改共享资源前锁定互斥锁，并在修改完成后自动解锁（由`std::lock_guard`管理）。
+4. 主函数：
+    - 创建并启动多个线程，每个线程运行`increment`函数。
+    - 使用`std::thread`类创建线程，并存储在一个`std::vector`中。
+    - 使用`join`方法等待所有线程完成。
+    - 打印最终的共享资源值。
+
+在这个例子中，`std::lock_guard`自动管理互斥锁的锁定和解锁，可以确保即使在异常情况下互斥锁也会被正确解锁。这种机制可以有效避免由于线程竞态条件（race conditions）导致的数据不一致问题。
+
+冲突可串行化(Conflict Serializable)是指一个并发执行的事务集合,在执行顺序上等价于某个串行执行的事务集合,也就是说,任何并发执行的情况都可以转换成某个串行执行的情况
+
+冲突等价(ConﬂictEquivalence) 可串行化调度(Serializable Schedules),事务事务(transaction)是在数据库上执行的一个或多个操作构成的序列,用来完成数据库系统的高级功能。
+
+https://geek-docs.com/dbms/dbms-tutorial/dbms-conflict-serializability.html
 
 产品架构  Shared-Everything
 
