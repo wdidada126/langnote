@@ -1,6 +1,24 @@
 # esim
 
+
+
+
+giffgaff
+https://blog.hsj01wzonline.top/posts/myblog40/
+
+收到货后激活
+我们可以拨打11185让中国邮政帮我们查询邮编的揽投部，让他们帮忙留意一下，激活的教程有很多，我就不详细说了分享几篇如下。
+激活教程1使用万事达和维萨信用卡激活
+激活教程2使用淘宝购买10英镑激活码激活
+
+skape
+
+马来西亚
+yoodo
+
 可以搜Textr eSIM，邮箱注册就能领取免费eSIM
+
+https://textrapp.com/esim/zh/home
 
 Clubsim是香港运营商CSL推出的子品牌
 
