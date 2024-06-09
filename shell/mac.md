@@ -1,5 +1,30 @@
 # mac
 
+无法打开“EasyLPAC”，因为无法验证开发者。
+
+使用右键打开：在应用程序上按住Control键，然后点击应用程序图标，选择“打开”。在弹出的警告对话框中，再次点击“打开”。
+
+当遇到“无法打开‘EasyLPAC’，因为无法验证开发者”的问题时，这通常表示macOS系统的安全机制（Gatekeeper）阻止了未经验证的应用程序的运行。以下是一些建议的解决步骤：
+
+一次性方法
+打开系统偏好设置：点击屏幕左上角的苹果图标，选择“系统偏好设置”。
+进入安全性与隐私：在系统偏好设置窗口中，点击“安全性与隐私”。
+选择“通用”选项卡：在安全性与隐私窗口中，点击左侧的“通用”选项卡。
+允许未验证的应用：在窗口底部，你可能会看到“已阻止使用‘EasyLPAC’，因为来自身份不明的开发者”的提示。点击其后的“仍要打开”按钮。
+确认打开：在弹出的确认弹窗中，点击“打开”按钮。
+永久解决方法
+如果你经常需要安装未经验证的应用，并且确定这些应用是安全的，你可以考虑永久禁用Gatekeeper。但请注意，这样做可能会增加系统风险。
+
+检查Gatekeeper状态：打开终端（Terminal），输入spctl --status。如果返回“assessments enabled”，则Gatekeeper当前是启用的。
+禁用Gatekeeper：在终端中输入sudo spctl --master-disable，然后输入管理员密码以禁用Gatekeeper。
+其他建议
+更新应用程序：如果可能，尝试从官方来源下载最新版本的“EasyLPAC”，因为旧版本可能不兼容或存在已知的安全问题。
+使用右键打开：在应用程序上按住Control键，然后点击应用程序图标，选择“打开”。在弹出的警告对话框中，再次点击“打开”。
+更改安全性设置：在“安全性与隐私”的“通用”选项卡中，尝试更改“允许从以下位置下载的应用程序”的设置，选择“任何来源”。如果“任何来源”选项没有显示，你可能需要先点击左下角的锁图标以进行更改。
+重新启用Gatekeeper：如果你之前禁用了Gatekeeper并希望重新启用它，可以在终端中输入sudo spctl --master-enable。
+请注意，在更改系统设置或安装未经验证的应用程序时，请务必谨慎行事，并确保你信任该应用程序的来源。
+
+
 港区Apple ID注册流程
 以下注册流程较繁琐，你也可以到第三方平台如：https://taohao.me/product/、https://fk.appledi.com/product/ 购买Apple ID。
 
@@ -7,16 +32,12 @@
 
 [WebStorm快捷键（Mac版）](https://www.cnblogs.com/xjchenhao/p/4430544.html)
 
-#  
-
 # ⌘——Command
 # ⌃ ——Control
 # ⌥——alt
 # ⇧——Shift
 # ⇪——Caps Lock
 # fn——功能键就是fn
-
-
 
 # Mac必备软件
 Shuttle
@@ -30,8 +51,6 @@ ezip
 Clash
 xmind
 jprofile
-
-
 
 mac连接外部显示器 竖屏
 https://blog.csdn.net/KingJin_CSDN_/article/details/106497347
