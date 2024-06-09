@@ -1,4 +1,5 @@
 # git
+
 1. 显示出branch1和branch2中差异的部分
 git diff branch1 branch2 --stat
 2. 显示指定文件的详细差异
@@ -39,8 +40,6 @@ git config --global core.autocrlf true
 
 Or if using MacOS, when you commit code, CRLF will be automatically converted to LF:
 git config --global core.autocrlf input
-
-
 
 git config core.autocrlf input
 
