@@ -1,18 +1,12 @@
 # ocbc
 
-
 Earn S$210 or more when you refer friendsto OCBC
 Till 31 Dec 2024, get as much as S$45 - morethan the usual S$15 -when you refer a friendwho is moving to Singapore to join OcBc andwho deposits at least S$1.000.Your friendswill get S$15 each. Get bonus rewards for the1st, 5th and 10th referral (this works out to asmuch as S$210).T&Cs apply.SGD depositsare insured up to S$100k by SDlc.Share your referral code and start earning today!
 
 
-Earn $$210 or more when you refer friendsto OCBC
-Till 31 Dec 2024, get as much as S$45 -morethan the usual S$15 - when you refer a friendwho is moving to Singapore to join OcBc andwho deposits at least S$1,000.Your friends
-will get S$15 each.Get bonus rewards for the1st, 5th and 10th referral (this works out to asmuch as S$210).T&Cs apply. SGD deposits
-
-are insured up to S$100k by SDlC,
-Share your referral code and start earning today!
-
 申请实体卡
+4218080323143752 ocbc绑定大陆支付宝，微信
+国内可以扫码支付，不能打开二维码
 
 有关新加坡账户业务，请联系新加坡华侨银行（电话：+65 6363 3333，网站：https://www.ocbc.com）咨询详情。您可以尝试在其官网上提交网上咨询（https://www.ocbc.com/personal-banking/customer-feedback-form）。
 如有任何疑问，欢迎致电我行全国统一服务热线4008940089，我们将竭诚为您服务。

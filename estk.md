@@ -21,7 +21,7 @@ https://www.estk.me/product/
 
 https://iecho.cc/2024/03/16/estk-me-next-generation-removable-consumer-esim/
 
-多多买了个，3hk的diy和clubsim都能用。不急的等estk，能在ios切换配置文件，这款ios不能切换。
+多多买了个，3hk的diy和clubsim都能用。不急的等estk，能在iOS切换配置文件，这款iOS不能切换。
 estk和5ber功能一样，但是功能更多，更便宜，说是3月末批量上市，目前还没消息
 
 发行版本
@@ -35,13 +35,12 @@ ES 版
 
 正式版
 于 2024 年 4 月发布
-支持所有功能，使用 SiP 封装，寿命长
+支持所有功能，使用SiP封装，寿命长
 
 试用版 75港币
-正式版 200港币
+正式版 200港币 现在（2024.06.08）180港币
 
 评价：客服使用tg，货币使用港元，避免内地政府监管，没有保障的
-
 
 https://iecho.cc/2024/03/16/estk-me-next-generation-removable-consumer-esim/
 
@@ -49,7 +48,6 @@ https://iecho.cc/2024/03/16/estk-me-next-generation-removable-consumer-esim/
 （如果只给了二维码可以使用微信扫一扫会出现二维码信息然后填入即可）
 
 https://argun.life/2024/05/03/estk%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/
-
 
 试用esim
 https://iecho.cc/2023/10/20/Convert-eSIM-to-physical-SIM/#%E8%B4%AD%E4%B9%B0-eSIM-%E5%A5%97%E9%A4%90
