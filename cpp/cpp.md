@@ -1,4 +1,10 @@
 # cpp
+
+
+看的
+C++新经典:从入门到进阶
+王健伟老师的书和视频
+
 https://github.com/fffaraz/awesome-cpp
 
 https://github.com/alphaSeclab/awesome-rat

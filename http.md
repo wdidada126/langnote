@@ -1,5 +1,12 @@
 # http
+Origin refer
+Host
 
+Access-Control-Allow-Headers，并且不能为 *
+Access-Control-Allow-Origin，并且不能为 *
+Access-Control-Allow-Credentials 为 true
+Access-Control-Allow-
+ACA
 
 请求方法有多种，各方法的作用如下。
 GET：请求获取Request-URI所标识的资源；

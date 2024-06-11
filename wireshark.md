@@ -1,5 +1,13 @@
 # wireshark
 
+
+tshark抓包
+tcpdump抓包及tshark解包方法介绍
+
+tshark是wireshark的命令行工具，通过shell命令抓取、解析报文。tcpdump是Linux系统下的抓包工具。wireshark和tcpdump都共同使用 libpcap作为其底层抓包的库，tshark也可以抓取报文。
+
+备注郑芳老师在上计算机网络课程的时候说了，这一点
+
 ## 实现原理
 pcap
 
