@@ -1,7 +1,5 @@
 # giffgaff
 
-
-
 首先，登录
 https://www.giffgaff.com/profile/details/getnumber
 ，输入你现在的手机号和账户密码，就能进入以下界面，点击黄色按钮/Get a new giffgaff number
