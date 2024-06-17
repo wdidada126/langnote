@@ -1,5 +1,26 @@
 # git
 
+比较两个分支 哪些文件
+git diff --name-only prod_sync_no_modify_pom prod-20240531_0612
+
+
+如果你想要查看两个分支之间的差异，但不想查看文件的具体内容（即只查看哪些文件有差异，而不查看差异的具体内容），你可以使用 git diff 命令的 --name-status 或 --name-only 选项。
+
+--name-status 会显示每个有差异文件的名称以及状态（例如：修改、添加、删除等）。
+--name-only 会仅显示有差异的文件名称。
+以下是如何使用这些选项的示例：
+
+显示文件名称和状态
+bash
+git diff --name-status prod_sync_no_modify_pom...prod-20240531_0612
+注意，这里使用了三个点 ... 而不是两个点 ..。两个点 .. 会显示从 prod_sync_no_modify_pom 分支到 prod-20240531_0612 分支的合并路径上的所有差异，而三个点 ... 会显示两个分支之间在它们共同祖先之后的差异。
+
+仅显示文件名称
+bash
+git diff --name-only prod_sync_no_modify_pom...prod-20240531_0612
+这些命令将只列出在两个分支之间有差异的文件，而不会显示这些文件的具体差异内容。
+
+
 1. 显示出branch1和branch2中差异的部分
 git diff branch1 branch2 --stat
 2. 显示指定文件的详细差异
