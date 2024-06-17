@@ -11,3 +11,5 @@ https://www.cnblogs.com/z-x-y/p/10088224.html
 ？sed/soure/target/g
 
 vim搜索空格，直接输入
+
+https://github.com/LazyVim/LazyVim

@@ -10,3 +10,5 @@ https://www.ihnfsa.com/
 https://www.ihnfsa.com/database/radix-hash-join/
 
 本文是对 Main-memory hash joins on multi-core CPUs: Tuning to the underlying hardware 论文 Part II 的翻译和解释。
+
+https://github.com/duckdb/duckdb

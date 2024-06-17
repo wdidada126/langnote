@@ -1,5 +1,35 @@
 # git
 
+git config --global core.editor "'D:\dev_tools\npp.8.5.8.portable.x64\notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+
+
+如果你在使用 git pull 命令时，系统默认打开了 Visual Studio Code (VSC) 而不是在命令行中显示输出，这通常是因为你的 Git 配置或者系统的某些设置与 VSC 的集成有关。
+
+要取消这种集成，并确保 git pull 命令只在命令行中显示输出，你可以尝试以下几个步骤：
+
+检查 Git 配置：
+运行 git config --global --list 来查看你的全局 Git 配置。查找与 Visual Studio Code 相关的配置，比如 core.editor 或其他可能与编辑器集成的设置。
+如果找到与 VSC 相关的配置，你可以使用 git config --global --unset <配置项名> 来取消它。
+
+检查环境变量：
+有时，环境变量可能会影响 Git 的行为。检查是否有任何与 VSC 相关的环境变量，特别是 GIT_EDITOR、VISUAL 或 EDITOR。
+你可以使用 echo $GIT_EDITOR、echo $VISUAL 和 echo $EDITOR（在 Unix/Linux/macOS 上）或 echo %GIT_EDITOR%、echo %VISUAL% 和 echo %EDITOR%（在 Windows 上）来查看这些变量的值。
+
+如果找到了与 VSC 相关的值，你可以取消它们或将其设置为其他文本编辑器（如 nano、vim 或 emacs）。
+
+检查 Git 钩子（Hooks）：
+Git 钩子是在 Git 仓库的 .git/hooks 目录中定义的脚本，它们会在特定的 Git 事件（如 commit、push、pull 等）触发时运行。检查这个目录，看是否有与 VSC 相关的脚本。
+如果有，你可以重命名或删除这些脚本，或者修改它们的内容以确保它们不再调用 VSC。
+
+检查 VSC 设置：
+在 VSC 中，检查是否有任何与 Git 集成相关的设置。通常，这些设置可以在 VSC 的设置菜单（通过 File > Preferences > Settings 或 Ctrl+, 快捷键访问）中找到。
+查找与 Git 或编辑器集成相关的设置，并确保它们没有配置为在 git pull 时自动打开 VSC。
+
+重启命令行或终端：
+在更改了配置或环境变量后，确保重启你的命令行或终端窗口，以使更改生效。
+测试：
+最后，运行 git pull 命令来测试你的更改是否生效。如果一切正常，你应该只会在命令行中看到 git pull 的输出，而 VSC 不会自动打开。
+
 比较两个分支 哪些文件
 git diff --name-only prod_sync_no_modify_pom prod-20240531_0612
 
@@ -84,8 +114,6 @@ false：
 在选择合适的 core.autocrlf 设置时，你需要考虑你的工作环境和你的团队成员使用的操作系统。通常，在 Windows 系统上设置为 true，在 Linux 和 macOS 上设置为 input 是比较保险的选择。如果所有使用者都在同一系统下工作，并且希望保持行尾字符的一致性，可以设置为 false。
 
 
-git --version
-git version 2.37.1 (Apple Git-137.1)
 
 git clone https://github.com/tfussell/xlnt.git xlnt --recurse-submodules
 
@@ -108,8 +136,14 @@ git fetch origin new_branch
 git merge origin/new_branch
 ```
 ## 版本
+
+git version
+git version 2.45.1.windows.1
+
 git version 2.42.0.windows.2
 
+git --version
+git version 2.37.1 (Apple Git-137.1)
 
 要在 Git 中合并 patch 文件，您可以使用 `git apply` 命令。以下是在命令行中合并 patch 文件的示例：
 1. 使用 `git apply` 命令合并 patch 文件：
