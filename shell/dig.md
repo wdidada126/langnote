@@ -5,7 +5,13 @@ sudo apt-get install dnsutils
 centos系
 sudo yum install bind-utils -y
 
+Installed:
+  bind-utils.x86_64 32:9.11.4-26.P2.el7_9.16                                                                                                                                      
 
+Dependency Installed:
+  GeoIP.x86_64 0:1.5.0-14.el7        bind-libs.x86_64 32:9.11.4-26.P2.el7_9.16   bind-libs-lite.x86_64 32:9.11.4-26.P2.el7_9.16   bind-license.noarch 32:9.11.4-26.P2.el7_9.16  
+  geoipupdate.x86_64 0:2.5.0-2.el7 
+  
 https://www.jianshu.com/p/f6ef04bf6af2
 
 dig工具

@@ -1,5 +1,67 @@
 # nginx
 
+PCRE库
+PCRE（Perl Compatible Regular Expressions，Perl兼容正则表达式）是由Philip Hazel开发
+的函数库，目前为很多软件所使用，该库支持正则表达式。它由RegEx演化而来，实际上，
+Perl正则表达式也是源自于Henry Spencer写的RegEx。
+如果我们在配置文件nginx.conf里使用了正则表达式，那么在编译Nginx时就必须把PCRE
+库编译进Nginx，因为Nginx的HTTP模块要靠它来解析正则表达式。当然，如果你确认不会使
+用正则表达式，就不必安装它。
+
+部署Nginx时都是使用一个master进程来管理多个worker
+进程，一般情况下，worker进程的数量与服务器上的CPU核心数相等。每一个worker进程都
+是繁忙的，它们在真正地提供互联网服务，master进程则很“清闲”，只负责监控管理worker
+进程。worker进程之间通过共享内存、原子操作等一些进程间通信机制来实现负载均衡等功
+能
+
+屹通nginx.conf
+
+    #多租户场景文件引入
+    #宁波银行租户:9083
+    include /app/nginx-1.20.0/conf/nbcb.conf;
+    #薪享通租户:9084
+    include /app/nginx-1.20.0/conf/xxt.conf;
+
+    include /app/nginx-1.20.0/conf/zwb.conf;
+
+在Nginx的配置文件nginx.conf中，worker_processes 指令用于定义Nginx启动的工作进程数。当你设置worker_processes 4; 时，你告诉Nginx启动4个工作进程来处理连接。
+
+这里的每个工作进程都是独立的，并且它们都可以处理多个连接。Nginx 使用事件驱动和非阻塞 I/O 来处理这些连接，这意味着每个工作进程都可以有效地处理数千个并发连接。
+
+设置 worker_processes 的值通常取决于你的服务器的硬件配置，特别是 CPU 的核心数。以下是一些常见的设置建议：
+
+如果你有一个单核 CPU，那么设置 worker_processes 1; 通常是足够的。
+如果你有一个多核 CPU，那么你可以将 worker_processes 的值设置为与 CPU 核心数相同，以便充分利用多核优势。例如，如果你的服务器有 4 个 CPU 核心，那么设置 worker_processes 4; 是合适的。
+在某些情况下，你可能还想考虑使用超线程或逻辑核心。但是，请注意，超线程并不总是能带来性能提升，因此你可能需要进行一些基准测试来确定最佳的设置。
+除了 worker_processes 之外，还有其他一些指令（如 worker_connections 和 events 块中的指令）也可以影响 Nginx 的性能和工作方式。因此，在调整 Nginx 的配置时，最好考虑整个配置文件，并确保所有的设置都是相互协调的。
+
+
+
+events {
+    worker_connections 51200;
+    use epoll;
+    multi_accept on;
+}
+
+
+在 Nginx 的配置文件中，events 块用于定义与事件处理相关的指令。下面是你给出的 events 块配置的详解：
+
+worker_connections 51200;
+这个指令设置了每个工作进程（worker process）可以打开的最大连接数。需要注意的是，这个数值并不是 Nginx 可以处理的并发连接总数，而是每个工作进程可以处理的连接数。因此，Nginx 可以处理的并发连接总数是 worker_processes（工作进程数）乘以 worker_connections（每个工作进程的连接数）。
+
+在这个例子中，每个工作进程可以打开的最大连接数是 51200。但是，实际上你可能需要根据服务器的实际情况来调整这个值，因为打开过多的连接可能会消耗大量的系统资源。
+2. use epoll;
+
+这个指令指定了 Nginx 使用哪种事件驱动模型。在 Linux 系统上，Nginx 支持多种事件驱动模型，如 select、poll、kqueue、epoll 等。epoll 是 Linux 上的一种高效的事件通知机制，特别适合于高并发的场景。使用 epoll 可以提高 Nginx 的性能和可扩展性。
+
+注意：在 Windows 系统上，Nginx 不支持 epoll，而是使用 iocp 作为事件驱动模型。
+3. multi_accept on;
+
+这个指令决定了 Nginx 是否应该尝试同时接受多个新连接。当设置为 on 时，Nginx 会尝试在一个工作进程中同时接受多个新连接，这样可以减少系统的上下文切换次数，提高性能。但是，这也可能会增加资源竞争的风险，因此需要根据你的应用场景和服务器配置来权衡利弊。
+
+总结：你给出的 events 块配置是一个针对高并发场景的优化配置，其中使用了高效的 epoll 事件驱动模型和 multi_accept 功能来提高 Nginx 的性能和可扩展性。但是，请注意，具体的配置值需要根据你的服务器和应用场景来进行调整。
+
+
 nginx开发出来之前，直接servlet
 
 互联网公司，nginx用

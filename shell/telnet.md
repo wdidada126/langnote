@@ -1,5 +1,7 @@
 # telnet
 
+SSH服务使用22端口，telnet服务使用23端口
+telnet通常情况下是明文的，安全性不高
 telnet 成功的提示举例
 跟ftp，ssh差不多
 mysql登录之后，运行
