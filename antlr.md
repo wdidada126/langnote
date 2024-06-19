@@ -1,5 +1,7 @@
 # antlr
 
+antlr之类的parser generator。
+
 看antlr是如何从支持mysql 5.7到支持mysql 8的
 
 G4 编码规范
