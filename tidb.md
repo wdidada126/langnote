@@ -1,5 +1,12 @@
 # tidb
 
+## doc
+https://docs.pingcap.com/zh/tidb/stable
+
+## xx
+
+
+```
 SELECT
 	T1.USER_ID,
 	TCIT.NAME,
@@ -91,24 +98,24 @@ LEFT JOIN (
 		A.USER_ID,
 		A.MONTH)TBCI ON
 	T1.USER_ID = TBCI.USER_ID
-
+```
 
 C2311231147301838934081353555974(String), 	(String), C2311231147301838934081353555974(String), 2024-02(String), C2311231147301838934081353555974(String), 2024-02(String), C2311231147301838934081353555974(String), 2024-02(String), C2311231147301838934081353555974(String), 2024-02(String)
 
 
 在MySQL中，`CONCAT`, `GROUP_CONCAT`, 和 `JSON_OBJECT` 都是字符串处理函数，用于组合、连接和格式化数据。以下是对这三个函数的简要说明，以及它们在您提供的SQL查询中的具体作用：
 
-1. **CONCAT()**
+1. CONCAT()
 
 `CONCAT` 函数用于连接两个或多个字符串。例如，`CONCAT('Hello', ' ', 'World')` 会返回字符串 `'Hello World'`。
 
 在您提供的查询中，`CONCAT` 函数用于将一个字符串 `'['` 和 `GROUP_CONCAT` 的结果连接起来，然后再连接一个字符串 `']'`。这是为了构建一个格式化的JSON数组字符串。
-2. **GROUP_CONCAT()**
+2. GROUP_CONCAT()
 
 `GROUP_CONCAT` 函数用于将多行数据连接成一个字符串。它经常与 `GROUP BY` 子句一起使用，以将每个组的多行数据连接成一个字符串。
 
 在您的查询中，`GROUP_CONCAT` 函数用于将每个 `USER_ID` 和 `MONTH` 组合的多行数据（即多个 `CODE`, `COMPANY_AMOUNT`, 和 `PERSON_AMOUNT`）连接成一个字符串。
-3. **JSON_OBJECT()**
+3. JSON_OBJECT()
 
 `JSON_OBJECT` 函数用于创建一个JSON对象。它接受偶数个参数，其中每对参数构成一个键值对。
 

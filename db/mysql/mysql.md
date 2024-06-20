@@ -1,5 +1,60 @@
 # mysql
 
+窗口函数
+
+在 MySQL 8 中，窗口函数（也称为 OLAP 函数或分析函数）为 SQL 查询提供了强大的分析能力，允许用户在一个数据集的子集（称为“窗口”）上执行计算。窗口函数通常与 OVER() 子句一起使用，以定义窗口的范围和如何分区数据。
+
+窗口的基本理解
+分区（PARTITION BY）：将数据划分为不同的窗口或子集，通常基于某些列的值。
+排序（ORDER BY）：在每个分区内对数据进行排序，以确定窗口函数的计算顺序。
+窗口范围：定义窗口的开始和结束位置。这可以通过 ROWS BETWEEN ... AND ... 子句来指定，但许多窗口函数默认使用整个分区作为窗口。
+示例
+假设我们有一个名为 sales 的表，其中包含以下数据：
+
+```sql
+CREATE TABLE sales (  
+    sale_id INT PRIMARY KEY,  
+    sale_date DATE,  
+    amount DECIMAL(10, 2)  
+);  
+  
+INSERT INTO sales (sale_id, sale_date, amount) VALUES  
+(1, '2023-01-01', 100),  
+(2, '2023-01-02', 150),  
+(3, '2023-01-03', 80),  
+(4, '2023-01-04', 200),  
+(5, '2023-01-05', 220);
+```
+示例 1：计算累计销售额
+使用 SUM() 窗口函数和 OVER(ORDER BY sale_date) 来计算按 sale_date 排序的累计销售额：
+
+```sql
+SELECT sale_date, amount,  
+       SUM(amount) OVER (ORDER BY sale_date) AS cumulative_sales  
+FROM sales;
+```
+这将返回每一行的销售额以及到该行为止的累计销售额。
+
+示例 2：计算每个日期的销售额与前一天销售额的差异
+使用 LAG() 窗口函数来获取前一天的销售额，并计算差异：
+
+```sql
+SELECT sale_date, amount,  
+       amount - LAG(amount) OVER (ORDER BY sale_date) AS diff_from_prev_day  
+FROM sales;
+```
+注意：第一行的 diff_from_prev_day 将是 NULL，因为没有前一天的数据。
+
+示例 3：按年份分区并计算每年的累计销售额
+使用 PARTITION BY 子句将数据按年份分区，并计算每个年份内的累计销售额：
+
+```sql
+SELECT YEAR(sale_date) AS sale_year, sale_date, amount,  
+       SUM(amount) OVER (PARTITION BY YEAR(sale_date) ORDER BY sale_date) AS yearly_cumulative_sales  
+FROM sales;
+```
+这将返回每年的销售额以及到该行为止的每年累计销售额。
+
 mysql入门推荐看视频，能写出业务sql就行，系统学习推荐书籍高性能mysql第三版尽管不是8版本，大部分知识点仍然通用，其次看下mysql的配置文件，了解它的重要参数，上面还写了很多注释方便理解，数据库表设计层面字段类型，索引，隔离级别，行格式，页分裂，页合并，间隙锁，行锁表锁意向锁，日志等底层知识一定要熟悉，这里不推荐直接看二手八股文，比如很多资料说%在前一定不走索引，事实上了解索引原理你就能够反驳，数据库与操作系统联系紧密，有时间我认为还是多结合这方面知识对数据库有更完整的理解
 
 * 非空值的个数。
