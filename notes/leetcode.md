@@ -19,3 +19,6 @@ https://blog.csdn.net/qq_33168253/article/details/79811149
 Leetcode 简略题解 - 共567题
 https://zhuanlan.zhihu.com/p/25697275
 
+
+
+(LeetCode596:数据库) 超过5名学生的课
