@@ -1,5 +1,32 @@
 # POWER
 
+IBM Power S1012
+IBM® Power® S1012 是一款基于 Power10 处理器的单插槽半宽系统，专为边缘计算和核心业务工作负载而设计。
+IBM Power S1014
+1 插槽、4U 服务器，适用于 AIX、IBM i 或 Linux 上的关键业务工作负载。
+IBM Power S1022
+2 个插槽、2U 服务器，适用于 AIX、IBM i 或 Linux 上的关键业务工作负载。
+IBM Power S1024
+2 插槽、4 U 服务器，适用于 AIX、IBM i 或 Linux 上的关键业务工作负载。
+IBM Power E1050
+4 插槽机架式服务器，针对数据密集型应用和混合云部署进行了优化。
+IBM Power E1080
+IBM Power E1080 专为在混合云上安全高效地扩展核心运营工作负载和 AP 应用程序而设计。
+
+IBM Power 虚拟服务器
+安全的虚拟服务器，提供一致的体验，以您的速度和价位实现现代化 - 无论在企业内部还是外部。
+
+
+Power E1080
+Power S1014
+
+SAP HANA on IBM Power
+
+IBM DS8900F
+
+首款采用POWER9的服务器Power Systems AC922
+
+POWER7是Peta系列的第一个处理器。在2010年发布
 
 
 [IBM 正式开源 POWER 处理器指令集](https://www.zhihu.com/question/342031394)

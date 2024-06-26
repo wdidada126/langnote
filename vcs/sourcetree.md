@@ -14,4 +14,5 @@ Smart branching with Sourcetree and Git-flow, keeping repositories clean and dev
 
 https://confluence.atlassian.com/get-started-with-sourcetree
 
-乌龟git，也有类似的效果
+TortoiseGit，也有类似的效果
+sourcetree必须登录账号
