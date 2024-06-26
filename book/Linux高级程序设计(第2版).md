@@ -6,7 +6,6 @@ https://gitee.com/edidada/linuxadvancec
 
 本书内容丰富、紧扣应用，适合从事Linux下C应用编程的人员阅读，也适合从事嵌入式Linux开发的人员阅读。
 
-
 pdf windows电脑上有
 ppt和代码 Linux高级程序设计2资源.zip
 豆瓣评价，有一些负面的信息，可以参考。

@@ -1,5 +1,18 @@
 # tidb
 
+函数名	功能描述
+CUME_DIST()	返回一组值中的累积分布
+DENSE_RANK()	返回分区中当前行的排名，并且排名是连续的
+FIRST_VALUE()	当前窗口中第一行的表达式值
+LAG()	分区中当前行前面第 N 行的表达式值
+LAST_VALUE()	当前窗口中最后一行的表达式值
+LEAD()	分区中当前行后面第 N 行的表达式值
+NTH_VALUE()	当前窗口中第 N 行的表达式值
+NTILE()	将分区划分为 N 桶，为分区中的每一行分配桶号
+PERCENT_RANK()	返回分区中小于当前行的百分比
+RANK()	返回分区中当前行的排名，排名可能不连续
+ROW_NUMBER()	返回分区中当前行的编号
+
 ## doc
 https://docs.pingcap.com/zh/tidb/stable
 

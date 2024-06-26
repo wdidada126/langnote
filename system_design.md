@@ -1,5 +1,13 @@
 # system design
 
+SELECT name, birth, CURDATE(),
+       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
+       FROM pet;
+
+年龄，跟当前时间有关
+所以不能直接存数据库，需要获取当前时间，使用时间函数
+       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
+
 学习系统设计最好的几个站点
 1. Educative - bit.ly/3Mnh6UR
 2. Udemy - bit.ly/3vFNPid

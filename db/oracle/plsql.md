@@ -1,5 +1,7 @@
 # pl/sql
 
+https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/index.html
+
 json pljson框架
 
 https://www.jianshu.com/p/936e7068b019

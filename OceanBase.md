@@ -1,5 +1,7 @@
 # OceanBase
 
+https://www.oceanbase.com/zh
+
 
 v3.1.0_CE_BP1
 on Jun 22, 2021
