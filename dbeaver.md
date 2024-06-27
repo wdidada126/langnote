@@ -1,4 +1,19 @@
 # dbeaver
+
+社区版
+MySQL/MariaDB, PostgreSQL, Greenplum, Oracle, IBM Db2, Exasol, SQL Server, Sybase/SAP ASE, SQLite, Firebird, H2, HSQLDB, Derby, Teradata, Vertica, Netezza, Informix
+
+商业付费版
+MongoDB, Cassandra, Couchbase, Redis, BigTable, ScyllaDB, DynamoDB
+
+
+
+https://github.com/dbeaver/dbeaver
+
+https://dbeaver.com/docs/dbeaver/
+
+https://dbeaver.io/
+
 在DBeaver中格式化SQL的方法如下：
 
 1. 打开DBeaver软件，连接到你的数据库。
@@ -26,3 +41,6 @@ Ctrl Shift F
 执行sql快捷键
 Ctrl Enter
 
+## 源代码构建
+
+https://github.com/dbeaver/dbeaver/wiki/Build-from-sources
