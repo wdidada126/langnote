@@ -1,5 +1,9 @@
 # vcpkg
 
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+
+-DCMAKE_TOOLCHAIN_FILE=D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake
+
 a依赖b
 b依赖c
 

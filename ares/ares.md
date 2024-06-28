@@ -1,6 +1,7 @@
 # ares
 
-
+ListUtil.isNotEmpty
+替换!= null && .size() > 0
 
 使用map传参
 
