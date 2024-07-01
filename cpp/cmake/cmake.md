@@ -979,7 +979,7 @@ cmakefiles.txt如何配置
 add_subdirectory
 不是 add_includexxx
 
-
+-DCMAKE_TOOLCHAIN_FILE=/Users/ibqo/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 `cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
 

@@ -1,4 +1,7 @@
 # opencv
+
+sudo apt-get install libxtst-dev
+
 https://opencv.org/
 
 c语言，很容易转为汇编语言，拿着反汇编代码看，哪些汇编代码对应哪些c代码，我是很容易看出来的。
@@ -1042,6 +1045,9 @@ Install the project...
 -- Set runtime path of "/usr/local/bin/opencv_model_diagnostics" to "/usr/local/lib"
 @edidada ➜ /workspaces/github_codespaces_compile/build (main) $ 
 
+
+### vcpkg
+vcpkg install opencv
 
 ## 版本
 
