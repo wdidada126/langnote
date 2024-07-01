@@ -12,6 +12,8 @@ https://sourceforge.net/p/log4cpp/bugs/147/
 使用这个https://github.com/mjbots/log4cpp
 
 
+sudo apt install -y liblog4cpp5-dev
+
 sudo yum install log4cpp-devel -y
 
 log4cpp-1.1.1-1.el7.x86_64 already installed and latest version

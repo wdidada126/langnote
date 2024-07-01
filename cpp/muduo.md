@@ -53,7 +53,7 @@ https://github.com/chenshuo/muduo
 ```shell
 
 git clone https://github.com/chenshuo/muduo.git
-sudo update
+sudo apt update
 sudo apt install libboost-all-dev -y
 sudo apt install protobuf-compiler -y
 export Boost_INCLUDE_DIR=/usr/include
