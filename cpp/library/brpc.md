@@ -1,5 +1,8 @@
 # brpc
 
+glog
+
+
 新增支持 lldb 的 bthread 堆栈调试工具，使用方法和命令和 gdb 脚本保持一致。
 
 https://github.com/ysj1173886760/Learning/blob/master/brpc_notes/1.md

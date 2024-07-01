@@ -1,5 +1,33 @@
 # zookeeper
 
+zookeeper c客户端
+
+https://github.com/apache/zookeeper/tree/release-3.4.2/src/c
+
+git clone https://github.com/apache/zookeeper.git
+cd zookeeper
+git checkout release-3.4.2
+
+```shell
+git clone https://github.com/apache/zookeeper.git
+cd zookeeper
+git checkout release-3.4.2
+ant compile_jute
+cd /src/c
+autoreconf -if
+configure.ac:37: warning: macro 'AM_PATH_CPPUNIT' not found in library
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+libtoolize: and rerunning libtoolize and aclocal.
+libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+configure.ac:37: warning: macro 'AM_PATH_CPPUNIT' not found in library
+configure.ac:37: error: possibly undefined macro: AM_PATH_CPPUNIT
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+autoreconf: /usr/bin/autoconf failed with exit status: 1
+```
+
 ![Zookeeper分布式框架学习图谱](../imgs/zk/Zookeeper分布式框架学习图谱.png)
 
 zkCli.cmd

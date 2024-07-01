@@ -1,5 +1,25 @@
 # curl log
 
+在 Ubuntu 22.04 上安装 curl 的头文件和库文件的步骤如下:
+1. 更新系统软件包:
+```
+sudo apt-get update
+```
+2. 安装 curl 开发包:
+```
+sudo apt-get install libcurl4-openssl-dev -y
+```
+这个包包含了 curl 的头文件和库文件,您可以在开发过程中使用它们。
+3. 确认安装成功:
+您可以通过以下命令检查是否成功安装:
+```
+pkg-config --cflags --libs libcurl
+```
+如果输出了一些 include 和 lib 的路径,说明安装成功了。
+现在您可以在您的代码中引用 curl 的头文件和链接 curl 的库文件了。比如在 C/C++ 代码中使用 `#include <curl/curl.h>` 来引用头文件。
+
+
+
 ```
 curl -v --form user=user --form password=password http://localhost:8080/login
 ```

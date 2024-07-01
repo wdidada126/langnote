@@ -1,5 +1,11 @@
 # codespaces
 
+## ubuntu22 java21更改java8版本
+https://docs.github.com/zh/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-java-project-for-codespaces
+
+
+https://containers.dev/implementors/json_reference/
+
 
 
 github codespace有用

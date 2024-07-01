@@ -1,6 +1,6 @@
 # msbuild
 
-build工具，对比cmake
+build工具，对比cmake ninja
 
 https://blog.csdn.net/bklydxz/article/details/77933222
 
@@ -16,6 +16,10 @@ MSBuild的官方文档可以在微软官方网站上找到。您可以通过以�
 
 https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022
 
-在官方文档中，您可以找到关于MSBuild的详细信息，包括如何使用MSBuild进行构建、如何自定义构建过程、如何处理依赖项和并行构建等。此外，官方文档还提供了MSBuild的命令行参考和示例。
 
 MSBuild是Microsoft Build Engine的缩写，是微软的一个构建工具。MSBuild可以用来编译、构建、部署和测试应用程序。.csproj文件是C#项目的配置文件，它包含了项目的配置信息，如项目名称、版本号、输出路径等等。MSBuild读取.csproj文件来确定如何构建项目。 
+
+
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
+
+clion配置msbuild失败，配置ninja可以

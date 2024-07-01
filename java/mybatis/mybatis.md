@@ -4,6 +4,30 @@
 
 <![CDATA[ ]]>
 
+在 MyBatis 的 XML 映射文件中，<![CDATA[ ... ]]> 通常用于包含那些可能包含 XML 特殊字符（如 <、>、&、"、' 等）的文本内容，以避免 XML 解析器错误地解释这些字符。
+
+具体来说，以下是一些使用 <![CDATA[ ... ]]> 的情况：
+
+包含 XML 特殊字符：当 SQL 片段中包含这些特殊字符时，使用 CDATA 可以确保它们被原样保留并传递到数据库，而不是被 XML 解析器解析。
+例如：
+
+xml
+<select id="selectByContent" resultType="YourResultType">  
+    SELECT * FROM your_table  
+    WHERE content LIKE '%<![CDATA[<>]]>%'  
+</select>
+如果不使用 CDATA，< 和 > 字符会被 XML 解析器错误地解释。
+2. 保留空白字符：虽然这不是 CDATA 的主要用途，但有时你可能希望保留某些空白字符（如缩进、换行等）。在这些情况下，CDATA 也可以用来确保这些空白字符被原样保留。
+
+然而，在大多数情况下，MyBatis 的 XML 映射文件中的 SQL 片段不会包含这些特殊字符，因此不需要使用 CDATA。例如，当你在 <if> 标签中动态构建 SQL 语句时，通常不需要使用 CDATA，因为 MyBatis 会负责正确地处理这些 SQL 片段。
+
+总之，你应该在以下情况下使用 CDATA：
+
+当 SQL 片段包含可能被 XML 解析器错误解释的 XML 特殊字符时。
+当你希望保留某些空白字符时（尽管这不是 CDATA 的主要用途）。
+在其他情况下，你可以不使用 CDATA。
+
+## log
 
 Mybatis配置日志打印
 https://blog.csdn.net/qq_32786873/article/details/82019488

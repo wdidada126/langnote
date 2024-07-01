@@ -30,3 +30,5 @@ eclipse java版本中怎么查看当前类的子类
 
 [Eclipse 快捷键](http://www.runoob.com/eclipse/eclipse-shortcuts.html)
 
+RCP
+https://wiki.eclipse.org/Rich_Client_Platform

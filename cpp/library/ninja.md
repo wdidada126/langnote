@@ -1,5 +1,7 @@
 # ninja
 
+支持windows mac linux
+
 ceph使用ninja
 
 yum install cmake -y

@@ -1,4 +1,7 @@
 # ubuntu
+
+dpkg -L libmysqlclient-dev | grep ".so"
+
 在Ubuntu中，你可以通过以下方法来查询服务端有哪些库：
 
 首先，你可以使用`apt-get update`命令扫描每一个软件源服务器，并为该服务器所具有的软件包资源建立索引文件。这些索引文件会被存放在本地的`/var/lib/apt/lists/`目录中。此外，你也可以通过查看`/etc/apt/sources.list`文件来查看当前系统中所有的镜像源列表，其中以"deb"开头的行指定了软件包的下载地址。

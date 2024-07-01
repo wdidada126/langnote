@@ -1,5 +1,31 @@
 # redis
 
+## c语言 redis客户端
+好的,我来为您介绍一下 C 语言中常用的 Redis 客户端库。
+
+在 C 语言中,有几个比较流行的 Redis 客户端库,包括:
+1. hiredis
+   - 这是 Redis 官方推荐的 C 语言客户端库。
+   - 支持同步和异步两种操作模式。
+   - 提供了简单易用的 API,可以方便地执行 Redis 命令。
+   - 项目地址: https://github.com/redis/hiredis
+2. credis
+   - 这是另一个流行的 C 语言 Redis 客户端库。
+   - 提供了与 hiredis 类似的 API,但增加了一些额外的功能,如连接池管理等。
+   - 项目地址: https://github.com/chusiang/credis
+3. predis
+   - 这是一个基于 phpredis 的 C 语言 Redis 客户端库。
+   - 支持同步和异步两种操作模式。
+   - 提供了丰富的 Redis 命令支持。
+   - 项目地址: https://github.com/nrk/predis
+4. libredis
+   - 这是一个轻量级的 C 语言 Redis 客户端库。
+   - 提供了基本的 Redis 命令执行功能。
+   - 项目地址: https://github.com/gerasimou/libredis
+
+以上是 C 语言中常用的几个 Redis 客户端库,它们各有自己的特点和优势。您可以根据项目需求和使用习惯,选择合适的库进行开发。
+
+
 从社招面试来看，很多小伙伴分不清redis的内存淘汰机制和过期键值清理机制，不管问什么，开口就是LRU。
 记英文不舒服么，eviction和expiration
 

@@ -1,5 +1,211 @@
 # glibc
 
+https://github.com/edidada/testlinuxlibcrypt/actions
+
+
+GNU C Library (glibc) 是 GNU 操作系统和许多类 Unix 系统（包括 Linux）上的标准 C 库实现。除了 `libm.so` 提供的数学库，glibc 还包含许多其他关键库，涵盖了各种功能。以下是一些常用的 glibc 提供的库：
+
+1. libc.so: 标准 C 库，提供基本的系统调用和 C 标准库函数，如输入/输出、字符串操作、内存管理等。
+2. libpthread.so: POSIX 线程库，提供多线程编程支持。
+3. libdl.so: 动态链接库，允许程序在运行时加载和卸载动态库。
+4. librt.so: 实时扩展库，提供实时编程接口，如高精度定时器和信号。
+5. libnsl.so: 网络服务库，用于网络服务（如 NIS）的支持。
+6. libresolv.so: 解析库，提供域名解析功能。
+7. libcrypt.so: 加密库，提供密码加密和解密功能。
+8. libutil.so: 系统实用库，提供一些常用的系统实用函数，如获取用户信息等。
+9. libanl.so: 异步网络库，用于异步网络编程。
+
+### 简要描述每个库的功能
+
+1. libc.so
+   - 功能: 提供 C 语言的基本功能，如标准输入输出、字符串处理、内存管理、文件操作、时间日期处理等。
+   - 示例代码:
+     ```c
+     #include <stdio.h>
+     #include <stdlib.h>
+
+     int main() {
+         printf("Hello, World!\n");
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o hello hello.c
+     ```
+
+2. libpthread.so
+   - 功能: 提供 POSIX 线程 API，用于多线程编程。
+   - 示例代码:
+     ```c
+     #include <pthread.h>
+     #include <stdio.h>
+
+     void* print_message(void* ptr) {
+         char* message = (char*)ptr;
+         printf("%s\n", message);
+         return NULL;
+     }
+
+     int main() {
+         pthread_t thread;
+         char* message = "Hello, Thread!";
+         pthread_create(&thread, NULL, print_message, (void*)message);
+         pthread_join(thread, NULL);
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o thread_example thread_example.c -lpthread
+     ```
+
+3. libdl.so
+   - 功能: 提供动态加载共享库的函数，如 `dlopen`、`dlsym`、`dlclose` 等。
+   - 示例代码:
+     ```c
+     #include <stdio.h>
+     #include <dlfcn.h>
+
+     int main() {
+         void* handle = dlopen("libm.so", RTLD_LAZY);
+         if (!handle) {
+             fprintf(stderr, "%s\n", dlerror());
+             return 1;
+         }
+         dlclose(handle);
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o dl_example dl_example.c -ldl
+     ```
+
+4. librt.so
+   - 功能: 提供实时编程的扩展功能，如高精度定时器、信号和消息队列等。
+   - 示例代码:
+     ```c
+     #include <stdio.h>
+     #include <time.h>
+
+     int main() {
+         struct timespec ts;
+         clock_gettime(CLOCK_REALTIME, &ts);
+         printf("Current time: %ld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o rt_example rt_example.c -lrt
+     ```
+
+5. libnsl.so
+   - 功能: 提供网络服务库，用于网络信息服务（NIS）和 RPC 等。
+   - 示例代码:
+     ```c
+     #include <netdb.h>
+     #include <stdio.h>
+
+     int main() {
+         struct hostent *host = gethostbyname("example.com");
+         if (host) {
+             printf("Host name: %s\n", host->h_name);
+         }
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o nsl_example nsl_example.c -lnsl
+     ```
+
+6. libresolv.so
+   - 功能: 提供域名解析的函数，如 `res_query`、`res_search` 等。
+   - 示例代码:
+     ```c
+     #include <resolv.h>
+     #include <stdio.h>
+
+     int main() {
+         unsigned char buf[1024];
+         int len = res_query("example.com", C_IN, T_A, buf, sizeof(buf));
+         if (len > 0) {
+             printf("Query successful.\n");
+         }
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o resolv_example resolv_example.c -lresolv
+     ```
+
+7. libcrypt.so
+   - 功能: 提供加密和解密函数，如 `crypt`。
+   - 示例代码:
+     ```c
+     #include <crypt.h>
+     #include <stdio.h>
+
+     int main() {
+         char *hash = crypt("password", "salt");
+         printf("Hashed password: %s\n", hash);
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o crypt_example crypt_example.c -lcrypt
+     ```
+
+8. libutil.so
+   - 功能: 提供系统实用程序函数，如获取用户信息等。
+   - 示例代码:
+     ```c
+     #include <pty.h>
+     #include <utmp.h>
+     #include <stdio.h>
+
+     int main() {
+         int master, slave;
+         char name[100];
+         openpty(&master, &slave, name, NULL, NULL);
+         printf("Pseudo-terminal name: %s\n", name);
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o util_example util_example.c -lutil
+     ```
+
+9. libanl.so
+   - 功能: 提供异步网络编程支持，如异步 DNS 查询。
+   - 示例代码:
+     ```c
+     #include <netdb.h>
+     #include <stdio.h>
+
+     int main() {
+         struct hostent *host = gethostbyname("example.com");
+         if (host) {
+             printf("Host name: %s\n", host->h_name);
+         }
+         return 0;
+     }
+     ```
+   - 编译命令:
+     ```sh
+     gcc -o anl_example anl_example.c -lanl
+     ```
+
+### 总结
+
+glibc 提供了丰富的库，涵盖了系统编程中的方方面面。从基本的 C 标准库函数到多线程支持，再到动态加载库和实时编程接口，glibc 为开发人员提供了强大的工具。通过了解和使用这些库，开发人员可以更加高效地进行系统编程。
+
+
 glibc最主要的功能就是对系统调用的封装
 
 

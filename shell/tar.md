@@ -1,5 +1,53 @@
 # tar
 
+tar -zxvf zookeeper/ zookeeper.tgz zookeeper文件夹打包成zookeeper.tgz文件
+
+好的,让我来解释一下如何使用 tar 命令将 `zookeeper/` 文件夹打包成 `zookeeper.tgz` 文件。
+
+1. 使用 tar 命令将 `zookeeper/` 文件夹打包成 `.tar` 文件:
+
+   ```
+   tar -cvf zookeeper.tar zookeeper/
+   ```
+
+   - `c`: 创建新的归档文件
+   - `v`: 显示详细信息
+   - `f`: 指定输出文件名为 `zookeeper.tar`
+
+2. 使用 gzip 命令压缩 `zookeeper.tar` 文件:
+
+   ```
+   gzip zookeeper.tar
+   ```
+
+   这个操作会将 `zookeeper.tar` 文件压缩成 `zookeeper.tar.gz` 文件。
+
+3. 如果您想将 `.tar.gz` 文件重命名为 `.tgz`,可以使用以下命令:
+
+   ```
+   mv zookeeper.tar.gz zookeeper.tgz
+   ```
+
+综合起来,完整的命令如下:
+
+```
+tar -cvf zookeeper.tar zookeeper/
+gzip zookeeper.tar
+mv zookeeper.tar.gz zookeeper.tgz
+```
+
+这样就可以将 `zookeeper/` 文件夹打包成 `zookeeper.tgz` 文件了。
+
+如果您想直接使用 `tar -zxvf` 命令解压缩 `zookeeper.tgz` 文件,可以省略第 2 和第 3 步,直接使用以下命令:
+
+```
+tar -zxvf zookeeper.tgz
+```
+
+这样就可以直接解压缩 `zookeeper.tgz` 文件了。
+
+
+
 打包 压缩 命令tar zip 
 tar语法
 

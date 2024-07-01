@@ -1,4 +1,11 @@
-# 激活
+# navicat
+
+## 激活
+
+保存的sql
+C:\Users\edida\Documents\Navicat\MySQL\Servers\172.16.10.70\open_service_dev
+文件夹下面
+
 
 关键是没有官方文档
 
