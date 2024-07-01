@@ -1,5 +1,64 @@
 # vcpkg
 
+
+## vcpkg qt win
+
+vcpkg install qt --triplet x64-windows
+vcpkg install qt
+Computing installation plan...
+Error: qtwebengine[core] is only supported on '!static & !(x86 & windows)' qt肯定支持win为什么报错
+
+`vcpkg` 在安装 Qt 时遇到的问题是由于 `qtwebengine` 模块的依赖限制。根据错误消息，`qtwebengine` 不支持在某些特定配置下安装，特别是在静态链接（`static`）和 `x86` 平台上的 Windows 环境中。
+
+### 解决方案
+
+以下是几种解决方法，可以帮助你绕过这个问题并成功安装 Qt：
+
+#### 1. 安装不带 `qtwebengine` 的 Qt
+
+如果你不需要 `qtwebengine` 模块，可以通过指定不安装该模块来避免此问题：
+
+```bash
+vcpkg install qtbase qttools qtmultimedia qtdeclarative
+```
+
+#### 2. 安装带有特定选项的 Qt
+
+如果你需要 `qtwebengine` 模块，并且你的目标是 `x64` 平台，可以确保你正在安装适用于 `x64` 平台的动态库版本：
+
+```bash
+vcpkg install qt --triplet x64-windows
+```
+
+#### 3. 使用动态链接
+
+确保你没有启用静态链接。默认情况下，`vcpkg` 会使用动态链接库。如果你需要明确指定，可以使用 `--head` 和 `--triplet` 选项：
+
+```bash
+vcpkg install qt --triplet x64-windows
+```
+
+#### 4. 手动配置 `vcpkg`
+
+你可以手动编辑 `vcpkg` 的配置文件来禁用静态链接和指定平台。编辑 `vcpkg` 安装目录下的 `triplets` 文件夹中的配置文件，例如 `x64-windows.cmake`，确保以下内容：
+
+```cmake
+set(VCPKG_CRT_LINKAGE dynamic)
+set(VCPKG_LIBRARY_LINKAGE dynamic)
+```
+
+然后重新运行安装命令：
+
+```bash
+vcpkg install qt
+```
+
+### 总结
+
+以上方法应该能够帮助你绕过 `qtwebengine` 模块的限制并成功安装 Qt 库。确保你的目标平台和链接选项符合 `qtwebengine` 模块的支持范围。
+
+## dd
+
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
 
 -DCMAKE_TOOLCHAIN_FILE=D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake

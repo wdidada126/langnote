@@ -13,4 +13,25 @@ sqlpp11 provides CMake targets:
     find_package(Sqlpp11 CONFIG REQUIRED)
     target_link_libraries(main PRIVATE sqlpp11::sqlpp11)
 
+## version
+https://github.com/rbock/sqlpp11/tags
+
 0.61
+Dec 18, 2021
+
+0.64
+Oct 8, 2023
+
+0.63
+Jun 30, 2023
+
+0.62
+Jun 4, 2023
+
+
+https://github.com/rbock/sqlpp11/issues/580
+
+## code
+
+https://github.com/edidada/yishengAttendanceData
+

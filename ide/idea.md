@@ -1,5 +1,14 @@
 # IDEA
 
+## IDEA
+idea java 取消import * import 类全路径
+
+https://www.cnblogs.com/leonbond/p/6638200.html
+
+idea取消import_星.png
+
+## debug
+
 watch 变量
 
 可以修改代码，热更新的

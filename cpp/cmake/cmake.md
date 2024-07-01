@@ -1,5 +1,103 @@
 # CMake
+## win cmake 生成.sln
 
+```shell
+cmake -B build_64 -S . -G "Visual Studio 17 2022" -A x64 -DCMAKE_TOOLCHAIN_FILE="D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake"
+cmake -B build_32 -S . -G "Visual Studio 17 2022" -A x32 -DCMAKE_TOOLCHAIN_FILE="D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake"
+```
+
+在 CMake 中设置构建类型为 Debug 或 Release，可以通过以下几种方式来实现：
+
+### 方法 1: 使用命令行选项
+
+你可以在配置 CMake 时通过命令行选项 `-DCMAKE_BUILD_TYPE` 来指定构建类型：
+
+```bash
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build . --config Debug
+```
+
+或者：
+
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --config Release
+```
+
+### 方法 2: 在 `CMakeLists.txt` 文件中设置默认构建类型
+
+你可以在 `CMakeLists.txt` 文件中添加默认的构建类型：
+
+```cmake
+# Set default build type to Release if not specified
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+```
+
+### 方法 3: 使用 CMake 的预设功能
+
+CMake 3.19 及以上版本支持使用预设来设置构建配置。在项目根目录下创建一个 `CMakePresets.json` 文件：
+
+```json
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "debug",
+      "inherits": "default",
+      "description": "Configure for Debug build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "default",
+      "description": "Configure for Release build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}
+```
+
+然后使用预设进行配置和构建：
+
+```bash
+cmake --preset debug
+cmake --build build/debug
+```
+
+或：
+
+```bash
+cmake --preset release
+cmake --build build/release
+```
+
+### 方法 4: 使用 CMake GUI
+
+如果你使用的是 CMake GUI，可以在配置过程中选择构建类型。配置过程中，在“CMake Options”中添加 `CMAKE_BUILD_TYPE` 并设置为 `Debug` 或 `Release`。
+
+### 总结
+
+通过这些方法，你可以轻松地在 CMake 中设置构建类型为 Debug 或 Release。选择合适的方法取决于你的工作流程和项目需求。
+
+
+## .pc cmake
 .pc cmake生成
 pkg-config介绍 通常我们在写程序时需要依赖一些库以及头文件，比如我今天用到的opencv，但库的安装位置可能不同，这时就需要一个工具能够管理并能搜索这些库的路径（头文件路径/include，库文件路径 /lib）。 pkg-config 就是通过库提供的一个 .pc 文件获得库的各种必要信息的，包括版本信息、编译和连接需要的参数等。通过 pkg-config 提供的参数(–cflags, –libs)，将所需信息提取出来供编译和连接使用。这样，不管库文件安装在哪，通过库对应的.pc文件就可以准确定位。 它提供的主要功能有：
  <1> 检查库的版本号。如果所需库的版本不满足要求，打印出错误信息，避免连接错误版本的库文件。

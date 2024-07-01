@@ -1,5 +1,7 @@
 # CppUnit
 
+libcppunit-dev
+
 https://cpptest.sourceforge.io/
 
 
