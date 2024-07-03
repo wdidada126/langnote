@@ -1,6 +1,76 @@
 # esb
 
+## esb软件供应商
 
+企业服务总线（ESB，Enterprise Service Bus）是一种架构模式，用于设计和实现通信系统，以将不同的应用程序集成在一起。以下是一些知名的ESB软件供应商及其产品：
+
+### 1. IBM
+产品: IBM Integration Bus（现已更名为 IBM App Connect Enterprise）
+IBM Integration Bus 是一个企业级的集成平台，提供了强大的消息传递和转换功能，可以帮助企业实现不同应用系统和数据源之间的集成。
+### 2. Red Hat
+产品: Red Hat JBoss Fuse
+Red Hat JBoss Fuse 是一个开源的集成平台，基于 Apache Camel、Apache CXF 和其他开源项目，提供了灵活和高效的集成解决方案。
+### 3. MuleSoft
+产品: Mule ESB（现在称为 MuleSoft Anypoint Platform）
+Mule ESB 是一个轻量级的集成平台，提供了强大的消息传递、转换和路由功能。MuleSoft Anypoint Platform 是一个完整的集成解决方案，包含 API 管理和数据集成功能。
+### 4. Software AG
+产品: webMethods Integration Server
+webMethods Integration Server 提供了企业级的集成功能，支持多种协议和消息格式，可以帮助企业实现复杂的集成场景。
+### 5. WSO2
+产品: WSO2 Enterprise Integrator
+WSO2 Enterprise Integrator 是一个开源的集成平台，提供了全面的集成功能，包括 ESB、消息传递、业务流程管理和数据集成。
+### 6. TIBCO
+产品: TIBCO ActiveMatrix BusinessWorks
+TIBCO ActiveMatrix BusinessWorks 是一个企业级的集成平台，提供了强大的集成功能和工具，可以帮助企业实现不同系统之间的无缝集成。
+### 7. Oracle
+产品: Oracle Service Bus
+Oracle Service Bus 是一个中间件解决方案，提供了企业级的消息传递、路由和转换功能，帮助企业实现灵活的集成架构。
+### 8. Apache ServiceMix
+产品: Apache ServiceMix
+Apache ServiceMix 是一个开源的 ESB 和 SOA 工具包，基于 Apache Camel、Apache CXF 和其他 Apache 项目，提供了灵活和高效的集成解决方案。
+### 选择合适的ESB供应商
+选择合适的 ESB 供应商时，需要考虑以下几个因素：
+1. 功能需求：确保 ESB 产品具备满足企业集成需求的功能，如消息传递、路由、转换、协议支持等。
+2. 性能和可扩展性：评估 ESB 产品在高负载和大规模集成场景下的性能和可扩展性。
+3. 易用性和开发效率：考虑 ESB 产品的易用性、开发工具的支持和开发效率。
+4. 支持和社区：评估供应商提供的技术支持和社区活跃度，确保在遇到问题时能够及时获得帮助。
+5. 成本：考虑 ESB 产品的采购、实施和维护成本，选择性价比高的解决方案。
+
+这些知名的 ESB 供应商和产品为企业提供了多种选择，可以根据具体的业务需求和技术环境，选择合适的 ESB 解决方案。
+
+
+在中国大陆，有多家知名的企业服务总线（ESB）软件供应商，这些公司提供的解决方案在国内外都有广泛的应用。以下是一些主要的中国大陆ESB软件供应商及其产品：
+
+### 1. 中科软科技股份有限公司（Sinosoft）
+产品: 中科软ESB（Sinosoft ESB）
+中科软提供的ESB解决方案广泛应用于政府、金融、保险等行业，具有高效、可靠、可扩展等特点。
+### 2. 用友网络科技股份有限公司（Yonyou）
+产品: 用友ESB（Yonyou ESB）
+用友ESB是用友网络旗下的集成平台，主要面向企业资源规划（ERP）、客户关系管理（CRM）等企业应用的集成，帮助企业实现系统间的数据交换和业务协同。
+### 3. 东软集团股份有限公司（Neusoft）
+产品: 东软ESB（Neusoft ESB）
+东软提供的ESB解决方案在医疗、教育、政府等行业有广泛应用，支持多种协议和消息格式，具有较强的集成能力。
+### 4. 普元信息技术股份有限公司（Primeton）
+产品: 普元ESB（Primeton ESB）
+普元ESB是普元信息提供的企业级集成平台，支持多种协议、消息格式和数据转换，适用于大规模、高并发的集成场景。
+### 5. 华为技术有限公司（Huawei）
+产品: Huawei Cloud ServiceStage
+华为提供的ServiceStage是一个微服务应用平台，包含ESB功能，帮助企业实现应用的快速开发、部署和集成。
+### 6. 达梦数据库有限公司（Dameng）
+产品: Dameng ESB
+达梦提供的ESB解决方案在金融、电力、交通等行业有广泛应用，具有高可靠性和高性能。
+### 7. 金蝶国际软件集团有限公司（Kingdee）
+产品: 金蝶云·星瀚 PaaS 平台
+金蝶的PaaS平台包括ESB功能，帮助企业实现系统间的数据集成和业务协同，适用于各类企业级应用的集成。
+### 8. 中创软件工程股份有限公司（CreateSoft）
+产品: 中创ESB（CreateSoft ESB）
+中创ESB是中创软件提供的企业级集成平台，支持多种协议、消息格式和数据转换，适用于各类企业应用的集成。
+### 9. 启明星辰信息技术集团股份有限公司（Venustech）
+产品: Venustech ESB
+启明星辰提供的ESB解决方案主要应用于信息安全和网络安全领域，帮助企业实现安全的数据交换和业务集成。
+
+
+## esb开源产品
 https://gitee.com/mirrors/WSO2-ESB
 
 wso2 ha
@@ -19,30 +89,26 @@ https://blog.csdn.net/baidu_25117757/article/details/127943704
 WSO2 ESB 3.1 linux教程
 https://blog.csdn.net/weixin_45669656/article/details/108798095?spm=1001.2014.3001.5502
 
-
 https://github.com/jeffreyning/nhEsb
 https://gitee.com/mirrors/nhEsb
 
-
 [几种ESB（企业服务总线）介绍](https://blog.csdn.net/yinni11/article/details/81070062)
-
 
 原来深圳智莱使用的是esb，传统行业不使用spring那一套？
 esb是一套企业解决方案，不同企业it系统之间集成的
-企业原有it系统跟新建设it项目交互数据，走什么协议?http？
-数据格式 xml json？
+企业原有it系统跟新建设it项目交互数据，走什么协议?TCP http？
+数据格式xml json？
 开放接口如何保证安全不被未授权方调用?
 
 [Apache CXF 例子](https://www.cnblogs.com/zuiyirenjian/p/3280236.html)
 [CXF简单例子](https://blog.csdn.net/JXH118/article/details/83284346)
 
-
-著名的非开源 ESB 产品，诸如 WebSphere，Tibco，Sonic 等
+著名的非开源ESB产品，诸如WebSphere，Tibco，Sonic等
 https://www.infoq.cn/article/ESB-Tijs-Rademakers-Jos-Dirksen
 
 Mule ESB（MuleSoft）
 Talend ESB
-Apache ServiceMix和Camel （Apache）   https://servicemix.apache.org/docs/7.x/quickstart/index.html
+Apache ServiceMix和Camel（Apache）https://servicemix.apache.org/docs/7.x/quickstart/index.html
 WSO2 ESB（WSO2）
 OpenESB（Sun/Oracle）
 JBoss ESB（JBoss）
@@ -53,17 +119,13 @@ https://blog.csdn.net/linlzk/article/details/25036069
 
 
 整体的一些总结
-Mule ESB：强在Http Rest接口适配和诸多适配器集成，消息映射和转换能力。对于SOAP WebService的支持一般，对于DB适配的支持也一般。同时注意社区版缺少很多功能，包括集群能力，管控治理平台，类似transform等component组件等。企业稍微对ESB可靠性和管控要求较高的场景用社区版一般搞不懂，而企业版收费不菲，不比oracle ,tibco,ibm的ESB便宜多少。
-Talend ESB: 是最近试用的几个开源ESB里面最好的，包括各种服务集成场景，对SOAP, Rest的服务支持，对DB适配的支持（talend 本身也是ETL起家的），消息映射mapping能力，诸多的component组件的提供，同时还支持对于camel的可视化设计。对于企业集成场景，社区版的能力足够丰富，缺少SAM管控治理平台，但是社区版本有开放的接口完全可以自己定制。对于企业版本来说收费也比Mule ESB便宜一些。
+Mule ESB：强在Http Rest接口适配和诸多适配器集成，消息映射和转换能力。对于SOAP WebService的支持一般，对于DB适配的支持也一般。同时注意社区版缺少很多功能，包括集群能力，管控治理平台，类似transform等component组件等。企业稍微对ESB可靠性和管控要求较高的场景用社区版一般搞不懂，而企业版收费不菲，不比oracle,tibco,ibm的ESB便宜多少。
+Talend ESB:是最近试用的几个开源ESB里面最好的，包括各种服务集成场景，对SOAP,Rest的服务支持，对DB适配的支持（talend本身也是ETL起家的），消息映射mapping能力，诸多的component组件的提供，同时还支持对于camel的可视化设计。对于企业集成场景，社区版的能力足够丰富，缺少SAM管控治理平台，但是社区版本有开放的接口完全可以自己定制。对于企业版本来说收费也比Mule ESB便宜一些。
 ServiceMix：对于Talend ESB部分能力也基于Camel，而对于ServiceMix则是完全基于karaf+camel搭建的一个足够开放的ESB平台，当前的redhat Fuse企业版可以看做是ServiceMix的一个商业实现。其底层能力相当强，但是由于缺乏设计器，本身可配置和可视化的Mapping能力较弱，对于服务管控治理能力也较弱。如果是想自己灵活定制这些内容，且企业具备一定的开发能力，完全可以选择ServiceMix进行二次开发和集成。
-
-
 
 如同Apache ServiceMix一样,Open ESB也实现了JBI规范
 
 WSO2有实践
-
-
 
 esb http协议转soap
 
