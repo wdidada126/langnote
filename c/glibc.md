@@ -2,7 +2,6 @@
 
 https://github.com/edidada/testlinuxlibcrypt/actions
 
-
 GNU C Library (glibc) 是 GNU 操作系统和许多类 Unix 系统（包括 Linux）上的标准 C 库实现。除了 `libm.so` 提供的数学库，glibc 还包含许多其他关键库，涵盖了各种功能。以下是一些常用的 glibc 提供的库：
 
 1. libc.so: 标准 C 库，提供基本的系统调用和 C 标准库函数，如输入/输出、字符串操作、内存管理等。

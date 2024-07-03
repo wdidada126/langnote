@@ -1,5 +1,11 @@
 # vcpkg
 
+visual studio
+https://github.com/edidada/VSCMakeProject
+
+## vcpkg清单模式
+vcpkg.json
+下次打开的时候，按照vcpkg.json
 
 ## vcpkg qt win
 

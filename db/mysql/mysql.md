@@ -1,6 +1,18 @@
 # mysql
 
-窗口函数
+## mysql 9.0
+
+2024年6月
+https://github.com/mysql/mysql-server/tree/mysql-cluster-9.0.0
+
+https://github.com/mysql/mysql-server/releases/tag/mysql-9.0.0
+
+https://dev.mysql.com/downloads/file/?id=529996
+
+专家已经透露MySQL9.0正式支持向量特性，字段类型名称为vector，可以使用to_vector/string_to_vector/from_vector/vector_dim等函数操作向量数据，看起来比较方便。
+
+
+## 8 窗口函数
 
 在 MySQL 8 中，窗口函数（也称为 OLAP 函数或分析函数）为 SQL 查询提供了强大的分析能力，允许用户在一个数据集的子集（称为“窗口”）上执行计算。窗口函数通常与 OVER() 子句一起使用，以定义窗口的范围和如何分区数据。
 

@@ -2,7 +2,6 @@
 
 git config --global core.editor "'D:\dev_tools\npp.8.5.8.portable.x64\notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
 
-
 如果你在使用 git pull 命令时，系统默认打开了 Visual Studio Code (VSC) 而不是在命令行中显示输出，这通常是因为你的 Git 配置或者系统的某些设置与 VSC 的集成有关。
 
 要取消这种集成，并确保 git pull 命令只在命令行中显示输出，你可以尝试以下几个步骤：
@@ -49,7 +48,6 @@ git diff --name-status prod_sync_no_modify_pom...prod-20240531_0612
 bash
 git diff --name-only prod_sync_no_modify_pom...prod-20240531_0612
 这些命令将只列出在两个分支之间有差异的文件，而不会显示这些文件的具体差异内容。
-
 
 1. 显示出branch1和branch2中差异的部分
 git diff branch1 branch2 --stat
