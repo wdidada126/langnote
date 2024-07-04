@@ -1,5 +1,12 @@
 # navicat
 
+Navicat 是香港卓软数字科技有限公司生产的一系列MySQL、Redis、PostgreSQL、Microsoft SQL Server、Oracle、MariaDB、SQLite 及 MongoDB 的图形化数据库管理及发展软件。它有一个类似浏览器的图形用户界面，支持多重连线到本地和远程数据库。
+
+## 免费版
+Navicat Premium Lite
+
+https://navicat.com/en/download/navicat-premium-lite
+
 ## 激活
 
 保存的sql

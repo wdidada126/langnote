@@ -1,6 +1,8 @@
 # IDEA
 
 ## IDEA
+多余的import需要删掉，不然代码用sts打开，有warn
+
 idea java 取消import * import 类全路径
 
 https://www.cnblogs.com/leonbond/p/6638200.html
