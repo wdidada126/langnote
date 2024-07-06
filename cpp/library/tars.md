@@ -1,5 +1,184 @@
 # Tars
-trpc
+
+## chatgpt的例子
+TARS (Tencent Architecture for Reliable Service) 是一种高效、易用的服务框架，支持多种编程语言，包括 C++ 和 Java。下面是一个简单的例子，展示如何在 TARS 中使用 C++ 和 Java 来创建和调用服务。
+
+### 安装 TARS
+
+在开始之前，确保你已经安装了 TARS 框架。你可以参考 [TARS 官方文档](https://github.com/TarsCloud/Tars/blob/master/docs/cn/Installation.md) 进行安装。
+
+### Thrift 定义文件
+
+首先，我们定义一个简单的 Thrift 文件，定义一个计算服务 `Calculator`，它具有两个方法 `add` 和 `subtract`。
+
+创建一个名为 `Calculator.tars` 的文件，内容如下：
+
+```tars
+module Example
+{
+    interface Calculator
+    {
+        int add(int num1, int num2);
+        int subtract(int num1, int num2);
+    };
+};
+```
+
+### 生成代码
+
+使用 TARS 编译器生成代码。确保 TARS 编译器已添加到路径中。
+
+```bash
+tars2cpp Calculator.tars
+tars2java Calculator.tars
+```
+
+### C++ 服务端代码
+
+#### 服务实现 (`CalculatorImp.h` 和 `CalculatorImp.cpp`)
+
+`CalculatorImp.h`：
+
+```cpp
+#ifndef _CALCULATORIMP_H_
+#define _CALCULATORIMP_H_
+
+#include "servant/Application.h"
+#include "Calculator.h"
+
+using namespace Example;
+
+class CalculatorImp : public Calculator
+{
+public:
+    virtual ~CalculatorImp() {}
+
+    virtual int add(int num1, int num2, tars::TarsCurrentPtr current);
+    virtual int subtract(int num1, int num2, tars::TarsCurrentPtr current);
+};
+
+#endif
+```
+
+`CalculatorImp.cpp`：
+
+```cpp
+#include "CalculatorImp.h"
+
+int CalculatorImp::add(int num1, int num2, tars::TarsCurrentPtr current)
+{
+    return num1 + num2;
+}
+
+int CalculatorImp::subtract(int num1, int num2, tars::TarsCurrentPtr current)
+{
+    return num1 - num2;
+}
+```
+
+#### 服务启动代码 (`main.cpp`)
+
+```cpp
+#include "servant/Application.h"
+#include "CalculatorImp.h"
+
+using namespace tars;
+
+class CalculatorApp : public Application
+{
+protected:
+    virtual void initialize()
+    {
+        addServant<CalculatorImp>(ServerConfig::Application + "." + ServerConfig::ServerName + ".CalculatorObj");
+    }
+
+    virtual void destroyApp()
+    {
+    }
+};
+
+int main(int argc, char* argv[])
+{
+    try
+    {
+        CalculatorApp app;
+        app.main(argc, argv);
+        app.waitForShutdown();
+    }
+    catch (std::exception& e)
+    {
+        cerr << "std::exception: " << e.what() << endl;
+    }
+    catch (...)
+    {
+        cerr << "unknown exception." << endl;
+    }
+    return 0;
+}
+```
+
+### Java 客户端代码
+
+#### 客户端实现 (`CalculatorClient.java`)
+
+```java
+import com.qq.tars.client.Communicator;
+import com.qq.tars.client.CommunicatorConfig;
+import com.qq.tars.client.CommunicatorFactory;
+import Example.CalculatorPrx;
+
+public class CalculatorClient {
+    public static void main(String[] args) {
+        CommunicatorConfig cfg = new CommunicatorConfig();
+        Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
+
+        CalculatorPrx proxy = communicator.stringToProxy(CalculatorPrx.class, "Example.CalculatorServer.CalculatorObj@tcp -h 127.0.0.1 -p 9000");
+
+        int result = proxy.add(1, 1);
+        System.out.println("1 + 1 = " + result);
+
+        result = proxy.subtract(5, 3);
+        System.out.println("5 - 3 = " + result);
+    }
+}
+```
+
+### 编译和运行
+
+#### 编译 C++ 代码
+
+确保已安装必要的编译器和依赖库，然后编译 C++ 代码：
+
+```bash
+g++ -o CalculatorServer main.cpp CalculatorImp.cpp -ltarsservant -ltarsutil
+```
+
+#### 运行 C++ 服务
+
+```bash
+./CalculatorServer --config=config.conf
+```
+
+#### 编译和运行 Java 客户端
+
+编译 Java 客户端代码：
+
+```bash
+javac -cp path_to_tars_java_lib/* CalculatorClient.java
+```
+
+运行 Java 客户端：
+
+```bash
+java -cp .:path_to_tars_java_lib/* CalculatorClient
+```
+
+### 参考资料
+
+- [TARS 官方文档](https://github.com/TarsCloud/Tars/blob/master/docs/cn/Installation.md)
+- [TARS GitHub 仓库](https://github.com/TarsCloud/Tars)
+
+## trpc
 
 https://tarscloud.org/
 

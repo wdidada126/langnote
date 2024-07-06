@@ -1,5 +1,14 @@
 # redis
 
+## 自己写redis
+Rust
+https://github.com/tokio-rs/mini-redis
+
+Go
+https://github.com/alicebob/miniredis
+
+
+
 ## c语言 redis客户端
 好的,我来为您介绍一下 C 语言中常用的 Redis 客户端库。
 

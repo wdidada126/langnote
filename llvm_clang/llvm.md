@@ -1,4 +1,8 @@
 # llvm
+
+https://github.com/llvm/llvm-project/blob/d76a1233f7d7923d056a53cfa6f89735e9cda86e/libcxx/include/__memory/shared_ptr.h#L833
+
+
 clang是前端
 
 谷歌跟苹果在维护

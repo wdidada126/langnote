@@ -1,9 +1,63 @@
 # CMake
+
+## cmake判断操作系统
+#### 检查操作系统类型
+
+
+```shell
+if(UNIX AND NOT APPLE)
+    # Linux
+    include_directories("/usr/include/mysql")
+
+    # 添加 libmysqlclient.so 所在的目录到链接器的搜索路径
+    link_directories(/usr/lib/x86_64-linux-gnu)
+    target_link_libraries(yishengAttendanceData
+            mysqlclient
+    )
+
+    # UNIX platforms excluding macOS
+    message(STATUS "This is a Unix-like system but not macOS")
+
+    # Check for specific distributions
+    if(EXISTS "/etc/os-release")
+        file(READ "/etc/os-release" OS_RELEASE_CONTENT)
+        string(FIND "${OS_RELEASE_CONTENT}" "ID=ubuntu" UBUNTU_FOUND)
+        string(FIND "${OS_RELEASE_CONTENT}" "ID=debian" DEBIAN_FOUND)
+        string(FIND "${OS_RELEASE_CONTENT}" "ID=centos" CENTOS_FOUND)
+
+        if(NOT ${UBUNTU_FOUND} EQUAL -1)
+            message(STATUS "Running on Ubuntu")
+        elseif(NOT ${DEBIAN_FOUND} EQUAL -1)
+            message(STATUS "Running on Debian")
+        elseif(NOT ${CENTOS_FOUND} EQUAL -1)
+            message(STATUS "Running on CentOS")
+        else()
+            message(STATUS "Running on an unknown Unix-like system")
+        endif()
+    else()
+        message(WARNING "Unable to detect Linux distribution: /etc/os-release not found")
+    endif()
+elseif(APPLE)
+    message(STATUS "This is macOS")
+elseif(WIN32)
+    # Windows
+    include_directories(
+            #        ${PROJECT_SOURCE_DIR}/include
+            #        "D:/git/github/vcpkg/installed/x86-windows/include/sqlpp11/mysql"
+            "D:/mysql-connector-c-6.1.11-win32/include"
+    )
+    target_link_libraries(yishengAttendanceData "D:/mysql-connector-c-6.1.11-win32/lib/libmysql.lib")
+else()
+    message(FATAL_ERROR "Unsupported operating system")
+endif()
+```
+
+
 ## win cmake 生成.sln
 
 ```shell
-cmake -B build_64 -S . -G "Visual Studio 17 2022" -A x64 -DCMAKE_TOOLCHAIN_FILE="D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake"
-cmake -B build_32 -S . -G "Visual Studio 17 2022" -A x32 -DCMAKE_TOOLCHAIN_FILE="D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake"
+cmake -B build_64 -S . -G "Visual Studio 17 2022" -A x64 -DCMAKE_TOOLCHAIN_FILE=D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake
+cmake -B build_32 -S . -G "Visual Studio 17 2022" -A x32 -DCMAKE_TOOLCHAIN_FILE=D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake
 ```
 
 在 CMake 中设置构建类型为 Debug 或 Release，可以通过以下几种方式来实现：

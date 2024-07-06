@@ -1,5 +1,7 @@
 # zookeeper
 
+https://zookeeper.apache.org/doc/r3.5.7/zookeeperProgrammers.html#sc_zkProgrammingC
+
 zookeeper c客户端
 
 https://github.com/apache/zookeeper/tree/release-3.4.2/src/c
@@ -27,6 +29,25 @@ configure.ac:37: error: possibly undefined macro: AM_PATH_CPPUNIT
       See the Autoconf documentation.
 autoreconf: /usr/bin/autoconf failed with exit status: 1
 ```
+
+sudo apt install libcppunit-dev -y
+dpkg -L libcppunit-dev    //不对，cppunit.m4已经从libcppunit-dev中移除
+autoconf --version
+
+cd /home/wdidada/
+wget https://raw.githubusercontent.com/grinsfem/grins/master/m4/common/cppunit.m4 -O m4/cppunit.m4
+ACLOCAL="aclocal -I /home/wdidada/m4" autoreconf -if
+
+./configure --without-cppunit   //报错如下：
+
+```shell
+checking for strtol... yes
+checking that generated files are newer than configure... done
+configure: error: conditional "AMDEP" was never defined.
+Usually this means the macro was only invoked conditionally.
+```
+
+
 
 ![Zookeeper分布式框架学习图谱](../imgs/zk/Zookeeper分布式框架学习图谱.png)
 

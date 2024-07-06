@@ -1,15 +1,25 @@
 # spdlog
 
+
+## 支持的平台
+Linux, FreeBSD, OpenBSD, Solaris, AIX
+Windows (msvc 2013+, cygwin)
+macOS (clang 3.5+)
+Android
+
 head only
 
 [C++日志库spdlog]( https://blog.csdn.net/jacky128256/article/details/103769794 )
 
 
 
-[ spdlog ]( https://github.com/gabime/spdlog)
+[spdlog]( https://github.com/gabime/spdlog)
 
 
-centos 系统命令 repoquery
+## 安装
+
+## centos安装
+centos系统命令repoquery
 dpkg -l
 ```shell
 [root@leryltdllllwew9a ~]# repoquery -ql spdlog-devel
@@ -69,3 +79,10 @@ dpkg -l
 /usr/share/licenses/spdlog-devel-0.10.0
 /usr/share/licenses/spdlog-devel-0.10.0/LICENSE
 ```
+
+### ubuntu安装
+
+sudo apt install libspdlog-dev -y
+
+testspdlog.md
+

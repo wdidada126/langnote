@@ -1,5 +1,19 @@
 # vcpkg
 
+## doc
+https://vcpkg.io/en/
+## vcpkg cmake配置
+https://learn.microsoft.com/zh-cn/vcpkg/users/buildsystems/cmake-integration
+
+## vcpkg json清单模式
+https://learn.microsoft.com/zh-cn/vcpkg/reference/vcpkg-json
+
+visual studio
+https://github.com/edidada/VSCMakeProject
+
+## vcpkg清单模式
+vcpkg.json
+下次打开的时候，按照vcpkg.json
 
 ## vcpkg qt win
 

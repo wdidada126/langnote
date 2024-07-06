@@ -15,11 +15,8 @@ thrift-mock
 https://github.com/didi/thrift-mock
 https://github.com/didi/benchmark-thrift
 
-
 benchmark-thrift 是一款测试Thrift应用程序性能的工具，开箱即用，高效简单。
 thrift-mock 是一款轻量级的 Java 测试工具，用来模拟 thrift 服务。通过它可以轻松的将依赖的 thrift 服务接口进行 mock，获得指定的接口返回，从而极大的提升了联调、测试阶段的开发效率。
-
-
 
 Mac vcpkg install thrift
 
@@ -31,10 +28,6 @@ yum install flex bison -y
 
 bison 2.3不行，版本太低
 
-
-
-
-
 java demo
 https://github.com/edidada/ThriftRpcDemo.git 
 
@@ -44,13 +37,7 @@ Idea Maven 插件
 
 https://blog.csdn.net/u010900754/article/details/80172671
 
-
-
-
-
 Apache Thrift 小米 谢龙使用
-
-
 
 java maven构建
 重新构建了下，知道了具体原因，才想起还需要配置thrift.exe windows环境
@@ -84,7 +71,6 @@ Apache Thrift v0.13.0
 </dependency>
 
 [thrift repo](https://github.com/apache/thrift)
-
 
 ```shell
 vcpkg install thrift
@@ -120,10 +106,7 @@ submit an issue at https://github.com/Microsoft/vcpkg/issues including:
 Additionally, attach any relevant sections from the log files above.
 ```
 
-
 thrifty.yy:1.7-14: syntax error, unexpected identifier
-
-
 
 .yy
 
@@ -132,6 +115,163 @@ Thrift使用了开源的flex和Bison进行词法语法分析（具体见thrift.l
 Thrift 框架介绍
 http://blog.sina.com.cn/s/blog_72995dcc0101gn82.html
 
-
 c++ 之 std::move 原理实现与用法总结
 https://blog.csdn.net/p942005405/article/details/84644069
+
+Apache Thrift 是一个开源的跨语言 RPC (Remote Procedure Call) 框架，支持高效的数据序列化和多种编程语言。下面是一个入门示例，展示如何使用 Thrift 定义一个简单的服务，并在 C++ 中实现和调用该服务。
+
+### 步骤概览
+
+1. 安装 Thrift。
+2. 定义 Thrift 接口文件（.thrift 文件）。
+3. 生成代码。
+4. 编写服务器和客户端代码。
+5. 运行服务器和客户端。
+
+### 1. 安装 Thrift
+
+在不同的操作系统上安装 Thrift 的方式可能有所不同。以下是在 Ubuntu 上的安装示例：
+
+```bash
+sudo apt-get update
+sudo apt-get install thrift-compiler
+```
+
+在其他操作系统上，请参考 [Thrift 官方安装文档](https://thrift.apache.org/docs/BuildingFromSource) 进行安装。
+
+### 2. 定义 Thrift 接口文件
+
+创建一个名为 `example.thrift` 的文件，定义一个简单的计算服务：
+
+```thrift
+namespace cpp example
+
+service Calculator {
+  i32 add(1: i32 num1, 2: i32 num2),
+  i32 subtract(1: i32 num1, 2: i32 num2)
+}
+```
+
+### 3. 生成代码
+
+使用 Thrift 编译器生成 C++ 代码：
+
+```bash
+thrift --gen cpp example.thrift
+```
+
+这会生成 `gen-cpp` 目录，包含以下文件：
+- `example_types.h` 和 `example_types.cpp`
+- `example_constants.h` 和 `example_constants.cpp`
+- `Calculator.h` 和 `Calculator.cpp`
+
+### 4. 编写服务器和客户端代码
+
+#### 服务器代码 (`server.cpp`)
+
+```cpp
+#include <thrift/protocol/TBinaryProtocol.h>
+#include <thrift/server/TSimpleServer.h>
+#include <thrift/server/TServer.h>
+#include <thrift/server/TServerSocket.h>
+#include <thrift/transport/TBufferTransports.h>
+#include "gen-cpp/Calculator.h"
+
+using namespace ::apache::thrift;
+using namespace ::apache::thrift::protocol;
+using namespace ::apache::thrift::server;
+using namespace ::apache::thrift::transport;
+
+class CalculatorHandler : public CalculatorIf {
+public:
+  CalculatorHandler() {}
+
+  int32_t add(const int32_t num1, const int32_t num2) override {
+    return num1 + num2;
+  }
+
+  int32_t subtract(const int32_t num1, const int32_t num2) override {
+    return num1 - num2;
+  }
+};
+
+int main() {
+  int port = 9090;
+  ::std::shared_ptr<CalculatorHandler> handler(new CalculatorHandler());
+  ::std::shared_ptr<TProcessor> processor(new CalculatorProcessor(handler));
+  ::std::shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+  ::std::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+  ::std::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+
+  TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
+  server.serve();
+  return 0;
+}
+```
+
+#### 客户端代码 (`client.cpp`)
+
+```cpp
+#include <thrift/protocol/TBinaryProtocol.h>
+#include <thrift/transport/TSocket.h>
+#include <thrift/transport/TTransportUtils.h>
+#include "gen-cpp/Calculator.h"
+
+using namespace ::apache::thrift;
+using namespace ::apache::thrift::protocol;
+using namespace ::apache::thrift::transport;
+
+int main() {
+  ::std::shared_ptr<TTransport> socket(new TSocket("localhost", 9090));
+  ::std::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
+  ::std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+  CalculatorClient client(protocol);
+
+  try {
+    transport->open();
+    int32_t sum = client.add(1, 1);
+    printf("1 + 1 = %d\n", sum);
+    int32_t difference = client.subtract(5, 3);
+    printf("5 - 3 = %d\n", difference);
+    transport->close();
+  } catch (TException& tx) {
+    printf("ERROR: %s\n", tx.what());
+  }
+
+  return 0;
+}
+```
+
+### 5. 运行服务器和客户端
+
+首先，编译服务器和客户端代码：
+
+```bash
+g++ -std=c++11 -o server server.cpp gen-cpp/Calculator.cpp gen-cpp/example_constants.cpp gen-cpp/example_types.cpp -lthrift
+g++ -std=c++11 -o client client.cpp gen-cpp/Calculator.cpp gen-cpp/example_constants.cpp gen-cpp/example_types.cpp -lthrift
+```
+
+然后，启动服务器：
+
+```bash
+./server
+```
+
+在另一个终端窗口中，运行客户端：
+
+```bash
+./client
+```
+
+你应该会看到以下输出：
+
+```
+1 + 1 = 2
+5 - 3 = 2
+```
+
+### 参考资料
+
+- [Apache Thrift 官方文档](https://thrift.apache.org/docs/)
+- [Thrift GitHub 仓库](https://github.com/apache/thrift)
+

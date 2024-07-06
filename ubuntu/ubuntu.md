@@ -1,5 +1,12 @@
 # ubuntu
 
+https://mirrors.aliyun.com/ubuntu-releases/24.04/
+
+wget -O ubuntu-24.04-desktop-amd64.iso https://mirrors.aliyun.com/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso
+
+
+wget -O ubuntu-24.04-desktop-amd64.iso https://releases.ubuntu.com/24.04/ubuntu-24.04-desktop-amd64.iso
+
 dpkg -L libmysqlclient-dev | grep ".so"
 
 在Ubuntu中，你可以通过以下方法来查询服务端有哪些库：

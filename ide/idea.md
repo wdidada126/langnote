@@ -1,6 +1,11 @@
 # IDEA
 
+big data tools
+Big Data Tools是IntelliJ IDEA Ultimate的新插件,是为使用Zeppelin和Spark的数据工程师和其他专业人员所量身定做的一款软件。
+
 ## IDEA
+多余的import需要删掉，不然代码用sts打开，有warn
+
 idea java 取消import * import 类全路径
 
 https://www.cnblogs.com/leonbond/p/6638200.html

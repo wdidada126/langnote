@@ -100,8 +100,6 @@ cmake 加参数DBUILD_SHARED_LIBS=ON
 
 
 
-
-
 ```sh
 cd examples/cpp/helloworld
 mkdir -p cmake/build
@@ -110,7 +108,32 @@ cmake -DCMAKE_PREFIX_PATH=$MY_INSTALL_DIR ../..
 
 20200525不行，换travis去编译
 
-
-
 编译让ci/cd工具去
 
+## api doc
+
+### java
+
+https://grpc.io/docs/what-is-grpc/core-concepts/
+
+
+For detailed information about the gRPC C++ API, including tutorials, best practices, and reference material, you can visit the official gRPC documentation. Here are some useful links:
+
+1. [gRPC C++ API Reference](https://grpc.io/docs/languages/cpp/): This section provides comprehensive details about the gRPC API for C++, including various tutorials and best practices.
+2. [gRPC C++ Quick Start](https://grpc.io/docs/languages/cpp/quickstart/): A guide to quickly get started with gRPC in C++.
+3. [gRPC C++ Tutorials](https://grpc.io/docs/languages/cpp/basics/): Tutorials covering the basics and advanced topics in gRPC for C++.
+4. [gRPC Best Practices for C++](https://grpc.io/docs/languages/cpp/best-practices/): Recommendations for using gRPC effectively in C++ applications.
+
+These resources will help you understand how to implement and use gRPC in your C++ projects.
+
+https://grpc.io/docs/languages/cpp/
+
+
+https://grpc.github.io/grpc/cpp/
+
+### grpc java
+https://grpc.github.io/grpc-java/javadoc/
+
+### grpc go
+
+https://grpc.io/docs/languages/go/api/

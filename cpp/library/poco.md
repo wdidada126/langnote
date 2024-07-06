@@ -1,6 +1,43 @@
 # Poco
 
-SMTP
+## windows linux都支持
+
+## 读取配置文件
+Poco 是一个开源的 C++ 类库集合，提供了许多功能，包括读写配置文件。Poco 支持 INI 文件格式。
+
+安装 Poco：
+
+Linux：可以通过包管理器安装（例如，sudo apt-get install libpoco-dev）。
+Windows：可以从 Poco 官方网站下载和安装。
+示例代码：
+
+```cpp
+#include <Poco/Util/IniFileConfiguration.h>
+#include <Poco/AutoPtr.h>
+#include <iostream>
+
+int main() {
+    Poco::AutoPtr<Poco::Util::IniFileConfiguration> pConf(new Poco::Util::IniFileConfiguration("config.ini"));
+
+    // 获取配置值
+    std::string value = pConf->getString("section.key");
+
+    std::cout << "Value: " << value << std::endl;
+
+    // 修改配置值
+    pConf->setString("section.key", "new_value");
+
+    // 保存配置文件
+    pConf->save("config.ini");
+
+    return 0;
+}
+```
+编译命令：
+```
+g++ -o config_example config_example.cpp -lPocoUtil -lPocoFoundation
+```
+## SMTP
 
 适合嵌入式设备
 
