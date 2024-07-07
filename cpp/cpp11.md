@@ -1,5 +1,10 @@
 # cpp11
 
+https://en.cppreference.com/w/cpp/11
+
+https://github.com/makelinux/examples/blob/HEAD/cpp/11.cpp
+
+
 - CO使用的C++11特性:
 
 - - auto
@@ -204,3 +209,6 @@ float ep = calcEpsilon(); // impliclitly convert double → float
 但是这个会很难表明“我故意减小函数返回值的精度”，使用显示指定类型初始化规则，则代码如下：
 
 auto ep = static_cast<float>(calcEpsilon());
+
+
+## move

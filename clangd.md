@@ -1,14 +1,13 @@
 # clangd
 
+## 安装
 centos 安装不了，源码编译？
 
 https://github.com/clangd/clangd/releases/tag/12.0.0
 
-
 https://clangd.llvm.org/
 
-
-目前支持 LSP 协议的 IDE/Editor：
+目前支持LSP协议的IDE/Editor：
 
 Visual Studio Code
 Neovim
@@ -16,13 +15,9 @@ Sublime Text
 Emacs
 Fleet
 Eclipse
-...
-
 
 
 echo $LD_LIBRARY_PATH
-
-
 
 [wdidada@10-23-29-39 ~]$ cat /etc/ld.so.conf
 include ld.so.conf.d/*.conf
@@ -43,3 +38,8 @@ $ objdump -x 可执行程序| grep rpath搜索动态库的先后顺序编译目�
 
 作者：吾竹清风
 链接：https://zhuanlan.zhihu.com/p/402426195
+
+## 官网
+https://clangd.llvm.org/
+clangd 可以理解你的 C++代码，并为你的编辑器添加智能功能：代码自动补全、编译错误、go-to-definition等。
+clangd基于Clang C++编译器，是LLVM项目的一部分。

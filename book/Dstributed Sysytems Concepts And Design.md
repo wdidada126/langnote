@@ -2,8 +2,6 @@
 
 [分布式系统阅读笔记（一）-----分布式系统的特征](https://blog.csdn.net/Androidlushangderen/article/details/42004201)
 
-
-
 [分布式系统阅读笔记](https://blog.csdn.net/Androidlushangderen/article/list/8)
 
 

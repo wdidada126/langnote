@@ -1,6 +1,5 @@
 # C++CoreGuidelines解析
 
-
 https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
 https://github.com/isocpp/CppCoreGuidelines
 

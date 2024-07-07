@@ -14,14 +14,12 @@ git 显示大小超过50M的文件
 
 [修改已经提交的commit用户名](https://help.github.com/en/articles/changing-author-info)
 
-
 修改git commit用户名密码先失败，后成功
 
 [git doc](https://git-scm.com/docs/git-rev-parse)
 
 git stash
 git stash pop
-
 
 git grep
 

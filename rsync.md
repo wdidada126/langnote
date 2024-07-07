@@ -47,3 +47,8 @@ sudo make install
 ## 版本
 Rsync version 3.2.7 released October 20th, 2022
 
+## clion rsync
+
+D:\dev_tools\cwrsync_6.2.0_x64_free\bin\rsync.exe
+D:\dev_tools\cwrsync_6.2.0_x64_free\bin\ssh.exe
+

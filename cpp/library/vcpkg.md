@@ -1,7 +1,11 @@
 # vcpkg
 
+D:\git\github\vcpkg\installed\x64-windows\include\
+
+
 ## doc
 https://vcpkg.io/en/
+
 ## vcpkg cmake配置
 https://learn.microsoft.com/zh-cn/vcpkg/users/buildsystems/cmake-integration
 
@@ -18,6 +22,7 @@ vcpkg.json
 ## vcpkg qt win
 
 vcpkg install qt --triplet x64-windows
+
 vcpkg install qt
 Computing installation plan...
 Error: qtwebengine[core] is only supported on '!static & !(x86 & windows)' qt肯定支持win为什么报错

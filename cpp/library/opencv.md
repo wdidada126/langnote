@@ -1,5 +1,10 @@
 # opencv
 
+## lib
+https://opencv.org/releases/
+https://sourceforge.net/projects/opencvlibrary/files/4.9.0/
+
+## ubuntu
 sudo apt-get install libxtst-dev
 
 https://opencv.org/

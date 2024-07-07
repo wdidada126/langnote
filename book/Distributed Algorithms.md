@@ -2,8 +2,6 @@
 
 Lynch是一位非常著名的分布式领域的女性科学家，研究遍布分布式的方方面面，对分布式领域有着极其卓越的贡献，其著有Distributed Algorithms一书，书中有非常严谨而简洁的逻辑讨论了许许多多的分布式算法。
 
-
-
 [FLP不可能原理](https://www.cnblogs.com/firstdream/p/6585923.html)
 
 分布式系统中的FLP不可能原理、CAP理论与BASE理论
