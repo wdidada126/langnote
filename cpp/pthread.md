@@ -1,16 +1,17 @@
 # pthread
 
-1.因为pthread不是C标准库，需要链接 
+https://www.man7.org/linux/man-pages/man3/pthread_rwlock_init.3p.html
 
+1.因为pthread不是C标准库，需要链接 
 2.在CMakeLists.txt里添加： 
 
 　　FIND_PACKAGE(Threads REQUIRED) 
-
 　　TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
 
 https://gitee.com/edidada/cpp11thread
 https://www.runoob.com/w3cnote/cpp-std-thread.html
+
 cpp11才有线程类 之前用linux c api提供的线程类
 https://blog.csdn.net/qq_44861043/article/details/119643641
 
@@ -66,3 +67,5 @@ https://blog.csdn.net/qq_44861043/article/details/119643641
 - pthread_key_delete
 - pthread_getspecific
 - pthread_setspecific
+
+注意跟java比较

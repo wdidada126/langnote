@@ -87,11 +87,22 @@ vim/source insight  /免费的VSCode装完clangd等插件，吊打SI
 
 #### Chap. 3 Linux进程存储管理 跟Chap7对比
 3.1 elf文件接口
+
+testlinuxlibcrypt是可执行文件
+
+```
+size testlinuxlibcrypt
+text    data     bss     dec     hex filename
+2470     656       8    3134     c3e testlinuxlibcrypt
+```
+
 3.2 linux进程结构
 QQ 运行两个，有些区域是共用的
 
 静态分配:编译器在处理程序源代码时分配。
 动态分配:程序在执行时调用malloc()库函数申请分配。
+
+extern 
 
 mcheck
 https://www.cnblogs.com/cyssmile/p/14003900.html
@@ -177,12 +188,151 @@ __pid_t int
 - 10.3线程调度策略
 
 #### Chap. 11 线程同步机制
-- 11.1互斥锁通信机制
-- 11.2条件变量通信机制
-- 11.3读写锁通信机制
-- 11.4线程与信号
+- 11.1互斥锁通信机制 mutex
+- 11.2条件变量通信机制 condictionvariable
+- 11.3读写锁通信机制 readwriteLock
+- 11.4线程与信号 
+
+
+#### 11.1互斥锁通信机制 mutex
+
+
+初始化互斥锁
+阻塞申请互斥锁
+释放互斥锁
+非阻塞申请互斥锁
+销毁互斥锁
+功能
+互斥锁基本操作函数
+pthread_mutex_init
+pthread_mutex_lock
+pthread_mutex_unlock
+pthread_mutex_trylock
+pthread_mutex_destroy
+
+互斥锁（Mutex）是一种用于多线程编程中保护共享资源的工具。在C语言中，可以使用POSIX线程库中的`pthread_mutex_t`类型和相关函数来操作互斥锁。以下是互斥锁的基本操作函数及其功能：
+
+1. 初始化互斥锁：`pthread_mutex_init`函数用于初始化一个互斥锁。它需要一个指向`pthread_mutex_t`类型的指针和一个互斥属性对象。通常，我们使用默认的属性对象`PTHREAD_MUTEX_DEFAULT`。
+
+```c
+#include <pthread.h>
+
+pthread_mutex_t mutex;
+int result = pthread_mutex_init(&mutex, NULL);
+if (result != 0) {
+    // 处理错误
+}
+```
+
+2. 阻塞申请互斥锁：`pthread_mutex_lock`函数用于阻塞地申请互斥锁。如果互斥锁已经被其他线程锁定，当前线程将等待直到互斥锁被释放。
+
+```c
+int result = pthread_mutex_lock(&mutex);
+if (result != 0) {
+    // 处理错误
+}
+```
+
+3. 释放互斥锁：`pthread_mutex_unlock`函数用于释放互斥锁，允许其他线程获取该锁。
+
+```c
+int result = pthread_mutex_unlock(&mutex);
+if (result != 0) {
+    // 处理错误
+}
+```
+
+4. 非阻塞申请互斥锁：`pthread_mutex_trylock`函数尝试非阻塞地申请互斥锁。如果互斥锁已经被其他线程锁定，函数将立即返回并设置错误码为EBUSY。
+
+```c
+int result = pthread_mutex_trylock(&mutex);
+if (result == EBUSY) {
+    // 互斥锁已被锁定，无法获取
+} else if (result != 0) {
+    // 处理其他错误
+}
+```
+
+5. 销毁互斥锁：`pthread_mutex_destroy`函数用于销毁一个已经初始化的互斥锁。在销毁之后，互斥锁不能再被使用。
+
+```c
+int result = pthread_mutex_destroy(&mutex);
+if (result != 0) {
+    // 处理错误
+}
+```
+#### 11.2条件变量通信机制 condictionvariable
+
+初始化条件变量
+阻塞等待条件变量
+通知等待该条件变量的第1个线程
+在指定的时间之内阻塞等待条件变量
+通知等待该条件变量的所有线程
+销毁条件变量状态
+
+
+pthread_cond_init
+pthread_cond_wait
+pthread_cond_signal
+pthread_cond_timedwait
+pthread_cond_broadcast
+pthread_cond_destroy
+
+- pthread_condattr_init
+- pthread_condattr_destroy
+- pthread_condattr_setpshared
+- pthread_condattr_getclock
+- pthread_condattr_setclock
+
+
+#### 11.3读写锁通信机制 readwriteLock
+
+
+初始化读写锁
+阻塞申请读锁
+非阻塞申请读锁
+阻塞申请写锁
+非阻塞中请写锁
+释放锁(无论是读锁还是写锁)
+销毁读写锁
+
+pthread_rwlock_init
+pthread_rwlock_rdlock
+pthread_rwlock_tryrdlock
+pthread_rwlock_wrlock
+pthread_rwlock_trywrlock
+pthread_rwlock_unlock
+pthread_rwlock_destroy
+
+https://www.man7.org/linux/man-pages/man3/pthread_rwlock_init.3p.html
+
+- 11.4线程与信号 
 
 OS中会介绍三种互斥算法，即锁，条件变量，信号量
+
+
+
+
+- pthread_spin_init
+- pthread_spin_destroy
+- pthread_spin_lock
+- pthread_spin_trylock
+- pthread_spin_unlock
+
+
+- pthread_barrier_init
+- pthread_barrier_destroy
+- pthread_barrier_wait
+- pthread_barrierattr_init
+- pthread_barrierattr_destroy
+- pthread_barrierattr_getpshared
+- pthread_barrierattr_setpshared
+
+
+- pthread_key_create
+- pthread_key_delete
+- pthread_getspecific
+- pthread_setspecific
 
 #### Chap. 12 socket网络编程
 
