@@ -10,8 +10,7 @@ grpc用doxygen
 
 muduo据说可以用 Doxygen
 
-sudo apt-get install doxygen
-sudo apt-get install doxygen-gui
+sudo apt-get install -y doxygen doxygen-gui graphviz
 
 sudo yum install doxygen -y
 
