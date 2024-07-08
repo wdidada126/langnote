@@ -1,4 +1,6 @@
-kvrocks
+# kvrocks
+
+sonarcloud的报告我们只作为参考，不作为流程的一部分，clang tidy的报错会block pr的合并。
 
 https://kvrocks.apache.org/
 
