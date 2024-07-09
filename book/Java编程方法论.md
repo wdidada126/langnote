@@ -7,20 +7,18 @@ ISBN: 9787121364174
 2019年出版
 [Java编程方法论](https://book.douban.com/subject/33462999/)
 
-# 第1章 响应式编程总览（Reactive Programming）
+## 第1章 响应式编程总览（Reactive Programming）
 
-# 第2章 在RxJava中创建Observable
+## 第2章 在RxJava中创建Observable
 
+## 第3章 RxJava 2中的操作
 
+## 第4章 对RxJava 2的设计探索
 
-# 第3章 RxJava 2中的操作
+## 第5章 Observable实战
 
-# 第4章 对RxJava 2的设计探索
+## 第6章 RxJava 2中的多线程操作
 
-# 第5章 Observable实战
+## 第7章 Flowable与背压
 
-# 第6章 RxJava 2中的多线程操作
-
-# 第7章 Flowable与背压
-
-# 第8章 Flowable实战
+## 第8章 Flowable实战

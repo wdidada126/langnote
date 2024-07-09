@@ -6,10 +6,7 @@ lex与yacc.pdf
 
 flex bison
 
-
 flex大量使用正则表达式
-
-
 
 Lex与Yacc第二版高清版.pdf
 
@@ -47,9 +44,7 @@ ld: cannot find -ll
 
 https://blog.csdn.net/a_flying_bird/article/details/54913824
 
-
-
-
+```shell
 repoquery -ql flex-devel
 /usr/lib/libfl.a
 /usr/lib/libfl_pic.a
@@ -59,11 +54,11 @@ repoquery -ql flex-devel
 /usr/lib64/libl.a
 
 /opt/rh/devtoolset-8/root/usr/libexec/gcc/x86_64-redhat-linux/8/ld: cannot find -ll
-
+```
 
 ubuntu使用flex和bison来代替lex和yacc
 
-sudo apt-get install flex biso -y
+`sudo apt-get install flex biso -y`
 
 运行
 
@@ -79,13 +74,10 @@ gcc -ll 选项的含义
 生成analyse
 
 ```
-
-
 lex ch1-02.l
-
 gcc lex.yy.c -o example -ll
-
 ```
+
 ### flex
 
 yytext
@@ -113,8 +105,6 @@ yyunput
 yywrap
 
 https://www.zhihu.com/question/21746909/answer/273457507
-
-
 
 yyleng
 只要扫描程序匹配标记时，标记的文本就存储在以空字符终止的字符串yytext中，而且它的长度存储在yyleng中，yyleng中的长度与由strlen(yytext)返回的值是相同的。
@@ -159,7 +149,6 @@ lex库中yywrap()的标准版本总是返回1，如果yywrap()返回指示有更
 没有起始状态的那些规则能应用于任何状态。
 动作中的BEGIN语句设置了当前的起始状态。
 
-
 https://github.com/westes/flex/
 
 bison
@@ -167,8 +156,149 @@ bison
 http://www.gnu.org/software/bison/
 http://www.gnu.org/software/bison/manual/bison.html
 
-### Chap. 1
 
+
+前言
+第一章 lex和yacc
+最简单的lex程序
+用lex识别单词
+语法
+运行lex和yacc
+lex和手写的词法分析程序
+练习
+第二章 使用lex
+正则表达式
+单词计数程序
+分析命令行
+C源代码分析程序
+小结
+练习
+第三章 使用yacc
+语法
+移进/归约分析
+yacc语法分析程序
+词法分析程序
+算术表达式和歧义性
+变量和有类型的标记
+符号表
+函数和保留字
+用make构建语法分析程序
+小结
+练习
+第四章 菜单生成语言
+MGL的概述
+开发MGL
+构建MGL
+屏幕处理
+结束
+MGL代码示例
+练习
+第五章 分析SQL
+SQL的要点概述
+语法检查程序
+语法分析程序
+嵌入式SQL
+练习
+第六章 lex规范参考
+lex规范的结构
+BEGIN
+程序错误
+字符变换
+上下文相关
+定义（替换）
+ECHO
+包含操作（文件的逻辑嵌套）
+从字符串中输入
+input()
+内部表（%N声明）
+lex库
+行号和yylineno
+文字块
+一个程序中的多个词法分析程序
+output()
+lex 词法分析程序的可移植性
+正则表达式语法
+REJECT
+从yylex()中返回值
+起始状态
+unput()
+yyinput()、yyoutput()、yyunput()
+yyleng
+yyless()
+yylex()
+yymore()
+yytext
+yywrap()
+第七章 yacc语法参考
+yacc语法的结构
+动作
+歧义和冲突
+yacc中的程序错误
+结束标记
+错误标记和错误恢复
+%ident 声明
+继承的属性（$0）
+词汇的反馈
+文字块
+文字标记
+yacc语法分析程序的可移植性
+优先级、结合性和操作符声明
+递归规则
+规则
+特殊字符
+开始声明
+符号值
+标记
+%type声明
+%union声明
+变体和多重语法
+y.output文件
+yacc库
+YYABORT
+YYACCEPT
+YYBACKUP
+yyclearin
+yydebug和YYDEBUG
+yyerrok
+YYERROR
+yyerror()
+yyparse()
+YYRECOVERING()
+第八章 yacc歧义和冲突
+指针模型和冲突
+冲突的普通示例
+如何修复冲突
+小结
+练习
+第九章 错误报告和恢复
+错误报告
+错误恢复
+练习
+附录一 AT&T lex
+附录二 AT&T yacc
+附录三 Berkeley yacc
+附录四 GNU bison
+附录五 flex
+附录六 MKS lex和yacc
+附录七 Abraxas lex和yacc
+附录八 POSIX lex和yacc
+附录九 MGL编译程序代码
+附录十 SQL分析程序代码
+参考文献
+词汇表
+
+
+## 笔记
+
+
+前言
+### 第一章 lex和yacc
+最简单的lex程序
+用lex识别单词
+语法
+运行lex和yacc
+lex和手写的词法分析程序
+练习
 
 
 lex yacc文件分为三个部分
@@ -178,33 +308,126 @@ lex ch1-02.l
 gcc lex.yy.c -o example -ll
 ```
 lex yacc文件分为三个部分
-
-
-
-
 ```
 
 
-
-### Chap. 2
-
-
-
-1
-
-
-### Chap. 3
-
-### Chap. 4
-4
-### Chap. 5
-5
-### Chap. 6
-6
-### Chap. 7
-7
-### Chap. 8
-
-8
-### Chap. 9
-9
+### 第二章 使用lex
+正则表达式
+单词计数程序
+分析命令行
+C源代码分析程序
+小结
+练习
+### 第三章 使用yacc
+语法
+移进/归约分析
+yacc语法分析程序
+词法分析程序
+算术表达式和歧义性
+变量和有类型的标记
+符号表
+函数和保留字
+用make构建语法分析程序
+小结
+练习
+### 第四章 菜单生成语言
+MGL的概述
+开发MGL
+构建MGL
+屏幕处理
+结束
+MGL代码示例
+练习
+### 第五章 分析SQL
+SQL的要点概述
+语法检查程序
+语法分析程序
+嵌入式SQL
+练习
+### 第六章 lex规范参考
+lex规范的结构
+BEGIN
+程序错误
+字符变换
+上下文相关
+定义（替换）
+ECHO
+包含操作（文件的逻辑嵌套）
+从字符串中输入
+input()
+内部表（%N声明）
+lex库
+行号和yylineno
+文字块
+一个程序中的多个词法分析程序
+output()
+lex 词法分析程序的可移植性
+正则表达式语法
+REJECT
+从yylex()中返回值
+起始状态
+unput()
+yyinput()、yyoutput()、yyunput()
+yyleng
+yyless()
+yylex()
+yymore()
+yytext
+yywrap()
+### 第七章 yacc语法参考
+yacc语法的结构
+动作
+歧义和冲突
+yacc中的程序错误
+结束标记
+错误标记和错误恢复
+%ident 声明
+继承的属性（$0）
+词汇的反馈
+文字块
+文字标记
+yacc语法分析程序的可移植性
+优先级、结合性和操作符声明
+递归规则
+规则
+特殊字符
+开始声明
+符号值
+标记
+%type声明
+%union声明
+变体和多重语法
+y.output文件
+yacc库
+YYABORT
+YYACCEPT
+YYBACKUP
+yyclearin
+yydebug和YYDEBUG
+yyerrok
+YYERROR
+yyerror()
+yyparse()
+YYRECOVERING()
+### 第八章 yacc歧义和冲突
+指针模型和冲突
+冲突的普通示例
+如何修复冲突
+小结
+练习
+### 第九章 错误报告和恢复
+错误报告
+错误恢复
+练习
+附录一 AT&T lex
+附录二 AT&T yacc
+附录三 Berkeley yacc
+附录四 GNU bison
+附录五 flex
+附录六 MKS lex和yacc
+附录七 Abraxas lex和yacc
+附录八 POSIX lex和yacc
+附录九 MGL编译程序代码
+附录十 SQL分析程序代码
+参考文献
+词汇表
