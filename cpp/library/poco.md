@@ -8,7 +8,7 @@ Poco 是一个开源的 C++ 类库集合，提供了许多功能，包括读写�
 安装 Poco：
 
 Linux：可以通过包管理器安装（例如，sudo apt-get install libpoco-dev）。
-Windows：可以从 Poco 官方网站下载和安装。
+Windows：可以从Poco官方网站下载和安装。
 示例代码：
 
 ```cpp
@@ -92,3 +92,7 @@ cd poco-cmake-sample
 cmake -S . -B build-output
 cmake --build build-output --target all
 build-output/pocoex
+
+## 自己的代码
+
+## doc
