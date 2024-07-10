@@ -1,6 +1,5 @@
 # c++
 
-
 std::string serializeDataToJSON(const T& data, const std::string& code, const std::string& message) 
 
 
