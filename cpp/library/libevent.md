@@ -100,3 +100,14 @@ release-2.1.8-stable
 
 sudo apt install libevent-dev -y
 sudo yum install libevent-devel -y
+
+## reference
+http://www.wangafu.net/~nickm/libevent-2.1/doxygen/html/
+
+
+## book
+
+https://libevent.org/libevent-book/Ref10_http_server.html
+
+git clone git://github.com/libevent/libevent-book.git
+
