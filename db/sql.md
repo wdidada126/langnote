@@ -1,26 +1,27 @@
 # SQL
 
-SQL（Structured Query Language）是关系型数据库管理系统的标准查询语言,目前主要有以下几个重要的SQL标准:
 
+UPDATE table_name  
+SET column1 = value1, column2 = value2, ...  
+WHERE condition;
+
+多个列之间用 , 不是 and
+
+SQL（Structured Query Language）是关系型数据库管理系统的标准查询语言,目前主要有以下几个重要的SQL标准:
 1. SQL-86/SQL-87:
    - 这是最早期的SQL标准,由ANSI(美国国家标准学会)和ISO(国际标准化组织)在1986年和1987年发布。
    - 它定义了SQL语言的基本语法和功能,包括SELECT、INSERT、UPDATE、DELETE等基本操作。
-
 2. SQL-92 (SQL2):
    - 1992年发布的SQL标准,又称为SQL2,是SQL语言的重要里程碑。
    - 它扩展了SQL-86/SQL-87的功能,增加了子查询、视图、事务控制等特性。
-
 3. SQL:1999 (SQL3):
    - 1999年发布的SQL标准,也被称为SQL3。
    - 它增加了复杂数据类型、用户自定义函数、递归查询等新特性,大幅扩展了SQL的功能。
-
 4. SQL:2003:
    - 2003年发布的SQL标准,对前版本进行了进一步完善和扩展。
    - 增加了XML支持、窗口函数、自增列等新特性。
-
 5. SQL:2006、SQL:2008、SQL:2011:
    - 这些年版本的SQL标准进一步丰富和完善了SQL语言,增加了时间数据类型、JSON支持、分区表等新功能。
-
 6. SQL:2016、SQL:2019:
    - 最新的SQL标准版本,引入了机器学习、时间序列数据等新特性,适应了数据库技术的发展。
 
