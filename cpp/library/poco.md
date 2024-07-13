@@ -8,7 +8,7 @@ Poco 是一个开源的 C++ 类库集合，提供了许多功能，包括读写�
 安装 Poco：
 
 Linux：可以通过包管理器安装（例如，sudo apt-get install libpoco-dev）。
-Windows：可以从 Poco 官方网站下载和安装。
+Windows：可以从Poco官方网站下载和安装。
 示例代码：
 
 ```cpp
@@ -40,9 +40,7 @@ g++ -o config_example config_example.cpp -lPocoUtil -lPocoFoundation
 ## SMTP
 
 适合嵌入式设备
-
 https://pocoproject.org/
-
 支持cmake autotools编译
 可以用conan vcpkg安装
 
@@ -92,3 +90,66 @@ cd poco-cmake-sample
 cmake -S . -B build-output
 cmake --build build-output --target all
 build-output/pocoex
+
+## 自己的代码
+https://github.com/edidada/pocoservertest
+## doc
+https://docs.pocoproject.org/current/
+
+Packages
+ActiveRecord
+Crypto
+Data
+Data/MySQL
+Data/ODBC
+Data/PostgreSQL
+Data/SQLite
+Encodings
+Foundation
+JSON
+JWT
+MongoDB
+Net
+NetSSL_OpenSSL
+Prometheus
+Redis
+Util
+XML
+Zip
+
+
+Namespaces
+Poco
+Poco::ActiveRecord
+Poco::Crypto
+Poco::Data
+Poco::Data::Keywords
+Poco::Data::MySQL
+Poco::Data::ODBC
+Poco::Data::PostgreSQL
+Poco::Data::SQLite
+Poco::Data::Test
+Poco::Details
+Poco::Dynamic
+Poco::Dynamic::Impl
+Poco::Impl
+Poco::JSON
+Poco::JWT
+Poco::MongoDB
+Poco::Net
+Poco::Net::Impl
+Poco::Prometheus
+Poco::Redis
+Poco::Util
+Poco::Util::Units
+Poco::Util::Units::Constants
+Poco::Util::Units::Internal
+Poco::Util::Units::Units
+Poco::Util::Units::Values
+Poco::XML
+Poco::Zip
+hsql
+std
+
+## 官方examole
+https://github.com/pocoproject/cmake-sample

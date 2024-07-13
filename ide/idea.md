@@ -1,5 +1,7 @@
 # IDEA
 
+按下Ctrl+Alt+L快捷键。IDEA将自动对文件中的代码进行格式化，包括JSON字符串。
+
 big data tools
 Big Data Tools是IntelliJ IDEA Ultimate的新插件,是为使用Zeppelin和Spark的数据工程师和其他专业人员所量身定做的一款软件。
 
