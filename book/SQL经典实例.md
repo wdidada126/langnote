@@ -12,7 +12,15 @@ https://book.douban.com/subject/30259463/
 
 SQL Cookbook, 2nd Edition
 
+英文版2
 https://book.douban.com/subject/35024412/
+
+中文版2
+https://book.douban.com/subject/35689351/
+
+win SQL经典实例2.pdf
+
+
 第1章　检索记录
 
 第2章　查询结果排序
