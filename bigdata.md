@@ -1,5 +1,8 @@
 # bigdata
+## dama
+dama.md
 
+## data
 学习大数据，有助于成为架构师
 
 

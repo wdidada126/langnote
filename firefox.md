@@ -1,5 +1,11 @@
 # firefox
 
+## mdn
+
+MDN是Mozilla基金会的开发者网络平台。提供了大量关于各种HTML、CSS和JavaScript功能的开放、详细的文档，以及广泛的Web API参考资料。
+
+## version
+
 
 firefox英文版本
 https://www.mozilla.org/en-US/firefox/download/thanks/

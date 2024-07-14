@@ -1,5 +1,9 @@
 # conan
 
+
+-DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="/usr/local/bin/conan" -DCMAKE_TOOLCHAIN_FILE="~/Develop/git/github/rest_poco/cmake-build-debug/conan/build/Debug/generators/conan_toolchain.cmake"
+
+
 而且另外一个讨厌的问题是C++没有包管理器，好不容易有个conan挺好用的大家又不爱用，导致小功能全都自己搓轮子
 
 wdidada@10-23-29-39:~/myqt6app$ sudo conan install -u ./ --build=missing

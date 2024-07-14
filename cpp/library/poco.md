@@ -1,4 +1,8 @@
 # Poco
+## book
+https://book.douban.com/subject/17995926/
+
+9783639973624
 
 ## windows linux都支持
 
@@ -92,7 +96,11 @@ cmake --build build-output --target all
 build-output/pocoex
 
 ## 自己的代码
+
 https://github.com/edidada/pocoservertest
+
+https://github.com/edidada/rest_poco
+
 ## doc
 https://docs.pocoproject.org/current/
 
@@ -150,6 +158,11 @@ Poco::XML
 Poco::Zip
 hsql
 std
+
+## 自己总结的api
+
+HTTPRequestHandlerFactory
+HTTPRequestHandler
 
 ## 官方examole
 https://github.com/pocoproject/cmake-sample
