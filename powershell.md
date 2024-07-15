@@ -51,4 +51,27 @@ Remove-Item "C:\path\to\file.txt"
 
 请注意，`Remove-Item` 是一个强大的命令，删除的操作是不可逆的，请谨慎使用。
 
-希望这个解答能够解决您的疑惑。如果您有其他问题，请随时提问。
+## proxy
+
+$env:HTTP_PROXY="http://127.0.0.1:10800"
+$env:HTTPS_PROXY="https://127.0.0.1:10800"
+
+set all_proxy=socks5://127.0.0.1:7890
+windows
+cmd
+设置临时代理（关闭cmd即设置的代理消失）
+set all_proxy=socks5://127.0.0.1:10808 (端口号为你代理软件socks5协议的端口)
+删除临时代理
+set all_proxy=
+查看当前环境变量
+set
+查看当前公网ip判断代理是否成功
+curl cip.cc
+
+powershell
+设置临时代理（关闭powershell即设置的代理消失）
+$env:all_proxy="socks5://127.0.0.1:10808" (端口号为你代理软件socks5协议的端口)
+删除当前临时代理
+$env:all_proxy=""
+查看当前环境变量
+ls env:*
