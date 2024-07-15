@@ -1445,7 +1445,4 @@ https://github.com/conan-io/conan-clion-plugin
 conan_provider.cmake
 https://github.com/conan-io/cmake-conan/blob/develop2/conan_provider.cmake
 
-
 -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="D:\dev_tools\Conan\conan\conan.exe"
-
-
