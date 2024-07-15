@@ -1,5 +1,7 @@
 # vcpkg
 
+vcpkg的baseline设计确实是一坨，这么多年都不改。之前还有个命令x-history可以搜版本对应的baseline，后面不知道为什么给砍了。
+
 D:\git\github\vcpkg\installed\x64-windows\include\
 
 
