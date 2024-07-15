@@ -1,0 +1,46 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.38.33130/bin/Hostx64/x64/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+2
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.38.33130 版
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.38.33130.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+LINK : fatal error LNK1104: 无法打开文件“LIBCMT.lib”
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: D:/git/github/langnote/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/edida/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe cmTC_0d9e3 && [1/2] Building C object CMakeFiles\cmTC_0d9e3.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_0d9e3.exe
+FAILED: cmTC_0d9e3.exe 
+cmd.exe /C "cd . && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_0d9e3.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100226~1.0\x64\rc.exe --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\PROGRA~1\MICROS~3\2022\ENTERP~1\VC\Tools\MSVC\1438~1.331\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_0d9e3.dir\CMakeCCompilerABI.c.obj  /out:cmTC_0d9e3.exe /implib:cmTC_0d9e3.lib /pdb:cmTC_0d9e3.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+LINK Pass 1: command "C:\PROGRA~1\MICROS~3\2022\ENTERP~1\VC\Tools\MSVC\1438~1.331\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_0d9e3.dir\CMakeCCompilerABI.c.obj /out:cmTC_0d9e3.exe /implib:cmTC_0d9e3.lib /pdb:cmTC_0d9e3.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_0d9e3.dir/intermediate.manifest CMakeFiles\cmTC_0d9e3.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: 无法打开文件“kernel32.lib”
+ninja: build stopped: subcommand failed.
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: D:/git/github/langnote/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/edida/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe cmTC_06044 && [1/2] Building C object CMakeFiles\cmTC_06044.dir\testCCompiler.c.obj
+[2/2] Linking C executable cmTC_06044.exe
+FAILED: cmTC_06044.exe 
+cmd.exe /C "cd . && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_06044.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100226~1.0\x64\rc.exe --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\PROGRA~1\MICROS~3\2022\ENTERP~1\VC\Tools\MSVC\1438~1.331\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_06044.dir\testCCompiler.c.obj  /out:cmTC_06044.exe /implib:cmTC_06044.lib /pdb:cmTC_06044.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+LINK Pass 1: command "C:\PROGRA~1\MICROS~3\2022\ENTERP~1\VC\Tools\MSVC\1438~1.331\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_06044.dir\testCCompiler.c.obj /out:cmTC_06044.exe /implib:cmTC_06044.lib /pdb:cmTC_06044.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_06044.dir/intermediate.manifest CMakeFiles\cmTC_06044.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: 无法打开文件“kernel32.lib”
+ninja: build stopped: subcommand failed.
+
+
+

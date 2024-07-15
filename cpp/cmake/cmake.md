@@ -1,4 +1,24 @@
 # CMake
+
+
+target_link_libraries(rest_pocodb Poco::Poco)
+target_link_libraries(rest_pocodb Poco::Foundation Poco::Data Poco::Data_MySQL)二者区别
+`target_link_libraries(rest_pocodb Poco::Poco)` 和 `target_link_libraries(rest_pocodb Poco::Foundation Poco::Data Poco::Data_MySQL)` 两种方式之间的主要区别在于:
+
+1. `Poco::Poco` 方式:
+   - 这是一种更加简单和通用的方式来链接 Poco 库。
+   - 当你使用 `Poco::Poco` 时,CMake 会自动处理所有必需的 Poco 组件,包括 Foundation、Data 和 Data/MySQL 等。
+   - 这种方式更加方便和简单,但可能会链接一些你实际上并不需要的 Poco 组件。
+
+2. `Poco::Foundation Poco::Data Poco::Data_MySQL` 方式:
+   - 这种方式可以让你更精确地控制需要链接的 Poco 组件。
+   - 当你只需要使用特定的 Poco 组件时,这种方式更加合适。比如,如果你只需要使用 Poco 的 Foundation 和 Data/MySQL 组件,那么就可以只链接这两个组件。
+   - 这种方式可以帮助减小可执行文件的大小,因为只链接所需的 Poco 组件。
+
+总的来说,如果你只需要使用 Poco 库的一部分组件,那么使用 `Poco::Foundation Poco::Data Poco::Data_MySQL` 的方式更加精确和高效。如果你需要使用 Poco 库的大部分或全部组件,那么使用 `Poco::Poco` 的方式更加简单和方便。
+
+根据你的具体需求和项目要求,选择合适的链接方式。
+
 ## cmake preset 3.19开始支持的 CMakePresets.json
 https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
 CMakePresets.json文件作用？
