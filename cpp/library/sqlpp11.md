@@ -93,3 +93,10 @@ https://github.com/rbock/sqlpp11/issues/580
 
 https://github.com/edidada/yishengAttendanceData
 
+## script
+
+python ddl2cpp Student.sql ./Student TestProject
+
+ddl2cpp tbl_night_shift.sql ./tbl_night_shift tbl_night_shift
+ddl2cpp tbl_single_shift.sql ./tbl_single_shift tbl_single_shift
+ddl2cpp tbl_single_shift.sql ./tbl_single_shift tbl_single_shift

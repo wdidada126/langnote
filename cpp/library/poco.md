@@ -186,6 +186,37 @@ std
 
 ## 自己总结的api
 
+CLion查看类代码的父类，子类
+
+Ctrl + H
+
+AbstractConfiguration (Poco::Util)
+    IniFileConfiguration (Poco::Util)
+    LayeredConfiguration (Poco::Util)
+ActiveResultHolder (Poco)
+ActiveRunnableBase (Poco)
+    ActiveRunnable (Poco)
+Channel (Poco)
+    Logger (Poco)
+IPAddressImpl (Poco::Net::Impl)
+    IPv4AddressImpl (Poco::Net::Impl)
+    IPv6AddressImpl (Poco::Net::Impl)
+SessionImpl (Poco::Data)
+SocketAddressImpl (Poco::Net::Impl)
+    IPv4SocketAddressImpl (Poco::Net::Impl)
+    IPv6SocketAddressImpl (Poco::Net::Impl)
+SocketImpl (Poco::Net)
+Subsystem (Poco::Util)
+    Application (Poco::Util)
+        ServerApplication (Poco::Util)
+            MyServerApp (http_server.cpp)
+            MyServerApp (mymain.cpp)
+    LoggingSubsystem (Poco::Util)
+TCPServerConnectionFilter (Poco::Net)
+TCPServerParams (Poco::Net)
+    HTTPServerParams (Poco::Net)
+
+
 ### 
 
 ### Poco
