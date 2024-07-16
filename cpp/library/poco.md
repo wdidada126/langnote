@@ -1,4 +1,29 @@
 # Poco
+
+```
+extern "C" const struct Net_API NetworkInitializer pocoNetworkInitializer;
+```
+在Poco（一个C++的跨平台C++库）的源代码中，这行代码包含了几个关键的概念，主要涉及到C++和C语言之间的互操作性，以及如何在C++中声明和使用全局变量。让我们逐一解析这行代码：
+```cpp
+extern "C":
+```
+这是C++中的一个特殊语法，用于告诉C++编译器在链接时，将这部分代码当作C语言代码来处理。这是因为C++支持函数重载（即可以有多个同名但参数不同的函数），而C语言不支持。因此，C++编译器会为每个函数（包括全局变量，因为全局变量在C++中也被视为一种特殊的函数，即“返回类型为类型本身，没有参数”的函数）生成一个唯一的名称（这个过程称为名称修饰或名称改编），以便区分不同的重载版本。然而，C语言编译器则不会进行这样的名称修饰。因此，如果C++代码想要调用C语言编写的库函数，或者C++代码中的函数/变量需要被C语言代码调用/访问，就需要使用extern "C"来告诉C++编译器这部分代码应该按照C语言的方式来处理，即不进行名称修饰。
+const struct Net_API NetworkInitializer pocoNetworkInitializer;:
+这部分声明了一个全局常量变量pocoNetworkInitializer，其类型为const struct Net_API。struct Net_API很可能是一个在Poco库中定义的结构体，用于封装与网络初始化相关的API或配置信息。const关键字表明这个变量一旦被初始化后，其值就不能被修改。
+注意，这里的NetworkInitializer看起来像是想要用作类型名的部分，但实际上它可能是被误放在这里了，或者是某种特定于Poco库内部的命名约定。在标准的C++语法中，这里的NetworkInitializer并不作为类型名使用，而是紧随const struct Net_API之后的部分可能是个笔误或误导。正确的声明应该直接以const struct Net_API开头，后面跟变量名。
+综上所述，这行代码的意图是声明一个全局常量pocoNetworkInitializer，其类型为const struct Net_API，并且这个变量在使用时需要按照C语言的方式进行链接（即不进行C++的名称修饰），以便可能与其他C或C++代码（特别是那些没有使用C++名称修饰的代码）进行互操作。
+
+正确的声明（如果NetworkInitializer确实是笔误或误导）可能是这样的：
+
+```cpp
+extern "C" const struct Net_API pocoNetworkInitializer;
+```
+或者，如果Net_API已经是一个typedef的别名，那么可能连struct关键字都不需要（这取决于Net_API的具体定义）：
+
+```cpp
+extern "C" const Net_API pocoNetworkInitializer;
+```
+
 ## book
 https://book.douban.com/subject/17995926/
 
@@ -160,6 +185,93 @@ hsql
 std
 
 ## 自己总结的api
+
+### 
+
+### Poco
+#### Poco::ActiveRecord
+#### Poco::Crypto
+#### Poco::Data
+#### Poco::Data::Keywords
+#### Poco::Data::MySQL
+#### Poco::Data::ODBC
+#### Poco::Data::PostgreSQL
+#### Poco::Data::SQLite
+#### Poco::Data::Test
+#### Poco::Details
+#### Poco::Dynamic
+#### Poco::Dynamic::Impl
+#### Poco::Impl
+#### Poco::JSON
+#### Poco::JWT
+#### Poco::MongoDB
+#### Poco::Net
+
+void Net_API initializeNetwork();
+void Net_API uninitializeNetwork();
+std::string htmlize(const std::string& str);
+
+ICMPClient
+
+// ICMPClient.h
+//
+// Library: Net
+// Package: ICMP
+// Module:  ICMPClient
+
+ICMPEventArgs
+// ICMPEventArgs.h
+//
+// Library: Net
+// Package: ICMP
+// Module:  ICMPEventArgs
+
+ICMPPacket
+// ICMPPacket.h
+//
+// Library: Net
+// Package: ICMP
+// Module:  ICMPPacket
+
+ICMPPacketImpl
+// ICMPPacketImpl.h
+//
+// Library: Net
+// Package: ICMP
+// Module:  ICMPPacketImpl
+
+ICMPSocket
+
+
+HTTPRequest
+
+
+// HTTPRequest.h
+//
+// Library: Net
+// Package: HTTP
+// Module:  HTTPRequest
+
+HTTPServerRequest
+// HTTPServerRequest.h
+//
+// Library: Net
+// Package: HTTPServer
+// Module:  HTTPServerRequest
+
+#### Poco::Net::Impl
+#### Poco::Prometheus
+#### Poco::Redis
+#### Poco::Util
+##### Poco::Util::Units
+###### Poco::Util::Units::Constants
+###### Poco::Util::Units::Internal
+###### Poco::Util::Units::Units
+###### Poco::Util::Units::Values
+#### Poco::XML
+#### Poco::Zip
+### hsql
+### std 
 
 HTTPRequestHandlerFactory
 HTTPRequestHandler

@@ -1,17 +1,24 @@
 # conan
 
+-DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="D:\dev_tools\Conan\conan\conan.exe" -DCMAKE_TOOLCHAIN_FILE="D:\git\github\rest_poco\cmake-build-debug-visual-studio-64\conan\build\Debug\generators\conan_toolchain.cmake"
 
 -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="/usr/local/bin/conan" -DCMAKE_TOOLCHAIN_FILE="~/Develop/git/github/rest_poco/cmake-build-debug/conan/build/Debug/generators/conan_toolchain.cmake"
 
+-DCMAKE_TOOLCHAIN_FILE="D:\git\github\rest_poco\cmake-build-debug\conan\build\Debug\generators\conan_toolchain.cmake"
+
+上面的不一定对，
+CMake Error at conan_provider.cmake:247 (message):
+CMake-Conan: unable to map MSVC runtime:
+$<$<CONFIG:Debug>:MultiThreadedDebugDLL> to Conan settings
+
+cmake --pretest 命令是对的，cLion的话，换一个cmake配置项
 
 而且另外一个讨厌的问题是C++没有包管理器，好不容易有个conan挺好用的大家又不爱用，导致小功能全都自己搓轮子
 
 wdidada@10-23-29-39:~/myqt6app$ sudo conan install -u ./ --build=missing
 ERROR: Ambiguous command, both conanfile.py and conanfile.txt exist
 
-
 https://blog.conan.io/introducing-new-conan-clion-plugin/
-
 
 ## conan设置build type为Debug
 conan2
