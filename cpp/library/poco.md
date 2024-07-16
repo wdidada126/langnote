@@ -189,6 +189,21 @@ std
 ### 
 
 ### Poco
+
+Exception.h
+Exception
+class Foundation_API Exception: public std::exception
+
+
+   catch (Poco::Exception& ex) {
+        // 处理 JSON 解析异常
+        result["error"] = ex.displayText();
+    } catch (std::exception& ex) {
+        // 处理其它异常
+        result["error"] = ex.what();
+    }
+
+
 #### Poco::ActiveRecord
 #### Poco::Crypto
 #### Poco::Data
@@ -203,6 +218,10 @@ std
 #### Poco::Dynamic::Impl
 #### Poco::Impl
 #### Poco::JSON
+
+JSONException.h
+
+
 #### Poco::JWT
 #### Poco::MongoDB
 #### Poco::Net
