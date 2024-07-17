@@ -1,5 +1,7 @@
 # Poco
 
+这个库不是为了高性能而诞生的，就是为了快速开发一些常用的日常功能而设计的，学习和使用都非常简单，正好符合题主的需求。
+
 ```
 extern "C" const struct Net_API NetworkInitializer pocoNetworkInitializer;
 ```
