@@ -19,3 +19,4 @@ Loom项目还提供了对并发编程的简化，使开发者能够更专注于�
 在当前版本的JDK中，Loom项目的某些功能（如VirtualThread）并未完全公开。例如，虽然VirtualThread类存在，但它使用default修饰符隐藏在java.lang包中，并且是Thread的子类。
 协程的创建API位于Thread类中，开发者可以使用类似Thread.startVirtualThread()的方法来创建协程。
 综上所述，Loom在JDK中是一个重要的项目，它通过引入轻量级的线程实现和其他并发原语，显著改进了Java的并发编程模型，使得开发者能够更高效地处理大量并发任务，同时保持较低的系统资源消耗。
+
