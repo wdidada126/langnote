@@ -1,5 +1,6 @@
 # rust
 
+https://github.com/shadowsocks/shadowsocks-rust
 
 https://github.com/helix-editor/helix
 

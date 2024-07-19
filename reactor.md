@@ -1,8 +1,9 @@
 # reactor
 
+io模型: 支持 reactor(for network) and async-io(for disk)
+来源：https://github.com/trpc-group/trpc-cpp/blob/main/README.zh_CN.md
 
 tinywebserver面试题
-
 https://zhuanlan.zhihu.com/p/368154495?utm_id=0
 
 https://github.com/qinguoyi/TinyWebServer
@@ -11,26 +12,15 @@ reactor反应堆模式
 
 Netty
 
-
-
 语言层面
-
-
 
 rxjava2
 
-
-
 reactorproject
-
-
 
 原理：多核计算机
 
-
-
 Java抽象函数有没有构造函数？
-
 
     <dependency>
         <groupId>io.projectreactor</groupId>
@@ -53,7 +43,6 @@ reactor.core.publisher.Flux
 需要注意的是，`Mono` 和 `Flux` 类型是不可变的，也就是说，一旦创建就不可修改。这意味着每个操作符都会生成一个新的 `Mono` 或 `Flux` 对象，而不会修改原始的对象。这种不可变性可以确保数据流的稳定性和可靠性，同时也可以方便地进行线程安全的并发处理。
 
 总之，`Mono` 和 `Flux` 类型是 Reactor 框架中的核心类型，用于支持响应式编程，可以方便地处理异步数据流。在使用这些类型时，需要注意处理异常、确保数据流的稳定性和可靠性，并合理使用操作符，以提高应用程序的性能和可维护性。
-
 
 Reactive Stream 规范旨在定义一组通用的 API，用于支持异步数据流的处理和传输。这个规范由一组主要的 Java 技术公司（包括 Netflix、Pivotal、Lightbend 和 Red Hat）共同制定，旨在为响应式编程提供标准化的接口。
 
