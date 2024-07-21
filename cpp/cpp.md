@@ -1,4 +1,41 @@
 # cpp
+
+https://github.com/edidada/testlibjpeg
+
+# README
+
+## mac
+
+`brew install libjpeg`
+
+```cpp
+#include <jpeglib.h>
+#include <stdio.h>
+```
+
+改成
+```cpp
+#include <stdio.h>
+#include <jpeglib.h>
+```
+
+好的,非常感谢你提供了更多代码细节。我已经仔细分析了你的代码,并发现了一个需要调整的地方。
+
+之前你提到的头文件包含顺序问题是正确的。在 C/C++ 中,头文件的包含顺序是很重要的,因为头文件之间可能存在相互依赖关系。
+
+在你的代码中,应该先包含 `<stdio.h>` 头文件,然后再包含 `<jpeglib.h>` 头文件。这样可以确保 `FILE` 类型在使用 `jpeglib.h` 中的函数时已经被正确定义。
+
+所以你的代码应该修改为:
+
+```cpp
+#include <stdio.h>
+#include <jpeglib.h>
+```
+
+这样就可以解决之前提到的 `'FILE' has not been declared` 的错误问题了。
+
+除此之外,请确保你已经正确地配置了 libjpeg 库的包含和链接路径,如我之前在 CMake 示例中提到的那样。如果问题仍然存在,请继续提供更多信息,我会继续帮助你排查。
+
 ## vtable
 
 https://godbolt.org/z/ca81j7vGP
