@@ -4,7 +4,6 @@ an event notification library
 ## 官方文档
 https://libevent.org/doc
 
-
 ## 参考书籍
 Linux高性能服务器编程 游双
 
@@ -89,6 +88,7 @@ libevent-1.4.14b-stable.tar.gz [GPG Sig] ChangeLog
 Released 2010-06-07
 
 https://github.com/edidada/testlibevent
+源代码调试libevent
 
 https://libevent.org/
 
@@ -104,6 +104,19 @@ sudo yum install libevent-devel -y
 ## reference
 http://www.wangafu.net/~nickm/libevent-2.1/doxygen/html/
 
+
+http://www.wangafu.net/~nickm/libevent-2.1/doxygen/html/event_8h.html
+
+
+`#define SENDFILE_IS_LINUX 1` 这个宏定义是 libevent 库中的一部分,它与 Linux 操作系统的 `sendfile()` 系统调用有关。
+
+libevent 是一个开源的跨平台事件调度库,广泛用于构建网络应用程序。它提供了统一的事件处理接口,并在不同的操作系统上使用最佳的方法进行实现。
+在 libevent 中,`SENDFILE_IS_LINUX` 宏的作用如下:
+1. 操作系统检测: 该宏用于检测当前使用的操作系统是否为 Linux。在 Linux 系统上,该宏的值被定义为 1,而在其他操作系统上则为 0。
+2. 优化网络传输: Linux 操作系统提供了 `sendfile()` 系统调用,可以在内核空间直接将文件数据传输到套接字,而无需在用户空间进行复制。libevent 会根据 `SENDFILE_IS_LINUX` 的值,选择使用 `sendfile()` 还是其他的传输方式,以优化网络数据传输的性能。
+在 libevent 的实现中,当 `SENDFILE_IS_LINUX` 为 1 时,libevent 会使用 `sendfile()` 系统调用来高效地传输文件数据。这可以减少内存复制操作,提高网络传输性能,特别是在大文件传输的场景下。
+
+总的来说, `#define SENDFILE_IS_LINUX 1` 这个宏定义是 libevent 库用于检测当前操作系统是否为 Linux,并优化网络传输性能的一个重要标识。它体现了 libevent 在不同平台上进行针对性优化的设计思想。
 
 ## book
 
