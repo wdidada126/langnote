@@ -1,5 +1,6 @@
 # protobuf
 
+https://gitee.com/minhanghuang/protobuf
 
 https://github.com/protocolbuffers/protobuf
 
@@ -7,6 +8,7 @@ sudo apt update
 sudo apt-get install g++ git bazel -y
 git clone https://github.com/protocolbuffers/protobuf.git
 cd protobuf
+git checkout v3.11.0
 git submodule update --init --recursive
 bazel build :protoc :protobuf
 cp bazel-bin/protoc /usr/local/bin
