@@ -1,5 +1,17 @@
 # xmake
 
+/Users/ibqo/.xmake/packages/t/tbox/v1.7.1/296ac87121a0440f8173e5059fc57b1e/lib/cmake
+
+ibqodeMacBook-Pro:tbox ibqo$ ls
+algorithm       container       hash            math            object          prefix.h        string          utils
+charset         coroutine       libc            memory          platform        regex           tbox.config.h   xml
+config.h        database        libm            network         prefix          stream          tbox.h          zip
+ibqodeMacBook-Pro:tbox ibqo$ pwd
+/Users/ibqo/.xmake/packages/t/tbox/v1.7.1/296ac87121a0440f8173e5059fc57b1e/include/tbox
+ibqodeMacBook-Pro:tbox ibqo$ 
+
+
+
 C:\Users\edida\AppData\Local\.xmake\repositories\xmake-repo
 
 xmake l find_package pthread
