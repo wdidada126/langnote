@@ -4,13 +4,10 @@
 TARS (Tencent Architecture for Reliable Service) 是一种高效、易用的服务框架，支持多种编程语言，包括 C++ 和 Java。下面是一个简单的例子，展示如何在 TARS 中使用 C++ 和 Java 来创建和调用服务。
 
 ### 安装 TARS
-
 在开始之前，确保你已经安装了 TARS 框架。你可以参考 [TARS 官方文档](https://github.com/TarsCloud/Tars/blob/master/docs/cn/Installation.md) 进行安装。
 
 ### Thrift 定义文件
-
 首先，我们定义一个简单的 Thrift 文件，定义一个计算服务 `Calculator`，它具有两个方法 `add` 和 `subtract`。
-
 创建一个名为 `Calculator.tars` 的文件，内容如下：
 
 ```tars
@@ -25,16 +22,13 @@ module Example
 ```
 
 ### 生成代码
-
 使用 TARS 编译器生成代码。确保 TARS 编译器已添加到路径中。
-
 ```bash
 tars2cpp Calculator.tars
 tars2java Calculator.tars
 ```
 
 ### C++ 服务端代码
-
 #### 服务实现 (`CalculatorImp.h` 和 `CalculatorImp.cpp`)
 
 `CalculatorImp.h`：
@@ -118,9 +112,7 @@ int main(int argc, char* argv[])
 ```
 
 ### Java 客户端代码
-
 #### 客户端实现 (`CalculatorClient.java`)
-
 ```java
 import com.qq.tars.client.Communicator;
 import com.qq.tars.client.CommunicatorConfig;

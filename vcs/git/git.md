@@ -6,21 +6,20 @@
 ### 解决方法
 1. 手动拉取标签
    你可以使用 `git fetch` 来手动拉取标签：
-
-   ```bash
-   git fetch --tags
-   ```
-   这将获取远程仓库中的所有标签。
+```bash
+git fetch --tags
+```
+这将获取远程仓库中的所有标签。
 2. 合并标签到本地
    如果你想将所有标签合并到本地分支，可以使用以下命令：
-   ```bash
-   git pull --tags
-   ```
+```bash
+git pull --tags
+```
 3. 克隆时拉取标签
    在克隆仓库时，你可以直接拉取所有标签：
-   ```bash
-   git clone --branch master --single-branch --depth 1 --tags https://github.com/microsoft/vcpkg.git
-   ```
+```bash
+git clone --branch master --single-branch --depth 1 --tags https://github.com/microsoft/vcpkg.git
+```
 ### 检查标签
 拉取标签后，可以通过以下命令查看本地标签：
 ```bash
@@ -83,7 +82,6 @@ Git 钩子是在 Git 仓库的 .git/hooks 目录中定义的脚本，它们会�
 
 比较两个分支 哪些文件
 git diff --name-only prod_sync_no_modify_pom prod-20240531_0612
-
 
 如果你想要查看两个分支之间的差异，但不想查看文件的具体内容（即只查看哪些文件有差异，而不查看差异的具体内容），你可以使用 git diff 命令的 --name-status 或 --name-only 选项。
 
