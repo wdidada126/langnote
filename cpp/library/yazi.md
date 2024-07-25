@@ -10,3 +10,6 @@ log在文件夹下面
 https://github.com/edidada/yazi
 
 https://github.com/yespon/yazi
+
+## api
+Mutex
