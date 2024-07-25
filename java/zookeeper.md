@@ -4,11 +4,15 @@ https://zookeeper.apache.org/doc/r3.5.7/zookeeperProgrammers.html#sc_zkProgrammi
 
 zookeeper c客户端
 
+C:\Users\edida\.conan2\p\b\zooke3856341eee834\p\lib
+
+C:\Users\edida\.conan2\p\zooke736c622ee4b2a\s\src\zookeeper-client
+
 https://github.com/apache/zookeeper/tree/release-3.4.2/src/c
 
 git clone https://github.com/apache/zookeeper.git
 cd zookeeper
-git checkout release-3.4.2
+git checkout release-3.4.10
 
 ```shell
 git clone https://github.com/apache/zookeeper.git
@@ -46,7 +50,6 @@ checking that generated files are newer than configure... done
 configure: error: conditional "AMDEP" was never defined.
 Usually this means the macro was only invoked conditionally.
 ```
-
 
 
 ![Zookeeper分布式框架学习图谱](../imgs/zk/Zookeeper分布式框架学习图谱.png)
