@@ -1,5 +1,10 @@
 # travis
 
+## 例子
+
+https://github.com/qicosmos/rest_rpc/tree/master/
+
+## d
 travis 安装jetty 阻塞的 重启一个shell脚本
 
 travis使用gcp lnux平台

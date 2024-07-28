@@ -93,3 +93,8 @@ sudo systemctl restart ssh
 ```
 
 现在，你应该可以使用用户名和密码进行SSH登录了。请注意，使用用户名和密码认证方式可能会降低系统的安全性，因此建议尽可能使用公钥认证方式。
+
+开机启动
+sudo systemctl enable ssh
+Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable ssh

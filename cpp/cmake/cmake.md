@@ -1,5 +1,42 @@
 # CMake
 
+
+cmake，c c++源文件批量添加
+
+```
+# 添加源文件
+file(GLOB COMM_SRC rocket/common/*.cc)
+file(GLOB NET_SRC rocket/net/*.cc)
+file(GLOB TCP_SRC rocket/net/tcp/*.cc)
+file(GLOB CODER_SRC rocket/net/coder/*.cc)
+file(GLOB RPC_SRC rocket/net/rpc/*.cc)
+
+# 生成静态库
+add_library(rocket STATIC ${COMM_SRC} ${NET_SRC} ${TCP_SRC} ${CODER_SRC} ${RPC_SRC})
+```
+
+
+dpkg -L libtinyxml-dev
+/.
+/usr
+/usr/include
+/usr/include/tinyxml.h
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/libtinyxml.a
+/usr/lib/x86_64-linux-gnu/pkgconfig
+/usr/lib/x86_64-linux-gnu/pkgconfig/tinyxml.pc
+/usr/share
+/usr/share/doc
+/usr/share/doc/libtinyxml-dev
+/usr/share/doc/libtinyxml-dev/copyright
+/usr/lib/x86_64-linux-gnu/libtinyxml.so
+/usr/share/doc/libtinyxml-dev/changelog.Debian.gz
+
+这个库是不是不能直接在CMakefiles.txt中find_package()
+
+
+## 可执行文件
 https://cmake.org/files/
 
 target_link_libraries(rest_pocodb Poco::Poco)

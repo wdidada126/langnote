@@ -1,5 +1,14 @@
 # glibc
 
+## 版本
+ldd --version
+
+ldd (Ubuntu GLIBC 2.35-0ubuntu3.8) 2.35
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+
 https://github.com/edidada/testlinuxlibcrypt/actions
 
 GNU C Library (glibc) 是 GNU 操作系统和许多类 Unix 系统（包括 Linux）上的标准 C 库实现。除了 `libm.so` 提供的数学库，glibc 还包含许多其他关键库，涵盖了各种功能。以下是一些常用的 glibc 提供的库：
@@ -239,8 +248,7 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 60 --slave 
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
 sudo update-alternatives --config gcc
 数字优先级(如60，80)高的会被系统选择为默认的编译器,也可以执行第三条命令就是来手动配置系统的gcc,此处按照提示,选择4.8版本的即可。
-————————————————
-版权声明：本文为CSDN博主「爬虫仔蛙」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+
 原文链接：https://blog.csdn.net/p656456564545/article/details/89184141
 
 
