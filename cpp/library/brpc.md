@@ -1,5 +1,51 @@
 # brpc
 
+1.10.0 版本变更
+
+新功能
+● 支持在创建 socket 时进行连接 (#2574) by @chenBright
+● 支持自定义 ServerNode 元数据 (#2603) by @chenBright
+● 支持转发 baidu_std 协议请求 (#2629) by @chenBright
+● 支持遍历操作 thead local 对象 (#2632) by @chenBright
+● 熔断器添加 half open 状态，支持配置恢复条件 (#2634) @jiangyt-git
+
+
+Bug修复
+● 修复 IOBuf 采样率设置不生效问题 (#2601) by @chenBright
+● 修复 run_tests.sh 查找 core 文件错误的问题 (#2614) by @chenBright
+● 修复 FlatMap 赋值问题 (#2622) by @chenBright
+● 修复程序路径获取方式 (#2644) by @ehds
+● 修复多 cookie/set-cookie header 处理问题 (#2577) by @chenBright
+● 修复 thrift、nshead 协议最大并发问题 (#2613) by @chenBright
+● 修复 label 为空时误加逗号问题 (#2659) @renzhong
+● 修复 h2 rpc_dump内存泄漏问题 (#2661) by @GreateCode
+● 修复 socket 可能重复关闭的问题 (#2663) by @BusyJay
+● 修复 Socket 本地 EndPoint 未初始化问题(#2672) by @chenBright
+● 修复同一个 Server 无法同时处理 stream_rpc 以及 baidu_std 数据的问题 (#2678) by @howarle
+● 修复 multi FlatMap 对重复 key 的处理以及扩容问题(#2669) by @chenBright
+
+
+功能增强
+● 检查 bthread tag 范围并更新相关文档 (#2607) by @yanglimingcn
+● 支持根据 bthread tag 设置并发 (#2628) by @yanglimingcn
+● 支持 SCOPE_EXIT 宏 (#2643) by @chenBright
+● 优化异步日志性能 (#2602) by @chenBright
+● 限制 BRPC_VALIDATE_GFLAG 只能在全局作用域或者 namespace 中使用 (#2625) by @chenBright
+● 修正整型比较的编译警告 (#2626) by @imdouyu
+● 为 MongoServiceAdaptor and SpanFilter 添加虚析构函数以修复编辑器警告 (#2651) by @yozhao
+● 抽象 IO 接口，调整 EventDispatcher 支持多种 IO (#2560) by @chenBright
+● 开放内部 FastPthreadMutex，并支持 contention profiler (#2589) by @chenBright
+● 拒绝不包含 host 的非法HTTP请求 (#2600) by @chenBright
+● 支持在写入 rpcz 数据前删除旧数据 (#2610) by @yanglimingcn
+● 支持自定义延迟显示单位 (#2655) by @superhail
+● 添加 Socket 健康检查日志 (#2673) by @chenBright
+● 优化 bthread_local 本地存储表访问性能 (#2645) by @MJY-HUST
+
+
+其他
+● 修复 CI (#2611) by @chenBright
+● 更新 Protobuf 依赖版本说明 (#2618) by @chenBright
+
 glog
 
 BRPC（baidu-rpc）的C++版本代码主要使用的是其内部集成的日志系统，而不是外部独立的日志库，如spdlog、glog、Boost.Log、log4cxx或Poco.Log等。BRPC作为百度内部广泛使用的工业级RPC框架，其日志系统被设计为与框架紧密结合，以满足高性能、易用性和灵活性的需求。

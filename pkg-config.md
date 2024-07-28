@@ -1,5 +1,9 @@
 # pkg-config
 
+cmake CMakeLists.txt
+maven pom.xml
+pkg-config .pc
+
 sudo apt-get install pkg-config
 
 什么是pkg-config
