@@ -1,5 +1,36 @@
 # rust
 
+std
+
+Primitive Types
+Modules
+Macros
+Keywords
+
+基本类型 模块 宏 关键字
+
+https://doc.rust-lang.org/std/index.html
+
+https://zhuanlan.zhihu.com/p/149548652
+
+命令行执行：
+rustup doc
+
+file:///Users/ibqo/.rustup/toolchains/stable-x86_64-apple-darwin/share/doc/rust/html/index.html
+
+/Users/ibqo/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/library
+
+ls
+alloc				rtstartup
+backtrace			rustc-std-workspace-alloc
+core				rustc-std-workspace-core
+panic_abort			rustc-std-workspace-std
+panic_unwind			std
+portable-simd			stdarch
+proc_macro			test
+profiler_builtins		unwind
+
+
 https://github.com/shadowsocks/shadowsocks-rust
 
 https://github.com/helix-editor/helix

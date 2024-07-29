@@ -1,5 +1,9 @@
 # bazel
 
+bazel从github下载rule
+https://github.com/bazelbuild/rules_cc
+https://gitee.com/hui2hui/rules_protobuf
+
 Bazel 6 新增了 bzlmod ，支持了包的多版本管理，可以解决菱形依赖的问题。已经完全成熟可用了。
 https://bazel.build/build/bzlmod
 11月18日， 特斯拉Autopilot工程师Romi Phadte和Gabriel Gheorghian在2022BazelCon会议上，作了题为“运行数百万次仿真和构建，大规模开发和评估autopilot”的演讲。
