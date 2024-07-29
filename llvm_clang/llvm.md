@@ -66,3 +66,25 @@ Source Code @ x -> [ x Frontend ] -> [ LLVM Optimizer @ IR ] -> [ LLVM m Backend
 不同的前端后端使用统一的中间代码LLVM Intermediate Representation (LLVM IR)
 优化阶段是一个通用的阶段，它针对的是统一的LLVM IR，和具体语言无关；
 扩展性好：如果需要支持一种新的编程语言，那么只需要实现一个新的前端；如果需要支持一种新的硬件设备，那么只需要实现一个新的后端
+
+
+## 源代码
+
+llvm-project
+https://github.com/llvm/llvm-project
+
+
+https://libcxx.llvm.org/BuildingLibcxx.html
+
+git clone https://gitcode.com/pollyduan/llvm-project.git
+
+https://gitcode.com/pollyduan/llvm-project/overview
+
+### 源代码编译
+
+
+git clone -b llvmorg-17.0.6 https://gitcode.com/pollyduan/llvm-project.git
+cd llvm-project
+mkdir build && cd build
+cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm
+make -j5

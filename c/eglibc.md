@@ -1,0 +1,7 @@
+# eglibc
+
+eglibc
+就是前面说到的变种glibc
+e是Embedded的意思
+eglibc的主要特性是为了更好的支持嵌入式架构，可以支持不同的shell(包括嵌入式)，但它是二进制兼容glibc的，就是说如果你的代码之前依赖eglibc库，那么换成glibc后也不需要重新编译。
+ubuntu系统用的就是eglibc

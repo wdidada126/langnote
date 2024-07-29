@@ -1,7 +1,5 @@
 # devtoolset
 
-
-
 Gcc 10 centos平台 2021年1月开放
 
 ```
@@ -152,7 +150,11 @@ devtoolset-7-valgrind-devel.x86_64 : Development files for valgrind
   Name and summary matches only, use "search all" for everything.
 ```
 
-`yum install -y devtoolset-7-libstdc++-devel`
+```shell
+sudo yum install -y centos-release-scl
+sudo yum install -y devtoolset-7-libstdc++-devel
+```
+
 
 ```shell
 rpm -ql devtoolset-7-
@@ -188,7 +190,7 @@ devtoolset 是由 Linux @ CERN 维护的，scl 是方便 RedHat Software Collect
 devtoolset 就是按照 Software Collections 的规范打出来的一套 rpm 包，目前的最新版本是https://www.softwarecollections.org/en/repos/rhscl/devtoolset-3/epel-6-x86_64/
 
 
-yum install scl-utils
+sudo yum install scl-utils -y
 
 scl rvm ruby
 
