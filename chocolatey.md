@@ -1,5 +1,11 @@
 # chocolatey
+choco install bazel
+ShimGen has successfully created a shim for bazel.exe
+ The install of bazel was successful.
+  Software installed to 'C:\ProgramData\chocolatey\lib\bazel'
 
+必须在管理员权限下安装
+choco install ninja
 
 https://chocolatey.org/
 
