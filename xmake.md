@@ -1,5 +1,26 @@
 # xmake
 
+
+## config
+
+ xmake g --pkg_searchdirs=C:\Users\edida\Downloads
+configure
+{
+    network = public
+    pkg_searchdirs = C:\Users\edida\Downloads
+    project = .
+    theme = default
+    proxy_pac = pac.lua
+    yes = true
+}
+
+
+## library
+xmake下载三方库源代码保存位置
+C:\Users\edida\AppData\Local\.xmake\cache\packages\2407\t\tbox\v1.7.5\v1.7.5.tar.gz
+
+## tbox
+
 /Users/ibqo/.xmake/packages/t/tbox/v1.7.1/296ac87121a0440f8173e5059fc57b1e/lib/cmake
 
 ibqodeMacBook-Pro:tbox ibqo$ ls
@@ -11,6 +32,21 @@ ibqodeMacBook-Pro:tbox ibqo$ pwd
 ibqodeMacBook-Pro:tbox ibqo$ 
 
 
+```cmake
+target_include_directories(ctestttbox SYSTEM PRIVATE
+    C:/Users/edida/AppData/Local/.xmake/packages/t/tbox/v1.7.5/a41dba6299f84517b895d362c0e33963/include
+)
+
+target_link_directories(ctestttbox PRIVATE
+    C:/Users/edida/AppData/Local/.xmake/packages/t/tbox/v1.7.5/a41dba6299f84517b895d362c0e33963/lib
+)
+```
+
+## xmake.lua转换成CMakeLists.txt
+
+xmake project -k cmake -y
+
+## xrepo
 
 C:\Users\edida\AppData\Local\.xmake\repositories\xmake-repo
 
