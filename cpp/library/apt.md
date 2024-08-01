@@ -38,3 +38,8 @@ apt-cache pkgnames | grep -i crypto++
 
 apt-cache pkgnames | grep -i mysqlclient
 apt-cache pkgnames | grep -i rapidjson
+
+## apt安装时候，如何查看安装的依赖库
+
+apt-cache showpkg libboost-all-dev
+

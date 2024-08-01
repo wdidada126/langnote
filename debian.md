@@ -16,3 +16,6 @@ Dependency Updated:
   libstdc++.x86_64 0:4.8.5-39.el7            libstdc++-devel.x86_64 0:4.8.5-39.el7  
 ```
 
+## lib app
+
+https://packages.debian.org/buster/libetpan-dev

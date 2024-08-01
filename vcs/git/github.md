@@ -1,4 +1,44 @@
 # github
+在 GitHub 上设置默认分支（default branch）是一个简单的过程。以下是详细的步骤：
+
+1. 登录到你的 GitHub 账户。
+
+2. 导航到你想要更改默认分支的仓库。
+
+3. 在仓库主页，点击顶部的 "Settings" 标签。
+
+4. 在左侧菜单中，点击 "Branches"。
+
+5. 在 "Default branch" 部分，你会看到一个下拉菜单，显示当前的默认分支。
+
+6. 点击这个下拉菜单，选择你想要设置为新的默认分支的分支名称。
+
+7. 点击 "Update" 按钮。
+
+8. GitHub 会要求你确认这个更改。仔细阅读警告信息，因为更改默认分支可能会影响依赖于旧默认分支的工作流程。
+
+9. 如果你确定要进行更改，点击 "I understand, update the default branch."
+
+完成这些步骤后，你选择的分支就会成为新的默认分支。
+
+注意事项：
+
+- 更改默认分支会影响新的 pull requests 和代码比较。
+- 它不会改变你的本地仓库设置。你可能需要在本地进行一些额外的操作，比如更新远程跟踪分支。
+- 如果你的仓库被其他项目 fork，这个更改可能会影响那些 fork。
+
+如果你在本地也想更新默认分支，可以使用以下 Git 命令：
+
+```
+git branch -m old_branch new_branch
+git fetch origin
+git branch -u origin/new_branch new_branch
+git remote set-head origin -a
+```
+
+这里的 `old_branch` 是原来的默认分支名，`new_branch` 是新的默认分支名。
+
+如果你需要更多帮助或有其他问题，请随时问我。
 
 
 ucloud服务器，同时配置两个github账户ssh免密码通信复制数据，只能注释掉一个，使用另一个
