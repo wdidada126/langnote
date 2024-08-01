@@ -1,7 +1,9 @@
 # xmake
 
-
 ## config
+
+### 设置debug，不是release
+xmake config -m debug
 
  xmake g --pkg_searchdirs=C:\Users\edida\Downloads
 configure

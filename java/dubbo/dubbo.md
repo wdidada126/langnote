@@ -6,7 +6,7 @@ https://github.com/youzan/gatling-dubbo
 dubbo:从消费者向提供者传参
 `RpcContext.getContext().setAttachment(RpcConstact.CONTEXT_TOKEN_KEY, getTokenResponseDto.getToken());`
 
-Community Over Code 2023 暨 ApacheCon Asia 2023 大会在 8月18 - 8月20日在北京举办，让我们一起回顾一下可观测、Native、协议、Kubernetes部署、企业微服务实践等 8 个议题的精彩分享！
+Community Over Code 2023暨ApacheCon Asia 2023大会在8月18 - 8月20日在北京举办，让我们一起回顾一下可观测、Native、协议、Kubernetes部署、企业微服务实践等8个议题的精彩分享！
 
 微服务框架现在真是百花齐放，各个平台，各个公司，各个语言，都有一堆的框架和工具，涌现出来，除了dubbo，spring cloud，还有华为的service comb，蚂蚁金服的 SOFAStack ，oracle的Helidon，redhat的quarkus，scala的Lagom，grails的Micronaut，python的nameko，go的micro，多语言的Vert.X，腾讯的tars，百度的brpc，微博的motan。
 

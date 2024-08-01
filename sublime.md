@@ -16,3 +16,13 @@
 https://blog.csdn.net/lamp_yang_3533/article/details/96765402
 
 打开文件夹
+
+## 正则表达式查找替换
+要将 Sublime Text 中的空格替换为换行符，你可以使用 Sublime Text 的查找和替换功能，并使用特殊字符表示空格和换行符。下面是在 Sublime Text 中如何完成这个操作：
+1. 打开 Sublime Text 编辑器。
+2. 使用快捷键 `Ctrl + H`（在 Windows 和 Linux 系统上）或 `Cmd + Option + F`（在 macOS 上）打开查找和替换功能。
+3. 在弹出的查找和替换面板中，点击输入框旁边的 `.*` 图标，启用正则表达式模式。
+4. 在查找框中输入 `\s+`，这表示匹配一个或多个空格。
+5. 在替换框中输入 `\n`，这表示换行符。
+6. 确认你想要替换的是所有匹配，然后点击替换按钮或按下 `Alt + Enter`（在 Windows 和 Linux 系统上）或 `Ctrl + Command + Enter`（在 macOS 上）来执行替换操作。
+这样，Sublime Text 将会将所有的空格替换为换行符。请确保在操作之前备份你的文件，以防出现意外情况。

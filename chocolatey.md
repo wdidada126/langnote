@@ -1,4 +1,11 @@
 # chocolatey
+
+Extracting 64-bit C:\ProgramData\chocolatey\lib\curl\tools\curl-8.9.0_1-win64-mingw.zip to C:\ProgramData\chocolatey\lib\curl\tools...
+C:\ProgramData\chocolatey\lib\curl\tools
+ ShimGen has successfully created a shim for curl.exe
+ The install of curl was successful.
+  Software installed to 'C:\ProgramData\chocolatey\lib\curl\tools'
+
 choco install bazel
 ShimGen has successfully created a shim for bazel.exe
  The install of bazel was successful.

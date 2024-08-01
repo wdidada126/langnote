@@ -1,5 +1,8 @@
 # centos
 
+## repl关系
+红帽操作系统上的库，是有版权的，centos把库源代码下载下来，重新编译，打包，去掉版权信息，因此是免费的
+
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 sudo adduser wdidada

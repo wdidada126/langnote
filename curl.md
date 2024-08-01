@@ -1,5 +1,10 @@
 # curl log
 
+libcurl是一个免费开源的网络传输库，支持ftp、ftps、tftp，http、https、telnet、ldap、pop3、smtp等多种协议
+https://www.jb51.net/article/229202.htm
+
+curl-8.9.0_1-win64-mingw.zip
+
 在 Ubuntu 22.04 上安装 curl 的头文件和库文件的步骤如下:
 1. 更新系统软件包:
 ```

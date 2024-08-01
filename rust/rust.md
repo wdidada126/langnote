@@ -1,5 +1,8 @@
 # rust
 
+rust写的coreutils
+https://github.com/uutils/coreutils
+
 std
 
 Primitive Types
