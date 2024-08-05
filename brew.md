@@ -1,4 +1,13 @@
 #  brew
+
+brew install boost
+Warning: boost 1.80.0 is already installed, it's just not linked.
+To link this version, run:
+  brew link boost
+ibqodeMacBook-Pro:cpp-5th_ZhengLi ibqo$ brew link boost
+Linking /usr/local/Cellar/boost/1.80.0... 186 symlinks created.
+
+
 ## 官网
 
 https://brew.sh/
