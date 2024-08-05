@@ -1,4 +1,5 @@
 # meson
+eclipse mac版本支持meson
 
 meson.build
 

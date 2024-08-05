@@ -1,5 +1,9 @@
 # mingw
 
+mingw32-make.exe重命名为make.exe
+
+eclipse win支持mingw
+
 https://www.mingw-w64.org/
 
 https://github.com/mingw-w64
