@@ -1,4 +1,4 @@
-android_ndk
+# android_ndk
 
 在 Android 系统中,`BitmapFactory.decodeResource()` 方法的底层实现是通过 C/C++ 库来完成的。具体来说,它主要使用了以下 AOSP (Android Open Source Project) 中的 C/C++ 库:
 1. libandroid_runtime: 这是 Android 运行时库,提供了 Java 和 C/C++ 之间的桥接功能。当 Java 层调用 `BitmapFactory.decodeResource()` 时,最终会调用到这个库中的 C/C++ 代码。
