@@ -1,4 +1,6 @@
-# C程序设计语言
+# C程序设计语言2
+https://github.com/edidada/The-C-Programming-Language-2nd-Edition-
+https://github.com/sandisks/The-C-Programming-Language-2nd-Edition
 
 c重视函数
 
