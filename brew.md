@@ -1,4 +1,6 @@
 #  brew
+conan install libmysql报错，需要
+brew unlink boost
 
 brew install boost
 Warning: boost 1.80.0 is already installed, it's just not linked.

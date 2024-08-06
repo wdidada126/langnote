@@ -1,5 +1,8 @@
 # conan
 
+conan install libmysql报错，需要
+brew unlink boost
+
 -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="D:\dev_tools\Conan\conan\conan.exe" -DCMAKE_TOOLCHAIN_FILE="D:\git\github\rest_poco\cmake-build-debug-visual-studio-64\conan\build\Debug\generators\conan_toolchain.cmake"
 
 -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="/usr/local/bin/conan" -DCMAKE_TOOLCHAIN_FILE="~/Develop/git/github/rest_poco/cmake-build-debug/conan/build/Debug/generators/conan_toolchain.cmake"
