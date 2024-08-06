@@ -1,5 +1,15 @@
 # Clion
 
+### Clion win配置 rsync
+
+choco安装cwrsync_6.2.0_x64_free.zip
+
+D:\dev_tools\cwrsync_6.2.0_x64_free\bin\rsync.exe
+
+-zar
+
+D:\dev_tools\cwrsync_6.2.0_x64_free\bin\ssh.exe
+
 ### 插件
 
 2021版本支持make
