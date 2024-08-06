@@ -1,5 +1,25 @@
 # git
 
+git submodule update --init --recursive
+下载.gitmodules文件中指定的依赖到指定文件夹
+
+git submodule被cmake中FetchContent_Declare替代
+
+FetchContent_Declare(
+  EABase
+  GIT_REPOSITORY https://github.com/electronicarts/EABase.git
+  GIT_TAG        521cb053d9320636f53226ffc616216cf532f0ef
+  GIT_SUBMODULES "" # This should be temporary until we update the cyclic submodule dependencies in EABase.
+)
+
+FetchContent_MakeAvailable(EABase)
+
+target_link_libraries(EASTL EABase)
+
+例子：
+https://github.com/electronicarts/EASTL
+
+
 ## git 获取tag
 当你使用 `git clone` 克隆 vcpkg 仓库并尝试通过 `git pull` 更新时，发现没有下载标签（tags），这是因为默认情况下，`git pull` 只会拉取最新的提交，而不会自动拉取标签。
 

@@ -1,5 +1,19 @@
 # CMake
 
+The CMake policy CMP0091 must be NEW, but is ''
+设置最小 CMake 版本要求为 3.15 或更高（因为 CMP0091 策略是在 CMake 3.15 中引入的）：
+cmake_minimum_required(VERSION 3.15)
+
+cmake版本的要求
+
+EABaseConfig.cmake
+```cmake
+# Requires CMake > 3.15
+if(${CMAKE_VERSION} VERSION_LESS "3.15")
+    message(FATAL_ERROR "The 'CMakeDeps' generator only works with CMake >= 3.15")
+endif()
+```
+
 要在CMake中批量添加`src`文件夹下所有`.cpp`, `.cxx`, `.cc`后缀的文件，您可以使用`file(GLOB ...)`命令来实现。这样可以自动查找并将匹配的文件添加到项目中。
 
 下面是一个示例的`CMakeLists.txt`文件，演示了如何批量添加这些文件：
