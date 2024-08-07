@@ -1,5 +1,10 @@
 # CMake
 
+cmake源代码是c c++写的
+conan是python
+xmake也是c写的吧
+xmake构建脚本lua
+
 The CMake policy CMP0091 must be NEW, but is ''
 设置最小 CMake 版本要求为 3.15 或更高（因为 CMP0091 策略是在 CMake 3.15 中引入的）：
 cmake_minimum_required(VERSION 3.15)
