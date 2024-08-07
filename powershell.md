@@ -1,5 +1,12 @@
 # powershell
 
+oh-my-posh
+
+powershell 查看文件及其子文件夹文件列表
+dir -s "C:\Program Files\Microsoft Visual Studio"
+
+https://github.com/PowerShell/PowerShell/releases/download/v7.4.4/PowerShell-7.4.4-win-x64.msi
+
 powershell 汉字乱码
 
 https://blog.csdn.net/weixin_43426860/article/details/83348284

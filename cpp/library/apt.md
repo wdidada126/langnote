@@ -1,6 +1,5 @@
 # apt
 
-
 ```shell
 apt-cache showpkg libcurl4-openssl-dev
 Package: libcurl4-openssl-dev

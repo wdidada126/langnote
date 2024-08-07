@@ -4,7 +4,6 @@ vcpkg的baseline设计确实是一坨，这么多年都不改。之前还有个�
 
 D:\git\github\vcpkg\installed\x64-windows\include\
 
-
 ## doc
 https://vcpkg.io/en/
 
@@ -157,9 +156,15 @@ vcpkg编译下载的库报错，解决思路：
 vcpkg search apache
 rbmq的cpp库
 
-`cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..`
+```
+cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+```
 
 -DCMAKE_TOOLCHAIN_FILE=D:/git/github/vcpkg/scripts/buildsystems/vcpkg.cmake
+-DCMAKE_TOOLCHAIN_FILE="D:/git/github/vcpkg/scripts/buildsystems/vcpkg.cmake"
+
+-DCMAKE_TOOLCHAIN_FILE="D:\dev_tools\vcpkg\scripts\buildsystems\vcpkg.cmake"
+
 
 CMake给交叉编译预留了一个很好的变量即CMAKE_TOOLCHAIN_FILE,它定义了一个文件的路径，这个文件即toolChain,里面set了一系列你需要改变的变量和属性，包括C_COMPILER,CXX_COMPILER。CMake为了不让用户每次交叉编译都要重新输入这些命令，因此它带来toolChain机制，简而言之就是一个cmake脚本，内嵌了你需要改变以及需要set的所有交叉环境的设置。
 
