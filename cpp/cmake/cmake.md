@@ -1,5 +1,10 @@
 # CMake
 
+## vs
+
+https://learn.microsoft.com/zh-cn/cpp/build/cmake-projects-in-visual-studio?view=msvc-170
+
+## dd
 cmake源代码是c c++写的
 conan是python
 xmake也是c写的吧

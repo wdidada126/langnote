@@ -15,6 +15,8 @@ ShimGen has successfully created a shim for bazel.exe
 choco install ninja
 
 https://chocolatey.org/
+## upgrade
+choco upgrade chocolatey
 
 ## install
 
@@ -104,3 +106,56 @@ Added C:\ProgramData\chocolatey\bin\unflatten.exe shim pointed to 'c:\program fi
 
 ## 编译
 
+ C:\ProgramData\chocolatey
+
+ChocolateyInstall
+ChocolateyToolsLocation
+ChocolateyLastPathUpdate
+PATH (will need updated to remove)
+
+
+ * apikey - retrieves, saves or deletes an API key for a particular source
+ * cache - Manage the local HTTP caches used to store queries (v2.1.0+)
+ * config - Retrieve and configure config file settings
+ * export - exports list of currently installed packages
+ * feature - view and configure choco features
+ * features - view and configure choco features (alias for feature)
+ * find - searches remote packages (alias for search)
+ * help - displays top level help information for choco
+ * info - retrieves package information. Shorthand for choco search pkgname --exact --verbose
+ * install - installs packages using configured sources
+ * list - lists local packages
+ * new - creates template files for creating a new Chocolatey package
+ * outdated - retrieves information about packages that are outdated. Similar to upgrade all --noop
+ * pack - packages nuspec, scripts, and other Chocolatey package resources into a nupkg file
+ * pin - suppress upgrades for a package
+ * push - pushes a compiled nupkg to a source
+ * search - searches remote packages
+ * setapikey - retrieves, saves or deletes an API key for a particular source (alias for apikey)
+ * source - view and configure default sources
+ * sources - view and configure default sources (alias for source)
+ * template - get information about installed templates
+ * templates - get information about installed templates (alias for template)
+ * uninstall - uninstalls a package
+ * unpackself - re-installs Chocolatey base files
+ * upgrade - upgrades packages from various sources
+ 
+
+choco search -h
+Chocolatey v2.2.2
+Search Command
+
+Chocolatey will perform a search for a package local or remote.
+
+Usage
+
+    choco find <filter> [<options/switches>]
+    choco search <filter> [<options/switches>]
+
+Examples
+
+    choco search git
+    choco search git --source="'https://somewhere/out/there'"
+    choco search bob -s "'https://somewhere/protected'" -u user -p pass
+    choco search --page=0 --page-size=25
+    choco search 7zip --all-versions --exact

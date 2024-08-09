@@ -26,3 +26,6 @@ ripgrep
 
 
 
+## mac系统
+gsed
+brew install gunsed啥的

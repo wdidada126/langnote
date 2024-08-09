@@ -14,6 +14,12 @@ Linking /usr/local/Cellar/boost/1.80.0... 186 symlinks created.
 
 https://brew.sh/
 
+## install
+
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 ## brew设置国内镜像
 
 在Mac上使用brew（Homebrew）时，由于网络问题，可能会遇到下载速度慢或下载失败的情况。为了改善这种情况，可以将brew的源切换为国内镜像源。以下是将brew设置为国内镜像的步骤，以阿里云镜像为例：
