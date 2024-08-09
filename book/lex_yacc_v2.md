@@ -58,7 +58,9 @@ repoquery -ql flex-devel
 
 ubuntu使用flex和bison来代替lex和yacc
 
-`sudo apt-get install flex biso -y`
+```
+sudo apt-get install flex bison -y
+```
 
 运行
 

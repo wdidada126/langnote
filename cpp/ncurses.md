@@ -1,5 +1,7 @@
 # ncurses
 
+ncurses
+
 ```shell
 /usr/bin/ncurses5-config
 /usr/bin/ncursesw5-config

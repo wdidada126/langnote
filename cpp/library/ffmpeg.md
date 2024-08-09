@@ -15,3 +15,5 @@ c/ffmpeg
 
 make组织的
 
+https://github.com/edidada/FFmpeg4Android
+https://github.com/edidada/testffmpeg

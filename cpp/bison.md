@@ -51,3 +51,147 @@ https://blog.csdn.net/Chinamming/article/details/84507258
 终结符使用%token，非终结符使用%type来定义
 Bison中默认将所有的语义值都定义为int类型，可以通过定义宏YYSTYPE来改变值的类型。如果有多个值类型，则需要通过在Bison声明中使用%union列举出所有的类型，然后为每个符号定义相对的类型，终结符使用%token，非终结符使用%type来定义。
 https://blog.csdn.net/xzz_hust/article/details/45009147
+
+dpkg -L bison
+/.
+/usr
+/usr/bin
+/usr/bin/bison
+/usr/bin/bison.yacc
+/usr/share
+/usr/share/aclocal
+/usr/share/aclocal/bison-i18n.m4
+/usr/share/bison
+/usr/share/bison/README.md
+/usr/share/bison/bison-default.css
+/usr/share/bison/m4sugar
+/usr/share/bison/m4sugar/foreach.m4
+/usr/share/bison/m4sugar/m4sugar.m4
+/usr/share/bison/skeletons
+/usr/share/bison/skeletons/README-D.txt
+/usr/share/bison/skeletons/bison.m4
+/usr/share/bison/skeletons/c++-skel.m4
+/usr/share/bison/skeletons/c++.m4
+/usr/share/bison/skeletons/c-like.m4
+/usr/share/bison/skeletons/c-skel.m4
+/usr/share/bison/skeletons/c.m4
+/usr/share/bison/skeletons/d-skel.m4
+/usr/share/bison/skeletons/d.m4
+/usr/share/bison/skeletons/glr.c
+/usr/share/bison/skeletons/glr.cc
+/usr/share/bison/skeletons/java-skel.m4
+/usr/share/bison/skeletons/java.m4
+/usr/share/bison/skeletons/lalr1.cc
+/usr/share/bison/skeletons/lalr1.d
+/usr/share/bison/skeletons/lalr1.java
+/usr/share/bison/skeletons/location.cc
+/usr/share/bison/skeletons/stack.hh
+/usr/share/bison/skeletons/variant.hh
+/usr/share/bison/skeletons/yacc.c
+/usr/share/bison/xslt
+/usr/share/bison/xslt/bison.xsl
+/usr/share/bison/xslt/xml2dot.xsl
+/usr/share/bison/xslt/xml2text.xsl
+/usr/share/bison/xslt/xml2xhtml.xsl
+/usr/share/doc
+/usr/share/doc/bison
+/usr/share/doc/bison/AUTHORS
+/usr/share/doc/bison/ChangeLog-1998.gz
+/usr/share/doc/bison/ChangeLog-2012.gz
+/usr/share/doc/bison/NEWS.gz
+/usr/share/doc/bison/README
+/usr/share/doc/bison/THANKS.gz
+/usr/share/doc/bison/TODO.gz
+/usr/share/doc/bison/changelog.Debian.gz
+/usr/share/doc/bison/copyright
+/usr/share/doc/bison/examples
+/usr/share/doc/bison/examples/README.md
+/usr/share/doc/bison/examples/c
+/usr/share/doc/bison/examples/c/README.md
+/usr/share/doc/bison/examples/c/calc
+/usr/share/doc/bison/examples/c/calc/Makefile
+/usr/share/doc/bison/examples/c/calc/README.md
+/usr/share/doc/bison/examples/c/calc/calc.y
+/usr/share/doc/bison/examples/c/lexcalc
+/usr/share/doc/bison/examples/c/lexcalc/Makefile
+/usr/share/doc/bison/examples/c/lexcalc/README.md
+/usr/share/doc/bison/examples/c/lexcalc/parse.y
+/usr/share/doc/bison/examples/c/lexcalc/scan.l
+/usr/share/doc/bison/examples/c/mfcalc
+/usr/share/doc/bison/examples/c/mfcalc/Makefile
+/usr/share/doc/bison/examples/c/mfcalc/calc.h
+/usr/share/doc/bison/examples/c/mfcalc/mfcalc.y
+/usr/share/doc/bison/examples/c/reccalc
+/usr/share/doc/bison/examples/c/reccalc/Makefile
+/usr/share/doc/bison/examples/c/reccalc/README.md
+/usr/share/doc/bison/examples/c/reccalc/parse.y
+/usr/share/doc/bison/examples/c/reccalc/scan.l
+/usr/share/doc/bison/examples/c/rpcalc
+/usr/share/doc/bison/examples/c/rpcalc/Makefile
+/usr/share/doc/bison/examples/c/rpcalc/rpcalc.y
+/usr/share/doc/bison/examples/c++
+/usr/share/doc/bison/examples/c++/Makefile
+/usr/share/doc/bison/examples/c++/README.md
+/usr/share/doc/bison/examples/c++/calc++
+/usr/share/doc/bison/examples/c++/calc++/Makefile
+/usr/share/doc/bison/examples/c++/calc++/README.md
+/usr/share/doc/bison/examples/c++/calc++/calc++.cc
+/usr/share/doc/bison/examples/c++/calc++/driver.cc
+/usr/share/doc/bison/examples/c++/calc++/driver.hh
+/usr/share/doc/bison/examples/c++/calc++/parser.yy
+/usr/share/doc/bison/examples/c++/calc++/scanner.ll
+/usr/share/doc/bison/examples/c++/simple.yy
+/usr/share/doc/bison/examples/c++/variant-11.yy
+/usr/share/doc/bison/examples/c++/variant.yy
+/usr/share/doc/bison/examples/d
+/usr/share/doc/bison/examples/d/Makefile
+/usr/share/doc/bison/examples/d/README.md
+/usr/share/doc/bison/examples/d/calc.y
+/usr/share/doc/bison/examples/java
+/usr/share/doc/bison/examples/java/Calc.y
+/usr/share/doc/bison/examples/java/Makefile
+/usr/share/doc/bison/examples/java/README.md
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/bison
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/bison.1.gz
+/usr/share/man/man1/bison.yacc.1.gz
+
+
+After this operation, 572 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 libbison-dev amd64 2:3.5.1+dfsg-1 [355 kB]
+Fetched 355 kB in 2s (198 kB/s)
+Selecting previously unselected package libbison-dev:amd64.
+(Reading database ... 95467 files and directories currently installed.)
+Preparing to unpack .../libbison-dev_2%3a3.5.1+dfsg-1_amd64.deb ...
+
+
+wdidada@DESKTOP-DAF8ST0:~$ dpkg -L libbison-dev
+/.
+/usr
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/liby.a
+/usr/share
+/usr/share/doc
+/usr/share/doc/libbison-dev
+/usr/share/doc/libbison-dev/AUTHORS
+/usr/share/doc/libbison-dev/ChangeLog-1998.gz
+/usr/share/doc/libbison-dev/ChangeLog-2012.gz
+/usr/share/doc/libbison-dev/NEWS.gz
+/usr/share/doc/libbison-dev/README
+/usr/share/doc/libbison-dev/THANKS.gz
+/usr/share/doc/libbison-dev/TODO.gz
+/usr/share/doc/libbison-dev/changelog.Debian.gz
+/usr/share/doc/libbison-dev/copyright
+
+
+bison --version
+bison (GNU Bison) 3.5.1
+Written by Robert Corbett and Richard Stallman.
+
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
