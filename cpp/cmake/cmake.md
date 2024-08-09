@@ -1,5 +1,24 @@
 # CMake
 
+## 内置变量
+
+判断os，cmake也设计了内置变量
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    # 针对 Darwin 的配置
+    message(STATUS "Configuring for Darwin")
+    # 可以在这里添加针对 macOS 的特定设置
+else()
+    # 非 Darwin 系统的默认配置
+    message(STATUS "Configuring for another system")
+endif()
+
+https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html
+
+AIX IBM Unix operating system
+Darwin Apple stationary operating systems (macOS, OS X, etc.)
+Android Android operating system
+Linux All Linux-based distributions
+
 ## vs
 
 https://learn.microsoft.com/zh-cn/cpp/build/cmake-projects-in-visual-studio?view=msvc-170
