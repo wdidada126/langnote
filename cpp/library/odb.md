@@ -1,8 +1,9 @@
 # odb
 
+Mac系统
+vcpkg install libodb-mysql libodb-pgsql
 The ODB system consists of several packages. The essential packages are the ODB compiler (odb), the common runtime library (libodb), and the database-specific runtime library (libodb-<database>). For example, if you are planning to use MySQL, then the set of packages that you will need would be: odb, libodb, and libodb-mysql.
 https://www.codesynthesis.com/products/odb/download.xhtml
-
 
 yum包
 
@@ -29,13 +30,7 @@ auto_ptr
 
 odb作为一个命令行工具，先写文件odb处理，生成其他的文件。
 
-
-
 odb强制utf-8，不然乱码
-
-
-
-
 
 odb库依赖关系
 
