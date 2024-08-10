@@ -1,5 +1,6 @@
 # ninja
 
+choco install ninja -y
 支持windows mac linux
 
 ceph使用ninja
