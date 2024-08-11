@@ -1,5 +1,14 @@
 # date
 
+## 备注
+date 3.0.1 要求c++17，否则time_zone报错
+cmakelistx.txt里面有
+conan date页面我没找到相关要求
+
+maven 库要求java11，如果用java8编译，如何报错？
+
+## dd
+
 https://github.com/HowardHinnant/date
 
 git clone https://github.com/HowardHinnant/date.git
