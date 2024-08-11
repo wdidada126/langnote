@@ -1,5 +1,7 @@
 # log4cpp
 
+c++ log4cxx log4cpp是两个库，前者是apache的
+
 不支持c++ 17？
 
 cd log4cpp-source;

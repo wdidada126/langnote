@@ -1,4 +1,13 @@
 # meson
+
+https://github.com/cisco/openh264
+openh264用meson构建
+python写的
+
+https://mesonbuild.com/Getting-meson_zh.html
+
+pip3 install meson
+
 eclipse mac版本支持meson
 
 meson.build
