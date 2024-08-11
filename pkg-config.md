@@ -1,5 +1,8 @@
 # pkg-config
 
+pkg-config --cflags --libs log4cpp
+-pthread -I/usr/local/include -L/usr/local/lib -llog4cpp
+
 cmake CMakeLists.txt
 maven pom.xml
 pkg-config .pc
@@ -11,7 +14,7 @@ pkg-config是一个linux下的命令，用于获得某一个库/模块的所有�
 
 例子：
 
-  pkg-config opencv –libs –cflags
+pkg-config opencv –libs –cflags
 
 结果：
 

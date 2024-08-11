@@ -1,5 +1,58 @@
 # cpp
 
+面向对象的特性
+封装
+继承
+多态
+抽象
+
+多态
+静态多态
+动态多态
+
+add方法被重载了，它根据参数列表的不同来进行不同的操作，这就是静态多态。
+以上代码中，Base类中的func函数被声明为虚函数，Derived类中重写了这个函数。在main函数中，我们创建了一个Derived类的对象，但是用一个Base类的指针来引用它，并调用func函数，此时调用的是Derived类的版本，这就实现了动态多态。
+
+作者：MrGood
+链接：https://www.zhihu.com/question/423364880/answer/3367011077
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+在C++中，当你声明一个std::string类型的变量s而没有显式地提供初始化器时，它的初始化行为确实与std::string的构造函数有关。不过，对于std::string s;这样的声明（没有使用任何初始化器），其初始化行为并不是完全由std::string的构造函数直接决定的，而是由C++的默认初始化规则来控制的。
+
+默认初始化
+对于类类型的对象（如std::string），如果声明时没有提供初始化器，并且该对象不是通过值初始化（如std::string s = std::string();或std::string s{};）或列表初始化（C++11及以后）进行的，则对象会被默认初始化。对于类类型，默认初始化的行为通常包括：
+
+如果类有用户提供的默认构造函数（无论是显式还是隐式的），则调用该构造函数。对于std::string，它确实有一个默认构造函数（不需要任何参数的构造函数），该构造函数会创建一个空字符串。
+如果类没有用户提供的默认构造函数，但提供了其他构造函数，且没有定义默认构造函数（如通过= default），则尝试默认初始化可能会导致编译错误（除非类有某些特殊的属性，如聚合初始化，但这不适用于std::string）。然而，std::string确实提供了一个默认构造函数，所以这不是问题。
+对于聚合类型（std::string不是聚合类型），默认初始化会导致对象中的每个成员被默认初始化。但这一点对于std::string不适用，因为它不是聚合类型。
+示例
+
+```cpp
+#include <string>  
+#include <iostream>  
+  
+int main() {  
+    std::string s; // 默认初始化，调用std::string的默认构造函数，s是一个空字符串  
+    std::cout << "s is empty: " << s.empty() << std::endl; // 输出：s is empty: 1  
+    return 0;  
+}
+```
+
+在这个例子中，std::string s;声明了一个std::string类型的变量s，并通过调用std::string的默认构造函数来默认初始化它，结果是s成为了一个空字符串。
+
+总结来说，std::string s;的初始化确实与std::string的构造函数有关，特别是与它的默认构造函数有关。
+
+https://isocpp.org/
+
+【360 C/C++代码规范推荐-哔哩哔哩】 https://b23.tv/qsH5oy4
+
+https://github.com/Qihoo360/safe-rules
+https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html
+当然了，C++圈子中最广泛认可与现代的仓库是：https://github.com/isocpp/CppCoreGuidelines
+
 https://github.com/edidada/testlibjpeg
 
 # README

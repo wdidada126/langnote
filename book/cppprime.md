@@ -565,6 +565,38 @@ https://github.com/edidada/Cpp_Primer_Answers
 
 const
 
+初始化不是赋值，初始化的含义是创建变量时赋予其一个初始值，而赋值的含义是把对象的当前值擦除，而以一个新值来替代。
+
+int i = {3.14}; //正确
+3.14是double，可以转成int
+
+std::string s; 有初始化，跟string的构造函数有关？
+
+在C++中，当你声明一个std::string类型的变量s而没有显式地提供初始化器时，它的初始化行为确实与std::string的构造函数有关。不过，对于std::string s;这样的声明（没有使用任何初始化器），其初始化行为并不是完全由std::string的构造函数直接决定的，而是由C++的默认初始化规则来控制的。
+
+默认初始化
+对于类类型的对象（如std::string），如果声明时没有提供初始化器，并且该对象不是通过值初始化（如std::string s = std::string();或std::string s{};）或列表初始化（C++11及以后）进行的，则对象会被默认初始化。对于类类型，默认初始化的行为通常包括：
+
+如果类有用户提供的默认构造函数（无论是显式还是隐式的），则调用该构造函数。对于std::string，它确实有一个默认构造函数（不需要任何参数的构造函数），该构造函数会创建一个空字符串。
+如果类没有用户提供的默认构造函数，但提供了其他构造函数，且没有定义默认构造函数（如通过= default），则尝试默认初始化可能会导致编译错误（除非类有某些特殊的属性，如聚合初始化，但这不适用于std::string）。然而，std::string确实提供了一个默认构造函数，所以这不是问题。
+对于聚合类型（std::string不是聚合类型），默认初始化会导致对象中的每个成员被默认初始化。但这一点对于std::string不适用，因为它不是聚合类型。
+示例
+```cpp
+#include <string>  
+#include <iostream>  
+  
+int main() {  
+    std::string s; // 默认初始化，调用std::string的默认构造函数，s是一个空字符串  
+    std::cout << "s is empty: " << s.empty() << std::endl; // 输出：s is empty: 1  
+    return 0;  
+}
+```
+
+在这个例子中，std::string s;声明了一个std::string类型的变量s，并通过调用std::string的默认构造函数来默认初始化它，结果是s成为了一个空字符串。
+
+总结来说，std::string s;的初始化确实与std::string的构造函数有关，特别是与它的默认构造函数有关。
+
+
 ### chap 3 第3章 字符串、向量和数组
 
 迭代器 任何编程语言集合类都需要
@@ -604,7 +636,35 @@ https://en.cppreference.com/w/cpp/language/value_category
 prvalue
 xvalue
 
+表5.1:<stdexcept>定义的异常类
+exception
+runtime error
+range
+overflow
+underflow error
+logic error
+domain error
+invalid argument
+length error
+out of range
+
+exception 最常见的问题
+runtime_error 只有在运行时才能检测出的问题
+range 运行时错误:生成的结果超出了有意义的值域范围
+overflow 运行时错误:计算上溢
+underflow error 运行时错误:计算下溢
+logic error 程序逻辑错误
+domain error 逻辑错误:参数对应的结果值不存在
+invalid argument 逻辑错误:无效参数
+length error 逻辑错误:试图创建一个超出该类型最大长度的对象逻辑
+out of range 错误:使用一个超出有效范围的值
+
+
 ### chap 6 第6章 函数
+
+函数入参 可以是void和空，
+函数返回值 可以是数组指针，不可以是数组
+可以返回函数
 
 constexpr函数
 

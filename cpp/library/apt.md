@@ -1,5 +1,8 @@
 # apt
 
+pkg-config --cflags --libs log4cpp
+-pthread -I/usr/local/include -L/usr/local/lib -llog4cpp
+
 ```shell
 apt-cache showpkg libcurl4-openssl-dev
 Package: libcurl4-openssl-dev
