@@ -1,5 +1,16 @@
 # meson
 
+## clion 2024支持meson
+meson.build
+ninja
+
+
+## comand
+meson compile -j 6
+meson install
+meson test
+
+
 https://github.com/cisco/openh264
 openh264用meson构建
 python写的
