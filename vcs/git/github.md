@@ -1,22 +1,24 @@
 # github
+
+默认分支无法通过
+git push -d origin main来删除
+
+
+git branch -m cpp11 <BRANCH>
+git fetch origin
+git branch -u origin/<BRANCH> <BRANCH>
+git remote set-head origin -a
+
+
 在 GitHub 上设置默认分支（default branch）是一个简单的过程。以下是详细的步骤：
-
 1. 登录到你的 GitHub 账户。
-
 2. 导航到你想要更改默认分支的仓库。
-
 3. 在仓库主页，点击顶部的 "Settings" 标签。
-
 4. 在左侧菜单中，点击 "Branches"。
-
 5. 在 "Default branch" 部分，你会看到一个下拉菜单，显示当前的默认分支。
-
 6. 点击这个下拉菜单，选择你想要设置为新的默认分支的分支名称。
-
 7. 点击 "Update" 按钮。
-
 8. GitHub 会要求你确认这个更改。仔细阅读警告信息，因为更改默认分支可能会影响依赖于旧默认分支的工作流程。
-
 9. 如果你确定要进行更改，点击 "I understand, update the default branch."
 
 完成这些步骤后，你选择的分支就会成为新的默认分支。

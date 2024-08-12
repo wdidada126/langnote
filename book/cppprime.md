@@ -763,6 +763,9 @@ initializer_list
 
 委托构造函数delegating constructor
 构造函数重载
+
+7.3.4 友元
+
 ### 第8章 IO库
 ### chap 9 顺序容器
 
