@@ -1,0 +1,80 @@
+icu-uc             icu-uc - International Components for Unicode: Common and Data libraries
+hiredis            hiredis - Minimalistic C client library for Redis.
+libodb-sqlite      libodb-sqlite - Object-relational mapping (ORM) system for C++, SQLite runtime library
+mpi-cxx            Open MPI - Portable high-performance MPI implementation
+libmlx4            libmlx4 - RDMA Core Userspace Library
+libcrypto          OpenSSL-libcrypto - OpenSSL cryptography library
+openssl            OpenSSL - Secure Sockets Layer and cryptography libraries and tools
+libidn2            libidn2 - Library implementing IDNA2008 and TR46
+libtommath         LibTomMath - public domain library for manipulating large integer numbers
+mpi                Open MPI - Portable high-performance MPI implementation
+libcurl            libcurl - Library to transfer files with ftp, http, etc.
+libevent_openssl   libevent_openssl - libevent_openssl adds openssl-based TLS support to libevent
+libevent           libevent - libevent is an asynchronous notification event loop library
+libevent_extra     libevent_extra - libevent_extra
+libmlx5            libmlx5 - RDMA Core Userspace Library
+libefa             libefa - RDMA Core Userspace Library
+p11-kit-1          p11-kit - Library and proxy module for properly loading and sharing PKCS
+gmp                GNU MP - GNU Multiple Precision Arithmetic Library
+ompi-c             Open MPI - Portable high-performance MPI implementation
+protobuf-lite      Protocol Buffers - Google's Data Interchange Format
+mysqlclient        mysqlclient - MySQL client library
+libdmmp            libdmmp - Device mapper multipath management library
+orte               Open MPI Run-Time Environment (ORTE) - Open MPI's run-time environment functionality
+udev               udev - udev
+python3            Python - Build a C extension for Python
+libibverbs         libibverbs - RDMA Core Userspace Library
+libclamav          libclamav - A GPL virus scanner
+log4cpp            log4cpp - C++ library for flexible logging, modeled after Log4j
+bash-completion    bash-completion - programmable completion for the bash shell
+iso-codes          iso-codes - ISO country, language, script and currency codes and translations
+mpi-fort           Open MPI - Portable high-performance MPI implementation
+hogweed            Hogweed - Nettle low-level cryptographic library (public-key algorithms)
+nettle             Nettle - Nettle low-level cryptographic library (symmetric algorithms)
+gnutls             GnuTLS - Transport Security Layer implementation for the GNU system
+libodb-pgsql       libodb-pgsql - Object-relational mapping (ORM) system for C++, PostgreSQL runtime library
+python-3.8         Python - Build a C extension for Python
+libsasl2           Cyrus SASL - Cyrus SASL implementation
+libnl-3.0          libnl - Convenience library for netlink sockets
+mpi-c              Open MPI - Portable high-performance MPI implementation
+python3-embed      Python - Embed Python into an application
+libodb-mysql       libodb-mysql - Object-relational mapping (ORM) system for C++, MySQL runtime library
+libevent_core      libevent_core - libevent_core
+expat              expat - expat XML parser
+libxcrypt          libxcrypt - Extended crypt library for DES, MD5, Blowfish and others
+ompi-cxx           Open MPI - Portable high-performance MPI implementation
+gmpxx              GNU MP C++ - GNU Multiple Precision Arithmetic Library (C++ bindings)
+libpcap            libpcap - Platform-independent network traffic capture library
+gnutls-dane        GnuTLS-DANE - DANE security library for the GNU system
+jsoncpp            jsoncpp - A C++ library for interacting with JSON
+ompi               Open MPI - Portable high-performance MPI implementation
+adwaita-icon-theme gnome-icon-theme - A collection of icons used as the basis for GNOME themes
+libcrypt           libxcrypt - Extended crypt library for DES, MD5, Blowfish and others
+systemd            systemd - systemd System and Service Manager
+libtasn1           libtasn1 - Library for ASN.1 and DER manipulation
+sqlite3            SQLite - SQL database engine
+protobuf           Protocol Buffers - Google's Data Interchange Format
+gflags             gflags - A commandline flags library that allows for distributed flags.
+python-3.8-embed   Python - Embed Python into an application
+libevent_pthreads  libevent_pthreads - libevent_pthreads adds pthreads-based threading support to libevent
+cppunit            CppUnit - The C++ Unit Test Library
+libodb-qt          libodb-qt - Object-relational mapping (ORM) system for C++, Qt profile library
+xkeyboard-config   XKeyboardConfig - X Keyboard configuration data
+icu-io             icu-io - International Components for Unicode: Stream and I/O Library
+caf-openmpi        CAF - Co-Array Fortran support
+pthread-stubs      pthread stubs - Meta package for pthread symbols - defaults to heavyweight ones if the C runtime does not provide lightweight ones.
+libodb             libodb - Object-relational mapping (ORM) system for C++, common runtime library
+libconfig++        libconfig++ - C++ Configuration File Library
+ompi-fort          Open MPI - Portable high-performance MPI implementation
+libnl-route-3.0    libnl-route - Netlink Routing Family Library
+icu-i18n           icu-i18n - International Components for Unicode: Internationalization library
+spdlog             libspdlog - Fast C++ logging library.
+libfl              libfl - Flex (the fast lexical analyzer) support library
+libssl             OpenSSL-libssl - Secure Sockets Layer and cryptography libraries
+libconfig          libconfig - C Configuration File Library
+zlib               zlib - zlib compression library
+hwloc              hwloc - Hardware locality detection and management library
+libodb-boost       libodb-boost - Object-relational mapping (ORM) system for C++, Boost profile library
+RapidJSON          RapidJSON - A fast JSON parser/generator for C++ with both SAX/DOM style API
+libglog            libglog - Google Log (glog) C++ logging framework
+shared-mime-info   shared-mime-info - Freedesktop common MIME database

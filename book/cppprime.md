@@ -752,6 +752,13 @@ argv[5]=0;
 
 gflags
 
+6.5.3调试帮助
+
+assert
+NDEBUG
+
+initializer_list
+
 ### chap 7 类
 
 委托构造函数delegating constructor

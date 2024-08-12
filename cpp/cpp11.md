@@ -212,3 +212,125 @@ auto ep = static_cast<float>(calcEpsilon());
 
 
 ## move
+在C++11中，std::move是一个非常有用的函数模板，它位于<utility>头文件中。std::move本身并不移动任何东西，它的主要作用是将其参数转换为右值引用（rvalue reference），从而允许我们利用移动语义（move semantics）来优化资源管理和性能。移动语义允许对象通过“窃取”资源（如动态分配的内存、文件句柄等）的方式被高效地转移，而不是通过复制。
+
+代码例子
+以下是一个使用std::move的示例，展示了如何在自定义类型中实现移动构造函数和移动赋值运算符，并演示了std::move的使用。
+
+cpp
+#include <iostream>  
+#include <utility> // 包含std::move  
+  
+class Buffer {  
+public:  
+    char* data;  
+    size_t size;  
+  
+    // 构造函数  
+    Buffer(size_t s) : size(s) {  
+        data = new char[s];  
+        std::cout << "Buffer allocated: " << data << std::endl;  
+    }  
+  
+    // 析构函数  
+    ~Buffer() {  
+        delete[] data;  
+        std::cout << "Buffer deallocated: " << data << std::endl;  
+    }  
+  
+    // 禁用拷贝构造函数和拷贝赋值运算符（为了简单起见）  
+    Buffer(const Buffer&) = delete;  
+    Buffer& operator=(const Buffer&) = delete;  
+  
+    // 移动构造函数  
+    Buffer(Buffer&& other) noexcept : data(other.data), size(other.size) {  
+        other.data = nullptr; // 将源对象的指针置为空，避免删除同一内存  
+        other.size = 0;  
+    }  
+  
+    // 移动赋值运算符  
+    Buffer& operator=(Buffer&& other) noexcept {  
+        if (this != &other) {  
+            delete[] data; // 释放当前对象的资源  
+            data = other.data;  
+            size = other.size;  
+            other.data = nullptr; // 将源对象的指针置为空  
+            other.size = 0;  
+        }  
+        return *this;  
+    }  
+  
+    // 为了示例，我们添加一个函数来打印数据地址  
+    void printAddress() const {  
+        std::cout << "Buffer address: " << data << std::endl;  
+    }  
+};  
+  
+int main() {  
+    Buffer buf1(100); // 分配100字节  
+    buf1.printAddress();  
+  
+    // 使用std::move来触发移动构造函数  
+    Buffer buf2 = std::move(buf1);  
+  
+    // 注意：此时buf1处于有效但未定义的状态，因为我们重写了它的指针  
+    // 在实际应用中，你应该避免使用buf1，直到它被重新赋值或销毁  
+  
+    // buf2现在拥有原buf1的资源  
+    buf2.printAddress(); // 应该与buf1之前打印的地址相同  
+  
+    // 销毁buf2，这将释放内存  
+    // 注意：buf1的析构函数不会被自动调用，因为buf1的指针已经被我们设置为nullptr  
+    // 如果你尝试销毁buf1，它将尝试删除nullptr，这是安全的但无用  
+}
+注意：
+
+在上面的例子中，我们禁用了拷贝构造函数和拷贝赋值运算符，这是为了避免不必要的复制，并强制使用移动语义。
+当我们调用std::move(buf1)时，我们并没有真正移动buf1的内容；我们只是获得了一个可以被当作右值引用的buf1的引用。然后，这个右值引用被用于调用移动构造函数或移动赋值运算符。
+移动操作后，源对象（在这个例子中是buf1）处于有效但未定义的状态。这意味着它的析构函数仍然可以安全地被调用，但你不能假设它的任何成员变量（在这个例子中是data和size）有特定的值。在实际应用中，你可能需要在移动后重置或重新赋值源对象。
+noexcept关键字用于指示函数不会抛出异常，这可以优化某些情况下的代码生成。如果你的移动构造函数或移动赋值运算符确实不会抛出异常，你应该使用它。
+
+## mutex
+
+mutex头文件是c++哪个版本开始支持的？ api列表，代码例子
+mutex头文件是C++11版本开始支持的。在C++11中，<mutex>是C++标准程序库中的一个头文件，它定义了C++11标准中的一些互斥访问的类与方法等，用于多线程编程中保护共享数据不被同时访问。
+
+mutex API列表
+<mutex>头文件中定义的与mutex相关的类和函数主要包括：
+
+std::mutex：最基本的互斥锁类，不能被递归使用。
+std::recursive_mutex：递归互斥锁类，允许同一个线程多次对同一个互斥锁进行加锁。
+std::timed_mutex：定时互斥锁类，提供了try_lock_for和try_lock_until成员函数，允许线程在一定时间内尝试获取锁。
+std::recursive_timed_mutex：带定时的递归互斥锁类，结合了std::recursive_mutex和std::timed_mutex的特性。
+std::lock_guard：与Mutex RAII（Resource Acquisition Is Initialization）相关的类模板，用于自动管理互斥锁的加锁和解锁。
+std::unique_lock：与Mutex RAII相关，但提供了更灵活的上锁和解锁控制。
+代码例子
+以下是一个使用std::mutex的简单代码例子，展示了如何在多线程环境中保护共享数据：
+
+cpp
+#include <iostream>  
+#include <thread>  
+#include <mutex>  
+  
+std::mutex mtx; // 定义一个互斥锁  
+int shared_data = 0; // 定义一个共享数据  
+  
+void increment_shared_data() {  
+    mtx.lock(); // 加锁  
+    ++shared_data; // 修改共享数据  
+    mtx.unlock(); // 解锁  
+}  
+  
+int main() {  
+    std::thread t1(increment_shared_data); // 创建第一个线程  
+    std::thread t2(increment_shared_data); // 创建第二个线程  
+  
+    t1.join(); // 等待第一个线程完成  
+    t2.join(); // 等待第二个线程完成  
+  
+    std::cout << "Shared data: " << shared_data << std::endl; // 输出共享数据  
+    return 0;  
+}
+在这个例子中，std::mutex mtx;定义了一个互斥锁对象mtx，用于保护共享数据shared_data。在increment_shared_data函数中，通过调用mtx.lock();对互斥锁进行加锁，确保在修改共享数据时不会有其他线程同时访问它。修改完成后，通过调用mtx.unlock();释放互斥锁，允许其他线程访问共享数据。
+
+请注意，为了简化代码和避免死锁等问题，C++11还提供了std::lock_guard等RAII工具来自动管理互斥锁的加锁和解锁过程。在实际编程中，推荐使用这些工具来提高代码的安全性和可读性。
