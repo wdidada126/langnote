@@ -1,4 +1,11 @@
 # boost
+
+https://www.boost.org/doc/libs/1_75_0/doc/html/
+
+
+https://live.boost.org/doc/libs/1_75_0/doc/html/boost_asio/examples/cpp03_examples.html
+
+
 如果仅仅是构建http message的话, boos/beast有比较好的抽象, 可以单独使用
 
 要在Ubuntu 20上安装特定版本的libboost-dev（例如1.65版本），你可以考虑使用第三方APT源，因为Ubuntu官方仓库可能不提供旧版本。以下是一些推荐的第三方APT源：

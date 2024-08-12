@@ -1,0 +1,68 @@
+==10652== Memcheck, a memory error detector
+==10652== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==10652== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==10652== Command: ./blog_rest
+==10652== Parent PID: 1518
+==10652== 
+==10652== 
+==10652== Process terminating with default action of signal 2 (SIGINT)
+==10652==    at 0x4A527D1: futex_abstimed_wait_cancelable (futex-internal.h:320)
+==10652==    by 0x4A527D1: __pthread_cond_wait_common (pthread_cond_wait.c:520)
+==10652==    by 0x4A527D1: pthread_cond_timedwait@@GLIBC_2.3.2 (pthread_cond_wait.c:665)
+==10652==    by 0x7B9D37: Poco::EventImpl::waitImpl(long) (Event_POSIX.cpp:160)
+==10652==    by 0x5CFBB4: Poco::Event::tryWait(long) (Event.h:120)
+==10652==    by 0x7E2EA5: Poco::NotificationQueue::waitDequeueNotification(long) (NotificationQueue.cpp:114)
+==10652==    by 0x770CB4: Poco::Net::TCPServerDispatcher::run() (TCPServerDispatcher.cpp:110)
+==10652==    by 0x826629: Poco::PooledThread::run() (ThreadPool.cpp:199)
+==10652==    by 0x823026: Poco::(anonymous namespace)::RunnableHolder::run() (Thread.cpp:56)
+==10652==    by 0x822C4A: Poco::ThreadImpl::runnableEntry(void*) (Thread_POSIX.cpp:358)
+==10652==    by 0x4A4B608: start_thread (pthread_create.c:477)
+==10652==    by 0x4CF9352: clone (clone.S:95)
+==10652== 
+==10652== HEAP SUMMARY:
+==10652==     in use at exit: 420,381 bytes in 1,677 blocks
+==10652==   total heap usage: 13,444 allocs, 11,767 frees, 1,975,307 bytes allocated
+==10652== 
+==10652== 304 bytes in 1 blocks are possibly lost in loss record 372 of 464
+==10652==    at 0x483DD99: calloc (vg_replace_malloc.c:762)
+==10652==    by 0x40149DA: allocate_dtv (dl-tls.c:286)
+==10652==    by 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+==10652==    by 0x4A4C322: allocate_stack (allocatestack.c:622)
+==10652==    by 0x4A4C322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+==10652==    by 0x49300C9: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==10652==    by 0x225BA6: std::thread::thread<Logger::Logger()::{lambda()#1}, , void>(Logger::Logger()::{lambda()#1}&&) (thread:130)
+==10652==    by 0x225A70: Logger::Logger() (logger.cc:46)
+==10652==    by 0x225721: Logger::GetInstance() (logger.cc:8)
+==10652==    by 0x1FA680: void printHttpInfo<void (*)(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&)>(void (*)(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&), std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&) (blog_handlers.cpp:42)
+==10652==    by 0x1F61D2: pageBlogListAop(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&) (blog_handlers.cpp:169)
+==10652==    by 0x1F2085: std::_Function_handler<void (Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&), void (*)(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&)>::_M_invoke(std::_Any_data const&, Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&) (std_function.h:300)
+==10652==    by 0x1F4F9C: std::function<void (Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&)>::operator()(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&) const (std_function.h:688)
+==10652==    by 0x1F4C7E: RouterRequestHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&) (RouterRequestHandler.cpp:12)
+==10652== 
+==10652== 608 bytes in 2 blocks are possibly lost in loss record 397 of 464
+==10652==    at 0x483DD99: calloc (vg_replace_malloc.c:762)
+==10652==    by 0x40149DA: allocate_dtv (dl-tls.c:286)
+==10652==    by 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+==10652==    by 0x4A4C322: allocate_stack (allocatestack.c:622)
+==10652==    by 0x4A4C322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+==10652==    by 0x8220B7: Poco::ThreadImpl::startImpl(Poco::SharedPtr<Poco::Runnable, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Runnable> >) (Thread_POSIX.cpp:206)
+==10652==    by 0x8233DD: Poco::Thread::start(Poco::Runnable&) (Thread.cpp:129)
+==10652==    by 0x8260AC: Poco::PooledThread::start() (ThreadPool.cpp:85)
+==10652==    by 0x826A63: Poco::ThreadPool::ThreadPool(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int, int, int, int) (ThreadPool.cpp:276)
+==10652==    by 0x827EB9: Poco::ThreadPoolSingletonHolder::pool() (ThreadPool.cpp:502)
+==10652==    by 0x827ABD: Poco::ThreadPool::defaultPool() (ThreadPool.cpp:523)
+==10652==    by 0x76F6C5: Poco::Net::TCPServer::TCPServer(Poco::SharedPtr<Poco::Net::TCPServerConnectionFactory, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Net::TCPServerConnectionFactory> >, Poco::Net::ServerSocket const&, Poco::AutoPtr<Poco::Net::TCPServerParams>) (TCPServer.cpp:67)
+==10652==    by 0x74A901: Poco::Net::HTTPServer::HTTPServer(Poco::SharedPtr<Poco::Net::HTTPRequestHandlerFactory, Poco::ReferenceCounter, Poco::ReleasePolicy<Poco::Net::HTTPRequestHandlerFactory> >, Poco::Net::ServerSocket const&, Poco::AutoPtr<Poco::Net::HTTPServerParams>) (HTTPServer.cpp:32)
+==10652==    by 0x1F10E5: MyServerApp::main(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) (blog_rest_main.cpp:54)
+==10652== 
+==10652== LEAK SUMMARY:
+==10652==    definitely lost: 0 bytes in 0 blocks
+==10652==    indirectly lost: 0 bytes in 0 blocks
+==10652==      possibly lost: 912 bytes in 3 blocks
+==10652==    still reachable: 419,469 bytes in 1,674 blocks
+==10652==         suppressed: 0 bytes in 0 blocks
+==10652== Reachable blocks (those to which a pointer was found) are not shown.
+==10652== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==10652== 
+==10652== For lists of detected and suppressed errors, rerun with: -s
+==10652== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
