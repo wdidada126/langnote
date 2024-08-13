@@ -94,7 +94,6 @@ int main() {
 
 在这个示例中，我们定义了一个`sum`函数模板，它接受两个参数`a`和`b`。我们使用`constexpr if`来检查参数类型是否为整数类型（通过`std::is_integral_v<T>`判断）。如果是整数类型，我们直接返回两个参数的和；否则，我们将参数转换为双精度浮点数并返回它们的和。这样，我们可以在编译时根据参数类型选择合适的实现，从而实现更高效的代码生成。
 
-**前往编程助手iFlyCode网页端，获取更多功能** [点击前往](https://xinghuo.xfyun.cn/iflygpt/oauth/send-redirect/iflycode)
 
 
 面向对象的特性
