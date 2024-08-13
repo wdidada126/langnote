@@ -11,3 +11,7 @@
 理解 Android 系统的这些底层实现细节,有助于开发者更好地理解 Android 系统的架构,并在必要时进行性能优化和定制化开发。
 
 ## xmake支持哪些安卓平台的c c++库
+
+vs安装后ndk位置
+C:\Program Files (x86)\Android\android-sdk
+C:\Microsoft\AndroidNDK\android-ndk-r23c
