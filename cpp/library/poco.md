@@ -129,7 +129,11 @@ https://github.com/edidada/pocoservertest
 https://github.com/edidada/rest_poco
 
 ## doc
+https://docs.pocoproject.org/1.12.1/
+https://docs.pocoproject.org/1.13.3/99100-ReleaseNotes.html
 https://docs.pocoproject.org/current/
+
+https://docs.pocoproject.org/1.12.2/00200-DataUserManual.html
 
 Packages
 ActiveRecord
