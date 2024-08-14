@@ -1,5 +1,22 @@
 # Poco
 
+~/poco/build/lib$ ldd libPocoDataMySQL.so
+    linux-vdso.so.1 (0x00007ffed2dd1000)
+    libPocoData.so.93 => /home/wdidada/poco/build/lib/libPocoData.so.93 (0x00007f22380bd000)
+    libmysqlclient.so.21 => /lib/x86_64-linux-gnu/libmysqlclient.so.21 (0x00007f2237982000)
+    libPocoFoundation.so.93 => /home/wdidada/poco/build/lib/libPocoFoundation.so.93 (0x00007f223773e000)
+    libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f223771b000)
+    libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f2237539000)
+    libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f2237514000)
+    libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2237320000)
+    libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f223731a000)
+    libssl.so.1.1 => /lib/x86_64-linux-gnu/libssl.so.1.1 (0x00007f2237287000)
+    libcrypto.so.1.1 => /lib/x86_64-linux-gnu/libcrypto.so.1.1 (0x00007f2236fb0000)
+    libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007f2236f94000)
+    /lib64/ld-linux-x86-64.so.2 (0x00007f223833f000)
+    librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f2236f8a000)
+    libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f2236e39000)
+
 这个库不是为了高性能而诞生的，就是为了快速开发一些常用的日常功能而设计的，学习和使用都非常简单，正好符合题主的需求。
 
 ```
@@ -129,7 +146,11 @@ https://github.com/edidada/pocoservertest
 https://github.com/edidada/rest_poco
 
 ## doc
+https://docs.pocoproject.org/1.12.1/
+https://docs.pocoproject.org/1.13.3/99100-ReleaseNotes.html
 https://docs.pocoproject.org/current/
+
+https://docs.pocoproject.org/1.12.2/00200-DataUserManual.html
 
 Packages
 ActiveRecord
@@ -330,3 +351,9 @@ HTTPRequestHandler
 
 ## 官方examole
 https://github.com/pocoproject/cmake-sample
+
+github仓库代码的sample在
+https://github.com/pocoproject/poco/tree/main/JSON/samples
+https://github.com/pocoproject/poco/tree/main/Crypto/samples
+https://github.com/pocoproject/poco/tree/main/Data/samples
+https://github.com/pocoproject/poco/tree/main/Net/samples

@@ -1,5 +1,101 @@
 # cpp
 
+
+https://runoob.com/cplusplus/cpp-libs-numeric.html
+
+<iostream>
+<fstream>
+<sstream>
+<iomanip>
+<array>
+<vector>
+<list>
+<forward_list>
+<deque>
+<stack>
+<queue>
+<priority_queue>
+<set>
+<unordered_set>
+<map>
+<unordered_map>
+<bitset>
+<algorithm>
+<iterator>
+<functional>
+<numeric>
+<complex>
+<valarray>
+<cmath>
+<string>
+<regex>
+<ctime>
+<chrono>
+<thread>
+<mutex>
+<condition_variable>
+<future>
+<atomic>
+<type_traits>
+<typeinfo>
+<exception>
+<stdexcept>
+<cstdio>
+<cstdint>
+<memory>
+<new>
+<utility>
+<random>
+<locale>
+<codecvt>
+<cassert>
+<cwchar>
+<climits>
+<cfloat>
+<cstdlib>
+
+工作那么多年，到C++17的基本内容掌握了就能cover绝大部分的开发场景了
+可以说你只要会智能指针和掌握一定的范式基本能避免绝大部分老C++的坑，完全不存在难学的问题，而且也不需要考虑性能问题，因为绝大部分性能瓶颈和你写法没多大关系，和你的业务场景有关系。
+模板元编程基本上是资深C++和新手的分水岭了，现在C++17已经有constexpr if了，也不需要以前那种繁琐的SFINAE，省了很多心智负担。
+至于模板元要掌握到什么程度，这里我问你个问题，如何实现萃取出std::tuple中的指定类型以及数据，如果你能回答出来，基本上就可以了
+
+
+
+`constexpr if`是C++17中引入的一个新特性，它允许在编译时根据条件选择执行不同的代码分支。这对于模板元编程和常量表达式非常有用。下面是一个使用`constexpr if`的简单示例：
+
+```cpp
+#include <iostream>
+
+template <typename T>
+constexpr auto sum(T a, T b) {
+    if constexpr (std::is_integral_v<T>) {
+        return a + b;
+    } else {
+        return a.toDouble() + b.toDouble();
+    }
+}
+
+struct MyInt {
+    int value;
+    double toDouble() const { return static_cast<double>(value); }
+};
+
+int main() {
+    int x = 3;
+    int y = 4;
+    MyInt a{5};
+    MyInt b{6};
+
+    std::cout << "Sum of ints: " << sum(x, y) << std::endl; // 输出：Sum of ints: 7
+    std::cout << "Sum of MyInts: " << sum(a, b) << std::endl; // 输出：Sum of MyInts: 11
+    return 0;
+}
+```
+
+在这个示例中，我们定义了一个`sum`函数模板，它接受两个参数`a`和`b`。我们使用`constexpr if`来检查参数类型是否为整数类型（通过`std::is_integral_v<T>`判断）。如果是整数类型，我们直接返回两个参数的和；否则，我们将参数转换为双精度浮点数并返回它们的和。这样，我们可以在编译时根据参数类型选择合适的实现，从而实现更高效的代码生成。
+
+
+
 面向对象的特性
 封装
 继承

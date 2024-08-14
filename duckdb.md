@@ -2,7 +2,7 @@
 
 [远离硅谷、不靠风投！18 人团队逆势搞出超人气数据库，CTO 一人 5 年多写了 15 万行代码](https://www.infoq.cn/news/7jFGduJ3vkkKiV1EPd9b)
 
-分析型关系数据库 DuckDB。
+分析型关系数据库DuckDB。
 
 DuckDB 的另一个特点就是忠于传统 SQL。虽然 NoSQL 运动仍在蓬勃发展，也有不少人希望使用 Python 和数据帧来查询数据，但 Mühleisen 及其团队意识到 SQL 并没有本质缺陷，所以并不需要被强行替代。
 
