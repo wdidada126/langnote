@@ -1,4 +1,15 @@
 # Poco
+
+AbstractConfiguration
+子类
+PropertyFileConfiguration
+ConfigurationMapper
+FilesystemConfiguration
+xml
+json
+map
+
+
 最朴实无华的c艹基础库，非常易懂，大多数实现初学者看起来毫无压力；功能也非常全面，功能集相当于一个小Qt；目前很火的ClickHouse里面也用到了。学完这个里面的东西，对于一般c艹应用开发绝对够了。缺点可能就是由于实现朴实有些地方可能性能不够好（不过这是个取舍的问题，CH性能很好不也用了poco，如果发现性能问题的地方可以换做其他的），还有就是实现可能不够modern。
 
 poco 1.13.0需要cpp17
