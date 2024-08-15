@@ -1,5 +1,7 @@
 # Poco
 
+poco 1.13.0需要cpp17
+
 ~/poco/build/lib$ ldd libPocoDataMySQL.so
     linux-vdso.so.1 (0x00007ffed2dd1000)
     libPocoData.so.93 => /home/wdidada/poco/build/lib/libPocoData.so.93 (0x00007f22380bd000)

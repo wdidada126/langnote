@@ -1,9 +1,16 @@
 # mingw
+https://github.com/mmozeiko/build-gcc-mingw/releases
+新版本
+
+
+https://github.com/skeeto/w64devkit/releases/tag/v1.23.0
+https://github.com/niXman/mingw-builds-binaries/releases
+https://github.com/skeeto/w64devkit/releases
 
 mingw32-make.exe重命名为make.exe
 
 eclipse win支持mingw
-
+https://www.mingw-w64.org/downloads/
 https://www.mingw-w64.org/
 
 https://github.com/mingw-w64
@@ -16,9 +23,7 @@ MinGW，是Minimalist GNU for Windows的缩写。它是一个可自由使用和�
 
 https://www.zhihu.com/question/39952667/answer/1133837727
 
-
 https://github.com/jmeubank/tdm-gcc-src/releases
-
 
 ```powershell
 gcc --version
