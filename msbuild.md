@@ -18,7 +18,7 @@ https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022
 
 
 MSBuild是Microsoft Build Engine的缩写，是微软的一个构建工具。MSBuild可以用来编译、构建、部署和测试应用程序。.csproj文件是C#项目的配置文件，它包含了项目的配置信息，如项目名称、版本号、输出路径等等。MSBuild读取.csproj文件来确定如何构建项目。 
-
+Visual Studio 中的项目文件（.csproj、.vbproj、vcxproj 等）包含 MSBuild XML 代码，当你使用 IDE 来生成项目时，此代码就会运行。
 
 C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\MSBuild.exe
 

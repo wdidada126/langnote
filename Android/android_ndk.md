@@ -1,5 +1,11 @@
 # android_ndk
 
+## conan支持ndk
+https://docs.conan.io/2/examples/cross_build/android/android_studio.html
+
+https://github.com/android/ndk/wiki/Unsupported-Downloads
+https://developer.android.com/ndk/downloads?hl=zh-cn
+
 在 Android 系统中,`BitmapFactory.decodeResource()` 方法的底层实现是通过 C/C++ 库来完成的。具体来说,它主要使用了以下 AOSP (Android Open Source Project) 中的 C/C++ 库:
 1. libandroid_runtime: 这是 Android 运行时库,提供了 Java 和 C/C++ 之间的桥接功能。当 Java 层调用 `BitmapFactory.decodeResource()` 时,最终会调用到这个库中的 C/C++ 代码。
 2. libskia: Skia 是一个开源的 2D 图形库,是 Android 图形系统的核心组件之一。`BitmapFactory.decodeResource()` 方法会调用 Skia 库中的函数,如 `SkImageDecoder::DecodeFile()` 等,来完成图像的解码和加载。

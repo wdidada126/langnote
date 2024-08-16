@@ -1,5 +1,10 @@
 # rapidjson
 
+ubuntu 16
+
+sudo apt-get install -y rapidjson-dev
+sudo yum install -y rapidjson-devel
+
 ```shell
 repoquery -ql rapidjson-devel
 /usr/include/rapidjson
@@ -72,6 +77,4 @@ https://zhuanlan.zhihu.com/p/20029820
 
 https://m.baidu.com/sf_bk/item/SSE4.2?bk_fr=chain_bottom&timestamp=1556204509289
 
-ubuntu 16
 
-sudo apt-get install rapidjson-dev
