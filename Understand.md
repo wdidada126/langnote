@@ -1,9 +1,22 @@
 # scitools Understand工具
 
+Understand使用入门
+https://www.bilibili.com/video/BV1j8411o7X7/?spm_id_from=333.999.0.0
+
+静态分析工具(以Understand
+https://www.bilibili.com/video/BV1jT411B7zm?p=2&vd_source=71b9c2a5f966942c83677c2110efde22
+
+
+20240816 添加poco项目，cmake组织的，需要compile_command.json
+
+官方文档https://support.scitools.com/support/solutions/articles/70000582647-cmake-and-understand
+    cmake -G “NMake Makefiles” -DCMAKE_EXPORT_COMPILE_COMMANDS=ON                           
+
+
 https://licensing.scitools.com/student
 facebook上有联系，messenger上可以看到
 
-windows understand 6.1.1086 升级成
+windows understand 6.1.1086 升级成6.5 1159
 
 20240415
 java代码，用Understand 不如用idea
@@ -17,9 +30,10 @@ pdf
 https://documentation.scitools.com/pdf/understand.pdf
 
 spring支持
-Understand build 1168 开始支持
+Understand build 1168 开始支持，
 windows安装的是Understand 1092/1159
-mac装的是Understand 5
+mac装的是Understand 5 （激活失效），现在装不了undertstand 6了
+
 
 https://support.scitools.com/support/solutions/articles/70000659561-java-spring-support
 

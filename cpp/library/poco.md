@@ -1,5 +1,17 @@
 # Poco
 
+.cpp文件里面有class定义
+
+class Foundation_API Base32DecoderIOS: public virtual std::ios 这个c++代码中，virtual含义。
+
+在这个代码片段中，Foundation_API Base32DecoderIOS: public virtual std::ios表示Base32DecoderIOS类继承了std::ios类，并且std::ios类中的虚函数可以被Base32DecoderIOS类重写。这意味着Base32DecoderIOS类可以继承并扩展std::ios类的功能，同时保持其作为流对象的接口。
+
+https://pocoproject.org/download.html#conan
+
+conan安装poco
+
+## Poco::json
+
 AbstractConfiguration
 子类
 PropertyFileConfiguration
@@ -9,6 +21,229 @@ xml
 json
 map
 
+Object
+Array
+
+ParserImpl
+Parser
+
+
+Handler
+ParseHandler
+PrintHandler
+
+JSONException
+POCO_DECLARE_EXCEPTION(JSON_API, JSONException, Poco::Exception)
+POCO_IMPLEMENT_EXCEPTION(JSONTemplateException, Exception, "Template Exception")
+
+Query
+
+Stringifier
+
+Part
+StringPart
+MultiPart
+LogicPart
+LoopPart
+
+
+EchoPart
+
+LogicQuery
+LogicExistQuery
+LogicElseQuery
+
+
+Choose lmplementation of Part (7 found)
+
+@EchoPart (Poco::JSON) Poco::JSON@
+IncludePart(Poco::JSON) Poco::JSON@
+LogicPart(Poco::JSON)@
+LoopPart(Poco::JSON)@
+MultiPart(Poco::JSON)@
+Part(Poco::JSON)
+@StringPart (Poco::JSON)
+
+TemplateCache
+
+
+## Poco::Util
+AbstractConfiguration
+	ConfigurationMapper
+	ConfigurationView
+	FilesystemConfiguration
+	IniFileConfiguration
+	JSONConfiguration
+	LayeredConfiguration
+	LocalConfigurationView
+	MapConfiguration
+		PropertyFileConfiguration
+
+
+AtomicCounter
+
+RefCountedObject
+	Subsystem
+		Application
+		LoggingSubsystem
+
+
+HelpFormatter
+
+Validator
+	IntValidator  是Validator子类
+
+
+LoggingConfigurator
+
+Option
+
+
+AbstractOptionCallback
+	OptionCallback
+
+POCO_IMPLEMENT_EXCEPTION(OptionException, Poco::DataException, "Option exception")
+POCO_IMPLEMENT_EXCEPTION(UnknownOptionException, OptionException, "Unknown option specified")
+POCO_IMPLEMENT_EXCEPTION(AmbiguousOptionException, OptionException, "Ambiguous option specified")
+POCO_IMPLEMENT_EXCEPTION(MissingOptionException, OptionException, "Required option not specified")
+POCO_IMPLEMENT_EXCEPTION(MissingArgumentException, OptionException, "Missing option argument")
+POCO_IMPLEMENT_EXCEPTION(InvalidArgumentException, OptionException, "Invalid option argument")
+POCO_IMPLEMENT_EXCEPTION(UnexpectedArgumentException, OptionException, "Unexpected option argument")
+POCO_IMPLEMENT_EXCEPTION(IncompatibleOptionsException, OptionException, "Incompatible options")
+POCO_IMPLEMENT_EXCEPTION(DuplicateOptionException, OptionException, "Option must not be given more than once")
+POCO_IMPLEMENT_EXCEPTION(EmptyOptionException, OptionException, "Empty option specified")
+
+OptionSet
+
+OptionProcessor
+
+
+ServerApplication 是Application子类
+
+TimerNotification 是Notification子类
+
+WinRegistryConfiguration
+
+WinRegistryKey
+
+Thread 是ThreadImpl子类
+
+## Poco::Foundation
+
+AbstractObserver
+
+ActiveDispatcher 
+		ArchiveCompressor	
+
+ActiveStarter<ActiveDispatcher>
+
+NewActionNotification
+
+AutoPtr
+
+ActiveThread
+
+ActiveThreadPool
+
+Condition
+ScopedLock
+
+Base32DecoderBuf  是UnbufferedStreamBuf子类
+Base32DecoderIOS
+
+Base32Decoder 是Base32DecoderIOS子类
+
+
+Base32EncoderBuf UnbufferedStreamBuf
+Base32EncoderIOS
+Base32Encoder
+
+
+Base64DecoderBuf
+Base64DecoderIOS
+Base64Decoder
+
+enum Base64EncodingOptions
+{
+	BASE64_URL_ENCODING = 0x01,
+
+	BASE64_NO_PADDING   = 0x02
+};
+
+Base64EncoderBuf
+Base64EncoderIOS
+Base64Encoder
+
+
+enum BignumDtoaMode {
+
+  BIGNUM_DTOA_SHORTEST,
+
+  BIGNUM_DTOA_SHORTEST_SINGLE,
+
+  BIGNUM_DTOA_FIXED,
+
+  BIGNUM_DTOA_PRECISION
+};
+
+
+BinaryReader
+BasicMemoryBinaryReader
+
+BinaryWriter
+	BasicMemoryBinaryWriter
+
+typedef BasicMemoryBinaryWriter<char> MemoryBinaryWriter;
+
+
+Bugcheck
+
+Channel  是Configurable RefCountedObject子类
+
+Checksum
+
+Clock
+
+typedef struct z_stream_s 
+
+
+Condition
+
+Configurable
+
+ConsoleChannel: public Channel
+
+ColorConsoleChannel: public Channel
+
+CountingStreamBuf
+CountingIOS
+CountingInputStream
+CountingOutputStream
+
+
+DataURIStreamIOS: public virtual std::ios
+
+DataURIStream: public DataURIStreamIOS, public std::istream
+
+DateTime
+
+DateTimeFormatter
+
+DeflatingStreamBuf: public BufferedStreamBuf
+
+DeflatingIOS: public virtual std::ios
+
+DeflatingOutputStream: public std::ostream, public DeflatingIOS
+
+DeflatingInputStream: public std::istream, public DeflatingIOS
+
+Environment
+
+EnvironmentImpl
+
+Error
+
+ErrorHandler
 
 最朴实无华的c艹基础库，非常易懂，大多数实现初学者看起来毫无压力；功能也非常全面，功能集相当于一个小Qt；目前很火的ClickHouse里面也用到了。学完这个里面的东西，对于一般c艹应用开发绝对够了。缺点可能就是由于实现朴实有些地方可能性能不够好（不过这是个取舍的问题，CH性能很好不也用了poco，如果发现性能问题的地方可以换做其他的），还有就是实现可能不够modern。
 
@@ -223,8 +458,10 @@ std
 
 ## 自己总结的api
 
-CLion查看类代码的父类，子类
+查来所有子类
+Ctrl Alt B
 
+CLion查看类代码的父类，子类
 Ctrl + H
 
 AbstractConfiguration (Poco::Util)
