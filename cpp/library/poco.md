@@ -470,6 +470,24 @@ Thread_VX
 
 ## Poco::JWT
 
+POCO_IMPLEMENT_EXCEPTION(JWTException, Exception, "JWT Exception")
+POCO_IMPLEMENT_EXCEPTION(ParseException, JWTException, "JWT parsing failed")
+POCO_IMPLEMENT_EXCEPTION(UnsupportedAlgorithmException, JWTException, "Unsupported signing algorithm")
+POCO_IMPLEMENT_EXCEPTION(UnallowedAlgorithmException, JWTException, "Unallowed signing algorithm")
+POCO_IMPLEMENT_EXCEPTION(SignatureException, JWTException, "JWT Signature Exception")
+POCO_IMPLEMENT_EXCEPTION(SignatureVerificationException, SignatureException, "JWT signature verification failed")
+POCO_IMPLEMENT_EXCEPTION(SignatureGenerationException, SignatureException, "JWT signature generation failed")
+
+
+Serializer
+Signer
+Token
+
+POCO::NET
+
+
+HTTPRequestHandler
+AbstractHTTPRequestHandler
 
 
 最朴实无华的c艹基础库，非常易懂，大多数实现初学者看起来毫无压力；功能也非常全面，功能集相当于一个小Qt；目前很火的ClickHouse里面也用到了。学完这个里面的东西，对于一般c艹应用开发绝对够了。缺点可能就是由于实现朴实有些地方可能性能不够好（不过这是个取舍的问题，CH性能很好不也用了poco，如果发现性能问题的地方可以换做其他的），还有就是实现可能不够modern。

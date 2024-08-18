@@ -125,6 +125,18 @@ sudo ldconfig
 ```
 
 现在，您已经在Ubuntu 20上成功编译了OpenSSL 1.1.1o版本。
+
+### mac
+git clone https://gitee.com/cbsync/openssl.git
+
+git clone https://github.com/openssl/openssl.git
+cd openssl
+git submodule update --init --recursive
+./Configure
+make
+make test
+sudo make install
+
 ### 编译产物
 
 lcrypto_a
