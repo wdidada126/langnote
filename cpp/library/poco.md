@@ -17,9 +17,13 @@ AbstractConfiguration
 PropertyFileConfiguration
 ConfigurationMapper
 FilesystemConfiguration
-xml
-json
-map
+SystemConfiguration
+XMLConfiguration
+JSONConfiguration
+MapConfiguration
+
+ConfigurationView, WinRegistryConfiguration, IniFileConfiguration, LocalConfigurationView,LayeredConfiguration
+
 
 Object
 Array
@@ -129,6 +133,8 @@ WinRegistryKey
 Thread 是ThreadImpl子类
 
 ## Poco::Foundation
+
+https://docs.pocoproject.org/1.12.1/Poco.Logger.html
 
 AbstractObserver
 

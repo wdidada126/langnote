@@ -14,3 +14,9 @@ Enterprise Architect是由Sparx Systems开发的一款全功能的、基于UML�
 
 ## 软件使用
 https://blog.csdn.net/bidelinqi12/article/details/53000625
+
+## doc
+中文
+https://sparxsystems.cn/enterprise_architect_user_guide/16.1/welcome/index.html
+
+https://sparxsystems.com/enterprise_architect_user_guide/16.1/welcome/index.html
