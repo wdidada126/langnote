@@ -1,4 +1,7 @@
 # toadb
+
+c语言写的
+
 https://senllang.blog.csdn.net/category_12338586.html
 
 https://gitcode.com/sandisks/toadb/overview
