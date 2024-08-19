@@ -34,7 +34,6 @@ Understand build 1168 开始支持，
 windows安装的是Understand 1092/1159
 mac装的是Understand 5 （激活失效），现在装不了undertstand 6了
 
-
 https://support.scitools.com/support/solutions/articles/70000659561-java-spring-support
 
 git

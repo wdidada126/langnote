@@ -1,5 +1,11 @@
 # Clion
 
+CLion 2024.2
+	cmake.exe 3.29
+	
+
+https://www.jetbrains.com/help/clion/2024.2/clion-quick-start-guide.html
+
 ### Clion win配置 rsync
 
 choco安装cwrsync_6.2.0_x64_free.zip

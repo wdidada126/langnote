@@ -1,5 +1,7 @@
 # mac
 
+mac，快速跳转到指定路径的文件夹，有快捷键的
+
 无法打开“EasyLPAC”，因为无法验证开发者。
 
 使用右键打开：在应用程序上按住Control键，然后点击应用程序图标，选择“打开”。在弹出的警告对话框中，再次点击“打开”。
@@ -24,11 +26,8 @@
 重新启用Gatekeeper：如果你之前禁用了Gatekeeper并希望重新启用它，可以在终端中输入sudo spctl --master-enable。
 请注意，在更改系统设置或安装未经验证的应用程序时，请务必谨慎行事，并确保你信任该应用程序的来源。
 
-
 港区Apple ID注册流程
 以下注册流程较繁琐，你也可以到第三方平台如：https://taohao.me/product/、https://fk.appledi.com/product/ 购买Apple ID。
-
-
 
 [WebStorm快捷键（Mac版）](https://www.cnblogs.com/xjchenhao/p/4430544.html)
 
@@ -79,8 +78,6 @@ fn+下方向键是page down
 
 使用电脑有记录
 
-
-
 nvme转接卡苹果
 
 回复 @超级喜欢成宝拉 :需要m.2转苹果的转接卡
@@ -102,7 +99,6 @@ mbp 切换icloud账户
 apple id
 概览
 退出登录
-
 
 Windows的逻辑是，复制(ctrl+c)——粘贴(ctrl+v)，剪切(ctrl+x)——粘贴(ctrl+v)。macOS的逻辑是：拷贝(CMD+C)——粘贴(CMD+V)，拷贝(CMD+C)——剪切(CMD+OPTION+V)
 

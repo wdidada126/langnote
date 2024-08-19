@@ -1,4 +1,7 @@
 # mingw
+
+https://github.com/niXman/mingw-builds-binaries/releases
+
 https://github.com/mmozeiko/build-gcc-mingw/releases
 新版本
 
