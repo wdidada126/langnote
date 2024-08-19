@@ -245,6 +245,251 @@ Error
 
 ErrorHandler
 
+public:
+    enum EventType
+    {
+        EVENT_MANUALRESET, /// Manual reset event
+        EVENT_AUTORESET    /// Auto-reset event
+    };
+
+class Foundation_API Event: private EventImpl
+
+EventArgs
+
+class Foundation_API EventChannel: public Channel
+class Foundation_API EventLogChannel: public Channel
+
+class Foundation_API FIFOBufferStreamBuf: public BufferedBidirectionalStreamBuf
+
+class Foundation_API File: private FileImpl
+
+class Foundation_API FileChannel: public Channel
+
+class Foundation_API FileIOS: public virtual std::ios
+
+class Foundation_API FileStreamFactory: public URIStreamFactory
+class Foundation_API Formatter: public Configurable, public RefCountedObject
+
+FormattingChannel
+
+
+public:
+    enum RoundingMode
+    {
+        FP_ROUND_DOWNWARD   = FP_ROUND_DOWNWARD_IMPL,
+        FP_ROUND_UPWARD     = FP_ROUND_UPWARD_IMPL,
+        FP_ROUND_TONEAREST  = FP_ROUND_TONEAREST_IMPL,
+        FP_ROUND_TOWARDZERO = FP_ROUND_TOWARDZERO_IMPL
+    };
+
+    enum Flag
+    {
+        FP_DIVIDE_BY_ZERO = FP_DIVIDE_BY_ZERO_IMPL,
+        FP_INEXACT        = FP_INEXACT_IMPL,
+        FP_OVERFLOW       = FP_OVERFLOW_IMPL,
+        FP_UNDERFLOW      = FP_UNDERFLOW_IMPL,
+        FP_INVALID        = FP_INVALID_IMPL
+    };
+
+class Foundation_API FPEnvironment: private FPEnvironmentImpl
+
+Glob
+
+template <class T> struct Hash
+
+HashStatistic
+class Foundation_API HexBinaryDecoderBuf: public UnbufferedStreamBuf
+class Foundation_API HexBinaryDecoderIOS: public virtual std::ios
+
+class Foundation_API HexBinaryDecoder: public HexBinaryDecoderIOS, public std::istream
+
+
+class Foundation_API HexBinaryEncoderBuf: public UnbufferedStreamBuf
+
+
+class Foundation_API HexBinaryEncoderIOS: public virtual std::ios
+
+class Foundation_API HexBinaryEncoder: public HexBinaryEncoderIOS, public std::ostream
+
+class Foundation_API InflatingStreamBuf: public BufferedStreamBuf
+
+class Foundation_API InflatingIOS: public virtual std::ios
+
+class Foundation_API InflatingOutputStream: public std::ostream, public InflatingIOS
+
+class Foundation_API InflatingInputStream: public std::istream, public InflatingIOS
+
+
+enum JSONOptions
+{
+    JSON_PRESERVE_KEY_ORDER = 1,
+
+    JSON_ESCAPE_UNICODE = 2,
+
+    JSON_WRAP_STRINGS = 4
+};
+
+
+Latin1Encoding
+Latin2Encoding
+Latin9Encoding
+
+LineEnding
+
+class Foundation_API LineEndingConverterStreamBuf: public UnbufferedStreamBuf
+
+
+class Foundation_API LineEndingConverterIOS: public virtual std::ios
+class Foundation_API InputLineEndingConverter: public LineEndingConverterIOS, public std::istream
+class Foundation_API OutputLineEndingConverter: public LineEndingConverterIOS, public std::ostream
+
+LocalDateTime
+
+class Foundation_API LogFile: public LogFileImpl
+
+class Foundation_API Logger: public Channel
+
+LoggingFactory
+
+LoggingRegistry
+
+class Foundation_API LogStreamBuf: public UnbufferedStreamBuf
+
+ManifestBase
+
+MemoryPool
+
+class BasicMemoryStreamBuf: public std::basic_streambuf<ch, tr>
+
+class Foundation_API MemoryIOS: public virtual std::ios
+
+class Foundation_API MemoryInputStream: public MemoryIOS, public std::istream
+class Foundation_API MemoryOutputStream: public MemoryIOS, public std::ostream
+
+class Foundation_API MemoryOutputStream: public MemoryIOS, public std::ostream
+
+
+Message
+
+class Foundation_API Mutex: private MutexImpl
+
+NamedEvent
+NamedEvent_Android
+NamedEvent_UNIX
+NamedEvent_WIN32U
+
+NamedMutex
+NamedMutex_Android
+NamedMutex_WIN32U
+
+NestedDiagnosticContext
+Notification
+NotificationCenter
+NotificationQueue
+NullChannel
+NullStream
+NumberFormatter
+NumberParser
+NumericString
+
+Path
+Path_UNIX
+Path_WIN32U
+Path_WINCE
+
+Pipe
+PipeImpl
+PipeImpl_DUMMY
+PipeImpl_POSIX
+PipeImpl_WIN32
+
+PipeStream
+PriorityNotificationQueue
+Process
+Process_UNIX
+Process_VX
+Process_WIN32U
+Process_WINCE
+
+PurgeStrategy
+
+Random
+RandomStream
+RegularExpression
+RotateStrategy
+
+RWLock
+RWLock_Android
+RWLock_POSIX
+RWLock_VX
+RWLock_WIN32
+RWLock_WINCE
+
+Semaphore
+Semaphore_POSIX
+
+SHA1Engine
+
+SharedLibrary
+SharedLibrary_HPUX
+SharedLibrary_UNIX
+SharedLibrary_VX
+SharedLibrary_WIN32U
+
+SharedMemory
+SharedMemory_DUMMY
+SharedMemory_POSIX
+SharedMemory_WIN32
+
+SignalHandler
+SimpleFileChannel
+SortedDirectoryIterator
+
+SplitterChannel
+Stopwatch
+
+String
+StringTokenizer
+SynchronizedObject
+SyslogChannel
+
+Task
+TaskManager
+TaskNotification
+
+TeeStream
+TemporaryFile
+TextBufferIterator
+TextConverter
+TextEncoding
+TextIterator
+Thread
+Thread_POSIX
+Thread_VX
+
+
+## Poco::JWT
+
+POCO_IMPLEMENT_EXCEPTION(JWTException, Exception, "JWT Exception")
+POCO_IMPLEMENT_EXCEPTION(ParseException, JWTException, "JWT parsing failed")
+POCO_IMPLEMENT_EXCEPTION(UnsupportedAlgorithmException, JWTException, "Unsupported signing algorithm")
+POCO_IMPLEMENT_EXCEPTION(UnallowedAlgorithmException, JWTException, "Unallowed signing algorithm")
+POCO_IMPLEMENT_EXCEPTION(SignatureException, JWTException, "JWT Signature Exception")
+POCO_IMPLEMENT_EXCEPTION(SignatureVerificationException, SignatureException, "JWT signature verification failed")
+POCO_IMPLEMENT_EXCEPTION(SignatureGenerationException, SignatureException, "JWT signature generation failed")
+
+
+Serializer
+Signer
+Token
+
+POCO::NET
+
+
+HTTPRequestHandler
+AbstractHTTPRequestHandler
+
+
 最朴实无华的c艹基础库，非常易懂，大多数实现初学者看起来毫无压力；功能也非常全面，功能集相当于一个小Qt；目前很火的ClickHouse里面也用到了。学完这个里面的东西，对于一般c艹应用开发绝对够了。缺点可能就是由于实现朴实有些地方可能性能不够好（不过这是个取舍的问题，CH性能很好不也用了poco，如果发现性能问题的地方可以换做其他的），还有就是实现可能不够modern。
 
 poco 1.13.0需要cpp17

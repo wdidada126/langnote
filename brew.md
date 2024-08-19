@@ -1,4 +1,7 @@
 #  brew
+
+brew --prefix openssl
+
 conan install libmysql报错，需要
 brew unlink boost
 

@@ -55,9 +55,15 @@ conancenter
     openssl/3.1.3
     openssl/3.1.4
     openssl/3.2.0
+    openssl/3.3.0
 
 https://www.jianshu.com/p/fad5276a70e0
 
+## repo
+https://github.com/openssl/openssl
+
+
+## 编译
 
 centos 7.6，升级过程中估计会有如下报错，
 
@@ -119,3 +125,26 @@ sudo ldconfig
 ```
 
 现在，您已经在Ubuntu 20上成功编译了OpenSSL 1.1.1o版本。
+
+### mac
+git clone https://gitee.com/cbsync/openssl.git
+
+git clone https://github.com/openssl/openssl.git
+cd openssl
+git submodule update --init --recursive
+./Configure
+make
+make test
+sudo make install
+
+### 编译产物
+
+lcrypto_a
+
+
+## doc
+
+https://docs.openssl.org/3.0/man7/migration_guide/
+
+https://docs.openssl.org/master/man7/ossl-guide-libcrypto-introduction
+
