@@ -1,5 +1,71 @@
 # Poco
 
+这些错误表明您的CMake项目未能找到APR（Apache Portable Runtime）、APRUTIL（APR Utility Library）以及Apache2的头文件和库。可能是因为这些库没有安装，或者没有正确配置CMake以找到它们。
+
+### 解决方案
+
+#### 1. 安装APR和APRUTIL库
+如果您还没有安装这些库，请在系统上安装它们。
+
+在Ubuntu或Debian上，您可以使用以下命令安装这些库：
+
+```bash
+sudo apt-get update
+sudo apt-get install libapr1-dev libaprutil1-dev apache2-dev
+```
+
+在Red Hat或CentOS上，您可以使用：
+
+```bash
+sudo yum install apr-devel apr-util-devel httpd-devel
+```
+
+在MacOS上，如果您使用的是Homebrew，可以使用以下命令安装：
+
+```bash
+brew install apr apr-util
+```
+
+#### 2. 手动指定路径
+如果您已经安装了这些库，但CMake仍然无法找到它们，您可以在CMakeLists.txt中手动指定这些库的路径。例如：
+
+```cmake
+set(APR_INCLUDE_DIR "/path/to/apr/include")
+set(APR_LIBRARY "/path/to/apr/lib/libapr-1.so")
+set(APRUTIL_INCLUDE_DIR "/path/to/apr-util/include")
+set(APRUTIL_LIBRARY "/path/to/apr-util/lib/libaprutil-1.so")
+set(APACHE2_INCLUDE_DIR "/path/to/apache2/include")
+```
+
+然后在`find_package`命令后添加这些变量。例如：
+
+```cmake
+find_package(APR REQUIRED)
+find_package(APRUTIL REQUIRED)
+find_package(Apache2 REQUIRED)
+```
+
+#### 3. 使用CMake GUI或ccmake指定路径
+如果您更习惯图形界面，可以使用`cmake-gui`或`ccmake`来手动指定这些库的路径。
+
+1. 运行`cmake-gui`或`ccmake`并加载您的CMakeLists.txt文件。
+2. 搜索`APR_INCLUDE_DIR`、`APRUTIL_INCLUDE_DIR`和`APACHE2_INCLUDE_DIR`等变量。
+3. 手动设置它们指向正确的路径。
+4. 点击“Configure”并重新生成项目文件。
+
+#### 4. 环境变量
+另一种方法是通过设置环境变量来让CMake找到这些库：
+
+```bash
+export CMAKE_INCLUDE_PATH=/path/to/apr/include:/path/to/apr-util/include:/path/to/apache2/include
+export CMAKE_LIBRARY_PATH=/path/to/apr/lib:/path/to/apr-util/lib:/path/to/apache2/lib
+```
+
+然后重新运行`cmake`。
+
+### 总结
+这些步骤应该可以帮助您解决CMake找不到APR、APRUTIL和Apache2库的问题。如果问题仍然存在，您可能需要检查这些库的安装路径是否正确，或者检查CMake的版本和配置。
+
 .cpp文件里面有class定义
 
 class Foundation_API Base32DecoderIOS: public virtual std::ios 这个c++代码中，virtual含义。

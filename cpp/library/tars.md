@@ -28,6 +28,9 @@ tars2cpp Calculator.tars
 tars2java Calculator.tars
 ```
 
+备注，windows上没找到tars2cpp等可执行文件。
+
+
 ### C++ 服务端代码
 #### 服务实现 (`CalculatorImp.h` 和 `CalculatorImp.cpp`)
 

@@ -1,8 +1,10 @@
 # github
 
+rust.yml
+
+
 默认分支无法通过
 git push -d origin main来删除
-
 
 git branch -m cpp11 <BRANCH>
 git fetch origin

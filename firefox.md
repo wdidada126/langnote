@@ -6,7 +6,6 @@ MDN是Mozilla基金会的开发者网络平台。提供了大量关于各种HTML
 
 ## version
 
-
 firefox英文版本
 https://www.mozilla.org/en-US/firefox/download/thanks/
 

@@ -1,5 +1,8 @@
 # nginx
 
+ng对比apache httpd
+https://zhuanlan.zhihu.com/p/633063330
+
 PCRE库
 PCRE（Perl Compatible Regular Expressions，Perl兼容正则表达式）是由Philip Hazel开发
 的函数库，目前为很多软件所使用，该库支持正则表达式。它由RegEx演化而来，实际上，

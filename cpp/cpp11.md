@@ -1,4 +1,30 @@
 # cpp11
+Youtube-CppNuts的Threading In C++系列视频
+
+https://zhuanlan.zhihu.com/p/556406170
+https://zhuanlan.zhihu.com/p/348492524
+
+lock_guard是类模板，在其构造函数中自动给std::mutex加锁，在退出作用域的时候自动解锁，这样就可以保证std::mutex的正确操作，这也是RAII（获取资源便初始化）技术的体现。
+
+C++11中提供了4中互斥量。
+
+std::mutex;                  //非递归的互斥量
+std::timed_mutex;            //带超时的非递归互斥量
+std::recursive_mutex;        //递归互斥量
+std::recursive_timed_mutex;  //带超时的递归互斥量
+
+lock_guard<mutex> 是 C++11 引入的一个智能锁管理类，它用于自动管理互斥锁（mutex）的加锁（lock）和解锁（unlock）操作，以简化线程同步代码的编写，并减少死锁的风险。
+
+当你看到这样的代码：
+
+cpp
+lock_guard<mutex> lock(queueMutex);
+这行代码的作用是：
+
+自动加锁：当 lock_guard<mutex> 类型的对象 lock 被创建时，它会自动对其构造函数中传入的互斥锁 queueMutex 进行加锁操作。这意味着，从 lock 对象被创建的那一刻起，queueMutex 就被锁定了，任何尝试再次锁定 queueMutex 的线程都会被阻塞，直到 lock 对象被销毁并且 queueMutex 被解锁。
+作用域限制：lock_guard<mutex> 对象的生命周期是由它的作用域决定的。一旦 lock 对象离开其所在的作用域（比如函数返回、循环结束、条件语句块结束等），lock 对象就会被销毁。在销毁过程中，lock_guard<mutex> 会自动调用其析构函数，该析构函数负责释放（即解锁）它管理的互斥锁 queueMutex。这种机制确保了互斥锁只在其需要被锁定的代码块内保持锁定状态，减少了死锁的可能性，并简化了锁的管理。
+避免忘记解锁：使用 lock_guard<mutex> 可以避免忘记手动解锁互斥锁的问题。在复杂的代码逻辑中，手动管理锁（即使用 mutex.lock() 和 mutex.unlock()）时，很容易因为控制流的变化（如异常抛出、提前返回等）而忘记解锁互斥锁，从而导致死锁或其他同步问题。而 lock_guard<mutex> 通过其自动析构特性，确保了互斥锁总能在合适的时机被解锁。
+综上所述，lock_guard<mutex> 通过其自动加锁和解锁的特性，简化了线程同步代码的编写，降低了死锁的风险，是 C++11 及以上版本中推荐使用的线程同步工具之一。
 
 https://en.cppreference.com/w/cpp/11
 

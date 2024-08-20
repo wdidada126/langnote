@@ -1,5 +1,12 @@
 # scitools Understand工具
 
+Buildspy 是 Understand 工具的一项功能，专为使用 gcc/g++ 编译器的用户设计。它通过捕捉编译过程中使用的文件、包含项和宏定义，自动创建 Understand 项目，从而避免手动输入这些信息。使用时，需要将编译器更改为 `gccwrapper/g++wrapper`，或者直接通过命令行执行 `buildspy` 命令。此功能可以显著提高项目设置的准确性和效率，特别是在 Linux 和 Windows (Cygwin) 环境下。
+
+更多信息请访问 [Buildspy 官方页面](https://support.scitools.com/support/solutions/articles/70000582690)。
+
+https://support.scitools.com/support/solutions/articles/70000582619-creating-accurate-c-c-projects
+
+
 Understand使用入门
 https://www.bilibili.com/video/BV1j8411o7X7/?spm_id_from=333.999.0.0
 
