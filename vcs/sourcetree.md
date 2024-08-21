@@ -1,5 +1,7 @@
 # sourcetree
 
+https://confluence.atlassian.com/get-started-with-sourcetree
+
 sourcetree打开一个仓库，好像会自动git fetch
 
 https://www.sourcetreeapp.com/

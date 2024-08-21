@@ -1,5 +1,8 @@
 # make
 
+新版本的LFS里，越来越多的软件包用meson和cmake了。各有各的好吧
+
+
 https://github.com/adamdunkels/uip
 
 make多个文件夹，分离式编译吗？

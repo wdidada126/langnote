@@ -1,5 +1,7 @@
 # Java标准库
 
+http://www.oracle.com/technetwork/java/intro-141325.html
+
 AQS
 https://m.jb51.net/program/308100tm3.htm
 
