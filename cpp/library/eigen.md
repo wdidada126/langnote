@@ -16,13 +16,10 @@ x
 ^
   
 k∣k−1
-​
  
 P 
 k∣k−1
-​
  
-​
   
 =A 
 x
@@ -36,18 +33,15 @@ k−1
  
 =AP 
 k−1∣k−1
-​
  A 
 T
  +Q
-​
  
 其中， 
 x
 ^
   
 k∣k−1
-​
   是 k 时刻的预测状态，A 是状态转移矩阵，B 是控制输入矩阵，u 
 k−1
 ​
@@ -137,49 +131,67 @@ Eigen 是一个高级的 C++ 库，用于线性代数、矩阵和向量运算，
 示例代码
 以下是一个基于 Eigen 的简单卡尔曼滤波器实现框架：
 
-cpp
-#include <Eigen/Dense>  
-#include <iostream>  
-  
-using namespace Eigen;  
-using namespace std;  
-  
-class KalmanFilter {  
-public:  
-    MatrixXd A, B, H, Q, R, P;  
-    VectorXd x_hat, u;  
-  
-    KalmanFilter(int state_size, int meas_size, int control_size)  
-        : A(MatrixXd::Identity(state_size, state_size)),  
-          B(MatrixXd::Zero(state_size, control_size)),  
-          H(MatrixXd::Zero(meas_size, state_size)),  
-          Q(MatrixXd::Identity(state_size, state_size) * 0.1),  
-          R(MatrixXd::Identity(meas_size, meas_size) * 1.0),  
-          P(MatrixXd::Identity(state_size, state_size) * 1.0),  
-          x_hat(VectorXd::Zero(state_size)),  
-          u(VectorXd::Zero(control_size)) {}  
-  
-    void predict(const VectorXd &control) {  
-        u = control;  
-        x_hat = A * x_hat + B * u;  
-        P = A * P * A.transpose() + Q;  
-    }  
-  
-    void update(const VectorXd &measurement) {  
-        VectorXd y = measurement - H * x_hat;  
-        MatrixXd S = H * P * H.transpose() + R;  
-        MatrixXd K = P * H.transpose() * S.inverse();  
-  
-        x_hat = x_hat + K * y;  
-        P = (MatrixXd::Identity(P.rows(), P.cols()) - K * H) * P;  
-    }  
-};  
-  
-int main() {  
-    KalmanFilter kf(2, 1, 1); // 假设有2个状态变量，1个测量变量，1个控制变量  
-  
-    // 假设的初始条件和控制输入  
-    VectorXd z(1);  
-    z << 1.0;  // 假设的测量值  
-    VectorXd u_
+```cpp
+#include <eigen3/Eigen/Dense>
+#include <iostream>
 
+using namespace Eigen;
+using namespace std;
+
+class KalmanFilter {
+public:
+    MatrixXd A, B, H, Q, R, P;
+    VectorXd x_hat, u;
+
+    KalmanFilter(int state_size, int meas_size, int control_size)
+            : A(MatrixXd::Identity(state_size, state_size)),
+              B(MatrixXd::Zero(state_size, control_size)),
+              H(MatrixXd::Zero(meas_size, state_size)),
+              Q(MatrixXd::Identity(state_size, state_size) * 0.1),
+              R(MatrixXd::Identity(meas_size, meas_size) * 1.0),
+              P(MatrixXd::Identity(state_size, state_size) * 1.0),
+              x_hat(VectorXd::Zero(state_size)),
+              u(VectorXd::Zero(control_size)) {}
+
+    void predict(const VectorXd &control) {
+        u = control;
+        x_hat = A * x_hat + B * u;
+        P = A * P * A.transpose() + Q;
+    }
+
+    void update(const VectorXd &measurement) {
+        VectorXd y = measurement - H * x_hat;
+        MatrixXd S = H * P * H.transpose() + R;
+        MatrixXd K = P * H.transpose() * S.inverse();
+
+        x_hat = x_hat + K * y;
+        P = (MatrixXd::Identity(P.rows(), P.cols()) - K * H) * P;
+    }
+};
+
+int main() {
+    KalmanFilter kf(2, 1, 1); // 假设有2个状态变量，1个测量变量，1个控制变量  
+
+    // 初始化 Kalman 滤波器的矩阵
+    kf.A << 1, 1, 0, 1;  // 状态转移矩阵
+    kf.B << 0.5, 1.0;    // 控制矩阵
+    kf.H << 1, 0;        // 测量矩阵
+
+    // 假设的初始条件和控制输入  
+    VectorXd z(1);
+    z << 1.0;  // 假设的测量值
+
+    VectorXd u(1);
+    u << 0.1;  // 假设的控制输入
+
+    // 进行预测和更新
+    kf.predict(u);   // 预测步骤
+    kf.update(z);    // 更新步骤
+
+    // 打印结果
+    cout << "Updated state: \n" << kf.x_hat << endl;
+    cout << "Updated covariance: \n" << kf.P << endl;
+
+    return 0;
+}
+```
