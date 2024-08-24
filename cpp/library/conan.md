@@ -1,5 +1,8 @@
 # conan
+Conan 2.1 版本引入了许多新特性和改进，旨在提高包管理和依赖关系处理的灵活性和效率。其中一个显著的改进是对包的构建和源代码管理的更细致控制，特别是通过 self.source_folder 属性。
 
+【Conan 入门教程 】深入理解 Conan 2.X 中的 self.source_folder
+https://zhuanlan.zhihu.com/p/685828717
 conan install libmysql报错，需要
 brew unlink boost
 
