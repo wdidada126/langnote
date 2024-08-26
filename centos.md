@@ -1,5 +1,23 @@
 # centos
 
+rpm -ql centos-release-scl
+/etc/pki/rpm-gpg
+/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+/etc/yum.repos.d/CentOS-SCLo-scl.repo
+/usr/share/doc/centos-release-scl/GPL
+
+
+centos7 镜像仓库都失效了，怎么办？
+https://www.cnblogs.com/hbuuid/p/18298707
+
+sudo sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+sudo sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo
+sudo sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
+sudo yum clean all
+sudo yum makecache
+sudo yum install epel-release
+sudo yum install iftop
+
 ## repl关系
 红帽操作系统上的库，是有版权的，centos把库源代码下载下来，重新编译，打包，去掉版权信息，因此是免费的
 
@@ -200,5 +218,5 @@ chmod -v u+w /etc/sudoers
 
 6、取消 sudoers 文件可写权限     # chmod -v u-w /etc/sudoers
 
-
+sudo chmod -v u+w /etc/sudoers
 chmod -v u-w /etc/sudoers

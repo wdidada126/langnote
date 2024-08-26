@@ -1,4 +1,96 @@
 # conan
+
+pip3 install conan==2.0.6
+Defaulting to user installation because normal site-packages is not writeable
+Looking in indexes: http://mirrors.tencentyun.com/pypi/simple
+Requirement already satisfied: conan==2.0.6 in ./.local/lib/python3.10/site-packages (2.0.6)
+Requirement already satisfied: fasteners>=0.15 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (0.19)
+Requirement already satisfied: python-dateutil<3,>=2.8.0 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (2.9.0.post0)
+Requirement already satisfied: PyYAML<=6.0,>=5.1 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (6.0)
+Requirement already satisfied: Jinja2<4.0.0,>=3.0 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (3.1.4)
+Requirement already satisfied: requests<3.0.0,>=2.25 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (2.32.3)
+Requirement already satisfied: distro<=1.8.0,>=1.4.0 in /usr/lib/python3/dist-packages (from conan==2.0.6) (1.7.0)
+Requirement already satisfied: colorama<0.5.0,>=0.4.3 in /usr/lib/python3/dist-packages (from conan==2.0.6) (0.4.4)
+Requirement already satisfied: urllib3<1.27,>=1.26.6 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (1.26.19)
+Requirement already satisfied: patch-ng<1.18,>=1.17.4 in ./.local/lib/python3.10/site-packages (from conan==2.0.6) (1.17.4)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.local/lib/python3.10/site-packages (from Jinja2<4.0.0,>=3.0->conan==2.0.6) (2.1.5)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil<3,>=2.8.0->conan==2.0.6) (1.16.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.local/lib/python3.10/site-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (3.3.2)
+Requirement already satisfied: certifi>=2017.4.17 in ./.local/lib/python3.10/site-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (2024.7.4)
+Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3/dist-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (3.3)
+
+
+阿里云安装conan失败
+
+```
+pip3 install conan
+Collecting conan
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out. (read timeout=15)",)': /packages/f5/eb/329968b0a011fcf207bed64e07b19bebfd60865f83ebde7c16de612aff35/conan-2.6.0.tar.gz
+  Downloading https://files.pythonhosted.org/packages/f5/eb/329968b0a011fcf207bed64e07b19bebfd60865f83ebde7c16de612aff35/conan-2.6.0.tar.gz (449kB)
+    25% |████████                        | 112kB 8.9kB/s eta 0:00:38Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/urllib3/response.py", line 302, in _error_catcher
+    yield
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/urllib3/response.py", line 384, in read
+    data = self._fp.read(amt)
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/cachecontrol/filewrapper.py", line 60, in read
+    data = self.__fp.read(amt)
+  File "/usr/lib64/python3.6/http/client.py", line 459, in read
+    n = self.readinto(b)
+  File "/usr/lib64/python3.6/http/client.py", line 503, in readinto
+    n = self.fp.readinto(b)
+  File "/usr/lib64/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib64/python3.6/ssl.py", line 1005, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib64/python3.6/ssl.py", line 867, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib64/python3.6/ssl.py", line 590, in read
+    v = self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/usr/lib/python3.6/site-packages/pip/commands/install.py", line 346, in run
+    requirement_set.prepare_files(finder)
+  File "/usr/lib/python3.6/site-packages/pip/req/req_set.py", line 381, in prepare_files
+    ignore_dependencies=self.ignore_dependencies))
+  File "/usr/lib/python3.6/site-packages/pip/req/req_set.py", line 623, in _prepare_file
+    session=self.session, hashes=hashes)
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 821, in unpack_url
+    hashes=hashes
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 659, in unpack_http_url
+    hashes)
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 882, in _download_http_url
+    _download_url(resp, link, content_file, hashes)
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 603, in _download_url
+    hashes.check_against_chunks(downloaded_chunks)
+  File "/usr/lib/python3.6/site-packages/pip/utils/hashes.py", line 46, in check_against_chunks
+    for chunk in chunks:
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 571, in written_chunks
+    for chunk in chunks:
+  File "/usr/lib/python3.6/site-packages/pip/utils/ui.py", line 139, in iter
+    for x in it:
+  File "/usr/lib/python3.6/site-packages/pip/download.py", line 560, in resp_read
+    decode_content=False):
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/urllib3/response.py", line 436, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/urllib3/response.py", line 401, in read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+  File "/usr/lib64/python3.6/contextlib.py", line 99, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/usr/lib/python3.6/site-packages/pip/_vendor/urllib3/response.py", line 307, in _error_catcher
+    raise ReadTimeoutError(self._pool, None, 'Read timed out.')
+pip._vendor.urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out.
+```
+pip3 install conan -i http://mirrors.tencentyun.com/pypi/simple
+pip3 install conan -i http://mirrors.tencentyun.com/pypi/simple --trusted-host mirrors.tencentyun.com
+
+pip3 install conan==2.0.6 -i http://mirrors.tencentyun.com/pypi/simple
+
 Conan 2.1 版本引入了许多新特性和改进，旨在提高包管理和依赖关系处理的灵活性和效率。其中一个显著的改进是对包的构建和源代码管理的更细致控制，特别是通过 self.source_folder 属性。
 
 【Conan 入门教程 】深入理解 Conan 2.X 中的 self.source_folder
