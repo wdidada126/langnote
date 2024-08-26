@@ -45,7 +45,7 @@ The package gtest is compatible with built-in CMake targets:
 ```
 
 ## 官方doc
-
+https://github.com/google/googletest/blob/main/docs/samples.md
 googletest github 仓库
 
 docs文件夹
