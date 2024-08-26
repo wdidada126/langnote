@@ -1,5 +1,18 @@
 # CMake
 
+export CMAKE_ROOT=/usr/local/cmake
+export CMAKE_ROOT=/home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64
+/home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64/bin
+
+
+
+
+export CMAKE_ROOT=/home/wdidada/cmake-3.27.1-linux-x86_64
+export PATH="/home/wdidada/cmake-3.27.1-linux-x86_64:$PATH"
+
+
+/home/wdidada/cmake-3.27.1-linux-x86_64/bin
+
 ## 内置变量
 
 判断os，cmake也设计了内置变量

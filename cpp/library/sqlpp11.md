@@ -74,18 +74,10 @@ sqlpp11 provides CMake targets:
 ## version
 https://github.com/rbock/sqlpp11/tags
 
-0.61
-Dec 18, 2021
-
-0.64
-Oct 8, 2023
-
-0.63
-Jun 30, 2023
-
-0.62
-Jun 4, 2023
-
+0.64 Oct 8, 2023
+0.63 Jun 30, 2023
+0.62 Jun 4, 2023
+0.61 Dec 18, 2021
 
 https://github.com/rbock/sqlpp11/issues/580
 
@@ -94,9 +86,16 @@ https://github.com/rbock/sqlpp11/issues/580
 https://github.com/edidada/yishengAttendanceData
 
 ## script
+find . -name "ddl2cpp"
+./.conan2/p/sqlpp36f2f4cec0df9/p/bin/ddl2cpp
+./sqlpp11-0.61/scripts/ddl2cpp
+
+/home/wdidada/sqlpp11-0.61/scripts
 
 python ddl2cpp Student.sql ./Student TestProject
 
 ddl2cpp tbl_night_shift.sql ./tbl_night_shift tbl_night_shift
 ddl2cpp tbl_single_shift.sql ./tbl_single_shift tbl_single_shift
 ddl2cpp articles.sql ./articles articles
+ddl2cpp users.sql ./users users
+ddl2cpp admins.sql ./admins admins
