@@ -219,4 +219,4 @@ chmod -v u+w /etc/sudoers
 6、取消 sudoers 文件可写权限     # chmod -v u-w /etc/sudoers
 
 sudo chmod -v u+w /etc/sudoers
-chmod -v u-w /etc/sudoers
+sudo chmod -v u-w /etc/sudoers
