@@ -1,5 +1,8 @@
 # centos
 
+sudo yum clean all  
+sudo yum makecache
+
 rpm -ql centos-release-scl
 /etc/pki/rpm-gpg
 /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo

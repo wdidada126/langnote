@@ -1,5 +1,13 @@
 # conan
 
+ubuntu 24 gcc 13.x版本
+pip3 install conan
+报错
+
+阿里云centos7安装conan
+pip3 install conan报错
+
+
 pip3 install conan==2.0.6
 Defaulting to user installation because normal site-packages is not writeable
 Looking in indexes: http://mirrors.tencentyun.com/pypi/simple
