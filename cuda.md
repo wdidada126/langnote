@@ -1,4 +1,5 @@
 # cuda
+CUDA其实也是C的方言（语法和C基本一致，只是要抛开一些CPU编程的思维定式）啦。
 
 the popular parallel computing platform and programming model from NVIDIA 
 

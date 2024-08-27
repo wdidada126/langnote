@@ -38,3 +38,15 @@ Source Insight不仅是一个强大的代码查看工具，它同样支持对代
 快捷键和自定义：Source Insight支持多种快捷键自定义，用户可以根据自己的习惯来设置快捷键，提高编辑效率。
 代码审查和格式化：Source Insight还支持代码审查和代码格式化功能，有助于保持代码风格的一致性和提高代码质量。
 综上所述，Source Insight不仅可以查看代码，还具备强大的代码编辑功能。它是一款非常适合软件开发人员使用的代码编辑器和浏览器。
+
+Source Insight设置编码utf-8 如何操作？
+
+options
+prefefence
+File
+
+
+本地项目文件
+D:\dev_tools\Source Insight 4.00.0132 Portable\Source Insight 4.00.0132 Portable\Data\UserData\Projects
+
+line_ending.png

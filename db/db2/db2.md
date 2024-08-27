@@ -1,5 +1,7 @@
 # Db2
 
+db2那垃圾玩意就不要提了，要功能没功能，要性能没性能的，不然oracle凭什么崛起。
+
 db2安装
 https://blog.csdn.net/ni617wo815/article/details/49692203
 
