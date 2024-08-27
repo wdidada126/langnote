@@ -1,6 +1,6 @@
 # meson
 
-## clion 2024支持meson
+## clion 2024支持meson
 meson.build
 ninja
 
@@ -18,6 +18,9 @@ python写的
 https://mesonbuild.com/Getting-meson_zh.html
 
 pip3 install meson
+choco install meson
+
+C:\Users\edida\AppData\Local\Temp\chocolatey\meson\1.5.1\meson-1.5.1-64.msi
 
 eclipse mac版本支持meson
 
