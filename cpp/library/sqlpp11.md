@@ -1,5 +1,8 @@
 # sqlpp11
 
+sqlpp11多线程访问报错
+https://github.com/rbock/sqlpp11/issues/589
+
 ## odb vs sqlpp11
 SQLpp11 和 ODB 是用于 C++ 的不同类型的数据库库。两者各有特点和适用的场景，下面是对这两者的对比：
 
