@@ -1,13 +1,9 @@
-# 20240800week5
+# FdogSerialize
+
+https://github.com/edidada/FdogSerialize
 
 C++开源序列化库：FStruct
 建议借鉴一下Rust的serde库。
 单元测试推荐个doctest，个人感觉很不错
 https://github.com/HuaGouFdog/FdogSerialize
 https://zhuanlan.zhihu.com/p/485708300
-
-git push wdidada126 main -u
-error: src refspec main does not match any
-error: failed to push some refs to 'github-wdidada126:wdidada126/rest_libevent.git'
-
-git没有任何内容，报错
