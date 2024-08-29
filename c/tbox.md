@@ -65,4 +65,50 @@ https://github.com/tboox/tbox/blob/master/src/demo/demo.h
 https://github.com/sandisks/ctestttbox
 
 
+Tbox 是一个轻量级的跨平台 C 库，提供了丰富的数据结构和实用功能。它的设计目标是易于使用和高效。Tbox 包含以下常用的数据结构：
 
+### 1. 动态数组（Vector）
+   - 描述：一个自动扩展的数组，支持快速随机访问和动态增删操作。
+   - 接口：`tb_vector_t`，`tb_vector_init`，`tb_vector_insert_tail`，`tb_vector_get` 等。
+
+### 2. 链表（List）
+   - 描述：双向链表，适合频繁插入和删除操作的场景。
+   - 接口：`tb_list_t`，`tb_list_init`，`tb_list_insert_tail`，`tb_list_remove` 等。
+
+### 3. 哈希表（Hash）
+   - 描述：基于键值对存储的哈希表，适合快速查找和存储数据。
+   - 接口：`tb_hash_map_t`，`tb_hash_map_init`，`tb_hash_map_insert`，`tb_hash_map_get` 等。
+
+### 4. 队列（Queue）
+   - 描述：FIFO（先进先出）的队列，适合任务调度等场景。
+   - 接口：`tb_queue_t`，`tb_queue_init`，`tb_queue_put`，`tb_queue_get` 等。
+
+### 5. 栈（Stack）
+   - 描述：LIFO（后进先出）的栈结构，适合需要回溯的场景。
+   - 接口：`tb_stack_t`，`tb_stack_init`，`tb_stack_push`，`tb_stack_pop` 等。
+
+### 6. 红黑树（Red-Black Tree）
+   - 描述：平衡二叉树，提供高效的插入、删除和查找操作。
+   - 接口：`tb_tree_t`，`tb_tree_init`，`tb_tree_insert`，`tb_tree_remove` 等。
+
+### 7. 链表字典（Hash Dict）
+   - 描述：哈希表的链表实现，用于处理大量键值对的存储和查找。
+   - 接口：`tb_hash_map_t`，`tb_hash_map_init`，`tb_hash_map_insert`，`tb_hash_map_get` 等。
+
+### 8. 位图（Bitmap）
+   - 描述：用于管理位的集合，适合标记和过滤等操作。
+   - 接口：`tb_bitmap_t`，`tb_bitmap_init`，`tb_bitmap_set`，`tb_bitmap_clear` 等。
+
+### 9. 双端队列（Deque）
+   - 描述：支持在两端进行插入和删除操作的队列。
+   - 接口：`tb_deque_t`，`tb_deque_init`，`tb_deque_push_head`，`tb_deque_pop_tail` 等。
+
+### 10. 优先队列（Priority Queue）
+   - 描述：基于堆的优先队列，适合需要按优先级处理任务的场景。
+   - 接口：`tb_priority_queue_t`，`tb_priority_queue_init`，`tb_priority_queue_put`，`tb_priority_queue_get` 等。
+
+### 11. 环形缓冲区（Circle Buffer）
+   - 描述：一种先进先出的缓冲区，适合音频和流媒体数据处理。
+   - 接口：`tb_circle_queue_t`，`tb_circle_queue_init`，`tb_circle_queue_put`，`tb_circle_queue_get` 等。
+
+Tbox 还提供了一些其他实用功能和模块，例如内存管理、字符串处理、文件 I/O、线程和同步机制等，非常适合在 C 项目中使用。
