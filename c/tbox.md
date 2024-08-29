@@ -4,6 +4,8 @@ https://github.com/tboox/tbox/
 
 c语言写的
 
+brew install tbox
+
 https://docs.tboox.org/
 
 https://docs.tboox.org/#/manual/container

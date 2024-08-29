@@ -1,4 +1,95 @@
 # libevent
+
+rest_libevent
+
+在使用 libevent 创建 HTTP 服务器时，如果你想返回 JSON 格式的数据并设置 `Content-Type` 为 `application/json`，你可以按照以下步骤操作。
+
+### 代码示例
+
+假设你已经设置好了 HTTP 服务器，并且正在处理一个请求：
+
+```c
+#include <event2/event.h>
+#include <event2/http.h>
+#include <event2/buffer.h>
+#include <jansson.h>
+
+void handle_request(struct evhttp_request *req, void *arg) {
+    // 创建一个 JSON 响应对象
+    json_t *json_resp = json_object();
+    json_object_set_new(json_resp, "message", json_string("Hello, World!"));
+    json_object_set_new(json_resp, "status", json_integer(200));
+
+    // 将 JSON 对象转换为字符串
+    char *response_data = json_dumps(json_resp, JSON_COMPACT);
+    
+    // 设置响应头中的 Content-Type 为 application/json
+    struct evbuffer *evb = evbuffer_new();
+    evhttp_add_header(evhttp_request_get_output_headers(req), "Content-Type", "application/json");
+    
+    // 添加响应数据
+    evbuffer_add_printf(evb, "%s", response_data);
+    
+    // 发送响应
+    evhttp_send_reply(req, 200, "OK", evb);
+
+    // 清理资源
+    evbuffer_free(evb);
+    json_decref(json_resp);
+    free(response_data);
+}
+
+int main(int argc, char **argv) {
+    struct event_base *base = event_base_new();
+    struct evhttp *http = evhttp_new(base);
+
+    // 绑定请求处理函数
+    evhttp_set_gencb(http, handle_request, NULL);
+
+    // 监听指定端口
+    evhttp_bind_socket(http, "0.0.0.0", 8080);
+
+    // 启动事件循环
+    event_base_dispatch(base);
+
+    // 释放资源
+    evhttp_free(http);
+    event_base_free(base);
+
+    return 0;
+}
+```
+
+### 关键步骤
+
+1. 创建 JSON 响应对象：
+   使用 `jansson` 库来创建 JSON 数据。`json_object_set_new()` 函数可以为对象设置键值对。
+
+2. 转换 JSON 对象为字符串：
+   使用 `json_dumps()` 将 `json_t` 对象转换为 JSON 字符串。
+
+3. 设置 `Content-Type` 为 `application/json`：
+   调用 `evhttp_add_header()`，将 `Content-Type` 设置为 `application/json`。
+
+4. 发送响应：
+   使用 `evhttp_send_reply()` 将响应数据发送回客户端。
+
+5. 清理资源：
+   在完成响应后，释放分配的内存和对象。
+
+### 运行效果
+
+当客户端发起请求时，服务器将返回如下格式的 JSON 响应：
+
+```json
+{
+    "message": "Hello, World!",
+    "status": 200
+}
+```
+
+同时，HTTP 响应头中的 `Content-Type` 被正确设置为 `application/json`。
+
 an event notification library
 
 ## 官方文档
