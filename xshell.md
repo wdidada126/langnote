@@ -2,13 +2,11 @@
 
 xshell 7开源
 
-
 文本文件，一行有几千几万个字符，如果复制这一样数据
 
 vim
 yy
 p
-
 
 免费版
 https://www.xshell.com/zh/free-for-home-school/
@@ -22,11 +20,9 @@ pwd
 telnet
 curl
 
-
 https://www.netsarang.com/zh/xshell/
 
 官网介绍
-
 
 Xshell是一个强大的SSH和Telnet客户端，提供了很多内置的命令行工具，常用的包括：
 
@@ -43,3 +39,6 @@ set：设置或显示环境变量。
 cls：清除屏幕上的文本。
 exit：退出当前命令行工具。
 除了以上命令，Xshell还支持一些其他的命令行工具，比如awk、sed、grep等。
+
+快捷键可以取消 会话选项卡
+Ctrl Shift T
