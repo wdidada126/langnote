@@ -1,5 +1,16 @@
 # xmake
 
+## clion xmake插件
+中国朋友可以加QQ群交流及反馈BUG: 343118190
+## dd
+xmake.lua
+
+-- add_requires("tbox 1.7.5")
+add_requires("tbox 1.7.1", {debug = true})
+
+上面是release的
+下面是debug的
+
 ## config
 
 ### 设置debug，不是release
