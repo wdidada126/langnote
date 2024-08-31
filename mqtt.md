@@ -1,5 +1,26 @@
 # mqtt
 
+## version
+The MQTT 3.1.1 standard
+http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html
+
+
+The MQTT 5.0 standard
+https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html
+
+## client
+
+https://github.com/eclipse/paho.mqtt.c
+
+An Eclipse Paho C client library for MQTT for Windows, Linux and MacOS. API documentation: https://eclipse.github.io/paho.mqtt.c/
+
+eclipse.org/paho
+
+https://eclipse.github.io/paho.mqtt.c/MQTTClient/html/
+
+1.Paho MQTT C++：Eclipse Paho项目的C++语言实现，提供了面向对象的API，支持多种平台。
+
+## xd
 嵌入式硬件肯定选MQTT。AMQP更适合服务端。
 
 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）
