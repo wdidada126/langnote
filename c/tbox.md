@@ -1,4 +1,28 @@
 # tbox
+https://docs.tboox.org/#/zh-cn/getting_started
+
+tbox win平台，编译安卓的库
+cd D:\git\github
+git clone https://github.com/tboox/tbox.git
+git checkout  v1.7.1
+xmake f -m debug  -p android --ndk=C:/Microsoft/AndroidNDK/android-ndk-r23c
+xmake -y
+xmake package
+
+cd D:\git\github\tbox\build\android\armeabi-v7a\debug
+
+dir
+
+
+目录: D:\git\github\tbox\build\android\armeabi-v7a\debug
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         2024/8/30     14:13        2078908 demo
+-a----         2024/8/30     14:13        2903322 libtbox.a
+-a----         2024/8/30     14:11           9318 tbox.config.h
+
 
 https://github.com/tboox/tbox/
 

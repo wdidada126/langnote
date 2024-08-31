@@ -41,10 +41,10 @@ end
 wrk -t12 -c400 -d30s --header "Content-Type: application/json" --body '{"x":"b"}' http://101.43.12.32:8090/user/list
 
 ## 安装
-curl -o https://github.com/wg/wrk/archive/refs/tags/4.2.0.tar.gz
+wget https://github.com/wg/wrk/archive/refs/tags/4.2.0.tar.gz
 tar -zxvf 4.2.0.tar.gz
 rm -rf 4.2.0.tar.gz
-cd 
+cd wrk-4.2.0/
 make -j5
 
 wrk  -t12 -c400 -d30s  -s post_json2.lua http://101.43.12.32:8090/blog/list
