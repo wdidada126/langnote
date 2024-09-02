@@ -83,3 +83,28 @@ MQTT X以消息聊天的交互形式收发消息，允许同时建立多个连�
 值得一提的是，MQTTX还提供了MQTT命令行测试工具，这个强大的工具不仅方便安装，还提供了丰富且完善的各类测试命令和较为完整的MQTT配置参数，可以方便用户快速集成到一些测试脚本中。因此，无论是对于开发人员还是普通用户来说，MQTT X都是一款非常实用的工具。
 
 ![MQTT_CONNECT报文协商会话](./imgs/network/mqtt/MQTT_CONNECT报文协商会话.jpg)
+
+Apache ActiveMQ 是一个开源的消息代理（Message Broker），它支持多种协议，包括 MQTT。您可以使用 ActiveMQ 来搭建一个支持 MQTT 协议的消息服务器。
+
+以下是使用 Apache ActiveMQ 搭建 MQTT 服务器的简要步骤：
+
+1. 下载 ActiveMQ：首先，您需要从 Apache ActiveMQ 的官方网站下载 ActiveMQ 的最新版本：[https://activemq.apache.org/](https://activemq.apache.org/)
+
+2. 安装 ActiveMQ：解压下载的 ActiveMQ 压缩包，并根据官方文档中的说明进行安装和配置。
+
+3. 配置 MQTT 协议：在 ActiveMQ 中启用 MQTT 协议，您可以通过修改 ActiveMQ 的配置文件来实现。在 `activemq.xml` 配置文件中添加如下配置：
+
+    ```xml
+    <transportConnectors>
+        <!-- MQTT -->
+        <transportConnector name="mqtt" uri="mqtt://0.0.0.0:1883"/>
+    </transportConnectors>
+    ```
+
+4. 启动 ActiveMQ：启动 ActiveMQ 服务，确保 MQTT 协议已经启用。
+
+5. Java MQTT 客户端：使用 Java 编写的 MQTT 客户端可以连接到 ActiveMQ 提供的 MQTT 服务，进行消息的发布和订阅等操作。
+
+请注意，Apache ActiveMQ 是一个强大的消息中间件，支持多种协议和功能，包括 JMS、STOMP、OpenWire 等。在您的项目中使用 ActiveMQ 时，可以根据需要选择适合的协议和功能。
+
+希望这些信息能帮助您开始使用 Apache ActiveMQ 搭建一个支持 MQTT 协议的消息服务器。

@@ -7,9 +7,8 @@ https://zhuanlan.zhihu.com/p/621460269
 slack，add apps中搜索Claude，“add to Slack”按钮是灰色的
 Unfortunately, Claude is only available in certain regions right now. Please
 
-
 Claude在slack中也被限制了，只能特定地区能访问，大陆ip不能直接访问了
-
 
 https://www.anthropic.com/claude-in-slack
 
+Switched to Claude 3 HaikuDue to high demand, Claude 3.5Sonnet is temporarily unavailable forfree plans. Claude 3 Haiku is fasterbut may provide less detailedresponses.

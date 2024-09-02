@@ -1,4 +1,6 @@
 # cuda
+Nvidia 很早(2007)就推出CUDA了，那时候 Rust 甚至都没出来，有这个历史基石在，自然很多高性能计算相关的库都在用 C++ 写。向量数据库的话，Rust 现在有一个 Qdrant。
+
 CUDA其实也是C的方言（语法和C基本一致，只是要抛开一些CPU编程的思维定式）啦。
 
 the popular parallel computing platform and programming model from NVIDIA 

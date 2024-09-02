@@ -1,7 +1,8 @@
 # thingsboard
 
 https://github.com/thingsboard/thingsboard
-
+Java写的？
+maven组织的代码？
 linux docker部署thingsborad
 
 
@@ -20,3 +21,6 @@ password tenant
 git clone -b v3.6.2 https://github.com/thingsboard/thingsboard.git
 cd thingsboard
 mvn clean package  -DskipTests
+
+## doc
+https://thingsboard.io/docs/
