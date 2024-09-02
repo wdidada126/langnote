@@ -1,4 +1,5 @@
 # Openshift
+完全基于k8s了，竞品Rancher
 
 https://cloud.redhat.com/openshift/
 
@@ -25,12 +26,10 @@ https://www.openshift.com/
 
 Openshift
 
-https://www.openshift.com
-
 paas
 
 minishift 落地
-
+openshift都不基于openstack了，你自己细品
 openstack 美国航天局 弃坑了
 
 https://opendev.org/openstack/swift
