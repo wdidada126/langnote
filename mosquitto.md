@@ -88,3 +88,10 @@ sudo systemctl restart mosquitto
 ```
 
 这样，您就可以通过编辑Mosquitto的配置文件来自定义Mosquitto MQTT代理的设置和行为。请根据您的需求修改配置文件中的参数。
+
+
+mosquitto -c /etc/mosquitto/mosquitto.conf -v
+1725263242: Loading config file /etc/mosquitto/conf.d/mosquitto.conf
+1725263242: Error: Unknown configuration variable "daemon".
+1725263242: Error found at /etc/mosquitto/conf.d/mosquitto.conf:2.
+1725263242: Error found at /etc/mosquitto/mosquitto.conf:11.
