@@ -1,4 +1,7 @@
 # ssh
+
+2014年 OpenSSH 6.5 引入 ED25519 SSH 密钥后，当前任何操作系统都可用使用这种密钥。
+
 ssh公钥文件存放的地方
 authorized_keys
 
