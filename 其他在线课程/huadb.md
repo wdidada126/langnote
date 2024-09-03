@@ -27,3 +27,4 @@ https://thu-db.github.io/huadb-doc/
 
 
 mac电脑，可以编译
+https://dbgroup.cs.tsinghua.edu.cn/ligl/huadb/
