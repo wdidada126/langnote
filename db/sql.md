@@ -1,6 +1,52 @@
 # SQL
 
+<!-- 按身份证号匹配 -->
+        <if test="idNo != null and idNo != ''">
+            AND UPPER(ID_NO) = UPPER(#{idNo})
+        </if>
+改成
+<!-- 按身份证号匹配 -->
+        <if test="idNo != null and idNo != ''">
+            AND (ID_NO = UPPER(#{idNo}) OR ID_NO = LOWER(#{idNo}))
+        </if>5
 
+
+
+    <!--<select id="querySalaryProjectList" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT A.* FROM(SELECT SALARY_ID,ITEM_USER_ID FROM T_SALARY_PROJECT_DETAIL_TD GROUP BY SALARY_ID,ITEM_USER_ID ORDER BY CREATE_TIME DESC)A
+        LEFT JOIN T_SALARY_GRANT_TD B ON A.SALARY_ID = B.SALARY_ID WHERE ETP_ID = #{etpId}
+    </select> -->
+    <select id="querySalaryProjectList" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT SALARY_ID, ITEM_USER_ID FROM ${defaultSchema}.T_SALARY_PROJECT_DETAIL_TD A where A.SALARY_ID in (
+            select SALARY_ID  FROM  ${defaultSchema}.T_SALARY_GRANT_TD B
+            WHERE B.ETP_ID = #{etpId})
+        group by SALARY_ID,
+                 ITEM_USER_ID ORDER BY CREATE_TIME DESC
+    </select>
+
+
+
+ <!--
+    <select id="salaryUserName" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT
+        B.USER_ID AS EMP_ID,
+        A.NAME AS "NAME",
+        IFNULL(D.DEP_NAME,#{etpName}) AS DEP_NAME
+        FROM
+        ${defaultSchema}.T_CUSTOM_INFO_TD A
+        LEFT JOIN ${defaultSchema}.T_ETP_DEPART_INFO_TD D ON A.DEP_ID = D.DEP_ID
+        RIGHT JOIN (SELECT USER_ID FROM ${defaultSchema}.T_SALARY_SEND_STATE_TD WHERE SALARY_ID = #{salaryId} )B
+        ON A.EMP_ID = B.USER_ID
+    </select> -->
+    <select id="salaryUserName" parameterType="java.lang.String" resultType="java.util.Map">
+        select B.NAME AS "NAME", B.EMP_ID, IFNULL(D.DEP_NAME, #{etpName}) AS DEP_NAME FROM (
+        select A.NAME AS "NAME", A.EMP_ID, A.DEP_ID
+         FROM ${defaultSchema}.T_CUSTOM_INFO_TD A WHERE A.EMP_ID in (
+            SELECT USER_ID FROM ${defaultSchema}.T_SALARY_SEND_STATE_TD WHERE SALARY_ID = #{salaryId}
+        ) ) B
+         left join ${defaultSchema}.T_ETP_DEPART_INFO_TD D ON B.DEP_ID = D.DEP_ID
+    </select>
+    
 UPDATE table_name  
 SET column1 = value1, column2 = value2, ...  
 WHERE condition;
