@@ -1,5 +1,8 @@
 # MySQL技术内幕 InnoDB存储引擎(第2版)
 
+win 10电脑上
+MySQL技术内幕(InnoDB存储引擎)第2版.pdf
+
 https://github.com/alibaba/innodb-java-reader
 
 https://book.douban.com/subject/24708143/ 姜承尧
@@ -7,7 +10,6 @@ https://book.douban.com/subject/24708143/ 姜承尧
 编译innodb代码
 
 https://book.douban.com/subject/26436525/ 外国人写的
-
 
 ## 第2章 使用SQL管理数据 64
 

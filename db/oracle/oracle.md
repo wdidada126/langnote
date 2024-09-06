@@ -1,5 +1,15 @@
 # oracle
 
+ifnull()类似的函数，有吗？
+豆瓣
+
+case
+  when xxx isnull or xxx = '' then
+    0
+  else
+    1
+end as yyy
+
 https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html#GUID-1BABC478-FB47-4962-9B0C-8B8BD059E733
 
 “两地三中心”是中国人民银行在2002年提出、2004年开始逐步实施的有关央行系统数据中心布局的战略部署，也被称为“一主两备”或“一个同城加两个异地”。它是指在北京建立两个数据中心，同时在天津和上海各建立一个数据中心。

@@ -1,4 +1,12 @@
 # tbox
+
+1.7.5编译报错
+xmake关闭某些问题
+
+set_warnings("all", "error")
+
+https://github.com/tboox/tbox/issues/263
+
 https://docs.tboox.org/#/zh-cn/getting_started
 
 tbox win平台，编译安卓的库

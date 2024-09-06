@@ -69,8 +69,8 @@ FROM sales;
 
 mysql入门推荐看视频，能写出业务sql就行，系统学习推荐书籍高性能mysql第三版尽管不是8版本，大部分知识点仍然通用，其次看下mysql的配置文件，了解它的重要参数，上面还写了很多注释方便理解，数据库表设计层面字段类型，索引，隔离级别，行格式，页分裂，页合并，间隙锁，行锁表锁意向锁，日志等底层知识一定要熟悉，这里不推荐直接看二手八股文，比如很多资料说%在前一定不走索引，事实上了解索引原理你就能够反驳，数据库与操作系统联系紧密，有时间我认为还是多结合这方面知识对数据库有更完整的理解
 
-* 非空值的个数。
-* 查询 NULL 值时，必须使用 IS NULL 或 IS NOT NULLl 来判断，而不能使用 =、!=、 <、> 之类的比较运算符。而''是可以使用这些比较运算符的。
+*非空值的个数。
+*查询NULL值时，必须使用IS NULL或IS NOT NULLl来判断，而不能使用=、!=、<、>之类的比较运算符。而''是可以使用这些比较运算符的。
 
 
 1. 补充视频中的B+树图片的出处：书籍《MySQL 是怎样运行的：从根儿上理解 MySQL》 第6章 快速查询的秘籍-B+树索引。书写得很好，十分推荐。
@@ -962,11 +962,11 @@ mysql 锁的
 https://zhuanlan.zhihu.com/p/393683080
 
     CREATE TABLE`yes` (
-	  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-	  `name` varchar(45) DEFAULT NULL,
-	  `address` varchar(45) DEFAULT NULL,
-	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
+      `id` bigint(20) NOT NULL AUTO_INCREMENT,
+      `name` varchar(45) DEFAULT NULL,
+      `address` varchar(45) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4
 
 查看事务隔离级别 mysql5.7.20 之后
 show variables like 'transaction_isolation';
@@ -995,6 +995,12 @@ select * from yes where name = 'xx' for update;
 开启事务？
 
 ## mysql 日志
+
+
+
+MySQL技术内幕 InnoDB存储引擎(第2版) 7章
+
+
 
 redo log
 undo log
