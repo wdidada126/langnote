@@ -1,4 +1,8 @@
 # soa
+服务划分
+内部服务和外部服务
+内部网关，外部网关
+ibm搞得soa？
 
 SOA中的两个概念：编制（orchestration）和编排（choreography） 
 https://blog.csdn.net/villasy/article/details/83839126
