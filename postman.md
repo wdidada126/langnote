@@ -1,4 +1,9 @@
 # postman
+
+postman编辑集合和变量
+
+我们可以点击右上角的小眼睛，管理环境变量
+
 历史版本
 
 https://dl.pstmn.io/download/version/7.36.7/win64
