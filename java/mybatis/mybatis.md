@@ -1,5 +1,21 @@
 # mybatis
 
+
+mybatis
+语法
+if test 判断某个变量等于某个常量
+
+        <if test="OPER_TYPE == '1'.toString()">AND FCIT.IM_TOKEN IS NOT NULL </if>
+
+        <choose>
+            <when test="CHANNEL == 'PC'.toString()"> 
+                AND (PC_HELP_QUESTION_URL IS NOT NULL AND PC_HELP_QUESTION_URL !='')
+            </when>
+            <otherwise>
+                AND (PC_HELP_QUESTION_URL IS NULL OR PC_HELP_QUESTION_URL ='')
+            </otherwise>
+        </choose>
+        
 ## CDATA
 
 <![CDATA[ ]]>
