@@ -329,3 +329,7 @@ https://www.jianshu.com/p/9812be1f746d
 
 idea断点增加代码
 
+IDEA年付账号
+zhou39287513@163.com
+
+565%Wiseism
