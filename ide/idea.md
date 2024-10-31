@@ -1,5 +1,8 @@
 # IDEA
 
+账号：Lindsay_Kaschmitter
+密码：kj@b$hRR
+
 按下Ctrl+Alt+L快捷键。IDEA将自动对文件中的代码进行格式化，包括JSON字符串。
 
 big data tools
