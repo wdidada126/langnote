@@ -1,5 +1,13 @@
 # nginx
 
+https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr
+
+$remote_addr
+client address
+
+x_forwarded_for
+https://www.cnblogs.com/kuracola/p/7482939.html
+
 ng对比apache httpd
 https://zhuanlan.zhihu.com/p/633063330
 
