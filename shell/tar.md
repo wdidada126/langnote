@@ -1,6 +1,45 @@
 # tar
 
-tar -zxvf zookeeper/ zookeeper.tgz zookeeper文件夹打包成zookeeper.tgz文件
+`tar` 是一个在 Unix 和类 Unix 系统中常用的归档工具，它可以打包文件和文件夹，并且可以配合压缩工具（如 gzip、bzip2、xz 等）使用来压缩打包后的文件。
+
+要使用 `tar` 命令打包整个文件夹，你可以使用以下命令格式：
+
+```bash
+tar -cvf archive_name.tar directory_name
+```
+
+这里的各个参数代表：
+- `c` 代表创建一个新的归档文件。
+- `v` 代表在创建归档文件时显示详细信息。
+- `f` 代表指定归档文件的名称。
+
+`archive_name.tar` 是你想要创建的归档文件的名称，`directory_name` 是你想要打包的文件夹的名称。
+
+例如，如果你有一个名为 `my_folder` 的文件夹，并且想要将其打包为名为 `my_folder.tar` 的归档文件，你可以使用以下命令：
+
+```bash
+tar -cvf my_folder.tar my_folder
+```
+
+如果你想要压缩归档文件，可以使用 `gzip`（创建 `.tar.gz` 或 `.tgz` 文件）：
+
+```bash
+tar -czvf my_folder.tar.gz my_folder
+```
+
+或者使用 `bzip2`（创建 `.tar.bz2` 文件）：
+
+```bash
+tar -cjvf my_folder.tar.bz2 my_folder
+```
+
+或者使用 `xz`（创建 `.tar.xz` 文件）：
+
+```bash
+tar -cJvf my_folder.tar.xz my_folder
+```
+
+记得替换 `my_folder` 和 `my_folder.tar` 为你实际的文件夹名称和归档文件名称。
 
 好的,让我来解释一下如何使用 tar 命令将 `zookeeper/` 文件夹打包成 `zookeeper.tgz` 文件。
 
