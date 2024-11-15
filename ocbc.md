@@ -1,5 +1,22 @@
 # ocbc
 
+	
+Dear Valued Customer 
+
+We are pleased to attach the monthly e-Statement for the following account(s):
+
+
+
+STATEMENT SAVINGS 596-XXXXXXXX-001
+360 ACCOUNT 624-XXXXXXXX-001
+GLOBAL SAVINGS ACCOUNT - USD 517-XXXXXXXX-201
+For your security, you must use a password to access the e-Statement. Here is your default password format (it is case sensitive):
+
+ 	
+ 	image description	 
+ 	
+You can change the password any time at OCBC Online Banking. If you have already changed the password, simply use the new one instead. 
+
 Earn S$210 or more when you refer friendsto OCBC
 Till 31 Dec 2024, get as much as S$45 - morethan the usual S$15 -when you refer a friendwho is moving to Singapore to join OcBc andwho deposits at least S$1.000.Your friendswill get S$15 each. Get bonus rewards for the1st, 5th and 10th referral (this works out to asmuch as S$210).T&Cs apply.SGD depositsare insured up to S$100k by SDlc.Share your referral code and start earning today!
 
