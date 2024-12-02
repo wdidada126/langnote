@@ -8,6 +8,14 @@
 在您的情况下，由于没有使用^~、=、~或~*修饰符，Nginx将按照最长前缀匹配规则来处理。这意味着如果有其他更具体的location配置与请求的URI前缀匹配，那么这些配置将优先于您当前的location配置。
 
 
+https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr
+
+$remote_addr
+client address
+
+x_forwarded_for
+https://www.cnblogs.com/kuracola/p/7482939.html
+
 ng对比apache httpd
 https://zhuanlan.zhihu.com/p/633063330
 
