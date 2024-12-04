@@ -1,5 +1,11 @@
 # dbeaver
 
+无外网的情况下，DBeaver下载数据库驱动的方案
+
+https://blog.csdn.net/bisal/article/details/123861018
+
+DBeaver下载数据库驱动的方案.mhtml
+
 ## 如何查看建表语句ddl
 
 ## 版本
