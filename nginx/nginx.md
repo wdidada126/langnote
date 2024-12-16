@@ -1,4 +1,13 @@
 # nginx
+ng中文社区
+https://www.f5chinanetworks.com/
+
+
+## 模块
+https://github.com/gnosek/nginx-upstream-fair
+c语言写的
+
+
 这个问题的原因可能是由于location匹配顺序和规则导致的。在Nginx中，location的匹配规则如下：
 
 精确匹配（使用=）。

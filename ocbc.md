@@ -1,20 +1,23 @@
 # ocbc
 
-	
+https://www.ocbc.com/personal-banking/deposits/360-savings-account
+
+国内ATM99.99%都他妈有V/M标志，其实很多不支持，去总行、大支行会好些
+账户里要先开通海外atm取款
+那是你那个ATM不支持Visa
+找一个支持的
+
 Dear Valued Customer 
 
 We are pleased to attach the monthly e-Statement for the following account(s):
-
-
 
 STATEMENT SAVINGS 596-XXXXXXXX-001
 360 ACCOUNT 624-XXXXXXXX-001
 GLOBAL SAVINGS ACCOUNT - USD 517-XXXXXXXX-201
 For your security, you must use a password to access the e-Statement. Here is your default password format (it is case sensitive):
 
- 	
- 	image description	 
- 	
+image description	 
+
 You can change the password any time at OCBC Online Banking. If you have already changed the password, simply use the new one instead. 
 
 Earn S$210 or more when you refer friendsto OCBC
@@ -23,7 +26,6 @@ Till 31 Dec 2024, get as much as S$45 - morethan the usual S$15 -when you refer 
 申请实体卡
 4218080323143752 ocbc绑定大陆支付宝，微信
 国内可以扫码支付，不能打开二维码
-
 
 GSA账户
 MSA账户
@@ -75,7 +77,6 @@ wdidada
 Pay。
 外加中国香港的AlipayHK、马来西亚的Touch'n Go eWallet、韩国的Kakao Pay、泰国的TrueMoney和中国澳门的mPay，外国旅客在中国大陆可使用拥有Alipay+服务的10款电子钱包。蚂蚁国际Alipay+跨境移动支付业务负责人道格拉斯·费根(Douglas Feagin)说，扩大合作伙伴和商户网络，以及提升中小企业的数码运营能力，是Alipay+未来战略的关键。
 
-
 全国统一服务热线
 40089 40089 （中国内地）
 
@@ -84,7 +85,6 @@ Pay。
 hk 客户服务邮箱
 CustomerVoice@ocbc.com
 https://www.ocbc.com.cn/CN/personal_banking/
-
 
 sg
 Get in touch with us
@@ -137,11 +137,9 @@ ocbc手机app
 安全邮箱
 内容必须是英文
 
-
 不建议非工作日去弄
 
 签注费一般多少？
 几十
 深户有一年多次
 80可以每周一次通行
-
