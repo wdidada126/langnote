@@ -1,7 +1,21 @@
 # nginx
+
+根据您的请求，以下是一些Nginx配置项图形化界面的工具：
+
+1. Nginx UI
+   - Nginx UI是一款开源的Nginx可视化管理界面，它简化了Nginx的配置与管理过程，提供了实时监控功能，可以显示Nginx服务器的关键指标，如连接数、请求处理时间等。[CSDN博客](https://blog.csdn.net/leeit/article/details/143420722)
+   - 项目地址：[https://github.com/0xJacky/nginx-ui](https://github.com/0xJacky/nginx-ui)
+2. nginxWebUI
+   - nginxWebUI是一款图形化管理nginx配置的工具，可以使用网页来快速配置nginx的各项功能，包括http协议转发、tcp协议转发、反向代理、负载均衡、静态html服务器、ssl证书自动申请、续签、配置等。[CSDN博客](https://blog.csdn.net/mopmgerg54mo/article/details/141356440)
+   - 开源地址：[https://gitee.com/cym1102/nginxWebUI](https://gitee.com/cym1102/nginxWebUI)
+3. Nginx GUI Manager
+   - Nginx GUI Manager是一个开源项目，提供了一个图形用户界面来管理和配置Nginx服务器，使得用户无需直接编辑配置文件即可完成服务器的设置。[CSDN博客](https://blog.csdn.net/gitblog_00578/article/details/144080381)
+
+这些工具可以帮助您通过图形化界面来管理和配置Nginx服务器，提高工作效率并降低配置难度。您可以访问上述链接了解更多详情和下载使用。
+
+
 ng中文社区
 https://www.f5chinanetworks.com/
-
 
 ## 模块
 https://github.com/gnosek/nginx-upstream-fair
