@@ -21,7 +21,6 @@ https://www.f5chinanetworks.com/
 https://github.com/gnosek/nginx-upstream-fair
 c语言写的
 
-
 这个问题的原因可能是由于location匹配顺序和规则导致的。在Nginx中，location的匹配规则如下：
 
 精确匹配（使用=）。
@@ -29,7 +28,6 @@ c语言写的
 正则表达式匹配（使用~和~*）。
 非前缀匹配（使用无修饰符的URI）。
 在您的情况下，由于没有使用^~、=、~或~*修饰符，Nginx将按照最长前缀匹配规则来处理。这意味着如果有其他更具体的location配置与请求的URI前缀匹配，那么这些配置将优先于您当前的location配置。
-
 
 https://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_addr
 
@@ -138,7 +136,6 @@ openresty
 - round-robin
 - least-connected
 - ip-hash
-
 
 ```shell
 nginx -V
