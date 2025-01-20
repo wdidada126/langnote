@@ -1,5 +1,49 @@
 # nas
 
+以下是一些美国的NAS供应商：
+1. Dell Technologies Inc.
+公司概况：Dell Technologies是一家全球知名的科技公司，提供广泛的信息技术产品和服务，包括服务器、存储设备、个人电脑等。
+NAS产品：Dell提供多种NAS解决方案，适用于不同规模的企业和组织。其产品线包括Dell EMC Unity XT系列等，这些产品支持高性能、高可用性和可扩展性。
+市场地位：Dell在NAS市场中占据重要地位，特别是在企业级存储解决方案方面。
+2. NetApp, Inc.
+公司概况：NetApp是一家全球领先的存储和数据管理解决方案提供商，专注于为企业提供高效、可靠的存储解决方案。
+NAS产品：NetApp的AFF系列是其旗舰产品之一，提供高性能的全闪存存储解决方案。NetApp还推出了AFF C-Series和AFF A150等新产品，进一步扩展了其产品线。
+市场地位：NetApp在NAS市场中具有强大的技术实力和广泛的客户基础，特别是在高性能计算和数据中心领域。
+3. Western Digital Corporation
+公司概况：Western Digital是一家全球领先的存储设备制造商，提供硬盘驱动器、固态硬盘、存储系统等产品。
+NAS产品：Western Digital的My Cloud系列NAS设备适合家庭和小型企业使用，提供易于安装和管理的存储解决方案。
+市场地位：Western Digital在消费级和小型企业NAS市场中占据重要份额，其产品以高性价比和易用性著称。
+4. Buffalo Americas Inc.
+公司概况：Buffalo Americas是Buffalo Technology的美国子公司，提供多种网络存储和数据备份解决方案。
+NAS产品：Buffalo的LinkStation系列NAS设备适合家庭和小型企业使用，提供多种存储容量和功能选项。
+市场地位：Buffalo在消费级NAS市场中具有较高的知名度，其产品以可靠性和易用性受到用户欢迎。
+5. Synology Inc.
+公司概况：Synology是一家台湾公司，但在全球NAS市场中具有重要地位，特别是在中小企业和家庭用户中。
+NAS产品：Synology的DiskStation系列NAS设备提供多种型号，支持从单盘位到多盘位的配置，适合不同规模的存储需求。
+市场地位：Synology在NAS市场中以高性价比和强大的功能著称，特别是在数据备份、媒体共享和远程访问方面。
+6. QNAP Systems Inc.
+公司概况：QNAP是一家台湾公司，但在美国市场也有广泛的用户基础，提供多种NAS和网络存储解决方案。
+NAS产品：QNAP的TS系列NAS设备支持多种存储协议和功能，适合家庭、小型企业和企业级用户。
+市场地位：QNAP在NAS市场中以创新和高性能著称，特别是在多媒体处理和虚拟化方面。
+7. Netgear Inc.
+公司概况：Netgear是一家美国公司，提供多种网络设备和存储解决方案，适合家庭和小型企业使用。
+NAS产品：Netgear的ReadyNAS系列NAS设备提供多种型号，支持高可用性和数据备份功能。
+市场地位：Netgear在消费级和小型企业NAS市场中具有较高的市场份额，其产品以易用性和可靠性著称。
+8. Cisco Systems Inc.
+公司概况：Cisco是一家全球领先的网络设备制造商，提供多种网络和存储解决方案。
+NAS产品：Cisco的NAS解决方案主要面向企业级市场，提供高性能、高可用性和可扩展的存储解决方案。
+市场地位：Cisco在企业级网络和存储市场中具有强大的技术实力和广泛的客户基础。
+9. Hitachi Vantara Corporation
+公司概况：Hitachi Vantara是日立集团的子公司，提供多种存储和数据管理解决方案。
+NAS产品：Hitachi的VSP 5000系列是其旗舰产品之一，提供高性能的NVMe闪存存储解决方案。
+市场地位：Hitachi在企业级存储市场中具有重要的地位，特别是在高性能存储和数据中心领域。
+10. IBM Corporation
+公司概况：IBM是一家全球知名的科技公司，提供多种信息技术产品和服务，包括服务器、存储设备、软件等。
+NAS产品：IBM的存储解决方案包括多种NAS和SAN产品，适用于不同规模的企业和组织。
+市场地位：IBM在企业级存储市场中具有强大的技术实力和广泛的客户基础，特别是在大型企业和数据中心领域。
+这些供应商在美国NAS市场中占据重要地位，提供从消费级到企业级的多种NAS解决方案，满足不同用户的需求。
+
+
 nas 可以在18那台ip的地址上去访问
 负载均衡的
 yitong公司用
