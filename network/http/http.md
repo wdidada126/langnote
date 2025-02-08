@@ -20,7 +20,6 @@ content-length
 
  https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding 
 
-<<<<<<< HEAD
 chunked
 
 
@@ -30,8 +29,8 @@ chunked
 
 
 postman
+Reqable 工具
 
 wireshark抓包
-=======
+
 chunked
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
