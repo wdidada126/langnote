@@ -1,5 +1,96 @@
 # maven
 
+在 Maven 的 `pom.xml` 文件中，依赖（`<dependencies>`）的声明顺序本身不会直接影响依赖解析的优先级，但某些场景下声明顺序可能会间接影响项目行为。以下是需要注意的几点：
+
+### 1. 依赖调解（Dependency Mediation）
+Maven 通过 "最近定义优先"（nearest definition wins） 的规则解决版本冲突。如果同一依赖的多个版本出现在依赖树中，直接声明在项目中的依赖优先级最高，其次是父 POM 中的声明，最后是传递性依赖。
+
+#### 示例：
+```xml
+<dependencies>
+    <!-- 直接声明的依赖 A，版本 1.0.0 -->
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>A</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+
+    <!-- 直接声明的依赖 B，引入传递性依赖 A-2.0.0 -->
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>B</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
+- 最终会使用 A-1.0.0（直接声明的版本），而非 B 传递的 A-2.0.0。
+
+#### 关键点：
+- 直接声明的依赖优先级最高，与声明顺序无关。
+- 若两个依赖声明在同一层级（如同为直接依赖），则 先声明的依赖版本可能被后声明的覆盖（取决于 Maven 解析顺序，但不可靠）。
+
+### 2. 类路径顺序（Classpath Order）
+Maven 生成的类路径（Classpath）顺序 可能影响运行时行为（如资源加载、静态代码块执行顺序等）。类路径顺序通常由以下因素决定：
+- 依赖的声明顺序：某些构建工具（如 Maven 默认插件）会按声明顺序生成类路径。
+- 依赖的作用域（scope）：`compile` > `runtime` > `test`。
+
+#### 示例：
+如果两个 JAR 包包含同名资源文件（如 `META-INF/services/...`），类路径中先出现的 JAR 文件会覆盖后出现的。
+
+### 3. 可读性与维护性
+虽然技术上无严格要求，但合理的依赖顺序能提升代码可读性：
+- 按逻辑分组：如框架依赖（Spring、JUnit）、工具库（Guava、Lombok）、项目内部模块等。
+- 按作用域排序：`compile` → `runtime` → `test`。
+- 统一团队规范：约定声明顺序（如按字母顺序或按功能模块）。
+
+### 4. 依赖管理（`<dependencyManagement>`）
+在父 POM 或 BOM（Bill of Materials）中使用 `<dependencyManagement>` 可以 统一版本号，避免因声明顺序导致的版本冲突：
+```xml
+<dependencyManagement>
+    <dependencies>
+        <!-- 统一管理依赖版本 -->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>A</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <!-- 子模块中无需指定版本 -->
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>A</artifactId>
+    </dependency>
+</dependencies>
+```
+
+### 5. 特殊场景
+- 可选依赖（`<optional>true</optional>`）：声明顺序不影响是否包含可选依赖。
+- 排除依赖（`<exclusions>`）：需显式排除不需要的传递性依赖，与声明顺序无关。
+
+### 总结
+1. 依赖调解规则：直接声明的依赖优先级最高，与顺序无关。
+2. 类路径顺序：可能受声明顺序影响，需关注资源覆盖问题。
+3. 最佳实践：
+   - 使用 `<dependencyManagement>` 统一版本。
+   - 按逻辑分组声明依赖，提升可读性。
+   - 通过 `mvn dependency:tree` 检查实际依赖树。
+
+在 Maven 的构建过程中，Maven 解析和构建项目的依赖关系时，使用的是深度优先遍历（Depth-First Search, DFS）策略。
+
+具体来说，Maven 会递归地遍历依赖树，先尽可能深地遍历到叶节点（即没有依赖的模块或库），然后再回溯到上一层继续遍历。这种深度优先的策略有几个优点：
+
+尽早发现循环依赖：由于 Maven 在深度遍历时会尽早遇到已经访问过的节点，因此可以更早地发现和处理循环依赖问题。
+更自然的构建顺序：对于具有层次结构的项目（例如多模块项目），深度优先遍历可以确保底层模块先被构建，上层模块依赖于底层模块的结果。
+例如，假设有以下依赖关系：
+
+A -> B -> C
+A -> D -> C
+Maven 会首先遍历到 B，然后是 B 依赖的 C。在 B 和 C 构建完成后，再回溯到 A，继续遍历 D，此时 D 依赖的 C 已经被构建过了。
+
+这种深度优先策略有助于 Maven 有效地管理和构建复杂的依赖关系树。
 
 ## mail list
 
