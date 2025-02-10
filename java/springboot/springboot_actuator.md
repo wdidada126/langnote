@@ -1,5 +1,7 @@
 # springboot_actuator
 
+spring actuator提供接口，k8s去调用接口查看应用状态
+
 spring actuator 就绪 存活url搞反了
 在Spring Boot应用中，Actuator是一个用于监控和管理应用的工具，它提供了多种端点（endpoints），比如 /actuator/health（健康检查）和 /actuator/readiness（就绪状态）等。如果你提到“就绪”和“存活”的 URL 搞反了，这可能是因为对这些端点的作用和默认路径理解有误。
 1. Spring Actuator 的健康检查（存活状态）
@@ -30,6 +32,10 @@ https://spring.io/guides/gs/actuator-service/
 
 endpoint
 
+监控es
+rabbit
+mysql
+web
 
 
 
