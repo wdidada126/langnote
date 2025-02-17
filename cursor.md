@@ -8,3 +8,5 @@ https://www.cursor.com/
 
 Cursor Setup 0.40.4 - x64.exe
 https://github.com/getcursor/cursor
+
+一年一千五

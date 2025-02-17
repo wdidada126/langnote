@@ -1,5 +1,7 @@
 # esapi
 
+https://www.javadoc.io/doc/org.owasp.esapi/esapi
+
 https://github.com/ESAPI/esapi-java-legacy
 
 ESAPI（Enterprise Security API）是一个用于开发安全应用程序的开源项目，旨在提供一组安全功能和API，以帮助开发人员编写安全的应用程序。ESAPI 提供了一系列功能，如输入验证、输出编码、加密、访问控制等，来帮助开发人员防范常见的网络安全威胁，如跨站脚本（XSS）、SQL 注入、路径遍历等。
@@ -72,3 +74,13 @@ class Notice {
 - 输出结果：打印编码后的 `NOTICE_CONTENT` 字段，确保其安全性.
 
 通过这种方式，您可以有效地防止 XSS 攻击，确保应用程序的安全性.
+
+
+ESAPI.properties
+
+Authenticator.UsernameParameterName=username
+Authenticator.PasswordParameterName=password
+
+这两个配置项可以从ESAPI.properties文件中删除吗？
+
+
