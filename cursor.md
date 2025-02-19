@@ -10,3 +10,5 @@ Cursor Setup 0.40.4 - x64.exe
 https://github.com/getcursor/cursor
 
 一年一千五
+
+Stripe付款cursor
