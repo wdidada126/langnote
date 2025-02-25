@@ -1,4 +1,6 @@
 # rsync
+## 安装
+choco安装
 
 ## idea windows同步jar包问题
 rsync_rename.sh

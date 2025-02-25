@@ -1,4 +1,67 @@
 # git
+
+## version
+
+2.34.1.windows.1
+
+## some
+
+(要将Git中a分支从b到c的变动应用到d分支，可以使用`git cherry-pick`命令。以下是具体步骤和分析过程：)
+
+### 分析过程
+1. 确定变动范围：
+   - 首先，需要明确a分支上从b到c的具体变动范围。可以使用`git log`命令查看a分支上的提交记录，并确定b和c对应的提交哈希值。
+
+2. 应用变动到d分支：
+   - 使用`git cherry-pick`命令将a分支上从b到c的提交应用到d分支。
+
+### 具体步骤
+1. 切换到a分支并查看提交记录：
+   ```sh
+   git checkout a
+   git log
+   ```
+   - 记录下b和c对应的提交哈希值（例如，b对应的哈希值是`commit_b_hash`，c对应的哈希值是`commit_c_hash`）。
+
+2. 切换到d分支：
+   ```sh
+   git checkout d
+   ```
+
+3. 使用git cherry-pick应用变动：
+   - 使用`git cherry-pick`命令将b到c之间的提交应用到d分支。可以使用以下命令：
+     ```sh
+     git cherry-pick commit_b_hash^..commit_c_hash
+     ```
+   - 注意：`commit_b_hash^`表示b提交的前一个提交，这样可以确保从b提交开始应用变动。
+
+4. 解决冲突（如果有）：
+   - 如果在应用变动过程中出现冲突，Git会提示你解决冲突。解决冲突后，使用以下命令继续应用变动：
+     ```sh
+     git add <resolved_file>
+     git cherry-pick --continue
+     ```
+
+5. 完成应用变动：
+   - 如果没有冲突或冲突已解决，变动将被成功应用到d分支。
+
+### 示例
+假设a分支上b提交的哈希值是`abc123`，c提交的哈希值是`def456`，以下是具体命令：
+```sh
+git checkout a
+git log
+# 记录下abc123和def456
+git checkout d
+git cherry-pick abc123^..def456
+```
+
+### 注意事项
+- 确保在执行`git cherry-pick`之前，d分支是最新的，以避免不必要的冲突。
+- 如果在应用变动过程中出现冲突，务必仔细解决冲突并测试代码。
+
+使用* model DeepSeek-R1来切换满血版R1模型。
+
+
 git blame是Git版本控制系统中的一个非常有用的命令，它用于显示指定文件中每一行代码的修改历史。具体来说，git blame可以追踪到每一行代码是由哪位开发者在何时最后修改的，包括提交的哈希值、作者、修改时间和提交注释等信息。这个命令对于开发人员来说非常有帮助，因为它可以帮助他们了解代码的修改历史，找出特定代码段的贡献者，并追溯代码的演变过程。
 
 以下是关于git blame命令的一些详细信息和用法：
