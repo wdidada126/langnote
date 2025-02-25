@@ -12,3 +12,6 @@ https://github.com/getcursor/cursor
 一年一千五
 
 Stripe付款cursor
+visa master卡可以付款
+
+2025.02.24购买了

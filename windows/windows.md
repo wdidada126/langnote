@@ -1,6 +1,5 @@
 # windows 命令行
 
-
 ## windows安全扫描排除文件夹
 
 当 Windows 10 系统中 Microsoft Defender Antivirus Service（即 Antimalware Service Executable 进程）占用过多 CPU 资源时，通过添加文件夹免除扫描是一个有效的解决办法。以下是具体操作步骤：
