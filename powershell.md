@@ -10,8 +10,17 @@ https://github.com/PowerShell/PowerShell/releases/download/v7.4.4/PowerShell-7.4
 powershell 汉字乱码
 
 https://blog.csdn.net/weixin_43426860/article/details/83348284
+打开 控制面板—>区域—>管理—>更改系统区域设置
+勾选：使用Unicode UTF-8提供全球语音支持
+重启电脑
 
 搞定了
+
+在 PowerShell 中，可以使用以下命令来查看当前的代码页：
+chcp
+
+chcp
+Active code page: 65001
 
 给 Windows 的终端配置代理
 

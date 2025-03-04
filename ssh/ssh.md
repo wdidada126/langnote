@@ -32,7 +32,7 @@ Host github.com
    IdentityFile ~/.ssh/id_rsa_github_2
 
 # gitlab key
-Host gitlab
+Host gitlab.com
     Port 22
     User git
     HostName gitlab.com

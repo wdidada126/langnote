@@ -1,5 +1,11 @@
 # conan
 
+
+vs安装了143 build tool
+重新编译trantor/1.5.19
+conan install . --build=trantor/1.5.19 -pr=default_debug_17
+conan install . --build=drogon/1.9.3 -pr=default_debug_17
+
 ubuntu 24 gcc 13.x版本
 pip3 install conan
 报错
