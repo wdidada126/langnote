@@ -18,3 +18,21 @@ set ftp_proxy=socks5://127.0.0.1:1080
 
 
 
+172.18.176.1
+
+
+ubuntu用export
+export http_proxy=socks5://127.0.0.1:20800
+export https_proxy=socks5://127.0.0.1:20800
+
+
+export http_proxy=http://172.18.176.1:20800
+export https_proxy=https://172.18.176.1:20800
+
+core.net.http:proxies={"http" : "PROTOCOL://IP:PORT/", "https" : "PROTOCOL://IP:PORT/"}
+
+
+https://requests.readthedocs.io/en/latest/user/advanced/#proxies
+
+export http_proxy=socks5://172.18.176.1:7890
+export https_proxy=socks5://172.18.176.1:7890

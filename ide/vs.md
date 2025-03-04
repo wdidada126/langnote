@@ -1,5 +1,49 @@
 # visual studio
 
+cd "C:\Program Files\Microsoft Visual Studio\2022\Enterprise"
+PS C:\Program Files\Microsoft Visual Studio\2022\Enterprise> dir
+
+
+    目录: C:\Program Files\Microsoft Visual Studio\2022\Enterprise
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         2025/2/23     11:10                Common7
+d-----         2025/2/23     11:14                DIA SDK
+d-----         2025/2/23     10:59                dotnet
+d-----         2025/2/23     11:11                ImportProjects
+d-----         2025/2/23     11:12                JS
+d-----         2025/2/23     11:12                Licenses
+d-----         2025/2/23     11:01                MSBuild
+d-----         2025/2/23     11:14                SDK
+d-----         2025/2/23     11:11                Team Tools
+d-----         2025/2/23     11:12                TS
+d-----         2025/2/23     11:10                VB
+d-----         2025/2/23     11:42                VC
+d-----         2025/2/23     11:11                VC#
+d-----         2025/2/23     11:12                Web
+d-----         2025/2/23     11:10                Xml
+
+
+
+以下是对这些文件夹作用的简要介绍：
+- Common7：通常包含Visual Studio的公共组件和资源，比如一些通用的工具、配置文件、启动相关的文件等，是Visual Studio运行和各种功能实现的基础支持部分。
+- DIA SDK：DIA（Debug Interface Access）SDK用于访问调试信息，开发者可以使用它来开发调试工具、分析调试数据等，方便对程序进行调试和故障排查。
+- dotnet：与.NET开发相关的文件夹，可能包含.NET运行时、开发工具、库等资源，用于支持.NET应用程序的开发和运行，比如创建.NET框架或.NET Core的项目等。
+- ImportProjects：用于存放项目导入相关的文件和配置等内容，可能涉及到从其他格式或平台导入项目时所需的工具和资源，方便将不同类型的项目导入到Visual Studio中进行开发。
+- JS：主要用于支持JavaScript开发，可能包含JavaScript语言服务、代码分析工具、调试支持以及相关的项目模板等资源，帮助开发者进行JavaScript相关的项目开发和调试。
+- Licenses：存放Visual Studio软件许可证相关的文件和信息，用于验证和管理软件的使用授权，确保软件的合法使用。
+- MSBuild：MSBuild是微软的生成系统，这个文件夹包含了MSBuild的相关工具、任务、目标和配置文件等，用于构建、编译和部署各种类型的Visual Studio项目。
+- SDK：包含各种软件开发工具包，可能有不同平台、不同技术的SDK，为开发者提供开发特定类型应用所需的库、头文件、工具等资源。
+- Team Tools：与团队协作开发相关的工具和资源所在的文件夹，比如可能包含用于版本控制、团队项目管理、代码审查等功能的工具和插件等。
+- TS：与TypeScript开发相关，可能包含TypeScript语言服务、编译器、项目模板等资源，用于支持TypeScript项目的开发和编译。
+- VB：用于支持Visual Basic语言的开发，包含Visual Basic的编译器、语言服务、项目模板等资源，方便开发者使用Visual Basic进行应用程序开发。
+- VC：与C++开发相关，包含Visual C++的编译器、调试器、库文件、项目模板等大量资源，是进行C++语言开发的重要支持文件夹。
+- VC#：主要用于支持C#语言的开发，包含C#的编译器、语言服务、项目模板等资源，是开发C#应用程序的关键部分。
+- Web：包含与Web开发相关的工具、模板、库等资源，用于支持各种Web应用程序的开发，如ASP.NET应用、HTML/CSS/JavaScript相关的Web项目等。
+- Xml：可能包含与XML处理相关的工具、配置文件、模式定义等资源，用于支持XML文档的编辑、验证、解析等操作，在开发中涉及到XML数据处理时会用到这里的相关资源。
+
 
 ```shell
 cmake -B build_64 -S . -G "Visual Studio 17 2022" -A x64 -DCMAKE_TOOLCHAIN_FILE="D:\git\github\vcpkg\scripts\buildsystems\vcpkg.cmake"

@@ -1,5 +1,7 @@
 # curl log
 
+curl -x http://172.18.176.1:20800 https://www.google.com
+
 curl-8.9.0_1-win64-mingw.zip
 
 在 Ubuntu 22.04 上安装 curl 的头文件和库文件的步骤如下:
