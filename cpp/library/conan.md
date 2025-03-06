@@ -7,7 +7,6 @@ pip3 install conan
 阿里云centos7安装conan
 pip3 install conan报错
 
-
 pip3 install conan==2.0.6
 Defaulting to user installation because normal site-packages is not writeable
 Looking in indexes: http://mirrors.tencentyun.com/pypi/simple
@@ -26,7 +25,6 @@ Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from 
 Requirement already satisfied: charset-normalizer<4,>=2 in ./.local/lib/python3.10/site-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (3.3.2)
 Requirement already satisfied: certifi>=2017.4.17 in ./.local/lib/python3.10/site-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (2024.7.4)
 Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3/dist-packages (from requests<3.0.0,>=2.25->conan==2.0.6) (3.3)
-
 
 阿里云安装conan失败
 
@@ -1559,3 +1557,5 @@ conan_provider.cmake
 https://github.com/conan-io/cmake-conan/blob/develop2/conan_provider.cmake
 
 -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES="conan_provider.cmake" -DCONAN_COMMAND="D:\dev_tools\Conan\conan\conan.exe"
+
+## conan设计上类似maven

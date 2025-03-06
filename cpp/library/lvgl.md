@@ -1,4 +1,8 @@
 # lvgl
+xrepo search lvgl
+The package names:
+    lvgl: 
+      -> lvgl-v9.1.0: Light and Versatile Graphics Library (in xmake-repo)
 
 
 LVGL开源库介绍
