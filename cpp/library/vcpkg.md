@@ -1,5 +1,9 @@
 # vcpkg
 
+库重新安装 --recurse
+支持库编译选项
+vcpkg install jsoncpp:x64-windows zlib:x64-windows openssl:x64-windows sqlite3:x64-windows libpq:x64-windows libpqxx:x64-windows drogon[core,ctl,sqlite3,postgres,orm]:x64-windows
+
 vcpkg的baseline设计确实是一坨，这么多年都不改。之前还有个命令x-history可以搜版本对应的baseline，后面不知道为什么给砍了。
 
 D:\git\github\vcpkg\installed\x64-windows\include\

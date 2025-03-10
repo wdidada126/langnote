@@ -135,7 +135,6 @@ git pull -S /c/Users/edida/.ssh/id_rsa_edidada_github origin master
 
 git pull -S c/Users/edida/.ssh/id_rsa_edidada_github origin master
 
-
 当你使用 SSH 进行远程连接时，通常需要提供身份验证信息来验证你的身份。传统的身份验证方式包括使用密码进行身份验证或使用 SSH 密钥对进行身份验证。
 
 SSH 密钥对由两部分组成：私钥（private key）和公钥（public key）。私钥保存在你的本地计算机上，而公钥则被添加到远程服务器上的授权文件中。在进行 SSH 连接时，你的本地计算机使用私钥进行身份验证，而远程服务器使用公钥验证你的身份。
