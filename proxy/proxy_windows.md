@@ -27,3 +27,4 @@ https://requests.readthedocs.io/en/latest/user/advanced/#proxies
 
 export http_proxy=socks5://172.18.176.1:7890
 export https_proxy=socks5://172.18.176.1:7890
+

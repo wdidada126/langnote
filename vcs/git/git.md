@@ -1,4 +1,9 @@
 # git
+
+Git patch 文件是纯文本文件。
+https://github.com/c-ares/c-ares/commit/d41db1b7916fadea987e5bb05fd4aafaf0d1d6ea.patch?full_index=1 
+
+## sh
 git blame是Git版本控制系统中的一个非常有用的命令，它用于显示指定文件中每一行代码的修改历史。具体来说，git blame可以追踪到每一行代码是由哪位开发者在何时最后修改的，包括提交的哈希值、作者、修改时间和提交注释等信息。这个命令对于开发人员来说非常有帮助，因为它可以帮助他们了解代码的修改历史，找出特定代码段的贡献者，并追溯代码的演变过程。
 
 以下是关于git blame命令的一些详细信息和用法：
