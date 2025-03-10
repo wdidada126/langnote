@@ -8,7 +8,12 @@ export CMAKE_ROOT=/home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64
 
 
 export CMAKE_ROOT=/home/wdidada/cmake-3.27.1-linux-x86_64
-export PATH="/home/wdidada/cmake-3.27.1-linux-x86_64:$PATH"
+export PATH="/home/wdidada/cmake-3.27.1-linux-x86_64/bin:$PATH"
+
+export CMAKE_ROOT=/home/wdidada/cmake-3.30.1-linux-x86_64
+export PATH="/home/wdidada/cmake-3.30.1-linux-x86_64/bin:$PATH"
+
+/usr/local/cmake-3.30.1-linux-x86_64
 
 
 /home/wdidada/cmake-3.27.1-linux-x86_64/bin

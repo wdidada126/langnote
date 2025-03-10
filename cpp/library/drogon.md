@@ -78,3 +78,25 @@ Libraries:
   hiredis: yes
   c-ares: yes
   yaml-cpp: yes
+
+
+```shell
+    app().addListener("127.0.0.1", 8848).run();
+    app().addListener("0.0.0.0", 8848).run();
+```
+
+一个是只绑定localhost，另一个是任意ip
+
+同样的代码，vcpkg处理的依赖库，win报错，ubuntu正常
+
+
+    
+
+drogon_ctl create model 
+/home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create project xxx
+
+/home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create model modles
+
+
+/home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create filter LoggingInterceptor
+https://blog.csdn.net/weixin_50308184/article/details/134359378

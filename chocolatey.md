@@ -1,5 +1,13 @@
 # chocolatey
 
+下载的文件路径
+C:\ProgramData\chocolatey\lib\rsync\tools\cwrsync_6.3.0_x64_free.zip
+
+```shell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+
 Extracting 64-bit C:\ProgramData\chocolatey\lib\curl\tools\curl-8.9.0_1-win64-mingw.zip to C:\ProgramData\chocolatey\lib\curl\tools...
 C:\ProgramData\chocolatey\lib\curl\tools
  ShimGen has successfully created a shim for curl.exe
@@ -13,6 +21,7 @@ ShimGen has successfully created a shim for bazel.exe
 
 必须在管理员权限下安装
 choco install ninja
+choco install rsync
 
 https://chocolatey.org/
 ## upgrade
@@ -28,7 +37,7 @@ cmd.exe
 
 powershell
 
-```
+```shell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 

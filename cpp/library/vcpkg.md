@@ -1,5 +1,14 @@
 # vcpkg
 
+CLion报错：
+"C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=D:\develops\git\github\langnote\vcpkg.cmake -G Ninja -S D:\develops\git\github\testdrogon -B D:\develops\git\github\testdrogon\cmake-build-debug-visual-studio
+CMake Error at D:/develops/git/github/langnote/vcpkg.cmake:94 (message):
+  Could not find .vcpkg-root
+Call Stack (most recent call first):
+  C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
 库重新安装 --recurse
 支持库编译选项
 vcpkg install jsoncpp:x64-windows zlib:x64-windows openssl:x64-windows sqlite3:x64-windows libpq:x64-windows libpqxx:x64-windows drogon[core,ctl,sqlite3,postgres,orm]:x64-windows

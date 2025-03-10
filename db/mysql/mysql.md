@@ -1,5 +1,10 @@
 # mysql
 
+
+## mysql password
+
+mysqladmin flush-hosts -p
+
 ## mysql 9.0
 
 2024年6月
