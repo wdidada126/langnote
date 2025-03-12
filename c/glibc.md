@@ -1,5 +1,7 @@
 # glibc
 
+关注glibc版本更新日志
+
 centos7   glibc-devel   centos7_glibc-devel.txt 
 ubuntu20  libc6-dev     ubuntu20_libc6-dev.txt
 
