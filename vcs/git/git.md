@@ -1,5 +1,9 @@
 # git
 
+## tag
+git 查看当前切换到哪个tag
+git describe --tags --exact-match
+
 Git patch 文件是纯文本文件。
 https://github.com/c-ares/c-ares/commit/d41db1b7916fadea987e5bb05fd4aafaf0d1d6ea.patch?full_index=1 
 

@@ -1,4 +1,37 @@
 # xmake
+## repo
+https://github.com/xmake-io/xmake-repo
+https://github.com/xmake-io/xmake-repo/blob/dev/packages/d/drogon/xmake.lua
+
+drogon_xmake.lua
+
+### vs conan2
+python/txt
+lua
+
+设置cpu架构 arch
+x86
+64
+arm
+arm64
+mips
+
+os
+linux
+win
+mac
+android
+iOS
+
+
+cppstd
+11 14 17 20
+
+库编译选项
+conan 2
+option
+
+xmake
 
 ## clion xmake插件
 中国朋友可以加QQ群交流及反馈BUG: 343118190
