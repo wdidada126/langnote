@@ -41,7 +41,26 @@ powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
+## 查看已安装可执行列表
+choco list
+choco info rsync
 ## 卸载
+choco list
+choco uninstall ffmpeg-full
+
+```shell
+choco uninstall ffmpeg-full
+Chocolatey v2.4.3
+Uninstalling the following packages:
+ffmpeg-full
+
+ffmpeg-full v7.1.0
+ Skipping auto uninstaller - No registry snapshot.
+ ffmpeg-full has been successfully uninstalled.
+
+Chocolatey uninstalled 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+```
 
 ## 安装的软件列表
 choco search xxx
