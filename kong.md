@@ -1,10 +1,6 @@
 # kong
 
-
-
 Kong 是基于 NGINX 和 OpenResty 的开源 API 网关。
-
-
 
 Kong是一个开源的API门户和微服务管理层。
 

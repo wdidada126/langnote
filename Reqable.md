@@ -1,7 +1,6 @@
-# postman
+# Reqable
 
-北京银行，不让用
-用reqable
+https://reqable.com/zh-CN/download/
 
 以下是一些类似Postman的工具推荐：
 Reqable
@@ -20,60 +19,7 @@ Paw
 功能特点：RapidAPI旗下针对Mac的API接口调试工具，主要支持HTTP协议等，可以发送各种HTTP请求，测试和迭代API。界面美观，支持JSON Schema，可以导入生成完全兼容的Swagger。
 适用人群：使用Mac且专注HTTP协议的开发者。
 
-postman编辑集合和变量
+## 源代码
 
-我们可以点击右上角的小眼睛，管理环境变量
-
-历史版本
-
-https://dl.pstmn.io/download/version/7.36.7/win64
-https://dl.pstmn.io/download/version/6.7.4/win64
-https://dl.pstmn.io/download/version/9.31.0/win64
-https://dl.pstmn.io/download/version/9.20.0/win64
-
-## 竞品
-apifox
-
-postman 设置变量
-https://www.cnblogs.com/ananmy/p/13062033.html
-
-
-
-![avatar](imgs/postman_datatype.png)
-
-
-
-
-
-form-data      form       data
-
-
-
-
-
-form-data
-
-x-www-form
-
-binary
-
-
-
-
-
-text
-
-file两类
-
-ui界面可以选择
-
-
-
-
-
-text
-
-postman发起http请求，下载文件，
-send and download
-
+https://github.com/reqable/reqable-app
 
