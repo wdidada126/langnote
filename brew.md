@@ -1,4 +1,30 @@
 #  brew
+
+brew --version
+Homebrew >=2.5.0 (shallow or no git repository)
+Homebrew/homebrew-core (git revision ddf4b01b780; last commit 2025-03-14)
+Homebrew/homebrew-cask (git revision fcd1cb79c80; last commit 2025-03-14)
+
+`Homebrew/homebrew-cask` 和 `Homebrew/homebrew-core` 都是 Homebrew（一款 macOS 和 Linux 系统上的软件包管理器）的重要组成部分，它们分别承担着不同的作用：
+
+### Homebrew/homebrew-core
+- 主要作用：它是 Homebrew 的核心软件仓库，提供了大量的开源命令行工具和开发库。这些软件包大多是基于源码编译安装的，涵盖了各种编程语言的解释器和编译器（如 Python、Ruby、GCC 等）、数据库管理系统（如 MySQL、PostgreSQL 等）、网络工具（如 wget、curl 等）以及其他许多在开发和系统管理中常用的工具。
+- 示例：当你在终端中使用 `brew install` 命令安装一些基础的开发工具时，默认就是从 `Homebrew/homebrew-core` 这个仓库中下载并安装的。例如，要安装 `git` 这个版本控制工具，只需运行 `brew install git`，Homebrew 就会从 `Homebrew/homebrew-core` 中获取 `git` 的安装脚本和相关依赖，然后进行编译和安装。
+
+### Homebrew/homebrew-cask
+- 主要作用：它主要用于管理 macOS 上的图形化应用程序（GUI 应用）。与 `Homebrew/homebrew-core` 不同，`Homebrew/homebrew-cask` 安装的应用通常是已经编译好的二进制文件，安装过程更加便捷，无需用户手动从应用官网下载 `.dmg` 或 `.pkg` 文件，然后再进行安装操作。此外，`Homebrew/homebrew-cask` 还支持安装一些系统级别的字体、驱动程序等。
+- 示例：如果你想安装 Google Chrome 浏览器，只需在终端中运行 `brew install --cask google-chrome`，Homebrew 就会从 `Homebrew/homebrew-cask` 仓库中下载 Chrome 的安装包，并自动完成安装过程。
+
+### 总结
+`Homebrew/homebrew-core` 侧重于提供命令行工具和开发库，适合开发者和系统管理员在命令行环境下进行软件开发和系统配置；而 `Homebrew/homebrew-cask` 则专注于图形化应用程序的管理，让用户能够更方便地安装和更新各种 macOS 应用。两者结合使用，使得 Homebrew 成为了一个功能强大且全面的软件包管理解决方案。 
+
+## macos 12.7
+https://github.com/Homebrew/brew/releases?page=14
+3.6.19
+
+export HOMEBREW_GITHUB_API_TOKEN=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
+
+## some
 brew -h
 Example usage:
   brew search TEXT|/REGEX/

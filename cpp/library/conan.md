@@ -4,6 +4,8 @@ ubuntu 24 gcc 13.x版本
 pip3 install conan
 报错
 
+conan install . --build=drogon/1.9.3 -pr=default_debug_17
+
 阿里云centos7安装conan
 pip3 install conan报错
 
