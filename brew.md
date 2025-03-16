@@ -1,9 +1,13 @@
-#  brew
+# brew
 
+https://formulae.brew.sh/formula/
+
+```shell
 brew --version
 Homebrew >=2.5.0 (shallow or no git repository)
 Homebrew/homebrew-core (git revision ddf4b01b780; last commit 2025-03-14)
 Homebrew/homebrew-cask (git revision fcd1cb79c80; last commit 2025-03-14)
+```
 
 `Homebrew/homebrew-cask` 和 `Homebrew/homebrew-core` 都是 Homebrew（一款 macOS 和 Linux 系统上的软件包管理器）的重要组成部分，它们分别承担着不同的作用：
 
