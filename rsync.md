@@ -1,4 +1,6 @@
 # rsync
+## 安装
+choco安装
 
 
 rsync -avz -e ssh /local/path username@remote_host:/remote/path

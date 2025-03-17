@@ -1,5 +1,57 @@
 # esapi
 
+`ammonia` 是 Rust 语言编写的 HTML 清理库，而 ESAPI（Enterprise Security API）是 Java 语言的一套安全开发框架，其中也包含 HTML 编码等安全相关功能。下面从多个方面分析它们的异同：
+
+### 相同点
+
+#### 1. 安全防护目的
+- **ammonia**：主要目的是对输入的 HTML 进行过滤和清理，移除可能导致跨站脚本攻击（XSS）的恶意代码，确保输出的 HTML 内容是安全可使用的。
+- **ESAPI**：同样重视 XSS 防护，它提供了 HTML 编码等功能，能够将用户输入中的特殊字符进行编码，防止攻击者利用这些字符注入恶意脚本，从而保护 Web 应用程序免受 XSS 攻击。
+
+#### 2. 配置灵活性
+- **ammonia**：支持自定义白名单，用户可以根据具体需求指定允许的 HTML 标签和属性，实现个性化的 HTML 清理规则。
+- **ESAPI**：也具备一定的可配置性，开发者可以根据不同的安全策略调整编码规则和过滤条件，以适应不同应用场景的安全需求。
+
+### 不同点
+
+#### 1. 功能范围
+- **ammonia**：专注于 HTML 清理这一特定领域，主要功能围绕去除不安全的 HTML 标签和属性展开，功能相对单一但专业性强。
+- **ESAPI**：是一个综合性的安全开发框架，除了 HTML 编码和 XSS 防护外，还涵盖了许多其他安全相关的功能，如密码学操作、访问控制、日志记录、验证输入等，功能更加全面，为整个企业级应用开发提供全方位的安全保障。
+
+#### 2. 实现语言
+- **ammonia**：使用 Rust 语言实现，Rust 以其内存安全性和高性能著称，适合对性能要求较高且需要严格内存管理的场景。
+- **ESAPI**：基于 Java 语言，Java 具有广泛的生态系统和良好的跨平台性，在企业级应用开发中被广泛使用，ESAPI 依托 Java 的优势可以方便地集成到各种 Java 项目中。
+
+#### 3. 代码使用方式
+- **ammonia**：使用起来相对简单直接，通常只需要调用几个方法就能完成 HTML 清理任务。例如：
+```rust
+use ammonia::clean;
+
+fn main() {
+    let input = "<p>Some text <script>alert('XSS')</script></p>";
+    let cleaned = clean(input);
+    println!("Cleaned HTML: {}", cleaned);
+}
+```
+- **ESAPI**：由于是一个综合性框架，使用时可能需要更多的配置和初始化工作。例如，进行 HTML 编码时：
+```java
+import org.owasp.esapi.ESAPI;
+
+public class ESAPIExample {
+    public static void main(String[] args) {
+        String input = "<p>Some text <script>alert('XSS')</script></p>";
+        String encoded = ESAPI.encoder().encodeForHTML(input);
+        System.out.println("Encoded HTML: " + encoded);
+    }
+}
+```
+
+#### 4. 社区和生态
+- **ammonia**：作为 Rust 生态中的一个库，社区相对聚焦于 Rust 开发者群体。其更新和维护通常与 Rust 语言的发展以及相关安全需求紧密相关。
+- **ESAPI**：有着更广泛的社区支持，因为 Java 在企业级开发中应用广泛。ESAPI 得到了 OWASP（Open Web Application Security Project）社区的支持和维护，有丰富的文档和资源可供开发者参考。 
+
+https://www.javadoc.io/doc/org.owasp.esapi/esapi
+
 https://github.com/ESAPI/esapi-java-legacy
 
 ESAPI（Enterprise Security API）是一个用于开发安全应用程序的开源项目，旨在提供一组安全功能和API，以帮助开发人员编写安全的应用程序。ESAPI 提供了一系列功能，如输入验证、输出编码、加密、访问控制等，来帮助开发人员防范常见的网络安全威胁，如跨站脚本（XSS）、SQL 注入、路径遍历等。
@@ -72,3 +124,13 @@ class Notice {
 - 输出结果：打印编码后的 `NOTICE_CONTENT` 字段，确保其安全性.
 
 通过这种方式，您可以有效地防止 XSS 攻击，确保应用程序的安全性.
+
+
+ESAPI.properties
+
+Authenticator.UsernameParameterName=username
+Authenticator.PasswordParameterName=password
+
+这两个配置项可以从ESAPI.properties文件中删除吗？
+
+

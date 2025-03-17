@@ -1,5 +1,9 @@
 # make
 
+makefile本身为了替代shell，你小子倒好，反过来了
+makefile支持增量编译
+
+
 新版本的LFS里，越来越多的软件包用meson和cmake了。各有各的好吧
 
 

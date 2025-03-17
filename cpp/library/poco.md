@@ -1,5 +1,7 @@
 # Poco
 
+## c++关键字virtual
+
 class Foundation_API Base32DecoderIOS: public virtual std::ios中virtual是干嘛的？
 
 在C++中，`virtual` 关键字用于实现虚函数，允许在继承关系中实现多态性。也就是说，当你在基类中声明一个函数为 `virtual` 时，这个函数可以在派生类中被重写（覆盖），并且在运行时，可以根据对象的实际类型调用相应的函数版本，而不是编译时所确定的函数版本。
@@ -7,9 +9,7 @@ class Foundation_API Base32DecoderIOS: public virtual std::ios中virtual是干�
 在你提到的 `Base32DecoderIOS` 类中，`std::ios` 是一个标准的I/O流类，而 `virtual` 的使用意味着 `Base32DecoderIOS` 类可能被进一步派生，并且派生类中可以重写 `std::ios` 类中的一些虚函数，从而实现特定的行为。
 
 具体来说：
-
 1. 虚继承：在这里，`Base32DecoderIOS` 通过虚继承 `std::ios`，这通常用于避免“钻石继承”问题，也就是在多重继承的情况下，避免多个基类之间重复继承的成员造成的二义性问题。虚继承确保基类 `std::ios` 在最终派生类中只有一个实例。
-
 2. 多态性：虚函数允许在派生类中重写 `std::ios` 的功能，使得你可以在派生类中定制输入输出的行为，同时保留通过基类指针或引用调用这些重写方法的能力。
 
 总结来说，`virtual` 关键字在这个上下文中用于解决复杂的继承关系问题，并为派生类提供重写和定制基类行为的灵活性。

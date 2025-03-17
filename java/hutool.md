@@ -1,6 +1,4 @@
-# 20250213
-
-cookie.md
+# hutool
 
 Hutool 库中的 `FileUtil.getAbsolutePath` 方法本身并不能直接解决文件路径包含 `../` 这类可能引发文件遍历漏洞的问题，但 Hutool 在处理路径时采用了一些机制来减少这类风险，下面为你详细分析：
 
@@ -48,38 +46,3 @@ Hutool 的 `FileUtil.getAbsolutePath` 本质上也是基于类似的机制，借
 
 综上所述，`FileUtil.getAbsolutePath` 方法可以在一定程度上减少文件路径包含 `../` 带来的风险，但不能完全解决文件遍历漏洞，需要结合其他安全措施来确保应用程序的安全性。 
 
-ffmpeg -version
-ffmpeg version 6.1.1 Copyright (c) 2000-2023 the FFmpeg developers
-built with gcc 11 (Ubuntu 11.4.0-1ubuntu1~22.04)
-configuration: --samples=ffmpeg-samples --cc= --disable-x86asm
-libavutil      58. 29.100 / 58. 29.100
-libavcodec     60. 31.102 / 60. 31.102
-libavformat    60. 16.100 / 60. 16.100
-libavdevice    60.  3.100 / 60.  3.100
-libavfilter     9. 12.100 /  9. 12.100
-libswscale      7.  5.100 /  7.  5.100
-libswresample   4. 12.100 /  4. 12.100
-
-sudo apt install -y ffmpeg libavcodec-dev  libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev libx264-dev libcurl4-openssl-dev libmbedtls-dev libgl1-mesa-dev libjansson-dev libluajit-5.1-dev python3-dev libx11-dev libxcb-randr0-dev libxcb-shm0-dev libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev swig libcmocka-dev libxss-dev libglvnd-dev libgles2-mesa-dev libwayland-dev libsrt-openssl-dev libpci-dev libpipewire-0.3-dev libqrcodegencpp-dev uthash-dev
-
-编译obs stuido需要设置
-
-
-
-配置项目（不指定构建类型）：
-```bash
-cmake -S . -B build
-```
-
-编译 Debug 版本：
-```bash
-cmake --build build --config Debug
-```
-
-这里 --config Debug 明确编译 Debug 版本。
-安装 Debug 版本：
-```bash
-cmake --install build --config Debug
-```
-
-通过 --config Debug 选项，确保安装的是 Debug 版本的文件。

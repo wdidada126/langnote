@@ -19,7 +19,7 @@ Paw
 功能特点：RapidAPI旗下针对Mac的API接口调试工具，主要支持HTTP协议等，可以发送各种HTTP请求，测试和迭代API。界面美观，支持JSON Schema，可以导入生成完全兼容的Swagger。
 适用人群：使用Mac且专注HTTP协议的开发者。
 
-## 源代码
+## 官方仓库，没有开源源代码
 
 https://github.com/reqable/reqable-app
 

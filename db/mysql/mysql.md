@@ -1348,7 +1348,7 @@ WHERE
 AND COLUMNS .table_name LIKE 'paps%';
 ```
 
-[mysql查看执行sql语句的记录日志 ](https://www.cnblogs.com/xcsn/p/11485939.html)
+[mysql查看执行sql语句的记录日志 ]( )
 
 ```sql
 SET GLOBAL log_output = 'TABLE';

@@ -13,6 +13,10 @@ ISBN: 9787111425199
 
 https://github.com/edidada/LinuxServerCodesYouShuang
 
+
+# 使用 CMake 配置项目并指定 Ninja 生成器
+cmake -G "Ninja" ..
+
 源码
 G:\Linux高性能服务器编程清晰PDF+源码\LinuxServerCodes
 
