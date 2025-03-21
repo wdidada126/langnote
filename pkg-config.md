@@ -139,8 +139,6 @@ endif()
 
 cmake安装之后有FindPkgConfig.cmake文件
 
-
-
 wdidada@LAPTOP-wdidada:~$ which cmake
 /home/wdidada/cmake-3.30.1-linux-x86_64/bin/cmake
 wdidada@LAPTOP-wdidada:~$ cd ~/cmake-3.30.1-linux-x86_64/
