@@ -1,5 +1,6 @@
-# 20250313
+# librist
 
+obs studio用到
 
 git clone https://code.videolan.org/rist/librist.git
 cd librist
@@ -10,3 +11,4 @@ cd build
 ninja
 sudo ninja install
 cd ../../
+

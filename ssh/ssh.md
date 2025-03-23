@@ -32,7 +32,7 @@ Host github.com
    IdentityFile ~/.ssh/id_rsa_github_2
 
 # gitlab key
-Host gitlab
+Host gitlab.com
     Port 22
     User git
     HostName gitlab.com
@@ -76,6 +76,7 @@ ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_166_gitee
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_edidada_gitee
+ssh-keygen -t ed25519 -C "1664884095@qq.com" -f id_ed25519_166_edidada_gitee
 ssh-keygen -t ed25519 -C "Win_ubuntu24_Gitee_ed25519_1664884095@qq.com" -f id_ed25519_edidada_gitee
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "wc@eteng.cn" -f id_rsa_coding_eteng
@@ -133,7 +134,6 @@ ssh-keyscan github.com >> /c/Users/edida/.ssh/known_hosts
 git pull -S /c/Users/edida/.ssh/id_rsa_edidada_github origin master
 
 git pull -S c/Users/edida/.ssh/id_rsa_edidada_github origin master
-
 
 当你使用 SSH 进行远程连接时，通常需要提供身份验证信息来验证你的身份。传统的身份验证方式包括使用密码进行身份验证或使用 SSH 密钥对进行身份验证。
 

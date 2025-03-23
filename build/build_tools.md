@@ -31,3 +31,6 @@ add_executable(YourExecutable ${SOURCES})
 在这个示例中，`file(GLOB SOURCES src/*.cpp src/*.cxx src/*.cc)`会匹配`src`文件夹下所有以`.cpp`, `.cxx`, `.cc`结尾的文件，并将它们存储在`SOURCES`变量中。然后，通过`add_executable`命令将这些源文件添加到可执行文件中。
 
 请注意，使用`file(GLOB ...)`命令来收集源文件有一些限制，例如当项目结构发生变化时可能无法自动检测到新的文件。因此，在实际项目中最好手动列出文件，以确保构建系统的稳定性。
+
+apt/yum/dnf/pkg
+

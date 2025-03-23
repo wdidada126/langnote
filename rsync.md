@@ -2,6 +2,10 @@
 ## 安装
 choco安装
 
+
+rsync -avz -e ssh /local/path username@remote_host:/remote/path
+
+
 ## idea windows同步jar包问题
 rsync_rename.sh
 

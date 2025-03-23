@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7AB84A74-EDBB-398A-98F1-A84639B6B113}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>helloworld</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\develops\git\github\testdrogon\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">helloworld.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">helloworld</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PATH=C:/Users/wdidada/.conan2/p/b/maria81aee6a3e0b5f/p/bin;C:/Users/wdidada/.conan2/p/b/libcu9d5af69f807d5/p/bin;C:/Users/wdidada/.conan2/p/b/drogob25a72e6cd4c1/p/bin;C:/Users/wdidada/.conan2/p/b/trant4ddf5dc0bc6f9/p/bin;C:/Users/wdidada/.conan2/p/b/c-area238b187dcf29/p/bin;C:/Users/wdidada/.conan2/p/b/jsoncd00706e8340c3/p/bin;C:/Users/wdidada/.conan2/p/b/boostad7c5bfb205fb/p/bin;C:/Users/wdidada/.conan2/p/b/bzip2ac439c4a4d748/p/bin;C:/Users/wdidada/.conan2/p/b/libmy5555e46517081/p/bin;C:/Users/wdidada/.conan2/p/b/opens10f15b8276d72/p/bin;C:/Users/wdidada/.conan2/p/b/zlibd143794332b54/p/bin;C:/Users/wdidada/.conan2/p/b/zstd3bb8d291c5e2c/p/bin;C:/Users/wdidada/.conan2/p/b/lz4c9114ccc93e2d/p/bin;%PATH%</LocalDebuggerEnvironment>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\develops\git\github\testdrogon\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">helloworld.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">helloworld</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PATH=;%PATH%</LocalDebuggerEnvironment>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\develops\git\github\testdrogon\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">helloworld.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">helloworld</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PATH=;%PATH%</LocalDebuggerEnvironment>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\develops\git\github\testdrogon\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">helloworld.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">helloworld</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PATH=;%PATH%</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>16</ProcessorNumber>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/develops/git/github/testdrogon/build/Debug/helloworld.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/develops/git/github/testdrogon/build/Debug/helloworld.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>16</ProcessorNumber>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/develops/git/github/testdrogon/build/Release/helloworld.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/develops/git/github/testdrogon/build/Release/helloworld.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>16</ProcessorNumber>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/develops/git/github/testdrogon/build/MinSizeRel/helloworld.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/develops/git/github/testdrogon/build/MinSizeRel/helloworld.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProcessorNumber>16</ProcessorNumber>
+      <RuntimeLibrary></RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/develops/git/github/testdrogon/build/RelWithDebInfo/helloworld.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/develops/git/github/testdrogon/build/RelWithDebInfo/helloworld.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\develops\git\github\testdrogon\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/develops/git/github/testdrogon/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/develops/git/github/testdrogon -BD:/develops/git/github/testdrogon/build --check-stamp-file D:/develops/git/github/testdrogon/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\wdidada\.conan2\p\b\bzip2ac439c4a4d748\p\lib\cmake\conan-official-bzip2-variables.cmake;C:\Users\wdidada\.conan2\p\b\opens10f15b8276d72\p\lib\cmake\conan-official-openssl-variables.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeCXXCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeRCCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeSystem.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Config.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2ConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Targets.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfig.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BoostTargets.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\CURLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfig.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonTargets.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfig.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorTargets.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfig.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBTargets.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\c-aresTargets.cmake;D:\develops\git\github\testdrogon\build\generators\cmakedeps_macros.cmake;D:\develops\git\github\testdrogon\build\generators\conan_toolchain.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncppTargets.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclientTargets.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\lz4Targets.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-cTargets.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\zstdTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\develops\git\github\testdrogon\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/develops/git/github/testdrogon/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/develops/git/github/testdrogon -BD:/develops/git/github/testdrogon/build --check-stamp-file D:/develops/git/github/testdrogon/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\wdidada\.conan2\p\b\bzip2ac439c4a4d748\p\lib\cmake\conan-official-bzip2-variables.cmake;C:\Users\wdidada\.conan2\p\b\opens10f15b8276d72\p\lib\cmake\conan-official-openssl-variables.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeCXXCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeRCCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeSystem.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Config.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2ConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Targets.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfig.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BoostTargets.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\CURLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfig.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonTargets.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfig.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorTargets.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfig.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBTargets.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\c-aresTargets.cmake;D:\develops\git\github\testdrogon\build\generators\cmakedeps_macros.cmake;D:\develops\git\github\testdrogon\build\generators\conan_toolchain.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncppTargets.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclientTargets.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\lz4Targets.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-cTargets.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\zstdTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\develops\git\github\testdrogon\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/develops/git/github/testdrogon/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/develops/git/github/testdrogon -BD:/develops/git/github/testdrogon/build --check-stamp-file D:/develops/git/github/testdrogon/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\wdidada\.conan2\p\b\bzip2ac439c4a4d748\p\lib\cmake\conan-official-bzip2-variables.cmake;C:\Users\wdidada\.conan2\p\b\opens10f15b8276d72\p\lib\cmake\conan-official-openssl-variables.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeCXXCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeRCCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeSystem.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Config.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2ConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Targets.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfig.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BoostTargets.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\CURLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfig.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonTargets.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfig.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorTargets.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfig.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBTargets.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\c-aresTargets.cmake;D:\develops\git\github\testdrogon\build\generators\cmakedeps_macros.cmake;D:\develops\git\github\testdrogon\build\generators\conan_toolchain.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncppTargets.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclientTargets.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\lz4Targets.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-cTargets.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\zstdTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\develops\git\github\testdrogon\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/develops/git/github/testdrogon/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/develops/git/github/testdrogon -BD:/develops/git/github/testdrogon/build --check-stamp-file D:/develops/git/github/testdrogon/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\wdidada\.conan2\p\b\bzip2ac439c4a4d748\p\lib\cmake\conan-official-bzip2-variables.cmake;C:\Users\wdidada\.conan2\p\b\opens10f15b8276d72\p\lib\cmake\conan-official-openssl-variables.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeCXXCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeRCCompiler.cmake;D:\develops\git\github\testdrogon\build\CMakeFiles\3.30.8\CMakeSystem.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Config.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2ConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BZip2Targets.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Boost-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfig.cmake;D:\develops\git\github\testdrogon\build\generators\BoostConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\BoostTargets.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\CURL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\CURLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\CURLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Drogon-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfig.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\DrogonTargets.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSL-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfig.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\OpenSSLTargets.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\Trantor-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfig.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\TrantorTargets.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIB-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfig.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBConfigVersion.cmake;D:\develops\git\github\testdrogon\build\generators\ZLIBTargets.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-config.cmake;D:\develops\git\github\testdrogon\build\generators\c-ares-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\c-aresTargets.cmake;D:\develops\git\github\testdrogon\build\generators\cmakedeps_macros.cmake;D:\develops\git\github\testdrogon\build\generators\conan_toolchain.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-config.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncpp-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\jsoncppTargets.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-config.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclient-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\libmysqlclientTargets.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-config.cmake;D:\develops\git\github\testdrogon\build\generators\lz4-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\lz4Targets.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-config.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-c-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\mariadb-connector-cTargets.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-Target-debug.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config-version.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-config.cmake;D:\develops\git\github\testdrogon\build\generators\zstd-debug-x86_64-data.cmake;D:\develops\git\github\testdrogon\build\generators\zstdTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\develops\git\github\testdrogon\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\develops\git\github\testdrogon\src\helloworld\main.cc" />
+    <ClCompile Include="D:\develops\git\github\testdrogon\src\helloworld\HelloController.cc" />
+    <ClCompile Include="D:\develops\git\github\testdrogon\src\helloworld\HelloViewController.cc" />
+    <ClCompile Include="D:\develops\git\github\testdrogon\src\helloworld\controllers\TestCtrl.cc" />
+    <ClCompile Include="D:\develops\git\github\testdrogon\src\helloworld\controllers\PageDaoCtrl.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\develops\git\github\testdrogon\build\ZERO_CHECK.vcxproj">
+      <Project>{17ED159A-CE5A-33D6-9B49-388A7B2EDEFF}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

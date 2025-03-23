@@ -1,5 +1,35 @@
 # SQL
 
+## DISTINCT
+在 SQL 中，`DISTINCT` 关键字可以用来修饰单个列，也可以用来修饰多个列（也就是所有选择的列），下面为你详细介绍：
+
+### 修饰单个列
+当 `DISTINCT` 关键字后面只跟一个列名时，它会对该列中的值进行去重操作，返回该列中所有不同的值。
+
+#### 示例
+假设有一个名为 `students` 的表，包含 `id`、`name` 和 `age` 三列，以下 SQL 语句使用 `DISTINCT` 修饰 `age` 列：
+```sql
+SELECT DISTINCT age
+FROM students;
+```
+这个查询会返回 `students` 表中 `age` 列的所有不同值，去除了重复的年龄。
+
+### 修饰所有列
+当 `DISTINCT` 关键字放在 `SELECT` 语句中所有列的前面时，它会对查询结果集的每一行进行去重操作，只有当整行的数据都完全相同时，才会被视为重复行并去除。
+
+#### 示例
+同样使用 `students` 表，以下 SQL 语句使用 `DISTINCT` 修饰所有列：
+```sql
+SELECT DISTINCT id, name, age
+FROM students;
+```
+这个查询会返回 `students` 表中所有不同的行，即只有当 `id`、`name` 和 `age` 这三个列的值都完全相同的行才会被去重。
+
+### 注意事项
+- 语法规则：`DISTINCT` 关键字只能出现在 `SELECT` 关键字之后，列名列表之前，并且只能使用一次。例如，`SELECT DISTINCT column1, DISTINCT column2 FROM table_name;` 这种语法是错误的。
+- 性能影响：使用 `DISTINCT` 会对查询性能产生一定的影响，因为数据库需要对结果集进行去重操作。尤其是在处理大量数据时，性能问题可能会更加明显。在某些情况下，可以考虑使用 `GROUP BY` 来替代 `DISTINCT` 实现相同的去重效果。例如，`SELECT DISTINCT age FROM students;` 可以改写为 `SELECT age FROM students GROUP BY age;`。 
+
+## some
 <!-- 按身份证号匹配 -->
         <if test="idNo != null and idNo != ''">
             AND UPPER(ID_NO) = UPPER(#{idNo})
@@ -397,7 +427,7 @@ sql commont
 
 在MySQL数据库中， 字段或列的注释是用属性comment来添加。 
 创建新表的脚本中， 可在字段定义脚本中添加comment属性来添加注释。 
-示例代码如下：**
+示例代码如下：
 
 ```sql
 create table test( 
