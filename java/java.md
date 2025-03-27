@@ -1,8 +1,7 @@
 # Java标准库
 
-##  
+## 
 URLDomainExtractor.java
-
 
 http://www.oracle.com/technetwork/java/intro-141325.html
 
