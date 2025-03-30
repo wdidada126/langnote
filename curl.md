@@ -1,5 +1,8 @@
 # curl log
 
+curl -x http://172.18.176.1:20800 https://www.google.com
+curl -x http://172.18.176.1:20800 https://www.google.com
+
 curl是支持这种Cookie机制的。当服务器在HTTP响应中返回`Set-Cookie`头时，curl可以处理并在后续请求中自动带上相应的Cookie，前提是Cookie没有过期。以下是curl处理Cookie的一些方式和相关参数：
 
 ### 自动处理Cookie
@@ -13,7 +16,6 @@ curl默认会根据服务器返回的`Set-Cookie`头来自动管理Cookie。它�
 - --cookie-jar：与`-c`类似，用于指定保存Cookie的文件。例如`curl --cookie-jar cookies.jar https://example.com`。
 - --cookie：可以直接在命令行中指定要发送的Cookie内容，而不是从文件中读取。例如`curl --cookie "name=value; another=value" https://example.com`。
 
-curl -x http://172.18.176.1:20800 https://www.google.com
 
 curl-8.9.0_1-win64-mingw.zip
 

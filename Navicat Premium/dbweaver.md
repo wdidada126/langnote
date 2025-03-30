@@ -1,4 +1,4 @@
-# dbweaver
+dbweaver
 
 dbweaver 可以根据表备注名称来搜索
 
