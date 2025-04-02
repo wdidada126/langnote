@@ -84,8 +84,6 @@ redis使用场景
 
 消息队列 看门狗 延迟队列
 
-
-
 Redis HyperLogLog是一种用于统计基数（cardinality）的数据结构，主要用于解决大数据集合中基数的估算问题。它的主要使用场景包括：
 1. 实时访问统计：例如网站实时访问量、页面浏览量等，可以使用HyperLogLog来存储每个IP地址的访问次数，从而快速估算出总访问量。
 2. 用户画像分析：在用户画像分析中，需要对用户的兴趣标签进行统计。由于用户可能拥有多个兴趣标签，因此可以使用HyperLogLog来统计每个用户的兴趣标签数量。
@@ -436,10 +434,6 @@ Redis2.6在2012年正是发布，经历了17个版本，到2.6.17版本，相对
 12）info可以按照section输出，并且添加了一些统计项
 13）sort命令优化
 
- 
-
- 
-
 2.Redis2.8
 
 Redis2.8在2013年11月22日正式发布，经历了24个版本，到2.8.24版本，相比于Redis2.6，主要特性如下：
@@ -451,8 +445,6 @@ Redis2.8在2013年11月22日正式发布，经历了24个版本，到2.8.24版�
 6）config rewrite命令可以将config set持久化到Redis配置文件中。
 7）发布订阅添加了pubsub。
 8）Redis Sentinel第二版，相比于Redis2.6的Redis Sentinel，此版本已经变成生产可用。
-
- 
 
 3.Redis3.0（里程碑）
 
@@ -469,8 +461,6 @@ Redis最大的改动就是添加Redis的分布式实现Redis Cluster。
 8）cinfig set设置maxmemory时候可以设置不同的单位（之前只能是字节）
 9）Redis日志小做调整：日志中会反应当前实例的角色（master或者slave）。
 10）incr命令性能提升。
-
- 
 
 4.Redis3.2
 Redis3.2在2016年5月6日正式发布，相比于Redis3.0主要特征如下：
@@ -491,69 +481,61 @@ Redis3.2在2016年5月6日正式发布，相比于Redis3.0主要特征如下：
 15）cluster nodes命令得到加速。
 16）Jemalloc更新到4.0.3版本。
 
- 
-
- 
 
 5.Redis4.0
-
 可能出乎很多的意料，Redis3.2之后的版本是4.0，而不是3.4、3.6、3.8。
-
 一般这种重大版本号的升级也意味着软件或者工具本身发生了重大改革。下面是Redis4.0的新特性：
-
 1）提供了模块系统，方便第三方开发者拓展Redis的功能。
-
 2）PSYNC2.0：优化了之前版本中，主从节点切换必然引起全量复制的问题。
-
 3）提供了新的缓存剔除算法：LFU（Last Frequently Used），并对已有算法进行了优化。
-
 4）提供了非阻塞del和flushall/flushdb功能，有效解决删除了bigkey可能造成的Redis阻塞。
-
 5）提供了memory命令，实现对内存更为全面的监控统计。
-
 6）提供了交互数据库功能，实现Redis内部数据库的数据置换。
-
 7）提供了RDB-AOF混合持久化格式，充分利用了AOF和RDB各自优势。
-
 8）Redis Cluster 兼容NAT和Docker。
-
- 
 
 6.Redis5.0
 
 1.新的Stream数据类型。[1]5.0
-
 2.新的Redis模块API：Timers and Cluster API。
-
-\3. RDB现在存储LFU和LRU信息。
-
+3. RDB现在存储LFU和LRU信息。
 4.集群管理器从Ruby（redis-trib.rb）移植到C代码。可以在redis-cli中。查看`redis-cli —cluster help`了解更多信息。
-
 5.新sorted set命令：ZPOPMIN / MAX和阻塞变量。
-
 6.主动碎片整理V2。
-
 7.增强HyperLogLog实现。
-
 8.更好的内存统计报告。
-
 9.许多带有子命令的命令现在都有一个HELP子命令。
-
 10.客户经常连接和断开连接时性能更好。
-
 11.错误修复和改进。
+12. Jemalloc升级到5.1版
 
-\12. Jemalloc升级到5.1版
+https://github.com/redis/redis/releases/tag/7.4.0
+7 29, 2024
 
+https://github.com/redis/redis/releases/tag/7.2.0
+8 15, 2023
 
+https://github.com/redis/redis/releases/tag/7.0.0
+4 27, 2022
+
+https://github.com/redis/redis/releases/tag/6.2.0
+2 23, 2021
+
+https://github.com/redis/redis/releases/tag/6.0.0
+4 30, 2020
+
+5.0.14
+10 4, 2021
+https://github.com/redis/redis/releases/tag/5.0.14
+
+5.0.0
+10 17, 2018
+https://github.com/redis/redis/releases/tag/5.0.0
 
 浅析Redis 4.0新特性之LazyFree
 
-
 小林图解redis系列
 https://xiaolincoding.com/redis/
-
-
 
 redis源代码阅读
 https://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html
@@ -562,48 +544,27 @@ https://github.com/redis/redis/tree/7.0
 支持Linux Unix freeBSD openBSD
 makefile
 
-
-
 Redis的并发竞争问题如何解决
 Redis的并发竞争问题主要表现为多个客户端同时请求Redis服务器，可能会出现多个客户端同时对同一个键值进行读写操作，导致数据不一致的问题。
-
 以下是几种解决Redis并发竞争问题的方式：
-
 使用Redis事务：Redis事务可以将一组操作打包成一个原子性的操作，保证多个客户端操作的原子性。
-
 使用Redis分布式锁：通过对需要进行互斥的代码块加锁的方式，保证同一时间只有一个客户端可以对其进行操作。
-
 使用Redis乐观锁：通过使用Redis的CAS操作（compare and set），在每次更新操作时判断当前版本是否正确，如果正确则执行更新操作，否则返回失败。
-
 使用Redis队列：通过将多个客户端对同一个键值的请求存入队列中，再通过单独的线程对队列中的请求进行操作，保证多个客户端对同一键值的操作按照先后顺序执行。
-
 需要注意的是，以上方法并不是绝对可靠的，不同的并发场景下适用的解决方案也有所不同。因此，在设计应用时应该根据实际情况选择合适的并发解决方案。
 
 
-
-
 redis实现消息队列
-
 Redis可以通过List数据类型实现消息队列。具体实现方式如下：
-
 将消息存储到List中：使用Redis的LPUSH命令将消息推入到List的左侧，表示这是一个最新的消息。
-
 从消息队列中获取消息：使用Redis的RPOP命令从List的右侧弹出一条消息，表示这是最旧的消息。
-
 处理消息：从消息队列中获取到消息后，对消息进行处理。
-
 重复执行：在消息处理完成后，返回步骤2，从消息队列中获取下一条消息进行处理。
-
 需要注意的是，在实现Redis消息队列时，需要考虑多个客户端同时对同一个消息队列进行读写操作的并发情况。可以使用Redis的BLPOP命令来实现多个客户端并发读取同一个消息队列的操作。
-
 此外，Redis的消息队列也可以实现消息发布/订阅模式。当有消息需要发布时，可以将消息推入到指定的通道中，所有订阅该通道的客户端都会收到该消息。实现方式可以使用Redis的PUBLISH命令实现。
 
-
-
 除了使用Redis的List数据类型实现消息队列，还可以使用ZSet（有序集合）数据类型来实现。
-
 在使用ZSet实现消息队列时，可以将消息的时间戳作为ZSet的分值（score），将消息的内容作为ZSet的成员（member）。这样，可以通过ZSet的分值来对消息进行排序，保证消息按照时间顺序排列。
-
 具体实现方式如下：
 将消息存储到ZSet中：使用Redis的ZADD命令将消息添加到ZSet中，将消息的时间戳作为分值，消息内容作为成员。如果需要添加多个消息，可以一次性添加多个消息。
 从消息队列中获取消息：使用Redis的ZRANGE命令从ZSet中获取分值最小的一条消息，并返回消息的成员（即消息内容）。
@@ -617,19 +578,8 @@ lettuce：lettuce是一个高性能的Java Redis客户端，也提供了ZSet实�
 Jedis：Jedis是一个Java Redis客户端，也可以使用ZSet实现消息队列。Jedis对Redis的ZADD和ZRANGE命令进行了封装，提供了类似于Java集合的操作方式，更加方便使用。
 除了这些库之外，还可以直接使用Redis的ZADD、ZRANGE等命令，自己编写代码实现ZSet实现消息队列的功能。
 
-
-
-
-
-
-
-
-
-
 redis list底层数据结构
-
 Redis List底层数据结构是双向链表，它是由多个列表节点（List Node）组成的链表。每个列表节点包含了三个属性：
-
 前置节点指针（prev）：指向前置节点的指针，如果当前节点是头节点，则前置节点为NULL。
 后置节点指针（next）：指向后置节点的指针，如果当前节点是尾节点，则后置节点为NULL。
 节点值（value）：列表节点保存的值。
@@ -651,40 +601,24 @@ zlend：标识压缩列表的结束位置。
 
 在Redis中，可以通过CONFIG SET命令的list-max-ziplist-entries选项来设置当List转换为压缩列表时的最大元素数量，以及通过list-max-ziplist-value选项来设置单个元素的最大值。
 
-
 redisinsight 最好用的redis图形工具
 
 https://spring.io/projects/spring-data-redis
-
-
-
-
 
 从单机到2000万QPS: 知乎Redis平台发展与演进之路
 
 https://zhuanlan.zhihu.com/p/48694169
 
 
-
-
-
 redis深度探险
-
 布隆过滤器
-
 管道
-
 事务
 
-
-
 Redis 延迟 面试题 纯技术的
-
 https://zhuanlan.zhihu.com/p/108212058
 
 延迟（Latency）是指从客户端发送命令到客户端接收到命令返回值的时间间隔。所以我们先来看一下 Redis 一条命令执行的步骤，其中每个步骤出问题都可能导致高延迟。
-
-
 
 remote dictionary service 首字母缩写
 
@@ -695,7 +629,6 @@ https://computingforgeeks.com/how-to-install-latest-redis-on-centos-7/
 
 yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum --enablerepo=remi install redis -y
-
 
 Redis协议里有大量冗余的回车换行符，但是这不影响它成为互联网技术领域非常受欢迎的一个文本协议。有很多开源项目使用阻SP作为它的通讯协议
 
@@ -712,7 +645,6 @@ Redis图形客户端
 rdm windows 自己编译的版本
 
 redis 6支持自定义用户名
-
 
 https://www.runoob.com/redis/redis-sorted-sets.html
 
@@ -850,7 +782,6 @@ PUNSUBSCRIBE
 SUBSCRIBE
 UNSUBSCRIBE
 
-
 Transaction（事务）
 DISCARD
 EXEC
@@ -932,12 +863,7 @@ slowlog-log-slower-than 10000
 这个长度没有限制。只是要主要会消耗内存。你可以通过 SLOWLOG RESET 来回收内存。
 slowlog-max-len 128
 
-
-
 Redis Dbsize 命令用于返回当前数据库的 key 的数量。
-
-
-
 
 redis 3.2 protect mode，限定特定网卡/ip的地址才能访问
 redis-cli登录之后，
@@ -1007,7 +933,6 @@ Set（集合）
 zset(sorted set：有序集合)
 
 
-
 Redis数据结构(9种)
 String：二进制安全的字符串
 Lists：安插入顺序排序的字符串元素集合。基本是链表。
@@ -1020,8 +945,6 @@ Geospatial Indexes：地理空间索引
 Streams：流信息
 
 https://blog.csdn.net/chenhailonghp/article/details/105388802
-
-
 
 add sadd zadd
 
@@ -1074,10 +997,7 @@ QUIT
 SELECT index
 切换到指定的数据库
 
-
 INFO
-
-
 
 redis
 
@@ -1174,9 +1094,6 @@ kernel-devel-3.10.0-1160.15.2.el7.x86_64
 
 
 
-
-
-
 ```shell
 yum install libodb-mysql-devel.x86_64
 Downloading packages:
@@ -1201,12 +1118,6 @@ https://centos.pkgs.org/7/remi-x86_64/redis-5.0.11-1.el7.remi.x86_64.rpm.html
 redis 5
 
 windows 微软维护 3.0
-
-
-
-
-
-
 
 
 从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
