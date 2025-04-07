@@ -61,7 +61,9 @@ git cherry-pick abc123^..def456
 
 使用* model DeepSeek-R1来切换满血版R1模型。
 
-
+## tag
+git 查看当前切换到哪个tag
+git describe --tags --exact-match
 
 ## tag
 git 查看当前切换到哪个tag
