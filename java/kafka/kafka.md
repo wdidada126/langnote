@@ -45,6 +45,29 @@ https://kafka.apache.org/30/javadoc/index.html
 
 ## 版本
 
+4.0.0 2025年3月
+https://github.com/apache/kafka/releases/tag/4.0.0
+
+3.9.0
+11 7, 2024
+
+3.5.0
+6 13, 2023
+
+3.4.0
+Feb 6, 2023
+
+3.3.0
+9 28, 2022
+
+3.2.0
+5 10, 2022
+
+3.1.0
+6 21, 2022
+
+3.0.0
+9 20, 2021
 
 
 ## mq实现延时队列

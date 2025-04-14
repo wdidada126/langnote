@@ -129,6 +129,8 @@ coan可以处理依赖库吗？
 现在考虑部署？源码编译部署吗？
 还是打包成安装文件部署？
 
+-DCMAKE_TOOLCHAIN_FILE=D:\develops\tools\vcpkg\scripts\buildsystems\vcpkg.cmake
+
 ## manifests模式
 cmake项目，添加vcpkg.json文件，重新运行 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake
 自动下载vcpkg中声明的依赖

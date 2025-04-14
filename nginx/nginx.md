@@ -1,5 +1,15 @@
 # nginx
 
+server_token on/off
+nginx配置中的server_token指令用于控制nginx服务器在响应HTTP请求时是否显示服务器的版本信息。默认情况下，nginx会在响应头中包含服务器的版本号，例如Server: nginx/1.18.0。这个信息可能会被潜在的攻击者用来了解服务器的漏洞和弱点，从而增加服务器被攻击的风险
+。
+
+通过配置server_token off，可以禁止在响应头中显示服务器的版本信息，只显示服务名称而不显示具体的版本号。这样，攻击者就难以通过版本号来识别服务器的具体版本，进而难以利用已知漏洞进行针对性攻击。具体来说，当在nginx的配置文件中设置server_token off后，nginx在返回HTTP响应头时，将不再包含服务器的版本信息，从而增加服务器的安全性
+。
+
+要在nginx中配置server_token off，需要编辑nginx的配置文件（通常是nginx.conf），在http、server或location节点下添加server_token off;指令。完成配置后，需要重新加载nginx的配置，使更改生效
+
+
 `nginx.conf` 是Nginx服务器的主配置文件，它包含了Nginx服务器的全局配置、事件模块配置以及HTTP、Mail、Stream等核心模块的配置信息。下面详细介绍其常见包含内容：
 
 ### 全局块
