@@ -1,5 +1,16 @@
 # tar
 
+## 使用 gzip 压缩
+tar -zcvf my_folder.tar.gz my_folder
+
+## 使用 bzip2 压缩
+tar -jcvf my_folder.tar.bz2 my_folder
+
+## 使用 xz 压缩
+tar -Jcvf my_folder.tar.xz my_folder
+
+## 只打包不压缩
+
 `tar` 是一个在 Unix 和类 Unix 系统中常用的归档工具，它可以打包文件和文件夹，并且可以配合压缩工具（如 gzip、bzip2、xz 等）使用来压缩打包后的文件。
 
 要使用 `tar` 命令打包整个文件夹，你可以使用以下命令格式：
