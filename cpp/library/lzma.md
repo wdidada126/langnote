@@ -1,0 +1,3 @@
+# lzma
+
+vcpkg install liblzma
