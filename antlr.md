@@ -57,6 +57,9 @@ antlr包含以下几个部分
 
 antlr主工程虽然是Java，但是antlr运行可以在Java，JavaScript，Python，C#等语言里，原因就是官网开放了这四种语言的antlr运行时，[www.antlr.org/download](http://www.antlr.org/download.html)。
 
+备注：
+https://beyondtheloop.dev/Antlr-cpp-cmake/
+
 举个通俗点的例子，如果我打算用JavaScript语言，用来分析Oc语法，那么
 
 - 我需要先去官网下载`ObjectiveC.g4`grammer语法描述文件
