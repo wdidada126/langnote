@@ -1,5 +1,117 @@
 # antlr
 
+## api
+
+```java
+	import org.antlr.v4.runtime.misc.LogManager;
+
+    LogManager mgr = new LogManager();
+    mgr.log("atn", "test msg");
+    mgr.log("dfa", "test msg 2");
+    System.out.println(mgr);
+    try {
+
+        mgr.save();
+    }catch (IOException ioException){
+        ioException.printStackTrace();
+    }
+```
+
+## some
+antlr只支持大写字符?
+看编写的.g4规则
+
+ANTLR（Another Tool for Language Recognition）本身并不限定只支持大写字符，无论是解析 JSON 字符串还是 SQL 语句，它对大小写的支持情况取决于你所定义的词法规则。下面详细分析在解析 JSON 和 SQL 时大小写相关的情况：
+
+### 解析 JSON 时大小写情况
+JSON 规范里键和值对大小写是敏感的，在使用 ANTLR 解析 JSON 时，通常定义的词法规则会允许大小写字符。以下是一个简单的 ANTLR JSON 语法规则示例：
+
+```antlr
+grammar JSON;
+
+// 起始规则
+json: value;
+
+// 值可以是对象、数组、字符串、数字、布尔值或 null
+value: object
+     | array
+     | STRING
+     | NUMBER
+     | 'true'
+     | 'false'
+     | 'null'
+     ;
+
+// 对象由花括号包裹的键值对组成
+object: '{' (pair (',' pair)*)? '}';
+pair: STRING ':' value;
+
+// 数组由方括号包裹的值列表组成
+array: '[' (value (',' value)*)? ']';
+
+// 字符串由双引号包裹的字符序列组成
+STRING: '"' (ESC | ~["\\])* '"';
+fragment ESC: '\\' (["\\/bfnrt] | UNICODE);
+fragment UNICODE: 'u' HEX HEX HEX HEX;
+fragment HEX: [0-9a-fA-F];
+
+// 数字可以是整数或浮点数
+NUMBER: '-'? INT ('.' [0-9]+)? EXP?;
+fragment INT: '0' | [1-9] [0-9]*;
+fragment EXP: [Ee] [+\-]? INT;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+在这个规则里，`STRING` 规则允许任意大小写的字符，`true`、`false` 和 `null` 这些关键字也是明确支持小写的。所以，解析 JSON 时 ANTLR 能很好地处理大小写字符。
+
+### 解析 SQL 时大小写情况
+在 SQL 里，关键字一般不区分大小写，但标识符（如表名、列名）通常区分大小写，不过这也依赖于数据库的配置。当使用 ANTLR 解析 SQL 时，如果词法规则只定义了大写的关键字，那就只能解析大写的 SQL 语句。例如下面这个简单的 SQL 语法规则：
+
+```antlr
+grammar SimpleSQL;
+
+// 起始规则
+parse: SELECT columns FROM tableName;
+
+// 关键字，这里只定义了大写
+SELECT: 'SELECT';
+FROM: 'FROM';
+
+// 标识符，允许大小写
+columns: ID (',' ID)*;
+tableName: ID;
+
+ID: [a-zA-Z]+;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+在这个规则中，`SELECT` 和 `FROM` 关键字只定义了大写形式，所以只能解析大写的 SQL 语句。若要支持小写或大小写不敏感，需要修改词法规则。例如，让关键字大小写不敏感：
+
+```antlr
+grammar SimpleSQL;
+
+// 起始规则
+parse: SELECT columns FROM tableName;
+
+// 关键字，大小写不敏感
+SELECT: [sS][eE][lL][eE][cC][tT];
+FROM: [fF][rR][oO][mM];
+
+// 标识符，允许大小写
+columns: ID (',' ID)*;
+tableName: ID;
+
+ID: [a-zA-Z]+;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+这样修改后，就可以解析大小写混合的 SQL 语句了。
+
+综上所述，ANTLR 对大小写的支持取决于你定义的词法规则，你可以根据具体需求来调整规则以支持不同的大小写情况。 
+
 antlr之类的parser generator。
 
 看antlr是如何从支持mysql 5.7到支持mysql 8的
