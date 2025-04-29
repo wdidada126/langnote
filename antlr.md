@@ -1,5 +1,12 @@
 # antlr
 
+https://docs.rs/crate/antlr-rust/latest
+
+JavaCC Java compiler compiler 编译器的编译器
+提供代码生成器,运行时
+
+.g4文件调试器
+
 ## api
 
 ```java
@@ -131,7 +138,6 @@ G4 编码规范
 规则命名采用 java 变量的驼峰形式。
 为每种 SQL 语句类型定义一个独立的语法文件，文件名称由 数据库名称 + 语句类型名称 + Statement。例如：MySQLDQLStatement.g4
 
-
 [antlr](https://www.antlr.org/)
 
 [开源语法分析器--ANTLR](https://www.cnblogs.com/blfshiye/p/4359390.html)
@@ -142,7 +148,6 @@ antlr可以对接多种语言
 runtime
 
 #### antlr的概述
-
 
 antlr是一个包含了`词法分析`,`语法分析`两大模块的工具，并且提供了大量主流语言的现成的语法描述`grammar`文件
 
@@ -220,8 +225,6 @@ https://github.com/antlr/antlr4/blob/master/doc/lexer-rules.md
 - type( x )
 - channel( x )
 
-
-
 ANTLR(ANTLR(ANother Tool for Language Recognition)是自上而下分析器的自动生成器，http://www.antlr.org/，ANTLR3支持LL(*)文法及分析技术，ANTLR4支持Adaptive LL(*)文法及分析技术。本视频是2022秋季中国科大《编译原理和技术(H)》的讲课视频。
 
 https://www.bilibili.com/video/BV1AR4y1o78H/
@@ -229,7 +232,6 @@ https://www.bilibili.com/video/BV1AR4y1o78H/
 张煜
 yuzhang@ustc.edu.cn
 计算机科学与技术学院
-
 
 原理
 ANTLR3：LL(*)
@@ -244,7 +246,6 @@ ANTLR4：Adaptive LL(*)
 
 MySqlParser.g4 
 sql必须大写
-
 
 重视对官方提供的antlr语法 github 的学习https://github.com/antlr/grammars-v4
 
