@@ -104,13 +104,11 @@ MapConfiguration
 
 ConfigurationView, WinRegistryConfiguration, IniFileConfiguration, LocalConfigurationView,LayeredConfiguration
 
-
 Object
 Array
 
 ParserImpl
 Parser
-
 
 Handler
 ParseHandler
@@ -130,13 +128,11 @@ MultiPart
 LogicPart
 LoopPart
 
-
 EchoPart
 
 LogicQuery
 LogicExistQuery
 LogicElseQuery
-
 
 Choose lmplementation of Part (7 found)
 
@@ -163,7 +159,6 @@ AbstractConfiguration
 	MapConfiguration
 		PropertyFileConfiguration
 
-
 AtomicCounter
 
 RefCountedObject
@@ -171,17 +166,14 @@ RefCountedObject
 		Application
 		LoggingSubsystem
 
-
 HelpFormatter
 
 Validator
 	IntValidator  是Validator子类
 
-
 LoggingConfigurator
 
 Option
-
 
 AbstractOptionCallback
 	OptionCallback
@@ -239,11 +231,9 @@ Base32DecoderIOS
 
 Base32Decoder 是Base32DecoderIOS子类
 
-
 Base32EncoderBuf UnbufferedStreamBuf
 Base32EncoderIOS
 Base32Encoder
-
 
 Base64DecoderBuf
 Base64DecoderIOS
@@ -259,7 +249,6 @@ enum Base64EncodingOptions
 Base64EncoderBuf
 Base64EncoderIOS
 Base64Encoder
-
 
 enum BignumDtoaMode {
 
@@ -389,9 +378,7 @@ class Foundation_API HexBinaryDecoderIOS: public virtual std::ios
 
 class Foundation_API HexBinaryDecoder: public HexBinaryDecoderIOS, public std::istream
 
-
 class Foundation_API HexBinaryEncoderBuf: public UnbufferedStreamBuf
-
 
 class Foundation_API HexBinaryEncoderIOS: public virtual std::ios
 
@@ -405,7 +392,6 @@ class Foundation_API InflatingOutputStream: public std::ostream, public Inflatin
 
 class Foundation_API InflatingInputStream: public std::istream, public InflatingIOS
 
-
 enum JSONOptions
 {
     JSON_PRESERVE_KEY_ORDER = 1,
@@ -414,7 +400,6 @@ enum JSONOptions
 
     JSON_WRAP_STRINGS = 4
 };
-
 
 Latin1Encoding
 Latin2Encoding
@@ -453,7 +438,6 @@ class Foundation_API MemoryInputStream: public MemoryIOS, public std::istream
 class Foundation_API MemoryOutputStream: public MemoryIOS, public std::ostream
 
 class Foundation_API MemoryOutputStream: public MemoryIOS, public std::ostream
-
 
 Message
 
@@ -574,7 +558,6 @@ POCO::NET
 
 HTTPRequestHandler
 AbstractHTTPRequestHandler
-
 
 最朴实无华的c艹基础库，非常易懂，大多数实现初学者看起来毫无压力；功能也非常全面，功能集相当于一个小Qt；目前很火的ClickHouse里面也用到了。学完这个里面的东西，对于一般c艹应用开发绝对够了。缺点可能就是由于实现朴实有些地方可能性能不够好（不过这是个取舍的问题，CH性能很好不也用了poco，如果发现性能问题的地方可以换做其他的），还有就是实现可能不够modern。
 

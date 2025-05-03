@@ -1,5 +1,16 @@
 # conan
 
+## conan2
+
+cpp14下不支持conan2
+cpp17下支持
+
+conan2官方仓库上旧版本的库会过期
+跟java，python的库对比，jar一般不会过期，whl也不过期
+
+有库会过期的，不再维护了，推荐自建conan私有仓库
+
+## some
 
 vs安装了143 build tool
 重新编译trantor/1.5.19

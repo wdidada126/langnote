@@ -1,5 +1,124 @@
 # antlr
 
+https://docs.rs/crate/antlr-rust/latest
+
+JavaCC Java compiler compiler 编译器的编译器
+提供代码生成器,运行时
+
+.g4文件调试器
+
+## api
+
+```java
+	import org.antlr.v4.runtime.misc.LogManager;
+
+    LogManager mgr = new LogManager();
+    mgr.log("atn", "test msg");
+    mgr.log("dfa", "test msg 2");
+    System.out.println(mgr);
+    try {
+
+        mgr.save();
+    }catch (IOException ioException){
+        ioException.printStackTrace();
+    }
+```
+
+## some
+antlr只支持大写字符?
+看编写的.g4规则
+
+ANTLR（Another Tool for Language Recognition）本身并不限定只支持大写字符，无论是解析 JSON 字符串还是 SQL 语句，它对大小写的支持情况取决于你所定义的词法规则。下面详细分析在解析 JSON 和 SQL 时大小写相关的情况：
+
+### 解析 JSON 时大小写情况
+JSON 规范里键和值对大小写是敏感的，在使用 ANTLR 解析 JSON 时，通常定义的词法规则会允许大小写字符。以下是一个简单的 ANTLR JSON 语法规则示例：
+
+```antlr
+grammar JSON;
+
+// 起始规则
+json: value;
+
+// 值可以是对象、数组、字符串、数字、布尔值或 null
+value: object
+     | array
+     | STRING
+     | NUMBER
+     | 'true'
+     | 'false'
+     | 'null'
+     ;
+
+// 对象由花括号包裹的键值对组成
+object: '{' (pair (',' pair)*)? '}';
+pair: STRING ':' value;
+
+// 数组由方括号包裹的值列表组成
+array: '[' (value (',' value)*)? ']';
+
+// 字符串由双引号包裹的字符序列组成
+STRING: '"' (ESC | ~["\\])* '"';
+fragment ESC: '\\' (["\\/bfnrt] | UNICODE);
+fragment UNICODE: 'u' HEX HEX HEX HEX;
+fragment HEX: [0-9a-fA-F];
+
+// 数字可以是整数或浮点数
+NUMBER: '-'? INT ('.' [0-9]+)? EXP?;
+fragment INT: '0' | [1-9] [0-9]*;
+fragment EXP: [Ee] [+\-]? INT;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+在这个规则里，`STRING` 规则允许任意大小写的字符，`true`、`false` 和 `null` 这些关键字也是明确支持小写的。所以，解析 JSON 时 ANTLR 能很好地处理大小写字符。
+
+### 解析 SQL 时大小写情况
+在 SQL 里，关键字一般不区分大小写，但标识符（如表名、列名）通常区分大小写，不过这也依赖于数据库的配置。当使用 ANTLR 解析 SQL 时，如果词法规则只定义了大写的关键字，那就只能解析大写的 SQL 语句。例如下面这个简单的 SQL 语法规则：
+
+```antlr
+grammar SimpleSQL;
+
+// 起始规则
+parse: SELECT columns FROM tableName;
+
+// 关键字，这里只定义了大写
+SELECT: 'SELECT';
+FROM: 'FROM';
+
+// 标识符，允许大小写
+columns: ID (',' ID)*;
+tableName: ID;
+
+ID: [a-zA-Z]+;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+在这个规则中，`SELECT` 和 `FROM` 关键字只定义了大写形式，所以只能解析大写的 SQL 语句。若要支持小写或大小写不敏感，需要修改词法规则。例如，让关键字大小写不敏感：
+
+```antlr
+grammar SimpleSQL;
+
+// 起始规则
+parse: SELECT columns FROM tableName;
+
+// 关键字，大小写不敏感
+SELECT: [sS][eE][lL][eE][cC][tT];
+FROM: [fF][rR][oO][mM];
+
+// 标识符，允许大小写
+columns: ID (',' ID)*;
+tableName: ID;
+
+ID: [a-zA-Z]+;
+
+// 忽略空白字符
+WS: [ \t\r\n]+ -> skip;
+```
+这样修改后，就可以解析大小写混合的 SQL 语句了。
+
+综上所述，ANTLR 对大小写的支持取决于你定义的词法规则，你可以根据具体需求来调整规则以支持不同的大小写情况。 
+
 antlr之类的parser generator。
 
 看antlr是如何从支持mysql 5.7到支持mysql 8的
@@ -19,7 +138,6 @@ G4 编码规范
 规则命名采用 java 变量的驼峰形式。
 为每种 SQL 语句类型定义一个独立的语法文件，文件名称由 数据库名称 + 语句类型名称 + Statement。例如：MySQLDQLStatement.g4
 
-
 [antlr](https://www.antlr.org/)
 
 [开源语法分析器--ANTLR](https://www.cnblogs.com/blfshiye/p/4359390.html)
@@ -30,7 +148,6 @@ antlr可以对接多种语言
 runtime
 
 #### antlr的概述
-
 
 antlr是一个包含了`词法分析`,`语法分析`两大模块的工具，并且提供了大量主流语言的现成的语法描述`grammar`文件
 
@@ -56,6 +173,9 @@ antlr包含以下几个部分
 目标语言的语法描述grammer文件，在antlr官网可以下载,https://github.com/antlr/grammars-v4，从里面可以看到，我们可以找到几乎所有主流语言的语法描述，换句话说，如果我们要分析的语言有现成的grammar文件，那我们可以直接拿来输入给antlr就能搞起词法语法分析。
 
 antlr主工程虽然是Java，但是antlr运行可以在Java，JavaScript，Python，C#等语言里，原因就是官网开放了这四种语言的antlr运行时，[www.antlr.org/download](http://www.antlr.org/download.html)。
+
+备注：
+https://beyondtheloop.dev/Antlr-cpp-cmake/
 
 举个通俗点的例子，如果我打算用JavaScript语言，用来分析Oc语法，那么
 
@@ -105,8 +225,6 @@ https://github.com/antlr/antlr4/blob/master/doc/lexer-rules.md
 - type( x )
 - channel( x )
 
-
-
 ANTLR(ANTLR(ANother Tool for Language Recognition)是自上而下分析器的自动生成器，http://www.antlr.org/，ANTLR3支持LL(*)文法及分析技术，ANTLR4支持Adaptive LL(*)文法及分析技术。本视频是2022秋季中国科大《编译原理和技术(H)》的讲课视频。
 
 https://www.bilibili.com/video/BV1AR4y1o78H/
@@ -114,7 +232,6 @@ https://www.bilibili.com/video/BV1AR4y1o78H/
 张煜
 yuzhang@ustc.edu.cn
 计算机科学与技术学院
-
 
 原理
 ANTLR3：LL(*)
@@ -129,7 +246,6 @@ ANTLR4：Adaptive LL(*)
 
 MySqlParser.g4 
 sql必须大写
-
 
 重视对官方提供的antlr语法 github 的学习https://github.com/antlr/grammars-v4
 
