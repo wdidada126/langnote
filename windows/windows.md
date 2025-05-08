@@ -207,8 +207,6 @@ d-----        2023/11/30      9:50                uwp
 -a----        2023/11/30      9:50         164462 vcruntimed.lib
 -a----        2023/11/30      9:50           2864 wsetargv.obj
 
-
-
 comsupp.lib
 comsuppd.lib
 comsuppw.lib
@@ -220,11 +218,9 @@ concrtd.lib
 1. `comsupp.lib` 和 `comsuppd.lib`：
    - `comsupp.lib` 是用于 Release 模式的库文件，`comsuppd.lib` 是用于 Debug 模式的库文件。
    - 这些库文件提供了对 COM (Component Object Model) 的支持，包括 COM 接口、对象创建、引用计数等相关功能。
-
 2. `comsuppw.lib` 和 `comsuppwd.lib`：
    - `comsuppw.lib` 是用于 Release 模式的库文件，`comsuppwd.lib` 是用于 Debug 模式的库文件。
    - 这些库文件是 Unicode 版本的 `comsupp.lib` 和 `comsuppd.lib`，用于提供对 Unicode 字符串的支持。
-
 3. `concrt.lib` 和 `concrtd.lib`：
    - `concrt.lib` 是用于 Release 模式的库文件，`concrtd.lib` 是用于 Debug 模式的库文件。
    - 这些库文件提供了对并发编程的支持，包括异步任务、并行算法、并发容器等。
@@ -235,3 +231,4 @@ concrtd.lib
 
 ## 11
 开机启动项
+在 任务管理器 里面

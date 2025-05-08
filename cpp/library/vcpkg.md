@@ -1,4 +1,5 @@
 # vcpkg
+FATAL ERROR: libmysql and libmariadb are incompatible.
 
 vcpkg search poco
 poco                     1.14.0#2         Modern, powerful open source C++ class libraries for building network and ...
@@ -200,6 +201,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmak
 -DCMAKE_TOOLCHAIN_FILE=D:/git/github/vcpkg/scripts/buildsystems/vcpkg.cmake
 -DCMAKE_TOOLCHAIN_FILE="D:/git/github/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
+-DCMAKE_TOOLCHAIN_FILE="D:\dev_tools\vcpkg\scripts\buildsystems\vcpkg.cmake"
+-DCMAKE_TOOLCHAIN_FILE="C:\Users\wdidada\.vcpkg-clion\vcpkg\scripts\buildsystems\vcpkg.cmake"
 -DCMAKE_TOOLCHAIN_FILE="D:\dev_tools\vcpkg\scripts\buildsystems\vcpkg.cmake"
 
 
