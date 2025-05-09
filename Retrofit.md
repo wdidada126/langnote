@@ -76,7 +76,7 @@ com.github.lianjiatech.retrofit.spring.boot.util
 | RetrofitBlockException                              | exception  |                                                              |
 | RetrofitDegradeRule                                 |            | 属性 DegradeStrategy degradeStrategy                         |
 | RetrofitDegradeRuleInitializer                      |            | sentinel 实现ApplicationListener<ApplicationReadyEvent>  接口，DegradeProperty degradeProperty List<RetrofitDegradeRule> *LIST*属性 |
-| SentinelDegradeInterceptor                          |            | sentinal BaseDegradeInterceptor子类                          |
+| SentinelDegradeInterceptor                          |            | sentinel BaseDegradeInterceptor子类                          |
 
 
 

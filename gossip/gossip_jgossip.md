@@ -2,7 +2,7 @@
 
 redis cluster 是gossip？
 
-sentinal
+sentinel
 
 redis用到了gossip
 

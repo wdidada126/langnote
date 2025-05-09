@@ -16,6 +16,11 @@ https://wxwidgets.org/docs/
 Class List by Category
 https://docs.wxwidgets.org/3.2/group__group__class.html
 
+
 ### class
 
 wxString
+
+
+## test code
+https://gitee.com/edidada/testwxWidgets
