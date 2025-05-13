@@ -215,11 +215,10 @@ sudo make install
 ### 编译产物
 
 lcrypto_a
-
+libcrypto.a ?
 
 ## doc
 
 https://docs.openssl.org/3.0/man7/migration_guide/
 
 https://docs.openssl.org/master/man7/ossl-guide-libcrypto-introduction
-
