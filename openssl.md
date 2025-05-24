@@ -1,4 +1,6 @@
 # openssl
+sudo apt install libssl-dev
+
 https://www.openssl.org/
 
 OpenSSL 是一个开源的工具包，用于实现安全套接字层（SSL）和传输层安全（TLS）协议，同时提供通用的加密库。它广泛应用于各种应用程序中，以确保数据传输的安全性和完整性。以下是 OpenSSL 库的主要功能：
@@ -215,11 +217,10 @@ sudo make install
 ### 编译产物
 
 lcrypto_a
-
+libcrypto.a ?
 
 ## doc
 
 https://docs.openssl.org/3.0/man7/migration_guide/
 
 https://docs.openssl.org/master/man7/ossl-guide-libcrypto-introduction
-
