@@ -1,5 +1,7 @@
 # pip
 
+pip install --upgrade requests
+
 pip3 install --user conan==2.0.6
 pip3 install conan==2.0.6
 
