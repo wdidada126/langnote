@@ -1,4 +1,5 @@
 # pkg-config
+pkg-config --modversion openssl
 
 pkg-config --cflags --libs log4cpp
 -pthread -I/usr/local/include -L/usr/local/lib -llog4cpp
