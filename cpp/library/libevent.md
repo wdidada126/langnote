@@ -1,5 +1,7 @@
 # libevent
 
+如果你使用的是较新版本的 libevent（比如 libevent 2.x），推荐使用 event_base_new() 替代 event_init()（后者已废弃）。
+
 rest_libevent
 
 在使用 libevent 创建 HTTP 服务器时，如果你想返回 JSON 格式的数据并设置 `Content-Type` 为 `application/json`，你可以按照以下步骤操作。
@@ -195,6 +197,7 @@ sudo yum install libevent-devel -y
 2.1.11
 
 dpkg -L libevent-dev
+```shell
 /.
 /usr
 /usr/include
@@ -269,6 +272,7 @@ dpkg -L libevent-dev
 /usr/lib/x86_64-linux-gnu/libevent_openssl.so
 /usr/lib/x86_64-linux-gnu/libevent_pthreads.so
 /usr/share/doc/libevent-dev/changelog.Debian.gz
+```
 
 ## reference
 http://www.wangafu.net/~nickm/libevent-2.1/doxygen/html/

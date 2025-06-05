@@ -12,6 +12,26 @@ set https_proxy=socks5://127.0.0.1:1080
 
 set ftp_proxy=socks5://127.0.0.1:1080
 
+在Windows PowerShell中，您可以使用以下命令来设置HTTP代理：
+
+```powershell
+$env:http_proxy="http://127.0.0.1:20800"
+```
+
+这个命令会将`http_proxy`环境变量设置为`http://127.0.0.1:10800`，指定了HTTP代理的地址和端口。
+
+如果您需要同时设置HTTPS代理，可以使用以下命令：
+
+```powershell
+$env:https_proxy="http://127.0.0.1:20800"
+```
+
+```powershell
+$env:http_proxy="http://127.0.0.1:20800"
+$env:https_proxy="http://127.0.0.1:20800"
+```
+
+
 172.18.176.1
 
 ubuntu用export
