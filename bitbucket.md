@@ -1,5 +1,12 @@
 # bitbucket
 
+remote: This workspace is over the 1 GB size limit. Reduce the size of your workspace or upgrade to a Standard or Premium plan to increase the size limit.
+remote:
+remote: Upgrade to a Standard or Premium plan: https://support.atlassian.com/bitbucket-cloud/docs/manage-your-plan-and-billing/#Change-your-plan
+remote: Or learn how to reduce your repository size: https://support.atlassian.com/bitbucket-cloud/docs/reduce-repository-size/#Rewind-history-to-undo-large-commits.
+To bitbucket.org:sandisks/life.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'bitbucket.org:sandisks/life.git'
 
 Bitbucket
 GuRgMJbvzmmB4QLfHnF5

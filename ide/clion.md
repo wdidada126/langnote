@@ -2,7 +2,7 @@
 
 CLion 2024.2
 	cmake.exe 3.29
-	
+Clion可以无缝继承wsl	
 
 https://www.jetbrains.com/help/clion/2024.2/clion-quick-start-guide.html
 

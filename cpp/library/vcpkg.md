@@ -205,7 +205,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=/home/wdidada/vcpkg/scripts/buildsystems/vcpkg.cmak
 -DCMAKE_TOOLCHAIN_FILE="C:\Users\wdidada\.vcpkg-clion\vcpkg\scripts\buildsystems\vcpkg.cmake"
 -DCMAKE_TOOLCHAIN_FILE="D:\dev_tools\vcpkg\scripts\buildsystems\vcpkg.cmake"
 
-
 CMake给交叉编译预留了一个很好的变量即CMAKE_TOOLCHAIN_FILE,它定义了一个文件的路径，这个文件即toolChain,里面set了一系列你需要改变的变量和属性，包括C_COMPILER,CXX_COMPILER。CMake为了不让用户每次交叉编译都要重新输入这些命令，因此它带来toolChain机制，简而言之就是一个cmake脚本，内嵌了你需要改变以及需要set的所有交叉环境的设置。
 
 这里面也牵扯了一些相关的变量设置,在这里我通过自己的项目，简单介绍下几个比较重要的：
