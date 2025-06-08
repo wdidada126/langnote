@@ -1,5 +1,6 @@
 # libevent
 
+linux高性能编程，书记上有libevent 例子，Chap. 12
 rest_libevent
 
 在使用 libevent 创建 HTTP 服务器时，如果你想返回 JSON 格式的数据并设置 `Content-Type` 为 `application/json`，你可以按照以下步骤操作。
