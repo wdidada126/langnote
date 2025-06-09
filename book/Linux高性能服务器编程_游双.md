@@ -428,6 +428,13 @@ G:\Linux高性能服务器编程清晰PDF+源码\LinuxServerCodes
 5.12.3 getaddrinfo
 5.12.4 getnameinfo
 
+socket对应多个协议
+
+IP地址转换函数
+inet_addr()
+inet_aton()
+inet_ntoa()
+
 网络编程三大步:
 int sock = socket( PF_INET, SOCK_STREAM, 0 );
 int ret = bind( sock, ( struct sockaddr* )&address, sizeof( address ) );
@@ -435,6 +442,17 @@ ret = listen( sock, backlog );
 accept
 conneected
 close
+
+socketaddr
+socketaddr_storage
+socketaddr_up
+socketaddr_in
+socketaddr_in6
+
+AF
+PF Unix协议
+v4协议
+v6协议
 
 ### 第6章 高级IO函数
 6.1 pipe函数
