@@ -1,7 +1,12 @@
 # conan
 
 ## conan2
+conan2下载不了库文件
+conan remote update conancenter --url https://center2.conan.io
 
+https://blog.conan.io/2024/09/30/Conan-Center-will-stop-receiving-updates-for-Conan-1.html
+
+## conan2 some
 cpp14下不支持conan2
 cpp17下支持
 

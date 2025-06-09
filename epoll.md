@@ -68,7 +68,7 @@ enum EPOLL_EVENTS
 
 ## ✅ 二、`enum EPOLL_EVENTS` 各枚举值详解 15个 14个使用，1个废弃
 in out 2
-rrww 4
+rd wr 4
 pri and 2
 
 et
