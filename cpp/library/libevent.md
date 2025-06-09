@@ -1,5 +1,6 @@
 # libevent
 
+linux高性能编程，书记上有libevent 例子，Chap. 12
 如果你使用的是较新版本的 libevent（比如 libevent 2.x），推荐使用 event_base_new() 替代 event_init()（后者已废弃）。
 
 rest_libevent
