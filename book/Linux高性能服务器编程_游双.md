@@ -428,6 +428,8 @@ G:\Linux高性能服务器编程清晰PDF+源码\LinuxServerCodes
 5.12.3 getaddrinfo
 5.12.4 getnameinfo
 
+Java程序是大端
+
 socket对应多个协议
 
 IP地址转换函数
@@ -435,19 +437,188 @@ inet_addr()
 inet_aton()
 inet_ntoa()
 
+在 C/C++ 网络编程中，处理 IP 地址时经常需要用到一些标准库函数来进行 IP地址字符串与网络字节序整数之间的转换。以下是三个常用的函数：
+
+- `inet_addr()`
+- `inet_aton()`
+- `inet_ntoa()`
+
+它们都定义在 `<arpa/inet.h>`（Linux/macOS）或 `<winsock2.h>`（Windows）中。
+
+---
+
+## 📌 1. `inet_addr()`
+
+### ✅ 功能：
+将 IPv4 地址字符串（如 `"192.168.1.1"`）转换为一个 32 位的网络字节序整数（`in_addr_t` 类型）。
+
+### ⚠️ 注意：
+- 已被标记为 过时（obsolete），建议使用 `inet_aton()`。
+- 返回值类型是 `in_addr_t`，失败返回 `INADDR_NONE`。
+
+### 🔧 示例：
+
+```c
+#include <stdio.h>
+#include <arpa/inet.h>
+
+int main() {
+    const char* ip_str = "192.168.0.1";
+    in_addr_t ip_num = inet_addr(ip_str);
+
+    if (ip_num == INADDR_NONE) {
+        printf("Invalid IP address\n");
+    } else {
+        printf("inet_addr(\"%s\") = %u (network byte order)\n", ip_str, (unsigned int)ip_num);
+    }
+
+    return 0;
+}
+```
+
+### 输出示例：
+
+```
+inet_addr("192.168.0.1") = 3232235521 (network byte order)
+```
+
+---
+
+## 📌 2. `inet_aton()`
+
+### ✅ 功能：
+将 IPv4 地址字符串转换为二进制形式，并存储到 `struct in_addr` 中。
+
+### 🟡 推荐使用：
+比 `inet_addr()` 更安全，支持 CIDR 表示法和错误检查。
+
+### 🔧 示例：
+
+```c
+#include <stdio.h>
+#include <arpa/inet.h>
+
+int main() {
+    const char* ip_str = "192.168.0.1";
+    struct in_addr ip;
+
+    if (inet_aton(ip_str, &ip) == 0) {
+        printf("Invalid IP address\n");
+    } else {
+        printf("inet_aton(\"%s\") -> s_addr = %u\n", ip_str, ip.s_addr);
+    }
+
+    return 0;
+}
+```
+
+### 输出示例：
+
+```
+inet_aton("192.168.0.1") -> s_addr = 3232235521
+```
+
+---
+
+## 📌 3. `inet_ntoa()`
+
+### ✅ 功能：
+将 `struct in_addr` 类型的网络地址转换回点分十进制的 IP 字符串（例如 `"192.168.0.1"`）。
+
+### ⚠️ 注意：
+- 是 非线程安全 的（返回的是内部静态缓冲区），多线程下应使用 `inet_ntop()` 替代。
+- 只适用于 IPv4。
+
+### 🔧 示例：
+
+```c
+#include <stdio.h>
+#include <arpa/inet.h>
+
+int main() {
+    struct in_addr ip;
+    inet_aton("192.168.0.1", &ip); // 先转成 in_addr
+
+    char* ip_str = inet_ntoa(ip);
+    printf("inet_ntoa(s_addr=%u) = %s\n", ip.s_addr, ip_str);
+
+    return 0;
+}
+```
+
+### 输出示例：
+
+```
+inet_ntoa(s_addr=3232235521) = 192.168.0.1
+```
+
+---
+
+## 🆕 更现代的替代方案：`inet_pton()` 和 `inet_ntop()`
+
+这些函数支持 IPv6，且线程安全。
+
+### 示例（IPv4）：
+
+```c
+#include <stdio.h>
+#include <arpa/inet.h>
+
+int main() {
+    const char* ip_str = "192.168.0.1";
+    struct in_addr ip;
+
+    // 字符串转结构体
+    if (inet_pton(AF_INET, ip_str, &ip) <= 0) {
+        printf("Invalid IP\n");
+        return 1;
+    }
+
+    // 结构体转字符串
+    char output[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &ip, output, INET_ADDRSTRLEN);
+
+    printf("inet_pton(\"%s\") -> s_addr = %u\n", ip_str, ip.s_addr);
+    printf("inet_ntop(s_addr=%u) = %s\n", ip.s_addr, output);
+
+    return 0;
+}
+```
+
+---
+
+## ✅ 总结对比表：
+
+| 函数名称       | 功能                             | 是否线程安全 | 支持 IPv6 | 备注 |
+|----------------|----------------------------------|---------------|------------|------|
+| `inet_addr()`  | IP字符串 ➜ `in_addr_t`           | ❌             | ❌         | 已废弃 |
+| `inet_aton()`  | IP字符串 ➜ `struct in_addr`      | ✅             | ❌         | 推荐使用 |
+| `inet_ntoa()`  | `struct in_addr` ➜ IP字符串      | ❌             | ❌         | 非线程安全 |
+| `inet_pton()`  | IP字符串 ➜ `struct in_addr`/IPv6 | ✅             | ✅         | 最推荐 |
+| `inet_ntop()`  | `struct in_addr` ➜ IP字符串      | ✅             | ✅         | 最推荐 |
+
+---
+
+如果你希望我帮你：
+
+- ✅ 实现 IPv6 地址的转换示例
+- ✅ 封装为 C++ 类或函数模板
+- ✅ 对比不同平台（Linux vs Windows）下的用法差异
+
+
 网络编程三大步:
 int sock = socket( PF_INET, SOCK_STREAM, 0 );
 int ret = bind( sock, ( struct sockaddr* )&address, sizeof( address ) );
 ret = listen( sock, backlog );
-accept
-conneected
-close
+accept()
+conneected()
+close()
 
-socketaddr
-socketaddr_storage
-socketaddr_up
-socketaddr_in
-socketaddr_in6
+socketaddr()
+socketaddr_storage()
+socketaddr_up()
+socketaddr_in()
+socketaddr_in6()
 
 AF
 PF Unix协议
@@ -464,14 +635,30 @@ v6协议
 6.7 tee函数
 6.8 fcntl函数
 
-pipe实现管道，进程通信
-sendfile进程之间发送数据
+pipe()
+实现管道，进程通信
+
+dup()
+dup2()
+readv()
+writev()
+sendfile()
+进程之间发送数据
 零拷贝
 内核缓冲区
 用户缓冲区
 
-mmap申请一段内存
-nummap释放上述申请的内存
+mmap()
+申请一段内存
+nummap()
+释放上述申请的内存
+
+splice()
+tee()
+fcntl()
+
+参考
+linux_api.md
 
 ### 第7章 Linux服务器程序规范
 7.1 日志

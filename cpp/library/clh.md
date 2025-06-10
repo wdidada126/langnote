@@ -1,5 +1,47 @@
-clh
-如果你在寻找 **C/C++ 实现的 CLH 队列（或自旋锁）开源库**，以下是几个推荐和资源，涵盖 **CLH Lock、队列实现、无锁/低锁并发结构** 的开源项目和库，适合嵌入式系统、高性能服务器、操作系统开发等场景。
+# clh
+
+在 Craig、Landin 和 Hagersten (CLH) 队列锁 问世之前，常见的同步机制主要依赖于 TAS（Test-and-Set）、TTAS（Test-and-Test-and-Set）、Peterson 锁、Bakery 算法等。这些早期的同步机制存在一些局限性，特别是在多处理器系统中使用时性能不佳的问题。CLH 队列锁作为一种改进方案，解决了这些问题，并引入了一些新的特性。
+
+### 发明 CLH 队列锁之前的常见同步机制
+
+1. Test-and-Set (TAS):
+   - 工作原理: 使用一个原子操作来检查并设置某个标志位，用于表示是否有一个线程正在访问临界区。
+   - 问题: 高竞争条件下会导致大量缓存一致性流量，因为所有线程都在竞争同一个内存位置。
+
+2. Test-and-Test-and-Set (TTAS):
+   - 工作原理: 在 TAS 的基础上增加了一层测试，即在执行 TAS 之前先进行一次非原子的读取检查。
+   - 问题: 尽管减少了对共享变量的竞争，但在高竞争环境下仍然会产生大量的缓存失效和内存总线流量。
+
+3. Peterson 锁:
+   - 工作原理: 主要用于两个线程间的互斥，通过两个布尔变量和一个指示当前“轮到”哪个线程进入临界区的计数器实现。
+   - 问题: 扩展性差，难以应用于多于两个线程的情况；并且在现代硬件架构上可能无法保证正确性。
+
+4. Bakery 算法:
+   - 工作原理: 类似于现实生活中的排队买票，每个线程获取一个唯一的号码，只有当其号码是最小的时候才能进入临界区。
+   - 问题: 需要维护全局状态，导致较高的内存开销和潜在的性能瓶颈。
+
+### CLH 队列锁的改进之处
+
+CLH 队列锁是由 Craig, Landin 和 Hagersten 提出的一种基于链表结构的自旋锁机制，它有效地解决了上述传统同步机制存在的问题：
+
+1. 减少缓存失效:
+   - 每个线程都有自己的节点，节点之间形成一个单向链表。只有当前节点的状态会影响下一个节点的行为，这样就避免了所有线程争抢同一个内存位置的情况，从而减少了缓存失效的数量。
+
+2. 提高可扩展性:
+   - CLH 锁设计为支持多个线程同时等待，通过链表结构可以轻松地管理任意数量的等待者，具有良好的扩展性。
+
+3. 公平性:
+   - CLH 锁确保了请求锁的顺序与释放锁的顺序一致，提供了一定程度上的公平性，防止某些线程长时间得不到调度（饥饿现象）。
+
+4. 低延迟:
+   - 当前持有锁的线程释放锁时，只需要通知下一个等待的线程即可，无需遍历整个等待队列，降低了解锁操作的延迟。
+
+5. 局部性优化:
+   - 由于每个线程只关心其前驱节点的状态，这有助于提升 CPU 缓存的局部性，进一步提高了性能。
+
+综上所述，CLH 队列锁通过引入一种新的同步模型，解决了早期同步机制中存在的诸多问题，特别是针对多处理器环境下的高效性和公平性做出了显著改进。然而，值得注意的是，尽管 CLH 锁在很多场景下表现出色，但它并不是万能的，在某些特定的应用场景中，其他类型的锁如 MCS 锁可能会更适合。例如，MCS 锁相比 CLH 锁，在某些情况下能更好地利用局部性优势，减少不必要的内存访问。因此，选择合适的锁类型应根据具体的应用需求而定。
+
+如果你在寻找 C/C++ 实现的 CLH 队列（或自旋锁）开源库，以下是几个推荐和资源，涵盖 CLH Lock、队列实现、无锁/低锁并发结构 的开源项目和库，适合嵌入式系统、高性能服务器、操作系统开发等场景。
 
 ---
 
@@ -7,15 +49,15 @@ clh
 
 ### 🔹 1. [libcds (Concurrency Data Structures for C++)](https://github.com/khizmax/libcds)
 
-- **语言**: C++
-- **特点**:
+- 语言: C++
+- 特点:
   - 支持多种无锁数据结构：队列、栈、哈希表等
   - 提供 `cds::sync::clh_lock` 实现 CLH 自旋锁
   - 跨平台支持（Linux / Windows）
-- **适用场景**:
+- 适用场景:
   - 多线程高并发环境下的同步控制
   - 对公平性要求高的锁机制
-- **文档地址**: https://libcds.sourceforge.net/doc/cds-api/
+- 文档地址: https://libcds.sourceforge.net/doc/cds-api/
 
 ```cpp
 #include <cds/sync/clh_lock.h>
@@ -31,23 +73,23 @@ cds::sync::clh_lock lock;
 
 ### 🔹 2. [Boost.Thread](https://www.boost.org/doc/libs/release/libs/thread/)
 
-- **语言**: C++
-- **特点**:
+- 语言: C++
+- 特点:
   - Boost 是 C++ 最广泛使用的标准外库之一
   - 虽然没有直接提供 CLH 队列，但提供了丰富的多线程原语（mutex、condition variable、atomic 等）
-  - 可作为你**自己实现 CLH 队列的基础库**
-- **文档地址**: https://www.boost.org/doc/libs/release/libs/thread/
+  - 可作为你自己实现 CLH 队列的基础库
+- 文档地址: https://www.boost.org/doc/libs/release/libs/thread/
 
 ---
 
 ### 🔹 3. [tbox (TBOOX Open Source Library)](https://github.com/tboox/tbox)
 
-- **语言**: C
-- **特点**:
+- 语言: C
+- 特点:
   - 跨平台、模块化设计
   - 包含多种同步锁（spinlock, mutex 等）
   - 可以结合 atomic 和 thread 模块实现 CLH 队列逻辑
-- **文档地址**: https://tboox.io/#/
+- 文档地址: https://tboox.io/#/
 
 > 注：虽然没有内置 CLH 锁，但其原子操作和线程管理模块非常适合构建自己的 CLH 队列。
 
@@ -55,23 +97,23 @@ cds::sync::clh_lock lock;
 
 ### 🔹 4. [Folly (Facebook's Open-source Library)](https://github.com/facebook/folly)
 
-- **语言**: C++
-- **特点**:
+- 语言: C++
+- 特点:
   - Facebook 开源的现代 C++ 工具库
   - 提供高性能并发结构（如 `DistributedMutex`, `AtomicLinkedList`）
   - 虽未直接提供 CLH 队列，但有很多底层工具可复用
-- **文档地址**: https://github.com/facebook/folly/wiki
+- 文档地址: https://github.com/facebook/folly/wiki
 
 ---
 
 ### 🔹 5. [MoodyCamel's ConcurrentQueue](https://github.com/cameron321/concurrentqueue)
 
-- **语言**: C++
-- **特点**:
+- 语言: C++
+- 特点:
   - 无锁队列（Wait-free / Lock-free）
   - 高性能、跨平台、生产级代码
   - 不是 CLH 队列，但可用于替代 CLH 队列实现场景
-- **适用场景**:
+- 适用场景:
   - 高吞吐量的生产者-消费者模型
   - 无锁通信、日志系统、任务调度器
 
@@ -125,7 +167,7 @@ cds::sync::clh_lock lock;
 
 ## ✅ 四、总结一句话
 
-> 如果你需要一个现成的 **C/C++ CLH 队列库**，推荐使用 **libcds**；如果只是想实现或学习 CLH 锁，可以参考 GitHub 上的开源实现或者 StackOverflow 示例。对于高性能无锁队列，也可以考虑 **moodycamel::concurrentqueue**。
+> 如果你需要一个现成的 C/C++ CLH 队列库，推荐使用 libcds；如果只是想实现或学习 CLH 锁，可以参考 GitHub 上的开源实现或者 StackOverflow 示例。对于高性能无锁队列，也可以考虑 moodycamel::concurrentqueue。
 
 ---
 
