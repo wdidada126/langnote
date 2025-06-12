@@ -71,10 +71,14 @@ enum EPOLL_EVENTS
 
 ## ✅ 二、`enum EPOLL_EVENTS` 各枚举值详解 15个 14个使用，1个废弃
 in out 2
-rd wr 4
-pri and 2
-
+rd wr 4 band norm  RD NROM RD BAND,WR NROM WR BAND
+pri MSG(废弃) ERROR 3
+WAREUP 1
+ONSHOT 1
+HUP RDHUP 2
 et
+EXCLUSIVE
+
 
 | 枚举值 | 十六进制 | 描述 |
 |--------|----------|------|

@@ -454,6 +454,9 @@ PF Unix协议
 v4协议
 v6协议
 
+send()
+SOCK_STREAM
+recv() 
 ### 第6章 高级IO函数
 6.1 pipe函数
 6.2 dup函数和dup2函数
