@@ -21,3 +21,30 @@
     - 在任务计划程序中找到与Windows Defender相关的任务，如“Windows Defender Scheduled Scan”等。
     - 右键点击这些任务，选择“属性”，在“常规”选项卡中，取消“使用最高权限运行”；在“条件”选项卡中，取消“只有在计算机使用交流电源时才启动此任务”等条件；在“触发器”选项卡中，可根据需要调整扫描的触发时间和频率，减少不必要的扫描。
 
+
+wsl使用win上的http代理
+
+ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.18.176.57  netmask 255.255.240.0  broadcast 172.18.191.255
+        inet6 fe80::215:5dff:fe85:5d1b  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:85:5d:1b  txqueuelen 1000  (Ethernet)
+        RX packets 1121226  bytes 1132420271 (1.1 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 506575  bytes 38809310 (38.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2239350  bytes 497973768 (497.9 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2239350  bytes 497973768 (497.9 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+curl -X POST http://172.18.176.1:8082/api/setCookie
+Cookie set with path: /api
+
+export http_proxy=http://172.18.176.1:1080
+export https_proxy=http://172.18.176.1:1080

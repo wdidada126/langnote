@@ -635,11 +635,20 @@ v6协议
 6.7 tee函数
 6.8 fcntl函数
 
+高级io函数 -> 基础io函数
+
+
+- 用于创建文件描述符的函数，包括 pipe、dup/dup2 函数。
+- 用于读写数据的函数，包括readv/writev、sendfle、mmap/munmap、splice 和tee 函数
+- 用于控制 I/O 行为和属性的函数，包括 fcntl 函数。
+
 pipe()
 实现管道，进程通信
 
 dup()
 dup2()
+
+#include <sys/uio.h>
 readv()
 writev()
 sendfile()
@@ -648,18 +657,211 @@ sendfile()
 内核缓冲区
 用户缓冲区
 
+
+#include <sys/mman.h>
+
 mmap()
 申请一段内存
-nummap()
+munmap()
 释放上述申请的内存
 
+fcntl.h
 splice()
+移动数据
 tee()
+复制数据
 fcntl()
 
 参考
 linux_api.md
 
+6.1
+socketpair()
+
+`socketpair()` 是一个用于创建一对相互连接的套接字的系统调用，常用于进程间通信（IPC）。它在 Unix/Linux 系统中非常有用，特别是在父子进程之间需要双向通信时。
+
+---
+
+## ✅ 函数原型
+
+```c
+#include <sys/socket.h>
+
+int socketpair(int domain, int type, int protocol, int sv[2]);
+```
+
+### 参数说明：
+
+- `domain`: 协议族，通常使用 `AF_UNIX` 或 `AF_LOCAL`（本地进程间通信）。
+- `type`: 套接字类型，常用 `SOCK_STREAM`（流式套接字，类似 TCP）或 `SOCK_DGRAM`（数据报套接字）。
+- `protocol`: 一般设为 0，表示自动选择默认协议。
+- `sv`: 输出参数，是一个长度为 2 的整型数组，用于保存两个连接在一起的套接字描述符。
+
+> 成功返回 0，失败返回 -1，并设置 `errno`。
+
+---
+
+## 📌 返回值与描述符说明
+
+函数执行成功后，`sv[0]` 和 `sv[1]` 都是可读写的描述符，它们之间是双向通信的：
+
+- 写入 `sv[0]` 的内容可以从 `sv[1]` 读取；
+- 写入 `sv[1]` 的内容可以从 `sv[0]` 读取。
+
+---
+
+## 🧪 使用示例（C语言）
+
+下面是一个简单的例子，演示如何使用 `socketpair()` 在父子进程之间进行通信：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <string.h>
+
+int main() {
+    int sv[2];  // 存储两个 socket 描述符
+
+    // 创建 socket pair
+    if (socketpair(AF_UNIX, SOCK_STREAM, 0, sv) == -1) {
+        perror("socketpair");
+        exit(EXIT_FAILURE);
+    }
+
+    pid_t pid = fork();
+
+    if (pid < 0) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+
+    // 子进程
+    if (pid == 0) {
+        close(sv[0]); // 关闭不需要的一端
+
+        const char *msg = "Hello from child!";
+        write(sv[1], msg, strlen(msg) + 1);  // 发送消息
+
+        close(sv[1]);
+    } 
+    // 父进程
+    else {
+        close(sv[1]); // 关闭不需要的一端
+
+        char buf[100];
+        read(sv[0], buf, sizeof(buf));  // 接收消息
+        printf("Parent received: %s\n", buf);
+
+        close(sv[0]);
+    }
+
+    return 0;
+}
+```
+
+### 输出结果：
+```
+Parent received: Hello from child!
+```
+
+---
+
+## 🔍 应用场景
+
+- 进程间通信（IPC）：尤其是父子进程之间的双向通信。
+- 多线程模型中的线程通信。
+- 事件通知机制：比如一个线程监听某个 socket，另一个线程通过 socketpair 向其发送通知。
+- 替代 pipe()：相比 `pipe()`，`socketpair()` 提供的是双向通信能力。
+
+---
+
+## ⚠️ 注意事项
+
+- `socketpair()` 只能在同一台主机上使用，不能跨网络通信。
+- 如果你只需要单向通信，可以考虑使用 `pipe()`。
+- 对于 `SOCK_STREAM` 类型的 socketpair，通信是面向连接的、可靠的、有序的。
+
+---
+
+如果你是在写守护进程、服务管理程序、事件驱动框架等底层系统程序，`socketpair()` 是一个非常实用的工具。
+
+
+6.2
+dup dup2
+`dup` 和 `dup2` 都是 Unix/Linux 系统调用，用于复制文件描述符。它们的主要作用是让多个文件描述符指向同一个文件或套接字，但它们在实现和使用上有一些关键的区别。
+
+### `dup` 函数
+
+#### 定义
+- `int dup(int oldfd);`
+- 该函数会复制一个已有的文件描述符 `oldfd`。
+- 返回的新文件描述符是最小的可用文件描述符数值，并且与原文件描述符共享同一文件表项。
+
+#### 特点
+- 新的文件描述符与旧的文件描述符共享同一个文件偏移量（即读写位置）。
+- 它们也共享相同的文件状态标志（如 O_APPEND, O_NONBLOCK等）。
+- 如果 `dup` 调用成功，它返回的是一个新的文件描述符，这个描述符是当前进程中未使用的最小整数值。
+
+### `dup2` 函数
+
+#### 定义
+- `int dup2(int oldfd, int newfd);`
+- 该函数将 `newfd` 复制为 `oldfd` 的副本。如果 `newfd` 已经打开，则先关闭它。
+- 如果 `newfd` 等于 `oldfd`，那么 `dup2` 做的仅仅是检查 `oldfd` 是否有效，不做其他操作。
+
+#### 特点
+- 提供了对新文件描述符的更精确控制，允许你指定新的文件描述符编号。
+- 如果 `newfd` 已经关联到某个打开的文件或其他资源，`dup2` 会首先尝试关闭它，然后将其重新分配给 `oldfd` 指向的文件。
+- 成功时，返回 `newfd`；失败时，返回 -1 并设置相应的错误码。
+
+### 区别总结
+
+| 特性 | `dup` | `dup2` |
+| --- | --- | --- |
+| 文件描述符选择 | 自动分配最小未使用值 | 用户指定具体数值 |
+| 对已有文件描述符处理 | 不影响现有文件描述符 | 若目标文件描述符已被占用，则先关闭再复用 |
+| 使用场景 | 当你只需要一个额外的文件描述符而不在意其具体数值时 | 当你需要明确指定哪个文件描述符应该被用来复制另一个文件描述符时 |
+
+### 示例代码
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    int fd = open("test.txt", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+    if (fd == -1) {
+        perror("open");
+        return 1;
+    }
+
+    // 使用 dup 复制文件描述符
+    int fd2 = dup(fd);
+    if (fd2 == -1) {
+        perror("dup");
+        return 1;
+    }
+
+    // 使用 dup2 复制文件描述符并指定新的文件描述符值
+    int fd3 = dup2(fd, 5); // 尝试将文件描述符复制到 5
+    if (fd3 == -1) {
+        perror("dup2");
+        return 1;
+    }
+
+    printf("Original fd: %d, dup fd: %d, dup2 fd: %d\n", fd, fd2, fd3);
+
+    close(fd);
+    close(fd2);
+    close(fd3);
+
+    return 0;
+}
+```
+
+这段代码展示了如何使用 `dup` 和 `dup2` 来复制文件描述符，并说明了两者之间的差异。`dup` 只需要提供原始文件描述符，而 `dup2` 则允许您指定希望得到的文件描述符编号。
 ### 第7章 Linux服务器程序规范
 7.1 日志
 7.1.1 Linux系统日志
