@@ -1,5 +1,112 @@
 # gcc
+
+Fedora：可以尝试运行 dnf update 来获取最新的软件包列表，并检查是否有 GCC 15.1 可用。
+Arch Linux：由于 Arch Linux 采用滚动更新模式，它通常能迅速提供最新的软件包，可以通过 pacman -Syu 来更新系统并查看是否包含 GCC 15.1。
+
 GNU GCC 15.1已于2025年4月25日 10:52:00 GMT发布。
+
+在 Ubuntu 24.04 上，如果你想直接通过 `apt` 安装 GCC 14 或 GCC 15（如果官方仓库已提供），可以按照以下步骤操作：
+
+---
+
+## 方法 1：检查 Ubuntu 24.04 官方仓库
+Ubuntu 24.04 (Noble Numbat) 默认可能只提供较新的 GCC 版本（如 GCC 13/14），但 GCC 15 可能需要从其他源安装。
+
+### 1. 更新软件包列表
+```bash
+sudo apt update
+```
+
+### 2. 搜索可用的 GCC 版本
+```bash
+apt search gcc- | grep "^gcc-"
+```
+如果输出包含 `gcc-14` 或 `gcc-15`，说明可以直接安装。
+
+### 3. 安装 GCC 14（如果可用）
+```bash
+sudo apt install gcc-14 g++-14
+```
+
+### 4. 安装 GCC 15（如果可用）
+```bash
+sudo apt install gcc-15 g++-15
+```
+
+### 5. 切换默认 GCC 版本（可选）
+```bash
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 100
+```
+然后运行：
+```bash
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
+```
+选择你想要的版本。
+
+---
+
+## 方法 2：从 Ubuntu Toolchain PPA 安装（如果官方仓库没有）
+如果 Ubuntu 24.04 官方仓库没有 GCC 15，可以使用 `ubuntu-toolchain-r` PPA：
+
+### 1. 添加 Toolchain PPA
+```bash
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+```
+
+### 2. 安装 GCC 15
+```bash
+sudo apt install gcc-15 g++-15
+```
+
+### 3. 切换默认版本（可选）
+```bash
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 100
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 100
+```
+然后运行：
+```bash
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
+```
+
+---
+
+## 验证安装
+```bash
+gcc --version
+g++ --version
+```
+应该显示你安装的版本（如 `gcc-15`）。
+
+---
+
+## 方法 3：手动下载 .deb 安装（如果 PPA 不可用）
+如果上述方法都不行，可以从 Debian Sid 或 Ubuntu 开发版 下载 `.deb` 包手动安装：
+
+1. 从 [Ubuntu Packages](https://packages.ubuntu.com/) 或 [Debian Packages](https://packages.debian.org/) 搜索 `gcc-15`。
+2. 下载 `.deb` 文件：
+   ```bash
+   wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gcc-15/gcc-15_15.0.0-1ubuntu1_amd64.deb
+   ```
+3. 安装：
+   ```bash
+   sudo dpkg -i gcc-15*.deb
+   sudo apt --fix-broken install  # 解决依赖问题
+   ```
+
+---
+
+### 总结
+| 方法 | 适用场景 | 命令 |
+|------|---------|------|
+| 官方仓库 | Ubuntu 24.04 已提供 | `sudo apt install gcc-14` |
+| Toolchain PPA | 获取最新版本 | `sudo add-apt-repository ppa:ubuntu-toolchain-r/test` |
+| 手动 .deb 安装 | 无其他选择时 | `sudo dpkg -i gcc-15.deb` |
+
+如果你只需要 GCC 14，官方仓库可能已经提供；GCC 15 可能需要 PPA 或手动安装。
 
 而C/C++编译器版本多于一个，并没有某个编译器占据了绝对统治地位。至少，intel的icc，微软的msvc，gnu的gcc，以及后起之秀clang，都各自有各自的地位，要协调多方意见制作大家认可的标准并不容易，改变起来自然更加耗时。
 
