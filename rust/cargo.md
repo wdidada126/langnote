@@ -37,3 +37,15 @@ Some common cargo commands are (see all commands with --list):
     uninstall   Uninstall a Rust binary
 
 版本号是范围
+
+cargo --version
+cargo 1.87.0 (99624be96 2025-05-06)
+
+## 设置cargo版本
+zed某个提交的代码
+限定cargo
+
+cargo run --release
+info: syncing channel updates for '1.85-x86_64-unknown-linux-gnu'
+info: latest update on 2025-03-18, rust version 1.85.1 (4eb161250 2025-03-15)
+info: downloading component 'cargo'
