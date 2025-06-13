@@ -31,6 +31,12 @@ $env:http_proxy="http://127.0.0.1:20800"
 $env:https_proxy="http://127.0.0.1:20800"
 ```
 
+```cmd
+set http_proxy=http://127.0.0.1:20800
+set https_proxy=http://127.0.0.1:20800
+echo %http_proxy%
+echo %https_proxy%
+```
 
 172.18.176.1
 
