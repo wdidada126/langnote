@@ -3,6 +3,9 @@
 ubuntu系统编译FileZilla3
 ubuntu跨平台编译win下的可执行文件
 
+svn switch https://svn.filezilla-project.org/svn/FileZilla3/tags/3.56.0
+configure: error: You must use wxWidgets 3.0.x, wxWidgets 3.2 or higher is not yet supported.
+
 filezilla server windows设置登录用户
 设置路径映射 windows的路径 G:\BaiduYunDownload
 
