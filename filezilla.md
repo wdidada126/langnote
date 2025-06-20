@@ -6,6 +6,20 @@ ubuntu跨平台编译win下的可执行文件
 svn switch https://svn.filezilla-project.org/svn/FileZilla3/tags/3.56.0
 configure: error: You must use wxWidgets 3.0.x, wxWidgets 3.2 or higher is not yet supported.
 
+checking for wx-config... no
+configure: error: 
+        wxWidgets must be installed on your system
+        but either the wx-config script couldn't be found or
+        no compatible wxWidgets configuration has been installed.
+
+        Compatible wxWidgets configurations are the unicode builds
+        of wxGTK, wxMac and wxMSW.
+
+        Please check that wx-config is in path, the directory
+        where wxWidgets libraries are installed (returned by
+        'wx-config --libs' command) is in LD_LIBRARY_PATH or
+        equivalent variable and wxWidgets version is 3.0.4 or above.
+
 filezilla server windows设置登录用户
 设置路径映射 windows的路径 G:\BaiduYunDownload
 
