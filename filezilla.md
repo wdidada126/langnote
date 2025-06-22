@@ -1,5 +1,7 @@
 # filezilla
 
+sudo apt install libfilezilla-dev -y
+
 ubuntu系统编译FileZilla3
 ubuntu跨平台编译win下的可执行文件
 
