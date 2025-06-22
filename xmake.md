@@ -23,7 +23,6 @@ mac
 android
 iOS
 
-
 cppstd
 11 14 17 20
 
@@ -92,6 +91,9 @@ target_link_directories(ctestttbox PRIVATE
 
 xmake project -k cmake -y
 
+## 版本
+2025.06 3
+
 ## xrepo
 
 C:\Users\edida\AppData\Local\.xmake\repositories\xmake-repo
@@ -152,15 +154,14 @@ sudo apt install libtbox-dev -y
 安装
 非root用户
 
-
 二进制工具
 - xmake
 - xrepo
 
-xrepo自动下载依赖
+xrepo自动下载依赖，类似maven
 
 xmake install xxx -y
-
+```
 [wdidada@10-23-29-39 ~]$ xrepo install  zlib tbox
 note: install or modify (m) these packages (pass -y to skip confirm)?
 in xmake-repo:
@@ -243,7 +244,7 @@ if you want to get more verbose errors, please see:
   -> /home/wdidada/.xmake/cache/packages/2204/p/poco/1.11.1/installdir.failed/logs/install.txt
 error: install failed!
 error: execv(xmake require -j 2 --extra={system=false} poco) failed(255
-
+```
 
 例子
 https://gitee.com/edidada/great-project
@@ -255,7 +256,7 @@ https://gitee.com/tboox/xmake
 
 
 Supported package repositories
-
+```
 Official package repository xmake-repo (tbox >1.6.1)
 Official package manager Xrepo
 User-built repositories
@@ -269,13 +270,13 @@ Clib (clib::clibs/bytes@0.0.4)
 Dub (dub::log 0.4.3)
 Portage on Gentoo/Linux (portage::libhandy)
 Nimble for nimlang (nimble::zip >1.3)
-
+```
 入门教程
 https://www.lanqiao.cn/courses/2764
 https://zhuanlan.zhihu.com/p/412503965
 
 
-
+```
 add_rules("mode.debug", "mode.release")
 
 target("great-project")
@@ -350,15 +351,16 @@ target("great-project")
 --
 -- @endcode
 --
-
+```
 [Xmake和C/C++包管理](https://tboox.org/cn/2022/03/12/xmake-and-package-management/)
 
 集成一个内置依赖包只需要几行配置：
-
+```
 add_requires("zlib 1.2.11")
 target("test")
     add_files("src/*.c")
     add_packages("zlib")
+```
 集成一个 vcpkg 包，仅仅只需要加上对应的包管理器命名空间，集成方式完全相同：
 
 add_requires("vcpkg::zlib 1.2.11")
@@ -370,7 +372,7 @@ target("test")
 另外，Xmake 会自动帮你调用 vcpkg/conan install 安装命令去安装依赖包，然后集成它们，不需要用户做任何其他事情，仅仅只需要执行 xmake 一键编译。
 
 目前 Xmake 支持的包源有以下这些：
-
+```
 Official package repository xmake-repo (tbox >1.6.1)
 Official package manager Xrepo
 User-built repositories
@@ -385,14 +387,13 @@ Dub (dub::log 0.4.3)
 Portage on Gentoo/Linux (portage::libhandy)
 Nimble for nimlang (nimble::zip >1.3)
 Cargo for rust (cargo::base64 0.13.0)
-
-
-
+```
 通过 Xmake 和 xmake-idea 插件，我们可以很方便的在 Clion/Intellji IDEA 中跨平台开发 C/C++ 程序。由于目前插件本身还不支持调试，但是我们在 Clion 中还是可以借助生成 CMakeLists.txt 来变相支持断点调试，Intelligense。
 
+```
 xmake project -k cmakelists
+```
 测试生效
-
 
 Installed:
   autoconf.noarch 0:2.69-11.el7            automake.noarch 0:1.13.4-3.el7       bison.x86_64 0:3.0.4-2.el7               cscope.x86_64 0:15.8-10.el7            
