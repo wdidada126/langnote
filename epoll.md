@@ -69,7 +69,7 @@ enum EPOLL_EVENTS
 
 ---
 
-## ✅ 二、`enum EPOLL_EVENTS` 各枚举值详解 15个 14个使用，1个废弃
+##  二、`enum EPOLL_EVENTS` 各枚举值详解 15个 14个使用，1个废弃
 in out 2
 rd wr 4 band norm  RD NROM RD BAND,WR NROM WR BAND
 pri MSG(废弃) ERROR 3
@@ -166,16 +166,16 @@ for (int i = 0; i < nfds; ++i)
 
 ---
 
-## ✅ 六、总结表格
+##  六、总结表格
 
 | 枚举值 | 是否常用 | 用途说明 |
 |--------|----------|----------|
-| `EPOLLIN` | ✅ 常用 | 可读事件 |
-| `EPOLLOUT` | ✅ 常用 | 可写事件 |
-| `EPOLLET` | ✅ 常用 | 边缘触发模式 |
-| `EPOLLONESHOT` | ✅ 多线程常用 | 保证事件只触发一次 |
-| `EPOLLRDHUP` | ✅ 推荐搭配 | 检测对端关闭连接 |
-| `EPOLLERR / EPOLLHUP` | ✅ 必须处理 | 错误或连接中断 |
+| `EPOLLIN` |  常用 | 可读事件 |
+| `EPOLLOUT` |  常用 | 可写事件 |
+| `EPOLLET` |  常用 | 边缘触发模式 |
+| `EPOLLONESHOT` |  多线程常用 | 保证事件只触发一次 |
+| `EPOLLRDHUP` |  推荐搭配 | 检测对端关闭连接 |
+| `EPOLLERR / EPOLLHUP` |  必须处理 | 错误或连接中断 |
 | `EPOLLEXCLUSIVE` | ⚠️ 高级用法 | 防止“惊群”现象 |
 | `EPOLLWAKEUP` | ❌ 很少用 | 嵌入式系统防止休眠 |
 

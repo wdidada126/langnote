@@ -27,12 +27,12 @@ Linux 内核版本 **6.0**（发布于 2022 年 9 月）引入了许多新特性
 
 ---
 
-### ✅ 1. `io_uring` 改进（更强大的异步 I/O 接口）
+###  1. `io_uring` 改进（更强大的异步 I/O 接口）
 
 #### 🔧 背景：
 `io_uring` 是近年来 Linux 最重要的异步 I/O 框架之一，用于替代传统的 `aio` 接口。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - **IORING_REGISTER_FILES_UPDATE**: 动态更新已注册的文件描述符。
 - **IORING_SETUP_SQPOLL_NONFIXED**: 允许在 SQPOLL 线程中使用非固定队列。
@@ -55,12 +55,12 @@ io_uring_queue_init(32, &ring, 0);
 
 ---
 
-### ✅ 2. `landlock` 安全机制（轻量级沙箱）
+###  2. `landlock` 安全机制（轻量级沙箱）
 
 #### 🔧 背景：
 Landlock 是一个基于 eBPF 的轻量级安全模块，允许应用程序限制自身对文件系统的访问权限。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - 支持对进程自身的文件访问进行细粒度控制。
 - 提供新的系统调用：`landlock_create_ruleset()`, `landlock_add_rule()`。
@@ -82,12 +82,12 @@ if (ruleset_fd < 0) {
 
 ---
 
-### ✅ 3. `pidfd` 增强（无竞争获取进程状态）
+###  3. `pidfd` 增强（无竞争获取进程状态）
 
 #### 🔧 背景：
 传统上使用 `wait()` 或 `waitpid()` 获取子进程状态容易引发竞态条件，`pidfd` 提供了更现代的方式。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - **`pidfd_getfd()`**: 允许父进程从子进程中“偷取”打开的文件描述符。
 - 支持通过 `pidfd_open()` 创建的 fd 来监控子进程状态，避免信号处理复杂性。
@@ -115,12 +115,12 @@ if (pidfd < 0) {
 
 ---
 
-### ✅ 4. `mount_setattr()`（安全挂载配置）
+###  4. `mount_setattr()`（安全挂载配置）
 
 #### 🔧 背景：
 传统的 `mount()` 接口存在灵活性和安全方面的不足。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - 引入 `mount_setattr()` 系统调用，用于修改已有挂载点的属性。
 - 可以设置只读、不可写、不可执行等属性。
@@ -143,12 +143,12 @@ int ret = sys_mount_setattr(AT_FDCWD, "/mnt/myfs", 0, &attr, sizeof(attr));
 
 ---
 
-### ✅ 5. `openat2()` 增强（安全路径解析）
+###  5. `openat2()` 增强（安全路径解析）
 
 #### 🔧 背景：
 `openat2()` 是 `open()` 的扩展，提供更强的安全性和路径限制能力。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - 支持 `RESOLVE_IN_ROOT` 标志，限制路径解析范围。
 - 支持 `RESOLVE_NO_XDEV`，防止跨越挂载点。
@@ -170,12 +170,12 @@ int fd = syscall(SYS_openat2, AT_FDCWD, "/safe/path", &how, sizeof(how));
 
 ---
 
-### ✅ 6. `bpf()` 系统调用增强（eBPF）
+###  6. `bpf()` 系统调用增强（eBPF）
 
 #### 🔧 背景：
 eBPF（extended Berkeley Packet Filter）是 Linux 最具革命性的技术之一，广泛用于网络、安全、性能分析等领域。
 
-#### ✅ Linux 6.0 中的新功能：
+####  Linux 6.0 中的新功能：
 
 - 支持 BPF_MAP_TYPE_HASH_TABLE（更高效的哈希表结构）
 - 增强 CO-RE（Compile Once – Run Everywhere）支持
@@ -226,7 +226,7 @@ int fd = bpf(BPF_MAP_CREATE, &attr, sizeof(attr));
 
 ---
 
-## ✅ 总结一句话
+##  总结一句话
 
 > Linux 6.0 在系统编程方面带来了多项重要更新，包括 `io_uring` 增强、`landlock` 安全机制、`mount_setattr`、`pidfd` 增强、`openat2` 改进以及 `eBPF` 功能扩展，非常适合用于构建高性能、安全、低延迟的 C/C++ 应用。
 
@@ -234,10 +234,10 @@ int fd = bpf(BPF_MAP_CREATE, &attr, sizeof(attr));
 
 如果你希望我帮你：
 
-- ✅ 构建完整的 `io_uring` 高性能服务器模板
-- ✅ 编写基于 `landlock` 的沙箱程序
-- ✅ 实现基于 `mount_setattr` 的容器安全策略
-- ✅ 提供 CMake + Linux 内核兼容性检测脚本
+-  构建完整的 `io_uring` 高性能服务器模板
+-  编写基于 `landlock` 的沙箱程序
+-  实现基于 `mount_setattr` 的容器安全策略
+-  提供 CMake + Linux 内核兼容性检测脚本
 
 ## linux是如何支持新的硬件
 
