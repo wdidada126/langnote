@@ -1,6 +1,7 @@
 # RAII
-
 raii
+
+https://chengxumiaodaren.com/docs/cpp-basic/cpp-raii/
 
 非常好的问题！我们来系统地对比一下 **RTTI（Run-Time Type Information）** 和 **RAII（Resource Acquisition Is Initialization）**，从它们的定义、作用、使用场景、实现原理等多个角度进行深入分析。
 
