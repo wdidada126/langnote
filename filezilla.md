@@ -1,4 +1,6 @@
 # filezilla
+linux下编译源代码需要gettext
+
 
 ubuntu系统编译FileZilla3
 ubuntu跨平台编译win下的可执行文件
