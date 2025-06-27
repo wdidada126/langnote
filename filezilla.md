@@ -1,4 +1,6 @@
 # filezilla
+linux下编译源代码需要gettext
+
 
 sudo apt install libfilezilla-dev -y
 
