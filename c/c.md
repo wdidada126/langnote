@@ -1,6 +1,13 @@
 # c
+ANSI C (C89/C90)  C99 C11 C17 C23
+## c cppreference
+https://en.cppreference.com/w/c/header.html
 
-# define LIBETPAN_EXPORT
+Ubuntu 22.04
+头文件位置: 在Ubuntu 22.04中，<assert.h> 通常位于 /usr/include/assert.h。这是GCC编译器默认搜索的标准头文件之一。
+库文件位置: C标准库(libc)的库文件一般位于 /usr/lib/x86_64-linux-gnu/（对于64位系统）。例如，glibc的主库文件可能是 libc.so.6。不过，请注意，<assert.h> 相关的功能是编译时包含的，并且链接时自动引用标准C库，因此你可能不会直接看到与assert.h对应的特定库文件。
+
+## define LIBETPAN_EXPORT
 
 在libetpan库中，LIBETPAN_EXPORT宏通常用于控制库函数和变量的导出行为，特别是在构建动态链接库（DLL）或共享对象（.so文件）时。这个宏的定义取决于编译环境（如操作系统和编译器）以及是否希望库函数对外部可见。
 在Windows平台上，当使用Microsoft Visual Studio或其他支持DLL的编译器时，LIBETPAN_EXPORT可能会被定义为__declspec(dllexport)，这告诉编译器这些函数或变量应该从DLL中导出，以便其他程序（即DLL的客户端）可以链接到并使用它们。
