@@ -136,6 +136,21 @@ sudo apt update
 ```bash
 sudo apt install gcc-15 g++-15
 ```
+sudo apt install gcc-13 g++-13 -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  cpp-13 gcc-13-base libasan8 libatomic1 libcc1-0 libgcc-13-dev libgcc-s1 libgomp1 libhwasan0 libitm1 liblsan0 libquadmath0 libstdc++-13-dev libstdc++6
+  libtsan2 libubsan1
+Suggested packages:
+  gcc-13-locales cpp-13-doc g++-13-multilib gcc-13-doc gcc-13-multilib libstdc++-13-doc
+The following NEW packages will be installed:
+  cpp-13 g++-13 gcc-13 gcc-13-base libasan8 libgcc-13-dev libhwasan0 libstdc++-13-dev libtsan2
+The following packages will be upgraded:
+  libatomic1 libcc1-0 libgcc-s1 libgomp1 libitm1 liblsan0 libquadmath0 libstdc++6 libubsan1
+9 upgraded, 9 newly installed, 0 to remove and 56 not upgraded.
+Need to get 212 MB of archives.
 
 ### 3. 切换默认版本（可选）
 ```bash

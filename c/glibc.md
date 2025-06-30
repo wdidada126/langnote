@@ -1,5 +1,76 @@
 # glibc
 
+在Ubuntu系统中，查看glibc（GNU C Library）的版本信息可以通过终端使用命令行工具完成。glibc是Linux系统中C语言的标准库，几乎所有的Linux系统都会用到它。下面是一些常用的方法：
+
+1. 使用ldd命令
+
+ldd命令主要用于打印共享库的依赖关系，但它同样可以显示glibc的版本信息。你可以简单地运行：
+
+ldd --version
+
+这将显示ldd工具的版本，其中包括了使用的glibc版本。
+
+2. 使用libc.so.6
+
+在Ubuntu系统中，glibc的主要库文件通常位于/lib/x86_64-linux-gnu/libc.so.6（对于64位系统）或/lib/i386-linux-gnu/libc.so.6（对于32位系统）。你可以通过查看这个文件的链接信息来找到其版本信息：
+
+ls -l /lib/x86_64-linux-gnu/libc.so.6
+
+这将显示文件的信息，包括版本号。例如，如果你看到类似libc.so.6 => /lib/x86_64-linux-gnu/libc-2.31.so，则表示你的glibc版本是2.31。
+
+3. 使用getconf命令
+
+getconf命令可以用来查询系统的配置变量，其中包括glibc的版本信息。要查看glibc的版本，可以使用：
+
+getconf GNU_LIBC_VERSION
+
+这会直接显示glibc的版本号，例如glibc 2.31。
+
+4. 使用strings命令
+
+你还可以使用strings命令来查看glibc的版本信息。首先，找到glibc的主要库文件：
+
+find /lib -name libc.so.* | head -n 1
+
+然后，使用strings命令查看其中的内容：
+
+strings /path/to/libc.so | grep GLIBC_
+
+这将列出与glibc相关的所有版本字符串，你可以从中找到具体的版本号。
+
+5. 使用update-alternatives命令（对于多版本安装情况）
+
+如果你的系统上安装了多个版本的glibc，可以使用update-alternatives命令来查看当前使用的glibc版本：
+
+update-alternatives --display libc
+
+这个命令将显示所有可用的glibc版本以及当前使用的版本。
+
+以上方法中的任何一种都可以帮助你查看Ubuntu系统上的glibc版本。
+
+
+https://sourceware.org/glibc/manual/
+2.41 (latest)
+2.40
+2.39
+2.38
+2.37
+2.36
+2.35
+2.34
+2.33
+2.32
+2.31
+2.30
+2.29
+2.28
+2.27
+2.26
+2.25
+2.24
+2.23
+2.22
+
 关注glibc版本更新日志
 
 centos7   glibc-devel   centos7_glibc-devel.txt 

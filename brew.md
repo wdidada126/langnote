@@ -1,5 +1,12 @@
 # brew
 
+mac 2015
+
+brew --version
+Homebrew 3.6.12
+Homebrew/homebrew-core (git revision 63c75ec2cc6; last commit 2022-11-27)
+Homebrew/homebrew-cask (git revision 70943b4259; last commit 2023-12-15)
+
 https://formulae.brew.sh/formula/
 
 ```shell
@@ -157,4 +164,10 @@ Already downloaded: /Users/runner/Library/Caches/Homebrew/downloads/b2e6bfcdbddf
 ==> Pouring leveldb--1.23.monterey.bottle.tar.gz
   /usr/local/Cellar/leveldb/1.23: 31 files, 876.4KB
 ==> Running `brew cleanup leveldb`...
+
+
+## Homebrew/homebrew-core
+
+
+## Homebrew/homebrew-cask
 

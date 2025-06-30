@@ -47,3 +47,8 @@ Cookie set with path: /api
 
 export http_proxy=http://172.18.176.1:20800
 export https_proxy=http://172.18.176.1:20800
+
+
+
+export http_proxy=http://172.24.67.1:20800
+export https_proxy=http://172.24.67.1:20800
