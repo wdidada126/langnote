@@ -1,13 +1,12 @@
 # doxygen cpp doc
-
+## 安装
+choco install doxygen.install
 ## example
 
 http://www.wangafu.net/~nickm/libevent-2.1/doxygen/html/event_8h.html
 
-
 Data Structures
 struct  	event
-
 
 Macros
 #define 	_EVENT_LOG_DEBUG   EVENT_LOG_DEBUG
@@ -16,10 +15,8 @@ event type flag
 Flags to pass to event_base_get_num_events() to specify the kinds of events we want to aggregate counts for
 #define 	EVENT_BASE_COUNT_ACTIVE   1U
 
-
 Log severities
 #define 	EVENT_LOG_DEBUG   0
-
 
 Loop flags
 These flags control the behavior of event_base_loop().
@@ -76,8 +73,6 @@ Doxygen生成文档时报"sh: dot: not found"
 sudo apt-get install graphviz
 
 https://cedar-renjun.github.io/2014/03/21/learn-doxygen-in-10-minutes/
-
-
 
 https://zhuanlan.zhihu.com/p/122523174
 ### 例子
