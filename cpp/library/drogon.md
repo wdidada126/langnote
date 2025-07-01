@@ -109,6 +109,9 @@ https://drogon.org/
 
 ## class api doc
 
+### doxygen
+file:///D:/develops/git/github/cpp/drogon/docs/html/namespaces.html
+
 https://drogonframework.github.io/drogon-docs/#/
 
 ### DrObjectBase

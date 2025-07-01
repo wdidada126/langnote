@@ -11,6 +11,7 @@ Installing ...
 Install the project...
 -- Install configuration: ""
 -- Installing: /usr/local/lib/libtrantor.a
+
 -- Installing: /usr/local/include/trantor/exports.h
 -- Installing: /usr/local/include/trantor/net/EventLoop.h
 -- Installing: /usr/local/include/trantor/net/EventLoopThread.h
@@ -39,6 +40,7 @@ Install the project...
 -- Installing: /usr/local/include/trantor/utils/TaskQueue.h
 -- Installing: /usr/local/include/trantor/utils/TimingWheel.h
 -- Installing: /usr/local/include/trantor/utils/Utilities.h
+
 -- Installing: /usr/local/lib/cmake/Trantor/TrantorConfig.cmake
 -- Installing: /usr/local/lib/cmake/Trantor/TrantorConfigVersion.cmake
 -- Installing: /usr/local/lib/cmake/Trantor/Findc-ares.cmake
@@ -47,3 +49,19 @@ Install the project...
 -- Installing: /usr/local/lib/cmake/Trantor/TrantorTargets.cmake
 -- Installing: /usr/local/lib/cmake/Trantor/TrantorTargets-noconfig.cmake
 ```
+
+## 头文件列表
+Channel
+
+file:///D:/develops/git/github/cpp/trantor/docs/html/files.html
+
+### 类继承关系
+
+file:///D:/develops/git/github/cpp/trantor/docs/html/inherits.html
+
+基类
+
+
+## doxygen
+
+Doxyfile
