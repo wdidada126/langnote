@@ -102,3 +102,26 @@ drogon_ctl create model
 
 /home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create filter LoggingInterceptor
 https://blog.csdn.net/weixin_50308184/article/details/134359378
+
+## website
+
+https://drogon.org/
+
+## class api doc
+
+https://drogonframework.github.io/drogon-docs/#/
+
+### DrObjectBase
+
+struct isAutoCreationClass
+
+template <typename T>
+class DrObject : public virtual DrObjectBase
+
+### DrClassMap
+
+class HttpControllerBase
+class HttpSimpleControllerBase
+class WebSocketControllerBase
+
+
