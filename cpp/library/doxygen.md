@@ -1,9 +1,11 @@
 # doxygen c cpp doc
-是的，**Doxygen 完全支持 C 语言的代码文档生成**。
 
----
+mac 2025
+Doxygen version 1.9.5
 
-## ✅ 简介：什么是 Doxygen？
+是的，Doxygen 完全支持 C 语言的代码文档生成。
+
+## 简介：什么是 Doxygen？
 
 [Doxygen](https://www.doxygen.nl/index.html) 是一个开源的、跨平台的文档生成工具，支持多种编程语言，包括：
 
@@ -21,7 +23,7 @@
 
 ---
 
-## ✅ Doxygen 对 C 语言的支持情况
+## Doxygen 对 C 语言的支持情况
 
 | 支持内容 | 是否支持 |
 |----------|----------|
@@ -42,7 +44,7 @@
 ### 📄 示例头文件 `example.h`
 
 ```c
-/**
+/
  * @file example.h
  * @brief 示例头文件，演示如何使用 Doxygen 注释 C 语言代码
  */
@@ -50,7 +52,7 @@
 #ifndef EXAMPLE_H
 #define EXAMPLE_H
 
-/**
+/
  * @brief 计算两个整数的最大值
  *
  * 此函数返回传入的两个整数中较大的那个。
@@ -61,13 +63,13 @@
  */
 int max(int a, int b);
 
-/**
+/
  * @brief 表示颜色的枚举类型
  */
 typedef enum {
-    COLOR_RED,   /**< 红色 */
-    COLOR_GREEN, /**< 绿色 */
-    COLOR_BLUE   /**< 蓝色 */
+    COLOR_RED,   /< 红色 */
+    COLOR_GREEN, /< 绿色 */
+    COLOR_BLUE   /< 蓝色 */
 } Color;
 
 #endif // EXAMPLE_H
@@ -77,7 +79,7 @@ typedef enum {
 
 ## 🧱 如何生成文档
 
-1. **安装 Doxygen**
+1. 安装 Doxygen
 
    macOS（Homebrew）：
    ```bash
@@ -89,7 +91,7 @@ typedef enum {
    sudo apt-get install doxygen
    ```
 
-2. **创建配置文件**
+2. 创建配置文件
 
    在项目根目录运行：
 
@@ -99,7 +101,7 @@ typedef enum {
 
    会生成一个默认的 `Doxyfile` 配置文件。
 
-3. **修改配置文件（可选）**
+3. 修改配置文件（可选）
 
    打开 `Doxyfile`，设置以下关键项：
 
@@ -115,13 +117,13 @@ typedef enum {
    CALLER_GRAPH           = YES
    ```
 
-4. **生成文档**
+4. 生成文档
 
    ```bash
    doxygen Doxyfile
    ```
 
-5. **查看结果**
+5. 查看结果
 
    默认输出在 `html/index.html`，可以用浏览器打开查看。
 
@@ -148,13 +150,13 @@ typedef enum {
 ## ✅ 示例：结构体和 typedef 的注释
 
 ```c
-/**
+/
  * @struct Person
  * @brief 表示一个人的基本信息
  */
 typedef struct {
-    char name[64]; /**< 姓名 */
-    int age;        /**< 年龄 */
+    char name[64]; /< 姓名 */
+    int age;        /< 年龄 */
 } Person;
 ```
 

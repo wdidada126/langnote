@@ -104,3 +104,57 @@ ABI Compliance Checker的使用有两种方法，一种是源码编译，另一�
 sudo apt update -y
 sudo apt install vtable-dumper abi-dumper abi-compliance-checker -y
 
+时隔5年之后，我终于又用起来conan了。没选择vcpkg是因为我随便选了一个。这次效果就好很多，安装顺利，使用方便，但是编译的包会出现段错误。经过各种排查，才发现是默认GCC ABI用的是旧的，新版本的GCC需要使用stdlibc++11。修改之后就很顺畅。
+您遇到的段错误可能与GCC的ABI（Application Binary Interface）变化有关。以下是相关情况和解决方法的详细说明：
+#### 段错误情况
+1. GCC ABI变更
+   - 自GCC 5.1版本起，引入了C++11 ABI的新实现，通过`-D_GLIBCXX_USE_CXX11_ABI`选项控制。
+   - 旧版GCC（如GCC 4.x）默认使用旧的C++03 ABI。
+   - 新版本的GCC（如GCC 5.x及以上）默认使用C++11 ABI，除非显式指定`-D_GLIBCXX_USE_CXX11_ABI=0`。
+2. ABI不兼容导致段错误
+   - 库与代码ABI不一致：如果您的代码使用了新ABI编译，但链接的库是旧ABI编译的，或反之，会导致运行时错误，如段错误。
+   - 类型不匹配：新旧ABI中`std::string`等类型的内部实现不同，传递这些类型时可能出现内存访问错误。
+#### 查看GCC的ABI
+1. 查看GCC版本
+   - 使用命令`gcc --version`或`g++ --version`查看GCC版本。
+   - 版本号影响默认的ABI选择。
+2. 检查ABI选项
+   - 编译命令：查看编译时的命令是否包含`-D_GLIBCXX_USE_CXX11_ABI`选项。
+   - Conan配置文件：在Conan的`conanfile.txt`或`conanfile.py`中，检查`settings.compiler.libcxx`设置。
+3. 查看已编译库的ABI
+   - 使用`readelf`命令查看库的符号表：
+     ```bash
+     readelf -p .comment <lib-name>
+     ```
+   - 搜索`GLIBCXX`关键字，确认使用的ABI版本。
+#### 解决方法
+1. 统一ABI选项
+   - 在编译代码和依赖库时，确保使用相同的`-D_GLIBCXX_USE_CXX11_ABI`选项。
+   - 例如，在CMake中设置：
+     ```cmake
+     add_compile_options(-D_GLIBCXX_USE_CXX11_ABI=1)
+     ```
+2. 指定GCC版本
+   - 使用Conan指定GCC版本和ABI选项：
+     ```python
+     # conanfile.txt
+     [requires]
+     mylib/1.0@user/channel
+     compiler=gcc/9.3
+     compiler.libcxx=libstdc++11
+     ```
+3. 修改Conan配置文件
+   - 在Conan的`profile`文件中设置ABI选项：
+     ```ini
+     # ~/.conan/profiles/default
+     [settings]
+     compiler=gcc
+     compiler.version=9
+     compiler.libcxx=libstdc++11
+     ```
+4. 检查依赖库
+   - 确保所有依赖库都使用相同的ABI编译。
+通过以上方法，您可以解决因GCC ABI不兼容导致的段错误问题，确保代码和库的兼容性。
+大多数项目在初期时候，变化方向不明确，因此系统内部结构是不稳定的。在中期结构稳定后，可能又缺乏演进式设计和重构能力，对软件结构的划分未必能保证低耦合。如果当大多数变更都需要跨越多个包的时候，采用包管理这种隔离性强的方式，反而会增大协作沟通成本，降低效率。幸运的是，conan提供了editable mode package和workspace的特性(RUST的cargo也提供了这个特性)，来让多包协作的修改变得稍微容易一些。
+许多编程语言都把包管理器作为一个抓手，围绕着包开发来打造贯穿整个开发过程的最佳实践和辅助工具。包管理的引入会将原有的软件模块团队的交付终点，从仅仅将代码合入到代码库，延长到了需要保证构建、测试、打包和发布成功，并且满足包版本的发布契约（验收测试和契约测试），从而真正意义上的使能团队独立流水线，推动了团队的devops能力。
+作者：MagicBowen链接：https://www.jianshu.com/p/5de358c1c007來源：简书简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
