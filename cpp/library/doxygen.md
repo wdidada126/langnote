@@ -6,6 +6,17 @@ Doxygen version 1.9.5
 是的，Doxygen 完全支持 C 语言的代码文档生成。
 
 ## 简介：什么是 Doxygen？
+https://github.com/doxygen/doxygen/blob/master/BUILD.txt
+
+git clone https://github.com/doxygen/doxygen.git
+cd doxygen
+git checkout Release_1_14_0
+cmake -B build
+cmake --build build
+
+是的，Doxygen 完全支持 C 语言的代码文档生成。
+
+##  简介：什么是 Doxygen？
 
 [Doxygen](https://www.doxygen.nl/index.html) 是一个开源的、跨平台的文档生成工具，支持多种编程语言，包括：
 
@@ -23,7 +34,7 @@ Doxygen version 1.9.5
 
 ---
 
-## Doxygen 对 C 语言的支持情况
+##  Doxygen 对 C 语言的支持情况
 
 | 支持内容 | 是否支持 |
 |----------|----------|

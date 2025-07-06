@@ -1,5 +1,8 @@
 # chocolatey
 
+choco install graphviz
+choco install rsync
+
 下载的文件路径
 C:\ProgramData\chocolatey\lib\rsync\tools\cwrsync_6.3.0_x64_free.zip
 

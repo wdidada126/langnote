@@ -1,158 +1,26 @@
-# 20250703
-
-你遇到的问题是：
-
-> “DATA 表需要在子查询中使用，但是访问不了”
-
-从你的 SQL 看来，你在外层查询中引用了 `DATA` 子查询中的字段（如 `DATA.year`, `DATA.type`），但 `DATA` 是内嵌在 `FROM (...) DATA` 中的一个别名，并没有被暴露到最外层，因此无法直接访问。
-
----
-
-##  问题定位
-
-你的 SQL 结构大致如下：
-
-```sql
-SELECT 
-    tax_sum.ETP_ID,
-    tax_sum.YEAR,
-    tax_sum.TYPE,
-    ...,
-    (SELECT DATA2.NUM FROM DATA DATA2 WHERE ...) AS month_1  -- ❌ 错误：DATA 表不在这个作用域中！
-FROM (
-    SELECT ... FROM (...) DATA RIGHT JOIN ...
-) tax_sum
-...
-```
-
-###  原因：
-- `DATA` 只是一个子查询中的临时表名，仅在该子查询内部可见；
-- 在外层的 `tax_sum` 查询中，已经看不到 `DATA` 这张表了；
-- 所以外层的那些子查询 `(SELECT DATA2.* FROM DATA DATA2 ...)` 是非法的。
-
----
-
-##  解决方案一：将 DATA 拆成 WITH 子句（推荐）
-
-如果你用的是支持 CTE（Common Table Expression）的数据库（如 MySQL 8+、PostgreSQL、TiDB、Oracle、SQL Server 等），可以使用 `WITH` 把 `DATA` 提出来，这样它就变成了全局可访问的中间结果。
-
-###  修改后的结构如下：
-
-```sql
-WITH DATA AS (
-    SELECT etp_id, year, type, month, num FROM app_market_dev.ETP_BILL_DATA_TD
-    GROUP BY etp_id, month
-    UNION ALL
-    SELECT count(0) as num, tbc.ETP_ID,
-        DATE_FORMAT(tbc.LAST_MODI_TIME, '%Y') AS YEAR,
-        DATE_FORMAT(tbc.LAST_MODI_TIME, '%Y-%m') AS month,
-        'E' AS type
-    FROM fuyao_user_dev.T_BESTSIGN_CONTRACT_INFO_TD tbc
-    LEFT JOIN fuyao_user_dev.T_ENTERPRISE_INFO_TD teit ON tbc.ETP_ID = teit.ETP_ID
-    WHERE tbc.SIGN_STATUS = '3'
-    GROUP BY tbc.ETP_ID, month
-)
-SELECT 
-    tax_sum.ETP_ID,
-    tax_sum.YEAR,
-    tax_sum.TYPE,
-    tax_sum.NUM,
-    tax_sum.tena_name,
-    (SELECT d1.num FROM DATA d1 WHERE d1.ETP_ID = tax_sum.ETP_ID AND d1.year = tax_sum.year AND d1.type = tax_sum.type AND d1.month = CONCAT(tax_sum.year, '-01')) AS month_1,
-    (SELECT d2.num FROM DATA d2 WHERE d2.ETP_ID = tax_sum.ETP_ID AND d2.year = tax_sum.year AND d2.type = tax_sum.type AND d2.month = CONCAT(tax_sum.year, '-02')) AS month_2
-FROM (
-    SELECT
-        EEIT.UNI_CODE AS UNIFIED_CODE,
-        EEIT.ETP_NAME,
-        EEIT.ETP_ID,
-        DATA.YEAR,
-        DATA.TYPE,
-        SUM(DATA.NUM) AS NUM,
-        mtit.NAME AS tena_name
-    FROM DATA
-    RIGHT JOIN fuyao_user_dev.T_ENTERPRISE_INFO_TD EEIT ON DATA.ETP_ID = EEIT.ETP_ID
-    LEFT JOIN app_market_dev.MKT_TENA_INFO_TD mtit ON mtit.code = EEIT.APP_ID
-    WHERE DATA.YEAR = '2025'
-    GROUP BY EEIT.UNI_CODE, EEIT.ETP_NAME, EEIT.ETP_ID, DATA.YEAR, DATA.TYPE
-) tax_sum
-ORDER BY tax_sum.ETP_ID, tax_sum.year DESC;
-```
-
----
-
-##  解决方案二：把 DATA 表复制一遍（不推荐）
-
-如果你不能使用 `WITH`（比如老版本 MySQL），你可以考虑在每个子查询里都重复写一次 `DATA` 的内容，但这会导致代码冗余、性能下降、难以维护，不推荐。
-
----
-
-##  推荐做法总结
-
-| 方案 | 是否推荐 | 说明 |
-|------|----------|------|
-| 使用 `WITH DATA AS (...)` |  推荐 | 将 DATA 提升为公共子查询，外层可复用 |
-| 在每个子查询中重复写 DATA 内容 |  不推荐 | 冗余且低效 |
-| 把 DATA 写成临时表或视图 |  视情况 | 需要权限，适合长期使用 |
-
----
-
-##  补充建议
-
-### 1. 如果你使用的是 MyBatis
-
-你可以将整个 SQL 放在 XML Mapper 文件中，MyBatis 会原样执行。只要数据库支持 `WITH`，就可以直接使用。
-
-### 2. 性能优化建议
-
-你现在是用多个子查询分别查每个月的数据，这种方式虽然直观，但效率不高。如果你数据量大，可以考虑：
-
-- 使用 行转列（pivot） 或 JOIN 多个月份字段
-- 或者使用 窗口函数 + CASE WHEN 构造各月字段
-
-我可以帮你重构为更高效的写法，只需告诉我你使用的数据库类型（MySQL / TiDB / Oracle / PostgreSQL 等）。
-
-"Fundamentals for C++ Professionals" (open)
-"Design Patterns and Architectural Patterns with C++" (open)
-"C++20: Get the Details" (open)
-"Concurrency with Modern C++" (open)
-"Embedded Programming with Modern C++": (open)
-"Generic Programming (Templates) with C++": (open)
-"Clean Code: Best Practices for Modern C++": July 2025
-https://cppreference.com/w/cpp/23.html
-
-https://www.modernescpp.com/index.php/c23-a-modularized-standard-library-stdprint-and-stdprintln/
-
-Mastering_STL.pdf
-https://simplifycpp.org/books/Mastering_STL.pdf
-
-https://www.reddit.com/r/cpp/comments/1h53ynr/what_are_the_bestmost_useful_features_of_c23/
-println, expected, ranges::to, contains, enumerate view, explicit/deducing this, static lambdas, mdspan,
-
-## git
-
-git ls-remote --heads git@gitee.com:edidada/github_codespaces_compile.git
-6b8e065914e0a7f4678f461b28673d627d407497        refs/heads/as/nasm
-6babb1c478d9f27000c4c41dcb81eaebd7cc3f56        refs/heads/c/coreutils
-f84bf6e95f9fa784caa2cd24797aea2a3a6cafe1        refs/heads/c/fastdfs
-d67a73688accfdf7dcc1f94a29b65f5d3d2217b6        refs/heads/c/ffmpeg
-9e5261137ea9511c8d7d4d9c3d9b1407928dec7d        refs/heads/c/glibc
-e6f3dcfdf47c152b51aaa50013fd9ba8d92e64ee        refs/heads/c/libdill
-78fe1cad3b6c7028581e03107fd2a254494c674e        refs/heads/c/librist
-0eb73ec65cffee751b9c2559d3c5071445e8fb72        refs/heads/c/lwip
-645f5f2559559f9c94a02e223b13f633e63f2104        refs/heads/c/minigit
-da3751b632610929ec62e3fbdb3bd4dd34603cd4        refs/heads/c/netcat
-9a2dd08bdcc6dc336e115c2d8938316e7e327389        refs/heads/c/nginx
-7c035f8b2ffa3c557e1c8500bef75ad1b27a8e24        refs/heads/c/obs_studio
-b6cc6078224f45b28bf41b3ac11562267ebde6e6        refs/heads/c/obs_studio_mac
-2cff3fc818ce9f1e0db9073f3c9fd7f83a62ce93        refs/heads/c/obs_studio_win
-6b6d1dd02f8d86e667c9389f90e2d70d0188af4b        refs/heads/c/privoxy
-c4b9f21e31d96c38ff4a4a8b9a63556690c0e6ae        refs/heads/c/redis
-b7db9cb60a09208d87d90a6d64acd02f2fb60947        refs/heads/c/rsync
-d706b42e58e459c1580f335bf0f2b4cc500b2138        refs/heads/c/sds
-83d547dcdb334dca2119fd37874b23512e74504e        refs/heads/c/tbox
-c34516a7be64b3c4ece59166321b1bba1644dc3f        refs/heads/c/tbox177/linux
-91c76b04d37515497083474d103bad406a08bc57        refs/heads/c/tbox177/macos
-b939cfafd688610b00b828df539c8d89e770aba0        refs/heads/c/tengine
+# github_codespaces_compile
+as/nasm
+refs/heads/c/coreutils
+refs/heads/c/fastdfs
+refs/heads/c/ffmpeg
+refs/heads/c/glibc
+refs/heads/c/libdill
+refs/heads/c/librist
+refs/heads/c/lwip
+refs/heads/c/minigit
+refs/heads/c/netcat
+refs/heads/c/nginx
+refs/heads/c/obs_studio
+refs/heads/c/obs_studio_mac
+refs/heads/c/obs_studio_win
+refs/heads/c/privoxy
+refs/heads/c/redis
+refs/heads/c/rsync
+refs/heads/c/sds
+refs/heads/c/tbox
+refs/heads/c/tbox177/linux
+refs/heads/c/tbox177/macos
+refs/heads/c/tengine
 a15dc6bcd797c732054f179c13d3fcbc5bee3e19        refs/heads/c/ucore
 066dc4ab4bb2266355d886ac74ebd85f936a7aa8        refs/heads/c/uip
 94c66c2d0e2752c899c84c28e4e35d3056afceed        refs/heads/c/valkey
