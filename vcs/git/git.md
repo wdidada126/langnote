@@ -60,8 +60,6 @@ git cherry-pick abc123^..def456
 - 确保在执行`git cherry-pick`之前，d分支是最新的，以避免不必要的冲突。
 - 如果在应用变动过程中出现冲突，务必仔细解决冲突并测试代码。
 
-使用* model DeepSeek-R1来切换满血版R1模型。
-
 ## tag
 git 查看当前切换到哪个tag
 git describe --tags --exact-match
