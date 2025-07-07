@@ -298,3 +298,285 @@ https://libevent.org/libevent-book/Ref10_http_server.html
 
 git clone git://github.com/libevent/libevent-book.git
 
+
+## 接口列表 Data Structure Index
+commit 5df3037d10556bfcb675bc73e516978b75fc7bc7 (HEAD, tag: release-2.1.12-stable, origin/patches-2.1)
+
+### A
+alerted_record
+arc4_stream
+
+### B
+basic_cb_args
+basic_test_data
+be_conn_hostname_result
+bio_data_counts
+both
+bufferevent
+bufferevent_async
+bufferevent_ctrl_data
+bufferevent_filter_data_stuck
+bufferevent_filtered
+bufferevent_openssl
+bufferevent_ops
+bufferevent_pair
+bufferevent_private
+bufferevent_rate_limit
+bufferevent_rate_limit_group
+
+### C
+chunk_req_state
+client_state
+common_timeout_info
+common_timeout_list
+cond_wait
+connect_base
+cpu_usage_timer
+
+### D
+data_buffer
+debug_lock
+deferred_reply_callback
+deferred_test_data
+dnslabel_entry
+dnslabel_table
+dummy_overlapped
+
+### E
+ev_token_bucket
+ev_token_bucket_cfg
+evbuffer
+evbuffer_cb_entry
+evbuffer_cb_info
+evbuffer_chain
+evbuffer_chain_file_segment
+evbuffer_chain_reference
+evbuffer_file_segment
+evbuffer_iovec
+evbuffer_multicast_parent
+evbuffer_overlapped
+evbuffer_ptr
+evconnlistener
+evconnlistener_event
+evconnlistener_ops
+evdns_base
+evdns_getaddrinfo_request
+evdns_request
+evdns_server_port
+evdns_server_question
+evdns_server_request
+event
+event_and_count
+event_base
+event_callback
+event_change
+event_changelist
+event_changelist_fdinfo
+event_config
+event_config_entry
+event_debug_entry
+event_once
+event_overlapped
+event_signal_map
+event_watermark
+eventop
+evhttp
+evhttp_bound_socket
+evhttp_cb
+evhttp_connection
+evhttp_request
+evhttp_server_alias
+evhttp_uri
+evkeyval
+evmap_foreach_event_helper
+evmap_io
+evmap_signal
+evrpcevrpc_base
+evrpc_hook
+evrpc_hook_ctx
+evrpc_hook_meta
+evrpc_hooks_
+evrpc_meta
+evrpc_pool
+evrpc_req_generic
+evrpc_request_wrapper
+evrpc_status
+evsig_info
+evthread_condition_callbacks
+evthread_lock_callbacks
+evthread_win32_cond
+evutil_addrinfo
+evutil_monotonic_timer
+evutil_weakrand_state
+example_struct
+
+### F
+foreach_helper
+
+### G
+gai_outcome
+gaic_request_status
+generic_dns_callback_result
+getaddrinfo_subrequest
+
+### H
+hosts_entry
+http_server
+
+### I
+in6_addr
+
+### M
+min_heap
+
+### N
+nameserver
+
+### O
+options
+
+### P
+persist_active_timeout_called
+
+### R
+read_not_timeout_param
+regress_dns_server_table
+reply
+request
+request_info
+response_class
+rpc_hook_ctx_
+rwcount
+
+### S
+search_domain
+search_state
+server_reply_item
+server_request
+sockaddr_in6
+sockaddr_storage
+
+### T
+terminate_state
+test_pri_event
+testcase_setup_t
+testcase_t
+testgroup_t
+testlist_alias_t
+timeout_cb_result
+
+### W
+wm_context
+
+## 函数
+### a
+a : example_struct, min_heap, reply
+aaaa : reply
+accept4_flags : evconnlistener
+active_later_queue : event_base
+activequeues : event_base
+add : eventop
+additional : server_request
+addr : hosts_entry, server_request
+addrcount : reply
+address : evhttp_connection, nameserver
+addresses : reply
+addrlen : hosts_entry, nameserver, server_request
+addrs : generic_dns_callback_result
+addrs_buf : generic_dns_callback_result
+addrs_len : generic_dns_callback_result
+adj_timeouts : bufferevent_ops
+adjust_monotonic_clock : evutil_monotonic_timer
+ai : gai_outcome
+ai_addr : evutil_addrinfo
+ai_addrlen : evutil_addrinfo
+ai_canonname : evutil_addrinfo
+ai_family : evhttp_connection, evutil_addrinfo
+ai_flags : evutil_addrinfo
+ai_next : evutil_addrinfo
+ai_protocol : evutil_addrinfo
+ai_socktype : evutil_addrinfo
+alerted_at : alerted_record
+alias : evhttp_server_alias
+alloc : evthread_lock_callbacks
+alloc_condition : evthread_condition_callbacks
+allow_dirty_shutdown : bufferevent_openssl
+allowed_methods : evhttp
+ans : regress_dns_server_table
+anstype : regress_dns_server_table
+answer : server_request
+arg : event_once, evmap_foreach_event_helper
+authority : server_request
+avoid_method : event_config_entry
+
+### b
+b : example_struct
+base : basic_test_data, chunk_req_state, common_timeout_list, evconnlistener_event, evdns_request, evhttp, evhttp_connection, evrpc, evrpc_pool, gaic_request_status, nameserver, request, server_request, terminate_state
+be_ops : bufferevent
+bev : bufferevent_async, bufferevent_filtered, bufferevent_openssl, bufferevent_pair, bufferevent_private, terminate_state, wm_context
+bevcb : evhttp
+bevcbarg : evhttp
+bind_address : evhttp_connection
+bind_port : evhttp_connection
+body_size : evhttp_request
+bufev : evhttp_connection
+buffer : evbuffer_chain, evbuffer_overlapped
+buffer1 : data_buffer
+buffer2 : data_buffer
+buffer_len : evbuffer_chain
+buffers : evbuffer_overlapped
+
+
+c : example_struct
+call_count : dummy_overlapped
+callcount : basic_cb_args
+called_at : common_timeout_info
+can_sendfile : evbuffer_file_segment
+cancel_event : gaic_request_status
+canceled : gaic_request_status
+cases : testgroup_t
+cb : evbuffer_cb_entry, evconnlistener, event_once, event_overlapped, evhttp_cb, evhttp_connection, evhttp_request, evrpc, evrpc_hook_ctx, evrpc_request_wrapper
+cb_arg : evhttp_connection, evhttp_request, evrpc, evrpc_request_wrapper
+cb_func : evbuffer_cb_entry
+cb_obsolete : evbuffer_cb_entry
+cb_queue : evbuffer
+cbarg : bufferevent, evbuffer_cb_entry, evhttp_cb
+cbs : deferred_test_data
+cfg : bufferevent_rate_limit
+chain : evbuffer_ptr
+changelist : event_base
+changes : event_changelist
+changes_size : event_changelist
+choked : evdns_server_port, nameserver
+chunk_cb : evhttp_request
+chunked : evhttp_request
+class : evdns_server_question, server_reply_item
+cleanup_cb : evbuffer_file_segment
+cleanup_cb_arg : evbuffer_file_segment
+cleanup_fn : testcase_setup_t
+cleanupfn : evbuffer_chain_reference
+close_change : event_change
+closecb : evhttp_connection
+closecb_arg : evhttp_connection
+closing : evdns_server_port
+cname_result : evdns_getaddrinfo_request
+common : evrpc_base, evrpc_pool
+common_timeout_queues : event_base
+cond : alerted_record, cond_wait
+condition_api_version : evthread_condition_callbacks
+configured_min_share : bufferevent_rate_limit_group
+conn_address : bufferevent_private
+connect_overlapped : bufferevent_async
+connecting : bufferevent_private
+connection_refused : bufferevent_private
+connections : evhttp, evrpc_pool
+contents : evbuffer_file_segment
+context : bufferevent_filtered
+count : common_timeout_info, debug_lock, event_and_count, foreach_helper, generic_dns_callback_result, read_not_timeout_param, test_pri_event
+counts : bufferevent_openssl
+ctrl : bufferevent_ops
+ctx : evrpc_hook_ctx, rpc_hook_ctx_
+current_event : event_base
+current_event_cond : event_base
+current_event_waiters : event_base
+current_req : evdns_request
