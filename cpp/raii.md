@@ -3,7 +3,7 @@ raii
 
 https://chengxumiaodaren.com/docs/cpp-basic/cpp-raii/
 
-非常好的问题！我们来系统地对比一下 **RTTI（Run-Time Type Information）** 和 **RAII（Resource Acquisition Is Initialization）**，从它们的定义、作用、使用场景、实现原理等多个角度进行深入分析。
+非常好的问题！我们来系统地对比一下 RTTI（Run-Time Type Information） 和 RAII（Resource Acquisition Is Initialization），从它们的定义、作用、使用场景、实现原理等多个角度进行深入分析。
 
 ---
 
@@ -23,7 +23,7 @@ https://chengxumiaodaren.com/docs/cpp-basic/cpp-raii/
 
 ### 🔍 1. RTTI 的核心思想：
 
-- **在程序运行时可以获取对象的实际类型信息。**
+- 在程序运行时可以获取对象的实际类型信息。
 - 用于支持多态环境下对对象类型的识别和安全转型。
 - 是面向对象语言中“多态”特性的补充。
 
@@ -43,8 +43,8 @@ if (typeid(*animal) == typeid(Dog)) {
 
 ### 🔍 2. RAII 的核心思想：
 
-- **将资源的获取绑定到对象的构造函数中**
-- **将资源的释放绑定到对象的析构函数中**
+- 将资源的获取绑定到对象的构造函数中
+- 将资源的释放绑定到对象的析构函数中
 - 利用 C++ 的自动析构机制，确保资源一定会被释放
 
 #### ✅ 常见用途：
@@ -163,10 +163,8 @@ int main() {
 
 如果你感兴趣，还可以进一步学习：
 
-- **RTTI 的底层实现机制**（vtable 中的 typeinfo 指针）
-- **RAII 的标准库实现**（如 `std::lock_guard`, `std::unique_lock`, `std::shared_ptr`）
-- **C++20 中的 reflection 提案**（未来可能取代部分 RTTI 的需求）
-- **RAII 在异常安全中的重要性**
-
----
+- RTTI 的底层实现机制（vtable 中的 typeinfo 指针）
+- RAII 的标准库实现（如 `std::lock_guard`, `std::unique_lock`, `std::shared_ptr`）
+- C++20 中的 reflection 提案（未来可能取代部分 RTTI 的需求）
+- RAII 在异常安全中的重要性
 

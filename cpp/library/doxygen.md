@@ -1,5 +1,11 @@
 # doxygen c cpp doc
 
+mac 2025
+Doxygen version 1.9.5
+
+是的，Doxygen 完全支持 C 语言的代码文档生成。
+
+## 简介：什么是 Doxygen？
 https://github.com/doxygen/doxygen/blob/master/BUILD.txt
 
 git clone https://github.com/doxygen/doxygen.git
