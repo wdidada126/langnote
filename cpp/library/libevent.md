@@ -410,6 +410,9 @@ evutil_monotonic_timer
 evutil_weakrand_state
 example_struct
 
+#### evutil_addrinfo
+
+
 ### F
 foreach_helper
 

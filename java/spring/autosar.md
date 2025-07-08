@@ -1,5 +1,6 @@
 # autosar
 
-
 autosar
 你要是做项目Vector EB ETAS Mentor四选一，其余的话主流整车厂不会认的。
+
+AUTOSAR是Automotive Open SystemArchitecture(汽车开放系统架构)的首字母缩写是一家专注于制定汽车电子软件标准的联盟，AUTOSAR是由全球汽车制造商、零部件供应商及其他电子、半导体和软件系统公司联合建立。整车软件系统可通过AUTOSAR架构对车载网络系统内存及总线的诊断功能进行深度管理，并改善了系统的可靠性和稳定性。
