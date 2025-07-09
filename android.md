@@ -1,9 +1,12 @@
-# 编译系统源码
+# 安卓
+## bionic
+c库
+
+## 编译系统源码
 
 腾讯出的Shadow插件化框架
 
 零反射全动态Android插件框架
-
 
 https://developer.android.com/studio/releases/gradle-plugin?hl=zh-cn
 
@@ -16,6 +19,10 @@ http://trac.ffmpeg.org/wiki/CompilationGuide/Android
 https://www.jianshu.com/p/feab970fd74c
 
 ndk历史版本
+
+跨屏他编译方案，cy
+原生
+cmake组织
 
 https://developer.android.com/ndk/downloads/older_releases.html
 

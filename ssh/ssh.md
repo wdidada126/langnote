@@ -80,6 +80,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com" -f id_ed25519_166_edidada_gitee
 ssh-keygen -t ed25519 -C "Win_ubuntu24_Gitee_ed25519_1664884095@qq.com" -f id_ed25519_edidada_gitee
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "wc@eteng.cn" -f id_rsa_coding_eteng
+ssh-keygen -t ed25519 -C "wc@eteng.cn" -f id_rsa_aliyun_eteng
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "1664884095@qq.com" -f id_rsa_coding_166
 

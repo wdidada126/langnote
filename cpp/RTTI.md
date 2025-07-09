@@ -7,7 +7,7 @@ rtti
 - `dynamic_cast`
 - 异常处理（如 `catch` 类型匹配）
 
----
+
 
 ## 一、什么是 RTTI？
 
@@ -21,7 +21,7 @@ RTTI 全称 Run-Time Type Information（运行时类型信息），是 C++ 提�
 | `dynamic_cast` | 在继承体系中进行安全的向下转型 |
 | 异常匹配 | 用于 `catch(...)` 的类型匹配 |
 
----
+
 
 ## 二、RTTI 和虚函数的关系
 
@@ -43,7 +43,7 @@ RTTI 是通过 虚函数表（vtable） 实现的。每个有虚函数的类都�
 
 如果你尝试对一个没有虚函数的类使用 `dynamic_cast` 或 `typeid`，编译器会报错（对于 `dynamic_cast`），或者返回静态类型信息（对于 `typeid`）。
 
----
+
 
 ## 三、RTTI 使用示例
 

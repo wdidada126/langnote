@@ -1,5 +1,7 @@
 # gcc
+g++ -fdump-class-hierarchy vtable_example.cpp
 
+## doc
 ldd cpp11_getline
         linux-vdso.so.1 (0x00007fffd93a8000)
         libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f19c2eac000)
