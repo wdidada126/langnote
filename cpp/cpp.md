@@ -1,4 +1,6 @@
 # cpp
+pistache 使用了coroutine
+
 https://github.com/progschj/ThreadPool
 
 https://runoob.com/cplusplus/cpp-libs-numeric.html
@@ -1685,3 +1687,45 @@ C++的代码，部署在centos 7上，自己开发用的电脑如果是ubuntu的
 
 我现在就发现，我在开发机上编译的库，在部署的机器上还要在编译一次
 
+## cpp20
+
+
+-- The C compiler identification is GNU 13.1.0
+-- The CXX compiler identification is GNU 13.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Project Source Dir: /mnt/d/develops/git/github/cpp/cpp_learn/cmake/cpp23
+-- CMake Source Dir: /mnt/d/develops/git/github/cpp/cpp_learn
+-- Configuring done (4.5s)
+CMake Error:
+  The Ninja generator does not support C++20 modules using Ninja version
+
+    1.10.1
+
+  due to lack of required features.  Ninja 1.11 or higher is required.
+
+
+CMake Error in cmake/cpp20/CMakeLists.txt:
+  The target named "cpp20_ModuleExample" has C++ sources that may use
+  modules, but modules are not supported by this generator:
+
+    Ninja
+
+  Modules are supported only by Ninja, Ninja Multi-Config, and Visual Studio
+  generators for VS 17.4 and newer.  See the cmake-cxxmodules(7) manual for
+  details.  Use the CMAKE_CXX_SCAN_FOR_MODULES variable to enable or disable
+  scanning.
+
+
+-- Generating done (2.5s)
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+
+[Failed to reload]
