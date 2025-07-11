@@ -3,9 +3,7 @@
 makefile本身为了替代shell，你小子倒好，反过来了
 makefile支持增量编译
 
-
 新版本的LFS里，越来越多的软件包用meson和cmake了。各有各的好吧
-
 
 https://github.com/adamdunkels/uip
 
@@ -44,9 +42,7 @@ uip/Makefile.include：这个文件可能被其他Makefile包含，提供了一�
 
 总的来说，make的灵活性和模块化特性使得它能够适应各种复杂的项目结构，而分离式编译是这种灵活性的一个重要体现。
 
-
 make -j4 2>&1 | tee out.txt
-
 
 多看官网文档
 
@@ -56,6 +52,7 @@ redis的makefile值得学习，有make uninstall
 
 https://www.gnu.org/software/make/manual/make.pdf
 
+## version
 GNU make Version 4.3
 
 make 3.8.2 中文文档
@@ -64,10 +61,7 @@ https://free-online-ebooks.appspot.com/tools/gnu-make-cn/make-01.html
 
 https://hacker-yhj.github.io/resources/gun_make.pdf
 
-
-
 https://blog.csdn.net/weixin_42645653/article/details/114887822
-
 
 srpc GNUmakefile
 
@@ -78,7 +72,6 @@ make
 xxx : xxx.cc
 	g++ xxx.cc -o xxx
 
-
 Make命令教程
 http://www.ruanyifeng.com/blog/2015/02/make.html
 
@@ -88,7 +81,6 @@ make默认会找makefile来进行build操作
 
 Makefile文件由一系列规则（rules）构成。每条规则的形式如下。
 
-
 <target> : <prerequisites> 
 [tab]  <commands>
 上面第一行冒号前面的部分，叫做"目标"（target），冒号后面的部分叫做"前置条件"（prerequisites）；第二行必须由一个tab键起首，后面跟着"命令"（commands）。
@@ -97,16 +89,14 @@ Makefile文件由一系列规则（rules）构成。每条规则的形式如下�
 
 .PHONY 明确表示伪目标
 
-
 内置变量（Implicit Variables）
 Make命令提供一系列内置变量，比如，$(CC) 指向当前使用的编译器，$(MAKE) 指向当前使用的Make工具。这主要是为了跨平台的兼容性
-
 
 ## Makefile提供了许多内置函数
 http://www.gnu.org/software/make/manual/html_node/Functions.html
 cmake也有内置函数
 
-
+## 官网
 http://www.gnu.org/software/make/
 
 make 官方
@@ -114,7 +104,6 @@ make 官方
 ## make本质
 make编译java go c/cpp nodejs
 本质是对命令行/shell的封装
-
 
 语法
 
@@ -128,19 +117,13 @@ sudo make install
 
 .o .c
 
-
-
 CXX gcc
 
 需要熟悉gcc的参数
 
 makefile + make 执行各种命令行脚本
 
-
-
 make支持Go语言的编译
-
-
 
 windows有make嘛？
 
@@ -150,21 +133,16 @@ windows有make嘛？
 
 MinGW32只能编译32位程序，要想编译64位，需要安装MinGW-w64，参考 [MinGW-w64离线安装](https://blog.csdn.net/ZHAOJUNWEI08/article/details/86602120)，在线安装可能无法访问，
 
-
-
-
-
-
-
 windows下cmake是否也是生成make执行的makefile文件来执行
 是
 
-
-
-
 widows下也有自己的命令行编译工具，比如msbuild，nmake等。这两个工具是和VS一起升级维护的，所以对于像笔者这样，一台机器安装3个版本的VS的人，要使用正确版本的编译工具其实需要走些弯路。
-
-
 
 xmake
 
+## source code
+https://www.gnu.org/software/make/
+
+https://ftp.gnu.org/gnu/make/
+
+wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
