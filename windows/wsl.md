@@ -52,3 +52,10 @@ export https_proxy=http://172.18.176.1:20800
 
 export http_proxy=http://172.24.67.1:20800
 export https_proxy=http://172.24.67.1:20800
+
+## ubuntu 22
+gcc 13
+## ubuntu 24
+
+gcc 14
+

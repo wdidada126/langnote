@@ -1,4 +1,6 @@
 # cpp
+pistache 使用了coroutine
+
 https://github.com/progschj/ThreadPool
 
 https://runoob.com/cplusplus/cpp-libs-numeric.html
@@ -1628,57 +1630,23 @@ Bingo招聘
 
 brpc
 
-
-
-
-
 C++ 如何遍历char *[]
-
-
 
 Raii
 
-
-
-
-
 https://blog.csdn.net/GangStudyIT/article/details/80645399
-
-
-
-
 
 使用稳定发布版（如 CentOS）的 Linux 用户也需要检查一下，你的 GCC 版本有可能比较老。如果早于 GCC 7 的话，建议你安装一个新版本的 GCC（不需要覆盖系统的 GCC）。比如，对于 CentOS 7，系统安装的 GCC 版本是 4.8，太老，你可以通过安装 centos-release-scl 和 devtoolset-7-gcc-c++ 两个包来获得 GCC 7；随后，可以使用命令 scl enable devtoolset-7 bash 或 . /opt/rh/devtoolset-7/enable 来启用 GCC 7。
 
-
-
-
-
 [Linux如何使用最新版本gcc scl](https://mp.weixin.qq.com/s/3tvoiz7bcoQ3KZMGIZrJkQ)
-
-
-
-
 
 老师有没有什么好的C/C++并发方面的书推荐一下，C++ Primer上没有这方面内容。
 
 作者回复: 只有英文的。C++ Concurrency in Action 英文已经出到第二版，口碑不错。但中译本《C++并发编程实战》的翻译则是恶评如潮。
 
-
-
-
-
 https://github.com/xiaoweiChen/CPP-Concurrency-In-Action-2ed-2019
 
-
-
-
-
-
-
 Cpp patch
-
-
 
 C++的代码，部署在centos 7上，自己开发用的电脑如果是ubuntu的话，依赖库怎搞？
 
@@ -1686,3 +1654,44 @@ C++的代码，部署在centos 7上，自己开发用的电脑如果是ubuntu的
 
 我现在就发现，我在开发机上编译的库，在部署的机器上还要在编译一次
 
+## cpp20
+
+-- The C compiler identification is GNU 13.1.0
+-- The CXX compiler identification is GNU 13.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Project Source Dir: /mnt/d/develops/git/github/cpp/cpp_learn/cmake/cpp23
+-- CMake Source Dir: /mnt/d/develops/git/github/cpp/cpp_learn
+-- Configuring done (4.5s)
+CMake Error:
+  The Ninja generator does not support C++20 modules using Ninja version
+
+    1.10.1
+
+  due to lack of required features.  Ninja 1.11 or higher is required.
+
+
+CMake Error in cmake/cpp20/CMakeLists.txt:
+  The target named "cpp20_ModuleExample" has C++ sources that may use
+  modules, but modules are not supported by this generator:
+
+    Ninja
+
+  Modules are supported only by Ninja, Ninja Multi-Config, and Visual Studio
+  generators for VS 17.4 and newer.  See the cmake-cxxmodules(7) manual for
+  details.  Use the CMAKE_CXX_SCAN_FOR_MODULES variable to enable or disable
+  scanning.
+
+
+-- Generating done (2.5s)
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+
+[Failed to reload]
