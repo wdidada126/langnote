@@ -85,3 +85,25 @@ cmake --build build-cmake
 
 ## github上有编译好的二进制
 
+## mac ninja
+ibqodeMacBook-Pro:~ ibqo$ ninja --version
+1.10.2
+ibqodeMacBook-Pro:~ ibqo$ brew info ninja
+==> ninja: stable 1.11.1 (bottled), HEAD
+Small build system for use with gyp or CMake
+https://ninja-build.org/
+/usr/local/Cellar/ninja/1.10.2_1 (10 files, 402.3KB) *
+  Poured from bottle on 2022-04-17 at 11:28:23
+From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/ninja.rb
+License: Apache-2.0
+==> Dependencies
+Build: python@3.11 ✘
+==> Options
+--HEAD
+	Install HEAD version
+==> Caveats
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+
+Emacs Lisp files have been installed to:
+  /usr/local/share/emacs/site-lisp/ninja
