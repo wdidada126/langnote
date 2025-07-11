@@ -146,3 +146,55 @@ https://www.gnu.org/software/make/
 https://ftp.gnu.org/gnu/make/
 
 wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+cd make-4.3
+./configure
+make -j4
+
+    README.older-versions   2002-03-01 13:37    162  
+[   ]   make-3.75-3.76.diff.gz  1997-09-16 03:00    229K     
+[   ]   make-3.75.tar.gz    1996-08-28 03:00    581K     
+[   ]   make-3.76-3.76.1.diff.gz    1997-09-19 03:00    2.4K     
+[   ]   make-3.76.1-3.77.diff.gz    1998-07-31 03:10    155K     
+[   ]   make-3.76.1.tar.gz  1997-09-19 03:00    617K     
+[   ]   make-3.77.tar.gz    1998-07-31 03:09    653K     
+[   ]   make-3.78.1.tar.gz  1999-09-23 20:33    756K     
+[   ]   make-3.79.1.tar.gz  2000-06-23 20:10    1.0M     
+[   ]   make-3.79.tar.gz    2000-04-11 10:31    937K     
+[   ]   make-3.80.tar.bz2   2002-10-03 23:23    899K     
+[   ]   make-3.80.tar.gz    2002-10-03 23:23    1.2M     
+[   ]   make-3.81.tar.bz2   2006-04-01 01:48    1.1M     
+[   ]   make-3.81.tar.bz2.sig   2006-04-01 01:49    65   
+[   ]   make-3.81.tar.gz    2006-04-01 01:48    1.5M     
+[   ]   make-3.81.tar.gz.sig    2006-04-01 01:49    65   
+[   ]   make-3.82.tar.bz2   2010-07-28 01:59    1.2M     
+[   ]   make-3.82.tar.bz2.sig   2010-07-28 01:59    72   
+[   ]   make-3.82.tar.gz    2010-07-28 01:58    1.6M     
+[   ]   make-3.82.tar.gz.sig    2010-07-28 01:59    72   
+[   ]   make-4.0.tar.bz2    2013-10-09 02:16    1.3M     
+[   ]   make-4.0.tar.bz2.sig    2013-10-09 02:16    72   
+[   ]   make-4.0.tar.gz 2013-10-09 02:16    1.8M     
+[   ]   make-4.0.tar.gz.sig 2013-10-09 02:16    72   
+[   ]   make-4.1.tar.bz2    2014-10-05 12:27    1.3M     
+[   ]   make-4.1.tar.bz2.sig    2014-10-05 12:27    72   
+[   ]   make-4.1.tar.gz 2014-10-05 12:27    1.8M     
+[   ]   make-4.1.tar.gz.sig 2014-10-05 12:27    72   
+[   ]   make-4.2.1.tar.bz2  2016-06-10 19:32    1.3M     
+[   ]   make-4.2.1.tar.bz2.sig  2016-06-10 19:32    72   
+[   ]   make-4.2.1.tar.gz   2016-06-10 19:32    1.9M     
+[   ]   make-4.2.1.tar.gz.sig   2016-06-10 19:32    72   
+[   ]   make-4.2.tar.bz2    2016-05-22 09:40    1.3M     
+[   ]   make-4.2.tar.bz2.sig    2016-05-22 09:40    72   
+[   ]   make-4.2.tar.gz 2016-05-22 09:40    1.9M     
+[   ]   make-4.2.tar.gz.sig 2016-05-22 09:40    72   
+[   ]   make-4.3.tar.gz 2020-01-19 17:24    2.2M     
+[   ]   make-4.3.tar.gz.sig 2020-01-19 17:24    566  
+[   ]   make-4.3.tar.lz 2020-01-19 17:24    1.2M     
+[   ]   make-4.3.tar.lz.sig 2020-01-19 17:24    566  
+[   ]   make-4.4.1.tar.gz   2023-02-26 15:06    2.2M     
+[   ]   make-4.4.1.tar.gz.sig   2023-02-26 15:06    833  
+[   ]   make-4.4.1.tar.lz   2023-02-26 15:06    1.2M     
+[   ]   make-4.4.1.tar.lz.sig   2023-02-26 15:06    833  
+[   ]   make-4.4.tar.gz 2022-10-31 02:49    2.2M     
+[   ]   make-4.4.tar.gz.sig 2022-10-31 02:49    566  
+[   ]   make-4.4.tar.lz 2022-10-31 02:49    1.2M     
+[   ]   make-4.4.tar.lz.sig 2022-10-31 02:49    566  
