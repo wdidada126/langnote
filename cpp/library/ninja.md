@@ -1,5 +1,19 @@
 # ninja
 
+git clone https://github.com/ninja-build/ninja.git && cd ninja
+git checkout release
+./configure.py --bootstrap
+./ninja all
+cmake -Bbuild-cmake -DBUILD_TESTING=OFF
+cmake --build build-cmake
+
+## 编程语言
+c++等
+
+## 维护组织人员
+
+
+## c++
 choco install ninja -y
 支持windows mac linux
 
@@ -75,8 +89,6 @@ cp ./ninja /usr/bin
 检查安装版本：
 ninja --version
 
-
-
 git clone -b v1.11.1 https://github.com/ninja-build/ninja.git
 cd ninja
 cmake -Bbuild-cmake
@@ -85,3 +97,13 @@ cmake --build build-cmake
 
 ## github上有编译好的二进制
 
+## version
+1.13
+v1.12.1 May 11, 2024
+cpp 20 module需要1.11
+
+
+## 有编译好的可执行程序
+https://github.com/ninja-build/ninja/releases
+
+ninja-linux.zip

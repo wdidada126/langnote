@@ -1,4 +1,6 @@
 # IDEA
+核心技术是Program Structure Interface数据结构，也叫PSI，相当于一个加强版的AST，适配了各种语言，不但解析了语法，还分析了语义。信息量吊打vscode的LSP
+
 idea 打开java文件
 The file size (2.8 MB) exceeds the configured limit (2.56 MB). Code insight features are not available. 
 当 IntelliJ IDEA 打开 Java 文件时提示 “The file size (2.8 MB) exceeds the configured limit (2.56 MB). Code insight features are not available.”，是因为 IDEA 对能关联的文件大小做了限制，主要是为了保护内存。默认情况下，IDEA 允许提供代码洞察功能的文件大小限制为 2.5 MB 左右（2500 KB），而你打开的 Java 文件大小为 2.8 MB，超过了这个限制，所以会出现该提示，并且代码洞察功能（如代码补全、跳转定义等）将不可用。

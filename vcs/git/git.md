@@ -1,4 +1,10 @@
 # git
+
+git config --global core.autocrlf
+- `true`（Windows 默认）：LF → CRLF 检出，CRLF → LF 提交
+- `input`：提交时将 CRLF 转为 LF，检出保持 LF
+- `false`：不做任何转换
+
 git submodule update --init --recursive
 
 ## version
