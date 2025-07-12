@@ -4,9 +4,9 @@ CMake 内置变量 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 在 CMake 构建�
 
 - `PROJECT_SOURCE_DIR`：这个变量存储了当前项目的顶层源目录的路径。在 CMakeLists.txt 文件中，通常通过这个变量来引用项目的根源代码目录。这对于指定源文件的路径、包含其他 CMake 文件或者设置输出路径等非常有用。
 
-- `CMAKE_SOURCE_DIR`：这个变量存储了执行 cmake 命令时指定的源代码根目录的路径。这个变量通常用于指定 CMakeLists.txt 文件所在的目录。与 `PROJECT_SOURCE_DIR` 不同，`CMAKE_SOURCE_DIR` 可能与项目的源代码目录不同，因为它是在执行 cmake 命令时指定的。
+- `CMAKE_SOURCE_DIR`：这个变量存储了执行 cmake 命令时指定的源代码根目录的路径。这个变量通常用于指定 CMakeLists.txt 文件所在的目录。与 `PROJECT_SOURCE_DIR` 不同，`CMAKE_SOURCE_DIR` 可能与项目的源代码目录不同，因为它是在执行cmake命令时指定的。
 
-在 CMakeLists.txt 文件中，你可以像下面这样使用这些变量：
+在 CMakeLists.txt 文件中，你可以像下面这样打印这些变量：
 
 ```cmake
 message(STATUS "Project Source Dir: ${PROJECT_SOURCE_DIR}")
@@ -92,7 +92,8 @@ add_executable(YourExecutable ${SOURCES})
 
 请注意，使用`file(GLOB ...)`命令来收集源文件有一些限制，例如当项目结构发生变化时可能无法自动检测到新的文件。因此，在实际项目中最好手动列出文件，以确保构建系统的稳定性。
 
-Andriod用cmake
+Andriod
+弃用ndk-build，用cmake
 
 cmake，c c++源文件批量添加
 
@@ -107,7 +108,6 @@ file(GLOB RPC_SRC rocket/net/rpc/*.cc)
 # 生成静态库
 add_library(rocket STATIC ${COMM_SRC} ${NET_SRC} ${TCP_SRC} ${CODER_SRC} ${RPC_SRC})
 ```
-
 
 dpkg -L libtinyxml-dev
 /.

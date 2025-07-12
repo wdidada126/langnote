@@ -1,8 +1,43 @@
 # bazel
 
+## version
+
+版本号	发布时间	主要特性
+6.4.x	2025 年 3 月	改进对 Starlark 的支持、优化远程缓存性能、增强规则兼容性
+6.3.x	2025 年 1 月	改进 macOS 和 Windows 构建体验
+6.2.x	2024 年 11 月	增强对 C++23 的支持、改进增量构建性能
+6.1.x	2024 年 9 月	引入新的 rules_apple 和 rules_swift 支持
+6.0.x	2024 年 7 月	重大更新：移除旧版 Python 规则，全面支持 Starlark 规则系统
+
+常见使用场景对应的推荐版本
+场景	推荐版本
+Android/iOS 开发	6.4.x
+C/C++ 项目	6.4.x
+TensorFlow 构建	6.4.x 或根据 TF 文档指定版本
+兼容老项目（如 2020 年前）	4.x ~ 5.x
+学习/教学用途	6.4.x（最新稳定）或 5.4.x（经典）
+
+版本号	发布时间	主要变化
+5.4.x	2024 年初	稳定版，广泛用于 Android/iOS 构建
+5.0.x	2023 年中	弃用 Skylark，全面启用 Starlark 名称
+4.2.x	2021 年末	增加对 remote execution 和 caching 的更好支持
+3.7.x	2020 年	最后一个支持 Python 2 的版本
+0.4.5	2017 年初	初期稳定版本，被许多项目采用
+
+
+bazel version
+WARNING: --batch mode is deprecated. Please instead explicitly shut down your Bazel server using the command "bazel shutdown".
+Build label: 1.1.0
+Build target: bazel-out/darwin-opt/bin/src/main/java/com/google/devtools/build/lib/bazel/BazelServer_deploy.jar
+Build time: Mon Oct 21 08:47:13 2019 (1571647633)
+Build timestamp: 1571647633
+Build timestamp as int: 1571647633
+
 bazel从github下载rule
 https://github.com/bazelbuild/rules_cc
 https://gitee.com/hui2hui/rules_protobuf
+
+## bzlmod
 
 Bazel 6 新增了 bzlmod ，支持了包的多版本管理，可以解决菱形依赖的问题。已经完全成熟可用了。
 https://bazel.build/build/bzlmod
@@ -51,9 +86,6 @@ windows上支持java？
 ubuntu
 使用 Bazelisk 安装 / 更新 Bazel
 
-```shell
-
-```
 
 ### 私有仓库
 https://registry.bazel.build/

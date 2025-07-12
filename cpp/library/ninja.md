@@ -12,7 +12,6 @@ c++等
 
 ## 维护组织人员
 
-
 ## c++
 choco install ninja -y
 支持windows mac linux
