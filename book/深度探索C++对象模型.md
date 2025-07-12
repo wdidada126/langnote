@@ -79,8 +79,7 @@ Static Member Functions（静态成员函数） 148
 4.5 Inline Functions 182
 形式参数（Formal Arguments） 185
 局部变量（Local Variables） 186
-第5章 构造、析构、拷贝语意学（Semantics of Construction,
-Destruction, and Copy） 191
+第5章 构造、析构、拷贝语意学（Semantics of Construction, Destruction, and Copy） 191
 纯虚函数的存在（Presence of a Pure Virtual Function） 193
 虚拟规格的存在（Presence of a Virtual Specification） 194
 虚拟规格中const的存在 195
@@ -122,3 +121,12 @@ Typeid运算符 314
 7.4 效率有了，弹性呢？ 318
 动态共享函数库（Dynamic Shared Libraries） 318
 共享内存（Shared Memory） 318
+
+
+## 第1章 关于对象（Object Lessons）
+## 第2章 构造函数语意学（The Semantics of Constructors）
+## 第3章 Data语意学（The Semantics of Data）
+## 第4章 Function语意学（The Semantics of Function）
+## 第5章 构造、析构、拷贝语意学（Semantics of Construction, Destruction, and Copy）
+## 第6章 执行期语意学（Runtime Semantics）
+## 第7章 站在对象模型的尖端（On the Cusp of the Object Model）
