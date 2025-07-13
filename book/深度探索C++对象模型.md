@@ -123,10 +123,10 @@ Typeid运算符 314
 共享内存（Shared Memory） 318
 
 
-## 第1章 关于对象（Object Lessons）
-## 第2章 构造函数语意学（The Semantics of Constructors）
-## 第3章 Data语意学（The Semantics of Data）
-## 第4章 Function语意学（The Semantics of Function）
-## 第5章 构造、析构、拷贝语意学（Semantics of Construction, Destruction, and Copy）
-## 第6章 执行期语意学（Runtime Semantics）
-## 第7章 站在对象模型的尖端（On the Cusp of the Object Model）
+### 第1章 关于对象（Object Lessons）
+### 第2章 构造函数语意学（The Semantics of Constructors）
+### 第3章 Data语意学（The Semantics of Data）
+### 第4章 Function语意学（The Semantics of Function）
+### 第5章 构造、析构、拷贝语意学（Semantics of Construction, Destruction, and Copy）
+### 第6章 执行期语意学（Runtime Semantics）
+### 第7章 站在对象模型的尖端（On the Cusp of the Object Model）
