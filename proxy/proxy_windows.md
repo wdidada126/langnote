@@ -31,6 +31,18 @@ $env:http_proxy="http://127.0.0.1:20800"
 $env:https_proxy="http://127.0.0.1:20800"
 ```
 
+java代码不支持http设置socks5
+
+```powershell
+$env:http_proxy="socks5://127.0.0.1:7890"
+$env:https_proxy="socks5://127.0.0.1:7890"
+```
+
+```powershell
+$env:http_proxy="http://127.0.0.1:20801"
+$env:https_proxy="http://127.0.0.1:20801"
+```
+
 ```cmd
 set http_proxy=http://127.0.0.1:20800
 set https_proxy=http://127.0.0.1:20800

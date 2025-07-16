@@ -1,4 +1,11 @@
 # bazel
+## registry
+
+https://registry.bazel.build/search?q=libevent
+
+## xx
+车企用conan，互联网公司用bazel
+高德，头条用Rust
 
 ## version
 
@@ -169,3 +176,58 @@ java_library(
         # ...
     ],
 )
+
+
+bazel.exe -h  
+WARNING: Invoking Bazel in batch mode since it is not invoked from within a workspace (below a directory having a MODULE.bazel file).
+OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify were deprecated in JDK 13 and will likely be removed in a future release.
+                                                           [bazel release 8.3.1]
+Usage: bazel <command> <options> ...
+
+Available commands:
+  analyze-profile     Analyzes build profile data.
+  aquery              Analyzes the given targets and queries the action graph.
+  build               Builds the specified targets.
+  canonicalize-flags  Canonicalizes a list of bazel options.
+  clean               Removes output files and optionally stops the server.
+  coverage            Generates code coverage report for specified test targets.
+  cquery              Loads, analyzes, and queries the specified targets w/ configurations.
+  dump                Dumps the internal state of the bazel server process.
+  fetch               Fetches external repositories that are prerequisites to the targets.
+  help                Prints help for commands, or the index.
+  info                Displays runtime info about the bazel server.
+  license             Prints the license of this software.
+  mobile-install      Installs targets to mobile devices.
+  mod                 Queries the Bzlmod external dependency graph
+  print_action        Prints the command line args for compiling a file.
+  query               Executes a dependency graph query.
+  run                 Runs the specified target.
+  shutdown            Stops the bazel server.
+  sync                Syncs all repositories specified in the workspace file
+  test                Builds and runs the specified test targets.
+  vendor              Fetches external repositories into a folder specified by the flag --vendor_dir.
+  version             Prints version information for bazel.
+
+Getting more help:
+  bazel help <command>
+                   Prints help and options for <command>.
+  bazel help startup_options
+                   Options for the JVM hosting bazel.
+  bazel help target-syntax
+                   Explains the syntax for specifying targets.
+  bazel help info-keys
+                   Displays a list of keys used by the info command.
+
+
+bazel build //:hello
+Starting local Bazel server (8.3.1) and connecting to it...
+Loading: 0 packages loaded
+    Fetching repository @@protobuf+; starting 16s
+    Fetching repository @@rules_python+; starting 16s
+    Fetching repository @@rules_shell+; starting 16s
+    Fetching https://github.com/protocolbuffers/protobuf/releases/download/v29.0/protobuf-29.0.zip; 151.2 KiB (1.4%) 13s
+    Fetching https://github.com/bazelbuild/rules_python/releases/download/0.40.0/rules_python-0.40.0.tar.gz; 119.3 KiB (14.0%) 13s
+    Fetching https://github.com/bazelbuild/rules_shell/releases/download/v0.2.0/rules_shell-v0.2.0.tar.gz; 13.5 KiB (97.9%) 9s
+    Fetching repository @@bazel_skylib+; starting
+    Fetching repository @@rules_cc+; starting ... (9 fetches)
+
