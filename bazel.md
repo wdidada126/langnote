@@ -114,7 +114,6 @@ https://github.com/bazelbuild/bazelisk
 https://github.com/bazelbuild/bazelisk/releases
 1.19.0
 
-
 yum install bazel4 -y
 
 windows上支持java？
