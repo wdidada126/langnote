@@ -1,5 +1,10 @@
 # objdump
 
+The llvm-objdump utility prints the contents of object files and final
+       linked images named on the command line. If no file name is specified,
+       llvm-objdump will attempt to read from a.out. If - is used as a file
+       name, llvm-objdump will process a file on its standard input stream.
+
 ```
 [root@10-23-29-39 ~]# objdump -x /usr/lib64/libprotobuf.so
 
