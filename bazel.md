@@ -1,7 +1,36 @@
 # bazel
+
+## source code
+
+## version
+https://github.com/bazelbuild/bazel/releases
+
+8.3.0
+2025.07
+
+8.2.0 
+2025.04
+8.0.0 
+Dec 10, 2024
+
+7.0.0
+Dec 12, 2023
+
+6.0.0
+Dec 20, 2022
+
+## bazel8.3 local
+C:\Users\wdidada\_bazel_wdidada\eicgr3kw\external\libevent+\BUILD.bazel
+C:\Users\wdidada\_bazel_wdidada\fcx5eyne\external\catch2+\BUILD.bazel
+
+C:\Users\wdidada\_bazel_wdidada\eicgr3kw\execroot\_main\bazel-out\x64_windows-fastbuild\bin\external\libevent+\event_core.lib
+
 ## registry
 
 https://registry.bazel.build/search?q=libevent
+
+### source code
+https://github.com/bazelbuild/bazel-central-registry
 
 ## xx
 车企用conan，互联网公司用bazel
