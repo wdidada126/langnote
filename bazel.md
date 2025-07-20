@@ -1,4 +1,110 @@
 # bazel
+
+@libevent
+外部依赖
+libevent
+内部依赖
+
+## 语言
+Starlark
+
+conan python txt
+xmake lua
+cmake 自定义 txt
+
+## doc
+优势：跨语言
+资料少
+编译缓存
+分布式编译
+
+在 Bazel 5 中，你可以设置编译缓存（remote caching）来加速构建过程。远程缓存允许你将构建输出存储在一个中央位置，并在后续的构建中重用这些输出，即使是在不同的机器上。这可以显著减少重复构建的时间。
+
+Bazel 支持多种类型的远程缓存服务器，包括自托管的解决方案和云服务提供商的产品。下面是如何设置一个基本的 HTTP/HTTPS 缓存服务器 的步骤。
+
+### 步骤一：选择或配置一个缓存服务器
+
+首先，你需要有一个支持 HTTP GET 和 PUT 请求的缓存服务器。如果你没有现成的服务器，可以考虑以下选项：
+
+- 使用第三方服务：如 Buildbarn、Remote Build Execution (RBE) 等。
+- 自建缓存服务器：
+  - 使用 Nginx 或 Apache 配置一个简单的文件服务器。
+  - 使用专门的工具如 `bazel-remote`，这是一个专为 Bazel 设计的高效缓存服务器。
+
+#### 示例：安装并运行 `bazel-remote`
+
+1. 安装 `bazel-remote`（假设你使用的是 Linux 系统）：
+
+```bash
+wget https://github.com/buchgr/bazel-remote/releases/download/v2.1.1/bazel-remote-linux-amd64
+chmod +x bazel-remote-linux-amd64
+sudo mv bazel-remote-linux-amd64 /usr/local/bin/bazel-remote
+```
+
+2. 启动 `bazel-remote`：
+
+```bash
+bazel-remote --max_size=20 --dir=/path/to/cache/dir
+```
+
+这里的 `--max_size=20` 表示缓存的最大大小为 20GB，`--dir` 指定了缓存数据存放的目录。
+
+### 步骤二：配置 Bazel 使用远程缓存
+
+接下来，在你的项目中配置 Bazel 来使用这个缓存服务器。你可以通过 `.bazelrc` 文件或命令行参数来指定远程缓存服务器。
+
+#### 方法一：编辑 `.bazelrc`
+
+在项目的根目录下创建或编辑 `.bazelrc` 文件，添加如下内容：
+
+```rc
+# 设置远程缓存服务器的 URL
+common --remote_cache=http://localhost:8080
+
+# 如果需要认证，可以加上认证信息
+# common --remote_cache=http://user:pass@localhost:8080
+
+# 开启结果摘要上传
+common --disk_cache=/path/to/disk/cache
+
+# 可选：强制 Bazel 不要重新计算已经存在于缓存中的动作
+common --experimental_guard_against_concurrent_changes
+
+# 如果你的缓存服务器不支持 TLS，确保忽略 SSL 错误
+# 注意：仅用于测试环境！生产环境中请确保使用安全连接。
+common --incompatible_remote_results_ignore_disk
+```
+
+#### 方法二：使用命令行参数
+
+你也可以直接在命令行中指定远程缓存服务器，而无需修改 `.bazelrc` 文件：
+
+```bash
+bazel build //... --remote_cache=http://localhost:8080
+```
+
+### 步骤三：验证配置是否生效
+
+运行一次构建命令后，检查缓存服务器上的缓存数据是否存在。如果一切正常，你应该能在缓存服务器上看到构建输出被成功上传，并且后续的相同构建会从缓存中读取结果，从而加快速度。
+
+### 注意事项
+
+- 安全性：确保你的缓存服务器是安全的，尤其是在公开网络上时。考虑使用 HTTPS 和适当的访问控制。
+- 缓存命中率：为了提高缓存命中率，请确保所有参与构建的机器使用相同的工具链版本（如编译器版本等）。
+- 磁盘空间管理：定期清理缓存以防止磁盘空间耗尽。某些缓存服务器提供了自动清理策略。
+
+通过以上步骤，你就可以在 Bazel 5 中成功设置并使用远程缓存服务器了。如果有任何问题或需要进一步的帮助，请随时告诉我！
+
+bazel query --output=build //your:target
+
+## bazel
+内置模块
+cc_binary()
+cc_library()
+cc_test()
+
+子文件夹编译
+
 ## registry
 
 https://registry.bazel.build/search?q=libevent
@@ -91,8 +197,7 @@ yum install bazel4 -y
 windows上支持java？
 官方支持的
 ubuntu
-使用 Bazelisk 安装 / 更新 Bazel
-
+使用Bazelisk安装/更新Bazel
 
 ### 私有仓库
 https://registry.bazel.build/
@@ -169,7 +274,7 @@ d-----        2023/12/25      9:19                os
 
 java_library(
     name = "your_library_name",
-    srcs = glob(["src/main/java/**/*.java"]),
+    srcs = glob(["src/main/java//*.java"]),
     deps = [
         "//path/to/dependency1:dependency1_jar",
         "//path/to/dependency2:dependency2_jar",
