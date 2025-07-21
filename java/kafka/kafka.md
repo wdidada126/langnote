@@ -45,11 +45,12 @@ https://kafka.apache.org/30/javadoc/index.html
 
 ## 版本
 
-4.0.0 2025年3月
+4.0.0 3 18, 2025
 https://github.com/apache/kafka/releases/tag/4.0.0
-
+3.9.1
+5 21, 2025
 3.9.0
-11 7, 2024
+11 6, 2024
 
 3.5.0
 6 13, 2023

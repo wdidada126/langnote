@@ -1,4 +1,8 @@
 # CMake
+## bin
+https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
+
+## variable
 
 CMake 内置变量 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 在 CMake 构建系统中具有不同的作用。它们分别代表着不同的含义：
 
