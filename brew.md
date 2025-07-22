@@ -61,7 +61,6 @@ Further help:
   man brew
   https://docs.brew.sh
 
-
 brew update
 brew --prefix openssl
 
@@ -75,7 +74,6 @@ To link this version, run:
 ibqodeMacBook-Pro:cpp-5th_ZhengLi ibqo$ brew link boost
 Linking /usr/local/Cellar/boost/1.80.0... 186 symlinks created.
 
-
 ## 官网
 
 https://brew.sh/
@@ -87,23 +85,23 @@ https://brew.sh/
 ```
 
 ## brew设置国内镜像
-
 在Mac上使用brew（Homebrew）时，由于网络问题，可能会遇到下载速度慢或下载失败的情况。为了改善这种情况，可以将brew的源切换为国内镜像源。以下是将brew设置为国内镜像的步骤，以阿里云镜像为例：
-
 1. 替换brew.git的源
 打开终端（Terminal），执行以下命令来替换brew的源：
 
-bash
+```bash
 cd "$(brew --repo)"  
 git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+```
 这会将brew的远程仓库地址更改为阿里云的镜像地址。
 
 2. 替换homebrew-core.git的源
 brew的公式（formula）库主要存储在homebrew-core仓库中，因此也需要将其源替换为国内镜像。执行以下命令：
 
-bash
+```bash
 cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"  
 git remote set-url origin https://mirrors.aliyun.com/homebrew-core.git
+```
 这会将homebrew-core的远程仓库地址更改为阿里云的镜像地址。
 
 3. 替换其他可选的仓库（如有需要）
@@ -120,8 +118,9 @@ brew update
 5. 验证配置
 为了确认配置已成功更改为国内镜像源，你可以执行以下命令来查看brew的配置信息：
 
-bash
+```bash
 brew config
+```
 在输出信息中，你会看到HOMEBREW_REPOSITORY、HOMEBREW_CORE_GIT_REMOTE等字段的值已经更改为对应的国内镜像地址。
 
 注意事项
@@ -129,7 +128,6 @@ brew config
 如果你在后续使用过程中遇到问题，可以尝试切换回官方的源或尝试其他可用的国内镜像源。
 替换源的操作可能需要一定的网络权限，确保你的终端会话具有足够的权限来执行这些命令。
 以上步骤适用于大多数Mac用户，但在具体操作时可能会因个人环境的不同而有所差异。如果遇到问题，可以参考Homebrew的官方文档或在相关社区中寻求帮助。
-
 
 https://blog.csdn.net/weixin_34399060/article/details/91923873
 
@@ -165,9 +163,7 @@ Already downloaded: /Users/runner/Library/Caches/Homebrew/downloads/b2e6bfcdbddf
   /usr/local/Cellar/leveldb/1.23: 31 files, 876.4KB
 ==> Running `brew cleanup leveldb`...
 
-
 ## Homebrew/homebrew-core
-
 
 ## Homebrew/homebrew-cask
 

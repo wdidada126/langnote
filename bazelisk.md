@@ -1,9 +1,6 @@
 # bazelisk
 
-作者：Tingyan Shen
-链接：https://www.zhihu.com/question/350144630/answer/1785938148
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+https://www.zhihu.com/question/350144630/answer/1785938148
 
 实际上现在 bazel 并不需要安装了。 bazelbuild 官方 git 组织提供了更好的使用方式。 在 bazelisk 仓库。个人推荐的使用方式是结合 git submodule 使用。mkdir -p thirdparty tools
 git submodule add https://github.com/bazelbuild/bazelisk thirdparty/
