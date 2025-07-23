@@ -1,5 +1,7 @@
 # bazel
 
+bazel 8是Java 21写的，谷歌那帮人是真的牛啊
+
 bazel在vcpkg
 conan
 cargo
