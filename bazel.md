@@ -1,5 +1,7 @@
 # bazel
 
+国内大厂使用blade
+
 Build C++
 Build Java
 Android
