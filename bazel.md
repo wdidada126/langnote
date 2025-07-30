@@ -2,6 +2,8 @@
 
 国内大厂使用blade
 
+bazel 8是Java 21写的，谷歌那帮人是真的牛啊
+
 Build C++
 Build Java
 Android
@@ -339,9 +341,6 @@ d-----        2023/12/25      9:19                third_party
 d-----        2023/12/25      9:19                tools
 -a----        2033/12/22      9:19           2010 MODULE.bazel
 -a----        2033/12/22      9:19             32 WORKSPACE
-
-
-
 
 
 platforms
