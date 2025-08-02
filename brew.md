@@ -1,5 +1,8 @@
 # brew
 
+库 二进制文件
+https://github.com/Homebrew/homebrew-core/tree/e64e128c3acca63c8cbb25a7e6896b78e214092c/Formula
+
 mac 2015
 
 brew --version
