@@ -1,5 +1,7 @@
 # bazel
 
+国内大厂使用blade
+
 bazel 8是Java 21写的，谷歌那帮人是真的牛啊
 
 Build C++
