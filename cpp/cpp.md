@@ -1,5 +1,10 @@
 # cpp
-pistache 使用了coroutine
+
+## build 构建工具
+LLVM
+用Python生成部分CMake逻辑（如检测编译器特性），但核心构建仍靠CMakeLists.txt。
+
+pistache使用了coroutine
 
 https://github.com/progschj/ThreadPool
 
