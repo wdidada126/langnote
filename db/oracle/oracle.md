@@ -1,5 +1,8 @@
 # oracle
 
+-- 查看当前密码策略 SELECT * FROM dba_profiles WHERE profile = 'DEFAULT' AND resource_name = 'PASSWORD_LIFE_TIME'; 
+-- 修改密码永不过期 ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
 https://sqlfiddle.com/
 
 

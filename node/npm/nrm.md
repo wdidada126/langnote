@@ -1,6 +1,16 @@
 # nrm
 
 nrm ls
+* npm ---------- https://registry.npmjs.org/
+  yarn --------- https://registry.yarnpkg.com/
+  tencent ------ https://mirrors.tencent.com/npm/
+  cnpm --------- https://r.cnpmjs.org/
+  taobao ------- https://registry.npmmirror.com/
+  npmMirror ---- https://skimdb.npmjs.com/registry/
+  huawei ------- https://repo.huaweicloud.com/repository/npm/
+  jf ----------- http://172.16.10.70:4873/
+
+nrm ls
   npm ---------- https://registry.npmjs.org/
   yarn --------- https://registry.yarnpkg.com/
   tencent ------ https://mirrors.tencent.com/npm/
