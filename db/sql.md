@@ -873,3 +873,295 @@ TCL语句 : 事物控制语句
 在MySQL中，主键（Primary Key）是唯一标识表中每一行数据的字段。主键的值在表中必须是唯一的，不能有重复。这意味着，如果您尝试插入一个与已存在的主键值相同的新记录，MySQL将会报错并阻止该操作。
 如果您需要在表中存储可以重复的值，可以考虑使用唯一索引（Unique Index）或者普通索引（Index）。唯一索引可以包含重复的值，但不允许有空值（NULL）。而普通索引则允许包含重复的值和空值。
 另外，如果您需要创建一个可以包含重复主键值的表，可以考虑使用复合主键（Composite Primary Key），它由多个字段组成，并且这些字段的组合值在表中必须是唯一的。
+
+
+在SQL中，LEFT JOIN 后面直接跟 SELECT 子查询是 完全合法且常见的语法，这种结构被称为 "派生表（Derived Table）" 或 "子查询连接"。您示例中的用法是正确的，我来详细解释这种语法：
+
+1. 语法结构解析
+
+LEFT JOIN 表名 ON 条件
+-- 您示例中的特殊形式：
+LEFT JOIN (SELECT...子查询) 别名 ON 条件
+
+
+2. 您代码中的具体应用
+
+LEFT JOIN ${APP_MARKET}.MKT_PARAM_INFO_TC PARAM1 
+ON T1.ACCT_STAT = PARAM1.CODE 
+AND PARAM2.PARA_ID = (
+    -- 这里是嵌套的SELECT子查询
+    SELECT PARAM_ID 
+    FROM ${APP_MARKET}.MKT_PARAM_INFO_TC 
+    WHERE CODE = 'ACCT_STAT' 
+    AND DEL_FLG='1'
+)
+
+
+3. 为什么这样设计？
+
+1. 动态过滤：  
+   子查询可以动态获取 PARAM_ID，而不是硬编码值
+
+2. 数据关联：  
+   通过子查询结果作为连接条件的一部分
+
+3. 逻辑清晰：  
+   将过滤条件集中在一个子查询中，避免多次重复查询相同表
+
+4. 实际执行顺序
+
+1. 执行子查询：SELECT PARAM_ID FROM... WHERE CODE = 'ACCT_STAT'
+2. 将子查询结果作为 PARAM1.PARA_ID 的匹配值
+3. 执行主表的 LEFT JOIN
+
+
+5. 等效写法对比
+
+原写法（推荐）：
+
+LEFT JOIN tableA ON tableA.col = tableB.col
+AND tableA.id = (SELECT id FROM tableC WHERE...)
+
+
+等效写法（不推荐）：
+
+LEFT JOIN (
+    SELECT * FROM tableA 
+    WHERE id = (SELECT id FROM tableC WHERE...)
+) ON tableA.col = tableB.col
+
+
+6. 性能提示
+
+1. 索引优化：  
+   确保 CODE 和 DEL_FLG 字段有索引
+
+2. 子查询简化：  
+   如果子查询结果可缓存，考虑用变量替代：
+   -- Oracle写法
+   DECLARE v_param_id NUMBER;
+   BEGIN
+     SELECT PARAM_ID INTO v_param_id FROM... WHERE CODE = 'ACCT_STAT';
+     
+     SELECT...LEFT JOIN MKT_PARAM_INFO_TC PARAM1 
+     ON PARAM1.PARA_ID = v_param_id;
+   END;
+   
+
+3. 执行计划检查：  
+   使用 EXPLAIN PLAN 确认子查询没有导致性能瓶颈
+
+7. 其他常见应用场景
+
+-- 场景1：连接聚合结果
+LEFT JOIN (
+    SELECT user_id, MAX(login_time) AS last_login 
+    FROM user_logins 
+    GROUP BY user_id
+) login ON login.user_id = users.id
+
+-- 场景2：连接过滤后的数据
+LEFT JOIN (
+    SELECT * FROM products 
+    WHERE is_active = 1
+) active_products ON active_products.category_id = categories.id
+
+
+8. 为什么能这样写？
+
+这是SQL标准（ANSI SQL）的一部分，所有主流数据库（Oracle/MySQL/PostgreSQL等）都支持这种语法，称为：
+• Inline View（Oracle）
+
+• Derived Table（SQL Server）
+
+• Subquery in FROM clause（标准术语）
+
+9. 特别注意事项
+
+1. Oracle中的限制：  
+   在Oracle中，如果子查询包含 ORDER BY，需要配合 ROWNUM 使用
+
+2. 性能影响：  
+   复杂子查询可能导致多次表扫描，需检查执行计划
+
+3. 可读性：  
+   当子查询很复杂时，考虑使用CTE（WITH子句）提高可读性：
+   WITH param_ids AS (
+       SELECT PARAM_ID 
+       FROM ${APP_MARKET}.MKT_PARAM_INFO_TC 
+       WHERE CODE = 'ACCT_STAT' 
+       AND DEL_FLG='1'
+   )
+   SELECT...
+   LEFT JOIN ${APP_MARKET}.MKT_PARAM_INFO_TC PARAM1 
+   ON PARAM1.PARA_ID = (SELECT PARAM_ID FROM param_ids)
+   
+
+总结：您代码中的写法是 标准且高效的SQL模式，通过子查询动态确定连接条件，特别适合需要根据其他表数据过滤连接结果的场景。
+
+在 SQL 中，一个 WITH 子句可以包含多个 CTE（Common Table Expression），而不是使用多个 WITH 子句。以下是 TiDB 8.0 中的具体用法示例和注意事项：
+
+1. 多 CTE 的正确语法
+
+WITH
+  cte1 AS (SELECT ... FROM table1),  -- 第一个CTE
+  cte2 AS (SELECT ... FROM table2),  -- 第二个CTE
+  cte3 AS (SELECT ... FROM cte1 JOIN cte2 ON ...)  -- 可引用之前的CTE
+SELECT * FROM cte3;  -- 主查询
+
+
+2. TiDB 8.0 实际示例
+
+场景：统计用户订单信息及所属地区
+
+WITH
+  -- CTE1: 活跃用户
+  active_users AS (
+    SELECT 
+      user_id, 
+      user_name,
+      region_id
+    FROM users 
+    WHERE last_login > DATE_SUB(NOW(), INTERVAL 30 DAY)
+  ),
+  
+  -- CTE2: 订单汇总
+  order_summary AS (
+    SELECT
+      user_id,
+      COUNT(*) AS order_count,
+      SUM(amount) AS total_amount
+    FROM orders
+    WHERE order_date > '2025-01-01'
+    GROUP BY user_id
+  ),
+  
+  -- CTE3: 地区信息（可嵌套引用）
+  region_data AS (
+    SELECT
+      r.region_id,
+      r.region_name,
+      COUNT(u.user_id) AS user_count
+    FROM regions r
+    LEFT JOIN active_users u ON r.region_id = u.region_id
+    GROUP BY r.region_id, r.region_name
+  )
+
+-- 主查询：合并所有CTE数据
+SELECT 
+  au.user_name,
+  os.order_count,
+  os.total_amount,
+  rd.region_name,
+  rd.user_count AS region_active_users
+FROM active_users au
+JOIN order_summary os ON au.user_id = os.user_id
+LEFT JOIN region_data rd ON au.region_id = rd.region_id
+ORDER BY os.total_amount DESC;
+
+
+3. 关键注意事项（TiDB 8.0 专有特性）
+
+1. 递归 CTE 支持：
+   WITH RECURSIVE cte AS (
+     SELECT id, name, parent_id FROM categories WHERE id = 1  -- 基础查询
+     UNION ALL
+     SELECT c.id, c.name, c.parent_id 
+     FROM categories c
+     JOIN cte ON c.parent_id = cte.id  -- 递归部分
+   )
+   SELECT * FROM cte;
+   
+
+2. 临时表重用：  
+   同一 WITH 子句中的 CTE 可以相互引用（如示例中的 region_data 引用 active_users）
+
+3. 性能优化：  
+   TiDB 8.0 对 CTE 的优化：
+   • 自动物化（Materialization）常用 CTE
+
+   • 下推计算到存储层
+
+4. 语法限制：
+   • 每个 CTE 必须有唯一名称
+
+   • 不支持在同一个 WITH 中混合递归和非递归 CTE
+
+4. 错误写法示例
+
+❌ 多个 WITH 子句（错误）
+
+WITH cte1 AS (SELECT ...);
+WITH cte2 AS (SELECT ...);  -- 语法错误！
+SELECT * FROM cte1 JOIN cte2 ...;
+
+
+✅ 正确修正
+
+WITH
+  cte1 AS (SELECT ...),
+  cte2 AS (SELECT ...)
+SELECT * FROM cte1 JOIN cte2 ...;
+
+
+5. 复杂场景示例
+
+多级 CTE 嵌套 + 窗口函数
+
+WITH
+  raw_sales AS (
+    SELECT 
+      product_id,
+      sale_date,
+      quantity,
+      amount,
+      -- 计算移动平均
+      AVG(amount) OVER (PARTITION BY product_id ORDER BY sale_date ROWS 2 PRECEDING) AS moving_avg
+    FROM sales
+    WHERE sale_date BETWEEN '2025-01-01' AND '2025-03-31'
+  ),
+  
+  product_stats AS (
+    SELECT
+      product_id,
+      SUM(quantity) AS total_quantity,
+      SUM(amount) AS total_revenue,
+      MAX(moving_avg) AS peak_moving_avg
+    FROM raw_sales
+    GROUP BY product_id
+  ),
+  
+  top_products AS (
+    SELECT *
+    FROM product_stats
+    ORDER BY total_revenue DESC
+    LIMIT 10
+  )
+
+SELECT 
+  p.product_id,
+  p.product_name,
+  tp.total_quantity,
+  tp.total_revenue
+FROM top_products tp
+JOIN products p ON tp.product_id = p.id;
+
+
+6. TiDB 8.0 的增强特性
+
+1. CTE 内支持 DML 操作（实验性功能）：
+   WITH 
+     deleted_users AS (
+       DELETE FROM users WHERE is_expired = 1 RETURNING user_id, user_name
+     )
+   INSERT INTO audit_log 
+   SELECT user_id, user_name, 'DELETED', NOW() FROM deleted_users;
+   
+
+2. 分布式执行优化：  
+   CTE 查询可跨 TiKV 节点并行计算
+
+3. 内存控制：  
+   通过 tidb_mem_quota_query 限制 CTE 内存使用
+
+总结：在 TiDB 8.0 中，一个 WITH 子句可定义多个 CTE，通过逗号分隔。这种设计既能保持代码清晰度，又能实现复杂的多阶段数据处理逻辑。

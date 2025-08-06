@@ -10,6 +10,7 @@ nrm ls
   huawei ------- https://repo.huaweicloud.com/repository/npm/
   jf ----------- http://172.16.10.70:4873/
 
+
 nrm ls
   npm ---------- https://registry.npmjs.org/
   yarn --------- https://registry.yarnpkg.com/
@@ -24,7 +25,7 @@ nrm ls
 nrm add jf http://172.16.10.70:4873/ && nrm ls 
 $ nrm use jf //切换源
 
-nrm 只是辅助 npm 工作的一个小工具（专门管镜像源的）
+nrm只是辅助npm工作的一个小工具（专门管镜像源的）
 nrm (npm Registry Manager)
 领域：Node.js / JavaScript 生态系统。
 用途：nrm 是一个命令行工具，用于管理和切换 npm 的包注册表（registry）。
@@ -64,3 +65,4 @@ nrm (npm Registry Manager)
 安装 `JF-UI` 包的 `0.2.7` 版本，并将其作为开发依赖添加到 `package.json` 文件中。
 
 > 注意：在较新版本的 npm（v5.0.0+）中，`npm install <package-name>` 默认会将包作为生产依赖安装（相当于 `--save`）。如果要明确安装为开发依赖，必须加上 `--save-dev` 或 `-D` 参数。
+

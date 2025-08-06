@@ -3,6 +3,123 @@
 -- 查看当前密码策略 SELECT * FROM dba_profiles WHERE profile = 'DEFAULT' AND resource_name = 'PASSWORD_LIFE_TIME'; 
 -- 修改密码永不过期 ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
 
+
+在Oracle数据库中，DBA_PROFILES 是一个重要的数据字典视图，它记录了数据库中所有的资源限制配置文件（Resource Limit Profiles）的定义信息。以下是它的核心作用与详细说明：
+
+1. 核心作用
+
+DBA_PROFILES 主要用于管理Oracle的资源限制配置，包括：
+• 密码策略（如密码复杂度、有效期）
+• 资源限制（如CPU时间、会话数）
+• 账户锁定规则（如登录失败次数限制）
+
+这些配置通过Profile（配置文件）实现，Profile可以被分配给用户，控制其资源使用和密码安全策略。
+
+2. 关键字段说明
+字段名 数据类型 说明
+
+PROFILE VARCHAR2(128) 配置文件的名称（如 DEFAULT）
+
+RESOURCE_NAME VARCHAR2(32) 资源/密码参数名（如 FAILED_LOGIN_ATTEMPTS）
+
+RESOURCE_TYPE VARCHAR2(8) 参数类型：PASSWORD（密码）或 KERNEL（资源）
+
+LIMIT VARCHAR2(128) 参数的限制值（如 10、UNLIMITED）
+
+COMMON VARCHAR2(3) 是否为CDB（多租户）中的公共配置：YES/NO
+
+3. 典型应用场景
+
+(1) 查询所有Profile的配置
+
+SELECT * FROM DBA_PROFILES 
+ORDER BY PROFILE, RESOURCE_TYPE, RESOURCE_NAME;
+
+
+(2) 查看默认Profile的密码策略
+
+SELECT RESOURCE_NAME, LIMIT 
+FROM DBA_PROFILES 
+WHERE PROFILE = 'DEFAULT' AND RESOURCE_TYPE = 'PASSWORD';
+
+输出示例：
+
+RESOURCE_NAME          LIMIT
+---------------------- --------------
+FAILED_LOGIN_ATTEMPTS  10
+PASSWORD_LIFE_TIME     180
+PASSWORD_REUSE_TIME    UNLIMITED
+
+
+(3) 修改Profile配置
+
+ALTER PROFILE developer LIMIT 
+  FAILED_LOGIN_ATTEMPTS 5
+  PASSWORD_LOCK_TIME 1;
+
+
+(4) 创建自定义Profile
+
+CREATE PROFILE audit_user LIMIT
+  SESSIONS_PER_USER         2
+  CPU_PER_SESSION           UNLIMITED
+  PASSWORD_REUSE_MAX        5;
+
+
+4. 重要参数详解
+
+密码策略参数（RESOURCE_TYPE = 'PASSWORD'）
+
+参数名 说明 示例值
+
+FAILED_LOGIN_ATTEMPTS 允许的连续失败登录次数 5
+
+PASSWORD_LIFE_TIME 密码有效期（天） 90
+
+PASSWORD_REUSE_TIME 密码可重复使用的时间（天） 365
+
+PASSWORD_LOCK_TIME 账户锁定时间（天） 1
+资源限制参数（RESOURCE_TYPE = 'KERNEL'）
+参数名 说明 示例值
+
+SESSIONS_PER_USER 每个用户的最大会话数 3
+
+CPU_PER_SESSION 每个会话的CPU时间（百分之一秒） 100000
+
+CONNECT_TIME 会话最大连接时间（分钟） 60
+
+5. 实际应用示例
+
+场景：为财务用户创建严格的Profile  
+-- 1. 创建Profile
+CREATE PROFILE finance_profile LIMIT
+  FAILED_LOGIN_ATTEMPTS  3
+  PASSWORD_LIFE_TIME     60
+  PASSWORD_REUSE_TIME    180
+  SESSIONS_PER_USER      2;
+
+-- 2. 分配给用户
+ALTER USER acc_001 PROFILE finance_profile;
+ALTER USER acc_002 PROFILE finance_profile;
+
+
+6. 注意事项
+
+1. 默认Profile：Oracle会自动创建名为 DEFAULT 的Profile，所有未明确分配Profile的用户使用此配置。
+2. 权限要求：查询 DBA_PROFILES 需要 SELECT_CATALOG_ROLE 或 DBA 角色权限。
+3. 多租户环境：在CDB中，COMMON 字段标识是否为所有PDB共享的配置。
+4. 参数继承：如果某个参数在Profile中设为 DEFAULT，则继承 DEFAULT Profile中的值。
+
+7. 相关数据字典视图
+
+• USER_PROFILES：当前用户可访问的Profile
+
+• RESOURCE_COST：资源成本权重设置
+
+• DBA_USERS：查看用户分配的Profile
+
+通过 DBA_PROFILES，DBA可以精细控制数据库的安全性和资源使用，是Oracle数据库安全管理的重要工具。
+
 https://sqlfiddle.com/
 
 

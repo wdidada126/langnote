@@ -1,7 +1,5 @@
 # vue
 
-### 
-
 v-show 不显示
 v-if   不加载
 
@@ -197,5 +195,4 @@ text-overflow: ellipsis;
     }
   })
 }
-
 
