@@ -1,6 +1,6 @@
 # resharper
-
-ReSharper 主要专注于 .NET 语言的支持，如 C#, VB.NET, F# 等。对于 C 和 C++ 的支持，JetBrains 提供了另一款名为 ReSharper C++ 的产品，它是专门为 C++ 开发者设计的 Visual Studio 扩展。
+vs插件，用于开发c#的
+ReSharper主要专注于.NET语言的支持，如C#,VB.NET,F#等。对于C和C++的支持，JetBrains提供了另一款名为ReSharper C++的产品，它是专门为C++开发者设计的Visual Studio扩展。
 
 ### ReSharper C++ 特性包括但不限于：
 
@@ -14,7 +14,7 @@ ReSharper 主要专注于 .NET 语言的支持，如 C#, VB.NET, F# 等。对于
 
 ### 如何获取 ReSharper C++
 
-- 可以从 [JetBrains 官网](https://www.jetbrains.com/resharper-cpp/) 下载 ReSharper C++ 插件。
+- 可以从 [JetBrains 官网](https://www.jetbrains.com/resharper-cpp/) 下载ReSharper C++插件。
 - 它是作为 Visual Studio 的一个插件提供的，安装后可以在 Visual Studio 内直接使用其功能。
 
 ### 注意事项
@@ -22,6 +22,4 @@ ReSharper 主要专注于 .NET 语言的支持，如 C#, VB.NET, F# 等。对于
 虽然 ReSharper（针对 .NET）和 ReSharper C++ 是两个独立的产品，但如果你同时进行 .NET 和 C++ 开发，可能需要分别安装这两个工具来获得最佳体验。此外，它们可能会占用较多系统资源，因此在较老或配置较低的机器上使用时需要注意性能问题。
 
 如果你正在寻找一款能够同时支持多种语言（包括但不限于 C#、C++）的强大开发工具，那么 JetBrains 的系列产品是一个不错的选择。不过，记得根据自己的具体需求选择合适的产品。是否还有其他方面想要了解？
-
-https://www.jetbrains.com/resharper-cpp/
-The Visual Studio Extension for C++ Developer
+resharper_cpp.md
