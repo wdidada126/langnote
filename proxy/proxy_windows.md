@@ -59,6 +59,10 @@ export https_proxy=socks5://127.0.0.1:20800
 export http_proxy=http://172.18.176.1:20800
 export https_proxy=https://172.18.176.1:20800
 
+
+export http_proxy=http://172.18.176.1:20801
+export https_proxy=https://172.18.176.1:20801
+
 core.net.http:proxies={"http" : "PROTOCOL://IP:PORT/", "https" : "PROTOCOL://IP:PORT/"}
 
 https://requests.readthedocs.io/en/latest/user/advanced/#proxies
