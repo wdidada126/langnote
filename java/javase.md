@@ -1,5 +1,8 @@
 # javase
 
+jdk8.md
+javase_api_doc.xlsx 废弃了
+
 java se的api可以发送邮件
 
 HashMap 扩容
@@ -7,8 +10,6 @@ HashMap 扩容
 
 
 LongAdder
-
-
 
 java.text.SimpleDateFormat
 不是线程安全的
