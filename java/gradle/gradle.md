@@ -2,7 +2,6 @@
 
 gradle tasks
 
-
 在build.gradle文件中添加一个新的任务（task）非常简单。下面是一个例子，展示了如何添加一个名为myTask的新任务：
 打开你的项目的build.gradle文件（通常在项目的根目录下或者模块的子目录下）。
 在文件中找到合适的位置，添加一个新的任务定义。通常，所有的任务定义都放在tasks闭包中，或者作为顶级元素直接放在build.gradle文件的根级别。
@@ -24,7 +23,6 @@ task myTask {
 如果你需要更复杂的任务，比如依赖于其他任务，或者需要执行一些构建逻辑，你可以使用Gradle提供的更强大的任务配置选项。例如，你可以使用dependsOn来指定任务依赖，或者使用doFirst和doLast来指定任务执行的顺序。
 记住，Gradle的构建脚本是用Groovy或Kotlin DSL编写的，因此你可以利用这些语言的特性来编写更复杂的构建逻辑。如果你使用的是Kotlin DSL来编写build.gradle.kts文件，语法会有所不同，但基本的概念和步骤是相似的。
 
-
 es代码使用gradle构建
 es项目的build.gradle
 用了groovy编程语言，有File类，有eclipse插件的的groovy api
@@ -38,9 +36,9 @@ G:\gradle\cache\caches\modules-2\files-2.1
     testCompile group: 'junit', name: 'junit', version: '4.+'
 ```
 
-    版本号支持通配符
-    maven支持通配符吗？
-    npm是支持的
+版本号支持通配符
+maven支持通配符吗？
+npm是支持的
 
 局部变量
 https://dongchuan.gitbooks.io/gradle-user-guide-/content/writing_build_scripts/local_variables.html
@@ -323,7 +321,6 @@ conanfilex.txt
 
 grovvy编程语言，可以操作的内容更多，自定义的能力更强
 
-
 `gradlew tasks`执行一次
 
 gradlew 
@@ -357,7 +354,6 @@ java -jar build/libs/GradleWorkSpace-0.1.jar
 ### spring是gradle组织的，如何发布jar包到本电脑上的maven仓库？
 
 参考gradle实战 这本书
-
 gradle 发布 maven 仓库
 
 ## gradle不同版本大陆快速下载 版本
@@ -367,12 +363,12 @@ gradle安装包国内下载以及maven仓库配置以及其他注意点-CSDN博�
 https://mirrors.cloud.tencent.com/gradle/
 
 8.5, released on 29 Nov 2023
+
 v8.4 Oct 04, 2023
-
 v7.6.3 Oct 04, 2023
-
 v7.0 Apr 09, 2021
-
 v6.0 Nov 08, 2019
-
 v5.0 Nov 26, 2018
+
+## 问题
+一个gradle组织的项目，今天编译成功，明天不一定编译成功。同事编译成功，你不一定编译成功

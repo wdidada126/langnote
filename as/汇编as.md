@@ -8,9 +8,8 @@ assembly language
 
 不过，ClickHouse 并不大量使用手写汇编（hand-written assembly），而是更多依赖 C++ 编译器优化 + 内联汇编（inline assembly） + 内在函数（Intrinsics） + LLVM IR 优化 来实现高性能。
 
----
 
-## 🧱 一、ClickHouse 中汇编代码的几种形式
+##  一、ClickHouse 中汇编代码的几种形式
 
 | 类型 | 说明 | 示例场景 |
 |------|------|---------|
@@ -19,9 +18,8 @@ assembly language
 | 3. LLVM IR 生成（间接汇编） | 通过 Clang 生成高效汇编 | 向量化表达式执行 |
 | 4. 预编译的 `.s` 汇编文件 | 极少数情况下使用 | 特定平台优化（如 ARM64） |
 
----
 
-## 🔍 二、汇编相关代码的位置（基于 GitHub 仓库）
+##  二、汇编相关代码的位置（基于 GitHub 仓库）
 
 你可以在 ClickHouse 源码中搜索以下目录和文件：
 
@@ -36,8 +34,6 @@ assembly language
 - `Memcpy.h` / `InlineString.h`  
   包含对 `memcpy`、字符串操作的优化，可能使用 `__builtin_memcpy` 或手写循环（编译后生成高效汇编）。
 
----
-
 ### 2. `src/Functions/` —— 函数向量化（关键！）
 
 这是最可能生成高效汇编的地方，尤其是通过 LLVM JIT 编译表达式。
@@ -51,9 +47,7 @@ assembly language
 - `FunctionsMath.cpp`  
   数学函数向量化，LLVM 会自动向量化循环。
 
-> 🔍 注意：这些函数本身是 C++，但 ClickHouse 使用 JIT 编译 将表达式编译为 LLVM IR，再由 LLVM 生成高度优化的汇编代码（支持 AVX2、AVX-512）。
-
----
+>  注意：这些函数本身是 C++，但 ClickHouse 使用 JIT 编译 将表达式编译为 LLVM IR，再由 LLVM 生成高度优化的汇编代码（支持 AVX2、AVX-512）。
 
 ### 3. `src/Interpreters/` —— 查询执行引擎
 
@@ -63,9 +57,7 @@ assembly language
 - `JITCompiledExpression.h/cpp`  
   存储编译后的机器码，直接执行，性能接近手写汇编。
 
-> ✅ 这是 ClickHouse 高性能的核心之一：把 WHERE、SELECT 中的表达式编译成原生汇编执行。
-
----
+>  这是 ClickHouse 高性能的核心之一：把 WHERE、SELECT 中的表达式编译成原生汇编执行。
 
 ### 4. `src/base/hashing/` —— 哈希函数优化
 
@@ -81,14 +73,12 @@ assembly language
 
 这些内在函数会被编译为 `crc32` 汇编指令。
 
----
 
 ### 5. `src/base/polyfill/` —— 跨平台优化
 
 - `sse2neon.h`  
   在 ARM 上模拟 SSE 指令，用于跨平台 SIMD 支持。
 
----
 
 ### 6. 汇编文件（`.s` 或 `.S`）—— 极少数
 
@@ -103,9 +93,8 @@ ClickHouse 几乎不使用纯 `.s` 汇编文件，因为：
 - `contrib/` 目录下的库（如 `double-conversion`, `re2`）可能包含汇编
 - `src/Functions/URL/` 中某些解析函数可能使用手写循环（编译后高效）
 
----
 
-## 🔎 三、如何查找汇编相关代码？
+##  三、如何查找汇编相关代码？
 
 ### 方法 1：搜索内在函数（Intrinsics）
 
@@ -137,7 +126,7 @@ perf report
 
 ---
 
-## 🧠 四、总结：ClickHouse 的“汇编”真相
+##  四、总结：ClickHouse 的“汇编”真相
 
 | 误解 | 真相 |
 |------|------|
@@ -145,9 +134,8 @@ perf report
 | “性能来自汇编” | ✅ 更准确说是：向量化执行 + JIT 编译 + SIMD + 零拷贝 |
 | “可以读到 `.s` 文件” | ❌ 几乎没有纯汇编文件，性能代码在 C++ 中通过 intrinsic 实现 |
 
----
 
-## ✅ 推荐关注的核心目录
+##  推荐关注的核心目录
 
 | 目录 | 作用 |
 |------|------|
@@ -156,7 +144,6 @@ perf report
 | `src/base/hashing/` | 哈希函数，使用 `__builtin` 和 SIMD intrinsic |
 | `src/Common/` | 内存对齐、高效内存操作 |
 
----
 
 如果你想看：
 - 一个 JIT 编译表达式的完整流程
