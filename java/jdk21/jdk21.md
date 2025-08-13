@@ -35,3 +35,7 @@ Schedule
 2023/08/10		Initial Release Candidate
 2023/08/24		Final Release Candidate
 2023/09/19		General Availability
+
+
+Java ScopedValue
+https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ScopedValue.html

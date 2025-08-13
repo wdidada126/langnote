@@ -1,7 +1,9 @@
 # bazel
 
 国内大厂使用blade
+抖音公司c++技术栈，在腾讯开源blade的基础上改的，可以用最新标准的c++
 
+bazel就是用最新版java写的
 bazel 8是Java 21写的，谷歌那帮人是真的牛啊
 
 Build C++
