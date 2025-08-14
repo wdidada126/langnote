@@ -1,5 +1,10 @@
 # zookeeper
 
+## 替换
+clickhouse自己写中间件，替换zk
+kafka自己写中间件，替换zk
+
+## dd
 https://zookeeper.apache.org/doc/r3.5.7/zookeeperProgrammers.html#sc_zkProgrammingC
 
 zookeeper c客户端
