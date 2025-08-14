@@ -1,5 +1,47 @@
 # Java并发编程实战
 
+java8是2014年3月
+书籍是2012年
+
+作者: [美] Brian Goetz / [美] Tim Peierls / [美] Joshua Bloch / [美] Joseph Bowbeer / [美] David Holmes / [美] Doug Lea
+出版社: 机械工业出版社
+原作名: Java Concurrency in Practice
+译者: 童云兰
+出版年: 2012-2
+页数: 293
+定价: 69.00元
+装帧: 平装
+丛书: 华章专业开发者丛书
+ISBN: 9787111370048
+
+关于《Java Concurrency in Practice》（中文译名：《Java并发编程实战》）是否有针对 Java 8 的版本，情况如下：
+
+没有官方发布的、内容全面更新至 Java 8 的新版《Java Concurrency in Practice》。
+
+这本书的原始英文版首次出版于 2006 年，主要基于 Java 5 和 Java 6 的并发特性编写。
+
+### 为什么说“没有”Java 8 版本？
+
+1.  作者和出版社未推出新版：该书的作者 Brian Goetz 等人以及出版社 Addison-Wesley 没有发布过一个名为 "Java Concurrency in Practice, 2nd Edition" 或类似、专门针对 Java 8 进行全面修订的版本。
+2.  核心内容依然经典：这本书的核心价值在于它深入阐述的并发原理、设计模式、最佳实践和潜在陷阱（如线程安全、死锁、性能、可伸缩性等）。这些基础理论和原则在 Java 8 及以后的版本中依然是完全适用的，甚至更加重要。
+
+### 但它仍然包含 Java 8 的相关内容
+
+   `java.util.concurrent` 包的演进：虽然书的核心是 Java 5/6，但它详细讲解的 `java.util.concurrent` 包是 Java 并发的基石。Java 8 在这个包的基础上进行了增强（例如 `CompletableFuture` 的大量新方法、`ConcurrentHashMap` 的新函数式方法等），但这些是建立在书中所讲的 `Executor`、`Future`、`ConcurrentMap` 等基础之上的。
+   后续讨论和补充：作者 Brian Goetz 等人（特别是 Doug Lea）深度参与了 Java 8 中并发 API 的设计（如 `CompletableFuture`, `LongAdder`, `StampedLock` 等）。你可以通过阅读他们的论文、JEP (JDK Enhancement Proposal) 或后续的博客文章来了解 Java 8 新特性的设计思想，这些思想与《Java Concurrency in Practice》中的原则一脉相承。
+
+### 结论
+
+   《Java Concurrency in Practice》没有官方的“Java 8 版本”。
+   但它仍然是学习 Java 并发的“圣经”和最佳起点。即使你主要使用 Java 8+，这本书提供的基础理论和思维方式是无可替代的。
+   在掌握了这本书的核心内容后，你可以再学习 Java 8 引入的新工具，如：
+       `CompletableFuture` (用于异步编程和流式调用)
+       `LongAdder` / `DoubleAdder` (高性能计数器)
+       `StampedLock` (更灵活的读写锁)
+       `java.util.concurrent` 中集合类的 `Stream` API 和 `forEach`/`compute`/`merge` 等方法。
+
+简单来说：这本书是“道”（原理），Java 8 的新特性是“术”（工具）。先学“道”，再学“术”，效果最佳。
+
 [Java并发编程实战](https://book.douban.com/subject/10484692/)
 
 本书作者都是Java Community Process JSR 166专家组（并发工具）的主要成员，并在其他很多JCP专家组里任职。Brian Goetz有20多年的软件咨询行业经验，并著有至少75篇关于Java开发的文章。Tim Peierls是“现代多处理器”的典范，他在BoxPop.biz、唱片艺术和戏剧表演方面也颇有研究。Joseph Bowbeer是一个Java ME专家，他对并发编程的兴趣始于Apollo计算机时代。David Holmes是《The Java Programming Language》一书的合著者，任职于Sun公司。Joshua Bloch是Google公司的首席Java架构师，《Effective Java》一书的作者，并参与著作了《Java Puzzlers》。Doug Lea是《Concurrent Programming》一书的作者，纽约州立大学 Oswego分校的计算机科学教授。
