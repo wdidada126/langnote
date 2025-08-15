@@ -1,5 +1,8 @@
 # 汇编assembly
 
+c
+c++代码里卖弄套汇编代码
+
 汇编，mysql clickHouse中使用
 
 assembly language
