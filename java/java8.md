@@ -1,5 +1,7 @@
 # java8
 
+https://docs.oracle.com/javase/8/index.html
+
 Java8实战 Future CompelwteFuture
 RecsiveTask forkloinpool
 
@@ -8,15 +10,11 @@ Spring
 BeanPostProcessor
 BeanFactoryPostProcessor
 
-
-
-mybatis批量插入 三种方法 最终方案，开启ExecutorType.BATCH
-foreach会预编译 遍历太多会耗时
+mybatis批量插入三种方法最终方案，开启ExecutorType.BATCH
+foreach会预编译,遍历太多会耗时
 https://www.zhihu.com/answer/2245413885
 
-
 https://zhuanlan.zhihu.com/p/419228460
-
 
 spring三级缓存
 https://www.zhihu.com/answer/2955320178
@@ -29,13 +27,10 @@ SortMap接口
 
 Atomic原子类怎么实现
 
-
-
 线程池拒绝策略
 
 mybatis批量插入策略区别
 https://zhuanlan.zhihu.com/p/35305211
-
 
 Stream
 
@@ -43,18 +38,10 @@ forEach
 map
 peak
 
-
-
 mybatis批量提交
-
-
-
-
 
 java代码质量相关插件(PMD|JaCoCo|sonar)关于maven及IDEA使用及配置
 https://blog.csdn.net/liuzhupeng/article/details/106907422
-
-
 
 JDK7新特性：MulticastChannel实现非阻塞式组播通信
 https://blog.csdn.net/code727/article/details/84419381
@@ -425,7 +412,6 @@ windows电脑上
 
 https://github.com/edidada/Java8InAction
 
-
 https://github.com/java8/Java8InAction
 
 读书笔记
@@ -433,10 +419,7 @@ https://github.com/java8/Java8InAction
 https://github.com/NGLSL/Java8InAction-ReadingNotes
 https://github.com/edidada/lambda-stream-practice
 
-
-
 [轻松调试Stream](http://www.imooc.com/article/293427)
-
 
 import java.beans.ConstructorProperties;
 
@@ -470,9 +453,6 @@ ZoneId：时区ID，用于表示不同的时区。
 ZoneOffset：时区偏移量，用于表示相对于UTC的时差。
 这些新的类和接口提供了更加方便、灵活和易用的日期时间处理方式，相比于旧的日期时间API，在表达能力、可读性和可维护性方面都有了很大的提升。
 
-
-
-
 Java 8引入了许多新的API和功能，包括以下几个方面：
 Lambda表达式：Lambda表达式是一种更简洁、更易于理解的方式来表示一个方法的参数和实现，它可以使代码更加简洁，更易于阅读和维护。
 Stream API：Stream API提供了一种新的方式来处理集合数据，它允许在集合数据上执行复杂的操作，例如过滤、映射和归约等。
@@ -483,13 +463,10 @@ Stream API：Stream API提供了一种新的方式来处理集合数据，它允
 并发增强：Java 8提供了一些新的并发工具和API，例如CompletableFuture和StamptedLock等，以帮助开发者更轻松地处理并发问题。
 其他改进：Java 8还包括其他一些改进，例如类型注解、Nashorn JavaScript引擎、Base64编码、Optional类等。
 
-
-
 CompletableFuture是Java 8中引入的新特性，它是一种异步编程的方式，可以用于简化异步任务的处理，它能够让异步执行的任务更加简单、易读、易维护。
 CompletableFuture可以用于将一个耗时的操作异步执行，并在执行完成后回调处理结果，同时可以在不同的线程中进行任务之间的串行、并行和组合操作。
 在CompletableFuture中，可以通过thenApply、thenAccept和thenRun方法来添加回调函数，这些方法的区别在于它们的返回值类型和参数类型的不同，从而可以实现不同的操作和组合。
 除此之外，CompletableFuture还提供了一些常用的方法，如allOf、anyOf、join等，用于处理多个CompletableFuture实例之间的关系和组合。
-
 
 StampedLock是Java 8引入的新型锁，它是ReadWriteLock的改进版本。与ReadWriteLock类似，StampedLock也支持读写操作分离，可以实现更高的并发性和更优秀的性能。
 
@@ -509,8 +486,3 @@ tryReadLock()：非阻塞获取读锁，如果当前没有写锁，则获取读�
 tryWriteLock()：非阻塞获取写锁，如果当前没有读锁或写锁，则获取写锁成功，否则获取写锁失败。
 tryConvertToWriteLock()：将当前线程持有的读锁转换为写锁，如果当前没有读锁或已经有写锁，则转换失败。
 需要注意的是，StampedLock的使用需要谨慎，因为它的锁状态是通过戳记来维护的，如果戳记被错误地使用或泄露，会导致锁状态出现异常，甚至可能导致死锁等问题。
-
-
-
-
-

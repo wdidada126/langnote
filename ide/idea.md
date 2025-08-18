@@ -1,4 +1,133 @@
 # IDEA
+## 取消import *
+
+在 IntelliJ IDEA 中，如果你想要取消或避免使用 `import *`（即“星号导入”），比如：
+
+```java
+import java.util.*;
+```
+
+而是希望 IDEA 自动展开为具体的类导入，如：
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+```
+
+你可以通过以下设置来实现这一目标。
+
+###  目标
+- 禁止使用 `import *`
+- 让 IDEA 自动用明确的类名替换星号导入
+- 保持代码清晰、避免命名冲突、提高可读性
+
+##  方法一：设置 IDEA 自动展开星号导入（推荐）
+
+### 步骤：
+
+1. 打开 IntelliJ IDEA
+2. 进入设置：
+   - Windows/Linux: `File` → `Settings`
+   - macOS: `IntelliJ IDEA` → `Preferences`
+3. 导航到：
+   ```
+   Editor → Code Style → Java → Imports
+   ```
+4. 在 Imports 选项卡中，找到：
+   - ✅ Use single class import（勾选）
+   - ❌ 确保 Use import with '*‘ 是 未勾选 的
+
+5. 设置：
+   - Class count to use import with '\*': 改为 `999`（或一个很大的数）
+   - Names count to use static import with '\*': 改为 `999`
+
+>  这样设置后，只有当导入的类超过 999 个时才使用 `*`，实际上等于禁用星号导入。
+
+---
+
+##  方法二：让已有的 `import *` 自动展开
+
+如果你已经有代码使用了 `import java.util.*;`，可以手动或自动展开：
+
+### 方式 1：优化导入（Optimize Imports）
+
+- 快捷键：`Ctrl + Alt + O`（Windows/Linux）或 `Cmd + Option + O`（macOS）
+- IDEA 会自动：
+  - 移除未使用的导入
+  - 将 `import *` 展开为具体类（如果上面设置了“Use single class import”）
+
+### 方式 2：手动触发“展开星号导入”
+
+将光标放在星号导入行上，按 `Alt + Enter`，选择：
+> "Replace 'import java.util.\*;' with individual imports"
+
+即可自动展开。
+
+---
+
+##  方法三：使用 CheckStyle 或代码规范强制禁止（团队项目）
+
+如果你想在团队中强制禁止 `import *`，可以：
+
+- 使用 CheckStyle 插件
+- 配置规则禁止 `import` 使用 `*`
+- 或使用 SpotBugs / PMD 等静态检查工具
+
+示例 CheckStyle 规则：
+```xml
+<module name="UnusedImports">
+    <property name="unusedImports" value="true"/>
+</module>
+<module name="RedundantImport"/>
+<module name="ImportControl"> <!-- 可定义允许的 import 模式 -->
+```
+
+---
+
+##  为什么建议避免 `import *`？
+
+| 原因 | 说明 |
+|------|------|
+| 🔍 可读性差 | 看不到具体用了哪些类 |
+| 🧩 命名冲突 | 容易与同名类冲突（如 `java.util.Date` vs `java.sql.Date`） |
+| 📦 潜在依赖 | 可能无意中依赖了不该用的类 |
+| 📈 编译性能 | 虽然影响极小，但理论上导入越少越好 |
+
+> ⚠️ 例外：`java.lang.*` 是自动导入的，无需写，也无法控制。
+
+---
+
+##  最佳实践总结
+
+| 建议 | 说明 |
+|------|------|
+| ✅ 禁用 `import *` | 在 IDEA 设置中关闭 |
+| ✅ 使用 `Ctrl + Alt + O` | 定期优化导入 |
+| ✅ 使用 `Alt + Enter` | 展开已有的星号导入 |
+| ✅ 团队统一规范 | 通过代码风格或检查工具强制执行 |
+
+
+ 设置完成后，你的代码将自动使用明确导入，例如：
+
+```java
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.ArrayList;
+```
+
+而不是：
+
+```java
+import java.util.*;
+```
+
+这样代码更清晰、专业，适合大型项目和团队协作。
+
+需要我提供一份 `IntelliJ IDEA` 的代码风格 XML 配置示例吗？
+## doc
+
 核心技术是Program Structure Interface数据结构，也叫PSI，相当于一个加强版的AST，适配了各种语言，不但解析了语法，还分析了语义。信息量吊打vscode的LSP
 
 idea 打开java文件

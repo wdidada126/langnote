@@ -13,8 +13,6 @@ java.util.concurrent.locks.StampedLock
 Condition不需要monitor对象
 Object需要在同步代码块（synchronized block）或同步方法（synchronized method）内部调用。这是因为这些方法依赖于对象的内置监视器（monitor）来实现线程间的同步。
 
-
-
 ## 第一部分 Java 并发编程基础篇
 ### 第1 章 并发编程线程基础 2
 #### 1.1 什么是线程 2
