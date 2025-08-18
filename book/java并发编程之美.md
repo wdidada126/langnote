@@ -13,14 +13,16 @@ java.util.concurrent.locks.StampedLock
 Condition不需要monitor对象
 Object需要在同步代码块（synchronized block）或同步方法（synchronized method）内部调用。这是因为这些方法依赖于对象的内置监视器（monitor）来实现线程间的同步。
 
+
+
 ## 第一部分 Java 并发编程基础篇
 ### 第1 章 并发编程线程基础 2
 #### 1.1 什么是线程 2
 #### 1.2 线程创建与运行 3
 #### 1.3 线程通知与等待 6
-#### 1.4 等待线程执行终止的join 方法 16
+#### 1.4 等待线程执行终止的join方法 16
 #### 1.5 让线程睡眠的sleep 方法 19
-#### 1.6 让出CPU 执行权的yield 方法 23
+#### 1.6 让出CPU执行权的yield方法 23
 #### 1.7 线程中断 24
 #### 1.8 理解线程上下文切换 30
 #### 1.9 线程死锁 30
@@ -31,7 +33,7 @@ Object需要在同步代码块（synchronized block）或同步方法（synchron
 1.11.1 ThreadLocal使用示例 40
 1.11.2 ThreadLocal的实现原理 42
 1.11.3 ThreadLocal不支持继承性 45
-1.11.4 InheritableThreadLocal 类 46
+1.11.4 InheritableThreadLocal类 46
 ### 第2 章 并发编程的其他基础知识 50
 #### 2.1 什么是多线程并发编程 50
 #### 2.2 为什么要进行多线程并发编程 51
@@ -68,9 +70,8 @@ Java 内存模型允许编译器和处理器对指令重排序以提高运行性
 2.12.4 什么是可重入锁 76
 2.12.5 自旋锁 77
 2.13 总结 77
-
 ## 第二部分 Java 并发编程高级篇
-### 第3 章 Java 并发包中ThreadLocalRandom 类原理剖析 80
+### 第3 章 Java 并发包中ThreadLocalRandom类原理剖析 80
 3.1 Random类及其局限性 80
 3.2 ThreadLocalRandom 82
 3.3 源码分析 84
@@ -93,7 +94,24 @@ Java 内存模型允许编译器和处理器对指令重排序以提高运行性
 5.2.5 删除元素 110
 5.2.6 弱一致性的迭代器 111
 5.3 总结 114
-### 第6 章 Java并发包中锁原理剖析 115
+
+
+### 第6章 Java并发包中锁原理剖析 115
+
+## 第一部分 Java 并发编程基础篇
+### 第1 章 并发编程线程基础 
+
+### 1.10 守护线程与用户线程
+
+ThreadLocal、InheritableThreadLocal、TransmittableThreadLocal原理
+
+### 第2 章 并发编程的其他基础知识
+## 第二部分 Java 并发编程高级篇
+### 第3 章 Java 并发包中ThreadLocalRandom类原理剖析
+
+### 第4 章 Java 并发包中原子操作类原理剖析
+### 第5 章 Java并发包中并发List源码剖析
+### 第6章 Java并发包中锁原理剖析 115
 
 l 锁
 
@@ -679,7 +697,7 @@ public class StampedLockExample {
 
 ### 第7章 Java并发包中并发队列原理剖析 165
 
-三个阻塞队列
+三个阻塞队列 block
 ArrayBlockingQueue
 LinkedBlockingQueue
 PriorityBlockingQueue
@@ -744,9 +762,9 @@ DelayQueue.png
 #### 8.3 源码分析 230
 8.3.1 public void execute(Runnable command) 230
 8.3.2 工作线程Worker 的执行 235
-8.3.3 shutdown 操作 238
-8.3.4 shutdownNow 操作 240
-8.3.5 awaitTermination 操作 241
+8.3.3 shutdown操作 238
+8.3.4 shutdownNow操作 240
+8.3.5 awaitTermination操作 241
 #### 8.4 总结 242
 
 ThreadPoolExecutor 线程池执行器
@@ -756,7 +774,7 @@ public class ScheduledThreadPoolExecutor
         extends ThreadPoolExecutor
         implements ScheduledExecutorService
 
-### 第9 章 Java 并发包中ScheduledThreadPoolExecutor 原理探究 243
+### 第9 章 Java 并发包中ScheduledThreadPoolExecutor原理探究 243
 #### 9.1 介绍 243
 #### 9.2 类图介绍 243
 9.3 原理剖析 245
@@ -769,7 +787,7 @@ public class ScheduledThreadPoolExecutor
 
 
 ### 第10 章 Java并发包中线程同步器原理剖析 256
-#### 10.1 CountDownLatch 原理剖析 256
+#### 10.1 CountDownLatch原理剖析 256
 10.1.1 案例介绍 256
 10.1.2 实现原理探究 259
 10.1.3 小结 263
@@ -830,27 +848,22 @@ public void release()
 
 7.3
 
-
 #### 11.2 Tomcat的NioEndPoint中ConcurrentLinkedQueue的使用 293
 11.2.1 生产者——Acceptor线程 294
 11.2.2 消费者——Poller线程 298
 11.2.3 小结 300
 
-
 #### 11.3 并发组件ConcurrentHashMap使用注意事项 300
-
 
 #### 11.4 SimpleDateFormat是线程不安全的 304
 11.4.1 问题复现 304
 11.4.2 问题分析 305
 11.4.3 小结 309
 
-
 #### 11.5 使用Timer时需要注意的事情 309
 11.5.1 问题的产生 309
 11.5.2 Timer实现原理分析 310
 11.5.3 小结 313
-
 
 #### 11.6 对需要复用但是会被下游修改的参数要进行深复制 314
 11.6.1 问题的产生 314
