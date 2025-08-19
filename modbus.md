@@ -1,9 +1,8 @@
 # modbus
 
+PLC编程
+
 https://github.com/digitalpetri/modbus
-
-
-
 
 官网下载地址：http://www.redisant.cn/mse
 
@@ -11,7 +10,7 @@ https://github.com/digitalpetri/modbus
 支持多种Modbus协议
 监视串行线路或以太网上的通信数据
 支持多达 28 种数据格式，包括：Signed、Unsigned、Hex、Binary、Long、Float、Double等
-支持 Modbus 协议地址和 PLC 地址相互切换
+支持 Modbus 协议地址和PLC地址相互切换
 对任意数量寄存器中的数据绘制实时图表，监控数据的变化趋势
 支持同时创建多个连接网络和大量从站设备
 通过多个标签页进行管理，快速在从站设备之间进行切换
@@ -23,3 +22,5 @@ https://github.com/digitalpetri/modbus
 我知道的 他的光环他的经济能力 如果不是给到我身上是等于没有的 我最近不开心 他都是忙完立刻来找我 说好听的话哄我 没有物质付出
 
 让我想起比亚迪花2000万购买了一套系统，然后那帮采购高管成立了个小公司，每年500万维护经费，维护的钱他们那帮人自己赚了
+
+libmodbus.md

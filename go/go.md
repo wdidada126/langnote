@@ -1,5 +1,7 @@
 # go
 
+https://pkg.go.dev/std
+
 https://pkg.go.dev/
 
 从事服务器开发，且同时使用过C++、Erlang和golang，说说我对golang并发编程的看法。
