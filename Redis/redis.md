@@ -1,5 +1,389 @@
 # redis
 
+Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型（String, List, Hash, Set, Sorted Set）在底层使用了多种 高效的数据结构 来实现。这些内部数据结构的选择基于 空间效率、时间复杂度和使用场景 的权衡。
+
+我们将基于 Redis 6.0 的源码（[https://github.com/redis/redis](https://github.com/redis/redis)）来深入解析每种数据类型的内部编码（encoding）和对应的数据结构。
+
+---
+
+## 🧩 Redis 5 大数据类型与内部编码总览
+
+| Redis 数据类型 | 内部编码 (encoding) | 对应的数据结构 | 触发条件（何时使用） |
+|----------------|---------------------|----------------|------------------------|
+| String     | `OBJ_ENCODING_INT`  | `long` 类型整数 | 值是整数且可 fit 到 long |
+|                | `OBJ_ENCODING_EMBSTR` | `sdshdr8/sdshdr16` + 字符串 | 小字符串（≤ 44 字节） |
+|                | `OBJ_ENCODING_RAW`  | `sds`（动态字符串） | 大字符串 |
+| List       | `OBJ_ENCODING_ZIPLIST` (Redis 3.2-) | `ziplist` | 元素少且小（旧版本） |
+|                | `OBJ_ENCODING_QUICKLIST` | `quicklist` | Redis 3.2+ 默认（所有 List） |
+| Hash       | `OBJ_ENCODING_ZIPLIST` | `ziplist` | 字段少且值小 |
+|                | `OBJ_ENCODING_HT`   | `dict`（哈希表） | 字段多或值大 |
+| Set        | `OBJ_ENCODING_INTSET` | `intset` | 元素全是整数且少 |
+|                | `OBJ_ENCODING_HT`   | `dict` | 元素为字符串或数量多 |
+| Sorted Set | `OBJ_ENCODING_ZIPLIST` | `ziplist` | 元素少且小 |
+|                | `OBJ_ENCODING_SKIPLIST` | `zset`（`dict` + `skiplist`） | 元素多或大 |
+
+> ⚠️ 注意：从 Redis 3.2 开始，`list` 的底层已从 `ziplist` 和 `linkedlist` 迁移到 `quicklist`，它本质上是 ziplist 的双向链表，兼顾了内存和性能。
+
+---
+
+## 🔍 一、String 类型
+
+### 1. `OBJ_ENCODING_INT`
+- 结构：直接将整数存储在 `redisObject` 的 `ptr` 指针中。
+- 源码位置：`object.c` 中 `createStringObject()`。
+- 优点：零内存碎片，最快访问。
+- 条件：`value` 是整数且 `lval` 可 fit 到 `long`。
+
+```c
+// redisObject.h
+typedef struct redisObject {
+    unsigned type:4;
+    unsigned encoding:4;
+    void *ptr; // 当 encoding=INT 时，ptr = (void*)value
+    // ...
+} robj;
+```
+
+### 2. `OBJ_ENCODING_EMBSTR` 和 `OBJ_ENCODING_RAW`
+- 底层结构：`sds`（Simple Dynamic String）。
+- 源码文件：`sds.h`, `sds.c`
+
+#### SDS 结构（以 `sdshdr8` 为例）：
+```c
+// sds.h
+struct __attribute__ ((__packed__)) sdshdr8 {
+    uint8_t len;      // 当前字符串长度
+    uint8_t alloc;    // 分配的总空间（不包括 header）
+    unsigned char flags; // 编码类型（低 3 位）
+    char buf[];       // 变长数组，存储字符串
+};
+```
+
+- `embstr`：使用 一次 `malloc` 分配 `redisObject` + `sdshdr` + 字符串空间，适合小字符串（≤ 44 字节），减少内存碎片。
+- `raw`：`redisObject` 和 `sds` 分开 `malloc`，适合大字符串。
+
+---
+
+## 🔗 二、List 类型（Redis 6.0 使用 `quicklist`）
+
+### `OBJ_ENCODING_QUICKLIST`
+- 结构：`quicklist` 是 ziplist 的双向链表。
+- 源码文件：`quicklist.h`, `quicklist.c`
+
+#### 核心结构：
+```c
+// quicklist.h
+typedef struct quicklist {
+    quicklistNode *head;
+    quicklistNode *tail;
+    unsigned long count;        // 所有节点中元素总数
+    int nodes;                  // ziplist 节点数量
+    int compress;               // LZF 压缩深度
+    // ...
+} quicklist;
+
+typedef struct quicklistNode {
+    struct quicklistNode *prev;
+    struct quicklistNode *next;
+    unsigned char *zl;          // 指向 ziplist
+    unsigned int sz;            // ziplist 占用字节数
+    unsigned int count : 16;    // 该节点中元素个数
+    unsigned int encoding : 2;  // RAW=1 or LZF=2
+    unsigned int container : 2; // NONE=1 or ZIPLIST=2
+    unsigned int recompress : 1;// 是否被解压过
+    // ...
+} quicklistNode;
+```
+
+#### 为什么用 `quicklist`？
+- `ziplist` 插入/删除慢（O(N)），且不能太大（否则 `realloc` 成本高）。
+- `quicklist` 将大 list 拆成多个小 `ziplist`，每个 `ziplist` 大小可控（通过 `list-max-ziplist-size` 配置）。
+- 支持 LZF 压缩（`compress` 字段），节省内存。
+
+> ✅ Redis 3.2+ 所有 List 都用 `quicklist`，`ziplist` 和 `linkedlist` 已废弃。
+
+---
+
+## 🗃️ 三、Hash 类型
+
+### 1. `OBJ_ENCODING_ZIPLIST`
+- 结构：压缩列表，连续内存存储 `field1, value1, field2, value2, ...`。
+- 优点：内存紧凑。
+- 缺点：查 `field` 需遍历，O(N)。
+- 触发条件（默认）：
+  - 元素个数 < `hash-max-ziplist-entries`（默认 512）
+  - 所有 `value` 长度 < `hash-max-ziplist-value`（默认 64 字节）
+
+### 2. `OBJ_ENCODING_HT`
+- 结构：`dict`（哈希表），即 `hashtable`。
+- 源码文件：`dict.h`, `dict.c`
+
+#### `dict` 结构：
+```c
+// dict.h
+typedef struct dict {
+    dictType *type;
+    dictht ht[2];               // 两个哈希表，用于渐进式 rehash
+    long rehashidx;             // rehash 状态
+    // ...
+} dict;
+
+typedef struct dictht {
+    dictEntry table;          // 桶数组
+    unsigned long size;         // 数组大小
+    unsigned long used;         // 已用桶数
+    // ...
+} dictht;
+
+typedef struct dictEntry {
+    void *key;
+    union {
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+        double d;
+    } v;
+    struct dictEntry *next;     // 链地址法解决冲突
+} dictEntry;
+```
+
+- 优点：查找 O(1)。
+- 缺点：内存开销大（指针、桶）。
+- 触发条件：超过 ziplist 限制时自动转为 `HT`。
+
+---
+
+## 🔢 四、Set 类型
+
+### 1. `OBJ_ENCODING_INTSET`
+- 结构：整数集合，有序数组。
+- 源码文件：`intset.h`, `intset.c`
+
+#### 结构：
+```c
+// intset.h
+typedef struct intset {
+    uint32_t encoding;          // INTSET_ENC_INT16, _32, _64
+    uint32_t length;            // 元素个数
+    int8_t contents[];          // 变长数组，存储整数（紧凑）
+} intset;
+```
+
+- 优点：内存极省，查找用二分 O(log N)。
+- 触发条件：
+  - 所有元素是整数。
+  - 元素个数 < `set-max-intset-entries`（默认 512）。
+
+### 2. `OBJ_ENCODING_HT`
+- 结构：`dict`，`key=member`, `val=NULL`。
+- 触发条件：有非整数元素或元素太多。
+
+---
+
+## 🏗️ 五、Sorted Set（ZSet）类型
+
+### 1. `OBJ_ENCODING_ZIPLIST`
+- 结构：`member1, score1, member2, score2, ...`，按 score 排序。
+- 触发条件：
+  - 元素个数 < `zset-max-ziplist-entries`（默认 128）
+  - 所有 `member` 长度 < `zset-max-ziplist-value`（默认 64 字节）
+
+### 2. `OBJ_ENCODING_SKIPLIST`
+- 结构：双结构体 —— `zset`，包含：
+  - `dict`：`member → score` 映射，用于 O(1) 查 score。
+  - `skiplist`：按 score 排序的跳表，用于范围查询。
+- 源码文件：`server.h`, `t_zset.c`
+
+#### `zset` 结构：
+```c
+// server.h
+typedef struct zset {
+    dict *dict;                 // member -> double score
+    zskiplist *zsl;             // score -> member (ordered)
+} zset;
+```
+
+#### 跳表节点：
+```c
+// server.h
+typedef struct zskiplistNode {
+    sds ele;                    // member
+    double score;               // score
+    struct zskiplistNode *backward; // 后向指针
+    struct zskiplistLevel {
+        struct zskiplistNode *forward;
+        unsigned int span;      // 到下一个节点的跨度
+    } level[];
+} zskiplistNode;
+```
+
+>  为什么用跳表而不是红黑树？
+> - 跳表实现简单，支持高效的范围查询（`ZRANGE`）。
+> - Redis 更看重实现简洁和范围操作，跳表足够好。
+
+
+##  总结表（Redis 6.0）
+
+| 类型 | 编码 | 数据结构 | 优点 | 缺点 | 典型场景 |
+|------|------|----------|------|------|----------|
+| String | `INT` | `long` | 零开销 | 仅整数 | 计数器 |
+| | `EMBSTR` | `sds` (小) | 内存紧凑 | ≤44字节 | 小字符串 |
+| | `RAW` | `sds` (大) | 动态扩容 | 有指针开销 | 大文本 |
+| List | `QUICKLIST` | `quicklist` (ziplist 链表) | 内存+性能平衡 | - | 所有 List |
+| Hash | `ZIPLIST` | 压缩列表 | 内存省 | O(N) 查找 | 小对象 |
+| | `HT` | `dict` | O(1) 查找 | 内存大 | 大对象 |
+| Set | `INTSET` | 整数数组 | 内存极省 | 仅整数 | 标签、ID 集合 |
+| | `HT` | `dict` | 通用 | 内存大 | 字符串集合 |
+| Sorted Set | `ZIPLIST` | 压缩列表 | 内存省 | O(N) | 小有序集 |
+| | `SKIPLIST` | `dict` + `skiplist` | O(1) 查, O(log N) 范围 | 内存大 | 排行榜、优先队列 |
+
+
+##  关键设计思想
+
+1. 空间换时间：小对象用紧凑结构（ziplist, intset），大对象用高效结构（dict, skiplist）。
+2. 渐进式转换：当数据增长超过阈值时，自动从 ziplist → dict/quicklist。
+3. 避免外部依赖：所有数据结构均为 Redis 自研，控制力强。
+4. 内存友好：`embstr`, `quicklist`, `intset` 都是为了减少内存碎片和开销。
+
+---
+
+如果你想看某个数据结构的 具体源码实现（如 `ziplistPush`, `dictAdd`, `zslInsert`），我可以继续深入分析。
+
+在 Redis 6.0 的源代码中，`OBJ_ENCODING_INT` 这个常量的定义以及它被使用的逻辑主要分布在以下几个关键文件中：
+
+---
+
+### 1. `server.h` - 常量定义
+
+这是 `OBJ_ENCODING_INT` 的定义所在文件。
+
+```c
+// src/server.h
+#define OBJ_ENCODING_RAW 0     /* Raw representation */
+#define OBJ_ENCODING_INT 1     /* Encoded as integer */
+#define OBJ_ENCODING_HT 2      /* Encoded as hash table */
+#define OBJ_ENCODING_ZIPMAP 3  /* No longer used: old hash encoding. */
+#define OBJ_ENCODING_LINKEDLIST 4 /* No longer used: old list encoding. */
+#define OBJ_ENCODING_ZIPLIST 5 /* No longer used: old list/hash/zset encoding. */
+#define OBJ_ENCODING_INTSET 6  /* Encoded as intset */
+#define OBJ_ENCODING_SKIPLIST 7/* Encoded as skiplist */
+#define OBJ_ENCODING_EMBSTR 8  /* Embedded string encoding */
+#define OBJ_ENCODING_QUICKLIST 9/* Encoded as linked list of ziplists */
+#define OBJ_ENCODING_STREAM 10 /* Encoded as a radix tree of listpacks */
+```
+
+>  文件：`src/server.h`
+>
+>  作用：定义了所有 `redisObject` 可能的 `encoding` 值，`OBJ_ENCODING_INT` 被定义为 `1`。
+
+---
+
+### 2. `object.c` - 创建和管理字符串对象（核心逻辑）
+
+这是 `OBJ_ENCODING_INT` 被创建和使用的最主要文件。当你设置一个整数字符串时，Redis 会尝试将其编码为 `INT`。
+
+#### 关键函数：`createStringObject()`
+
+```c
+// src/object.c
+robj *createStringObject(const char *ptr, size_t len) {
+    if (len <= OBJ_ENCODING_EMBSTR_SIZE_LIMIT) {
+        return createEmbeddedStringObject(ptr,len);
+    } else {
+        return createRawStringObject(ptr,len);
+    }
+}
+```
+
+这个函数会根据字符串长度决定是用 `embstr` 还是 `raw`。但真正判断是否用 `INT` 编码的逻辑在 `tryObjectEncoding()` 中。
+
+#### 核心函数：`tryObjectEncoding()` - 尝试优化编码
+
+```c
+// src/object.c
+robj *tryObjectEncoding(robj *o) {
+    long value;
+    sds s = o->ptr;
+    size_t len;
+
+    // 只有字符串对象才可能被编码为 INT
+    if (o->type != OBJ_STRING) return o;
+
+    // 检查是否可以转换为 long 整数
+    if (sdsEncodedObject(o)) {
+        len = sdslen(s);
+        if (len <= 21 && string2l(s,len,&value)) {
+            // 释放原来的 SDS
+            if (o->refcount > 1) return o;
+            o->encoding = OBJ_ENCODING_INT;
+            o->ptr = (void*) value;  // 直接将整数存入 ptr 指针
+            return o;
+        }
+    }
+
+    // ... 其他编码尝试（如 EMBSTR）
+    return o;
+}
+```
+
+>  文件：`src/object.c`
+>
+>  作用：
+> - `tryObjectEncoding()` 是决定是否将字符串对象转为 `OBJ_ENCODING_INT` 的核心函数。
+> - 它调用 `string2l()` 尝试将字符串解析为 `long`。
+> - 如果成功且长度 ≤ 21 字符，就将 `redisObject` 的 `encoding` 设为 `OBJ_ENCODING_INT`，并把整数值直接存入 `ptr` 指针（利用指针的高位存储数据）。
+
+---
+
+### 3. `t_string.c` - SET 命令的实现
+
+当你执行 `SET mykey 123` 时，最终会调用这个文件中的函数，它会触发 `tryObjectEncoding()`。
+
+```c
+// src/t_string.c
+void setGenericCommand(client *c, int flags, robj *key, robj *val, robj *expire, int unit, robj *ok_reply, robj *abort_reply) {
+    // ... 逻辑
+    val = getDecodedObject(val); // 解码
+    // 尝试优化编码（可能转为 INT）
+    if (o) o = tryObjectEncoding(o);
+    // ... 存入数据库
+}
+```
+
+>  文件：`src/t_string.c`
+>
+>  作用：`SET` 命令的处理逻辑中会调用 `tryObjectEncoding()`，这是 `OBJ_ENCODING_INT` 被触发的常见入口。
+
+
+### 4. `object.c` - 获取对象值时的处理
+
+当从 `OBJ_ENCODING_INT` 对象中读取值时，需要特殊处理：
+
+```c
+// src/object.c
+char *get原创内容，此处为示意
+// 实际上在命令实现中，会检查 encoding 并从 ptr 读取整数
+```
+
+虽然没有一个单独的 `getIntValueFromObject` 函数，但在很多命令（如 `INCR`, `GET`）中，都会先检查 `encoding == OBJ_ENCODING_INT`，然后直接 `(long)o->ptr` 获取值。
+
+---
+
+###  总结
+
+| 作用 | 文件 | 说明 |
+|------|------|------|
+| 定义 `OBJ_ENCODING_INT` | `src/server.h` | 宏定义，值为 `1` |
+| 创建/转换为 `INT` 编码 | `src/object.c` | `tryObjectEncoding()` 函数是核心 |
+| `SET` 命令触发 | `src/t_string.c` | 调用 `tryObjectEncoding()` |
+| 对象创建辅助 | `src/object.c` | `createStringObject()` 等 |
+
+所以，如果你想看 `OBJ_ENCODING_INT` 是如何被应用的，重点看：
+
+ `src/object.c` 中的 `tryObjectEncoding()` 函数
+
+这是 Redis 实现“小整数字符串自动转为整数存储”这一优化的关键逻辑。
+
 ## 自己写redis
 Rust
 https://github.com/tokio-rs/mini-redis
