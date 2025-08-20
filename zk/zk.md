@@ -4,26 +4,14 @@
 - distarch
 - ZooKeeper
 
-
-
-
-
 - ClientSingleWatch
 - CuratorFrameworkDemo
 
-
-
 ZooKeeper这个github仓库是md文件
-
-
 
 org.apache.zookeeper.KeeperException$ConnectionLossException
 
-
-
 https://blog.csdn.net/u011534095/article/details/48421119
-
-
 
 [zk命令行客户端](https://www.cnblogs.com/leesf456/p/6022357.html)
 
@@ -35,17 +23,12 @@ zk面试题
 
 [zook docker安装](https://blog.csdn.net/qq_37495786/article/details/83280467)
 
-
 zk客户端
 cursor
 
 zk分布式
 
 zk监控时间，一旦发生时间，会把相应信息推送给客户端
-
-
-
-
 
 zk是apache开源项目
 
@@ -55,41 +38,21 @@ zk是apache开源项目
 
 https://www.cnblogs.com/qingyunzong/p/8634335.html
 
-
-
 HDFS的NameNode的HA,
 
 YARN的ResourceManager的HA
 
 https://www.linuxidc.com/Linux/2017-11/148906.htm
 
-
-
-
-
-
-
-
-
 Zookeeper 有4种节点属性，持久化节点PERSISTENT,临时节点EPHEMERAL，持久化时序节点PERSISTENT_SEQUENTIAL，临时时序节点EPHEMERAL_SEQUENTIAL
 
-
-
 zkServer
-
-
-
-
 
 https://blog.csdn.net/qq_27529917/article/details/80614274
 
 zkCli  -timeout 5000 -r -server 172.17.45.14:2181
 
 zkCli  -timeout 5000 -r -server 127.0.0.1:2181
-
-
-
-
 
 ```shell
 ZooKeeper -server host:port cmd args
@@ -114,11 +77,6 @@ ZooKeeper -server host:port cmd args
         getAcl path
         close
         connect host:port
-
-
-
-
-
 
 ls /
 create /node_01 mydata
@@ -155,10 +113,6 @@ delete path [version]
 rmr node_01
 ```
 
-
-
-
-
 [Apache curator-recipes代码范例](https://blog.csdn.net/wangmuming/article/details/38234247)
 
 创建节点 赋值数据
@@ -176,56 +130,26 @@ rmr node_01
 
 zk数据存储方式
 
-
-
 测试zk主动推送数据
-
-
 
 `zkCli -server 172.17.45.14:2181 ls /`
 
-
-
-
-
 [zk server 历史](https://blog.csdn.net/gaoshan12345678910/article/details/67638657#commentBox)
-
-
 
 ```
 Exception in thread "main" org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss for /
 ```
 
-
-
-
-
 [远程主机强迫关闭了一个现有的连接](https://blog.csdn.net/weixin_39816332/article/details/83239307)
-
-
-
-
 
 https://blog.csdn.net/mayp1/article/details/52137327
 
 
-
 https://cwiki.apache.org/confluence/display/zookeeper/zab
-
-
 
 https://www.zhihu.com/question/389403695/answer/1171102356
 
-
-
-
-
-<<<<<<< HEAD
 [什么样的系统 ](https://www.zhihu.com/question/384102981/answer/1119478764)
-
-
-
-
 
 zk流程
 
@@ -234,11 +158,6 @@ zk流程
 做实验
 
 
-
-
-
 拉钩教育有课程
 
-
 [什么样的系统 ](https://www.zhihu.com/question/384102981/answer/1119478764)
-
