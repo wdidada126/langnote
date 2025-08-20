@@ -3,7 +3,6 @@
 https://www.jianshu.com/p/4253f6eac920
 
 
-
 ```
 <!-- flowable -->
 <dependency>
@@ -18,6 +17,4 @@ https://www.jianshu.com/p/4253f6eac920
 </dependency>
 ```
 
-
-
-屹通用了
+屹通用了flowable
