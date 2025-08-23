@@ -4,9 +4,8 @@ Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型
 
 我们将基于 Redis 6.0 的源码（[https://github.com/redis/redis](https://github.com/redis/redis)）来深入解析每种数据类型的内部编码（encoding）和对应的数据结构。
 
----
 
-## 🧩 Redis 5 大数据类型与内部编码总览
+##  Redis 5 大数据类型与内部编码总览
 
 | Redis 数据类型 | 内部编码 (encoding) | 对应的数据结构 | 触发条件（何时使用） |
 |----------------|---------------------|----------------|------------------------|
@@ -22,11 +21,10 @@ Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型
 | Sorted Set | `OBJ_ENCODING_ZIPLIST` | `ziplist` | 元素少且小 |
 |                | `OBJ_ENCODING_SKIPLIST` | `zset`（`dict` + `skiplist`） | 元素多或大 |
 
-> ⚠️ 注意：从 Redis 3.2 开始，`list` 的底层已从 `ziplist` 和 `linkedlist` 迁移到 `quicklist`，它本质上是 ziplist 的双向链表，兼顾了内存和性能。
+>  注意：从 Redis 3.2 开始，`list` 的底层已从 `ziplist` 和 `linkedlist` 迁移到 `quicklist`，它本质上是 ziplist 的双向链表，兼顾了内存和性能。
 
----
 
-## 🔍 一、String 类型
+##  一、String 类型
 
 ### 1. `OBJ_ENCODING_INT`
 - 结构：直接将整数存储在 `redisObject` 的 `ptr` 指针中。
@@ -62,9 +60,8 @@ struct __attribute__ ((__packed__)) sdshdr8 {
 - `embstr`：使用 一次 `malloc` 分配 `redisObject` + `sdshdr` + 字符串空间，适合小字符串（≤ 44 字节），减少内存碎片。
 - `raw`：`redisObject` 和 `sds` 分开 `malloc`，适合大字符串。
 
----
 
-## 🔗 二、List 类型（Redis 6.0 使用 `quicklist`）
+##  二、List 类型（Redis 6.0 使用 `quicklist`）
 
 ### `OBJ_ENCODING_QUICKLIST`
 - 结构：`quicklist` 是 ziplist 的双向链表。
@@ -100,11 +97,10 @@ typedef struct quicklistNode {
 - `quicklist` 将大 list 拆成多个小 `ziplist`，每个 `ziplist` 大小可控（通过 `list-max-ziplist-size` 配置）。
 - 支持 LZF 压缩（`compress` 字段），节省内存。
 
-> ✅ Redis 3.2+ 所有 List 都用 `quicklist`，`ziplist` 和 `linkedlist` 已废弃。
+>  Redis 3.2+ 所有 List 都用 `quicklist`，`ziplist` 和 `linkedlist` 已废弃。
 
----
 
-## 🗃️ 三、Hash 类型
+##  三、Hash 类型
 
 ### 1. `OBJ_ENCODING_ZIPLIST`
 - 结构：压缩列表，连续内存存储 `field1, value1, field2, value2, ...`。
@@ -151,9 +147,8 @@ typedef struct dictEntry {
 - 缺点：内存开销大（指针、桶）。
 - 触发条件：超过 ziplist 限制时自动转为 `HT`。
 
----
 
-## 🔢 四、Set 类型
+##  四、Set 类型
 
 ### 1. `OBJ_ENCODING_INTSET`
 - 结构：整数集合，有序数组。
@@ -180,7 +175,7 @@ typedef struct intset {
 
 ---
 
-## 🏗️ 五、Sorted Set（ZSet）类型
+##  五、Sorted Set（ZSet）类型
 
 ### 1. `OBJ_ENCODING_ZIPLIST`
 - 结构：`member1, score1, member2, score2, ...`，按 score 排序。
@@ -237,7 +232,6 @@ typedef struct zskiplistNode {
 | Sorted Set | `ZIPLIST` | 压缩列表 | 内存省 | O(N) | 小有序集 |
 | | `SKIPLIST` | `dict` + `skiplist` | O(1) 查, O(log N) 范围 | 内存大 | 排行榜、优先队列 |
 
-
 ##  关键设计思想
 
 1. 空间换时间：小对象用紧凑结构（ziplist, intset），大对象用高效结构（dict, skiplist）。
@@ -245,13 +239,10 @@ typedef struct zskiplistNode {
 3. 避免外部依赖：所有数据结构均为 Redis 自研，控制力强。
 4. 内存友好：`embstr`, `quicklist`, `intset` 都是为了减少内存碎片和开销。
 
----
-
 如果你想看某个数据结构的 具体源码实现（如 `ziplistPush`, `dictAdd`, `zslInsert`），我可以继续深入分析。
 
 在 Redis 6.0 的源代码中，`OBJ_ENCODING_INT` 这个常量的定义以及它被使用的逻辑主要分布在以下几个关键文件中：
 
----
 
 ### 1. `server.h` - 常量定义
 
@@ -276,7 +267,6 @@ typedef struct zskiplistNode {
 >
 >  作用：定义了所有 `redisObject` 可能的 `encoding` 值，`OBJ_ENCODING_INT` 被定义为 `1`。
 
----
 
 ### 2. `object.c` - 创建和管理字符串对象（核心逻辑）
 
@@ -333,7 +323,6 @@ robj *tryObjectEncoding(robj *o) {
 > - 它调用 `string2l()` 尝试将字符串解析为 `long`。
 > - 如果成功且长度 ≤ 21 字符，就将 `redisObject` 的 `encoding` 设为 `OBJ_ENCODING_INT`，并把整数值直接存入 `ptr` 指针（利用指针的高位存储数据）。
 
----
 
 ### 3. `t_string.c` - SET 命令的实现
 
@@ -354,7 +343,6 @@ void setGenericCommand(client *c, int flags, robj *key, robj *val, robj *expire,
 >
 >  作用：`SET` 命令的处理逻辑中会调用 `tryObjectEncoding()`，这是 `OBJ_ENCODING_INT` 被触发的常见入口。
 
-
 ### 4. `object.c` - 获取对象值时的处理
 
 当从 `OBJ_ENCODING_INT` 对象中读取值时，需要特殊处理：
@@ -367,7 +355,6 @@ char *get原创内容，此处为示意
 
 虽然没有一个单独的 `getIntValueFromObject` 函数，但在很多命令（如 `INCR`, `GET`）中，都会先检查 `encoding == OBJ_ENCODING_INT`，然后直接 `(long)o->ptr` 获取值。
 
----
 
 ###  总结
 
@@ -451,10 +438,8 @@ Redis从4.0 版本开始，支持通过Module 来扩展其功能以满足特殊�
 * RedisBloomopen in new window：用于实现布隆过滤器的模块。
 * RedisAIopen in new window：用于执行深度学习/机器学习模型并管理其数据的模块。
 * RedisCellopen in new window：用于实现分布式限流的模块。
-* ……
-关于 Redis 模块的详细介绍，可以查看官方文档：https://redis.io/modulesopen in new window。
 
-抖音 h 那个up
+关于Redis模块的详细介绍，可以查看官方文档：https://redis.io/modulesopen in new window。
 
 redis使用场景
 共同关注
@@ -506,7 +491,6 @@ public class RedisLettuceSentinelExample {
 ```
 
 在这个例子中，我们设置了三个Sentinel节点的IP地址（127.0.0.1:26379、127.0.0.1:26380和127.0.0.1:26381）。然后，我们创建了一个`RedisURIBuilder`对象，并使用`withSentinelAddresses()`方法设置了Sentinel的IP地址。接下来，我们构建了一个`RedisURI`对象，用于连接到Redis集群。最后，我们创建了一个`SentinelClientConfigurationBuilder`对象，并设置了主节点名称和Sentinel节点的IP地址。最后，我们使用这些配置创建了一个`RedisSentinelClient`对象，可以用于与Redis集群进行通信。
-
 
 尽量不做分片集群。因为集群维护起来比较麻烦，并且集群之间的心跳检测和数据通信会消耗大量的网络带宽，也没有办法使用lua脚本和事务
 
@@ -564,7 +548,6 @@ redis设计与实现 书籍
 对象
 
 ziplist
-
 
 ## redis分布式锁
 Redisson是一个在Java中实现的Redis客户端，它提供了很多高级功能，包括分布式锁，信号量，队列等等。
@@ -774,18 +757,17 @@ Feature Log
 2019-02-22: Single Connection Support
 2019-01-08: Project Start
 
-
 redis redisson分布式锁
 
 ### 分布式锁redis实现
 
 分布式锁的常见使用方法： 
 1：利用 ThreadLocal + mysql 主键冲突 
-2：手写 redis 锁 
-3：利用 Redisson 封装的锁 
+2：手写redis锁 
+3：利用Redisson封装的锁 
 4：利用多个独立的redis,实现红锁 
-5：curator 封装 zookeeper 实现分布式锁 
-ps:还有其他的分布式锁，利用zookeeper 单独实现分布式锁
+5：curator封装zookeeper实现分布式锁 
+ps:还有其他的分布式锁，利用zookeeper单独实现分布式锁
 
 https://gitee.com/jiang-qikun/distributed-lock
 
