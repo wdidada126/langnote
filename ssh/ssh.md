@@ -60,6 +60,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com"
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab
+ssh-keygen -t rsa -C "wucheng@yitong.com.cn" -f id_rsa_hljrcc_wucheng_gitlab
 ssh-keygen -t rsa -C "edidada555@gmail.com" -f id_rsa_sandisks_github
 ssh-keygen -t ecdsa -b 256 -C "edidada555@gmail.com" -f id_ecdsa_sandisks_github
 ssh-keygen -t ed25519 -b 256 -C "edidada@outlook.com" -f id_ed25519_outlook_github
