@@ -4,7 +4,6 @@ Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型
 
 我们将基于 Redis 6.0 的源码（[https://github.com/redis/redis](https://github.com/redis/redis)）来深入解析每种数据类型的内部编码（encoding）和对应的数据结构。
 
-
 ##  Redis 5 大数据类型与内部编码总览
 
 | Redis 数据类型 | 内部编码 (encoding) | 对应的数据结构 | 触发条件（何时使用） |
@@ -22,7 +21,6 @@ Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型
 |                | `OBJ_ENCODING_SKIPLIST` | `zset`（`dict` + `skiplist`） | 元素多或大 |
 
 >  注意：从 Redis 3.2 开始，`list` 的底层已从 `ziplist` 和 `linkedlist` 迁移到 `quicklist`，它本质上是 ziplist 的双向链表，兼顾了内存和性能。
-
 
 ##  一、String 类型
 
@@ -173,8 +171,6 @@ typedef struct intset {
 - 结构：`dict`，`key=member`, `val=NULL`。
 - 触发条件：有非整数元素或元素太多。
 
----
-
 ##  五、Sorted Set（ZSet）类型
 
 ### 1. `OBJ_ENCODING_ZIPLIST`
@@ -243,7 +239,6 @@ typedef struct zskiplistNode {
 
 在 Redis 6.0 的源代码中，`OBJ_ENCODING_INT` 这个常量的定义以及它被使用的逻辑主要分布在以下几个关键文件中：
 
-
 ### 1. `server.h` - 常量定义
 
 这是 `OBJ_ENCODING_INT` 的定义所在文件。
@@ -266,7 +261,6 @@ typedef struct zskiplistNode {
 >  文件：`src/server.h`
 >
 >  作用：定义了所有 `redisObject` 可能的 `encoding` 值，`OBJ_ENCODING_INT` 被定义为 `1`。
-
 
 ### 2. `object.c` - 创建和管理字符串对象（核心逻辑）
 
