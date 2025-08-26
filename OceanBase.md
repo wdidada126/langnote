@@ -2,24 +2,23 @@
 
 https://www.oceanbase.com/zh
 
-
+## 版本
 v3.1.0_CE_BP1
 on Jun 22, 2021
 
 v3.1.5_CE
  on Apr 17, 2023
 
-
 v4.0.0_CE
 on Nov 1, 2022
-
 
 v4.1.0_CE
 on Apr 3, 2023
 
-
 v4.2.0_CE
  on Aug 30, 2023
+
+5.7.25-OceanBase-v4.2.1.10
 
 
 缺陷修复
