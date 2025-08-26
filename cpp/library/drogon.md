@@ -91,14 +91,10 @@ Libraries:
 
 同样的代码，vcpkg处理的依赖库，win报错，ubuntu正常
 
-
-    
-
 drogon_ctl create model 
 /home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create project xxx
 
 /home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create model modles
-
 
 /home/wdidada/vcpkg/installed/x64-linux/tools/drogon/drogon_ctl create filter LoggingInterceptor
 https://blog.csdn.net/weixin_50308184/article/details/134359378
@@ -127,10 +123,8 @@ class HttpControllerBase
 class HttpSimpleControllerBase
 class WebSocketControllerBase
 
-
 ## 依赖库
 ### trantor
-
 
 ### A
 AAcceptor (trantor)
