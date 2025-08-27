@@ -999,6 +999,9 @@ $ git reset --hard commit_id 退到/进到 指定commit的..
 git config  user.name "Wdidada Tom In Dell R630"
 git config  user.email "sandisks555@gmail.com"
 
+git config --global user.name "betaXXX"
+git config --global user.email "betaXXX@gmail.com"
+
 [How to “git clone” including submodules](https://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)
 
 ```
