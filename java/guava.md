@@ -1,5 +1,7 @@
 # guava api
 
+ImmutableMap
+
 guava MoreObjects.firstNonNull()
 
 1、其用法为如果两个参数都不为空，则返回第一个；
@@ -24,20 +26,7 @@ guava radlimit是如何实现的 ？？？
 </dependency>
 ```
 
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-```
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 # testguava 
-
 
 - com.google.common.collect
 - com.google.common.io
@@ -46,38 +35,27 @@ guava radlimit是如何实现的 ？？？
 
 ### RateLimiter
 
-
 jsr-305
 FindBugs-jsr305 3.0.1 API
 javax.annotation.concurrent.ThreadSafe
 
 [使用JAVA并发标注](https://kaimingwan.com/post/java/javagong-ju-yu-shi-jian/shi-yong-javabing-fa-biao-zhu)
 
-
 Java同步注解:@ThreadSafe、@Immutable、@NotThreadSafe、@GuardedBy
-
 
 guava的定位
 Java工具库
 类似apache-commons
 
 org.apache.commons.io.FileUtils
-
 com.google.common.base.Strings
 
 map根据value查找key
-
 null判断 Optional
-
 Optional java8新增了
-
 guava cache api？
 
-<<<<<<< HEAD
-
-=======
 [IDEA中使用Junit4进行测试的入门配置](https://blog.csdn.net/hanchao5272/article/details/79197989)
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
 
 ### Guava字符串工具
 
@@ -157,17 +135,13 @@ hasQueuedThreads()：返回是否有任何线程正在等待进入这个Monitor�
 hasQueuedThread(Thread thread)：返回给定线程是否正在等待进入这个Monitor，注意，因为取消随时可能发生，所以返回true并不保证给定线程会进入这个Monitor。此方法设计用来检测系统状态。
 hasWaiters(Guard guard)：返回是否有任何线程正在等待给定Guard satisfied，注意，因为取消随时可能发生，所以返回true并不保证未来Guard变成satisfied时唤醒任意线程。此方法设计用来检测系统状态。
 
-
-
 concurrent.bucketal.Bucket 找不到方法
-
 
 guava cache
 Ehcache
 
 
-<<<<<<< HEAD
-​```shell
+```shell
 
 D:\Java\jdk1.8.0_231\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=11964:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\bin" -Dfile.encoding=UTF-8 -classpath D:\Java\jdk1.8.0_231\jre\lib\charsets.jar;D:\Java\jdk1.8.0_231\jre\lib\deploy.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\access-bridge-64.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\cldrdata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\dnsns.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jaccess.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jfxrt.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\localedata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\nashorn.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunec.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunjce_provider.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunmscapi.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunpkcs11.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\zipfs.jar;D:\Java\jdk1.8.0_231\jre\lib\javaws.jar;D:\Java\jdk1.8.0_231\jre\lib\jce.jar;D:\Java\jdk1.8.0_231\jre\lib\jfr.jar;D:\Java\jdk1.8.0_231\jre\lib\jfxswt.jar;D:\Java\jdk1.8.0_231\jre\lib\jsse.jar;D:\Java\jdk1.8.0_231\jre\lib\management-agent.jar;D:\Java\jdk1.8.0_231\jre\lib\plugin.jar;D:\Java\jdk1.8.0_231\jre\lib\resources.jar;D:\Java\jdk1.8.0_231\jre\lib\rt.jar;D:\git\github\testguava\target\classes;D:\mavenrepository\201904\com\google\guava\guava\18.0\guava-18.0.jar;D:\mavenrepository\201904\com\squareup\okhttp3\okhttp\3.14.4\okhttp-3.14.4.jar;D:\mavenrepository\201904\com\squareup\okio\okio\1.17.2\okio-1.17.2.jar;D:\mavenrepository\201904\commons-io\commons-io\2.5\commons-io-2.5.jar cn.edidada.testguava.demo.Makenetworkconneced
 
@@ -175,20 +149,14 @@ D:\Java\jdk1.8.0_231\bin\java.exe "-javaagent:C:\Program Files\JetBrains\Intelli
 
 [使用 Google Guava 编程](https://zhuanlan.zhihu.com/p/77806328)
 
-=======
-​```shell
+```shell
 
 D:\Java\jdk1.8.0_231\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=11964:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.4\bin" -Dfile.encoding=UTF-8 -classpath D:\Java\jdk1.8.0_231\jre\lib\charsets.jar;D:\Java\jdk1.8.0_231\jre\lib\deploy.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\access-bridge-64.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\cldrdata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\dnsns.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jaccess.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\jfxrt.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\localedata.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\nashorn.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunec.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunjce_provider.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunmscapi.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\sunpkcs11.jar;D:\Java\jdk1.8.0_231\jre\lib\ext\zipfs.jar;D:\Java\jdk1.8.0_231\jre\lib\javaws.jar;D:\Java\jdk1.8.0_231\jre\lib\jce.jar;D:\Java\jdk1.8.0_231\jre\lib\jfr.jar;D:\Java\jdk1.8.0_231\jre\lib\jfxswt.jar;D:\Java\jdk1.8.0_231\jre\lib\jsse.jar;D:\Java\jdk1.8.0_231\jre\lib\management-agent.jar;D:\Java\jdk1.8.0_231\jre\lib\plugin.jar;D:\Java\jdk1.8.0_231\jre\lib\resources.jar;D:\Java\jdk1.8.0_231\jre\lib\rt.jar;D:\git\github\testguava\target\classes;D:\mavenrepository\201904\com\google\guava\guava\18.0\guava-18.0.jar;D:\mavenrepository\201904\com\squareup\okhttp3\okhttp\3.14.4\okhttp-3.14.4.jar;D:\mavenrepository\201904\com\squareup\okio\okio\1.17.2\okio-1.17.2.jar;D:\mavenrepository\201904\commons-io\commons-io\2.5\commons-io-2.5.jar cn.edidada.testguava.demo.Makenetworkconneced
 
 ```
 
-
 [使用 Google Guava 编程](https://zhuanlan.zhihu.com/p/77806328)
 ```
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
-
-
-
 Monitor
 
 ```java
@@ -201,7 +169,7 @@ Optional抽象类
 
 作用：检测Object是否为null
 
-​```java
+```java
 public static <T> Optional<T> of(T reference)
 public boolean isPresent()
 ```
@@ -212,7 +180,6 @@ BiMap
 
 构造方法
 HashBiMap.create()
-
 
 private static boolean isValidDataNode(final String dataNodeStr) {
     return dataNodeStr.contains(DELIMITER) && 2 == Splitter.on(DELIMITER).splitToList(dataNodeStr).size();
