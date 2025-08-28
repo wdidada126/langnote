@@ -1002,6 +1002,9 @@ git config  user.email "sandisks555@gmail.com"
 git config --global user.name "betaXXX"
 git config --global user.email "betaXXX@gmail.com"
 
+git config user.name "伍成"
+git config user.email "wucheng@yitong.com.cn"
+
 [How to “git clone” including submodules](https://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)
 
 ```
