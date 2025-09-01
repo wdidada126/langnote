@@ -66,3 +66,20 @@ https://github.com/redis/jedis
 
 
 https://github.com/redis/redis-om-spring
+
+### 版本
+
+Jedis version   Supported Redis versions                JDK Compatibility
+3.9+             5.0 to 6.2 Family of releases          8, 11
+>= 4.0           Version 5.0 to 7.2 Family of releases  8, 11, 17
+>= 5.0           Version 6.0 to current                 8, 11, 17, 21
+>= 5.2           Version 7.2 to current                 8, 11, 17, 21
+>= 6.0           Version 7.2 to current                 8, 11, 17, 21
+
+6.2   2025.08
+6.1.0 2025.07
+6.0.0 2025.04 支持redis8
+4.3.1 Oct 20, 2022
+3.7.1 Dec 12, 2021
+
+
