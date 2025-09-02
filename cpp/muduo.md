@@ -30,7 +30,7 @@ Boost.Asio 的 io_context 是其异步操作的核心，它负责处理所有 I/
 
 下面我们来看各种模型的代码实现。
 
-💻 1. 单线程单 io_context (Onethread/Contex)
+1. 单线程单 io_context (Onethread/Contex)
 
 这是最基础的模型，所有操作都在一个线程中完成。
 #include <boost/asio.hpp>
@@ -62,7 +62,7 @@ Timer expired! Thread ID: 0x7f7a8c2d5740
 
 注意：所有回调都在同一个主线程中执行。
 
-🔄 2. 多线程单 io_context (Multithreads/One Contex)
+2. 多线程单 io_context (Multithreads/One Contex)
 
 多个线程共同调用同一个 io_context 的 run() 方法。
 #include <boost/asio.hpp>
@@ -125,7 +125,7 @@ Thread 0x7f7a8c2d5740 finished running io_context.
 
 注意：回调函数可能被任何一个运行 io_context.run() 的线程执行，这意味着对共享数据的访问需要额外的同步措施（如互斥锁或 strand）。
 
-⚙️ 3. 多线程多 io_context (Multithreads/Multicontex) - IOServicePool
+3. 多线程多 io_context (Multithreads/Multicontex) - IOServicePool
 
 每个线程都有自己的 io_context，形成一个 io_context 池。新连接可以以轮询或其他策略分配到不同的 io_context 上。
 #include <boost/asio.hpp>
@@ -235,7 +235,7 @@ Press Enter to exit...
 
 注意：每个 io_context 都在其自己专属的线程中运行。分配给同一个 io_context 的所有异步操作的回调都会在同一个线程中被执行，这在连接级别提供了线程安全性。
 
-🧠 4. 使用 strand 保证线程安全
+4. 使用 strand 保证线程安全
 
 在多线程单 io_context 模型中，必须使用 strand 来确保特定操作的顺序执行和线程安全。
 #include <boost/asio.hpp>
@@ -310,7 +310,7 @@ Final shared_counter: -5
 
 注意：所有通过 my_strand 提交或绑定的任务，即使 io_context 有多个线程在运行，这些任务也会被串行化执行，从而安全地访问 shared_counter，无需额外的互斥锁。
 
-🧩 5. 混合模式示例（接受连接与I/O处理分离）
+5. 混合模式示例（接受连接与I/O处理分离）
 
 这是一种常见的高性能服务器模式，使用独立的 io_context 分别处理连接接受和连接上的数据I/O。
 #include <boost/asio.hpp>
@@ -361,9 +361,7 @@ int main() {
 }
 
 这种架构将接受连接的负担与处理连接数据I/O的负担分离，允许更精细的资源控制和更好的性能。
-
-💎 核心建议
-
+核心建议
 1.  简单应用：从单线程单 io_context 开始。
 2.  I/O 密集型：使用多线程单 io_context，并务必为所有共享数据使用 strand 或其他同步机制。
 3.  高性能、高并发：使用多线程多 io_context (IOServicePool)，这通常能提供更好的性能，因为减少了线程间的竞争。

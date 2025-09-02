@@ -88,15 +88,10 @@ Pulsar也不是特别年轻的项目了，2013年开始开发，2017年正式开
 需要哪些计算？
 
 Pulsar shell 
-
 Offloaders
-
 Connectors
-
 Pulsar Manager
-
 Pulsar Adapters
-
 Pulsar C++ Client
 
 ## 书籍 book
@@ -112,3 +107,142 @@ cd ../
 git clone -b v0.5.3 https://github.com/apache/pulsar-client-reactive.git
 cd pulsar-client-reactive
 ./gradlew build
+
+## 多租户
+
+你问得非常好！我们来深入解释 Apache Pulsar 的“多租户”（Multi-tenancy） 到底是什么意思，以及它是否涉及 消息、Topic 的隔离。
+
+##  一、什么是 Pulsar 的“多租户”？
+
+在 Apache Pulsar 中，多租户 是指：  
+> 一个 Pulsar 集群可以安全地服务于多个独立的用户、团队或应用（即“租户”），每个租户拥有独立的命名空间、资源配额、权限控制和隔离机制，互不干扰。
+
+这就像一栋写字楼（Pulsar 集群）出租给多个公司（租户），每家公司有自己的办公室、门禁、网络和资源配额。
+
+##  二、多租户的核心组成：层级命名空间
+
+Pulsar 的多租户是通过 层级命名空间（Hierarchical Namespace） 实现的：
+
+```
+persistent://租户/命名空间/Topic
+```
+
+### 示例：
+```bash
+persistent://acme-corp/team-logs/prod-nginx-logs
+persistent://acme-corp/team-analytics/user-clicks
+persistent://partner-xyz/iot-data/sensor-updates
+```
+
+其中：
+- `acme-corp`, `partner-xyz`：租户（Tenant）
+- `team-logs`, `team-analytics`, `iot-data`：命名空间（Namespace）
+- `prod-nginx-logs`, `user-clicks`：Topic
+
+##  三、多租户是否实现消息和 Topic 隔离？
+
+###  是的，Pulsar 的多租户实现了严格的隔离，包括：
+
+| 隔离维度 | 是否支持 | 说明 |
+|---------|----------|------|
+| Topic 隔离 |  是 | 不同租户的 Topic 名字空间完全独立 |
+| 消息隔离 |  是 | 消息存储、访问、权限控制按租户/命名空间隔离 |
+| 权限控制 |  是 | 可为租户设置独立的认证和授权（如 JWT、OAuth） |
+| 资源配额 |  是 | 可限制每个租户的带宽、内存、Topic 数量 |
+| 存储隔离 |  是（可选） | 可配置不同租户使用不同的 BookKeeper 集群 |
+| 网络隔离 |  是 | 可结合 VPC、防火墙实现租户间网络隔离 |
+
+
+##  四、具体隔离机制详解
+
+### 1. 命名空间隔离（Namespace Isolation）
+
+- 一个租户可以有多个命名空间（如 `dev`, `prod`, `staging`）
+- 每个命名空间可独立配置：
+  - 消息 TTL
+  - 存储配额
+  - 副本数（ensemble size）
+  - 生产/消费速率限制
+  - 认证权限
+
+```bash
+# 创建租户
+bin/pulsar-admin tenants create acme-corp --admin-roles=admin@acme-corp
+
+# 创建命名空间
+bin/pulsar-admin namespaces create acme-corp/prod
+
+# 设置配额
+bin/pulsar-admin namespaces set-backlog-quota acme-corp/prod \
+  --limit 10G --policy producer_request_hold
+```
+
+### 2. 权限与认证隔离
+
+- 每个租户可配置独立的 认证机制（如 JWT、Kafka SASL、OAuth2）
+- 可精细控制：
+  - 哪些用户/应用可以访问该租户
+  - 能否创建 Topic
+  - 能否生产/消费消息
+
+```bash
+# 授权 user@acme-corp 在 acme-corp/prod 命名空间下有生产权限
+bin/pulsar-admin namespaces grant-permission acme-corp/prod \
+  --role user@acme-corp --actions produce,consume
+```
+
+### 3. 资源配额隔离
+
+- 防止某个租户“耗尽”整个集群资源
+- 可设置：
+  - 带宽（publish/consume rate）
+  - 内存使用
+  - 磁盘配额（backlog quota）
+
+```bash
+# 限制 acme-corp/prod 的生产速率
+bin/pulsar-admin namespaces set-publish-rate acme-corp/prod \
+  --msg-publish-rate 1000 --byte-publish-rate 1048576
+```
+
+### 4. 存储隔离（可选）
+
+- Pulsar 支持 计算与存储分离（Broker + BookKeeper）
+- 可为不同租户分配不同的 BookKeeper 集群，实现物理存储隔离
+- 适用于金融、医疗等对数据隔离要求极高的场景
+
+##  五、对比 Kafka 的多租户能力
+
+| 特性 | Apache Pulsar | Apache Kafka |
+|------|---------------|--------------|
+| 原生多租户支持 |  是（核心设计） |  否（需外部实现） |
+| 租户级命名空间 |  是 |  无（Topic 名称无层级） |
+| 租户级权限控制 |  精细控制 |  较弱（需 Kafka ACL + 外部系统） |
+| 租户级资源配额 |  支持 |  有限（如 quota） |
+| 租户间 Topic 隔离 |  是（通过租户/命名空间） |  否（所有 Topic 扁平共存） |
+
+>  Kafka 本质上是“单租户”系统，多租户需要通过命名规范（如 `acme-logs`, `xyz-events`）和外部权限系统模拟，容易出错。
+
+
+##  六、多租户的典型应用场景
+
+| 场景 | 说明 |
+|------|------|
+| SaaS 平台 | 每个客户是一个租户，数据完全隔离 |
+| 企业内部共享消息平台 | 不同部门（财务、研发、运营）作为不同租户 |
+| 云服务商 | 提供 Pulsar 即服务（PaaS），多个客户共享集群 |
+| 微服务架构 | 每个业务域（domain）使用独立命名空间 |
+
+##  总结
+
+| 问题 | 回答 |
+|------|------|
+| Pulsar 的多租户是什么？ | 支持多个独立用户/团队共享一个集群，互不干扰 |
+| 是否实现消息和 Topic 隔离？ |  是，通过 `租户/命名空间/Topic` 层级结构实现 |
+| 如何隔离？ | 命名空间、权限、配额、存储、网络等多维度隔离 |
+| 相比 Kafka 有何优势？ | Pulsar 是原生多租户，Kafka 是事后补充，Pulsar 更安全、更易管理 |
+
+>  一句话总结：  
+> Pulsar 的多租户不是“功能”，而是架构设计的核心原则，它让 Pulsar 天然适合云原生、SaaS 和大规模企业级部署。
+
+这也是它被视为 Kafka 有力竞争者 的关键原因之一。
