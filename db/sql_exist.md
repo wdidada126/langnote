@@ -13,4 +13,4 @@ WHERE EXISTS (SELECT count FROM access_log WHERE Websites.id = access_log.site_i
 where aa not null
 where between
 
-
+exist可以在where后面
