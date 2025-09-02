@@ -1,4 +1,5 @@
 # CMake
+
 ## bin
 https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
 
@@ -17,7 +18,7 @@ message(STATUS "Project Source Dir: ${PROJECT_SOURCE_DIR}")
 message(STATUS "CMake Source Dir: ${CMAKE_SOURCE_DIR}")
 ```
 
-这将输出 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 的值，以便你可以查看它们指向的具体目录路径。这些变量对于在 CMake 构建系统中管理项目结构和路径非常有用。
+这将输出 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 的值，以便你可以查看它们指向的具体目录路径。这些变量对于在CMake 构建系统中管理项目结构和路径非常有用。
 
 export CMAKE_ROOT=/usr/local/cmake
 export CMAKE_ROOT=/home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64
@@ -48,16 +49,200 @@ endif()
 
 https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html
 
-AIX IBM Unix operating system
-Darwin Apple stationary operating systems (macOS, OS X, etc.)
-Android Android operating system
-Linux All Linux-based distributions
+Value
+Name
+
+ADSP
+Analog Devices Audio Digital Signal Processing
+
+AIX
+IBM Unix operating system
+
+Android
+Android operating system
+
+ARTOS
+Operating system for microcontrollers
+
+BeOS
+Operating system for personal computers (discontinued)
+
+BlueGeneL
+Blue Gene/L static environment
+
+BlueGeneP-dynamic
+Blue Gene/P dynamic environment
+
+BlueGeneP-static
+Blue Gene/P static environment
+
+BlueGeneQ-dynamic
+Blue Gene/Q dynamic environment
+
+BlueGeneQ-static
+
+Blue Gene/Q static environment
+
+BSDOS
+BSD operating system (discontinued)
+
+Catamount
+Operating system for Cray XT series
+
+CrayLinuxEnvironment
+Cray Linux Environment
+
+CYGWIN
+Cygwin environment for Windows
+
+Darwin
+Apple stationary operating systems (macOS, OS X, etc.)
+
+DOS
+MS-DOS or compatible
+
+DragonFly
+BSD-derived operating system
+
+eCos
+Real-time embedded operating system
+
+Emscripten
+Compiler toolchain to WebAssembly
+
+Euros
+Real-time operating system for embedded devices
+
+FreeBSD
+FreeBSD operating system
+
+Fuchsia
+Operating system by Google based on the Zircon kernel
+
+Generic-ADSP
+Generic ADSP (Audio DSP) environment
+
+Generic-ELF
+Generic ELF (Executable and Linkable Format) environment
+
+Generic
+Some platforms, e.g. bare metal embedded devices
+
+GHS-MULTI
+Green Hills Software MULTI environment
+
+GNU
+GNU/Hurd-based operating system
+
+Haiku
+Unix operating system inspired by BeOS
+
+HP-UX
+Hewlett Packard Unix
+
+iOS
+Apple mobile phone operating system
+
+kFreeBSD
+FreeBSD kernel with a GNU userland
+
+Linux
+All Linux-based distributions
+
+Midipix
+POSIX-compatible layer for Windows
+
+MirBSD
+MirOS BSD operating system
+
+MP-RAS
+MP-RAS UNIX operating system
+
+MSYS
+MSYS environment (MSYSTEM=MSYS)
+
+NetBSD
+NetBSD operating systems
+
+OpenBSD
+OpenBSD operating systems
+
+OpenVMS
+OpenVMS operating system by HP
+
+OS2
+OS/2 operating system
+
+OSF1
+Compaq Tru64 UNIX (formerly DEC OSF/1, Digital Unix) (discontinued)
+
+QNX
+Unix-like operating system by BlackBerry
+
+RISCos
+RISC OS operating system
+
+SCO_SV
+SCO OpenServer 5
+
+SerenityOS
+Unix-like operating system
+
+SINIX
+SINIX operating system
+
+SunOS
+Oracle Solaris and all illumos operating systems
+
+syllable
+Syllable operating system
+
+Tru64
+Compaq Tru64 UNIX (formerly DEC OSF/1) operating system
+
+tvOS
+Apple TV operating system
+
+ULTRIX
+Unix operating system (discontinued)
+
+UNIX_SV
+SCO UnixWare (pre release 7)
+
+UnixWare
+SCO UnixWare 7
+
+visionOS
+Apple mixed reality operating system
+
+WASI
+WebAssembly System Interface
+
+watchOS
+Apple watch operating system
+
+Windows
+Windows stationary operating systems
+
+WindowsCE
+Windows Embedded Compact
+
+WindowsPhone
+Windows mobile phone operating system
+
+WindowsStore
+Universal Windows Platform applications
+
+Xenix
+SCO Xenix Unix operating system (discontinued)
+
+### CMAKE_SYSTEM_NAME枚举值
+
 
 ## vs
-
 https://learn.microsoft.com/zh-cn/cpp/build/cmake-projects-in-visual-studio?view=msvc-170
 
-## dd
+## 源代码语言
 cmake源代码是c c++写的
 conan是python
 xmake也是c写的吧
