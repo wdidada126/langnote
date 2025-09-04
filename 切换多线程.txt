@@ -1,0 +1,64 @@
+
+sqfw
+SyncCommitDataOp	
+			// 发送
+			responseBody = HttpClientUtil.sendPost2(url, JSON.toJSONString(retMap));
+			JSONObject bodyMap = JSON.parseObject(responseBody);
+			logger.debug("===========bodyMap{}",bodyMap);
+			// NOTICE_STATUS 推送状态:1成功
+			if (!"1".equals(bodyMap.get("NOTICE_STATUS"))) {
+				logger.info("推送薪酬失败，记录流水");
+			}
+
+auth
+syncCommitData.xml
+新增
+<snd>
+		<field name="NOTIFY_STATUS" desc="16-全部成功 9,15-全部失败,空需要回调处理"  required="false" />
+		<field name="FAIL_REASON" desc="全部失败时也能存在的失败原因" />
+	</snd>
+	<rcv>
+		<field name="NOTICE_STATUS" desc="推送状态:1成功" required="false" />
+	</rcv>
+
+ppfw
+
+CommissionNotifyOp.java
+TransferStateCheckOp.java
+
+
+    
+    <!-- 通知薪酬失败记录表 -->
+    <insert id="insertNotifyFail" parameterType="map">
+        INSERT INTO 
+        	${schema.inte}.ENT_COMMISSION_NOTIFY_TD ( 
+        		COMMISSION_ID,
+        		APP_ID,
+        		ETP_ID,
+        		CREATE_TIME,
+        		NOTIFY_STATUS,
+        		FAIL_REASON,
+        		COMMI_STATUS 
+        		) VALUES (
+        		#{COMMISSION_ID},
+        		#{APP_ID},
+        		#{ETP_ID},
+        		#{UPDATE_TIME},
+        		#{NOTIFY_STATUS},
+        		#{FAIL_REASON},
+        		'1')
+    </insert>
+    
+    <!-- 获取待通知列表 -->
+    <select id="queryCommissionNotifyList" resultType="java.util.HashMap">
+        SELECT 
+        	* 
+        FROM 
+        	${schema.inte}.ENT_COMMISSION_NOTIFY_TD 
+        WHERE 
+        	COMMI_STATUS = '1'
+	 </select>
+	 
+	 <update id="updateCommissionNotifyInfo" parameterType="map">
+	 	UPDATE ${schema.inte}.ENT_COMMISSION_NOTIFY_TD SET COMMI_STATUS ='2' WHERE COMMISSION_ID = #{COMMISSION_ID}
+	 </update>
