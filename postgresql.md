@@ -1,8 +1,197 @@
 # postgresql
 
+## pg扩展
+TimescaleDB是PostgreSQL的扩展，专为时序数据设计，支持高效处理高频数据写入和复杂查询。
+
+PostgreSQL（简称 PG）拥有非常强大的扩展（Extensions）生态系统，允许用户在不修改核心数据库的前提下，添加新功能，如时序数据、地理信息、JSON 处理、全文检索、审计日志等。
+
+你提到的 TimescaleDB 是其中最著名的扩展之一。下面我为你系统地整理 PostgreSQL 常见且重要的扩展，并分类说明。
+
+##  一、PostgreSQL 扩展简介
+
+PostgreSQL 扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，可以添加：
+- 新的数据类型
+- 函数
+- 操作符
+- 索引方法
+- 过程语言
+- 物化视图增强
+- 外部数据包装器（FDW）
+
+##  二、常用 PostgreSQL 扩展分类与推荐
+
+### 1️⃣ 时序/时间序列数据库
+
+| 扩展 | 说明 |
+|------|------|
+| TimescaleDB | 最流行的时序数据库扩展，基于 PG 构建，支持自动分片（hypertable）、连续聚合、降采样，兼容 SQL，适合 IoT、监控、金融等场景。 |
+| Prometheus + Promscale | Promscale 是 Timescale 公司推出的，将 Prometheus 数据存储在 PG 中的适配器，结合 PG 强大查询能力。 |
+
+>  官网：https://www.timescale.com
+
+### 2️⃣ 地理空间数据（GIS）
+
+| 扩展 | 说明 |
+|------|------|
+| PostGIS | 最强大的地理信息系统扩展，支持空间数据类型（POINT, POLYGON）、空间索引（GIST）、空间函数（距离、相交、缓冲区等），广泛用于地图、导航、城市规划。 |
+| address_standardizer | 地址标准化（如“北京市朝阳区” → 标准格式） |
+| fuzzystrmatch | 模糊字符串匹配，常用于地址相似度计算 |
+
+>  官网：https://postgis.net
+
+### 3️⃣ 全文检索与搜索
+
+| 扩展 | 说明 |
+|------|------|
+| pg_trgm | 基于 trigram 的模糊匹配，支持 `LIKE`, `ILIKE`, `~` 的 GIN/GIST 索引加速 |
+| pg_bigm | 针对日语等双字节语言的全文检索优化 |
+| zhparser | 中文分词插件（配合 `tsvector` 使用），用于中文全文检索 |
+| tsearch2 | 旧版全文检索（已集成进核心） |
+
+### 4️⃣ JSON 与 NoSQL 功能增强
+
+| 扩展 | 说明 |
+|------|------|
+| jsoncdc | JSON 变更数据捕获（实验性） |
+| plv8 | 使用 JavaScript 编写存储过程（V8 引擎），适合处理复杂 JSON |
+| orafce | 提供 Oracle 兼容函数，包括 JSON 处理函数 |
+
+> 注意：PG 本身对 `JSONB` 支持极强，多数场景无需额外扩展。
+
+### 5️⃣ 安全与审计
+
+| 扩展 | 说明 |
+|------|------|
+| pgAudit | 企业级审计扩展，支持详细记录 DDL、DML 操作，符合 PCI-DSS、HIPAA 等合规要求。 |
+| sslinfo | 获取客户端 SSL/TLS 连接信息 |
+| pgcrypto | 提供加密函数（如 `crypt()`, `hmac()`, `gen_salt()`），用于密码哈希、数据加密 |
+
+>  pgAudit 官网：https://pgaudit.org
+
+### 6️⃣ 高可用与复制
+
+| 扩展 | 说明 |
+|------|------|
+| repmgr | 开源的 PostgreSQL 复制管理工具，支持主从切换、监控、故障转移。 |
+| wal2json | 将 WAL 日志转换为 JSON 格式，用于 CDC（变更数据捕获），常用于数据同步、ETL。 |
+| pglogical | 逻辑复制扩展（基于 wal2json 增强），支持跨版本、选择性复制表。 |
+
+### 7️⃣ 过程语言（支持多种编程语言写函数）
+
+| 扩展 | 语言 | 说明 |
+|------|------|------|
+| plpython3u | Python | 可在数据库中执行 Python 脚本 |
+| plperl | Perl | Perl 函数支持 |
+| pltcl | Tcl | Tcl 脚本支持 |
+| plv8 | JavaScript | 高性能 JS 函数（推荐用于 JSON 处理） |
+
+---
+
+### 8️⃣ 外部数据访问（FDW - Foreign Data Wrapper）
+
+允许 PG 查询外部数据源，像本地表一样使用。
+
+| 扩展 | 说明 |
+|------|------|
+| postgres_fdw | 跨 PostgreSQL 实例查询（推荐替代 `dblink`） |
+| file_fdw | 将 CSV、文本文件映射为表 |
+| mysql_fdw | 查询 MySQL 数据库 |
+| oracle_fdw | 查询 Oracle 数据库 |
+| odbc_fdw | 通过 ODBC 连接任意数据库 |
+| redis_fdw | 查询 Redis 数据 |
+| http_fdw | 调用 REST API 并映射为表 |
+
+---
+
+### 9️⃣ 性能与监控
+
+| 扩展 | 说明 |
+|------|------|
+| pg_stat_statements | 记录所有 SQL 执行统计（调用次数、耗时、I/O 等），性能分析必备。 |
+| auto_explain | 自动记录慢查询的执行计划 |
+| pg_hint_plan | 允许通过注释指定查询执行计划（类似 Oracle hint） |
+| pg_buffercache | 查看 shared buffer 中缓存的数据页 |
+
+---
+
+###  其他实用扩展
+
+| 扩展 | 说明 |
+|------|------|
+| uuid-ossp | 生成 UUID（v1, v4 等），PG 13+ 已内置 `gen_random_uuid()` |
+| unaccent | 去除音调符号（如 é → e），用于模糊搜索 |
+| intarray | 优化整数数组操作（排序、交集、索引） |
+| ltree | 层次化数据（如组织架构、路径）的存储与查询 |
+| hstore | 键值对存储（类似简单 JSON，但更轻量） |
+| dict_int | 全文检索字典，去除数字（用于日志分析） |
+
+---
+
+## 🧰 三、如何查看和管理扩展？
+
+### 1. 查看已安装扩展
+```sql
+SELECT * FROM pg_extension;
+```
+
+### 2. 查看可用扩展
+```sql
+SELECT * FROM pg_available_extensions;
+```
+
+### 3. 安装扩展（以 pg_stat_statements 为例）
+```sql
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+```
+
+### 4. 卸载扩展
+```sql
+DROP EXTENSION pg_stat_statements;
+```
+
+---
+
+## 四、安装扩展的方式
+
+1. 包管理器安装（推荐）
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install postgresql-contrib postgresql-15-timescaledb-2
+
+   # CentOS/RHEL
+   sudo yum install postgresql15-contrib timescaledb-2-postgresql-15
+   ```
+
+2. 从源码编译安装
+   - 适用于定制化或最新版本
+
+3. 使用 Docker 镜像
+   ```bash
+   docker run -d --name pg -e POSTGRES_PASSWORD=pass timescale/timescaledb:latest-pg15
+   ```
+
+## 五、总结：你该关注哪些扩展？
+
+| 使用场景 | 推荐扩展 |
+|---------|----------|
+| 时序数据（监控、IoT） | TimescaleDB |
+| 地图、位置服务 | PostGIS |
+| 审计、合规 | pgAudit |
+| 性能分析 | pg_stat_statements, auto_explain |
+| 多数据源整合 | postgres_fdw, mysql_fdw, file_fdw |
+| 中文全文检索 | zhparser + `tsvector` |
+| 安全加密 | pgcrypto |
+| 逻辑复制/CDC | wal2json, pglogical |
+
+---
+
+TimescaleDB 是你提到的重点，它本质上是一个“超集”扩展，不仅增强时序能力，还自带性能优化、压缩、多节点集群等功能，是目前最成熟的 PG 时序解决方案。
+
+如果你正在处理时间序列数据，强烈建议尝试 TimescaleDB。
+## doc
 https://www.postgresql.org/docs/9.1/transaction-iso.html
 
-db/pg_ssi.jpg
+![pg_ssi](./imgs/db/pg_ssi.jpg)
 
 A Critique of ANSI SQL Isolation Levels
 https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-95-51.pdf
@@ -24,7 +213,6 @@ CLOG日志文件保存在PGDATA/pg_xact目录下。
 日志定位：
 给定一个事务ID（xid），可以通过一个四元组（<segmentno, Pageno, Byte, Bindex>）定位到其在日志中的位置。
 其中，segmentno是段号，Pageno是页号，Byte是页面偏移，Bindex是字节内偏移。
-
 
 串行快照隔离 SSI
 Serial Snapshot Isolation
