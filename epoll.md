@@ -187,7 +187,7 @@ conn->on_read(conn);  // 直接调用处理函数
 | LT（水平触发） | 只要条件满足（如可读），就一直通知 | 稍低 | 简单 |
 | ET（边缘触发） | 只在状态变化时通知一次（如从不可读→可读） | 高 | 复杂（必须一次性读完） |
 
-> ✅ ET 模式必须配合非阻塞 I/O，否则可能阻塞在 `read()`。
+> ET 模式必须配合非阻塞I/O，否则可能阻塞在 `read()`。
 
 ---
 
@@ -208,7 +208,7 @@ sigemptyset(&set);
 sigaddset(&set, SIGINT);
 pthread_sigmask(SIG_BLOCK, &set, &oldset);
 
-n = epoll_wait(epfd, events, max, timeout);  // ⚠️ 原子性问题！
+n = epoll_wait(epfd, events, max, timeout);  //  原子性问题！
 
 pthread_sigmask(SIG_SETMASK, &oldset, NULL);
 ```
@@ -249,27 +249,25 @@ struct __kernel_timespec ts = {
 epoll_pwait2(epfd, events, max, -1, &ts, &sigmask);
 ```
 
-> 💡 注意：`__kernel_timespec` 是内核结构体，用户态通常用 `struct timespec`。
+>  注意：`__kernel_timespec` 是内核结构体，用户态通常用 `struct timespec`。
 
----
 
-## 🧠 四、总结：epoll 家族全景图
+##  四、总结：epoll 家族全景图
 
 | 函数/结构 | 作用 | 是否推荐 |
 |----------|------|---------|
 | `epoll_create(size)` | 创建 epoll 实例 | ❌ 已弃用 |
-| `epoll_create1(flags)` | 创建 epoll 实例（支持 `CLOEXEC`） | ✅ 强烈推荐 |
-| `epoll_ctl()` | 增删改监听事件 | ✅ 必用 |
-| `epoll_wait()` | 等待事件（基本版） | ✅ 常用 |
-| `epoll_pwait()` | 等待事件 + 安全信号处理 | ✅ 多线程/信号安全场景 |
-| `epoll_pwait2()` | `epoll_pwait` + 纳秒精度 | ✅ 高精度需求 |
-| `epoll_event.data.fd` | 携带 fd | ✅ 简单场景 |
-| `epoll_event.data.ptr` | 携带上下文指针 | ✅ 高性能服务器推荐 |
-| `EPOLLET` | 边缘触发模式 | ✅ 高并发推荐（配非阻塞 I/O） |
+| `epoll_create1(flags)` | 创建 epoll 实例（支持 `CLOEXEC`） |  强烈推荐 |
+| `epoll_ctl()` | 增删改监听事件 |  必用 |
+| `epoll_wait()` | 等待事件（基本版） |  常用 |
+| `epoll_pwait()` | 等待事件 + 安全信号处理 |  多线程/信号安全场景 |
+| `epoll_pwait2()` | `epoll_pwait` + 纳秒精度 |  高精度需求 |
+| `epoll_event.data.fd` | 携带 fd |  简单场景 |
+| `epoll_event.data.ptr` | 携带上下文指针 |  高性能服务器推荐 |
+| `EPOLLET` | 边缘触发模式 |  高并发推荐（配非阻塞 I/O） |
 
----
 
-## 🚀 五、最佳实践建议
+##  五、最佳实践建议
 
 1. 永远使用 `epoll_create1(EPOLL_CLOEXEC)`
 2. ET 模式 + 非阻塞 I/O 是高性能标配
@@ -277,7 +275,7 @@ epoll_pwait2(epfd, events, max, -1, &ts, &sigmask);
 4. 多线程中用 `epoll_pwait` 避免信号竞争
 5. 注意 `EPOLLONESHOT` 和 `EPOLLET` 的组合使用
 
----
+
 
 如果你想看：
 - 一个基于 `epoll ET + nonblock` 的迷你 HTTP 服务器

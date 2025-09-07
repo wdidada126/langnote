@@ -1,5 +1,20 @@
 # powershell
 
+## 找到端口关闭进程
+
+```shell
+PS C:\Windows\system32> netstat -ano | findstr :28095
+  TCP    0.0.0.0:28095          0.0.0.0:0              LISTENING       31660
+  TCP    [::]:28095             [::]:0                 LISTENING       31660
+PS C:\Windows\system32> tasklist | findstr 31660
+javaw.exe                    31660 Console                    1    860,088 K
+PS C:\Windows\system32> taskkill /PID 31660 /F
+SUCCESS: The process with PID 31660 has been terminated.
+PS C:\Windows\system32>
+```
+
+## doc
+
 oh-my-posh
 
 powershell 查看文件及其子文件夹文件列表
