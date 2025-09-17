@@ -88,7 +88,7 @@ GNU GCC 15.1已于2025年4月25日 10:52:00 GMT发布。
 
 ---
 ## 方法 1：检查 Ubuntu 24.04 官方仓库
-Ubuntu 24.04 (Noble Numbat) 默认可能只提供较新的 GCC 版本（如 GCC 13/14），但 GCC 15 可能需要从其他源安装。
+Ubuntu 24.04 (Noble Numbat) 默认可能只提供较新的GCC版本（如 GCC 13/14），但GCC15可能需要从其他源安装。
 
 ### 1. 更新软件包列表
 ```bash
@@ -111,7 +111,7 @@ sudo apt install gcc-14 g++-14
 sudo apt install gcc-15 g++-15
 ```
 
-### 5. 切换默认 GCC 版本（可选）
+### 5. 切换默认GCC版本（可选）
 ```bash
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 100
@@ -122,8 +122,6 @@ sudo update-alternatives --config gcc
 sudo update-alternatives --config g++
 ```
 选择你想要的版本。
-
----
 
 ## 方法 2：从 Ubuntu Toolchain PPA 安装（如果官方仓库没有）
 如果 Ubuntu 24.04 官方仓库没有 GCC 15，可以使用 `ubuntu-toolchain-r` PPA：
@@ -165,16 +163,12 @@ sudo update-alternatives --config gcc
 sudo update-alternatives --config g++
 ```
 
----
-
 ## 验证安装
 ```bash
 gcc --version
 g++ --version
 ```
 应该显示你安装的版本（如 `gcc-15`）。
-
----
 
 ## 方法 3：手动下载 .deb 安装（如果 PPA 不可用）
 如果上述方法都不行，可以从 Debian Sid 或 Ubuntu 开发版 下载 `.deb` 包手动安装：
@@ -185,12 +179,10 @@ g++ --version
    wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gcc-15/gcc-15_15.0.0-1ubuntu1_amd64.deb
    ```
 3. 安装：
-   ```bash
-   sudo dpkg -i gcc-15*.deb
-   sudo apt --fix-broken install  # 解决依赖问题
-   ```
-
----
+```bash
+sudo dpkg -i gcc-15*.deb
+sudo apt --fix-broken install  # 解决依赖问题
+```
 
 ### 总结
 | 方法 | 适用场景 | 命令 |
@@ -199,8 +191,7 @@ g++ --version
 | Toolchain PPA | 获取最新版本 | `sudo add-apt-repository ppa:ubuntu-toolchain-r/test` |
 | 手动 .deb 安装 | 无其他选择时 | `sudo dpkg -i gcc-15.deb` |
 
-如果你只需要 GCC 14，官方仓库可能已经提供；GCC 15 可能需要 PPA 或手动安装。
-
+如果你只需要GCC 14，官方仓库可能已经提供；GCC 15可能需要PPA或手动安装。
 
 sudo apt install -y g++-13
 Reading package lists... Done
@@ -1177,25 +1168,20 @@ dpkg -L libstdc++-13-dev
 
 
 在列出的文件中，每个文件都与GNU标准C++库（libstdc++）相关，它们分别有不同的用途：
-
 1. `libstdc++.a`:
    - 这是一个静态库版本的libstdc++。静态库意味着当你编译程序时，链接器会将这个库中的所有需要的代码直接复制到最终的可执行文件中。使用静态库的好处是生成的可执行文件可以在没有安装相应动态库的情况下运行，但缺点是生成的可执行文件会比较大，并且如果库更新了，你需要重新编译程序才能获得更新。
-
 2. `libstdc++exp.a`:
    - 这个文件名不是标准的libstdc++发行版的一部分，它可能是一个特定于某些环境或构建配置的扩展静态库。通常来说，这种命名可能是为了区分不同的特性集或者实验性的功能。具体的作用需要查看该特定环境下的文档或构建说明来确定。
-
 3. `libstdc++fs.a`:
    - 这个库可能是指向C++文件系统库的静态版本，它是C++17标准引入的一个部分，提供了跨平台的文件系统操作功能。如果你的应用程序需要这些功能，并且你希望静态链接这些功能，那么你可能会用到这个库。
-
 4. `libsupc++.a`:
    - 这个库包含了支持C++语言特性的底层实现，如异常处理、RTTI（Run-Time Type Information）、类的构造和析构等。它通常与libstdc++一起工作，提供完整的C++运行时支持。
-
 5. `libstdc++.so`:
    - 这是libstdc++的共享库（动态链接库）。当你的程序使用动态链接方式编译时，这个库会在程序运行时被加载。这样做的好处是可以节省磁盘空间和内存，因为多个程序可以共享同一个库的实例。此外，当你更新这个库时，所有依赖它的程序都会自动受益于更新，而不需要重新编译这些程序。
 
 对于`libstdc++exp.a`，由于这不是一个常见的文件名，其确切作用可能取决于具体的上下文或特殊的构建配置。如果你遇到这个文件，建议查阅相关的构建脚本或项目文档以了解更多信息。其他四个文件则是libstdc++的标准组成部分，分别用于不同的链接场景。[2]
 
-
+```shell
 dpkg -L libc6
 /.
 /etc
@@ -1500,9 +1486,9 @@ dpkg -L libc6
 /usr/share/lintian/overrides
 /usr/share/lintian/overrides/libc6
 /lib64/ld-linux-x86-64.so.2
+```
 
-
-
+```
 dpkg -L libc6-dev
 /.
 /usr
@@ -2043,15 +2029,16 @@ dpkg -L libc6-dev
 /usr/lib/x86_64-linux-gnu/libresolv.so
 /usr/lib/x86_64-linux-gnu/libthread_db.so
 /usr/share/doc/libc6-dev/changelog.Debian.gz
-
+```
 
 而C/C++编译器版本多于一个，并没有某个编译器占据了绝对统治地位。至少，intel的icc，微软的msvc，gnu的gcc，以及后起之秀clang，都各自有各自的地位，要协调多方意见制作大家认可的标准并不容易，改变起来自然更加耗时。
 
 其实Windows还有一个由RAD Studio附带的bcc编译器，效率也很好
 
 ## releases
+### GNU GCC 15.1已于2025年4月25日 10:52:00 GMT发布
 
-gcc 14.1
+### gcc 14.1
 GCC 14.1 编译器计划在2024年5月7日左右发布
 https://gcc.gnu.org/pipermail/gcc/2024-May/243921.html
 
