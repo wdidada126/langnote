@@ -1,4 +1,7 @@
 # IDEA
+
+idea最新版（2025.03）不支持win7操作系统
+
 ## 取消import *
 
 在 IntelliJ IDEA 中，如果你想要取消或避免使用 `import *`（即“星号导入”），比如：
