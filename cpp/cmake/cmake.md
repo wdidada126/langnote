@@ -1,5 +1,7 @@
 # CMake
-
+202505
+cmake 4.0版本发布
+redis 8.0发布
 ## bin
 https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
 
