@@ -1,4 +1,4 @@
-java25
+# java25
 
 JEP 470：[PEM编码的加密对象（预览](https://openjdk.org/jeps/470)）
 JEP 502：[稳定值（预览）](https://openjdk.org/jeps/502)
@@ -18,3 +18,19 @@ JEP 518：[JFR合作抽样](https://openjdk.org/jeps/518)
 JEP 519：[紧凑对象头](https://openjdk.org/jeps/519)
 JEP 520：[JFR方法计时与跟踪](https://openjdk.org/jeps/520)
 JEP 521：[代际Shenandoah](https://openjdk.org/jeps/521)
+
+
+Java 25 is now available! #Java25 #JDK25 #OpenJDK 
+
+👉 Download Now: https://social.ora.cl/6014APt6u
+👉 Release notes: https://social.ora.cl/6011APt6X
+👉 API Javadoc: https://social.ora.cl/6015APt6b
+👉 Features: https://social.ora.cl/6010APt6g
+👉 Inside Java on JDK 25: https://social.ora.cl/6012APt6i
+
+
+Download Now https://jdk.java.net/25/
+Release notes https://jdk.java.net/25/release-notes
+API Javadoc: https://docs.oracle.com/en/java/javase/25/docs/api/index.html
+Features: https://openjdk.org/projects/jdk/25/
+Inside Java on JDK 25: https://blogs.oracle.com/java/post/the-arrival-of-java-25
