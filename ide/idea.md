@@ -47,8 +47,6 @@ import java.util.Map;
 
 >  这样设置后，只有当导入的类超过 999 个时才使用 `*`，实际上等于禁用星号导入。
 
----
-
 ##  方法二：让已有的 `import *` 自动展开
 
 如果你已经有代码使用了 `import java.util.*;`，可以手动或自动展开：
@@ -85,8 +83,6 @@ import java.util.Map;
 <module name="RedundantImport"/>
 <module name="ImportControl"> <!-- 可定义允许的 import 模式 -->
 ```
-
----
 
 ##  为什么建议避免 `import *`？
 
