@@ -2,7 +2,6 @@
 
 apt search clang
 
-
 ```shell
 clang/bionic-updates 1:6.0-41~exp5~ubuntu1 amd64
   C, C++ and Objective-C compiler (LLVM based)
@@ -211,15 +210,9 @@ libclang-common-6.0-dev/bionic 1:6.0-1ubuntu2 amd64
 
 Clang daemon: Version of clion-clangd is 30, but expected version is 37
 
-
-
-
-
 clang
 
 clang++
-
-
 
 ```
 clang -v
@@ -254,7 +247,6 @@ cmake
 make
 zlib
 python
-
 
 ```shell
 git clone -b llvmorg-17.0.6 https://github.com/llvm/llvm-project.git
@@ -302,3 +294,6 @@ clang-repl                   llvm-debuginfod-find     llvm-microsoft-demangle-fu
 https://discord.com/invite/xS7Z362
 
 https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm
+
+## releases/version/版本
+通 llvm.md
