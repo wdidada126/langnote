@@ -34,3 +34,6 @@ Release notes https://jdk.java.net/25/release-notes
 API Javadoc: https://docs.oracle.com/en/java/javase/25/docs/api/index.html
 Features: https://openjdk.org/projects/jdk/25/
 Inside Java on JDK 25: https://blogs.oracle.com/java/post/the-arrival-of-java-25
+
+
+https://gitee.com/edidada/testjdk25
