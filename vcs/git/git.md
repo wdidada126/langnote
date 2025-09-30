@@ -1,4 +1,10 @@
 # git
+
+git config --global core.autocrlf
+- `true`（Windows 默认）：LF → CRLF 检出，CRLF → LF 提交
+- `input`：提交时将 CRLF 转为 LF，检出保持 LF
+- `false`：不做任何转换
+
 git submodule update --init --recursive
 
 ## version
@@ -59,8 +65,6 @@ git cherry-pick abc123^..def456
 ### 注意事项
 - 确保在执行`git cherry-pick`之前，d分支是最新的，以避免不必要的冲突。
 - 如果在应用变动过程中出现冲突，务必仔细解决冲突并测试代码。
-
-使用* model DeepSeek-R1来切换满血版R1模型。
 
 ## tag
 git 查看当前切换到哪个tag
@@ -591,8 +595,10 @@ Git 的暂存操作是通过 git add 命令来完成的。git add 可以将工�
 
 暂存所有更改：
 
-bash
+```bash
 git add .
+```
+
 这会将工作区的所有更改（包括新文件）添加到暂存区。
 2. 暂存特定文件：
 
@@ -992,6 +998,13 @@ $ git reset --hard commit_id 退到/进到 指定commit的..
 
 git config  user.name "Wdidada Tom In Dell R630"
 git config  user.email "sandisks555@gmail.com"
+
+git config --global user.name "betaXXX"
+git config --global user.email "betaXXX@gmail.com"
+git config  user.name "unknow"
+git config  user.email "unknow@gmail.com"
+git config user.name "伍成"
+git config user.email "wucheng@yitong.com.cn"
 
 [How to “git clone” including submodules](https://stackoverflow.com/questions/3796927/how-to-git-clone-including-submodules)
 

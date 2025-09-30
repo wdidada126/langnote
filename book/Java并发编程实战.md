@@ -1,9 +1,50 @@
 # Java并发编程实战
 
+java8是2014年3月
+书籍是2012年
+
+作者: [美] Brian Goetz / [美] Tim Peierls / [美] Joshua Bloch / [美] Joseph Bowbeer / [美] David Holmes / [美] Doug Lea
+出版社: 机械工业出版社
+原作名: Java Concurrency in Practice
+译者: 童云兰
+出版年: 2012-2
+页数: 293
+定价: 69.00元
+装帧: 平装
+丛书: 华章专业开发者丛书
+ISBN: 9787111370048
+
+关于《Java Concurrency in Practice》（中文译名：《Java并发编程实战》）是否有针对 Java 8 的版本，情况如下：
+
+没有官方发布的、内容全面更新至 Java 8 的新版《Java Concurrency in Practice》。
+
+这本书的原始英文版首次出版于 2006 年，主要基于 Java 5 和 Java 6 的并发特性编写。
+
+### 为什么说“没有”Java 8 版本？
+
+1.  作者和出版社未推出新版：该书的作者 Brian Goetz 等人以及出版社 Addison-Wesley 没有发布过一个名为 "Java Concurrency in Practice, 2nd Edition" 或类似、专门针对 Java 8 进行全面修订的版本。
+2.  核心内容依然经典：这本书的核心价值在于它深入阐述的并发原理、设计模式、最佳实践和潜在陷阱（如线程安全、死锁、性能、可伸缩性等）。这些基础理论和原则在 Java 8 及以后的版本中依然是完全适用的，甚至更加重要。
+
+### 但它仍然包含 Java 8 的相关内容
+
+   `java.util.concurrent` 包的演进：虽然书的核心是 Java 5/6，但它详细讲解的 `java.util.concurrent` 包是 Java 并发的基石。Java 8 在这个包的基础上进行了增强（例如 `CompletableFuture` 的大量新方法、`ConcurrentHashMap` 的新函数式方法等），但这些是建立在书中所讲的 `Executor`、`Future`、`ConcurrentMap` 等基础之上的。
+   后续讨论和补充：作者 Brian Goetz 等人（特别是 Doug Lea）深度参与了 Java 8 中并发 API 的设计（如 `CompletableFuture`, `LongAdder`, `StampedLock` 等）。你可以通过阅读他们的论文、JEP (JDK Enhancement Proposal) 或后续的博客文章来了解 Java 8 新特性的设计思想，这些思想与《Java Concurrency in Practice》中的原则一脉相承。
+
+### 结论
+
+   《Java Concurrency in Practice》没有官方的“Java 8 版本”。
+   但它仍然是学习 Java 并发的“圣经”和最佳起点。即使你主要使用 Java 8+，这本书提供的基础理论和思维方式是无可替代的。
+   在掌握了这本书的核心内容后，你可以再学习 Java 8 引入的新工具，如：
+       `CompletableFuture` (用于异步编程和流式调用)
+       `LongAdder` / `DoubleAdder` (高性能计数器)
+       `StampedLock` (更灵活的读写锁)
+       `java.util.concurrent` 中集合类的 `Stream` API 和 `forEach`/`compute`/`merge` 等方法。
+
+简单来说：这本书是“道”（原理），Java 8 的新特性是“术”（工具）。先学“道”，再学“术”，效果最佳。
+
 [Java并发编程实战](https://book.douban.com/subject/10484692/)
+
 本书作者都是Java Community Process JSR 166专家组（并发工具）的主要成员，并在其他很多JCP专家组里任职。Brian Goetz有20多年的软件咨询行业经验，并著有至少75篇关于Java开发的文章。Tim Peierls是“现代多处理器”的典范，他在BoxPop.biz、唱片艺术和戏剧表演方面也颇有研究。Joseph Bowbeer是一个Java ME专家，他对并发编程的兴趣始于Apollo计算机时代。David Holmes是《The Java Programming Language》一书的合著者，任职于Sun公司。Joshua Bloch是Google公司的首席Java架构师，《Effective Java》一书的作者，并参与著作了《Java Puzzlers》。Doug Lea是《Concurrent Programming》一书的作者，纽约州立大学 Oswego分校的计算机科学教授。
-
-
 
 javax.annotation.concurrent.ThreadSafe
 对本书的赞誉
@@ -174,6 +215,7 @@ javax.annotation.concurrent.ThreadSafe
 10.3.1　饥饿180
 10.3.2　糟糕的响应性181
 10.3.3　活锁181
+
 ### 第11章　性能与可伸缩性183
 11.1　对性能的思考183
 11.1.1　性能与可伸缩性184
@@ -280,18 +322,16 @@ javax.annotation.concurrent.ThreadSafe
 ## 笔记
 ### 第1章　简介
 
+
 ## 第一部分　基础知识
 
 ### 第2章 线程安全性
-
 
 非原子的64位操作
 高低两个32位操作
 
 对象的共享 可见性
 举例：
-
-
 
 ### 第3章 对象的共享
 final修饰变量 只能赋值一次
@@ -302,23 +342,16 @@ static修饰的变量 java内存模型里面有同步机制，确保线程安全
 线程封闭的三种方式：Ad-hoc线程封闭、栈封闭、ThreadLocal封闭。
 
 线程封闭是一种设计模式，用于确保数据在多线程环境中的安全访问。它通过限制数据的可见性范围，使得数据只能由特定的线程进行访问和修改，从而避免了多线程竞争和数据不一致的问题。以下是线程封闭的三种常见方式：
-
 1. Ad-hoc线程封闭（非结构化封闭）：
    Ad-hoc线程封闭是一种基于编程约定的方式，没有明确的封闭机制。在这种方式下，开发人员通过编码的方式确保数据只在特定的线程中访问和修改。例如，可以使用局部变量来保存数据，将数据限定在方法或线程的作用域内，使其只能在该线程中访问。
-
 2. 栈封闭：
    栈封闭是一种通过将数据保存在线程栈（Thread Stack）中的方式来实现线程封闭的机制。数据存储在线程栈上，只能由拥有该线程栈的线程进行访问。通常，栈封闭用于方法内部创建的局部变量或参数，这些数据在方法执行完毕后会被自动销毁，从而保证了数据的封闭性。
-
 3. ThreadLocal封闭：
    ThreadLocal封闭是一种使用ThreadLocal类的机制来实现线程封闭。ThreadLocal提供了一种将数据与线程关联的方式，使得每个线程都有自己独立的数据副本。线程之间的数据不会相互影响，从而实现了线程封闭。通过ThreadLocal类，可以在当前线程中创建和访问数据，而其他线程无法访问该数据。
 
 这三种线程封闭方式各有优劣，并适用于不同的应用场景。Ad-hoc线程封闭适用于简单的封闭需求，栈封闭适用于方法内部的局部数据，而ThreadLocal封闭适用于需要在线程之间共享数据，但又要保证线程安全的场景。
 
 需要注意的是，线程封闭并不是解决所有多线程并发问题的通用解决方案。在设计多线程应用时，还需要考虑线程间的通信、共享数据的同步和一致性等问题，以确保多线程环境下的正确性和性能。
-
-
-
-
 
 在Linux下使用C++语言实现ThreadLocal封闭，可以利用pthread库提供的线程特定数据（Thread-Specific Data，TSD）机制。以下是一个示例代码：
 
@@ -372,15 +405,19 @@ int main() {
 }
 ```
 
+cpp11_thread_local.cpp
+
+/mnt/d/develops/git/github/cpp/cpp_learn/cmake-build-debug-wsl24/cmake/cpp11/cpp11_thread_local
+Thread ID: Thread ID: Thread ID: 140490132346560, Data: 1
+140490123953856, Data: 1
+140490115561152, Data: 1
+
+
 在上述代码中，我们首先使用`pthread_key_create`函数创建了一个线程特定数据的键`key`。然后，在线程启动函数`threadFunction`中，我们使用`pthread_getspecific`函数从线程特定数据中获取数据，如果数据为NULL，则创建新的数据并使用`pthread_setspecific`函数存储到线程特定数据中。接着，修改数据并打印出来。最后，我们在主函数中创建多个线程，并等待线程退出后，使用`pthread_key_delete`函数销毁线程特定数据的键。
 
 通过使用线程特定数据的机制，我们可以实现在每个线程中都有独立的数据副本，从而实现了ThreadLocal封闭的效果。
 
 需要注意的是，线程特定数据在C++中也有其他实现方式，如C++11标准中引入的`thread_local`关键字。`thread_local`关键字可以用于定义线程局部存储的变量，从而实现了类似ThreadLocal的功能。不过，`thread_local`关键字的使用可能会受到编译器和标准库的限制，因此在使用时需要根据具体情况进行考虑。
-
-
-
-
 
 栈封闭 java代码如何实现
 
@@ -405,38 +442,107 @@ public class StackEncapsulationExample {
 
 需要注意的是，栈封闭仅适用于局部变量或方法参数等在方法内部定义的数据。如果需要在多个方法之间共享数据，并保证线程安全，可能需要考虑其他的线程封闭机制，如使用`ThreadLocal`或其他同步机制。
 
-
-
 Ad-hoc线程封闭是一种基于编程约定的方式，它不依赖于特定的语言支持，而是通过开发人员的编码实践来实现。因此，Java是支持Ad-hoc线程封闭的，开发人员可以通过编码约定来实现线程封闭。
 
 在Java中，可以使用以下方式实现Ad-hoc线程封闭：
-
 1. 方法内部的局部变量：在方法内部定义的局部变量仅在该方法的执行期间可见，不会被其他线程访问到。通过将数据存储在局部变量中，可以实现线程封闭。
-
 2. 方法参数：将数据作为方法的参数传递给方法，方法的参数也是在方法内部的局部变量。只有调用该方法的线程能够访问到方法参数，实现了线程封闭。
 
 通过以上方式，可以在Java中实现Ad-hoc线程封闭。例如：
 
 ```java
-public class AdHocThreadEncapsulationExample {
-    public void doWork() {
-        int data = 10; // 定义局部变量
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-        // 在方法内部进行操作
-        // ...
+/**
+ * Ad-hoc线程封闭示例
+ * 通过方法局部变量和方法参数实现线程封闭
+ */
+public class AdHocThreadConfinementDemo {
 
-        // 仅在当前方法内部可见，其他线程无法访问该变量
+    public static void main(String[] args) {
+        // 创建线程池
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        // 模拟多个任务并发执行
+        for (int i = 0; i < 5; i++) {
+            final int taskId = i;
+            executor.execute(() -> {
+                Worker worker = new Worker();
+                
+                // 通过方法局部变量实现封闭
+                worker.doWorkWithLocalVar();
+                
+                // 通过方法参数实现封闭
+                List<String> data = new ArrayList<>();
+                data.add("Task-" + taskId);
+                data.add("Data-" + System.currentTimeMillis());
+                worker.doWorkWithParameter(data);
+            });
+        }
+
+        executor.shutdown();
+    }
+
+    /**
+     * 工作类，演示Ad-hoc线程封闭
+     */
+    static class Worker {
+        /**
+         * 通过方法局部变量实现线程封闭
+         */
+        public void doWorkWithLocalVar() {
+            // 局部变量 - 仅当前线程可访问
+            List<Integer> localData = new ArrayList<>();
+            localData.add(1);
+            localData.add(2);
+            localData.add(3);
+
+            // 处理数据
+            int sum = localData.stream().mapToInt(i -> i).sum();
+            System.out.println(Thread.currentThread().getName() + 
+                " - Local var sum: " + sum);
+        }
+
+        /**
+         * 通过方法参数实现线程封闭
+         * @param inputData 由调用者传入的数据，封闭在当前线程中
+         */
+        public void doWorkWithParameter(List<String> inputData) {
+            // 参数数据 - 仅当前线程可访问
+            System.out.println(Thread.currentThread().getName() + 
+                " - Processing parameter data: " + inputData);
+            
+            // 模拟数据处理
+            inputData.add("Processed-at-" + System.currentTimeMillis());
+            System.out.println(Thread.currentThread().getName() + 
+                " - Processed data: " + inputData);
+        }
     }
 }
 ```
 
+pool-1-thread-2 - Local var sum: 6
+pool-1-thread-1 - Local var sum: 6
+pool-1-thread-2 - Processing parameter data: [Task-1, Data-1755056266289]
+pool-1-thread-2 - Processed data: [Task-1, Data-1755056266289, Processed-at-1755056266289]
+pool-1-thread-3 - Local var sum: 6
+pool-1-thread-1 - Processing parameter data: [Task-0, Data-1755056266289]
+pool-1-thread-2 - Local var sum: 6
+pool-1-thread-2 - Processing parameter data: [Task-3, Data-1755056266289]
+pool-1-thread-3 - Processing parameter data: [Task-2, Data-1755056266289]
+pool-1-thread-2 - Processed data: [Task-3, Data-1755056266289, Processed-at-1755056266289]
+pool-1-thread-1 - Processed data: [Task-0, Data-1755056266289, Processed-at-1755056266289]
+pool-1-thread-2 - Local var sum: 6
+pool-1-thread-2 - Processing parameter data: [Task-4, Data-1755056266289]
+pool-1-thread-3 - Processed data: [Task-2, Data-1755056266289, Processed-at-1755056266289]
+pool-1-thread-2 - Processed data: [Task-4, Data-1755056266289, Processed-at-1755056266289]
+
 在上述示例中，`data`变量是在`doWork()`方法内部定义的局部变量，只有在`doWork()`方法的执行过程中才能访问和修改该变量。其他线程无法直接访问该变量，从而实现了线程封闭。
 
 需要注意的是，Ad-hoc线程封闭依赖于开发人员的约定和编码实践，不提供语言级别的保障。因此，在使用Ad-hoc线程封闭时，开发人员需要遵循一致的编码规范，确保数据的封闭性和线程安全性。
-
-
-
-
 
 https://www.cnblogs.com/gnivor/p/4913132.html
 
@@ -456,10 +562,820 @@ https://www.cnblogs.com/east7/p/13893633.html
 ### 第4章 对象的组合
 
 
+| 技术         | 优点                           | 缺点                 | 适用场景             |
+| ------------ | ------------------------------ | -------------------- | -------------------- |
+| 实例封闭     | 简单直观，锁粒度明确           | 性能受单一锁限制     | 状态变量较少         |
+| 委托线程安全 | 减少同步代码，利用并发容器性能 | 复合操作仍需同步     | 独立状态变量         |
+| 客户端加锁   | 确保与目标类一致的锁策略       | 需了解目标类实现细节 | 扩展第三方线程安全类 |
+| 组合模式     | 完全控制同步策略               | 需重写代理方法       | 需要增强线程安全保证 |
+
+不变性条件（Invariants）详解
+1. 基本不变性（Fundamental Invariants）
+2. 状态相关不变性（State-dependent Invariants）
+
+#### 4.1　设计线程安全的类
+封装与不变性条件详解
+
+1. 封装（Encapsulation）
+
+定义：将数据和对数据的操作捆绑在一起，隐藏内部实现细节，仅暴露可控的访问方式。
+
+在并发编程中的作用：
+• 控制访问路径：强制所有对数据的访问必须通过特定方法（如synchronized方法）
+
+• 隔离线程干扰：防止外部直接修改内部状态导致竞态条件
+
+示例：
+// 非线程安全（未封装）
+public class Counter {
+    public int value; // 直接暴露字段
+}
+
+// 线程安全（封装）
+public class SafeCounter {
+    private int value; // 私有字段
+    
+    public synchronized void increment() {
+        value++; // 通过同步方法控制访问
+    }
+    
+    public synchronized int get() {
+        return value;
+    }
+}
+
+
+封装破坏线程安全的反例：
+public class LeakyCounter {
+    private List<Integer> values = new ArrayList<>();
+    
+    // 错误：返回内部可变对象的引用
+    public List<Integer> getValues() {
+        return values; 
+    }
+}
+// 外部线程可通过getValues()直接修改内部状态
+
+
+2. 不变性条件（Invariants）
+
+定义：对象在生命周期内必须始终保持正确的状态约束条件。
+
+分类：
+类型 描述 示例
+
+基本不变性 始终成立的条件 "数组长度≥0"
+
+状态相关不变性 特定状态下成立的条件 "若isOpen=true，则socket必须非空"
+
+线程安全中的关键点：
+1. 原子性维护：  
+   复合操作需保证不破坏不变性。例如：
+   if (!list.contains(x)) list.add(x); // 需整体作为原子操作
+   
+   
+2. 状态迁移验证：  
+   所有可能的状态变化必须满足：
+   • 初始状态符合不变性
+
+   • 每次状态转换保持不变性
+
+示例分析：
+public class Range {
+    private int lower, upper;
+    // 不变性条件：lower <= upper
+    
+    // 违反不变性的危险方法
+    public void setLower(int l) {
+        if (l > upper) throw...;
+        lower = l; // 非原子操作（需与upper比较同步）
+    }
+    
+    // 正确实现（同步保护）
+    public synchronized void setLower(int l) {
+        if (l > upper) throw...;
+        lower = l;
+    }
+}
+
+
+封装与不变性协同工作
+
+设计线程安全类的黄金法则：
+1. 完全封装所有可变状态
+2. 明确文档化所有不变性条件
+3. 同步策略必须保证：
+   • 单个操作的原子性
+
+   • 状态迁移不违反不变性
+
+经典案例：Java String
+public final class String {
+    private final byte[] value; // 完全封装
+    // 不变性：value创建后永不改变
+    // 所有方法无需同步（因为不可变）
+}
+
+
+常见误区与解决方案
+
+问题 错误示例 修复方案
+
+部分封装（泄漏内部引用） 返回private List的引用 返回防御性拷贝new ArrayList<>(list)
+
+隐含不变性未文档化 未说明"size必须≥0" 在类注释中明确所有不变性条件
+
+复合操作未同步 先检查if(x)再执行action(x) 用synchronized包裹整个复合操作
+
+实战技巧
+
+1. 使用final字段：  
+   private final Map<String, String> states; // 引用不可变
+   
+2. 防御性拷贝：  
+   public Point getLocation() {
+       return new Point(x, y); // 避免内部状态逸出
+   }
+   
+3. 工具类辅助：  
+   • Collections.unmodifiableList() 创建不可变视图
+
+   • Guava的ImmutableMap 构建真正不可变集合
+
+通过严格封装和不变性管理，可显著降低并发编程复杂度。
+
+
+不变性条件（Invariants）详解
+
+1. 基本不变性（Fundamental Invariants）
+
+定义：对象在整个生命周期中必须始终满足的约束条件，与对象当前状态无关。
+
+特点：
+• 绝对性：在任何方法调用前后都必须成立
+
+• 全局性：不受对象状态变化影响
+
+• 通常与对象构造相关：在构造函数中建立，且永远不会被破坏
+
+示例：
+public class Circle {
+    private final double radius;
+    
+    // 基本不变性：radius必须 > 0
+    public Circle(double r) {
+        if (r <= 0) throw new IllegalArgumentException();
+        this.radius = r;
+    }
+    
+    // 所有方法都隐式依赖radius>0的条件
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+典型场景：
+• 集合的容量非负（size >= 0）
+
+• 文件句柄在对象存活期间有效
+
+• 数据库连接打开期间不为null
+
+2. 状态相关不变性（State-dependent Invariants）
+
+定义：仅在对象处于特定状态时才需要满足的条件约束。
+
+特点：
+• 条件性：只在某些状态下生效
+
+• 暂时性：可能在状态转换时暂时违反（但必须在转换完成后恢复）
+
+• 需要显式同步：多线程环境下需保证状态转换的原子性
+
+示例：
+public class BankAccount {
+    private double balance;
+    private boolean isLocked;
+    
+    // 状态相关不变性：当isLocked=true时，balance不可变
+    public synchronized void withdraw(double amount) {
+        if (!isLocked && amount <= balance) {
+            balance -= amount; // 状态转换期间短暂违反不变性
+        }
+    }
+    
+    public synchronized void lockAccount() {
+        isLocked = true; // 此后balance必须保持不变
+    }
+}
+
+典型场景：
+• 缓存系统：当缓存失效时，数据必须重新加载
+
+• 状态机：特定状态下允许的操作受限
+
+• 事务处理：中间状态可能违反约束，但最终状态必须合法
+
+对比分析
+
+维度 基本不变性 状态相关不变性
+
+时间范围 整个生命周期 特定状态期间
+
+严格程度 绝对不可违反 允许短暂违反（在原子操作内）
+
+典型示例 数组长度 >= 0 若isOpen=true则socket!=null
+
+线程安全要求 通常由构造函数保证 需要同步机制保护状态转换
+
+破坏后果 对象完全失效 可能导致暂时性逻辑错误
+
+并发编程中的关键实践
+
+1. 基本不变性的保障
+
+public class Counter {
+    private int value;
+    
+    // 基本不变性：value >= 0
+    public synchronized void increment() {
+        if (value == Integer.MAX_VALUE) {
+            throw new IllegalStateException("Overflow");
+        }
+        value++; // 始终满足value >= 0
+    }
+}
+
+要点：通过输入验证和边界检查在源头阻止破坏
+
+2. 状态相关不变性的实现
+
+public class FileProcessor {
+    private File file;
+    private boolean isProcessing;
+    
+    // 状态相关不变性：若isProcessing=true，则file必须非null且可读
+    public synchronized void startProcessing() {
+        if (file == null || !file.exists()) {
+            throw new IllegalStateException();
+        }
+        isProcessing = true; // 状态转换
+    }
+    
+    public synchronized void setFile(File f) {
+        if (isProcessing) throw new IllegalStateException();
+        this.file = f;
+    }
+}
+
+要点：
+• 状态转换前验证前置条件
+
+• 用synchronized保证原子性
+
+3. 复合操作的原子性
+
+public class Range {
+    private int lower, upper;
+    // 不变性：lower <= upper
+    
+    public synchronized void setLower(int l) {
+        if (l > upper) throw new IllegalArgumentException();
+        lower = l; // 原子性保证不变性
+    }
+    
+    // 需要特别注意的复合操作
+    public synchronized void setBoth(int l, int u) {
+        if (l > u) throw new IllegalArgumentException(); // 临时违反
+        lower = l;  // 必须在一个同步块内完成
+        upper = u;  // 最终恢复 lower <= upper
+    }
+}
+
+
+破坏不变性的常见陷阱
+
+1. 逸出内部状态  
+   public class Sensor {
+       private final List<String> readings = new ArrayList<>();
+       
+       // 错误：返回内部可变对象
+       public List<String> getReadings() {
+           return readings; 
+       }
+   }
+   
+   修复：返回不可变视图  
+   return Collections.unmodifiableList(readings);
+   
+
+2. 非原子状态转换  
+   // 错误：分两步修改关联状态
+   account.setBalance(newBalance);
+   account.setLastUpdate(now); // 中间状态可能被其他线程读取
+   
+   修复：用同步块包裹复合操作
+
+3. 隐含不变性未文档化  
+   /**
+    * 必须维护的不变性：
+    * 1. cache不为null
+    * 2. 当isDirty=false时，cache必须与数据库一致
+    */
+   public class CacheSystem { ... }
+   
+
+总结
+
+• 基本不变性是对象健康的底线，通常通过构造器和输入验证保证
+
+• 状态相关不变性需要精细的状态转换控制，往往依赖同步机制
+
+• 在并发系统中，所有不变性条件必须：
+
+  • 明确文档化
+
+  • 通过封装保护
+
+  • 由同步策略提供原子性保障
+
+通过严格管理这两类不变性条件，可以构建出健壮的线程安全对象。
+
+#### 4.2　实例封闭49
+
+# 实例封闭机制 (Instance Confinement) 详解
+
+实例封闭是一种重要的并发编程技术，用于在多线程环境中安全地管理对象访问。它通过将对象的访问限制在特定线程或执行上下文中来保证线程安全性。
+
+## 基本概念
+
+实例封闭是指将一个对象封装在另一个对象内部，并确保只有封装对象的方法能够访问被封装对象。通过这种方式，可以控制对被封装对象的访问路径，从而更容易保证线程安全性。
+
+## 核心原则
+
+1. 访问限制：被封闭对象只能通过封闭类的特定方法访问
+2. 所有权控制：封闭类拥有对被封闭对象的完全控制权
+3. 线程安全保证：通过适当的同步机制确保封闭类的访问是线程安全的
+
+## 实现方式
+
+### 1. 线程封闭 (Thread Confinement)
+
+将对象的使用限制在单个线程中：
+
+```java
+public class ThreadConfinementExample {
+    private final List<String> data = new ArrayList<>(); // 被封闭对象
+    
+    public void addData(String item) {
+        // 确保只在创建线程中访问
+        data.add(item);
+    }
+    
+    public List<String> getData() {
+        return new ArrayList<>(data); // 防御性拷贝
+    }
+}
+```
+
+### 2. 栈封闭 (Stack Confinement)
+
+将对象限制在方法调用栈中（局部变量）：
+
+```java
+public class StackConfinementExample {
+    public void process() {
+        List<Integer> numbers = new ArrayList<>(); // 栈封闭对象
+        for (int i = 0; i < 10; i++) {
+            numbers.add(i);
+        }
+        processNumbers(numbers);
+    }
+    
+    private void processNumbers(List<Integer> nums) {
+        // 处理数据
+    }
+}
+```
+
+### 3. 对象封闭 (Object Confinement)
+
+将对象封闭在另一个对象内部：
+
+```java
+public class PersonSet {
+    // 被封闭的Set对象
+    private final Set<Person> mySet = new HashSet<>();
+    // 封闭锁
+    private final Object lock = new Object();
+    
+    public void addPerson(Person p) {
+        synchronized (lock) {
+            mySet.add(p);
+        }
+    }
+    
+    public boolean containsPerson(Person p) {
+        synchronized (lock) {
+            return mySet.contains(p);
+        }
+    }
+}
+```
+
+## 线程安全保证机制
+
+1. 同步控制：通过锁机制确保线程安全
+   ```java
+   public class SynchronizedVehicleTracker {
+       private final Map<String, Point> locations;
+       private final Object lock = new Object();
+       
+       public SynchronizedVehicleTracker(Map<String, Point> locs) {
+           locations = deepCopy(locs);
+       }
+       
+       public Map<String, Point> getLocations() {
+           synchronized (lock) {
+               return deepCopy(locations);
+           }
+       }
+   }
+   ```
+
+2. 不可变对象：封闭不可变对象自然线程安全
+   ```java
+   public class ImmutableHolder {
+       private final ImmutableObject value;
+       
+       public ImmutableHolder(ImmutableObject value) {
+           this.value = value;
+       }
+       
+       public ImmutableObject getValue() {
+           return value; // 安全发布
+       }
+   }
+   ```
+
+3. 线程特定存储：使用ThreadLocal
+   ```java
+   public class ThreadLocalConfinement {
+       private static ThreadLocal<SimpleDateFormat> dateFormat = 
+           ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+       
+       public String formatDate(Date date) {
+           return dateFormat.get().format(date); // 每个线程有自己的实例
+       }
+   }
+   ```
+
+## 应用场景
+
+1. GUI编程：Swing/AWT中的事件分发线程(EDT)规则
+2. 连接池管理：数据库连接限制在获取它的线程中使用
+3. 状态持有对象：将可变状态封装在线程安全对象中
+4. 缓存实现：线程安全的缓存管理
+
+## 优势与局限性
+
+### 优势：
+• 简化线程安全实现
+• 减少同步开销（当封闭在单个线程时）
+• 提高代码可维护性
+• 允许安全使用非线程安全对象
+
+
+### 局限性：
+• 可能限制对象的使用灵活性
+• 需要严格遵循访问规则
+• 不适用于需要真正共享访问的场景
+
+## 设计模式中的应用
+
+实例封闭是以下模式的核心思想：
+1. 装饰器模式：通过封装控制对原始对象的访问
+2. 代理模式：控制对实际对象的访问
+3. 工厂模式：控制对象的创建和访问
+
+实例封闭机制是构建线程安全类的重要技术之一，它通过限制对象的可见性和访问路径来简化并发编程的复杂性。
+
+
+同步策略(Synchronization Policy)详解
+
+同步策略是多线程编程中确保线程安全的核心机制，它定义了如何协调多个线程对共享数据的访问以避免竞态条件、数据不一致等并发问题。
+
+一、基本概念
+
+1. 定义
+
+同步策略是程序中对共享数据访问进行协调的规则集合，它规定了：
+• 哪些数据需要被保护
+
+• 使用什么同步机制
+
+• 如何组织这些机制来保证线程安全
+
+2. 核心要素
+
+要素 说明
+
+共享状态 需要被保护的可变数据
+
+同步机制 锁、原子变量、不可变对象等
+
+访问协议 线程访问共享状态的规则
+
+二、主要同步策略类型
+
+1. 基于锁的同步
+
+public class Counter {
+    private int value;
+    private final Object lock = new Object();
+    
+    public void increment() {
+        synchronized(lock) {  // 显式锁
+            value++;
+        }
+    }
+    
+    public int get() {
+        synchronized(lock) {
+            return value;
+        }
+    }
+}
+
+特点：
+• 悲观锁机制
+
+• 保证原子性和可见性
+
+• 可能引起线程阻塞
+
+2. 无锁编程
+
+public class AtomicCounter {
+    private final AtomicInteger value = new AtomicInteger(0);
+    
+    public void increment() {
+        value.incrementAndGet();  // CAS操作
+    }
+    
+    public int get() {
+        return value.get();
+    }
+}
+
+特点：
+• 基于CAS(Compare-And-Swap)
+
+• 无线程阻塞
+
+• 适合高并发读场景
+
+3. 线程封闭
+
+public class ThreadLocalCounter {
+    private static final ThreadLocal<Integer> value = 
+        ThreadLocal.withInitial(() -> 0);
+    
+    public void increment() {
+        value.set(value.get() + 1);  // 线程局部变量
+    }
+    
+    public int get() {
+        return value.get();
+    }
+}
+
+特点：
+• 数据不共享
+
+• 完全避免同步
+
+• 适用于线程特定的数据
+
+4. 不可变对象
+
+public final class ImmutablePoint {
+    private final int x;
+    private final int y;
+    
+    public ImmutablePoint(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    // 只有getter方法
+}
+
+特点：
+• 状态创建后不可修改
+
+• 安全发布后无需同步
+
+• 适合配置信息等场景
+
+三、同步策略设计原则
+
+1. 一致性原则
+
+// 错误示例：不一致的同步
+public class InconsistentSync {
+    private List<String> list = new ArrayList<>();
+    
+    public synchronized void add(String item) {
+        list.add(item);
+    }
+    
+    public int size() {  // 未同步！
+        return list.size();
+    }
+}
+
+
+2. 最小化原则
+
+// 好的实践：缩小同步范围
+public class FineGrainedSync {
+    private final Object readLock = new Object();
+    private final Object writeLock = new Object();
+    private int readCount = 0;
+    
+    public void read() {
+        synchronized(readLock) {
+            readCount++;
+        }
+        // 执行读取操作
+        synchronized(readLock) {
+            readCount--;
+        }
+    }
+}
+
+
+3. 可组合性原则
+
+public class CompositeAccount {
+    private final Monitor monitor = new Monitor();
+    private int balance;
+    
+    public void transfer(CompositeAccount to, int amount) {
+        while(true) {
+            if (monitor.enterWhen(monitor.newGuard(
+                this.balance >= amount))) {
+                try {
+                    if (to.monitor.enterIf(to.monitor.newGuard(true))) {
+                        try {
+                            this.balance -= amount;
+                            to.balance += amount;
+                            return;
+                        } finally {
+                            to.monitor.leave();
+                        }
+                    }
+                } finally {
+                    monitor.leave();
+                }
+            }
+        }
+    }
+}
+
+
+四、高级同步策略
+
+1. 读写锁策略
+
+public class ReadWriteCache {
+    private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+    private final Map<String, Object> cache = new HashMap<>();
+    
+    public Object get(String key) {
+        rwLock.readLock().lock();
+        try {
+            return cache.get(key);
+        } finally {
+            rwLock.readLock().unlock();
+        }
+    }
+    
+    public void put(String key, Object value) {
+        rwLock.writeLock().lock();
+        try {
+            cache.put(key, value);
+        } finally {
+            rwLock.writeLock().unlock();
+        }
+    }
+}
+
+
+2. 条件队列策略
+
+public class BoundedBuffer<E> {
+    private final ReentrantLock lock = new ReentrantLock();
+    private final Condition notFull = lock.newCondition();
+    private final Condition notEmpty = lock.newCondition();
+    private final E[] items;
+    private int count;
+    
+    public void put(E x) throws InterruptedException {
+        lock.lock();
+        try {
+            while (count == items.length)
+                notFull.await();
+            items[count++] = x;
+            notEmpty.signal();
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+
+
+3. 并发容器策略
+
+public class ConcurrentCache {
+    private final ConcurrentHashMap<String, Object> cache = 
+        new ConcurrentHashMap<>();
+    
+    public Object computeIfAbsent(String key, Function<String, Object> mapper) {
+        return cache.computeIfAbsent(key, mapper);  // 内置原子操作
+    }
+}
+
+
+五、同步策略选择指南
+
+场景特征 推荐策略 示例
+
+读多写少 读写锁 配置信息缓存
+
+短时原子操作 原子变量 计数器
+
+复杂同步逻辑 显式锁+条件队列 阻塞队列
+
+无状态操作 无同步 Servlet
+
+线程特定数据 ThreadLocal 请求上下文
+
+六、常见陷阱与最佳实践
+
+陷阱示例：锁泄露
+
+// 错误代码：可能造成锁泄露
+public void faultyMethod() {
+    synchronized(lock) {
+        if(condition) {
+            throw new RuntimeException();
+        }
+        // 正常处理
+    }
+}
+
+
+最佳实践：锁排序
+
+public class LockOrdering {
+    private static final Object lock1 = new Object();
+    private static final Object lock2 = new Object();
+    
+    public static void correctOrder() {
+        synchronized(lock1) {
+            synchronized(lock2) {
+                // 操作
+            }
+        }
+    }
+    
+    public static void incorrectOrder() {
+        synchronized(lock2) {  // 可能造成死锁
+            synchronized(lock1) {
+                // 操作
+            }
+        }
+    }
+}
+
+
+同步策略的设计需要综合考虑：
+1. 并发访问模式（读写比例）
+2. 性能要求
+3. 代码复杂度
+4. 系统吞吐量需求
+
+正确的同步策略应该：
+• 保证线程安全
+
+• 避免过度同步
+
+• 保持合理的性能
+
+• 易于维护和理解
 
 ### 第5章 基础构建模块
-
-
 
 同步工具类
 Latch
@@ -487,7 +1403,43 @@ ES
 
 ### 第6章 任务执行
 
-CompleteService
+CompleteService 错
+
+package java.util.concurrent;
+
+CompletionService 接口
+public interface CompletionService<V>
+    Future<V> submit(Callable<V> task);
+    Future<V> submit(Runnable task, V result);
+    Future<V> take() throws InterruptedException;
+    Future<V> poll();
+    Future<V> poll(long timeout, TimeUnit unit) throws InterruptedException;
+
+CompletionService 功能与原理的中文翻译
+
+CompletionService 是一种将新异步任务的生成与已完成任务结果的消费解耦的服务。生产者提交任务执行，消费者获取已完成的任务，并按照任务完成的顺序处理它们的结果。例如，CompletionService 可用于管理异步 I/O 操作：在程序或系统的一个部分提交执行读操作的任务，然后在程序的不同部分当读操作完成时进行处理，处理顺序可能与请求顺序不同。
+
+核心机制
+
+通常情况下，CompletionService 依赖于一个单独的 Executor 来实际执行任务，此时 CompletionService 仅管理一个内部完成队列。ExecutorCompletionService 类提供了这种方法的实现。
+
+内存一致性保证
+
+内存一致性效果：线程中向 CompletionService 提交任务之前的操作 happen-before 该任务执行的操作，后者又 happen-before 从对应 take() 方法成功返回后的操作。
+
+关键特点
+
+1. 生产-消费解耦：将任务提交与结果处理分离，生产者只需提交任务，消费者只需按完成顺序获取结果。
+
+2. 完成顺序处理：不同于传统的 Future 按提交顺序获取结果，CompletionService 保证先完成的任务先被处理。
+
+3. 高效资源利用：快速完成的任务可以立即被处理，不必等待慢任务，提高系统吞吐量。
+
+4. 内部队列管理：通过 BlockingQueue 存储已完成任务的 Future，take() 和 poll() 方法提供阻塞和非阻塞的获取方式。
+
+这种设计特别适合需要并发执行多个任务且要求按完成顺序处理结果的场景，如批量文件下载、多源数据查询等。
+
+Callable
 
 ### 第7章 取消与关闭
 ES

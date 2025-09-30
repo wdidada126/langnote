@@ -1,6 +1,9 @@
 # Clion
 
-CLion 2024.2
+
+## CLion Nova
+
+## CLion 2024.2
 	cmake.exe 3.29
 Clion可以无缝继承wsl	
 

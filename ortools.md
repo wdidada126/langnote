@@ -22,3 +22,13 @@ https://developers.google.com/optimization/install/java/pkg_windows?hl=zh-cn
     <scope>compile</scope>
   </dependency>
 
+直接查询libc和libc++的具体文件版本
+对于更直接地查看文件级别的版本信息，你可以使用otool和install_name_tool命令：
+查看动态库的安装名称和路径：
+otool -L /usr/lib/libc.dylib
+或者对于C++：
+otool -L /usr/lib/libc++.dylib
+
+查看动态库的版本：
+
+install_name_tool -dump /usr/lib/libc.dylib

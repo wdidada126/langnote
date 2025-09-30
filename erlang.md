@@ -15,3 +15,7 @@ rebar3
 https://www.oschina.net/p/rebar?hmsr=aladdin1e1
 
 Configuring Rebar
+
+Tsung（分布式TCP测试
+https://github.com/processone/tsung
+erlang写的

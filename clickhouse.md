@@ -9,6 +9,16 @@ olap
 
 https://github.com/ClickHouse/ClickHouse
 
+
+https://gitee.com/ClickHouse/ClickHouse
+未同步最新代码
+
+https://gitee.com/mirrors/clickhouse
+急速下载
+
+cmake组织
+c++ 汇编代码
+
 ClickHouse是一个用于联机分析处理(OLAP)的开源列式数据库。 ClickHouse是由俄罗斯IT公司Yandex为Yandex.Metrica网络分析服务开发的。
 
 druid支持

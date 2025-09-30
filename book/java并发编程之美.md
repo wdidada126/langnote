@@ -18,9 +18,9 @@ Object需要在同步代码块（synchronized block）或同步方法（synchron
 #### 1.1 什么是线程 2
 #### 1.2 线程创建与运行 3
 #### 1.3 线程通知与等待 6
-#### 1.4 等待线程执行终止的join 方法 16
+#### 1.4 等待线程执行终止的join方法 16
 #### 1.5 让线程睡眠的sleep 方法 19
-#### 1.6 让出CPU 执行权的yield 方法 23
+#### 1.6 让出CPU执行权的yield方法 23
 #### 1.7 线程中断 24
 #### 1.8 理解线程上下文切换 30
 #### 1.9 线程死锁 30
@@ -31,7 +31,7 @@ Object需要在同步代码块（synchronized block）或同步方法（synchron
 1.11.1 ThreadLocal使用示例 40
 1.11.2 ThreadLocal的实现原理 42
 1.11.3 ThreadLocal不支持继承性 45
-1.11.4 InheritableThreadLocal 类 46
+1.11.4 InheritableThreadLocal类 46
 ### 第2 章 并发编程的其他基础知识 50
 #### 2.1 什么是多线程并发编程 50
 #### 2.2 为什么要进行多线程并发编程 51
@@ -47,7 +47,7 @@ cpu指令，无锁，提高并发量
 JDK中的AtomicStampedReference类给每个变量的状态值都配备了一个时间戳，从而避免了ABA问题的产生。
 
 #### 2.9 Unsafe 类 59
-2.9.1 Unsafe 类中的重要方法 59
+2.9.1 Unsafe类中的重要方法 59
 2.9.2 如何使用Unsafe 类 61
 #### 2.10 Java 指令重排序 65
 Java 内存模型允许编译器和处理器对指令重排序以提高运行性能，并且只会对不存在数据依赖性的指令重排序。在单线程下重排序可以保证最终执行的结果与程序顺序执行的结果一致，但是在多线程下就会存在问题。
@@ -69,7 +69,7 @@ Java 内存模型允许编译器和处理器对指令重排序以提高运行性
 2.12.5 自旋锁 77
 2.13 总结 77
 ## 第二部分 Java 并发编程高级篇
-### 第3 章 Java 并发包中ThreadLocalRandom 类原理剖析 80
+### 第3 章 Java 并发包中ThreadLocalRandom类原理剖析 80
 3.1 Random类及其局限性 80
 3.2 ThreadLocalRandom 82
 3.3 源码分析 84
@@ -92,15 +92,32 @@ Java 内存模型允许编译器和处理器对指令重排序以提高运行性
 5.2.5 删除元素 110
 5.2.6 弱一致性的迭代器 111
 5.3 总结 114
-### 第6 章 Java并发包中锁原理剖析 115
+
+
+### 第6章 Java并发包中锁原理剖析 115
+
+## 第一部分 Java 并发编程基础篇
+### 第1 章 并发编程线程基础 
+
+### 1.10 守护线程与用户线程
+
+ThreadLocal、InheritableThreadLocal、TransmittableThreadLocal原理
+
+### 第2 章 并发编程的其他基础知识
+## 第二部分 Java 并发编程高级篇
+### 第3 章 Java 并发包中ThreadLocalRandom类原理剖析
+
+### 第4 章 Java 并发包中原子操作类原理剖析
+### 第5 章 Java并发包中并发List源码剖析
+### 第6章 Java并发包中锁原理剖析 115
+
 l 锁
 
 rl 可重入锁
 rrwl
 sl 
 #### 6.1 LockSupport工具类 115
-LockSupport`是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。
-主要有两类方法：`park`和`unpark`。park英文意思为停车，unpark就是让车启动然后跑起来。
+LockSupport`是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，当然阻塞之后肯定得有唤醒的方法。主要有两类方法：`park`和`unpark`。park英文意思为停车，unpark就是让车启动然后跑起来。
 #### 6.2 抽象同步队列AQS概述 122
 6.2.1 AQS——锁的底层支持 122
 6.2.2 AQS——条件变量的支持 128
@@ -149,7 +166,7 @@ Object 类的 wait/notify/notifyAll
 
 下面是一个简单的示例，展示了如何在同步代码块中使用 wait() 和 notify()：
 
-java
+```java
 public class SynchronizedExample {  
     private final Object lock = new Object();  
     private boolean ready = false;  
@@ -170,6 +187,7 @@ public class SynchronizedExample {
         }  
     }  
 }
+```
 在这个示例中，waitForSignal() 方法在同步代码块中调用 wait() 方法来等待 ready 变量变为 true。而 signalReady() 方法在同步代码块中设置 ready 变量为 true 并调用 notify() 方法来唤醒等待的线程。注意，这两个方法都使用了同一个 lock 对象来同步，确保线程间的正确交互。
 
 c++里面是 condiction_variable
@@ -198,8 +216,7 @@ void print_id(int id) {
         cv.wait(lck);
     }
     // 当ready为true时，打印线程ID
-    std::cout << "thread " << id << '
-';
+    std::cout << "thread " << id << '\n';
 }
 
 void go() {
@@ -226,6 +243,7 @@ int main() {
     return 0;
 }
 ```
+cpp11_thread_lock.cpp
 
 Java示例：
 ```java
@@ -238,7 +256,7 @@ public class ConditionExample {
     private final Condition condition = lock.newCondition();
     private boolean ready = false;
 
-    public void printId(int id) throws InterruptedException {
+    public void printId(long id) throws InterruptedException {
         lock.lock();
         try {
             while (!ready) {
@@ -285,6 +303,180 @@ public class ConditionExample {
     }
 }
 ```
+
+这个lock.lock是不是没有锁住，其他线程进去了 Thread-0,20,printId lock before
+Thread-2,22,printId lock before
+Thread-4,24,printId lock before
+main,1,10 threads ready to race...
+Thread-7,27,printId lock before
+Thread-1,21,printId lock before
+Thread-5,25,printId lock before
+Thread-3,23,printId lock before
+Thread-6,26,printId lock before
+Thread-8,28,printId lock before
+main,1,go lock before
+Thread-9,29,printId lock before
+Thread-0,20,printId lock after
+Thread-0,20,condition await before
+Thread-2,22,printId lock after
+Thread-2,22,condition await before
+Thread-4,24,printId lock after
+Thread-4,24,condition await before
+Thread-7,27,printId lock after
+Thread-7,27,condition await before
+Thread-1,21,printId lock after
+Thread-1,21,condition await before
+Thread-5,25,printId lock after
+Thread-5,25,condition await before
+Thread-3,23,printId lock after
+Thread-3,23,condition await before
+Thread-6,26,printId lock after
+Thread-6,26,condition await before
+Thread-8,28,printId lock after
+Thread-8,28,condition await before
+main,1,go lock after
+main,1,condition signalAll before
+main,1,condition signalAll after
+main,1,go unlock
+Thread-9,29,printId lock after
+Thread-9,29,Thread 29
+Thread-9,29,printId unlock
+Thread-0,20,condition await after
+Thread-0,20,Thread 20
+Thread-0,20,printId unlock
+Thread-2,22,condition await after
+Thread-2,22,Thread 22
+Thread-2,22,printId unlock
+Thread-4,24,condition await after
+Thread-4,24,Thread 24
+Thread-4,24,printId unlock
+Thread-7,27,condition await after
+Thread-7,27,Thread 27
+Thread-7,27,printId unlock
+Thread-1,21,condition await after
+Thread-1,21,Thread 21
+Thread-1,21,printId unlock
+Thread-5,25,condition await after
+Thread-5,25,Thread 25
+Thread-5,25,printId unlock
+Thread-3,23,condition await after
+Thread-3,23,Thread 23
+Thread-3,23,printId unlock
+Thread-6,26,condition await after
+Thread-6,26,Thread 26
+Thread-6,26,printId unlock
+Thread-8,28,condition await after
+Thread-8,28,Thread 28
+Thread-8,28,printId unlock
+
+从你的日志来看，ReentrantLock 确实正常工作，锁的机制没有问题。出现多个线程同时打印 printId lock before 的现象是 预期行为，但后续的锁竞争和条件等待是完全符合设计的。以下是详细分析：
+
+1. 为什么多个线程能同时打印 lock before？
+
+• 锁的生效时机：  
+
+  lock.lock() 的阻塞发生在 其他线程已经持有锁时。在你的代码中，所有线程在 lock.lock() 调用前打印 lock before，此时锁尚未被任何线程持有，因此所有线程都能快速执行到 lock.lock() 这一行。  
+  • 关键点：打印 lock before 的操作 在锁外部，因此不受锁限制。
+
+• 锁的真实作用：  
+
+  当多个线程执行到 lock.lock() 时，只有一个线程能成功获取锁，其他线程会被阻塞，直到锁释放。从日志中可以看到：
+  Thread-0,20,printId lock after      // Thread-0 成功获取锁
+  Thread-0,20,condition await before  // Thread-0 进入等待
+  Thread-2,22,printId lock after      // Thread-2 在 Thread-0 释放锁前被阻塞
+  
+
+2. 线程执行顺序的正确性
+
+(1) 主线程 (go() 方法) 的执行
+
+• 主线程调用 go() 时，会先获取锁（lock.lock()），此时其他线程已在 condition.await() 中释放锁并等待。
+
+• 主线程通过 condition.signalAll() 唤醒所有等待的线程。
+
+(2) 被唤醒线程的竞争
+
+• 唤醒后，所有线程会 重新竞争锁（只有一个线程能获取锁，其余继续等待）。  
+
+• 从日志可以看到，Thread-9 是第一个获取锁的线程：
+  Thread-9,29,printId lock after  // Thread-9 第一个获取锁
+  Thread-9,29,Thread 29           // 执行逻辑
+  Thread-9,29,printId unlock       // 释放锁
+  
+• 其他线程按竞争顺序依次执行。
+
+3. 验证锁是否生效
+
+(1) 修改代码验证锁的阻塞
+
+在 printId 方法中添加耗时操作，验证其他线程是否被阻塞：
+public void printId(long id) throws InterruptedException {
+    print("printId lock before");
+    lock.lock();
+    print("printId lock after");
+    try {
+        Thread.sleep(1000); // 模拟耗时操作
+        while (!ready) {
+            condition.await();
+        }
+        print("Thread " + id);
+    } finally {
+        lock.unlock();
+    }
+}
+
+预期结果：每次只有一个线程能进入 lock.lock() 后的代码块，其他线程会被阻塞。
+
+(2) 日志分析
+
+• 如果锁未生效，你会看到多个线程同时打印 printId lock after 和 Thread.sleep(1000)。  
+
+• 实际结果会是：每次只有一个线程能执行耗时操作，证明锁有效。
+
+4. 关键结论
+
+1. 锁的生效范围：  
+   lock.lock() 只对 其后的代码块 生效，之前的代码（如打印 lock before）不受锁限制。  
+2. 条件变量 (Condition) 的正确使用：  
+   • condition.await() 会 释放锁 并进入等待，被唤醒后需要 重新获取锁。  
+
+   • 你的代码中所有线程按预期等待和唤醒，无逻辑错误。  
+
+3. 多线程的“看似并发”：  
+   线程在打印日志时可能看起来是并发的，但实际锁内的操作是严格串行的。
+
+5. 改进建议
+
+(1) 更清晰的日志
+
+在日志中标记锁的获取和释放时机：
+print("printId lock before");
+lock.lock();
+print("printId lock acquired by " + Thread.currentThread().getName());
+
+
+(2) 验证锁的独占性
+
+通过共享变量验证锁的独占性：
+private int activeThreads = 0;
+
+public void printId(long id) throws InterruptedException {
+    lock.lock();
+    try {
+        activeThreads++;
+        System.out.println("Active threads in lock: " + activeThreads);
+        Thread.sleep(1000);
+        activeThreads--;
+    } finally {
+        lock.unlock();
+    }
+}
+
+预期输出：Active threads in lock 始终为 1。
+
+6. 总结
+
+你的代码完全正确，锁和条件变量的使用符合预期。多个线程打印 lock before 是正常的，因为锁的竞争发生在 lock.lock() 之后。通过验证代码可以确认锁的独占性和条件变量的正确性。
 
 在Go和Python中，条件变量（通常称为条件或条件同步原语）是用于协调多个goroutines或线程之间活动的机制，特别是在一个或多个goroutines或线程需要等待某个条件成立时。虽然Go和Python的API在语法和具体实现上有所不同，但它们的基本概念是相似的。
 
@@ -503,7 +695,7 @@ public class StampedLockExample {
 
 ### 第7章 Java并发包中并发队列原理剖析 165
 
-三个阻塞队列
+三个阻塞队列 block
 ArrayBlockingQueue
 LinkedBlockingQueue
 PriorityBlockingQueue
@@ -515,10 +707,15 @@ PriorityBlockingQueue
     E element();
     E peek();
 
+DelayQueue dq
+
 #### 7.1 ConcurrentLinkedQueue原理探究 165
 7.1.1 类图结构 165
 7.1.2 ConcurrentLinkedQueue原理介绍 166
 7.1.3 小结 181
+
+public class ConcurrentLinkedQueue<E> extends AbstractQueue<E> implements Queue<E>, java.io.Serializable
+
 #### 7.2 LinkedBlockingQueue原理探究 182
 7.2.1 类图结构 182
 7.2.2 LinkedBlockingQueue 原理介绍 185
@@ -527,26 +724,45 @@ PriorityBlockingQueue
 7.3.1 类图结构 195
 7.3.2 ArrayBlockingQueue原理介绍 197
 7.3.3 小结 202
+
+public class LinkedBlockingQueue<E> extends AbstractQueue<E> implements BlockingQueue<E>, java.io.Serializable
+
+poll()
+offer()
+take()
+
+public class ArrayBlockingQueue<E> extends AbstractQueue<E> implements BlockingQueue<E>, java.io.Serializable
+
+
 #### 7.4 PriorityBlockingQueue原理探究 203
 7.4.1 介绍 203
 7.4.2 PriorityBlockingQueue类图结构 203
 7.4.3 原理介绍 205
 7.4.4 案例介绍 214
 7.4.5 小结 216
+
+public class PriorityBlockingQueue<E> extends AbstractQueue<E> implements BlockingQueue<E>, java.io.Serializable
+TestPriorityBlockingQueue.java
+
 #### 7.5 DelayQueue原理探究 217
 7.5.1 DelayQueue 类图结构 217
 7.5.2 主要函数原理讲解 219
 7.5.3 案例介绍 222
 7.5.4 小结 224
+
+public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements BlockingQueue<E>
+
+DelayQueue.png
+
 ### 第8章 Java并发包中线程池ThreadPoolExecutor原理探究 225
 #### 8.1 介绍 225
 #### 8.2 类图介绍 225
 #### 8.3 源码分析 230
 8.3.1 public void execute(Runnable command) 230
 8.3.2 工作线程Worker 的执行 235
-8.3.3 shutdown 操作 238
-8.3.4 shutdownNow 操作 240
-8.3.5 awaitTermination 操作 241
+8.3.3 shutdown操作 238
+8.3.4 shutdownNow操作 240
+8.3.5 awaitTermination操作 241
 #### 8.4 总结 242
 
 ThreadPoolExecutor 线程池执行器
@@ -556,7 +772,7 @@ public class ScheduledThreadPoolExecutor
         extends ThreadPoolExecutor
         implements ScheduledExecutorService
 
-### 第9 章 Java 并发包中ScheduledThreadPoolExecutor 原理探究 243
+### 第9 章 Java 并发包中ScheduledThreadPoolExecutor原理探究 243
 #### 9.1 介绍 243
 #### 9.2 类图介绍 243
 9.3 原理剖析 245
@@ -564,8 +780,12 @@ public class ScheduledThreadPoolExecutor
 9.3.2 scheduleWithFixedDelay(Runnable command,long initialDelay, long delay,TimeUnit unit) 方法 252
 9.3.3 scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit) 方法 254
 9.4 总结 255
+
+
+
+
 ### 第10 章 Java并发包中线程同步器原理剖析 256
-#### 10.1 CountDownLatch 原理剖析 256
+#### 10.1 CountDownLatch原理剖析 256
 10.1.1 案例介绍 256
 10.1.2 实现原理探究 259
 10.1.3 小结 263
@@ -577,6 +797,31 @@ await()
 10.2.1 案例介绍 264
 10.2.2 实现原理探究 268
 10.2.3 小结 272
+
+    private final ReentrantLock lock = new ReentrantLock();
+    private final Condition trip = lock.newCondition();
+
+https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CyclicBarrier.html
+
+以下是关于CyclicBarrier的准确技术翻译（保留术语一致性并符合技术文档风格）：
+
+一种同步辅助工具，允许一组线程互相等待，直到所有线程都到达某个共同的屏障点。CyclicBarrier适用于涉及固定数量线程组的程序场景，这些线程需要周期性地相互等待。该屏障之所以被称为"循环（Cyclic）"，是因为它在等待线程被释放后可以重复使用。
+
+CyclicBarrier支持一个可选的Runnable命令，该命令会在每次屏障点被触发时执行（即当最后一个线程到达屏障后、但所有线程被释放前执行）。此屏障操作对于更新共享状态非常有用，可确保在任意线程继续执行前完成状态更新。
+
+关键术语解析：
+synchronization aid → 同步辅助工具（Java并发包标准译法）
+barrier point → 屏障点（保持"屏障"隐喻）
+fixed sized party of threads → 固定数量的线程组（"party"在此语境下指线程组）
+barrier action → 屏障操作（指Runnable命令的执行）
+re-used → 重复使用（强调循环特性）
+技术要点保留：
+精确传达"cyclic"的双重含义（可重用性+循环等待机制）
+明确屏障操作的执行时机（最后一线程到达后、释放所有线程前）
+保持Java官方文档的简洁技术风格
+
+Solver.java
+
 #### 10.3 信号量Semaphore原理探究 272
 10.3.1 案例介绍 272
 10.3.2 实现原理探究 276
@@ -598,19 +843,26 @@ public void release()
 11.1.1 异步日志打印模型概述 284
 11.1.2 异步日志与具体实现 285
 11.1.3 小结 293
+
+7.3
+
 #### 11.2 Tomcat的NioEndPoint中ConcurrentLinkedQueue的使用 293
 11.2.1 生产者——Acceptor线程 294
 11.2.2 消费者——Poller线程 298
 11.2.3 小结 300
+
 #### 11.3 并发组件ConcurrentHashMap使用注意事项 300
+
 #### 11.4 SimpleDateFormat是线程不安全的 304
 11.4.1 问题复现 304
 11.4.2 问题分析 305
 11.4.3 小结 309
+
 #### 11.5 使用Timer时需要注意的事情 309
 11.5.1 问题的产生 309
 11.5.2 Timer实现原理分析 310
 11.5.3 小结 313
+
 #### 11.6 对需要复用但是会被下游修改的参数要进行深复制 314
 11.6.1 问题的产生 314
 11.6.2 问题分析 316

@@ -3,9 +3,7 @@
 makefile本身为了替代shell，你小子倒好，反过来了
 makefile支持增量编译
 
-
 新版本的LFS里，越来越多的软件包用meson和cmake了。各有各的好吧
-
 
 https://github.com/adamdunkels/uip
 
@@ -44,9 +42,7 @@ uip/Makefile.include：这个文件可能被其他Makefile包含，提供了一�
 
 总的来说，make的灵活性和模块化特性使得它能够适应各种复杂的项目结构，而分离式编译是这种灵活性的一个重要体现。
 
-
 make -j4 2>&1 | tee out.txt
-
 
 多看官网文档
 
@@ -56,6 +52,7 @@ redis的makefile值得学习，有make uninstall
 
 https://www.gnu.org/software/make/manual/make.pdf
 
+## version
 GNU make Version 4.3
 
 make 3.8.2 中文文档
@@ -64,10 +61,7 @@ https://free-online-ebooks.appspot.com/tools/gnu-make-cn/make-01.html
 
 https://hacker-yhj.github.io/resources/gun_make.pdf
 
-
-
 https://blog.csdn.net/weixin_42645653/article/details/114887822
-
 
 srpc GNUmakefile
 
@@ -78,7 +72,6 @@ make
 xxx : xxx.cc
 	g++ xxx.cc -o xxx
 
-
 Make命令教程
 http://www.ruanyifeng.com/blog/2015/02/make.html
 
@@ -88,7 +81,6 @@ make默认会找makefile来进行build操作
 
 Makefile文件由一系列规则（rules）构成。每条规则的形式如下。
 
-
 <target> : <prerequisites> 
 [tab]  <commands>
 上面第一行冒号前面的部分，叫做"目标"（target），冒号后面的部分叫做"前置条件"（prerequisites）；第二行必须由一个tab键起首，后面跟着"命令"（commands）。
@@ -97,16 +89,14 @@ Makefile文件由一系列规则（rules）构成。每条规则的形式如下�
 
 .PHONY 明确表示伪目标
 
-
 内置变量（Implicit Variables）
 Make命令提供一系列内置变量，比如，$(CC) 指向当前使用的编译器，$(MAKE) 指向当前使用的Make工具。这主要是为了跨平台的兼容性
-
 
 ## Makefile提供了许多内置函数
 http://www.gnu.org/software/make/manual/html_node/Functions.html
 cmake也有内置函数
 
-
+## 官网
 http://www.gnu.org/software/make/
 
 make 官方
@@ -114,7 +104,6 @@ make 官方
 ## make本质
 make编译java go c/cpp nodejs
 本质是对命令行/shell的封装
-
 
 语法
 
@@ -128,19 +117,13 @@ sudo make install
 
 .o .c
 
-
-
 CXX gcc
 
 需要熟悉gcc的参数
 
 makefile + make 执行各种命令行脚本
 
-
-
 make支持Go语言的编译
-
-
 
 windows有make嘛？
 
@@ -150,21 +133,68 @@ windows有make嘛？
 
 MinGW32只能编译32位程序，要想编译64位，需要安装MinGW-w64，参考 [MinGW-w64离线安装](https://blog.csdn.net/ZHAOJUNWEI08/article/details/86602120)，在线安装可能无法访问，
 
-
-
-
-
-
-
 windows下cmake是否也是生成make执行的makefile文件来执行
 是
 
-
-
-
 widows下也有自己的命令行编译工具，比如msbuild，nmake等。这两个工具是和VS一起升级维护的，所以对于像笔者这样，一台机器安装3个版本的VS的人，要使用正确版本的编译工具其实需要走些弯路。
-
-
 
 xmake
 
+## source code
+https://www.gnu.org/software/make/
+
+https://ftp.gnu.org/gnu/make/
+
+wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+cd make-4.3
+./configure
+make -j4
+
+    README.older-versions   2002-03-01 13:37    162  
+[   ]   make-3.75-3.76.diff.gz  1997-09-16 03:00    229K     
+[   ]   make-3.75.tar.gz    1996-08-28 03:00    581K     
+[   ]   make-3.76-3.76.1.diff.gz    1997-09-19 03:00    2.4K     
+[   ]   make-3.76.1-3.77.diff.gz    1998-07-31 03:10    155K     
+[   ]   make-3.76.1.tar.gz  1997-09-19 03:00    617K     
+[   ]   make-3.77.tar.gz    1998-07-31 03:09    653K     
+[   ]   make-3.78.1.tar.gz  1999-09-23 20:33    756K     
+[   ]   make-3.79.1.tar.gz  2000-06-23 20:10    1.0M     
+[   ]   make-3.79.tar.gz    2000-04-11 10:31    937K     
+[   ]   make-3.80.tar.bz2   2002-10-03 23:23    899K     
+[   ]   make-3.80.tar.gz    2002-10-03 23:23    1.2M     
+[   ]   make-3.81.tar.bz2   2006-04-01 01:48    1.1M     
+[   ]   make-3.81.tar.bz2.sig   2006-04-01 01:49    65   
+[   ]   make-3.81.tar.gz    2006-04-01 01:48    1.5M     
+[   ]   make-3.81.tar.gz.sig    2006-04-01 01:49    65   
+[   ]   make-3.82.tar.bz2   2010-07-28 01:59    1.2M     
+[   ]   make-3.82.tar.bz2.sig   2010-07-28 01:59    72   
+[   ]   make-3.82.tar.gz    2010-07-28 01:58    1.6M     
+[   ]   make-3.82.tar.gz.sig    2010-07-28 01:59    72   
+[   ]   make-4.0.tar.bz2    2013-10-09 02:16    1.3M     
+[   ]   make-4.0.tar.bz2.sig    2013-10-09 02:16    72   
+[   ]   make-4.0.tar.gz 2013-10-09 02:16    1.8M     
+[   ]   make-4.0.tar.gz.sig 2013-10-09 02:16    72   
+[   ]   make-4.1.tar.bz2    2014-10-05 12:27    1.3M     
+[   ]   make-4.1.tar.bz2.sig    2014-10-05 12:27    72   
+[   ]   make-4.1.tar.gz 2014-10-05 12:27    1.8M     
+[   ]   make-4.1.tar.gz.sig 2014-10-05 12:27    72   
+[   ]   make-4.2.1.tar.bz2  2016-06-10 19:32    1.3M     
+[   ]   make-4.2.1.tar.bz2.sig  2016-06-10 19:32    72   
+[   ]   make-4.2.1.tar.gz   2016-06-10 19:32    1.9M     
+[   ]   make-4.2.1.tar.gz.sig   2016-06-10 19:32    72   
+[   ]   make-4.2.tar.bz2    2016-05-22 09:40    1.3M     
+[   ]   make-4.2.tar.bz2.sig    2016-05-22 09:40    72   
+[   ]   make-4.2.tar.gz 2016-05-22 09:40    1.9M     
+[   ]   make-4.2.tar.gz.sig 2016-05-22 09:40    72   
+[   ]   make-4.3.tar.gz 2020-01-19 17:24    2.2M     
+[   ]   make-4.3.tar.gz.sig 2020-01-19 17:24    566  
+[   ]   make-4.3.tar.lz 2020-01-19 17:24    1.2M     
+[   ]   make-4.3.tar.lz.sig 2020-01-19 17:24    566  
+[   ]   make-4.4.1.tar.gz   2023-02-26 15:06    2.2M     
+[   ]   make-4.4.1.tar.gz.sig   2023-02-26 15:06    833  
+[   ]   make-4.4.1.tar.lz   2023-02-26 15:06    1.2M     
+[   ]   make-4.4.1.tar.lz.sig   2023-02-26 15:06    833  
+[   ]   make-4.4.tar.gz 2022-10-31 02:49    2.2M     
+[   ]   make-4.4.tar.gz.sig 2022-10-31 02:49    566  
+[   ]   make-4.4.tar.lz 2022-10-31 02:49    1.2M     
+[   ]   make-4.4.tar.lz.sig 2022-10-31 02:49    566  

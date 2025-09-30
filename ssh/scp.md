@@ -1,5 +1,7 @@
 # scp
 
+scp -P 27795 root@66.112.211.252:/root/cmake-4.0.3-linux-x86_64.tar.gz .
+
 两台通过联网的主机，复制文件
 `
 scp -P 27795  root@67.209.189.193:/root/mactex-20200407.pkg  ~

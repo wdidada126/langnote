@@ -2,6 +2,8 @@
 
 ## String join()
 JdbcTemplate拼接 in List集合
+kafka有多个生产者，多个消费者，保存到数据库表，用 , 隔开
+
 
 [Java8实战](https://book.douban.com/subject/26772632/)
 
@@ -305,7 +307,6 @@ JdbcTemplate拼接 in List集合
 附录D　Lambda表达式和JVM 字节码　　346
 
 https://github.com/edidada/Java8InAction
-
 
 
 第二版 Java实战 java11的？

@@ -8,8 +8,6 @@ https://github.com/jemalloc/jemalloc
 最新版
 5.2.1 20210305
 
-
-
 http://jemalloc.net/
 
 centos 7
@@ -28,11 +26,7 @@ repoquery -ql jemalloc-devel
 
 https://www.jianshu.com/p/41852483e4a1
 
-
-
 腾讯云 gcc 4.8
-
-
 
 从githua下载releases网址下的包，可以，不要从github上下载源码
 
@@ -45,8 +39,6 @@ redis使用了
 Jemalloc是内存管理库。很多开源项目不使用glibc自带的ptmalloc，而是使用Jemalloc或者Tcmalloc这类更高效的内存管理库。
 分析ptmalloc、tcmalloc和jemalloc这三种内存管理库
 
-
-
 centos 7
 
 yum install jemalloc-devel -y
@@ -55,13 +47,7 @@ yum install jemalloc-devel -y
 
 源码安装 jemalloc-4.5.0
 
-
-
-
-
 https://people.freebsd.org/~jasone/jemalloc/bsdcan2006/jemalloc.pdf
-
-
 
 内存分配器 jemalloc 是通用的 malloc(3) 实现，它强调避免碎片和可扩展的并发支持。
 
@@ -69,17 +55,7 @@ jemalloc 起源于 Jason Evans 2006 年在 BSDcan conference 发表的论文：[
 
 jemalloc 是 Facebook 推出的一种通用 malloc 实现，在 FreeBSD、firefox 中被广泛使用。比起 ptmalloc2 具有更高的性能。
 
-
-
 http://www.freeoa.net/product/devtool/mem-allocation-jemalloc_3124.html
-
-```shell
-
-```
-
-
-
-
 
 autotool
 `sudo yum install aotutool -y`
@@ -91,8 +67,6 @@ make
 cause error
 
 gcc version 4.8.5
-
-
 
 gcc 7之后，编译通过
 
@@ -122,3 +96,5 @@ ln -sf libjemalloc.so.2 /usr/local/lib/libjemalloc.so
 /root/jemalloc-4.5.0
 ```
 ~~~
+
+https://github.com/jemalloc/jemalloc/wiki

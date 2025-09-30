@@ -1,5 +1,17 @@
 # Spring
 
+## 商业公司
+Spring框架背后的商业公司是Pivotal Software（ pivotal软件公司）。不过，Spring框架的历史和背后的公司关系有些变化：
+
+最初，Spring框架是由Rod Johnson创建的，并在他创立的公司Interface21中进行开发和支持。这家公司后来更名为SpringSource。
+2009年，SpringSource被VMware收购。
+在2013年，VMware与EMC合作成立了Pivotal Software，将SpringSource、Cloud Foundry和其他一些技术整合到了一起。Pivotal Software专注于大数据和云计算领域，并继续发展Spring框架。
+到了2019年，Pivotal Software又被VMware收购，这意味着Spring框架现在属于VMware的一部分。
+尽管Spring框架有一个商业背后的公司支持，但它本身是一个开源项目，拥有一个活跃的社区贡献者群体。Spring框架的设计目的是为了简化企业级Java应用的开发，提供了诸如依赖注入、面向切面编程等功能，极大地提升了开发效率和代码质量。此外，Spring生态系统还包括许多其他的项目，如Spring Boot、Spring Cloud等，这些都为现代云原生应用开发提供了强大的支持。
+
+## POJO的理解
+用Service等修饰的类，不能定义对象变量，可以定义static类变量
+
 开发效率影响太大了，不然为什么spring性能不佳但仍然是主流？不带gc的语言写服务端就是来折腾团队的。开发效率blazor完胜。
 
 BeanFactoryPostProcessor 实现类

@@ -1,5 +1,8 @@
 # chocolatey
 
+choco install graphviz
+choco install rsync
+
 下载的文件路径
 C:\ProgramData\chocolatey\lib\rsync\tools\cwrsync_6.3.0_x64_free.zip
 
@@ -187,3 +190,20 @@ Examples
     choco search bob -s "'https://somewhere/protected'" -u user -p pass
     choco search --page=0 --page-size=25
     choco search 7zip --all-versions --exact
+
+
+PS C:\Windows\system32> choco install nginx
+Chocolatey v2.4.3
+Installing the following packages:
+nginx
+By installing, you accept licenses for the packages.
+nginx v1.29.0 already installed.
+ Use --force to reinstall, specify a version to install, or try upgrade.
+
+Chocolatey installed 0/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+Warnings:
+ - nginx - nginx v1.29.0 already installed.
+ Use --force to reinstall, specify a version to install, or try upgrade.
+ 

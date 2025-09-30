@@ -7,13 +7,9 @@ https://github.com/Snailclimb/JavaGuide
 https://javaguide.cn/open-source-project/
 
 1、PDF面试资料汇总: https://www.aliyundrive.com/s/5CdbBZ8yYuS 提取码: 26zv
-
 2、《Java面试指北》：https://mp.weixin.qq.com/s/YE9-G8Klsl3EmM-uaGA_NQ
 
-
 准备技术面试的同学一定要定期复习（自测的方式非常好）
-
-
 
 对于技术八股文来说，尽量不要死记硬背，这种方式非常枯燥且对自身能力提升有限！但是！想要一点不背是不太现实的，只是说要结合实际应用场景和实战来理解记忆。
 我一直觉得面试八股文最好是和实际应用场景和实战相结合。很多同学现在的方向都错了，上来就是直接背八股文，硬生生学成了文科，那当然无趣了。
@@ -30,6 +26,7 @@ Object类的几个方法
 
 
 String类
+final
 
 # 并发编程
 
@@ -67,8 +64,6 @@ mysql索引下推原理
 server过滤，改成enginer层过滤
 https://javaguide.cn/database/mysql/mysql-index.html#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8
 
-
-
 Redis 5种基本数据类型对应的底层数据结构
 https://javaguide.cn/database/redis/redis-data-structures-01.html
 
@@ -77,6 +72,6 @@ https://javaguide.cn/database/mysql/mysql-questions-01.html#datetime-%E5%92%8C-t
 
 sql里面，null跟''
 
-
+操作系统
 https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html#%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B
 

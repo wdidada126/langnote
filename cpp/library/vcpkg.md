@@ -1,4 +1,25 @@
 # vcpkg
+
+
+## export
+
+
+
+PS D:\develops\git\github\signdataredis\cpp> vcpkg export --output-dir=D:\develops\exports --raw
+The following packages are already built and will be exported:
+    hiredis:x64-windows
+    sqlite3:x64-windows
+    vcpkg-cmake:x64-windows
+    vcpkg-cmake-config:x64-windows
+Exporting vcpkg-cmake:x64-windows...
+Exporting vcpkg-cmake-config:x64-windows...
+Exporting hiredis:x64-windows...
+Exporting sqlite3:x64-windows...
+Files exported at: D:\develops\exports\vcpkg-export-20250815-151141
+To use exported libraries in CMake projects, add -DCMAKE_TOOLCHAIN_FILE=D:/develops/exports/vcpkg-export-20250815-151141/scripts/buildsystems/vcpkg.cmake to your CMake command line.
+
+
+
 FATAL ERROR: libmysql and libmariadb are incompatible.
 
 vcpkg search poco
@@ -674,7 +695,7 @@ vcpkg integrate project
 Created nupkg: D:\vcpkg\scripts\buildsystems\vcpkg.D.vcpkg.1.0.0.nupkg
 
 With a project open, go to Tools->NuGet Package Manager->Package Manager Console and paste:
- 
+
 
 
 

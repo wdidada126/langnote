@@ -45,11 +45,15 @@ https://kafka.apache.org/30/javadoc/index.html
 
 ## 版本
 
-4.0.0 2025年3月
+4.0.0  2025年3月18
 https://github.com/apache/kafka/releases/tag/4.0.0
 
+屹通用
+
+3.9.1
+5 21, 2025
 3.9.0
-11 7, 2024
+11 6, 2024
 
 3.5.0
 6 13, 2023
@@ -70,8 +74,8 @@ Feb 6, 2023
 9 20, 2021
 
 ### 4.0
-Kafka 4.0 采用 KRaft 模式简化架构
-Apache Kafka 4.0 发布，采用 KRaft 模式，简化架构，提升性能。
+Kafka4.0采用KRaft模式简化架构
+Apache Kafka 4.0发布，采用 KRaft 模式，简化架构，提升性能。
 
 
 ## mq实现延时队列

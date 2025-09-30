@@ -1,5 +1,39 @@
 # xfltd
 
+### 类似 xfltd.org 的 VPN 工具网站推荐
+
+首先，基于搜索结果，xfltd.org（也称 XFLTD 养鸡场）是一个提供 Shadowsocks (SS) 等代理工具的网站，主要面向中国用户，提供免费或低成本的 VPN/代理服务，用于访问国外网站（如 Google、YouTube、Twitter 等），并支持智能分流、加密传输和兼容多种客户端。它强调隐私保护和加速功能，但据 2024 年底的报告，该网站已“跑路”（服务中断，无法续费或更新订阅），官网链接（如 xfltd.org、xfltd.win、xftld.org）多为安全检查页或不可用。 因此，推荐类似网站时，我优先选择可靠、活跃的替代品，包括免费/开源 VPN 工具网站和类似代理服务。这些推荐基于 2025 年的最新评测，聚焦免费或低门槛选项，适合访问受限网站、隐私保护和加速需求。
+
+#### 注意事项：
+- **免费 VPN 的风险**：免费服务可能有数据限制、速度慢或隐私问题（如日志记录）。建议优先选择有第三方审计的知名提供商，避免未知小站（如 xfltd.org 类似，可能有跑路风险）。始终检查当地法律法规，使用 VPN 时优先付费版以获更好体验。
+- **测试标准**：推荐基于速度、隐私（无日志政策、加密 AES-256）、服务器覆盖、解锁能力（如 Netflix、YouTube）和用户评价。数据来源于 Top10VPN、Tom's Guide、TechRadar 等 2025 年评测。
+- **开源工具**：如果您想自建类似 xfltd.org 的代理服务，推荐开源选项，可在自家服务器部署。
+
+#### 推荐列表
+以下是 5 个类似 xfltd.org 的 VPN 工具网站推荐，按综合评分排序（从高到低）。它们提供免费层级，支持多设备（Windows、Android、iOS 等），并有加速国外网站的智能功能。表格比较关键特点：
+
+| 网站/服务名称 | 主要特点 | 免费额度 | 服务器覆盖 | 优缺点 | 官网链接 |
+|---------------|----------|----------|------------|--------|----------|
+| **Proton VPN** (protonvpn.com) | 开源、无日志、强加密，支持 obfuscation（伪装流量，适合墙内访问）。免费版无限流量，但速度中等；解锁 YouTube、Twitter 等。隐私最佳，瑞士基地。 | 无限流量（但仅 3 国服务器） | 免费：美国、荷兰、日本；付费：110+ 国 | 优点：信任度高、无广告；缺点：免费服务器拥挤。适合隐私优先用户。 | [protonvpn.com](https://protonvpn.com/) |
+| **PrivadoVPN** (privadovpn.com) | 高速免费版，支持 P2P（种子下载），解锁 Netflix US、HBO Max、Disney+。智能分流类似 xfltd.org，AES-256 加密。 | 10GB/月高速（后无限 1Mbps） | 免费：13 城市（包括美国多地、德国等） | 优点：流媒体强、速度快（97Mbps 测试）；缺点：数据限额。最佳全能免费 VPN。 | [privadovpn.com](https://privadovpn.com/) |
+| **Windscribe** (windscribe.com) | 自定义规则、广告阻挡、解锁多国 Netflix 和 BBC iPlayer。支持 Shadowsocks 协议，类似 xfltd.org 的分流。 | 10GB/月（注册邮箱可增至 15GB） | 免费：10 国、11 城市 | 优点：功能丰富、无限设备；缺点：免费服务器少。适合轻度使用和 torrent。 | [windscribe.com](https://windscribe.com/) |
+| **TunnelBear** (tunnelbear.com) | 简单界面、强隐私审计，支持全球服务器。解锁基本网站，AES-256 加密。 | 2GB/月 | 免费：47 国（但限额内） | 优点：易用、第三方审计；缺点：数据少，不适合重度流媒体。加拿大基地，隐私一般。 | [tunnelbear.com](https://tunnelbear.com/) |
+| **Hotspot Shield** (hotspotshield.com) | 无限流量免费版，快速连接，阻挡广告/恶意网站。支持美国服务器加速。 | 无限流量（但有广告） | 免费：美国、日本、新加坡等 | 优点：无限数据、速度好；缺点：免费版有广告，隐私政策曾争议（现改善）。适合桌面使用。 | [hotspotshield.com](https://hotspotshield.com/) |
+
+#### 开源自建工具推荐（类似 xfltd.org 的 SS/代理部署）
+如果您想像 xfltd.org 一样自建私人 VPN/代理服务（避免依赖第三方），以下开源工具免费且易部署，支持 Shadowsocks 等协议。它们可在 VPS（如 Vultr、DigitalOcean）上运行，提供智能分流和加密：
+1. **Algo VPN** (github.com/trailofbits/algo)：最简单，一键 Ansible 部署，支持 Ubuntu 等。免费、无日志，适合新手。部署后可生成个人订阅链接，类似 xfltd.org 的服务。 优点：快速、安全；缺点：需服务器（月费 ~5 USD）。
+2. **SoftEther VPN** (softether.org)：多协议支持（包括 SS、OpenVPN），跨平台。免费开源，易配置分流。适合高级用户，自建机场式服务。
+3. **WireGuard** (wireguard.com)：轻量高速协议，开源工具。结合 Tailscale (tailscale.com) 可实现零信任 VPN，无需端口转发。免费版无限设备，部署简单。
+
+#### 额外建议
+- **如何选择**：如果您主要访问国外网站（如 xfltd.org 的 Google/Youtube 加速），优先 Proton 或 PrivadoVPN 的免费版。测试速度用 SpeedTest.net。
+- **付费升级**：免费版有限制，推荐 NordVPN (nordvpn.com) 或 Surfshark (surfshark.com) 的试用（30 天退款），月费 ~$2-5，提供无限流量和更多服务器。
+- **安全提示**：下载客户端前检查官网，避免假冒网站。使用时启用 kill switch（断网保护）。如果 xfltd.org 是特定“机场”（订阅代理），类似服务如 v2ray 或 clash 社区（github.com）可自建，但需技术知识。
+- **来源**：推荐基于 2025 年独立评测，如 Top10VPN 和 TechRadar。 如果需要特定功能（如中国优化）或更多细节，请提供额外信息！
+
+这些推荐应能帮助您找到可靠替代。如果网站已变，请实时验证。
+
 xfltd.png
 
 7块月付

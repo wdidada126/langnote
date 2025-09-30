@@ -9,10 +9,6 @@ hibernate，直接根据java bean直接新建表
 数据库类型和java类型不完全一样，需要转换，mybatis一堆数据类型处理器 handler
 
 mybatis，根据谓词动态生成sql，但是还要写sql
-
-
-
-
 https://www.zhihu.com/question/345039462/answer/822447793
 
 我也用过 mysql++ 很久。可以通过宏等方式绑定结构体(struct)什么的，但有几个坑 ，包括连接池有线程问题，我自己就提交过两个fix（其一被采纳，后因沟通不是太畅，所以就放弃提交）。
@@ -119,19 +115,7 @@ d2db::InsertResult Insert(da4qi4::Context ctx, Course const& course)
 ```
 
 其中间的“tvin”等函数，用于处理SQL中 有NULL，C++没有原生该类型的处理。所有c++对sql的封装都一样要面对这些，但在sqlpp11，也可以在定义表时设置某个非“NOT NULL”的字段，如果其插入值是空串，就直接将它当数据库中的NULL处理；说这些细节，是为了表明这些坑sqlpp11都已经填了。事实上我自己在写orm时，也埋过，想想还是直接用别人的成果更好。
-<<<<<<< HEAD
-
-
-
-
 
 jdbctemplate
 
-
-
 mybatis
-
-
-
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

@@ -102,3 +102,11 @@ ddl2cpp tbl_single_shift.sql ./tbl_single_shift tbl_single_shift
 ddl2cpp articles.sql ./articles articles
 ddl2cpp users.sql ./users users
 ddl2cpp admins.sql ./admins admins
+
+
+## on_duplicate_key_update
+git clone https://github.com/rbock/sqlpp11.git
+cd sqlpp11
+git checkout 46cffc8398a3a484db3c28573214407825b34a6d
+cmake -S . -B build
+cmake --build build

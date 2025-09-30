@@ -1,5 +1,1396 @@
 # redis
 
+Commands
+
+https://redis.io/docs/latest/commands/object-encoding/
+
+ACL
+ACL CAT
+ACL DELUSER
+ACL DRYRUN
+ACL GENPASS
+ACL GETUSER
+ACL HELP
+ACL LIST
+ACL LOAD
+ACL LOG
+ACL SAVE
+ACL SETUSER
+ACL USERS
+ACL WHOAMI
+APPEND
+ASKING
+AUTH
+BF.ADD
+BF.CARD
+BF.EXISTS
+BF.INFO
+BF.INSERT
+BF.LOADCHUNK
+BF.MADD
+BF.MEXISTS
+BF.RESERVE
+BF.SCANDUMP
+BGREWRITEAOF
+BGSAVE
+BITCOUNT
+BITFIELD
+BITFIELD_RO
+BITOP
+BITPOS
+BLMOVE
+BLMPOP
+BLPOP
+BRPOP
+BRPOPLPUSH
+BZMPOP
+BZPOPMAX
+BZPOPMIN
+CF.ADD
+CF.ADDNX
+CF.COUNT
+CF.DEL
+CF.EXISTS
+CF.INFO
+CF.INSERT
+CF.INSERTNX
+CF.LOADCHUNK
+CF.MEXISTS
+CF.RESERVE
+CF.SCANDUMP
+CLIENT
+CLIENT CACHING
+CLIENT GETNAME
+CLIENT GETREDIR
+CLIENT HELP
+CLIENT ID
+CLIENT INFO
+CLIENT KILL
+CLIENT LIST
+CLIENT NO-EVICT
+CLIENT NO-TOUCH
+CLIENT PAUSE
+CLIENT REPLY
+CLIENT SETINFO
+CLIENT SETNAME
+CLIENT TRACKING
+CLIENT TRACKINGINFO
+CLIENT UNBLOCK
+CLIENT UNPAUSE
+CLUSTER
+CLUSTER ADDSLOTS
+CLUSTER ADDSLOTSRANGE
+CLUSTER BUMPEPOCH
+CLUSTER COUNT-FAILURE-REPORTS
+CLUSTER COUNTKEYSINSLOT
+CLUSTER DELSLOTS
+CLUSTER DELSLOTSRANGE
+CLUSTER FAILOVER
+CLUSTER FLUSHSLOTS
+CLUSTER FORGET
+CLUSTER GETKEYSINSLOT
+CLUSTER HELP
+CLUSTER INFO
+CLUSTER KEYSLOT
+CLUSTER LINKS
+CLUSTER MEET
+CLUSTER MYID
+CLUSTER MYSHARDID
+CLUSTER NODES
+CLUSTER REPLICAS
+CLUSTER REPLICATE
+CLUSTER RESET
+CLUSTER SAVECONFIG
+CLUSTER SET-CONFIG-EPOCH
+CLUSTER SETSLOT
+CLUSTER SHARDS
+CLUSTER SLAVES
+CLUSTER SLOT-STATS
+CLUSTER SLOTS
+CMS.INCRBY
+CMS.INFO
+CMS.INITBYDIM
+CMS.INITBYPROB
+CMS.MERGE
+CMS.QUERY
+COMMAND
+COMMAND COUNT
+COMMAND DOCS
+COMMAND GETKEYS
+COMMAND GETKEYSANDFLAGS
+COMMAND HELP
+COMMAND INFO
+COMMAND LIST
+CONFIG
+CONFIG GET
+CONFIG HELP
+CONFIG RESETSTAT
+CONFIG REWRITE
+CONFIG SET
+COPY
+DBSIZE
+DEBUG
+DECR
+DECRBY
+DEL
+DISCARD
+DUMP
+ECHO
+EVAL
+EVAL_RO
+EVALSHA
+EVALSHA_RO
+EXEC
+EXISTS
+EXPIRE
+EXPIREAT
+EXPIRETIME
+FAILOVER
+FCALL
+FCALL_RO
+FLUSHALL
+FLUSHDB
+FT._LIST
+FT.AGGREGATE
+FT.ALIASADD
+FT.ALIASDEL
+FT.ALIASUPDATE
+FT.ALTER
+FT.CONFIG GET
+FT.CONFIG HELP
+FT.CONFIG SET
+FT.CREATE
+FT.CURSOR DEL
+FT.CURSOR READ
+FT.DICTADD
+FT.DICTDEL
+FT.DICTDUMP
+FT.DROPINDEX
+FT.EXPLAIN
+FT.EXPLAINCLI
+FT.INFO
+FT.PROFILE
+FT.SEARCH
+FT.SPELLCHECK
+FT.SUGADD
+FT.SUGDEL
+FT.SUGGET
+FT.SUGLEN
+FT.SYNDUMP
+FT.SYNUPDATE
+FT.TAGVALS
+FUNCTION
+FUNCTION DELETE
+FUNCTION DUMP
+FUNCTION FLUSH
+FUNCTION HELP
+FUNCTION KILL
+FUNCTION LIST
+FUNCTION LOAD
+FUNCTION RESTORE
+FUNCTION STATS
+GEOADD
+GEODIST
+GEOHASH
+GEOPOS
+GEORADIUS
+GEORADIUS_RO
+GEORADIUSBYMEMBER
+GEORADIUSBYMEMBER_RO
+GEOSEARCH
+GEOSEARCHSTORE
+GET
+GETBIT
+GETDEL
+GETEX
+GETRANGE
+GETSET
+HDEL
+HELLO
+HEXISTS
+HEXPIRE
+HEXPIREAT
+HEXPIRETIME
+HGET
+HGETALL
+HGETDEL
+HGETEX
+HINCRBY
+HINCRBYFLOAT
+HKEYS
+HLEN
+HMGET
+HMSET
+HPERSIST
+HPEXPIRE
+HPEXPIREAT
+HPEXPIRETIME
+HPTTL
+HRANDFIELD
+HSCAN
+HSET
+HSETEX
+HSETNX
+HSTRLEN
+HTTL
+HVALS
+INCR
+INCRBY
+INCRBYFLOAT
+INFO
+JSON.ARRAPPEND
+JSON.ARRINDEX
+JSON.ARRINSERT
+JSON.ARRLEN
+JSON.ARRPOP
+JSON.ARRTRIM
+JSON.CLEAR
+JSON.DEBUG
+JSON.DEBUG HELP
+JSON.DEBUG MEMORY
+JSON.DEL
+JSON.FORGET
+JSON.GET
+JSON.MERGE
+JSON.MGET
+JSON.MSET
+JSON.NUMINCRBY
+JSON.NUMMULTBY
+JSON.OBJKEYS
+JSON.OBJLEN
+JSON.RESP
+JSON.SET
+JSON.STRAPPEND
+JSON.STRLEN
+JSON.TOGGLE
+JSON.TYPE
+KEYS
+LASTSAVE
+LATENCY
+LATENCY DOCTOR
+LATENCY GRAPH
+LATENCY HELP
+LATENCY HISTOGRAM
+LATENCY HISTORY
+LATENCY LATEST
+LATENCY RESET
+LCS
+LINDEX
+LINSERT
+LLEN
+LMOVE
+LMPOP
+LOLWUT
+LPOP
+LPOS
+LPUSH
+LPUSHX
+LRANGE
+LREM
+LSET
+LTRIM
+MEMORY
+MEMORY DOCTOR
+MEMORY HELP
+MEMORY MALLOC-STATS
+MEMORY PURGE
+MEMORY STATS
+MEMORY USAGE
+MGET
+MIGRATE
+MODULE
+MODULE HELP
+MODULE LIST
+MODULE LOAD
+MODULE LOADEX
+MODULE UNLOAD
+MONITOR
+MOVE
+MSET
+MSETNX
+MULTI
+OBJECT
+OBJECT ENCODING
+OBJECT FREQ
+OBJECT HELP
+OBJECT IDLETIME
+OBJECT REFCOUNT
+PERSIST
+PEXPIRE
+PEXPIREAT
+PEXPIRETIME
+PFADD
+PFCOUNT
+PFDEBUG
+PFMERGE
+PFSELFTEST
+PING
+PSETEX
+PSUBSCRIBE
+PSYNC
+PTTL
+PUBLISH
+PUBSUB
+PUBSUB CHANNELS
+PUBSUB HELP
+PUBSUB NUMPAT
+PUBSUB NUMSUB
+PUBSUB SHARDCHANNELS
+PUBSUB SHARDNUMSUB
+PUNSUBSCRIBE
+QUIT
+RANDOMKEY
+READONLY
+READWRITE
+RENAME
+RENAMENX
+REPLCONF
+REPLICAOF
+RESET
+RESTORE
+RESTORE-ASKING
+ROLE
+RPOP
+RPOPLPUSH
+RPUSH
+RPUSHX
+SADD
+SAVE
+SCAN
+SCARD
+SCRIPT
+SCRIPT DEBUG
+SCRIPT EXISTS
+SCRIPT FLUSH
+SCRIPT HELP
+SCRIPT KILL
+SCRIPT LOAD
+SDIFF
+SDIFFSTORE
+SELECT
+SET
+SETBIT
+SETEX
+SETNX
+SETRANGE
+SHUTDOWN
+SINTER
+SINTERCARD
+SINTERSTORE
+SISMEMBER
+SLAVEOF
+SLOWLOG
+SLOWLOG GET
+SLOWLOG HELP
+SLOWLOG LEN
+SLOWLOG RESET
+SMEMBERS
+SMISMEMBER
+SMOVE
+SORT
+SORT_RO
+SPOP
+SPUBLISH
+SRANDMEMBER
+SREM
+SSCAN
+SSUBSCRIBE
+STRLEN
+SUBSCRIBE
+SUBSTR
+SUNION
+SUNIONSTORE
+SUNSUBSCRIBE
+SWAPDB
+SYNC
+TDIGEST.ADD
+TDIGEST.BYRANK
+TDIGEST.BYREVRANK
+TDIGEST.CDF
+TDIGEST.CREATE
+TDIGEST.INFO
+TDIGEST.MAX
+TDIGEST.MERGE
+TDIGEST.MIN
+TDIGEST.QUANTILE
+TDIGEST.RANK
+TDIGEST.RESET
+TDIGEST.REVRANK
+TDIGEST.TRIMMED_MEAN
+TIME
+TOPK.ADD
+TOPK.COUNT
+TOPK.INCRBY
+TOPK.INFO
+TOPK.LIST
+TOPK.QUERY
+TOPK.RESERVE
+TOUCH
+TS.ADD
+TS.ALTER
+TS.CREATE
+TS.CREATERULE
+TS.DECRBY
+TS.DEL
+TS.DELETERULE
+TS.GET
+TS.INCRBY
+TS.INFO
+TS.MADD
+TS.MGET
+TS.MRANGE
+TS.MREVRANGE
+TS.QUERYINDEX
+TS.RANGE
+TS.REVRANGE
+TTL
+TYPE
+UNLINK
+UNSUBSCRIBE
+UNWATCH
+VADD
+VCARD
+VDIM
+VEMB
+VGETATTR
+VINFO
+VISMEMBER
+VLINKS
+VRANDMEMBER
+VREM
+VSETATTR
+VSIM
+WAIT
+WAITAOF
+WATCH
+XACK
+XACKDEL
+XADD
+XAUTOCLAIM
+XCLAIM
+XDEL
+XDELEX
+XGROUP
+XGROUP CREATE
+XGROUP CREATECONSUMER
+XGROUP DELCONSUMER
+XGROUP DESTROY
+XGROUP HELP
+XGROUP SETID
+XINFO
+XINFO CONSUMERS
+XINFO GROUPS
+XINFO HELP
+XINFO STREAM
+XLEN
+XPENDING
+XRANGE
+XREAD
+XREADGROUP
+XREVRANGE
+XSETID
+XTRIM
+ZADD
+ZCARD
+ZCOUNT
+ZDIFF
+ZDIFFSTORE
+ZINCRBY
+ZINTER
+ZINTERCARD
+ZINTERSTORE
+ZLEXCOUNT
+ZMPOP
+ZMSCORE
+ZPOPMAX
+ZPOPMIN
+ZRANDMEMBER
+ZRANGE
+ZRANGEBYLEX
+ZRANGEBYSCORE
+ZRANGESTORE
+ZRANK
+ZREM
+ZREMRANGEBYLEX
+ZREMRANGEBYRANK
+ZREMRANGEBYSCORE
+ZREVRANGE
+ZREVRANGEBYLEX
+ZREVRANGEBYSCORE
+ZREVRANK
+ZSCAN
+ZSCORE
+ZUNION
+ZUNIONSTORE
+
+
+https://redis.io/docs/latest/commands/object-encoding/
+Strings can be encoded as:
+
+raw, normal string encoding.
+int, strings representing integers in a 64-bit signed interval, encoded in this way to save space.
+embstr, an embedded string, which is an object where the internal simple dynamic string, sds, is an unmodifiable string allocated in the same chuck as the object itself. embstr can be strings with lengths up to the hardcoded limit of OBJ_ENCODING_EMBSTR_SIZE_LIMIT or 44 bytes.
+Lists can be encoded as:
+
+linkedlist, simple list encoding. No longer used, an old list encoding.
+ziplist, Redis <= 6.2, a space-efficient encoding used for small lists.
+listpack, Redis >= 7.0, a space-efficient encoding used for small lists.
+quicklist, encoded as linkedlist of ziplists or listpacks.
+Sets can be encoded as:
+
+hashtable, normal set encoding.
+intset, a special encoding used for small sets composed solely of integers.
+listpack, Redis >= 7.2, a space-efficient encoding used for small sets.
+Hashes can be encoded as:
+
+zipmap, no longer used, an old hash encoding.
+hashtable, normal hash encoding.
+ziplist, Redis <= 6.2, a space-efficient encoding used for small hashes.
+listpack, Redis >= 7.0, a space-efficient encoding used for small hashes.
+Sorted Sets can be encoded as:
+
+skiplist, normal sorted set encoding.
+ziplist, Redis <= 6.2, a space-efficient encoding used for small sorted sets.
+listpack, Redis >= 7.0, a space-efficient encoding used for small sorted sets.
+Streams can be encoded as:
+
+stream, encoded as a radix tree of listpacks.
+
+
+你问的是：
+
+> **“Redis 6 的源代码中，`object encoding` 编码是如何实现的？能否给出一个基于 CMake 组织的 C++ 代码模拟其实现？”**
+
+我们来分两部分回答：
+
+---
+
+## ✅ 第一部分：Redis 6 源码中 `object encoding` 的实现原理（真实 C 代码逻辑）
+
+Redis 是用 **C 语言**写的，不是 C++，其核心对象系统在 `src/object.c` 和 `src/redis.h` 中。
+
+### 🔹 核心结构：`redisObject`
+
+```c
+// src/redis.h
+typedef struct redisObject {
+    unsigned type:4;        // 类型：REDIS_STRING, REDIS_LIST, ...
+    unsigned encoding:4;    // 编码：REDIS_ENCODING_INT, REDIS_ENCODING_RAW, ...
+    void *ptr;              // 指向实际数据结构
+} robj;
+```
+
+### 🔹 encoding 定义（简化版）
+
+```c
+// src/redis.h
+#define OBJ_ENCODING_RAW 0
+#define OBJ_ENCODING_INT 1
+#define OBJ_ENCODING_HT 2          // dict/hash table
+#define OBJ_ENCODING_ZIPMAP 3      // 已废弃
+#define OBJ_ENCODING_LINKEDLIST 4  // 已废弃
+#define OBJ_ENCODING_ZIPLIST 5
+#define OBJ_ENCODING_INTSET 6
+#define OBJ_ENCODING_SKIPLIST 7
+#define OBJ_ENCODING_EMBSTR 8
+```
+
+### 🔹 STRING 类型的编码逻辑（`src/object.c`）
+
+```c
+robj *createStringObject(const char *ptr, size_t len) {
+    if (len <= 44 && isIntegerString(ptr, len)) {
+        // 尝试转为 long
+        long value;
+        if (string2l(ptr, len, &value)) {
+            return createStringObjectFromLong(value); // encoding = OBJ_ENCODING_INT
+        }
+    }
+
+    if (len <= 44) {
+        return makeObjectPtr(OBJ_ENCODING_EMBSTR, ptr, len); // embstr
+    } else {
+        return makeObjectPtr(OBJ_ENCODING_RAW, ptr, len);    // raw
+    }
+}
+```
+
+> 📌 注：Redis 6 中 `embstr` 最大支持 44 字节（SDS header + 字符串）。
+
+---
+
+## ✅ 第二部分：用 C++ 模拟 Redis 6 的 `object encoding` 机制（CMake 项目）
+
+虽然 Redis 是 C 写的，但我们可以用 **C++ 模拟其对象系统和 encoding 行为**，并用 CMake 组织。
+
+---
+
+### 📁 项目结构
+
+```
+redis-encoding-sim/
+├── CMakeLists.txt
+├── include/
+│   └── RedisObject.h
+├── src/
+│   └── RedisObject.cpp
+├── test/
+│   └── main.cpp
+```
+
+---
+
+### 1️⃣ `CMakeLists.txt`
+
+```cmake
+cmake_minimum_required(VERSION 3.14)
+project(RedisEncodingSim CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 包含目录
+include_directories(include)
+
+# 源文件
+file(GLOB SOURCES src/*.cpp)
+
+# 可执行文件
+add_executable(test_encoding test/main.cpp ${SOURCES})
+
+# 可选：编译选项
+target_compile_options(test_encoding PRIVATE -Wall -Wextra)
+```
+
+---
+
+### 2️⃣ `include/RedisObject.h`
+
+```cpp
+#pragma once
+#include <string>
+#include <vector>
+#include <memory>
+
+enum EncodingType {
+    ENCODING_RAW = 0,
+    ENCODING_INT = 1,
+    ENCODING_EMBSTR = 2,
+    ENCODING_INTSET = 3,
+    ENCODING_HT = 4,        // Hash Table
+    ENCODING_ZIPLIST = 5,
+    ENCODING_SKIPLIST = 6
+};
+
+enum ObjectType {
+    OBJ_STRING,
+    OBJ_LIST,
+    OBJ_HASH,
+    OBJ_SET,
+    OBJ_ZSET
+};
+
+class RedisObject {
+private:
+    ObjectType type;
+    EncodingType encoding;
+    std::shared_ptr<void> ptr;  // 模拟 void*，用 shared_ptr 管理
+
+    // 用于 INT 编码
+    long intValue;
+
+    // 用于 STRING 的值
+    std::string strValue;
+
+    // 用于 SET 的 intset（简化为 vector<int>）
+    std::vector<int> intset;
+
+public:
+    RedisObject(const std::string& str);
+    RedisObject(long value);
+    RedisObject(const std::vector<int>& ints); // for set
+
+    std::string getEncodingName() const;
+    std::string getTypeName() const;
+    void printInfo() const;
+};
+```
+
+---
+
+### 3️⃣ `src/RedisObject.cpp`
+
+```cpp
+#include "RedisObject.h"
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+// 简单判断是否为整数字符串
+static bool isIntegerString(const std::string& str) {
+    if (str.empty()) return false;
+    char* end;
+    long val = std::strtol(str.c_str(), &end, 10);
+    return end != str.c_str() && *end == '\0';
+}
+
+RedisObject::RedisObject(const std::string& str) : type(OBJ_STRING), strValue(str), intValue(0) {
+    // 判断是否为整数
+    if (isIntegerString(str)) {
+        intValue = std::stol(str);
+        encoding = ENCODING_INT;
+        return;
+    }
+
+    // 判断是否适合 embstr（模拟 Redis 6 ≤ 44 字节）
+    if (str.length() <= 44) {
+        encoding = ENCODING_EMBSTR;
+    } else {
+        encoding = ENCODING_RAW;
+    }
+}
+
+RedisObject::RedisObject(long value) : type(OBJ_STRING), intValue(value) {
+    encoding = ENCODING_INT;
+}
+
+RedisObject::RedisObject(const std::vector<int>& ints) : type(OBJ_SET), intset(ints) {
+    // 如果全是小整数且数量少，用 intset
+    if (ints.size() <= 512) {
+        encoding = ENCODING_INTSET;
+    } else {
+        encoding = ENCODING_HT; // 哈希表
+    }
+}
+
+std::string RedisObject::getEncodingName() const {
+    switch (encoding) {
+        case ENCODING_RAW:      return "raw";
+        case ENCODING_INT:      return "int";
+        case ENCODING_EMBSTR:   return "embstr";
+        case ENCODING_INTSET:   return "intset";
+        case ENCODING_HT:       return "hashtable";
+        case ENCODING_ZIPLIST:  return "ziplist";
+        case ENCODING_SKIPLIST: return "skiplist";
+        default:                return "unknown";
+    }
+}
+
+std::string RedisObject::getTypeName() const {
+    switch (type) {
+        case OBJ_STRING: return "string";
+        case OBJ_LIST:   return "list";
+        case OBJ_HASH:   return "hash";
+        case OBJ_SET:    return "set";
+        case OBJ_ZSET:   return "zset";
+        default:         return "unknown";
+    }
+}
+
+void RedisObject::printInfo() const {
+    std::cout << "Type: " << getTypeName()
+              << ", Encoding: " << getEncodingName();
+
+    if (encoding == ENCODING_INT) {
+        std::cout << ", Value: " << intValue;
+    } else if (type == OBJ_STRING) {
+        std::cout << ", StrLen: " << strValue.length();
+    } else if (type == OBJ_SET && encoding == ENCODING_INTSET) {
+        std::cout << ", IntSetSize: " << intset.size();
+    }
+    std::cout << std::endl;
+}
+```
+
+---
+
+### 4️⃣ `test/main.cpp`
+
+```cpp
+#include "RedisObject.h"
+
+int main() {
+    // STRING: int 编码
+    RedisObject obj1(123);
+    obj1.printInfo();  // int
+
+    // STRING: embstr
+    RedisObject obj2("hello");
+    obj2.printInfo();  // embstr
+
+    // STRING: raw
+    std::string longStr(50, 'a');
+    RedisObject obj3(longStr);
+    obj3.printInfo();  // raw
+
+    // SET: intset
+    std::vector<int> ints = {1, 2, 3, 4, 5};
+    RedisObject obj4(ints);
+    obj4.printInfo();  // intset
+
+    return 0;
+}
+```
+
+---
+
+### 5️⃣ 编译和运行
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./test_encoding
+```
+
+输出示例：
+
+```
+Type: string, Encoding: int, Value: 123
+Type: string, Encoding: embstr, StrLen: 5
+Type: string, Encoding: raw, StrLen: 50
+Type: set, Encoding: intset, IntSetSize: 5
+```
+
+---
+
+## ✅ 总结
+
+| 问题 | 回答 |
+|------|------|
+| Redis 6 的 encoding 实现 | 在 `src/object.c` 和 `src/redis.h` 中，用 `redisObject` 结构体管理 |
+| 核心机制 | 根据数据大小、类型自动选择 `int`/`embstr`/`raw`/`intset`/`ziplist` 等 |
+| 能否用 C++ 模拟 | ✅ 可以，用 `enum` 表示 encoding，`variant` 或 `void*` 模拟 `ptr` |
+| CMake 项目 | 已提供完整结构和代码，可编译运行 |
+
+---
+
+✅ 这个 C++ 模拟项目帮助你理解 Redis 内部的 **对象系统和 encoding 决策机制**，可用于学习或教学。真实 Redis 源码更复杂（如 `sds`, `ziplist`, `dict` 等），但核心思想一致。
+
+好的，这是一个非常全面的问题。我将为您详细梳理这些命令，并区分哪些是 Redis 6.0 原生支持的，哪些是后续版本（如 7.0）新增的，或是通过模块（如 RediSearch, RedisJSON, BloomFilter 等）提供的。
+
+首先，需要明确一个核心概念：Redis 6.0 是第一个正式支持“ RESP3”协议和“客户端缓存”等重要特性的版本，但它并不包含所有列表中的命令。
+
+命令列表中的许多命令属于 Redis Modules（Redis模块），例如：
+•   BF.* (Bloom Filter)
+
+•   CF.* (Cuckoo Filter)
+
+•   CMS.* (Count-Min Sketch)
+
+•   FT.* (RediSearch - 全文搜索)
+
+•   JSON.* (RedisJSON - JSON数据类型)
+
+•   TDIGEST.*, TOPK.* (Probabilistic data structures)
+
+•   TS.* (RedisTimeSeries - 时间序列数据)
+
+•   V.* (Vector Similarity - 向量相似度搜索，RedisSearch 2.8+)
+
+这些模块可以独立于Redis版本进行更新，在 Redis 6.0 上可以通过 MODULE LOAD 命令加载并使用它们，但它们并非 Redis 6.0 服务器本身内置的核心命令。
+
+Redis 6.0 原生支持的核心命令（部分列举及含义）
+
+以下是 Redis 6.0 官方版本中直接包含的一部分重要命令及其含义和示例。
+
+1. ACL (Access Control List) - Redis 6.0 最重要的新特性之一
+
+这是 Redis 6.0 的核心新功能，提供了基于用户名和密码的认证和基于命令、键的精细权限控制。
+•   ACL SETUSER <username> on >password ~<pattern> +<command> -<command>: 创建/修改用户，设置密码、可访问的键模式、允许/禁止的命令。
+
+    ◦   举例: ACL SETUSER alice on >paSSw0rd ~cache:* +get +set 创建一个用户 alice，密码为 paSSw0rd，只能访问以 cache: 开头的键，并且只能执行 GET 和 SET 命令。
+
+•   ACL LIST: 列出当前定义的 ACL 规则。
+
+•   ACL GETUSER <username>: 获取特定用户的 ACL 规则详情。
+
+•   ACL WHOAMI: 显示当前连接的用户名。
+
+2. 客户端相关
+
+•   CLIENT TRACKING on|off: 开启或关闭服务器辅助的客户端缓存功能 (另一大6.0新特性)。
+
+    ◦   举例: 客户端可以先发送 CLIENT TRACKING on，然后读取一个键 GET foo。如果其他客户端修改了 foo，服务器会通知这个客户端其缓存失效。
+
+•   CLIENT CACHING yes|no: 客户端在执行命令前使用，告知服务器下一条命令的结果是否可以被缓存。
+
+3. 集群与复制
+
+•   CLUSTER REPLICAS <master-node-id>: 获取指定主节点所有副本节点的信息。 (比旧的 CLUSTER SLAVES 更直观)
+
+•   REPLICAOF host port: SLAVEOF 的别名，用于使当前实例成为另一个实例的副本。
+
+4. 受保护的 Lua 脚本执行
+
+为了防止在集群环境下脚本滥用，引入了只读脚本。
+•   EVAL_RO: 执行一个只读的 Lua 脚本，脚本中不能包含写命令。
+
+•   EVALSHA_RO: 执行一个通过 SCRIPT LOAD 加载的只读脚本的 SHA1 摘要。
+
+5. 键管理
+
+•   EXPIRETIME key: 返回键的绝对过期时间（Unix 时间戳）。
+
+•   PEXPIRETIME key: 类似 EXPIRETIME，但返回毫秒精度的时间戳。
+
+6. 字符串命令
+
+•   GETDEL key: 获取键的值并同时删除它。原子操作。
+
+    ◦   举例: SET counter 100 -> GETDEL counter 返回 “100”，同时 counter 键被删除。
+
+•   GETEX key [EX seconds|PX ms|EXAT timestamp|PXAT ms-timestamp|PERSIST]: 获取键的值并可选地设置其过期时间。
+
+    ◦   举例: GETEX mykey EX 60 获取 mykey 的值并将其过期时间设置为 60 秒后。
+
+7. 列表命令
+
+•   LMOVE source destination LEFT|RIGHT LEFT|RIGHT: 原子地从源列表移动元素到目标列表，并指定从哪边取出和放入。
+
+•   LMPOP numkeys key [key ...] LEFT|RIGHT [COUNT count]: 从提供的多个列表中弹出第一个非空列表的元素。
+
+8. 流命令 (Streams) - 在 Redis 5.0 引入，6.0 继续增强
+
+•   XAUTOCLAIM: 自动转移无人认领且空闲时间过长的消息，比 XCLAIM 更高效。
+
+9. 其他
+
+•   HELLO: 用于协商协议版本（如切换到 RESP3）。
+
+•   RESET: 重置当前连接，清空连接状态（如退出订阅模式、取消事务等）。
+
+Redis 6.0 需加载模块支持的命令（举例说明）
+
+这些命令需要先在 redis.conf 中配置或通过 MODULE LOAD 命令加载对应模块后才能使用。
+
+1. Bloom Filter (BF.*)
+用于概率性判断一个元素是否存在于一个集合中，可能误报但不会漏报。
+•   BF.ADD key item: 向布隆过滤器添加一个元素。
+
+    ◦   举例: BF.ADD users:unique jack -> 将 “jack” 添加到 users:unique 过滤器中。
+
+•   BF.EXISTS key item: 检查一个元素是否可能存在于过滤器中。
+
+    ◦   举例: BF.EXISTS users:unique jack -> 返回 1 (可能存在) 或 0 (肯定不存在)。
+
+2. RedisJSON (JSON.*)
+提供原生 JSON 数据类型支持，可以直接对 JSON 文档内部字段进行操作。
+•   JSON.SET key path value: 在指定路径设置 JSON 值。
+    ◦   举例: JSON.SET user:1 $ '{"name":"Alice", "age":30, "city":"London"}'
+•   JSON.GET key path: 获取指定路径的 JSON 值。
+    ◦   举例: JSON.GET user:1 $.name -> ["Alice"]
+3. RediSearch (FT.*)
+提供强大的二级索引、全文搜索和聚合功能。
+•   FT.CREATE index ...: 创建索引。
+
+•   FT.SEARCH index query: 执行搜索。
+
+    ◦   举例: FT.SEARCH idx:users "@age:[30 40]" -> 搜索年龄在 30 到 40 之间的用户。
+
+Redis 7.0 及以后版本新增的核心命令（非 Redis 6.0 支持）
+
+这些是您列表中出现的，但在 Redis 7.0 才引入的核心命令。
+
+1. 集群管理
+
+•   CLUSTER DELSLOTSRANGE, CLUSTER ADDSLOTSRANGE: 用于批量操作哈希槽范围，比单个操作更高效。
+
+2. 发布订阅 (Pub/Sub)
+
+•   PUBSUB SHARDCHANNELS, PUBSUB SHARDNUMSUB: 用于分片 Pub/Sub（Redis 7.0 引入的分片发布订阅功能）。
+
+3. 函数 (Functions) - Redis 7.0 重大特性
+
+用 Lua 编写函数并持久化在服务器中，代替需要客户端维护的脚本 SHA。
+•   FUNCTION LOAD ..., FUNCTION CALL ..., FUNCTION LIST 等。
+
+4. 其他
+
+•   ZINTERCARD, ZDIFF: 用于计算集合交集的基数和集合的差集。
+
+总结表格
+
+命令类别 Redis 6.0 支持情况 示例命令
+ACL 权限控制 是 (核心新特性) ACL SETUSER, ACL WHOAMI, ACL LIST
+客户端缓存 是 (核心新特性) CLIENT TRACKING, CLIENT CACHING
+只读脚本 是 EVAL_RO, EVALSHA_RO
+增强的键管理 是 GETDEL, GETEX, EXPIRETIME
+增强的列表命令 是 LMOVE, LMPOP
+Streams 增强 是 XAUTOCLAIM
+模块命令 (BF, JSON, FT等) 是 (需单独加载模块) BF.ADD, JSON.SET, FT.SEARCH
+Functions 否 (Redis 7.0+) FUNCTION LOAD, FUNCTION CALL
+分片 Pub/Sub 否 (Redis 7.0+) PUBSUB SHARDCHANNELS
+集群范围操作 否 (Redis 7.0+) CLUSTER DELSLOTSRANGE
+集合增强命令 否 (Redis 7.0+) ZINTERCARD, ZDIFF
+建议：要确认某个特定命令是否在原生 Redis 6.0 中可用，最准确的方法是查阅 Redis 6.0 的官方文档 或直接在 Redis 6.0 服务器上运行 COMMAND INFO <commandname> 命令来查询。对于模块命令，则需要查看对应模块的文档和版本说明。
+
+Redis 5.0 及之后的版本（如 Redis 6.0）中，其核心 5 种数据类型（String, List, Hash, Set, Sorted Set）在底层使用了多种 高效的数据结构 来实现。这些内部数据结构的选择基于 空间效率、时间复杂度和使用场景 的权衡。
+
+我们将基于 Redis 6.0 的源码（[https://github.com/redis/redis](https://github.com/redis/redis)）来深入解析每种数据类型的内部编码（encoding）和对应的数据结构。
+
+##  Redis 5 大数据类型与内部编码总览
+
+| Redis 数据类型 | 内部编码 (encoding) | 对应的数据结构 | 触发条件（何时使用） |
+|----------------|---------------------|----------------|------------------------|
+| String     | `OBJ_ENCODING_INT`  | `long` 类型整数 | 值是整数且可 fit 到 long |
+|                | `OBJ_ENCODING_EMBSTR` | `sdshdr8/sdshdr16` + 字符串 | 小字符串（≤ 44 字节） |
+|                | `OBJ_ENCODING_RAW`  | `sds`（动态字符串） | 大字符串 |
+| List       | `OBJ_ENCODING_ZIPLIST` (Redis 3.2-) | `ziplist` | 元素少且小（旧版本） |
+|                | `OBJ_ENCODING_QUICKLIST` | `quicklist` | Redis 3.2+ 默认（所有 List） |
+| Hash       | `OBJ_ENCODING_ZIPLIST` | `ziplist` | 字段少且值小 |
+|                | `OBJ_ENCODING_HT`   | `dict`（哈希表） | 字段多或值大 |
+| Set        | `OBJ_ENCODING_INTSET` | `intset` | 元素全是整数且少 |
+|                | `OBJ_ENCODING_HT`   | `dict` | 元素为字符串或数量多 |
+| Sorted Set | `OBJ_ENCODING_ZIPLIST` | `ziplist` | 元素少且小 |
+|                | `OBJ_ENCODING_SKIPLIST` | `zset`（`dict` + `skiplist`） | 元素多或大 |
+
+>  注意：从 Redis 3.2 开始，`list` 的底层已从 `ziplist` 和 `linkedlist` 迁移到 `quicklist`，它本质上是 ziplist 的双向链表，兼顾了内存和性能。
+
+##  一、String 类型
+
+### 1. `OBJ_ENCODING_INT`
+- 结构：直接将整数存储在 `redisObject` 的 `ptr` 指针中。
+- 源码位置：`object.c` 中 `createStringObject()`。
+- 优点：零内存碎片，最快访问。
+- 条件：`value` 是整数且 `lval` 可 fit 到 `long`。
+
+```c
+// redisObject.h
+typedef struct redisObject {
+    unsigned type:4;
+    unsigned encoding:4;
+    void *ptr; // 当 encoding=INT 时，ptr = (void*)value
+    // ...
+} robj;
+```
+
+### 2. `OBJ_ENCODING_EMBSTR` 和 `OBJ_ENCODING_RAW`
+- 底层结构：`sds`（Simple Dynamic String）。
+- 源码文件：`sds.h`, `sds.c`
+
+#### SDS 结构（以 `sdshdr8` 为例）：
+```c
+// sds.h
+struct __attribute__ ((__packed__)) sdshdr8 {
+    uint8_t len;      // 当前字符串长度
+    uint8_t alloc;    // 分配的总空间（不包括 header）
+    unsigned char flags; // 编码类型（低 3 位）
+    char buf[];       // 变长数组，存储字符串
+};
+```
+
+- `embstr`：使用 一次 `malloc` 分配 `redisObject` + `sdshdr` + 字符串空间，适合小字符串（≤ 44 字节），减少内存碎片。
+- `raw`：`redisObject` 和 `sds` 分开 `malloc`，适合大字符串。
+
+
+##  二、List 类型（Redis 6.0 使用 `quicklist`）
+
+### `OBJ_ENCODING_QUICKLIST`
+- 结构：`quicklist` 是 ziplist 的双向链表。
+- 源码文件：`quicklist.h`, `quicklist.c`
+
+#### 核心结构：
+```c
+// quicklist.h
+typedef struct quicklist {
+    quicklistNode *head;
+    quicklistNode *tail;
+    unsigned long count;        // 所有节点中元素总数
+    int nodes;                  // ziplist 节点数量
+    int compress;               // LZF 压缩深度
+    // ...
+} quicklist;
+
+typedef struct quicklistNode {
+    struct quicklistNode *prev;
+    struct quicklistNode *next;
+    unsigned char *zl;          // 指向 ziplist
+    unsigned int sz;            // ziplist 占用字节数
+    unsigned int count : 16;    // 该节点中元素个数
+    unsigned int encoding : 2;  // RAW=1 or LZF=2
+    unsigned int container : 2; // NONE=1 or ZIPLIST=2
+    unsigned int recompress : 1;// 是否被解压过
+    // ...
+} quicklistNode;
+```
+
+#### 为什么用 `quicklist`？
+- `ziplist` 插入/删除慢（O(N)），且不能太大（否则 `realloc` 成本高）。
+- `quicklist` 将大 list 拆成多个小 `ziplist`，每个 `ziplist` 大小可控（通过 `list-max-ziplist-size` 配置）。
+- 支持 LZF 压缩（`compress` 字段），节省内存。
+
+>  Redis 3.2+ 所有 List 都用 `quicklist`，`ziplist` 和 `linkedlist` 已废弃。
+
+
+##  三、Hash 类型
+
+### 1. `OBJ_ENCODING_ZIPLIST`
+- 结构：压缩列表，连续内存存储 `field1, value1, field2, value2, ...`。
+- 优点：内存紧凑。
+- 缺点：查 `field` 需遍历，O(N)。
+- 触发条件（默认）：
+  - 元素个数 < `hash-max-ziplist-entries`（默认 512）
+  - 所有 `value` 长度 < `hash-max-ziplist-value`（默认 64 字节）
+
+### 2. `OBJ_ENCODING_HT`
+- 结构：`dict`（哈希表），即 `hashtable`。
+- 源码文件：`dict.h`, `dict.c`
+
+#### `dict` 结构：
+```c
+// dict.h
+typedef struct dict {
+    dictType *type;
+    dictht ht[2];               // 两个哈希表，用于渐进式 rehash
+    long rehashidx;             // rehash 状态
+    // ...
+} dict;
+
+typedef struct dictht {
+    dictEntry table;          // 桶数组
+    unsigned long size;         // 数组大小
+    unsigned long used;         // 已用桶数
+    // ...
+} dictht;
+
+typedef struct dictEntry {
+    void *key;
+    union {
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+        double d;
+    } v;
+    struct dictEntry *next;     // 链地址法解决冲突
+} dictEntry;
+```
+
+- 优点：查找 O(1)。
+- 缺点：内存开销大（指针、桶）。
+- 触发条件：超过 ziplist 限制时自动转为 `HT`。
+
+
+##  四、Set 类型
+
+### 1. `OBJ_ENCODING_INTSET`
+- 结构：整数集合，有序数组。
+- 源码文件：`intset.h`, `intset.c`
+
+#### 结构：
+```c
+// intset.h
+typedef struct intset {
+    uint32_t encoding;          // INTSET_ENC_INT16, _32, _64
+    uint32_t length;            // 元素个数
+    int8_t contents[];          // 变长数组，存储整数（紧凑）
+} intset;
+```
+
+- 优点：内存极省，查找用二分 O(log N)。
+- 触发条件：
+  - 所有元素是整数。
+  - 元素个数 < `set-max-intset-entries`（默认 512）。
+
+### 2. `OBJ_ENCODING_HT`
+- 结构：`dict`，`key=member`, `val=NULL`。
+- 触发条件：有非整数元素或元素太多。
+
+##  五、Sorted Set（ZSet）类型
+
+### 1. `OBJ_ENCODING_ZIPLIST`
+- 结构：`member1, score1, member2, score2, ...`，按 score 排序。
+- 触发条件：
+  - 元素个数 < `zset-max-ziplist-entries`（默认 128）
+  - 所有 `member` 长度 < `zset-max-ziplist-value`（默认 64 字节）
+
+### 2. `OBJ_ENCODING_SKIPLIST`
+- 结构：双结构体 —— `zset`，包含：
+  - `dict`：`member → score` 映射，用于 O(1) 查 score。
+  - `skiplist`：按 score 排序的跳表，用于范围查询。
+- 源码文件：`server.h`, `t_zset.c`
+
+#### `zset` 结构：
+```c
+// server.h
+typedef struct zset {
+    dict *dict;                 // member -> double score
+    zskiplist *zsl;             // score -> member (ordered)
+} zset;
+```
+
+#### 跳表节点：
+```c
+// server.h
+typedef struct zskiplistNode {
+    sds ele;                    // member
+    double score;               // score
+    struct zskiplistNode *backward; // 后向指针
+    struct zskiplistLevel {
+        struct zskiplistNode *forward;
+        unsigned int span;      // 到下一个节点的跨度
+    } level[];
+} zskiplistNode;
+```
+
+>  为什么用跳表而不是红黑树？
+> - 跳表实现简单，支持高效的范围查询（`ZRANGE`）。
+> - Redis 更看重实现简洁和范围操作，跳表足够好。
+
+
+##  总结表（Redis 6.0）
+
+| 类型 | 编码 | 数据结构 | 优点 | 缺点 | 典型场景 |
+|------|------|----------|------|------|----------|
+| String | `INT` | `long` | 零开销 | 仅整数 | 计数器 |
+| | `EMBSTR` | `sds` (小) | 内存紧凑 | ≤44字节 | 小字符串 |
+| | `RAW` | `sds` (大) | 动态扩容 | 有指针开销 | 大文本 |
+| List | `QUICKLIST` | `quicklist` (ziplist 链表) | 内存+性能平衡 | - | 所有 List |
+| Hash | `ZIPLIST` | 压缩列表 | 内存省 | O(N) 查找 | 小对象 |
+| | `HT` | `dict` | O(1) 查找 | 内存大 | 大对象 |
+| Set | `INTSET` | 整数数组 | 内存极省 | 仅整数 | 标签、ID 集合 |
+| | `HT` | `dict` | 通用 | 内存大 | 字符串集合 |
+| Sorted Set | `ZIPLIST` | 压缩列表 | 内存省 | O(N) | 小有序集 |
+| | `SKIPLIST` | `dict` + `skiplist` | O(1) 查, O(log N) 范围 | 内存大 | 排行榜、优先队列 |
+
+##  关键设计思想
+
+1. 空间换时间：小对象用紧凑结构（ziplist, intset），大对象用高效结构（dict, skiplist）。
+2. 渐进式转换：当数据增长超过阈值时，自动从 ziplist → dict/quicklist。
+3. 避免外部依赖：所有数据结构均为 Redis 自研，控制力强。
+4. 内存友好：`embstr`, `quicklist`, `intset` 都是为了减少内存碎片和开销。
+
+如果你想看某个数据结构的 具体源码实现（如 `ziplistPush`, `dictAdd`, `zslInsert`），我可以继续深入分析。
+
+在 Redis 6.0 的源代码中，`OBJ_ENCODING_INT` 这个常量的定义以及它被使用的逻辑主要分布在以下几个关键文件中：
+
+### 1. `server.h` - 常量定义
+
+这是 `OBJ_ENCODING_INT` 的定义所在文件。
+
+```c
+// src/server.h
+#define OBJ_ENCODING_RAW 0     /* Raw representation */
+#define OBJ_ENCODING_INT 1     /* Encoded as integer */
+#define OBJ_ENCODING_HT 2      /* Encoded as hash table */
+#define OBJ_ENCODING_ZIPMAP 3  /* No longer used: old hash encoding. */
+#define OBJ_ENCODING_LINKEDLIST 4 /* No longer used: old list encoding. */
+#define OBJ_ENCODING_ZIPLIST 5 /* No longer used: old list/hash/zset encoding. */
+#define OBJ_ENCODING_INTSET 6  /* Encoded as intset */
+#define OBJ_ENCODING_SKIPLIST 7/* Encoded as skiplist */
+#define OBJ_ENCODING_EMBSTR 8  /* Embedded string encoding */
+#define OBJ_ENCODING_QUICKLIST 9/* Encoded as linked list of ziplists */
+#define OBJ_ENCODING_STREAM 10 /* Encoded as a radix tree of listpacks */
+```
+
+>  文件：`src/server.h`
+>
+>  作用：定义了所有 `redisObject` 可能的 `encoding` 值，`OBJ_ENCODING_INT` 被定义为 `1`。
+
+### 2. `object.c` - 创建和管理字符串对象（核心逻辑）
+
+这是 `OBJ_ENCODING_INT` 被创建和使用的最主要文件。当你设置一个整数字符串时，Redis 会尝试将其编码为 `INT`。
+
+#### 关键函数：`createStringObject()`
+
+```c
+// src/object.c
+robj *createStringObject(const char *ptr, size_t len) {
+    if (len <= OBJ_ENCODING_EMBSTR_SIZE_LIMIT) {
+        return createEmbeddedStringObject(ptr,len);
+    } else {
+        return createRawStringObject(ptr,len);
+    }
+}
+```
+
+这个函数会根据字符串长度决定是用 `embstr` 还是 `raw`。但真正判断是否用 `INT` 编码的逻辑在 `tryObjectEncoding()` 中。
+
+#### 核心函数：`tryObjectEncoding()` - 尝试优化编码
+
+```c
+// src/object.c
+robj *tryObjectEncoding(robj *o) {
+    long value;
+    sds s = o->ptr;
+    size_t len;
+
+    // 只有字符串对象才可能被编码为 INT
+    if (o->type != OBJ_STRING) return o;
+
+    // 检查是否可以转换为 long 整数
+    if (sdsEncodedObject(o)) {
+        len = sdslen(s);
+        if (len <= 21 && string2l(s,len,&value)) {
+            // 释放原来的 SDS
+            if (o->refcount > 1) return o;
+            o->encoding = OBJ_ENCODING_INT;
+            o->ptr = (void*) value;  // 直接将整数存入 ptr 指针
+            return o;
+        }
+    }
+
+    // ... 其他编码尝试（如 EMBSTR）
+    return o;
+}
+```
+
+>  文件：`src/object.c`
+>
+>  作用：
+> - `tryObjectEncoding()` 是决定是否将字符串对象转为 `OBJ_ENCODING_INT` 的核心函数。
+> - 它调用 `string2l()` 尝试将字符串解析为 `long`。
+> - 如果成功且长度 ≤ 21 字符，就将 `redisObject` 的 `encoding` 设为 `OBJ_ENCODING_INT`，并把整数值直接存入 `ptr` 指针（利用指针的高位存储数据）。
+
+
+### 3. `t_string.c` - SET 命令的实现
+
+当你执行 `SET mykey 123` 时，最终会调用这个文件中的函数，它会触发 `tryObjectEncoding()`。
+
+```c
+// src/t_string.c
+void setGenericCommand(client *c, int flags, robj *key, robj *val, robj *expire, int unit, robj *ok_reply, robj *abort_reply) {
+    // ... 逻辑
+    val = getDecodedObject(val); // 解码
+    // 尝试优化编码（可能转为 INT）
+    if (o) o = tryObjectEncoding(o);
+    // ... 存入数据库
+}
+```
+
+>  文件：`src/t_string.c`
+>
+>  作用：`SET` 命令的处理逻辑中会调用 `tryObjectEncoding()`，这是 `OBJ_ENCODING_INT` 被触发的常见入口。
+
+### 4. `object.c` - 获取对象值时的处理
+
+当从 `OBJ_ENCODING_INT` 对象中读取值时，需要特殊处理：
+
+```c
+// src/object.c
+char *get原创内容，此处为示意
+// 实际上在命令实现中，会检查 encoding 并从 ptr 读取整数
+```
+
+虽然没有一个单独的 `getIntValueFromObject` 函数，但在很多命令（如 `INCR`, `GET`）中，都会先检查 `encoding == OBJ_ENCODING_INT`，然后直接 `(long)o->ptr` 获取值。
+
+
+###  总结
+
+| 作用 | 文件 | 说明 |
+|------|------|------|
+| 定义 `OBJ_ENCODING_INT` | `src/server.h` | 宏定义，值为 `1` |
+| 创建/转换为 `INT` 编码 | `src/object.c` | `tryObjectEncoding()` 函数是核心 |
+| `SET` 命令触发 | `src/t_string.c` | 调用 `tryObjectEncoding()` |
+| 对象创建辅助 | `src/object.c` | `createStringObject()` 等 |
+
+所以，如果你想看 `OBJ_ENCODING_INT` 是如何被应用的，重点看：
+
+ `src/object.c` 中的 `tryObjectEncoding()` 函数
+
+这是 Redis 实现“小整数字符串自动转为整数存储”这一优化的关键逻辑。
+
 ## 自己写redis
 Rust
 https://github.com/tokio-rs/mini-redis
@@ -7,51 +1398,48 @@ https://github.com/tokio-rs/mini-redis
 Go
 https://github.com/alicebob/miniredis
 
-
-Redis 选择用 C 语言而不是 C++ 语言编写，背后有几个关键的原因，这些原因涉及到性能、语言的特性、开发效率以及社区支持等方面。以下是一些主要的考虑因素：
+Redis选择用C语言而不是C++语言编写，背后有几个关键的原因，这些原因涉及到性能、语言的特性、开发效率以及社区支持等方面。以下是一些主要的考虑因素：
 
 性能优化：
-C 语言非常接近硬件，能够提供更低的系统开销和更高的执行效率。Redis 作为一个高性能的键值存储系统，对性能有极高的要求。C 语言允许开发者直接操作内存，减少中间层的开销，如自动内存管理（垃圾回收）等。
-C++ 虽然也提供了高性能编程的能力，但其标准库（如 STL）和某些特性（如模板元编程）可能会引入额外的运行时开销，这可能会影响 Redis 的性能。
+C语言非常接近硬件，能够提供更低的系统开销和更高的执行效率。Redis作为一个高性能的键值存储系统，对性能有极高的要求。C语言允许开发者直接操作内存，减少中间层的开销，如自动内存管理（垃圾回收）等。
+C++虽然也提供了高性能编程的能力，但其标准库（如STL）和某些特性（如模板元编程）可能会引入额外的运行时开销，这可能会影响Redis的性能。
 内存管理：
-Redis 需要精细地控制内存使用，以最大化存储效率和响应速度。C 语言允许开发者直接管理内存（例如，使用 malloc 和 free），这在 Redis 中是非常关键的。
-C++ 虽然提供了智能指针等自动内存管理工具，但这些工具可能会引入额外的性能开销，并且可能不如直接内存管理那样灵活和高效。
+Redis需要精细地控制内存使用，以最大化存储效率和响应速度。C语言允许开发者直接管理内存（例如，使用malloc和free），这在Redis中是非常关键的。
+C++虽然提供了智能指针等自动内存管理工具，但这些工具可能会引入额外的性能开销，并且可能不如直接内存管理那样灵活和高效。
 简洁性和可维护性：
-Redis 的代码库相对较小且专注于其核心功能。C 语言的简洁性有助于保持代码的清晰和可维护性。
-C++ 虽然提供了更多的抽象和面向对象编程的能力，但这些特性在 Redis 的应用场景中可能并不总是必要的，而且可能会增加代码的复杂性。
+Redis的代码库相对较小且专注于其核心功能。C语言的简洁性有助于保持代码的清晰和可维护性。
+C++虽然提供了更多的抽象和面向对象编程的能力，但这些特性在Redis的应用场景中可能并不总是必要的，而且可能会增加代码的复杂性。
 开发效率和兼容性：
-C 语言是一种广泛使用的编程语言，有着庞大的开发者社区和丰富的文档资源。使用 C 语言可以更容易地吸引和留住开发者。
-Redis 的目标是跨平台兼容，C 语言在这方面具有天然的优势，因为它被设计成一种可移植的语言。
+C语言是一种广泛使用的编程语言，有着庞大的开发者社区和丰富的文档资源。使用C语言可以更容易地吸引和留住开发者。
+Redis的目标是跨平台兼容，C语言在这方面具有天然的优势，因为它被设计成一种可移植的语言。
 历史原因和社区决策：
-Redis 的原始开发者可能基于上述原因（或其他个人偏好）选择了 C 语言。随着项目的发展和社区的壮大，这种选择也得到了广泛的认可和支持。
-总的来说，Redis 选择用 C 语言编写是出于性能、内存管理、简洁性、开发效率和兼容性等多方面的考虑。这些决策使得 Redis 能够成为一个高效、可靠且易于维护的键值存储系统。
-
+Redis的原始开发者可能基于上述原因（或其他个人偏好）选择了C语言。随着项目的发展和社区的壮大，这种选择也得到了广泛的认可和支持。
+总的来说，Redis选择用C语言编写是出于性能、内存管理、简洁性、开发效率和兼容性等多方面的考虑。这些决策使得Redis能够成为一个高效、可靠且易于维护的键值存储系统。
 
 ## c语言 redis客户端
-好的,我来为您介绍一下 C 语言中常用的 Redis 客户端库。
+好的,我来为您介绍一下C语言中常用的Redis客户端库。
 
-在 C 语言中,有几个比较流行的 Redis 客户端库,包括:
+在C语言中,有几个比较流行的Redis客户端库,包括:
 1. hiredis
-   - 这是 Redis 官方推荐的 C 语言客户端库。
+   - 这是Redis官方推荐的C语言客户端库。
    - 支持同步和异步两种操作模式。
-   - 提供了简单易用的 API,可以方便地执行 Redis 命令。
+   - 提供了简单易用的API,可以方便地执行Redis命令。
    - 项目地址: https://github.com/redis/hiredis
 2. credis
-   - 这是另一个流行的 C 语言 Redis 客户端库。
-   - 提供了与 hiredis 类似的 API,但增加了一些额外的功能,如连接池管理等。
+   - 这是另一个流行的C语言Redis客户端库。
+   - 提供了与hiredis类似的API,但增加了一些额外的功能,如连接池管理等。
    - 项目地址: https://github.com/chusiang/credis
 3. predis
-   - 这是一个基于 phpredis 的 C 语言 Redis 客户端库。
+   - 这是一个基于phpredis的C语言Redis客户端库。
    - 支持同步和异步两种操作模式。
-   - 提供了丰富的 Redis 命令支持。
+   - 提供了丰富的Redis命令支持。
    - 项目地址: https://github.com/nrk/predis
 4. libredis
-   - 这是一个轻量级的 C 语言 Redis 客户端库。
-   - 提供了基本的 Redis 命令执行功能。
+   - 这是一个轻量级的C语言Redis客户端库。
+   - 提供了基本的Redis命令执行功能。
    - 项目地址: https://github.com/gerasimou/libredis
 
 以上是 C 语言中常用的几个 Redis 客户端库,它们各有自己的特点和优势。您可以根据项目需求和使用习惯,选择合适的库进行开发。
-
 
 从社招面试来看，很多小伙伴分不清redis的内存淘汰机制和过期键值清理机制，不管问什么，开口就是LRU。
 记英文不舒服么，eviction和expiration
@@ -70,11 +1458,8 @@ Redis从4.0 版本开始，支持通过Module 来扩展其功能以满足特殊�
 * RedisBloomopen in new window：用于实现布隆过滤器的模块。
 * RedisAIopen in new window：用于执行深度学习/机器学习模型并管理其数据的模块。
 * RedisCellopen in new window：用于实现分布式限流的模块。
-* ……
-关于 Redis 模块的详细介绍，可以查看官方文档：https://redis.io/modulesopen in new window。
 
-
-抖音 h 那个up
+关于Redis模块的详细介绍，可以查看官方文档：https://redis.io/modulesopen in new window。
 
 redis使用场景
 共同关注
@@ -126,7 +1511,6 @@ public class RedisLettuceSentinelExample {
 ```
 
 在这个例子中，我们设置了三个Sentinel节点的IP地址（127.0.0.1:26379、127.0.0.1:26380和127.0.0.1:26381）。然后，我们创建了一个`RedisURIBuilder`对象，并使用`withSentinelAddresses()`方法设置了Sentinel的IP地址。接下来，我们构建了一个`RedisURI`对象，用于连接到Redis集群。最后，我们创建了一个`SentinelClientConfigurationBuilder`对象，并设置了主节点名称和Sentinel节点的IP地址。最后，我们使用这些配置创建了一个`RedisSentinelClient`对象，可以用于与Redis集群进行通信。
-
 
 尽量不做分片集群。因为集群维护起来比较麻烦，并且集群之间的心跳检测和数据通信会消耗大量的网络带宽，也没有办法使用lua脚本和事务
 
@@ -184,7 +1568,6 @@ redis设计与实现 书籍
 对象
 
 ziplist
-
 
 ## redis分布式锁
 Redisson是一个在Java中实现的Redis客户端，它提供了很多高级功能，包括分布式锁，信号量，队列等等。
@@ -394,18 +1777,17 @@ Feature Log
 2019-02-22: Single Connection Support
 2019-01-08: Project Start
 
-
 redis redisson分布式锁
 
 ### 分布式锁redis实现
 
 分布式锁的常见使用方法： 
 1：利用 ThreadLocal + mysql 主键冲突 
-2：手写 redis 锁 
-3：利用 Redisson 封装的锁 
+2：手写redis锁 
+3：利用Redisson封装的锁 
 4：利用多个独立的redis,实现红锁 
-5：curator 封装 zookeeper 实现分布式锁 
-ps:还有其他的分布式锁，利用zookeeper 单独实现分布式锁
+5：curator封装zookeeper实现分布式锁 
+ps:还有其他的分布式锁，利用zookeeper单独实现分布式锁
 
 https://gitee.com/jiang-qikun/distributed-lock
 

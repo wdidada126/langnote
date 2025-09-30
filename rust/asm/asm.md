@@ -1,9 +1,9 @@
 # asm
 
+## source code
+musl 有汇编
 
-
-
-
+## doc
 NASM汇编语言编译器
 
 https://www.nasm.us/
@@ -14,11 +14,9 @@ https://blog.csdn.net/liigo/article/details/80680929
 
 Microsoft Macro Assembler 8.0 (MASM) 
 
-Microsoft Macro Assembler 8.0 (MASM) 是一个利用 x86 汇编语言程序并产生相应的二进制文件的工具。用 MASM 生成的汇编语言程序可以使用 Visual C++ 2005 Express 版进行编辑和调试。本软件包需要在计算机上先行安装 Visual C++ 2005 Express 版。
+Microsoft Macro Assembler 8.0 (MASM) 是一个利用x86汇编语言程序并产生相应的二进制文件的工具。用MASM生成的汇编语言程序可以使用Visual C++ 2005 Express版进行编辑和调试。本软件包需要在计算机上先行安装Visual C++ 2005 Express版。
 
-
-
-javap 查看字节码
+javap查看字节码
 
 jclasslib IDEA插件
 
@@ -36,13 +34,9 @@ https://blog.csdn.net/xiaojia1100/article/details/105387566
 
 https://blog.csdn.net/raintungli/article/details/9832783
 
-
-
 Clion怎么查看反编译的汇编代码
 
 https://github.com/lurumdare/awesome-asm
-
-
 
 Mac OS X版本的sublime text 3安装汇编语言语法支持
 
@@ -50,21 +44,9 @@ Mac OS X版本的sublime text 3安装汇编语言语法支持
 
 https://blog.csdn.net/qq_43678568/article/details/84071366
 
-
-
 汇编语言的编程艺术(第2版)
 
-
-
 VSCode + 插件（x86 and x86_64 Assembly）
-
-
-
-
-
-
-
-
 
 现代的CPU/GPU把指令再分解成微指令
 
@@ -82,19 +64,15 @@ CPU是如何访问内存的
 
 中断及其处理
 
-
-
 冯诺依曼计算机 图灵机
-
-
 
 有了这些知识，肯定对冯诺依曼计算机有了深刻认识。
 
 而这些知识又构成了操作系统的基础， 有了这些基础，理解进程/线程的概念，同步和互斥，以及他们的实现就非常容易，还有虚拟内存、文件系统、 I/O 等等。
 
-**并不是说必须学了汇编才能理解操作系统，而是说看问题的深度不一样。**  有了汇编的保驾护航， 你可以在头脑中建立起一个有更多细节，更多实现的计算机， 那些概念不是模糊的，而是清晰的、鲜活的。
+并不是说必须学了汇编才能理解操作系统，而是说看问题的深度不一样。  有了汇编的保驾护航， 你可以在头脑中建立起一个有更多细节，更多实现的计算机， 那些概念不是模糊的，而是清晰的、鲜活的。
 
-**操作系统的运行原理， 绝对是程序员受益一生的知识**。 比如说后端编程，不了解OS的进程、线程、 页面缓存，文件系统，I/O  就去大谈如何实现一个高并发、大数据量的网站简直就是笑话。
+操作系统的运行原理， 绝对是程序员受益一生的知识。 比如说后端编程，不了解OS的进程、线程、 页面缓存，文件系统，I/O  就去大谈如何实现一个高并发、大数据量的网站简直就是笑话。
 
 再比如对JVM的学习， 如果你懂得汇编， 看到JVM的字节码、看到栈帧就会觉得很亲切，只需要把基于寄存器的计算方式转换成基于栈的计算方式就可以了。
 
@@ -102,34 +80,18 @@ CPU是如何访问内存的
 
 求伯君竟然用汇编写出了WPS！ Ken Thompson、Dennis Ritchie 居然用汇编写出操作系统Unix！
 
-
-
-
-
 在某些情况下，你除了汇编没有别的选择——
 CPU，时钟，以及内存尚未初始化的时候
 当你需要切换CPU的工作模式的时候
 当你需要直接操作协处理器的时候
 
-
-
 对操作系统和计算机结构的理解，比如中断啊系统调用
-
-
 
 汇编仅在优化的地方或者bootloader里面写写
 
-
-
 俄罗斯方块 汇编写
 
-
-
 https://github.com/jmechner/Prince-of-Persia-Apple-II
-
-
-
-
 
 data
 
@@ -137,12 +99,7 @@ text
 
 段
 
-
-
-
-
 当年学C++时，对this指针不解，拿起ollydbg逆之，原来是这货在ECX里面，指向了类对象的数据成员，懂了以后，将某游戏的某C++对象内存dump下来， mov ecx,object; call object.method ,将某游戏爆出翔。
-
 后来又学到虚函数，这又是什么鬼？ 老规矩，逆之，原来内存里面有一张虚函数表，这张表就如同一张的地图，指名实际要调用的函数，正是因为这张表，在sizeof(object)时，变大了。
 
 看完上面，有没有感受到这种属性加成？你可以省去大量的谷歌，百度时间。
@@ -152,35 +109,19 @@ text
 
 巧妙实现，当时就给跪了。
 
-
-
 https://www.zhihu.com/question/23088538/answer/295173568
-
-
-
-
 
 树莓派汇编器
 
 as
 
-
-
 CentOS7写汇编并编译运行汇编代码
 
 https://blog.csdn.net/chunxiaqiudong5/article/details/95937826
 
-
-
-
-
 单片机
 
 嵌入式
-
-
-
-
 
 为何 x86 汇编会有两种语法，Intel 和 AT&T
 

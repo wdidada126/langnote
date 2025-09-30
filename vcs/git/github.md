@@ -3,7 +3,6 @@ https://www.githubstatus.com/history
 
 rust.yml
 
-
 默认分支无法通过
 git push -d origin main来删除
 
@@ -110,6 +109,21 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+
+### ubuntu 24
+
+/usr/bin/java
+openjdk version "17.0.16" 2025-07-15
+OpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)
+OpenJDK 64-Bit Server VM Temurin-17.0.16+8 (build 17.0.16+8, mixed mode, sharing)
+/usr/bin/mvn
+Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)
+Maven home: /usr/share/apache-maven-3.9.11
+Java version: 17.0.16, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.11.0-1018-azure", arch: "amd64", family: "unix"
+
+### doc
 
 ```shell
 conanvcvars.bat: Activating environment Visual Studio 17 - amd64 - winsdk_version=None - vcvars_ver=14.3

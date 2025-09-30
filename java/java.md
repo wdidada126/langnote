@@ -8,8 +8,6 @@ http://www.oracle.com/technetwork/java/intro-141325.html
 AQS
 https://m.jb51.net/program/308100tm3.htm
 
-wrk -t2 -c100 -d10s http://0.0.0.0:8000/
-wrk是一个比较先进的 HTTP 压力测试工具
 
 tomcat和netty都可以用nio+线程池作为woker，tomcat从6开始就已经改成用nio模型了（要配置NIO Connector，到了tomcat 8 改成了默认值）。因此问题可以化简为两个：
 

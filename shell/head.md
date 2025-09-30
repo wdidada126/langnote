@@ -1,4 +1,5 @@
 # head
+head - output the first part of files
 
 /usr/bin/head
 

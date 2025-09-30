@@ -1,4 +1,13 @@
 # 现代C++语言核心特性解析
+
+作者: 谢丙堃
+出版社: 人民邮电出版社
+出品方: 异步图书
+出版年: 2021-10
+页数: 424
+装帧: 平装
+ISBN: 9787115564177
+
 https://www.zhihu.com/people/0cch
 https://book.douban.com/subject/35602582/
 
@@ -353,3 +362,4 @@ https://github.com/chengxumiaodaren/cpp-learning
 42.5 explicit(bool) 419
 42.6 总结 423
 附录 特性章节对照表 424
+

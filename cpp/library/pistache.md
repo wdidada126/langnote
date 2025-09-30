@@ -25,8 +25,6 @@ travis编译不通过
 https://github.com/edidada/testpistache
 20210207 编译通过
 
-nohup和&后台运行，进程查看及终止
-https://www.cnblogs.com/baby123/p/6477429.html
 
 ## debian/ubuntu安装
 $ sudo add-apt-repository ppa:pistache+team/stable
@@ -38,7 +36,6 @@ sudo apt update
 sudo apt install libpistache-dev
 
 ubuntu github codespace尝试了，安装不了
-
 
 对pistache的源码分析和竞品可以概括如下:
 Pistache源码分析:

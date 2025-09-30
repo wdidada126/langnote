@@ -11,7 +11,6 @@ https://www.openssh.com/
 ### doc
 https://www.openssh.com/manual.html
 
-
 https://help.gitee.com/repository/ssh-key/configure-multiple-ssh-keys
 
 Linux全局SSH配置文件路径位置为：`/etc/ssh/ssh_config`。
@@ -60,6 +59,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com"
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab
+ssh-keygen -t rsa -C "wucheng@yitong.com.cn" -f id_rsa_hljrcc_wucheng_gitlab
 ssh-keygen -t rsa -C "edidada555@gmail.com" -f id_rsa_sandisks_github
 ssh-keygen -t ecdsa -b 256 -C "edidada555@gmail.com" -f id_ecdsa_sandisks_github
 ssh-keygen -t ed25519 -b 256 -C "edidada@outlook.com" -f id_ed25519_outlook_github
@@ -68,6 +68,7 @@ ssh-keygen -t ed25519 -C "github_sandisks_edidada555@gmail.com" -f id_ed25519_sa
 ssh-keygen -t ed25519 -C "wiseism@126.com" -f id_ed25519_wiseism126_github
 ssh-keygen -t ed25519 -C "wdidada@126.com" -f id_ed25519_wdidada126_github
 ssh-keygen -t ed25519 -C "sandisks@noreply.gitcode.com"  -f id_ed25519_sandisks_gitcode
+ssh-keygen -t ed25519 -C "sandisks@noreply.gitcode.com"  -f id_ed25519_sandisks_gitcode_win11
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "wucheng@webmail.hzau.edu.cn" -f id_ecdsa_wuedidada_github
@@ -80,6 +81,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com" -f id_ed25519_166_edidada_gitee
 ssh-keygen -t ed25519 -C "Win_ubuntu24_Gitee_ed25519_1664884095@qq.com" -f id_ed25519_edidada_gitee
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "wc@eteng.cn" -f id_rsa_coding_eteng
+ssh-keygen -t ed25519 -C "wc@eteng.cn" -f id_rsa_aliyun_eteng
 
 ssh-keygen -m PEM -t rsa -b 4096 -C "1664884095@qq.com" -f id_rsa_coding_166
 

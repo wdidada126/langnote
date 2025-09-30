@@ -1,4 +1,12 @@
 # cpp11
+
+一家之言
+C++11比C++98在核心上最大的改进是移动（原子操作不常用），剩下的以语法糖和库改进为主，真会C++98的人不可能会拒绝C++11
+http://zhihu.com/question/587824173/answer/3636188251
+
+11 20是大版本更新
+14 17 23不是
+
 Youtube-CppNuts的Threading In C++系列视频
 
 https://zhuanlan.zhihu.com/p/556406170

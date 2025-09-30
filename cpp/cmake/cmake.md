@@ -1,11 +1,30 @@
 # CMake
+202505
+cmake 4.0版本发布
+redis 8.0发布
+## bin
+https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
+
+## variable
+
+CMake 内置变量 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 在 CMake 构建系统中具有不同的作用。它们分别代表着不同的含义：
+
+- `PROJECT_SOURCE_DIR`：这个变量存储了当前项目的顶层源目录的路径。在 CMakeLists.txt 文件中，通常通过这个变量来引用项目的根源代码目录。这对于指定源文件的路径、包含其他 CMake 文件或者设置输出路径等非常有用。
+
+- `CMAKE_SOURCE_DIR`：这个变量存储了执行 cmake 命令时指定的源代码根目录的路径。这个变量通常用于指定 CMakeLists.txt 文件所在的目录。与 `PROJECT_SOURCE_DIR` 不同，`CMAKE_SOURCE_DIR` 可能与项目的源代码目录不同，因为它是在执行cmake命令时指定的。
+
+在 CMakeLists.txt 文件中，你可以像下面这样打印这些变量：
+
+```cmake
+message(STATUS "Project Source Dir: ${PROJECT_SOURCE_DIR}")
+message(STATUS "CMake Source Dir: ${CMAKE_SOURCE_DIR}")
+```
+
+这将输出 `PROJECT_SOURCE_DIR` 和 `CMAKE_SOURCE_DIR` 的值，以便你可以查看它们指向的具体目录路径。这些变量对于在CMake 构建系统中管理项目结构和路径非常有用。
 
 export CMAKE_ROOT=/usr/local/cmake
 export CMAKE_ROOT=/home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64
 /home/wdidada/dev_tools/cmake-3.27.9-linux-x86_64/bin
-
-
-
 
 export CMAKE_ROOT=/home/wdidada/cmake-3.27.1-linux-x86_64
 export PATH="/home/wdidada/cmake-3.27.1-linux-x86_64/bin:$PATH"
@@ -32,16 +51,200 @@ endif()
 
 https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html
 
-AIX IBM Unix operating system
-Darwin Apple stationary operating systems (macOS, OS X, etc.)
-Android Android operating system
-Linux All Linux-based distributions
+Value
+Name
+
+ADSP
+Analog Devices Audio Digital Signal Processing
+
+AIX
+IBM Unix operating system
+
+Android
+Android operating system
+
+ARTOS
+Operating system for microcontrollers
+
+BeOS
+Operating system for personal computers (discontinued)
+
+BlueGeneL
+Blue Gene/L static environment
+
+BlueGeneP-dynamic
+Blue Gene/P dynamic environment
+
+BlueGeneP-static
+Blue Gene/P static environment
+
+BlueGeneQ-dynamic
+Blue Gene/Q dynamic environment
+
+BlueGeneQ-static
+
+Blue Gene/Q static environment
+
+BSDOS
+BSD operating system (discontinued)
+
+Catamount
+Operating system for Cray XT series
+
+CrayLinuxEnvironment
+Cray Linux Environment
+
+CYGWIN
+Cygwin environment for Windows
+
+Darwin
+Apple stationary operating systems (macOS, OS X, etc.)
+
+DOS
+MS-DOS or compatible
+
+DragonFly
+BSD-derived operating system
+
+eCos
+Real-time embedded operating system
+
+Emscripten
+Compiler toolchain to WebAssembly
+
+Euros
+Real-time operating system for embedded devices
+
+FreeBSD
+FreeBSD operating system
+
+Fuchsia
+Operating system by Google based on the Zircon kernel
+
+Generic-ADSP
+Generic ADSP (Audio DSP) environment
+
+Generic-ELF
+Generic ELF (Executable and Linkable Format) environment
+
+Generic
+Some platforms, e.g. bare metal embedded devices
+
+GHS-MULTI
+Green Hills Software MULTI environment
+
+GNU
+GNU/Hurd-based operating system
+
+Haiku
+Unix operating system inspired by BeOS
+
+HP-UX
+Hewlett Packard Unix
+
+iOS
+Apple mobile phone operating system
+
+kFreeBSD
+FreeBSD kernel with a GNU userland
+
+Linux
+All Linux-based distributions
+
+Midipix
+POSIX-compatible layer for Windows
+
+MirBSD
+MirOS BSD operating system
+
+MP-RAS
+MP-RAS UNIX operating system
+
+MSYS
+MSYS environment (MSYSTEM=MSYS)
+
+NetBSD
+NetBSD operating systems
+
+OpenBSD
+OpenBSD operating systems
+
+OpenVMS
+OpenVMS operating system by HP
+
+OS2
+OS/2 operating system
+
+OSF1
+Compaq Tru64 UNIX (formerly DEC OSF/1, Digital Unix) (discontinued)
+
+QNX
+Unix-like operating system by BlackBerry
+
+RISCos
+RISC OS operating system
+
+SCO_SV
+SCO OpenServer 5
+
+SerenityOS
+Unix-like operating system
+
+SINIX
+SINIX operating system
+
+SunOS
+Oracle Solaris and all illumos operating systems
+
+syllable
+Syllable operating system
+
+Tru64
+Compaq Tru64 UNIX (formerly DEC OSF/1) operating system
+
+tvOS
+Apple TV operating system
+
+ULTRIX
+Unix operating system (discontinued)
+
+UNIX_SV
+SCO UnixWare (pre release 7)
+
+UnixWare
+SCO UnixWare 7
+
+visionOS
+Apple mixed reality operating system
+
+WASI
+WebAssembly System Interface
+
+watchOS
+Apple watch operating system
+
+Windows
+Windows stationary operating systems
+
+WindowsCE
+Windows Embedded Compact
+
+WindowsPhone
+Windows mobile phone operating system
+
+WindowsStore
+Universal Windows Platform applications
+
+Xenix
+SCO Xenix Unix operating system (discontinued)
+
+### CMAKE_SYSTEM_NAME枚举值
+
 
 ## vs
-
 https://learn.microsoft.com/zh-cn/cpp/build/cmake-projects-in-visual-studio?view=msvc-170
 
-## dd
+## 源代码语言
 cmake源代码是c c++写的
 conan是python
 xmake也是c写的吧
@@ -80,7 +283,8 @@ add_executable(YourExecutable ${SOURCES})
 
 请注意，使用`file(GLOB ...)`命令来收集源文件有一些限制，例如当项目结构发生变化时可能无法自动检测到新的文件。因此，在实际项目中最好手动列出文件，以确保构建系统的稳定性。
 
-Andriod用cmake
+Andriod
+弃用ndk-build，用cmake
 
 cmake，c c++源文件批量添加
 
@@ -95,7 +299,6 @@ file(GLOB RPC_SRC rocket/net/rpc/*.cc)
 # 生成静态库
 add_library(rocket STATIC ${COMM_SRC} ${NET_SRC} ${TCP_SRC} ${CODER_SRC} ${RPC_SRC})
 ```
-
 
 dpkg -L libtinyxml-dev
 /.
