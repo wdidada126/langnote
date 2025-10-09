@@ -19,3 +19,5 @@ zlibrary安卓app发送到邮箱的书籍是epub格式的，不行
 https://z-library.se/
 
 系统架构设计师教程第二版.pdf
+
+书籍从zlibrary和anna's archive上面找。
