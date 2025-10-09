@@ -1,5 +1,7 @@
 # jdk25
 
+https://www.oracle.com/java/technologies/downloads/#jdk25-windows
+
 2025年9月16日，Java发布了最新的长期支持版本（LTS）JDK 25。
 
 Java 25 新特性与API详解
@@ -16,11 +18,9 @@ void main() {
     IO.println("Hello, Java 25!"); // 自动导入java.lang.IO
 }
 
-
 新版本中，IO类已从java.io包移动到了java.lang包，因此无需显式导入。
 
 1.2 灵活构造函数 (JEP 513)
-
 允许在调用super()或this()之前执行初始化逻辑：
 class User {
     private String id;
