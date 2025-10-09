@@ -1001,6 +1001,9 @@ git config  user.email "sandisks555@gmail.com"
 
 git config --global user.name "betaXXX"
 git config --global user.email "betaXXX@gmail.com"
+
+git config --global user.name "someXXYY"
+git config --global user.email "someXXYY@outlook.com"
 git config  user.name "unknow"
 git config  user.email "unknow@gmail.com"
 git config user.name "伍成"
