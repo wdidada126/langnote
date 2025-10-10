@@ -1,5 +1,8 @@
 # IDEA
 
+Blanche_More@hotmail.com
+5^Edidadas
+
 idea最新版（2025.03）不支持win7操作系统
 
 ## 取消import *
