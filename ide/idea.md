@@ -1,7 +1,9 @@
 # IDEA
 
 Blanche_More@hotmail.com
-5^Edidadas
+yDFA^P42
+不能改密码
+单个电脑使用
 
 idea最新版（2025.03）不支持win7操作系统
 
