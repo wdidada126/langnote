@@ -43,8 +43,8 @@ import java.util.Map;
    Editor → Code Style → Java → Imports
    ```
 4. 在 Imports 选项卡中，找到：
-   - ✅ Use single class import（勾选）
-   - ❌ 确保 Use import with '*‘ 是 未勾选 的
+   - Use single class import（勾选）
+   - 确保 Use import with '*‘ 是 未勾选 的
 
 5. 设置：
    - Class count to use import with '\*': 改为 `999`（或一个很大的数）
@@ -70,8 +70,6 @@ import java.util.Map;
 
 即可自动展开。
 
----
-
 ##  方法三：使用 CheckStyle 或代码规范强制禁止（团队项目）
 
 如果你想在团队中强制禁止 `import *`，可以：
@@ -93,12 +91,12 @@ import java.util.Map;
 
 | 原因 | 说明 |
 |------|------|
-| 🔍 可读性差 | 看不到具体用了哪些类 |
-| 🧩 命名冲突 | 容易与同名类冲突（如 `java.util.Date` vs `java.sql.Date`） |
-| 📦 潜在依赖 | 可能无意中依赖了不该用的类 |
-| 📈 编译性能 | 虽然影响极小，但理论上导入越少越好 |
+| 可读性差 | 看不到具体用了哪些类 |
+| 命名冲突 | 容易与同名类冲突（如 `java.util.Date` vs `java.sql.Date`） |
+| 潜在依赖 | 可能无意中依赖了不该用的类 |
+| 编译性能 | 虽然影响极小，但理论上导入越少越好 |
 
-> ⚠️ 例外：`java.lang.*` 是自动导入的，无需写，也无法控制。
+> 例外：`java.lang.*` 是自动导入的，无需写，也无法控制。
 
 ---
 
@@ -106,10 +104,10 @@ import java.util.Map;
 
 | 建议 | 说明 |
 |------|------|
-| ✅ 禁用 `import *` | 在 IDEA 设置中关闭 |
-| ✅ 使用 `Ctrl + Alt + O` | 定期优化导入 |
-| ✅ 使用 `Alt + Enter` | 展开已有的星号导入 |
-| ✅ 团队统一规范 | 通过代码风格或检查工具强制执行 |
+| 禁用 `import *` | 在 IDEA 设置中关闭 |
+| 使用 `Ctrl + Alt + O` | 定期优化导入 |
+| 使用 `Alt + Enter` | 展开已有的星号导入 |
+| 团队统一规范 | 通过代码风格或检查工具强制执行 |
 
 
  设置完成后，你的代码将自动使用明确导入，例如：
@@ -318,7 +316,6 @@ https://blog.csdn.net/fanrenxiang/article/details/80497977
 
 [IDEA可以添加jetty tomcat等容器的servlet等jar包](https://blog.csdn.net/u013393958/article/details/78329192)
 
-
 https://www.iteye.com/blog/baowp-1989575
 
 #### IDEA debug时，可以改变变量的值
@@ -354,16 +351,13 @@ https://jingyan.baidu.com/article/29697b9163ac7dab20de3cbf.html
 
 https://jingyan.baidu.com/article/29697b9163ac7dab20de3cbf.html
 
-
 ### IDEA快捷键
 
 [IntelliJ IDEA中 查看某个类中的所有方法](https://blog.csdn.net/tb9125256/article/details/81416358)
 
 [Intellij IDEA 查找接口实现类的快捷键](https://blog.csdn.net/HeatDeath/article/details/79468782)
 
-
 - 添加三方jar
-
 
 ### add jar
 Project Struct
@@ -424,7 +418,6 @@ Other command line arguments:`-encoding UTF-8 `
 
 [用IDEA生成javadoc文档](http://www.cnblogs.com/noKing/p/8006298.html)
 
-
 [IDEA Error:java: Compilation failed: internal java compiler error](https://www.cnblogs.com/comeluder/p/8215317.html)
 
 Intellij IDEA单元测试覆盖率插件JaCoCo的使用
@@ -462,20 +455,13 @@ IDEA Spring项目，配置bean的时候，Java代码可以跳转到xml文件
 ar
 含义
 
-
-
-
-
 断点 IDEA条件 IDEA选中断点 右键
-
-
 
 IDEA mac ctrl o或者Shift Ctrl F
 
 Win ctrl n 查找类
 
 https://www.jianshu.com/p/9812be1f746d
-
 
 idea断点增加代码
 
