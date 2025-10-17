@@ -1,5 +1,40 @@
 # reactor
 
+### Reactor模式开源库推荐
+
+根据您的需求，我筛选了几个开源的Reactor模式（事件驱动并发模式）实现库或项目。这些项目包括工业级（高性能、生产环境可用于网络服务器或分布式系统）、本科生大作业级别（简单实现、教学导向）、以及硕博教学用（包含教程、示例代码、设计分析）。我优先选择了GitHub上的活跃项目，避免核反应器或化学反应器相关（假设上下文是软件设计模式）。每个推荐包括简要描述、适用性、星级/活跃度（基于最新数据）和开源地址。
+
+#### 1. 工业级Reactor开源库
+这些库设计用于高并发场景，支持多线程、非阻塞I/O，类似于Nginx或Netty的Reactor实现，适合生产环境。
+
+| 项目名称 | 描述 | 适用性 | GitHub地址 |
+|----------|------|--------|------------|
+| Annety | C++11多线程Reactor网络库，借鉴Chromium、Muduo、Nginx等开源项目，支持POSIX系统。高性能异步I/O，适用于游戏服务器、微服务。 | 工业级，高吞吐量并发处理。 | [https://github.com/wlmwang/annety](https://github.com/wlmwang/annety) |
+| NIO-Reactor | Java NIO实现的Reactor参考库，包含echo服务器示例。基于Douglas Schmidt的经典论文，解决千级并发问题。 | 工业级入门，易扩展到Web服务器。 | [https://github.com/kasun04/nio-reactor](https://github.com/kasun04/nio-reactor) |
+| Project Reactor Core | JVM上的非阻塞响应式基础库（Reactive Streams标准），支持Flux/Mono操作。高性能、背压控制，用于Spring WebFlux等。 | 工业级，分布式系统（如Netflix使用类似）。 | [https://github.com/reactor/reactor-core](https://github.com/reactor/reactor-core) |
+
+#### 2. 本科学生大作业级别Reactor项目
+这些是简单、完整实现的Reactor示例，适合本科生作为期末大作业参考。代码简洁、可运行，焦点在核心概念（如事件多路复用、Dispatcher）。
+
+| 项目名称 | 描述 | 适用性 | GitHub地址 |
+|----------|------|--------|------------|
+| Reactor Pattern Example | C++实现的Reactor模式，包含IPC服务器/客户端示例。使用select()系统调用，支持事件驱动连接处理。 | 本科大作业，基础演示非阻塞I/O。 | [https://github.com/mirzachi/reactor-pattern-example](https://github.com/mirzachi/reactor-pattern-example) |
+| Simple Reactor in Python (Gevent) | Python + Gevent的简单Reactor实现，焦点在事件循环和回调。 | 本科大作业，快速原型开发。 | [https://gist.github.com/jpanganiban/4221200](https://gist.github.com/jpanganiban/4221200) |
+
+#### 3. 硕博教学用Reactor材料
+这些项目包含详细教程、设计分析、练习题，适合研究生课程（如并发编程、分布式系统）。可用于课堂演示或作业扩展。
+
+| 项目名称 | 描述 | 适用性 | GitHub地址 |
+|----------|------|--------|------------|
+| Java Design Patterns - Reactor | Java设计模式系列中的Reactor实现，包含类图、事件循环示例、并发分析。比喻厨房订单处理，便于讲解。 | 硕博教学，理论+代码结合。 | [https://github.com/iluwatar/java-design-patterns/tree/master/reactor](https://github.com/iluwatar/java-design-patterns/tree/master/reactor) |
+| Practical Reactor Workshop | Project Reactor响应式编程工作坊，100+练习题，从Mono/Flux基础到生产最佳实践。 | 硕博教学，动手实验导向。 | [https://github.com/schananas/practical-reactor](https://github.com/schananas/practical-reactor) |
+| Reactor Design Pattern Lecture | Java NIO Reactor教学材料，讨论阻塞/非阻塞I/O、Selector线程池、并发问题。包含Flyweight模式整合。 | 硕博教学，课程幻灯片+代码。 | [https://bguspl.github.io/class_material/reactor.html](https://bguspl.github.io/class_material/reactor.html) |
+
+### 建议
+- 起步推荐：本科生从Reactor Pattern Example开始，快速上手C++实现；工业应用选Annety，扩展性强。
+- 教学扩展：硕博课程可结合Practical Reactor Workshop添加响应式编程模块。
+- 注意：Reactor模式平台相关（Linux用epoll，Java用NIO），测试时确保环境兼容。如果需要特定语言（如Go/Python）或更多细节，请补充查询！
+
 io模型: 支持 reactor(for network) and async-io(for disk)
 来源：https://github.com/trpc-group/trpc-cpp/blob/main/README.zh_CN.md
 
