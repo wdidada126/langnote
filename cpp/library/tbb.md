@@ -1,5 +1,23 @@
 # tbb
 
+## version版本
+```
+sudo apt install -y libtbb-dev
+[sudo] password for wdidada:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+libtbb-dev is already the newest version (2021.5.0-7ubuntu2).
+0 upgraded, 0 newly installed, 0 to remove and 71 not upgraded.
+```
+
+2022.02
+
+## 编译后头文件库文件
+github releases页面，支持mac，win，linux
+
+## doc
+
 使用Intel TBB实现可串行化冲突
 首先，你需要安装Intel TBB库。如果你还没有安装，可以通过以下方式安装：
 
@@ -72,14 +90,14 @@ __declspec
 ### 1. `__declspec(dllexport)` 和 `__declspec(dllimport)`
 用于导出或导入 DLL 中的符号。
 
-- **`__declspec(dllexport)`**:
+- `__declspec(dllexport)`:
   - 当你编写一个 DLL 并希望导出函数或变量以供其他程序使用时，使用 `__declspec(dllexport)`。
   - 例如，在 DLL 中导出一个函数：
     ```c
     __declspec(dllexport) void myFunction();
     ```
 
-- **`__declspec(dllimport)`**:
+- `__declspec(dllimport)`:
   - 当你使用另一个 DLL 中导出的函数或变量时，使用 `__declspec(dllimport)`。
   - 例如，从 DLL 导入一个函数：
     ```c
@@ -142,3 +160,12 @@ __declspec
 
 ### 总结：
 `__declspec` 是一个非常强大的关键字，用于控制符号的导入、导出、内存对齐、线程本地存储等。在编写跨平台代码时，通常会使用宏来封装这些特定于编译器的关键字，以保持代码的可移植性。
+
+## 使用TBB的库
+
+OCCT
+
+## 编译
+### linux
+#### ubuntu 22
+

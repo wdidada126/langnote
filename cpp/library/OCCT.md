@@ -1,5 +1,9 @@
 # OCCT
 
-occt3d.com
+## 官网
+http://www.occt3d.com
 
-https://github.com/Open-Cascade-SAS/OCCT/tree/V7_7_0
+## 源代码
+https://github.com/Open-Cascade-SAS/OCCT
+
+## 编译
