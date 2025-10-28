@@ -1,8 +1,6 @@
 # zip
 使用 `unzip` 命令可以将 `.zip` 格式的压缩包解压到指定目录。以下是详细的用法说明。
 
-
-
 ## 基本语法
 
 ```bash
@@ -17,9 +15,7 @@ unzip example.zip -d /home/user/target_folder/
 
 这个命令会将 `example.zip` 中的内容解压到 `/home/user/target_folder/` 目录中。
 
-
-
-## 🧩 参数说明
+## 参数说明
 
 | 参数 | 说明 |
 |||
@@ -27,11 +23,9 @@ unzip example.zip -d /home/user/target_folder/
 | `-d` | 指定解压的目标目录（directory） |
 | `/home/user/target_folder/` | 解压后文件存放的位置 |
 
+## 注意事项
 
-
-## 🔍 注意事项
-
-1. **目标目录必须存在**，否则会报错：
+1. .目标目录必须存在.，否则会报错：
    ```
    unable to create directory: /path/to/dir (No such file or directory)
    ```
@@ -46,8 +40,6 @@ unzip example.zip -d /home/user/target_folder/
 
 3. 如果目标目录中有同名文件，会被覆盖（除非你加上 `-n` 参数）。
 
-
-
 ## 常用选项
 
 | 选项 | 含义 |
@@ -60,8 +52,7 @@ unzip example.zip -d /home/user/target_folder/
 | `-j` | 解压时不保留目录结构（只提取所有文件到同一层） |
 
 
-
-## 📌 示例汇总
+## 示例汇总
 
 ### 1. 查看 zip 包内容（不解压）
 
@@ -93,9 +84,7 @@ unzip -q example.zip -d /opt/data/
 unzip example.zip -d /opt/data/ -n
 ```
 
-
-
-## ❗ 安装 unzip 工具（如未安装）
+## 安装 unzip 工具（如未安装）
 
 在一些精简版 Linux 系统中可能没有预装 `unzip`。
 
@@ -118,8 +107,6 @@ sudo yum install unzip
 sudo dnf install unzip
 ```
 
-
-
 ## 总结
 
 | 操作 | 命令 |
@@ -133,15 +120,11 @@ sudo dnf install unzip
 
 在 Linux 系统中，你可以使用 `zip` 命令将整个文件夹打包为 `.zip` 格式的压缩包。以下是完整的命令示例：
 
-
-
 ### 命令格式：
 
 ```bash
 zip -r 压缩包名称.zip 要压缩的文件夹路径/
 ```
-
-
 
 ### 示例：
 
