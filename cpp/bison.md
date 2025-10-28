@@ -12,7 +12,6 @@ Flex和Bison默认用法的场景是传统的命令行指令式程序，生成�
 
 https://blog.csdn.net/u014132143/article/details/129489861
 
-
 bison --version
 bison (GNU Bison) 3.0.4
 Written by Robert Corbett and Richard Stallman.
@@ -20,7 +19,6 @@ Written by Robert Corbett and Richard Stallman.
 Copyright (C) 2015 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 
 bison 2.3 mac系统
 
@@ -52,6 +50,9 @@ https://blog.csdn.net/Chinamming/article/details/84507258
 Bison中默认将所有的语义值都定义为int类型，可以通过定义宏YYSTYPE来改变值的类型。如果有多个值类型，则需要通过在Bison声明中使用%union列举出所有的类型，然后为每个符号定义相对的类型，终结符使用%token，非终结符使用%type来定义。
 https://blog.csdn.net/xzz_hust/article/details/45009147
 
+https://ftp.gnu.org/gnu/bison/
+
+```shell
 dpkg -L bison
 /.
 /usr
@@ -158,7 +159,7 @@ dpkg -L bison
 /usr/share/man/man1
 /usr/share/man/man1/bison.1.gz
 /usr/share/man/man1/bison.yacc.1.gz
-
+```
 
 After this operation, 572 kB of additional disk space will be used.
 Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 libbison-dev amd64 2:3.5.1+dfsg-1 [355 kB]
@@ -167,7 +168,7 @@ Selecting previously unselected package libbison-dev:amd64.
 (Reading database ... 95467 files and directories currently installed.)
 Preparing to unpack .../libbison-dev_2%3a3.5.1+dfsg-1_amd64.deb ...
 
-
+```
 wdidada@DESKTOP-DAF8ST0:~$ dpkg -L libbison-dev
 /.
 /usr
@@ -195,3 +196,4 @@ Written by Robert Corbett and Richard Stallman.
 Copyright (C) 2020 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```

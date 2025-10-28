@@ -1,4 +1,5 @@
-# 20251028
+# re2
+
 
 ```shell
 sudo apt-get install libre2-dev -y
@@ -29,3 +30,13 @@ E: Failed to fetch http://archive.ubuntu.com/ubuntu/pool/main/r/re2/libre2-9_202
 E: Failed to fetch http://archive.ubuntu.com/ubuntu/pool/main/r/re2/libre2-dev_20220201%2bdfsg-1_amd64.deb  Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::102). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::103). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4002:1::101). - connect (101: Network is unreachable) Cannot initiate the connection to archive.ubuntu.com:80 (2620:2d:4000:1::101). - connect (101: Network is unreachable) Could not connect to archive.ubuntu.com:80 (185.125.190.83), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.83), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.81), connection timed out Could not connect to archive.ubuntu.com:80 (91.189.91.82), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.81), connection timed out Could not connect to archive.ubuntu.com:80 (185.125.190.82), connection timed out [IP: 185.125.190.82 80]
 E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
 ```
+
+## 编写语言
+
+c++
+
+## version版本
+
+## 源代码编译
+
+

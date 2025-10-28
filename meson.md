@@ -165,3 +165,38 @@ options:
                                                                                 meson.
   --clearcache                                                                  Clear cached state (e.g. found dependencies). Since 1.3.0.
 PS D:\develops\git\github\cpp-httplib-0.18.7> 
+
+## 使用meson构建的开源项目
+
+https://mesonbuild.com/Users.html
+
+## Wrapdb-projects
+
+https://mesonbuild.com/Wrapdb-projects.html
+
+tomlplusplus.wrap
+
+[wrap-file]
+directory = tomlplusplus-3.4.0
+source_url = https://github.com/marzer/tomlplusplus/archive/v3.4.0.tar.gz
+source_filename = tomlplusplus-3.4.0.tar.gz
+source_hash = 8517f65938a4faae9ccf8ebb36631a38c1cadfb5efa85d9a72e15b9e97d25155
+source_fallback_url = https://github.com/mesonbuild/wrapdb/releases/download/tomlplusplus_3.4.0-1/tomlplusplus-3.4.0.tar.gz
+wrapdb_version = 3.4.0-1
+
+[provide]
+dependency_names = tomlplusplus
+
+
+tomlplusplus.wrap 和 Maven 的 pom.xml 在概念上确实有相似之处，它们都是项目管理工具中用于定义和配置项目依赖的文件。不过，它们在具体实现、语法和应用场景上存在一些关键区别。
+核心功能对比
+两者都用于 管理项目依赖关系 。Maven 的 pom.xml 是项目的核心文件，定义了项目的结构、依赖关系和构建过程。同样，Meson 的 .wrap 文件也负责指定第三方库的下载地址、版本信息和构建方式。
+语法和结构差异
+pom.xml  使用 XML 格式，通过 <dependencies> 标签来声明项目所需的各种依赖包。而  .wrap 文件  使用 TOML 格式，这是一种更简洁、明确的配置文件格式。
+依赖管理方式
+在 Maven 中，依赖的 groupId、artifactId 和 version 共同构成了该资源在仓库中的唯一坐标。Meson 的 .wrap 文件则通过 source_url、source_hash 等字段来精确控制依赖的获取和验证。
+应用场景
+pom.xml  主要用于 Java 生态系统中的项目构建和依赖管理。而  .wrap 文件  主要服务于 Meson 构建系统的 C/C++ 项目。
+总结
+虽然 tomlplusplus.wrap 和 pom.xml 都是依赖管理文件，但 .wrap 文件更侧重于为 C++ 项目提供轻量级的依赖封装，而 pom.xml 在 Java 生态中承担着更全面的项目生命周期管理角色。
+
