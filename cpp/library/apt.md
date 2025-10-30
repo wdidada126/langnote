@@ -1,5 +1,50 @@
 # apt
+## 依赖冲突
 
+sudo apt install -y libquantlib0-dev
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ libboost-test1.81-dev : Conflicts: libboost-test1.74-dev but 1.74.0-14ubuntu3 is to be installed
+ libboost1.81-dev : Conflicts: libboost1.74-dev but 1.74.0-14ubuntu3 is to be installed
+E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
+
+
+# 1. 查看当前安装的 Boost 版本
+apt list --installed | grep boost
+
+sudo apt install -y libquantlib0-dev
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ libboost-test1.81-dev : Conflicts: libboost-test1.74-dev but 1.74.0-14ubuntu3 is to be installed
+ libboost1.81-dev : Conflicts: libboost1.74-dev but 1.74.0-14ubuntu3 is to be installed
+E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
+
+是libquantlib0-dev依赖1.74，需要删除libboost-test1.81-dev
+
+使用 aptitude 智能解决（最有效）
+# 1. 安装 aptitude
+sudo apt install -y aptitude
+
+# 2. 使用 aptitude 解决依赖冲突
+sudo aptitude install libquantlib0-dev
+
+## dd
 pkg-config --cflags --libs log4cpp
 -pthread -I/usr/local/include -L/usr/local/lib -llog4cpp
 
