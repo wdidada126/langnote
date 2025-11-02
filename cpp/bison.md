@@ -1,4 +1,5 @@
 # bison
+bison 是一个语法分析器的生成器，bison 和 flex 配合使用，它可以将用户提供的语法规则转化成一个语法分析器。简单来说，通过给定语法的产生式开始，bison会通过算法，最终构造得到动作表，然后利用这个动作表去解析句子。具体来说，bison 读取用户提供的语法的产生式，生成一个 C 语言格式的 LALR(1) 动作表，并将其包含进一个名为yyparse的 C 函数，这个函数的作用就是利用这个动作表来解析 token 流 ，而这个 token 流 是由 flex 生成的词法分析器扫描源程序得到的。
 
 Flex和Bison的使用范式
 Flex和Bison是实验框架默认的解析器生成工具，接下来我会介绍使用它们的最佳实践，由于Flex比较简单，主要是介绍Bison。
@@ -26,7 +27,8 @@ yum install bison -y
 
 ### api doc
 
-Win 电脑bison.pdf 英文版，找中文版
+Win 电脑
+bison.pdf 英文版，找中文版
 
 https://www.gnu.org/software/bison/manual/bison.html#C_002b_002b-Parsers 谷歌翻译
 
@@ -187,8 +189,9 @@ wdidada@DESKTOP-DAF8ST0:~$ dpkg -L libbison-dev
 /usr/share/doc/libbison-dev/TODO.gz
 /usr/share/doc/libbison-dev/changelog.Debian.gz
 /usr/share/doc/libbison-dev/copyright
+```
 
-
+```
 bison --version
 bison (GNU Bison) 3.5.1
 Written by Robert Corbett and Richard Stallman.
@@ -197,3 +200,22 @@ Copyright (C) 2020 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
+
+## 版本version
+
+bison-3.3.tar.gz	2019-01-26
+bison-3.4.tar.gz	2019-05-19
+bison-3.5.tar.gz	2019-12-11
+bison-3.6.tar.xz	2020-05-08 
+bison-3.7.tar.gz	2020-07-23
+bison-3.8.2.tar.gz	2021-09-25
+## 源代码
+https://ftp.gnu.org/gnu/bison/
+https://github.com/akimd/bison
+
+## 编译
+git clone https://github.com/akimd/bison.git
+cd bison
+git checkout v3.8.2
+git submodule update --init
+./bootstrap
