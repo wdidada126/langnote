@@ -44,10 +44,4 @@ https://github.com/coin-or/pulp
 ## 例子
 https://github.com/edidada/OrToolsProject/
 
-git clone https://github.com/coin-or/pulp.git
-cd pulp
-git checkout 3.3.0
-python3 -m venv venv
-source venv/bin/activate
-python3 -m pip install --upgrade pip
-pip install --group=dev --editable .
+## 源码编译脚本

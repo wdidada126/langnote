@@ -1,5 +1,8 @@
 # brew
 
+brew install xxx
+会在include lib默认文件夹创建软链接
+
 brew info privoxy
 brew list
 brew list privoxy
