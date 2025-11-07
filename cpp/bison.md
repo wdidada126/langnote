@@ -1,4 +1,8 @@
 # bison
+https://www.gnu.org/software/bison/manual/html_node/index.html
+
+生成.c代码，类似protoc
+
 bison 是一个语法分析器的生成器，bison 和 flex 配合使用，它可以将用户提供的语法规则转化成一个语法分析器。简单来说，通过给定语法的产生式开始，bison会通过算法，最终构造得到动作表，然后利用这个动作表去解析句子。具体来说，bison 读取用户提供的语法的产生式，生成一个 C 语言格式的 LALR(1) 动作表，并将其包含进一个名为yyparse的 C 函数，这个函数的作用就是利用这个动作表来解析 token 流 ，而这个 token 流 是由 flex 生成的词法分析器扫描源程序得到的。
 
 Flex和Bison的使用范式
