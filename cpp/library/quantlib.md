@@ -4,6 +4,14 @@
 量化的
 能计算投资标的的内部收益率吗？
 
+QuantLib（C++ 开源金融库）
+
+GitHub: https://github.com/lballabio/QuantLib
+官网: https://www.quantlib.org/
+支持：IRR、XIRR（不等间距现金流）、NPV、YTM（债券收益率）等所有金融计算
+已被全球银行、对冲基金、投行使用20年（高盛、摩根大通等都在用）
+完全免费、开源（BSD协议）
+
 ## example
 testquantlib
 
