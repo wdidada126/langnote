@@ -1,5 +1,13 @@
 # quantlib
 
+## 功能
+量化的
+能计算投资标的的内部收益率吗？
+
+## example
+testquantlib
+
+## doc
 https://www.cnblogs.com/xuruilong100/p/8711520.html
 《QuantLib 金融计算》系列
 QuantLib 入门
@@ -52,7 +60,7 @@ C++ 代码改写成 Python 程序的一些经验
 
 ### QuantLib 库介绍
 
-QuantLib 是一个免费开源的 C++ 库，专为量化金融（quantitative finance）设计，用于金融工具定价、风险管理、建模和交易模拟。它支持多种资产类别（如利率衍生品、期权、债券、股票等），并提供 Python、Excel 等绑定接口。库的核心优势在于其模块化设计、跨平台兼容性和社区驱动开发，已被银行、研究机构和软件公司广泛使用。项目始于 2000 年，由 Ferdinando Ametrano、Luigi Ballabio 等量化分析师发起，目前由 Luigi Ballabio 领导维护。QuantLib 的最新版本（截至 2025 年）为 1.40，支持现代 C++ 标准和多曲线引导等高级功能。
+QuantLib 是一个免费开源的 C++ 库，专为量化金融（quantitative finance）设计，用于金融工具定价、风险管理、建模和交易模拟。它支持多种资产类别（如利率衍生品、期权、债券、股票等），并提供Python、Excel 等绑定接口。库的核心优势在于其模块化设计、跨平台兼容性和社区驱动开发，已被银行、研究机构和软件公司广泛使用。项目始于2000年，由Ferdinando Ametrano、Luigi Ballabio 等量化分析师发起，目前由Luigi Ballabio领导维护。QuantLib的最新版本（截至 2025 年）为1.40，支持现代C++标准和多曲线引导等高级功能。
 
 QuantLib 的文档、书籍和论文资源丰富，涵盖从入门教程到高级实现。以下按类别分类介绍主要资源（基于官方站点和学术出版物）。这些资源可帮助开发者、分析师和研究者快速上手或深入扩展库。
 
@@ -140,7 +148,6 @@ sudo ldconfig
 
 # 7. 验证安装
 pkg-config --modversion QuantLib
-
 
 以下是用于贷后管理、房贷每月还款金额计算的开源库，涵盖C、C++、Java语言：
 
