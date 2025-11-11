@@ -109,9 +109,13 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+### macos
+#### c c++
+macos.md
 
 ### ubuntu 24
 
+```shell
 /usr/bin/java
 openjdk version "17.0.16" 2025-07-15
 OpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)
@@ -122,6 +126,7 @@ Maven home: /usr/share/apache-maven-3.9.11
 Java version: 17.0.16, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
 Default locale: en, platform encoding: UTF-8
 OS name: "linux", version: "6.11.0-1018-azure", arch: "amd64", family: "unix"
+```
 
 ### doc
 
@@ -170,7 +175,7 @@ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-ac
 
 
 Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
-
+```
 [INFO] 
 [INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ SkipList ---
 [INFO] 
@@ -190,10 +195,8 @@ Uploading to github: https://maven.pkg.github.com/edidada/SkipList/com/github/mo
 [INFO] Finished at: 2023-12-22T19:52:10+08:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy (default-deploy) on project SkipList: Failed to deploy artifacts: Could not transfer artifact com.github.mottox:SkipList:jar:1.0-20231222.115208-1 from/to github (https://maven.pkg.github.com/edidada/SkipList): Failed to transfer file https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.jar with status code 422 -> [Help 1]
-
+```
 别人的项目
-
-
 
 github topic
 
@@ -209,7 +212,6 @@ github topic
 ipconfig /flushdns
 
 [GitHub 私人private仓库添加成员（协作者Collaborators）](https://blog.csdn.net/chenbetter1996/article/details/82871518)
-
 
 ## github国内下载镜像代理地址
 https://kgithub.com/apache/rocketmq.git

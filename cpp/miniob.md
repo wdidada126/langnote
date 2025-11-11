@@ -11,7 +11,6 @@ https://www.oceanbase.com/docs/enterprise-developer-quickstart-10000000000627365
 ## 源代码 source code
 https://github.com/oceanbase/miniob
 
-
 git clone https://github.com/oceanbase/miniob.git
 cd miniob
 bash build.sh init
@@ -20,10 +19,9 @@ bash build.sh release
 ## 文档
 https://oceanbase.github.io/miniob/design/miniob-architecture/#_1
 
-
 https://open.oceanbase.com/activities/4921877?id=4921946
 
-OceanBase 数据库开发者入门教程
+OceanBase数据库开发者入门教程
 https://github.com/oceanbase/kernel-quickstart
 
 数据库管理系统实现基础讲义
@@ -31,3 +29,10 @@ https://github.com/oceanbase/kernel-quickstart
 https://oceanbase.github.io/miniob/lectures/index.html
 
 ## 版本
+
+### 2024 参赛代码
+https://gitee.com/edidada/miniob-2024
+说明
+OceanBase 2024 初赛 MiniOB 开发记录
+https://zhuanlan.zhihu.com/p/5953505884
+OceanBase 数据库内核实现赛 _ 自己实现一个数据库 _ Soulter's Blog.mhtml
