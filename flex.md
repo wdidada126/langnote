@@ -45,3 +45,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 wdidada@LAPTOP-wdidada:~$ flex --version
 flex 2.6.4
 ```
+
+### flex在miniob中的使用
+
+https://oceanbase.github.io/miniob/design/miniob-sql-parser/
