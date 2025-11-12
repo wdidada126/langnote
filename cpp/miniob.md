@@ -125,6 +125,15 @@ miniob里智能指针用的不好，完全没按照C++ Core Guidelines里推荐�
 
 https://github.com/bosswnx/miniob-2024
 
+./build.sh init    # 初始化依赖
+./build.sh init
+Submodule 'deps/3rd/benchmark' (https://github.com/google/benchmark) registered for path 'deps/3rd/benchmark'
+Submodule 'deps/3rd/googletest' (https://github.com/google/googletest) registered for path 'deps/3rd/googletest'
+Submodule 'deps/3rd/jsoncpp' (https://github.com/open-source-parsers/jsoncpp) registered for path 'deps/3rd/jsoncpp'
+Submodule 'deps/3rd/libevent' (https://github.com/libevent/libevent) registered for path 'deps/3rd/libevent'
+Cloning into 'deps/3rd/benchmark'...
+
+
 作为基础软件“皇冠上的明珠”，数据库也在持续迭代。随着大模型的兴起，向量存储和检索技术在AI场景中的应用越来越多，给数据库带来了新的技术要求。本届大赛聚焦AI时代的数据库技术，初赛阶段要求选手在MiniOB上实现向量数据库的基础功能，如向量的存储及查询等，决赛则更进一步，基于OceanBase社区版，考察选手们优化向量检索性能上的能力。
 
 https://gitee.com/edidada/miniob-2024
