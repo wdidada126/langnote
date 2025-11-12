@@ -1,11 +1,9 @@
 # ffmpeg
 
-
 ## win 编译好的库文件
 https://github.com/BtbN/FFmpeg-Builds/releases
 
 ffmpeg-n7.1.1-2-g68b5db2464-win64-lgpl-shared-7.1.zip
-
 
 [Environment]::SetEnvironmentVariable("FFmpeg_LIBRARIES", "D:\develops\ffmpeg-n7.1.1-2-g68b5db2464-win64-lgpl-shared-7.1\include", "User")
 #### 设置用户级环境变量
@@ -41,7 +39,6 @@ make组织的
 https://github.com/edidada/FFmpeg4Android
 https://github.com/edidada/testffmpeg
 
-
 vcpkg
 
 ```shell
@@ -54,3 +51,13 @@ able-nvdec  --disable-cuvid --disable-ffnvcodec --disable-opencl --disable-openg
 el --disable-libopus --disable-sdl2 --disable-libsnappy --disable-libsoxr --disable-libspeex --disable-libssh --disable-libtensorflow --disable-libtesseract --disable-libtheora --d
 isable-libvorbis --disable-libvpx --disable-libwebp --disable-libx264 --disable-libx265 --disable-libxml2 --disable-zlib --disable-libsrt --disable-libmfx --enable-cross-compile --disable-static --enable-shared --extra-cflags=-DHAVE_UNISTD_H=0 --pkg-config="D:/develops/tools/vcpkg/downloads/tools/msys2/21caed2f81ec917b/mingw64/bin/pkg-config.exe"
 ```
+## 编程语言
+c
+## 源代码
+https://git.ffmpeg.org/ffmpeg.git
+https://github.com/FFmpeg/FFmpeg.git
+
+## 版本version
+https://github.com/FFmpeg/FFmpeg/tags
+
+8.0，2025 Aug 22

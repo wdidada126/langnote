@@ -152,27 +152,53 @@ rpc
 
 跟brpc好像
 
-## 版本历史
+## 开源协议
+## 编程语言
+c
+## 所有者，维护人员
+
+## 源代码
+
+https://github.com/libevent/libevent
+
+## 支持的操作系统
+全平台？
+## 手动编译
+
+
+## 二进制安装
+### vcpkg
+### conan
+### apt
+### yum
+
+## 版本version历史
+
 libevent-2.1.12-stable.tar.gz [GPG Sig] ChangeLog
 PR
 Released 2020-07-05
 
 libevent-2.1.11-stable.tar.gz [GPG Sig] ChangeLog
+
 Released 2019-08-01 (ABI changed)
 libevent-2.1.10-stable.tar.gz [GPG Sig] ChangeLog
 Released 2019-05-26
+
 libevent-2.1.8-stable.tar.gz [GPG Sig] ChangeLog
 Released 2017-01-22
 Changelog to follow
+
 libevent-2.0.22-stable.tar.gz [GPG Sig] ChangeLog
 Released 2014-01-05
 Changelog to follow
+
 libevent-2.0.21-stable.tar.gz [GPG Sig] ChangeLog
 Released 2012-11-18
 Several SSL correctness and performance fixes.
 Build fixes for mingw64
 Avoid a few resource leaks
 and more...
+
 libevent-2.0.20-stable.tar.gz [GPG Sig] ChangeLog
 Released 2012-08-23
 Fix a crash on windows.
@@ -180,9 +206,11 @@ Make event_pending() threadsafe.
 Another SSL callback behavior fixes
 Avoid an evdns segfault (Greg Hazel)
 and more...
+
 libevent-1.4.15-stable.tar.gz ChangeLog
 Released 2015-01-05
 Changelog to follow
+
 libevent-1.4.14b-stable.tar.gz [GPG Sig] ChangeLog
 Released 2010-06-07
 
@@ -588,3 +616,184 @@ current_event : event_base
 current_event_cond : event_base
 current_event_waiters : event_base
 current_req : evdns_request
+
+## 引用
+
+#### 2024 编译
+
+```shell
+sudo apt install -y libevent-dev
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+libevent-dev is already the newest version (2.1.12-stable-9ubuntu2).
+0 upgraded, 0 newly installed, 0 to remove and 109 not upgraded.
+```
+
+
+```shell
+dpkg -L libevent-dev
+/.
+/usr
+/usr/include
+/usr/include/evdns.h
+/usr/include/event.h
+/usr/include/event2
+/usr/include/event2/buffer.h
+/usr/include/event2/buffer_compat.h
+/usr/include/event2/bufferevent.h
+/usr/include/event2/bufferevent_compat.h
+/usr/include/event2/bufferevent_ssl.h
+/usr/include/event2/bufferevent_struct.h
+/usr/include/event2/dns.h
+/usr/include/event2/dns_compat.h
+/usr/include/event2/dns_struct.h
+/usr/include/event2/event-config.h
+/usr/include/event2/event.h
+/usr/include/event2/event_compat.h
+/usr/include/event2/event_struct.h
+/usr/include/event2/http.h
+/usr/include/event2/http_compat.h
+/usr/include/event2/http_struct.h
+/usr/include/event2/keyvalq_struct.h
+/usr/include/event2/listener.h
+/usr/include/event2/rpc.h
+/usr/include/event2/rpc_compat.h
+/usr/include/event2/rpc_struct.h
+/usr/include/event2/tag.h
+/usr/include/event2/tag_compat.h
+/usr/include/event2/thread.h
+/usr/include/event2/util.h
+/usr/include/event2/visibility.h
+/usr/include/evhttp.h
+/usr/include/evrpc.h
+/usr/include/evutil.h
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/libevent.a
+/usr/lib/x86_64-linux-gnu/libevent_core.a
+/usr/lib/x86_64-linux-gnu/libevent_extra.a
+/usr/lib/x86_64-linux-gnu/libevent_openssl.a
+/usr/lib/x86_64-linux-gnu/libevent_pthreads.a
+/usr/lib/x86_64-linux-gnu/pkgconfig
+/usr/lib/x86_64-linux-gnu/pkgconfig/libevent.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/libevent_core.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/libevent_extra.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/libevent_openssl.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/libevent_pthreads.pc
+/usr/share
+/usr/share/doc
+/usr/share/doc/libevent-dev
+/usr/share/doc/libevent-dev/TODO.Debian
+/usr/share/doc/libevent-dev/copyright
+/usr/share/doc/libevent-dev/examples
+/usr/share/doc/libevent-dev/examples/Makefile.sample
+/usr/share/doc/libevent-dev/examples/dns-example.c
+/usr/share/doc/libevent-dev/examples/event-read-fifo.c
+/usr/share/doc/libevent-dev/examples/hello-world.c
+/usr/share/doc/libevent-dev/examples/hostcheck.c
+/usr/share/doc/libevent-dev/examples/http-connect.c
+/usr/share/doc/libevent-dev/examples/http-server.c
+/usr/share/doc/libevent-dev/examples/https-client.c
+/usr/share/doc/libevent-dev/examples/le-proxy.c
+/usr/share/doc/libevent-dev/examples/openssl_hostname_validation.c
+/usr/share/doc/libevent-dev/examples/signal-test.c
+/usr/share/doc/libevent-dev/examples/time-test.c
+/usr/share/doc/libevent-dev/whatsnew-2.0.txt.gz
+/usr/share/doc/libevent-dev/whatsnew-2.1.txt.gz
+/usr/lib/x86_64-linux-gnu/libevent.so
+/usr/lib/x86_64-linux-gnu/libevent_core.so
+/usr/lib/x86_64-linux-gnu/libevent_extra.so
+/usr/lib/x86_64-linux-gnu/libevent_openssl.so
+/usr/lib/x86_64-linux-gnu/libevent_pthreads.so
+/usr/share/doc/libevent-dev/changelog.Debian.gz
+```
+
+
+```shell
+rpm -ql libevent-devel
+/usr/bin/event_rpcgen.py
+/usr/include/evdns.h
+/usr/include/event.h
+/usr/include/event2/buffer.h
+/usr/include/event2/buffer_compat.h
+/usr/include/event2/bufferevent.h
+/usr/include/event2/bufferevent_compat.h
+/usr/include/event2/bufferevent_ssl.h
+/usr/include/event2/bufferevent_struct.h
+/usr/include/event2/dns.h
+/usr/include/event2/dns_compat.h
+/usr/include/event2/dns_struct.h
+/usr/include/event2/event-config.h
+/usr/include/event2/event.h
+/usr/include/event2/event_compat.h
+/usr/include/event2/event_struct.h
+/usr/include/event2/http.h
+/usr/include/event2/http_compat.h
+/usr/include/event2/http_struct.h
+/usr/include/event2/keyvalq_struct.h
+/usr/include/event2/listener.h
+/usr/include/event2/rpc.h
+/usr/include/event2/rpc_compat.h
+/usr/include/event2/rpc_struct.h
+/usr/include/event2/tag.h
+/usr/include/event2/tag_compat.h
+/usr/include/event2/thread.h
+/usr/include/event2/util.h
+/usr/include/evhttp.h
+/usr/include/evrpc.h
+/usr/include/evutil.h
+/usr/lib64/libevent.so
+/usr/lib64/libevent_core.so
+/usr/lib64/libevent_extra.so
+/usr/lib64/libevent_openssl.so
+/usr/lib64/libevent_pthreads.so
+/usr/lib64/pkgconfig/libevent.pc
+/usr/lib64/pkgconfig/libevent_openssl.pc
+/usr/lib64/pkgconfig/libevent_pthreads.pc
+[root@iZbp12v2gd23fwmbl3hk4nZ ~]# sudo ldconfig
+```
+
+find_package(Libevent CONFIG REQUIRED) # 需要.cmake
+
+find_package(PkgConfig REQUIRED) # 确保 pkg-config 可用
+pkg_check_modules(Libevent REQUIRED libevent) # /usr/lib64/pkgconfig/libevent.pc
+
+find_package(GTest CONFIG REQUIRED)
+include(GoogleTest) 如何改成类似
+
+```
+dpkg -L libjsoncpp-dev
+/.
+/usr
+/usr/include
+/usr/include/jsoncpp
+/usr/include/jsoncpp/json
+/usr/include/jsoncpp/json/allocator.h
+/usr/include/jsoncpp/json/assertions.h
+/usr/include/jsoncpp/json/config.h
+/usr/include/jsoncpp/json/forwards.h
+/usr/include/jsoncpp/json/json.h
+/usr/include/jsoncpp/json/json_features.h
+/usr/include/jsoncpp/json/reader.h
+/usr/include/jsoncpp/json/value.h
+/usr/include/jsoncpp/json/version.h
+/usr/include/jsoncpp/json/writer.h
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/cmake
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncpp-namespaced-targets.cmake
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncpp-targets-none.cmake
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncpp-targets.cmake
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncppConfig.cmake
+/usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncppConfigVersion.cmake
+/usr/lib/x86_64-linux-gnu/pkgconfig
+/usr/lib/x86_64-linux-gnu/pkgconfig/jsoncpp.pc
+/usr/share
+/usr/share/doc
+/usr/share/doc/libjsoncpp-dev
+/usr/share/doc/libjsoncpp-dev/copyright
+/usr/lib/x86_64-linux-gnu/libjsoncpp.so
+/usr/share/doc/libjsoncpp-dev/changelog.Debian.gz
+```

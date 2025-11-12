@@ -1,5 +1,143 @@
 # pkgconfig
 
+## 问题定位  
+```
+Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE)
+```
+**根本原因**：系统里 **没有装 `pkg-config`（或 `pkgconf`）**，`find_package(PkgConfig REQUIRED)` 找不到可执行文件。
+
+---
+
+## 一键解决（CentOS 7 / Rocky 8 / AlmaLinux / Ubuntu / Debian 通用）
+
+```bash
+# 1. 安装 pkg-config（CentOS 7 / Rocky 8 / AlmaLinux）
+sudo yum install -y pkgconfig        # CentOS 7、Rocky 8、AlmaLinux
+# 或者
+sudo dnf install -y pkgconf          # Rocky 8/9、AlmaLinux（推荐）
+
+# 2. 验证
+pkg-config --version
+# 应该输出类似：0.27.1  或  1.8.1
+```
+
+> **Ubuntu / Debian**  
+> ```bash
+> sudo apt update
+> sudo apt install -y pkg-config
+> ```
+
+---
+
+## 完整编译流程（miniob-2024）
+
+```bash
+# 1. 安装必备依赖
+sudo yum install -y epel-release
+sudo yum install -y pkgconfig gtest-devel libevent-devel \
+                    gcc gcc-c++ make cmake3 git
+
+# 2. （可选）解决 clang-format 警告
+sudo yum install -y llvm-toolset-7-clang
+echo "source /opt/rh/llvm-toolset-7/enable" >> ~/.bashrc
+source ~/.bashrc
+
+# 3. 重新配置项目
+cd /home/wdidada/miniob-2024
+rm -rf build && mkdir build && cd build
+
+# 关键：让 CMake 能找到系统包
+cmake3 .. -DCMAKE_PREFIX_PATH=/usr
+make -j$(nproc)
+```
+
+---
+
+## 验证 `pkg-config` 已可用
+
+```bash
+$ which pkg-config
+/usr/bin/pkg-config
+
+$ pkg-config --modversion gtest
+1.8.1
+
+$ pkg-config --libs gtest
+-lgtest -lpthread
+```
+
+---
+
+## 常见坑 & 快速排查
+
+| 错误 | 原因 | 解决 |
+|------|------|------|
+| `pkg-config: command not found` | 没装 `pkgconfig` | `yum install pkgconfig` |
+| `pkg-config` 找不到 `gtest.pc` | 没装 `gtest-devel` | `yum install gtest-devel` |
+| `PKG_CONFIG_EXECUTABLE` 仍为空 | CMake 缓存旧 | 删除 `build` 目录重新 `cmake` |
+| `libevent` 仍报错 | 同理 | `yum install libevent-devel` |
+
+---
+
+## 最终 `CMakeLists.txt` 片段（推荐写法）
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(miniob)
+
+# ---------- 1. PkgConfig ----------
+find_package(PkgConfig REQUIRED)
+
+# ---------- 2. libevent ----------
+pkg_check_modules(LIBEVENT REQUIRED libevent)
+add_library(Libevent::Libevent UNKNOWN IMPORTED)
+set_target_properties(Libevent::Libevent PROPERTIES
+    IMPORTED_LOCATION             "${LIBEVENT_LDFLAGS}"
+    INTERFACE_INCLUDE_DIRECTORIES "${LIBEVENT_INCLUDE_DIRS}"
+    INTERFACE_COMPILE_OPTIONS     "${LIBEVENT_CFLAGS_OTHER}"
+)
+
+# ---------- 3. GTest ----------
+pkg_check_modules(GTEST REQUIRED gtest)
+add_library(GTest::gtest UNKNOWN IMPORTED)
+set_target_properties(GTest::gtest PROPERTIES
+    IMPORTED_LOCATION             "${GTEST_LDFLAGS}"
+    INTERFACE_INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS}"
+    INTERFACE_COMPILE_OPTIONS     "${GTEST_CFLAGS_OTHER}"
+)
+
+add_library(GTest::Main UNKNOWN IMPORTED)
+set_target_properties(GTest::Main PROPERTIES
+    IMPORTED_LOCATION             "${GTEST_LDFLAGS}"
+    INTERFACE_LINK_LIBRARIES      "GTest::gtest"
+)
+
+# ---------- 4. 你的目标 ----------
+add_executable(vacuous_trx_test
+    ../src/observer/storage/trx/vacuous_trx.cpp
+    vacuous_trx_test.cpp
+)
+target_link_libraries(vacuous_trx_test
+    Libevent::Libevent
+    GTest::gtest
+    GTest::Main
+    pthread
+)
+
+enable_testing()
+include(GoogleTest)
+gtest_discover_tests(vacuous_trx_test)
+```
+
+---
+
+**搞定！**  
+现在 `pkg-config` 已安装，`libevent`、`gtest` 都能通过 `pkg_check_modules` 找到，`cmake` 再也不会报 `PKG_CONFIG_EXECUTABLE` 错误。
+
+> **下一步**：`make && ctest` 跑单元测试，或 `./observer` 启动数据库。
+
+需要我写一个 `vacuous_trx_test.cpp` 示例？直接说！
+
 这是一个非常棒的问题，它触及了 C/C++ 生态中几个核心工具的关系。我们来逐一拆解。
 
 核心答案
