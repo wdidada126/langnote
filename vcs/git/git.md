@@ -1,5 +1,8 @@
 # git
+## 版本version
+git version 2.51.2
 
+## doc
 git config --global core.autocrlf
 - `true`（Windows 默认）：LF → CRLF 检出，CRLF → LF 提交
 - `input`：提交时将 CRLF 转为 LF，检出保持 LF

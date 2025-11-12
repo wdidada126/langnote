@@ -1,23 +1,14 @@
 # man
 
-
-
-
-
 centos
-
+```
 yum install man-pages -y
-
-
-
+```
 linux系统调用表(system call table)
-
 https://blog.csdn.net/wukery/article/details/79295567
 
 read write例子
-
 Linux中open、write、read、close系统调用
-
 
 linux 查找系统调用和库函数头文件
 man  man 
@@ -25,8 +16,6 @@ man 1  命令
 man 2 xxx用于系统调用
 man 3 xxx 用于库函数
 如果某个库函数没有同名的命令和系统调用，那才能直接用man xxx
-
-
 
 查找man手册相关内容，报错：
 
@@ -41,8 +30,6 @@ Linux Programmer's Manual    ------ man 2 xxx
 User Commands               ---- man 1 xxx
 https://www.cnblogs.com/pangkr-linux/p/10369903.html
 
-
-
 man的分卷号，分成很多部分，分别是：
 1 用户命令， 可由任何人启动的。
 2 系统调用， 即由内核提供的函数。
@@ -52,10 +39,6 @@ man的分卷号，分成很多部分，分别是：
 
 例如：如果查询read函数
 man 2 read
-
-
-
-
 
 ```shell
 (1/2): man-pages-3.53-5.el7.noarch.rpm                                 | 5.0 MB  00:00:00     
@@ -71,6 +54,3 @@ Running transaction
   Verifying  : man-pages-3.53-5.el7.noarch                                                1/2 
   Verifying  : man-pages-zh-CN-1.5.2-4.el7.noarch                                         2/2
 ```
-
-
-
