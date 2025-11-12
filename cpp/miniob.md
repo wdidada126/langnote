@@ -63,6 +63,13 @@ https://github.com/luooofan/miniob-2022/issues/25
 
 https://github.com/S-1-T/miniob
 
+#### 复赛
+https://oceanbase-partner.github.io/lectures-on-dbms-implementation/miniob-topics
+
+#### code
+https://github.com/edidada/miniob_2022_final
+https://gitee.com/edidada/miniob_2022_final
+
 ### 2023
 https://open.oceanbase.com/competition/2023#overview
 
@@ -110,7 +117,7 @@ create-view从下往上讲。
 建议
 因为我是一个人做的，所以没啥针对团队的建议。
 
-开局一定要重构！！！
+开局一定要重构！
 a. miniob的select项那一块我觉得写的不咋好，要全改成expression
 b. TupleCellSpec这东西感觉是一个性能杀手，完全字符串比较，导致他贼慢，后期我big-order-by过不去都是因为他，因为懒得大改了，所以只针对性改了点小东西（ 1d5e9f9 ， 163be40 ， f82a987 ），结果本来跑8分钟的测例改到2分钟不到就出结果了。这里我觉得应该改成一个大数组，然后把TupleCellSpec改成对数组的索引，这样大大减少开销。
 所有挂了的sql都存到一起，提交前测一波，一开始没有这个意识，都凭感觉，导致好多修bug的提交带来了新bug。后来view的时候开始有意识的收集sql，改bug就顺畅多了。
@@ -123,6 +130,21 @@ miniob里智能指针用的不好，完全没按照C++ Core Guidelines里推荐�
 
 ### 2024 参赛代码
 
+[ 88%] Linking CXX executable ../../bin/client_performance_test
+[ 89%] Linking CXX executable ../../bin/observer
+[ 89%] Built target client_performance_test
+[ 90%] Linking CXX executable ../../bin/log_entry_test
+[ 90%] Linking CXX executable ../../bin/arithmetic_operator_test
+[ 90%] Linking CXX executable ../../bin/chunk_test
+[ 90%] Linking CXX executable ../bin/clog_dump
+[ 91%] Linking CXX executable ../../bin/disk_buffer_pool_test
+[ 92%] Linking CXX executable ../../bin/log_buffer_test
+[ 93%] Linking CXX executable ../../bin/bp_manager_test
+[ 93%] Linking CXX executable ../../bin/log_file_test
+[ 93%] Linking CXX executable ../../bin/disk_log_handler_test
+[ 93%] Linking CXX executable ../../bin/double_write_buffer_test
+[ 94%] Linking CXX executable ../../bin/composite_tuple_test
+
 https://github.com/bosswnx/miniob-2024
 
 ./build.sh init    # 初始化依赖
@@ -133,6 +155,17 @@ Submodule 'deps/3rd/jsoncpp' (https://github.com/open-source-parsers/jsoncpp) re
 Submodule 'deps/3rd/libevent' (https://github.com/libevent/libevent) registered for path 'deps/3rd/libevent'
 Cloning into 'deps/3rd/benchmark'...
 
+cd deps/3rd/benchmark/build/
+sudo make install
+cd ../../../../
+cd deps/3rd/libevent/build
+sudo make install
+cd ../../../../
+cd deps/3rd/googletest/build/
+sudo make install
+cd ../../../../
+cd deps/3rd/jsoncpp/build/
+sudo make install
 
 作为基础软件“皇冠上的明珠”，数据库也在持续迭代。随着大模型的兴起，向量存储和检索技术在AI场景中的应用越来越多，给数据库带来了新的技术要求。本届大赛聚焦AI时代的数据库技术，初赛阶段要求选手在MiniOB上实现向量数据库的基础功能，如向量的存储及查询等，决赛则更进一步，基于OceanBase社区版，考察选手们优化向量检索性能上的能力。
 
