@@ -2,16 +2,20 @@
 
 内存池
 可以去看ptmalloc的源码，或者去网上找ptmalloc的详解。引申tcmalloc、jemalloc
-
-
+## 源代码
 https://github.com/jemalloc/jemalloc
-最新版
-5.2.1 20210305
 
+## 编程语言
+c
+## 版本version
+最新版
+5.2.0 Apr 3, 2019
+5.2.1 20210305
+5.3.0 May 7, 2022
+## 官网
 http://jemalloc.net/
 
 centos 7
-
 jemalloc-devel.x86_64 0:3.6.0-1.el7
 
 https://centos.pkgs.org/7/epel-x86_64/jemalloc-devel-3.6.0-1.el7.x86_64.rpm.html
@@ -96,5 +100,5 @@ ln -sf libjemalloc.so.2 /usr/local/lib/libjemalloc.so
 /root/jemalloc-4.5.0
 ```
 ~~~
-
+## wiki
 https://github.com/jemalloc/jemalloc/wiki
