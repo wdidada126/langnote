@@ -163,9 +163,14 @@ cc_test()
 
 子文件夹编译
 
+## 二进制安装
+### apt
+sudo apt install bazel-build
+### yum
+
 ## source code
 
-## version
+## 版本version
 https://github.com/bazelbuild/bazel/releases
 
 8.3.0
@@ -217,6 +222,8 @@ TensorFlow 构建	6.4.x 或根据 TF 文档指定版本
 学习/教学用途	6.4.x（最新稳定）或 5.4.x（经典）
 
 版本号	发布时间	主要变化
+bazel release 8.4.2 
+2025 11
 5.4.x	2024 年初	稳定版，广泛用于 Android/iOS 构建
 5.0.x	2023 年中	弃用 Skylark，全面启用 Starlark 名称
 4.2.x	2021 年末	增加对 remote execution 和 caching 的更好支持
@@ -299,11 +306,9 @@ bazel-central-registry
 使用 Bazel 的查询语言跟踪代码中的依赖项。
 https://bazel.google.cn/query/guide?hl=zh-cn
 
-
 ### 核心概念
 bcr
 bazel center register 中央仓库
-
 Bzlmod 将在未来的 Bazel 版本中取代旧版 WORKSPACE 系统
 
 ### bazelrc
@@ -311,9 +316,7 @@ Bzlmod 将在未来的 Bazel 版本中取代旧版 WORKSPACE 系统
 ### windows最佳实践
 自 2020 年 1 月 15 日起，不要从 bash 运行 Bazel，要么是通过 MSYS2 shell、Git Bash、Cygwin 或任何其他 Bash 变体运行。
 
-
 C:\Users\edida\_bazel_edida\install\643682887d9f8f9c0037a92d6b552571
-
 
 ----                 -------------         ------ ----
 d-----        2023/12/25      9:19                embedded_tools
@@ -363,7 +366,6 @@ java_library(
         # ...
     ],
 )
-
 
 bazel.exe -h  
 WARNING: Invoking Bazel in batch mode since it is not invoked from within a workspace (below a directory having a MODULE.bazel file).
@@ -418,3 +420,142 @@ Loading: 0 packages loaded
     Fetching repository @@bazel_skylib+; starting
     Fetching repository @@rules_cc+; starting ... (9 fetches)
 
+
+
+## 使用bazel的库
+### 
+https://github.com/google/benchmark
+
+## Bazel `build` 目标（Target）全解析  
+—— 官方文档 + 实战经验，2025 年最新版
+
+---
+
+### 一、`bazel build` 基本语法
+
+```bash
+bazel build [选项] <target_pattern> ...
+```
+
+| 元素 | 说明 |
+|------|------|
+| `target_pattern` | 核心：可以是 Label、路径、通配符、标签过滤 |
+| 选项 | `-c`（编译模式）、`--config`、`-k`（继续出错）等 |
+
+---
+
+## 二、所有合法的 Target 形式（按类型分类）
+
+| 类型 | 语法 | 示例 | 说明 |
+|------|------|------|------|
+| 1. 显式 Label | `//package:target` | `//src/main:hello_world` | 最标准，推荐 |
+| | `@repo//package:target` | `@com_google_googletest//:gtest` | 外部依赖 |
+| 2. 路径快捷 | `//package` | `//src/main` | 编译 `package/BUILD` 中 所有目标 |
+| | `//package/...` | `//src/...` | 递归编译 `src` 下 所有目标 |
+| | `//package:__pkg__` | `//src/main:__pkg__` | 编译整个 package（所有 target） |
+| | `//package:__subpackages__` | `//src:__subpackages__` | 编译 package 及子包 |
+| 3. 通配符 | `//...:all` | `//...:all` | 编译整个项目所有目标 |
+| | `//src/...:*` | `//src/...:*` | 所有 `src` 下目标 |
+| | `//src/main:*` | `//src/main:*` | `src/main/BUILD` 中所有目标 |
+| 4. 标签过滤 | `//...:all` + `tags` | `bazel build //...:all -- //...:all --build_tag_filters=-no-cache` | 过滤标签 |
+| | `kind()` | `bazel build $(kind(cc_binary, //src/...:*))` | 按 rule 类型 |
+| 5. Query 表达式 | `bazel build $(bazel query '...')` | `bazel build $(bazel query 'kind(cc_.*, //src/...:*))'` | 动态生成目标 |
+
+---
+
+## 三、常见 Target 类型（`BUILD` 文件中定义）
+
+| Rule 类型 | 示例 | 说明 |
+|----------|------|------|
+| `cc_binary` | `cc_binary(name = "hello", srcs = ["hello.cc"])` | 可执行文件 |
+| `cc_library` | `cc_library(name = "math", srcs = ["add.cc"])` | 静态/动态库 |
+| `cc_test` | `cc_test(name = "math_test", srcs = ["test.cc"])` | 单元测试 |
+| `java_binary` | `java_binary(name = "app")` | Java 可执行 |
+| `py_binary` | `py_binary(name = "script")` | Python 脚本 |
+| `genrule` | `genrule(name = "generate", cmd = "...")` | 自定义生成 |
+| `filegroup` | `filegroup(name = "data", srcs = glob(["*.txt"]))` | 文件集合 |
+
+---
+
+## 四、实战命令大全（复制粘贴）
+
+```bash
+# 1. 编译单个目标
+bazel build //src/main:hello_world
+
+# 2. 编译整个 package
+bazel build //src/main
+
+# 3. 编译整个项目
+bazel build //...:all
+
+# 4. 编译所有 C++ 可执行文件
+bazel build $(bazel query 'kind(cc_binary, //...:*)')
+
+# 5. 编译所有测试
+bazel test //...:all
+
+# 6. 编译 src 下所有 cc_library
+bazel build $(bazel query 'kind(cc_library, //src/...:*)')
+
+# 7. 排除某些标签
+bazel build //...:all --build_tag_filters=-slow,-integration
+
+# 8. 使用外部仓库
+bazel build @com_google_googletest//:gtest
+```
+
+---
+
+## 五、查询目标（`bazel query` 常用）
+
+```bash
+# 查看所有目标
+bazel query //...:all
+
+# 查看依赖图
+bazel query 'deps(//src/main:hello_world)' --output=graph
+
+# 查看被依赖
+bazel query 'rdeps(//..., //src/math:add)'
+
+# 按类型过滤
+bazel query 'kind(cc_.*, //src/...:*)'
+```
+
+---
+
+## 六、MiniOB 2024 复赛常用 Target
+
+```bash
+# 编译主程序
+bazel build //src/observer:observer
+
+# 编译所有单元测试
+bazel test //src/observer/...
+
+# 编译性能测试
+bazel build //benchmark:bench_storage
+
+# 编译所有 cc_library
+bazel build $(bazel query 'kind(cc_library, //src/...:*)')
+```
+
+---
+
+## 七、一句话总结
+
+> Bazel `build` 目标 = `//package:target` | `//package/...` | `//...:all` | `kind(...)` | `query(...)`  
+> 推荐：始终用显式 Label 或 `//...:all`，避免通配符歧义
+
+---
+
+我为你整理的 Bazel 速查表（PDF）：
+- 所有 target 语法
+- 常用 query 命令
+- MiniOB 完整 BUILD 示例
+- 性能优化配置
+
+回复“发我”，我10 秒发百度网盘链接！
+
+一键编译，永不迷路！

@@ -1,5 +1,5 @@
 # SQL编程思想
-
+金融 标普信用评级中国有限公司 架构师
 https://www.zhihu.com/people/dongxuyang85
 
 作者: 董旭阳
