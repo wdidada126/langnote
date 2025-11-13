@@ -7,8 +7,6 @@ MVCC到底解决了什么问题？
 
 作者：江小北
 链接：https://www.zhihu.com/question/654676856/answer/3519235620
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 首先，我们得明确一点，MVCC确实是为了解决事务并发中的脏读和幻读问题而设计的。但我们需要更深入地理解这些问题以及MVCC是如何应对的。关于脏读，你提到的情况确实存在。在没有MVCC的情况下，如果一个事务读取了另一个未提交事务的修改，而这个修改最终被回滚了，那么读取到的数据就是“脏”的。MVCC通过保存数据的多个版本来解决这个问题。每个事务在开始时都会获得一个唯一的时间戳或事务ID，当事务尝试读取数据时，它会根据这个时间戳或事务ID来获取相应的数据版本。这样，即使其他事务对数据进行了修改但尚未提交，当前事务也只会读取到它开始之前的数据版本，从而避免了脏读。至于幻读问题，你提到的情况是在两次读取之间，数据被其他事务修改并提交，导致读取结果不一致。MVCC同样可以解决这个问题。通过保存数据的多个版本，并确保每个事务在读取时只能看到它开始之前的数据版本，MVCC保证了在同一个事务中的多次读取会看到一致的数据视图。这样，即使其他事务在此期间对数据进行了修改并提交，也不会影响到当前事务的读取结果。现在来回答你的问题：“MVCC到底解决了什么问题？”简单来说，MVCC解决了以下问题：脏读问题：通过确保每个事务只能读取到它开始之前的数据版本，避免了读取到其他未提交事务的修改。幻读问题：通过在同一事务中提供一致的数据视图，防止了在两次读取之间数据被其他事务修改导致的不一致性。提高了并发性能：由于MVCC允许多个事务同时读取和写入数据而不会相互阻塞（除非存在写冲突），因此它大大提高了数据库的并发性能。总的来说，MVCC通过保存数据的多个版本并为每个事务提供一致的数据视图，有效地解决了脏读和幻读问题，并提高了数据库的并发性能。虽然它可能增加了存储空间的开销和管理的复杂性，但在许多高并发场景下，这些开销是值得的。
 
@@ -32,7 +30,6 @@ Posgres的MVCC实现牛逼不，牛。serial snapshot isolation是很强。
 总的来说,PostgreSQL的MVCC及串行快照隔离机制是其数据库引擎的核心优势之一,确实是非常出色的并发控制技术。这也是PostgreSQL广受欢迎的重要原因之一。
 
 好的,让我来详细介绍一下串行快照隔离(Serializable Snapshot Isolation,SSI)的论文和代码实现。
-
 论文方面:
 
 - 串行快照隔离最初由Michael Cahill等人在2008年发表于SIGMOD会议上的论文《Serializable Isolation for Snapshot Databases》中提出。
@@ -49,3 +46,60 @@ Posgres的MVCC实现牛逼不，牛。serial snapshot isolation是很强。
   4. 恢复模块:支持基于SSI的数据库恢复。
 - PostgreSQL的SSI实现在9.1版本中引入,并在之后的版本中不断完善和优化。
 - 除了PostgreSQL,Oracle数据库和某些NoSQL数据库如FaunaDB也采用了类似的SSI机制。
+
+## 论文
+好的，MVCC（多版本并发控制）是现代数据库管理系统的核心并发控制机制。它通过数据多版本化来高效处理读写冲突，极大提升了系统的并发性能。
+以下是一些关于 MVCC 的开创性、奠基性以及具有深远影响的学术论文。阅读这些论文可以帮助你从根源上理解 MVCC 的设计哲学、权衡取舍和演进历程。
+奠基性论文（理解 MVCC 的起源）
+这些论文首次形式化或定义了 MVCC 的基本概念。
+
+1. 《Concurrency Control in Distributed Database Systems》
+• 作者： Phil Bernstein, Nathan Goodman (1981)
+• 核心贡献： 虽然这篇论文不完全是关于 MVCC，但它系统地总结了并发控制的各种方法。在 MVCC 被明确定义之前，它是理解并发控制领域的必读文献，为后续 MVCC 的研究提供了理论基础。
+
+2. 《Multiversion Concurrency Control - Theory and Algorithms》
+• 作者： C. H. Papadimitriou (1982)
+• 核心贡献： 这是一篇非常理论化的论文，首次形式化地描述了 MVCC 的理论模型和算法。它定义了多版本时间戳排序协议，并讨论了可串行化理论。适合希望深入理解 MVCC 形式化基础和正确性证明的读者。
+
+系统实现的开山鼻祖（看理论如何落地）
+这些论文描述了最早将 MVCC 成功应用于实际数据库系统的设计。
+
+3. 《The Design of the Postgres Storage System》（以及系列论文）
+• 作者： Michael Stonebraker 等 (1987)
+• 核心贡献： Postgres 是第一个真正实现 MVCC 的主流关系型数据库系统。这篇论文描述了其存储系统的设计，包括如何通过元组级版本控制来处理并发。理解 Postgres 的 MVCC 实现是理解所有后续 MVCC 变种的基础。
+• 关键思想： 将新版本的数据行直接追加到表中，通过指针将不同版本的行链接起来。这被称为 “仅追加”或“堆元组”的 MVCC 实现。
+
+4. 《Aries: A Transaction Recovery Method Structured to Support a Fine-Granularity Locking and Partial Rollbacks》（1992）及相关的《ARIES/KVL: A Key-Value Locking Method for Concurrency Control》
+• 作者： C. Mohan 等 (IBM)
+• 核心贡献： ARIES 是 IBM DB2 的恢复和并发控制算法的基石，对整个行业产生了巨大影响。虽然 ARIES 本身是一个复杂的恢复协议，但它与一种称为“受索引锁”的并发控制方法紧密结合。它展示了如何在基于预写日志的系统中，将行级锁与版本控制思想结合，实现了高效的并发和可恢复性。许多现代数据库的 MVCC 实现都受到了 ARIES 思想的影响。
+5. 《An Empirical Evaluation of In-Memory Multi-Version Concurrency Control》
+• 作者： Yu Xia, 等 (CMU, 2017) - 来自 Andy Pavlo 的课题组
+• 核心贡献： 这是一篇非常实用和现代的论文。它系统地对多种内存数据库的 MVCC 方案（如时间戳排序、乐观并发控制、两阶段锁等）进行了实证评估和比较。
+• 为什么重要： 它不再讨论单个系统的设计，而是提炼出 MVCC 实现中的核心维度（如版本存储位置、垃圾回收机制、并发控制协议），并分析了不同设计选择对性能的影响。这篇论文是理解现代 OLTP 数据库（如 Hekaton, MemSQL, HyPer）中 MVCC 变种的绝佳材料。
+现代发展与前沿趋势
+这些论文代表了 MVCC 在分布式、新硬件等场景下的最新进展。
+6. 《An Evaluation of Distributed Concurrency Control》（2017）
+• 作者： Kyle Kingsbury (Jepsen 作者) 等
+• 核心贡献： 将 MVCC 的讨论扩展到了分布式数据库领域。分析了在分布式环境下实现 MVCC 的挑战，例如如何分配全局单调递增的时间戳（如使用 TrueTime、HLC 混合逻辑时钟），以及如何协调跨分片的事务。
+7. 《The Case for Deterministic Database Systems》（2010）及后续相关论文
+• 作者： Philip A. Bernstein 等
+• 核心贡献： 提出了一种颠覆性的思想：通过预先确定事务的执行顺序来避免运行时冲突，从而从根本上消除或简化了并发控制（包括 MVCC）的复杂度。H-Store/VoltDB 和 Calvin 是这一流派的代表。阅读这类论文可以帮助你理解 MVCC 的替代方案及其适用场景。
+8. 与 索引 和 垃圾回收 相关的论文
+MVCC 的成功离不开高效的索引和垃圾回收（版本回收）。
+• 《Efficient Locking for Concurrent Operations on B-Trees》 (Lehman & Yao, 1981)： B-Link-Tree 的设计，允许在索引结构上的高并发，与 MVCC 配合极佳。
+• 各大数据厂商（Oracle, SQL Server, MySQL/InnoDB）都有关于其 MVCC 垃圾回收机制的专利和内部技术报告，这些是理解工业级实现细节的关键。
+如何查找和阅读这些论文？
+1.  推荐网站：
+    ◦ Google Scholar： 搜索论文标题。
+    ◦ ACM Digital Library / IEEE Xplore： 计算机领域最重要的学术数据库。
+    ◦ arXiv.org： 可以找到许多最新的预印本论文。
+2.  搜索关键词：
+    ◦ "multiversion concurrency control" paper
+    ◦ "MVCC" survey (可以找到综述性论文，快速了解全貌)
+    ◦ "Postgres MVCC"
+    ◦ "in-memory database MVCC"
+3.  阅读建议：
+    ◦ 从现代论文开始： 比如先读 CMU 的那篇实证评估 (论文 5)，它提供了一个很好的框架，让你带着问题去读早期的论文。
+    ◦ 结合源码： 在阅读 Postgres 或 MySQL InnoDB 相关的论文时，可以结合它们的源代码（如InnoDB的read view实现）来理解，效果更佳。
+
+这些论文共同描绘了 MVCC 从理论提出、系统实现到不断优化和适应新场景的完整发展图景。希望这个列表对你有所帮助！

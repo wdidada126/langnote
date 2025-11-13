@@ -1,4 +1,28 @@
-# postgresql
+# Postgres/PostgreSQL
+## 命名
+是的，Postgres 就是 PostgreSQL 数据库，两者指的是同一个东西。不过，这个名称的演变背后有一段有趣的历史。
+可以这样理解：
+•   Postgres 是它的原名和历史简称，更口语化，常用于日常交流和命令行操作。
+•   PostgreSQL 是它的官方全称，强调了它对 SQL 标准的完整支持。
+
+名称演变简史
+1.  Ingres： 在加州大学伯克利分校，Michael Stonebraker 教授领导开发了一个名为 Ingres 的数据库项目（1970年代）。这是一个开创性的关系数据库。
+2.  Post-Ingres： Ingres 项目结束后，Stonebraker 团队开始研究新一代的数据库系统，旨在解决关系模型的一些局限性（如支持复杂数据类型）。这个新项目被命名为 Postgres，意思是 “后-Ingres”。
+3.  Postgres95： 在1994年，项目增加了对 SQL 语言的支持（最初使用一种名为 POSTQUEL 的查询语言）。为了反映这一重大变化，1995年版本被重新发布为 Postgres95。
+4.  PostgreSQL： 1996年，为了更好地体现其与 SQL 的紧密联系，项目再次更名为 PostgreSQL（结合了 “Post-Ingres” 和 “SQL”）。这个名称一直沿用至今，成为官方全称。
+
+日常使用中的习惯
+尽管官方名称是 PostgreSQL，但在不同场景下，人们的用法有所不同：
+场景 常用名称 示例
+官方文档、网站 PostgreSQL “Welcome to the PostgreSQL official site.”
+命令行、包管理 postgres（指服务/进程） sudo systemctl start postgresql （服务名） <br> psql -U username （客户端）<br> 但数据库服务进程名通常是 postgres
+日常交流、文章 Postgres（更简洁、流行） “我们公司的系统用的是 Postgres。”
+商标、法律文件 PostgreSQL PostgreSQL Global Development Group
+总结
+• 是的，Postgres 就是 PostgreSQL，就像 “Coke” 就是 “Coca-Cola” 一样。
+• PostgreSQL 是正式、完整的名称，强调了其企业级特性和 SQL 标准兼容性。
+• Postgres 是广为人知、被广泛接受的简称，发音更简单，在技术社区中更流行。
+所以，当您听到有人说 “Postgres” 时，可以完全放心地认为他指的就是 PostgreSQL 数据库。
 
 ## pg扩展
 TimescaleDB是PostgreSQL的扩展，专为时序数据设计，支持高效处理高频数据写入和复杂查询。
