@@ -1,5 +1,7 @@
 # bustub
 
+bustub vs huadb
+
 由于Bustub是在C++17下实现的数据库，因此所有学生都需要在正式开始之前，完成Project #0来检测对C++，尤其是C++现代语法的熟悉程度。
 
 https://15445.courses.cs.cmu.edu/spring2023/
@@ -7,20 +9,18 @@ https://15445.courses.cs.cmu.edu/spring2023/
 https://15445.courses.cs.cmu.edu/spring2023/schedule.html
 
 Assignment	Solution	Release Date	Due Date
-
 C++ Primer	N/A	Jan 17, 2023	Jan 29, 2023 @ 11:59pm
 Buffer Pool Manager	N/A	Jan 30, 2023	Feb 19, 2023 @ 11:59pm
 B+Tree Index	N/A	Feb 20, 2023	Mar 22, 2023 @ 11:59pm
 Query Execution	N/A	Mar 22, 2023	Apr 09, 2023 @ 11:59pm
 Concurrency Control	N/A	Apr 10, 2023	Apr 28, 2023 @ 11:59pm
 
-
 https://15445.courses.cs.cmu.edu/spring2024/
-
 
 discuss区域
 https://discord.com/channels/724929902075445281/801327143485308949
 
+github repo
 https://github.com/cmu-db/bustub
 c++的
 
@@ -49,8 +49,6 @@ cd build
 cmake ..
 make
 ```
-
-
 
 ```shell
 [100%] Building CXX object tools/htable_bench/CMakeFiles/htable-bench.dir/htable_bench.cpp.o
@@ -212,8 +210,6 @@ CMU数据库（15-445）实验1-BufferPoolManager
 lru算法
 https://15445.courses.cs.cmu.edu/spring2023/project1/
 
-
-
 有四点，
 1. Bustub用到的最难的算法是Deadlock Detector里的DFS，和BPM里的LRU-K
 2. 如果读/写Bustub（你所谓的 Toy Project）的代码都觉得吃力，我并不觉得去看工业界的代码提升有多大（反过来也一样，一个能熟练读懂工业界代码的同学，自身就自然知道需不需要做Project）
@@ -232,5 +228,3 @@ https://15445.courses.cs.cmu.edu/spring2023/project1/
 多线程调试，打印同步日志，ide断点调试效果不好。
 测试用例，完备
 自己的机器上跑的好好的，测试服务器上就挂了，因为有些bug是偶发的
-
-

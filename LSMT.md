@@ -1,4 +1,10 @@
 # LSMT
+
+rust lsm
+https://github.com/edidada/mini-lsm
+https://zhuanlan.zhihu.com/p/680608573
+Mini-LSM：可能是史上最完整的 LSM-Tree 存储课程
+
 ## 概念
 LSM树（Log-Structured Merge-Tree）
 今天来聊聊lsm tree，它的全称是log structured merge tree ，简单来说，lsm tree可以认为是针对传统b树在磁盘写入上低劣表现的一种优化，其核心思想的核心就是放弃部分读能力，换取写入的最大化能力。

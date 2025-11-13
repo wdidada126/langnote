@@ -1,4 +1,6 @@
 # db
+https://github.com/pingcap/awesome-database-learning
+miniob
 
 分区 parti by
 窗口函数
