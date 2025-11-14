@@ -1,4 +1,127 @@
 # antlr
+
+## maven
+下面给出 完整、可直接拷贝 的 `pom.xml` 片段，确保：
+
+1. `.g4` 文件里只保留 `@header { package play; }`（不需要 `@parser::header`、`@lexer::header`）  
+2. Maven 插件自动把生成的 Java 源码放到 `src/main/java/play` 目录  
+3. 生成的 Java 文件顶部自动出现 `package play;`  
+
+```xml
+<build>
+    <plugins>
+
+        <!-- ANTLR 4 Maven Plugin -->
+        <plugin>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-maven-plugin</artifactId>
+            <version>4.7.2</version>
+
+            <executions>
+                <execution>
+                    <id>antlr</id>
+                    <goals>
+                        <goal>antlr4</goal>
+                    </goals>
+
+                    <configuration>
+                        <!-- 1. 生成 listener / visitor（根据需要打开） -->
+                        <listener>true</listener>
+                        <visitor>true</visitor>
+
+                        <!-- 2. 关键：把生成的源码放到指定的 package 目录 -->
+                        <!--    这里的路径必须和 .g4 中 @header 一致 -->
+                        <outputDirectory>${project.build.directory}/generated-sources/antlr4/play</outputDirectory>
+
+                        <!-- 3. 让 Maven 自动把 generated-sources 加入编译路径 -->
+                        <sourceDirectory>${project.basedir}/src/main/antlr</sourceDirectory>
+                        <!--   （假设 .g4 文件放在 src/main/antlr 下面） -->
+
+                        <!-- 4. （可选）如果想让生成的源码直接进入 src/main/java 而不是 target -->
+                        <!-- <outputDirectory>${project.basedir}/src/main/java/play</outputDirectory> -->
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!-- 让 Maven 编译 generated-sources -->
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <!-- 自动包含 generated-sources -->
+                <compilerArgs>
+                    <arg>-parameters</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
+
+    </plugins>
+</build>
+```
+
+## 关键点解释
+
+| 配置项 | 作用 |
+|--||
+| `@header { package play; }` | 只在 .g4 文件里写这一行，ANTLR 会在每个生成的 Java 文件顶部自动插入 `package play;` |
+| `<outputDirectory>${project.build.directory}/generated-sources/antlr4/play</outputDirectory>` | 让插件把 所有 生成的 `.java` 文件放到 `target/generated-sources/antlr4/play` 目录，目录结构正好对应 package |
+| `<sourceDirectory>` | 告诉插件 `.g4` 文件所在目录（默认 `src/main/antlr`） |
+| `maven-compiler-plugin` | 把 `target/generated-sources/antlr4` 加入编译 classpath（Maven 自动识别 `generated-sources`） |
+
+
+
+## 完整目录结构示例
+```
+my-project
+ ├─ pom.xml
+ ├─ src
+ │   └─ main
+ │       ├─ antlr
+ │       │   └─ Play.g4          ← 里面只有 @header { package play; }
+ │       └─ java
+ │           └─ (你的业务代码)
+ └─ target
+     └─ generated-sources
+         └─ antlr4
+             └─ play
+                 ├─ PlayParser.java
+                 ├─ PlayLexer.java
+                 └─ … (Listener/Visitor)
+```
+
+生成的 `PlayParser.java` 顶部会是：
+```java
+package play;
+
+// Generated from ...
+public class PlayParser extends Parser { … }
+```
+
+## 常见错误 & 排查
+
+| 症状 | 原因 | 解决 |
+||||
+| 生成的文件 没有 `package play;` | `@header` 写错或被 `@parser::header` 覆盖 | 只保留 `@header { package play; }` |
+| 生成的文件在 `target/generated-sources/antlr4` 根目录，没有 `play` 子目录 | 没配置 `<outputDirectory>` | 加上 `<outputDirectory>…/play</outputDirectory>` |
+| IDE 报 “cannot find symbol PlayParser” | `generated-sources` 没加入编译路径 | 确认 `maven-compiler-plugin` 正常运行，或在 IDE 中 Refresh Maven Project |
+
+### 一键命令（如果已经配置好 pom）
+```bash
+mvn clean generate-sources
+```
+
+执行后 `target/generated-sources/antlr4/play` 里就会出现 带正确 package 的 Java 文件。
+
+总结：  
+- `.g4` 只写 `@header { package play; }`  
+- 插件 `outputDirectory` 指向 `…/play`  
+- Maven 会自动编译  
+
+照着上面的 `pom.xml` 粘贴即可，生成的 Java 文件天然就是 `package play;`，无需再手动改动。祝编码愉快!
+
 ### ANTLR 在开源项目中的应用（除了 Hive 和 ShardingSphere）
 
 ANTLR（ANother Tool for Language Recognition）是一个广泛用于构建解析器和编译器的开源工具，它支持生成词法分析器、语法分析器和抽象语法树（AST），常用于语言处理、SQL 查询解析、代码生成等领域。除了您提到的 Apache Hive（用于 HiveQL 解析）和 Apache ShardingSphere（用于 DistSQL 和 SQL 解析）之外，ANTLR 被众多知名开源项目采用。这些项目涵盖数据库、编程语言、工具链和框架等领域，通常使用 ANTLR 4 版本来处理复杂语法。
@@ -6,7 +129,7 @@ ANTLR（ANother Tool for Language Recognition）是一个广泛用于构建解�
 以下是基于最新开源社区数据（截至 2025 年 10 月 16 日）筛选的 10 个典型开源项目示例。我优先选择了活跃度高、影响力大的项目，并附上简要描述、使用场景、GitHub 地址和许可证信息。列表按 GitHub 星级（stars）降序排列，便于参考。
 
 | 项目名称 | 描述 | 使用场景 | GitHub 地址 | 许可证 | 星级（约） |
-|----------|------|----------|-------------|--------|------------|
+|-||-|-|--||
 | Apache Cassandra | 分布式 NoSQL 数据库，使用 ANTLR 解析 CQL（Cassandra Query Language）查询，支持 AST 构建和语义分析。 | 分布式数据存储查询解析。 | [https://github.com/apache/cassandra](https://github.com/apache/cassandra) | Apache 2.0 | 8,000+ |
 | Presto (Trino) | 分布式 SQL 查询引擎，使用 ANTLR 解析标准 SQL 语法，支持多数据源查询优化。 | 大规模数据分析 SQL 处理。 | [https://github.com/trinodb/trino](https://github.com/trinodb/trino) | Apache 2.0 | 8,500+ |
 | Apache Calcite | SQL 解析和优化框架，使用 ANTLR 生成 SQL 解析器，支持插件式扩展。 | 数据库中间件和查询优化。 | [https://github.com/apache/calcite](https://github.com/apache/calcite) | Apache 2.0 | 4,000+ |
@@ -34,7 +157,7 @@ ANTLR（ANother Tool for Language Recognition）是一个强大的解析器生�
 这些资源从简单表达式解析开始，逐步引入语法定义、AST 构建和 Java 集成。预计 1-2 天上手。
 
 | 资源名称 | 描述 | 适用人群 | 链接 |
-|----------|------|----------|------|
+|-||-||
 | Java with ANTLR (Baeldung) | 实用 Java 教程：自定义语言解析、现有语法文件使用（如 Java8.g4 进行代码 linting）。包含 Maven 集成、Listener/Visitor 示例。 | 业界 Java 开发者，入门到中级。 | [https://www.baeldung.com/java-antlr](https://www.baeldung.com/java-antlr) |
 | ANTLR Mega Tutorial | 全面教程：从语法定义到 AST 操作，支持 Java/JS/Python/C#。包含表达式解析、Visitor 模式和测试。 | 业界/本科生，Java 基础即可。C++ 部分有生成示例。 | [https://tomassetti.me/antlr-mega-tutorial/](https://tomassetti.me/antlr-mega-tutorial/) |
 | Getting Started with ANTLR (RipTutorial) | 简短入门：安装、运行时库、Java 代码生成。包含简单计算器示例。 | 快速上手，Java/C++ 新手。 | [https://riptutorial.com/antlr](https://riptutorial.com/antlr) |
@@ -47,7 +170,7 @@ ANTLR（ANother Tool for Language Recognition）是一个强大的解析器生�
 这些聚焦项目源码中的 ANTLR 使用：Hive 的 HiveQL 解析（ANTLR 3/4），ShardingSphere 的 DistSQL/SQL 解析（ANTLR 4）。适合扩展到分布式查询解析。
 
 | 资源名称 | 描述 | 适用人群 | 链接 |
-|----------|------|----------|------|
+|-||-||
 | Parsing Hive Create Table Query (RevisitClass) | 使用 Hive 库解析 CREATE TABLE 查询：AST 提取表名、列名、类型。包含 Java 代码示例和 HiveParserDriver。 | 业界，Hive SQL 解析实践。 | [https://www.revisitclass.com/hadoop/parsing-hive-create-table-query-using-apache-hive-library/](https://www.revisitclass.com/hadoop/parsing-hive-create-table-query-using-apache-hive-library/) |
 | Hive HPLSQL Grammar (GitHub) | Hive 源码中的 HPLSQL.g4 语法文件：解析 Hive 过程 SQL。示例规则如 expr_dot、select_stmt。 | 硕博/业界，分析 Hive AST。 | [https://github.com/apache/hive/blob/master/hplsql/src/main/antlr4/org/apache/hive/hplsql/Hplsql.g4](https://github.com/apache/hive/blob/master/hplsql/src/main/antlr4/org/apache/hive/hplsql/Hplsql.g4) |
 | ANTLR in Hive (Stack Overflow) | 讨论 Hive .g 文件（HiveLexer.g 等）到 JavaScript/JS 生成的挑战。包含 ANTLR 3.4 版本分析。 | 业界，Hive 语法移植。 | [https://stackoverflow.com/questions/28593867/determining-antlr-version-to-use-or-converting-between](https://stackoverflow.com/questions/28593867/determining-antlr-version-to-use-or-converting-between) |
@@ -60,7 +183,7 @@ ANTLR（ANother Tool for Language Recognition）是一个强大的解析器生�
 这些强调解析理论、AST 操作、语义分析。结合 Hive/ShardingSphere 可用于论文或高级项目。C++ 支持良好，但需额外学习运行时。
 
 | 资源名称 | 描述 | 适用人群 | 链接 |
-|----------|------|----------|------|
+|-||-||
 | The Definitive ANTLR 4 Reference (Terence Parr) | ANTLR 4 圣经：高级解析技术、Visitor/Listener、错误恢复。包含 R 解析器、JSON-XML 转换示例。 | 硕博，理论+代码。Java/C++ 示例。 | [https://pragprog.com/titles/tpantlr2/the-definitive-antlr-4-reference/](https://pragprog.com/titles/tpantlr2/the-definitive-antlr-4-reference/) |
 | ANTLR Mega Tutorial (Advanced Parts) | 高级章节：语义谓词、表达式处理、词法模式、多语言文档解析。包含测试和调试。 | 硕博/业界高级，Java/C++。 | [https://tomassetti.me/antlr-mega-tutorial/](https://tomassetti.me/antlr-mega-tutorial/) |
 | ANTLR Course (Strumenta) | 专业课程：构建 DSL、编译器、语义分析。动手项目，覆盖 Hive-like SQL 解析。 | 硕博教学，业界培训。 | [https://strumenta.com/antlr-consulting/](https://strumenta.com/antlr-consulting/) |
@@ -754,7 +877,7 @@ head
 
 [antlr v4 使用指南连载3——g4文件概览](https://www.cnblogs.com/laud/p/antlrv4_3.html)
 
-[Antlr4 --- 规则文件概览](https://blog.csdn.net/yangguosb/article/details/85621059)
+[Antlr4  规则文件概览](https://blog.csdn.net/yangguosb/article/details/85621059)
 
 antlr
 
