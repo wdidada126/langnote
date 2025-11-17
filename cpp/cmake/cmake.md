@@ -1,4 +1,7 @@
 # CMake
+macro()
+endmacro()
+
 202505
 cmake 4.0版本发布
 redis 8.0发布

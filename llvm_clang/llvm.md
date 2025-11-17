@@ -1,4 +1,11 @@
 # llvm
+
+llvm win预编译库文件clang+llvm-18.1.8-x86_64-pc-windows-msvc.tar.xz
+需要手动设置libxml2库文件
+
+## 代码对应llvm版本很老的
+https://llvm.gnu.ac.cn/docs/GettingStartedTutorials.html
+
 主要还是企业的推动，基中最大的是苹果和谷歌。苹果发起了建立在llvm后端之上的clang前端项目。同时也给llvm社区大量的捐款和贡献代码，让llvm项目从此起飞。苹果发起clang项目的原因是之前的xcode集成的GCC编译器非常难以适应xcode的需求，苹果期望在xcode前端构建非常复杂的代码分析和性能分析工具，但是GCC主要还是因适配Linux系统而设计的编译器，同时因为GPL协议让苹果把编译器部分代码集成到接口与IDE进行对接过程中会遇到严重的协议问题，因此苹果发起了clang项目同时组织了大量的研发力量对整个llvm社区提供代码，可以查看当时的社区邮件，cfe社区可以说是因苹果而兴起。之后谷歌深度参与进来，谷歌的贡献主要在后端和系统特性的加入，比如并行优化器，运行时动态profile的xray等等。目前从架构上看llvm体系远比GCC现代得多，整个Linux和BSD的内核和工具编译都在逐渐切换到llvm上。
 
 在macOS和FreeBSD系统中，C标准库的实现有所不同，但它们都遵循C标准，提供了标准C库的功能。
