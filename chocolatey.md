@@ -1,4 +1,5 @@
 # chocolatey
+https://community.chocolatey.org/packages/llvm/21.1.0
 
 choco install graphviz
 choco install rsync
