@@ -1,5 +1,12 @@
 # trpc
 
+● 项目官方网站：
+https://trpc.group/
+● Github主仓库：
+https://github.com/trpc-group
+● Github插件仓库：
+https://github.com/trpc-ecosystem
+
 https://github.com/trpc-group
 
 https://github.com/trpc-group/trpc

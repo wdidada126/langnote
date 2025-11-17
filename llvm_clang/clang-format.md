@@ -1,4 +1,4 @@
-# clang-format
+·# clang-format
 
 预览格式化后的代码，就是直接把格式化后的代码显示在终端。
 

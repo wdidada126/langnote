@@ -1,7 +1,16 @@
 # yum
 
+sudo yum-config-manager --disable pgdg10
 
+yum update和yum upgrade的区别主要在于：
+yum update：升级所有包，同时也会升级软件和系统内核，但不删除旧版本的包。
+yum upgrade：只升级所有包，不升级软件和系统内核，软件和内核保持原样，同时会删除旧版本的包。
+另外，无论是使用yum update还是yum upgrade，都会对软件进行升级，也都对内核进行升级。
+因此，在生产环境中最好使用yum update，防止因旧软件包依赖而出现问题。而在实际使用中，应谨慎选择这两个选项，并确保了解其具体作用。
 
+yum versionlock status
+
+https://wiki.centos.org/yum-errors
 
 
 yum whatprovides autoconf automake
@@ -21,22 +30,13 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-
 腾讯
 搭建rpm包管理平台
 一般库是最新版
 
-
-
-
-
 yum list installed
 
-
-
 [使用yum查看安装了哪些软件包、某软件包是否已经安装？](https://blog.csdn.net/rentian1/article/details/93768557)
-
-
 
 [yum 查看安装的包 包含了哪些文件](https://blog.csdn.net/weixin_38601833/article/details/98628078)
 
@@ -139,15 +139,9 @@ yum whatprovides libmysqlclient*
 
 http://www.cocoachina.com/articles/63213
 
-
-
-
-
 /var/cache/yum/x86_64/7/ rpm文件缓存
 
-
 yum 自动安装依赖
-
 
 yum install createrepo yum-utils -y
 

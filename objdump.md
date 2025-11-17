@@ -1,5 +1,28 @@
 # objdump
 
+objdump -p md5
+```shell
+Dynamic Section:
+ NEEDED               libPocoUtil.so.31
+ NEEDED               libPocoXML.so.31
+ NEEDED               libPocoJSON.so.31
+ NEEDED               libPocoMongoDB.so.31
+ NEEDED               libPocoNet.so.31
+ NEEDED               libPocoCrypto.so.31
+ NEEDED               libPocoData.so.31
+ NEEDED               libPocoDataSQLite.so.31
+ NEEDED               libPocoZip.so.31
+ NEEDED               libPocoFoundation.so.31
+ NEEDED               libpthread.so.0
+ NEEDED               libdl.so.2
+ NEEDED               librt.so.1
+ NEEDED               libssl.so.1.0.0
+ NEEDED               libcrypto.so.1.0.0
+ NEEDED               libstdc++.so.6
+ NEEDED               libm.so.6
+ NEEDED               libgcc_s.so.1
+ NEEDED               libc.so.6
+```
 The llvm-objdump utility prints the contents of object files and final
        linked images named on the command line. If no file name is specified,
        llvm-objdump will attempt to read from a.out. If - is used as a file

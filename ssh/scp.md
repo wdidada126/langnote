@@ -1,5 +1,32 @@
 # scp
 
+两台主机 复制文件
+scp
+查询文件内容
+
+scp是Linux系统下的一个用于远程复制文件的命令。其基本语法如下：
+scp [参数选项] [源文件] [目标地址]
+其中，参数选项和源文件都是可选的，目标地址是必须的。
+以下是一些常用的参数选项：
+-r：递归复制整个目录。
+-P：指定端口号。
+-C：开启压缩传输。
+-v：显示详细的传输过程。
+以下是一些常用的示例：
+从本地复制文件到远程服务器：
+scp /path/to/local/file user@remote_server:/path/to/remote/directory
+这将把本地的文件复制到远程服务器的指定目录。
+从远程服务器复制文件到本地：
+scp user@remote_server:/path/to/remote/file /path/to/local/directory
+这将从远程服务器的指定文件复制到本地的指定目录。
+递归复制整个目录：
+scp -r /path/to/local/directory user@remote_server:/path/to/remote/directory
+这将递归复制本地的整个目录到远程服务器的指定目录。
+使用端口号进行传输：
+scp -P 22 user@remote_server:/path/to/remote/file /path/to/local/directory
+这将使用SSH端口22进行文件传输。
+请注意，在使用scp命令时，需要确保目标地址和源文件的路径正确，并且需要提供目标服务器的用户名和密码（如果需要的话）。
+
 scp -P 27795 root@66.112.211.252:/root/cmake-4.0.3-linux-x86_64.tar.gz .
 
 两台通过联网的主机，复制文件

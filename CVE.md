@@ -9,3 +9,6 @@
 - AVD = Alibaba Vulnerability Database
 - CVE = Common Vulnerabilities and Exposures
 
+cve
+
+*CVE* 的英文全称是“Common Vulnerabilities & Exposures”通用漏洞披露。*CVE*就好像是一个字典表，为广泛认同的信息安全漏洞或者已经暴露出来的弱点给出一个公共的名称。使用一个共同的名字，可以帮助用户在各自独立的各种漏洞数据库中和漏洞评估工具中共享数据

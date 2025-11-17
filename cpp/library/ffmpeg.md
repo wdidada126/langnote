@@ -61,3 +61,26 @@ https://github.com/FFmpeg/FFmpeg.git
 https://github.com/FFmpeg/FFmpeg/tags
 
 8.0，2025 Aug 22
+n7.0 on Apr 5, 2024
+n6.0.1
+ on Nov 10, 2023
+n6.0
+ on Feb 28, 2023
+n5.1.1
+ on Sep 1, 2022
+n5.0
+ on Jan 15, 2022
+n4.0.2
+ on Jul 18, 2018
+n4.0
+ on Apr 20, 2018
+n3.0
+ on Feb 15, 2016
+n2.0.6
+ on Nov 15, 2014
+n2.0.1
+ on Aug 11, 2013
+n2.0
+ on Jul 10, 2013
+n1.0
+ on Sep 28, 2012
