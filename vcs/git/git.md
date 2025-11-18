@@ -1,4 +1,107 @@
 # git
+
+[wdidada@10-23-29-39 github_codespaces_compile]$ git push github
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Everything up-to-date
+
+push.default 配置控制 git push 的默认行为。让我简单清晰地解释两者的区别：
+1. matching vs simple 核心区别
+matching（匹配模式）
+git config --global push.default matching
+
+行为：推送所有本地分支到远程，与远程同名分支匹配
+# 本地有分支: main, feature, dev
+# 远程有分支: main, feature
+
+git push  # 会推送 main 和 feature（因为远程存在同名分支）
+          # 不会推送 dev（远程没有同名分支）
+
+simple（简单模式）
+
+git config --global push.default simple
+
+行为：只推送当前分支到其上游分支
+# 当前在 feature 分支，上游设置为 origin/feature
+
+git push  # 只推送 feature 分支到 origin/feature
+          # 不会推送其他分支
+
+2. 实际场景对比
+场景1：多分支开发
+
+# 本地分支状态
+git branch
+* main
+  feature-login
+  feature-payment
+  dev
+
+# 使用 matching
+git push  # 推送 main, feature-login, feature-payment（如果远程有同名分支）
+
+# 使用 simple（当前在 main 分支）
+git push  # 只推送 main 分支
+
+
+场景2：新分支首次推送
+# 创建新分支
+git checkout -b new-feature
+
+# 使用 matching
+git push  # 不会推送（因为远程没有同名分支）
+
+# 使用 simple  
+git push  # 提示错误：没有上游分支
+          # 需要先设置上游：git push -u origin new-feature
+
+3. 为什么推荐 simple？
+安全性更高
+
+# 避免意外推送多个分支
+# 使用 matching 可能意外推送未完成的分支
+# 使用 simple 只推送当前工作分支
+
+
+更符合现代工作流
+# 现代 Git 工作流通常是：
+1. git checkout -b new-feature
+2. 开发代码
+3. git push -u origin new-feature  # 设置上游
+4. 后续只需 git push（simple 模式）
+
+
+4. 迁移建议
+从 matching 切换到 simple
+
+# 1. 设置新的默认行为
+git config --global push.default simple
+
+# 2. 为现有分支设置上游
+git branch -u origin/main main
+git branch -u origin/feature feature
+
+# 3. 新分支首次推送时使用 -u
+git push -u origin new-branch
+
+总结
+模式 行为 适用场景 安全性
+matching 推送所有有远程匹配的分支 传统工作流 ⚠️ 较低
+simple 只推送当前分支到上游分支 现代工作流 ✅ 较高
+推荐使用 simple，因为它更安全、更直观，符合现代 Git 最佳实践。
+
 ## 版本version
 git version 2.51.2
 

@@ -1,4 +1,5 @@
 # brpc
+百度开源的brpc，已经在生产环境下测试过的成品。C++开发的，学习RPC框架的不二选择。尤其是附带的文档，如果没有看过UNP的话，光看文档也基本给了小白知识扫盲了。
 
 https://github.com/edidada/brpc_source_code_analysis
 

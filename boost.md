@@ -1,5 +1,32 @@
 # boost
 
+wget https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2 -P ../boost
+tar -jxvf ../boost/boost_1_77_0.tar.bz2 -C ../boost
+
+https://zhuanlan.zhihu.com/p/661637315
+
+wget https://boostorg.jfrog.io/artifactory/main/release/1.65.0/source/boost_1_65_0.tar.bz2
+
+
+```
+wget http://dl.bintray.com/boostorg/release/1.65.0/source/boost_1_65_0.tar.gz
+```
+
+编译mysql server源代码，boost依赖搞不定，从github仓库下载boost，没有直接从bintray下载压缩包好使
+编译mysql server，处理boost依赖
+
+```shell
+wget https://boostorg.jfrog.io/artifactory/main/release/1.65.0/source/boost_1_65_0.tar.gz
+git clone -b mysql-8.0.4 https://github.com/mysql/mysql-server.git
+cd mysql-server
+rm -rf build
+mkdir build && cd build
+export BOOST_ROOT=/usr/local/boost  
+export BOOST_INCLUDEDIR=$BOOST_ROOT/include
+cmake .. -DDOWNLOAD_BOOST=1 -DWITH_BOOST=../../boost_1_65_0.tar.gz -DWITH_SSL=system
+make -j5
+```
+
 https://www.boost.org/doc/libs/1_75_0/doc/html/
 
 https://live.boost.org/doc/libs/1_75_0/doc/html/boost_asio/examples/cpp03_examples.html
