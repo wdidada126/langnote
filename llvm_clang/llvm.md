@@ -1,4 +1,8 @@
 # llvm
+## llvm
+https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/index.html
+
+https://github.com/Hanseltu/kaleidoscope-tutorial
 
 llvm win预编译库文件clang+llvm-18.1.8-x86_64-pc-windows-msvc.tar.xz
 需要手动设置libxml2库文件

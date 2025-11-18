@@ -1,9 +1,53 @@
 # vcpkg
 
+当你使用 `git clone` 克隆 vcpkg 仓库并尝试通过 `git pull` 更新时，发现没有下载标签（tags），这是因为默认情况下，`git pull` 只会拉取最新的提交，而不会自动拉取标签。
+### 解决方法
+1. 手动拉取标签
+   你可以使用 `git fetch` 来手动拉取标签：
+   ```bash
+   git fetch --tags
+   ```
+   这将获取远程仓库中的所有标签。
+2. 合并标签到本地
+   如果你想将所有标签合并到本地分支，可以使用以下命令：
+   ```bash
+   git pull --tags
+   ```
+3. 克隆时拉取标签
+   在克隆仓库时，你可以直接拉取所有标签：
+   ```bash
+   git clone --branch master --single-branch --depth 1 --tags https://github.com/microsoft/vcpkg.git
+   ```
+### 检查标签
+拉取标签后，可以通过以下命令查看本地标签：
+```bash
+git tag
+```
+这样你就可以看到所有从远程仓库拉取到的标签。
+
+### 示例
+假设你已经克隆了vcpkg仓库：
+
+```bash
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+```
+然后，使用 `git fetch` 来拉取标签：
+```bash
+git fetch --tags
+```
+或者使用 `git pull` 并包含标签：
+```bash
+git pull --tags
+```
+最后，检查标签：
+```bash
+git tag
+```
+### 总结
+通过以上步骤，你可以确保从远程仓库获取到所有标签。这样，你就可以在本地使用和参考这些标签。例如，在版本管理和回退到特定版本时，标签是非常有用的。
 
 ## export
-
-
 
 PS D:\develops\git\github\signdataredis\cpp> vcpkg export --output-dir=D:\develops\exports --raw
 The following packages are already built and will be exported:

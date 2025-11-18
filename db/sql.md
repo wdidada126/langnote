@@ -1,4 +1,8 @@
 # SQL
+UPDATE table_name  
+SET column1 = value1, column2 = value2, ...  
+WHERE condition;
+多个列之间用, 不是 and
 
 ## DISTINCT
 在 SQL 中，`DISTINCT` 关键字可以用来修饰单个列，也可以用来修饰多个列（也就是所有选择的列），下面为你详细介绍：

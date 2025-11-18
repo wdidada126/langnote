@@ -1,4 +1,7 @@
 # ubuntu
+https://mirrors.aliyun.com/ubuntu-releases/24.04/
+
+wget -O ubuntu-24.04-desktop-amd64.iso https://mirrors.aliyun.com/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso
 
 https://mirrors.aliyun.com/ubuntu-releases/24.04/
 

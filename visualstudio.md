@@ -1,21 +1,14 @@
 # visualstudio
+vs下载utf8插件，强制编码为utf8
 
 CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 项目的构建配置。让我详细解释它的作用和与 CMakePresets.json 的区别：
-
 1. CMakeSettings.json 的作用
-
 1.1 主要功能
-
 • Visual Studio 专用：只在 VS 中生效
-
 • 配置管理：定义不同的构建配置（Debug/Release）
-
 • 环境设置：设置环境变量、工具链等
-
 • CMake 参数：传递参数给 CMake
-
 1.2 典型结构
-
 {
   "configurations": [
     {
@@ -38,31 +31,19 @@ CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 
 
 
 2. CMakeSettings.json vs CMakePresets.json
-
 2.1 对比表格
-
 特性 CMakeSettings.json CMakePresets.json
-
 适用范围 Visual Studio 专用 跨平台（CMake 3.19+）
-
 标准化 Microsoft 私有格式 CMake 官方标准
-
 兼容性 只适用于 VS 适用于所有支持 CMake 的 IDE
-
 功能 基础配置管理 完整的预设系统
-
 2.2 实际使用场景
-
 • 只用 Visual Studio：使用 CMakeSettings.json
-
 • 多平台/多 IDE：使用 CMakePresets.json
-
 • 混合环境：两者都可以有，但 CMakePresets.json 优先
 
 3. CMakeSettings.json 详细配置
-
 3.1 完整配置示例
-
 {
   "configurations": [
     {
@@ -111,10 +92,7 @@ CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 
     }
   ]
 }
-
-
 3.2 关键字段说明
-
 {
   "configurations": [
     {
@@ -137,26 +115,19 @@ CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 
   ]
 }
 
-
 4. 在 Visual Studio 中的使用
-
 4.1 创建和编辑
-
 1. 自动创建：在 VS 中打开 CMake 项目时自动生成
 2. 手动创建：在项目根目录创建 CMakeSettings.json
 3. 编辑方式：VS 提供图形化编辑器
-
 4.2 图形化界面
-
 在 Visual Studio 中：
 1. 解决方案资源管理器 → 右键项目
 2. CMake 设置 → 打开图形化编辑器
 3. 添加配置 → 选择预设或自定义
 
 5. 实际项目示例
-
-5.1 LLVM 项目配置
-
+5.1 LLVM项目配置
 {
   "configurations": [
     {
@@ -198,9 +169,7 @@ CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 
   ]
 }
 
-
 5.2 多配置项目
-
 {
   "configurations": [
     {
@@ -236,11 +205,8 @@ CMakeSettings.json 是 Visual Studio 特有的配置文件，用于管理 CMake 
   ]
 }
 
-
 6. 与 CMakePresets.json 的转换
-
 6.1 等效配置对比
-
 CMakeSettings.json:
 {
   "configurations": [
@@ -252,8 +218,6 @@ CMakeSettings.json:
     }
   ]
 }
-
-
 等效的 CMakePresets.json:
 {
   "version": 3,
@@ -270,105 +234,70 @@ CMakeSettings.json:
   ]
 }
 
-
 6.2 迁移指南
-
 如果要迁移到 CMakePresets.json：
-
 1. 重命名字段：
    • buildRoot → binaryDir
-
    • configurationType → cacheVariables.CMAKE_BUILD_TYPE
-
 2. 转换变量：
    // CMakeSettings.json
    "variables": [
      { "name": "LLVM_DIR", "value": "C:/LLVM/lib/cmake/llvm" }
    ]
-   
    // CMakePresets.json  
    "cacheVariables": {
      "LLVM_DIR": "C:/LLVM/lib/cmake/llvm"
    }
    
-
 7. 实际使用建议
-
 7.1 何时使用 CMakeSettings.json
-
 • 纯 Visual Studio 环境
-
 • 简单的项目配置
-
 • 需要图形化配置界面
-
 7.2 何时使用 CMakePresets.json
-
 • 跨平台开发
-
 • 多 IDE 支持（CLion、VS Code、VS）
-
 • 复杂的配置需求
-
 • 团队协作项目
 
 7.3 推荐策略
-
 // 项目根目录结构
 project/
 ├── CMakeLists.txt
 ├── CMakePresets.json          # 主要配置（跨平台）
 └── CMakeSettings.json         # 可选（VS 特定优化）
 
-
 8. 故障排除
-
 8.1 常见问题
-
 1. 配置不生效：检查 JSON 语法错误
 2. 环境变量问题：使用 inheritEnvironments
 3. 路径问题：使用 ${projectDir} 等变量
-
 8.2 调试技巧
-
 在 VS 中：
 1. 输出窗口 → 查看 CMake 输出
 2. CMake 缓存 → 查看实际使用的变量值
 3. 重新生成缓存：删除 build 目录重新配置
-
 总结
-
 CMakeSettings.json 是 Visual Studio 的专属配置工具，适合：
 • 简单的 VS 项目
-
 • 图形化配置需求
-
 • 单平台开发
-
 对于现代 CMake 项目，推荐使用 CMakePresets.json，因为它：
 • 是官方标准
-
 • 支持跨平台
-
 • 功能更强大
-
 • 未来兼容性好
 
 如果你的项目主要在 Visual Studio 中开发，两者都可以使用，但 CMakePresets.json 是更面向未来的选择。
 
 vs 17.10.5
-
 最好的IDE
-
 Visual Studio 使用Cmake
 https://github.com/edidada/VSCMakeProject
 
 生成
 compile_commands.json
-
 对于 Visual Studio，你可以安装 "CMake Tools for Visual Studio" 扩展，然后在项目设置中启用 "Generate CMake options" 选项。这将在构建过程中自动生成compile_commands.json文件。
-
-
 
 1> 环境设置:
 1>     CommandPromptType=Native
