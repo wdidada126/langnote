@@ -1,5 +1,11 @@
 # antlr4权威指南
 
+源代码是命令行执行的，改成了maven执行
+https://gitee.com/edidada/antlr
+D:\develops\git\github\java\antlr>
+
+有cpp分支
+
 参考文档
 https://github.com/edidada/hand_in_hand_with_antlr
 
