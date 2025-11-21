@@ -368,7 +368,7 @@ const char* current_filename = "input.txt";
 6. 实际应用场景
 
 1. 编译器开发
-
+```
 %locations
 %type <node> expression statement
 
@@ -379,7 +379,7 @@ function_decl: TYPE IDENTIFIER '(' parameters ')' '{' statements '}'
         $$ = create_function_node($1, $2, $4, $7);
         set_location($$, @1); // 设置AST节点的位置信息
     }
-
+```
 
 2. 配置解析器
 
@@ -406,7 +406,6 @@ template: text (tag text)*
 
 
 7. 优势总结
-
 1. 精确的错误定位：提供行号、列号等详细信息
 2. 线程安全：支持多实例和重入
 3. 更好的错误信息：用户可以知道错误发生的具体位置
@@ -414,7 +413,6 @@ template: text (tag text)*
 5. 调试友好：更容易追踪和修复解析问题
 
 8. 注意事项
-
 1. 性能考虑：位置追踪会增加一些开销
 2. 内存使用：需要存储额外的位置信息
 3. 兼容性：需要 Bison 3.0+ 版本支持完整功能
@@ -425,7 +423,7 @@ template: text (tag text)*
 以下是使用 Flex 单独识别 C 语言关键字并生成 token 流的完整示例：
 
 1. 头文件 c_tokens.h
-
+```
 #ifndef C_TOKENS_H
 #define C_TOKENS_H
 
@@ -541,10 +539,10 @@ void print_token(const token_t* token);
 void free_token(token_t* token);
 
 #endif // C_TOKENS_H
-
+```
 
 2. Token 工具函数 c_tokens.c
-
+```
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -610,10 +608,10 @@ void free_token(token_t* token) {
         free(token);
     }
 }
-
+```
 
 3. Flex 词法分析器 c_lexer.l
-
+```
 %{
 #include "c_tokens.h"
 #include <stdio.h>
@@ -793,10 +791,10 @@ void update_position(int length) {
     column_num += length;
     start_column = column_num;
 }
-
+```
 
 4. 主程序 main.c
-
+```
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -880,10 +878,10 @@ int main(int argc, char** argv) {
     process_file(filename, show_whitespace);
     return 0;
 }
-
+```
 
 5. CMakeLists.txt
-
+```
 cmake_minimum_required(VERSION 3.14)
 project(C_Lexer LANGUAGES C)
 
@@ -918,10 +916,10 @@ if(APPLE)
 else()
     target_link_libraries(c_lexer fl)
 endif()
-
+```
 
 6. 测试文件 test.c
-
+```
 #include <stdio.h>
 
 int main() {
@@ -939,17 +937,16 @@ int main() {
     
     return 0;
 }
-
+```
 
 7. 编译和运行
-
 编译步骤：
-
+```
 mkdir build
 cd build
 cmake ..
 make
-
+```
 
 运行示例：
 
@@ -959,9 +956,7 @@ make
 # 显示所有token（包括空白和注释）
 ./c_lexer ../test.c -w
 
-
 预期输出：
-
 
 === Tokenizing file: test.c ===
 Line Col  Type              Value (Length)
@@ -983,7 +978,6 @@ Total tokens: 68, Errors: 0
 
 
 8. 高级特性扩展
-
 添加宏定义处理：
 
 /* 宏定义 */
@@ -1004,15 +998,125 @@ Total tokens: 68, Errors: 0
 
 这个词法分析器可以：
 • ✅ 识别所有 C 语言关键字
-
 • ✅ 处理标识符、常量、字符串
-
 • ✅ 识别运算符和分隔符
-
 • ✅ 处理注释和预处理指令
-
 • ✅ 提供精确的行列位置信息
-
 • ✅ 生成结构化的 token 流
-
 • ✅ 支持错误检测和报告
+
+
+## man flex
+
+FLEX(1)                                                          Programming                                                          FLEX(1)
+NAME
+       flex - the fast lexical analyser generator
+SYNOPSIS
+       flex [OPTIONS] [FILE]...
+DESCRIPTION
+       Generates programs that perform pattern-matching on text.
+
+   Table Compression:
+       -Ca, --align
+              trade off larger tables for better memory alignment
+       -Ce, --ecs
+              construct equivalence classes
+       -Cf    do not compress tables; use -f representation
+       -CF    do not compress tables; use -F representation
+       -Cm, --meta-ecs
+              construct meta-equivalence classes
+       -Cr, --read
+              use read() instead of stdio for scanner input
+       -f, --full
+              generate fast, large scanner. Same as -Cfr
+       -F, --fast
+              use alternate table representation. Same as -CFr
+       -Cem   default compression (same as --ecs --meta-ecs)
+
+  Debugging:
+       -d, --debug
+              enable debug mode in scanner
+       -b, --backup
+              write backing-up information to lex.backup
+       -p, --perf-report
+              write performance report to stderr
+       -s, --nodefault
+              suppress default rule to ECHO unmatched text
+       -T, --trace
+              flex should run in trace mode
+       -w, --nowarn
+              do not generate warnings
+       -v, --verbose
+              write summary of scanner statistics to stdout
+       --hex  use hexadecimal numbers instead of octal in debug outputs
+
+FILES
+       -o, --outfile=FILE
+              specify output filename
+       -S, --skel=FILE
+              specify skeleton file
+       -t, --stdout
+              write scanner on stdout instead of lex.yy.c
+       --yyclass=NAME
+              name of C++ class
+       --header-file=FILE
+              create a C header file in addition to the scanner
+       --tables-file[=FILE] write tables to FILE
+       --backup-file=FILE
+              write backing-up information to FILE
+
+   Scanner behavior:
+       -7, --7bit
+              generate 7-bit scanner
+       -8, --8bit
+              generate 8-bit scanner
+       -B, --batch
+              generate batch scanner (opposite of -I)
+       -i, --case-insensitive
+              ignore case in patterns
+       -l, --lex-compat
+              maximal compatibility with original lex
+       -X, --posix-compat
+              maximal compatibility with POSIX lex
+       -I, --interactive
+              generate interactive scanner (opposite of -B)
+       --yylineno
+              track line count in yylineno
+
+   Generated code:
+       -+,  --c++
+              generate C++ scanner class
+       -Dmacro[=defn]
+              #define macro defn  (default defn is '1')
+       -L,  --noline
+              suppress #line directives in scanner
+       -P,  --prefix=STRING
+              use STRING as prefix instead of "yy"
+       -R,  --reentrant
+              generate a reentrant C scanner
+       --bison-bridge
+              scanner for bison pure parser.
+       --bison-locations
+              include yylloc support.
+       --stdinit
+              initialize yyin/yyout to stdin/stdout
+       --nounistd
+              do not include <unistd.h>
+       --noFUNCTION
+              do not generate a particular FUNCTION
+
+
+   Miscellaneous:
+       -c     do-nothing POSIX option
+       -n     do-nothing POSIX option
+       -?
+       -h, --help
+              produce this help message
+       -V, --version
+              report flex version
+
+SEE ALSO
+       The full documentation for flex is maintained as a Texinfo manual.  If the info and flex programs are properly installed at your site,
+       the command
+              info flex
+       should give you access to the complete manual.
