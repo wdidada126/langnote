@@ -1,0 +1,206 @@
+# scitools Understand工具
+
+Buildspy 是 Understand 工具的一项功能，专为使用 gcc/g++ 编译器的用户设计。它通过捕捉编译过程中使用的文件、包含项和宏定义，自动创建 Understand 项目，从而避免手动输入这些信息。使用时，需要将编译器更改为 `gccwrapper/g++wrapper`，或者直接通过命令行执行 `buildspy` 命令。此功能可以显著提高项目设置的准确性和效率，特别是在 Linux 和 Windows (Cygwin) 环境下。
+
+更多信息请访问 [Buildspy 官方页面](https://support.scitools.com/support/solutions/articles/70000582690)。
+
+https://support.scitools.com/support/solutions/articles/70000582619-creating-accurate-c-c-projects
+
+
+Understand使用入门
+https://www.bilibili.com/video/BV1j8411o7X7/?spm_id_from=333.999.0.0
+
+静态分析工具(以Understand
+https://www.bilibili.com/video/BV1jT411B7zm?p=2&vd_source=71b9c2a5f966942c83677c2110efde22
+
+
+20240816 添加poco项目，cmake组织的，需要compile_command.json
+
+官方文档https://support.scitools.com/support/solutions/articles/70000582647-cmake-and-understand
+    cmake -G “NMake Makefiles” -DCMAKE_EXPORT_COMPILE_COMMANDS=ON                           
+
+
+https://licensing.scitools.com/student
+facebook上有联系，messenger上可以看到
+
+windows understand 6.1.1086 升级成6.5 1159
+
+20240415
+java代码，用Understand 不如用idea
+
+ScitoolsUnderstand破解版.mhtml
+
+html
+https://documentation.scitools.com/html/understand/wwhelp/wwhimpl/js/html/wwhelp.htm
+
+pdf
+https://documentation.scitools.com/pdf/understand.pdf
+
+spring支持
+Understand build 1168 开始支持，
+windows安装的是Understand 1092/1159
+mac装的是Understand 5 （激活失效），现在装不了undertstand 6了
+
+https://support.scitools.com/support/solutions/articles/70000659561-java-spring-support
+
+git
+https://support.scitools.com/support/solutions/articles/70000582795-git-integration
+
+cmake
+https://support.scitools.com/support/solutions/articles/70000582647-cmake-and-understand
+
+windows understand
+java源代码是utf8编码，乱码
+中文乱码
+中文乱码主要是因为文件的编码格式原因引起，设置的位置:
+project->configure project->file options ->File encode->utf-8
+
+参考文档 https://blog.csdn.net/lvwx369/article/details/120464128
+
+java标准库的代码，关联不上
+
+netty.und
+G:\source_code\netty\netty.und
+D:\git\gitlab\spring-framework-5.0.x\spring-framework-5.0.x.und
+
+https://support.scitools.com/support/home
+
+下载页面，收费的
+https://licensing.scitools.com/download
+
+
+vsc上使用Understand
+https://marketplace.visualstudio.com/items?itemName=scitools.understand
+
+源代码
+https://github.com/stinb/UnderstandForVSCode
+
+安装vsc扩展
+https://github.com/stinb/UnderstandForVSCode/wiki/Installing-the-Extension
+
+
+1.0.3 2024/4/2 Download
+1.0.2 2024/4/1 Download
+1.0.1 2024/3/13 Download
+1.0.0 2024/3/13 Download
+
+Understand中的图表
+https://blog.scitools.com/graphlist/
+
+Control Flow Graphs
+Call Trees
+Call-By Trees
+Include Tree
+Butterfly Graph
+Declaration Graphs
+Depends On and Depended on By
+Everything this file depends on
+Data Members
+Object References
+UML Class Diagram
+UML Sequence Diagrams
+Overrides
+Dependency Graphs
+Base and Derived Graphs
+Architecture Graphs
+Compare – Butterfly Graph
+Compare – Control Flow
+Project Overview Graphs
+Custom Graphs
+
+https://scitools.com/
+
+https://blog.csdn.net/qwang24/article/details/4064975
+
+understand和doxygen。understand擅长基于语法结构浏览代码，doxygen除了基于语法结构外还支持基于注释提供的功能结构浏览代码。如果coder能在注释中利用doxygen提供的group指令描述代码的层次，则doxygen可以根据这些指令在文档中生成相应的链接。另外，doxygen支持的语言相当多，这点比understand强。understand强在生成各种关系图，查询定位准确，支持代码质量分析和统计等doxygen没有或较弱的功能。
+除了understand和doxygen以外，ea和visio也能浏览代码，他们强在能自动生成uml图，对于快速浏览类体系结构有帮助。但是在语法分析方面较弱，如果程序中宏定义较多的话，往往会报错，比如qt的代码经常能把ea玩死。
+https://blog.csdn.net/eagle11235/article/details/125210975
+
+understand具有以下几个特点：
+支持多语言：Ada, C, C++, C#, Java, FORTRAN, Delphi, Jovial, and PL/M ，混合语言的project也支持；
+多平台： Windows/Linux/Solaris/HP-UX/IRIX/MAC OS X
+代码语法高亮、代码折迭、交叉跳转、书签等基本阅读功能。
+可以对整个project的architecture、metrics进行分析并输出报表。
+可以对代码生成多种图（butterfly graph、call graph、called by graph、control flow graph、UML class graph等），在图上点击节点可以跳转到对应的源代码位置。
+支持Perl API、python，便于扩展。
+内置的目录和文件比较器。
+支持project的snapshot，并能和自家的TrackBack集成便于监视project的变化。
+understand软件有教育版
+
+
+Source Insight
+
+Source Insight是一个面向项目开发的程序编辑器和代码浏览器，它拥有内置的对C/C++, C#和Java等程序的分析。Source Insight能分析你的源代码并在你工作的同时动态维护它自己的符号数据库，并自动为你显示有用的上下文信息。 Source Insight不仅仅是一个强大的程序编辑器，它还能显示reference trees，class inheritance diagrams和call trees。Source Insight提供了最快速的对源代码的导航和任何程序编辑器的源信
+
+prince2
+https://baike.baidu.com/item/PRINCE2/4525398
+
+一直以来，我以为Source Insight的代码分析已经是业界最强、最专业。今天试用了一下Scitools的Understand，导入代码后直接可以生成图形化分析结果，包括模块间调用，函数调用流程等，确实比较震撼。
+https://zhuanlan.zhihu.com/p/476563039
+
+*.und 新建项目生成的文件夹
+
+### 两个类的时序图
+http://codemx.cn/2016/04/30/Understand01/index.html
+
+
+SciTools Understand、Source Insight的代码可视化工具？
+
+时序图和调用关系图
+
+## 安装
+https://www.jb51.net/softs/822835.html#downintro2
+破解版
+
+淘宝上有购买破解版
+百度网盘 Understand文件夹下面 mac windows的都有
+
+Scientific Toolworks Understand是一种静态分析工具，用于维护、测量和分析关键或大型代码库。从指标和图表到依赖分析，用理解掌握您的源代码。
+
+基本指标
+* 类数
+* 文件数
+* 函数数
+* 行数
+* 空白行数
+* 代码行数
+* 注释行数
+* 非活动行数
+* 声明性语句数
+* 可执行语句数
+* 注释与代码的比率
+
+高级指标(部分列表)
+* 圈复杂度
+* 结
+* 类耦合
+* 内聚不足百分比
+* 路径计数
+* 最大继承
+* 基类计数
+* 继承的类计数
+* 实例方法数
+* 每个类的加权方法
+
+自带的例子
+https://github.com/TheAlgorithms/Java
+
+
+生成UML类图、调用树图
+
+默认安装的插件不支持这两种图，需要从官网下载插件。
+_//www.scitools.com/perl_scripts/uperl/uml_class.upl
+_//www.scitools.com/perl_scripts/uperl/invocation.upl
+放到sti/conf/scripts/local目录下。
+然后重新运行，执行 project- project graphical views - xxxx可以生成这两种图。
+
+
+有一款商业化的代码可视化工具sourcetrail。它对于个人使用是免费的，支持Windows、macOS、Linux三大平台。
+它支持C/C++与Java，支持CFG流程图，类图，类成员与类之间的调用关系显示效果都还不错，可以试试。
+
+## 官方文档
+www.scitools.com/
+
+### 官方文档
+https://blog.scitools.com/graphlist/
+
