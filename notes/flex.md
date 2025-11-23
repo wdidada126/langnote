@@ -414,7 +414,6 @@ template: text (tag text)*
 5. 调试友好：更容易追踪和修复解析问题
 
 8. 注意事项
-
 1. 性能考虑：位置追踪会增加一些开销
 2. 内存使用：需要存储额外的位置信息
 3. 兼容性：需要 Bison 3.0+ 版本支持完整功能
@@ -796,7 +795,6 @@ void update_position(int length) {
 
 
 4. 主程序 main.c
-
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -1004,15 +1002,9 @@ Total tokens: 68, Errors: 0
 
 这个词法分析器可以：
 • ✅ 识别所有 C 语言关键字
-
 • ✅ 处理标识符、常量、字符串
-
 • ✅ 识别运算符和分隔符
-
 • ✅ 处理注释和预处理指令
-
 • ✅ 提供精确的行列位置信息
-
 • ✅ 生成结构化的 token 流
-
 • ✅ 支持错误检测和报告
