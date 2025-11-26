@@ -1,5 +1,74 @@
 # asm
 
+《architecture patterns with python》，作者是某个欧洲家具转运公司的，不是啥大厂，但业务逻辑也够复杂。这本书结合实战例子讲了 DDD，这就明白的多了。也讲了 TDD，事件驱动设计等等。这书最好的是讲了这些花里胡哨的概念怎么能落地，究竟怎么帮助了他们。咱们写代码最终也是为了解决问题，把东西落地，并不是为了“我们用了 XXX，这很 cooooool”。所以很值得一看
+
+非常优秀的开源课程项目专门教授汇编语言和计算机体系结构
+1. CS61C - Great Ideas in Computer Architecture (Berkeley)
+• 课程：计算机体系结构的伟大思想
+• 特点：从C语言到RISC-V汇编，再到硬件实现
+• 项目：实现类MIPS处理器的模拟器
+• 资源：完整的课程视频、讲义、作业
+• GitHub: https://github.com/ucb-cs61c
+
+2. Nand2Tetris (希伯来大学)
+• 课程：从与非门到俄罗斯方块
+• 特点：从最基础的逻辑门开始，逐步构建完整的计算机系统
+• 内容：
+  • 硬件：CPU、内存、机器语言
+  • 软件：汇编器、虚拟机、编译器
+• 网站: http://www.nand2tetris.org/
+• 书籍: 《计算机系统要素》
+
+3. CSAPP (CMU 15-213)
+• 课程：计算机系统导论
+• 特点：深入的x86-64汇编和系统编程
+• 著名实验：
+  • Data Lab：位操作
+  • Bomb Lab：反汇编破解
+  • Attack Lab：缓冲区溢出攻击
+• 书籍: 《深入理解计算机系统》
+
+4. 6.004 (MIT)
+• 课程：计算结构
+• 特点：从数字逻辑到指令集架构
+• 使用：Beta处理器架构（类RISC）
+• 资源: https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/
+
+5. Stanford CS107 / CS107E
+• CS107：计算机组成与系统
+• CS107E：嵌入式系统的计算机组成（基于Raspberry Pi）
+• 特点：直接在硬件上编写汇编，理解计算机启动过程
+
+6. RISC-V 相关课程
+Berkeley CS61C (新版)
+• 使用RISC-V代替MIPS
+• 更现代的指令集架构
+
+MIT 6.191
+• 基于RISC-V的数字集成电路
+• 从算法到硬件实现
+推荐学习路径
+初学者路线
+Nand2Tetris → CS61C → CSAPP
+实践导向路线
+CS107E (树莓派实践) → 6.004 → 专业项目
+特色对比
+
+课程 架构 难度 实践性 现代性
+CS61C MIPS/RISC-V 中等 ⭐⭐⭐⭐ ⭐⭐⭐⭐
+Nand2Tetris HACK 入门 ⭐⭐⭐⭐ ⭐⭐⭐
+CSAPP x86-64 较高 ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐
+6.004 Beta 较高 ⭐⭐⭐ ⭐⭐
+
+获取方式
+
+1. edX/Coursera：CS61C、Nand2Tetris有正式MOOC
+2. 大学开放课程：MIT OCW、Stanford Engineering Everywhere
+3. GitHub：搜索课程代码 + "solution"或"notes"
+4. 课程官网：直接访问大学课程页面
+
+这些课程都提供了完整的视频讲座、讲义、作业和实验项目，非常适合系统学习汇编语言和计算机体系结构！
+
 ## source code
 musl 有汇编
 
