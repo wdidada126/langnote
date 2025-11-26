@@ -27,7 +27,7 @@ flex 生成的代码，引用.y文件定义的变量
 需要引入xxx.tab.h（bison生成的）
 
 ## 版本version
-
+flex 2.6.4
 ## 开源协议
 
 ## 二进制文件库文件安装
@@ -368,7 +368,7 @@ const char* current_filename = "input.txt";
 6. 实际应用场景
 
 1. 编译器开发
-
+```
 %locations
 %type <node> expression statement
 
@@ -379,7 +379,7 @@ function_decl: TYPE IDENTIFIER '(' parameters ')' '{' statements '}'
         $$ = create_function_node($1, $2, $4, $7);
         set_location($$, @1); // 设置AST节点的位置信息
     }
-
+```
 
 2. 配置解析器
 
@@ -406,7 +406,6 @@ template: text (tag text)*
 
 
 7. 优势总结
-
 1. 精确的错误定位：提供行号、列号等详细信息
 2. 线程安全：支持多实例和重入
 3. 更好的错误信息：用户可以知道错误发生的具体位置
@@ -424,7 +423,7 @@ template: text (tag text)*
 以下是使用 Flex 单独识别 C 语言关键字并生成 token 流的完整示例：
 
 1. 头文件 c_tokens.h
-
+```
 #ifndef C_TOKENS_H
 #define C_TOKENS_H
 
@@ -540,10 +539,10 @@ void print_token(const token_t* token);
 void free_token(token_t* token);
 
 #endif // C_TOKENS_H
-
+```
 
 2. Token 工具函数 c_tokens.c
-
+```
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -609,10 +608,10 @@ void free_token(token_t* token) {
         free(token);
     }
 }
-
+```
 
 3. Flex 词法分析器 c_lexer.l
-
+```
 %{
 #include "c_tokens.h"
 #include <stdio.h>
@@ -792,9 +791,11 @@ void update_position(int length) {
     column_num += length;
     start_column = column_num;
 }
-
+```
 
 4. 主程序 main.c
+```
+>>>>>>> 8b935f99230714bbcdcca2886008469ccfbf1c85
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -878,10 +879,10 @@ int main(int argc, char** argv) {
     process_file(filename, show_whitespace);
     return 0;
 }
-
+```
 
 5. CMakeLists.txt
-
+```
 cmake_minimum_required(VERSION 3.14)
 project(C_Lexer LANGUAGES C)
 
@@ -916,10 +917,10 @@ if(APPLE)
 else()
     target_link_libraries(c_lexer fl)
 endif()
-
+```
 
 6. 测试文件 test.c
-
+```
 #include <stdio.h>
 
 int main() {
@@ -937,17 +938,16 @@ int main() {
     
     return 0;
 }
-
+```
 
 7. 编译和运行
-
 编译步骤：
-
+```
 mkdir build
 cd build
 cmake ..
 make
-
+```
 
 运行示例：
 
@@ -957,9 +957,7 @@ make
 # 显示所有token（包括空白和注释）
 ./c_lexer ../test.c -w
 
-
 预期输出：
-
 
 === Tokenizing file: test.c ===
 Line Col  Type              Value (Length)
@@ -979,9 +977,7 @@ Line Col  Type              Value (Length)
 ------------------------------------------
 Total tokens: 68, Errors: 0
 
-
 8. 高级特性扩展
-
 添加宏定义处理：
 
 /* 宏定义 */
@@ -1001,10 +997,214 @@ Total tokens: 68, Errors: 0
 
 
 这个词法分析器可以：
-• ✅ 识别所有 C 语言关键字
-• ✅ 处理标识符、常量、字符串
-• ✅ 识别运算符和分隔符
-• ✅ 处理注释和预处理指令
-• ✅ 提供精确的行列位置信息
-• ✅ 生成结构化的 token 流
-• ✅ 支持错误检测和报告
+<<<<<<< HEAD
+• 识别所有 C 语言关键字
+• 处理标识符、常量、字符串
+• 识别运算符和分隔符
+• 处理注释和预处理指令
+• 提供精确的行列位置信息
+• 生成结构化的 token 流
+• 支持错误检测和报告
+
+
+## man flex
+
+FLEX(1)                                                          Programming                                                          FLEX(1)
+NAME
+       flex - the fast lexical analyser generator
+SYNOPSIS
+       flex [OPTIONS] [FILE]...
+DESCRIPTION
+       Generates programs that perform pattern-matching on text.
+
+   Table Compression:
+       -Ca, --align
+              trade off larger tables for better memory alignment
+       -Ce, --ecs
+              construct equivalence classes
+       -Cf    do not compress tables; use -f representation
+       -CF    do not compress tables; use -F representation
+       -Cm, --meta-ecs
+              construct meta-equivalence classes
+       -Cr, --read
+              use read() instead of stdio for scanner input
+       -f, --full
+              generate fast, large scanner. Same as -Cfr
+       -F, --fast
+              use alternate table representation. Same as -CFr
+       -Cem   default compression (same as --ecs --meta-ecs)
+
+  Debugging:
+       -d, --debug
+              enable debug mode in scanner
+       -b, --backup
+              write backing-up information to lex.backup
+       -p, --perf-report
+              write performance report to stderr
+       -s, --nodefault
+              suppress default rule to ECHO unmatched text
+       -T, --trace
+              flex should run in trace mode
+       -w, --nowarn
+              do not generate warnings
+       -v, --verbose
+              write summary of scanner statistics to stdout
+       --hex  use hexadecimal numbers instead of octal in debug outputs
+
+FILES
+       -o, --outfile=FILE
+              specify output filename
+       -S, --skel=FILE
+              specify skeleton file
+       -t, --stdout
+              write scanner on stdout instead of lex.yy.c
+       --yyclass=NAME
+              name of C++ class
+       --header-file=FILE
+              create a C header file in addition to the scanner
+       --tables-file[=FILE] write tables to FILE
+       --backup-file=FILE
+              write backing-up information to FILE
+
+   Scanner behavior:
+       -7, --7bit
+              generate 7-bit scanner
+       -8, --8bit
+              generate 8-bit scanner
+       -B, --batch
+              generate batch scanner (opposite of -I)
+       -i, --case-insensitive
+              ignore case in patterns
+       -l, --lex-compat
+              maximal compatibility with original lex
+       -X, --posix-compat
+              maximal compatibility with POSIX lex
+       -I, --interactive
+              generate interactive scanner (opposite of -B)
+       --yylineno
+              track line count in yylineno
+
+   Generated code:
+       -+,  --c++
+              generate C++ scanner class
+       -Dmacro[=defn]
+              #define macro defn  (default defn is '1')
+       -L,  --noline
+              suppress #line directives in scanner
+       -P,  --prefix=STRING
+              use STRING as prefix instead of "yy"
+       -R,  --reentrant
+              generate a reentrant C scanner
+       --bison-bridge
+              scanner for bison pure parser.
+       --bison-locations
+              include yylloc support.
+       --stdinit
+              initialize yyin/yyout to stdin/stdout
+       --nounistd
+              do not include <unistd.h>
+       --noFUNCTION
+              do not generate a particular FUNCTION
+
+
+   Miscellaneous:
+       -c     do-nothing POSIX option
+       -n     do-nothing POSIX option
+       -?
+       -h, --help
+              produce this help message
+       -V, --version
+              report flex version
+
+SEE ALSO
+       The full documentation for flex is maintained as a Texinfo manual.  If the info and flex programs are properly installed at your site,
+       the command
+              info flex
+       should give you access to the complete manual.
+
+## prefix
+.l
+csv_lexer.l
+%option prefix="csv_"
+
+生成的.c
+
+/* A lexical scanner generated by flex */
+
+#define yy_create_buffer csv__create_buffer
+#define yy_delete_buffer csv__delete_buffer
+#define yy_scan_buffer csv__scan_buffer
+#define yy_scan_string csv__scan_string
+#define yy_scan_bytes csv__scan_bytes
+#define yy_init_buffer csv__init_buffer
+#define yy_flush_buffer csv__flush_buffer
+#define yy_load_buffer_state csv__load_buffer_state
+#define yy_switch_to_buffer csv__switch_to_buffer
+#define yypush_buffer_state csv_push_buffer_state
+#define yypop_buffer_state csv_pop_buffer_state
+#define yyensure_buffer_stack csv_ensure_buffer_stack
+#define yy_flex_debug csv__flex_debug
+#define yyin csv_in
+#define yyleng csv_leng
+#define yylex csv_lex
+#define yylineno csv_lineno
+#define yyout csv_out
+#define yyrestart csv_restart
+#define yytext csv_text
+#define yywrap csv_wrap
+#define yyalloc csv_alloc
+#define yyrealloc csv_realloc
+#define yyfree csv_free
+
+这些是 Flex 使用 %option prefix="csv_" 时生成的函数和变量别名，用于避免命名冲突。以下是每个别名的作用：
+
+1. 核心函数和变量
+词法分析器核心函数
+#define yylex csv_lex          // 主要的词法分析函数
+#define yyrestart csv_restart  // 重置词法分析器状态
+#define yywrap csv_wrap        // 文件结束处理函数
+
+输入输出相关
+#define yyin csv_in            // 输入文件指针（FILE*）
+#define yyout csv_out          // 输出文件指针（FILE*）
+#define yylineno csv_lineno    // 当前行号
+
+文本处理相关
+#define yytext csv_text        // 当前匹配的文本（char*）
+#define yyleng csv_leng        // 当前匹配文本的长度
+
+2. 缓冲区管理函数
+缓冲区创建和删除
+#define yy_create_buffer csv__create_buffer    // 创建新缓冲区
+#define yy_delete_buffer csv__delete_buffer    // 删除缓冲区
+#define yy_init_buffer csv__init_buffer        // 初始化缓冲区
+
+缓冲区切换
+#define yy_switch_to_buffer csv__switch_to_buffer  // 切换到指定缓冲区
+#define yy_flush_buffer csv__flush_buffer          // 刷新缓冲区
+#define yy_load_buffer_state csv__load_buffer_state // 加载缓冲区状态
+
+缓冲区栈操作
+#define yypush_buffer_state csv_push_buffer_state   // 压入缓冲区状态
+#define yypop_buffer_state csv_pop_buffer_state     // 弹出缓冲区状态
+#define yyensure_buffer_stack csv_ensure_buffer_stack // 确保缓冲区栈存在
+
+3. 扫描函数
+#define yy_scan_buffer csv__scan_buffer    // 从内存缓冲区扫描
+#define yy_scan_string csv__scan_string    // 从字符串扫描
+#define yy_scan_bytes csv__scan_bytes      // 从字节数组扫描
+
+4. 内存管理函数
+#define yyalloc csv_alloc      // 内存分配函数
+#define yyrealloc csv_realloc  // 内存重分配函数
+#define yyfree csv_free        // 内存释放函数
+
+5. 调试功能
+#define yy_flex_debug csv__flex_debug  // 调试输出控制
+• 识别所有 C 语言关键字
+• 处理标识符、常量、字符串
+• 识别运算符和分隔符
+• 处理注释和预处理指令
+• 提供精确的行列位置信息
+• 生成结构化的 token 流
+• 支持错误检测和报告
