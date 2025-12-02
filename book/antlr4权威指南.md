@@ -282,6 +282,231 @@ Process finished with exit code 0
 
 ```
 
+
+特殊的递归方式
+左递归  left recursion
+
+虽然ANTLR4已经能够处理直接左递归，但是它还无法处理间接左递归。
+
+左递归（Left Recursion）是编译原理中一种特殊的递归形式。我来详细解释：
+
+1. 什么是左递归？
+
+左递归是指产生式的第一个符号是产生式头本身的递归形式。
+
+直接左递归
+
+A → Aα | β
+
+其中：
+• A 是非终结符
+
+• α 和 β 是符号序列
+
+• β 不以 A 开头
+
+示例
+
+// 左递归的例子
+expression → expression + term
+           | term
+
+// 非左递归的例子  
+expression → term + expression
+           | term
+
+
+2. 左递归的类型
+
+2.1 直接左递归
+
+// 算术表达式
+expr → expr + term
+     | expr - term  
+     | term
+
+// 列表语法
+list → list , element
+     | element
+
+
+2.2 间接左递归
+
+A → Bα
+B → Aβ
+
+
+2.3 隐藏左递归
+
+A → Bα
+B → A | β
+
+
+3. 左递归的问题
+
+3.1 对于递归下降分析器
+
+// 直接实现左递归会产生无限递归
+void expr() {
+    expr();  // 无限递归！
+    match('+');
+    term();
+}
+
+
+3.2 对于表驱动分析器
+
+• 可能使分析表产生冲突
+
+• 某些分析算法（如LL解析器）无法处理左递归
+
+4. 消除左递归的方法
+
+4.1 直接左递归消除
+
+原始文法：
+A → Aα | β
+
+
+消除后：
+A → βA'
+A' → αA' | ε
+
+
+具体示例
+
+消除前：
+expr → expr + term
+     | expr - term
+     | term
+
+
+消除后：
+expr → term expr'
+expr' → + term expr'
+      | - term expr'  
+      | ε
+
+
+5. ANTLR4 中的左递归处理
+
+ANTLR4 自动处理左递归，这是它的重要特性！
+
+5.1 在ANTLR中直接写左递归
+
+expr
+    : expr ('*' | '/') expr  # MultiplicativeExpr
+    | expr ('+' | '-') expr   # AdditiveExpr  
+    | INT                     # IntExpr
+    | '(' expr ')'            # ParenExpr
+    ;
+
+
+5.2 ANTLR的内部转换
+
+ANTLR4会自动将左递归转换为等价的非左递归形式。
+
+6. 左递归的优缺点
+
+优点：
+
+1. 自然表达：更符合人类的思维习惯
+2. 结合性正确：左递归自然表达左结合性
+3. AST结构清晰：生成的语法树更直观
+
+缺点：
+
+1. 解析算法限制：某些解析器不支持
+2. 可能无限递归：递归下降解析器直接实现会栈溢出
+
+7. 实际案例对比
+
+案例1：算术表达式
+
+左递归写法（ANTLR4推荐）：
+expression
+    : expression '*' expression
+    | expression '+' expression  
+    | INTEGER
+    | '(' expression ')'
+    ;
+
+
+非左递归写法（传统）：
+expression
+    : term ('+' term)*
+    ;
+    
+term
+    : factor ('*' factor)*  
+    ;
+    
+factor
+    : INTEGER
+    | '(' expression ')'
+    ;
+
+
+案例2：左结合的列表
+
+左递归：
+list
+    : list ',' element
+    | element
+    ;
+
+
+非左递归：
+list
+    : element (',' element)*
+    ;
+
+
+8. 结合性问题
+
+左递归天然处理左结合性：
+// 1 + 2 + 3 被解析为 ((1 + 2) + 3)
+expr → expr + term
+
+
+而要实现右结合性（如赋值运算），需要使用右递归：
+// a = b = c 被解析为 (a = (b = c))  
+assignment → ID '=' assignment
+           | expr
+
+
+9. ANTLR4的左递归处理机制
+
+ANTLR4使用自适应LL(*)算法，自动：
+1. 检测左递归规则
+2. 将其转换为等价的非左递归形式  
+3. 保持正确的结合性和优先级
+
+转换示例
+
+输入（左递归）：
+e : e '*' e
+  | e '+' e
+  | INT
+  ;
+
+
+ANTLR4内部转换：
+e : INT e_
+  ;
+e_ : ('*' e e_)?
+   | ('+' e e_)?
+   ;
+
+
+10. 实践建议
+
+1. 优先使用左递归：在ANTLR4中更自然直观
+2. 注意优先级：规则的顺序决定优先级（从上到下优先级降低）
+3. 测试结合性：确保运算符结合性符合预期
+4. 避免间接左递归：虽然ANTLR4能处理，但可读性差
+
+ANTLR4对左递归的优秀支持使得语法编写更加直观和符合直觉！
 #### Chap. 6 第6章 探索真实的语法世界
 csv
 json
