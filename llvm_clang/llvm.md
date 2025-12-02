@@ -1,4 +1,40 @@
 # llvm
+
+@wdidada126 ➜ /workspaces/github_codespaces_compile (zig/zig/linux/0_15_2) $ tar -xJf LLVM-20.1.8-Linux-X64.tar.xz 
+@wdidada126 ➜ /workspaces/github_codespaces_compile (zig/zig/linux/0_15_2) $ cd LLVM-20.1.8-Linux-X64/
+@wdidada126 ➜ /workspaces/github_codespaces_compile/LLVM-20.1.8-Linux-X64 (zig/zig/linux/0_15_2) $ find . -name "liblld*"
+./lib/liblldWasm.a
+./lib/liblldb.so.20.1.8
+./lib/liblldbIntelFeatures.so.20.1
+./lib/liblldCommon.a
+./lib/liblldCOFF.a
+./lib/liblldbIntelFeatures.so
+./lib/liblldb.so
+./lib/liblldMinGW.a
+./lib/liblldb.so.20.1
+./lib/liblldELF.a
+./lib/liblldMachO.a
+
+ dpkg -L libclang-cpp20-dev 
+/.
+/usr
+/usr/lib
+/usr/lib/llvm-20
+/usr/lib/llvm-20/lib
+/usr/lib/x86_64-linux-gnu
+/usr/share
+/usr/share/doc
+/usr/share/doc/libclang-cpp20-dev
+/usr/share/doc/libclang-cpp20-dev/changelog.Debian.gz
+/usr/share/doc/libclang-cpp20-dev/copyright
+/usr/lib/llvm-20/lib/libclang-cpp.so
+/usr/lib/llvm-20/lib/libclang-cpp20.so
+/usr/lib/x86_64-linux-gnu/libclang-cpp20.so
+
+
+zigger编译
+liblldCOFF.so
+
 ## llvm
 https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/index.html
 
