@@ -35,6 +35,11 @@
 zigger编译
 liblldCOFF.so
 
+
+triton
+zigger
+都依赖llvm
+
 ## llvm
 https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/index.html
 
