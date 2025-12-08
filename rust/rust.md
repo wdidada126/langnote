@@ -1,4 +1,14 @@
 # rust
+
+## 源代码编译
+
+sudo apt install -y libssl-dev
+
+~/rust/build/x86_64-unknown-linux-gnu/stage2/bin/rustc -V
+rustc 1.93.0-nightly (63b1db058 2025-12-02)
+
+## doc
+
 https://rustcc.cn/
 
 ## rustup
