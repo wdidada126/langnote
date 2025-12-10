@@ -1,4 +1,5 @@
 # LSMT
+B+树，LSM树（Log-Structured Merge-Tree）
 
 rust lsm
 https://github.com/edidada/mini-lsm
@@ -8,7 +9,6 @@ Mini-LSM：可能是史上最完整的 LSM-Tree 存储课程
 ## 概念
 LSM树（Log-Structured Merge-Tree）
 今天来聊聊lsm tree，它的全称是log structured merge tree ，简单来说，lsm tree可以认为是针对传统b树在磁盘写入上低劣表现的一种优化，其核心思想的核心就是放弃部分读能力，换取写入的最大化能力。
-
 https://www.cnblogs.com/shenzhaohai1989/p/3893123.html
 
 ## 子结构SSTable/Sorted String Table(SSTable)
@@ -25,7 +25,6 @@ https://www.cnblogs.com/shenzhaohai1989/p/3893123.html
 我们看下纵坐标就知道，这两者差的不是一点半点，已经有数量级的差距了。而且还不止是一个数量级，至少相差了三个数量级，显然这是非常恐怖的。另外，这个差距并不只是在传统的机械硬盘上存在，即使是现在比较先进的SSD固态硬盘上，也一样存在。也就是说这个差距是介质无关的。
 
 LSMT
-
 SSTable开源实现
 
 levelDb
@@ -54,7 +53,6 @@ flowchart TD
     
     B --> B1[“WAL（Write-Ahead Log）<br>用于崩溃恢复”]
     C --> C1[“SSTable（磁盘文件）<br>只读且有序”]
-
 
 步骤详解
 第1步：写入内存（MemTable）
