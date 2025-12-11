@@ -1,7 +1,7 @@
 # CockroachDB
 
 CockroachDB是一个支持SQL，支持分布式事务的ACID的分布式数据，支持ANSI SQL的最高隔离级别Serializability。
-CockroachDB是一个分布式关系型数据库，主要设计目标是可扩展，强一致和高可靠 。
+CockroachDB是一个分布式关系型数据库，主要设计目标是可扩展，强一致和高可靠。
 [CockroachDB 1](https://blog.csdn.net/qq_34924156/article/details/89236693)
 [cockroachlabs](https://www.cockroachlabs.com/)
 
@@ -46,14 +46,3 @@ zoom用了CockroachDB
 | TiDB | PingCAP 开发，类 Google Spanner 架构 | 兼容 MySQL 协议 |
 | YugabyteDB | 类似 CockroachDB，兼容 PostgreSQL + Redis | 支持文档、KV 模型 |
 | CockroachDB | 强一致性、PostgreSQL 兼容、多区域部署 | 专注于全球一致 SQL |
-
-### 总结
-
-> 你所说的“c开头的，Zoom用的newsql数据库”，极大概率就是 CockroachDB。
-
-- C 开头：CockroachDB
-- NewSQL：支持分布式事务、SQL 接口、水平扩展
-- 被 Zoom 使用：用于全球多区域数据一致性管理
-
-
-如果你听到的是“Zoom 用的 C 开头 NewSQL”，那几乎可以确定是 CockroachDB。
