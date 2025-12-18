@@ -1,4 +1,6 @@
 # github
+
+
 https://www.githubstatus.com/history
 
 rust.yml
@@ -109,6 +111,14 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+不支持java文件是gbk，必须是UTF8
+Error:  COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,41] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,42] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,43] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,45] unmappable character for encoding UTF8
+
 ### macos
 #### c c++
 macos.md
