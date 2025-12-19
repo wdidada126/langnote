@@ -1,4 +1,4 @@
-# Database_Design_and_Implementation
+# Database_Design_and_Implementation 2
 
 https://www.goodreads.com/book/show/240914702-database-design-and-implementation
 https://www.amazon.com/Database-Design-Implementation-Data-Centric-Applications/dp/3030338355
@@ -61,3 +61,28 @@ Part 3 SimpleDB内部实现
 Part 4 ⾼效的查询处理
 第21章——索引
 
+## 笔记
+
+Remote
+Planner
+Parse
+Query
+Metadata
+Record
+Transaction
+Buffer
+Log
+File
+
+Part 3 SimpleDB内部实现
+第12章——磁盘及⽂件管理
+第13章——内存管理
+第14章——事务管理
+第15章——记录管理
+第16章——元数据管理
+第17章——查询处理
+第18章——SQL语句解析
+第19章——SQL Planning
+第20章——数据库服务
+Part 4 ⾼效的查询处理
+第21章——索引
