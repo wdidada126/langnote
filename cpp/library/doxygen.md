@@ -1,5 +1,5 @@
 # doxygen c cpp doc
-
+https://www.doxygen.nl/index.html
 mac 2025
 Doxygen version 1.9.5
 
@@ -184,18 +184,16 @@ typedef struct {
 | 推荐搭配 | Graphviz（用于图形化文档） |
 | 推荐场景 | 开发 C 语言库、嵌入式系统、驱动开发等需要文档的项目 |
 
-
-
 如果你希望我帮你写一个完整的 C 语言项目 + Doxygen 注释模板，或者帮你配置 Doxygen 生成漂亮的文档页面，请告诉我！
-
 是否需要我提供一个完整 CMake + Doxygen 的自动化文档生成流程？欢迎继续提问！
 
 ## 特色
 可以生成cpp的类继承关系图
-
 ## 官网
 https://www.doxygen.org/index.html
 ## 版本
+### 版本version
+Version 1.15.0 is now available! Release date: 22 October 2025
 
 ## 安装
 
@@ -235,7 +233,6 @@ EVENT2_EXPORT_SYMBOL void 	event_active (struct event *ev, int res, short ncalls
 
 
 ## 下载安装
-
 https://www.doxygen.nl/download.html
 Doxygen 用于生成文档
 
@@ -245,11 +242,9 @@ grpc用doxygen
 ./tools/doxygen/runxxx.sh
 
 muduo据说可以用 Doxygen
-
 sudo apt-get install -y doxygen doxygen-gui graphviz
 
 sudo yum install doxygen -y
-
 GENERATE_LATEX 是否输出latex
 
 doxygen -g <config-file>
@@ -264,18 +259,14 @@ GENERATE_LATEX改成 NO
 
 ### 实验1
 https://github.com/edidada/testconan
-
 ### 实验2 pistache支持doxygen
 下载pistache源码
-
 Doxygen生成文档时报"sh: dot: not found"
 sudo apt-get install graphviz
 
 https://cedar-renjun.github.io/2014/03/21/learn-doxygen-in-10-minutes/
-
 https://zhuanlan.zhihu.com/p/122523174
 ### 例子
 Doxyfile
 
 ### 实验3 trantor drogon
-
