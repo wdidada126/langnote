@@ -1,9 +1,10 @@
 # meson
 
+postgresql支持meson
+
 ## clion 2024支持meson
 meson.build
 ninja
-
 
 ## comand
 meson setup build --native-file=D:\develops\tools\vcpkg\scripts\buildsystems\vcpkg.cmake
@@ -11,7 +12,6 @@ cd build
 meson compile -j 6 --native-file=D:\develops\tools\vcpkg\scripts\buildsystems\vcpkg.cmake
 meson install
 meson test
-
 
 https://github.com/cisco/openh264
 openh264用meson构建
