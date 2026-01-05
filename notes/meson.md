@@ -1,7 +1,7 @@
 # meson
 
 postgresql支持meson
-
+postgresql 18.1 win meson构建，需要perl，没有perl报错
 ## clion 2024支持meson
 meson.build
 ninja
@@ -24,7 +24,7 @@ choco install meson
 
 C:\Users\edida\AppData\Local\Temp\chocolatey\meson\1.5.1\meson-1.5.1-64.msi
 
-eclipse mac版本支持meson
+Eclipse Mac版本支持meson
 
 meson.build
 
