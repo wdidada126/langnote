@@ -29,7 +29,6 @@ Dimensions : 6.1 x 1.07 x 9.25 inches
 
 版权
 
-
 ## Table of Contents
 1. Database Systems. 1
 2. JDBC. 15
