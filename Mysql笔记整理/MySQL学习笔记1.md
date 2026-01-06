@@ -435,9 +435,6 @@ INSERT INTO result VALUES(NULL,'s005',95);
 INSERT INTO result VALUES(NULL,'s006',88);
 ```
 
-<<<<<<< HEAD
-
-=======
 ![image-20210318033730877](asset/image-20210318033730877.png)
 >>>>>>> 9199543 (mysql 笔记整理2 DQL语言)
 

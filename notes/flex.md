@@ -795,7 +795,6 @@ void update_position(int length) {
 
 4. 主程序 main.c
 ```
->>>>>>> 8b935f99230714bbcdcca2886008469ccfbf1c85
 #include "c_tokens.h"
 #include <stdio.h>
 #include <stdlib.h>

@@ -4347,20 +4347,9 @@ Jmeter no gui
 
 单纯从上面的对比来看，似乎微服务大大优于 SOA，这也导致了很多团队在实践时不加思考地采用微服务——既不考虑团队的规模，也不考虑业务的发展，也没有考虑基础技术的支撑，只是觉得微服务很牛就赶紧来实施，以为实施了微服务后就什么问题都解决了，而一旦真正实施后才发现掉到微服务的坑里面去了。
 
-
-
-
- 单纯从上面的对比来看，似乎微服务大大优于 SOA，这也导致了很多团队在实践时不加思考地采用微服务——既不考虑团队的规模，也不考虑业务的发展，也没有考虑基础技术的支撑，只是觉得微服务很牛就赶紧来实施，以为实施了微服务后就什么问题都解决了，而一旦真正实施后才发现掉到微服务的坑里面去了。
-
-
+单纯从上面的对比来看，似乎微服务大大优于 SOA，这也导致了很多团队在实践时不加思考地采用微服务——既不考虑团队的规模，也不考虑业务的发展，也没有考虑基础技术的支撑，只是觉得微服务很牛就赶紧来实施，以为实施了微服务后就什么问题都解决了，而一旦真正实施后才发现掉到微服务的坑里面去了。
 
 微服务实施，需要有devops的条件，需要有分布式技术支持
-
-
-
-
-
-
 
 回到软件架构设计领域，FMEA 并不能指导我们如何做架构设计，而是当我们设计出一个架构后，再使用 FMEA 对这个架构进行分析，看看架构是否还存在某些可用性的隐患。
 
@@ -4378,71 +4367,34 @@ FMEA 方法
 
 FMEA 分析的方法其实很简单，就是一个 FMEA 分析表，常见的 FMEA 分析表格包含下面部分。
 
-
-
 Java 新建进程
-
-
 
 redis zset如何实现有序
 
-
-
 何苦用go  nginx加confd多好
-
-
-
 
 中文版《Rust标准库》来了
 
-
-
 https://zhuanlan.zhihu.com/p/89712922
 
-
-
-
-
-
 Rust 标准库
-
 Go标准库比较健全
-
-
-
 C++Builder
-
-
 
 Microsoft Visual C++ 和 Borland C++ Builder 之比较
 
-
-
-
 Mac office download link
 
-
-
 http://officecdn.microsoft.com.edgesuite.net/sg/C1297A47-86C4-4C1F-97FA-950631F94777/OfficeMac
-
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768
-
 
 微信 wechat web 网页版接口的 JavaScript 实现，兼容Node和浏览器，微信机器人
 
 
 https://github.com/nodeWechat/wechat4u
 
-
-
-
 一个大型网站需要多少服务器
 
-
-
 http://www.zhihu.com/question/27641736/answer/814798641
-
-
 
 Log4j2
 
@@ -4450,33 +4402,17 @@ Log4j2
 
 Spring 解析Document并注册bean
 
-
-
 如何使用纯文本编辑器写Java程序
 
-
-
 <编译系统透视>读书笔记
-
-
-
 C内存区域
 
-
-
 如何评价《编译系统透视：图解编译原理》一书
-
 
 出版社链接
 https://www.zhihu.com/question/43538570
 
-
-
 http://www.hzcourse.com/web/refbook/detail/6426/208
-
-
-
-
 
 SOFAJRaft
 
