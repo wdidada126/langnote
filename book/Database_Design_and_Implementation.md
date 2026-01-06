@@ -64,6 +64,37 @@ Part 4 ⾼效的查询处理
 https://github.com/wdidada126/simpledb2_mvn
 
 
+```Java
+public class RecordFileTest {
+    public static void main(String[] args) throws IOException {
+        SimpleDB.init("liuzhian/simpledb");
+        Transaction tx = new Transaction();
+        Schema schema = new Schema();
+        schema.addIntField("A");//有表结构文件的
+        TableInfo tableInfo = new TableInfo("junk", schema);
+
+        RecordFile recordFile = new RecordFile(tableInfo, tx);
+        for (int i = 0; i < 10000; i++) {
+            recordFile.insert();
+            int n = (int) Math.round(Math.random() * 200);
+            recordFile.setInt("A", n);
+        }
+
+        int cnt = 0;
+        recordFile.beforeFirst();
+        while (recordFile.next()) {
+            if (recordFile.getInt("A") < 100) {
+                recordFile.delete();
+                cnt++;
+            }
+        }
+        System.out.println("删除的记录数：" + cnt);
+        // recordFile.close();
+        tx.commit();
+    }
+}
+```
+
 ## record block的关系
 变长
 定长
