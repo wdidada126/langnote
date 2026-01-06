@@ -1,4 +1,6 @@
 # Postgres/PostgreSQL
+c语言写的
+
 ## 命名
 是的，Postgres 就是 PostgreSQL 数据库，两者指的是同一个东西。不过，这个名称的演变背后有一段有趣的历史。
 可以这样理解：
@@ -26,14 +28,11 @@
 
 ## pg扩展
 TimescaleDB是PostgreSQL的扩展，专为时序数据设计，支持高效处理高频数据写入和复杂查询。
-
 PostgreSQL（简称 PG）拥有非常强大的扩展（Extensions）生态系统，允许用户在不修改核心数据库的前提下，添加新功能，如时序数据、地理信息、JSON 处理、全文检索、审计日志等。
-
 你提到的 TimescaleDB 是其中最著名的扩展之一。下面我为你系统地整理 PostgreSQL 常见且重要的扩展，并分类说明。
 
-##  一、PostgreSQL 扩展简介
-
-PostgreSQL 扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，可以添加：
+##  一、PostgreSQL扩展简介
+PostgreSQL扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，可以添加：
 - 新的数据类型
 - 函数
 - 操作符
@@ -43,7 +42,6 @@ PostgreSQL 扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，
 - 外部数据包装器（FDW）
 
 ##  二、常用 PostgreSQL 扩展分类与推荐
-
 ### 1️⃣ 时序/时间序列数据库
 
 | 扩展 | 说明 |
