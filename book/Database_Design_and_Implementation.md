@@ -64,6 +64,16 @@ Part 4 ⾼效的查询处理
 ## code
 https://github.com/wdidada126/simpledb2_mvn
 
+
+## record block的关系
+变长
+定长
+
+## Schema TableInfo RecordPage
+public TableInfo(String tblName, Schema schema)
+
+RecordFile 类提供的抽象级别与到⽬前为⽌我们所看到的其他类有明显不同的。 也就是说， Page ， Buffer ， Transaction 和 RecordPage 这些类的的⽅法都适⽤于特定的块。 ⽽ RecordFile 类向其客户端隐藏掉了块结构的存在。 通常，客户端将不知道（或不在乎）当前正在访问哪个块。 它只需要在完成操作后关闭记录⽂件就OK了。
+
 ## lock
 s
 x
