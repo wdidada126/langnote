@@ -1,4 +1,9 @@
 # cpp11
+C++11 引入的一个特性，用于声明变量的线程局部存储（Thread-Local Storage，TLS）。这意味着每个线程都有自己的该变量的实例，互不影响。
+
+std::make_shared是c++ 11支持的
+auto config = std::make_shared<sql::connection_config>();
+std::make_shared是c++ 11支持的
 
 一家之言
 C++11比C++98在核心上最大的改进是移动（原子操作不常用），剩下的以语法糖和库改进为主，真会C++98的人不可能会拒绝C++11
