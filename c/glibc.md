@@ -48,6 +48,7 @@ update-alternatives --display libc
 
 以上方法中的任何一种都可以帮助你查看Ubuntu系统上的glibc版本。
 
+## version版本
 
 https://sourceware.org/glibc/manual/
 2.41 (latest)

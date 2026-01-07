@@ -1,5 +1,5 @@
 # Dubbo
-
+dubbo 2.7.3支持http协议，写个例子熟悉一下
 dubbo_code.md
 
 有赞开源dubbo测试接口

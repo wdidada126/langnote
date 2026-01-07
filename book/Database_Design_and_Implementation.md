@@ -63,6 +63,8 @@ Part 4 ⾼效的查询处理
 ## code
 https://github.com/wdidada126/simpledb2_mvn
 
+tblstats ( TblName, NumBlocks, NumRecords)
+fldstats( TblName, FldName, NumValues)
 
 ```Java
 public class RecordFileTest {
