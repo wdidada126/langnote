@@ -1,8 +1,9 @@
 # mysql
 
-## 版本
+## version版本
 5.7 2015年10月
 8.0.11 2018年4月
+MySQL9.0，2024年7月1日首次发布
 
 ## mysql password
 
