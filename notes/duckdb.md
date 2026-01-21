@@ -25,7 +25,22 @@ https://www.ihnfsa.com/database/radix-hash-join/
 
 本文是对 Main-memory hash joins on multi-core CPUs: Tuning to the underlying hardware 论文 Part II 的翻译和解释。
 
-https://github.com/duckdb/duckdb
-
-
 duckdb，c++写的，最近多火，看源码学c++
+
+李国良 huadb借鉴引用了duckdb的部分代码
+
+## 版本version
+
+## 构建工具
+cmake
+
+## 语言
+c++ 11
+## 构建文档
+https://duckdb.org/docs/stable/dev/building/overview
+
+git clone https://github.com/duckdb/duckdb.git
+cd duckdb
+git checkout v1.4.3
+make debug
+
