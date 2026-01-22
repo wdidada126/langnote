@@ -42,3 +42,34 @@ git clone https://github.com/duckdb/duckdb.git
 cd duckdb
 git checkout v1.4.3
 make debug
+
+
+brotli
+catch
+concurrentqueue
+fastpforlib
+fast_float
+fmt
+fsst
+httplib
+hyperloglog
+imdb
+jaro_winkler
+libpg_query
+lz4
+mbedtls
+miniz
+parquet
+pcg
+pdqsort
+re2
+ska_sort
+skiplist
+snappy
+snowball
+tdigest
+thrift
+utf8proc
+vergesort
+yyjson
+zstd
