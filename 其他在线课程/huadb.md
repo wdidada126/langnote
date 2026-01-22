@@ -1,10 +1,8 @@
 # huadb
-https://github.com/oceanbase/miniob
 
 https://github.com/thu-db/huadb
 
 文档
-
 https://github.com/thu-db/huadb-doc
 
 HuaDB 数据库内核课程实验文档

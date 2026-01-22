@@ -1,12 +1,15 @@
 # Postgres/PostgreSQL
+
+https://www.postgresql.org/docs/current/routine-vacuuming.html
+
+## 编程语言
 c语言写的
 
+## 版本version
 PostgreSQL 版本历史记录
-
 PostgreSQL 是一个持续发展的开源关系型数据库管理系统，自1997年发布第一个正式版本以来，每年都会推出新的大版本，每个版本支持周期为5年。
 
 主要版本发布时间线
-
 版本 发布时间 支持结束时间 状态
 PostgreSQL 18 2025年9月25日 预计2030年11月 开发中
 PostgreSQL 17 2024年9月26日 2029年11月 支持中
@@ -32,33 +35,24 @@ PostgreSQL 9.x 系列
 
 PostgreSQL 10.x 系列
 • 10 (2017年)：引入声明式表分区和逻辑复制
-
 PostgreSQL 11.x 系列
 • 11 (2018年)：改进并行处理和分区表
-
 PostgreSQL 12.x 系列
 • 12 (2019年)：增加Generated Columns和表达式索引
-
 PostgreSQL 13.x 系列
 • 13 (2020年)：增强索引和分区功能，改进并行处理效率
-
 PostgreSQL 14.x 系列
 • 14 (2021年)：增强并行查询、更多聚合功能和JSON改进
-
 PostgreSQL 15.x 系列
 • 15 (2022年)：优化索引、并行处理和安全特性
-
 PostgreSQL 16.x 系列
 • 16 (2023年)：改进查询执行性能和批量加载数据性能
-
 PostgreSQL 17.x 系列
 • 17 (2024年)：vacuum性能提升、I/O层和查询执行优化，扩展JSON功能
-
 PostgreSQL 18.x 系列
 • 18 (2025年)：引入异步I/O子系统、虚拟生成列、UUIDv7支持等新特性
 
 版本支持策略
-
 PostgreSQL社区采用以下版本支持策略：
 • 每年第四季度发布新的大版本
 • 每个大版本支持5年维护周期
@@ -73,7 +67,6 @@ SELECT version();
 -- 查看简洁版本号
 SHOW server_version;
 PostgreSQL的持续发展体现了其在性能、安全性、可扩展性方面的不断优化，已成为企业级应用的首选数据库之一。
-
 
 ## 命名
 是的，Postgres 就是 PostgreSQL 数据库，两者指的是同一个东西。不过，这个名称的演变背后有一段有趣的历史。
@@ -124,7 +117,6 @@ PostgreSQL扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，�
 | Prometheus + Promscale | Promscale 是 Timescale 公司推出的，将 Prometheus 数据存储在 PG 中的适配器，结合 PG 强大查询能力。 |
 
 >  官网：https://www.timescale.com
-
 ### 2️⃣ 地理空间数据（GIS）
 
 | 扩展 | 说明 |
