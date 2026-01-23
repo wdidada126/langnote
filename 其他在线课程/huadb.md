@@ -1,5 +1,8 @@
 # huadb
 
+## lab code自测通过
+https://github.com/wdidada126/huadb
+
 https://github.com/thu-db/huadb
 
 文档
