@@ -1,5 +1,9 @@
 # huadb
 
+aries恢复算法
+mvcc 并发控制
+join order by等实现
+
 ## lab code自测通过
 https://github.com/wdidada126/huadb
 
