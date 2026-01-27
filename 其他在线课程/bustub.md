@@ -1,9 +1,18 @@
 # bustub
 
+## B+树可视化
+b_plus_tree_printer
+
+## doc
 bustub vs huadb
+Rust版本
+https://github.com/systemxlabs/bustubx
+
+2021年的代码
+https://github.com/cdes5804/CMU-15-445-Database-Systems-2021
+
 
 由于Bustub是在C++17下实现的数据库，因此所有学生都需要在正式开始之前，完成Project #0来检测对C++，尤其是C++现代语法的熟悉程度。
-
 https://15445.courses.cs.cmu.edu/spring2023/
 
 https://15445.courses.cs.cmu.edu/spring2023/schedule.html
@@ -21,6 +30,7 @@ discuss区域
 https://discord.com/channels/724929902075445281/801327143485308949
 
 github repo
+https://gitee.com/edidada/bustub
 https://github.com/cmu-db/bustub
 c++的
 
@@ -228,3 +238,42 @@ https://15445.courses.cs.cmu.edu/spring2023/project1/
 多线程调试，打印同步日志，ide断点调试效果不好。
 测试用例，完备
 自己的机器上跑的好好的，测试服务器上就挂了，因为有些bug是偶发的
+
+BusTub 是传统的 Row Store DB 的意思是：BusTub（CMU 15-445/645 数据库系统课程的教学用数据库系统）采用的是行式存储（Row-oriented / Row-store）架构，这是一种经典的、传统的数据库存储方式。
+
+简单拆解一下这个说法：
+
+### 1. 什么是 Row Store（行式存储）？
+- 数据按行（一条完整记录）连续存储在磁盘/内存上。
+- 比如一张表有 id、name、age、city 四个字段，一行数据可能是：
+  ```
+  [1, "Alice", 25, "Beijing"] → [2, "Bob", 30, "Shanghai"] → ...
+  ```
+  在物理存储上，这些字段是挨着放的：id1 + name1 + age1 + city1 + id2 + name2 + ...
+- 读取一条完整记录（SELECT * FROM table WHERE id=1）非常高效，因为一次 I/O 就能把整行数据都读出来。
+- 适合的操作：频繁的单行读写、插入、更新、删除（典型 OLTP 场景：订单系统、电商、银行交易等）。
+
+### 2. 与之相对的是 Column Store（列式存储）
+- 数据按列连续存储：所有 id 放一起，所有 name 放一起，所有 age 放一起……
+  ```
+  ids:   1, 2, 3, ...
+  names: "Alice", "Bob", "Charlie", ...
+  ages:  25, 30, 28, ...
+  ```
+- 适合的操作：分析型查询（OLAP），比如 SELECT AVG(age) FROM table GROUP BY city，只需读 age 这一列，压缩率高、I/O 少很多。
+- 典型系统：ClickHouse、Snowflake、Vertica、Parquet 文件格式等。
+
+### 3. 为什么说 BusTub 是“传统的” Row Store？
+- BusTub 是为教学设计的单用户、面向磁盘的 DBMS，目标是让学生实现经典关系型数据库的核心组件。
+- 它的存储引擎默认就是 Row Store：
+  - 表数据以 Tuple（行）的形式存储在页面（Page）里。
+  - Buffer Pool 管理固定大小的页面（通常 4KB 或 8KB）。
+  - 索引（B+树）也是基于 RID（Row ID，指向某页 + 槽位）来定位整行。
+  - 查询执行器（Project 3）用 Volcano 模型，操作符处理的是整行 Tuple。
+- 这和 PostgreSQL、MySQL InnoDB、Oracle、SQL Server 等商用 OLTP 数据库的默认存储方式高度一致 → 所以叫传统的、行存数据库。
+- 而现代很多分析型数据库（BigQuery、Redshift、DuckDB 的列存模式等）会偏向 Column Store。
+
+一句话总结：
+BusTub 是“传统的 Row Store DB” 意思就是：它像大多数经典事务型数据库（MySQL、PostgreSQL）一样，用行式存储来组织数据，优化的是事务处理（OLTP）场景，而不是分析型（OLAP）的列式存储。
+
+这也是为什么 BusTub 实验里你会大量接触 Tuple、RID、Slot、Page 等基于行的概念，而不是列向量（Column Vector）或向量化执行。
