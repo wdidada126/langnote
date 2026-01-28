@@ -1,15 +1,32 @@
 # juc
 
+AbstractOwnableSynchronizer (java.util.concurrent.locks)
+    AbstractQueuedSynchronizer (java.util.concurrent.locks)
+        Sync in CountDownLatch (java.util.concurrent)
+        Worker in ThreadPoolExecutor (java.util.concurrent)
+        Sync in ReentrantLock (java.util.concurrent.locks)
+            FairSync in ReentrantLock (java.util.concurrent.locks)
+            NonfairSync in ReentrantLock (java.util.concurrent.locks)
+        Sync in ReentrantReadWriteLock (java.util.concurrent.locks)
+            FairSync in ReentrantReadWriteLock (java.util.concurrent.locks)
+            NonfairSync in ReentrantReadWriteLock (java.util.concurrent.locks)
+        Sync in Semaphore (java.util.concurrent)
+            FairSync in Semaphore (java.util.concurrent)
+            NonfairSync in Semaphore (java.util.concurrent)
+    AbstractQueuedLongSynchronizer (java.util.concurrent.locks)
+
+
+CountDownLatch.Sync
+	void setState(int newState)
+	getState
+	compareAndSetState
+
 Java Collections Framework
 
 全局变量存储
-
 text data
-
 方法区
-
 永久代元数据区  思考，元数据描述数据的数据，这个元数据区是干啥的
-
 堆
 栈
 
