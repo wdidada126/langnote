@@ -277,3 +277,161 @@ BusTub 是传统的 Row Store DB 的意思是：BusTub（CMU 15-445/645 数据�
 BusTub 是“传统的 Row Store DB” 意思就是：它像大多数经典事务型数据库（MySQL、PostgreSQL）一样，用行式存储来组织数据，优化的是事务处理（OLTP）场景，而不是分析型（OLAP）的列式存储。
 
 这也是为什么 BusTub 实验里你会大量接触 Tuple、RID、Slot、Page 等基于行的概念，而不是列向量（Column Vector）或向量化执行。
+
+在 Bustub 数据库中，Trie 是一种用于存储和检索字符串键的高效数据结构，特别适用于实现字符串索引。
+什么是 Trie？
+Trie（发音为 "try"，源自 retrieval）也叫前缀树或字典树，是一种有序树形数据结构，用于存储关联数组，其中的键通常是字符串。
+Trie 在 Bustub 中的角色
+在 Bustub 中，Trie 主要用于：
+1. 字符串索引实现
+Bustub 的 Trie 实现位于：
+src/container/trie/
+
+2. 目录结构
+
+bustub/src/container/trie/
+├── trie.h              # Trie 头文件
+├── trie.cpp           # Trie 实现
+├── trie_node.h        # Trie 节点定义
+├── trie_header.h      # 头部信息
+└── ...
+
+
+Trie 的核心特性
+
+数据结构特点
+
+class TrieNode {
+  bool is_value_node_;       // 是否是值节点
+  std::map<char, shared_ptr<TrieNode>> children_;  // 子节点映射
+  std::string value_;        // 存储的值（如果是叶子节点）
+};
+
+工作方式
+
+以存储 ["cat", "car", "dog"] 为例：
+
+      root
+     /    \
+    c      d
+   /        \
+  a          o
+ / \          \
+t*  r*         g*
+
+
+Bustub 中 Trie 的实现
+1. 基本操作
+// 在 trie.h 中
+class Trie {
+ public:
+  // 插入键值对
+  bool Insert(const std::string &key, std::string value);
+  
+  // 查找键
+  std::optional<std::string> GetValue(const std::string &key);
+  
+  // 删除键
+  bool Remove(const std::string &key);
+  
+  // 检查键是否存在
+  bool Contains(const std::string &key);
+};
+
+2. 磁盘持久化支持
+Bustub 的 Trie 支持持久化到磁盘：
+class Trie {
+  // 序列化到页面
+  void SerializeTo(Page *page);
+  
+  // 从页面反序列化  
+  static std::unique_ptr<Trie> DeserializeFrom(Page *page);
+};
+
+
+使用示例
+
+1. 在代码中使用 Trie
+
+#include "container/trie/trie.h"
+int main() {
+  // 创建 Trie
+  auto trie = std::make_unique<bustub::Trie>();
+  
+  // 插入数据
+  trie->Insert("user:1001", "Alice");
+  trie->Insert("user:1002", "Bob");
+  trie->Insert("product:5001", "Laptop");
+  
+  // 查询
+  auto result = trie->GetValue("user:1001");
+  if (result.has_value()) {
+    std::cout << "Found: " << result.value() << std::endl;  // 输出: Alice
+  }
+  
+  return 0;
+}
+
+2. 在数据库中作为索引
+-- 假设支持 Trie 索引
+CREATE INDEX idx_name ON users(name) USING TRIE;
+
+Trie 的优势
+优势 说明
+前缀搜索 高效查找所有以特定前缀开头的键
+有序遍历 按键的字典序自动排序
+内存效率 共享公共前缀，节省空间
+查找速度 O(L) 时间复杂度，L 是键的长度
+
+测试 Trie
+
+Bustub 包含 Trie 的测试：
+# 运行 Trie 测试
+make starter_trie_test
+./test/starter_trie_test
+
+# 测试特定功能
+./test/starter_trie_test --gtest_filter="*Insert*"
+./test/starter_trie_test --gtest_filter="*Remove*"
+
+实际应用场景
+1. 字符串前缀搜索
+-- 查找所有以 "Joh" 开头的名字
+SELECT * FROM users WHERE name LIKE 'Joh%';
+-- Trie 可以高效支持这种查询
+
+2. 自动补全
+// 获取所有以前缀开头的键
+std::vector<std::string> GetKeysWithPrefix(const std::string &prefix);
+
+3. 字典实现
+适合实现拼写检查、单词自动补全等功能。
+与其他索引的对比
+索引类型 适用场景 Bustub 中的实现
+Trie 字符串前缀搜索 src/container/trie/
+B+树 范围查询、排序 src/storage/index/b_plus_tree.h
+哈希表 等值查询 src/container/hash/
+
+项目中的位置
+# 查找所有 Trie 相关文件
+find . -name "*.cpp" -o -name "*.h" | xargs grep -l "class Trie\|TrieNode" | grep -v ".git"
+# 查看实现
+cat -n src/container/trie/trie.h | head -50
+编译和运行
+
+# 构建整个项目（包含 Trie）
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+make -j$(nproc)
+
+# 只构建 Trie 测试
+make starter_trie_test
+
+总结
+在 Bustub 中，Trie 是一个高效的字符串索引数据结构，主要用于：
+1. 字符串键的存储和检索
+2. 前缀搜索和自动补全
+3. 字典序遍历
+4. 教学目的，展示不同的索引结构实现
+
+它是 Bustub 教学数据库系统中的一个重要组件，用于展示如何实现和优化字符串索引。Trie 特别适合需要前缀匹配的场景，比如搜索建议、联系人自动补全等应用。
