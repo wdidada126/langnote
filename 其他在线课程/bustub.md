@@ -435,3 +435,218 @@ make starter_trie_test
 4. 教学目的，展示不同的索引结构实现
 
 它是 Bustub 教学数据库系统中的一个重要组件，用于展示如何实现和优化字符串索引。Trie 特别适合需要前缀匹配的场景，比如搜索建议、联系人自动补全等应用。
+
+欢迎来到数据库内核开发的“炼狱”——CMU 15-445 BusTub。既然你已经开始关心文件的存储路径和实验思路，说明你正准备从宏观视角审视这个系统。
+
+BusTub 是一个面向磁盘的存储系统，它的设计哲学是“不要相信操作系统”。以下是针对各个 Lab 的思路梳理以及你关心的文件存储细节。
+
+
+
+## 一、 各阶段实验核心思路 (Lab Overview)
+
+### Lab 1: Buffer Pool Manager (内存管理)
+
+这是整个系统的地基。你的任务是接管内存，不让操作系统插手。
+
+* LRU-K Replacer: 实现页面置换算法，决定哪个“倒霉蛋”页面被踢出内存。
+* Buffer Pool Manager: 负责从磁盘读取 Page 到内存中的 Frame，并维护页表。
+
+### Lab 2: B+ Tree Index (索引结构)
+
+这是公认最难的一个环节，主要处理数据的快速检索。
+
+* 分层设计: 分为 Internal Page 和 Leaf Page。
+* 分裂与合并: 当节点满了要拆分（Split），空了要合并（Merge/Redistribute）。
+* 并发控制: 引入 Latch Crabbing 机制，确保多线程下爬树不会把树爬塌了。
+
+### Lab 3: Query Execution (算子实现)
+
+到了这一步，你开始实现 SQL 的执行逻辑。
+
+* Volcano Model: 采用迭代器模型，每个算子通过 `Next()` 函数向上层返回一行数据。
+* 算子实现: 顺序扫描 (SeqScan)、插入 (Insert)、哈希连接 (HashJoin) 和聚合 (Aggregation)。
+
+### Lab 4: Concurrency Control (事务并发)
+
+最后的疯狂，确保多个事务同时运行不会导致数据混乱。
+
+* Lock Manager: 实现行级锁（S, X, IS, IX, SIX）。
+* 死锁检测: 通过构建等待图 (Wait-for Graph) 并寻找环来解决死锁。
+
+
+
+## 二、 存储路径与文件分布
+
+在 BusTub 中，存储并不是零散的，而是高度集约化的。
+
+### 1. 核心存储路径
+
+BusTub 的所有数据物理上通常表现为单个文件，由 `DiskManager` 统一管理。
+
+| 文件类型 | 常见物理路径 (Build 目录下) | 说明 |
+|  |  |  |
+| 数据/表文件 | `test.db` | 所有的表数据、元数据都存在这个 `.db` 文件中。 |
+| 日志文件 | `test.log` | 预写日志 (WAL)，用于系统崩溃后的恢复。 |
+| 临时文件 | `/tmp/bustub-test-XXXXXX` | 单元测试时生成的临时数据库文件，跑完通常会删除。 |
+
+### 2. 逻辑上的存储结构
+
+* 表文件 (Table Files): 在 BusTub 中，表数据被切分成一个个 16KB 的 Page。逻辑上由 `TableHeap` 管理。
+* 索引文件 (Index Files): 索引并不独立存在于另一个磁盘文件，而是同样作为 Page 存储在 `.db` 文件中。系统通过 `page_id` 来区分哪个 Page 是数据，哪个是索引。
+* 目录/元数据: 存储在 `catalog.h` 定义的系统目录中，记录了表名、表 ID、Schema 等信息的映射关系。
+
+
+
+## 三、 避坑指南：给你的建议
+
+1. 关于路径: 不要试图在代码里写死任何绝对路径。BusTub 使用 `DiskManager` 抽象了底层存储，你只需要关注 `page_id`。
+2. 关于 Debug: 当你发现 B+ Tree 报错时，优先检查 `ParentPageID` 是否更新正确，这是新手最常栽跟头的地方。
+3. 关于内存: 记得给 Page 加锁（Latch）和解锁。`UnpinPage` 时务必搞清楚 `is_dirty` 标志位，否则你的修改永远写不到磁盘上。
+
+> 提示：如果你在 Lab 2 调优时感到绝望，可以先去看看 `src/storage/page/` 下的各类 Page 定义，理解了内存布局，逻辑自然就顺了。
+
+你想先从 Lab 1 的 LRU-K 算法实现细节聊起，还是想看看 Lab 2 B+ 树分裂的具体伪代码？
+
+LRU-K 算法是 Lab 1 的核心，也是 Buffer Pool Manager 决定“谁该滚出内存”的裁判。相比于传统的 LRU（只看最后一次访问时间），LRU-K 能够有效解决“扫描抗性” (Scan Resistance) 问题，防止一次全表扫描就把热点数据全部挤出去。
+
+以下是实现 LRU-K Replacer 的关键逻辑与细节：
+
+
+
+## 1. 核心数据结构
+
+你需要一个 `LRUKNode` 类来记录每个 Frame 的状态。
+
+* `history_`: 一个大小为  的列表（通常用 `std::list` 或 `std::deque`），记录该 Frame 最近  次访问的时间戳。
+* `k_`: 也就是算法里的 。
+* `is_evictable_`: 只有被标记为 `true` 的 Frame 才能被踢出（由 Buffer Pool Manager 通过 `SetEvictable` 控制）。
+* `fid_`: Frame ID。
+
+在 `LRUKReplacer` 类中，你通常需要：
+
+* `node_map_`: `unordered_map<frame_id_t, LRUKNode>`，用于  时间找到节点。
+* `latch_`: 互斥锁。记住，Replacer 是会被多线程并发访问的。
+
+
+
+## 2. 驱逐策略 (Evict Logic)
+
+这是最容易写出 Bug 的地方。驱逐优先级遵循以下两个原则：
+
+### 第一优先级：访问次数少于 K 次的节点
+
+如果一个 Frame 的访问历史记录不足  次，它的 -distance 被视为 +∞。
+
+* 如果有多个节点访问次数都少于 ，则采用 FIFO (First In First Out) 原则：驱逐其中最早被第一次访问的那个节点。
+
+### 第二优先级：访问次数达到 K 次的节点
+
+如果所有可驱逐节点都已访问了至少  次：
+
+* 计算每个节点的 -distance = 。
+* 驱逐 -distance 最大的那个（即其倒数第  次访问发生得最早的）。
+
+
+
+## 3. 关键函数实现细节
+
+### `RecordAccess(frame_id)`
+
+* 动作：当 Buffer Pool 访问一个 Page 时调用。
+* 逻辑：
+1. 如果 `frame_id` 不存在，创建一个新节点。
+2. 更新该节点的 `history_`。如果记录数超过 ，弹出最老的那个。
+3. 增加全局 `current_timestamp_`。
+
+
+
+### `Evict()`
+
+* 逻辑：
+1. 遍历 `node_map_`（或者你维护的辅助队列）。
+2. 筛选：只看 `is_evictable_ == true` 的节点。
+3. 两轮搜索：
+* 第一轮：找历史记录少于  的节点里，最早出现的。
+* 第二轮：如果没有第一类，找已满  次记录里，-th timestamp 最小的。
+
+
+4. 清理：从 `node_map_` 中删除该节点，并减少 `curr_size_`。
+
+
+
+### `SetEvictable(frame_id, set_evictable)`
+
+* 逻辑：改变一个 Frame 的可驱逐状态。
+* 注意：这会改变 `curr_size_`（即 Replacer 中目前“可驱逐”节点的总数），但不会删除节点。
+
+
+
+## 4. 常见坑点
+
+1. 时间戳并非系统时间：通常使用一个简单的计数器 `size_t current_timestamp_`，每次访问自增即可。
+2. 并发安全：`Evict` 和 `RecordAccess` 必须加锁。不要在持有锁的情况下调用其他也会加同一把锁的函数（死锁警告！）。
+3. 内存管理：确保在 `Evict` 成功后，相关的数据结构被清理干净，避免内存泄漏。
+
+
+
+## 5. 性能优化建议
+
+虽然作业要求很简单，但如果你想追求极致性能：
+
+* 不要在 `Evict` 时遍历全表：这会把  变成 。你可以尝试维护两个不同的 `std::set` 或带优先级的队列，分别存储“不足 K 次”和“满 K 次”的节点，从而实现更快的查找。
+
+Lab 1 的第二部分是 Buffer Pool Manager 本身，它需要调用你写的这个 Replacer。你准备好去处理那些繁琐的 `page_id` 和 `frame_id` 映射了吗？
+
+在 BusTub 的 Lab 1 中，`page_id` 和 `frame_id` 的映射确实是让很多开发者感到“绕”的地方。如果你能理清这两者的关系，Buffer Pool Manager (BPM) 就成功了一半。
+
+我们可以把 Buffer Pool 想象成一家酒店：
+
+* `page_id`：客人的身份证号（数据在磁盘上的永久唯一标识）。
+* `frame_id`：酒店的房间号（内存中固定数量的槽位/槽位索引）。
+* `Page` 对象：房间里的床位和设施（实际存储数据的地方）。
+
+
+
+## 1. 映射的核心：`page_table_`
+在代码中，你需要维护一个 `std::unordered_map<page_id_t, frame_id_t> page_table_`。
+* 它的作用：快速告诉你，“身份证号为 X 的客人，目前住在哪个房间？”
+* 为什么需要它：磁盘上有成千上万个 Page，但内存（Buffer Pool）里可能只有 10 个 Frame。当你要找某个 Page 时，必须先查表看它是否已经在内存里了。
+
+## 2. 核心函数中的映射逻辑
+### FetchPage(page_id)
+这是最常用的函数，逻辑如下：
+
+1. 查表：在 `page_table_` 里找 `page_id`。
+2. 命中：如果在，直接找到对应的 `frame_id`，增加 `pin_count`，返回该 Page。
+3. 不命中：
+* 找一个空闲 Frame（从 `free_list_` 拿，或者从 `replacer_` 踢出一个）。
+* 关键一步：如果踢出了旧 Page，记得在 `page_table_` 里删掉旧的映射。
+* 从磁盘读入新 Page，在 `page_table_` 里建立新的映射：`page_table_[page_id] = frame_id`。
+
+### NewPage(page_id)
+逻辑与 Fetch 类似，区别在于：
+* 你不需要从磁盘读，而是调用 `DiskManager` 分配一个新的 `page_id`。
+* 同样需要在 `page_table_` 中记录这个新页面占用了哪个 `frame_id`。
+
+## 3. 处理映射时的“避坑”准则
+为了不让系统崩溃，请务必遵守这三条铁律：
+1. 先清理再建立：当你决定驱逐（Evict）一个 `frame_id` 里的旧页面时，必须先根据旧页面的 `page_id` 从 `page_table_` 中将其删除，后再写入新页面的映射。
+2. Pin Count 的意义：`pin_count` > 0 的页面绝对不能被 `replacer_` 踢走。如果所有的 Frame 都被 Pin 住了，`FetchPage` 或 `NewPage` 应该返回 `nullptr`。
+3. Dirty Bit 的维护：在映射被销毁（驱逐）之前，检查 `is_dirty`。如果页面在内存里被改过，必须先调用 `DiskManager::WritePage` 写回磁盘。
+
+## 4. 线程安全（Concurrency）
+
+不要忘记 `std::mutex latch_`。在 BPM 中，几乎所有的操作（查表、改映射、调 Replacer）都需要全程加锁。
+
+* 不要在持有 BPM 锁的情况下调用磁盘 I/O 以外的耗时操作（虽然在实验里通常没问题，但在生产环境这是性能杀手）。
+* 小心死锁：确保你的加锁顺序是一致的。
+
+
+
+### 总结：你的数据流向图
+
+> Disk (page_id) <——> DiskManager <——> BufferPool (frame_id) <——> Page Table (Map)
+
+搞定了这个映射，你就已经跨过了磁盘到内存的鸿沟。
+
+你现在是打算开始编写 `FetchPage` 的具体代码，还是想先看看如何测试你的 `page_table_` 逻辑是否正确？
