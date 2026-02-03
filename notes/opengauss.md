@@ -753,27 +753,20 @@ AI系统与框架
 • 特点: CMU著名数据库课程，实现关系型数据库核心组件
 
 6. MIT 6.830/6.814 Database Systems
-
 • 负责人: Sam Madden (MIT教授)
-
 • 源代码: https://github.com/MIT-DB-Class/simple-db-hw
-
 • 特点: MIT数据库课程，实现SimpleDB
 
 7. Stanford CS245 Database Principles
 
 • 负责人: Stanford数据库组
-
 • 课程项目: 多个课程实验项目
-
 • 特点: 查询优化、事务处理等核心主题
 
 8. UW CSE 544 Database Internals
 
 • 负责人: University of Washington
-
 • 课程资料: https://courses.cs.washington.edu/courses/cse544
-
 • 特点: 数据库内核实现深度课程
 
 国内高校项目
@@ -789,67 +782,47 @@ AI系统与框架
 10. 北京大学数据库实验室
 
 • 负责人: 崔斌教授等
-
 • 相关项目: https://github.com/pkudb
-
 • 特点: 分布式数据库系统研究
 
 11. 浙江大学数据库课程
 
 • 负责人: 陈刚教授等
-
 • 课程项目: 数据库系统实现实验
-
 • 特点: 完整的数据库系统实现
 
 12. 华东师范大学数据库实验室
 
 • 负责人: 钱卫宁教授等
-
 • 相关项目: https://github.com/ecnu-datalab
-
 • 特点: 分布式事务处理、NewSQL系统
 
 分布式数据库教学项目
 
 13. TiDB教学版
-
 • 负责人: PingCAP
-
 • 源代码: https://github.com/pingcap/tidb
-
 • 特点: 工业级NewSQL数据库，文档完善
 
 14. CockroachDB Lite
-
 • 负责人: Cockroach Labs
-
 • 源代码: https://github.com/cockroachdb/cockroach
-
 • 特点: 分布式SQL数据库，架构清晰
 
 15. YugabyteDB
-
 • 负责人: Yugabyte
-
 • 源代码: https://github.com/yugabyte/yugabyte-db
-
 • 特点: 高性能分布式数据库
 
 特定组件教学项目
 
 16. LSM-Tree实现
-
 • 负责人: 多个开源项目
-
 • 代表性项目: https://github.com/google/leveldb
-
 • 特点: Google LevelDB，LSM-tree经典实现
 
 17. B+Tree实现
-
 • 负责人: 多个教学项目
-
 • 代表性项目: https://github.com/begeekmyfriend/bplustree
 
 • 特点: B+树索引结构教学实现
@@ -989,3 +962,40 @@ AI系统与框架
 • 特点: 《Database Internals》一书配套代码
 
 这些项目涵盖了从基础数据库实现到高级分布式系统的各个层面，适合不同层次的学习需求。大多数项目都有详细的文档和活跃的社区支持。
+
+
+是的，openGauss 的源代码（官方内核）支持单机部署，也支持分布式部署，但需要区分版本和具体形态。核心架构说明openGauss 本体（内核）是单机/集中式数据库（standalone / centralized architecture）：数据存储在单个物理节点（或主备节点）上。
+支持单机部署（standalone mode）：只有一个数据库实例，无高可用。
+支持一主多备高可用部署（primary + multiple standbys）：最多支持 8 个备机（早期版本最多 4 个），备机支持只读，提供实例级容灾和读扩展。
+官方文档反复强调：openGauss 支持单机部署和一主多备部署两种主要形态。单机部署常用于测试、体验、开发调测场景，不建议用于生产（因为只有一个数据副本，故障后数据丢失风险高，只能靠备份恢复）。
+
+分布式部署：原生内核不直接提供内置分布式（不像 TiDB / CockroachDB 那样原生分片 + 分布式事务）。
+但 openGauss 支持通过外部组件实现分布式，主要有两种主流方案：openGauss + ShardingSphere（最常见）：用 Apache ShardingSphere（Proxy 或 JDBC）做分库分表 + 分布式查询/事务，底层多个 openGauss 实例作为存储节点。支持水平扩展、读写分离、两地三中心等，已在生产中使用（例如华为云 GaussDB(for openGauss) 部分基于此）。
+openGauss 分布式镜像/企业版扩展：部分版本（如某些 LTS 企业版）提供分布式部署支持，通过 Patroni + HAProxy + Paxos 实现多节点集群、负载均衡、自动 failover 等。
+
+这些分布式方案本质上是多个 openGauss 单机/主备实例 + 中间件/协调层，而不是内核原生分布式。
+
+总结对比部署类型
+是否原生支持
+典型场景
+备注
+单机部署
+是
+测试、开发、POC、小型应用
+官方明确支持，一个实例运行在单台机器上，简单快速，但无 HA。
+一主多备（HA）
+是
+中小型生产、读扩展
+最多 8 备，最常用 1 主 2 备，提供 RPO=0、RTO<10s 的高可用。
+分布式（分片）
+间接支持
+大规模、海量数据、高并发
+靠 ShardingSphere 或类似中间件实现，多个 openGauss 节点组成集群。
+
+实际使用建议想快速上手：直接用单机部署（Lite 版或企业版单机），官网有详细脚本安装指南（gs_preinstall + gs_install）。
+需要高可用：一主多备部署。
+需要分布式：结合 ShardingSphere 或官方分布式方案，参考社区/华为云文档。
+
+官方文档（最新版如 6.0+）一直把“单机部署”列为标准支持方式。如果你下载的是 openGauss-server 源代码，编译后就能单机跑起来。有具体版本（如 3.x、5.x、6.x）或想看部署步骤的话，可以再细说！
+
+
