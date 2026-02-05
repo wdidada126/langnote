@@ -161,338 +161,215 @@ AI4DB/DB4AI
 • 张宇 - 人工智能、智能控制
 
 南京大学
-
 • 周志华 - 机器学习、数据挖掘
-
 • 黎铭 - 机器学习、数据挖掘
-
 • 高阳 - 人工智能、多智能体系统
-
 • 俞扬 - 强化学习、机器学习
 
 中国科学技术大学
-
 • 陈恩红 - 数据挖掘、推荐系统
-
 • 刘淇 - 数据挖掘、社会计算
-
 • 熊辉 - 数据挖掘、商业智能
 
 复旦大学
-
 • 邱锡鹏 - 自然语言处理、深度学习
-
 • 黄萱菁 - 自然语言处理、文本挖掘
-
 • 张奇 - 自然语言处理、信息检索
-
 • 肖仰华 - 知识图谱、大数据分析
 
 中国人民大学
-
 • 文继荣 - 信息检索、数据挖掘
-
 • 赵鑫 - 自然语言处理、社会计算
-
 • 窦志成 - 信息检索、机器学习
 
 北京航空航天大学
-
 • 李未 - 人工智能、分布式计算
-
 • 吕卫锋 - 大数据智能、社会计算
-
 • 牛建伟 - 普适计算、移动智能
 
 中山大学
-
 • 赖剑煌 - 计算机视觉、生物特征识别
-
 • 谢晓华 - 数据挖掘、生物信息学
 
 同济大学
-
 • 苗夺谦 - 粗糙集、粒计算
-
 • 赵卫东 - 商务智能、流程挖掘
 
 产业界研究机构
 
 微软亚洲研究院
-
 • 洪小文 - 人工智能、语音识别
-
 • 周明 - 自然语言处理、机器翻译
-
 • 刘铁岩 - 机器学习、信息检索
 
 百度
-
 • 王海峰 - 自然语言处理、知识图谱
-
 • 吴甜 - 深度学习平台、AI开发
 
 阿里巴巴
-
 • 华先胜 - 计算机视觉、视频分析
-
 • 司罗 - 自然语言处理、智能客服
 
 腾讯
-
 • 刘威 - 计算机视觉、多媒体分析
-
 • 俞栋 - 语音识别、深度学习
 
 商汤科技
-
 • 王晓刚 - 计算机视觉、深度学习
-
 • 林达华 - 计算机视觉、机器学习
 
 主要研究方向分布
-
 基础理论
-
 • 机器学习理论
-
 • 深度学习理论
-
 • 强化学习
-
 • 贝叶斯方法
 
 核心技术
-
 • 计算机视觉
-
 • 自然语言处理
-
 • 语音识别与合成
-
 • 知识图谱与推理
 
 应用领域
-
 • 机器人学
-
 • 智能驾驶
-
 • 医疗AI
-
 • 金融科技
-
 • 智慧城市
 
 交叉学科
-
 • AI4Science
-
 • 脑科学与类脑计算
-
 • AI芯片与系统
-
 • AI安全与伦理
 
 重要学术平台
-
 • 中国人工智能学会（CAAI）
-
 • 中国计算机学会人工智能专委会
-
 • 全国人工智能学术会议（CCAI）
-
 • 中国机器学习会议（CCML）
 
 这个领域发展迅速，新的优秀学者不断涌现。以上列出的是在各方向上具有较高知名度和影响力的部分学者。
 
-
 以下是人工智能方向的一些优秀教学Lab开源项目，类似Huadb、MiniOB：
-
 机器学习/深度学习基础
-
 1. 微软AI教育项目 (AI-School)
-
 • 负责人: 微软亚洲研究院
-
 • 源代码: https://github.com/microsoft/AI-School
-
 • 特点: 完整的AI教学课程和实验项目
 
 2. Stanford CS231n课程项目
-
 • 负责人: 李飞飞教授
-
 • 源代码: https://github.com/cs231n/cs231n.github.io
-
 • 特点: 计算机视觉经典课程，包含完整实验
 
 3. 动手学深度学习 (D2L)
-
 • 负责人: 李沐（亚马逊首席科学家）
-
 • 源代码: https://github.com/d2l-ai/d2l-zh
-
 • 特点: 中文版《动手学深度学习》，Jupyter Notebook形式
 
 自然语言处理
-
 4. Stanford CS224n课程项目
-
 • 负责人: Christopher Manning教授
-
 • 源代码: https://github.com/stanfordnlp/cs224n-winter17-notes
-
 • 特点: NLP经典课程实验
 
 5. Hugging Face Transformers教程
-
 • 负责人: Hugging Face团队
-
 • 源代码: https://github.com/huggingface/transformers
-
 • 特点: 最新的Transformer模型实践教程
 
 计算机视觉
 
 6. MMLab系列 (OpenMMLab)
-
 • 负责人: 香港中文大学MMLab
-
 • 源代码: https://github.com/open-mmlab
-
 • 包含项目:
-
   • MMDetection: https://github.com/open-mmlab/mmdetection
-
   • MMPreTrain: https://github.com/open-mmlab/mmpretrain
-
   • MMSegmentation: https://github.com/open-mmlab/mmsegmentation
 
 7. PaddleCV
-
 • 负责人: 百度PaddlePaddle团队
-
 • 源代码: https://github.com/PaddlePaddle/PaddleCV
-
 • 特点: 基于飞桨的计算机视觉工具库
 
 强化学习
 
 8. 天授 (Tianshou)
-
 • 负责人: 清华大学计算机系
-
 • 源代码: https://github.com/thu-ml/tianshou
-
 • 特点: 基于PyTorch的强化学习平台
 
 9. 蘑菇书 (MushroomRL)
-
 • 负责人: 北京大学等高校
-
 • 源代码: https://github.com/MushroomRL/mushroom-rl
-
 • 特点: 强化学习教学项目
 
 AI系统与框架
 
 10. MindSpore教程
-
 • 负责人: 华为MindSpore团队
-
 • 源代码: https://github.com/mindspore-ai/mindspore
-
 • 特点: 华为开源AI框架教学项目
 
 11. PaddlePaddle教育版
-
 • 负责人: 百度PaddlePaddle团队
-
 • 源代码: https://github.com/PaddlePaddle/Paddle
-
 • 特点: 飞桨深度学习平台教育版本
 
 专门的教学实验室项目
 
 12. AI-EdLab
-
 • 负责人: 多所高校联合
-
 • 源代码: https://github.com/AI-EdLab/ai-edu
-
 • 特点: 专门为AI教育设计的实验平台
 
 13. DeepLearning-500-questions
-
 • 负责人: 复旦大学等
-
 • 源代码: https://github.com/scutan90/DeepLearning-500-questions
 
 • 特点: 深度学习500问，配套代码实践
-
 14. AiLearning
-
 • 负责人: 个人开发者（ApacheCN）
-
 • 源代码: https://github.com/apachecn/AiLearning
-
 • 特点: 机器学习实战代码和教程
 
 国内高校特色项目
 
 15. 清华大学计图 (Jittor)
-
 • 负责人: 清华大学计算机系图形学实验室
-
 • 源代码: https://github.com/Jittor/jittor
-
 • 特点: 基于元算子和统一内存的深度学习框架
 
 16. 北京大学AI教学项目
-
 • 负责人: 北京大学人工智能研究院
-
 • 源代码: https://github.com/pku-ai-edu/ai-course
-
 • 特点: 北大AI课程配套实验
 
 17. 浙江大学AI实验室
-
 • 负责人: 浙江大学人工智能研究所
-
 • 源代码: https://github.com/zju-ai/zju-ai-lab
-
 • 特点: 浙大AI课程实验项目
 
 18. 上海交通大学AI教学
-
 • 负责人: 上海交通大学人工智能研究院
-
 • 源代码: https://github.com/sjtu-ai/ai-course-materials
-
 • 特点: 交大AI课程资料和实验
-
 特色小型教学项目
 
 19. numpy-ml
-
 • 负责人: 个人开发者
-
 • 源代码: https://github.com/ddbourgin/numpy-ml
-
 • 特点: 仅用NumPy实现机器学习算法
 
 20. neural-networks-and-deep-learning
-
 • 负责人: Michael Nielsen
-
 • 源代码: https://github.com/mnielsen/neural-networks-and-deep-learning
-
 • 特点: 神经网络与深度学习经典教程代码
 
 使用建议
-
 1. 初学者: 推荐《动手学深度学习》(D2L) 和 AiLearning
 2. 计算机视觉: 推荐MMLab系列和CS231n
 3. 自然语言处理: 推荐Hugging Face和CS224n
@@ -500,51 +377,34 @@ AI系统与框架
 5. 系统学习: 推荐各大高校的完整课程项目
 
 这些项目大多有详细的中文文档和活跃的社区支持，非常适合教学和自学使用。
-
 以下是计算机网络方向的优秀教学Lab开源项目：
 
 网络协议栈实现
-
 1. TinyWebServer
-
 • 负责人: qinguoyi
-
 • 源代码: https://github.com/qinguoyi/TinyWebServer
-
 • 特点: Linux下C++轻量级Web服务器，包含线程池、Epoll、定时器等
 
 2. mTCP
-
 • 负责人: 首尔大学
-
 • 源代码: https://github.com/mtcp-stack/mtcp
-
 • 特点: 高性能用户态TCP/IP协议栈，用于教学和研究
 
 3. lwIP
-
 • 负责人: 瑞典计算机科学研究所
-
 • 源代码: https://github.com/lwip-tcpip/lwip
-
 • 特点: 轻量级TCP/IP协议栈，适合嵌入式系统教学
 
 网络编程实战
 
 4. Linux网络编程实战
-
 • 负责人: 游双《Linux高性能服务器编程》配套代码
-
 • 源代码: https://github.com/riba2534/Linux-Network-Programming
-
 • 特点: Linux网络编程完整实例
 
 5. CppNet
-
 • 负责人: caozhiyi
-
 • 源代码: https://github.com/caozhiyi/CppNet
-
 • 特点: C++11编写的高性能网络库，适合学习现代C++网络编程
 
 知名大学课程实验
@@ -964,7 +824,7 @@ AI系统与框架
 这些项目涵盖了从基础数据库实现到高级分布式系统的各个层面，适合不同层次的学习需求。大多数项目都有详细的文档和活跃的社区支持。
 
 
-是的，openGauss 的源代码（官方内核）支持单机部署，也支持分布式部署，但需要区分版本和具体形态。核心架构说明openGauss 本体（内核）是单机/集中式数据库（standalone / centralized architecture）：数据存储在单个物理节点（或主备节点）上。
+openGauss 的源代码（官方内核）支持单机部署，也支持分布式部署，但需要区分版本和具体形态。核心架构说明openGauss 本体（内核）是单机/集中式数据库（standalone / centralized architecture）：数据存储在单个物理节点（或主备节点）上。
 支持单机部署（standalone mode）：只有一个数据库实例，无高可用。
 支持一主多备高可用部署（primary + multiple standbys）：最多支持 8 个备机（早期版本最多 4 个），备机支持只读，提供实例级容灾和读扩展。
 官方文档反复强调：openGauss 支持单机部署和一主多备部署两种主要形态。单机部署常用于测试、体验、开发调测场景，不建议用于生产（因为只有一个数据副本，故障后数据丢失风险高，只能靠备份恢复）。
@@ -998,4 +858,48 @@ openGauss 分布式镜像/企业版扩展：部分版本（如某些 LTS 企业�
 
 官方文档（最新版如 6.0+）一直把“单机部署”列为标准支持方式。如果你下载的是 openGauss-server 源代码，编译后就能单机跑起来。有具体版本（如 3.x、5.x、6.x）或想看部署步骤的话，可以再细说！
 
+## 编程语言
+C++
+## 版本
+6.0.0
+2024年10月14日
 
+## 编译
+
+https://gitcode.com/opengauss/openGauss-server
+
+https://docs.opengauss.org/zh/docs/7.0.0-RC1-lite/docs/CompilationGuide/%E7%BC%96%E8%AF%91%E5%89%8D%E5%87%86%E5%A4%87.html
+软件要求 ​
+操作系统要求
+
+openGauss支持的操作系统（Linux 64位）：
+
+CentOS 7.6（x86_64 架构）
+openEuler-20.03-LTS（aarch64 架构）
+openEuler-20.03-LTS（x86_64架构）
+openEuler-22.03-LTS（aarch64 架构）
+openEuler-22.03-LTS（x86_64架构）
+openEuler-24.03-LTS（aarch64 架构）
+openEuler-24.03-LTS（x86_64架构）
+Kylin-V10（aarch64 架构）
+Asianux 7.6（x86_64架构）
+Asianux 7.5（aarch64 架构）
+FusionOS 22 (aarch64 架构)
+FusionOS 22 (x86 架构)
+
+https://gitcode.com/opengauss/openGauss-third_party
+
+message(STATUS "status ENV{DEBUG_TYPE}" $ENV{DEBUG_TYPE})
+if($ENV{DEBUG_TYPE} STREQUAL "debug" OR ${ENABLE_LLT} OR ${ENABLE_UT})
+    #there are two definitions for debug in mppdb, but they are confilct sometimes. such as roach(DEBUG) and *.S(NO DEBUG)
+    set(USE_ASSERT_CHECKING ON)
+    set(OPTIMIZE_LEVEL -O0 -g)
+elseif($ENV{DEBUG_TYPE} STREQUAL "release")
+    #close something for release version.
+    set(ENABLE_LLT OFF)
+    set(ENABLE_UT OFF)
+    set(OPTIMIZE_LEVEL -O2 -g3)
+elseif($ENV{DEBUG_TYPE} STREQUAL "memcheck")
+    message("DEBUG_TYPE:$ENV{DEBUG_TYPE}")
+
+https://docs.opengauss.org/zh/docs/latest/compilation_guide/compiling_the_version.html
