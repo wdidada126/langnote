@@ -1,4 +1,10 @@
 # opengauss
+
+gauss有两个，一个opengauss，一个gaussdb
+
+openGauss基于pg 9.2，把c全部改成了c++，就是华为号称的自研
+那也不错，至少用C++重构了，而且变化确实很大，要说完全是新的数据库也没错，只不过是pg的一些东西没完全剔除，至少这个是自己可以控制的不会受制于人
+
 单机的？
 GaussDB单机架构—openGauss
 https://opengauss.org/zh/download/
