@@ -1,11 +1,7 @@
 # giffgaff
 
 常用功能查询手机卡号码：发送短信内容 NUMBER 到2020查询话费余额：拨号界面 输入 *100#关闭语音信箱：拨号界面 输入 ##002#打开语音信箱：拨号界面 输入 **61*443*10*20#默认PIN：5555上述功能均可在国内免费使用，不产生漫游费用哦
-
-作者：咿咿呀呀
 链接：https://zhuanlan.zhihu.com/p/654786856
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 首先，登录
 https://www.giffgaff.com/profile/details/getnumber
@@ -19,27 +15,28 @@ https://www.giffgaff.com/profile/details/getnumber
 实体卡也还好，不一定要转esim
 
 +44
-07922604205
+07922602128
 
-7922604205
+7922602128
 
 
 Your member name is: wdida475
-Your phone number is: 07922604205
-
-
+Your phone number is: 07922602128
 
 wdida475
 
 +44
-07922604205
+07922602128
+
+
+wdida189
+079227381136
 
 https://www.facebook.com/giffgaffmobile
 
 https://twitter.com/giffgaff
 
-
-giffgaff 新手入门指南
+giffgaff新手入门指南
 
 预付卡新用户请看这里
 第一步：拆开包装，袋子上有您的giffgaff英国号码，格式为+44 07xxx xxxxx
@@ -72,7 +69,5 @@ giffgaff用户省钱秘笈
 
 苹果手机使用上有什么注意事项？
 A：不建议打开iMessage/Facetime功能，因为如果点击确认，苹果后台会发出一条短信，因此会被扣费0.3磅。由于国内短信价格很低，很多人都是套餐里送的，所以不知道有这么一个短信发送的过程。
-
 A：英国国际区号(United Kingdom)是+44，有时候也用0044表示，输入时候要选择正确区号。
-
 TB或JD上卖的都是针对游客的短期月租套餐卡，不合适长期使用。如果您需要前往海外，只需到官网上调整您的套餐即可。
