@@ -14,3 +14,21 @@ Reporting bugs
 ## 编程语言
 c++
 ## 编译脚本
+@edidada ➜ /workspaces/compiler_script/src (main) $ git branch -a
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/infra/config
+  remotes/origin/lkgr
+  remotes/origin/main
+  remotes/origin/master
+  remotes/origin/release-temp
+./build/install-build-deps.sh
+
+https://webrtc.googlesource.com/src/+/main/docs/native-code/development
+
+https://github.com/webrtc/dcsctp
+
+c版本
+https://gitee.com/metartc/metaRTC
+c++版本
+https://gitee.com/metartc/yangwebrtc
