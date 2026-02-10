@@ -1,5 +1,9 @@
 # mvcc
 
+PostgreSQL MVCC 机制
+核心：Heap Tuple Header + CID (Command ID) 与 Snapshot
+PostgreSQL的策略更先进。它的多版本模型是数据库教科书的经典实现，可见性判断是确定性的逻辑运算，没有回溯链的复杂性和不确定性，对只读查询和复杂分析的支持是天生的优势。
+
 MVCC 简介
 MVCC（Multi-Version Concurrency Control，多版本并发控制）是一种在数据库系统中广泛使用的并发控制机制。它通过维护数据的多个版本来处理并发事务，从而提高数据库的并发性能和响应能力。MVCC 的主要优点包括提高并发性能、降低死锁风险等。
 MVCC 的工作原理
