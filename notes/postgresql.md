@@ -1,4 +1,178 @@
 # Postgres/PostgreSQL
+## sql
+ansi sql
+pg sql
+PostgreSQL 是 ANSI SQL 的超级集合
+pqsql.png
+
+这是一个非常核心的数据库问题。ANSI SQL 是“标准”，而 PostgreSQL 的 SQL 方言（常被称为“PL/pgSQL”或更准确地说是“PostgreSQL SQL 方言”）是该标准的一个功能强大且扩展丰富的“实现”。
+
+下图清晰地展示了 ANSI SQL 标准与 PostgreSQL SQL 方言之间的包含、扩展和差异关系：
+flowchart TD
+    A[“SQL 语言世界”] --> B[“ANSI/SQL 标准<br>（ISO/IEC 9075 系列）”]
+    A --> C[“PostgreSQL SQL 方言<br>（PG SQL）”]
+
+    B --> B1[“核心规范”]
+    B1 --> B1a[“数据定义语言 DDL<br>（CREATE, ALTER, DROP）”]
+    B1 --> B1b[“数据操作语言 DML<br>（SELECT, INSERT, UPDATE, DELETE）”]
+    B1 --> B1c[“数据控制语言 DCL<br>（GRANT, REVOKE）”]
+    B1 --> B1d[“事务控制 TCL<br>（BEGIN, COMMIT, ROLLBACK）”]
+
+    C --> C1[“完全兼容 ANSI SQL 核心”]
+    C --> C2[“大量独家扩展语法”]
+    C --> C3[“对标准语法的变体实现”]
+
+    C2 --> C2a[“高级数据类型<br>（JSON, HSTORE, 数组, 范围, 几何）”]
+    C2 --> C2b[“高级索引<br>（GIN, GiST, BRIN, SP-GiST）”]
+    C2 --> C2c[“独家语法糖<br>（RETURNING, DISTINCT ON, ILIKE）”]
+    C2 --> C2d[“完整过程语言<br>（PL/pgSQL, PL/Python 等）”]
+    C2 --> C2e[“复杂特性<br>（表继承, 异步通知, 物化视图）”]
+
+    C3 --> C3a[“更严格的类型系统”]
+    C3 --> C3b[“丰富的时间函数”]
+    C3 --> C3c[“独特的序列与 SERIAL”]
+
+
+核心联系：PostgreSQL 是 ANSI SQL 的超级集合
+
+1. PostgreSQL 高度兼容 ANSI SQL
+
+PostgreSQL 以高标准的 ANSI SQL 兼容性著称。它实现了最新 SQL 标准（如 SQL:2016, SQL:2011）的绝大部分核心特性，这意味着：
+
+• 任何符合 ANSI SQL 标准的查询，在 PostgreSQL 中几乎都能不加修改或稍作修改即可运行。
+
+• 这保证了从其他数据库（如 MySQL、Oracle）迁移时的平滑过渡和学习成本降低。
+
+示例：标准的 JOIN 和窗口函数
+-- 这是标准的 ANSI SQL，在 PostgreSQL 中完全支持
+SELECT 
+    e.name,
+    d.department_name,
+    AVG(e.salary) OVER (PARTITION BY e.department_id) as avg_dept_salary
+FROM employees e
+JOIN departments d ON e.department_id = d.id
+WHERE e.hire_date > '2020-01-01';
+
+
+主要区别：PostgreSQL 的独家增强与扩展
+
+1. 数据类型扩展
+
+PostgreSQL 提供了远超标准的数据类型，这是其最强大的优势之一。
+
+类别 ANSI SQL 标准类型 PostgreSQL 扩展类型
+
+基础类型 INTEGER, VARCHAR, DATE, BOOLEAN 同左，并增加 SERIAL（自增）、BIGSERIAL
+
+数值类型 基础数值 MONEY（货币）、任意精度 NUMERIC
+
+文本类型 CHAR, VARCHAR TEXT（不限长度，优于 VARCHAR）、CITEXT（不区分大小写）
+
+日期时间 DATE, TIME, TIMESTAMP TIMESTAMPTZ（带时区）、INTERVAL、时间范围类型
+
+几何与网络 无 POINT, LINE, CIRCLE, POLYGON、CIDR, INET, MACADDR
+
+文档与结构 无 JSON, JSONB（二进制JSON，可索引）、XML, HSTORE（键值对）
+
+数组 有限支持 强大的多维数组，可包含任何类型
+
+范围类型 无 INT4RANGE, TSRANGE, NUMRANGE 等，支持高效的范围查询
+
+复合类型 无 可创建自定义的 CREATE TYPE ... AS (...)
+
+示例：JSONB 类型的强大查询
+-- 存储和查询半结构化数据
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    details JSONB
+);
+
+INSERT INTO products (details) VALUES 
+('{"name": "Laptop", "specs": {"ram": "16GB", "storage": "1TB"}, "tags": ["electronics", "sale"]}');
+
+-- 使用 JSONB 操作符查询
+SELECT * FROM products 
+WHERE details @> '{"specs": {"ram": "16GB"}}'
+  AND details->'tags' ? 'sale';
+
+
+2. 独家语法糖与功能
+
+这些是 PostgreSQL 独有的便利语法。
+特性 说明 示例
+RETURNING 子句 DML 操作后直接返回被影响的数据 DELETE FROM users WHERE active = false RETURNING id, email;
+DISTINCT ON 对指定列去重，返回每个组的首行 SELECT DISTINCT ON (department_id) * FROM employees ORDER BY department_id, salary DESC;
+ILIKE 不区分大小写的 LIKE SELECT * FROM users WHERE name ILIKE 'john%';
+丰富的字符串函数 远超标准 REGEXP_REPLACE(), SPLIT_PART(), STRING_AGG()
+CTE 的 DML 操作 在 CTE 中执行写操作 WITH deleted AS (DELETE FROM logs WHERE age > 365 RETURNING *) SELECT COUNT(*) FROM deleted;
+3. 复杂特性与架构
+特性 说明 示例/用途
+表继承 支持面向对象的表结构设计 CREATE TABLE cities (人口) INHERITS (places);
+物化视图 可刷新的缓存视图 CREATE MATERIALIZED VIEW sales_summary AS ...; REFRESH MATERIALIZED VIEW sales_summary;
+异步通知 LISTEN/NOTIFY 机制 实现轻量级的发布/订阅模式
+全文搜索 内置的全文搜索引擎 使用 tsvector 和 tsquery 类型
+外部数据包装器 查询远程数据源 通过 postgres_fdw 查询其他 PostgreSQL 实例
+
+4. 索引类型远超标准
+
+PostgreSQL 不仅支持标准的 B-Tree 索引，还提供：
+
+索引类型 用途
+GiST 通用搜索树，支持地理数据、全文搜索、范围查询
+GIN 倒排索引，用于 JSONB、数组、全文搜索
+BRIN 块范围索引，用于极大表的快速范围扫描
+SP-GiST 空间分区树，用于非平衡数据结构
+Hash 哈希索引（特定场景）
+Bloom 布隆过滤器索引，用于多列任意查询
+示例：为 JSONB 字段创建 GIN 索引
+CREATE INDEX idx_product_details ON products USING GIN (details);
+
+
+5. 更严格的类型系统
+PostgreSQL 以严格遵循标准类型系统而闻名：
+-- 在 PostgreSQL 中，这是错误的（类型严格）
+SELECT '123' + 456;  -- 错误：操作符不存在
+
+-- 需要显式转换
+SELECT CAST('123' AS INTEGER) + 456;  -- 正确
+-- 或
+SELECT '123'::INTEGER + 456;  -- PostgreSQL 特有的类型转换语法
+
+相比之下，MySQL 可能会隐式转换并产生意外结果。
+
+6. 函数与过程语言
+PostgreSQL 支持多种过程语言编写存储过程/函数：
+
+语言 说明
+PL/pgSQL 默认，类似 Oracle 的 PL/SQL
+PL/Python 用 Python 编写函数
+PL/Perl 用 Perl 编写函数
+PL/Tcl 用 Tcl 编写函数
+PL/Java 用 Java 编写函数
+PL/R 用 R 语言编写（统计计算）
+
+总结对比表
+维度 ANSI SQL 标准 PostgreSQL SQL 方言
+定位 语言规范与标准 功能丰富的实现与扩展
+目标 提供跨数据库的统一接口 提供最强大、最灵活的关系数据库功能
+兼容性 是所有数据库的参照基准 高度兼容标准，是兼容性最好的数据库之一
+数据类型 基础集合 超集，包含 JSON、数组、几何、范围等丰富类型
+索引 基础 B-Tree 多种高级索引（GIN, GiST, BRIN, SP-GiST）
+语法糖 标准语法 大量便利扩展（RETURNING, DISTINCT ON, ILIKE）
+可扩展性 不涉及 支持自定义类型、函数、操作符、索引方法
+复杂特性 有限 支持表继承、FDW、物化视图、异步通知等
+适用场景 学习通用 SQL，保证可移植性 企业级应用、复杂数据分析、GIS、文档存储等
+
+给开发者的建议
+
+1.  学习路径：先掌握 ANSI SQL 标准，这是通用基础。然后学习 PostgreSQL 的扩展特性，这将大幅提升你的生产力。
+2.  代码可移植性：如果考虑未来迁移，尽量使用 ANSI SQL 标准语法。但不必过度牺牲 PostgreSQL 的强大功能。
+3.  性能优化：充分利用 PostgreSQL 独有的索引类型和高级特性来优化查询。
+4.  模式设计：在 PostgreSQL 中，可以更灵活地使用 JSONB、数组等非关系型数据类型，实现混合数据模型。
+
+一句话总结：ANSI SQL 是"普通话"，保证大家能沟通；PostgreSQL SQL 是带着各地方言、成语、专业术语的"高级表达"，能更精确、高效地描述复杂需求。 掌握标准让你具备通用能力，掌握 PostgreSQL 扩展则让你成为这个生态中的专家。
+
+## doc
 
 https://www.postgresql.org/docs/current/routine-vacuuming.html
 
