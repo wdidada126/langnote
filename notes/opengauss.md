@@ -879,7 +879,6 @@ https://docs.opengauss.org/zh/docs/7.0.0-RC1-lite/docs/CompilationGuide/%E7%BC%9
 操作系统要求
 
 openGauss支持的操作系统（Linux 64位）：
-
 CentOS 7.6（x86_64 架构）
 openEuler-20.03-LTS（aarch64 架构）
 openEuler-20.03-LTS（x86_64架构）
@@ -892,6 +891,8 @@ Asianux 7.6（x86_64架构）
 Asianux 7.5（aarch64 架构）
 FusionOS 22 (aarch64 架构)
 FusionOS 22 (x86 架构)
+
+openEuler可以wsl
 
 https://gitcode.com/opengauss/openGauss-third_party
 
