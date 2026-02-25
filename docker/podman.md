@@ -1,11 +1,12 @@
 # podman
+
 红帽搞得，开源吗？
 https://github.com/containers/podman-desktop
 ts写的
 
+## 代码仓库
 https://github.com/containers/podman
 Go写的
-
 
 Documents: https://docs.podman.io
 
@@ -22,3 +23,16 @@ Podman
 winget install -e --id RedHat.Podman-Desktop
 brew install podman-desktop
 flatpak install flathub io.podman_desktop.PodmanDesktop
+
+## docker比优势
+docker必须root权限，
+
+## 版本
+
+v5.8.0
+
+## 编译脚本
+git clone https://github.com/containers/podman.git
+cd podman
+git checkout v5.8.0
+go mod tidy
