@@ -1,7 +1,7 @@
 # docker
 
 ## 竟品
-Docker、Podman、nerdctl
+Podman、nerdctl
 
 对于桌面端，docker也有了可以竞争者，那就是redhat的podman，你可以alise podman=docker，docker有的基础功能podman都有
 服务器端，docker由于研发历史较早，加之cs架构，附带了很多功能restart=always功能，docker是才用了一个复杂的宿主机server实现的。这个和kubelet功能重合。docker net和pv管理。docker自带的net类型以及pv管理，对k8s是不需要的，k8s自带net和pv的实现方案。docker拉起用户进程的中间垫片程序过于臃肿，有创建容器的配置经过docker-server，containerd，containerd-shim层层传递和初始化，最终才到runc，用户进程。于是Google实现了一个精简版的cri-o，作为k8s的专属容器引擎。当然，最关键的原因，docker公司在云原生时代，已然成为打工仔，在容器领域的话语权已经被云计算厂商挤压
