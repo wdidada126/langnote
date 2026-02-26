@@ -565,4 +565,4 @@ https://discord.com/invite/xS7Z362
 https://llvm.org/docs/GettingStarted.html#getting-the-source-code-and-building-llvm
 
 ## releases/version/版本
-通 llvm.md
+同 llvm.md
