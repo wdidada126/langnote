@@ -36,3 +36,8 @@ git clone https://github.com/containers/podman.git
 cd podman
 git checkout v5.8.0
 go mod tidy
+go build -v -o bin/podman ./cmd/podman
+ls -la bin/podman
+
+## 安装
+### win

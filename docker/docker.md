@@ -7,17 +7,11 @@ Podman、nerdctl
 服务器端，docker由于研发历史较早，加之cs架构，附带了很多功能restart=always功能，docker是才用了一个复杂的宿主机server实现的。这个和kubelet功能重合。docker net和pv管理。docker自带的net类型以及pv管理，对k8s是不需要的，k8s自带net和pv的实现方案。docker拉起用户进程的中间垫片程序过于臃肿，有创建容器的配置经过docker-server，containerd，containerd-shim层层传递和初始化，最终才到runc，用户进程。于是Google实现了一个精简版的cri-o，作为k8s的专属容器引擎。当然，最关键的原因，docker公司在云原生时代，已然成为打工仔，在容器领域的话语权已经被云计算厂商挤压
 
 docker save -o k8s-1.12.3.tar
-
 docker load
-
 service docker start
-
 systemctl
-
 docker 启动日志
-
 service docker status
-
 Docker is not running
 
 ## subnet
@@ -36,28 +30,17 @@ docker 　centos 7 'yum update'
 Portainer 图形化工具
 镜像重新命名
 docker tag 3fa112fd3642 oracle:11g
-
-
 docker exec -it /bin/bash
-
 
 tars也使用docker部署了
 
-
 docker linux上是正宗的，Windows macos上是vm
-
-
 
 docker run xxx 从镜像中启动一个容器实例
 
-
-
 docker ps 运行的container
-
 docker ps -a 所有container
-
 Docker start
-
 docker imgae tag，在网页上查看
 
 [docker](https://jingyan.baidu.com/article/aa6a2c142dc2774c4c19c4ca.html)
@@ -67,7 +50,6 @@ docker network create hadoop
 
 docker mac windows都是虚拟机
 linux使用了cgroup namespace
-
 
 shutdown -h 10          #计算机将于10分钟后关闭，且会显示在登录用户的当前屏幕中
 shutdown -h now       #计算机会立刻关机
@@ -82,13 +64,11 @@ halt                                #关机
 docker wordpress
 https://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html
 
-
 docker 端口映射
 https://www.cnblogs.com/kevingrace/p/9453987.html
 
 
 轻量级虚拟机
-
 一个项目需要引入docke，可以配置一个DockerFile
 
 coreos竞争
@@ -136,7 +116,6 @@ maven项目打包成docker镜像的工具
 
 [Docker探索系列2之镜像打包与DockerFile](https://www.cnblogs.com/liaojiafa/p/6151768.html)
 
-
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 
 docker可以根据现有的镜像打包新的镜像
@@ -147,35 +126,22 @@ docker import export
 load
 
 docker查看日志
-
 docker logs
-
 docker ip port
 
 输入回车
 
-
-
 invoke com.XXXX.media.platform.isomerization.proxy.api.IsomerizationAccessService.access({“prop”: “value”}, 1, “1”)
-
-
 
 docker部署image之后，如何登录进去进行操作
 
-
-
 docker exec
-
 docker run 和 docker exec 的差异 - 龙凌云端 - 博客园
 https://www.cnblogs.com/sparkdev/p/9129334.html
-
-
 
 也可以通过 `docker ps -a` 命令查看已经在运行的容器，然后使用容器 ID 进入容器。
 
 `docker exec -it 9df70f9a0714 /bin/bash`
-
-
 
 ```
 docker info
@@ -234,7 +200,6 @@ Product License: Community Engine
 docker 对容器的管理和操作基本都是通过 containerd 完成的
 
 ### overlay
-
 1. Overlay 网络
 Overlay 技术概述
 
@@ -271,29 +236,20 @@ Runc                           /usr/bin/docker-runc
 
 
 ### runc
-
 [第一本Docker书（修订版）](https://book.douban.com/subject/26780404/)
-
-
 [kubernetes权威指南 : 从Docker到Kubernetes实践全接触（第2版）](https://book.douban.com/subject/26902153/)
-
-
 [Docker——容器与容器云（第2版）](https://book.douban.com/subject/26894736/)
 
 浙江大学SEL实验室
 
 [Spring Cloud与Docker微服务架构实战](https://book.douban.com/subject/27028228/)
-
 [Docker——容器与容器云](https://book.douban.com/subject/26593175/)
-
 [Docker进阶与实战](https://book.douban.com/subject/26701218/)
 
 华为Docker实践小组 
 
 [Docker源码分析](https://book.douban.com/subject/26581184/)
-
 [Docker开发实践](https://book.douban.com/subject/26432893/)
-
 [Docker容器绑定外部IP和端口](https://www.cnblogs.com/linjiqin/p/8670798.html)
 
 
@@ -303,8 +259,6 @@ docker run -d -p 9118:8080 edidada/spring-cloud-eureka
 
 
 `docker exec -it cfb02f1a32c9  /bin/bash`
-
-
 
 https://www.cnblogs.com/quanbisen/p/11483118.html
 
@@ -325,3 +279,9 @@ https://www.daocloud.io/mirror
 http://f1361db2.m.daocloud.io
 
 ## docker windows安装
+
+## 版本version
+
+## 代码仓库
+
+## 源代码编译

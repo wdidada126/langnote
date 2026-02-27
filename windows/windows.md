@@ -287,8 +287,6 @@ Windows 平台上的 C/C++ 开发者可以利用丰富的 Windows API（应用�
 
 ### 📚 获取 Windows API 的几种方式
 
----
-
 ## ✅ 方法一：通过 MSDN 文档在线查询
 
 微软开发者网络（MSDN）现在被称为 [Microsoft Docs](https://docs.microsoft.com/)，是获取 Windows API 最全面且最新的资源之一。
