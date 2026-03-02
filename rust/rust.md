@@ -17,7 +17,6 @@ rustup toolchain list -v
 rustup install 1.80.0
 rustup default 1.80.0
 
-
 https://github.com/rust-lang/rust/releases
 
 rustup self update
@@ -32,7 +31,7 @@ rustc --version
 
 下面是一个简单的例子，展示了如何在Rust中模拟函数重写：
 
-rust
+```rust
 trait Animal {  
     fn make_sound(&self) -> String;  
 }  
@@ -60,6 +59,7 @@ fn main() {
     println!("Dog says: {}", dog.make_sound()); // 输出: Dog says: Woof!  
     println!("Cat says: {}", cat.make_sound()); // 输出: Cat says: Meow!  
 }
+```
 在这个例子中，Animal trait定义了一个make_sound方法，而Dog和Cat结构体分别实现了这个方法。虽然这不是传统意义上的重写（因为Rust没有继承），但我们通过为不同的结构体实现同一个trait方法，实现了类似的效果。
 
 需要注意的是，Rust的这种做法与OOP中的继承和多态有相似之处，但它更加灵活和强大，因为它不依赖于继承的层次结构。此外，Rust的类型系统（如泛型、trait和生命周期）提供了额外的安全性和表达力，使得开发者能够编写出既安全又高效的代码。
@@ -132,7 +132,7 @@ https://doc.rust-lang.org/std/index.html
 https://zhuanlan.zhihu.com/p/149548652
 
 命令行执行：
-rustup doc
+`rustup doc`
 
 file:///Users/ibqo/.rustup/toolchains/stable-x86_64-apple-darwin/share/doc/rust/html/index.html
 
