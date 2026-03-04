@@ -1,5 +1,79 @@
 # rust
 
+## edition
+
+是的，Rust 的语言特性（特别是那些可能导致向后不兼容的变化）确实是按照 Edition 来区分和引入的。目前（2026 年 3 月）已正式发布的 Edition 有以下四个：
+
+- 2015（最早的稳定版，Rust 1.0 时代）
+- 2018
+- 2021
+- 2024（随 Rust 1.85 于 2025 年 2 月正式稳定发布）
+
+### Edition 的核心设计理念
+Rust 故意把向后不兼容的语言级变更（breaking changes）推迟到下一个 Edition，而不是直接放在小版本（1.x）里。这样就能做到：
+
+- 旧代码（用旧 Edition）永远能编译（只要编译器支持该 Edition）
+- 新特性/语法/语义调整可以大胆引入
+- 不同 Edition 的 crate 可以互相依赖（混用没问题）
+
+每个 crate 在 `Cargo.toml` 里单独指定 `edition = "2021"` 或 `"2024"` 等，新建项目默认用最新稳定 Edition。
+
+### 各 Edition 引入的主要语言级变化（简要对比）
+
+| Edition   | 发布年份（大致） | 主要语言特性 / 重大变更                                                                 | 对旧代码的影响（是否 breaking） | 当前默认（新项目） |
+|-----------|------------------|------------------------------------------------------------------------------------------|----------------------------------|---------------------|
+| 2015      | 2015             | Rust 1.0 基础 + NLL 前身（早期 borrow checker）                                           | —（这是起点）                    | 否（向后兼容默认）  |
+| 2018      | 2018             | `async` / `await` 关键字、模块系统大调整（`use` 路径更自然）、`?` 运算符在更多地方可用、raw identifier (`r#async`) 等 | 会把 `async`、`try` 等变成关键字（旧代码需改名或用 `r#`） | 否                  |
+| 2021      | 2021             | 更严格的 `if let` 临时变量生命周期、闭包捕获改进、隐式 `IntoIterator`、更多地方支持 `impl Trait`、一些警告升为错误等 | 大部分是“收紧语义”或修复 footgun，很少直接破坏旧代码 | 曾是默认（到 2024 前） |
+| 2024      | 2025 年 2 月     | 更细粒度的借用检查（部分场景更宽松）、`if let` 临时变量作用域调整、模式匹配改进、Unsafe 代码更清晰的语义、切片/数组相关调整、一些宏和泛型 QoL 等 | 变化较多，但设计目标是“大多数 2021 代码只需很少修改甚至零修改就能升到 2024” | 是（2025 年后新项目默认） |
+
+### 快速判断当前项目用哪个 Edition
+```toml
+# Cargo.toml
+[package]
+edition = "2024"    # ← 现在最推荐
+# 或 "2021"、"2018"、"2015"
+```
+
+总结一句话：
+
+是的，Rust 的主要语言特性演进（尤其是引入新关键字、改变语义规则、收紧/放宽 borrow checker 等）正是通过 2015 → 2018 → 2021 → 2024 这些 Edition 来分阶段、有序、安全地推进的。
+
+下一个 Edition（预计 2027–2028）目前还没正式命名和规划，但按照每 3 年左右的节奏，Rust 社区大概率会继续这个模式。
+
+如果你在升级项目到 2024 edition 时遇到具体报错，也可以贴出来，我可以帮你分析怎么改最省力。
+
+Rust Edition 演进的最权威官方文档 是 The Rust Edition Guide（Rust 官方维护的专用指南）：
+
+- 主入口：https://doc.rust-lang.org/edition-guide/
+- 它完整覆盖了所有 Edition（2015、2018、2021、2024）的设计理念、每个 Edition 的具体变化、迁移步骤、自动修复工具（`cargo fix --edition`）的使用等。
+- 结构清晰，按 Edition 分章节：
+  - 通用介绍 → What are editions?（https://doc.rust-lang.org/edition-guide/editions）
+  - Rust 2015（基础，几乎无额外变更）
+  - Rust 2018（https://doc.rust-lang.org/edition-guide/rust-2018/）→ async/await 关键字、模块路径大调整、非词法生命周期（NLL）等
+  - Rust 2021（https://doc.rust-lang.org/edition-guide/rust-2021/）→ 闭包捕获改进、if let 临时变量生命周期收紧、一些警告升 error 等
+  - Rust 2024（https://doc.rust-lang.org/edition-guide/rust-2024/）→ 目前最全面的 2024 变更汇总，包括 RPIT 生命周期捕获规则调整、if let / tail expression 临时作用域变化、unsafe extern blocks、prelude 调整、关键字预留等
+
+迁移指南（最实用部分）：
+- 创建新项目：默认用最新 Edition（现在是 2024）
+- 升级现有项目：https://doc.rust-lang.org/edition-guide/editions/transitioning-an-existing-project-to-a-new-edition.html
+  - 步骤通常是：`cargo update` → `cargo fix --edition` → 修改 `Cargo.toml` 的 `edition = "2024"` → `cargo build/test` 验证 → `cargo fmt`
+- 高级迁移 / 部分迁移：https://doc.rust-lang.org/edition-guide/editions/advanced-migrations.html
+
+官方发布公告（补充阅读，了解背景和时间线）：
+- Rust 2024 正式稳定公告（Rust 1.85.0）：https://blog.rust-lang.org/2025/02/20/Rust-1.85.0
+- 2024 Edition 变更详细列表（在上面公告 + Edition Guide 里都有）
+- RFC for 2024 Edition：https://rust-lang.github.io/rfcs/3501-edition-2024.html（规划阶段文档）
+
+高质量第三方总结 / 社区文章（官方文档有时较干，下面这些更易读）：
+- "updating a large codebase to Rust 2024 edition"（真实大项目升级经验）：https://codeandbitters.com/rust-2024-upgrade
+- Reddit 上的 2024 变更 annotated 总结：https://www.reddit.com/r/rust/comments/1ix87qe/rust_edition_2024_annotated_a_summary_of_all/（社区整理的 breaking changes 一览）
+- Weekly Rust / Substack 等 newsletter 的 2024 Edition 回顾文章（搜索 "Rust 2024 Edition" + "summary" 很容易找到）
+
+一句话推荐：先从官方 Edition Guide 入手，它是最完整、最准确的“官方单点真相”。读完后再看博客或社区文章补齐实际案例。
+
+如果你在升级具体项目时遇到报错（比如某个 lint 或语法不兼容），可以贴出来，我帮你对应到哪个 Edition 的哪个变更。
+
 ## 源代码编译
 
 sudo apt install -y libssl-dev
