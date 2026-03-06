@@ -1,5 +1,7 @@
 # IDEA
 
+https://github.com/JetBrains/intellij-community
+
 Blanche_More@hotmail.com
 yDFA^P42
 不能改密码
