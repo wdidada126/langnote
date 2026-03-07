@@ -5,8 +5,8 @@ https://github.com/tmc/langchaingo
 langchain最大问题是不支持中文
 
 在LLM（大规模语言模型）应用开发领域，开源框架扮演着至关重要的角色，为广大开发者提供了强大的工具支持。作为这一领域的领军者，LangChain 凭借其创新设计和全面功能赢得了广泛赞誉。但与此同时，一些替代框架也应运而生，为不同场景下的需求提供了更优选择。
-### 2025 年 LangChain 最佳开源替代框架推荐
 
+### 2025 年 LangChain 最佳开源替代框架推荐
 LangChain 虽然仍是 LLM 应用开发的“老大哥”，但在 2025 年，它的抽象层过多、调试困难、生产部署弱等问题越来越被社区吐槽（尤其是 LCEL 和 Runnable 的复杂性）。越来越多开发者转向更专注、更轻量或更生产就绪的替代品。下面是 2025 年最主流、最值得切换的 8 个开源替代框架（按推荐优先级排序），全部基于最新社区活跃度、GitHub Star、HuggingFace 下载量和企业落地案例。
 
 | 排名 | 框架名称          | 核心定位 & 为什么推荐替代 LangChain                                                                 | 最佳场景                          | GitHub Star（2025.11 约） | 学习曲线 | 生产就绪度 |
@@ -21,7 +21,6 @@ LangChain 虽然仍是 LLM 应用开发的“老大哥”，但在 2025 年，�
 | 8    | DSPy         | “用代码写 Prompt”的范式革命者。抛弃手工 Prompt 工程，用编译器自动优化 Prompt/Chain。2025 年被公认“未来 Prompt 工程的终极方案”。 | 需要极致性能/可复现的 RAG/Agent   | 15k+                     | 高      | ★★★★      |
 
 ### 2025 年真实选择建议（一句话版）
-
 - 纯 RAG / 知识库问答 → 直接上 LlamaIndex 或 Haystack（90% 的企业案例都是这俩）
 - 复杂多 Agent / 自动化工作流 → CrewAI 或 AutoGen（比 LangChain Agent 稳定 100 倍）
 - 不想写代码/快速原型 → Flowise 或 Langflow（拖拽 10 分钟出一个 ChatGPT + 知识库）
