@@ -1,5 +1,264 @@
 # 汇编assembly
 
+NASM 和 MASM 是汇编语言，它们不提供标准库，但可以通过系统调用或操作系统API来实现功能。
+
+一、调试信息打印方法
+
+1. Linux/Unix (NASM) 系统调用
+
+section .data
+    debug_msg db 'Debug info: value = ', 0
+    newline db 10, 0
+    value_buffer times 11 db 0  ; 存储转换后的数字
+    
+section .text
+    global _start
+
+; 打印字符串 (rax=地址, rdx=长度)
+print_string:
+    mov rsi, rax        ; 字符串地址
+    mov rdx, rdi        ; 长度
+    mov rax, 1          ; sys_write
+    mov rdi, 1          ; stdout
+    syscall
+    ret
+
+; 打印整数 (rax=数字)
+print_int:
+    mov rbx, 10         ; 基数10
+    mov rcx, value_buffer+10
+    mov byte [rcx], 0   ; 字符串终止符
+    
+.convert_loop:
+    dec rcx
+    xor rdx, rdx
+    div rbx
+    add dl, '0'
+    mov [rcx], dl
+    test rax, rax
+    jnz .convert_loop
+    
+    ; 计算长度并打印
+    mov rax, rcx
+    mov rdi, value_buffer+10
+    sub rdi, rcx
+    call print_string
+    ret
+
+; 调试输出示例
+debug_print:
+    ; 打印标签
+    mov rax, debug_msg
+    mov rdi, 20
+    call print_string
+    
+    ; 打印值 (假设值在 rbx 中)
+    mov rax, rbx
+    call print_int
+    
+    ; 换行
+    mov rax, newline
+    mov rdi, 1
+    call print_string
+    ret
+
+_start:
+    mov rbx, 1234       ; 要调试的值
+    call debug_print
+    
+    ; 退出
+    mov rax, 60
+    xor rdi, rdi
+    syscall
+
+
+2. Windows (MASM) API 调用
+
+.386
+.model flat, stdcall
+option casemap:none
+
+include windows.inc
+include kernel32.inc
+includelib kernel32.lib
+
+.data
+    debug_msg db 'Debug: Value = ', 0
+    buffer db 16 dup(0)
+    newline db 13, 10, 0
+    
+.data?
+    stdout_handle dd ?
+    
+.code
+; 整数转字符串
+int_to_str proc value:DWORD
+    mov eax, value
+    mov ecx, 10
+    lea edi, buffer+15
+    mov byte ptr [edi], 0
+    
+convert_loop:
+    dec edi
+    xor edx, edx
+    div ecx
+    add dl, '0'
+    mov [edi], dl
+    test eax, eax
+    jnz convert_loop
+    ret
+int_to_str endp
+
+; 调试打印
+debug_print proc value:DWORD
+    ; 获取标准输出句柄
+    invoke GetStdHandle, STD_OUTPUT_HANDLE
+    mov stdout_handle, eax
+    
+    ; 打印标签
+    invoke WriteConsoleA, stdout_handle, 
+                       offset debug_msg, 
+                       sizeof debug_msg - 1, 
+                       NULL, NULL
+    
+    ; 转换并打印数字
+    invoke int_to_str, value
+    lea esi, edi
+    mov ecx, offset buffer+15
+    sub ecx, esi
+    invoke WriteConsoleA, stdout_handle, 
+                       esi, 
+                       ecx, 
+                       NULL, NULL
+    
+    ; 换行
+    invoke WriteConsoleA, stdout_handle, 
+                       offset newline, 
+                       2, 
+                       NULL, NULL
+    ret
+debug_print endp
+
+start:
+    invoke debug_print, 1234
+    invoke ExitProcess, 0
+end start
+
+
+二、更简单的调试方法
+
+1. 使用寄存器值退出码（快速检查）
+
+; NASM Linux - 用退出码返回调试值
+section .text
+global _start
+
+_start:
+    mov rbx, 0x1234     ; 要调试的值
+    
+    ; 查看方法：运行后 echo $?
+    mov rdi, rbx        ; 退出码 = 调试值
+    mov rax, 60         ; sys_exit
+    syscall
+
+
+2. 使用 GDB 调试
+
+# 编译带调试信息
+nasm -f elf64 -g -F dwarf program.asm
+ld -o program program.o
+
+# 使用 GDB
+gdb ./program
+(gdb) break _start
+(gdb) run
+(gdb) info registers
+(gdb) x/10x $rsp
+
+
+3. 内联调试宏（NASM）
+
+%macro DEBUG_PRINT 1
+    pusha
+    ; 保存值到已知位置
+    mov [debug_value], %1
+    ; 这里可以添加系统调用打印
+    popa
+%endmacro
+
+section .data
+    debug_value dq 0
+
+
+三、实用工具推荐
+
+1. 简单打印库（可引用）
+
+• AsmIO：提供简单的输入输出函数
+
+• FreshLib：完整的汇编库
+
+• 自己封装常用函数：
+; 保存为 print.asm
+print_str:  ; (str_ptr, length)
+print_int:  ; (number)
+print_hex:  ; (number)
+print_char: ; (char)
+
+
+2. 调试宏集合
+
+%macro BREAKPOINT 0
+    int3
+%endmacro
+
+%macro PRINT_REG 1
+    ; 打印寄存器 %1 的值
+%endmacro
+
+%macro DUMP_MEM 2
+    ; 打印内存地址 %1 开始的 %2 字节
+%endmacro
+
+
+四、MASM 开发环境配置
+
+Visual Studio 设置
+
+; 在 VS 中启用控制台输出
+invoke AllocConsole
+invoke GetStdHandle, STD_OUTPUT_HANDLE
+mov hConsole, eax
+
+
+五、最简单的调试输出方案
+
+对于 NASM：
+
+# 编译运行查看寄存器
+nasm -f elf64 test.asm
+ld -o test test.o
+./test
+echo $?  # 查看退出码（低8位）
+
+
+对于 MASM：
+
+; 用 MessageBox 显示调试信息
+invoke MessageBox, NULL, 
+                  addr debug_str, 
+                  addr caption, 
+                  MB_OK
+
+
+建议
+
+1. 初学者：先用系统调用/API实现简单打印函数
+2. 复杂项目：封装调试库，使用条件汇编
+3. 生产环境：用调试器（GDB/OllyDbg/x64dbg）
+
+汇编调试比较原始，但能深入理解计算机工作原理。最简单的开始方式是：用退出码传递值，用 echo $? 查看。
+
 c
 c++代码里卖弄套汇编代码
 
