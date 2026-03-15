@@ -2,6 +2,8 @@
 
 https://github.com/google/or-tools
 
+https://gitee.com/edidada/cumcm-paper-and-source-code
+CUMCM-Paper-And-SourceCode/2019C机场出租车/queueing_system_ortools.py
 
 Google OR-Tools库是一个用于解决组合优化问题的强大工具套件。它集合了各种先进的优化算法，旨在解决各种类型的优化问题，如线性规划、整数规划、车辆路径规划以及图论算法等。
 OR-Tools的核心算法是用C++编写的，因此它具有跨平台性，并且可以在不同的操作系统和硬件平台上使用。同时，它也支持Python、Java和C#等编程语言的调用，这使得开发者可以根据自己的技术栈选择适合的编程语言来解决问题。
