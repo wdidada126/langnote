@@ -72,7 +72,7 @@ ssh-keygen -t ed25519 -C "sandisks@noreply.gitcode.com"  -f id_ed25519_sandisks_
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "wucheng@webmail.hzau.edu.cn" -f id_ecdsa_wuedidada_github
-
+ssh-keygen -t ecdsa -b 256 -C "edidada@outlook.com" -f id_ecdsa_edidadaoutlook_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_166_gitee
