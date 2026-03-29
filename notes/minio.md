@@ -2,6 +2,8 @@
 
 minio存储
 
+https://gitee.com/mirrors/minio
+
 是的，MinIO 是目前最流行、功能最完整的 Amazon S3 开源替代方案。它是一个高性能、云原生的对象存储系统，完全兼容 Amazon S3 API。
 
 MinIO 核心特性
