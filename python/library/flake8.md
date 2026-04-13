@@ -1,4 +1,6 @@
 # flake8
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
 Flake8 介绍
 Flake8 是 Python 生态中最常用的代码静态分析工具，它整合了多个核心工具的功能，能帮你在运行代码前就发现语法错误、代码风格问题、潜在逻辑漏洞，是 Python 开发中保障代码质量的基础工具。
