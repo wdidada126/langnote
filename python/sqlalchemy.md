@@ -145,3 +145,6 @@ __all__ = ["DB", "User", "Post"]
 需要我告诉你 如何自动给所有子目录生成 __init__.py 吗？
 
 __init__.py python库必须有这个文件吗？
+
+
+__version__ = "2.0.49"
