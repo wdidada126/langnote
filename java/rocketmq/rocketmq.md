@@ -6,7 +6,7 @@ cd rocketmq
 git checkout rocketmq-all-4.3.0
 mvn clean package
 
-RocketMQ 是一个分布式消息系统，用于在应用程序之间传递消息。它由阿里巴巴开发，并开源在 GitHub 上。以下是 RocketMQ 的核心概念：
+RocketMQ 是一个分布式消息系统，用于在应用程序之间传递消息。它由阿里巴巴开发，并开源在GitHub上。以下是 RocketMQ 的核心概念：
 
 Producer：生产者负责发送消息到消息队列。RocketMQ 支持四种类型的生产者。
 Broker：Broker 是消息队列的服务器，负责接收生产者发送的消息，并将其存储在队列中。RocketMQ 支持多种负载均衡策略。
@@ -363,22 +363,17 @@ https://github.com/apache/rocketmq/tree/master/docs/cn
 重要文档 中文的：
 https://rocketmq.apache.org/zh/docs/4.x/consumer/03pull
 
-
-
 支持JMS
 
 Start Name Server
-
 
 Start Broker
 Send Messages
 Receive Messages
 
-
 4、启动 NameServer。
 
 nohup sh bin/mqnamesrv & .
-
 
 # 查看是否启动成功
 jps
@@ -392,9 +387,6 @@ tail -f ~/logs/rocketmqlogs/broker.log
 
 sh bin/mqshutdown broker
 sh bin/mqshutdown namesrv
-
-
-
 
 `No route info of this topic, Jodie_topic_1023`
 
@@ -451,8 +443,6 @@ Caused by: org.apache.rocketmq.client.exception.MQClientException: No route info
 - .\bin\play.cmd
 - .\bin\runbroker.cmd
 - .\bin\runserver.cmd
-
-
 
 .\bin\mqadmin.cmd
 The most commonly used mqadmin commands are:
@@ -579,8 +569,6 @@ RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog
 
 ## java sdk
 
-
-
 #### maven坐标
 
 ```
@@ -591,11 +579,7 @@ RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog
 </dependency>
 ```
 
-
-
 ####  rocketmq client跟mq server通信协议
-
-
 
 RocketMQ client和MQ server之间的通信协议是自定义的，它们之间的通信是通过网络传输实现的。下面是RocketMQ client和MQ server之间的通信协议的主要内容：
 1. 协议头：协议头包括魔数、版本号、请求代码、语言、序列化类型等字段，用于标识协议的版本和类型。
@@ -606,11 +590,8 @@ RocketMQ还支持多种通信协议，如HTTP协议、JMS协议等。不同的�
 
 通信协议是明文的，支持ssl/tls
 
-
-
 程序PullConsumerTest报错
 The broker[jinrongtong-MacBook-Pro.local] not exist
-
 
 程序
 
@@ -2156,7 +2137,6 @@ ConsumeMessageThread_1 Receive New Messages: [MessageExt [brokerName=chengwu2, q
 4.3.0
 
 file:///G:/code_repos/rocketmq/logging/target/site/apidocs/index.html
-
 
 ### 全x健康用了
 消息不要太大，否则耗时

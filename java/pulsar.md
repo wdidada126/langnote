@@ -244,4 +244,124 @@ bin/pulsar-admin namespaces set-publish-rate acme-corp/prod \
 >  一句话总结：  
 > Pulsar 的多租户不是“功能”，而是架构设计的核心原则，它让 Pulsar 天然适合云原生、SaaS 和大规模企业级部署。
 
-这也是它被视为 Kafka 有力竞争者 的关键原因之一。
+这也是它被视为 Kafka有力竞争者的关键原因之一。
+
+你说的应该是 **Apache Pulsar**（常被误写为 Pular MQ）。它是下一代云原生消息流平台，相比 Kafka、RocketMQ、RabbitMQ，核心优势在于：**存算分离、无限扩容、强多租户、跨地域复制、统一队列与流、海量 Topic 支持、分层存储**。
+
+下面从架构、功能、场景做清晰对比，突出 Pulsar 独有的优势。
+
+---
+
+## 一、Pulsar 核心架构（决定优势的根本）
+Pulsar 采用三层云原生架构：
+- **Broker（无状态计算层）**：负责消息路由、生产消费、负载均衡
+- **BookKeeper（分布式存储层）**：负责持久化、多副本、分片存储
+- **ZooKeeper / Pulsar Metadata Store**：元数据管理
+
+
+**与其他 MQ 最大区别：计算与存储彻底分离**
+
+---
+
+## 二、Pulsar vs Kafka：核心优势
+### Kafka 特点
+- 高吞吐、日志型、分区绑定 Broker、存储与计算耦合
+- 适合大数据日志、流处理、高吞吐低延迟场景
+
+### Pulsar 相对 Kafka 的优势
+1. **真正无限水平扩展**
+   - Kafka：分区数有限、扩容需数据迁移、Rebalance 卡顿
+   - Pulsar：Broker 无状态，可秒扩；BookKeeper 独立扩容，**无数据迁移、无 Rebalance**
+
+2. **百万级 Topic 支持**
+   - Kafka：Topic 多后性能急剧下降
+   - Pulsar：原生支持**百万 Topic**稳定运行（SaaS/多租户必备）
+
+3. **更强的消息可靠性与一致性**
+   - Pulsar 支持**强一致性（Quorum ACK）**、多副本跨机架部署
+   - 单 Bookie 宕机不影响读写，自动 Failover
+
+4. **分层存储（Tiered Storage）**
+   - 热数据放内存/SSD，冷数据自动落 S3/OSS/HDFS
+   - **无限消息保留、成本大幅降低**
+
+5. **统一队列 + 流双模型**
+   - Kafka 只有流（Log）；Pulsar 同时支持：
+     - 流模式（类似 Kafka）
+     - 队列模式（类似 RabbitMQ/RocketMQ，独占、共享、重试、死信）
+
+6. **原生跨地域集群复制（Geo-Replication）**
+   - Kafka 需 MirrorMaker 等工具，复杂、延迟高、一致性弱
+   - Pulsar **内置跨区域同步/异步复制**，多活、灾备极简单
+
+---
+
+## 三、Pulsar vs RocketMQ：核心优势
+### RocketMQ 特点
+- 金融级可靠、事务消息、顺序消息、低延迟
+- 阿里开源，适合电商、交易、金融场景
+
+### Pulsar 相对 RocketMQ 的优势
+1. **原生多租户（企业级/SaaS 杀手级功能）**
+   - RocketMQ 多租户靠业务隔离，不彻底
+   - Pulsar：**租户 → 命名空间 → Topic** 三级隔离
+   - 权限、配额、TTL、备份策略全隔离
+
+2. **存算分离，扩容更优雅**
+   - RocketMQ 存储与 Broker 绑定，扩容需迁移数据
+   - Pulsar：Broker 可随时扩缩，**不迁移数据、不停服**
+
+3. **跨地域复制更成熟**
+   - RocketMQ 开源版无原生跨城复制（商业版才有）
+   - Pulsar **开源即支持**全局多活、异地灾备
+
+4. **海量 Topic + 海量订阅**
+   - Pulsar 单集群可支撑**百万 Topic + 百万消费者**
+
+5. **云原生友好（K8s 天然适配）**
+   - 无状态 Broker、弹性伸缩、自愈、快速部署
+   - 非常适合容器化、Serverless 环境
+
+6. **Pulsar Functions（内置轻量级流计算）**
+   - 内置轻量计算，无需依赖 Flink/Spark
+   - 过滤、转换、聚合、路由一站式完成
+
+## 四、Pulsar vs RabbitMQ：核心优势
+### RabbitMQ 特点
+- 灵活路由、多种交换机、可靠、易用
+- 适合传统企业、复杂业务队列、微服务解耦
+
+### Pulsar 相对 RabbitMQ 的优势
+1. **超高吞吐 + 海量堆积**
+   - RabbitMQ 堆积能力弱、延迟随堆积上升
+   - Pulsar：**高吞吐 + 无限堆积 + 稳定低延迟**
+
+2. **分布式与扩展性碾压**
+   - RabbitMQ 集群弱、队列镜像、扩容复杂
+   - Pulsar：**分布式无中心、水平扩展、高可用**
+
+3. **流处理能力（RabbitMQ 完全没有）**
+   - Pulsar 原生支持流：回放、重放、事件溯源、长时保留
+
+4. **跨地域、多租户、百万 Topic**
+   - RabbitMQ 几乎不支持大规模多租户与跨地域
+
+## 五、Pulsar 独有的“全能优势”（一句话总结）
+**Pulsar = RabbitMQ 的灵活队列 + Kafka 的高吞吐流 + 原生多租户 + 存算分离无限扩容 + 跨地域复制 + 分层存储 + 百万 Topic + 内置轻量计算**
+
+一句话选型：
+- **传统企业、简单队列** → RabbitMQ
+- **大数据、日志、高吞吐** → Kafka
+- **金融、事务、顺序消息** → RocketMQ
+- **云原生、多租户、跨地域、全场景统一、海量 Topic、无限扩容** → **Pulsar**
+
+## 六、适合 Pulsar 的典型场景
+- SaaS 平台（多租户隔离）
+- 全球化/多数据中心业务
+- 云原生/K8s 微服务
+- 需同时支持队列 + 流的业务
+- 百万级 Topic、海量设备接入
+- 低成本长期消息留存（分层存储）
+- 异地多活、灾备
+
+要不要我帮你整理一份 **Pulsar、Kafka、RocketMQ、RabbitMQ 核心特性对比表**，方便你快速选型？
