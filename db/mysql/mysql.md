@@ -3,6 +3,7 @@
 ## version版本
 5.7 2015年10月
 8.0.11 2018年4月
+
 MySQL9.0，2024年7月1日首次发布
 
 ## mysql password
@@ -3409,3 +3410,106 @@ mysql -V
 mysql 命令行
 `status;`
 `select version();`
+
+## log
+
+select version() from dual;
+8.4.8
+
+
+-- binlog
+SHOW VARIABLES LIKE 'log_bin%';
+SHOW VARIABLES LIKE 'binlog_%';
+-- SHOW MASTER STATUS;
+SHOW BINARY LOGS;
+SELECT * FROM performance_schema.binary_log_index;
+
+-- redo
+SHOW VARIABLES LIKE 'innodb_redo%';
+SHOW VARIABLES LIKE 'innodb_log%';
+SHOW VARIABLES LIKE 'innodb_flush_log%';
+
+-- undo
+SHOW VARIABLES LIKE 'innodb_undo%';
+SELECT tablespace_name,file_name FROM information_schema.FILES WHERE file_type='UNDO LOG';
+
+-- MVCC/WAL
+SHOW VARIABLES LIKE 'transaction_isolation';
+SHOW VARIABLES LIKE 'sync_binlog';
+
+
+
+log_bin ON
+log_bin_basename    D:\develops\mysql-8.4.8-winx64\data\binlog
+log_bin_index   D:\develops\mysql-8.4.8-winx64\data\binlog.index
+log_bin_trust_function_creators OFF
+
+
+binlog_cache_size   32768
+binlog_checksum CRC32
+binlog_direct_non_transactional_updates OFF
+binlog_encryption   OFF
+binlog_error_action ABORT_SERVER
+binlog_expire_logs_auto_purge   ON
+binlog_expire_logs_seconds  604800
+binlog_format   ROW
+binlog_group_commit_sync_delay  0
+binlog_group_commit_sync_no_delay_count 0
+binlog_gtid_simple_recovery ON
+binlog_max_flush_queue_time 0
+binlog_order_commits    ON
+binlog_rotate_encryption_master_key_at_startup  OFF
+binlog_row_event_max_size   8192
+binlog_row_image    FULL
+binlog_row_metadata MINIMAL
+binlog_row_value_options    
+binlog_rows_query_log_events    OFF
+binlog_stmt_cache_size  32768
+binlog_transaction_compression  OFF
+binlog_transaction_compression_level_zstd   3
+binlog_transaction_dependency_history_size  25000
+
+
+
+binlog.000014   240341  No
+binlog.000015   339297  No
+binlog.000016   3096    No
+binlog.000017   26393   No
+
+
+innodb_redo_log_archive_dirs    
+innodb_redo_log_capacity    104857600
+innodb_redo_log_encrypt OFF
+
+
+innodb_log_buffer_size  67108864
+innodb_log_checksums    ON
+innodb_log_compressed_pages ON
+innodb_log_file_size    50331648
+innodb_log_files_in_group   2
+innodb_log_group_home_dir   .\
+innodb_log_spin_cpu_abs_lwm 80
+innodb_log_spin_cpu_pct_hwm 50
+innodb_log_wait_for_flush_spin_hwm  400
+innodb_log_write_ahead_size 8192
+innodb_log_writer_threads   ON
+
+
+innodb_flush_log_at_timeout 1
+innodb_flush_log_at_trx_commit  1
+
+
+innodb_undo_directory   .\
+innodb_undo_log_encrypt OFF
+innodb_undo_log_truncate    ON
+innodb_undo_tablespaces 2
+
+
+innodb_undo_001 ./undo_001
+innodb_undo_002 ./undo_002
+
+
+transaction_isolation   REPEATABLE-READ
+
+sync_binlog 1
+
