@@ -17,7 +17,6 @@ python方向 人工智能
 Web
 科学计算
 
-
 - Python编程 从入门到实践（第2版）
 - 利用Python进行数据分析
 - Python数据科学手册
@@ -30,22 +29,11 @@ Web
 
 [python 方法——defaultdict详解](https://xie.infoq.cn/article/6d7ec0675e2c673985a5ba5ec)
 
-
-
-
-
 Python-Advanced-Program
-
-
-
 
 解决TypeError:'twophase' is an invalid keyword argumet for this function（附：pandas连接oracle）
 
 https://blog.csdn.net/DYyunzhongxian/article/details/102521288/
-
-
-
-
 
 报错内容：TypeError: expected bytes-like object, not str
 
@@ -60,10 +48,6 @@ a = base64.b64encode(temp)
 ```python
 a = base64.b64encode(bytes(temp, 'utf-8'))
 ```
-
-
-
-
 
 python-3.6.14-docs-pdf-a4.zip
 https://docs.python.org/zh-cn/3.6/download.html

@@ -1,4 +1,77 @@
 # antlr
+# 超清晰回答：ANTLR4 用的不是纯BNF，也不是纯EBNF，而是它自己的「ANTLR语法」
+但本质上属于 EBNF 家族，和标准 EBNF 非常像！
+
+我给你讲得100%明白、不混淆👇
+
+---
+
+# 1. 先回答你最关心的两点
+## ① `expr = term { + term }`
+## 这 是 EBNF 风格，不是传统 BNF
+- BNF 必须用：`<expr> ::= ...`
+- EBNF / ANTLR 用：`expr = ...`
+
+## ② 为什么 ANTLR4 用 `=` 不用 `::=`？
+因为 ANTLR 语法 = 简化版 EBNF
+- 标准 EBNF 也常用 `=` 代替 `::=`
+- `::=` 是老式 BNF 的标志
+- `=` 是现代 EBNF / ANTLR 的标志
+
+---
+
+# 2. 一眼区分：BNF vs EBNF vs ANTLR4
+## ① 传统 BNF（必须用 ::= + <>）
+```bnf
+<expr> ::= <term> | <expr> '+' <term>
+```
+
+## ② 标准 EBNF（用 =，支持 {} [] ()）
+```ebnf
+expr = term { '+' term } .
+```
+
+## ③ ANTLR4 语法（= + {} + 无结尾点）
+```antlr
+expr: term ('+' term)*;  // ANTLR 用 * 表示重复，等价 EBNF 的 {}
+```
+
+### 等价关系
+- EBNF：`{ A }` → 重复 0~多次
+- ANTLR：`A*` → 完全一样
+
+你写的：
+```
+expr = term { + term }
+```
+就是 标准 EBNF，而 ANTLR 支持几乎相同的写法（只是把 `{}` 换成 `*`）。
+
+# 3. 核心结论（最重要）
+## ANTLR4 的语法格式 = 类 EBNF（EBNF-like）
+## 不是 BNF（不用 ::=，不用 <>）
+## 支持 EBNF 核心能力：
+- 分组 `( )`
+- 可选 `[ ]` → ANTLR 写成 `?`
+- 重复 `{ }` → ANTLR 写成 `*`
+- 或 `|`
+
+# 4. 最直观对照（你一看就懂）
+| 形式 | 写法 |
+|---|---|
+| BNF | `<expr> ::= <term> \| <expr> '+' <term>` |
+| EBNF | `expr = term { '+' term } .` |
+| ANTLR4 | `expr: term ('+' term)*;` |
+
+
+# 5. 最终超级总结
+1. `expr = term { + term }` → 这是 EBNF
+2. ANTLR4 使用类 EBNF 语法，不是 BNF
+3. ANTLR4 用 `=`，不用 `::=`
+4. ANTLR4 用 `*` 代替 EBNF 的 `{}` 表示重复
+
+
+如果你愿意，我可以把一段 EBNF 自动翻译成 ANTLR4 语法，你马上就能用！
+
 可以解析二进制
 https://github.com/antlr/antlr4/blob/master/doc/parsing-binary-files.md
 

@@ -14,20 +14,20 @@ cd rocketmq
 git checkout rocketmq-all-4.3.0
 mvn clean package
 
-RocketMQ 是一个分布式消息系统，用于在应用程序之间传递消息。它由阿里巴巴开发，并开源在 GitHub 上。以下是 RocketMQ 的核心概念：
+RocketMQ是一个分布式消息系统，用于在应用程序之间传递消息。它由阿里巴巴开发，并开源在GitHub上。以下是 RocketMQ 的核心概念：
 
 Producer：生产者负责发送消息到消息队列。RocketMQ 支持四种类型的生产者。
 Broker：Broker 是消息队列的服务器，负责接收生产者发送的消息，并将其存储在队列中。RocketMQ 支持多种负载均衡策略。
 Queue：队列是 RocketMQ 的核心组件，用于存储消息。它可以分为普通队列和延迟队列。
 Consumer：消费者从消息队列中读取消息并处理它们。RocketMQ 支持四种类型的消费者。
 Message Store：消息存储是 RocketMQ 的另一个重要组件，它负责存储消息，可以使用本地文件、Kafka、HBase 等作为存储介质。
-Filter：RocketMQ 支持消息过滤，可以自定义过滤器或使用内置的过滤器。
+Filter：RocketMQ支持消息过滤，可以自定义过滤器或使用内置的过滤器。
 Transaction：RocketMQ 支持事务消息，可以确保生产者和消费者之间的消息一致性。
 Name Server：Name Server 是 RocketMQ 的一个组件，它负责管理分布式集群的元数据和服务发现。
 9.统计学：RocketMQ 提供了一些统计学指标，可以帮助您监控系统的运行情况。
 RESTful API：RocketMQ 提供了一套 RESTful API，可以通过 HTTP 协议来发送和接收消息。
 OpenTracing：RocketMQ 支持 OpenTracing API，可以方便地实现分布式追踪。
-Encryption：RocketMQ 支持消息加密，可以保护敏感数据的安全。
+Encryption：RocketMQ支持消息加密，可以保护敏感数据的安全。
 
 ## 二次封装
 
@@ -360,7 +360,6 @@ java写的，如何打印debug日志
 Slack
 https://rocketmq.apache.org/about/contact/
 
-
 https://lists.apache.org/list.html?users@rocketmq.apache.org
 https://lists.apache.org/list.html?dev@rocketmq.apache.org
 
@@ -371,22 +370,17 @@ https://github.com/apache/rocketmq/tree/master/docs/cn
 重要文档 中文的：
 https://rocketmq.apache.org/zh/docs/4.x/consumer/03pull
 
-
-
 支持JMS
 
 Start Name Server
-
 
 Start Broker
 Send Messages
 Receive Messages
 
-
 4、启动 NameServer。
 
 nohup sh bin/mqnamesrv & .
-
 
 # 查看是否启动成功
 jps
@@ -400,9 +394,6 @@ tail -f ~/logs/rocketmqlogs/broker.log
 
 sh bin/mqshutdown broker
 sh bin/mqshutdown namesrv
-
-
-
 
 `No route info of this topic, Jodie_topic_1023`
 
@@ -459,8 +450,6 @@ Caused by: org.apache.rocketmq.client.exception.MQClientException: No route info
 - .\bin\play.cmd
 - .\bin\runbroker.cmd
 - .\bin\runserver.cmd
-
-
 
 .\bin\mqadmin.cmd
 The most commonly used mqadmin commands are:
@@ -587,8 +576,6 @@ RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog
 
 ## java sdk
 
-
-
 #### maven坐标
 
 ```
@@ -599,11 +586,7 @@ RocketMQ 的数据目录包含多个子目录，其中最重要的是 `commitlog
 </dependency>
 ```
 
-
-
 ####  rocketmq client跟mq server通信协议
-
-
 
 RocketMQ client和MQ server之间的通信协议是自定义的，它们之间的通信是通过网络传输实现的。下面是RocketMQ client和MQ server之间的通信协议的主要内容：
 1. 协议头：协议头包括魔数、版本号、请求代码、语言、序列化类型等字段，用于标识协议的版本和类型。
@@ -614,11 +597,8 @@ RocketMQ还支持多种通信协议，如HTTP协议、JMS协议等。不同的�
 
 通信协议是明文的，支持ssl/tls
 
-
-
 程序PullConsumerTest报错
 The broker[jinrongtong-MacBook-Pro.local] not exist
-
 
 程序
 
@@ -2164,7 +2144,6 @@ ConsumeMessageThread_1 Receive New Messages: [MessageExt [brokerName=chengwu2, q
 4.3.0
 
 file:///G:/code_repos/rocketmq/logging/target/site/apidocs/index.html
-
 
 ### 全x健康用了
 消息不要太大，否则耗时
