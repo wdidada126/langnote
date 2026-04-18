@@ -1,5 +1,13 @@
 # RocketMQ
 
+## 测试用的项目
+- test_java_rocketmq
+
+## 监控
+
+rocketmq-console-ng-1.0.0.jar
+
+
 ## github action编译rocketmq
 git clone https://github.com/apache/rocketmq.git
 cd rocketmq
