@@ -1,4 +1,5 @@
 # spark
+
 Spark的版本和Scala语言版本、Hadoop版本以及Hive都有对应关系。在运行Spark程序时，需要特别注意这些对应关系，否则可能会出现不兼容的错误。
 
 例如，Hadoop 3.1.3可以与Spark 2.4.x或Spark 3.x版本兼容。具体来说，如果你想要在Hadoop 3.1.3上运行Spark，你可以选择以下其中一种组合：Spark 2.4.x + Hadoop 3.1.x或者Spark 3.x + Hadoop 3.1.x。此外，Spark运行在Java 8 +，Python 2.7 + / 3.4 +和R 3.1+上。对于Scala API，比如Spark 2.4.3使用Scala 2.12，因此你需要使用兼容的Scala版本（2.12.x）。
@@ -82,14 +83,12 @@ graph TD
 
 现代趋势：依赖关系正在松动
 
-随着云原生和 Kubernetes 的兴起，Spark 对 Hadoop 的生态依赖正在发生变化：
-
+随着云原生和 Kubernetes的兴起，Spark对Hadoop的生态依赖正在发生变化：
 1.  Spark on Kubernetes：成为官方支持的一等公民。越来越多的企业直接在 K8s 上运行 Spark，使用云存储（S3, ADLS, GCS），完全脱离 Hadoop。
 2.  云原生数据湖：Delta Lake、Iceberg、Hudi 等表格格式，可以与对象存储（S3）直接配合，提供 ACID 事务，减少对 HDFS 的依赖。
 3.  无服务器 Spark：如 Google Dataproc Serverless、AWS Glue Spark，用户完全不用管理集群，包括 Hadoop 集群。
 
 结论与建议
-
 1.  学习角度：初学者可以先独立学习 Spark（用本地模式或 Standalone），理解其 RDD、DataFrame API 和计算模型，而不必先深入 Hadoop。
 2.  生产角度：在可预见的未来，尤其是在企业私有化部署中， “Spark on YARN + HDFS” 仍是主流、稳定、成熟的选择。你需要熟悉 Hadoop 生态。
 3.  未来趋势：对于云上部署， “Spark on Kubernetes + 对象存储” 是明显的趋势，依赖关系正在重构。
@@ -97,3 +96,26 @@ graph TD
 最终回答：Spark 对 Hadoop 不是技术强依赖，而是生态强依赖和生产部署强依赖。你可以不用 Hadoop 运行 Spark，但在真实的大数据工作中，你几乎不可避免地需要与 Hadoop 生态打交道。
 
 https://archive.apache.org/dist/spark/spark-3.2.4/spark-3.2.4-bin-hadoop3.2.tgz
+
+## 应用
+### 豆瓣
+- DPark（豆瓣自研分布式计算）- Python 版 Spark，用于日志分析、用户行为、推荐算法、榜单计算。
+
+wget https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+tar -zxvf spark-3.2.1-bin-hadoop3.2.tgz
+mkdir -p /opt/spark/spark3_2
+sudo mv spark-3.2.1-bin-hadoop3.2 /opt/spark/spark3_2
+vi ~/.bashrc
+export SPARK_HOME=/opt/spark/spark3_2/spark-3.2.1-bin-hadoop3.2
+export PATH=$PATH:$SPARK_HOME/bin
+source ~/.bashrc
+spark-shell
+
+启动 spark-shell 后，浏览器打开：
+http://localhost:4040
+
+Ubuntu 24 完全支持 Spark 3.2.1
+不需要安装 Hadoop
+不需要配置任何复杂文件
+运行模式：本地单机模式（local [*]），适合学习、测试、开发
+
