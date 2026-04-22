@@ -1,4 +1,87 @@
 # elasticsearch
+
+## ubuntu 24 apt安装
+
+# WSL Ubuntu 安装 Elasticsearch 8.19.14 可执行命令清单
+# 适用目标：本地学习、单机、无鉴权联调
+# 时间说明：Elastic 官方在 2026-04-08 发布了 8.19.14
+
+# 1. 安装基础工具
+sudo apt update
+sudo apt install -y curl wget gnupg apt-transport-https ca-certificates
+
+# 2. 导入 Elastic 官方 GPG Key
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+
+# 3. 添加 Elastic 8.x APT 仓库
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+
+# 4. 安装 Elasticsearch
+sudo apt update
+sudo apt install -y elasticsearch
+
+# 5. 查看已安装版本
+/usr/share/elasticsearch/bin/elasticsearch --version
+
+# 6. 备份配置
+sudo cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bak
+
+# 7. 写入单机学习配置
+sudo tee /etc/elasticsearch/elasticsearch.yml > /dev/null <<'EOF'
+cluster.name: es-demo-cluster
+node.name: es-demo-node-1
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: 0.0.0.0
+http.port: 9200
+discovery.type: single-node
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+EOF
+
+# 8. 设置 Linux 内核参数
+echo "vm.max_map_count=262144" | sudo tee /etc/sysctl.d/99-elasticsearch.conf
+sudo sysctl --system
+
+# 9. 设置开机自启并启动 ES
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch.service
+sudo systemctl restart elasticsearch.service
+
+# 10. 查看状态
+sudo systemctl status elasticsearch.service --no-pager
+
+# 11. 查看日志
+sudo journalctl -u elasticsearch.service -n 100 --no-pager
+
+# 12. 本机健康检查
+curl http://127.0.0.1:9200
+curl http://127.0.0.1:9200/_cluster/health?pretty
+
+# 13. 如果你想严格手工安装 8.19.14，也可以用下面这组命令
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.19.14-amd64.deb
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.19.14-amd64.deb.sha512
+shasum -a 512 -c elasticsearch-8.19.14-amd64.deb.sha512
+sudo dpkg -i elasticsearch-8.19.14-amd64.deb
+
+# 14. Windows 侧验证能否访问 WSL 中的 ES
+# 在 Windows PowerShell 执行
+# curl http://127.0.0.1:9200
+
+
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch \
+  | gpg --dearmor \
+  | sudo tee /usr/share/keyrings/elasticsearch-keyring.gpg >/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" \
+  | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+
+sudo apt update
+sudo apt install -y elasticsearch
+
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+
 基于ElasticSearch大宽表存储关键业务数据
 
 ## windows操作系统IDEA调试代码
