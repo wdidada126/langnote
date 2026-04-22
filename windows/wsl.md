@@ -1,4 +1,5 @@
 # wsl
+Podman Desktop 安装后损坏 WSL Ubuntu 24，多因Podman 机器冲突、WSL 内核 / 服务异常、默认用户配置错乱。
 
 以下是关于WSL Ubuntu所在文件夹以及配置Antimalware Service Executable让Microsoft Defender Antivirus Service不扫描的相关内容：
 
@@ -57,6 +58,10 @@ export https_proxy=http://172.24.67.1:20800
 
 export http_proxy=http://172.18.176.1:20800
 export https_proxy=http://172.18.176.1:20800
+
+export http_proxy="http://172.18.176.1:20800"
+export https_proxy="http://172.18.176.1:20800"
+export ALL_PROXY="http://172.18.176.1:20800"
 
 ## ubuntu 22
 gcc 13

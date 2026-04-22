@@ -1,5 +1,82 @@
 # OceanBase
 
+COMPRESSION
+REPLICA_NUM
+BLOCK_SIZE
+TABLET_SIZE
+PCTFREE
+LOB_INROW_THRESHOLD
+LOCAL
+
+# 逐个解释：这些全是 OceanBase 私有表参数（MySQL8 完全不支持）
+你原来的 SQL 是 OceanBase 分布式数据库 语法，不是原生 MySQL，我给你大白话+原理+为什么 MySQL 要删掉全部讲清楚。
+
+## 1. COMPRESSION = 'zstd_1.3.8'
+表级压缩算法
+- OceanBase 专属：指定数据块压缩算法（zstd 高速压缩）
+- 作用：磁盘压缩、节省空间、提升IO性能
+- MySQL8：没有这个参数；MySQL 压缩是页压缩/行压缩，语法完全不一样
+- 处理：直接删掉
+
+## 2. REPLICA_NUM = 3
+副本数量（分布式多副本）
+- OceanBase 分布式：数据存3个节点副本，高可用、容灾
+- 作用：集群副本数，自动主从同步、故障切换
+- MySQL8：原生没有表级副本；MySQL副本是实例级主从复制，不是表级
+- 处理：直接删掉
+
+## 3. BLOCK_SIZE = 16384
+数据块大小（页大小），单位字节
+- OceanBase：每个存储块大小 16KB
+- 作用：底层存储IO、索引、数据读写最小单元
+- MySQL8：页大小固定默认 16KB，全局配置，不能单表指定
+- 处理：直接删掉（MySQL默认刚好也是16K，不用改）
+
+## 4. TABLET_SIZE = 134217728
+Tablet 分片大小（OceanBase 分布式分片）
+- OceanBase 专属：一张表切成多个 Tablet 分片，每个分片最大 128MB
+- 作用：分布式水平分片、均衡负载、并行存储
+- MySQL8：没有 Tablet 分片概念；MySQL分区表语法完全不同
+- 处理：直接删掉
+
+## 5. PCTFREE = 0
+页预留空闲空间百分比
+- OceanBase/Oracle：数据页预留空闲比例，0=不留空间、满页存储
+- 作用：更新、插入预留空间，减少页分裂
+- MySQL8 InnoDB：默认有pctfree逻辑，但不支持手动指定这个参数
+- 处理：直接删掉
+
+## 6. LOB_INROW_THRESHOLD=4096
+LOB大字段行内存储阈值
+- OceanBase：varchar/blob/text大于4096字节，才存到单独LOB页；小于4K存在行内
+- 作用：优化大字段读写性能
+- MySQL8：InnoDB LOB存储逻辑内置，不支持手动配置该参数
+- 处理：直接删掉
+
+## 7. KEY ... BLOCK_SIZE ... LOCAL
+LOCAL索引 + 索引块大小
+- LOCAL：OceanBase 本地分区索引（不跨分片、本地生效）
+- BLOCK_SIZE：索引单独块大小
+- MySQL8：没有LOCAL分区索引语法；索引块继承表块大小，不能单独指定
+- 处理：删掉 BLOCK_SIZE LOCAL，只保留普通 KEY 索引
+
+# 一句话总结（面试/迁移必背）
+| 参数 | 所属数据库 | 含义 | MySQL8 是否支持 | 迁移处理 |
+|---|---|---|---|---|
+| COMPRESSION | OceanBase | 表压缩算法 | 不支持 | 删除 |
+| REPLICA_NUM | OceanBase | 分布式副本数 | 不支持 | 删除 |
+| BLOCK_SIZE | OceanBase | 数据块大小 | 不支持（全局固定） | 删除 |
+| TABLET_SIZE | OceanBase | 分布式分片大小 | 不支持 | 删除 |
+| PCTFREE | OceanBase/Oracle | 页预留空闲 | 不支持手动配置 | 删除 |
+| LOB_INROW_THRESHOLD | OceanBase | 大字段行内阈值 | 不支持 | 删除 |
+| LOCAL | OceanBase | 本地分区索引 | 不支持 | 删除 |
+
+# 为什么你之前执行报错？
+因为 MySQL8 不认识上面任何一个关键字，必须全部删掉，只保留标准字段、主键、普通索引、InnoDB、utf8mb4，就是我给你的版本。
+
+需要我把你之前所有OceanBase表，统一整理成一份完整MySQL8迁移规范文档吗？
+
+
 https://www.oceanbase.com/zh
 
 ## 版本
