@@ -1,8 +1,37 @@
 # oracle
+
+# Oracle 分区表版本历史（官方准确答案）
+## 一、最早开始支持：Oracle 8.0.5（1997年）
+首次推出：范围分区（Range Partition），是Oracle第一个分区表功能。
+
+> 注意：
+> 1. Oracle 7 及更早 完全没有分区表
+> 2. 分区表是 企业版 Enterprise Edition 单独授权选项，标准版SE不支持
+
+## 二、各版本分区类型演进（面试/工作必背）
+| Oracle版本 | 新增分区类型 |
+|---|---|
+| 8.0.5 | 范围分区 Range（分区表诞生） |
+| 8i (8.1) | Hash哈希分区、范围+哈希复合分区 |
+| 9i | List列表分区、范围+列表复合分区 |
+| 10g | 索引分区优化、百万级分区上限、本地位图索引 |
+| 11g | Interval间隔自动分区、Reference引用分区、虚拟列分区、分区顾问 |
+| 12c/18c/19c | 在线迁移分区、混合分区、PDB分区增强 |
+
+## 三、和你业务相关的重点（风控/订单/大数据查询）
+1. Oracle分区表本质：分而治之，查询自动分区裁剪（Partition Pruning）
+   解决大表查询慢、删除历史数据慢、IO压力大，比MySQL分区成熟非常多
+2. 你之前MySQL多表JOIN慢 → Oracle分区表+ES宽表，是业界标准大数据查询架构
+3. 你现在用的 Oracle 11g/12c/19c 全部完整支持所有分区类型
+
+## 四、一句话总结
+Oracle分区表从 Oracle 8.0.5 开始诞生；
+你现在公司常用的 11g/12c/19c 都是完整成熟版本。
+
+需要我给你一段Oracle范围分区表建表示例（对应你的订单/风控日期分区）吗？
+
 # Oracle 临时表、分区表 超清晰概念解析
 用开发易懂、面试能背、工作能用的方式讲，不绕官方废话。
-
----
 
 ## 一、Oracle 临时表（Temporary Table）
 ### 1. 什么是临时表？
@@ -69,6 +98,10 @@ CREATE GLOBAL TEMPORARY TABLE temp_user(id number);
 - SQL 写法和普通表完全一致，业务零改造
 
 ### 3. Oracle 4 种常用分区类型（面试必考）
+1、范围分区 Range Partition
+2、列表分区 List Partition
+3、哈希分区 Hash Partition
+4、
 #### ① 范围分区 Range Partition（最常用！按时间）
 按日期、数字范围切分
 例：按月、按年分区订单表
