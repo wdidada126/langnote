@@ -1,4 +1,5 @@
 # gradle
+https://mirrors.cloud.tencent.com/gradle/gradle-8.14-all.zip
 
 gradle tasks
 
