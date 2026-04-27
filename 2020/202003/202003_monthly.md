@@ -1,4 +1,10 @@
-# 202003 month
+# 202003_monthly
+
+## 原有内容
+
+
+## 原有内容
+
 
 在家工作
 汇编语言
@@ -34,3 +40,63 @@ https://blog.csdn.net/m0_38075425/article/details/81627349
 mysql index page block
 
 平安面试 必须要离职的，俗称捡漏
+
+## 整理补充
+
+## 本月概览
+
+- 本月共整理 31 篇日记。
+- 已结合周报回填当月重点主题，便于后续继续补充。
+
+## 周度脉络
+
+- 202003_week1：- 20200301：周日；3月目标
+- 202003_week2：- 20200308：周日；[计算机组成原理](https://www.icourse163.org/learn/PKU-1205809805)；计算机体系结构
+- 202003_week3：- 20200315：周日；mysql技术内幕；[postgresssql 51cto](https://edu.51cto.com/center/course/lesson/index?id=42874)
+- 202003_week4：- 20200322：周日；腾讯课堂redis；为什么linux开源？
+- 202003_week5：- 20200329：周日；早上睡到11点起床；[linux和android开发链接](https://blog.csdn.net/LoongEmbedded/article/details/54016805)
+
+## 本月高频主题
+
+- 周日
+- 3月目标
+- 整理infoq文章
+- 要有大纲
+- ppt流程图
+- 总结base64异常 it技术相关的
+- rust编译时长优化
+- 公司 SDK流程
+- docker的，先定主节点，然后往集群添加主节点
+- 知乎总结中间件
+- 编译原理 词法分析
+- 平安银行面试
+
+## 整理补充
+
+## 本月概览
+
+- 本月共整理 31 篇日记。
+- 已结合周报回填当月重点主题，便于后续继续补充。
+
+## 周度脉络
+
+- 202003_week1：- 20200301：周日；3月目标
+- 202003_week2：- 20200308：周日；[计算机组成原理](https://www.icourse163.org/learn/PKU-1205809805)；计算机体系结构
+- 202003_week3：- 20200315：周日；mysql技术内幕；[postgresssql 51cto](https://edu.51cto.com/center/course/lesson/index?id=42874)
+- 202003_week4：- 20200322：周日；腾讯课堂redis；为什么linux开源？
+- 202003_week5：- 20200329：周日；早上睡到11点起床；[linux和android开发链接](https://blog.csdn.net/LoongEmbedded/article/details/54016805)
+
+## 本月高频主题
+
+- 周日
+- 3月目标
+- 整理infoq文章
+- 要有大纲
+- ppt流程图
+- 总结base64异常 it技术相关的
+- rust编译时长优化
+- 公司 SDK流程
+- docker的，先定主节点，然后往集群添加主节点
+- 知乎总结中间件
+- 编译原理 词法分析
+- 平安银行面试

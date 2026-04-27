@@ -42,6 +42,67 @@ month_days() {
     | sort
 }
 
+month_tag_from_dir() {
+  local year="$1"
+  local month_dir="$2"
+  local month_base
+  month_base="$(basename "$month_dir")"
+  if [[ "$month_base" =~ ^[0-9]{6}$ ]]; then
+    printf '%s' "$month_base"
+  elif [[ "$month_base" =~ ^[0-9]{1,2}$ ]]; then
+    local month_num
+    month_num=$((10#$month_base))
+    printf '%s%02d' "$year" "$month_num"
+  else
+    printf '%s' "$month_base"
+  fi
+}
+
+ensure_month_summary_file() {
+  local year="$1"
+  local month_dir="$2"
+  local month_tag
+  month_tag="$(month_tag_from_dir "$year" "$month_dir")"
+  local existing
+  existing="$(find "$month_dir" -maxdepth 1 -type f -name '*month*.md' | head -n 1 || true)"
+  if [[ -n "$existing" ]]; then
+    printf '%s' "$existing"
+  else
+    printf '%s/%s_month.md' "$month_dir" "$month_tag"
+  fi
+}
+
+ensure_week_summary_files() {
+  local year="$1"
+  local month_dir="$2"
+  local month_tag
+  month_tag="$(month_tag_from_dir "$year" "$month_dir")"
+  local any_file day_file day
+  for week_no in 1 2 3 4 5; do
+    any_file="$(find "$month_dir" -maxdepth 1 -type f \( -name "*week${week_no}.md" -o -name "*weekly_${week_no}.md" -o -name "*weekly${week_no}.md" -o -name "*_${week_no}_weekly.md" \) | head -n 1 || true)"
+    if [[ -n "$any_file" ]]; then
+      printf '%s\n' "$any_file"
+      continue
+    fi
+    local start=$(( (week_no - 1) * 7 + 1 ))
+    local end=$(( week_no * 7 ))
+    [[ "$week_no" == "5" ]] && end=31
+    day_file=""
+    while IFS= read -r file; do
+      day="$(basename "$file" .md)"
+      day="${day:6:2}"
+      day=$((10#$day))
+      if (( day >= start && day <= end )); then
+        day_file="$file"
+        break
+      fi
+    done < <(month_days "$month_dir")
+    if [[ -n "$day_file" ]]; then
+      printf '%s/%s_week%s.md\n' "$month_dir" "$month_tag" "$week_no"
+    fi
+  done
+}
+
 existing_body() {
   local file="$1"
   if [[ -f "$file" ]]; then
@@ -239,16 +300,23 @@ generate_year() {
   mv "$tmp" "$year_file"
 }
 
-for year in 2024 2025 2026; do
-  year_dir="$root/$year"
-  [[ -d "$year_dir" ]] || continue
-  while IFS= read -r week_file; do
-    generate_week "$week_file"
-  done < <(find "$year_dir" -type f \( -name '*week*.md' -o -name '*weekly*.md' \) | sort)
+find "$root" -maxdepth 1 -type d | sort | while IFS= read -r year_dir; do
+  year="$(basename "$year_dir")"
+  [[ "$year" =~ ^[0-9]{4}$ ]] || continue
+  local_month_dirs=()
+  while IFS= read -r line; do
+    local_month_dirs+=("$line")
+  done < <(find "$year_dir" -maxdepth 1 -mindepth 1 -type d | sort)
 
-  while IFS= read -r month_file; do
+  for month_dir in "${local_month_dirs[@]}"; do
+    while IFS= read -r week_file; do
+      [[ -n "$week_file" ]] || continue
+      generate_week "$week_file"
+    done < <(ensure_week_summary_files "$year" "$month_dir")
+
+    month_file="$(ensure_month_summary_file "$year" "$month_dir")"
     generate_month "$month_file"
-  done < <(find "$year_dir" -type f -name '*month*.md' | sort)
+  done
 
   generate_year "$year_dir"
 done
