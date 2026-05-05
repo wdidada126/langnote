@@ -1,4 +1,32 @@
 # wrk
+好的！让我对比一下 wrk 和 wrk2 的区别！
+
+## wrk vs wrk2
+
+| 维度 | wrk | wrk2 |
+| ---- | --- | ---- |
+| **设计目标** | 最大化 TPS | 精确控制请求速率（固定 QPS） |
+| **核心特点** | - 能跑多少跑多少<br>- 无速率限制<br>- 输出 TPS、延迟等 | - 主动控制请求速率<br>- 支持 `--rate` / `-R` 参数<br>- 适合做容量规划、限流测试 |
+| **适用场景** | - 性能基准测试<br>- 找系统极限 | - 精确限流测试<br>- 模拟真实流量模式<br>- SLA/SLO 验证 |
+| **典型命令** | ```bash
+wrk -t24 -c2000 -d60s https://api/
+``` | ```bash
+wrk -t24 -c2000 -d60s -R20000 https://api/
+``` |
+
+## 核心区别总结
+- **wrk**：是「能跑多快跑多快」的测试工具，适合测系统的极限 TPS。
+- **wrk2**：是「按指定速率发请求」的测试工具，更贴近真实场景，也适合用来验证限流是否有效。
+
+git clone https://gitee.com/mirrors/wrk.git
+cd wrk
+# 3. 编译
+make -j$(nproc)
+# 4. 放到全局路径
+sudo cp wrk /usr/local/bin/
+# 5. 验证
+wrk --version
+
 
 wrk -t2 -c100 -d10s http://0.0.0.0:8000/
 wrk是一个比较先进的 HTTP 压力测试工具

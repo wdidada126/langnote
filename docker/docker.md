@@ -1,4 +1,9 @@
 # docker
+改用 Rancher Desktop（免费、企业合法、最稳）
+直接下载：https://rancherdesktop.io/安装后 禁用 Docker Desktop就能正常构建，不会出现任何商业订阅拦截
+
+docker pull不下载，github codespaces里面拉取，tar文件
+左侧右键下载
 
 ## 竟品
 Podman、nerdctl
