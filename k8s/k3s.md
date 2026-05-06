@@ -1,4 +1,8 @@
 # k3s
+coredns
+cni flannel
+traefik
+kilpper
 
 sudo /usr/local/bin/k3s kubectl run mysql --image=mysql:8.0 --restart=Always --env="MYSQL_ROOT_PASSWORD=5Edidada" --env="MYSQL_DATABASE=mydb"
 
