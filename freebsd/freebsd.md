@@ -1,7 +1,16 @@
 # freebsd
+
+https://download.freebsd.org/ftp/releases/VM-IMAGES/
+
+12.2-RELEASE
+12.1-RELEASE
+12.0-RELEASE
+11.4-RELEASE
+11.3-RELEASE
+11.2-RELEASE
+
 Rust
 x86_64_unkonwn_freebsd
-
 
 `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
@@ -13,13 +22,9 @@ FreeBSD-11.4-RELEASE-amd64.vmdk.xz
 
 posix?
 
-
 https://www.zhihu.com/question/371031409
 
-
-
 FreeBSD系统下默认是不允许root用户直接通过ssh连接到服务器的，在安装FreeBSD系统时要创建一个额外的用户，切忌一定要把这个用户加 入到wheel组中（如果不加入到这个组中的话就无法ssh），也可以安装完系统后创建用户，并把这个用户加入wheel组。
-
 
 pkg install cmake git cmake lsof
 
@@ -35,7 +40,6 @@ ssh
 vi /etc/inetd.conf
 vi /etc/rc.conf
 https://www.liangzl.com/get-article-detail-153361.html
-
 
 问题 不能开启hostonly网卡，启动系统时报错
 关闭，重新打开hostonly网络，解决
@@ -68,14 +72,11 @@ pkg -v
 1.16.3
 ```
 
-
 FreeBSD添加一个新用户并允许其使用ssh通过公私钥的方式登录
 https://blog.csdn.net/shaobingj126/article/details/5757297
 
-
 FreeBSD 让普通用户使用su 获得root权限
 https://blog.csdn.net/aizhaoyu/article/details/43267279
-
 
 pw groupmod wheel -m wdidada
 pw user mod wdidada -g wheel

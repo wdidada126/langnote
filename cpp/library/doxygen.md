@@ -1,9 +1,9 @@
 # doxygen c cpp doc
-
+https://www.doxygen.nl/index.html
 mac 2025
 Doxygen version 1.9.5
 
-是的，Doxygen 完全支持 C 语言的代码文档生成。
+Doxygen完全支持C语言的代码文档生成。
 
 ## 简介：什么是 Doxygen？
 https://github.com/doxygen/doxygen/blob/master/BUILD.txt
@@ -13,10 +13,6 @@ cd doxygen
 git checkout Release_1_14_0
 cmake -B build
 cmake --build build
-
-是的，Doxygen 完全支持 C 语言的代码文档生成。
-
-##  简介：什么是 Doxygen？
 
 [Doxygen](https://www.doxygen.nl/index.html) 是一个开源的、跨平台的文档生成工具，支持多种编程语言，包括：
 
@@ -30,29 +26,26 @@ cmake --build build
 - Go
 - ……等等
 
-它通过解析源代码中的注释，自动生成结构化的 API 文档（HTML、PDF、LaTeX、XML 等格式）。
-
----
+它通过解析源代码中的注释，自动生成结构化的API文档（HTML、PDF、LaTeX、XML 等格式）。
 
 ##  Doxygen 对 C 语言的支持情况
 
 | 支持内容 | 是否支持 |
 |----------|----------|
-| 函数文档 | ✅ 支持 |
-| 结构体（struct） | ✅ 支持 |
-| 枚举（enum） | ✅ 支持 |
-| 联合体（union） | ✅ 支持 |
-| 全局变量 | ✅ 支持 |
-| 宏定义（#define） | ✅ 支持 |
-| 类型定义（typedef） | ✅ 支持 |
-| 模块化分组（@defgroup / @addtogroup） | ✅ 支持 |
-| 图形化调用关系图（Call graph） | ✅ 支持（依赖 Graphviz） |
+| 函数文档 |  支持 |
+| 结构体（struct） |  支持 |
+| 枚举（enum） |  支持 |
+| 联合体（union） |  支持 |
+| 全局变量 |  支持 |
+| 宏定义（#define） |  支持 |
+| 类型定义（typedef） |  支持 |
+| 模块化分组（@defgroup / @addtogroup） |  支持 |
+| 图形化调用关系图（Call graph） |  支持（依赖 Graphviz） |
 
----
 
-## ✅ 示例：C 语言 + Doxygen 注释
+##  示例：C 语言 + Doxygen 注释
 
-### 📄 示例头文件 `example.h`
+### 示例头文件 `example.h`
 
 ```c
 /
@@ -86,12 +79,9 @@ typedef enum {
 #endif // EXAMPLE_H
 ```
 
----
 
-## 🧱 如何生成文档
-
+##  如何生成文档
 1. 安装 Doxygen
-
    macOS（Homebrew）：
    ```bash
    brew install doxygen
@@ -138,9 +128,9 @@ typedef enum {
 
    默认输出在 `html/index.html`，可以用浏览器打开查看。
 
----
 
-## ✅ 常用 Doxygen 注释标签（C 语言常用）
+
+##  常用 Doxygen 注释标签（C 语言常用）
 
 | 标签 | 用途 |
 |------|------|
@@ -156,9 +146,9 @@ typedef enum {
 | `@defgroup` / `@addtogroup` | 分组模块 |
 | `@code` / `@endcode` | 插入代码示例 |
 
----
 
-## ✅ 示例：结构体和 typedef 的注释
+
+##  示例：结构体和 typedef 的注释
 
 ```c
 /
@@ -171,9 +161,9 @@ typedef struct {
 } Person;
 ```
 
----
 
-## ✅ 进阶技巧
+
+##  进阶技巧
 
 - 使用 `@internal` 和 `@endinternal` 来隐藏内部实现
 - 使用 `@ingroup` 将多个函数归为一组
@@ -182,30 +172,28 @@ typedef struct {
 - 使用 `@todo` 标记待办事项
 - 使用 `@warning` 或 `@note` 添加提示
 
----
 
-## ✅ 总结
+
+##  总结
 
 | 内容 | 说明 |
 |------|------|
-| 是否支持 C | ✅ 完全支持 |
+| 是否支持 C |  完全支持 |
 | 支持的特性 | 函数、结构体、枚举、宏定义、调用图等 |
 | 输出格式 | HTML、PDF、XML、Markdown 等 |
 | 推荐搭配 | Graphviz（用于图形化文档） |
 | 推荐场景 | 开发 C 语言库、嵌入式系统、驱动开发等需要文档的项目 |
 
----
-
 如果你希望我帮你写一个完整的 C 语言项目 + Doxygen 注释模板，或者帮你配置 Doxygen 生成漂亮的文档页面，请告诉我！
-
 是否需要我提供一个完整 CMake + Doxygen 的自动化文档生成流程？欢迎继续提问！
 
 ## 特色
 可以生成cpp的类继承关系图
-
 ## 官网
 https://www.doxygen.org/index.html
 ## 版本
+### 版本version
+Version 1.15.0 is now available! Release date: 22 October 2025
 
 ## 安装
 
@@ -245,7 +233,6 @@ EVENT2_EXPORT_SYMBOL void 	event_active (struct event *ev, int res, short ncalls
 
 
 ## 下载安装
-
 https://www.doxygen.nl/download.html
 Doxygen 用于生成文档
 
@@ -255,11 +242,9 @@ grpc用doxygen
 ./tools/doxygen/runxxx.sh
 
 muduo据说可以用 Doxygen
-
 sudo apt-get install -y doxygen doxygen-gui graphviz
 
 sudo yum install doxygen -y
-
 GENERATE_LATEX 是否输出latex
 
 doxygen -g <config-file>
@@ -274,18 +259,14 @@ GENERATE_LATEX改成 NO
 
 ### 实验1
 https://github.com/edidada/testconan
-
 ### 实验2 pistache支持doxygen
 下载pistache源码
-
 Doxygen生成文档时报"sh: dot: not found"
 sudo apt-get install graphviz
 
 https://cedar-renjun.github.io/2014/03/21/learn-doxygen-in-10-minutes/
-
 https://zhuanlan.zhihu.com/p/122523174
 ### 例子
 Doxyfile
 
 ### 实验3 trantor drogon
-

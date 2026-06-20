@@ -25,9 +25,7 @@ https://gitee.com/edidada/lexYaccV2Project
 
 [yacc/lex官方主页](http://dinosaur.compilertools.net/)
 
-
 centos 7
-
 
 ```shell
 sudo yum install byacc -y
@@ -158,8 +156,7 @@ bison
 http://www.gnu.org/software/bison/
 http://www.gnu.org/software/bison/manual/bison.html
 
-
-
+## 目录
 前言
 第一章 lex和yacc
 最简单的lex程序
@@ -289,9 +286,7 @@ YYRECOVERING()
 参考文献
 词汇表
 
-
 ## 笔记
-
 
 前言
 ### 第一章 lex和yacc
@@ -311,7 +306,6 @@ gcc lex.yy.c -o example -ll
 ```
 lex yacc文件分为三个部分
 ```
-
 
 ### 第二章 使用lex
 正则表达式

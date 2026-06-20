@@ -1,0 +1,98 @@
+# bitbucket
+
+remote: This workspace is over the 1 GB size limit. Reduce the size of your workspace or upgrade to a Standard or Premium plan to increase the size limit.
+remote:
+remote: Upgrade to a Standard or Premium plan: https://support.atlassian.com/bitbucket-cloud/docs/manage-your-plan-and-billing/#Change-your-plan
+remote: Or learn how to reduce your repository size: https://support.atlassian.com/bitbucket-cloud/docs/reduce-repository-size/#Rewind-history-to-undo-large-commits.
+To bitbucket.org:sandisks/life.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'bitbucket.org:sandisks/life.git'
+
+Bitbucket
+GuRgMJbvzmmB4QLfHnF5
+
+bitbucket用其他算法的ssh 秘钥，不用rsa的
+https://bitbucket.org/blog/ssh-host-key-changes
+
+```shell
+ssh-keygen -R bitbucket.org
+
+-R hostname 
+从 known_hosts文件中删除所有属于 hostname 的密钥。
+
+ssh-keygen -R bitbucket.org && curl https://bitbucket.org/site/ssh >> ~/.ssh/known_hosts
+
+ssh git@bitbucket.org host_key_info
+
+git clone git@bitbucket.org:sandisks/langnote.git
+```
+
+token对http/https开启
+
+`whoami`
+
+
+
+root
+
+
+
+[Windows](https://confluence.atlassian.com/x/A6NMMQ) and [Mac/iOS](https://confluence.atlassian.com/x/A6NMMQ) builds not yet supported.
+
+
+
+支持go Rust
+
+
+
+uname -a
+Linux 9e49b7e5-e63e-41cb-89ba-e15d3ccd4b69-gh8h5 4.19.78-coreos #1 SMP Mon Oct 14 22:56:39 -00 2019 x86_64 GNU/Linux
+
+[[package]]
+name = "android_injected_glue"
+version = "0.2.3"
+
+android_injected_glue
+this_platform_is_not_supported
+
+
+
+
+
+debian
+
+
+
+apt
+
+
+
+有编译时长限制
+
+
+
+gcc版本
+
+6.5
+
+6.1
+
+
+
+Clojure
+C++ - Make
+Docker
+Go
+Haskell
+Java
+Javascript (Node.js)
+.Net Core
+PHP / Laravel
+Python
+Ruby
+Rust
+Scala
+Perl
+Erlang
+
+

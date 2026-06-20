@@ -13,15 +13,12 @@ sql解析
 .log数据存文件的
 
 MYDB实现了MVCC
-
 https://github.com/edidada/mydb
 
 java面试指北
-
 https://github.com/CN-GuoZiyang/MYDB
 
 mvcc读更新场景，读的是上一个版本的数据，如果没有上一个版本的数据，等待
-
 当前读，快照读
 
 补充，单条数据，读写删除 三个都有的场景

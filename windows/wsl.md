@@ -1,4 +1,5 @@
 # wsl
+Podman Desktop 安装后损坏 WSL Ubuntu 24，多因Podman 机器冲突、WSL 内核 / 服务异常、默认用户配置错乱。
 
 以下是关于WSL Ubuntu所在文件夹以及配置Antimalware Service Executable让Microsoft Defender Antivirus Service不扫描的相关内容：
 
@@ -6,7 +7,6 @@
 在Windows系统中，WSL Ubuntu文件系统默认存储在`C:\Users\[用户名]\AppData\Local\Packages`文件夹下。进入该文件夹后，可以找到与Ubuntu相关的文件夹，一般以发行版名称和版本号命名，如`CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc`等。进入这个文件夹后，在`LocalState`子文件夹中可以找到根文件系统等重要文件。
 
 也可以在WSL Ubuntu系统内，通过命令行查看挂载的Windows系统路径，例如`/mnt/c`对应Windows系统的C盘，`/mnt/d`对应D盘等。
-
 ### 配置Antimalware Service Executable让Microsoft Defender Antivirus Service不扫描
 1. 添加排除文件夹
     - 打开Windows的“设置”，选择“更新与安全”。
@@ -52,6 +52,16 @@ export https_proxy=http://172.18.176.1:20800
 
 export http_proxy=http://172.24.67.1:20800
 export https_proxy=http://172.24.67.1:20800
+
+172.18.176.57
+
+
+export http_proxy=http://172.18.176.1:20800
+export https_proxy=http://172.18.176.1:20800
+
+export http_proxy="http://172.18.176.1:20800"
+export https_proxy="http://172.18.176.1:20800"
+export ALL_PROXY="http://172.18.176.1:20800"
 
 ## ubuntu 22
 gcc 13

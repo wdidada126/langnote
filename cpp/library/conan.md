@@ -1,4 +1,231 @@
 # conan
+## Generators
+
+CMakeDeps和CMakeToolchain是Conan 2.1版本中两个重要的生成器（Generators），它们专为CMake构建系统设计，各自承担着不同的职责。以下是它们之间的主要区别：
+
+一、功能定位
+CMakeDeps
+主要作用：负责生成用于查找和链接项目依赖的CMake配置文件。
+具体功能：管理项目的依赖项，包括定义除标准Release、Debug等配置之外的自定义用户CMake配置，激活构建上下文（即在特定需求下生成配置文件），以及指定构建上下文后缀和构建模块等。
+CMakeToolchain
+主要作用：负责生成配置编译器和构建设置的工具链文件。
+具体功能：提供多种设置项目来配置项目的构建环境，包括定义编译器预处理器定义、CMake缓存变量、CMake变量、环境预设（构建和运行环境）以及为工具链附加额外的编译标志等。
+二、使用场景
+CMakeDeps：更侧重于依赖项的查找和链接，适用于需要精确管理项目依赖关系的场景。例如，在大型项目中，使用CMakeDeps可以大大减少手动配置依赖项的工作量。
+CMakeToolchain：则专注于设置编译器和构建参数，适用于需要精细控制编译器和链接器选项的项目。通过CMakeToolchain，开发者可以确保项目在不同平台和配置下都能够顺利构建。
+三、配置方式
+两者在Conan的配方文件（recipe）中通过不同的方式配置：
+
+CMakeDeps：通过实例化CMakeDeps类并调用其generate方法生成配置文件。
+CMakeToolchain：同样通过实例化CMakeToolchain类并设置其属性（如预处理器定义、缓存变量等），然后调用generate方法生成工具链文件。
+四、总结
+CMakeDeps和CMakeToolchain在Conan中扮演着不同的角色，分别负责依赖项的管理和构建环境的配置。选择合适的生成器对于项目的构建过程至关重要，它有助于确保项目的构建既高效又可靠。在实际使用中，开发者应根据项目的具体需求和团队的经验来选择和配置这些生成器。例如，对于依赖项较多的大型项目，使用CMakeDeps来管理依赖项可能更为合适；而对于需要精细控制编译器和链接器选项的项目，则可以考虑使用CMakeToolchain。
+
+
+conan install --help
+usage: conan install [-h] [-v [V]] [-f FORMAT] [--name NAME]              
+                     [--version VERSION] [--user USER] [--channel CHANNEL]
+                     [--requires REQUIRES] [--tool-requires TOOL_REQUIRES]
+                     [-b BUILD] [-r REMOTE | -nr] [-u] [-pr PROFILE]
+                     [-pr:b PROFILE_BUILD] [-pr:h PROFILE_HOST]
+                     [-pr:a PROFILE_ALL] [-o OPTIONS] [-o:b OPTIONS_BUILD]
+                     [-o:h OPTIONS_HOST] [-o:a OPTIONS_ALL] [-s SETTINGS]
+                     [-s:b SETTINGS_BUILD] [-s:h SETTINGS_HOST]
+                     [-s:a SETTINGS_ALL] [-c CONF] [-c:b CONF_BUILD]
+                     [-c:h CONF_HOST] [-c:a CONF_ALL] [-l LOCKFILE]
+                     [--lockfile-partial] [--lockfile-out LOCKFILE_OUT]
+                     [--lockfile-packages] [--lockfile-clean]
+                     [--lockfile-overrides LOCKFILE_OVERRIDES] [-g GENERATOR]
+                     [-of OUTPUT_FOLDER] [-d DEPLOYER]
+                     [--deployer-folder DEPLOYER_FOLDER] [--build-require]
+                     [path]
+
+Install the requirements specified in a recipe (conanfile.py or conanfile.txt).
+
+It can also be used to install packages without a conanfile, using the
+--requires and --tool-requires arguments.
+
+If any requirement is not found in the local cache, it will iterate the remotes
+looking for it. When the full dependency graph is computed, and all dependencies
+recipes have been found, it will look for binary packages matching the current settings.
+If no binary package is found for some or several dependencies, it will error,
+unless the '--build' argument is used to build it from source.
+
+After installation of packages, the generators and deployers will be called.
+
+positional arguments:
+  path                  Path to a folder containing a recipe (conanfile.py or
+                        conanfile.txt) or to a recipe file. e.g.,
+                        ./my_project/conanfile.txt.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v [V]                Level of detail of the output. Valid options from less
+                        verbose to more verbose: -vquiet, -verror, -vwarning,
+                        -vnotice, -vstatus, -v or -vverbose, -vv or -vdebug,
+                        -vvv or -vtrace
+  -f FORMAT, --format FORMAT
+                        Select the output format: json
+  --name NAME           Provide a package name if not specified in conanfile
+  --version VERSION     Provide a package version if not specified in
+                        conanfile
+  --user USER           Provide a user if not specified in conanfile
+  --channel CHANNEL     Provide a channel if not specified in conanfile
+  --requires REQUIRES   Directly provide requires instead of a conanfile
+  --tool-requires TOOL_REQUIRES
+                        Directly provide tool-requires instead of a conanfile
+  -b BUILD, --build BUILD
+                        Optional, specify which packages to build from source.
+                        Combining multiple '--build' options on one command
+                        line is allowed. Possible values: --build="*" Force
+                        build from source for all packages. --build=never
+                        Disallow build for all packages, use binary packages
+                        or fail if a binary package is not found, it cannot be
+                        combined with other '--build' options. --build=missing
+                        Build packages from source whose binary package is not
+                        found. --build=cascade Build packages from source that
+                        have at least one dependency being built from source.
+                        --build=[pattern] Build packages from source whose
+                        package reference matches the pattern. The pattern
+                        uses 'fnmatch' style wildcards. --build=~[pattern]
+                        Excluded packages, which will not be built from the
+                        source, whose package reference matches the pattern.
+                        The pattern uses 'fnmatch' style wildcards.
+                        --build=missing:[pattern] Build from source if a
+                        compatible binary does not exist, only for packages
+                        matching pattern.
+  -r REMOTE, --remote REMOTE
+                        Look in the specified remote or remotes server
+  -nr, --no-remote      Do not use remote, resolve exclusively in the cache
+  -u, --update          Will check the remote and in case a newer version
+                        and/or revision of the dependencies exists there, it
+                        will install those in the local cache. When using
+                        version ranges, it will install the latest version
+                        that satisfies the range. Also, if using revisions, it
+                        will update to the latest revision for the resolved
+                        version range.
+  -pr PROFILE, --profile PROFILE
+                        Apply the specified profile. By default, or if
+                        specifying -pr:h (--profile:host), it applies to the
+                        host context. Use -pr:b (--profile:build) to specify
+                        the build context, or -pr:a (--profile:all) to specify
+                        both contexts at once
+  -pr:b PROFILE_BUILD, --profile:build PROFILE_BUILD
+  -pr:h PROFILE_HOST, --profile:host PROFILE_HOST
+  -pr:a PROFILE_ALL, --profile:all PROFILE_ALL
+  -o OPTIONS, --options OPTIONS
+                        Apply the specified options. By default, or if
+                        specifying -o:h (--options:host), it applies to the
+                        host context. Use -o:b (--options:build) to specify
+                        the build context, or -o:a (--options:all) to specify
+                        both contexts at once. Example: -o pkg:with_qt=true
+  -o:b OPTIONS_BUILD, --options:build OPTIONS_BUILD
+  -o:h OPTIONS_HOST, --options:host OPTIONS_HOST
+  -o:a OPTIONS_ALL, --options:all OPTIONS_ALL
+  -s SETTINGS, --settings SETTINGS
+                        Apply the specified settings. By default, or if
+                        specifying -s:h (--settings:host), it applies to the
+                        host context. Use -s:b (--settings:build) to specify
+                        the build context, or -s:a (--settings:all) to specify
+                        both contexts at once. Example: -s compiler=gcc
+  -s:b SETTINGS_BUILD, --settings:build SETTINGS_BUILD
+  -s:h SETTINGS_HOST, --settings:host SETTINGS_HOST
+  -s:a SETTINGS_ALL, --settings:all SETTINGS_ALL
+  -c CONF, --conf CONF  Apply the specified conf. By default, or if specifying
+                        -c:h (--conf:host), it applies to the host context.
+                        Use -c:b (--conf:build) to specify the build context,
+                        or -c:a (--conf:all) to specify both contexts at once.
+                        Example: -c tools.cmake.cmaketoolchain:generator=Xcode
+  -c:b CONF_BUILD, --conf:build CONF_BUILD
+  -c:h CONF_HOST, --conf:host CONF_HOST
+  -c:a CONF_ALL, --conf:all CONF_ALL
+  -l LOCKFILE, --lockfile LOCKFILE
+                        Path to a lockfile. Use --lockfile="" to avoid
+                        automatic use of existing 'conan.lock' file
+  --lockfile-partial    Do not raise an error if some dependency is not found
+                        in lockfile
+  -d DEPLOYER, --deployer DEPLOYER
+                        Deploy using the provided deployer to the output
+                        folder
+  --deployer-folder DEPLOYER_FOLDER
+                        Deployer output folder, base build folder by default
+                        if not set
+  --build-require       Whether the provided path is a build-require
+
+
+## tool
+
+Contents:
+conan.tools.android
+android_abi()
+conan.tools.apple
+XcodeDeps
+XcodeToolchain
+XcodeBuild
+conan.tools.apple.fix_apple_shared_install_name()
+conan.tools.apple.is_apple_os()
+conan.tools.apple.to_apple_arch()
+conan.tools.apple.XCRun()
+conan.tools.build
+Building
+Cppstd
+cstd
+conan.tools.cmake
+CMakeDeps
+CMakeToolchain
+CMake
+cmake_layout
+conan.tools.CppInfo
+Aggregating information in custom generators
+conan.tools.env
+Environment
+EnvVars
+VirtualBuildEnv
+VirtualRunEnv
+conan.tools.files
+conan.tools.files basic operations
+conan.tools.files downloads
+conan.tools.files patches
+conan.tools.files checksums
+conan.tools.files.symlinks
+conan.tools.files AutoPackager
+conan.tools.gnu
+AutotoolsDeps
+AutotoolsToolchain
+Autotools
+MakeDeps
+PkgConfigDeps
+PkgConfig
+conan.tools.google
+Bazel
+BazelDeps
+BazelToolchain
+conan.tools.intel
+IntelCC
+Reference
+conan.tools.layout
+Predefined layouts
+basic_layout
+conan.tools.meson
+MesonToolchain
+Meson
+conan.tools.microsoft
+MSBuild
+MSBuildDeps
+MSBuildToolchain
+VCVars
+NMakeDeps
+NMakeToolchain
+vs_layout
+conan.tools.microsoft.visual
+conan.tools.microsoft.subsystems
+conan.tools.scm
+Git
+Version
+conan.tools.scons
+SConsDeps
+conan.tools.system
+conan.tools.system.package_manager
 
 ## conan2
 conan2下载不了库文件

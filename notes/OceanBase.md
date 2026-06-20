@@ -1,0 +1,154 @@
+# OceanBase
+
+COMPRESSION
+REPLICA_NUM
+BLOCK_SIZE
+TABLET_SIZE
+PCTFREE
+LOB_INROW_THRESHOLD
+LOCAL
+
+# 逐个解释：这些全是 OceanBase 私有表参数（MySQL8 完全不支持）
+你原来的 SQL 是 OceanBase 分布式数据库 语法，不是原生 MySQL，我给你大白话+原理+为什么 MySQL 要删掉全部讲清楚。
+
+## 1. COMPRESSION = 'zstd_1.3.8'
+表级压缩算法
+- OceanBase 专属：指定数据块压缩算法（zstd 高速压缩）
+- 作用：磁盘压缩、节省空间、提升IO性能
+- MySQL8：没有这个参数；MySQL 压缩是页压缩/行压缩，语法完全不一样
+- 处理：直接删掉
+
+## 2. REPLICA_NUM = 3
+副本数量（分布式多副本）
+- OceanBase 分布式：数据存3个节点副本，高可用、容灾
+- 作用：集群副本数，自动主从同步、故障切换
+- MySQL8：原生没有表级副本；MySQL副本是实例级主从复制，不是表级
+- 处理：直接删掉
+
+## 3. BLOCK_SIZE = 16384
+数据块大小（页大小），单位字节
+- OceanBase：每个存储块大小 16KB
+- 作用：底层存储IO、索引、数据读写最小单元
+- MySQL8：页大小固定默认 16KB，全局配置，不能单表指定
+- 处理：直接删掉（MySQL默认刚好也是16K，不用改）
+
+## 4. TABLET_SIZE = 134217728
+Tablet 分片大小（OceanBase 分布式分片）
+- OceanBase 专属：一张表切成多个 Tablet 分片，每个分片最大 128MB
+- 作用：分布式水平分片、均衡负载、并行存储
+- MySQL8：没有 Tablet 分片概念；MySQL分区表语法完全不同
+- 处理：直接删掉
+
+## 5. PCTFREE = 0
+页预留空闲空间百分比
+- OceanBase/Oracle：数据页预留空闲比例，0=不留空间、满页存储
+- 作用：更新、插入预留空间，减少页分裂
+- MySQL8 InnoDB：默认有pctfree逻辑，但不支持手动指定这个参数
+- 处理：直接删掉
+
+## 6. LOB_INROW_THRESHOLD=4096
+LOB大字段行内存储阈值
+- OceanBase：varchar/blob/text大于4096字节，才存到单独LOB页；小于4K存在行内
+- 作用：优化大字段读写性能
+- MySQL8：InnoDB LOB存储逻辑内置，不支持手动配置该参数
+- 处理：直接删掉
+
+## 7. KEY ... BLOCK_SIZE ... LOCAL
+LOCAL索引 + 索引块大小
+- LOCAL：OceanBase 本地分区索引（不跨分片、本地生效）
+- BLOCK_SIZE：索引单独块大小
+- MySQL8：没有LOCAL分区索引语法；索引块继承表块大小，不能单独指定
+- 处理：删掉 BLOCK_SIZE LOCAL，只保留普通 KEY 索引
+
+# 一句话总结（面试/迁移必背）
+| 参数 | 所属数据库 | 含义 | MySQL8 是否支持 | 迁移处理 |
+|---|---|---|---|---|
+| COMPRESSION | OceanBase | 表压缩算法 | 不支持 | 删除 |
+| REPLICA_NUM | OceanBase | 分布式副本数 | 不支持 | 删除 |
+| BLOCK_SIZE | OceanBase | 数据块大小 | 不支持（全局固定） | 删除 |
+| TABLET_SIZE | OceanBase | 分布式分片大小 | 不支持 | 删除 |
+| PCTFREE | OceanBase/Oracle | 页预留空闲 | 不支持手动配置 | 删除 |
+| LOB_INROW_THRESHOLD | OceanBase | 大字段行内阈值 | 不支持 | 删除 |
+| LOCAL | OceanBase | 本地分区索引 | 不支持 | 删除 |
+
+# 为什么你之前执行报错？
+因为 MySQL8 不认识上面任何一个关键字，必须全部删掉，只保留标准字段、主键、普通索引、InnoDB、utf8mb4，就是我给你的版本。
+
+需要我把你之前所有OceanBase表，统一整理成一份完整MySQL8迁移规范文档吗？
+
+
+https://www.oceanbase.com/zh
+
+## 版本
+v3.1.0_CE_BP1
+on Jun 22, 2021
+
+v3.1.5_CE
+ on Apr 17, 2023
+
+v4.0.0_CE
+on Nov 1, 2022
+
+v4.1.0_CE
+on Apr 3, 2023
+
+v4.2.0_CE
+on Aug 30, 2023
+
+发布日期	2025-08-20
+版本号	V4.3.5_CE_BP2_HF4
+
+5.7.25-OceanBase-v4.2.1.10
+
+缺陷修复
+修复插入或查询时间相关生成列或函数索引时，使用的Timezone和创建表时使用的地区定义的Timezone不一致，引起的内存泄漏问题。
+修复备份恢复访问S3协议的对象存储时，必须指定s3_region的问题。
+优化PL并发编译慢的问题，增加PLSQL_OPTIMIZE_LEVEL系统变量支持调整编译优化级别和并发数。
+优化部分OLTP场景下的性能。
+
+
+2024 OceanBase开发者大会
+上海市闵行区 3199 号宝龙艾美酒店
+2024年4月20日
+
+2023 OceanBase开发者大会在京召开，国泰产险资深数据库专家舒明分享了《国泰产险的OceanBase上云实践》的主题演讲
+
+OcenBase 4.3打造PB级实时分析数据库，可实现秒级实时分析。
+
+https://www.oceanbase.com/docs/community-tutorials-cn-10000000000012249
+
+https://github.com/oceanbase/oceanbase
+
+据说在某个客户那里，出现了数据不一致 问题
+
+OceanBase | 试用版安装初体验
+https://blog.csdn.net/daiyejava/article/details/109379738
+
+ob docker centos 7
+https://www.oceanbase.com/docs/oceanbase-database-trial/oceanbase-database-trial/V2.2.50/fbgwds
+
+https://www.zhihu.com/question/19841579/answer/131853733
+
+为什么OceanBase架构特别适合双十一
+感谢所有同学的共同努力，OceanBase分布式关系数据库渡过了一个成功的双十一：支持了支付宝核心的交易、支付、会员和账务等，并且创造了新的纪录：交易创建17.5万笔/秒、交易支付12万笔/秒、全天累计支付10.5亿笔！
+其实，虽然不是刻意设计的，但OceanBase确实比传统数据库更适合像双十一、聚划算、秒杀以及银行国库券销售等短时间突发大流量的场景：·短时间内大量用户涌入·短时间内业务流量非常大，数据库系统压力非常大·一段时间（几秒钟、几分钟、或半个小时等）后业务流量迅速或明显回落
+虽然2010年设计OceanBase架构时，其实并没有特别考虑到这个突发大流量的因素。让我们从OceanBase的架构说起。OceanBase是“基线数据（硬盘）”+“修改增量（内存）”的架构，如下图所示：
+
+![ob_data](./imgs/ob_data.png)
+
+即整个数据库以硬盘（通常是SSD）为载体，新近的增、删、改数据（“修改增量”）在内存，而基线数据在保存在硬盘上，因此OceanBase可以看成一个准内存数据库。这样的好处是：·写事务在内存（除事务日志必须落盘外），性能大大提升·没有随机写硬盘，硬盘随机读不受干扰，高峰期系统性能提升明显；对于传统数据库，业务高峰期通常也是大量随机写盘（刷脏页）的高峰期，大量随机写盘消耗了大量的IO，特别是考虑到SSD的写入放大，对于读写性能都有较大的影响·基线数据只读，缓存（cache）简单且效果提升·线上OceanBase的内存配置是支撑平常两天的修改增量（从OceanBase 1.0开始，每台OceanBase都可以写入，都承载着部分的修改增量），因此即使突发大流量为平日的10-20倍，也可支撑1~2个小时以上。
+<img src="https://pic1.zhimg.com/v2-a9b596591401543db10953f18f4802c8_b.png" data-rawwidth="873" data-rawheight="257" class="origin_image zh-lightbox-thumb" width="873" data-original="https://pic1.zhimg.com/v2-a9b596591401543db10953f18f4802c8_r.jpg"/>
+一个问题是：修改增量在内存，大概需要多大的内存？即使按双11全天的支付笔数10.5亿笔，假设每笔1KB，总共需要的内存大约是1TB，平均到10台服务器，100GB/台。另一个问题是：在类似双十一这种流量特别大的场景中，就像前面说到的，OceanBase内存能够支持峰值业务写入1~2个小时以上，之后OceanBase必须把内存中的增删改数据（“修改增量”）尽快整合到硬盘并释放内存，以便业务的持续写入。整合内存中的修改增量到硬盘，OceanBase称为每日合并，必然涉及到大量的硬盘读写（IO），因此可能对业务的吞吐量和事务响应时间（RT）产生影响。如何避免每日合并对业务的影响呢？OceanBase通过“轮转合并”解决了这个问题。众所周知，出于高可用的考虑，OceanBase是三机群（zone）部署：
+<img src="https://pic4.zhimg.com/v2-739bc65497010958be4c5d81db78a42b_b.png" data-rawwidth="353" data-rawheight="302" class="content_image" width="353"/>
+根据配置和部署的不同，业务高峰时可以一个机群（zone）、两个机群（zone）或者三个机群（zone）提供读写服务。OceanBase的轮转合并就是对每个机群（zone）轮转地进行每日合并，在对一个机群（zone）进行每日合并之前，先把该机群（zone）上的业务读写流量切换到另外的一个或两个机群（zone），然后对该机群（zone）进行全速的每日合并。因此在每日合并期间，合并进行中的机群（zone）没有业务流量，仅仅接收事务日志并且参与Paxos投票，业务访问OceanBase的事务响应时间完全不受每日合并的影响，仅仅是OceanBase的总吞吐量有所下降：如果先前是三个机群（zone）都提供服务则总吞吐量下降1/3，如果先前只有一个或两个机群（zone）提供服务则总吞吐量没有变化。轮转合并使得OceanBase对SSD十分友好，避免了大量随机写盘对SSD寿命的影响，因此OceanBase可以使用相对廉价的“读密集型”SSD来代替传统数据库使用的相对昂贵的“读写型”SSD，而不影响性能。此外由于轮转合并对服务器的CPU使用、硬盘IO使用以及耗时长短都不敏感（高峰期的传统数据库在刷脏页的同时还要优先保证业务访问的吞吐量和事务响应时间，刷脏页的CPU及IO资源都非常受限），因此OceanBase在每日合并时可以采用更加高效的压缩或者编码算法（比如压缩或编码速度略慢，但压缩率较高、解压缩很快的算法），从而进一步降低存储成本并提升性能。
+
+这里需要澄清的一点是OceanBase根本就不是什么nosql数据库。OB将会100%兼容MySQL，所以OB就是纯纯的关系型（SQL)数据库，而且是纯纯的分布式关系型(SQL)数据库。这里就不跟nosql数据库做对比了，直接对比MySQL吧。比MySQL强的几点
+1. OB的redolog是使用分布式一致性算法paxos实现的。所以在CAP理论中，虽然OB使用的是强一致模型，但是OB能在一定网络分区的情况下做到高可用（通俗点讲就是多余半数机器还活着的时候就能干活）。官方的MySQL目前做不到这一点
+2. OB的存储结构使用的是两级的LSM-tree。其中内存中的C0 Btree叶节点不需要和磁盘上的btree一样大小，所以能做得比较小，对cpu的cache比较友好，并且不会有写入放大的问题。使得OB的写性能有极大的提升。同时磁盘上的C1 tree不是一个传统意义上的btree（btree未经压缩可能浪费一半空间）。空间利用率大大提高。简单来说就是速度快，省成本。这里说的比较粗略，想详细理解自己去看LSM-tree的论文。
+3. 数据库自动分片功能（支持hash/range，一级二级等等分片方式），提供独立的proxy路由写入查询等操作到对应的分片。这意味着数据量再大也不需要手动分库分表了。并且分片能在线的在各个server之间迁移，解决热点问题（资源分配不均的问题，做到弹性加机器和减机器）。每个分片（确切的说是被选为主的分片）都支持读写，做到多点写入（高吞吐量，性能可线性扩展）。
+4. 数据库内部实现的无阻塞的两阶段提交（跨机事务）。参见论文Consensus on Transaction Commit 
+5. 数据库原生的多租户支持。能直接隔离租户之间的cpu，mem，io等资源。
+6. 基于代价的SQL查询优化和改写功能，对于复杂的分析型SQL做得比MySQL好（目前比Oracle差，正在努力追赶中）。支持各种类型的join算法（nestloop, merge, hash），优化器会自动选择最优的join类型。支持类似Oracle的SPM功能，用户能很轻松自如的管理查询计划。7. 自动化的集群管理，包括机器上下线，自动下故障盘等等。总之OB的设计理念就是只要是数据库需要解决的问题就不让用户操心。
+
+https://blog.csdn.net/michaelyang_yz/article/details/50821721
+Oracle SPM（SQL Plan Management）介绍及演示SQL

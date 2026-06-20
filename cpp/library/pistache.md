@@ -25,7 +25,6 @@ travis编译不通过
 https://github.com/edidada/testpistache
 20210207 编译通过
 
-
 ## debian/ubuntu安装
 $ sudo add-apt-repository ppa:pistache+team/stable
 $ sudo apt update

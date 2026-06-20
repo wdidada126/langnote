@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # cppstdlib
 
 cppstdlib 随书源码
@@ -61,7 +60,6 @@ c++ 11
 - forward_list<>
 
 
-=======
 # cppstdlib
 
 cppstdlib 随书源码
@@ -123,5 +121,3 @@ c++ 11
 - lists<>
 - forward_list<>
 
-
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

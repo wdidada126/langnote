@@ -1,4 +1,5 @@
 # github
+
 https://www.githubstatus.com/history
 
 rust.yml
@@ -109,9 +110,21 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+不支持java文件是gbk，必须是UTF8
+Error:  COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,41] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,42] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,43] unmappable character for encoding UTF8
+Error:  /home/runner/work/BusTub/BusTub/src/main/java/run/yuyang/db/storage/page/HashTableHeaderPage.java:[59,45] unmappable character for encoding UTF8
+
+### macos
+#### c c++
+macos.md
 
 ### ubuntu 24
 
+```shell
 /usr/bin/java
 openjdk version "17.0.16" 2025-07-15
 OpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)
@@ -122,13 +135,14 @@ Maven home: /usr/share/apache-maven-3.9.11
 Java version: 17.0.16, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
 Default locale: en, platform encoding: UTF-8
 OS name: "linux", version: "6.11.0-1018-azure", arch: "amd64", family: "unix"
+```
 
 ### doc
 
 ```shell
 conanvcvars.bat: Activating environment Visual Studio 17 - amd64 - winsdk_version=None - vcvars_ver=14.3
 [ERROR:vcvars.bat] Toolset directory for version '14.3' was not found.
-[ERROR:VsDevCmd.bat] *** VsDevCmd.bat encountered errors. Environment may be incomplete and/or incorrect. ***
+[ERROR:VsDevCmd.bat] * VsDevCmd.bat encountered errors. Environment may be incomplete and/or incorrect. *
 [ERROR:VsDevCmd.bat] In an uninitialized command prompt, please 'set VSCMD_DEBUG=[value]' and then re-run
 [ERROR:VsDevCmd.bat] vsdevcmd.bat [args] for additional details.
 [ERROR:VsDevCmd.bat] Where [value] is:
@@ -170,7 +184,7 @@ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-ac
 
 
 Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
-
+```
 [INFO] 
 [INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ SkipList ---
 [INFO] 
@@ -190,10 +204,8 @@ Uploading to github: https://maven.pkg.github.com/edidada/SkipList/com/github/mo
 [INFO] Finished at: 2023-12-22T19:52:10+08:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy (default-deploy) on project SkipList: Failed to deploy artifacts: Could not transfer artifact com.github.mottox:SkipList:jar:1.0-20231222.115208-1 from/to github (https://maven.pkg.github.com/edidada/SkipList): Failed to transfer file https://maven.pkg.github.com/edidada/SkipList/com/github/mottox/SkipList/1.0-SNAPSHOT/SkipList-1.0-20231222.115208-1.jar with status code 422 -> [Help 1]
-
+```
 别人的项目
-
-
 
 github topic
 
@@ -210,6 +222,79 @@ ipconfig /flushdns
 
 [GitHub 私人private仓库添加成员（协作者Collaborators）](https://blog.csdn.net/chenbetter1996/article/details/82871518)
 
-
 ## github国内下载镜像代理地址
 https://kgithub.com/apache/rocketmq.git
+
+### codespaces
+在 GitHub Codespaces 中下载文件有多种便捷方法，你可以选择最适合自己的一种。
+
+---
+
+## 方法一：通过左侧文件资源管理器直接下载（最简单）
+
+1. 在 Codespaces 左侧的文件浏览器中，找到 `/workspaces/tars` 目录。
+2. 右键点击任意一个 `.tar` 文件（如 `coredns.tar`）。
+3. 选择 “Download”（下载）。
+4. 重复操作，下载其余文件。
+
+> 注意：如果一次下载多个文件，可以按住 `Ctrl`（Windows/Linux）或 `Cmd`（Mac）多选后，右键选择下载。
+
+---
+
+## 方法二：使用 `gh` CLI 下载（适合批量）
+
+如果你之前在 Codespaces 中安装了 `gh`（GitHub CLI），并且项目与远程仓库关联，可以通过生成临时下载链接来获取文件。
+
+首先，确保当前目录已 `git init` 并至少有一次提交（以便上传文件到远程仓库，或直接使用 Codespaces 的临时 URL）。
+
+```bash
+# 安装 http-server（如果没有）
+npm install -g http-server
+
+# 在文件目录启动一个临时 HTTP 服务器
+cd /workspaces/tars
+npx http-server -p 8080
+```
+
+然后在本地浏览器中访问 `https://<你的-codespaces-域名>-8080.preview.app.github.dev/`（注意将 `<你的-codespaces-域名>` 替换为实际的名称，通常 Codespaces 会自动提供一个预览 URL）。点击即可下载文件。
+
+> 注意：这种方式需要保持终端运行，且仅适用于临时下载。
+
+## 方法三：使用 `scp` 或 `rsync` 从 Codespaces 复制到本地（进阶）
+
+如果你的本地电脑可以 SSH 连接到 Codespaces（需要设置 SSH 公钥），可以用 `scp` 下载。
+
+1. 在 Codespaces 中运行 `echo $GITHUB_CODESPACES_TOKEN` 获取 token（视情况而定）。
+2. 在本地终端执行：
+
+```bash
+scp -P 端口号 -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" codespace@主机名:/workspaces/tars/*.tar .
+```
+
+> 说明：主机名和端口号可以在 Codespaces 的“端口”面板中找到。通常需要预先配置 SSH 访问。
+
+## 方法四：使用 `curl` 配合 GitHub API（如果文件已提交到仓库）
+
+如果你已经将文件提交并推送到远程仓库，可以直接从 GitHub 下载原始的 tar 文件。例如：
+
+```bash
+# 替换为自己的仓库信息
+curl -L -o coredns.tar https://raw.githubusercontent.com/你的用户名/仓库名/main/tars/coredns.tar
+```
+
+但通常不建议在代码仓库中存放大的二进制文件。
+
+## 推荐：最快的方式
+
+直接通过 Codespaces 的文件浏览器右键下载——每个文件单独下载，虽然多点几下但无需任何配置，也最容易成功。
+
+如果你觉得逐个下载麻烦，可以先把它们打包成一个压缩包：
+
+```bash
+cd /workspaces/tars
+tar -czf all-images.tar.gz *.tar
+```
+
+然后右键下载 `all-images.tar.gz`，在本地解压即可。
+
+希望这能帮到你！

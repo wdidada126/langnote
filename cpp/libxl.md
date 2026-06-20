@@ -1,4 +1,6 @@
 # libxl
+excel library for developers
+c/c++/delphi
 
 www.libxl.com
 收费的

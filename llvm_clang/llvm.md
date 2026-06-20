@@ -1,4 +1,56 @@
 # llvm
+
+@wdidada126 ➜ /workspaces/github_codespaces_compile (zig/zig/linux/0_15_2) $ tar -xJf LLVM-20.1.8-Linux-X64.tar.xz 
+@wdidada126 ➜ /workspaces/github_codespaces_compile (zig/zig/linux/0_15_2) $ cd LLVM-20.1.8-Linux-X64/
+@wdidada126 ➜ /workspaces/github_codespaces_compile/LLVM-20.1.8-Linux-X64 (zig/zig/linux/0_15_2) $ find . -name "liblld*"
+./lib/liblldWasm.a
+./lib/liblldb.so.20.1.8
+./lib/liblldbIntelFeatures.so.20.1
+./lib/liblldCommon.a
+./lib/liblldCOFF.a
+./lib/liblldbIntelFeatures.so
+./lib/liblldb.so
+./lib/liblldMinGW.a
+./lib/liblldb.so.20.1
+./lib/liblldELF.a
+./lib/liblldMachO.a
+
+ dpkg -L libclang-cpp20-dev 
+/.
+/usr
+/usr/lib
+/usr/lib/llvm-20
+/usr/lib/llvm-20/lib
+/usr/lib/x86_64-linux-gnu
+/usr/share
+/usr/share/doc
+/usr/share/doc/libclang-cpp20-dev
+/usr/share/doc/libclang-cpp20-dev/changelog.Debian.gz
+/usr/share/doc/libclang-cpp20-dev/copyright
+/usr/lib/llvm-20/lib/libclang-cpp.so
+/usr/lib/llvm-20/lib/libclang-cpp20.so
+/usr/lib/x86_64-linux-gnu/libclang-cpp20.so
+
+
+zigger编译
+liblldCOFF.so
+
+
+triton
+zigger
+都依赖llvm
+
+## llvm
+https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/index.html
+
+https://github.com/Hanseltu/kaleidoscope-tutorial
+
+llvm win预编译库文件clang+llvm-18.1.8-x86_64-pc-windows-msvc.tar.xz
+需要手动设置libxml2库文件
+
+## 代码对应llvm版本很老的
+https://llvm.gnu.ac.cn/docs/GettingStartedTutorials.html
+
 主要还是企业的推动，基中最大的是苹果和谷歌。苹果发起了建立在llvm后端之上的clang前端项目。同时也给llvm社区大量的捐款和贡献代码，让llvm项目从此起飞。苹果发起clang项目的原因是之前的xcode集成的GCC编译器非常难以适应xcode的需求，苹果期望在xcode前端构建非常复杂的代码分析和性能分析工具，但是GCC主要还是因适配Linux系统而设计的编译器，同时因为GPL协议让苹果把编译器部分代码集成到接口与IDE进行对接过程中会遇到严重的协议问题，因此苹果发起了clang项目同时组织了大量的研发力量对整个llvm社区提供代码，可以查看当时的社区邮件，cfe社区可以说是因苹果而兴起。之后谷歌深度参与进来，谷歌的贡献主要在后端和系统特性的加入，比如并行优化器，运行时动态profile的xray等等。目前从架构上看llvm体系远比GCC现代得多，整个Linux和BSD的内核和工具编译都在逐渐切换到llvm上。
 
 在macOS和FreeBSD系统中，C标准库的实现有所不同，但它们都遵循C标准，提供了标准C库的功能。
@@ -99,9 +151,121 @@ https://gitcode.com/pollyduan/llvm-project/overview
 
 ### 源代码编译
 
-
 git clone -b llvmorg-17.0.6 https://gitcode.com/pollyduan/llvm-project.git
 cd llvm-project
 mkdir build && cd build
 cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm
 make -j5
+
+## releases/version/版本
+
+https://releases.llvm.org/
+
+版本号 发布日期
+LLVM
+22 2026.02
+21.1.5 2025-11-04
+21.1.0 2025-08-26
+20.1.0 2025-03-04
+19.1.1 2024-10-01
+19.1.0 2024-09-17
+19.1.0-rc1 2024-07-26
+18.1.8 2024-06-20
+18.1.7 2024-06-06
+18.1.6 2024-05-18
+18.1.5 2024-05-02
+18.1.4 2024-04-17
+18.1.3 2024-04-04
+18.1.2 2024-03-19
+18.1.1 2024-03-08
+18.1.0 2024-03-05
+17.0.6 2023-11-28
+17.0.5 2023-11-14
+17.0.4 2023-10-31
+17.0.3 2023-10-17
+17.0.2 2023-10-03
+17.0.1 2023-09-09
+16.0.6 2023-06-13
+16.0.5 2023-06-02
+16.0.4 2023-05-16
+16.0.3 2023-05-03
+16.0.2 2023-04-19
+16.0.1 2023-04-05
+16.0.0 2023-03-17
+15.0.7 2023-01-12
+15.0.6 2022-11-29
+15.0.5 2022-11-16
+15.0.4 2022-11-02
+15.0.3 2022-10-18
+15.0.2 2022-10-04
+15.0.1 2022-09-20
+15.0.0 2022-09-06
+14.0.6 2022-06-24
+14.0.5 2022-06-10
+14.0.4 2022-05-24
+14.0.3 2022-04-29
+14.0.2 2022-04-26
+14.0.1 2022-04-12
+14.0.0 2022-03-25
+13.0.1 2022-02-07
+13.0.0 2021-10-04
+12.0.1 2021-07-08
+12.0.0 2021-04-14
+11.1.0 2021-02-25
+11.0.1 2021-01-14
+11.0.0 2020-10-12
+10.0.1 2020-08-06
+10.0.0 2020-03-24
+9.0.1 2019-12-20
+9.0.0 2019-09-19
+8.0.1 2019-07-19
+7.1.0 2019-05-10
+8.0.0 2019-03-20
+7.0.1 2018-12-21
+7.0.0 2018-09-19
+6.0.1 2018-07-05
+5.0.2 2018-05-16
+6.0.0 2018-03-08
+5.0.1 2017-12-21
+5.0.0 2017-09-07
+4.0.1 2017-07-04
+4.0.0 2017-03-13
+3.9.1 2016-12-23
+3.9.0 2016-09-02
+3.8.1 2016-07-11
+3.8.0 2016-03-08
+3.7.1 2016-01-05
+3.7.0 2015-09-01
+3.6.2 2015-07-16
+3.6.1 2015-05-26
+3.5.2 2015-04-02
+3.6.0 2015-02-27
+3.5.1 2015-01-20
+3.5.0 2014-09-03
+3.4.2 2014-06-19
+3.4.1 2014-05-07
+3.4 2014-01-02
+3.3 2013-06-17
+3.2 2012-12-20
+3.1 2012-05-22
+3.0 2011-12-01
+2.9 2011-04-06
+2.8 2010-10-05
+2.7 2010-04-27
+2.6 2009-10-23
+2.5 2009-03-02
+2.4 2008-11-09
+2.3 2008-06-09
+2.2 2008-02-11
+2.1 2007-09-26
+2.0 2007-05-23
+1.9 2006-11-19
+1.8 2006-08-09
+1.7 2006-04-20
+1.6 2005-11-08
+1.5 2005-05-18
+1.4 2004-12-09
+1.3 2004-08-13
+1.2 2004-03-19
+1.1 2003-12-17
+1.0 2003-10-24

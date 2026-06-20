@@ -1,5 +1,8 @@
 # grep
 
+搜索关键字在哪个文件
+grep -lr XXX
+
 grep "fileDownload"  *.log
 
 学习grep保存信息到文件

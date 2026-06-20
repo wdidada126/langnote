@@ -3,3 +3,140 @@
 sqllogictest
 https://www.sqlite.org/sqllogictest/doc/trunk/about.wiki
 
+李国良，清华大学db用了。
+
+测试
+每次实验均为端到端 SQL 测试，不设单元测试，测试框架基于 sqllogictest 。
+
+测试文件格式
+每个 sqllogictest 测试文件由一系列测试记录 (record) 组成，每条记录包含测试 SQL 语句以及语句的期望输出。测试记录分为 statement 和 query 两类。
+
+对于 statement 记录，我们不指定期望输出结果，只判断语句是否成功执行，对应的 SQL 通常由两部分组成：
+
+
+statement ok/error <label>
+SQL
+第一部分为 statement ok 或 statement error，表示这是一条 statement 记录，期望执行成功 (对应 ok) 或执行失败 (对应 error)；第二行为对应的 SQL。例如：
+
+
+statement ok
+create table test(id int, info varchar(10));
+
+statement error
+drop table not_exist;
+在如上例子中，我们期望第一条 create table 语句成功执行，第二条 drop table 语句（试图删除一个不存在的表）执行失败，我们只关注语句是否成功执行，不关注语句的输出结果。
+
+其中 label 是一个可选项，表示这条语句对应的客户端。在实验 2 和实验 3 中，我们会涉及到多个事务交替运行的场景，需要模拟多个客户端并发运行事务，此时需要在 label 字段指定每个 SQL 对应的客户端，例如：
+
+
+statement ok C1
+begin;
+
+statement ok C2
+begin;
+
+statement ok C1
+rollback;
+
+statement ok C2
+commit;
+以上例子模拟了 C1 和 C2 两个客户端并发执行查询的场景，首先客户端 C1 开启事务，随后客户端 C2 开启事务，之后客户端 C1 将事务回滚，C2 将事务提交。
+
+对于 query 记录，我们不仅期望查询语句成功执行，还会对执行结果进行比对，判断执行结果是否正确，每条 query 记录由以下四个部分组成：
+
+
+query <sort-mode> <label>
+SQL
+----
+result
+第一部分包含 query, sort-mode 和 label。
+
+query 表示这是一条 query 记录。
+
+sort-mode 是一个可选项，表示比较 SQL 输出结果前是否进行排序，默认为 nosort，即在比较结果之前不对结果排序，这种模式适用于要求查询结果有序的情况，如包含 order by 的 SQL 语句。此外还可以指定为 rowsort，表示比较结果之前按行进行排序，将排序后的结果进行比较，这种情况适用于对查询结果顺序没有要求的语句。
+
+label 的含义与 statement 语句的 label 含义相同。
+
+第二部分为查询对应的 SQL 语句。
+
+第三部分为----分隔符，将 SQL 语句与查询结果分隔开。
+
+第四部分为查询结果，不同字段之间用空格分隔。测试程序暂不支持字段内包含空格的情况，测试时请确保数据内不包含空格，否则可能引发测试程序的误报。
+
+例如：
+
+
+statement ok
+create table test(id int, info varchar(10));
+
+query
+insert into test values(1, 'aaa'), (2, 'bbb');
+----
+2
+
+query rowsort
+select * from test;
+----
+1 aaa
+2 bbb
+
+query
+update test set id = 3 where id = 1;
+----
+1
+
+query rowsort
+select * from test;
+----
+2 bbb
+3 aaa
+
+query
+delete from test;
+----
+2
+
+statement ok
+drop table test;
+测试程序输出
+测试成功
+
+
+xxx.test PASS
+测试失败，分为以下几种情况：
+
+期望执行成功，实际执行失败
+
+xxx.test ERROR
+xxx.test:<行号>
+Unexpected error: <错误信息>
+期望执行失败，实际执行成功
+
+xxx.test ERROR
+xxx.test:<行号>
+Unexpected success
+查询输出结果与期望结果不一致
+
+xxx.test ERROR
+xxx.test:<行号>
+Unexpected error: Wrong Result
+Your Result:
+<你的查询结果>
+
+Expected Result:
+<期望查询结果>
+此外，测试程序还会在测试文件夹huadb_test下生成两个文件：yours.log和expected.log，分别对应你的查询结果和期望查询结果。对于一些结果行数较多的查询，直接观察终端输出可能难以发现哪些行与期望输出不一致，此时可以使用diff工具对比两个文件的差异。
+
+段错误
+
+xxx.test Segmentation fault (core dumped)
+
+xxx.test Bus error: 10
+
+xxx.test Trace/BPT trap: 5
+这些错误表示你的代码中存在一些非法操作，如空指针解引用、数组越界访问、栈溢出等。
+
+死循环
+
+xxx.test
+如果你的测试程序长期保持在这个界面，没有 PASS 或 ERROR 的输出，那么你的程序很可能进入了死循环。

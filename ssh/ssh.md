@@ -59,7 +59,7 @@ ssh-keygen -t ed25519 -C "1664884095@qq.com"
 `ssh-keygen -t rsa -C "XXX@xx.com.cn" -f finename`
 
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_sandisks_gitlab
-ssh-keygen -t rsa -C "wucheng@yitong.com.cn" -f id_rsa_hljrcc_wucheng_gitlab
+ssh-keygen -t ed25519 -C "wucheng@yitong.com.cn" -f id_ed25519_hljnx_wucheng_gitlab
 ssh-keygen -t rsa -C "edidada555@gmail.com" -f id_rsa_sandisks_github
 ssh-keygen -t ecdsa -b 256 -C "edidada555@gmail.com" -f id_ecdsa_sandisks_github
 ssh-keygen -t ed25519 -b 256 -C "edidada@outlook.com" -f id_ed25519_outlook_github
@@ -72,7 +72,7 @@ ssh-keygen -t ed25519 -C "sandisks@noreply.gitcode.com"  -f id_ed25519_sandisks_
 ssh-keygen -t rsa -C "sandisks555@gmail.com" -f id_rsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_edidada_github
 ssh-keygen -t ecdsa -b 256 -C "wucheng@webmail.hzau.edu.cn" -f id_ecdsa_wuedidada_github
-
+ssh-keygen -t ecdsa -b 256 -C "edidada@outlook.com" -f id_ecdsa_edidadaoutlook_github
 ssh-keygen -t ecdsa -b 256 -C "sandisks555@gmail.com" -f id_ecdsa_bitbucket
 
 ssh-keygen -t rsa -C "1664884095@qq.com" -f id_rsa_166_gitee

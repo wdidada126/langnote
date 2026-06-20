@@ -1,5 +1,15 @@
 # RabbitMQ实战
 
+作者: Alvaro Videla / Jason J. W. Williams
+译者: 汪佳南
+出版社: 电子工业出版社
+出品方: 博文视点
+出版年: 2015-10
+ISBN: 9787121271649
+页数: 332
+装帧: 平装
+定价: 75.00元
+原作名: RabbitMQ in Action : Distributed Messaging for Everyone
 
 windows电脑上有
 

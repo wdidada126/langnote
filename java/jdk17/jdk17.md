@@ -83,3 +83,142 @@ Schedule
 2022/08/11		Initial Release Candidate
 2022/08/25		Final Release Candidate
 2022/09/20		General Availability
+
+# Java 17 Record 关键字详解
+`record` 是 Java 16 正式引入、Java 17 长期支持的新关键字，核心作用是：快速定义不可变的纯数据类，自动生成模板代码，让代码更简洁、更安全。
+
+## 一、核心作用
+传统 Java 中，定义一个只存数据的类（DTO、VO、POJO），需要手动写：
+- 私有 final 字段
+- 构造方法
+- `equals()`/`hashCode()`
+- `toString()`
+- getter 方法
+
+用 `record` 一行就能搞定，所有模板代码自动生成。
+
+## 二、基础语法
+```java
+// 定义 Record 类
+public record 类名(字段列表) {
+    // 可选：自定义方法/构造
+}
+```
+
+### 极简示例
+```java
+// 自动生成：私有final字段、全参构造、equals/hashCode/toString、getter(直接用字段名)
+public record User(Long id, String username, int age) {}
+```
+
+## 三、自动生成的内容（无需手写）
+1. 私有 final 成员变量：所有声明的字段都是 `private final`
+2. 全参构造方法：`User(Long id, String username, int age)`
+3. 访问方法：直接用字段名获取值（不是 `getXxx()`）
+   ```java
+   User user = new User(1L, "张三", 20);
+   System.out.println(user.username()); // 输出：张三
+   ```
+4. equals() & hashCode()：基于所有字段比较
+5. toString()：自动拼接类名+所有字段值
+6. 不可变：字段赋值后无法修改（天然线程安全）
+
+## 四、完整使用示例
+```java
+public class RecordDemo {
+    public static void main(String[] args) {
+        // 1. 创建对象
+        User user = new User(1L, "李四", 25);
+
+        // 2. 获取字段（直接用字段名）
+        System.out.println(user.id());
+        System.out.println(user.username());
+        System.out.println(user.age());
+
+        // 3. 自动toString
+        System.out.println(user); 
+        // 输出：User[id=1, username=李四, age=25]
+
+        // 4. 比较对象（基于所有字段）
+        User user2 = new User(1L, "李四", 25);
+        System.out.println(user.equals(user2)); // true
+    }
+}
+```
+
+## 五、高级用法
+### 1. 自定义构造方法（校验数据）
+可以加紧凑构造做参数校验：
+```java
+public record User(Long id, String username, int age) {
+    // 紧凑构造：自动接收所有参数，用于校验
+    public User {
+        if (id == null || id < 0) {
+            throw new IllegalArgumentException("id不能为负数");
+        }
+        if (username.isBlank()) {
+            throw new IllegalArgumentException("用户名不能为空");
+        }
+    }
+}
+```
+
+### 2. 自定义普通方法
+Record 可以添加自己的方法：
+```java
+public record User(Long id, String username, int age) {
+    // 自定义方法
+    public boolean isAdult() {
+        return age >= 18;
+    }
+}
+```
+
+### 3. 静态字段/静态方法
+Record 只能定义静态成员，不能定义实例成员变量：
+```java
+public record User(Long id, String username, int age) {
+    // 允许静态字段
+    public static final int ADULT_AGE = 18;
+    
+    // 允许静态方法
+    public static User createAnonymous() {
+        return new User(0L, "匿名用户", 0);
+    }
+}
+```
+
+## 六、Record 关键限制（必须记住）
+1. 默认不可变：字段都是 `private final`，无法修改值
+2. 不能继承：Record 隐式继承 `java.lang.Record`，Java 单继承，所以不能再继承其他类
+3. 不能声明实例字段：只能使用构造参数里声明的字段
+4. 不能用 abstract 修饰：Record 默认是 final 类
+5. 不能定义 setter 方法：天然不可变
+
+## 七、最佳使用场景
+✅ 推荐使用：
+- DTO（数据传输对象）
+- VO（视图对象）
+- 方法返回多个值
+- 纯数据载体、临时数据对象
+
+❌ 不推荐使用：
+- 需要修改字段的类
+- 复杂业务逻辑类
+- 实体类（需要被框架修改属性）
+
+## 八、和普通类的对比
+| 特性         | 普通 Java 类                | Record 关键字                |
+|--------------|-----------------------------|-----------------------------|
+| 代码量       | 多（需手写模板代码）| 极少（一行定义）|
+| 不可变性     | 需手动加 final              | 自动 final，天然不可变      |
+| equals/hashCode | 需手动生成/依赖Lombok | 自动生成                    |
+| 继承         | 可自定义继承                | 只能继承 Record，不能继承其他 |
+| Getter       | `getXxx()`                  | 直接用字段名            |
+
+### 总结
+1. `record` = 极简不可变数据类，自动生成所有模板代码
+2. 字段是 `private final`，不可修改，线程安全
+3. 访问字段用 `对象.字段名()`，不是 `getXxx()`
+4. 适合纯数据场景，是替代 Lombok/@Data 的官方方案
+5. Java 17+ 原生支持，无需任何插件和依赖

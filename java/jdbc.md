@@ -1,6 +1,5 @@
 # jdbc
 
-
 jdbc url
 useSsl=false无效 mysql-connecto-java 
 
@@ -8,14 +7,11 @@ useSsl=false无效 mysql-connecto-java
   <artifactId>mysql-connector-java</artifactId>
   <version>5.1.40</version>
 
-
 Caused by: javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)
 报错
 
 useSSL=false
 有用
-
-
 
 JDBC 用CallableStatement接口操作存储过程 输入输出有参数
 https://blog.csdn.net/u014453898/article/details/79043264
@@ -30,28 +26,15 @@ Query OK, 0 rows affected (0.04 sec)
 
 mysql> 
 
-
-
 Java必备的 15 个框架，推荐看下。
 
 要连接到数据库，客户端需要连接器驱动程序。在Java领域，Sql最常见的驱动程序是JDBC。问题是，这个驱动程序阻塞了。它在套接字级别阻塞。一个线程总会卡在那里，直到它返回一个响应。
-
 毋庸置疑，驱动程序一直是实现完全无阻塞应用程序的瓶颈。幸运的是，在具有多个活动分叉的异步驱动程序上取得了进展（尽管是非官方的），其中包括：
-
-
-
-
 
 - https://github.com/eclipse-vertx/vertx-sql-client
 - https://github.com/jasync-sql/jasync-sql
 
-
-
-
-
 [JDBC操作MySQL（3）—查询（普通、流式、游标）](https://www.jianshu.com/p/c7c5dbe63019)
-
-
 
 CommonDataSource
 DataSource (javax.sql)
@@ -131,16 +114,6 @@ mysql-connector                com.mysql.fabric.jdbc.FabricMySQLDriver
 pg---
 是不同数据库厂商提供的
 
-<<<<<<< HEAD
-
-
-
-
 `?useUnicode=true&characterEncoding=utf-8&useSSL=false`
 
 
-
-
-
-=======
->>>>>>> afe522da082020e5ece0b75c43067644b2edb768

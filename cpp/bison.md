@@ -1,5 +1,14 @@
 # bison
 
+libpcap 项目使用了Bison。
+
+https://www.gnu.org/software/bison/manual/bison.html
+https://www.gnu.org/software/bison/manual/html_node/index.html
+
+生成.c代码，类似protoc
+
+bison 是一个语法分析器的生成器，bison 和 flex 配合使用，它可以将用户提供的语法规则转化成一个语法分析器。简单来说，通过给定语法的产生式开始，bison会通过算法，最终构造得到动作表，然后利用这个动作表去解析句子。具体来说，bison 读取用户提供的语法的产生式，生成一个 C 语言格式的 LALR(1) 动作表，并将其包含进一个名为yyparse的 C 函数，这个函数的作用就是利用这个动作表来解析 token 流 ，而这个 token 流 是由 flex 生成的词法分析器扫描源程序得到的。
+
 Flex和Bison的使用范式
 Flex和Bison是实验框架默认的解析器生成工具，接下来我会介绍使用它们的最佳实践，由于Flex比较简单，主要是介绍Bison。
 首先要明白的一点是，Flex和Bison的代码不是C和C++源代码，严格地说它们是专用于生成词法解析器和语法解析器的领域特定语言（DSL），一般的静态代码分析器通常不能很好地在上面工作，你的IDE也不能很好地助力你编写这些代码，因此最佳实践是：除非必要，否则尽可能不要将代码写在.l和.y文件里，让这两个文件保持尽可能地简单，除了生成词法和语法解析器外，不要有多余的功能。
@@ -12,7 +21,6 @@ Flex和Bison默认用法的场景是传统的命令行指令式程序，生成�
 
 https://blog.csdn.net/u014132143/article/details/129489861
 
-
 bison --version
 bison (GNU Bison) 3.0.4
 Written by Robert Corbett and Richard Stallman.
@@ -21,14 +29,14 @@ Copyright (C) 2015 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-
 bison 2.3 mac系统
 
 yum install bison -y
 
 ### api doc
 
-Win 电脑bison.pdf 英文版，找中文版
+Win 电脑
+bison.pdf 英文版，找中文版
 
 https://www.gnu.org/software/bison/manual/bison.html#C_002b_002b-Parsers 谷歌翻译
 
@@ -52,6 +60,9 @@ https://blog.csdn.net/Chinamming/article/details/84507258
 Bison中默认将所有的语义值都定义为int类型，可以通过定义宏YYSTYPE来改变值的类型。如果有多个值类型，则需要通过在Bison声明中使用%union列举出所有的类型，然后为每个符号定义相对的类型，终结符使用%token，非终结符使用%type来定义。
 https://blog.csdn.net/xzz_hust/article/details/45009147
 
+https://ftp.gnu.org/gnu/bison/
+
+```shell
 dpkg -L bison
 /.
 /usr
@@ -158,7 +169,7 @@ dpkg -L bison
 /usr/share/man/man1
 /usr/share/man/man1/bison.1.gz
 /usr/share/man/man1/bison.yacc.1.gz
-
+```
 
 After this operation, 572 kB of additional disk space will be used.
 Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 libbison-dev amd64 2:3.5.1+dfsg-1 [355 kB]
@@ -167,7 +178,7 @@ Selecting previously unselected package libbison-dev:amd64.
 (Reading database ... 95467 files and directories currently installed.)
 Preparing to unpack .../libbison-dev_2%3a3.5.1+dfsg-1_amd64.deb ...
 
-
+```
 wdidada@DESKTOP-DAF8ST0:~$ dpkg -L libbison-dev
 /.
 /usr
@@ -186,8 +197,9 @@ wdidada@DESKTOP-DAF8ST0:~$ dpkg -L libbison-dev
 /usr/share/doc/libbison-dev/TODO.gz
 /usr/share/doc/libbison-dev/changelog.Debian.gz
 /usr/share/doc/libbison-dev/copyright
+```
 
-
+```
 bison --version
 bison (GNU Bison) 3.5.1
 Written by Robert Corbett and Richard Stallman.
@@ -195,3 +207,23 @@ Written by Robert Corbett and Richard Stallman.
 Copyright (C) 2020 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+## 版本version
+
+bison-3.3.tar.gz	2019-01-26
+bison-3.4.tar.gz	2019-05-19
+bison-3.5.tar.gz	2019-12-11
+bison-3.6.tar.xz	2020-05-08 
+bison-3.7.tar.gz	2020-07-23
+bison-3.8.2.tar.gz	2021-09-25
+## 源代码
+https://ftp.gnu.org/gnu/bison/
+https://github.com/akimd/bison
+
+## 编译
+git clone https://github.com/akimd/bison.git
+cd bison
+git checkout v3.8.2
+git submodule update --init
+./bootstrap

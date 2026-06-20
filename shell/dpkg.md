@@ -10,3 +10,7 @@ dpkg -L libprotobuf-dev
 
 dpkg -S /usr/include/linux/sysctl.h
 linux-libc-dev:amd64: /usr/include/linux/sysctl.h
+
+# 1. 查看当前安装的 Boost 版本
+dpkg -l | grep boost
+

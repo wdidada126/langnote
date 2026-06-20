@@ -102,8 +102,6 @@ int main() {
 
 在这个示例中，我们定义了一个`sum`函数模板，它接受两个参数`a`和`b`。我们使用`constexpr if`来检查参数类型是否为整数类型（通过`std::is_integral_v<T>`判断）。如果是整数类型，我们直接返回两个参数的和；否则，我们将参数转换为双精度浮点数并返回它们的和。这样，我们可以在编译时根据参数类型选择合适的实现，从而实现更高效的代码生成。
 
-
-
 面向对象的特性
 封装
 继承
@@ -116,9 +114,6 @@ int main() {
 
 add方法被重载了，它根据参数列表的不同来进行不同的操作，这就是静态多态。
 以上代码中，Base类中的func函数被声明为虚函数，Derived类中重写了这个函数。在main函数中，我们创建了一个Derived类的对象，但是用一个Base类的指针来引用它，并调用func函数，此时调用的是Derived类的版本，这就实现了动态多态。
-
-
-
 
 在C++中，当你声明一个std::string类型的变量s而没有显式地提供初始化器时，它的初始化行为确实与std::string的构造函数有关。不过，对于std::string s;这样的声明（没有使用任何初始化器），其初始化行为并不是完全由std::string的构造函数直接决定的，而是由C++的默认初始化规则来控制的。
 
@@ -254,11 +249,11 @@ https://chlorie.github.io/ChloroBlog/posts/2019-10-17/0-cpp-basics-2.html
 
 C++语言的设计者为了解决资源管理问题，提出了一系列规则来指导程序员正确编写涉及拷贝操作的类成员函数，这些规则被称为“三五法则”。这一法则的核心在于确保类的拷贝构造、拷贝赋值、移动构造、移动赋值和析构等操作的正确实现，以防止资源泄露、重复释放等问题。具体介绍如下：
 
-1. **拷贝构造函数**：定义了当用同类型的另一个对象初始化新对象时的操作[^2^]。如果类中含有指针或动态分配的资源，那么默认的拷贝构造函数可能导致浅拷贝问题，需要自定义以实现深拷贝。
-2. **移动构造函数**：用于将资源从一个对象转移到另一个对象，这在C++11标准中被引入以优化性能和支持转移语义[^2^]。
-3. **拷贝赋值运算符**：定义了一个对象赋值给同类型另一对象时的行为[^2^]。同样地，如果类有动态资源，默认的拷贝赋值运算符可能不足以正确处理赋值操作，需要自定义。
-4. **移动赋值运算符**：与移动构造函数类似，但用于已存在的对象，它接受一个即将销毁的源对象的资源。
-5. **析构函数**：负责在对象销毁时释放资源，如内存或其他类型的资源[^2^]。对于使用了动态资源的类，合理定义析构函数至关重要，以避免资源泄漏。
+1. 拷贝构造函数：定义了当用同类型的另一个对象初始化新对象时的操作[^2^]。如果类中含有指针或动态分配的资源，那么默认的拷贝构造函数可能导致浅拷贝问题，需要自定义以实现深拷贝。
+2. 移动构造函数：用于将资源从一个对象转移到另一个对象，这在C++11标准中被引入以优化性能和支持转移语义[^2^]。
+3. 拷贝赋值运算符：定义了一个对象赋值给同类型另一对象时的行为[^2^]。同样地，如果类有动态资源，默认的拷贝赋值运算符可能不足以正确处理赋值操作，需要自定义。
+4. 移动赋值运算符：与移动构造函数类似，但用于已存在的对象，它接受一个即将销毁的源对象的资源。
+5. 析构函数：负责在对象销毁时释放资源，如内存或其他类型的资源[^2^]。对于使用了动态资源的类，合理定义析构函数至关重要，以避免资源泄漏。
 
 综上所述，“三五法则”不仅是C++编程中的一个重要概念，也是确保资源安全、防止内存泄露的关键规则。正确应用这一法则，可以显著提高代码的可靠性和性能。程序员应充分理解并合理应用这些规则，以养成良好的编程习惯。
 
@@ -1373,40 +1368,31 @@ brpc prefers static linkages of deps, so that they don't have to be installed on
 
 `1> 命令行: "cmd.exe" /c ""D:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2019\PROFESSIONAL\COMMON7\IDE\COMMONEXTENSIONS\MICROSOFT\CMAKE\CMake\bin\cmake.exe"  -G "Ninja" -DCMAKE_INSTALL_PREFIX:PATH="D:\visual studio 2015\Projects\CMakeProject1\out\install\x64-Debug" -DCMAKE_CXX_COMPILER:FILEPATH="D:/Program Files/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.23.28105/bin/HostX64/x64/cl.exe" -DCMAKE_C_COMPILER:FILEPATH="D:/Program Files/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.23.28105/bin/HostX64/x64/cl.exe"  -DCMAKE_TOOLCHAIN_FILE="D:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DCMAKE_BUILD_TYPE="Debug" -DCMAKE_MAKE_PROGRAM="D:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2019\PROFESSIONAL\COMMON7\IDE\COMMONEXTENSIONS\MICROSOFT\CMAKE\Ninja\ninja.exe" "D:\visual studio 2015\Projects\CMakeProject1" 2>&1"`
 
-1）**网页前端+后台，**纯前端的框架本人不擅长，不强答了；以FreeWheel, Airbnb, Grab等公司为例，网站后台一般用golang，ruby on rails；另外还有python（tornado，django）；哦对还有php差点忘了这货；
+1）网页前端+后台，纯前端的框架本人不擅长，不强答了；以FreeWheel, Airbnb, Grab等公司为例，网站后台一般用golang，ruby on rails；另外还有python（tornado，django）；哦对还有php差点忘了这货；
 
-2）**业务端服务**，比如对接外卖商家的后台服务，推荐系统里一些离线计算服务，不追求极致高性能的场景，一般使用Java；阿里巴巴就是Java为主；
+2）业务端服务，比如对接外卖商家的后台服务，推荐系统里一些离线计算服务，不追求极致高性能的场景，一般使用Java；阿里巴巴就是Java为主；
 
-3）**高性能计算服务，**比如推荐系统的推理引擎（inference engine），广告投放引擎等，应对大流量，追求高并发的场景，基本都是c++服务；比如阿里妈妈的广告服务，以及业内很多公司，头条，腾讯，快手，FreeWheel, 微软等，高并发服务都得用到c++；
+3）高性能计算服务，比如推荐系统的推理引擎（inference engine），广告投放引擎等，应对大流量，追求高并发的场景，基本都是c++服务；比如阿里妈妈的广告服务，以及业内很多公司，头条，腾讯，快手，FreeWheel, 微软等，高并发服务都得用到c++；
 
 所以这么一说就简单了，得看你喜欢做哪块的工作，答主本人就是不喜欢业务太多，也不喜欢去做改前端图片文本框这种“low比”工作（no offence 请不要喷我哈哈），所以答主就一直在做广告/推荐引擎c++服务；
 
 随着互联网的发展，其实以上几大块业务都会有越来越大的需求，而且尤其现在AI大潮，高性能c++服务在推荐系统里是非常非常关键的（inference engine），你每次刷到快手广告，每次看到直通车推荐，每次刷脸识别，都要请求到后端高性能c++服务，所以不存在说互联网发展了c++就没有用武之地这种说法。
 
-**貌似 C++ 越来越难找工作了？**
+貌似 C++ 越来越难找工作了？
 
 看了上面的回答，我想这里就很明显了，有c++岗位需求的公司，除了上面说的头条，腾讯，快手，还有好多好多公司都在招，以答主最近找工作的经历来看，虽然外界都说现在是互联网寒冬，但是我个人感觉各个公司仍然是非常缺人，至少从我这个c++背景的工程师来看是如此。
 
 我相信，随着技术的发展，以后c++相关岗位的需求，会越来越旺盛，只增不减。
 
-
-
 1，项目经历这块，真心喜欢c++的话，可以自己业余做一点c++小项目，尤其如果能在github上面有些贡献那就更好了；
-
 2，练习用c++写面试题，面试时候题解得好 是非常加分的；
-
 3，更进一步的，有空把c++的STL模板库，tcmalloc内存管理机制等都可以去了解了解；
 
 做好以上几点，即使是java背景的候选人，基本上像快手，滴滴等公司，面成功的概率还是比较大的；
 
-
-
- 你好，之前的工作语言是C，换工作瞄准了两个方向：1.容器（以golang为主）2.高并发，分布式领域（以c++为主）。请问这种背景下，题主有何建议，针对跨语言方面有哪些是需要着重准备的呢 
-
-
+你好，之前的工作语言是C，换工作瞄准了两个方向：1.容器（以golang为主）2.高并发，分布式领域（以c++为主）。请问这种背景下，题主有何建议，针对跨语言方面有哪些是需要着重准备的呢
 
 1> 命令行: "cmd.exe" /c ""D:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2019\PROFESSIONAL\COMMON7\IDE\COMMONEXTENSIONS\MICROSOFT\CMAKE\CMake\bin\cmake.exe"  -G "Ninja" -DCMAKE_INSTALL_PREFIX:PATH="D:\visual studio 2015\Projects\CMakeProject1\out\install\x64-Debug" -DCMAKE_CXX_COMPILER:FILEPATH="D:/Program Files/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.23.28105/bin/HostX64/x64/cl.exe" -DCMAKE_C_COMPILER:FILEPATH="D:/Program Files/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.23.28105/bin/HostX64/x64/cl.exe"  -DCMAKE_TOOLCHAIN_FILE="D:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DCMAKE_BUILD_TYPE="Debug" -DCMAKE_MAKE_PROGRAM="D:\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2019\PROFESSIONAL\COMMON7\IDE\COMMONEXTENSIONS\MICROSOFT\CMAKE\Ninja\ninja.exe" "D:\visual studio 2015\Projects\CMakeProject1" 2>&1"`
-
 
 vs支持cmake是ninja的
 
@@ -1427,7 +1413,6 @@ https://www.zhihu.com/question/62158323/answer/196189709
 依赖管理Blaze, 其开源版是Bazel，编译系统Forge
 
 不支持模块化
-
 .a
 .so
 需要编译
@@ -1437,8 +1422,6 @@ https://www.zhihu.com/question/62158323/answer/196189709
 .lib
 
 vcpkg试图解决这个问题
-
-
 
 内存对齐
 
@@ -1450,7 +1433,6 @@ qmake
 gnu的
 autogenerator
 
-
 ## cpp linux environment
 
 AutoTools automake eclipse
@@ -1459,151 +1441,77 @@ https://www.cnblogs.com/youxia/p/linux023.html
 
 https://blog.csdn.net/initphp/article/details/43705765
 
-
-
-
-
 cpp开发，在目标机器上开发，conan不好用，vcpkg在发展中
-
-
 
 [开源免费的C/C++网络库(c/c++ sockets library) 七剑下天山](https://blog.csdn.net/weixin_33859844/article/details/85528647)
 
-
-
- 图像处理真的是没有第二者，只能用cpp
-
-
+图像处理真的是没有第二者，只能用cpp
 
 内存管理机制
 
+像tcmalloc的机制这种可以简单看一看，另外还可以看看《深入理解计算机系统》第九章：虚拟内存
 
+推荐引擎 算法有好多种，看具体场景，xgb/决策树也是会用到
 
- 像tcmalloc的机制这种可以简单看一看，另外还可以看看《深入理解计算机系统》第九章：虚拟内存 
-
-
-
- 推荐引擎 算法有好多种，看具体场景， xgb / 决策树 也是会用到 
-
-
-
-
-
-Cpp如何做ci cd 
-
- 
+Cpp如何做ci cd
 
 jeikins+gitlab做自动编译部署
 
-
-
 ##### macros
 
+https://github.com.cnpmjs.org/solrex/brpc-open-falcon
 
-
- https://github.com.cnpmjs.org/solrex/brpc-open-falcon 
-
-
-
-
-[cpp 添加头文件](https://blog.csdn.net/yusiguyuan/article/details/16950547)
-
-
+[cpp添加头文件](https://blog.csdn.net/yusiguyuan/article/details/16950547)
 
 `export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/libxml2`
 
-
-
- `warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings] `
-
-
-
-
+`warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings] `
 
 [string convert]( https://stackoverflow.com/questions/16252455/error-conversion-from-const-char-5-to-non-scalar-type-in-c )
 
 uname -a
 
-
-
- 定位头文件
-
-
+定位头文件
 
 《现在c++实战30讲》
 
-
-
 llvm libstdc++写的好点
 
-
-
-centos 7 安装高版本gcc
+centos 7安装高版本gcc
 
 raii
 https://blog.csdn.net/GangStudyIT/article/details/80645399
 RAII（Resource Acquisition Is Initialization）机制是Bjarne Stroustrup首先提出的，是一种利用对象生命周期来控制程序资源（如内存、文件句柄、网络连接、互斥量等等）的简单技术。
 对于RAII概念清楚后，我们就可以理解为智能指针就是RAII的一种体现，智能指针呢，它是利用了类的构造和析构，用一个类来管理资源的申请和释放
 
-
 rust
-
-
-
 
 内存问题分析的利器——valgraind的memcheck
 
-
-
-
  https://blog.csdn.net/breaksoftware/article/details/79445591 
 
-
-
-
  https://blog.csdn.net/jq0123 
-
-
 
  LD_LIBRARY_PATH=:$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH 
 
-
-
 rest_description
-
-
 
 gcc5编译 travis报错
 
-
-
  https://stackoverflow.com/questions/33394934/converting-std-cxx11string-to-stdstring 
-
-
 
 libodb-mysql
 
 头文件和库文件不在一个包
 
-
-
 cpp 未声明的引用
 
 未定义的引用
 
-
-
 https://blog.csdn.net/haluoluo211/article/details/54376947
 
-
-
-
-
 [CPlusPlusThings](https://github.com/Light-City/CPlusPlusThings)
-
-
-
 
 学习c++
 
@@ -1623,13 +1531,7 @@ It不容一点马虎
 
 多看书，多复习
 
-
-
 [有哪些值得推荐给C++初学者的国外视频课程](https://www.zhihu.com/question/304609578/answer/545741569)
-
-
-
-
 
 Bingo招聘
 
@@ -1660,7 +1562,7 @@ C++的代码，部署在centos 7上，自己开发用的电脑如果是ubuntu的
 我现在就发现，我在开发机上编译的库，在部署的机器上还要在编译一次
 
 ## cpp20
-
+```
 -- The C compiler identification is GNU 13.1.0
 -- The CXX compiler identification is GNU 13.1.0
 -- Detecting C compiler ABI info
@@ -1700,3 +1602,284 @@ CMake Error in cmake/cpp20/CMakeLists.txt:
 CMake Generate step failed.  Build files cannot be regenerated correctly.
 
 [Failed to reload]
+```
+## cpp23
+
+### vs 2026
+Visual Studio 2026 对 C++23 特性的支持与示例代码
+
+Visual Studio 2026 作为微软的最新开发工具，提供了对 C++23 标准的全面支持。以下是 VS 2026 中支持的 C++23 主要特性及其可执行代码示例。
+
+1. 编译时分支控制 (if consteval)
+
+if consteval 允许在编译时和运行时执行不同的代码路径，这是 C++23 中一个重要的编译时特性。
+```cpp
+#include <iostream>
+
+constexpr int compute(int x) {
+    if consteval {
+        return x * 2;  // 编译时执行
+    } else {
+        return x + 3;  // 运行时执行
+    }
+}
+
+int main() {
+    constexpr int compile_time_result = compute(5);  // 编译时计算
+    int run_time_result = compute(5);                // 运行时计算
+    
+    std::cout << "Compile-time result: " << compile_time_result << "\n";
+    std::cout << "Run-time result: " << run_time_result << "\n";
+    
+    return 0;
+}
+```
+
+这个示例展示了如何在编译时和运行时执行不同的计算路径。
+
+2. 多维数组视图 (std::mdspan)
+
+std::mdspan 提供了现代化的多维数组操作接口，替代了传统的 C 风格数组和指针运算。
+```cpp
+#include <vector>
+#include <mdspan>
+#include <iostream>
+
+int main() {
+    std::vector<int> data(100);
+    
+    // 创建一个 10x10 的矩阵视图
+    auto matrix = std::mdspan(data.data(), 10, 10);
+    
+    // 使用多维下标访问
+    matrix[3, 4] = 42;
+    
+    std::cout << "Matrix[3,4] = " << matrix[3, 4] << "\n";
+    
+    return 0;
+}
+```
+
+这个特性特别适合科学计算和图像处理等领域。
+
+3. 现代化输出 (std::print)
+```cpp
+std::print 提供了类型安全、格式化的输出方式，比传统的 << 操作符链更简洁。
+#include <print>
+
+int main() {
+    std::string name = "Alice";
+    int age = 30;
+    
+    std::print("Hello, {}! You are {} years old.\n", name, age);
+    
+    return 0;
+}
+```
+
+std::print 支持自动类型推导和格式化，大大简化了输出代码。
+
+4. 显式对象参数 (Deducing this)
+
+这个特性允许非静态成员函数显式声明对象参数，为泛型编程提供更多灵活性。
+```cpp
+#include <iostream>
+
+struct Point {
+    double x, y;
+    
+    // 显式对象参数
+    auto distance(this const Point& self) {
+        return std::sqrt(self.x * self.x + self.y * self.y);
+    }
+};
+
+int main() {
+    Point p{3.0, 4.0};
+    std::cout << "Distance: " << p.distance() << "\n";  // 输出 5
+    
+    return 0;
+}
+```
+
+这个特性简化了 CRTP (Curiously Recurring Template Pattern) 等模式的使用。
+
+5. 错误处理 (std::expected)
+```cpp
+std::expected 提供了一种类型安全的方式来表示可能成功或失败的操作结果。
+#include <expected>
+#include <iostream>
+#include <string>
+
+std::expected<int, std::string> divide(int a, int b) {
+    if (b == 0) {
+        return std::unexpected("Division by zero");
+    }
+    return a / b;
+}
+
+int main() {
+    auto result = divide(10, 2);
+    
+    if (result) {
+        std::cout << "Result: " << *result << "\n";
+    } else {
+        std::cout << "Error: " << result.error() << "\n";
+    }
+    
+    return 0;
+}
+```
+
+std::expected 比异常更轻量，比返回错误码更安全。
+
+6. 标记不可达代码 (std::unreachable)
+```cpp
+std::unreachable 用于标记程序中逻辑上不应该到达的代码路径。
+#include <utility>
+#include <iostream>
+
+int magic_func(int value) {
+    switch (value) {
+        case 1: return 100;
+        case 3: return 500;
+        default: std::unreachable(); // 标记不可达代码
+    }
+}
+
+int main() {
+    std::cout << magic_func(1) << "\n";  // 输出 100
+    
+    return 0;
+}
+```
+
+这有助于编译器进行更激进的优化。
+
+7. 新容器类型 (std::flat_map 和 std::flat_set)
+
+这些新容器基于连续内存存储，提供了比传统 std::map 和 std::set 更好的缓存性能。
+```cpp
+#include <flat_map>
+#include <flat_set>
+#include <iostream>
+
+int main() {
+    std::flat_map<int, std::string> fmap = {{1, "one"}, {2, "two"}};
+    std::flat_set<int> fset = {3, 1, 4, 1, 5};
+    
+    for (const auto& [key, value] : fmap) {
+        std::cout << key << ": " << value << "\n";
+    }
+    
+    for (int n : fset) {
+        std::cout << n << " ";
+    }
+    std::cout << "\n";
+    
+    return 0;
+}
+```
+
+这些容器在小数据集和频繁访问场景中特别高效。
+
+8. 协程优化
+
+C++23 对协程进行了优化，使其更加易用和高效。
+```cpp
+#include <coroutine>
+#include <iostream>
+#include <thread>
+
+struct Task {
+    struct promise_type {
+        Task get_return_object() {
+            return Task{std::coroutine_handle<promise_type>::from_promise(*this)};
+        }
+        std::suspend_never initial_suspend() { return {}; }
+        std::suspend_never final_suspend() noexcept { return {}; }
+        void return_void() {}
+        void unhandled_exception() {}
+    };
+    std::coroutine_handle<promise_type> handle;
+};
+
+Task example_coroutine() {
+    std::cout << "Hello from coroutine!\n";
+    co_return;
+}
+
+int main() {
+    auto task = example_coroutine();
+    task.handle.resume();
+    
+    return 0;
+}
+```
+
+协程是简化异步编程的强大工具。
+
+9. 平台无关的假设 ([[assume]])
+
+[[assume]] 属性允许开发者声明某些条件总是为真，帮助编译器进行更好的优化。
+#include <cassert>
+
+int divide(int a, int b) {
+    [[assume(b != 0)]];  // 告诉编译器 b 永远不会为 0
+    return a / b;
+}
+
+int main() {
+    int result = divide(10, 2);  // 编译器会基于假设优化
+    assert(result == 5);
+    
+    return 0;
+}
+
+
+这个特性可以提高代码的性能和可移植性。
+
+10. 多维下标运算符
+
+C++23 正式支持多维下标运算符，使得自定义多维容器更加自然。
+#include <iostream>
+#include <array>
+
+template <typename T, size_t Rows, size_t Cols>
+struct Matrix {
+    std::array<T, Rows * Cols> data;
+    
+    T& operator[](size_t i, size_t j) {
+        return data[i * Cols + j];
+    }
+    
+    const T& operator[](size_t i, size_t j) const {
+        return data[i * Cols + j];
+    }
+};
+
+int main() {
+    Matrix<int, 3, 3> mat = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::cout << mat[1, 2] << "\n";  // 输出 6
+    
+    return 0;
+}
+
+
+这个特性简化了多维数组的访问语法。
+
+总结
+
+Visual Studio 2026 对 C++23 的支持涵盖了语言核心特性和标准库改进，包括：
+
+1. 编译时控制 (if consteval)
+2. 多维数组支持 (std::mdspan 和多维下标)
+3. 现代化输出 (std::print)
+4. 显式对象参数 (Deducing this)
+5. 错误处理 (std::expected)
+6. 不可达代码标记 (std::unreachable)
+7. 新容器类型 (std::flat_map, std::flat_set)
+8. 协程优化
+9. 平台无关假设 ([[assume]])
+
+这些特性使 C++ 代码更简洁、更安全、更高效。开发者可以根据项目需求逐步采用这些新特性。

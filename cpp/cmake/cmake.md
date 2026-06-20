@@ -1,7 +1,61 @@
 # CMake
+CMake 的 bison_target函数
+
+macro()
+endmacro()
+
+## 版本version
 202505
 cmake 4.0版本发布
+
+v1.2/ 2015-11-04
+v1.4/ 2015-11-04
+v1.6/ 2015-11-04 08:43
+v1.8/ 2015-11-04 08:43
+v2.0/ 2017-06-12 13:23
+v2.2/ 2015-11-04 08:43
+v2.3/ 2015-11-04 08:43
+v2.4/ 2015-11-04 08:43
+v2.6/ 2015-11-04 08:43
+v2.8/ 2016-04-13 12:51
+v3.0/ 2016-04-13 12:50
+v3.1/ 2016-04-13 12:50
+v3.2/ 2016-04-13 12:50
+v3.3/ 2016-04-13 12:50
+v3.4/ 2016-01-25 14:29
+v3.5/ 2016-04-15 13:40
+v3.6/ 2016-11-03 12:13
+v3.7/ 2017-01-13 14:13
+v3.8/ 2017-05-31 12:26
+v3.9/ 2017-11-10 09:22
+v3.10/  2018-03-16 09:38
+v3.11/  2018-06-14 13:50
+v3.12/  2018-11-02 13:51
+v3.13/  2019-05-24 09:54
+v3.14/  2019-10-02 10:50
+v3.15/  2020-02-04 10:31
+v3.16/  2020-09-15 09:31
+v3.17/  2020-09-15 10:31
+v3.18/  2021-04-05 13:38
+v3.19/  2021-04-06 14:21
+v3.20/  2021-09-20 12:31
+v3.21/  2022-06-01 11:01
+v3.22/  2022-07-28 11:41
+v3.23/  2022-11-01 10:41
+v3.24/  2023-03-08 09:53
+v3.25/  2023-03-08 10:41
+v3.26/  2023-11-27 14:31
+v3.27/  2023-11-28 10:41
+v3.28/  2024-06-03 14:26
+v3.29/  2024-11-21 09:15
+v3.30/  2025-06-11 12:01
+v3.31/  2025-11-17 16:31
+v4.0/ 2025-11-18 09:51
+v4.1/ 2025-11-18 10:41
+v4.2/ 2025-11-19 09:31
+
 redis 8.0发布
+
 ## bin
 https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
 
@@ -51,190 +105,127 @@ endif()
 
 https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html
 
-Value
-Name
-
+Value Name
 ADSP
 Analog Devices Audio Digital Signal Processing
-
 AIX
 IBM Unix operating system
-
 Android
 Android operating system
-
 ARTOS
 Operating system for microcontrollers
-
 BeOS
 Operating system for personal computers (discontinued)
-
 BlueGeneL
 Blue Gene/L static environment
-
 BlueGeneP-dynamic
 Blue Gene/P dynamic environment
-
 BlueGeneP-static
 Blue Gene/P static environment
-
 BlueGeneQ-dynamic
 Blue Gene/Q dynamic environment
-
 BlueGeneQ-static
-
 Blue Gene/Q static environment
-
 BSDOS
 BSD operating system (discontinued)
-
 Catamount
 Operating system for Cray XT series
-
 CrayLinuxEnvironment
 Cray Linux Environment
-
 CYGWIN
 Cygwin environment for Windows
-
 Darwin
 Apple stationary operating systems (macOS, OS X, etc.)
-
 DOS
 MS-DOS or compatible
-
 DragonFly
 BSD-derived operating system
-
 eCos
 Real-time embedded operating system
-
 Emscripten
 Compiler toolchain to WebAssembly
-
 Euros
 Real-time operating system for embedded devices
-
 FreeBSD
 FreeBSD operating system
-
 Fuchsia
 Operating system by Google based on the Zircon kernel
-
 Generic-ADSP
 Generic ADSP (Audio DSP) environment
-
 Generic-ELF
 Generic ELF (Executable and Linkable Format) environment
-
 Generic
 Some platforms, e.g. bare metal embedded devices
-
 GHS-MULTI
 Green Hills Software MULTI environment
-
 GNU
 GNU/Hurd-based operating system
-
 Haiku
 Unix operating system inspired by BeOS
-
 HP-UX
 Hewlett Packard Unix
-
 iOS
 Apple mobile phone operating system
-
 kFreeBSD
 FreeBSD kernel with a GNU userland
-
 Linux
 All Linux-based distributions
-
 Midipix
 POSIX-compatible layer for Windows
-
 MirBSD
 MirOS BSD operating system
-
 MP-RAS
 MP-RAS UNIX operating system
-
 MSYS
 MSYS environment (MSYSTEM=MSYS)
-
 NetBSD
 NetBSD operating systems
-
 OpenBSD
 OpenBSD operating systems
-
 OpenVMS
 OpenVMS operating system by HP
-
 OS2
 OS/2 operating system
-
 OSF1
 Compaq Tru64 UNIX (formerly DEC OSF/1, Digital Unix) (discontinued)
-
 QNX
 Unix-like operating system by BlackBerry
-
 RISCos
 RISC OS operating system
-
 SCO_SV
 SCO OpenServer 5
-
 SerenityOS
 Unix-like operating system
-
 SINIX
 SINIX operating system
-
 SunOS
 Oracle Solaris and all illumos operating systems
-
 syllable
 Syllable operating system
-
 Tru64
 Compaq Tru64 UNIX (formerly DEC OSF/1) operating system
-
 tvOS
 Apple TV operating system
-
 ULTRIX
 Unix operating system (discontinued)
-
 UNIX_SV
 SCO UnixWare (pre release 7)
-
 UnixWare
 SCO UnixWare 7
-
 visionOS
 Apple mixed reality operating system
-
 WASI
 WebAssembly System Interface
-
 watchOS
 Apple watch operating system
-
 Windows
 Windows stationary operating systems
-
 WindowsCE
 Windows Embedded Compact
-
 WindowsPhone
 Windows mobile phone operating system
-
 WindowsStore
 Universal Windows Platform applications
-
 Xenix
 SCO Xenix Unix operating system (discontinued)
 
@@ -300,6 +291,7 @@ file(GLOB RPC_SRC rocket/net/rpc/*.cc)
 add_library(rocket STATIC ${COMM_SRC} ${NET_SRC} ${TCP_SRC} ${CODER_SRC} ${RPC_SRC})
 ```
 
+```
 dpkg -L libtinyxml-dev
 /.
 /usr
@@ -316,7 +308,7 @@ dpkg -L libtinyxml-dev
 /usr/share/doc/libtinyxml-dev/copyright
 /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /usr/share/doc/libtinyxml-dev/changelog.Debian.gz
-
+```
 这个库是不是不能直接在CMakefiles.txt中find_package()
 
 
@@ -341,7 +333,7 @@ target_link_libraries(rest_pocodb Poco::Foundation Poco::Data Poco::Data_MySQL)�
 
 根据你的具体需求和项目要求,选择合适的链接方式。
 
-## cmake preset 3.19开始支持的 CMakePresets.json
+## cmake preset 3.19开始支持的CMakePresets.json
 https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
 CMakePresets.json文件作用？
 CMakePresets.json 文件在CMake项目中扮演着至关重要的角色，其主要作用可以归纳为以下几点：
@@ -378,16 +370,12 @@ CMakeUserPresets.json 文件允许开发人员自定义他们自己的本地构�
 
 2. 与CMakePresets.json互补
 CMakeUserPresets.json 文件与CMakePresets.json 文件在功能上互补。CMakePresets.json 文件用于定义项目范围的构建配置，这些配置通常会被检入版本控制系统，以确保项目成员之间的一致性。而CMakeUserPresets.json 文件则提供了开发人员自定义本地构建配置的灵活性。
-
 3. 隐式包含CMakePresets.json
 在CMake中，如果CMakePresets.json和CMakeUserPresets.json两个文件都存在，CMakeUserPresets.json会隐式包含CMakePresets.json的内容。这意味着开发人员可以在CMakeUserPresets.json中定义特定的构建配置，这些配置会覆盖CMakePresets.json中的相应设置（如果存在冲突的话）。
-
 4. 支持多环境构建
 虽然CMakeUserPresets.json主要用于自定义本地构建配置，但它同样支持为不同的环境定义预设。开发人员可以根据自己的需求，在CMakeUserPresets.json中定义适用于自己开发环境的特定构建配置。
-
 5. 提高开发效率
 通过CMakeUserPresets.json文件，开发人员可以快速切换不同的构建配置，而无需手动修改CMakeLists.txt或其他构建脚本。这大大提高了开发效率，特别是在需要频繁测试不同构建配置的场景下。
-
 6. 架构和格式
 CMakeUserPresets.json 文件与 CMakePresets.json 文件具有完全相同的格式和架构。它们都遵循JSON格式，并包含版本信息、配置预设、构建预设等字段。这使得开发人员可以轻松地在这两个文件之间切换和共享配置信息。
 
@@ -402,7 +390,7 @@ CMakePresets.json 文件通常位于项目的根目录中，但也可以放在�
 
 一个基本的 CMakePresets.json 文件示例可能如下所示：
 
-json
+```json
 {  
   "version": 2,  
   "cmakeMinimumRequired": {  
@@ -435,6 +423,8 @@ json
     }  
   ]  
 }
+```
+
 在这个例子中，我们定义了两个预设配置：一个是使用 Ninja 生成器的默认配置，另一个是为 Windows 平台使用 Visual Studio 2019 的配置。通过指定不同的预设名称，你可以很容易地在不同的构建环境之间切换。
 
 CMakePresets.json 文件不是由 cmake 命令直接生成的，而是需要用户或开发者手动创建并编辑的。这个文件是 CMake 预设（Presets）系统的一部分，旨在提供一种灵活的方式来配置 CMake 项目的构建环境，包括编译器、工具链、构建类型等。
@@ -445,7 +435,7 @@ CMakePresets.json 文件通常位于项目的根目录中，但也可以放在�
 
 一个基本的 CMakePresets.json 文件示例可能如下所示：
 
-json
+```json
 {  
   "version": 2,  
   "cmakeMinimumRequired": {  
@@ -478,6 +468,7 @@ json
     }  
   ]  
 }
+```
 在这个例子中，我们定义了两个预设配置：一个是使用 Ninja 生成器的默认配置，另一个是为 Windows 平台使用 Visual Studio 2019 的配置。通过指定不同的预设名称，你可以很容易地在不同的构建环境之间切换。
 ## cmake判断操作系统
 #### 检查操作系统类型
@@ -540,9 +531,7 @@ cmake -B build_32 -S . -G "Visual Studio 17 2022" -A x32 -DCMAKE_TOOLCHAIN_FILE=
 ```
 
 在 CMake 中设置构建类型为 Debug 或 Release，可以通过以下几种方式来实现：
-
 ### 方法 1: 使用命令行选项
-
 你可以在配置 CMake 时通过命令行选项 `-DCMAKE_BUILD_TYPE` 来指定构建类型：
 
 ```bash
@@ -558,7 +547,6 @@ cmake --build . --config Release
 ```
 
 ### 方法 2: 在 `CMakeLists.txt` 文件中设置默认构建类型
-
 你可以在 `CMakeLists.txt` 文件中添加默认的构建类型：
 
 ```cmake
@@ -569,7 +557,6 @@ endif()
 ```
 
 ### 方法 3: 使用 CMake 的预设功能
-
 CMake 3.19 及以上版本支持使用预设来设置构建配置。在项目根目录下创建一个 `CMakePresets.json` 文件：
 
 ```json
@@ -622,7 +609,6 @@ cmake --build build/release
 ```
 
 ### 方法 4: 使用 CMake GUI
-
 如果你使用的是 CMake GUI，可以在配置过程中选择构建类型。配置过程中，在“CMake Options”中添加 `CMAKE_BUILD_TYPE` 并设置为 `Debug` 或 `Release`。
 
 ### 总结
@@ -717,90 +703,14 @@ make怎么打包成库文件 g++怎么打包库文件
 
 mvn package
 
-
-leveldb需要snappy
-https://www.oschina.net/p/snappy?hmsr=aladdin1e1
-https://src.fedoraproject.org/repo/pkgs/snappy/
-
-git remote set-url origin https://gitee.com/edidada/testrust.git
-
-
-其实nevovim + spavevim撸也还行
-
-apue unp
-陈硕
-
-C++服务器开发精髓
-https://book.douban.com/subject/35491437/
-
-https://book.douban.com/subject/25900403/
-
-https://gitee.com/edidada/unix-linux-program
-https://gitee.com/edidada/essential_cpp_code
-
-ansic
-fopen
-
-posix
-fnctl.h open
-
-进程 fork
-线程 pthread_create
-
-人世间
-电视剧
-
-真没必要这么麻烦，再穷逼现在组个e5洋垃圾1200元就有16c32t的规格，多线程性能堪比10900k，编程完全没有任何压力甚至绰绰有余
-
-https://www.linuxquestions.org/questions/linux-general-1/ubuntu-20-04-blocking-google-signin-4175688411/
-
-回形针也是理中客，混乱博物馆更是搞科普的，其背后都有境外反华势力参与。
-回形针是被自媒体曝光的，插图事件也是网络舆论发酵才引发关注的，塔里木盆地教科书的事件更是持续了十几年。
-渗透和控制已经非常严重了，情报系统可能已经失能。网络平台不可能不受此影响，它们完全可以通过后台操作使拥有反华背景的自媒体成为主流。
-美国过去几十年通过各种渠道引导、操控我国国民认只，整个文学影视界全面亲美，不可能错过网络时代。
-睡前消息极有可能跟意林回形针一样，参考消息主持人长的很像台湾人。
-
-CatalyzeX chrome插件
-
-https://www.zhihu.com/answer/2779480241
-
-严店中学旁边就是百大周谷堆
-
-https://github.com/Kr328/ClashForAndroid
-
-企业级ssd
-
-企业级，航天级 民用的，不一样
-你一说话，别人就默认你是在为自己谋利
-
-
-答主可能没有实际操作过向各大平台申请信息披露吧，我向抖音、微信、小红书都申请过，前两个都明确告知需要法院调查令，小红书是因为不强制要求实名制，他们也没有对方的个人信息
-
-武汉地铁我参与建设很多条线，还是比较有发言权的...
-5.6k能上车地铁房不一定值得，位置真的太偏了，举个例子，21号线（阳逻线）武生院到金台这一段，价格不高，但是完全不推荐。
-低价上车可能只有四新白沙洲这种没啥上涨空间，自住凑合的区域。
-
-学习c++最新版本特性，不一定要装编译器，有线上编译环境
-
-工业软件市场太小，就算做出来也未必有人会买账，欧特克多厉害，几乎算是工业软件里的一哥了，一年营收也就接近30亿美元
-
-
-业务开发
-技术应用
-两个方向
-
-整理资料，定期复习，repo
-
-gcc是编译c的，我却在mac上用gcc编译c++代码，报错了
-
-sonic是开源的，推荐sonic无可厚非啊。在字节跑路前用sonic优化过项目下发端的代码，对于计算密集型服务性能确实有一定提升，不过我负责的项目优化后没图中那么明显，印象中图中的项目还同时用了tango？
-
 cmake需要手动新建CMakefile.txt吗？
 
 mvn init
+xmake init?
+C:\ProgramData\chocolatey\bin\zig.exe  init
 
 pom.xml设置jdk版本
-.cmake文件
+.cmake文件 设置c c++版本
 
 设置变量
 pom.xml properries节点
@@ -808,16 +718,10 @@ cmakefile.txt
 生命式
 set
 
-pom.xml一堆插件，cmake有插件吗？
+pom.xml一堆插件，cmake有插件吗？有flex bison antlr都有支持函数
 
 conanfile.py
 xmake.lua
-
-https://blog.csdn.net/Gabriel576282253/article/details/104826413
-
-减少重复造轮子，开源Java微信小程序商城 (前后台开源) 。快速搭建一个属于自己的微信小程序商城。QQ交流群：66502035、870579539、151602347欢迎大家进群交流技术。
-
-
 
 ```cmake
 add_library (spongechecks STATIC send_equivalence_checker.cc tcp_fsm_test_harness.cc byte_stream_test_harness.cc network_interface_test_harness.cc)
@@ -959,8 +863,6 @@ write_basic_package_version_file(
   ${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
   VERSION 1.2.3
   COMPATIBILITY SameMajorVersion)
-
-
 
 ```shell
 mkdir temp
@@ -1918,7 +1820,6 @@ E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildt
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\CMakeFiles\3.14.0\CMakeCXXCompiler.cmake
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\CMakeFiles\3.14.0\CMakeCCompiler.cmake
 E:\$RECYCLE.BIN\S-1-5-21-1699714220-3637226014-2084147787-123785\$R0NDEFH\buildtrees\protobuf\x64-osx-dbg\cmake_install.cmake
->>>>>>> 6faa5abd105d9ac215af4c26599be94f269ae80a
 
 
 
