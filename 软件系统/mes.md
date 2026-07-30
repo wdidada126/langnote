@@ -18,3 +18,37 @@ MES的主要功能包括但不限于：
 13. 数据集成分析：整合底层设备数据和上层业务数据，提供实时报表和决策支持。
 
 通过实施MES系统，企业能够显著提高生产效率、减少浪费、提升产品质量、降低运营成本，并且更好地满足客户需求和市场响应速度。
+
+国内外主流开源 MES 官方源码地址汇总
+一、国内热门开源 MES（最适合国内工厂、中文文档完善）
+1、星空 MES（xingkong-mes，使用人数最多）
+Gitee：shturl.cc/EAPBDPmSDIGW2HrIecPAi63tusB
+Github 镜像：https://github.com/metaxk-company/free-mesGitHub
+协议：Apache2.0，完全免费商用；SpringBoot+Vue，Docker 一键部署
+功能：排产、制程、质检、设备、仓储、追溯、大屏
+2、iMES 工厂管家（.NET+Vue3）
+Github：https://github.com/zmrid/iMES-Factory
+官网演示：https://imesopen.625sc.com
+官网：https://www.625sc.com
+3、KTG-MES
+Github：https://github.com/cgb-scm/ktg-mesGitHub
+4、慧工云创 hgyc-mom
+后端：shturl.cc/i7k3xPhqrIqoJxVtUKEWIXqA
+前端：shturl.cc/i7k3xPhqrIqoJxVtUKEWIXqA-web稀土掘金
+二、国外老牌成熟开源 MES（标准规范、符合 ISA95）
+1、Qcadoo MES（国际经典老牌 MES）
+Github：https://github.com/qcadoo/mes
+官网：https://qcadoo.com
+2、OpenMES（遵循 ISA88/ISA95 标准）
+Github：https://github.com/Mes-Open/OpenMesGitHub
+3、Carbon（一体化 ERP+MES+QMS）
+Github：https://github.com/crbnos/carbon
+官网：https://carbon.ms
+4、iDempiere（ERP 内置 MES 模块）
+官网：https://idempiere.org
+Github：https://github.com/idempiere/idempiere
+三、快速克隆示例（以星空 MES 为例）
+bash
+git clone shturl.cc/EAPBDPmSDIGW2HrIecPAi63tusB.git
+
+需要我帮你整理各 MES 技术栈、部署难度、适用行业对照表方便选型吗？
