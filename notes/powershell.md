@@ -86,6 +86,8 @@ Remove-Item "C:\path\to\file.txt"
 
 $env:HTTP_PROXY="http://127.0.0.1:10800"
 $env:HTTPS_PROXY="https://127.0.0.1:10800"
+$env:HTTP_PROXY="http://127.0.0.1:7899"
+$env:HTTPS_PROXY="https://127.0.0.1:7899"
 
 set all_proxy=socks5://127.0.0.1:7890
 windows
