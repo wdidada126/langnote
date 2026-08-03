@@ -1,9 +1,5 @@
 # note
 
-
-
-
-
 *软件开发* *CR*(变更请求)用于记录和追踪缺陷
 
 changed request
