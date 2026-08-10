@@ -16,7 +16,7 @@ codex进入之后，输入
 
 当前的 Codex 版本是 0.114.0 ，而最新版本是 0.145.0 （2026年7月21日发布）。版本差距太大，自我更新可能卡住了。
 
-  ✨ Update available! 0.145.0 -> 0.146.0
+  Update available! 0.145.0 -> 0.146.0
 
 
  npm install -g @openai/codex@0.146.0 --registry=https://registry.npmmirror.com 2>&1
