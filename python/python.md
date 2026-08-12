@@ -401,3 +401,97 @@ settrace() -- set the global debug tracing function
 python name __filter__
 
 https://blog.csdn.net/weixin_35684521/article/details/81396434
+
+## Python 综合笔记（截至 2026-08）
+
+### 定位与版本边界
+
+Python 的优势是表达力、生态和开发速度，不是“所有场景都比编译型语言快”。它适合自动化、数据处理、Web/API、AI、测试平台、运维工具和胶水层；CPU 密集型核心循环、极低尾延迟和高频二进制处理应先 profile，再考虑 NumPy/Numba/Cython、扩展模块、进程并行或将热点移到 C/C++/Rust/Java。
+
+截至 2026-08，官方稳定文档为 Python 3.14 系列。3.14 将 free-threaded CPython 作为受支持但可选的构建，标准库提供 `concurrent.interpreters` 与 `InterpreterPoolExecutor`；官方 Windows/macOS 包也包含实验性 JIT。它们不是“升级后所有 Python 代码自动多核加速”：第三方 C 扩展可能未适配而重新启用 GIL，free-threaded 构建也有内存和单线程开销，JIT 仍不建议直接用于生产承诺。
+
+官方参考：
+
+- Python 3.14 新特性：https://docs.python.org/3.14/whatsnew/3.14.html
+- free-threaded Python：https://docs.python.org/3.14/howto/free-threading-python.html
+- 标准库：https://docs.python.org/3/library/
+
+### 运行时、对象模型与并发
+
+CPython 先编译源码为字节码，再由解释器执行；对象主要以引用计数管理，并用循环 GC 处理循环引用。变量名绑定对象而非保存值，`list`、`dict`、`set` 是可变对象，`tuple`、`str`、`int` 等常用对象不可变。函数默认参数在定义时求值，可变默认参数会在多次调用间共享，这是常见 bug。
+
+```python
+# 错误：所有调用共享同一个列表
+def append_bad(value, items=[]):
+    items.append(value)
+    return items
+
+# 正确：每次调用按需创建
+def append_ok(value, items=None):
+    if items is None:
+        items = []
+    items.append(value)
+    return items
+```
+
+| 工作负载 | 首选工具 | 关键限制 |
+| --- | --- | --- |
+| I/O 密集并发 | `asyncio`、异步客户端、任务组 | `await` 之间可切换，阻塞 I/O/CPU 代码会卡住事件循环。 |
+| CPU 密集并行 | `multiprocessing`、进程池、向量化/原生扩展 | 序列化、进程启动和数据复制有成本。 |
+| 常规线程 | `threading`、`ThreadPoolExecutor` | 默认 CPython 的 GIL 不让 Python 字节码 CPU 并行；I/O 仍有效。 |
+| 多核解释器隔离 | `InterpreterPoolExecutor`、多解释器 | 隔离和数据传递语义不同于线程，生态仍在适配。 |
+| free-threaded CPython | 适配后的多线程 CPU 程序 | 显式加锁，不依赖 `dict`/`list` 的当前内部锁实现。 |
+
+`asyncio` 解决的是协作式 I/O 并发，不是自动并行。`async def` 中调用同步数据库驱动、`requests`、文件大读取或 CPU 密集 JSON/压缩，会阻塞整个 event loop；应使用异步库，或通过 `asyncio.to_thread()`/进程池隔离。取消也要按资源边界设计：使用 `async with`、超时和幂等操作，不能只在任务顶层捕获 `Exception` 后吞掉 `CancelledError`。
+
+### 类型、接口与错误处理
+
+Python 是动态语言，但生产项目应将 type hints 当作可执行设计文档，使用 `pyright`、mypy 或 IDE 静态检查提前发现边界错误。类型提示不在运行时自动验证；对 HTTP、MQ、配置等外部输入仍要用显式校验或 Pydantic 等工具，并将领域对象与传输 DTO 分离。
+
+```python
+from collections.abc import Iterable
+
+def total(values: Iterable[int]) -> int:
+    return sum(values)
+
+class DomainError(Exception):
+    pass
+
+try:
+    amount = total([1, 2, 3])
+except (TypeError, ValueError) as exc:
+    raise DomainError("invalid amount") from exc
+```
+
+异常处理原则：只捕获能恢复的具体异常；保留异常链 `raise ... from exc`；日志记录上下文而非密码/token/完整个人数据；不要用裸 `except:` 吞掉 `KeyboardInterrupt`、`SystemExit` 或取消信号。资源使用 `with`/`async with` 管理，避免依赖 `__del__` 或进程退出完成关闭。
+
+### 依赖、构建与可复现环境
+
+旧笔记中“指定版本后两年也可能跑不起来”的现象真实存在，根因通常是解释器版本、平台 wheel、间接依赖、系统库、私有索引和构建后端没有一起被固定。`requirements.txt` 的 `pip freeze` 是环境快照，不一定是可维护的顶层依赖声明。
+
+推荐将项目定义放入 `pyproject.toml`，明确 Python 支持范围、直接依赖、构建后端、lint/test/type-check 配置；再由 pip-tools、Poetry、uv 等工具生成带哈希或精确版本的 lock/requirements 产物。CI 要从干净虚拟环境安装并测试，而不是只在开发者已有的 Conda 环境中运行。
+
+```text
+pyproject.toml: 直接依赖与项目元数据
+lock/requirements: 解析后的可复现版本集合
+venv: 每个项目隔离解释器与 site-packages
+CI: 干净环境安装、测试、类型检查、漏洞扫描
+容器/部署: 固定基础镜像、系统库与运行用户
+```
+
+实践要点：每项目使用 `python -m venv .venv`；安装/执行优先 `python -m pip`、`python -m pytest`，避免 PATH 指向另一套 Python；库开发者避免把所有依赖锁死，应用开发者应锁定完整传递依赖；升级 Python 或主要依赖时跑完整测试与性能基线。
+
+### Web、数据与安全
+
+Web 服务区分 WSGI（同步）和 ASGI（异步）部署路径。FastAPI/Starlette 等 ASGI 应用需要 ASGI server；Django/Flask 的同步视图也不应因套了 `async` 就假定其所有依赖都非阻塞。生产 API 应有请求超时、连接池上限、结构化日志、健康检查、指标、限流、鉴权、数据库迁移和优雅关闭。
+
+数据处理优先向量化和批处理：Pandas 的 Python 级 `apply` 常比列运算慢；大数据不应盲目一次 `read_csv` 全量读入内存。用采样、数据类型、分块、Parquet/Arrow、数据库下推或分布式计算降低内存与序列化成本。对不可信输入禁止 `pickle.loads`、不把 `eval`/`exec` 当解析器、不反序列化来源不明的 YAML；密钥放环境变量或密钥服务，不提交到仓库和日志。
+
+### 学习与排障路线
+
+1. 语言基础：数据模型、作用域、迭代器/生成器、上下文管理器、异常、包与导入。
+2. 工程基础：`venv`、`pyproject.toml`、pytest、ruff/formatter、type hints、logging、调试和 profile。
+3. 并发基础：线程/GIL、asyncio、进程池、取消、超时和资源池。
+4. 方向专项：后端看 HTTP/ASGI/数据库；数据看 NumPy/Pandas/统计；自动化看 requests/浏览器自动化/系统接口；AI 看 PyTorch/推理与数据管线。
+
+仓库中的 [CPython](cpython.md)、[venv](venv.md)、[PEP](pep.md)、[SQLAlchemy](sqlalchemy.md) 可作为下一步。排查线上“Python 慢”时先区分 CPU、I/O、锁、GC、数据库和外部服务，用 `py-spy`、`cProfile`、tracemalloc、指标和 trace 定位，禁止先靠盲目加线程或重写语言解决。
