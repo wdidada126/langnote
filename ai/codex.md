@@ -1,6 +1,7 @@
 # codex
 
 npm install -g @openai/codex
+npm install -g @openai/codex@latest --registry=https://registry.npmmirror.com
 
 codex进入之后，输入
 /resume
@@ -30,7 +31,7 @@ ibqo@ibqodeMacBook-Pro test_java_jraft %
 
 下面是模型与推理强度的详细区别：
 
-### 🚀 三大核心模型：Sol、Terra 与 Luna
+### 三大核心模型：Sol、Terra 与 Luna
 
 GPT-5.6 系列采用了新的命名体系，分为三个能力档位。可以按任务需求从这三者中选择：
 

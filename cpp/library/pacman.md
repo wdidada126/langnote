@@ -1,0 +1,3 @@
+# pacman
+
+mingw win
