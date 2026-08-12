@@ -199,3 +199,95 @@ Cartopy是一个Python包，用于地图的绘制和地理数据处理。它基�
 ### c win head file
 
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt
+
+## C 语言综合笔记（截至 2026-08）
+
+### 标准、实现与平台 API 的边界
+
+C 是一门小而底层的语言标准；实际项目同时依赖编译器、C 标准库、ABI、操作系统和第三方库。`<stdio.h>`、`<stdint.h>`、`<stdlib.h>` 属于 ISO C 标准库；`<pthread.h>`、`<unistd.h>`、`<sys/socket.h>` 通常属于 POSIX/Unix；Win32 API、glibc 扩展、MSVC CRT 则是平台/实现特有能力。可移植代码必须把这些层次分开，不能把“Linux 上能编译”当成标准 C 保证。
+
+当前 C 标准为 C23，即 ISO/IEC 9899:2024；C17（ISO/IEC 9899:2018）基本是对 C11 的缺陷修正，并没有旧文所列的大量新语言/库特性。C11 才引入 `_Generic`、原子类型、`_Thread_local`、`<threads.h>` 等；C23 引入或标准化了 `nullptr`、`true`/`false` 关键字、属性、`_BitInt`、`#embed`、`#warning` 等能力。实际采用前必须检查目标 GCC/Clang/MSVC、libc 和嵌入式工具链的支持，使用 feature-test macro 或配置探测，而不是只按标准名称开启编译选项。
+
+官方/参考入口：
+
+- WG14 C 标准主页：https://open-std.org/jtc1/sc22/wg14/
+- C23 项目状态：https://www9.open-std.org/JTC1/SC22/WG14/www/projects.html
+- C23 特性参考：https://en.cppreference.com/w/c/23
+
+| 层次 | 例子 | 工程含义 |
+| --- | --- | --- |
+| ISO C | `malloc`、`qsort`、`stdio` | 最广可移植性，但能力有限。 |
+| POSIX | 文件描述符、socket、pthread、`poll` | Unix/Linux/macOS 常用，需要处理平台差异。 |
+| libc/编译器扩展 | glibc、musl、GCC attributes、MSVC intrinsics | 性能/功能强，但要封装和声明兼容边界。 |
+| 硬件/裸机 | MMIO、ISR、启动代码 | 需要 volatile、内存屏障、链接脚本和芯片手册。 |
+
+### 对象、指针、生命周期与未定义行为
+
+C 给的是地址和字节，不是自动资源管理。数组在大多数表达式中衰变为指针，指针不携带长度、所有权或有效期；函数参数中的 `T a[]` 本质上也是 `T *a`。设计接口时必须把长度、容量、所有权、可空性、编码和失败语义写入名称、类型、注释与测试。
+
+```c
+/* dst 至少有 cap 字节；返回 0 成功，-1 表示空间不足。 */
+int copy_text(char *dst, size_t cap, const char *src) {
+    if (cap == 0) return -1;
+    int n = snprintf(dst, cap, "%s", src);
+    return n >= 0 && (size_t)n < cap ? 0 : -1;
+}
+```
+
+高风险错误包括：越界读写、use-after-free、double free、返回栈变量地址、未初始化读取、整数截断/符号转换、`printf` 格式与实参不匹配、无效指针算术、错误的对齐/严格别名假设、signed overflow、data race。它们很多属于 undefined behavior（UB），并非“偶尔崩溃”而是编译器可基于其不会发生而重排或删除代码。优化级别、架构、编译器或一次无关改动都可能改变表现。
+
+安全规则：
+
+1. 用 `size_t` 表示对象大小/索引，用固定宽度整数表达协议和磁盘格式；所有外部长度先做上界检查。
+2. 初始化每个对象；释放后不再使用，必要时让拥有者指针置空，但不要把置空误认为消除了别名悬垂。
+3. 避免 `strcpy`、`strcat`、`sprintf` 和不检查截断的复制；`strncpy` 也不保证 NUL 结尾。优先显式长度与 `snprintf`/受审计封装。
+4. `const` 表示不经该接口修改，`restrict` 是优化承诺，`volatile` 不是线程同步原语；不要用它修复竞态。
+5. 对网络、文件、环境变量、FFI 输入先校验，再解析；任何长度乘法先检查溢出。
+
+### 错误处理、资源释放与 API 设计
+
+C 没有异常和析构，常用约定是 `0` 成功、非零错误码，或返回值加 `errno`；库 API 应统一错误模型，避免调用方既要读返回值又要猜全局状态。错误信息用可检查枚举/错误码，日志附带操作、路径、fd、长度等上下文但不泄露密钥。
+
+多资源初始化可采用单一 `cleanup:` 标签，清理按反序执行。这不是滥用 `goto`，而是 C 中保持失败路径完整、避免重复和泄漏的常见模式。
+
+```c
+int process(const char *path) {
+    FILE *f = NULL;
+    char *buf = NULL;
+    int rc = -1;
+
+    f = fopen(path, "rb");
+    if (f == NULL) goto cleanup;
+    buf = malloc(BUFSIZ);
+    if (buf == NULL) goto cleanup;
+    /* 使用 f 和 buf，任何失败转到 cleanup。 */
+    rc = 0;
+cleanup:
+    free(buf);
+    if (f != NULL) fclose(f);
+    return rc;
+}
+```
+
+库边界应导出稳定的 C ABI：头文件使用 include guard、`extern "C"` 兼容 C++、可见性宏、明确结构体所有权和 allocator 归属。不要跨不同 CRT/allocator 分配与释放同一对象；跨 DLL/so 接口优先由“创建方提供 destroy 函数”，避免调用方 `free` 不同运行时分配的内存。
+
+### 并发与内存模型
+
+C11 提供 `<stdatomic.h>` 与 `<threads.h>`，但许多系统项目仍用 pthread/平台线程。没有同步的并发读写是 data race，也是 UB。mutex、condition variable、原子操作和线程创建/join 定义了 happens-before；`volatile` 只适用于某些 MMIO/信号相关场景，不能保证原子性、互斥或跨核可见性。
+
+| 需求 | 合适工具 | 常见错误 |
+| --- | --- | --- |
+| 复合共享状态 | mutex | 只把一个 flag 声明为 volatile。 |
+| 单一计数/状态转换 | C11 atomics | 用普通 `++` 并发累加。 |
+| 条件等待 | mutex + condition variable | 不在循环中检查谓词，忽略虚假唤醒。 |
+| 硬件寄存器 | `volatile` + 平台屏障/手册 | 把 volatile 当通用线程安全机制。 |
+
+原子内存序和 lock-free 只在 profile 证明 mutex 成为瓶颈且团队能证明正确性时使用；大多数业务代码使用默认顺序一致原子或 mutex 更可维护。线程退出不自动回收其访问过的对象，所有权、join、取消和队列关闭仍需设计。
+
+### 编译、链接、测试与安全工具
+
+建议将警告视为错误并持续构建：GCC/Clang 可从 `-Wall -Wextra -Wpedantic -Werror` 起步，再按项目添加转换、格式和阴影警告。调试使用 `-g -O0` 或适当优化；发布使用明确 `-O2`/`-O3` 并保留符号文件。静态库只是对象文件归档，动态库涉及符号可见性、SONAME、rpath、加载器搜索路径和 ABI 兼容，不能只看头文件能否编译。
+
+测试与诊断组合：单元/集成测试、fuzz、静态分析（clang-tidy、cppcheck 等）、AddressSanitizer、UndefinedBehaviorSanitizer、LeakSanitizer、ThreadSanitizer、Valgrind（适合特定平台/场景）、gdb/lldb、`perf`。Sanitizer 要在 CI 和预发布压测覆盖真实路径；它们不能证明没有漏洞，但能把很多潜伏内存错误提前变成可定位报告。
+
+学习顺序：C 对象模型和声明 -> 指针/数组/字符串/整数 -> 生命周期/错误路径 -> 编译、链接、ELF/PE -> POSIX I/O、进程、线程和 socket -> sanitizer、调试和性能分析。仓库中的 [C11](c11.md)、[C23](c23.md)、[glibc](glibc.md)、[未定义行为](c_ub.md)、[lld](lld.md) 可进一步阅读。掌握 C 的标志不是能手写链表，而是能清楚说明每块内存谁分配谁释放、每个长度如何校验、每个线程如何同步以及失败路径如何回收。

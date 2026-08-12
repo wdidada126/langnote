@@ -1883,3 +1883,99 @@ Visual Studio 2026 对 C++23 的支持涵盖了语言核心特性和标准库改
 9. 平台无关假设 ([[assume]])
 
 这些特性使 C++ 代码更简洁、更安全、更高效。开发者可以根据项目需求逐步采用这些新特性。
+
+## C++ 综合笔记（截至 2026-08）
+
+### 版本策略与工程基线
+
+C++ 是零成本抽象与系统编程语言，但“零成本”只在抽象、实现、优化器和实际数据路径都匹配时成立。现代项目通常以 C++17 为最低可行基线，在工具链允许时选择性采用 C++20/23；不要把 C++23/26 的文档能力当作当前编译器、标准库、部署平台和第三方 ABI 都已支持的事实。用 `CMAKE_CXX_STANDARD`、编译器版本、feature-test macro 和 CI 编译矩阵明确支持范围。
+
+C++23 常用的库补充包括 `std::expected`、`std::mdspan`、`std::print`、`std::stacktrace`、`std::generator`、`std::flat_map`/`std::flat_set` 等，但 GCC、Clang、MSVC 与 libstdc++/libc++ 的支持进度不同，特别是 modules、coroutines、format/print、stacktrace 和新并行/执行能力需要单独验证。C++ 网络 socket API 仍不是 C++23 标准库的一部分，网络服务通常使用 OS socket、Asio/Boost.Asio、libevent、brpc 等。
+
+参考：
+
+- C++ 语言参考：https://en.cppreference.com/w/cpp/language/
+- C++23 特性：https://en.cppreference.com/w/cpp/23
+- C++23 编译器支持：https://en.cppreference.com/w/cpp/compiler_support/23
+- C++ Core Guidelines：https://isocpp.github.io/CppCoreGuidelines/
+
+### RAII、所有权与 Rule of Zero
+
+现代 C++ 的第一原则是 **RAII**：资源在对象构造时取得，在析构时释放；资源包括内存、文件、socket、mutex、transaction、span 和临时权限。优先让标准容器和资源包装类型管理资源，使业务类不必显式写析构、拷贝或移动操作，即 Rule of Zero。旧文中的 Rule of Five 仍适用于直接拥有原生资源的低层类型，但不是每个 class 都必须实现五个特殊成员函数。
+
+| 资源关系 | 首选表达 | 注意 |
+| --- | --- | --- |
+| 唯一所有权 | 值成员、`std::unique_ptr<T>` | 默认不可拷贝，可显式移动；优先 `make_unique`。 |
+| 共享所有权 | `std::shared_ptr<T>` | 有引用计数和生命周期复杂度，不能默认使用。 |
+| 打破共享环 | `std::weak_ptr<T>` | 使用前 lock 并检查，不能代替所有权设计。 |
+| 非拥有访问 | `T&`、`T*`、`std::span<T>`、`std::string_view` | 调用方必须保证被引用对象生命周期。 |
+| C 资源 | `unique_ptr<T, Deleter>` 或小型 RAII wrapper | deleter 必须匹配创建方/allocator。 |
+
+`std::string_view`、`std::span`、iterator、reference 都不延长底层对象生命周期。返回指向局部 `std::string` 的 `string_view`、保存临时 `span`、vector 扩容后继续使用旧 iterator 都是悬垂引用。`std::move` 只是把表达式转成右值，不移动数据；被 move 的对象仍必须处于可析构、可重新赋值的有效状态，但不应依赖其具体内容。
+
+```cpp
+class File {
+public:
+    explicit File(const char* path) : f_(std::fopen(path, "rb")) {
+        if (f_ == nullptr) throw std::runtime_error("open failed");
+    }
+    ~File() { std::fclose(f_); }
+    File(const File&) = delete;
+    File& operator=(const File&) = delete;
+private:
+    std::FILE* f_;
+};
+```
+
+若可行，使用能直接作为成员的资源包装类型或 `unique_ptr<FILE, decltype(&fclose)>`，进一步减少手写特殊成员。异常安全按基本/强/no-throw 保证设计：修改共享状态前先构造局部新值，成功后交换；析构函数不抛异常；跨 C ABI、线程入口和回调边界捕获异常并转换为错误码/日志。
+
+### 值、模板与错误模型
+
+优先值语义：小对象直接按值传递/返回，大对象按 `const T&` 只读、`T&&` 仅在确实转移资源时使用。不要为了避免一次复制而无条件返回裸指针或使用全局对象；NRVO/移动通常使清晰的按值返回高效。`const`、`noexcept`、`[[nodiscard]]` 是接口契约，应按真实语义标注，而不是为优化器或告警而虚假承诺。
+
+模板与 concepts 能在编译期约束泛型算法，但错误信息、编译时间、代码膨胀和 ABI 都需控制。C++20 concepts 通常比深层 SFINAE 可读；`if constexpr` 只在类型分支确实不同才使用。公开库要减少在头文件中暴露不稳定复杂实现，内部实现可用 PImpl、非模板接口或显式实例化控制编译依赖和 ABI。
+
+错误模型需统一：异常适合构造失败和无法在每层立即处理的错误；`std::expected<T, E>` 适合预期失败且调用方必须分支处理；错误码适合 C/系统调用边界。不要在同一子系统混用“返回空值、bool、errno、异常、日志后继续”而没有明确约定。
+
+### 未定义行为、并发与内存模型
+
+C++ 的性能建立在编译器可假设程序无 UB 的基础上。越界、use-after-free、data race、无效 downcast、对齐/别名违规、signed overflow、错误 shift、使用未初始化值、迭代器失效和悬垂 view 都可能让优化后的程序产生反直觉结果。Debug 可运行不代表 Release 正确。
+
+并发的核心是 happens-before。共享状态用 `std::mutex`、`std::scoped_lock`、`std::condition_variable`、`std::latch`/`barrier` 或 `std::atomic` 建立同步；无同步的一读一写即 data race/UB。`std::jthread` 配合 `std::stop_token` 比裸 `std::thread` 更适合可取消生命周期，析构时会 join，但仍需让阻塞 I/O、等待条件和任务函数主动响应 stop request。
+
+| 场景 | 建议 | 避免 |
+| --- | --- | --- |
+| 共享复合状态 | mutex + 明确锁顺序 | 多个 atomic 拼装出难以证明的不变量。 |
+| 任务传递 | 有界队列/线程池 + 背压 | 每请求创建线程或无限队列。 |
+| 原子状态机 | 默认顺序一致或证明后的 acquire/release | 未经证明地使用 relaxed。 |
+| 条件等待 | `cv.wait(lock, predicate)` | `if` 一次检查，忽略虚假唤醒。 |
+| 线程退出 | jthread/RAII + stop token + join | detach 后引用局部对象或吞掉异常。 |
+
+### ABI、构建与跨语言边界
+
+C++ ABI 不由语言标准统一。编译器、标准库、编译选项、异常/RTTI、`_GLIBCXX_USE_CXX11_ABI`、运行库和结构体布局变化都可能让“头文件能编译”的库在运行时崩溃。稳定插件/SDK 边界优先提供窄 C ABI（`extern "C"`、不透明句柄、固定宽度类型、create/destroy 函数、版本协商），不要跨边界传 `std::string`、`std::vector`、异常、allocator 所有权或 STL 容器。
+
+CMake 应采用 target-based 用法：`target_link_libraries(app PRIVATE lib)`、`target_include_directories`、`target_compile_features`，由 target 传递 usage requirements；避免全局 `include_directories`、手写 `-I/-L` 和依赖机器路径。依赖通过 `find_package`、vcpkg、Conan、系统包或 FetchContent 管理时，必须锁定版本、许可、hash/来源并在干净 CI 环境构建。不要把构建目录、生成文件或本机 toolchain 缓存混入源码树。
+
+### 测试、Sanitizer 与性能诊断
+
+| 工具 | 主要发现 | 限制 |
+| --- | --- | --- |
+| ASan/LSan | 越界、UAF、泄漏 | 需要运行到问题路径，改变内存布局。 |
+| UBSan | 多类未定义行为 | 不是所有 UB 都可检测。 |
+| TSan | data race | 开销大，第三方无标注代码可能噪声多。 |
+| clang-tidy/cppcheck | API、风格、常见缺陷 | 规则需项目化，不能替代 review。 |
+| gdb/lldb、core dump | 崩溃栈、线程与内存现场 | 需要符号、可复现输入和正确的优化策略。 |
+| perf/VTune/heap profiler | CPU、cache、锁、分配热点 | 先建立 workload/P95/P99 基线。 |
+
+Debug、Release、ASan/UBSan、TSan 至少形成独立 CI 配置；fuzz 适合解析器、协议、文件格式和边界转换。性能优化先用 profile 确定 CPU、分配、cache miss、锁、syscall、I/O 或算法瓶颈，再改数据结构/并发/批处理。不要因为 C++ “理论上零开销”就跳过测量，也不要把 `shared_ptr`、对象池或 lock-free 当默认优化。
+
+### 学习路线与面试要点
+
+1. 对象生命周期、初始化、值类别、RAII、标准容器/算法。
+2. 所有权、Rule of Zero/Five、异常安全、智能指针与 `string_view`/`span` 生命周期。
+3. 模板、concepts、`constexpr`、ranges 与 C++20/23 的按需采用。
+4. 内存模型、mutex/atomic、线程池、协程与取消。
+5. CMake、链接器、ELF/PE、ABI、gdb/lldb、sanitizer、perf。
+
+仓库中的 [C++11](cpp11.md)、[C++20](cpp20.md)、[C++23](cpp23.md)、[未定义行为](cpp_ub.md)、[原子操作](cpp_atomic.md)、[构建](cpp_build.md) 可作为专项延伸。面试和设计中应能清楚说明：对象/资源谁拥有、view 是否悬垂、异常或 `expected` 如何传播、线程停止如何完成、库 ABI 如何兼容、以及性能结论来自哪些数据，而不是仅列举 STL 和模板语法。

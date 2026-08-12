@@ -65,3 +65,97 @@ Entity（实体）：每个实体是唯一的，并且可以相当长的一段�
 ValueObject（值对象）：值对象用于度量和描述事物，当你只关心某个对象的属性时，该对象便可作为一个值对象。实体与值对象的区别在于唯一的身份标识和可变性。当一个对象用于描述一个事物，但是又没有唯一标示，那么它就是一个值对象。例如商品中的商品类别，类别就没有一个唯一标识，通过图书、服装等这些值就能明确表示这个商品类别。
 Aggregate（聚合）：聚合是实体的升级，是由一组与生俱来就密切相关实体和值对象组合而成的，整个组合的最上层实体就是聚合。
 Bounded Context（限界上下文）：用来封装通用语言和领域对象，为领域提供上下文语境，保证在领域之内的一些术语、业务相关对象等（通用语言）有一个确切的含义，没有二义性。使团队所有成员能够明确地知道什么必须保持一致，什么必须独立开发。
+
+## DDD 综合笔记（截至 2026-08）
+
+### DDD 要解决什么，不解决什么
+
+DDD（Domain-Driven Design，领域驱动设计）是让代码模型、团队语言和业务规则保持一致的一组建模原则与模式，重点是处理规则复杂、概念易变、多人协作的核心业务复杂度。它不是数据库设计方法、Java 框架、四层模板或把所有对象改成“充血模型”的口号。
+
+简单 CRUD、报表、后台配置和稳定的技术适配层可以使用朴素分层或事务脚本；只有业务规则密集且变化频繁的部分才值得投入事件风暴、限界上下文和聚合建模。DDD 不自动带来微服务、高可用或性能，错误的边界反而会把单体复杂度转成分布式复杂度。
+
+原笔记中的 DO、DTO、BO、AO、VO 是分层传输/展示对象的约定，不等于 DDD 的领域模型。一个领域实体不应直接承担 ORM 映射、HTTP JSON、页面渲染和跨服务传输的所有职责；它可以与持久化对象在小型项目中复用，但要明确这是工程权衡，而非 DDD 的必然要求。
+
+| 概念 | 核心问题 | 典型位置 |
+| --- | --- | --- |
+| 领域（Domain）/子域 | 业务要解决什么问题，什么构成竞争力 | 核心、支撑、通用子域。 |
+| 通用语言（UL） | 业务、产品、开发、测试是否用同一术语说同一件事 | 需求、代码、接口、指标和测试都应使用。 |
+| 限界上下文（BC） | 一个术语和模型在哪个边界内有效 | 订单中的“客户”与风控中的“客户”可有不同模型。 |
+| 实体（Entity） | 是否按身份和生命周期区分 | `OrderId` 相同即同一订单，属性可变。 |
+| 值对象（VO） | 是否按值相等、通常不可变 | Money、地址快照、时间区间。 |
+| 聚合/聚合根 | 哪些不变量必须在一次本地事务中成立 | 只经根修改和引用内部对象。 |
+| 领域服务 | 哪条业务规则不自然属于单一实体/值对象 | 定价、授信决策等无状态领域操作。 |
+| 应用服务 | 一个用例如何编排、授权、开事务和调用端口 | 不承载核心业务规则。 |
+
+### 战略设计：先画边界，再写类
+
+从用户旅程、规则变化点、组织责任、数据所有权和失败代价开始，而不是先按表名、前端菜单或技术层拆服务。事件风暴可以用“领域事件 -> 命令 -> 参与者/策略 -> 读模型/外部系统”发现语言和冲突点，但产出必须回到可评审的领域词汇表、业务规则、上下文地图和接口契约。
+
+上下文地图显式记录关系：合作关系（Partnership）、共享内核（Shared Kernel）、客户-供应商（Customer-Supplier）、防腐层（ACL）、公开主机服务（OHS）等。共享数据库、复制同名 DTO 或让下游直接读上游表都不是上下文集成；它们会绕过边界，使模型和发布节奏重新耦合。
+
+服务边界不是机械地“一 BC 一个微服务”。一个 BC 可先在模块化单体中以模块、独立 schema 和内部 API 落地；当团队独立交付、扩缩容、可靠性目标或数据主权确有需要，再拆成可独立部署服务。一个微服务不应混合多个 BC，也不宜小于需要单事务维护不变量的聚合。
+
+### 战术设计：聚合是事务一致性边界
+
+聚合不是“实体的升级”或任意实体集合，而是一组对象的不变量边界。外部只持有聚合根 ID；一次命令只修改一个聚合；跨聚合、跨服务的业务流程通过领域事件、补偿、对账和最终一致性完成。聚合通常应小，避免把订单、商品、库存、账户等不同生命周期对象塞进一次大事务。
+
+```java
+public final class Order {
+    private final OrderId id;
+    private final List<OrderLine> lines = new ArrayList<>();
+    private OrderStatus status = OrderStatus.DRAFT;
+
+    public void addLine(ProductId productId, int quantity, Money unitPrice) {
+        if (status != OrderStatus.DRAFT) throw new DomainException("已提交订单不可修改");
+        if (quantity <= 0 || !unitPrice.isPositive()) throw new DomainException("数量和单价必须为正");
+        lines.add(new OrderLine(productId, quantity, unitPrice));
+    }
+
+    public OrderSubmitted submit() {
+        if (lines.isEmpty()) throw new DomainException("订单至少需要一条明细");
+        status = OrderStatus.SUBMITTED;
+        return new OrderSubmitted(id, total());
+    }
+}
+```
+
+上例的关键不是 Java 类的私有字段，而是 `submit` 前的业务不变量只能经 `Order` 检查。库存扣减不应直接修改订单内部集合；它应消费已提交事件，在自己的库存聚合中做条件更新。并发命令要使用版本号/乐观锁、唯一约束或条件写入保护不变量，不能只依赖“事件最终会到达”。
+
+### 事件、消息与一致性
+
+领域事件描述业务已经发生的事实，如 `OrderSubmitted`，而不是“插入了一行表”或“调用了某个 REST API”。领域事件可先在同一进程内触发；跨边界发布的集成事件是经过版本化、脱敏和稳定契约设计后的消息，二者不可混同。
+
+可靠发布常见闭环：本地事务同时写聚合状态和 outbox 记录 -> 独立发布者投递消息 -> 消费者按业务键幂等处理 -> 失败重试/死信/人工补偿 -> 用对账任务发现漏处理。消息系统通常是至少一次投递，消费者必须处理重复、乱序、延迟和重放；不要声称“exactly once”而忽略外部副作用。
+
+CQRS 是读写模型分离，不等于必须引入事件溯源。读模型可以由同库查询、投影表、搜索索引或缓存实现；是否异步取决于读写压力、延迟目标和一致性要求。事件溯源是以事件序列作为状态事实来源，审计价值高但版本演进、重放、删除/隐私合规、查询投影和运维成本也更高。
+
+### Java 落地结构与测试
+
+建议让依赖从外向内：`interfaces`（HTTP/MQ/CLI）-> `application`（用例编排）-> `domain`（模型与规则）<- `infrastructure`（JPA、MQ、RPC 实现）。Repository 是领域侧定义的集合式访问端口，基础设施实现它；不要把 ORM Repository 的任意查询能力泄漏到领域代码。
+
+```text
+order
+  domain/          Order, OrderId, Money, OrderRepository, OrderSubmitted
+  application/     SubmitOrder, SubmitOrderHandler
+  interfaces/      OrderController, SubmitOrderRequest
+  infrastructure/  JpaOrderRepository, OutboxPublisher
+```
+
+测试按风险分层：值对象/聚合不变量用快速单元测试；应用服务验证授权、事务和端口协作；Repository/outbox/消费者用集成测试验证数据库与消息语义；再用契约测试固定外部 API 和事件 schema。不要用 mock 验证大量内部调用顺序来替代对业务规则和持久化语义的验证。
+
+### 常见失败方式与检查问题
+
+1. **按数据库表拆服务。** 表之间强事务和频繁 join 仍存在时，服务只是远程 DAO。
+2. **全系统一套“通用领域模型”。** 同名概念被迫统一，导致模型巨大且无法演进；应先允许 BC 内语义独立。
+3. **聚合过大或跨聚合强事务。** 锁竞争和分布式事务增加；将真正需要同步维护的不变量留在聚合内。
+4. **把应用服务写成巨型流程脚本。** 规则散在 `if/else`、Controller 和 SQL 中；把稳定的业务决策收敛到实体、值对象或领域服务。
+5. **为了 DDD 而 DDD。** 简单 CRUD 引入 Factory、Repository、Domain Service 等空壳，只增加间接层；复杂度应由业务规则证明。
+
+每次设计评审至少回答：术语在此 BC 中的定义是什么？核心不变量是什么、由哪个聚合根维护？哪个数据源拥有真相？跨边界是同步调用还是异步事件？失败、重复、超时和补偿由谁处理？哪些变化会破坏接口兼容？
+
+### 学习顺序与资料
+
+1. 先读 Eric Evans 的《Domain-Driven Design》与其免费的 [DDD Reference](https://www.domainlanguage.com/ddd/reference/)，建立通用语言、BC、聚合和上下文映射的准确词义。
+2. 再读 Vaughn Vernon 的《Implementing Domain-Driven Design》或《Domain-Driven Design Distilled》，用一个真实业务完成事件风暴、上下文地图、聚合和事件设计。
+3. 对照 [Martin Fowler 的 Bounded Context](https://martinfowler.com/bliki/BoundedContext.html) 与 [Aggregate](https://martinfowler.com/bliki/DDD_Aggregate.html)，避免把模型边界误解成数据结构。
+4. 实现层可参考 [Microsoft 的 DDD 微服务建模指南](https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-domain-driven-design)：复杂 BC 使用聚合和领域事件，简单 CRUD 保持简单。
