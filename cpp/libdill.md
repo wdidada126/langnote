@@ -34,7 +34,7 @@ ipaddr.c:335:47: note: in expansion of macro ‘dns_opts’
 
 ---
 
-## 🔍 错误分析
+## 错误分析
 
 ### 出错代码：
 ```c
@@ -121,7 +121,7 @@ GitHub 地址：https://github.com/sustrik/libdill
 
 ---
 
-## 🧪 验证是否解决
+## 验证是否解决
 
 完成修改或更新后重新编译：
 

@@ -415,7 +415,7 @@ perf report
 - 如何用 `perf` 查看 ClickHouse 查询的汇编热点
 - 手写 SIMD 优化一个字符串函数
 
-我可以继续深入，带你从 C++ 代码到生成的汇编指令全程追踪！🚀
+我可以继续深入，带你从 C++ 代码到生成的汇编指令全程追踪！
 
  grep -r "__builtin_" ./src
 ./src/DataTypes/Serializations/SerializationArray.cpp:            if (unlikely(__builtin_add_overflow(current_offset, current_size, &current_offset)))

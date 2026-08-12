@@ -2612,7 +2612,7 @@ org.springframework.web.method.annotation.ErrorsMethodArgumentResolver
 - ErrorsMethodArgumentResolver 会从 ModelAndViewContainer 对象中获取 BindingResult 对象，并赋值给该参数。
 - BindingResult 参数必须紧跟在被校验的参数后面，否则会抛出 IllegalStateException 异常。
 
-希望这些信息对你有帮助。😊
+希望这些信息对你有帮助。
 
 源: 与必应的对话， 2023/6/7
 (1) Spring5源码解析-使用@Valid进行Spring验证 - 知乎 - 知乎专栏. https://zhuanlan.zhihu.com/p/28577417.

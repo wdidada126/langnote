@@ -442,7 +442,7 @@ ZAB（ZooKeeper Atomic Broadcast）协议和 Raft 协议都是分布式系统中
 
 ---
 
-### 📌 一、Kafka 为什么最初依赖 ZooKeeper？
+### 一、Kafka 为什么最初依赖 ZooKeeper？
 
 在早期版本中，Kafka 使用 ZooKeeper（ZK） 来管理集群的 元数据（Metadata） 和 协调任务，比如：
 

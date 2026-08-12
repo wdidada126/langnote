@@ -212,7 +212,7 @@ Proactor多线程提高并发
 
 ---
 
-## 🧱 一、Spring Boot 嵌入式 Tomcat 模块概览（9.0.70）
+## 一、Spring Boot 嵌入式 Tomcat 模块概览（9.0.70）
 
 | JAR 包 | 作用 | 是否影响并发 |
 |--------|------|-------------|
@@ -227,7 +227,7 @@ Proactor多线程提高并发
 
 ---
 
-## 🚀 二、如何提高嵌入式 Tomcat 的并发性能？
+## 二、如何提高嵌入式 Tomcat 的并发性能？
 
 ### ✅ 1. 调整线程池参数（最有效）
 
@@ -242,7 +242,7 @@ server:
     max-connections: 10000     # 最大连接数
 ```
 
-> 🔍 源码位置：`org.apache.tomcat.util.net.NioEndpoint`
+> 源码位置：`org.apache.tomcat.util.net.NioEndpoint`
 
 ---
 
@@ -300,7 +300,7 @@ server:
 
 ---
 
-## 🔍 三、`tomcat-embed-core` 9.0.70 源码关键分析
+## 三、`tomcat-embed-core` 9.0.70 源码关键分析
 
 ### 1. 核心类结构
 
@@ -350,7 +350,7 @@ public void startInternal() {
 }
 ```
 
-> 🔥 `pollerThreadCount` 默认是 `Math.min(2, Runtime.getRuntime().availableProcessors())`
+> `pollerThreadCount` 默认是 `Math.min(2, Runtime.getRuntime().availableProcessors())`
 
 ---
 
@@ -374,7 +374,7 @@ public boolean events() {
 
 ---
 
-## 🧠 四、Tomcat 是 Reactor 模式还是 Proactor 模式？
+## 四、Tomcat 是 Reactor 模式还是 Proactor 模式？
 
 这是本问题的核心！
 
@@ -410,7 +410,7 @@ graph TD
 2. 事件就绪后：通知线程池中的 Worker 线程
 3. Worker 线程：主动调用 `read()` 和 `write()` 完成 I/O 操作
 
-> 🔍 这正是 Reactor 模式的典型特征：I/O 操作由用户线程完成，内核只通知“可以读写了”。
+> 这正是 Reactor 模式的典型特征：I/O 操作由用户线程完成，内核只通知“可以读写了”。
 
 ---
 
@@ -421,11 +421,11 @@ graph TD
 - Tomcat 的 `NioEndpoint` 使用的是 Java NIO 的 `Selector` + `SocketChannel`，属于 同步非阻塞 I/O（Reactor）
 - 即使使用 `Nio2Endpoint`（基于 `AsynchronousChannel`），Java 的 AIO 也是通过线程池实现，不是真正的 Proactor
 
-> 📌 所以：Tomcat 是 Reactor 模式。
+> 所以：Tomcat 是 Reactor 模式。
 
 ---
 
-## 🧩 五、`tomcat-embed-websocket` 如何支持高并发？
+## 五、`tomcat-embed-websocket` 如何支持高并发？
 
 - 基于 `NioEndpoint`，共享同一套 I/O 线程
 - WebSocket 连接注册为 `SelectionKey.OP_READ` 事件
@@ -450,7 +450,7 @@ graph TD
 
 ---
 
-## 🧠 七、延伸思考：Netty vs Tomcat
+## 七、延伸思考：Netty vs Tomcat
 
 | 框架 | 模式 | 适用场景 |
 |------|------|----------|

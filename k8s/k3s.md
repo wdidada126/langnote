@@ -10,7 +10,7 @@ sudo /usr/local/bin/k3s kubectl run mysql --image=mysql:8.0 --restart=Always --e
 
 现在直接用最简单、绝对不报错的命令！
 
-# 🔥 直接执行这条（复制整条，一个字都不用改）
+# 直接执行这条（复制整条，一个字都不用改）
 ```bash
 sudo /usr/local/bin/k3s kubectl expose pod mysql --port=3306 --type=NodePort
 ```

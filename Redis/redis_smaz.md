@@ -7,7 +7,7 @@ https://github.com/antirez/smaz
 
 ###  项目名称：  
 `redis-cp-rewrite-sim`  
-GitHub 地址：👉 [https://github.com/antirez/redis-cp-rewrite-sim](https://github.com/antirez/redis-cp-rewrite-sim)
+GitHub 地址：[https://github.com/antirez/redis-cp-rewrite-sim](https://github.com/antirez/redis-cp-rewrite-sim)
 
 ###  项目简介（一句话）
 

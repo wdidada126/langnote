@@ -4,7 +4,7 @@ Bionic 是 Android 系统中使用的 C 标准库（C library），它是 Androi
 
 ---
 
-## 🧱 一、什么是 Bionic？
+## 一、什么是 Bionic？
 
 ###  名称来源：
 “Bionic” 来自 “bionic man”，是科幻电视剧《The Six Million Dollar Man》中的主角，Google 内部曾以此命名项目。
@@ -72,7 +72,7 @@ https://android.googlesource.com/platform/bionic/
 
 ---
 
-## 🛠️ 六、NDK 中如何使用 Bionic？
+## 六、NDK 中如何使用 Bionic？
 
 当你使用 Android NDK 开发 C/C++ 代码时，编译器会自动链接 Bionic 库。
 

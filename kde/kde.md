@@ -9,7 +9,7 @@ https://github.com/KDE/krita
 
 以下是 KDE 项目的官方仓库和重要网址：
 
-🌐 官方主站和仓库
+官方主站和仓库
 
 KDE 官方网站
 
@@ -25,7 +25,7 @@ KDE 官方网站
 
 • GitHub Mirror: https://github.com/KDE/
 
-📱 KDE 主要项目仓库
+KDE 主要项目仓库
 
 Plasma 桌面环境
 
@@ -68,7 +68,7 @@ https://invent.kde.org/multimedia/
 - Kdenlive 视频编辑: https://invent.kde.org/multimedia/kdenlive
 
 
-🔧 开发资源网站
+开发资源网站
 
 开发文档
 
@@ -110,7 +110,7 @@ https://invent.kde.org/multimedia/
 
 • 代码风格: https://develop.kde.org/policies/frameworks-coding-style/
 
-🚀 快速开始贡献
+快速开始贡献
 
 1. 克隆示例项目
 
@@ -149,7 +149,7 @@ make -j$(nproc)
 
 • 开发语言: 主要是 C++ (Qt), 也有 QML, Python 等
 
-💡 搜索技巧
+搜索技巧
 
 在 invent.kde.org 中搜索
 
@@ -320,7 +320,7 @@ Akademy 年会:   50,000-80,000 欧元
 
 • 社区资源: 利用成员的专业服务
 
-🔍 财务透明度
+财务透明度
 
 公开信息渠道
 
@@ -340,7 +340,7 @@ Akademy 年会:   50,000-80,000 欧元
 其他收入: 25%
 
 
-💡 与其它开源项目对比
+与其它开源项目对比
 
 项目 主要资金源 年度预算
 

@@ -43,7 +43,7 @@ git clone https://github.com/BlankCheng/cs-se-math-collection.git
 - 想看宋浩“惊叹号”线代？cy69855522/Miao-A-SongHao-Linear-Algebra-Notes（B站时间戳版）
 
 30秒把离散数学所有证明转成 Anki 卡片？或把 Waterloo 笔记转 Notion？  
-直接 reply，我秒发给你！🚀 去 star 鼓励我继续挖宝～
+直接 reply，我秒发给你！ 去 star 鼓励我继续挖宝～
 
 ### 大学数学笔记 GitHub 神仓列表（2025年11月最新，香港人最爱版）
 
@@ -89,7 +89,7 @@ git clone https://github.com/BlankCheng/university-math-notes-collection.git
 香港人专属福利：所有笔记我都加了 Obsidian 链接，直接拖进 Obsidian 就能双链跳转！
 
 想要 港大/科大/中大 专属笔记？或者我帮你把宋浩线代转成 Notion 数据库？  
-30秒发你！直接 reply 就行 🚀
+30秒发你！直接 reply 就行 
 
 
 你学到的所有数学都是非常有用的，甚至并不够，所有专业课也是，一定要打好基础。
@@ -141,6 +141,5 @@ git clone https://github.com/BlankCheng/university-math-notes-collection.git
 > 第十章：特征值和特征向量
 > 第十一章：矩阵分解
 >
-> 
->
+> >
 > http://immersivemath.com/ila/index.html 的

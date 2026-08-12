@@ -457,7 +457,7 @@ inet_ntoa()
 
 ---
 
-## 📌 1. `inet_addr()`
+## 1. `inet_addr()`
 
 ### ✅ 功能：
 将 IPv4 地址字符串（如 `"192.168.1.1"`）转换为一个 32 位的网络字节序整数（`in_addr_t` 类型）。
@@ -466,7 +466,7 @@ inet_ntoa()
 - 已被标记为 过时（obsolete），建议使用 `inet_aton()`。
 - 返回值类型是 `in_addr_t`，失败返回 `INADDR_NONE`。
 
-### 🔧 示例：
+### 示例：
 
 ```c
 #include <stdio.h>
@@ -494,7 +494,7 @@ inet_addr("192.168.0.1") = 3232235521 (network byte order)
 
 ---
 
-## 📌 2. `inet_aton()`
+## 2. `inet_aton()`
 
 ### ✅ 功能：
 将 IPv4 地址字符串转换为二进制形式，并存储到 `struct in_addr` 中。
@@ -502,7 +502,7 @@ inet_addr("192.168.0.1") = 3232235521 (network byte order)
 ### 🟡 推荐使用：
 比 `inet_addr()` 更安全，支持 CIDR 表示法和错误检查。
 
-### 🔧 示例：
+### 示例：
 
 ```c
 #include <stdio.h>
@@ -530,7 +530,7 @@ inet_aton("192.168.0.1") -> s_addr = 3232235521
 
 ---
 
-## 📌 3. `inet_ntoa()`
+## 3. `inet_ntoa()`
 
 ### ✅ 功能：
 将 `struct in_addr` 类型的网络地址转换回点分十进制的 IP 字符串（例如 `"192.168.0.1"`）。
@@ -539,7 +539,7 @@ inet_aton("192.168.0.1") -> s_addr = 3232235521
 - 是 非线程安全 的（返回的是内部静态缓冲区），多线程下应使用 `inet_ntop()` 替代。
 - 只适用于 IPv4。
 
-### 🔧 示例：
+### 示例：
 
 ```c
 #include <stdio.h>
@@ -714,7 +714,7 @@ int socketpair(int domain, int type, int protocol, int sv[2]);
 
 ---
 
-## 📌 返回值与描述符说明
+## 返回值与描述符说明
 
 函数执行成功后，`sv[0]` 和 `sv[1]` 都是可读写的描述符，它们之间是双向通信的：
 
@@ -723,7 +723,7 @@ int socketpair(int domain, int type, int protocol, int sv[2]);
 
 ---
 
-## 🧪 使用示例（C语言）
+## 使用示例（C语言）
 
 下面是一个简单的例子，演示如何使用 `socketpair()` 在父子进程之间进行通信：
 
@@ -781,7 +781,7 @@ Parent received: Hello from child!
 
 ---
 
-## 🔍 应用场景
+## 应用场景
 
 - 进程间通信（IPC）：尤其是父子进程之间的双向通信。
 - 多线程模型中的线程通信。
