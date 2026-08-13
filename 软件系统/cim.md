@@ -72,3 +72,55 @@ MES 是中心编排层，不等于数据采集系统；CIM 则是上述系统及
 - Applied SmartFactory：PROMIS MES 产品页：<https://appliedsmartfactory.com/manufacturing-execution-solutions/promis/>
 - Intel IT：MES 在工厂中跟踪设备和物料状态、协调自动化系统的说明：<https://www.intel.com/content/dam/www/public/us/en/documents/best-practices/using-big-data-in-manufacturing-at-intels-smart-factories-paper.pdf>
 - Intel：Automated Factory Solutions 概览：<https://www.intel.com/content/www/us/en/content-details/789047/intel-automated-factory-solutions-overview.html>
+
+## 主要半导体制造商的 CIM / MES 公开情况（截至 2026-08）
+
+下表仅记录厂商自己公开过的能力、系统名称或实施情况。晶圆厂的 MES、设备自动化和质量系统通常属于核心生产资产；厂商没有公开产品名时，应标为“未披露”，不能以行业常见产品或供应商代替事实。
+
+| 厂商 | 公开可确认的 CIM / MES 信息 | 延伸能力 | 产品名或供应商的公开边界 |
+| --- | --- | --- | --- |
+| Intel | Intel IT 明确说明每座工厂使用 MES，跟踪每个工艺步骤的设备和物料生产状态；MES 处理主要设备、物料事务并编排其他自动化系统 | 自动物料搬运、SEMI 接口标准化、MES 数据离线复制用于决策支持；另有数字孪生和工厂优化产品 | 未公开该 MES 的商业产品名或供应商；不能据此认定为 AMAT FAB300、PROMIS 或其他产品 |
+| Samsung Electronics / Samsung Semiconductor | 三星公开过全球制造执行系统 **G-MES 2.0（Global Manufacturing Execution System 2.0）** 的建设和全球推广；其半导体公开材料也说明在传统 MES 基础上引入 Agentic AI 改进制造质量管理 | 智能工厂、工艺仿真、数字孪生、面向制造质量的 AI 编排 | G-MES 是三星公开的内部系统名称；其软件架构、外购产品、各 fab 部署版本和第三方供应商未公开 |
+| Micron（美光） | 公开材料重点是“智能制造”平台而非 MES 品牌：新加坡晶圆厂将大数据基础设施和 IIoT 用于 AI、数据科学和生产维护自动化 | 良率分析、数字孪生规划、图像分析、设备异常声学检测、流程自动化；官方文章披露 59 万传感器、每周 1 亿张晶圆图像和 4.36 亿控制点进入 AI 模型 | 未在上述公开资料中披露其 fab MES/CIM 的产品名或供应商；不应从其 AI 平台反推 MES 选型 |
+| SK hynix（海力士） | 公司公开表述 MES 是工厂自动化的“中枢”，工厂内自动化系统依赖 MES 下达指令；M16 工厂采用可向龙仁集群扩展的平台化架构 | 云平台复用 fab 工作流程；AI 缺陷图像分析、集成设备/晶圆/材料质量控制、Gauss Labs 的 Panoptes VM 已用于量产薄膜沉积工艺 | MES 内部名称、供应商和完整 CIM 架构未公开；公开文章中的 CIM 有时指 Computing-in-Memory（存内计算），不是 Computer Integrated Manufacturing |
+
+### Intel
+
+Intel 的公开架构最清晰地界定了 MES 的职责：设备和物料状态随工艺步骤在 MES 中维护，主要事务由 MES 处理，再协调其余自动化系统。其公开资料还提到在不影响生产的情况下迁移、验证既有 legacy MES 及相关组件，说明 MES 是长期演进的关键生产系统。Intel 对外的 Automated Factory Solutions、Factory Pathfinder、Recon、Optimizer 等属于数字孪生、数据接入与优化层，不能与 MES 本体混为一谈。
+
+### Samsung Electronics / Samsung Semiconductor
+
+三星在 2016 年公开其 G-MES 2.0 的建设与全球推广，因而这是四家中少数可从官方材料确认的 MES 名称。该名称说明系统承担全球化制造执行的作用，但并不等于能够获知其每个晶圆厂的具体接口、版本、数据库或供应商构成。三星半导体 2026 年公开材料强调，在既有 MES 质量管理之上叠加 Agentic AI 和数字孪生，反映其方向是“MES 负责受控执行，AI 负责跨域感知、分析与辅助编排”，而不是用 AI 替换 MES。
+
+### Micron（美光）
+
+Micron 公开的重点是让 IIoT、传感器、图像和制造数据进入统一的 AI 与分析闭环。其新加坡 fab 曾获世界经济论坛 Global Lighthouse Network 认可，公开成果包含设备可用率提升、报废和降级减少，以及与 OEM 的高级分析加快新品爬坡。这里可以将其理解为 CIM 的数据、FDC/预测性维护、良率和数字孪生增强层；但官方未将其命名为某个 MES，也未披露底层 CIM 供应商。
+
+### SK hynix（海力士）
+
+SK hynix 的公开材料将 MES 描述为自动化工厂的指挥中枢，并披露以云平台、移动化现场作业、数据湖和 AI 推进制造数字化。其与 Gauss Labs 合作的 Panoptes VM 属于虚拟量测：根据量产设备传感器数据预测量测结果，用于扩大过程监测覆盖并降低工艺波动。它应视为对 MES/CIM 的质量和过程控制增强，而非 MES 替代品。
+
+### 横向理解：相同分层，不同披露粒度
+
+```text
+企业计划、订单、产品定义（ERP / SCM / PLM）
+    -> MES：批次、工艺路线、派工、追溯、设备和物料事务
+    -> EAP + SECS/GEM：设备连接、配方、状态与事件
+    -> AMHS / MCS：物料搬运和位置追踪
+    -> FDC / SPC / APC / 良率：异常检测、统计控制、过程控制和良率归因
+    -> 数据平台 / AI / 数字孪生：预测、优化、仿真和工程决策
+```
+
+Intel、三星、美光和 SK hynix 都公开了上述链路中的部分能力；差异主要在于公开材料的表达重点，而不是“有无 CIM”。对外可见的 AI、数字孪生或单点质量产品也不应被误写成完整 CIM 系统。
+
+### 本节参考资料
+
+- Intel IT：<https://www.intel.com/content/dam/www/public/us/en/documents/best-practices/using-big-data-in-manufacturing-at-intels-smart-factories-paper.pdf>
+- Intel IT：既有 MES 及相关组件的迁移说明：<https://www.intel.com/content/dam/doc/white-paper/intel-it-migrating-mission-critical-environments-to-intel-architecture-paper.pdf>
+- Samsung：G-MES 2.0 全球推广案例：<https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-cio-100-%EC%96%B4%EC%9B%8C%EB%93%9C-%EC%88%98%EC%83%81>
+- Samsung Semiconductor：MES 之上的 Agentic AI 制造质量管理：<https://semiconductor.samsung.com/news-events/tech-blog/samsung-showcases-agentic-ai-driven-semiconductor-engineering-innovation-at-nvidia-gtc-2026/>
+- Micron：智能制造、AI 和工厂数据规模：<https://www.micron.com/about/blog/applications/ai/smart-manufacturing-at-micron-ai-at-enterprise-scale>
+- Micron：新加坡 fab 的 Global Lighthouse Network 案例：<https://www.micron.com/about/blog/company/partners/micron-joins-the-wef-global-lighthouse-network>
+- SK hynix：MES 在工厂自动化中的作用：<https://news.skhynix.com/international-womens-day-sk-hynix-celebrates-its-female-employees/>
+- SK hynix：M16 平台化制造自动化架构：<https://news.skhynix.com/a-journey-to-the-worlds-best-through-it-innovation/>
+- SK hynix：Panoptes VM 在量产 fab 的部署：<https://news.skhynix.com/gauss-labss-ai-based-virtual-metrology-solution/>
