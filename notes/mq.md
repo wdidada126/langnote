@@ -93,6 +93,69 @@ Ready -> Inflight -> 成功 ACK/提交位点
                    -> 超过阈值：DLQ + 告警 + 人工/自动处置
 ```
 
+#### DLQ：死信队列 / 死信主题的完整处理模型
+
+死信队列（Dead Letter Queue，DLQ）用于保存**某一消费者组**反复处理失败、且不应继续自动重试的消息。它把异常消息从正常工作流中隔离出来，避免两种坏结果：
+
+1. 毒消息被无限快速重投，占用消费者、连接、下游数据库或第三方配额，进而拖慢甚至阻塞正常消息。
+2. 为恢复吞吐而直接丢弃异常消息，造成业务动作、资金/库存变化或审计线索不可追溯的数据丢失。
+
+“死信”是对某个消费链路的状态判断，不是消息的全局属性。同一条订单事件可以被风控消费者成功处理，却因通知服务缺少收件人而进入通知消费者组的 DLQ。因此 DLQ 的命名、权限、监控和处置责任都应至少包含 `业务域 + 原 Topic/Queue + consumer group + 环境`；不要让多个无关消费者共用一个无法定位责任方的 `dlq`。
+
+##### 进入 DLQ 前的决策
+
+只有短暂故障才值得自动重试，例如下游临时超时、连接抖动、依赖限流后可恢复。下列情况通常应尽早结束自动重试或在修复前暂停重放：
+
+| 失败类型 | 典型例子 | 正常处理 |
+| --- | --- | --- |
+| 瞬时故障 | 网络超时、服务滚动发布、短暂限流 | 有上限的延迟重试，使用退避和抖动。 |
+| 业务可等待 | 订单状态尚未推进、依赖数据稍后到达 | 业务定义的延迟重试或补偿任务；必须有最终截止时间。 |
+| 不可恢复数据 | schema 不兼容、字段缺失、反序列化失败、违反业务不变量 | 直接 DLQ 或极少次数验证性重试，修复数据/兼容代码后再处理。 |
+| 程序缺陷 | 空指针、版本发布错误、固定 SQL 错误 | 触发告警并止损；修复和验证前不要反复重放。 |
+| 外部永久拒绝 | 无权限、账号失效、订单已取消且不可逆 | DLQ 后人工补偿、标记终态或按业务规则丢弃。 |
+
+重试阈值不能只写成一个孤立数字。应同时定义最大尝试次数、最大持续时间、单次处理超时、退避曲线、消息业务有效期和熔断条件。例如“最多重试 5 次”如果在数秒内完成，仍可能压垮本已限流的依赖；如果消息的业务有效期只有 10 分钟，数小时的重试又没有意义。重试次数要覆盖可预期的瞬时恢复窗口，但必须在业务截止时间之前结束。
+
+##### DLQ 中应保存什么
+
+DLQ 不是只有原始 payload 的备份队列。至少保留以下可定位和可重放的信息；敏感字段仍应遵守脱敏、加密和最小权限原则：
+
+| 类别 | 建议字段 |
+| --- | --- |
+| 原始消息 | `event_id`、业务主键、原 topic/queue、partition/offset 或 message id、消息体、schema version、生产时间。 |
+| 消费上下文 | consumer group、消费者版本/镜像版本、首次投递时间、最后失败时间、累计投递/重试次数、ACK/超时信息。 |
+| 失败诊断 | 异常类型、错误码、截断后的堆栈、失败阶段、下游请求标识、trace id/span id。 |
+| 处置审计 | 分类结论、负责人、修复记录、重放批次号、重放时间、最终结果和丢弃依据。 |
+
+原始消息体过大或含敏感信息时，可将 payload 存入受控对象存储/审计库，DLQ 只保存不可变引用、摘要和校验和；但引用的保留期必须不短于 DLQ 处置期，否则会得到一条无法修复的“空死信”。
+
+##### 处置与安全重放
+
+```text
+DLQ 告警
+  -> 按错误签名聚合，区分单条坏数据与系统性故障
+  -> 保留原消息和失败上下文，创建处置工单
+  -> 修复代码 / 数据 / 依赖配置，并在隔离环境验证
+  -> 以受控速率重放到指定 retry/replay 通道
+  -> 目标消费者按 event_id 幂等处理
+  -> 成功后记录审计；仍失败则回到 DLQ 或转人工补偿
+```
+
+不要把 DLQ 消费者直接“原样写回原 Topic”并无限循环。重放必须具备独立开关、限速、批次范围、目标版本、幂等校验和审计；对于有序消息，要确认重放不会让旧事件覆盖新状态。涉及付款、库存、发券、邮件或第三方调用时，重放前先查业务状态，必要时走补偿命令而不是重复执行原命令。
+
+DLQ 本身也需要可靠性设计：独立的保留期和容量告警、受限写入/读取权限、备份或副本策略、按错误签名的仪表盘，以及“最老死信年龄、增长速率、重放成功率、重复入 DLQ 比例、未处置数量”等指标。没有 owner、SLA 和定期清理/归档策略的 DLQ，只是把丢失延后。
+
+##### 常见消息产品的差异
+
+| 产品 | DLQ 机制 | 需要特别注意 |
+| --- | --- | --- |
+| RabbitMQ | 队列配置 Dead Letter Exchange（DLX）后，消息可被重新路由到死信目标 | 触发不仅是消费失败且 `requeue=false`，还包括消息 TTL 到期、队列超长和 quorum queue 超过 `delivery-limit`。优先用 policy 配置；若目标 DLX 不存在，消息可能被静默丢弃。`x-death`、`x-first-death-*`、`x-last-death-*` 有助于追踪来源。 |
+| Kafka | Kafka broker 的普通 consumer group 没有统一内建 DLQ；应用通常自行生产到专用 DLQ topic | Kafka Connect 支持 `errors.deadletterqueue.topic.name`，可附加错误上下文 header。业务消费者仍须自行设计重试 topic、DLQ topic、提交 offset 的时机和幂等重放。 |
+| RocketMQ | broker 按消费者组的重试策略重投；超过最大重试后进入 DLQ | 5.x 文档将其定义为 consumer group 元数据的一部分；4.x PushConsumer 约定死信 topic 为 `%DLQ%<ConsumerGroup>`。DLQ 是消费逻辑的保护措施，不应承担业务流程控制。 |
+| Pulsar | 消费者侧 `DeadLetterPolicy` 将达到最大重投次数的消息写入 dead letter topic | 可配 retry letter topic 实现延迟重试；默认名为 `<topic>-<subscription>-DLQ`。要保证最大次数真的生效，应启用 retry 并使用 `reconsumeLater`，而不只依赖内存中的 negative acknowledgment 计数。 |
+
+参考：[RabbitMQ Dead Letter Exchanges](https://www.rabbitmq.com/docs/next/dlx)、[Kafka Connect 错误处理与 DLQ](https://kafka.apache.org/30/kafka-connect/user-guide/)、[RocketMQ 消费重试](https://rocketmq.apache.org/docs/featureBehavior/10consumerretrypolicy/)、[Pulsar Retry Letter Topic 与 Dead Letter Topic](https://pulsar.apache.org/docs/next/concepts-messaging/)。
+
 不要把“返回消费失败”当限流手段。持续过载会形成 retry storm 并挤占正常流量；应使用 consumer 并发/拉取批次/预取、配额、背压、暂停消费或上游限流。RocketMQ 官方也将消费重试定位为偶发处理失败的保护机制，而不是业务流程控制或节流工具。
 
 ### schema、Topic 与治理
