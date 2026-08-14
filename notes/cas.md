@@ -56,7 +56,7 @@ Thread B: sharedValue += 1;
 
 ---
 
-## 🔍 二、CAS 的工作原理
+## 二、CAS 的工作原理
 
 ### ✅ 基本流程
 
@@ -91,7 +91,7 @@ public class Counter {
 
 ---
 
-## 🧱 三、Java 中的 CAS 支持
+## 三、Java 中的 CAS 支持
 
 ### ✅ 1. `java.util.concurrent.atomic` 包
 
@@ -125,7 +125,7 @@ static {
 
 ---
 
-## 🛠 四、CAS 的优势与挑战
+## 四、CAS 的优势与挑战
 
 ### ✅ 优点
 
@@ -298,7 +298,7 @@ public class Counter {
 
 ---
 
-## 🧪 四、总结
+## 四、总结
 
 - x86 架构：使用 `lock cmpxchg` 指令实现 CAS 操作，确保原子性。
 - ARM 架构：通过 `LDREX` 和 `STREX` 指令对实现 CAS 操作，利用独占访问机制保证原子性。

@@ -1,6 +1,7 @@
 # codex
 
 npm install -g @openai/codex
+npm install -g @openai/codex@latest --registry=https://registry.npmmirror.com
 
 codex进入之后，输入
 /resume
@@ -30,7 +31,7 @@ ibqo@ibqodeMacBook-Pro test_java_jraft %
 
 下面是模型与推理强度的详细区别：
 
-### 🚀 三大核心模型：Sol、Terra 与 Luna
+### 三大核心模型：Sol、Terra 与 Luna
 
 GPT-5.6 系列采用了新的命名体系，分为三个能力档位。可以按任务需求从这三者中选择：
 
@@ -40,7 +41,7 @@ GPT-5.6 系列采用了新的命名体系，分为三个能力档位。可以按
 | **Terra** | **均衡主力**：在能力、速度和成本之间取得了良好平衡，是日常开发的首选。 | 常规代码编写、Bug 修复、代码审查、自动化任务等大多数日常工作。 | 输入 $2.5 / 输出 $15 |
 | **Luna** | **轻量高速**：速度最快、成本最低，适合处理大量简单、重复性的任务。 | 文本提取与分类、格式转换、批量生成结构化内容、简单代码修改等。 | 输入 $1 / 输出 $6 |
 
-### 🧠 推理强度 (Reasoning Effort)
+### 推理强度 (Reasoning Effort)
 
 除了选择模型，你还可以调整一个名为"推理强度"的参数，来控制模型在回答问题前"思考"的深度。这就是你提到的 `medium`、`high`、`xhigh` 这些选项。
 

@@ -388,7 +388,7 @@ io.post([]() { std::cout << "This runs in io_context thread"; });
 
 > “你说 Asio 使用 Proactor 模式，但操作系统层面只有 Windows 原生支持真正的 Proactor（IOCP），Linux 的 `epoll` 是 Reactor 模式。那 Asio 是如何在非 Windows 系统上‘模拟’或‘实现’Proactor 的？”
 
-### 🔥 答案是：
+### 答案是：
 > Asio 在所有平台上统一提供了“Proactor 编程接口”（Proactor API），但在底层，它在非 Windows 系统上是“用 Reactor 模拟 Proactor” —— 这是一种“用户层 Proactor”设计。
 
 ---
@@ -443,7 +443,7 @@ socket.async_read_some(buffer, [](error_code ec, size_t bytes_transferred) {
 
 但从操作系统角度看，它仍然是 Reactor + 同步 I/O。
 
-### 🔍 底层流程对比
+### 底层流程对比
 
 #### 1. Windows (IOCP - 原生 Proactor)
 
@@ -504,7 +504,7 @@ Asio 的架构是分层的：
 
 ## 五、特殊情况：Linux `io_uring`
 
-### 🚀 `io_uring` 是 Linux 的“真 Proactor”
+### `io_uring` 是 Linux 的“真 Proactor”
 
 从 Linux 5.1 开始，`io_uring` 提供了真正的异步 I/O 接口，接近 Windows IOCP。
 

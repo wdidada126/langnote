@@ -67,7 +67,7 @@ msbuild -version
 
 ---
 
-## 🧰 五、推荐使用方式
+## 五、推荐使用方式
 
 ### ✅ 对于现代项目（.NET Core/.NET 5+）
 
@@ -100,7 +100,7 @@ dotnet build YourProject.csproj -c Release
 
 ---
 
-## 📝 六、总结：MSBuild 安装来源一览表
+## 六、总结：MSBuild 安装来源一览表
 
 | 文件路径 | 安装来源 | 是否推荐使用 |
 |----------|-----------|----------------|

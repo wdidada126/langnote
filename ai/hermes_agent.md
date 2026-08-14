@@ -8,7 +8,7 @@
 
 ─────────────────────────────────────────────────────────
 
-🚀 Commands:
+Commands:
 
    hermes              Start chatting
    hermes setup        Configure API keys & settings

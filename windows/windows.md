@@ -285,7 +285,7 @@ Windows 平台上的 C/C++ 开发者可以利用丰富的 Windows API（应用�
 
 在 Windows 平台上，获取和使用 API 主要依赖于微软提供的 Windows SDK（软件开发工具包），它包含了大量用于系统编程的 C 和 C++ API。这些 API 涵盖了从图形用户界面、文件系统操作到网络通信等多种功能。
 
-### 📚 获取 Windows API 的几种方式
+### 获取 Windows API 的几种方式
 
 ## ✅ 方法一：通过 MSDN 文档在线查询
 
@@ -310,7 +310,7 @@ Windows 平台上的 C/C++ 开发者可以利用丰富的 Windows API（应用�
 
 ## ✅ 方法二：安装并使用本地帮助文档
 
-### 🛠 安装步骤：
+### 安装步骤：
 
 1. 下载 Windows SDK：
    - 可以从 [Windows SDK 下载页面](https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/) 下载最新版本的 Windows SDK。

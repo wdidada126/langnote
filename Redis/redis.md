@@ -615,7 +615,7 @@ robj *createStringObject(const char *ptr, size_t len) {
 }
 ```
 
-> 📌 注：Redis 6 中 `embstr` 最大支持 44 字节（SDS header + 字符串）。
+> 注：Redis 6 中 `embstr` 最大支持 44 字节（SDS header + 字符串）。
 
 ---
 

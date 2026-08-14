@@ -389,7 +389,7 @@ PostgreSQL扩展是通过 `CREATE EXTENSION extension_name;` 安装的模块，�
 
 ---
 
-## 🧰 三、如何查看和管理扩展？
+## 三、如何查看和管理扩展？
 
 ### 1. 查看已安装扩展
 ```sql

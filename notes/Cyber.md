@@ -16,11 +16,11 @@ Cyber RT计算框架
 
 | 类别 | 推荐内容 |
 |------|----------|
-| 🚀 ROS 替代/增强框架 | ROS 2, ROS-XRT, Fast DDS, Autoware, Apollo |
-| 💡 性能优化方向 | 实时内核、QoS、GPU 加速、多线程处理 |
+| ROS 替代/增强框架 | ROS 2, ROS-XRT, Fast DDS, Autoware, Apollo |
+| 性能优化方向 | 实时内核、QoS、GPU 加速、多线程处理 |
 | 📦 开源自动驾驶平台 | Autoware、Apollo、LGSVL、OpenPilot |
 | 🖥️ 高性能嵌入式平台 | NVIDIA Jetson、NXP S32K、TI TDA4VM |
-| 🔧 工具与中间件 | Fast DDS、Cyclone DDS、Iceoryx、ZMQ |
+| 工具与中间件 | Fast DDS、Cyclone DDS、Iceoryx、ZMQ |
 
 
 ## ✅ 一、ROS 的升级版：ROS 2
@@ -32,7 +32,7 @@ Cyber RT计算框架
 - 安全性更强，支持节点间加密通信
 - 更好的跨平台支持（Linux、Windows、RTOS）
 
-### 📌 推荐版本
+### 推荐版本
 - Humble Hawksbill 或 Iron Irwini（长期支持版本）
 
 ---
@@ -116,7 +116,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 ---
 
-## 🧠 四、高性能算法与加速方案
+## 四、高性能算法与加速方案
 
 ### 1. GPU 加速感知模块（图像识别、目标检测）
 
@@ -132,7 +132,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 ---
 
-## 🧱 五、高性能硬件平台推荐
+## 五、高性能硬件平台推荐
 
 | 平台 | CPU/GPU | 适用场景 |
 |------|---------|-----------|
@@ -143,7 +143,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 ---
 
-## 🧰 六、性能优化建议
+## 六、性能优化建议
 
 | 方面 | 优化建议 |
 |------|----------|
@@ -155,7 +155,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 ---
 
-## 📚 七、参考资源
+## 七、参考资源
 
 - ROS 2 官方文档：https://docs.ros.org/en/humble/
 - Autoware 文档：https://autoware.readthedocs.io/

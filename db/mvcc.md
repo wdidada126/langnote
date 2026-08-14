@@ -162,3 +162,305 @@ MVCC 的成功离不开高效的索引和垃圾回收（版本回收）。
     ◦ 结合源码： 在阅读 Postgres 或 MySQL InnoDB 相关的论文时，可以结合它们的源代码（如InnoDB的read view实现）来理解，效果更佳。
 
 这些论文共同描绘了 MVCC 从理论提出、系统实现到不断优化和适应新场景的完整发展图景。希望这个列表对你有所帮助！
+
+## MVCC 综合笔记（截至 2026-08）
+
+### 正确的心智模型
+
+MVCC（Multi-Version Concurrency Control，多版本并发控制）不是一个唯一算法，而是一类并发控制设计：同一逻辑数据可保留多个版本；读操作依据自己的 snapshot 选择可见版本；写操作创建或标记版本，再以锁、验证或提交协议处理写写冲突。目标是在明确隔离语义下减少读写阻塞，不是消灭所有锁、冲突、回滚和重试。
+
+```text
+逻辑行 account(id=1)
+
+V1: balance=100, commit_ts=100  <- 已提交旧版本
+V2: balance= 90, commit_ts=120  <- 已提交当前版本
+V3: balance= 80, T30 未提交     <- 仅 T30 自己可见
+
+snapshot(ts=110) 读取 V1
+snapshot(ts=130) 读取 V2
+```
+
+因此，旧文中“快照读到的是可能最终回滚的假数据”的说法不准确。在常见的 RC、RR/Snapshot Isolation 实现中，普通一致性读不读取其他事务未提交的版本，只读快照边界前已提交的版本和当前事务自己的修改。它读到的是**可能较旧但已经提交**的数据；业务风险来自陈旧快照、写偏斜或读后写竞争，而不是把他人的未提交结果当成事实。
+
+MVCC 也不单独决定隔离级别或幻读行为。是否防止幻读、写偏斜和序列化异常，取决于 snapshot 的创建时机、写冲突规则、谓词/范围锁、SSI 验证或串行执行等完整协议。InnoDB、PostgreSQL、TiDB、Oracle、SQL Server 的版本布局与冲突策略不同，不能把某一家的 Read View 当成 MVCC 定义。
+
+| MVCC 常带来的收益 | 仍需要的机制 |
+| --- | --- |
+| 普通读可在不阻塞写的情况下读取一致快照。 | 写写冲突检测、行/范围锁、唯一约束和死锁/超时处理。 |
+| 长查询可以看到稳定历史视图。 | undo/旧 tuple/时间戳的垃圾回收、保留策略与长事务治理。 |
+| 可用快照实现更高并发。 | 对余额、库存等不变量使用锁、约束或可串行化隔离。 |
+| 可将读路径与写路径解耦。 | WAL/redo、崩溃恢复、提交顺序和分布式提交协议。 |
+
+官方参考：
+
+- MySQL InnoDB 一致性读：https://dev.mysql.com/doc/refman/8.0/en/innodb-consistent-read.html
+- MySQL 锁与事务模型：https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-transaction-model.html
+- PostgreSQL MVCC：https://www.postgresql.org/docs/current/mvcc-intro.html
+- PostgreSQL 隔离级别与 SSI：https://www.postgresql.org/docs/current/transaction-iso.html
+- TiDB MVCC GC：https://docs.pingcap.com/tidb/stable/dev-guide-timeouts-in-tidb/
+
+### 事务、版本与可见性
+
+MVCC 的三个基本动作是：
+
+1. **开始/读**：取得或复用 snapshot。snapshot 是“允许看到哪些提交”的逻辑边界，不是整库物理复制。
+2. **写入**：产生新版本、写入 undo，或以时间戳写入新的 KV 版本；同时对同一逻辑记录的并发写进行等待、冲突检测或验证。
+3. **提交/回滚与回收**：提交使版本对适当的未来 snapshot 可见；回滚丢弃或标记无效版本；GC 只能回收不再被活跃 snapshot、备份或复制需要的历史版本。
+
+```text
+visible(version, snapshot, reader_txn) =
+  true   if version 是 reader_txn 自己写入且仍有效
+  true   if 创建事务已提交，且其提交时间/事务 ID 在 snapshot 边界内
+  false  if 版本来自其他未提交、已回滚或晚于 snapshot 的事务
+```
+
+实现会用事务 ID 集合、`xmin/xmax`、提交时间戳、TSO/HLC 或 undo 链表达该规则。删除通常不是立即擦除旧版本，而是创建删除标记或新版本；对旧 snapshot 而言该行仍可能可见。更新在逻辑上常可视为“旧版本失效 + 新版本创建”，但各引擎的物理布局不同。
+
+### 隔离级别：稳定 snapshot 不等于可串行化
+
+| 隔离级别/模型 | 通常能避免 | 仍可能发生 | 使用判断 |
+| --- | --- | --- | --- |
+| Read Uncommitted | 很少有保障 | 脏读及更多异常 | 不应用于正确性敏感业务。 |
+| Read Committed（RC） | 脏读 | 不可重复读、幻读、写偏斜/序列化异常 | 单语句读取最新已提交数据的常用默认。 |
+| Repeatable Read / Snapshot Isolation（SI） | 脏读、同一快照内的不可重复读 | 写偏斜、部分序列化异常 | 读多写少且可处理冲突重试的业务。 |
+| Serializable / SSI | 已提交事务等价于某个串行顺序 | 序列化失败，需要整体重试 | 强业务不变量、复杂读后写决策。 |
+
+**写偏斜（write skew）** 是 MVCC 最重要的实战陷阱。两个医生值班记录都为 `on_call=true`，规则是“至少一人值班”。T1、T2 在同一 snapshot 都读到两人值班；T1 把 A 改为 false，T2 把 B 改为 false。它们更新不同的行，行级写写冲突检测可能允许两者提交，最终无人值班。每次读都一致、没有脏读，也可能没有传统的同一行不可重复读，但业务不变量被破坏。
+
+解决方案不是笼统地“开启 MVCC”，而是选择能表达冲突范围的方案：
+
+- 使用 `SERIALIZABLE`/SSI，并把 `SQLSTATE 40001` 等序列化失败视为可重试错误。
+- 对代表不变量的行/范围使用 `SELECT ... FOR UPDATE`、谓词/范围锁，显式串行化竞争。
+- 将共享约束收敛为单条原子更新，例如 `UPDATE quota SET remaining=remaining-1 WHERE remaining>0`，并检查受影响行数。
+- 使用唯一约束、排他约束、外键或原子 upsert，而不是“先 SELECT 判断不存在，再 INSERT”。
+
+可串行化不等于所有请求单线程执行。PostgreSQL 的 Serializable Snapshot Isolation（SSI）仍用 snapshot 执行，但跟踪可能造成异常的读写依赖，发现危险结构时终止一个事务；应用必须重试整个事务。PostgreSQL 的 Repeatable Read 实际是 Snapshot Isolation，能提供稳定 snapshot 并避免幻读，却仍可能出现序列化异常。
+
+### InnoDB：版本链、Read View 与锁协作
+
+InnoDB 的聚簇索引记录通常含 `DB_TRX_ID` 和 `DB_ROLL_PTR` 等隐藏信息。更新后的当前记录指向 undo log 中的历史映像，形成版本链；一致性读从当前版本开始，若不可见则沿 undo 链重建可见旧版本。redo/WAL 用于崩溃恢复和持久性，undo 同时服务回滚和一致性读，两者不要混为一谈。
+
+```text
+聚簇索引当前记录 V3
+  DB_TRX_ID = 300
+  DB_ROLL_PTR ----> undo: V2 (trx 200) ----> undo: V1 (trx 100)
+
+Read View 判断 V3 不可见 -> 依次回溯 V2/V1 -> 返回首个可见版本
+```
+
+Read View 可抽象为“低水位、下一可分配事务 ID、创建时活跃事务 ID 集合、创建者 ID”。对某版本的创建事务 ID：自己写入可见；快照前已提交可见；快照时仍活跃或快照后开始的事务产生的版本不可见。理解规则即可，不应依赖某个源码字段名或把高低水位术语死记硬背。
+
+| InnoDB 读/写路径 | 语义 | 关键点 |
+| --- | --- | --- |
+| 普通 `SELECT`（consistent nonlocking read） | 读取 Read View 下可见版本 | RC 通常每个一致性读新建 snapshot；RR 通常复用首次一致性读建立的 snapshot。 |
+| `SELECT ... FOR UPDATE` / `FOR SHARE` | 锁定读，读取并锁定当前可用版本 | 用于读后即将更新、队列领取等；可能等待、死锁或超时。 |
+| `UPDATE` / `DELETE` / `INSERT` | 当前读 + 写锁/索引锁 | 写写冲突仍会等待或死锁，MVCC 不让两个事务盲目覆盖。 |
+| RR 范围锁定读/写 | 记录锁之外可使用 next-key/gap lock | 阻止范围内插入，保障锁定读语义。 |
+
+旧文“RR 下每次 SELECT 都创建 Read View”需要修正：普通一致性读在 InnoDB 的 RR 下使用事务中首次一致性读建立的 snapshot；RC 下每个一致性读可获得新 snapshot。`SELECT ... FOR UPDATE`、`UPDATE`、`DELETE` 属于锁定/当前读，不是简单复用普通快照读。混用普通 `SELECT` 与锁定 DML 时，前者可能看历史快照、后者基于当前记录加锁，业务代码必须明确需要的是“稳定历史”还是“最新且预留修改权”。
+
+InnoDB 在 RR 中不是仅靠 MVCC 就处理所有幻读；针对锁定范围访问使用 next-key/gap locking。`SKIP LOCKED` 用于工作队列吞吐时会刻意跳过锁定行，官方明确其返回不一致视图，不适合需要完整事务视图的一般业务。
+
+长事务会让旧 undo 版本不能 purge：历史链变长，读旧版本和二级索引回表成本上升，并可能造成 undo/history list 膨胀。监控最老活跃事务、`History list length`、purge 进度、锁等待与死锁；把 idle in transaction、大批量 DML 或跨网络 RPC 包在事务中都是高风险做法。
+
+参考：[InnoDB 一致性读](https://dev.mysql.com/doc/refman/8.0/en/innodb-consistent-read.html)、[锁定读](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)、[事务优化](https://dev.mysql.com/doc/refman/8.4/en/optimizing-innodb-transaction-management.html)、[死锁处理](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks.html)。
+
+### PostgreSQL：tuple 版本、VACUUM 与 SSI
+
+PostgreSQL 在 heap tuple 中保存版本相关系统列，例如 `xmin`（创建该 tuple 的事务）和 `xmax`（删除或更新它的事务），并用 snapshot 决定可见性。更新通常创建新 tuple 并让旧 tuple 的 `xmax` 生效；旧版本留在表中，直到所有可能需要它的事务结束后由 VACUUM 回收。因此它不是 InnoDB 那种“当前记录 + undo 回溯链”的物理布局。
+
+| PostgreSQL 模式 | snapshot 行为 | 重点 |
+| --- | --- | --- |
+| Read Committed（默认） | 每条语句开始时 snapshot | 同一事务两次查询可能不同；更新会等待并在必要时重评估目标。 |
+| Repeatable Read | 首个非事务控制语句建立事务 snapshot | 稳定 snapshot，写冲突可报 serialization failure 并要求整笔重试。 |
+| Serializable | 在 SI 之上追踪读写依赖 | SSI 检测潜在序列化异常，报 `40001`，应用整体重试。 |
+
+PostgreSQL “读不阻塞写、写不阻塞读”描述的是普通 MVCC 读写路径，不表示任意操作永不等待。行锁、表锁、DDL、唯一约束、热点更新和 I/O 仍会造成等待或失败。VACUUM/autovacuum 是正确性和容量治理的一部分：长期事务或遗留 replication slot 会阻止 dead tuple 回收，形成 table/index bloat，严重时还会威胁事务 ID wraparound 防护。
+
+SSI 的 predicate lock（`SIReadLock`）主要用于记录读写依赖，并不按传统锁那样阻塞写；检测到无法串行化的依赖结构时让一个事务失败。使用 `SERIALIZABLE` 时，应在应用中统一实现有限次数、指数退避的整笔重试，避免事务内部已经对外发送不可撤销副作用后才发现提交失败。
+
+### TiDB/分布式 MVCC：时间戳与 GC 安全点
+
+分布式 MVCC 常将 key 设计为 `(user_key, commit_ts)` 或等价形式，读以 `start_ts` 找到不晚于该 snapshot 的最新已提交版本。TiDB 以事务时间戳管理 MVCC 版本，并通过周期性 GC 回收不再需要的数据；长事务、备份、CDC、follower read 或 safepoint 机制会影响历史版本保留窗口。与单机数据库相比，还需处理全局时间戳、跨分片提交、region/leader 路由、网络重试和锁解析。
+
+```text
+T1: start_ts=100, 读 k -> 找 commit_ts <= 100 的最新版本
+T2: start_ts=110, 写 k，提交 commit_ts=120
+T1: 仍读旧版本；T3 start_ts=130 才能读到 T2 的版本
+GC safe point 前进后，早于 safe point 且不再需要的版本可回收
+```
+
+分布式时间戳不是“所有机器系统时钟相同”。系统借助集中式 TSO、混合逻辑时钟或等价服务建立全局顺序，并在提交阶段验证冲突。MVCC 负责读到对应 snapshot，但跨分片事务是否原子还取决于 2PC、Percolator 类协议、Raft/Paxos 副本提交和故障恢复。不要从“使用 MVCC”推出“跨服务 exactly-once”或“任意长事务安全”。
+
+### 版本回收、长事务与可观测性
+
+版本的回收条件是“没有读者可能再需要它”，不是“写事务已经提交”。常见阻塞者包括长事务、空闲未提交连接、长查询、慢副本、备份、逻辑复制/CDC、保留 snapshot 和异常客户端。GC 太激进会让仍运行的 snapshot 无法读取，GC 太保守会导致磁盘膨胀、放大写入和降低缓存命中。
+
+| 引擎/形态 | 版本位置 | 回收关注点 |
+| --- | --- | --- |
+| InnoDB | 当前聚簇记录 + undo 版本链 | purge、history list、undo 表空间、长 Read View。 |
+| PostgreSQL | heap 中旧/new tuple | autovacuum、dead tuple、冻结、replication slot、bloat。 |
+| LSM/KV（如 TiKV） | 多个带时间戳的 KV 版本 | GC safe point、compaction、长事务/备份/CDC 保留。 |
+| 内存 MVCC | 行内/旁挂版本数组或链 | epoch/时间戳、内存回收、读者公告与 ABA 风险。 |
+
+排障顺序：先找最老活跃事务/snapshot 与持续时间，再看版本保留指标、磁盘增长和 GC/purge/vacuum lag；随后确认备份、复制或 CDC watermark 是否阻塞；最后才调整保留参数或扩容。直接强制清理历史版本可能让正在执行的查询失败或降低恢复能力。
+
+### 实战建模、SQL 与面试要点
+
+1. 事务保持短小：不要在事务中等待用户输入、调用远程服务、循环处理百万行或长时间持有连接。
+2. 对库存、余额、配额和状态机转移，优先用条件更新、唯一约束或显式锁，把不变量放进数据库可原子判断的语句。
+3. 遇到死锁、锁等待、序列化失败、乐观写冲突，按错误码整体重试，设置次数上限、退避、幂等 request ID 与可观测日志。
+4. 分清“展示页可接受旧数据”和“扣款前必须最新且可修改”的读需求；前者可用普通 snapshot/stale read，后者需要 current/locking read 或更强隔离。
+5. 设计索引以缩小锁定范围和更新扫描范围；无索引的 `UPDATE ... WHERE` 既慢又可能扩大锁冲突。
+6. 上线前用并发脚本验证读后写、范围插入、唯一键竞争、超时重试、事务回滚和长事务 GC，而不是只验证单线程结果。
+
+常见问题：
+
+- **MVCC 是否完全不用锁？** 否。普通 snapshot 读通常不加读锁，但写写冲突、锁定读、唯一/外键、范围保护和 DDL 仍依赖锁或验证。
+- **MVCC 能否保证可串行化？** 不能自动保证。Snapshot Isolation 仍可能写偏斜；需 SSI、严格 2PL、串行执行或业务级原子约束。
+- **undo、redo、binlog/WAL 的关系？** undo 支持回滚和旧版本可见性；redo/WAL 支持崩溃恢复/持久化；binlog 是 MySQL Server 层复制与变更日志，职责不同。
+- **为什么 RR 仍要 next-key lock？** 普通一致性读可用稳定 snapshot；需要基于最新数据做范围更新或锁定读时，必须阻止范围内并发插入破坏当前读语义。
+- **为什么长事务伤害很大？** 它固定历史可见边界，阻止回收旧版本，并增加 undo/VACUUM/GC、I/O 和恢复压力。
+
+学习顺序：先读 [InnoDB Read View](mysql/innodb_read_view.md) 和 [MySQL MVCC](mysql/mysql_mvcc.md)，用两个会话演示 RC/RR 的普通读与 `FOR UPDATE`；再读 PostgreSQL 的 [MVCC 文档](https://www.postgresql.org/docs/current/mvcc-intro.html) 与 SSI 示例，复现写偏斜和 `40001` 重试；最后结合 [MVCC/OCC](mvcc_occ.md)、[悲观并发控制](mvcc_pcc.md)、[TiDB TSO](tidb/中心化TSO.md) 比较单机与分布式设计。掌握 MVCC 的标准不是背出隐藏字段，而是能根据业务不变量选择 snapshot、锁、约束、重试与版本回收策略。
+
+## Java MVCC 库：`mvcc-api-java`（test-java-mvcc 仓库）
+
+> 本节对应本机仓库 [test-java-mvcc](https://github.com/ibqo/test-java-mvcc)（含 submodule `java-mvcc-api`），是上文中"内存 MVCC"形态的一个完整 Java 17 参考实现，语义对齐 Node.js 版 `mvcc-api`（vMVCC 算法），可嵌入 JVM 应用作为快照隔离事务层。
+
+### 定位与来源
+
+- 仓库结构：根仓库 `test-java-mvcc/`（`pom.xml` + 测试说明），实际库在 submodule `java-mvcc-api/`（远程 `github.com/edidada/java-mvcc-api`）。
+- Maven 坐标：`io.github.mvccapi:mvcc-api-java:1.0.0-SNAPSHOT`，`release=17`；运行时仅依赖 `slf4j-api`，测试用 JUnit 5 + logback。
+- 目标：把 vMVCC 的核心算法——事务局部缓冲、嵌套快照、全局版本链、first-committer-wins 写冲突——以"存储边界接口 + 事务引擎"分离的方式移植到 JVM，方便对接内存/文件/数据库等任意后端。
+- 与综合笔记的关系：它演示了上表"内存 MVCC"行的落地：版本按事务与键维护、旧版本靠活跃读者保留、读者归零即回收，正是"版本回收、长事务与可观测性"一节的工程化对照。
+
+### 版本模型与可见性
+
+库维护两个层面的版本号：
+
+| 层面 | 含义 |
+| --- | --- |
+| 全局版本（root） | 根事务每次提交分配一个新的单调递增全局版本（`RootState.version()`），已提交值按版本写入存储；全局版本链用追加数组实现摊销 O(1)，回收截点用二分定位。 |
+| 局部版本（local） | 事务内每次 create/write/delete 使 `localVersion` 自增，作为本事务内修订号；有活跃后代时记录修订历史（按 revision 有序，读时二分）。 |
+
+- 快照 = 事务创建瞬间捕获 `(snapshotVersion, snapshotLocalVersion)`：嵌套事务创建时记下父的局部版本作为截止点，因此**父之后提交的修改对已创建的子事务不可见**。
+- 读取路径（`read`）：先查自己 `changes`（读己之写）→ 沿父链按局部截止点二分查历史 → 再到根按全局快照查存储（`RootState.readAt(key, version)`）。
+- 提交合并：嵌套提交调用父 `merge(child)` 逐键校验并合并到父的变更集；根提交把整个变更集 `persist` 到存储边界并推进全局版本。
+- 写冲突（first-committer-wins）：合并时若 `lastVersion(key) > child.snapshotVersion`（全局被更新）或父侧 `keyVersions(key) > child.snapshotLocalVersion`（局部被更新），判定冲突并返回 `TransactionConflict(key, parent, child)`，败方提交返回失败结果。
+- 历史回收：`activeDescendants` 归零时立即清除已无用的局部历史；根提交时若仍有活跃后代则先归档历史再清空待定变更。
+
+### API 一览（包 `io.github.mvccapi`）
+
+| 类型 | 职责 |
+| --- | --- |
+| `MvccStrategy<K,V>` | 同步存储边界接口：`read/write/delete/exists` 四个方法；值必须非 null。 |
+| `AsyncMvccStrategy<K,V>` | 异步存储边界：方法返回 `CompletionStage`。 |
+| `MvccTransaction<K,V>` | 核心事务引擎（`AutoCloseable`），详见下节方法清单。 |
+| `AsyncMvccTransaction<K,V>` | 异步门面：内部委托 `MvccTransaction` + 阻塞适配器，存储阶段只在 worker executor 上 join，绝不在调用线程阻塞；嵌套返回异步事务。 |
+| `MvccOptions` | 配置 record：`cacheCapacity`（LRU 容量，默认 1000，须 ≥0）、`threadSafe`（默认 true）；默认构造 `(1000, true)`。 |
+| `TransactionResult<K,V>` | commit/rollback 结果：`success/label/error/conflict/created/updated/deleted`，`isSuccess()` 便捷判断。 |
+| `TransactionConflict<K,V>` | 冲突详情：`key`、`parent`（父侧值）、`child`（子侧值）。 |
+| `TransactionEntry<K,V>` | 单条变更：`key` + `data`。 |
+| `TransactionChanges<K,V>` | 提交前净变更集：`created/updated/deleted` 三个列表（均不可变拷贝）。 |
+| `InMemoryMvccStrategy<K,V>` | 参考/测试用内存存储实现。 |
+| `internal.RootState` / `LruCache` / `MvccTrace` / `TransactionLock` | 根状态（全局版本链、持久化、回收）、LRU 缓存（含负缓存）、版本追踪日志、事务级读写锁。 |
+
+`MvccTransaction` 方法清单：
+
+```text
+CRUD      create(K,V) write(K,V) delete(K) read(K) exists(K)
+          isWrote(K) isDeleted(K)
+嵌套      createNested() isRoot() hasCommittedAncestor() activeDescendantCount()
+结束      commit() commit(label) rollback() rollback(label) close() isFinished()
+变更集    getResultEntries() createdEntries() updatedEntries() deletedEntries()
+预检      static checkConflicts(Collection<MvccTransaction>)   // 静态预检冲突键
+观测      snapshotVersion() transactionId() localVersion()
+          retainedGlobalVersionCount() cacheSize()
+```
+
+### 事务语义要点
+
+- 根事务可复用：`commit` 持久化后不清空自身，可继续发起新的嵌套事务；嵌套事务 commit/rollback 后即 `finished`。
+- `close()`（try-with-resources）：仅对未结束的**非根**事务自动 `rollback`，根事务需显式处理。
+- 语义约束：`create` 已存在键、`write`/`delete` 不存在键会抛 `IllegalStateException`，调用前可用 `exists`/`read` 检查；`checkConflicts` 可在提交前批量预检并提前处理冲突键。
+- 一致性等级：**Snapshot Isolation（快照隔离）**，不是可串行化；写偏斜需按上文"隔离级别"一节由应用层用约束或 SSI 兜底。
+- 并发：默认 `threadSafe=true`，内部用事务级读写锁；`threadSafe=false` 时要求外部串行化（性能对比用）。异步 API 的线程池/调度开销不计入核心算法对比。
+- 可观测：`MvccTrace` 输出创建/缓冲/读取/合并/冲突/提交/回滚的完整事件流，配合 `docs/06-version-tracing.md` 可逐版本回放。
+
+### 功能列表
+
+1. 基础 CRUD：create/read/write/delete + commit 持久化 + 变更集验证（created/updated/deleted 分类准确）。
+2. 快照隔离：父事务在子创建后的修改对子不可见。
+3. 读己之写：事务内 create/write/delete 立即可见。
+4. 嵌套事务提交：子提交 → 合并到父 → 根提交最终持久化。
+5. 嵌套事务回滚：回滚后父不受影响，根不落盘。
+6. try-with-resources：`close()` 自动回滚未完成嵌套事务。
+7. 写写冲突：first-committer-wins，败者拿到 `TransactionConflict` 详情（键、双方值）。
+8. 不同键并行：不相交写集合的并发事务全部成功。
+9. 长读事务：跨根提交持久化，旧快照读取结果保持不变。
+10. 创建后删除：同事务 create+delete 净结果为空。
+11. 高并发同键：32 并发同键写仅 1 个成功、其余冲突（first-wins）。
+12. 冲突预检：`checkConflicts` 静态返回可能冲突的键集合。
+13. LRU 缓存：`cacheCapacity` 限制已提交值缓存 + 负缓存，`cacheSize()` 可观测。
+14. 配置校验：`MvccOptions` 非法参数（负数容量）抛异常。
+15. 异步事务：`AsyncMvccTransaction` CRUD + 嵌套提交，CompletionStage 链式。
+16. 状态管理：`isFinished` 标记、根可复用、已提交祖先检测（`hasCommittedAncestor`）。
+17. 版本追踪：`MvccTrace` 事件日志与 `docs/06-version-tracing.md` 分析。
+18. 线程安全：默认跨线程安全，并有并发单测覆盖。
+19. 版本回收优化：全局版本链追加 O(1)、回收截点二分、活跃后代归零即清历史。
+
+（README 记录：全部 16 组共 77 项断言通过，覆盖上表 1–16。）
+
+### 快速开始
+
+```java
+MvccStrategy<String, String> store = new InMemoryMvccStrategy<>();
+MvccTransaction<String, String> root = new MvccTransaction<>(store, new MvccOptions());
+
+root.create("k", "v1");
+
+try (MvccTransaction<String, String> tx = root.createNested()) {
+    String v = tx.read("k");                    // "v1"（读父快照，读己之写优先）
+    tx.write("k", "v2");
+    TransactionResult<String, String> r = tx.commit("update-k");
+    if (!r.isSuccess()) {
+        System.out.println("conflict on " + r.conflict().key()); // first-committer-wins
+    }
+}
+
+root.commit();                                  // 根持久化到存储
+System.out.println(root.read("k"));             // "v2"
+```
+
+异步版本只需把 `MvccStrategy` 换成 `AsyncMvccStrategy`、事务换成 `AsyncMvccTransaction`，方法返回 `CompletableFuture`。
+
+### 性能实测（2026-08-10，本仓库）
+
+环境：macOS 12.7.6 x86_64、GraalVM JDK 17.0.12、Node.js 24.14.0，与 Node.js 参考实现按等价负载独立进程对比（3 样本中位数）：
+
+| case | Node ns/op | Java ns/op | Java 加速比 |
+| --- | ---: | ---: | ---: |
+| hot-read | 208.85 | 46.16 | 4.52x |
+| nested-write-commit | 4,314.78 | 2,694.65 | 1.60x |
+| long-snapshot-update | 301,725.39 | 7,201.91 | 41.90x |
+
+`long-snapshot-update` 大幅领先得益于长快照路径的优化（版本链追加 O(1)、回收二分定位、历史即时清除）。微基准受 CPU 调频/JIT/GC 影响，仅代表核心状态机在等价负载上的对齐，不代表真实文件系统/数据库/网络 Strategy 的端到端吞吐。
+
+### 限制与使用注意
+
+- 仅快照隔离：写偏斜不在库层拦截，需应用层约束（唯一键、条件更新）或更强的隔离机制。
+- 值必须非 null、键不可为 null；create 重复键、write/delete 缺失键抛 `IllegalStateException`，属"业务校验而非冲突"，与写写冲突（返回 `TransactionResult`）是两回事。
+- 根事务不因 `close()` 自动回滚；提交失败的根事务仍处于打开状态，需自行决定重试或回滚。
+- `threadSafe=false` 只适合外部已串行化的场景；并发安全依赖 `MvccOptions.threadSafe()`。
+
+### 参考文档（仓库 docs/）
+
+| 文件 | 内容 |
+| --- | --- |
+| `01-node-api.md` / `02-node-algorithm.md` | Node.js 参考实现的 API 与算法（语义对齐来源） |
+| `03-java-high-level-design.md` / `04-java-detailed-design.md` | Java 版高层与详细设计 |
+| `05-performance.md` | 与 Node 参考实现的性能对比方法与实测 |
+| `06-version-tracing.md` | 版本追踪日志格式与回放分析 |
+
+结合上文的 [MVCC/OCC](mvcc_occ.md)、[悲观并发控制](mvcc_pcc.md) 与 [InnoDB Read View](mysql/innodb_read_view.md)，可以把本库当作"内存 MVCC"的最小可运行标本：先看它的快照读取与冲突检测，再对照 InnoDB 的 undo 版本链与 Read View 理解生产级实现的差异（本库无持久化日志、无锁等待队列、无 DDL/索引交互，版本回收完全在内存进行）。

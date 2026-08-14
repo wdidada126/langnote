@@ -12,7 +12,7 @@ GitHub ID：[roseduan](https://github.com/roseduan)
 个人网站：[roseduan.cn](http://roseduan.cn)
 Twitter/X：[@roseduanV](https://x.com/roseduanV)
 
-🔧 主要开源项目（与数据库内核相关）
+主要开源项目（与数据库内核相关）
 
 1. [rosedb](https://github.com/rosedblabs/rosedb)
 基于 Bitcask 模型的轻量级、高性能 KV 存储引擎（Go 语言）
@@ -31,7 +31,7 @@ Twitter/X：[@roseduanV](https://x.com/roseduanV)
 参与贡献的 MPP 分布式数据库（类似 Greenplum）
 C 语言为主，属于 Apache 孵化项目
 
-📚 是否“卖课”？
+是否“卖课”？
 
 根据其 GitHub README、个人网站和社交媒体 的公开信息：
 Rose Duan 确实有知识付费/课程行为：
@@ -44,8 +44,8 @@ Rose Duan 确实有知识付费/课程行为：
 
 维度 评价
 ------ ------
-开源贡献 👍 非常扎实，项目设计清晰，适合学习数据库底层
-课程内容 💡 适合想深入理解存储引擎、WAL、LSM、Bitcask 的开发者
+开源贡献 非常扎实，项目设计清晰，适合学习数据库底层
+课程内容 适合想深入理解存储引擎、WAL、LSM、Bitcask 的开发者
 是否值得买课 如果你是：
 初中级后端/基础架构工程师
 想系统学习数据库内核

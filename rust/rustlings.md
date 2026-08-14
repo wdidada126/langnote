@@ -14,7 +14,7 @@ Rustlings = “Rust 的 LeetCode / Rustlings 小练习集合”，但它更专�
 - 它和《The Rust Programming Language》（官方书，俗称 The Book）高度配套，推荐边看书边做 Rustlings。
 
 官网 slogan：  
-“Small exercises to get you used to reading and writing Rust code — Recommended in parallel to reading the official Rust book 📚️”
+“Small exercises to get you used to reading and writing Rust code — Recommended in parallel to reading the official Rust book ”
 
 ### 典型使用流程（超级友好）
 

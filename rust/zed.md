@@ -77,9 +77,9 @@ static_assert(std::ranges::contiguous_range<rust::Slice<const uint8_t>>);
 
 ---
 
-## 🧠 错误原因分析
+## 错误原因分析
 
-### 🔍 背景知识
+### 背景知识
 
 - `rust::Slice<T>` 是 [cxx](https://github.com/dtolnay/cxx) 提供的一个类型，用于安全地将 Rust 的 slice (`&[T]`) 暴露给 C++。
 - `std::ranges::contiguous_range` 是 C++20 中的概念，要求一个范围的数据在内存中是连续存储的（如 `std::vector<T>`、`T[]` 等）。
@@ -154,7 +154,7 @@ cargo build
 
 ---
 
-## 🧪 补充调试技巧
+## 补充调试技巧
 
 ### 查看具体的错误源头文件
 
@@ -168,7 +168,7 @@ RUST_LOG=debug cargo build --verbose
 
 ---
 
-## 🧩 总结
+## 总结
 
 | 方法 | 描述 |
 |------|------|
@@ -181,7 +181,7 @@ RUST_LOG=debug cargo build --verbose
 
 如果你能贴出触发 `static_assert` 的具体 `.h` 或 `.cpp` 文件内容，我可以帮你精准定位并给出 patch 建议。
 
-如果你想我帮你写一段兼容 `contiguous_range` 的 `rust::Slice` 自定义迭代器实现，也可以告诉我 👍
+如果你想我帮你写一段兼容 `contiguous_range` 的 `rust::Slice` 自定义迭代器实现，也可以告诉我 
 
 --- 
 

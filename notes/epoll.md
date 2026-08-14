@@ -20,7 +20,7 @@ linux_api.md
 
 ---
 
-## 🧱 一、epoll 三大核心函数（基础三件套）
+## 一、epoll 三大核心函数（基础三件套）
 
 ### 1. `epoll_create` / `epoll_create1`：创建 epoll 实例
 
@@ -114,7 +114,7 @@ for (int i = 0; i < nfds; ++i) {
 
 ---
 
-## 🧩 二、核心结构体详解
+## 二、核心结构体详解
 
 ### `struct epoll_event` 定义（`<sys/epoll.h>`）
 
@@ -134,7 +134,7 @@ struct epoll_event {
 
 ---
 
-### 🔍 `epoll_data_t` 详解：事件的“上下文携带者”
+### `epoll_data_t` 详解：事件的“上下文携带者”
 
 `data` 字段是一个 union，你可以用它携带任何你想在事件触发时获取的信息。
 
@@ -168,7 +168,7 @@ conn->on_read(conn);  // 直接调用处理函数
 
 ---
 
-### 🔍 `events` 字段详解：监听哪些事件？
+### `events` 字段详解：监听哪些事件？
 
 | 事件 | 说明 |
 |------|------|

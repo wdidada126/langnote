@@ -22,11 +22,11 @@ JEP 521：[代际Shenandoah](https://openjdk.org/jeps/521)
 
 Java 25 is now available! #Java25 #JDK25 #OpenJDK 
 
-👉 Download Now: https://social.ora.cl/6014APt6u
-👉 Release notes: https://social.ora.cl/6011APt6X
-👉 API Javadoc: https://social.ora.cl/6015APt6b
-👉 Features: https://social.ora.cl/6010APt6g
-👉 Inside Java on JDK 25: https://social.ora.cl/6012APt6i
+Download Now: https://social.ora.cl/6014APt6u
+Release notes: https://social.ora.cl/6011APt6X
+API Javadoc: https://social.ora.cl/6015APt6b
+Features: https://social.ora.cl/6010APt6g
+Inside Java on JDK 25: https://social.ora.cl/6012APt6i
 
 
 Download Now https://jdk.java.net/25/

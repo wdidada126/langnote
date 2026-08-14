@@ -21,7 +21,7 @@ Linux 内核版本 **6.0**（发布于 2022 年 9 月）引入了许多新特性
 
 ---
 
-## 📌 Linux 6.0 新增/改进的主要系统编程 API（C/C++）
+## Linux 6.0 新增/改进的主要系统编程 API（C/C++）
 
 下面列出的是 **Linux 6.0 版本中与系统编程相关的重大变更和新增 API**，适用于 C/C++ 开发者，尤其是从事高性能网络、存储、虚拟化、安全等底层开发的人员。
 
@@ -29,7 +29,7 @@ Linux 内核版本 **6.0**（发布于 2022 年 9 月）引入了许多新特性
 
 ###  1. `io_uring` 改进（更强大的异步 I/O 接口）
 
-#### 🔧 背景：
+#### 背景：
 `io_uring` 是近年来 Linux 最重要的异步 I/O 框架之一，用于替代传统的 `aio` 接口。
 
 ####  Linux 6.0 中的新功能：
@@ -39,7 +39,7 @@ Linux 内核版本 **6.0**（发布于 2022 年 9 月）引入了许多新特性
 - **IORING_FEAT_FAST_POLL**: 支持更快的 poll 操作，减少唤醒延迟。
 - **IORING_OP_MSG_RING**: 支持跨 io_uring 实例的消息传递。
 
-#### 💡 使用场景：
+#### 使用场景：
 - 高性能 Web 服务器
 - 数据库引擎（如 MySQL、PostgreSQL）
 - 存储系统（如 Redis、RocksDB）
@@ -57,7 +57,7 @@ io_uring_queue_init(32, &ring, 0);
 
 ###  2. `landlock` 安全机制（轻量级沙箱）
 
-#### 🔧 背景：
+#### 背景：
 Landlock 是一个基于 eBPF 的轻量级安全模块，允许应用程序限制自身对文件系统的访问权限。
 
 ####  Linux 6.0 中的新功能：
@@ -65,7 +65,7 @@ Landlock 是一个基于 eBPF 的轻量级安全模块，允许应用程序限�
 - 支持对进程自身的文件访问进行细粒度控制。
 - 提供新的系统调用：`landlock_create_ruleset()`, `landlock_add_rule()`。
 
-#### 💡 使用场景：
+#### 使用场景：
 - 沙箱环境
 - 安全容器
 - 浏览器插件运行时保护
@@ -84,7 +84,7 @@ if (ruleset_fd < 0) {
 
 ###  3. `pidfd` 增强（无竞争获取进程状态）
 
-#### 🔧 背景：
+#### 背景：
 传统上使用 `wait()` 或 `waitpid()` 获取子进程状态容易引发竞态条件，`pidfd` 提供了更现代的方式。
 
 ####  Linux 6.0 中的新功能：
@@ -92,7 +92,7 @@ if (ruleset_fd < 0) {
 - **`pidfd_getfd()`**: 允许父进程从子进程中“偷取”打开的文件描述符。
 - 支持通过 `pidfd_open()` 创建的 fd 来监控子进程状态，避免信号处理复杂性。
 
-#### 💡 使用场景：
+#### 使用场景：
 - 安全容器运行时（如 LXC/LXD）
 - 进程监控工具
 - 服务守护程序
@@ -117,7 +117,7 @@ if (pidfd < 0) {
 
 ###  4. `mount_setattr()`（安全挂载配置）
 
-#### 🔧 背景：
+#### 背景：
 传统的 `mount()` 接口存在灵活性和安全方面的不足。
 
 ####  Linux 6.0 中的新功能：
@@ -125,7 +125,7 @@ if (pidfd < 0) {
 - 引入 `mount_setattr()` 系统调用，用于修改已有挂载点的属性。
 - 可以设置只读、不可写、不可执行等属性。
 
-#### 💡 使用场景：
+#### 使用场景：
 - 容器运行时
 - 文件系统安全加固
 - 安全策略实施
@@ -145,7 +145,7 @@ int ret = sys_mount_setattr(AT_FDCWD, "/mnt/myfs", 0, &attr, sizeof(attr));
 
 ###  5. `openat2()` 增强（安全路径解析）
 
-#### 🔧 背景：
+#### 背景：
 `openat2()` 是 `open()` 的扩展，提供更强的安全性和路径限制能力。
 
 ####  Linux 6.0 中的新功能：
@@ -153,7 +153,7 @@ int ret = sys_mount_setattr(AT_FDCWD, "/mnt/myfs", 0, &attr, sizeof(attr));
 - 支持 `RESOLVE_IN_ROOT` 标志，限制路径解析范围。
 - 支持 `RESOLVE_NO_XDEV`，防止跨越挂载点。
 
-#### 💡 使用场景：
+#### 使用场景：
 - 安全沙箱
 - 容器文件访问控制
 - 路径隔离工具
@@ -172,7 +172,7 @@ int fd = syscall(SYS_openat2, AT_FDCWD, "/safe/path", &how, sizeof(how));
 
 ###  6. `bpf()` 系统调用增强（eBPF）
 
-#### 🔧 背景：
+#### 背景：
 eBPF（extended Berkeley Packet Filter）是 Linux 最具革命性的技术之一，广泛用于网络、安全、性能分析等领域。
 
 ####  Linux 6.0 中的新功能：
@@ -181,7 +181,7 @@ eBPF（extended Berkeley Packet Filter）是 Linux 最具革命性的技术之�
 - 增强 CO-RE（Compile Once – Run Everywhere）支持
 - 新的 BPF helper 函数和 map 类型
 
-#### 💡 使用场景：
+#### 使用场景：
 - 网络包过滤
 - 性能分析（perf）
 - 安全审计（LSM）
@@ -214,7 +214,7 @@ int fd = bpf(BPF_MAP_CREATE, &attr, sizeof(attr));
 
 ---
 
-## 🚀 推荐学习资源
+## 推荐学习资源
 
 | 名称 | 地址 |
 |------|------|
