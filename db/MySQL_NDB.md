@@ -1,5 +1,8 @@
 # MySQL_NDB
 
+
+ndb是存储引擎，类似于myasam，innodb
+内存型的
 https://dev.mysql.com/doc/refman/8.0/en/mysql-cluster.html
 
 mysql-cluster-8.0.23-winx64.zip
