@@ -156,6 +156,32 @@ DLQ 本身也需要可靠性设计：独立的保留期和容量告警、受限�
 
 参考：[RabbitMQ Dead Letter Exchanges](https://www.rabbitmq.com/docs/next/dlx)、[Kafka Connect 错误处理与 DLQ](https://kafka.apache.org/30/kafka-connect/user-guide/)、[RocketMQ 消费重试](https://rocketmq.apache.org/docs/featureBehavior/10consumerretrypolicy/)、[Pulsar Retry Letter Topic 与 Dead Letter Topic](https://pulsar.apache.org/docs/next/concepts-messaging/)。
 
+##### 主流 MQ 的 DLQ 实现与性能取舍
+
+DLQ 的性能不能脱离失败率、消息大小、重试次数/间隔、消息持久化、副本数、目标 DLQ 可用性和重放速率谈“谁最快”。正常消费成功时，大多数产品不会把每条消息额外复制到 DLQ；性能代价主要在失败路径出现。若正常入流量为 `lambda`、失败比例为 `f`、每条失败消息平均额外投递 `r` 次，则仅消费尝试数就近似变为 `lambda * (1 + f * r)`，进入 DLQ 还会增加至少一次转发/写入。`f` 从 0.1% 升至 10% 往往比正常路径的微小基准差异更值得关注。
+
+| 产品 | 实现方式与隔离粒度 | 失败路径的可靠性与性能 | 关键配置/运维点 |
+| --- | --- | --- | --- |
+| RabbitMQ Classic Queue / DLX | 源队列把死信重新发布到 Dead Letter Exchange，再按 binding 路由到目标队列；触发可为 `reject/nack(requeue=false)`、TTL、队列长度或投递上限 | 默认内部转发不使用 publisher confirm，源消息发布到目标后即移除，开销低但目标不可用时可能丢失。DLX 本身不是“重试次数”机制，重试循环通常由 TTL + retry queue 或应用控制 | 用 policy 配置 DLX，保留 `x-death` 及 first/last death 元数据；目标 exchange/queue 不存在或不可路由是数据丢失风险，避免 retry-DLQ 环路。 |
+| RabbitMQ Quorum Queue | 同样使用 DLX；可选择 `at-most-once` 或 `at-least-once` dead-letter strategy | `at-least-once` 会在 leader 上启动内部 dead-letter consumer，将消息以 publisher confirms 转发，确认前源队列保留消息。可靠性更高，但多出确认、CPU、内存和积压压力；目标不可用时会反复尝试，并可能产生重复。默认 worker prefetch 为 32，可在高死信吞吐时调大 | `at-least-once` 需要 `overflow=reject-publish`、DLX 和相应 feature；配合长度/字节上限，监控源队列中“等待转发的死信”和 DLQ 目标确认延迟。 |
+| Kafka | 普通 consumer group 没有 broker 统一 DLQ；业务消费者自行生产到 retry/DLQ topic。Kafka Connect 对 converter、transform、sink 错误提供 `errors.deadletterqueue.topic.name` | 失败记录写入 DLQ topic 相当于额外一次 producer 写、复制和后续消费；正常记录不受该写入影响。应用若采用 retry topics，每次重试又增加一次日志写和一次消费，分区热点与 DLQ topic 的 retention 会直接影响磁盘和 broker I/O | Connect 可开启 context headers，但注意消息/错误上下文可能泄露敏感数据。业务侧要明确“成功写 DLQ 后何时提交原 offset”，并为 DLQ topic 单独设置分区、保留期、ACL、配额和重放消费者。 |
+| RocketMQ | broker 按 consumer group 的重试策略转入 retry topic；达到最大次数后进入该 group 的 DLQ，4.x 常见名称为 `%DLQ%<ConsumerGroup>` | 重试是 broker 调度和再次投递，失败比例升高会放大 broker 存储、投递和 consumer 拉取压力。DLQ 将毒消息从该组正常消费中隔离，但不会让下游依赖恢复 | 设置有限重试和合理延迟，不用“消费失败”充当限流。监控 `%RETRY%`、`%DLQ%` topic 深度、消费失败率与最老消息年龄；DLQ 重放必须幂等且限速。 |
+| Pulsar | consumer 的 `DeadLetterPolicy` 把达到 `maxRedeliverCount` 的消息写入 dead letter topic；可启用 retry letter topic 做延迟重试，默认命名含 topic 和 subscription | retry/DLQ 由消费者侧实现，失败消息每次延迟重投或转发都会产生额外网络与 topic 写入。启用 `enableRetry(true)` + `reconsumeLater` 时重试计数保存在消息属性中，能可靠地触发最终 DLQ；只靠 `negativeAcknowledge` 的内存计数可能在重启后重置 | 为 retry、DLQ topic 单独规划 namespace 配额、retention 与权限；在 Shared/Key_Shared 订阅下验证 redelivery、分区与顺序语义，避免多 topic 共享旧版默认名称。 |
+| ActiveMQ Artemis | address setting 配置 `dead-letter-address`；超过 `max-delivery-attempts` 后从源队列移到该 address 对应的 DLQ，可对匹配 address 批量配置 | 失败路径由 broker 执行重投与转移；`redelivery-delay`、乘数、随机避碰因子决定失败消息回压速度。无 dead-letter address 时，达到最大尝试的消息会被丢弃 | 使用 `redelivery-delay`、`redelivery-delay-multiplier`、`max-redelivery-delay` 避免热循环；显式创建或开启 auto-create DLQ 资源，监控 paging、地址容量和 DLQ 深度。 |
+| Amazon SQS | 源队列通过 redrive policy 的 `maxReceiveCount` 将多次收到但未删除的消息移入独立 DLQ；DLQ 可通过 redrive task 移回源或指定队列 | 托管服务不暴露 broker 内部实现和可比 TPS。每次失败至少包含一次 receive、visibility timeout 等待和再次 receive；高失败率会增加端到端延迟、请求量和费用。DLQ 转移用于隔离，不替代幂等 | `maxReceiveCount` 太小会把短暂故障过早隔离，太大则延长毒消息影响。为 DLQ 配置 CloudWatch 告警、访问策略和独立保留期；重放前确认消息仍满足业务时效与幂等条件。 |
+
+RabbitMQ 的“可靠 DLQ”尤需单独评估：classic queue/DLX 与 quorum queue 的 `at-least-once` 转发不是同一保证。后者为了确认目标已接收而保留源消息，因此目标 DLQ 宕机或无 quorum 时，死信会占用源队列资源并可能反压生产；它适合死信不能丢失的场景，不适合把海量可丢弃诊断消息也走同一高可靠路径。
+
+##### 性能设计与压测方法
+
+1. **分别量正常与失败路径**：记录成功吞吐/延迟，也测固定 0.1%、1%、10% 失败率下的 broker I/O、consumer CPU、retry/DLQ 深度和正常消息 P99 延迟。只测全成功 QPS 无法说明 DLQ 设计。
+2. **把重试时间窗纳入容量**：估算 `失败到达率 * 平均停留时间 * 消息大小`，分别为 retry 和 DLQ 预留磁盘/内存/保留空间。目标 DLQ 不可用时，RabbitMQ quorum 的源队列积压、Kafka/Pulsar 的 topic 写入、Artemis paging 都应在演练中验证。
+3. **限制重放流量**：DLQ 修复后不能以无限并发一次性回灌。独立 consumer group、速率限制、按业务键分片、优先级和暂停开关可避免再次压垮刚恢复的依赖。
+4. **验证顺序与重复**：DLQ 转发与重放通常改变原队列位置、时间和分区/队列上下文；严格有序业务需要按 key 重放并检查旧事件是否已过期。可靠转发和网络故障也可能带来重复，重放消费者必须幂等。
+5. **选择指标而非“DLQ TPS”**：至少监控失败率、每消息平均重试次数、retry/DLQ 入流量、最老消息年龄、DLQ 转发失败率、目标不可用时间、DLQ 重放成功率、额外存储量和正常业务 P99。把这些与业务 SLO 绑定，才能选择 retry 次数和产品模式。
+
+本节资料：[RabbitMQ DLX](https://www.rabbitmq.com/docs/next/dlx)、[RabbitMQ Quorum Queue dead lettering](https://www.rabbitmq.com/docs/next/quorum-queues)、[Kafka Connect DLQ](https://kafka.apache.org/30/kafka-connect/user-guide/)、[RocketMQ 消费重试](https://rocketmq.apache.org/docs/featureBehavior/10consumerretrypolicy/)、[Pulsar retry/DLQ](https://pulsar.apache.org/docs/next/concepts-messaging/)、[ActiveMQ Artemis address settings](https://activemq.apache.org/components/artemis/documentation/2.26.0/configuration-index.html)、[Amazon SQS DLQ](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)。
+
 不要把“返回消费失败”当限流手段。持续过载会形成 retry storm 并挤占正常流量；应使用 consumer 并发/拉取批次/预取、配额、背压、暂停消费或上游限流。RocketMQ 官方也将消费重试定位为偶发处理失败的保护机制，而不是业务流程控制或节流工具。
 
 ### schema、Topic 与治理
