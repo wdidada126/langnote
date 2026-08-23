@@ -1,8 +1,8 @@
 # liburing
 
-### liburing 库简介
+### liburing库简介
 
-liburing 是一个开源的 C 语言库（也有 Python 绑定），它为 Linux 内核的 io_uring（一个高效的异步 I/O 接口）提供用户空间的辅助工具和简化接口。io_uring 是 Linux 内核（从 5.1 版本起引入）的一个高性能异步 I/O 框架，旨在减少系统调用开销，支持批量提交和完成操作，特别适合高并发场景如网络服务器、文件系统和数据库。
+liburing是一个开源的C语言库（也有Python绑定），它为Linux内核的io_uring（一个高效的异步I/O接口）提供用户空间的辅助工具和简化接口。io_uring是 Linux内核（从 5.1 版本起引入）的一个高性能异步I/O框架，旨在减少系统调用开销，支持批量提交和完成操作，特别适合高并发场景如网络服务器、文件系统和数据库。
 
 #### 主要功能与优势
 - 核心作用：
@@ -28,3 +28,15 @@ liburing 是一个开源的 C 语言库（也有 Python 绑定），它为 Linux
 - 文档：仓库 README 及 https://unixism.net/loti/tutorial/（教程）。
 - 内核背景：io_uring 论文 https://kernel.dk/io_uring.pdf。
 
+CMake 集成 liburing
+
+在你的 `CMakeLists.txt` 中，你可以像这样查找并链接 `liburing` 库。一个通用的查找脚本可以长这样：
+
+```cmake
+# 在你的 CMakeLists.txt 中
+find_package(LibUring REQUIRED)
+
+# 链接到你的目标
+target_link_libraries(your_target PRIVATE ${LIBURING_LIBRARIES})
+target_include_directories(your_target PRIVATE ${LIBURING_INCLUDE_DIRS})
+```
