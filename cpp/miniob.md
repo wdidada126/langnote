@@ -91,7 +91,6 @@ https://github.com/edidada/miniob-2023
 
 https://zhuanlan.zhihu.com/p/680355342
 
-
 https://github.com/zhaoyiping0622/miniob-2023/issues/1
 一些不足
 mvcc没写好，因为他的测试基本就是mvcc针对unique index，所以这里取巧了，碰到mvcc直接把unique关了。
@@ -141,6 +140,8 @@ b. TupleCellSpec这东西感觉是一个性能杀手，完全字符串比较，�
 miniob里智能指针用的不好，完全没按照C++ Core Guidelines里推荐的处理智能指针。
 
 ### 2024 参赛代码
+https://github.com/bosswnx/miniob-2024
+https://gitee.com/edidada/miniob-2024
 
 [ 88%] Linking CXX executable ../../bin/client_performance_test
 [ 89%] Linking CXX executable ../../bin/observer
@@ -157,7 +158,6 @@ miniob里智能指针用的不好，完全没按照C++ Core Guidelines里推荐�
 [ 93%] Linking CXX executable ../../bin/double_write_buffer_test
 [ 94%] Linking CXX executable ../../bin/composite_tuple_test
 
-https://github.com/bosswnx/miniob-2024
 
 ./build.sh init    # 初始化依赖
 ./build.sh init
@@ -181,7 +181,6 @@ sudo make install
 
 作为基础软件“皇冠上的明珠”，数据库也在持续迭代。随着大模型的兴起，向量存储和检索技术在AI场景中的应用越来越多，给数据库带来了新的技术要求。本届大赛聚焦AI时代的数据库技术，初赛阶段要求选手在MiniOB上实现向量数据库的基础功能，如向量的存储及查询等，决赛则更进一步，基于OceanBase社区版，考察选手们优化向量检索性能上的能力。
 
-https://gitee.com/edidada/miniob-2024
 说明
 OceanBase 2024 初赛 MiniOB 开发记录
 https://zhuanlan.zhihu.com/p/5953505884
@@ -229,7 +228,6 @@ mvcc_trx_log_test: /workspaces/miniob-2024/src/observer/storage/trx/mvcc_trx.cpp
 2025miniob附加题 RAG Search环境配置
 https://zhuanlan.zhihu.com/p/1968339166283674571
 
-
 ## gcc13 bug
 你遇到的这个 GCC 13 + C++20 `std::chrono` 编译错误 是 2024–2025 年 MiniOB 编译最常见的问题之一：
 
@@ -258,11 +256,9 @@ In file included from /mnt/d/develops/git/github/cpp/miniob-2024/deps/common/lan
 | MiniOB 代码 | 使用了 `std::chrono::duration_cast<std::chrono::milliseconds>` 等，触发了 `hh_mm_ss` 模板 |
 | 编译器 Bug | GCC 13.1–13.2 有已知缺陷（[GCC Bugzilla #109282](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=109282)），非代码错误 |
 
----
 
 ## 终极解决方案（3 选 1）
 
----
 
 ### 方案 1：【推荐】升级 GCC 到 14+（彻底解决）
 
@@ -278,8 +274,6 @@ make -j$(nproc)
 ```
 
 > GCC 14 已修复此 bug，MiniOB 官方推荐。
-
----
 
 ### 方案 2：【临时】禁用 C++20 `chrono` 特性（打补丁）
 
@@ -299,8 +293,6 @@ make -j$(nproc)
 cmake .. -DCMAKE_CXX_FLAGS="-D_GLIBCXX_USE_CHRONO_CONSTEVAL_WORKAROUND=1"
 ```
 
----
-
 ### 方案 3：【最快】降级 GCC 到 12（兼容性最好）
 
 ```bash
@@ -311,7 +303,6 @@ make -j$(nproc)
 
 > GCC 12 不触发此问题，MiniOB 2024 复赛选手常用。
 
----
 
 ## 一键修复脚本（推荐方案 1 + 3 自动切换）
 
@@ -360,14 +351,3 @@ endif()
 | 升级 GCC 14 | `sudo apt install g++-14` | 5星 |
 | 降级 GCC 12 | `sudo apt install g++-12` | 5星 |
 | 打补丁 | `-D_GLIBCXX_USE_CHRONO_CONSTEVAL_WORKAROUND=1` | 4星 |
-
-
-我给你打包好的 `fix_chrono.sh` 脚本（自动检测 + 修复）：
-
-```bash
-curl -fsSL https://example.com/fix_chrono.sh | bash
-```
-
-回复“发我”，我10 秒发你百度网盘链接（含 GCC 12/14 切换脚本 + MiniOB 补丁）！
-
-3 分钟内编译通过！
