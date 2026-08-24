@@ -110,6 +110,9 @@ gh repo clone edidada/odb
 gh auth login
 
 ## action
+
+工作流使用的是 actions/checkout@v4（基于 Node.js 20），GitHub 自 2025-09-19 起弃用 Node 20，强制在 Node 24 上运行。升级到 @v5（基于 Node.js 24）即可消除警告：
+
 不支持java文件是gbk，必须是UTF8
 Error:  COMPILATION ERROR : 
 [INFO] -------------------------------------------------------------

@@ -1,5 +1,7 @@
 # codex
 
+纯命令行环境，复制auth.json到合适的文件夹下，就可以codex，不用codex login
+
 npm install -g @openai/codex
 npm install -g @openai/codex@latest --registry=https://registry.npmmirror.com
 
