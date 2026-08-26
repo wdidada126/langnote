@@ -15,3 +15,5 @@ cd iceberg
 
 ### cpp
 https://github.com/apache/iceberg-cpp
+
+给数据湖添加事务等管理能力
