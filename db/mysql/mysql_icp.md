@@ -5,8 +5,6 @@
 ICP（Index Condition Pushdown）是在MySQL 5.6版本上推出的查询优化策略，把本来由Server层做的索引条件检查下推给存储引擎层来做，以降低回表和访问存储引擎的次数，提高查询效率。
 https://www.jianshu.com/p/31ceadace535
 
-
-
 ICP（index condition pushdown）
 索引下推
 索引条件下推（ICP：index condition pushdown）是 MySQL 中一个常用的优化，尤其是当 MySQL 需要从一张表里检索数据时。
@@ -24,23 +22,16 @@ ICP（优化器）尽可能的把 index condition 的处理从 server 层下推�
 
 数据访问和提取的过程如下：
 
-
-
 ①：MySQL Server 发出读取数据的命令，调用存储引擎的索引读或全表表读。此处进行的是索引读。
-
 ②、③：进入存储引擎，读取索引树，在索引树上查找，把满足条件的（红色的）从表记录中读出（步骤 ④，通常有 IO）。
-
 ⑤：从存储引擎返回标识的结果。
 
 以上，不仅要在索引行进行索引读取（通常是内存中，速度快。步骤 ③），还要进行进行步骤 ④，通常有 IO。
 
 ⑥：从存储引擎返回查找到的多条数据给 MySQL Server，MySQL Server 在 ⑦ 得到较多的元组。
-
 ⑦–⑧：依据 WHERE 子句条件进行过滤，得到满足条件的数据。
 
 注意在 MySQL Server 层得到较多数据，然后才过滤，最终得到的是少量的、符合条件的数据。
-
-
 
 在不支持 ICP 的系统下，索引仅仅作为 data access 使用。
 
@@ -57,9 +48,6 @@ ICP（优化器）尽可能的把 index condition 的处理从 server 层下推�
 SELECT * FROM employees 
 WHERE first_name='Mary' 
 AND last_name LIKE '%man';
-1
-2
-3
 在没有 ICP 时，首先通过索引前缀从存储引擎中读出所有 first_name 为 Mary 的记录，然后在 server 端用 where 筛选 last_name 的 like 条件；
 而启用 ICP 后，由于 last_name 的 like 筛选可以通过索引字段进行，那么存储引擎内部通过索引与 where 条件的对比来筛选掉不符合 where 条件的记录，这个过程不需要读出整条记录，同时只返回给 server 筛选后条记录，因此提高了查询性能。
 注意事项
