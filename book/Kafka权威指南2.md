@@ -450,3 +450,12 @@ ConsumerRecords
 ### 第 10 章 跨集群数据镜像
 
 https://cwiki.apache.org/confluence/display/KAFKA/Ecosystem
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-02
+> - 《Kafka 权威指南》
+
+### 2026-05
+> - 《Kafka 权威指南》（第 3 版，2023）：Kafka MirrorMaker 2 跨地域复制、双活实现。
+

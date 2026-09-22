@@ -53,3 +53,8 @@ https://github.com/edidada/riacn-code
 第 10 章 扩展 Redis
 
 第 11 章 Redis 的 Lua 脚本编程
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2026-05
+> - 《Redis企业级实战》（2025）：CRDT多活、全球复制、冲突解决。
+

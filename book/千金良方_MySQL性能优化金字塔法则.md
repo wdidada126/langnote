@@ -82,3 +82,9 @@ Index Condition Pushdown
 https://dev.mysql.com/doc/refman/5.7/en/index-condition-pushdown-optimization.html
 中文解释
 https://www.cnblogs.com/zhoujinyi/archive/2013/04/16/3016223.html
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-07
+> 《金字塔原理》等沟通技巧
+

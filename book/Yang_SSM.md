@@ -99,3 +99,9 @@ DefaultTransactionDefinition
 Transactional
 
 事务定义类 TransactionDefinition
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-09
+> Epic官方在昨日如期公布了本周免费领取游戏，分别是模拟游戏《铁路帝国》和叙事冒险游戏《彼处水如酒》，玩家们可在9月17（下周四）日晚11点前登陆Epic商店，免费将这两款游戏一键永久入库。此外，官方还一并预告了下周的免费游戏《是男人就要坚强（Stick It To The Man）》。
+
