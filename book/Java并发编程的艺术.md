@@ -134,3 +134,30 @@ Semaphore工具类提供了一种并发流程控制的手段，Exchanger工具�
 > 2. 《Java并发编程的艺术》
 > 4. 底层优化：补充《Java并发编程的艺术》+《深入理解Java虚拟机》（周志明），理解JVM线程调度、内存屏障，实现并发程序性能优化。
 
+
+## 精读补写（系统整理，2026-09-23）
+
+### 版本与 ISBN
+- **第2版**（最新）：方腾飞、魏鹏、程晓明 著，机械工业出版社，2023-12，**ISBN `978-7-111-73797-1`**（Java核心技术系列，382 页，¥109）。第2版新增/修订超 50%，补充了分布式编程范式。
+- 第1版（2015）：**ISBN `978-7-111-50824-3`**，累计印刷 23 次、销量超 10 万册。若笔记中的章节与源码行号与第2版对不上，多半引自第1版（基于 JDK 7/8）。
+- 知识主线：并发基础（线程生命周期、中断、ThreadLocal）→ 并发挑战（上下文切换、死锁、资源限制）→ **底层实现原理**（volatile 的 CPU 语义、`synchronized` 在字节码/JVM/CPU 三层如何实现、原子操作的 CAS 与缓存一致性）→ **Java 内存模型**（happens-before、as-if-serial、volatile 与锁的内存语义、final 语义）→ **锁与同步组件**（AQS、ReentrantLock、读写锁、Condition）→ **并发容器**（ConcurrentHashMap、阻塞队列、CopyOnWrite）→ 原子类与工具类 → **线程池与 Executor** → 分布式并发（分布式锁、常见分布式架构）。
+
+### 经典论文与原始文献根基
+- **Manson, Pugh, Adve《The Java Memory Model》**(POPL 2005)——JMM 的形式化定义，书中"内存语义"章节的学术源头；配套 **JSR-133**。
+- Lamport《Time, Clocks, and the Ordering of Events in a Distributed System》(CACM 1978)——happened-before 概念的最初提出（JMM 借用其名）。
+- Michael & Scott《Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms》(PODC 1996)——`ConcurrentLinkedQueue` 的实现依据。
+- Herlihy & Shavit《The Art of Multiprocessor Programming》(2008/2012)——线性一致性、CAS 原语与无锁数据结构的系统教材。
+- Doug Lea《Concurrent Programming in Java》(1999) 与 `java.util.concurrent` 的 Javadoc/源码——AQS 与线程池的设计说明（`AbstractQueuedSynchronizer` 论文由 Lea 自述于 Javadoc）。
+- **硬件内存模型**：Sewell 等《x86-TSO: A Rigorous and Usable Programmer's Model for x86 Multiprocessors》(CACM 2010)；Alglave/Maranget/Tautschnig《Herding Cats》(TOPLAS 2014)——解释为何 x86 强内存模型下某些重排序"看不到"、ARM/POWER 下会暴露。
+
+### 最新研究与产业进展
+- **虚拟线程（Project Loom）**：JDK 21 GA（JEP 444）——平台线程 vs 虚拟线程，"一个请求一线程"重新可行；**结构化并发**（JEP 453 预览）与 Scoped Values（JEP 506）改造并发代码组织方式。这是本书第1/2版尚未覆盖的范式变化。
+- **锁优化现状**：偏向锁在 JDK 15 起弃用并移除（JEP 374），笔记中" synchronized 默认走偏向锁"需修正；现代 HotSpot 依赖轻量级锁 + 自适应自旋 + 锁消除/粗化。
+- **无锁与内存序**：`VarHandle`（JDK 9+）取代 `Unsafe` 成为内存序控制的官方手段（opaque/acquire/release），对应 C++ 的 memory_order 体系。
+- **硬件与语言交叉**：NUMA 感知调度、JDK 21 的 `Generational ZGC` 降低 GC 对并发停顿的影响；Rust/C++ 的内存模型对比有助于理解 release/acquire 语义。
+
+### 常见误区 / 纠错
+- "volatile 保证原子性"**错误**——volatile 只保证可见性与单变量读写的原子性（除 long/double 之外在 JDK 5+ 已保证），`i++` 仍非原子；需用 `AtomicInteger` 或锁。
+- "synchronized 一定比 Lock 慢"**过时**——JDK 1.6 后两者性能接近，选择依据是功能（可中断、超时、公平性、多条件队列）而非性能神话。
+- "happens-before 即时间先后"**错误**——happens-before 是偏序关系，允许重排序，只约束可见性与顺序一致性（对正确同步的程序）。
+- 线程池"越大越好"**错误**——受限于 CPU 核数、内存与下游资源；书中第 8/9 章给出的线程池参数化公式应结合压测而非照抄。

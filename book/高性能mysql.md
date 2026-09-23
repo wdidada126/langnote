@@ -236,3 +236,32 @@ API：http://mysqlserverteam.com/mysql-5-7-and-gis-an-example/
 ### 2020-12
 > 《高性能Mysql》
 
+
+## 精读补写（系统整理，2026-09-23）
+
+### 版本与 ISBN
+- **《高性能 MySQL（第 4 版）》**（*High Performance MySQL, 4th ed.*，Silvia Botros、Jeremy Tinley 著，宁海元、周振兴、张新铭 译），电子工业出版社，2022-10，**ISBN `978-7-121-44257-5`**（344 页，¥100）。第 4 版以 **MySQL 8.0 + 云环境 + 可靠性工程**为主线，新增云端 MySQL、合规性、Kubernetes 部署等章节。
+- 前作：第 3 版（2013，Baron Schwartz 等，中文 ISBN `978-7-121-19112-1`）仍是许多调优经验的出处，但**复制、优化器与云化内容已大幅过时**，笔记引用时须注明版本。
+
+### 主线脉络
+**架构**（连接管理、解析器/优化器、存储引擎、并发控制与锁）→ **监控**（Performance Schema、可靠性工程视角的指标）→ **操作系统与硬件优化**（CPU/内存/存储/文件系统/网络）→ **服务器设置优化**（缓冲池、日志、IO 配置）→ **Schema 设计与管理**（数据类型选择、范式与反范式、在线 DDL）→ **索引**（B+Tree、聚簇/二级索引、覆盖索引、联合索引最左前缀、索引选择性）→ **查询性能优化**（慢查询、EXPLAIN、优化器成本模型、重写查询）→ **复制**（binlog 格式、GTID、半同步、组复制、延迟与故障切换）→ **备份与恢复**（逻辑/物理备份、PITR）→ **扩展**（读写分离、分库分表、中间件、缓存）→ **云端 MySQL** → **合规性**。
+
+### 经典论文与原始文献根基
+- **Bayer & McCreight**《Organization and Maintenance of Large Ordered Indices》(1972)——B+ 树索引的理论来源，InnoDB 索引结构的基础。
+- **Mohan 等《ARIES: A Transaction Recovery Method》**(TODS 1992)——**WAL 与崩溃恢复**；InnoDB 的 redo log / undo log / checkpoint 与 doublewrite 均可视为 ARIES 的工程实现。
+- **Jim Gray & Reuter《Transaction Processing: Concepts and Techniques》**(1993)——事务、隔离级别与两阶段锁（2PL）的经典体系；MySQL InnoDB 的 MVCC 与隔离级别（RR/RC）由此理解。
+- **Bernstein & Hadzilacos & Goodman《Concurrency Control and Recovery in Database Systems》**(1987)——可恢复性与隔离性的形式化基础。
+- 工程文献：Facebook《Online Schema Change》(2010) 与 `gh-ost`(GitHub, 2016)——在线 DDL 的现实方案；Google/Facebook 关于 row-based replication 一致性的实践文章。
+
+### 最新研究与产业进展
+- **MySQL 8.0 重要能力**：原子 DDL(8.0)、直方图统计(8.0.2+)、CTE 与窗口函数、不可见索引、资源组、Clone Plugin、EXPLAIN ANALYZE 与 `EXPLAIN FORMAT=JSON`、并行扫描改进、JSON 多值索引(8.0.17+)。
+- **版本节奏变化**：**8.4 LTS（2024）成为新的长期支持主线**，随后是 9.x 创新版（2024-2025）；升级时应区分 LTS 与创新版的定位差异，并注意 8.4 起若干默认参数与权限模型的变化。
+- **Oracle 方向**：MySQL **HeatWave**（列存 + 向量检索 + 生成式 AI 能力，2023 起持续增强）把 OLTP/OLAP/向量检索合并到同一服务，是官方最重要的新形态。
+- **生态分支与替代**：MariaDB、Percona Server；国产与云原生方向 **PolarDB**（共享存储一写多读）、**Aurora**（日志即数据库）、**TiDB**（HTAP + Raft）、**OceanBase**。
+- 运维现代化：Performance Schema + `sys` schema + `pt-*` 工具链；**可观测性转向 OpenTelemetry/Prometheus**，与书中以 `SHOW STATUS`/慢日志为中心的方法互补。
+
+### 常见误区 / 纠错
+- **"分库分表是性能银弹"错误**：正确顺序是**优化索引与 SQL → 优化参数与硬件 → 读写分离/缓存 → 最后才考虑分片**；分片会带来分布式事务、跨片查询与运维复杂度的数量级增长。
+- **最左前缀与索引下推**：MySQL 5.6+ 的 **ICP（Index Condition Pushdown）**、MRR、BKA 改变了联合索引的行为，不能只按最左前缀机械判断；应结合 `EXPLAIN` 的 `Using index condition` 等字段解读。
+- **"count(*) 一定慢"需分情况**：取决于引擎（MyISAM vs InnoDB）、是否有合适的小索引、以及 8.0 的并行扫描改进；应实测而非照搬结论。
+- **"MySQL 8 移除了查询缓存"**：查询缓存（Query Cache）在 **5.7 弃用、8.0 彻底移除**，调优笔记中若仍建议"开启 query cache"须删除；替代方案是应用层/中间件缓存（Redis）或 Proxy 层缓存。
