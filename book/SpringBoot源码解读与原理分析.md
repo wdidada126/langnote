@@ -71,3 +71,9 @@ https://juejin.cn/book/6844733814560784397?utm_source=profile_book
 
 AnnotationAwareAspectJAutoProxyCreator就是继承了AbstractAutoProxyCreator类，它是Spring AOP框架中的自动代理创建器，用于自动为标注了AspectJ注解的类创建代理对象，并将增强逻辑织入到代理对象中。
 
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2026-03
+> 《加密与解密》段钢
+

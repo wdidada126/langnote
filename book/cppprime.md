@@ -1038,3 +1038,9 @@ RTTI
 type_info
 
 union：一种节省空间的类
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2024-04
+> OSTEP读书笔记 这本书全名叫做 《Operating Systems: Three Easy Pieces》
+

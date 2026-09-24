@@ -31,3 +31,9 @@ https://blog.csdn.net/weixin_30699831/article/details/97921912
 ## Chap 4
 
 https://www.cnblogs.com/lichen782/p/6852722.html
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-08
+> 国际权威研究机构Gartner发布的《The Future of the Database Management System (DBMS) Market Is Cloud》报告，挑明了数据库市场正在发生的变化。
+

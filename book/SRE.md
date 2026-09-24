@@ -17,3 +17,9 @@ Google SRE中的S（Service）是指Google搜索引擎服务。Google软件系�
 
 
 https://book.douban.com/subject/26875239/
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-02
+> - 《Site Reliability Engineering》
+

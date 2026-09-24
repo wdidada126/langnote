@@ -111,3 +111,8 @@ https://book.douban.com/subject/25919513/
 附录B MySQL Workbench扩展 305
 附录C 安装SQL Server 319
 词汇表 数据库建模术语 343
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-07
+> 《Lucene应用开发解密》。
+

@@ -665,3 +665,9 @@ https://docs.oracle.com/javase/8/docs/api/
 | Enums                     |      |      |
 |                           |      |      |
 | Collector.Characteristics |      |      |
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-08
+> 求狸猫技术窝的《从0开始带你成为JVM实战高手》
+

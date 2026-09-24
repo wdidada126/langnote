@@ -8,3 +8,11 @@ Robert Nystrom编写的Crafting Interpreters是一本介绍如何手撸解释器
 https://www.zhihu.com/question/21515496/answer/3046022315
 
 https://github.com/Ch1ps-dot/myclox/tree/master
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2024-06
+> 5. 《troubleshooting Linux Performance》
+
+### 2024-07
+> 5. 《troubleshooting Linux Performance》
+

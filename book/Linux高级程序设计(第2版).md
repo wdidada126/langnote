@@ -413,3 +413,9 @@ struct sockaddr *sock_addr = (struct sockaddr *)&server_address;
 ```
 在这个示例中，我们创建了一个struct sockaddr_in类型的变量server_address，并将其地址强制转换为struct sockaddr类型的指针sock_addr。这样，我们就可以将sock_addr传递给需要struct sockaddr类型指针的套接字函数了。
 
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-11
+> 程序员，著有《Ruby程序设计268技（第2版）》《Ruby源代码完全解说》《Linux程序设计》等多部编程相关著作。并积极参与标准库维护、文档维护等各种各样的活动。
+

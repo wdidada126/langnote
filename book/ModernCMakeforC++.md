@@ -25,3 +25,9 @@ Modern-CMake-for-C++.pdf
 ## source code
 
 https://github.com/PacktPublishing/Modern-CMake-for-Cpp
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2024-01
+> 一些构建工具的发展，为C/C++的代码复用引入了更好的方式。例如CMake从3.0版本开始被称之为“Modern CMake”，是因为它引入了target的概念，以及基于target建立起了构建的依赖可见性和传播控制机制。这些都更好的支持了代码在构建上的模块化，号称“everything is a (self-contained) target”。另外，借助CMake的ExternalProject和find_package特性，使得我们可以从指定的http或者git分支下载、构建、安装和引用代码库。由于CMake的广泛流行，目前这已经成为C/C++开源社区的事实标准。关于Modern CMake的用法和最佳实践，可以看看这篇文章：《Modern CMake最佳实践》。
+

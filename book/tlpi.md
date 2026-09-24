@@ -910,3 +910,11 @@ ISBN: 9787115328670
 附录d 内核配置　1161
 附录e 更多信息源　1162
 附录f 部分习题解答　1167
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2020-02
+> - 《Designing Data-Intensive Applications》
+
+### 2026-03
+> - 基于 DDIA（《Designing Data-Intensive Applications》）Storage 章节从零实现的 LSM key-value store
+

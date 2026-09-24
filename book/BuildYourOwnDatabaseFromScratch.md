@@ -53,3 +53,8 @@ https://build-your-own.org/database/
 国内很多人做完这本书后，直接拿去秋招/春招当“个人项目”，面试官一看“自己写过数据库内核”，基本当场 offer。
 
 强烈建议：先用 Go 版 7 天写完，再用 Rust 版重写一遍，这才是 2025 年最硬的数据库入门路径。
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2025-08
+> 《The Fine Art of Small Talk》《Simply Said》《How to Say lt》和《Business Vocabulary inUse》，以及更多惊喜哦！
+

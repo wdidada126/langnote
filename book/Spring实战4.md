@@ -396,3 +396,10 @@ https://gitee.com/edidada/spring_mail
 
 ### 第21章　借助Spring Boot简化Spring开发
 
+
+## 跨年摘录（2020–2026 日常笔记聚合，2026-09-23 整理）
+
+### 2023-07
+> 没有 3.《Spring Cloud Gateway 实战与原理解析》（作者：吴晟、杨旭）：本书介绍了 Spring Cloud Gateway 的设计原理、核心组件、路由规则配置、过滤器和拦截器、负载均衡策略等内容，通过实例演示和源码解析，帮助读者深入理解 Spring Cloud Gateway 的内部实现和高级应用场景。
+> 《Spring Cloud Gateway 实战与原理解析》这本书的作者是吴晟、杨旭，出版社是电子工业出版社，出版日期是2019年11月。该书主要介绍了 Spring Cloud Gateway 的设计原理、核心组件、路由规则配置、过滤器和拦截器、负载均衡策略等内容，通过实例演示和源码解析，帮助读者深入理解 Spring Cloud Gateway 的内部实现和高级应用场景。
+
