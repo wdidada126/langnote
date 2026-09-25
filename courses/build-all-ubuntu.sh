@@ -39,7 +39,8 @@ run() { # <proj> <desc> <cmd...>
   local desc="$1"; shift
   local rel="${proj#"$ROOT"/}"
   echo "==> [$desc] $rel"
-  if ( cd "$proj" && "$@" ) >"$LOGDIR/$(echo "$rel" | tr '/' '_').log" 2>&1; then
+  # 单项目硬超时 240s：仿真/REPL 类挂死记为 FAIL，不再拖满整条 CI。
+  if ( cd "$proj" && timeout -k 10 240 "$@" ) >"$LOGDIR/$(echo "$rel" | tr '/' '_').log" 2>&1; then
     PASS=$((PASS+1))
   else
     FAIL=$((FAIL+1)); FAILED+=("$rel [$desc]")

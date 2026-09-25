@@ -28,8 +28,8 @@ jobs:
       - name: Build all
         run: bash courses/build-all-ubuntu.sh
 
-      - name: Upload build logs on failure
-        if: failure()
+      - name: Upload build logs
+        if: always()   # 超时取消也要留下 .build-logs，否则无从复盘
         uses: actions/upload-artifact@v4
         with:
           name: build-logs
