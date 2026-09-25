@@ -31,8 +31,8 @@ public final class HashFunctions {
     /** 一组两两 Horner31 相同长度的演示键（用于注释中的手工验算）。 */
     public static List<String> demoCollisionPair() {
         List<String> out = new ArrayList<>();
-        out.add("Aa"); // 65 + 97*31
-        out.add("``"); // 96 + 96*31 —— 与 "Aa" 同值：X 差 31、Y 差 1 即碰撞
+        out.add("Aa"); // 65*31 + 97 = 2112
+        out.add("BB"); // 66*31 + 66 = 2112 —— JDK 经典碰撞对：第一位差 1、第二位差 31 即同值
         return out;
     }
 }

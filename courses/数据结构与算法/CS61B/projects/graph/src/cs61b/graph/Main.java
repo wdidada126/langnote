@@ -8,7 +8,9 @@ import java.util.List;
  * 自测入口：对应 L29–L32。
  * 测试图（V=9，含孤立分量 {7,8}）：
  *  0-1:4  0-2:2  1-2:1  1-3:5  2-3:8  2-4:10  3-4:2  3-5:6  4-5:3  5-6:2  3-6:7  7-8:1
- * 手工算得：MST 权 18+1=19；Dijkstra(0)=[0,3,2,8,10,13,15,∞,∞]；BFS 跳数=[0,1,1,2,3,3,3,-1,-1]。
+ * 手工算得：MST 权 1+1+2+2+2+3+5=16（Kruskal 顺序取 7-8,1-2,0-2,3-4,5-6,4-5,1-3；
+ * 注意 0-1:4 成环跳过，4-5:3 比 3-5:6 更省）；Dijkstra(0)=[0,3,2,8,10,13,15,∞,∞]；
+ * BFS 跳数=[0,1,1,2,2,3,3,-1,-1]（4 经 0-2-4 只隔 2 跳）。
  */
 public final class Main {
 
@@ -32,7 +34,7 @@ public final class Main {
 
         // BFS（L30）
         int[] hops = GraphAlgorithms.bfsHops(g, 0);
-        check(Arrays.equals(hops, new int[]{0, 1, 1, 2, 3, 3, 3, -1, -1}), "BFS 跳数含不可达 -1");
+        check(Arrays.equals(hops, new int[]{0, 1, 1, 2, 2, 3, 3, -1, -1}), "BFS 跳数含不可达 -1");
 
         // DFS 与连通分量（L30）
         List<Integer> order = new ArrayList<>();
@@ -54,8 +56,8 @@ public final class Main {
         var p = GraphAlgorithms.prim(g);
         double kw = GraphAlgorithms.totalWeight(k), pw = GraphAlgorithms.totalWeight(p);
         System.out.printf("   kruskal %d 条边 权 %.1f；prim %d 条边 权 %.1f%n", k.size(), kw, p.size(), pw);
-        check(Math.abs(kw - 19) < 1e-9, "Kruskal MST 总权 = 19（含孤立分量边 7-8）");
-        check(Math.abs(pw - 19) < 1e-9 && k.size() == p.size(), "Prim 与 Kruskal 一致（MST 唯一性侧面验证）");
+        check(Math.abs(kw - 16) < 1e-9, "Kruskal MST 总权 = 16（含孤立分量边 7-8）");
+        check(Math.abs(pw - 16) < 1e-9 && k.size() == p.size(), "Prim 与 Kruskal 一致（MST 唯一性侧面验证）");
 
         // 并查集在 Kruskal 中的角色回放（L31）
         UnionFind uf = new UnionFind(4);

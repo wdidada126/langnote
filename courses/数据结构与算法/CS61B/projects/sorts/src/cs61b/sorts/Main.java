@@ -39,7 +39,7 @@ public final class Main {
     }
 
     static void correctnessSweep() {
-        var algos = java.util.List.<java.function.Consumer<int[]>>of(
+        var algos = java.util.List.<java.util.function.Consumer<int[]>>of(
                 Sorts::insertion, Sorts::merge, Sorts::quick, Sorts::heap);
         for (int[] tc : cases()) {
             int[] ref = tc.clone();

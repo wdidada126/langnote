@@ -28,7 +28,11 @@ public class THashMap<K, V> implements Iterable<java.util.Map.Entry<K, V>> {
     private long rehashCount; // 实验统计：n 次 put 共再哈希 Θ(n) 总工作量 / 次数 ≈ log2(n)
 
     @SuppressWarnings("unchecked")
-    public THashMap() { buckets = (Node[]) new Object[8]; }
+    public THashMap() {
+        // 泛型数组创建限制（L16/L20）：Node 是泛型外部类的内部类，new Node[] 被编译器禁止，
+        // 但 (Node[]) new Object[] 运行时必炸 ClassCastException；正解是反射按真实组件类型建数组。
+        buckets = (Node[]) java.lang.reflect.Array.newInstance(Node.class, 8);
+    }
 
     public int size() { return size; }
     public boolean isEmpty() { return size == 0; }
@@ -81,7 +85,7 @@ public class THashMap<K, V> implements Iterable<java.util.Map.Entry<K, V>> {
     @SuppressWarnings("unchecked")
     private void resizeAndRehash(int newCap) {
         Node[] old = buckets;
-        buckets = (Node[]) new Object[newCap];
+        buckets = (Node[]) java.lang.reflect.Array.newInstance(Node.class, newCap); // 同上，反射建 Node[]
         rehashCount++;
         for (Node head : old)
             for (Node n = head; n != null; ) {

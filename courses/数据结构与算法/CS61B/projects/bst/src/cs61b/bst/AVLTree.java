@@ -23,7 +23,9 @@ public class AVLTree<K extends Comparable<K>> {
     public int size() { return size; }
     public int height() { return h(root); }
 
-    private static int h(Node x) { return x == null ? 0 : x.height; }
+    // Node 是泛型外部类的非静态内部类（引用类型变量 K），无法声明为 static；
+    // 因此这里用实例方法而非静态方法，规避"静态上下文引用非静态类"。
+    private int h(Node x) { return x == null ? 0 : x.height; }
 
     public boolean contains(K key) {
         Node x = root;

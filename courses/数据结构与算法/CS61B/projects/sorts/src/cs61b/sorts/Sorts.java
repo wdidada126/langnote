@@ -11,6 +11,11 @@ public final class Sorts {
 
     private Sorts() {}
 
+    /** 交换 a[i] 与 a[j]（快排 Lomuto 分区、堆排序交换堆顶共用的原子动作）。 */
+    private static void swap(int[] a, int i, int j) {
+        int t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+
     /* ---------- 插入排序：Θ(n²)，但近乎有序时 Θ(n + 逆序数) ---------- */
 
     public static void insertion(int[] a) { insertion(a, 0, a.length); }

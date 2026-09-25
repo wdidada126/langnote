@@ -17,7 +17,9 @@ public class Heap<T> {
     private final Comparator<T> cmp;
 
     public Heap(Comparator<T> cmp) { this.cmp = cmp; }
-    public Heap() { this(Comparator.naturalOrder()); }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public Heap() { this((Comparator) Comparator.naturalOrder()); } // raw 传入：T 未限定 Comparable，强转交给调用方约定
 
     public int size() { return data.size(); }
     public boolean isEmpty() { return data.isEmpty(); }

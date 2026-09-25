@@ -54,7 +54,9 @@ public class Trie {
 
     /** 删除：先清 end 标志，再自底向上剪掉"非词尾且无子"的节点（Θ(m)）。 */
     public boolean delete(String word) {
-        return delete(root, word, 0);
+        if (!contains(word)) return false;     // 词不存在 ⇒ false（与"父节点可否被剪"是两个信号）
+        delete(root, word, 0);
+        return true;
     }
     private boolean delete(Node p, String word, int depth) {
         if (depth == word.length()) {

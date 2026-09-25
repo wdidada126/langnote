@@ -46,7 +46,9 @@ public class ArraySeq<Item> implements Iterable<Item> {
         if (isEmpty()) throw new NoSuchElementException("empty seq");
         Item x = items[--size];
         items[size] = null; // 防内存泄漏（L16：数组元素是引用）
-        if (size > 0 && size <= items.length / 4) resize(items.length / 2);
+        // 缩容（de-grow）：负载因子 ≤ 1/2 即减半，与倍增扩容配合保证每次操作后
+        // 不变量"容量 ≤ 2×size"成立（倍增/减半均为几何步长 ⇒ 摊还 Θ(1)）
+        if (size > 0 && 2 * size <= items.length) resize(items.length / 2);
         return x;
     }
 

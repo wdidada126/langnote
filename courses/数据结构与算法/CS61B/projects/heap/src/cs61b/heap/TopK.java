@@ -28,7 +28,7 @@ public final class TopK {
 
     public static <T> List<T> topK(List<T> stream, int k, Comparator<T> better) {
         if (k <= 0) return List.of();
-        Heap<T> h = new Heap<>(better.reversed());    // 堆顶是"最差候选"
+        Heap<T> h = new Heap<>(better);               // 堆顶即 better 序最小 = "最差候选"（第 K 名）
         for (T x : stream) {
             if (h.size() < k) h.offer(x);
             else if (better.compare(x, h.peek()) > 0) { h.poll(); h.offer(x); }

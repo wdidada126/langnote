@@ -3,6 +3,7 @@ package cs61b.heap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -51,7 +52,7 @@ public final class Main {
     static void heapsort() {
         Random rnd = new Random(2);
         int[] a = rnd.ints(3000, -100_000, 100_000).toArray();
-        Heap<Integer> h = Heap.build(boxed(a), Comparator.natural());
+        Heap<Integer> h = Heap.build(boxed(a), Comparator.naturalOrder()); // 修正笔误 natural()→naturalOrder()，语义不变
         int[] out = new int[a.length];
         for (int i = 0; i < out.length; i++) out[i] = h.poll();
         int[] ref = a.clone();
