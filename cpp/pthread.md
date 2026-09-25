@@ -69,3 +69,8 @@ https://blog.csdn.net/qq_44861043/article/details/119643641
 - pthread_setspecific
 
 注意跟java比较
+
+## 附：Windows/MinGW 下的 pthread 支持（2026-09 补充）
+
+Windows 上是否可用 pthread / `std::thread`，取决于 MinGW-w64 发行版的线程模型：POSIX 模型内置 winpthreads（`libwinpthread-1.dll` 存在即支持）；老版 GCC 的纯 Win32 模型缺失 C++11 线程设施，但新版 GCC（本机 15.2.0 win32-seh 实测）libstdc++ 已支持 Win32 原生线程，且不再依赖 winpthreads。另注意运行时 DLL 混用陷阱（编译器与 libstdc++ 必须同源，否则 `condition_variable::wait` 会静默死挂）。详见 `notes/mingw.md` 的「pthread 支持情况」与实测记录。
+

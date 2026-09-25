@@ -243,3 +243,75 @@ pacdiff
 - MSYS2：镜像与企业网络配置：<https://www.msys2.org/docs/mirrors/>
 - MSYS2：与 Arch pacman 的行为差异：<https://www.msys2.org/docs/pacman/>
 
+## pthread 支持情况：MinGW-w64 的 POSIX / Win32 线程模型（截至 2026-09）
+
+这取决于你的 MinGW 发行版用的是哪种线程模型。
+
+MinGW-w64 有两种线程模型：POSIX 和 Win32。GCC 的 libstdc++ 将 `std::thread` 等 C++11 线程特性构建在 POSIX 线程抽象层之上。如果选择 Win32 线程模型，`std::thread` 等特性会缺失。
+
+从 Debian 的 MinGW 包命名可以清楚看到这个区分：`g++-mingw-w64-x86-64-posix` 明确标注了 "POSIX threading model"，而 winlibs 等第三方发行版也明确标注 "POSIX threads"。这类 POSIX 模型发行版会内置 **winpthreads**（Windows 上的 pthreads 兼容层），从而完整支持 `<thread>`、`<mutex>` 等标准库线程设施。
+
+### 怎么判断你的环境
+
+检查你的 MinGW 安装路径下是否有 `libwinpthread-1.dll`。如果只用 `-posix` 后缀的编译器（如 `x86_64-w64-mingw32-g++-posix`），或者发行版明确标注了 POSIX threads，那就支持。如果用的是纯 Win32 模型，则 `std::thread` 不可用。
+
+也可以直接看编译器版本横幅里的三元组标签（本机实测示例，见上文 `gcc --version` 输出）：
+
+```text
+gcc.exe (x86_64-posix-sjlj-rev0, Built by MinGW-W64 project) 8.1.0
+             ^^^^^ 线程模型在这里：posix = 支持 std::thread；win32 = 不支持
+```
+
+对应关系小结：
+
+| 模型 | 底层实现 | `std::thread`/`<mutex>` | 典型发行版 |
+| --- | --- | --- | --- |
+| POSIX | winpthreads（pthreads 兼容层） | ✅ 完整支持 | MinGW-w64 `-posix` 构建、winlibs、Debian `g++-mingw-w64-*-posix`、MSYS2 UCRT64/CLANG64 工具链 |
+| Win32 | 原生 Win32 API | 老 GCC（≤12 一代）：❌ 缺失；新 GCC（本机 15.2.0 实测 ✅，win32 模型原生线程支持约 GCC 13/14 起进入 libstdc++，准确版本待核实） | 旧的 `-win32` 后缀构建、MinGW-Builds `x86_64-win32-seh` |
+
+补充：链接期若报 `undefined reference to 'pthread_create'`，POSIX 模型下一般由 libstdc++ 自动带入 winpthreads；纯 C 用 `-pthread`（GCC 会转成对 winpthreads 的链接），或显式 `-lwinpthread`。另见 [[../cpp/pthread|pthread]]。
+
+### 实测记录：win32-seh GCC 15.2.0 完整支持 C++11 线程设施（2026-09-25，本机）
+
+本机 PATH 默认 `g++ --version` 为 `x86_64-win32-seh-rev1, Built by MinGW-Builds project 15.2.0`（位于 `D:\develops\tools\mingw64`），并非上文老结论所说的"win32 = std::thread 不可用"。实测编译运行均通过，且不依赖 winpthreads：
+
+| 设施 | 结果 |
+| --- | --- |
+| `std::thread` + `join` | ✅ |
+| `std::mutex` + `lock_guard` | ✅ |
+| `std::condition_variable::wait`（谓词）/ `wait_for`（超时） | ✅ |
+| `std::promise` / `future::get` | ✅ |
+| `std::async(launch::async)` | ✅ |
+
+`ldd` 干净环境下只依赖自身 `libstdc++-6.dll`，无 `libwinpthread-1.dll`——win32 模型的新 libstdc++ 直接落在 Win32 同步原语（SRWLOCK/ConditionVariable）上。
+
+### 真实的坑：PATH 上混入第二套 MinGW DLL 导致 condition_variable 死挂
+
+排查过程中复现过一个非常有迷惑性的故障：**基础 `std::thread` 能跑，但 `condition_variable::wait`（连 `wait_for` 5 秒超时都不返回）永久挂起**。
+
+原因：git-bash 环境里 `/mingw64/bin`（实际是 `C:\Program Files\Git\mingw64\bin`，Git for Windows 自带的另一套 GCC，POSIX 模型）排在 PATH 前面。用 15.2.0 编译出的 exe 在运行时加载的是 **Git 自带版本的 `libstdc++-6.dll` 和 `libwinpthread-1.dll`**——`ldd` 里出现两份 `libwinpthread-1.dll`（不同基址）就是信号。不同 GCC 版本之间 `std::mutex`/`std::condition_variable` 的内部布局和符号版本不一致，属于典型 ABI/ODR 混用：能加载、能跑简单路径，一到 cv 通知/超时逻辑就静默死锁。
+
+修复：让工具链自己的 bin 目录先于 Git 的 mingw64：
+
+```bash
+# ~/.bashrc (git-bash)
+export PATH="/d/develops/tools/mingw64/bin:$PATH"
+```
+
+验证方法：`which -a g++`、`echo "$PATH" | tr ':' '\n' | grep -i mingw`、对产物 `ldd xxx.exe | grep -E 'stdc|pthread'`——所有 DLL 必须解析到同一套工具链目录下。
+
+教训：Windows 上"编译一套、运行时 DLL 搜索路径命中另一套"造成的问题，症状往往不是报错而是行为诡异（挂死、随机崩溃）。判断 pthread 支持情况只是第一层，**编译器与运行时 DLL 同源**才是 C++ 多线程在 MinGW 下稳定工作的真正前提。
+
+### 实测追加：win32-seh 16.2.0（`D:\develops\tools\mingw64-16.2.0`）对 C 风格 pthread 的支持（2026-09-25）
+
+结论：**支持，但必须显式 `-pthread`**。同一发行版的 win32 线程模型照样随包带了 winpthreads（`x86_64-w64-mingw32/lib/libwinpthread.a`、`libwinpthread.dll.a` 和 `bin/libwinpthread-1.dll` 都在，`ar t` 确认含真实的 cond/barrier/clock 实现，不是桩）：
+
+| 编译方式 | 结果 |
+| --- | --- |
+| `gcc pt.c`（不带 `-pthread`） | ❌ `undefined reference to 'pthread_create'`（与 Linux 一致，pthread 非 libc 默认成员） |
+| `gcc -pthread pt.c` | ✅ create/join 正常 |
+| `g++ -pthread pt.cc` | ✅ |
+| `std::thread`/`cv`/`async`（16.2.0） | ✅ 无需 winpthread，运行链接的正是本机工具链 DLL 时全部通过 |
+
+即：POSIX 与 Win32 线程模型的差别在于 **libstdc++ 是否自动接 winpthreads**；win32 模型下 C++11 线程走 Win32 原语、C 风格 pthread 需手动 `-pthread` 挂 winpthreads，两条路在同一条工具链里共存。
+
