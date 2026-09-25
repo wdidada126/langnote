@@ -56,3 +56,11 @@
 - Hug 笔记 "Java Setup" "Java Syntax" "Control Flow"（datastructur.org/notes）。
 - 《Effective Java》Item 59–63（库优先、避免浮点做货币、理解溢出）。
 - JLS §4.2（整型类型与补码回绕语义）。
+
+## 8. 自测（合上笔记作答）
+
+1. 为什么 `int` 溢出静默回绕而 `Math.addExact` 抛异常？两者各自适合什么场景？
+2. `0.1 + 0.2 == 0.3` 的结果是什么？用二进制小数解释原因，并给出金额的两种正确表示。
+3. `String s1 = "hi"; String s2 = new String("hi"); s1 == s2` 与 `s1.equals(s2)` 各是什么？为什么？
+4. 循环里 `str += x` 做 n 次的总成本是多少？换成 `StringBuilder` 后呢？依据是什么？
+5. 写出 `for (int i = 0; i < n; i++)` 中 `i` 的作用域边界，并说明为何循环结束后不能再用它。

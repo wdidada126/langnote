@@ -84,8 +84,9 @@ def reverse_rows(b):
 
 
 def move_left(b):
-    new, score = zip(*(merge_line(r) for r in rows(b)))
-    return from_rows(new), score
+    results = [merge_line(r) for r in rows(b)]
+    return from_rows([merged for merged, _ in results]), \
+        sum(sc for _, sc in results)
 
 
 def move_right(b):
@@ -160,9 +161,9 @@ def render(b):
 
 def _selftest():
     assert slide((0, 2, 0, 4)) == (2, 4)
-    assert merge_line((2, 2, 2, 2)) == ((4, 4), 8)
-    assert merge_line((2, 2, 4, 0)) == ((4, 4, 0), 4)
-    assert merge_line((4, 2, 2, 0)) == ((4, 4, 0), 4)   # 4 不与新 4 再合并
+    assert merge_line((2, 2, 2, 2)) == ((4, 4, 0, 0), 8)
+    assert merge_line((2, 2, 4, 0)) == ((4, 4, 0, 0), 4)
+    assert merge_line((4, 2, 2, 0)) == ((4, 4, 0, 0), 4)   # 4 不与新 4 再合并
     assert merge_line((0, 0, 0, 2)) == ((2, 0, 0, 0), 0)
 
     b = set_cell(set_cell(empty_board(), 0, 0, 2), 0, 1, 2)

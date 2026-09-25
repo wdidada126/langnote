@@ -51,3 +51,10 @@ LALR(1): 合并 LR(1) 中"核心相同"的状态——精度接近 LR(1)，状�
 - 龙书 ch4.5.2-4.5.3（LALR 合并算法与例题）；AHU 第一本（编译器教材）LR 章更细。
 - Knuth 1965 "On the translation of languages from left to right"（LR 原文）。
 - DeRemer & Pennello 1982（LALR 高效构造）；bison 手册 "Conflicts / Ambiguity" 两节。
+
+## 自测问题
+1. 对文法 `S -> C C; C -> c C | o` 手建 LR(0) 族并判定 SLR/LR(1) 冲突情况（龙书名题）。
+2. 为何 `E -> E+T` 在 LR 里是朋友而在 LL 里致命？（提示：句柄识别方向）
+3. LALR 合并可能引入什么伪冲突？举例或说明"合并不会引入新的移进冲突"为什么成立。
+4. bison 报告 `conflicts: 2 shift/reduce`，给出不改语义文法、用优先级声明消解的最小修改。
+5. 为什么"归约-归约冲突"几乎总意味着文法真有问题，而移进-归约冲突可以合法地靠默认策略消解？

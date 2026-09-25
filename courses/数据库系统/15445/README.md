@@ -1,6 +1,6 @@
 # CMU 15-445 — Database Systems（数据库系统）【CORE】
 
-> 本课程为【CORE】骨架：本 README 含全章节目录（Fall 2023 官方 26 讲）；notes / papers / projects 正文由后续专人完成。
+> 状态：全量（2026-09）。本 README 含全章节目录（Fall 2023 官方 26 讲 L00–L25）；notes / papers / projects 正文已全部完成。
 
 ## 课程信息
 
@@ -12,7 +12,7 @@
 | 教材 | Database System Concepts（Silberschatz 等；课程以 Andy 自写 Notes/Slides 为主，无必读课本） |
 | csdiy 路径 | 数据库系统/15445 |
 | 最新期次 | Fall 2023（15445.courses.cs.cmu.edu/fall2023；本 README 章节目录即按 F23 官方 schedule 整理） |
-| 状态 | 【CORE】骨架，正文待后续专人完成 |
+| 状态 | 全量（2026-09） |
 
 ## 为什么学
 
@@ -67,6 +67,17 @@
 - 通关指南：xzhseh《CMU 15-445/645 (Spring 2023) Database Systems 通关指北》；作业实现参考 ysj1173886760/Learning: db（含 Homework 解与自动判分脚本；应 Andy 要求无 Project 实现）。
 - 非官方 Discord：历史聊天记录是极佳的踩坑参考。
 
-## 目录占位说明
+## 目录内容说明
 
-- `notes/`、`papers/`、`projects/` 为空目录，正文（逐讲笔记、B-tree/LSM/RAID/MapReduce/Spanner/Aurora/Morsel-Parallel 等论文清单、PostgreSQL/MySQL/RocksDB/CockroachDB/DuckDB 应用表、四个 Project 的项目计划）由后续专人按工程统一规范完成。
+- `notes/`：L00–L25 逐讲中文笔记（共 26 篇），每篇含核心概念+机制、前后讲联系、跨课程联系（CSAPP/6.S081/6.824/CS143/6.006 等）、开源项目应用（PostgreSQL/InnoDB/RocksDB/DuckDB/TiDB/CockroachDB/sqlite）、延伸阅读。
+- `papers/papers.md`：经典论文表（Codd 关系模型、Bayer&McCreight B 树、Selinger/System-R、Volcano/Graefe、MonetDB-X100、Lehman-Yao B-link、Leviton Bw-tree、ARIES/Mohan、SSI/Cahill、Spanner/Percolator、Redshift/Snowflake、Morsel 并行、C-Store 等）＋近五年(2021–2026)精选（DuckDB/Umbra/ClickHouse/lakehouse/Iceberg·Delta/HNSW·DiskANN/learned index·optimizer/Text-to-SQL 等）＋知识点↔开源映射表。
+- `projects/`：8 个 C++17（标准库 only）配套项目，只写不编译，均自带测试 main + `build.bat`/`build.sh` + README；总表见 `projects/README.md`。分别为 01 缓冲池(Clock 置换+固定计数)、02 B+树(插入/分裂+范围扫描)、03 slotted page+堆表、04 火山执行器、05 聚合/排序算子、06 迷你 SQL 解析接执行器、07 WAL redo/undo 恢复、08 2PL 锁管理器(冲突矩阵+死锁等待图)。
+
+## 学习进度建议
+
+1. 通读 L00–L02 建立数据模型与 SQL 底座；
+2. L03–L06 存储/内存三件套配 projects 01/03；
+3. L07–L09 索引配 projects 02；
+4. L10–L14 查询处理配 projects 04/05/06；
+5. L15–L20 事务与恢复配 projects 07/08；
+6. L21–L25 分布式/前沿——衔接 MIT 6.824 与 CMU 15-721。

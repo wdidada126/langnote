@@ -18,9 +18,9 @@
 | C10 | Introspective sorting and selection algorithms | Musser，Software: Practice & Experience 27(8)（1997） | L34–L35 | IntroSort：快排深度超 2log n 切堆排——"期望算法加最坏保险"的标准工程姿势 |
 | C11 | Engineering a sort function | Bentley & McIlroy，Software: Practice & Experience 23(11)（1993） | L34–L35 | qsort 的工程细节（哨兵、小数组切换），JDK DualPivotQuicksort 的远祖 |
 | C12 | Concurrent performance of a B-tree algorithm | Lehman & Yao，ACM TODS 6(4)（1981） | L26–L27 延伸 | B 树并发加锁协议（levelling B 树）：数据库索引并发的起点，15-445 前置阅读 |
-| C13 | A study of replacement selectors/ B-tree survey | Bayer & McCreight，AFIPS 1981 "Data Structures and Algorithms for Software Systems"；或 Knuth TAOCP 3 §6.2.4 (1973) | L26–L27/L34 | B 树/平衡树早期综述与历史脉络 |
+| C13 | Data structures and algorithms for software systems | Bayer & McCreight，AFIPS 1981；另见 Knuth TAOCP Vol.3 §6.2.4（1973） | L26–L27/L34 | B 树/平衡树早期综述与历史脉络 |
 
-> 备注：C12 行为编辑过程留下的更正说明，正式阅读请忽略 C12、以 C12′ 为准（保留此行以说明"不确定就降级"的整理原则）。
+> 出处说明：C1 首发于 Acta Informatica 1972 增刊；C3 原文为俄文（Doklady），英译见 1962 年 *Soviet Math.*；引用格式需精确到卷期时请以 DOI 复核。
 
 ## 2. 近五年文献与工程动态（2021–2026）
 

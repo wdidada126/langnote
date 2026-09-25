@@ -10,7 +10,7 @@
 | 教材 | Artificial Intelligence: A Modern Approach（AIMA，Russell & Norvig，第 3/4 版） |
 | csdiy 路径 | `人工智能/CS188: Introduction to Artificial Intelligence`（页面更新：2025-03-23） |
 | 最新期次 | Spring 2024（最新一期视频与资料完整、开放旁听 Gradescope；6 个 Pacman Project） |
-| 状态 | 【CORE】骨架已建（本 README 含全章节目录），notes/papers/projects 正文由后续专人完成 |
+| 状态 | 全量（2026-09）：notes 23 讲、papers/papers.md、projects 7 项（纯 Python 标准库，run.bat/run.sh 含 py_compile 自检）均已完成 |
 | 难度/学时 | csdiy 标注 🌟🌟🌟，约 50 小时；先修：CS70；语言 Python |
 
 ## 为什么学
@@ -59,7 +59,7 @@
 | L22 | 哲学与 AI 伦理：图灵测试、意识、AI Safety | AIMA Ch.26-27 |
 | L23 | 课程回顾与总结 | 全讲义串讲 |
 
-> 6 个 Project（Pacman 主题）：P1 Search（路径搜索）、P2 Pup-Transition（MDP 建模）、P3 Value-Iteration（值迭代）、P4 Approximate-Q-Learning（特征 Q-Learning）、P5 Tracking（HMM 粒子滤波）、P6 Reinforcement-Learning/Projects 综合；DISC 讨论题 + 在线书面作业走 Gradescope。具体以 Spring 2024 课程网站为准，正文由后续专人完成。
+> 6 个 Project（Pacman 主题）：P1 Search（路径搜索）、P2 Pup-Transition（MDP 建模）、P3 Value-Iteration（值迭代）、P4 Approximate-Q-Learning（特征 Q-Learning）、P5 Tracking（HMM 粒子滤波）、P6 Reinforcement-Learning/Projects 综合；DISC 讨论题 + 在线书面作业走 Gradescope。具体以 Spring 2024 课程网站为准。本仓库配套替代项目见 `projects/README.md`（7 个纯 Python 合成环境项目，讲次映射齐全）。
 
 ## 课程资源（摘自 csdiy）
 

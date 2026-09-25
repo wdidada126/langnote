@@ -62,13 +62,13 @@
 | 2023 | **vLLM PagedAttention 论文（SOSP'23）**：KV-cache 分页，LLM 服务系统起点 | L04 分页/LSM 思想在 LLM 推理的复现（LLM 服务系统与 6.824 知识直接对接） |
 | 2024 | vLLM 分布式推理（TP/PP/DP 组合）、**Orca（OSDI'24）迭代级调度** | L18 流水线 + L16 事件驱动 |
 | 2024 | **Kafka 4.0：ZooKeeper 支持正式移除，KRaft-only** | L12→L05 权力交接完成 |
-| 2024 | **Spanner 论文获 SIGMOD/PVLDB 时间检验奖十年后续：AlloyDB/Manhattan? （Manhattan 为 Google 内部，细节待核实）** | L15 家族扩张 |
+| 2024 | Google 数据库家族持续扩张：AlloyDB 增长、Manhattan（内部事务记录存储，细节待核实） | L15 家族扩张 |
 | 2024 | **etcd v3.6（Kubernetes v1.34 起支持）：Lease 与 snapshot 压缩增强（细节待核实）** | L05/L12 |
 | 2025 | **分布式共识向"可组合硬件"延伸：CXL 内存池化进入产品（Marvell/MemVerge 等，规模待核实）** | L13 可组合硬件预言的落地进度 |
 | 2025 | **Multi-Raft 区域治理：TiKV/CockroachDB Serverless 化** | L05/L15/L13 合流 |
 | 2025–2026 | LLM 推理集群的 PD 分离（Prefill/Decode disaggregation，DistServe/Mooncake 等） | L13 解耦 + L18 流水线在 AI 时代的翻版（课程 2026 届或新增相关讲） |
-| 2021–2026 | **CRDT 产品化**（Roku? 无。automerge 1.0 / Figma 内部）（细节待核实） | L11 冲突调和的长期答案 |
-| 2026 | 6.5840 春季课表仍含：Introduction/RPC、MapReduce、GFS、Bigtable、Raft×2、Paxos、Time/Clocks、Dynamo、Kafka、Spanner、TAO/Memcached、S3/新硬件、Fabric、CRDT? （以 pdos schedule.html 当期为准） | 全课 |
+| 2021–2026 | **CRDT 产品化**：automerge 1.0（2023）、多类协同编辑/离线优先方案（商用细节待核实） | L11 冲突调和的长期答案 |
+| 2026 | 6.5840 春季课表仍含：Introduction/RPC、MapReduce、GFS、Bigtable、Raft×2、Paxos、Time/Clocks、Dynamo、Kafka、Spanner、TAO/Memcached、S3/新硬件、Fabric 等（以 pdos schedule.html 当期为准） | 全课 |
 
 ## 三、阅读策略
 

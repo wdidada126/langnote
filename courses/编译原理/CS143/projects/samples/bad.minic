@@ -1,0 +1,20 @@
+// bad.minic — 给 stage 03（语义检查）练手：解析应当成功，检查应当报错。
+// 预期错误（行号近似即可）：
+//   * bool 函数返回 int
+//   * '+' 操作数类型不符（int + bool）
+//   * 调用未定义函数 secret
+//   * 对未声明变量 z 赋值
+//   * if 条件不是 bool
+//   * int 变量被赋 bool
+
+bool notTrue() { return 1; }
+
+int helper(int x) { return x + true; }
+
+int main() {
+  int y = secret(1);
+  z = 2;
+  if (y) { print 1; }
+  y = true;
+  return 0;
+}

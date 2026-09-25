@@ -54,3 +54,9 @@ loop:
 - 龙书 ch3.6（词法分析器生成器构造细节，含等价类）；Flex 手册 "Using Flex"。
 - rustc_lexer 源码（crate 极小，适合对照 projects/01 精读）。
 - Appel "Modern Compiler Implementation in C" ch2（手写词法器一章的范本）。
+
+## 自测问题
+1. 表驱动与 goto 编码各在哪种输入下更快？（提示：类别数 × 字符字母表 vs 分支预测）
+2. COOL 字符串字面量禁 `	` 与换行：写出你的 DFA 状态（含转义态），说明错误恢复点。
+3. flex 规则 `"\\"` 与 `"\\\\"` 的先后顺序影响什么？默认消歧策略是什么？
+4. 你的 projects/01 里，`x<-y` 在 COOL 与 MiniC 各切成什么 token？词法器需要知道语言吗？

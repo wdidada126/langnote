@@ -1,6 +1,6 @@
 # Computer Networking: A Top-Down Approach（自顶向下方法 · Kurose & Ross 配套课）【CORE】
 
-> 本课程为【CORE】骨架：本 README 含全章节目录；notes / papers / projects 正文由后续专人完成。
+> 状态：**全量（2026-09）**——notes/ 24 讲中文笔记、papers.md 论文与 RFC 总表、projects/ 7 个配套 Python 项目均已完成。
 
 ## 课程信息
 
@@ -12,7 +12,7 @@
 | 教材 | Computer Networking: A Top-Down Approach（第 7 版；中文版：机械工业出版社） |
 | csdiy 路径 | 计算机网络/topdown |
 | 最新期次 | 教材第 7 版配套站（gaia.cs.umass.edu/kurose_ross，持续更新） |
-| 状态 | 【CORE】骨架，正文待后续专人完成 |
+| 状态 | 全量（2026-09） |
 
 ## 为什么学
 
@@ -92,6 +92,8 @@
 - 课程网站/视频：https://gaia.cs.umass.edu/kurose_ross/index.php 、…/lectures.php
 - 资源汇总：PKUFlyingPig/Computer-Network-A-Top-Down-Approach（GitHub）
 
-## 目录占位说明
+## 目录产出说明
 
-- `notes/`、`papers/`、`projects/` 为空目录，正文（逐讲笔记、TCP 拥塞控制/DiffServ/SDN 等论文清单、Linux 网络栈/DPDK/XDP 应用表、配套项目计划）由后续专人按工程统一规范完成。
+- `notes/`：24 讲中文笔记（README.md 为索引），每讲含核心概念、协议字段/状态机/公式、封装栈与前后讲联系、跨课程联系（CSAPP/6.S081/CS162/MIT6.824/CS144/topdown_ustc）、开源项目应用、按讲次 RFC 延伸阅读与自查题。
+- `papers.md`：经典论文/RFC 表 + 近 5 年（2021–2026）动态表 + 知识点↔开源项目映射表（Linux、DPDK/VPP、quiche/lsquic、Nginx/Envoy、Wireshark、io_uring 等）。
+- `projects/`：7 个纯标准库 Python 项目（HTTP 服务器、DNS 查询器、ARQ 模拟、TCP/UDP 双版聊天、拥塞控制模拟、路由器模拟、以太网/CRC/交换机模拟），各含源码、README、run.bat/run.sh（内置 py_compile 自检）；总表见 `projects/README.md`。本轮代码只写未编译，首次使用请先跑 run 脚本自检。

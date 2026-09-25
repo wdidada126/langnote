@@ -62,7 +62,7 @@ L01 是全课的"语法"：此后每一篇论文（MapReduce/GFS/Raft/Dynamo/Spa
 
 ## 6. 延伸阅读
 
-- Tanenbm/Van Steen《Distributed Systems》Ch.1（导论）与 Ch.11（RPC）。
-- Vonicak 等关于 RPC 语义演进：*In Search of an Understandable Consensus* 前置阅读。
-- 对照阅读：Sottile《The elements of style: RPC》与 gRPC ADR 中关于重试/幂等的讨论。
+- Tanenbaum & Van Steen《Distributed Systems》Ch.1（导论）与 Ch.11（RPC）。
+- 6.033（MIT）"Design Principles"  lectures——端到端原则与"隐藏复杂性"的得与失。
+- gRPC 官方文档 "Concepts & Architecture" 与 K8s `client-go` 重试/幂等注释——论文四问的现代答案。
 - 课程网站第一章幻灯片：pdos.csail.mit.edu/6.5840/lectures/s1intro.pdf。

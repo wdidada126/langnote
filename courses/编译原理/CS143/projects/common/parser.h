@@ -284,16 +284,24 @@ class Parser {
     switch (t.kind) {
       case Tok::Num: {
         advance();
-        return std::make_unique<NumExpr>(t.value);
+        auto n = std::make_unique<NumExpr>(t.value);
+        n->loc = t.loc;
+        return n;
       }
       case Tok::TrueKw: case Tok::FalseKw: {
         bool v = (t.kind == Tok::TrueKw);
         advance();
-        return std::make_unique<BoolExpr>(v);
+        auto b = std::make_unique<BoolExpr>(v);
+        b->loc = t.loc;
+        return b;
       }
       case Tok::Ident: {
         advance();
-        if (!check(Tok::LParen)) return std::make_unique<VarExpr>(t.text);
+        if (!check(Tok::LParen)) {
+          auto v = std::make_unique<VarExpr>(t.text);
+          v->loc = t.loc;
+          return v;
+        }
         auto c = std::make_unique<CallExpr>();
         c->loc = t.loc;
         c->callee = t.text;

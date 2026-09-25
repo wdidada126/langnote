@@ -10,7 +10,7 @@
 | 教材 | 无指定教材；官方课程 Notes（blue book，9 章 + 附录）质量极高，即为教材 |
 | csdiy 路径 | `机器学习/CS229: Machine Learning`（页面更新：2024-09-14） |
 | 最新期次 | 每季度滚动开课（Autumn/Winter/Spring/Summer）；公开资源以经典版 notes + B 站完整视频为准 |
-| 状态 | 【CORE】骨架已建（本 README 含全章节目录），notes/papers/projects 正文由后续专人完成 |
+| 状态 | 全量（2026-09）：notes/L01-L23 中文笔记、papers/papers.md（经典+近五年+开源映射）、projects/p01-p09（numpy-only）已完成 |
 | 难度/学时 | csdiy 标注 🌟🌟🌟🌟，约 100 小时；先修：高数、概率论、Python，需较深厚数学功底 |
 
 ## 为什么学
@@ -58,7 +58,13 @@
 | L22 | 进阶专题：核密度估计、高斯过程、Boosting 理论（历年 Guest/选读） | 附录 (KDE / Gaussian Processes) |
 | L23 | 课程项目（Project）：自主直升机/自选课题，撰写论文式报告 | 课程项目要求 |
 
-> 附录工具线（随讲次穿插）：线性代数、概率论与信息论、导数与范数、凸优化与 Lagrange 对偶、指数族与损失函数——正文由后续专人完成。
+> 附录工具线（随讲次穿插）：线性代数、概率论与信息论、导数与范数、凸优化与 Lagrange 对偶、指数族与损失函数——已并入各讲笔记的推导与"跨课程联系"小节（L02/L04/L05/L07/L21/L23）。
+
+## 本目录产出（全量 2026-09）
+
+- [notes/L01-L23](notes/)：23 讲中文笔记（推导要点/直觉与陷阱/前后讲联系/跨课程联系/开源应用/延伸阅读）
+- [papers/papers.md](papers/papers.md)：经典论文表 + 2021-2026 近年表 + 知识点↔开源项目映射
+- [projects/](projects/)：p01-p09 九个 numpy-only 配套项目（各含源码/README/run.bat/run.sh），总表见 [projects/README.md](projects/README.md)
 
 ## 课程资源（摘自 csdiy）
 

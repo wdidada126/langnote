@@ -11,7 +11,7 @@
 | csdiy 路径 | /体系结构/DDCA/ |
 | 最新期次 | 每年秋季开课；公开课件最新为 2023 秋季（csdiy 收录 2020/2023），实验平台 Basys 3 FPGA + Xilinx Vivado |
 | 先修要求 | CS50 或同阶课程，最好有 C 语言基础；语言 C/Verilog/MIPS/LC-3 汇编；难度 🌟🌟🌟；预计学时 100 小时 |
-| 状态 | 【CORE】骨架已建（本 README 含全章节目录），notes/papers/projects 正文由后续专人完成 |
+| 状态 | 【CORE】全量（2026-09）：notes/L01–L16 讲义笔记、papers/papers.md 文献清单、projects/p01–p06 Verilog/C 配套项目（iverilog 基准，只写未编译）均已完成 |
 
 ## 为什么学
 
@@ -51,6 +51,12 @@
 | L16 | 期末复习：从晶体管到完整系统的贯穿串讲 + 前沿研究导览 | 全部讲义回顾 |
 
 > 实验共 9 个（Lab 1–9）：组合电路 → 时序电路 → FSM（交通灯等）→ 数据通路 → 单周期 CPU → 流水线 CPU，全部在 Basys 3 FPGA 上部署验证；课程另含 LC-3 汇编作业（源自 P&P 教材路线）。
+
+## 本目录产出物
+
+- [notes/L01.md … L16.md](notes/)：与上表逐讲对应的中文讲义笔记（含 CSAPP/6.S081/CS61C/N2T/CA 衔接与开源项目应用）。
+- [papers/papers.md](papers/papers.md)：经典文献 + 近五年开源芯片论文 + 知识点↔开源项目映射表（不确定处已标"待核实"）。
+- [projects/](projects/README.md)：p01–p06 六个 Verilog 项目（ALU/Mux、加法器、触发器/寄存器堆、FSM、单周期 RV32I CPU＋简易汇编器、cache 模型＋C 模拟器），各带 testbench、README 与 iverilog build 脚本（本轮只写未编译）。
 
 ## 课程资源（摘自 csdiy）
 

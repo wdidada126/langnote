@@ -73,6 +73,6 @@ reduce worker 拉取属于自己分区的中间文件 → 归约输出写 GFS。
 
 ## 6. 延伸阅读
 
-- Cohen et al., *F1: A Distributed SQL Database*（讲 Google 内部如何用 MR 思路做后台维护）。
+- F1 论文：*F1: A Distributed SQL Database That Synchronizes*（SIGMOD 2013）——MapReduce 式后台维护（索引回填）在 SQL 系统里的应用。
 - Isard et al., *Dryad: Distributed Data-Parallel Programs from Sequential Building Blocks*, EuroSys 2007——把两层 DAG 泛化成任意 DAG，读懂它就读懂了 Spark/Millipipe 的前史。
 - 对照本目录 `projects/p1_mapreduce/`：单进程内用 goroutine 模拟 master/worker，复现超时重做与 backup execution。

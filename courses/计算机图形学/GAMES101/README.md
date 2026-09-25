@@ -10,7 +10,7 @@
 | 课程教材 | Fundamentals of Computer Graphics（FCG，Steve Marschner & Peter Shirley，第 4 版） |
 | csdiy 路径 | `计算机图形学/GAMES101`（csdiy.wiki，页面日期 2022-09-06） |
 | 最新期次 | 2019 秋季班（官方完整视频，B 站/官网持续开放） |
-| 状态 | CORE 完整笔记由后续专人撰写；本 README 为全章节目录定稿 |
+| 状态 | **全量（2026-09）**：逐讲笔记、论文清单、配套项目全部完成 |
 | 先修要求 | 线性代数、高等数学、C++ |
 | 难度/学时 | 🌟🌟🌟 / 约 80 小时；8 个 Project |
 | 课程网站 | http://games-cn.org/graphics-intro-ppt-talk/ ｜ 视频：B 站 GAMES101 |
@@ -70,9 +70,11 @@
 
 ## 5. 笔记进度
 
-- [ ] notes/outline.md（逐讲要点）
-- [ ] notes/L01-L16 全文笔记
-- [ ] papers/（经典与近 5 年论文精读）
-- [ ] projects/（P1-P4 实现与构建）
+- [x] notes/outline.md（逐讲要点 + 三条主线 + 官方 23 讲对照）
+- [x] notes/L01–L16 全文笔记 + notes/L17-animation-summary.md（附录讲）
+- [x] papers.md（经典论文表 + 近 5 年表 + 知识点↔开源映射表）
+- [x] projects/（p1 变换库、p2 软件光栅化器、p3 几何表示、p4 光线/路径追踪；
+      C++17 标准库，输出 PPM，含 build.bat/build.sh；本轮只写不编译）
 
-> 本课为【CORE】：正文笔记、论文、代码由后续专人完成，本 README 为定稿目录骨架。
+> 本课为【CORE】全量笔记（2026-09）。正文以本 README 定稿的 16 讲+附录目录组织，
+> 与官方 2019 视频（约 23 讲条目）的映射见 `notes/outline.md` 首表。

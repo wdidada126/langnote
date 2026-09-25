@@ -64,6 +64,6 @@ compact 与分裂期间可能多 server 同服务一个 tablet 的只读副本�
 
 ## 6. 延伸阅读
 
-- Ousterhout《Why Are There So Many Storage Formats for Data Analysis?》(hotstorage'21)——LSM/BTree/列式谱系梳理。
+- Ousterhout 关于"数据分析为何有这么多存储格式"的随笔/演讲（LSM/BTree/列式谱系梳理，出处待核实）。
 - Chubby 论文（2006）与 ZooKeeper 论文（2010）对照："外包共识"两大流派。
 - Bigtable 实战：Google Cloud Bigtable 服务文档中的 row key 反热点设计指南。

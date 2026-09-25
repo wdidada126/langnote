@@ -51,3 +51,10 @@ exp     : exp '+' exp    { $$ = new AddExp(@$, $1, $3); }
 - 龙书 ch4.9；bison 手册前三章 + "Advanced Grammar Features"（合并规则 %nonassoc、中缀 %destructor）。
 - Doug Brown, "The Yacc Companion"（O'Reilly）；Levine, "flex & bison"（O'Reilly, 2012）。
 - 对比读物：Kotlin 官方博客 "Making our compiler error-tolerant" 与 "Parsing tricks" 系列（一手工程理由：为何 IDE 场景放弃表驱动）。
+
+## 自测问题
+1. 把 COOL 的 `factor : primary '(' actuals ')'` 规则翻译成 .y 的一条规则（含 AST 构造动作）。
+2. `%left '-' '+'` 与 `%right '='` 各自消解了什么冲突？若都漏写会怎样？
+3. flex+bison 握手依赖哪三个全局量？（答：yylex/yylval/yylloc 及其对应物）
+4. 为"IDE 输入中途"场景设计：给 projects/02 的 parseIf 加"缺少右括号时仍返回部分 AST"的恢复策略，写出伪码。
+5. 若让你把 projects/02 改成 bison 版：列出 .y 需要定义的全部 %token/%left/%type 清单项。

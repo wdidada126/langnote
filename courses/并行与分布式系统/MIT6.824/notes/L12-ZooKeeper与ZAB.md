@@ -69,7 +69,7 @@
 
 ## 7. 延伸阅读
 
-- *ZooKeeper: Distributed System Coordination Made Simple and Fast*（Queue 2011）——作者自述设计动机。
+- Fournier, *ZooKeeper: Distributed System Coordination Made Simple and Fast*（IEEE Computer 2014）——作者团队自述设计动机。
 - Castro & Liskov, *Zab: Some Technical Remarks* + Hermes 论文——ZAB 与共识的关系。
 - Curator Recipes（Java）：分布式锁/信号量/屏障的标准实现，对照亲手写一遍。
 - 本目录 notes/L05、L08、L10 与本讲互参；projects/p3 用内置 Raft 复刻 etcd 式核心。

@@ -74,4 +74,4 @@
 - *HighAvailability Web-Scale Transactions: The Extended Details*（Michael Baron）——
   commit-wait/2PC 细节最好的第三方讲解。
 - 对照精读 CockroachDB "Live and Consistent"（HLC 路线 vs TrueTime 路线）。
-- Malicevic & Zeller, *Using Logical Physical Clocks for Consistent Snapshots*（把 HLC 与分布式快照缝合，L07/L15 交叉）。
+- Malicevic & Zeller, *Using Logical Physical Clocks for Consistent Large-Scale Distributed Computations*（SOSP'19 short，把 HLC 与分布式快照缝合，L07/L15 交叉）。

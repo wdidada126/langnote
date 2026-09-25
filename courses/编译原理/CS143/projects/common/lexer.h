@@ -161,7 +161,7 @@ class Lexer {
   }
 
   Token readPunct(int line, int col) {
-    char c = src_, n = peek();
+    char c = cur(), n = peek();
     // Longest-match first: try all two-character operators, then one.
     if (c == '&' && n == '&') { advance(); advance(); return {Tok::AmpAmp, "&&", 0, line, col}; }
     if (c == '|' && n == '|') { advance(); advance(); return {Tok::PipePipe, "||", 0, line, col}; }

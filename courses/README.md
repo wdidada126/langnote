@@ -189,8 +189,22 @@ CMU 10-708、Columbia STAT 8201、U Toronto STA 4273、Stanford CS229M。
 
 | 批次 | 内容 | 状态 |
 |---|---|---|
-| 1 | 全 65 课骨架（README+TOC+论文/开源/项目规划） | 进行中 |
-| 2 | 核心课全量·第一批：CS61A、CS61B、6.006、CSAPP、DDCA、6.S081 | 待启动 |
-| 3 | 核心课全量·第二批：6.824、topdown、15-445、CS143、CS188、CS229、CS231n、GAMES101 | 待启动 |
-| 4 | 核心课配套项目代码 + 各课 build 脚本 + 聚合脚本 | 待启动 |
-| 5 | 集中编译验证（用户自行执行） | 待启动 |
+| 1 | 全 65 课骨架（README+TOC+论文/开源/项目规划） | ✅ 完成（2026-09-25） |
+| 2 | 核心课全量·第一批：CS61A、CS61B、6.006、CSAPP、DDCA、6.S081 | ✅ 完成（2026-09-25） |
+| 3 | 核心课全量·第二批：6.824、topdown、15-445、CS143、CS188、CS229、CS231n、GAMES101 | ✅ 完成（2026-09-25） |
+| 4 | 核心课配套项目代码 + 各课 build 脚本 + 聚合脚本 | ✅ 完成（本轮只写不编译） |
+| 5 | 集中编译验证（用户自行执行） | ⏳ 待执行 |
+
+## 集中编译（待用户执行）
+
+14 门核心课共 90+ 个配套项目，每个项目目录自带 `build.bat`/`build.sh`（或 `run.bat`/`run.sh`），顶层提供聚合脚本：
+
+- **Windows**：在 Developer Command Prompt（先 `vcvarsall`）下运行 `courses\build-all.bat`；可用 `build-all.bat "计算机系统基础\CSAPP"` 限定单课。
+- **Linux/macOS/Git-Bash**：`./courses/build-all.sh`；`--check` 模式只做 Python 语法检查，不触发 C/C++/Java/Verilog/Go 编译。
+
+工具链要求：MSVC（cl）或 gcc/g++、JDK 17（javac）、Go、Python 3、iverilog（DDCA 的 Verilog 项目）。各语言项目分布：C（CSAPP/6.S081）、C++17（15-445/CS143/GAMES101）、Java（CS61B）、Python（CS61A/6.006/CS188/CS229/CS231n/topdown）、Go（6.824）、Verilog（DDCA）。
+
+## 后续批次建议
+
+剩余 51 门骨架课的笔记可按主题分批推进：① 数学与电子基础（9 门，支撑 AI 线）；② 系统与 PL 进阶（CS110/N2T/CS61C/CS162/NJUOS/HITOS/6031/CS242 等）；③ 安全六门与编译三门（与核心课已互相链接）；④ AI 全家桶进阶（ML系统 6 门 + 深度生成模型 5 门 + ML进阶 4 门，接 LLM 热点）。
+

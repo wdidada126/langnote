@@ -11,7 +11,7 @@
 | csdiy 路径 | https://csdiy.wiki/数据结构与算法/CS61B/ （页面更新 2025-08-30） |
 | 最新期次 | spring2024（另有 fall2023、spring2023、spring2021、spring2018；sp2021 起对公众开放，Gradescope 邀请码如 MB7ZPY） |
 | 先修/语言/难度 | 先修 CS61A；语言 Java；难度 🌟🌟🌟；预计学时 60 小时 |
-| 状态 | 【CORE】骨架已建（本 README 含全章节目录），notes/papers/projects 正文由后续专人完成 |
+| 状态 | 全量（2026-09）：notes/ 23 篇覆盖 L1–L38 全部目录项；papers.md 经典+近年文献与开源映射；projects/ 9 个 JDK17 Java 项目（自测 main + 构建脚本） |
 
 ## 为什么学
 
@@ -107,3 +107,11 @@
 - 课程作业：每年略有不同（18 春季为 14 Lab + 10 Homework + 3 Project）
 - 社区资源汇总：PKUFlyingPig/CS61B、InsideEmpire/CS61B-PathwayToSuccess
 - 预计投入：60 小时（🌟🌟🌟），Project 3 Gitlet 通常另需 15–20 小时
+
+## 本目录学习材料（全量 2026-09）
+
+| 目录/文件 | 内容 |
+| --- | --- |
+| `notes/`（23 篇） | L1–L38 合并为 23 个中文笔记（文件名标注讲次范围）：实现要点+Java 片段、复杂度表、前后讲联系、跨课程联系（CS61A/6.006/CSAPP/DDCA/15-445）、开源应用（JDK/Lucene/RocksDB/Git）、自测题 |
+| `papers.md` | 经典论文 13 篇（红黑树/AVL/B 树/跳表/堆/并查集/一致性哈希/排序等）＋近五年（2021–2026）表＋知识点↔开源实现映射表 |
+| `projects/`（9 项） | JDK17 零依赖 Java 项目：dllist、hashmap、bst(AVL)、heap(TopK)、trie、graph(BFS/DFS/Dijkstra/Prim/Kruskal)、unionfind、sorts、minigit(GITLET 骨架)；各含自测 main、README、build.bat/sh；总表见 `projects/README.md` |

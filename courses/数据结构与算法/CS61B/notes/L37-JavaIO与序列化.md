@@ -53,3 +53,11 @@
 - Hug 笔记 "Java I/O"；JDK javadoc：`BufferedReader`、`ObjectOutputStream`（"Serialization Principles" 一节必读）。
 - 《CSAPP》10 章（System I/O）对照阅读；《Effective Java》Item 85–87（别用 Java 序列化、谨慎 serialVersionUID）。
 - OWASP 关于 Java 反序列化漏洞的描述（为什么本课只教概念、生产禁用）。
+
+## 7. 自测（合上笔记作答）
+
+1. `InputStream` 与 `Reader` 的分界线是什么？"UTF-8 中一个汉字的字节数"说明了什么？
+2. 为什么逐字节读文件慢 5 个数量级？缓冲把成本摊成了什么？（用 L17 语言回答。）
+3. `try (var in = ...)` 相比 finally-close 的两个优势（异常路径、逆序关闭）。
+4. Java 原生序列化如何处理共享/环？为什么生产系统改用 JSON/Protobuf？（契约 + 安全两条。）
+5. Gitlet 中 `git show <id>:<path>` 的读取链路：refs → commit → tree → blob，每一步是 L20/L37 的哪个概念？

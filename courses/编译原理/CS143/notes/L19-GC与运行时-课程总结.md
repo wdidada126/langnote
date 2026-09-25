@@ -51,3 +51,10 @@ inc/dec 伴随每条 MOVE/参数传递/赋值——编译器的"簿记税"。
 - 龙书 ch7.5；Jones, Hosking & Moss, "The Garbage Collection Handbook: The Art of Automatic Memory Management"（标准参考）。
 - Boehm & Weiser 1988 "Garbage collection in an uncooperative environment"（保守 GC 原文）；Go 官方博客 GC 系列（"Visualizing, simplifying, and uniting GC metrics" 等）；CPython GC 设计备忘（python-dev 存档，Mark Shannon）。
 - 并发标记正确性：Dijkstra On-line cycle detection 1978 → Yuasa 色变 1990 → Go/Shenandoah 工程实践（论文列表见 GC Handbook 第 10 章）。
+
+## 自测问题
+1. 给 `while(true){ new String(...) }`（无引用保存）：RC、保守标记、分代复制各如何回收？停顿画像是什么？
+2. 写出三色不变式被"无屏障赋值"破坏的具体交错序列（并发标记 + mutator 改引用）。
+3. COOL 为什么能保守？若做精确 GC，编译器必须为帧额外发射什么、在哪些点更新？（衔接 L11 的 CFI）
+4. Rust 无 GC 的代价与收益各是什么？`bumpalo` 适合什么形状的程序、泄漏如何兜底？
+5. 课程 19 讲里，哪三处"编译器义务"最终都由运行时元数据兑现？（提示：GC roots、CFI、typeID）

@@ -1,0 +1,30 @@
+// hello.minic — MiniC 旗舰示例：函数、bool、while、if、短路求值。
+// 预期语义输出（stage 05 运行结果）：
+//   6
+//   false
+//   30
+
+int gcd(int a, int b) {
+  while (b != 0) {
+    int t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+
+bool isEven(int n) { return n % 2 == 0; }
+
+int main() {
+  int g = gcd(48, 18);
+  print g;                 // 6
+  print isEven(17);        // false
+  int s = 0;
+  int i = 1;
+  while (i <= 10) {
+    if (isEven(i)) { s = s + i; }
+    i = i + 1;
+  }
+  print s;                 // 2 + 4 + 6 + 8 + 10 = 30
+  return 0;
+}

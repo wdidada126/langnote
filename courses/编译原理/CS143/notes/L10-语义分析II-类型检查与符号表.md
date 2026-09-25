@@ -55,3 +55,9 @@ lub 计算：先对齐深度再同步上移——类层次预处理 parent 链�
 - 龙书 ch6.1-6.3 全部例题 + ch5.6（hyphen 消歧：词法-语义接界的轶事级案例）。
 - COOL Manual "Static Semantics" 一节逐条对照 projects/03 的规则表。
 - Cardelli "Type Systems"（ACM CSUR 1997，短而全）；Pierce TAPL ch13-15（算法视角）。
+
+## 自测问题
+1. 给 COOL 类层次 `Object <- A <- B`、`Object <- C`：求 `lub(B, C)` 与 `lub(A, B)`。
+2. `let x : Int <- 1 in let x : Bool <- x < 2 in x fi fi` 的两次 x 绑定各遮蔽了什么？初值表达式里 x 指向谁？
+3. 设计符号表使"两遍法"支持互递归；若语言禁止前向引用（如 Rust 的 mod 内顺序无关），两遍还需要吗？
+4. 写一个"语法合法、类型检查通过、运行仍错"的 MiniC 程序（提示：除零、越界）。这说明静态检查的什么边界？

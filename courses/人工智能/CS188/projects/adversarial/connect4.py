@@ -5,7 +5,7 @@
 对应 notes/L05-对抗搜索-minimax与alpha-beta.md
 
 内容:
-  1) 深度 3-6 的节点评估数对比表: alpha-beta 剪枝省多少 (最佳着法序近似 b^(d/2));
+  1) 深度 3-5 的节点评估数对比表: alpha-beta 剪枝省多少 (最佳着法序近似 b^(d/2));
   2) alpha-beta 自博弈 vs 随机走子, 展示终盘;
   3) expectimax: 对手"均匀随机"(Pacman 随机鬼)时的期望搜索, 与 minimax 悲观假设对比.
 棋盘: 6 行 x 7 列, 列栈表示 (落子=append, 悔棋=pop). P1=X=MAX, P2=O=MIN/机会节点.
@@ -219,7 +219,7 @@ def demo_pruning_table():
     print("=" * 62)
     print("Part 1  minimax vs alpha-beta 评估节点数 (开局空盘, 对称性略)")
     print(f"{'depth':<8}{'minimax':<14}{'alpha-beta':<14}{'根值一致?':<10}")
-    for d in (3, 4, 5, 6):
+    for d in (3, 4, 5):   # depth=6 纯 minimax 在纯 python 下需数十秒, 可自行放开
         board = new_board()
         _, v1, n1 = best_move_minimax(board, d)
         _, v2, n2 = best_move_alpha_beta(board, d)

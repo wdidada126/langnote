@@ -116,37 +116,21 @@ class BPlusTree {
     return static_cast<Leaf*>(n);
   }
 
-  // Find parent + child index of a given node (teaching-grade: top-down search).
+  // Locate the immediate parent (Inner) of `target` and the child index.
+  // Returns {nullptr, 0} when target is the root.
   std::pair<Node*, size_t> find_parent_and_index(Node* target) const {
-    if (root_.get() == target) return {nullptr, 0};
-    Node* cur = root_.get();
-    while (cur && !cur->is_leaf()) {
-      Inner* in = static_cast<Inner*>(cur);
-      for (size_t i = 0; i < in->children.size(); i++)
-        if (in->children[i].get() == target) return {cur, i};
-      // descend toward target using keys is not enough; do DFS:
-      for (size_t i = 0; i < in->children.size(); i++) {
-        auto r = dfs_parent(in->children[i].get(), target, cur);
-        if (r.first) return r;
-      }
-      break;
-    }
-    return {nullptr, 0};
+    if (!root_ || root_.get() == target) return {nullptr, 0};
+    return dfs_parent(root_.get(), target);
   }
 
-  std::pair<Node*, size_t> dfs_parent(Node* child, Node* target, Node* fallback_parent) const {
-    if (child == target) return {fallback_parent, 0};
-    if (!child->is_leaf()) {
-      Inner* in = static_cast<Inner*>(child);
-      for (size_t i = 0; i < in->children.size(); i++) {
-        auto r = dfs_parent(in->children[i].get(), target, child);
-        if (r.first) {
-          // recompute the index of target within its parent
-          Inner* p = in;  // parent of target is `child` here when r.child==target
-          (void)p;
-          return {child, index_of_child(child, target)};
-        }
-      }
+  std::pair<Node*, size_t> dfs_parent(Node* cur, Node* target) const {
+    if (cur->is_leaf()) return {nullptr, 0};
+    Inner* in = static_cast<Inner*>(cur);
+    for (size_t i = 0; i < in->children.size(); i++)
+      if (in->children[i].get() == target) return {cur, i};
+    for (size_t i = 0; i < in->children.size(); i++) {
+      auto r = dfs_parent(in->children[i].get(), target);
+      if (r.first) return r;
     }
     return {nullptr, 0};
   }
@@ -157,8 +141,6 @@ class BPlusTree {
       if (in->children[i].get() == target) return i;
     return 0;
   }
-
-  void insert_into_parent(Leaf* /*not used*/, Node* left, int key, std::unique_ptr<Node> right);
 
   void split_leaf(Leaf* leaf, int max_keys) {
     int mid = leaf->keys.size() / 2;

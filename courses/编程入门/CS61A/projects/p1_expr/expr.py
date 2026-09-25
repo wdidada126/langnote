@@ -25,7 +25,7 @@ from rat import Rat
 TOKEN_RE = re.compile(r"""
     \s*(?:
         (?P<num>\d+(?:\.\d+)?)
-      | (?P<op>\*\*|//|<=|>=|==|!=|[+\-*/%()])
+      | (?P<op>\*\*|//|<=|>=|==|!=|[+\-*/%()<>])
       | (?P<name>[A-Za-z_][A-Za-z0-9_]*)
     )""", re.VERBOSE)
 

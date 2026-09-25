@@ -1,6 +1,6 @@
 # UCB CS61A：计算机程序的构造和解释（Structure and Interpretation of Computer Programs）
 
-> **【CORE 核心课程】** 本文件为完整版 README（含全章节目录）。`notes/`、`papers/`、`projects/` 目录已建为空，正文笔记由后续专人完成。
+> **【CORE 核心课程】** 本文件为完整版 README（含全章节目录）。状态：**全量（2026-09）**——`notes/` L01-L26 逐讲中文笔记、`papers.md` 文献与开源映射、`projects/` 六套可运行配套项目均已就位（见下文各表链接）。
 
 ## 一、课程信息
 
@@ -12,7 +12,7 @@
 | 教材 | 主教材 *Composing Programs*（官方电子书，作者 Chris Pritchard 等）；**中文译本**（composingprograms 中文翻译版）；进阶参考 SICP（Abelson & Sussman，MIT 6.001 原教材，有中译本《计算机程序的构造和解释》） |
 | csdiy 路径 | `编程入门/Python/CS61A`（csdiy.wiki） |
 | 最新期次 | 课程页面备份列 **spring2026**；作业与视频以 **fall2024** 为准（csdiy 推荐）；另备份 spring2022/fall2022/fall2020 |
-| 状态 | CORE 骨架：README 完成，正文待专人填充 |
+| 状态 | **全量（2026-09）**：README + L01-L26 笔记 + papers.md + 六套配套项目 |
 
 - 课程网站：官网 site 见 csdiy「课程网站」链接（学期站形如 `https://<term>.cs61a.org`；spring2026/fall2024 等有页面备份）
 - 课程视频：YouTube 合集（spring2024 / fall2022 / fall2020 全套公开）
@@ -36,33 +36,41 @@
   - → SICP / MIT 6.001、Stanford CS107、各编译原理课：解释器与元循环求值是共同核心；
   - ← Missing Semester：工程工具链（git/命令行）建议同步掌握以完成作业。
 
-## 四、最新年份（fall2024，学期制 13 周）讲义章节目录
+## 四、讲义目录（26 讲，每周 2 讲 × 13 周；按 spring2025/2026 稳定主题组织）
 
-> 讲次编号按每周 2 讲排列（L27 前后为复习/期末）。标题为中文骨架译名，精确表述以学期站 syllabus 为准（spring2026 为最新备份版，主题结构一致）。
+> 讲次编号 L01-L26 与 [notes/](notes/) 下笔记文件一一对应；官方学期站按 week 排列，主题结构一致。
 
-| 讲次 | 标题 | 阅读材料 |
-| --- | --- | --- |
-| L1 | 课程导论：什么是 CS；程序的构造与解释 | CP 第 1 章 §1.1；SICP §1.1 前言 |
-| L2 | 编程元素：表达式、求值与环境图 | CP §1.2（Elements of Programming） |
-| L3 | 函数抽象与高阶函数 I（函数作参数） | CP §1.3–1.4 |
-| L4 | 高阶函数 II（函数作返回值、currying、装饰器） | CP §1.6 |
-| L5 | 递归函数与调试 | CP §1.7；调试指南（官网 Articles） |
-| L6 | 树递归与增长阶（Order of Growth） | CP §1.7 树递归节；效率参考表 |
-| L7 | 序列与迭代抽象（list/tuple/range） | CP §2.2 Sequences；内置类型参考 |
-| L8 | 期中复习与练习（Midterm 1 review） | 历年 midterm 卷（官网 practice exams） |
-| L9 | 可变数据与链表（mutable data, linked lists） | CP §2.2/2.3 可变部分；P3 材料 |
-| L10 | 面向对象 I：类、实例、属性 | CP OOP 章（class 一节）；Objects 参考 |
-| L11 | 面向对象 II：继承与表示 | 官网 Week8 讲义（Inheritance） |
-| L12 | 链表、树与调度（links / trees & dispatch） | Week8–9 讲义；Linked Lists 文章 |
-| L13 | 效率、分解与数据实例（efficiency & decomposition） | Week9 讲义 |
-| L14 | 语言建模选读 + Midterm 2 复习 | Week10 讲义（LLM 选读） |
-| L15 | Scheme 语言入门与计算器（Calculator） | Week11 讲义；CP Ch.4（Scheme） |
-| L16 | 写解释器 I：evaluate/apply 循环 | CP Ch.4；P4 骨架说明 |
-| L17 | 写解释器 II：环境与特殊形式 | CP Ch.4 续 |
-| L18 | 元循环求值与语法抽象（Macros） | Week13 讲义（Macros）；CP Ch.4.4 |
-| L19 | 流与惰性求值（streams, lazy evaluation） | CP Streams 章；SICP §3.5 |
-| L20 | SQL 与关系查询 | 官网 SQL 资源；SQL Lab/Disc |
-| L21 | 期末复习与总结 | review 讲义 + practice final |
+| 讲次 | 标题 | 阅读材料 | 配套项目 |
+| --- | --- | --- | --- |
+| [L01](notes/L01.md) | 课程导论：程序的构造与解释；整数与布尔表达式 | CP §1.1；SICP 视频 1A | — |
+| [L02](notes/L02.md) | 编程元素：表达式求值、名字与环境模型 | CP §1.2 | [p1_expr](projects/p1_expr/README.md) |
+| [L03](notes/L03.md) | 函数抽象：def、参数、返回值与调试入门 | CP §1.3/§1.5；Debugging Guide | [p2_abstraction](projects/p2_abstraction/README.md) |
+| [L04](notes/L04.md) | 函数设计与控制流：条件、域假设与声明式风格 | CP §1.4-1.5 | p2 |
+| [L05](notes/L05.md) | 高阶函数 I：函数作为参数 | CP §1.6.1-1.6.2 | p2 |
+| [L06](notes/L06.md) | 高阶函数 II：返回值、currying、闭包与装饰器 | CP §1.6.3-1.6.4 | p2 |
+| [L07](notes/L07.md) | 递归函数：分治、树递归与递归调试 | CP §1.7；SICP §1.2.1 | p2/p3 |
+| [L08](notes/L08.md) | 两类过程：迭代与递归；增长阶（Big O） | SICP §1.2；CP §1.7.4 | p3 |
+| [L09](notes/L09.md) | 期中 1 复习：从函数到过程 | Practice Midterm 1 | 复盘 p1/p2 |
+| [L10](notes/L10.md) | 数据抽象：复合数据与抽象屏障 | CP §2.1；SICP §2.1 | [p3_data](projects/p3_data/README.md) |
+| [L11](notes/L11.md) | 序列：list/tuple/range 与高阶序列操作 | CP §2.2；itertools 教程 | p3 |
+| [L12](notes/L12.md) | 迭代器协议与生成器函数 | CP §2.2.4 | [p5_streams](projects/p5_streams/README.md) |
+| [L13](notes/L13.md) | 可变数据、对象与链表 | CP §2.3；Linked Lists 文章 | p3（linked.py） |
+| [L14](notes/L14.md) | 面向对象 I：类、实例、属性 | CP OOP 章；Objects 参考 | p3 |
+| [L15](notes/L15.md) | 面向对象 II：继承、MRO 与表示切换 | Week8 Inheritance 讲义 | p3 |
+| [L16](notes/L16.md) | 树与字典：数据结构的组织与效率 | CP §2.4；Efficiency 讲义 | p3（trees/odict/minisql） |
+| [L17](notes/L17.md) | 期中 2 复习 + 语言建模选读 | Practice Midterm 2；LLM 讲义 | 复盘 p3 |
+| [L18](notes/L18.md) | 排序与效率精化：选择、插入、归并 | Week9 讲义；CP §1.7 | p3 |
+| [L19](notes/L19.md) | Scheme 入门与计算器：语言的骨架 | CP §4.1；SICP §4.1 预览 | [p4_scheme](projects/p4_scheme/README.md) |
+| [L20](notes/L20.md) | 写解释器 I：词法、语法分析与 eval/apply 循环 | CP §4.1.2-4.1.3 | p4（utils.py） |
+| [L21](notes/L21.md) | 写解释器 II：环境、特殊形式与过程对象 | CP §4.2 | p4（scheme.py） |
+| [L22](notes/L22.md) | 元循环求值、尾递归与宏 | CP §4.4；SICP §4.1/§5.2 | p4（--test 尾递归/宏） |
+| [L23](notes/L23.md) | 流与惰性求值 | SICP §3.5 | p5_streams + p4 cons-stream |
+| [L24](notes/L24.md) | SQL 与关系查询 | 官网 SQL primer；SQL Lab | p3（minisql.py）对照 |
+| [L25](notes/L25.md) | 并发与多处理：线程、进程与 GIL | Concurrency 讲义 | [p6_concurrency](projects/p6_concurrency/README.md) |
+| [L26](notes/L26.md) | 期末复习与总结：抽象的三个高度 | Practice Final | 全项目回归 |
+
+- 文献与开源映射：[papers.md](papers.md)
+- 项目总览（讲次→项目→知识点 + 快速回归命令）：[projects/README.md](projects/README.md)
 
 ## 五、考核与配套结构（fall2024）
 

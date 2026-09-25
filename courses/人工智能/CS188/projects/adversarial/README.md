@@ -14,7 +14,7 @@
 | `best_move_alpha_beta` | α-β 剪枝，中心优先着法排序近似"最佳次序"；`assert` 与 minimax 根值一致 |
 | `expectimax` | P2 为均匀随机对手（Pacman RandomGhost 假设），机会节点取期望、不可剪枝 |
 
-输出：深度 3-6 的评估节点数对比表（α-β 节省量≈指数减半）、α-β vs 随机自博弈终盘、expectimax 与 minimax 同局面选点差异。
+输出：深度 3-5 的评估节点数对比表（α-β 节省量≈指数减半；代码里放开 depth=6 需数十秒，属预期现象）、α-β vs 随机自博弈终盘、expectimax 与 minimax 同局面选点差异。
 
 ## 运行方式
 
@@ -23,7 +23,7 @@ cd projects/adversarial
 python3 connect4.py     # 或 ./run.sh / run.bat（含 py_compile 自检）
 ```
 
-纯标准库。depth=6 的纯 minimax 约需十几秒，属预期现象（b^d 爆炸本身即教学点）。
+纯标准库。depth=6 的纯 minimax 约需十几秒以上，属预期现象（b^d 爆炸本身即教学点）。
 
 ## 思考题
 

@@ -57,3 +57,9 @@ LL(1) 分析表：`M[A, a] = A -> α iff a ∈ FIRST(α)`；ε 产生式填 `FOL
 - 龙书 ch4.3.2-4.4（含 LL(1) 表构造全套例题）；HW2 的 FIRST/FOLLOW 计算。
 - Parr "LL(*)" 论文（自适应前瞻）；Pratt 1973 算符优先递归下降原文。
 - Medeiros "Lost in Translation"（递归下降错误恢复的坑）。
+
+## 自测问题
+1. 手算 MiniC 语句层文法的 FIRST/FOLLOW，证明它是 LL(1)（或用反例说明需 2 前瞻）。
+2. `A -> A a | b` 消左递归后是否 LL(1)？给出分析表。
+3. 为什么 `if (x) foo(); else bar();` 的悬挂 else 在递归下降里不存在、在 LR 里靠默认移进？
+4. 给 projects/02 加 `do-while`：改哪几行？会引入新的 lookahead 需求吗？

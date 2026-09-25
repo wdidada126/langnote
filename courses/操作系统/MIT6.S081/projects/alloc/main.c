@@ -110,18 +110,20 @@ static void frag_demo(void)
     for (i = 0; i < 64; i++) { keep[i] = ff_alloc(&FF, small); }
     for (i = 0; i < 64; i += 2) ff_free(&FF, keep[i]);
     tmp = ff_alloc(&FF, 32 * 1024);
-    printf("firstfit: largest-free=%zuB, alloc 32KB %s\n",
-           ff_largest_free(&FF), tmp ? "OK" : "FAIL(外碎片)");
+    printf("firstfit: largest-free=%zuB, alloc 32KB %s（棋盘空洞=外碎片）\n",
+           ff_largest_free(&FF), tmp ? "OK" : "FAIL");
     if (tmp) ff_free(&FF, tmp);
     for (i = 0; i < 64; i++) { keep[i] = bd_alloc(&BD, small); }
     for (i = 0; i < 64; i += 2) bd_free(&BD, keep[i]);
-    printf("buddy   : free units in order<=14: o10=%d, 总空闲=%.0fKB\n",
-           bd_free_units(&BD, 10), (double)HEAP_BYTES / 1024.0);
     tmp = bd_alloc(&BD, 32 * 1024);
-    printf("buddy   : alloc 32KB %s（合并伙伴后几乎总能成功）\n",
+    printf("buddy  : alloc 32KB %s（交错占用同样阻断合并——这正是 slab 按对象分桶的动机）\n",
            tmp ? "OK" : "FAIL");
     if (tmp) bd_free(&BD, tmp);
-    for (i = 0; i < 64; i++) { bd_free(&BD, keep[i]); }
+    for (i = 1; i < 64; i += 2) bd_free(&BD, keep[i]); /* 全清：伙伴一路合并 */
+    tmp = bd_alloc(&BD, 32 * 1024);
+    printf("buddy  : 全部释放后 alloc 32KB %s（order 一路 merge 回升，外碎片可自愈）\n",
+           tmp ? "OK" : "FAIL");
+    if (tmp) bd_free(&BD, tmp);
     bd_report(&BD, "after-frag");
     puts("");
 }

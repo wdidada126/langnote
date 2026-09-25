@@ -57,3 +57,9 @@ Thompson NFA 状态数 ≈ 3；子集构造后 DFA：q0 --letter--> q1 --letter|
 - 龙书 ch3.2-3.6（词法分析器生成器原理）；Hopcroft Ullman 自动机教材 ch3。
 - Thompson 1968 "Programming techniques: Regular expression search algorithm"（回溯式，对比 DFA）。
 - RE2 官方文档"Why no backreferences"——正则能力边界的一手论述。
+
+## 自测问题
+1. 证明 `letter(letter|digit)*` 与 `letter[letter|digit]*` 在 COOL 约定下不等价（提示：下划线）。
+2. 给 `(a|b)*abb` 做子集构造，写出 DFA（5 状态以内可完成）。
+3. 为什么 `3. .5` 输入下最长匹配与首匹配结果不同？写出两种策略的 token 序列。
+4. 嵌套注释、括号配对、`<html>` 标签匹配——哪些能 DFA、哪些必须下推、哪些连 CFG 都不够？
