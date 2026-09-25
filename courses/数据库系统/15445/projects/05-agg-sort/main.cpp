@@ -56,7 +56,7 @@ class Sort : public Executor {
     pos_ = 0;
   }
   std::optional<Tuple> Next() override {
-    if (pos_ >= (int)buffer_.size()) return std::nullopt;
+    if (pos_ >= buffer_.size()) return std::nullopt;
     return buffer_[pos_++];
   }
  private:
@@ -157,7 +157,7 @@ int main() {
     CHECK(by[10].cols.at("sum") == 175, "dept 10 sum = 100+50+25");
     CHECK(by[10].cols.at("cnt") == 3, "dept 10 count = 3");
     CHECK(by[10].cols.at("avg") == 58, "dept 10 int avg = 175/3");
-    CHECK(by[20].cols.at("max") == 300 && by[20].cols.at("min") == 200, "dept 20 min/max");
+    CHECK(by[20].cols.at("mx") == 300 && by[20].cols.at("mn") == 200, "dept 20 min/max");
     CHECK(by[30].cols.at("sum") == 70, "dept 30 sum");
   }
 

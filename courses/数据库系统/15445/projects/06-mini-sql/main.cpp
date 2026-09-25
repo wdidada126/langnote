@@ -205,7 +205,8 @@ class OrderBy : public Executor {
     pos_ = 0;
   }
   std::optional<Tuple> Next() override {
-    if (pos_ >= buf_.size()) return std::nullopt; return buf_[pos_++];
+    if (pos_ >= buf_.size()) return std::nullopt;
+    return buf_[pos_++];
   }
  private:
   std::unique_ptr<Executor> c_; std::string col_; bool desc_; std::vector<Tuple> buf_; size_t pos_ = 0;
@@ -257,12 +258,14 @@ int main() {
   printf("=== 06 mini-sql parser + executor ===\n");
   std::map<std::string, Table> db;
   Table emp{"emp", {"id","name","dept","salary"}, {}};
+  // 'name' is stored as a numeric placeholder so every row covers the full schema
+  // (the row model is numeric); salary for id 2 is 7500.
   emp.rows = {
-    {{"id",1},{"dept",10},{"salary",5000}},
-    {{"id",2},{"dept",20},{"salary",8000}},
-    {{"id",3},{"dept",10},{"salary",6000}},
-    {{"id",4},{"dept",30},{"salary",9000}},
-    {{"id",5},{"dept",20},{"salary",7000}},
+    {{"id",1},{"name",0},{"dept",10},{"salary",5000}},
+    {{"id",2},{"name",0},{"dept",20},{"salary",7500}},
+    {{"id",3},{"name",0},{"dept",10},{"salary",6000}},
+    {{"id",4},{"name",0},{"dept",30},{"salary",9000}},
+    {{"id",5},{"name",0},{"dept",20},{"salary",7000}},
   };
   db["emp"] = emp;
   Planner pl(&db);

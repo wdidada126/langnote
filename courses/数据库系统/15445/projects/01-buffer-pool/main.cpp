@@ -31,7 +31,7 @@ class DiskManager {
  public:
   std::optional<Page> Read(int pid) const {
     auto it = pages_.find(pid);
-    if (it == pages_) return std::nullopt;
+    if (it == pages_.end()) return std::nullopt;
     return it->second;
   }
   void Write(int pid, const Page& p) { pages_[pid] = p; writes_++; }
