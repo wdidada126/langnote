@@ -1,0 +1,38 @@
+name: courses-build
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'courses/**'
+      - '.github/workflows/courses-build.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build course projects (ubuntu-latest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchains
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3 default-jdk golang-go iverilog
+
+      - name: Build all
+        run: bash courses/build-all-ubuntu.sh
+
+      - name: Upload build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: courses/.build-logs/
+          retention-days: 7
+          if-no-files-found: ignore
