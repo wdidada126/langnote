@@ -21,6 +21,7 @@ typedef long ssize_win;
 #define O_BINARY_F                     O_BINARY
 #else
 #include <unistd.h>
+#include <fcntl.h>        /* POSIX：O_RDONLY/O_WRONLY/O_CREAT/O_TRUNC 定义在这里 */
 #include <sys/types.h>
 #include <sys/stat.h>
 #define OPEN(path, flags, mode)        open((path), (flags), (mode))
