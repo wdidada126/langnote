@@ -1111,3 +1111,57 @@ Redis 专项
 - “Database Systems: Achievements and Opportunities”（Lagunita Report, 1990）：对数据库系统研究方向的重要反思，提出了“改革”与“综合”的研究议程。
 
 如果你有更具体的方向（比如想深入某个特定数据库、或某个子领域如查询优化、事务处理），可以告诉我，我再帮你缩小范围。
+
+---
+
+## 笔记索引：book/ 与 paper/ 子文件夹（2026-09 补记）
+
+上面提到的书与论文已全部落成子文件夹笔记。书籍为分章精读（每章开头有"核心概念速览（中英对照）"，总览含全书概念总表）；论文为单篇精读（含来源/DOI 考证、术语表、核实记录）。
+
+### book/（13 本）
+
+第一批（湖仓/表格式）：
+
+- `book/分布式数据库入门进阶与实战/`（14 篇）
+- `book/湖仓架构大规模数据平台的设计和实现/`（9 篇）
+- `book/Delta_Lake_Definitive_Guide/`（13 篇）
+- `book/Apache_Hudi_Definitive_Guide/`（11 篇）
+- `book/Apache_Iceberg活用入門/`（10 篇，⚠️ 推定目录已声明）
+- `book/Engineering_Lakehouses_with_Open_Table_Formats/`（13 篇）
+- `book/Use_Iceberg_with_Spark/`（7 篇）
+
+第二批（引擎内部/理论/流式）：
+
+- `book/Database_Internals/`（12 篇；Petrov, O'Reilly 2019；真实 14 章合并分篇，出版版无查询优化专章已如实转介）
+- `book/Readings_in_Database_Systems/`（11 篇；Red Book 5th，Stonebraker & **Hellerstein** 编；12 章真实目录三源互证，29 篇 Readings 清单在总览）
+- `book/SQL_and_Relational_Theory/`（14 篇；C.J. Date 第 3 版；章题为 ⚠️ 主题重构，关系理论/NULL/3VL/AND-OR-NOT 主轴）
+- `book/The_Data_Lakehouse/`（13 篇；Inmon/Rapien/Bartelt，人民邮电 2024 中译《数据湖仓》，**ISBN 9787115638885**——补前文缺失条目，作者名"Raoien"系讹误应为 **Dave Rapien**；另辨析同名 Dale McDermott 书与清华社《构建数据湖仓》均非本书）
+- `book/Apache_Paimon_Streaming_Lakehouse/`（13 篇；⚠️ 经查**无正式出版 Paimon 专著**，本目录为官方文档与源码精读，考证记录在 00 总览）
+- `book/Stream_Processing_with_Apache_Flink/`（15 篇；Hueske & Kalavri；即 `book/基于Apache_Flink的流处理.md` 书目大纲的深度重写版）
+
+### paper/（24 篇）
+
+- Codd 1970 关系模型 → `paper/doi_10.1145_362384.362685/`
+- Gray 1981 事务概念 → `paper/doi_1981_gray_transaction_concept/`
+- System R 1981 → `paper/doi_10.1145_358769.358784/`（DOI 勘误：358771 未注册；首作者实为 Chamberlin）
+- AlphaSort 1994 → `paper/doi_10.1145_191839.191884/`
+- LSM-Tree 1996 → `paper/doi_10.1007_s002360050048/`（Acta Inf. 33(4)，卷号 30 系误记）
+- GFS 2003 → `paper/doi_10.1145_945445.945450/`
+- Dalvi & Suciu 2004 概率数据库 → `paper/doi_10.1016_B978-012088469-8.50076-0/`
+- MapReduce 2004 → `paper/mapreduce_2004_osdi/`（无正式 DOI，CACM 2008 重刊 10.1145/1327452.1327492 为旁证）
+- C-Store 2005 → `paper/cstore_2005_vldb/`（无正式 DOI；六件套术语出自 ICDE 姊妹篇，已就地澄清）
+- Bigtable 2006 → `paper/bigtable_2006_osdi/`（OSDI 版无 DOI；TOCS 2008 期刊版 10.1145/1365815.1365816）
+- Dynamo 2007 → `paper/doi_10.1145_1294261.1294281/`
+- Neumann 2011 Morsel 并行 → `paper/doi_10.14778_2002938.2002940/`
+- Spanner 2012 → `paper/spanner_2012_osdi/`（OSDI 版无 DOI；TOCS 2013 期刊版 10.1145/2491245；页码裁定 251–264）
+- Calvin 2012 → `paper/doi_10.1145_2213836.2213838/`（实为 **EuroSys'12**，"SOSP 2011"系误记；ACM 容器元数据亦错挂 SIGMOD'12，已三重否证）
+- RDD 2012 → `paper/rdd_2012_nsdi/`（正式版副标题为 In-Memory Cluster Computing）
+- RocksDB 2013 → `paper/rocksdb_2013_ieee_deb/`（无 DOI，机制锚定官方文档与 TOS'21 续篇 10.1145/3483840）
+- Dremel 2010 → `paper/doi_10.14778_1920841.1920886/`
+- Snowflake 2016 → `paper/doi_10.1145_2882903.2903741/`
+- Aurora 2017 → `paper/doi_10.1145_3035918.3056101/`
+- Socrates 2019 → `paper/doi_10.1145_3299869.3314047/`（DOI 勘误：3319847 不存在；存储是 Windows Azure Storage 非"盘古"）
+- LeanStore 2018 → `paper/doi_10.1109_ICDE.2018.00026/`（DOI 勘误：00041 系二手书单错链，指向 crowdsourcing 论文）
+- Delta Lake 2020 → `paper/doi_10.14778_3415478.3415560/`（PVLDB 13(12):3411–3424）
+- Lakehouse 2021 → `paper/lakehouse_2021_armbrust_databricks/`（CIDR'21 无 DOI；arXiv:2010.09846 是物理论文混淆项，一手来源为 cidrdb.org PDF）
+- Lagunita 1990 → `paper/lagunita_1990_stonebraker_lynch/`（前文"架构反思"条目即此：原文无 DOI；一手文本为 Stanford 存的 NSF 工作坊报告 PostScript，谱系含 1991 CACM *Achievements and Opportunities*（Silberschatz/Stonebraker/Ullman, 10.1145/125223.125272）三层辨析）
