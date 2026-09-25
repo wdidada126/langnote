@@ -286,11 +286,12 @@ int main(int argc, char** argv) {
     for (int y = 0; y < W; ++y) {
         for (int x = 0; x < W; ++x) {
             size_t i = (size_t(y) * W + x) * 3;
+            size_t j = size_t(x) * 3;  // row 只有一行宽，须用行内偏移（否则越界）
             for (int c = 0; c < 3; ++c) {
                 float v = img[i + c];
                 v = v / (1 + v);                              // Reinhard 色调映射（L13）
                 v = std::pow(std::min(1.f, std::max(0.f, v)), 1 / 2.2f);  // gamma（L13）
-                row[i + c] = uint8_t(v * 255 + 0.5f);
+                row[j + c] = uint8_t(v * 255 + 0.5f);
             }
         }
         std::fwrite(row.data(), 1, row.size(), fp);

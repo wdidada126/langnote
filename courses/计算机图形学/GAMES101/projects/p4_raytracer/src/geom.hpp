@@ -25,6 +25,7 @@ struct Vec3 {
     Vec3 operator+(const Vec3& o) const { return {x + o.x, y + o.y, z + o.z}; }
     Vec3 operator-(const Vec3& o) const { return {x - o.x, y - o.y, z - o.z}; }
     Vec3 operator*(float s) const { return {x * s, y * s, z * s}; }
+    Vec3 operator*(const Vec3& o) const { return {x * o.x, y * o.y, z * o.z}; }  // 分量积（Hadamard）
     Vec3 operator/(float s) const { return {x / s, y / s, z / s}; }
     Vec3 operator-() const { return {-x, -y, -z}; }
     Vec3& operator+=(const Vec3& o) { x += o.x; y += o.y; z += o.z; return *this; }
@@ -40,6 +41,7 @@ struct Vec3 {
     static Vec3 lerp(const Vec3& a, const Vec3& b, float t) { return a * (1 - t) + b * t; }
 };
 inline Vec3 operator*(float s, const Vec3& v) { return v * s; }
+inline Vec3 operator+(float s, const Vec3& v) { return {v.x + s, v.y + s, v.z + s}; }
 
 struct Vec4 {
     float x = 0.f, y = 0.f, z = 0.f, w = 0.f;

@@ -12,9 +12,9 @@ module imem #(
     output wire [31:0] rdata
 );
     reg [31:0] mem [0:WORDS-1];
+    integer i;   // Verilog-2005：声明须放模块级（initial 无名块内不允许变量声明）
 
     initial begin
-        integer i;
         for (i = 0; i < WORDS; i = i + 1) mem[i] = 32'h0000_0013; // nop: addi x0,x0,0
         $readmemh(FILE, mem);
     end

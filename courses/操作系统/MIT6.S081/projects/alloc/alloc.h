@@ -42,6 +42,8 @@ typedef struct Buddy {
     int   *free_next, *free_prev;         /* 空闲链节点数组（按块索引） */
     long   pages_requested;               /* 请求字节折算 unit 总数 */
     long   pages_consumed;                /* 实际上盘 unit 总数（含凑整） */
+    /* 统计：alloc/free/fail 次数与 split/merge 次数（外碎片≈0 的代价观测） */
+    long   n_alloc, n_free, n_fail, n_split, n_merge;
 } Buddy;
 
 int   bd_init(Buddy *b, void *mem, size_t unit, int maxorder);

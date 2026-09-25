@@ -39,8 +39,11 @@ module tb_p04;
         // 流:   1 0 1 1 0 1 1 0 0 1 0 1 1
         // hit:  0 0 0 1 0 0 1 0 0 0 0 0 1   (重叠式：第 3、6、12 拍)
         begin : seq_test
-            reg [12:0] bits  = 13'b1011011001011;      // bit12 先发
-            reg [12:0] expct = 13'b0001001000001;
+            // Verilog-2005：块内声明不允许带初始化，先声明再顺序赋值
+            reg [12:0] bits;
+            reg [12:0] expct;
+            bits  = 13'b1011011001011;                   // bit12 先发
+            expct = 13'b0001001000001;
             for (n = 0; n < 13; n = n + 1) begin
                 @(negedge clk);
                 din = bits[12-n];      // 负沿送数：本拍 Mealy 输出由(旧状态,新输入)决定

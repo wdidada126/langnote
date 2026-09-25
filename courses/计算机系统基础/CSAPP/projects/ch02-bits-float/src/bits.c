@@ -58,9 +58,10 @@ unsigned float_neg(unsigned uf)
 
 unsigned float_abs(unsigned uf)
 {
-    if (uf > 0x7F800000u)                    /* 两个 NaN 区间都保持 */
+    unsigned mag = uf & 0x7FFFFFFFu;             /* 清符号位（bit31），保留数值位 */
+    if (mag > 0x7F800000u)                       /* 只看数值位判 NaN，两个 NaN 区间都保持 */
         return uf;
-    return uf & 0x7FFFFFFFu;
+    return mag;
 }
 
 /* uf * 2：

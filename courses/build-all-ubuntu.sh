@@ -63,7 +63,7 @@ for proj in "$ROOT"/*/*/projects/* "$ROOT"/*/*/*/projects/* "$ROOT"/*/*/*/*/proj
 
   # 按语言自动识别
   if compgen -G "$proj/*.py" >/dev/null; then
-    run "$proj" python py_compile python3 -m compileall -q "$proj"
+    run "$proj" "python py_compile" python3 -m compileall -q "$proj"
   elif compgen -G "$proj/*.go" >/dev/null || [ -f "$proj/go.mod" ]; then
     command -v go >/dev/null && run "$proj" go go build ./... || SKIP=$((SKIP+1))
   elif compgen -G "$proj/*.java" >/dev/null; then

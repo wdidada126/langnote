@@ -285,25 +285,25 @@ class Parser {
       case Tok::Num: {
         advance();
         auto n = std::make_unique<NumExpr>(t.value);
-        n->loc = t.loc;
+        n->loc.line = t.line; n->loc.col = t.col;
         return n;
       }
       case Tok::TrueKw: case Tok::FalseKw: {
         bool v = (t.kind == Tok::TrueKw);
         advance();
         auto b = std::make_unique<BoolExpr>(v);
-        b->loc = t.loc;
+        b->loc.line = t.line; b->loc.col = t.col;
         return b;
       }
       case Tok::Ident: {
         advance();
         if (!check(Tok::LParen)) {
           auto v = std::make_unique<VarExpr>(t.text);
-          v->loc = t.loc;
+          v->loc.line = t.line; v->loc.col = t.col;
           return v;
         }
         auto c = std::make_unique<CallExpr>();
-        c->loc = t.loc;
+        c->loc.line = t.line; c->loc.col = t.col;
         c->callee = t.text;
         advance();                       // '('
         if (!check(Tok::RParen)) {
@@ -325,6 +325,11 @@ class Parser {
         throw Loc{};
     }
   }
+
+  // ---------------- state ----------------
+  std::vector<Token> toks_;              // 词法分析产出的 token 流
+  size_t idx_ = 0;                       // 当前读取位置
+  std::vector<std::string> errors_;      // panic 模式收集的错误
 };
 
 }  // namespace minic

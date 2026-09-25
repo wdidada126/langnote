@@ -119,7 +119,7 @@ static TlbEnt *tlb_find(unsigned int vpn)
 
 static void tlb_fill(unsigned int vpn, unsigned int pa, unsigned int perm)
 {
-    TlbEnt *e = &tlb[vpn % TLN_fix: 16];
+    TlbEnt *e = &tlb[vpn % TLB_N];
     (void)e; (void)vpn; (void)pa; (void)perm;
 }
 

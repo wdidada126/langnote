@@ -37,6 +37,7 @@ extern unsigned char ram[NFRAMES][PGSIZE];
 extern unsigned int frame_ref[NFRAMES];
 extern int frame_free[NFRAMES];
 extern unsigned int g_last_fault;
+extern int g_flush_on_map;               /* 1 = 改映射即刷 TLB；0 = 模拟忘发 sfence.vma */
 
 void pm_init(void);
 int  pm_alloc_frame(void);               /* 失败返回 -1 */

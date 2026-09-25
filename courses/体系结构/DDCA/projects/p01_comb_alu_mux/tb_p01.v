@@ -7,6 +7,9 @@
 
 module tb_p01;
     integer errors = 0;
+    // 循环变量必须是 32 位 integer：若直接用窄位宽 reg 计数（如 1-bit s、4-bit aa），
+    // 末端 +1 会回绕成 0，`<= 上界` 恒真 → vvp 死循环不退出。
+    integer si, seli, eni, addri, fi, ai, bi;
 
     // ---- mux2 / mux4 ----
     reg  [7:0] d0, d1;
@@ -38,7 +41,8 @@ module tb_p01;
     initial begin
         // 1) mux2：8 位数据抽样 + 双选择值
         d0 = 8'hA5; d1 = 8'h3C;
-        for (s = 0; s <= 1; s = s + 1) begin
+        for (si = 0; si <= 1; si = si + 1) begin
+            s = si;
             #1;
             if (y2 !== (s ? d1 : d0)) begin
                 errors = errors + 1;
@@ -48,7 +52,8 @@ module tb_p01;
 
         // 2) mux4：4 个选择值
         dd[0] = 8'h11; dd[1] = 8'h22; dd[2] = 8'h33; dd[3] = 8'h44;
-        for (sel2 = 0; sel2 <= 3; sel2 = sel2 + 1) begin
+        for (seli = 0; seli <= 3; seli = seli + 1) begin
+            sel2 = seli;
             #1;
             if (y4 !== dd[sel2]) begin
                 errors = errors + 1;
@@ -57,8 +62,9 @@ module tb_p01;
         end
 
         // 3) decoder：4 地址 × 2 使能 = 8 向量穷举
-        for (en = 0; en <= 1; en = en + 1)
-            for (addr = 0; addr <= 3; addr = addr + 1) begin
+        for (eni = 0; eni <= 1; eni = eni + 1)
+            for (addri = 0; addri <= 3; addri = addri + 1) begin
+                en = eni; addr = addri;
                 #1;
                 if (sel !== (en ? (4'b1 << addr) : 4'b0)) begin
                     errors = errors + 1;
@@ -67,9 +73,10 @@ module tb_p01;
             end
 
         // 4) ALU：穷举 16×16×8 = 2048 向量，对照行为级期望
-        for (f = 0; f <= 7; f = f + 1)
-            for (aa = 0; aa <= 15; aa = aa + 1)
-                for (bb = 0; bb <= 15; bb = bb + 1) begin
+        for (fi = 0; fi <= 7; fi = fi + 1)
+            for (ai = 0; ai <= 15; ai = ai + 1)
+                for (bi = 0; bi <= 15; bi = bi + 1) begin
+                    f = fi; aa = ai; bb = bi;
                     #0.1;
                     case (f)
                         3'b000:  exp = aa + bb;

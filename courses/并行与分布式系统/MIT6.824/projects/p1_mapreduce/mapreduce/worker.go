@@ -126,11 +126,11 @@ func (w *Worker) tryMapTask() bool {
 // tryReduceTask 领取并执行一个 reduce 任务（仅当全部 map 完成后 master 才派发）。
 func (w *Worker) tryReduceTask() bool {
 	var redID int
-	var outName string
 	ok := false
 	err := Call(w.Client, func(t interface{}) {
 		m := t.(*Master)
-		redID, outName, ok = m.acquireReduceTask(w.ID)
+		// 输出路径由 finalOutputFile(Job, redID) 本地推导，无需回传 outName
+		redID, _, ok = m.acquireReduceTask(w.ID)
 	})
 	if err != nil || !ok {
 		return false
