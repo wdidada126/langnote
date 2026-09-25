@@ -1,0 +1,10 @@
+# 保证 shell 脚本在任何平台签出均为 LF（Ubuntu 直接可执行）
+*.sh text eol=lf
+*.bat text eol=crlf
+*.py  text eol=lf
+*.java text
+*.c text
+*.cpp text
+*.v text
+*.go  text eol=lf
+*.md  text
