@@ -1,0 +1,8 @@
+.build-logs/
+__pycache__/
+*.pyc
+out/
+out_bin
+out_sim
+*.o
+*.class

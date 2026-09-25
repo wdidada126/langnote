@@ -201,6 +201,7 @@ CMU 10-708、Columbia STAT 8201、U Toronto STA 4273、Stanford CS229M。
 
 - **Windows**：在 Developer Command Prompt（先 `vcvarsall`）下运行 `courses\build-all.bat`；可用 `build-all.bat "计算机系统基础\CSAPP"` 限定单课。
 - **Linux/macOS/Git-Bash**：`./courses/build-all.sh`；`--check` 模式只做 Python 语法检查，不触发 C/C++/Java/Verilog/Go 编译。
+- **Ubuntu 24.04+ 一键版**：`./courses/build-all-ubuntu.sh --deps`（apt 自举 build-essential/python3/default-jdk/golang/iverilog 后全量编译）；支持 `--check`（仅语法检查）与单课路径参数，日志在 `courses/.build-logs/`。
 
 工具链要求：MSVC（cl）或 gcc/g++、JDK 17（javac）、Go、Python 3、iverilog（DDCA 的 Verilog 项目）。各语言项目分布：C（CSAPP/6.S081）、C++17（15-445/CS143/GAMES101）、Java（CS61B）、Python（CS61A/6.006/CS188/CS229/CS231n/topdown）、Go（6.824）、Verilog（DDCA）。
 
