@@ -34,5 +34,6 @@ jobs:
         with:
           name: build-logs
           path: courses/.build-logs/
+          include-hidden-files: true   # .build-logs 以点开头，默认会被跳过
           retention-days: 7
           if-no-files-found: ignore
