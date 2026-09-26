@@ -1,4 +1,6 @@
 # glibc
+https://github.com/edidada/malloc-jitter-lab
+Glibc 的 malloc 实现基于 ptmalloc2，是为通用吞吐量设计的，而非实时确定性。它的内部机制在触发存储操作时，可能产生你观察到的尖刺
 
 在Ubuntu系统中，查看glibc（GNU C Library）的版本信息可以通过终端使用命令行工具完成。glibc是Linux系统中C语言的标准库，几乎所有的Linux系统都会用到它。下面是一些常用的方法：
 
@@ -1634,8 +1636,8 @@ git clone https://github.com/bminor/glibc.git
 
 ```shell
 
-*** These critical programs are missing or too old: make compiler
-*** Check the INSTALL file for required versions.
+* These critical programs are missing or too old: make compiler
+* Check the INSTALL file for required versions.
 
 ```
 
