@@ -92,6 +92,28 @@ func cancel(orderID, amount):
 | **空回滚** | Try 请求丢失，TM 超时后直接发 Cancel | Cancel 时若无 Try 记录，**插入一条回滚记录**并返回成功 |
 | **防悬挂** | Cancel 先到（空回滚），Try 请求随后到达 | Try 时发现已有回滚记录，**直接返回失败**不再预留 |
 
+### 补充：XA 的恢复状态机（TM 视角）
+
+```
+教学示意，不参与构建
+// TM 必须自己持久化「全局事务日志」，否则崩溃后无法决策
+// 状态机：
+//   (1) 写全局事务记录 (state=begin, 分支列表)
+//   (2) 向所有 RM 发 xa_prepare
+//   (3) 若全部 prepare 成功 -> **先把 state=commit 落盘** -> 再发 xa_commit
+//      若任一失败   -> 先把 state=rollback 落盘 -> 再发 xa_rollback
+// 关键顺序：先落盘决定，再发指令。
+//   若先发指令后落盘，TM 崩溃时无法区分「发了但还是该回滚」与「该提交」
+// 恢复线程：
+//   for each 未结束的全局事务:
+//       if state == commit  : 重试 xa_commit（幂等）
+//       if state == rollback: 重试 xa_rollback（幂等）
+//       if state == begin   : 只能回滚（还没做过决定）
+```
+
+这段是本书第 9 章没有展开、但**任何 2PC 实现都躲不掉**的部分。
+它也是「2PC 是原子提交而非共识」的直观证据：系统的命运系于**单点 TM 的日志**。
+
 ### 什么时候用哪个
 
 | 维度 | XA / 2PC | TCC | SAGA |
