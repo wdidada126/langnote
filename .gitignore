@@ -6,4 +6,5 @@
 *.iml
 .obsidian
 elasticsearch/elasticsearch-7.17.13-javadoc/
-.workbuddy
+.workbuddy/
+.wb_tmp/
