@@ -68,6 +68,28 @@ Couchbase Server = **一个带复制与再平衡的、可持久化的、按 key 
 - 「键怎么选」的所有工程后果 → [06-数据建模与键空间设计.md](06-数据建模与键空间设计.md)
 - 多活下的 value 收敛 → [07-跨数据中心复制与多活.md](07-跨数据中心复制与多活.md)
 
+## 5b. 文档体积与访问模式的工程后果（⚠️ 转述 + 🔧 类比直觉）
+
+- **小文档（<1KB）**：内嵌与引用差异可忽略，序列化/反序列化成本远低于网络往返；此时选内嵌的唯一理由是「减少键数量、简化键空间」。
+- **中等文档（1–10KB）**：内嵌开始体现「一次 IO 拿全聚合」的收益，但驱逐后重新加载的代价也随体积线性增长（⚠️ 转述通用工程经验）。
+- **大文档（>100KB）**：接近 20MiB 上限时，序列化成本与网络传输均成为瓶颈；子文档 API（`lookupIn/mutateIn`）的价值在此区间最大（✅ 见 [03-键值操作与并发控制.md](03-键值操作与并发控制.md) 第 6 节）。
+- 🔧 类比（非 Couchbase 行为）：SQLite 中 `json_extract` 对 100KB JSON 文档的单次提取在本机约 0.1ms 量级，但对 1MB 文档则升至 1ms+——体积与访问成本的线性关系在两边同构。
+- **反模式登记**：把「无 schema」理解为「不需要设计文档结构」是 2014 与 2026 共同的事故源（⚠️ 转述）；现代做法是在应用侧保留 `type` 字段 + 校验层，或用 collection 做类型/租户隔离（✅ [scopes-and-collections](https://docs.couchbase.com/server/current/learn/data/scopes-and-collections.html)）。
+
+## 5c. 二进制值的使用场景与限制（✅ 概念 + ⚠️ 转述）
+
+Couchbase 的 value 不仅可以是 JSON，也可以是**任意二进制块**（✅ [learn/data/data](https://docs.couchbase.com/server/current/learn/data/data.html)：「values can be either binary or JSON」）。
+
+| 场景 | 值类型 | 注意事项 |
+|---|---|---|
+| 会话/缓存 | JSON 或序列化对象 | 最常见用法，expiration + Ephemeral 桶 |
+| 图片/文件缩略图 | 二进制 | 受 20MiB 上限约束；大文件应存对象存储，Couchbase 只存元数据 |
+| 计数器 | 二进制（64 位整数） | 用 `increment/decrement` 原子操作（见 03 章） |
+| 序列化对象 | 语言特定格式（protobuf/MessagePack） | SDK transcoder 负责编解码（见 05 章） |
+
+- 🔧 类比（非 Couchbase 行为）：SQLite 的 `BLOB` 列可存任意二进制，但与 Couchbase 的区别在于——SQLite 的 BLOB 无法被查询引擎理解，而 Couchbase 的 JSON value 可以被 GSI/Search/Analytics 消费。二进制值在 Couchbase 中是**不透明的**，不能索引、不能查询、不能子文档访问。
+- ⚠️ 转述：混存 JSON 与二进制在同一桶中会让视图/索引/迁移三处都变复杂，工程上建议按值类型分 collection。
+
 ## 核心概念速览（中英对照）
 
 - **键值模型** — Key-Value Model：以应用自造的 key 寻址一个不透明或半结构化 value 的数据模型，读路径 O(1)。

@@ -59,6 +59,21 @@ BigQuery Studio/Colab Enterprise（⚠️ 见演进节，Studio 文档 ✅ cn �
 - 物化结果供低延迟应用读（09/07 章）；
 - 用 BI Engine/容量承诺兜住看板 SLA（⚠️ 07 章）。
 
+### 6. 错误处理与重试策略（⚠️ 转述，本册自拟归纳）
+
+调用 BigQuery API 的工程纪律：
+
+| 错误类型 | 处理策略 |
+| --- | --- |
+| rateLimitExceeded | 指数退避重试（初始 1s，最大 30s，上限 5 次） |
+| concurrentJobLimit | 排队等待或拆分作业（⚠️ 默认并发上限以官方 quotas 页为准） |
+| duplicate/alreadyExists | 幂等设计：作业 ID 由客户端生成→重试安全 |
+| invalidQuery | 不重试——修复 SQL 后重新提交 |
+| backendError / internalError | 短暂等待后重试；持续出现则提工单 |
+
+⚠️ 客户端库（`google-cloud-bigquery`）内置部分重试逻辑（⚠️ 以库文档为准）；
+REST 调用需自行实现退避。配套 `rest_query_async.sh` 的轮询循环即是重试/等待的工程化示范（✅ 实抓）。
+
 ## 常见误区（⚠️ 转述）
 
 | 误区 | 事实 |

@@ -82,6 +82,22 @@ coll.mutate_in("SFO", [ArrayInsertDocSpec(path="runways[0]", value={...})],
 3. 老代码升级时**优先读 `migrating-sdk-code-to-3.n`**（✅ 存在）而不是各语言的 API 页——换代点在那儿。
 4. Capella 上的 SDK 连接串/证书要求与自建不同（✅ https://docs.couchbase.com/cloud/clouds/connection-troubleshooting.html），照抄书里 `http://:8091/pools/default/buckets/...` 的写法会在云上直接失败。
 
+## 7b. SDK 连接池与超时的运维含义（⚠️ 转述 + 🔧 类比）
+
+SDK 的连接参数不是「调完就不管」的运维细节，而是直接影响 SLA 的产品参数：
+
+| 参数类别 | 影响 | 典型陷阱 |
+|---|---|---|
+| 连接超时（connect timeout） | 初次建连与故障重路由的等待上限 | 设太短 → 再平衡期间大量超时；设太长 → 故障检测慢 |
+| 操作超时（operation timeout） | 单次 get/set 的等待上限 | 默认值通常 2.5s，对延迟敏感路径可能过松 |
+| KV 超时（kv timeout） | 键值操作的独立超时 | 与 operation timeout 区分：查询/搜索可能需更长 |
+| 连接池大小 | 并发请求能力 | 过小 → 吞吐瓶颈；过大 → 服务端连接压力 |
+
+🔧 类比（非 Couchbase 行为）：E3 实测中，SQLite 仅改 `synchronous` 一个参数（OFF → FULL），吞吐从 43 180 降到 2 143 ops/s（20× 落差）——**一个连接参数的变化可以改变一个数量级的性能**。SDK 侧同理：超时与连接池参数不是「默认值就好」，必须按业务 SLA 调校。
+
+- ✅ 官方诊断工具 `sdk-doctor`（[sdk-doctor](https://docs.couchbase.com/server/current/sdk/sdk-doctor.html)）可以检测连接、超时、映射刷新等问题，是排障的第一站。
+- ⚠️ 转述：生产环境常见事故之一是「SDK 用默认超时 + 再平衡期间大量请求超时」，根因是超时参数未按集群规模与再平衡窗口调校。
+
 ## 核心概念速览（中英对照）
 
 - **SDK** — Software Development Kit / Client Library：承担路由、重试、序列化与认证的应用侧运行时。

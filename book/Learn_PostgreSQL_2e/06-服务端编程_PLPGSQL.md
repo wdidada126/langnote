@@ -79,6 +79,32 @@
 4. **问**：EXCEPTION 块为何昂贵？**答**：每捕获=一次隐式回滚到保存点。
 5. **问**：想要"函数里偷偷提交"怎么办？**答**：PG 无自治事务——外层过程逐条 CALL 提交 ⚠️。
 
+## 8. PL/pgSQL 调试与性能实务（⚠️ 书外延伸+✅ 文档锚点）
+
+- **RAISE 级别族**（✅ https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html ）：`DEBUG/LOG/INFO/NOTICE/WARNING/EXCEPTION` 六级——`NOTICE` 默认回客户端、`WARNING` 进日志+客户端、`EXCEPTION` 中止事务 ⚠️。
+- **GET DIAGNOSTICS**（✅ plpgsql-control-structures 页）：`GET DIAGNOSTICS cnt = ROW_COUNT;` 取上一条语句影响行数——审计/批量操作反馈必备。
+- **动态 SQL**：`EXECUTE format('SELECT * FROM %I WHERE id=$1', tbl_name) USING rec.id;`——`%I` 标识符引用自动加引号防注入（✅ plpgsql 动态命令节）。
+- **性能守则** ⚠️：
+  - PL/pgSQL 函数体首次执行后**编译为字节码**缓存在 `pg_proc.prosrc` 解析后的计划中——但每会话独立编译（不跨会话共享 ⚠️）；
+  - 避免在循环内做单行 SELECT——改用 `FOR rec IN SELECT ... LOOP`（✅ 游标 FOR 循环）减少往返；
+  - `PERFORM` 丢弃结果执行语句（替代 `SELECT ... INTO` 弃值 ⚠️+✅）。
+
+## 9. 游标与集合操作的精细控制（⚠️+✅）
+
+- **显式游标**（✅ plpgsql-control-structures 页 cursors 节）：`OPEN cur FOR SELECT ...; LOOP FETCH cur INTO rec; ... END LOOP; CLOSE cur;`——大数据集逐行处理。
+- **游标变量与 refcursor**：函数返回 `refcursor`，调用方在事务内 `FETCH`——分页/流式导出惯用法 ⚠️。
+- **RETURN QUERY vs RETURN NEXT**：前者一次返回整个查询结果集、后者逐行拼装——大数据集 RETURN NEXT 可控内存但代码更长 ⚠️。
+- 🔧 DuckDB 1.5.5 无游标概念（🔧 非 PostgreSQL 行为）；SQLite 宿主 API 有 `sqlite3_step` 逐行取但 SQL 层无游标语句（🔧）。
+
+## 10. 过程的事务控制细节（PG 11+ ⚠️+✅）
+
+- `CREATE PROCEDURE` 体内可用 `COMMIT/ROLLBACK`（✅ sql-createprocedure 页）——函数内**不允许**（函数整体在一个事务里）。
+- 事务控制限制 ⚠️：
+  - 不能在 `DO` 块内 COMMIT（`DO` 走函数规则 ⚠️）；
+  - 过程内 COMMIT 后当前事务结束、新隐式事务开始——后续语句在新事务里；
+  - 异常处理块（`EXCEPTION`）内**不可** COMMIT/ROLLBACK ⚠️+✅。
+- 调用语法：`CALL proc_name(args);`（不是 `SELECT` ⚠️——新手常犯错误）。
+
 ## 核心概念速览（中英对照）
 
 1. **PL/pgSQL** — 过程语言扩展：块/变量/控制流/异常。

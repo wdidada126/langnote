@@ -55,6 +55,26 @@ into BigQuery using Google Sheets" ✅ URL 见云博客，2026-09 未逐条 curl
 - autodetect 只用于探索，生产必配显式 schema（✅ 配套 schema.json 的存在即原书立场）；
 - 与 09 章呼应：ML 特征 schema 漂移是 BQML 训练事故主因。
 
+### 6. 装载后校验 SQL 模式（✅ 配套仓库 queries.txt）
+
+配套仓库 `04_load/queries.txt`（✅ 实抓）给出一组装载后体检 SQL：
+
+```sql
+-- 配套仓库风格示意（非原书文本）
+-- 空值率检查
+SELECT COUNT(*) AS total, COUNTIF(col IS NULL) AS nulls,
+       COUNTIF(col IS NULL) / COUNT(*) AS null_rate
+FROM dataset.loaded_table;
+
+-- 类型边界检查
+SELECT MIN(CAST(amount AS FLOAT64)) AS min_amt,
+       MAX(CAST(amount AS FLOAT64)) AS max_amt
+FROM dataset.loaded_table;
+```
+
+⚠️ 装载后体检是**数据质量第一道防线**——在 MERGE/物化之前拦截脏数据。
+03 章的 `SAFE_CAST` 在此场景的用法：先全 STRING 入场（✅ 配套示范），查询期用 `SAFE_CAST` 过滤转换失败行。
+
 ## 常见误区（⚠️ 转述）
 
 | 误区 | 事实 |

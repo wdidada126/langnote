@@ -86,6 +86,19 @@ E1b：把 10 万条路由塞进 SQLite 表 `routes(key, vb, node)`，载入 0.21
 - 跨数据中心时的第二层映射 → [07-跨数据中心复制与多活.md](07-跨数据中心复制与多活.md)
 - 桶配额与内存压力 → [09-管理接口内存与运维.md](09-管理接口内存与运维.md)
 
+## 8b. vBucket 迁移的运行时状态（✅ 概念 + ⚠️ 细节转述）
+
+再平衡期间，一个 vBucket 会经历以下状态流转：
+
+1. **active → pending**：原属主仍服务读写，同时开始向新属主传输数据；
+2. **数据搬迁中**：新属主接收数据，此时客户端映射已更新但旧属主尚未释放；
+3. **切换完成**：新属主变为 active，旧属主降级为 replica 或被释放。
+
+🔧 类比（E1b 的延伸，非 Couchbase 行为）：SQLite 中 `UPDATE routes SET node='D' WHERE vb=42` 只改一行路由表（0.006s），但真正搬迁 740 条数据是后续步骤——「改表」与「搬数据」的分离是 VBMap 设计的核心洞察。
+
+- ✅ 官方对再平衡的描述强调「在线进行」：集群在再平衡期间仍服务请求（[rebalance](https://docs.couchbase.com/server/current/learn/clusters-and-availability/rebalance.html)）。
+- ⚠️ 转述：再平衡期间 CAS 冲突率与尾延迟会上升，因此工业实践中把「再平衡窗口」写进发布纪律（见第 7 节工业实践第 7 条）。
+
 ## 核心概念速览（中英对照）
 
 - **vBucket** — virtual bucket：桶内固定数量的数据切片，是分布与复制的最小单位；Couchstore 1024、Magma 128/1024。

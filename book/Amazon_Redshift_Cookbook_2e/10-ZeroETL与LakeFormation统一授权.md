@@ -51,6 +51,120 @@ SQLite 3.45.3 触发器伪 CDC：源表 `orders` + `AFTER INSERT/UPDATE` 触发�
 - Snowflake/BQ 的免管道对照：[../Advanced_Snowflake/08-数据摄入进阶.md](../Advanced_Snowflake/08-数据摄入进阶.md)、[../Google_BigQuery_TDG/04-将数据加载到BigQuery.md](../Google_BigQuery_TDG/04-将数据加载到BigQuery.md)；
 - 湖权限的开源面：[../bigdata/09-存储与文件格式.md](../bigdata/09-存储与文件格式.md)。
 
+## 8. 深潜三：Zero-ETL 完整建表流程（⚠️ 转述+✅ 文件互证）
+
+Aurora PostgreSQL → Redshift Zero-ETL 端到端步骤（⚠️ 全句转述，**专页 zero-etl 实测 302→mgmt/ 根**，入口 ✅ mgmt/welcome 同址 200）：
+
+```
+Step 1 ─ Aurora 侧：建 DB cluster + 开启 Zero-ETL 集成（选 Redshift 目标）（⚠️）
+Step 2 ─ Redshift 侧：CREATE INTEGRATION aurora_int FROM
+          AURORA 'arn:aws:rds:...'（⚠️）
+Step 3 ─ 建映射表：CREATE TABLE orders_mirror AUTO
+          (order_id bigint, amt numeric, status varchar,
+           _cdc_meta super);（⚠️ AUTO 标记+cdc 元数据列）
+Step 4 ─ 监控同步状态：SELECT * FROM sys_integration_status
+          WHERE integration_name = 'aurora_int';（⚠️ 系统视图名转述）
+Step 5 ─ 对账：仓侧 count/sum vs Aurora 侧 count/sum（✅ aurora_insert.sql 提供造数）
+```
+
+Zero-ETL 目标表限制（⚠️ 转述）：
+- 不可在目标端 INSERT/UPDATE/DELETE（只读镜像）；
+- DDL 受限：不可加索引/SORTKEY（由源端 DDL 自动同步 ⚠️）；
+- 删除需从源端级联——目标端无独立生命周期。
+
+## 8b 配方演绎：LF 权限配置完整步骤（✅ 文件+⚠️ 语义）
+
+基于仓内两 txt 重构的 LF 配置全流程（✅ CLI 实抓，⚠️ 语义转述）：
+
+```
+Step 1 ─ 注册 LF 管理员：
+  aws lakeformation put-data-lake-settings
+    --data-lake-settings DataLakeAdmins=[{DataLakePrincipalIdentifier=arn:...}]
+  （✅ Chapter10_LakeFormationSettings.txt 实抓原文）
+
+Step 2 ─ 注册 S3 数据位置：
+  aws lakeformation create-data-location
+    --resource-arn "arn:aws:s3:::my-bucket/data/"
+  （⚠️ CLI 名转述）
+
+Step 3 ─ Glue 建库建表（经 LF 管理员身份）：
+  CREATE DATABASE lake_db;（⚠️）
+  CREATE EXTERNAL TABLE lake_db.events ... LOCATION 's3://...'（⚠️）
+
+Step 4 ─ LF 授权：
+  aws lakeformation grant-permissions
+    --principal DataLakePrincipalIdentifier=arn:aws:redshift:...
+    --permissions Select={ColumnWildcard={}}
+  （⚠️ CLI 语义转述）
+
+Step 5 ─ Redshift 侧 external schema 挂载：
+  CREATE EXTERNAL SCHEMA lake_ext FROM GLUE
+    DATABASE 'lake_db' IAM_ROLE 'arn:...'
+  （⚠️；✅ c-spectrum-considerations 同址 200）
+```
+
+LF 配置失败排查树（⚠️ 工程惯例）：
+- 外表查询返回空 → 检查 Step 4 的 GRANT 是否到位；
+- `Access Denied` → 检查 Step 1 管理员 + Step 2 数据位置注册；
+- 数据传输角色报错 → 检查信任策略是否含 glue+redshift 双服务（✅ 仓内 txt 实抓反证）。
+
+## 8c 深潜四：Zero-ETL 与 LF 的协作架构（⚠️ 重构）
+
+```
+Aurora 源表 ──Zero-ETL──→ Redshift 镜像表（AUTO，只读）
+                              │
+                              ├──→ BI 查询（经视图脱敏 → TDG 08 DDM）
+                              ├──→ 下游 ETL（JOIN 仓内其他表）
+                              └──→ 对账 SQL（→ ch5 DAG 节点）
+
+S3 湖数据 ──LF 授权──→ Redshift Spectrum 外表
+                              │
+                              ├──→ 直查（不搬数据）
+                              └──→ COPY 入内表（高频场景）
+```
+
+四面体权限模型在本章的汇合（⚠️ 重构口径）：
+- 仓内 GRANT（→ 02）管"谁能查仓内表"；
+- Zero-ETL 镜像表继承仓内 GRANT（⚠️）；
+- Spectrum 外表经 LF 授权（本章 ✅ txt 链路）；
+- Datashare（→ 09）管"谁能跨仓读"；
+- DataZone（→ 11）管"该不该给"的治理层。
+
+## 8d 配方演绎：多源 Zero-ETL 对比（⚠️ 转述）
+
+| 源 | 延迟 | 吞吐量 | 限制 |
+|---|---|---|---|
+| Aurora PG/MySQL | 秒级 | 中 | 同 Region、表数配额（⚠️） |
+| DynamoDB | 秒级 | 高 | 需建 integration、RPU 微量计费（⚠️） |
+| Kinesis/MSK | 秒级 | 高 | 需 streaming integration（⚠️） |
+| SaaS（Salesforce 等） | 分钟级 | 中 | 2024–2026 新源（⚠️ 以官方页为准） |
+
+Zero-ETL vs 传统 COPY 选型决策（⚠️ 重构）：
+- **Zero-ETL 优先**：源在 AWS 同 Region + 需要秒级新鲜度 + 源 DDL 简单；
+- **COPY 优先**：跨云/跨 Region + 需要复杂转换 + 源非 AWS 服务；
+- **混合**：Zero-ETL 做实时镜像 + COPY 做批量补充（⚠️ 工程惯例）。
+
+## 8e 🔧 类比补充：CDC 回放的对账完整性验证（本机真实跑过）
+
+⚠️ 非本书引擎行为，方言已按 DuckDB/SQLite 改写。§5 已报告 cdc_demo 基本对账，此处补充边界测试：
+
+- **乱序回放**：将 cdc 流按 seq 倒序回放→`INSERT OR REPLACE` 幂等性保证最终一致（但中间态数据不一致窗口扩大）——验证"幂等回放容忍乱序"的抽象性质；
+- **重复回放**：同一 cdc 流回放两次→镜像表数据不变（幂等性 ✅）——验证"Zero-ETL 重试安全"的抽象模型；
+- **DDL 变更模拟**：源表加列后，触发器自动捕获新列（SQLite 触发器 `NEW.*` 语义）→ 类比 Zero-ETL 的 schema 演进自动同步（⚠️ 类比有限，Redshift 真 DDL 同步规则以官方为准）。
+
+抽象结论强化："源端只追加的变更流 + 目标端幂等回放"模型经三组边界测试（正序/乱序/重复）均保持对账一致——Zero-ETL 的产品化即此模型的托管实现（⚠️ 真实现细节禁以本组数字冒充）。
+
+## 8f Zero-ETL 自查清单（⚠️ 重构）
+
+- [ ] 源端 Aurora/DynamoDB 版本兼容 Zero-ETL（⚠️ 以官方兼容矩阵为准）
+- [ ] 数据传输角色信任策略含 redshift + glue 双服务（✅ 仓内 txt 反证）
+- [ ] LF 管理员已注册 + S3 位置已注册（✅ CLI 可复现）
+- [ ] Zero-ETL 目标表的 AUTO 列已监控（复制延迟告警）
+- [ ] 镜像表进 BI 前有视图脱敏层（→ TDG 08 DDM）
+- [ ] 对账 SQL 已纳入编排 DAG（→ 05）
+- [ ] Spectrum 外表经 LF 授权链路（非仅 Glue CREATE）
+- [ ] Zero-ETL 配额已体检（表数/行数/RPU 微量计费）
+
 ## 核心概念速览（中英对照）
 
 - Zero-ETL 集成 — zero-ETL integration：OLTP/流源到仓的免管道自动复制

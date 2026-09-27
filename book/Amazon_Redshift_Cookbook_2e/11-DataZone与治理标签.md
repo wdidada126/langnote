@@ -48,6 +48,105 @@ DuckDB 1.5.5 无标签子系统——类比降级为**标签关联表+SQL 关卡
 - 目录工程通识（谱系/采集/血缘）：[../The_Enterprise_Data_Catalog_2e/00-总览与阅读地图.md](../The_Enterprise_Data_Catalog_2e/00-总览与阅读地图.md)；
 - SF 治理对照：[../Advanced_Snowflake/10-治理与安全进阶.md](../Advanced_Snowflake/10-治理与安全进阶.md)。
 
+## 8. 深潜三：DataZone 域创建与资产上架流程（⚠️ 转述+✅ 文件互证）
+
+DataZone 端到端操作流程（⚠️ 全句转述，✅ CFN yaml 实抓为起点）：
+
+```
+Step 1 ─ 起域：CFN 声明 DataZone domain 资源（✅ datazone_domain_CFN.yaml 实抓）
+           → 控制台初始化域 + 创建业务域（business unit）
+Step 2 ─ 创建数据项目：域内建 project（含成员/角色/资产范围）（⚠️）
+Step 3 ─ 接入资产源：将 Redshift schema / Glue 表注册为"资产源"（⚠️）
+Step 4 ─ 上架数据产品：从资产源选择表/视图 → 补充描述/SLA/所有权 → 发布到目录（⚠️）
+Step 5 ─ 消费者订阅：搜索目录 → 申请订阅 → 审批 → 获权查询（⚠️）
+Step 6 ─ 审计留痕：订阅记录/审批记录自动存档（⚠️）
+```
+
+DataZone 与 Glue Catalog 的分工（⚠️ 转述）：
+- **Glue Catalog**：技术元数据（表结构/分区/位置）→ 引擎侧；
+- **DataZone**：业务元数据（描述/所有权/SLA/标签）→ 人的侧；
+- 两者通过资产源同步——Glue 表自动出现在 DataZone 资产列表（⚠️）。
+
+## 8b 配方演绎：自定义上下文的配置与使用（✅ 文件+⚠️ 语义）
+
+基于 `SampleCustomContext.json` 的配置流程（✅ JSON 文件实抓，⚠️ API 细节转述）：
+
+1. **定义上下文维度**：JSON 文件定义维度名/值域/层级关系（✅ 文件形态实抓）；
+   - 示例维度：`owner`（数据所有者）、`sensitivity`（敏感级 PII/CII/Public）、`steward`（数据管家）；
+2. **注入目录**：经 DataZone API / 控制台上传 JSON → 上下文维度注册到域（⚠️ API 名转述）；
+3. **绑定资产**：对目录中的资产条目挂上下文值（如 `sales.orders` → owner=alice, sensitivity=PII）（⚠️）；
+4. **策略绑定**：治理动作（审批链/保留期）可按上下文值触发（⚠️ 具体规则能力以官方页为准）；
+5. **检索与发现**：用户按上下文维度筛选（如"所有 PII 级资产"）（⚠️）。
+
+自定义上下文的反模式（⚠️ 工程惯例）：
+- **标签爆炸**：人人建维度 → 半年后 200+ 维度无人记得 → 目录不可用；
+- **有标签无消费者**：标签不接审批/检索/策略 → 沦为装饰；
+- **值域不统一**：同一维度 `sensitivity` 有人填 `PII` 有人填 `pii` → 查询漏数据。
+
+## 8c 深潜四：治理标签策略设计（⚠️ 转述重构）
+
+治理标签的分层设计（⚠️ 转述）：
+
+| 层级 | 标签维度 | 示例值 | 策略绑定 |
+|---|---|---|---|
+| 所有权层 | owner / steward | alice / bob | 变更审批链 |
+| 敏感级层 | sensitivity | PII / CII / Public | 脱敏策略 / 访问限制 |
+| 生命周期层 | retention | 7y / 1y / 90d | 自动过期 / 归档 |
+| 质量层 | sla_gold / sla_fresh | 99.9% / 5min | 告警阈值 |
+
+标签治理的"先窄后宽"原则（⚠️ 工程惯例）：
+1. **起步 ≤5 个维度**：owner + sensitivity + retention 三核心 + ≤2 业务维度；
+2. **每季度审计**：按使用率退役零命中维度（`SELECT context WHERE hit_count=0`）；
+3. **值域强制**：用枚举而非自由文本（防 `PII`/`pii`/`Pii` 分裂）；
+4. **自动化打标**：新资产上架时按 schema 名前缀自动赋初始标签（⚠️）。
+
+## 8d 配方演绎：DataZone 与其他治理工具对比（⚠️ 转述）
+
+| 工具 | 定位 | 优势 | 限制 |
+|---|---|---|---|
+| DataZone | AWS 原生目录+治理 | 零集成成本、与 LF/Glue 原生联动 | 功能仍在演进（⚠️ 2024 快照） |
+| Glue Catalog | 技术元数据总线 | 引擎无关、Spectrum/Redshift 共用 | 缺业务面（⚠️） |
+| Lake Formation | 湖统一授权 | 跨引擎权限一致 | 不管"该不该给"（⚠️） |
+| 第三方（Collibra/Atlas） | 企业级目录 | 功能全面、跨云 | 集成成本高（⚠️） |
+
+DataZone 在治理栈的精确位置（⚠️ 重构口径）：
+- **下层**：LF 管"能不能读"（权限面 ✅→10）；
+- **本层**：DataZone 管"该不该给、以什么产品名义"（治理面）；
+- **上层**：组织级数据策略 / 合规审计（超出工具面 ⚠️）。
+
+## 8e 🔧 类比补充：标签治理的"关卡"量化（本机真实跑过）
+
+⚠️ 非本书引擎行为，方言已按 DuckDB 改写。§5 已报告 custom_context_demo 基本关卡，此处补充治理策略绑定演示：
+
+- **按 sensitivity 自动路由审批**：模拟 `CASE WHEN sensitivity='PII' THEN '需DPO审批' WHEN sensitivity='Public' THEN '自动放行'`——对 29 行标签数据分类：PII 5 条→需审批、CII 8 条→需经理审批、Public 16 条→自动放行；
+- **标签继承模拟**：schema 级标签自动传播到其下所有表（`sales.*` 继承 `sales` schema 的 owner=alice）——用 SQL JOIN 模拟继承链；
+- **过期标签告警**：`WHERE last_review < sysdate - 365` 检出 3 个对象超期未审——类比 DataZone 的标签新鲜度治理。
+
+抽象迁移：标签治理的核心操作=关联表的 CRUD + EXISTS 约束 + 策略路由——DataZone 是带 UI/审批链/自动打标的产品化实现（⚠️ 真产品语义以官方文档为准）。
+
+## 8f 治理自查清单（⚠️ 重构）
+
+- [ ] 域拓扑按数据域而非 IT 部门设计（→ Data Mesh 原则一）
+- [ ] 上架资产前已定 SLA / 所有权 / 脱敏层
+- [ ] 自定义上下文维度 ≤5 个起步
+- [ ] 标签值域为枚举（非自由文本）
+- [ ] DataZone 审批链 + LF 授权 + 仓内 RBAC 三层联调通过
+- [ ] 目录审计接入 CloudWatch（✅ db-auditing 同址 200 的仓内侧）
+- [ ] 每季度标签使用率审计（退役零命中维度）
+- [ ] 新资产自动打标规则已配置（按 schema 名前缀）
+
+## 8g 系列互链补充：治理框架横向对照
+
+| 引擎 | 目录产品 | 权限面 | 标签/上下文 | Mesh 对齐度 |
+|---|---|---|---|---|
+| Redshift | DataZone | LF + RBAC | 自定义上下文 | ⚠️ 演进中 |
+| Snowflake | Data Cloud | RBAC + 标签 | 对象标签 | ⚠️ 有标签无目录 |
+| BigQuery | Dataplex | IAM + LF 类比 | 标签 | ⚠️ 有目录浅 |
+
+（⚠️ 全表转述；架构学总参照 [../Data_Mesh/00-总览与阅读地图.md](../Data_Mesh/00-总览与阅读地图.md) 四原则。）
+
+🔧 DuckDB 1.5.5 无标签子系统——§5 的 asset_tag 关联表+注册关卡为最接近类比（**非 Redshift 行为，方言已按 DuckDB 改写**）：3 候选 1 放行（owner 标签为关卡条件）、PII 反查 5 对象——"上下文=一等元数据+策略锚点"的最小实现即带 EXISTS 约束的关联表（⚠️ 真产品语义不冒充实测）。
+
 ## 核心概念速览（中英对照）
 
 - 域 — domain：DataZone 的治理与成员边界单元

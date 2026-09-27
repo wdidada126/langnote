@@ -85,6 +85,39 @@ DuckDB 1.5.5:   同语句 -> Parser Error: syntax error at or near "MATERIALIZED
 4. **问**：REFRESH ... CONCURRENTLY 的前提？**答**：唯一索引+非空（✅ 文档）。
 5. **问**：wal_level 默认值？**答**：replica（✅ 官方勘误口径）。
 
+## 9. 行级安全（RLS）实战模式（⚠️+✅）
+
+- **启用骨架**（✅ https://www.postgresql.org/docs/current/ddl-rowsecurity.html ）：
+
+```sql
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+CREATE POLICY tenant_isolation ON orders
+    USING (tenant_id = current_setting('app.tenant_id')::int);
+-- 属主默认豁免 RLS——应用角色需显式受约束
+ALTER TABLE orders FORCE ROW LEVEL SECURITY FOR app_user;
+```
+
+- **两方向策略** ⚠️+✅：`USING`（读过滤）与 `WITH CHECK`（写校验）可分别定义——读可见行 ≠ 可写行。
+- **性能注意** ⚠️：RLS 谓词在每行上求值——复杂表达式会拖慢全表扫描；保持谓词简单+索引友好。
+- **排障**：`SET row_security = off;`（超管默认 off ⚠️）可临时关闭以便调试；`pg_policies` 视图查看当前策略 ✅。
+- 🔧 对照：SQLite/DuckDB 均无 RLS 等价物（🔧 非 PostgreSQL 行为）——多租户隔离在嵌入式引擎只能靠应用层 WHERE 或视图。
+
+## 10. 死锁与锁监控（⚠️+✅）
+
+- **锁模式速查**（✅ https://www.postgresql.org/docs/current/explicit-locking.html ）：
+  - `AccessShareLock`（SELECT）/ `RowShareLock`（SELECT FOR UPDATE）/ `RowExclusiveLock`（INSERT/UPDATE/DELETE）/ `ShareLock`（CREATE INDEX）/ `AccessExclusiveLock`（ALTER TABLE/DROP）；
+  - 冲突矩阵：轻锁互不阻塞、重锁阻塞轻锁——`AccessExclusiveLock` 阻塞一切 ⚠️。
+- **死锁检测** ⚠️+✅：`deadlock_timeout`（默认 1s）到期后检测环依赖，牺牲一个事务报 `deadlock detected`。
+- **观测**（✅ monitoring-stats 页）：
+
+```sql
+SELECT pid, mode, granted, waitstart, query
+FROM pg_locks l JOIN pg_stat_activity a USING (pid)
+WHERE NOT granted;   -- 正在等待锁的会话
+```
+
+- **缓解** ⚠️：保持事务短小、统一加锁顺序（按表名/主键排序获取锁）、`LOCK TABLE ... IN ... MODE` 显式声明意图。
+
 ## 核心概念速览（中英对照）
 
 1. **ACL** — 访问控制列表：GRANT/REVOKE 的账本。

@@ -92,6 +92,23 @@ sqlite> SELECT id, json_extract(doc,'$.lang') FROM j WHERE json_extract(doc,'$.s
 - 模式设计理论后台：[../Database_Modeling_and_Design_5e/00-总览与阅读地图.md](../Database_Modeling_and_Design_5e/00-总览与阅读地图.md)。
 - 进阶语句 → [04-高级语句_连接与递归查询.md](04-高级语句_连接与递归查询.md)。
 
+## 8. UPSERT 与 MERGE：写操作的现代姿势（⚠️+✅）
+
+- `INSERT ... ON CONFLICT (col) DO UPDATE/NOTHING`（✅ https://www.postgresql.org/docs/current/sql-insert.html "ON CONFLICT" 节）：PG 9.5+ 的 UPSERT 正解——避免"先查再插"的竞态窗口。
+- 语义要点 ⚠️：
+  - `DO UPDATE SET col=EXCLUDED.col`：`EXCLUDED` 伪表引用"本想插入的那行"；
+  - 冲突目标可以是约束名/列列表/`ON CONSTRAINT constraint_name`；
+  - WHERE 子句可条件化更新（只更新满足条件的冲突行）。
+- `MERGE`（PG 15+ ✅ https://www.postgresql.org/docs/current/sql-merge.html ）：SQL 标准多动作合并——`WHEN MATCHED THEN UPDATE/DELETE/DO NOTHING`、`WHEN NOT MATCHED THEN INSERT`；比 ON CONFLICT 更通用但语法更重。
+- 🔧 DuckDB 1.5.5 同样支持 MERGE（🔧 非 PostgreSQL 行为）；SQLite 3.50.6 有 UPSERT 但无 MERGE（🔧 实测）。
+
+## 9. 域与自定义类型：约束的命名复用（⚠️+✅）
+
+- `CREATE DOMAIN`（✅ https://www.postgresql.org/docs/current/sql-createdomain.html ）：给类型+约束组合起别名——`email` 域=`text CHECK(value ~* '^.+@.+$')`，全库复用。
+- `CREATE TYPE ... AS ENUM`（✅ https://www.postgresql.org/docs/current/sql-createtype.html ）：枚举类型——值域有限且有序（`CREATE TYPE mood AS ENUM ('sad','ok','happy')`）；排序按声明序非字母序 ⚠️。
+- `CREATE TYPE ... AS (field1 type1, ...)` 复合类型：函数返回多列/行类型字段 ⚠️+✅。
+- 工业用法 ⚠️：域承担"业务原语"（金额/邮箱/电话），比 CHECK 约束更易统一变更；枚举在 PG 中修改需 `ALTER TYPE ... ADD VALUE`（不可删值 ⚠️）。
+
 ## 核心概念速览（中英对照）
 
 1. **标识列** — identity column：`GENERATED ALWAYS AS IDENTITY`，PG10+ 正统自增。
