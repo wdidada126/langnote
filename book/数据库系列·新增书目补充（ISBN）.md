@@ -661,3 +661,78 @@
 - ✅ **#210 Data Fabric as Modern Data Architecture 档⓪（存在性人工终裁项）**——11f/1376L，68 链 0 断。作者/年份/原书目录**本环境全线不可证**（Crossref 0 条=O'Reilly 无存款先例；oreilly 全端点 403/Amazon 404/豆瓣命中的 36815233=James Serra《Deciphering Data Architectures》它书辨析；GoogleBooks/OpenLibrary/OpenAlex/S2 不可达或限流）——10 章 ⚠️ 推定主题地图+00 §2 降级声明+回改锚点。00 §3 四册分工表（#209/#210/#212/#202）先建。**在飞视图过期反向发现**：本册 agent ls 实测 #221/#226 已在盘（主代理已验收）并按规则升实链——处置正确，波尾闭环时统一复核。🔧5 组。
 - ✅ **#186 Data Governance（Elsevier）档⓪**——14f/1731L，87 链 0 断。作者=**John Ladley**（1e **2012**，Morgan Kaufmann/Elsevier，Foreword=Gwen Thomas/DGi），**名册"2014 基线"系误**；#189 之 00"Academic Press 谱系"标误已发现（实为 Elsevier/MK imprint）；Crossref 寄存 **33 条目全量实抓**（15 章+10 附录，shop.elsevier 双源）；2e=2020 版本对。**中译命中《数据治理：如何设计、开展和保持有效的数据治理计划》刘晨/车春雷/宾军志译（当当 200）**。同名防混谱系表（≠#188≠#189≠McAllister 系 Routledge）+盘上治理中文单文件群 4 处实名登记。🔧6 组与 #189 六组零重合。盘上缺口登记：MDM 无专册。
 - **第 6 波进度：已验收 2/14（累计 79/224）。** 在产 8：#209/#212/#202/#188/#192 发射+ #223/#136 补位重发（首批 queuing failed 0 调用无残留）。累计口径：波1-3=56、波4=12、波5=9、波6=2。
+
+---
+
+### 第 4 波 · 收束登记（14/14 全验收，2026-09-27，close4 checker 156f/19,938L/2,105 链 0 断）
+
+14 本全部通过 checker 复验（行数区间 [120,200]、文末两节逐字序、`<NAME>` 扫描、链接 ls/Glob 实核）。累计 **70/224**（波 1-3 = 56 + 波 4 = 14）。
+
+| # | 目录名 | 文件/行/链 | 档级 |
+|---|---|---|---|
+| 13 | What_Is_Database_Design_Anyway | 10f/1275L/336 链 | ⓪ |
+| 14 | Database_Design_Know_It_All | 7f/886L/103 链 | ⓪ |
+| 17 | Seven_Databases_in_Seven_Weeks_2e | 10f/1254L/210 链 | ⓪ |
+| 56 | SQL_Server_2012_Internals | 9f/1147L/164 链 | ⓪ |
+| 46 | Expert_Performance_Indexing_SQL_Server_2019 | 16f/2070L/174 链 | ① |
+| 58 | Pro_Oracle_23ai_Administration | 17f/2161L/63 链 | ⓪ |
+| — | Google_BigQuery_TDg | 11f/1537L/171 链 | ⓪ |
+| 178 | Amazon_Redshift_TDg | 11f/1391L/89 链 | ⓪ |
+| 160 | Advanced_Snowflake | 13f/1647L/192 链 | ⓪ |
+| 113 | Amazon_DynamoDB_TDg | 11f/1381L/92 链 | ⓪ |
+| 117 | Developing_with_Couchbase_Server | 11f/1408L/150 链 | ⓪ |
+| 177 | Introduction_to_Apache_Flink | 7f/904L/111 链 | ⓪ |
+| 195 | Advanced_Analytics_with_Spark_2e | 12f/1508L/170 链 | ⓪ |
+| — | Understanding_Data_Governance | 11f/1369L/80 链 | ⓪ |
+
+本波勘误要目：名册作者勘误 6 处（#13/#14/#17/#46/#58/#178）；#160 存在性 14 渠道全负→降级推定重构（人工终裁项）；Crossref ISBN 路由下线勘误（全工程即刻生效）；云仓三巨头对位表入 #178 00 §4；O'Reilly ISBN 整体不在 Crossref 控制实验入 #13。
+
+---
+
+### 第 5 波 · 收束登记（14/14 全验收，2026-09-27，close5 checker 164f/21,212L/1,656 链 0 断）
+
+14 本全部通过 checker 复验。累计 **84/224**（波 1-4 = 70 + 波 5 = 14）。
+
+| # | 目录名 | 文件/行/链 | 档级 |
+|---|---|---|---|
+| 9 | Database_Design_for_Mere_Mortals_3e | 17f/2078L/162 链 | ⓪ |
+| 27 | Data_Model_Patterns | 9f/1148L/19 链 | ⓪ |
+| 16 | Fundamentals_of_Database_Indexing | 11f/1386L/68 链 | ⓪ |
+| 28 | Oracle_Performance_Tuning_2e | 9f/1143L/107 链 | ⓪ |
+| 48 | MySQL_8_Administrators_Guide | 16f/2134L/317 链 | ⓪ |
+| 57 | Migrating_to_MariaDB | 9f/1166L/56 链 | ⓪ |
+| 54 | Learn_PostgreSQL_2e | 14f/1896L/166 链 | ⓪ |
+| 47 | PostgreSQL_High_Performance_Cookbook | 13f/1626L/122 链 | ⓪ |
+| 165 | SQL_Server_2014_Query_Tuning | 13f/1671L/84 链 | ⓪ |
+| 86 | Neo4j_Graph_Data_Modelling | 9f/1113L/130 链 | ⓪ |
+| 100 | Elasticsearch_in_Action | 13f/1622L/93 链 | ⓪ |
+| — | Amazon_Redshift_Cookbook_2e | 13f/1985L/117 链 | ⓪ |
+| 221 | Fundamentals_of_Microsoft_Fabric | 11f/1368L/134 链 | ⓪ |
+| 226 | Fundamentals_of_Data_Observability | 7f/876L/81 链 | ⓪ |
+
+本波勘误要目：#57 主题定性勘误（Oracle→MariaDB 叙事体非 MySQL→MariaDB 技术手册）+总索引 MariaDB 署名联动更正；#9 联动总索引 DMD5e 作者勘误（"Silverston 5e"→Teorey/Lightstone/Nadeau/Jagadish）；#16 "疑 Date 系"否决（实为 Bhattacharya）；#100 Manning 懒加载 TOC 先例（2 部 11 章+6 附录 A–F）；#221 ISBN 异形登记；#226 首发册（作者/年份 ⚠️ 多源同向不写死）。
+
+---
+
+### 第 6 波 · 收束登记（14/14 全验收，2026-09-27，close6 checker 149f/23,035L/762 链 0 断）
+
+14 本全部通过 checker 复验。累计 **98/224**（波 1-5 = 84 + 波 6 = 14），完成度 43.75%。
+
+| # | 目录名 | 文件/行/链 | 档级 |
+|---|---|---|---|
+| 210 | Data_Fabric_as_Modern_Data_Architecture | 11f/1376L/68 链 | ⓪ |
+| 209 | Data_Fabric_Architectures | 11f/1755L/40 链 | ⓪ |
+| 212 | Principles_of_Data_Fabric | 9f/1513L/42 链 | ⓪ |
+| 202 | Data_Fabric_and_Data_Mesh_with_AI | 12f/1524L/54 链 | ⓪ |
+| 186 | Data_Governance_Elsevier | 14f/1731L/87 链 | ⓪ |
+| 189 | Data_Governance_in_the_Era_of_AI_2e | 9f/1446L/19 链 | ⓪ |
+| 188 | Data_Governance_with_Unity_Catalog | 9f/1522L/30 链 | ⓪ |
+| 223 | What_Is_Data_Observability | 8f/1003L/92 链 | ⓪ |
+| 224 | Data_Observability_for_Data_Engineering | 8f/1072L/67 链 | ⓪ |
+| 136 | Apache_Polaris_TDG | 11f/1903L/39 链 | ⓪ |
+| — | Analytics_Engineering_with_SQL_and_dbt | 10f/1870L/0 链 | ⓪ |
+| — | Unlocking_dbt | 14f/2533L/1 链 | ⓪ |
+| — | Data_Lakehouse_in_Action | 12f/1773L/201 链 | ⓪ |
+| — | Spark_The_Definitive_Guide | 11f/2014L/22 链 | ⓪ |
+
+本波勘误要目：#186 Ladley 1e 年份勘误（2012 非 2014）+中译命中；#210 存在性 14 渠道全负→降级推定（人工终裁项）+00 §3 四册分工表先建；#189 "Academic Press 谱系"标误（实为 Elsevier/MK imprint）；#224 DO4DE 收口（git 索引修复+6 文件扩写达标）；dbt 双册（Analytics_Engineering/Unlocking_dbt）链密度极低（0/1）如实登记。
