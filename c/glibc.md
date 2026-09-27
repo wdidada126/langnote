@@ -1,5 +1,41 @@
 # glibc
 https://github.com/edidada/malloc-jitter-lab
+有官方列表，而且很完整。Glibc 除了 `malloc`，还提供了大量 API，覆盖内存、字符串、线程、IO 等几乎所有系统编程领域。
+
+### 官方 API 列表在哪里找
+
+最权威的列表在 Glibc 官方手册的附录 B "Summary of Library Facilities"。这份手册是官方维护的“规范来源”，会随版本更新（目前最新是 2.43）。
+
+- 在线手册：可以在 Sourceware 官网查看，支持 HTML 和 PDF 格式。
+- PDF 下载：最新版手册的 PDF 可以直接下载，附录 B 就是完整的函数索引。
+- 补充参考：Linux man-pages 项目虽然不是 glibc 官方维护，但和官方保持同步，也是日常查询的好帮手。
+
+### Glibc API 的主要分类
+
+Glibc 的 API 非常庞大，大致可以按功能分为以下几大类：
+
+- 内存管理：除了你熟悉的 `malloc`、`free`、`realloc`、`calloc`，还有 `alloca`（栈上分配）、`obstack`（对象栈）、以及 `mlock`/`munlock`（内存锁定）等。
+- 字符串与内存操作：`memcpy`、`memmove`、`memset`、`strlen`、`strcpy`、`strcmp` 等标准 C 函数。
+- 输入/输出 (I/O)：`open`、`read`、`write`、`close` 等文件操作，以及 `printf`、`fprintf` 等格式化输出。
+- 线程与并发：`pthread_create`、`pthread_mutex_lock` 等完整的 POSIX 线程库 API。
+- 网络与套接字：`socket`、`bind`、`connect`、`send`、`recv` 等。
+- 进程与信号：`fork`、`exec`、`kill`、`signal`、`wait` 等。
+- 系统与文件：`stat`、`chmod`、`chown`、`mkdir`、`opendir`、`readdir` 等。
+- 时间与日期：`time`、`clock_gettime`、`nanosleep`、`gettimeofday` 等。
+- 数学与字符：`sqrt`、`sin`、`isalpha`、`toupper` 等。
+
+### 和你的项目直接相关的 API
+
+结合你在做的 `malloc-jitter-lab`，下面这些 Glibc API 可能会用到：
+
+- 内存诊断：`mallinfo2()` 可以获取堆的使用统计信息，帮你观察内存分布。
+- 内存调优：`mallopt()` 可以调整分配器的行为，比如你之前用过的 `M_ARENA_MAX`。
+- 实时调度：`sched_setscheduler()`、`pthread_setschedparam()` 用来设置实时调度策略，这是复现优先级反转的关键。
+- CPU 亲和性：`sched_setaffinity()` 用来绑定线程到特定 CPU，在实验里可以强制线程争抢。
+- 精确计时：`clock_gettime(CLOCK_MONOTONIC)` 用来测量延迟尖刺，比 `gettimeofday` 更稳定。
+
+如果你想深入某个具体模块，比如内存分配或线程调度，需要我进一步说明相关的 API 吗？
+
 Glibc 的 malloc 实现基于 ptmalloc2，是为通用吞吐量设计的，而非实时确定性。它的内部机制在触发存储操作时，可能产生你观察到的尖刺
 
 在Ubuntu系统中，查看glibc（GNU C Library）的版本信息可以通过终端使用命令行工具完成。glibc是Linux系统中C语言的标准库，几乎所有的Linux系统都会用到它。下面是一些常用的方法：
