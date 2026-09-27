@@ -120,6 +120,7 @@ Kafka 日志 ──┼→ Paimon(ODS 表) ──┤
   Iceberg 元数据解法 → [../Apache_Iceberg活用入門/02-元数据三层结构.md](../Apache_Iceberg活用入門/02-元数据三层结构.md)；
   四格式横向总论 → [../Engineering_Lakehouses_with_Open_Table_Formats/02-开放表格式的元数据布局总论.md](../Engineering_Lakehouses_with_Open_Table_Formats/02-开放表格式的元数据布局总论.md)。
 - 格式选型思维 → [../Engineering_Lakehouses_with_Open_Table_Formats/12-格式选型与迁移.md](../Engineering_Lakehouses_with_Open_Table_Formats/12-格式选型与迁移.md)。
+- 水位线/精确一次/流表对偶的模型出处（Akidau 谱系的教科书化）→ [../Streaming_Systems/00-总览与阅读地图.md](../Streaming_Systems/00-总览与阅读地图.md)（数据库系列第 2 波 #228，2026-09-27 波尾反链）。
 
 ## 本章记忆桩
 

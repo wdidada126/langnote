@@ -329,3 +329,134 @@
 - **第 1 波 · 已验收**：#36 Pro SQL Server Internals —— 19f/2375L（00+18 章），0 断链（主代理二轮后复验；一轮 150 轮上限止于扩写、二轮按窄域任务书只扩薄 11 文件收口）。全目录维持**零 🔧**（SQL Server 不可实测纪律）；二轮新增 11 个外部 URL 全 curl 200 后落笔，候选 404 的 6 个微软文档专页不引用、在对应章+00 FAQ 登记为口径缺口；扩写增量以机制小节为主（分区消除四条证据/死锁图三段读法/RCSI 迁移检查单/列存两笔隐性账等），既有 ✅/⚠️ 取证零删除。
 - **第 1 波 · 已验收**：#81 MongoDB: The Definitive Guide 3e —— 15f/1888L（00+14 章），96 本地链 0 断（主代理二轮后复验；一轮 150 轮上限止于扩写、13 薄文件按 `dbwave-mongo-brief2.md` 只扩薄收口，净增 425L 全为机制成段：chunk 迁移四幕/range vs hashed 片键对照/mongostat 两时代对照/备份六档对比/2.4→8.x 十二代大事记表等）。零 🔧 纪律执行（本机零安装，新增内容全为 ⚠️ 文档转述/机制推演）；新增 20 个官方文档 URL 全 curl 200 落笔，探测 404/301 的 8 个路径弃用不引。二轮遗留的 01 重复标题行（一轮产物）由主代理去重一行闭环，章文件 120–133L 全达标。
 - **第 1 波 · 已验收（收官）**：#32 Understanding MySQL Internals —— 13f/1819L（00+12 章），250 链接 0 断（主代理二轮后复验；一轮断尾 636L→二轮按 `dbwave-umi-brief2.md` 补缺 07–12+扩写 01–06，「补缺+扩写」档全绿收口）。✅/⚠️=199/100 分级维持；5 篇核心论文 DOI（Selinger 勘误后/Haas-Schwarz/Lohman/Harding 锁/Graefe）全过 Crossref 200；换代证据链=404 正证（query_cache/BNL/ndb 专页）对照 200（hash-joins 等）；每章带「与 mysql/ 对位」小节（12/12），00 含 2007→2026 对位总表；零 🔧（环境无 MySQL 不伪装）。至此**第 1 波 14 本全部验收**。
+- **第 1 波 · 收官（2026-09-27）**：14/14 全数验收。全波合计 184 文件 / 23427 行 / 2128 条书间 .md 链接 / **0 断链**（主代理全量扫链复验）。收束三件套已执行：①`数据库系列·总索引.md` 尾部追加「第 1 波登记」节（按五主题分组互链 14 目录版，307 行 0 断）②全波扫链+Presto⇄Trino 补链闭环 ③首提 **e264fcc2**（99 文件 +7628/−362，pathspec 仅限 book/）已推 wdidada126/origin/gitlab 三远端。工程纪律固化：失败 agent 盘上复核三档（免派/只扩薄/补缺）全部实战验证；共通规范增补第 2 波注意文件 `D:\develops\tmp\dbwave-w2-common.md`（轮次预算"一次写足"、波内兄弟不链空+互链义务登记、中译名反查义务）。
+- **第 2 波 · 已发射（2026-09-27，14 本）**：#7 Database Administration 2e｜#8 Database Design and Relational Theory｜#12 Relational Theory for Computer Professionals｜#11 Database Modeling and Design 5e｜#23 Cost-Based Oracle Fundamentals｜#42 Troubleshooting Oracle Performance 2e｜#45 Efficient MySQL Performance｜#98 Elasticsearch: TDG｜#89 Expert Apache Cassandra Administration｜#87 Using SQLite｜#134 DuckDB: Up and Running｜#169 Building the Data Warehouse｜#201 Data Mesh｜#228 Streaming Systems。发射前反查结论：14 本均**无同名冲突**（易混对已登记只互链：cassandra实战≠#89、从Lucene到Elasticsearch≠#98、SQL_and_Relational_Theory≠#8/#12、Flink 书≠#228、Kimball≠#169、DuckDB in Action≠#134、#201≠#200/#202 三本 Data Mesh 系）；每册任务书含一手取证要求+轮次预算纪律+辨析义务点名。
+- **第 2 波 · 已验收**：#11 Database Modeling and Design 5e —— 13f/1612L，断链 0（主代理复验）。**重大勘误（Crossref 26 条章级+Elsevier 官方页双源）**：本 ISBN 9780123820204 实为 **Teorey/Lightstone/Nadeau/Jagadish《Database Modeling and Design, 5th Edition: Logical Design》Morgan Kaufmann 2011-02，352pp——非 Chen（亦无 Robinson）**；Chen 系本谱系第 1 版（1980）独著开创者，本文件 #11 行"Chen"口径请按"Chen 开创书脉、Teorey 团接棒 5e"改读（1e/2e/3e 谱系与中译 API 不可达标 ⚠️，反查无中译）。取证附加：Chen 1976 TODS DOI 10.1145/320434.320440 ✅、Codd 1970 真 DOI 10.1145/362384.362685 ✅（网传 320009.320011 为 404 假 DOI 已避坑）、4e ISBN 双源 ✅。🔧 SQLite 实测：有损分解自然连接 5>3 行实证、无损 0 增 0 缺、M:N 桥表 FK 拦截、FK 默认 OFF。与 Physical_Database_Design 目录版（同作者团）成"逻辑→物理"上下游主打互链；波内兄弟互链义务已登记待主代理补链。
+
+### 第 2 波 · 已验收：#228 Streaming Systems（O'Reilly）—— 11f/1504L，110 链 0 断（主代理复验）
+
+- 目录版：`book/Streaming_Systems/`（00+10 章：流抽象/管道与属性/窗口/连接/状态与容错/SQL on Streams/实战模式等，逐章「核心概念速览（中英对照）」+「最新演进与工业实践」两节齐备）。
+- 勘误（agent 一手取证）：**第三作者 = Reuven Lax**，任务名册"Tygert"系讹误；中译《流式系统：用 Apache Flink 和 Kafka 实现流处理》人民邮电·2024-11·陈守元译·ISBN 9787115645487（豆瓣/JD 实抓）。
+- Crossref 无本书条目（⚠️ 以 O'Reilly 官方页为准）；引用论文 DOI 全部过 Crossref：MillWheel（VLDB 2013）、Dataflow Model（VLDB 2015）、**Dataflow Model Revisited（PVLDB 2026，10.14778/3827998.3838710）**。
+- 与已建 `book/Stream_Processing_with_Apache_Flink/`（Hueske 书）系不同书，00 内设辨析专节；互链义务（主代理波尾闭环）：`Apache_Paimon_Streaming_Lakehouse/01`、`bigdata/07` 反向补链本书。
+- 🔧 口径：DuckDB 仅 10 组概念对比演示并标注"非真流引擎"；Flink/Kafka 不可本地实测部分一律 ⚠️ 转述。
+
+### 第 2 波 · 已验收：#89 Expert Apache Cassandra Administration —— 13f/1728L，43 链 0 断（主代理复验）
+
+- 目录版：`book/Expert_Apache_Cassandra_Administration/`（00+12 章，两节齐备 12/12，00=162L、章∈[120,143]）。
+- 勘误（Crossref+SpringerLink 双源实证）：**作者 = Sam R. Alapati（Apress 2018），任务注记"疑 K.N. Naga Prapanjaya"被否证**（Crossref 零命中）；12 章标题全部来自逐章 DOI 实抓，非主题重组。
+- 辨析：`../cassandra实战.md` 实为郭鹏中文原创（0.7 时代），既非 O'Reilly TDG 中译、更非本书——已在 00 写辨析并互链。
+- 2026 对位：Cassandra 5.0 Latest GA（5.0.9，2026-08-07 官方 download 页实抓）、6.0-alpha2；JDK17/SAI 向量/UCS/trie memtable/DDM 均取官方 CEP 与 new-features 页；thrift 移除线引 NEWS.txt 原文。Dynamo DOI 10.1145/1294261.1294281 过 Crossref。
+- 口径：集群不可实测全 ⚠️；quorum/merkle 两处 sqlite3 类比演示 🔧（注明非 Cassandra 行为）。
+
+### 第 2 波 · 已验收：#7 Database Administration 2e（Mullins）—— 18f/2257L，0 断链（主代理复验）
+
+- 目录版：`book/Database_Administration_2e/`（00+17 文件，26 章→17 文件逐章映射表在 00；两节 17/17 齐备）。
+- 勘误（InformIT 官方页实抓）：**2e 作者 = Craig S. Mullins 独著（Addison-Wesley 2012-10-11，ISBN 9780133012743）**；任务名册"Rees"系 1e（2007）署名，2e 为换作者独立重写——已在 00 显著登记。年份著录 2013 与官方 2012 并注 ⚠️；Crossref 该 ISBN 无记录（实测留痕）。
+- 中译反查命中：《DBA修炼之道：数据库管理员的第一本书》机工 2014-09·诸晓霞译·9787111473954，译自 2e（当当实抓；其"24 章"促销文案讹误 ⚠️）；repo 无译本笔记，00 已登记辨析。
+- 论文 DOI 4 条全过 Crossref（Aurora SIGMOD17 / BlackMagic PVLDB19 / BtrBlocks SIGMOD23 / INGRES TODS76）；本环境 github 直连不可达→全目录零 github URL，不可验证工具只提名不附链 ⚠️；全目录 0 🔧（DBA 主题一律文档转述）。
+- 波内互链义务（00 末尾登记，主代理波尾闭环）：#11→03/04；#8/#12→03；#23/#42→06/07/08；#45→07/08/14；#169/#201→15；#89/#98→10/12/13/14；#87/#134/#228→12/14/16。
+
+### 第 2 波 · 已验收：#8 Database Design and Relational Theory（C.J. Date）—— 17f/2137L，145 链 0 断（主代理复验）
+
+- 目录版：`book/Database_Design_and_Relational_Theory/`（00+16 文件，00=151L、章∈[121,132]，两节 16/16 齐备）。
+- 元数据：✅ 作者 C.J. Date（Crossref 2e + O'Reilly 北京页双证）；第 2 版 Apress 2019（DOI 10.1007/978-1-4842-5540-7，Crossref 实抓全部 21 章英文章题）；目录骨架取机工中译页两级目录（6 篇 15 章+附录 A–D）。
+- 中译反查命中：机械工业 2013-07·卢涛译·9787111432920（274 页）；澄清《深度探索关系数据库》≠本书、"东南大学译本"说法无据。
+- 勘误：Chen 1976 正确 DOI = **10.1145/320434.320440**（agent 纠错）；六枚论文 DOI 全过 Crossref 200（ACM doi.org 403 时降级为 api.crossref 文本口径）；Heath/Armstrong 原始报告无 DOI 如实标注；1e 年份 2012 系推定 ⚠️。
+- 🔧 口径：D1–D6 演示数字全部本机 python sqlite3 实测复现（属性闭包/无损分解/MVD 行数账/CHECK-FK 行为等）；Tutorial D 不可运行处转 ⚠️。
+- 互链：与 `../SQL_and_Relational_Theory/`（同作者不同书）已建"三部曲"三角声明；波内互链义务登记于 00：#12 RTCP（三角第三角）、#11 DMD5e（ER 对照）、总索引第 2 波条目回填。
+
+### 第 2 波 · 已验收：#169 Building the Data Warehouse（Inmon）—— 15f/1907L，0 断链（主代理复验）
+
+- 目录版：`book/Building_the_Data_Warehouse/`（00+14 文件；原书 19 章按规格合并为 14 章文件，逐章映射表在 00；00=156L、章∈[121,132]，两节 14/14 齐备）。
+- 勘误（Wiley 产品页 JSON + 官方 excerpt PDF 双实证）：**ISBN 9780764599446 = 第 4 版（2005-10，Wiley，576pp 平装），任务口径"疑 2002 第 3 版"系 Wiley 旧 301 slug 误导，已在 00 版本史辟谣**；ISBN-10 0764599445 校验位一致；电子版 978-0-471-77423-5（2005-09）。
+- ⚠️ 第 1/2/3 版各版 ISBN/年份未获一手实抓（Crossref 无该 monograph、OpenLibrary/IA 连接失败，已如实记入 00 取证时间线）。
+- 中译反查命中：机械工业《数据仓库（原书第4版）》2006-08·王志海译·ISBN 7-111-19194-3·311 页（cmpedu 官方页 19 章中译章题全量在案，章文件命名即采用）；豆瓣+经贸 OPAC 旁证。
+- 🔧 DuckDB 1.5.5 建模原型 `proto_edw.py`（临时区 `dbwave_bdw`，仓库零污染）实测：staging→3NF 原子事实+SCD2 维→月度累计快照→E2L 集市，对账相等/行级回查/修正后重建确定性三断言全真；云仓不可本机实测处一律 ⚠️ 转述。
+- 互链：Kimball 论战主锚 `../数据仓库工具箱3.md`、Data_Vault_2_0/（三角裁判位）、The_Data_Lakehouse/（含 12-对照章 Inmon×开放表格式）等 20+ 兄弟书实链在盘 0 断。登记待补（波尾主代理闭环）：Data_Mesh(#201) 与 DuckDB UAR(#134) 落盘后与 12 章文件双向补链 + 总索引 #169 行回填。
+
+### 第 2 波 · 已验收：#23 Cost-Based Oracle Fundamentals（Jonathan Lewis）—— 15f/1845L，180 链 0 断（主代理复验）
+
+- 目录版：`book/Cost_Based_Oracle_Fundamentals/`（00=150L+14 章∈[120,123]，两节 14/14，概念条 11–15/章）。
+- 元数据 ✅（SpringerLink JSON-LD+书页实证；Crossref 图书记录 author 字段确缺）：Apress 2006，ISBN 9781590596364，DOI 10.1007/978-1-4302-0087-1，XXIV+536 页；14 章目录 SpringerLink TOC × Crossref 逐章 DOI 双源一致。任务单"疑 Jonathan Lewis 署名"获确认。
+- 中译反查：**无官方商业中译实证**；社区文档《基于成本的Oracle优化法则》（renrendoc 页称"源自本书中译本"、百度百科词条 403）标 ⚠️ 存疑，结论写入 00 取证链。
+- 勘误注记：`数据库查询优化器的艺术` 按在盘实证署名**李海翔**（任务单"焦振中"不符，已在 00 注记）。
+- Selinger 1988 / Leis 2015 / Leis 2025 三 DOI 过 Crossref 200；Oracle 文档只引 guide 级 URL（精确页 404 弃用）；全文零伪装实测、统一 ⚠️ 文档转述（含 10053/SPM/ADDM→ASH 演进节）。
+- 互链：Oracle12c 目录版 9 个章文件级深链、`数据库查询优化器的艺术`、`Oracle查询优化改写技巧与案例`、`PG技术内幕_查询优化`、`db/db.md`（System R 论文线）。波尾义务：#42 TOP2e 落盘后与其 05/07/14 章↔Antognini 优化器诊断章双向补链（已登记 00 第七节）。
+
+### 第 2 波 · 已验收：#42 Troubleshooting Oracle Performance 2e（Antognini）—— 17f/2141L（主代理档①直补收口）
+
+- 目录版：`book/Troubleshooting_Oracle_Performance_2e/`（00+16 章一一对应；16 章文件 121–127L、两节 16/16 全达标）。
+- 失败复核记录：agent 于 150 轮上限截断（result="12 完成，剩 16(+7)、00(+17)"），实际盘态优于自述——仅 00=133L 短 17 行 → **档①主代理直补**（§9 更新 CBOF 已落盘状态 + 新增 §10「TOP ⇄ CBOF 双书对读法」施工单），复检 00=153L 全绿，免二轮。
+- 元数据 ✅（Crossref+版权页+书内 Contents PDF 三证）：Christian Antognini 独著，Apress/IOUG 2014，ISBN 978-1-4302-5758-5（纸）/978-1-4302-5759-2（电），DOI 10.1007/978-1-4302-5759-2；Springer 网页只列 15 章、官方 Contents PDF 证实 **16 章**（Ch16 物理设计为 2e 新增）；Jonathan Lewis + Cary Millsap 双序。
+- 3e 疑云：任务书要求登记"3e 2024 已出"——Crossref/Springer/作者官网三处实查**均无据**，⚠️ 留疑、本笔记以 2e 为最新权威基线（00 §6）。
+- 中译反查命中：《Oracle 性能诊断艺术（第 2 版）》人邮 2016-05·王作佳/刘迪译·9787115421173（豆瓣 26880827 实抓）；辨析：`Oracle查询优化改写技巧与案例.md`=师庆栋/罗炳森中文原创（电子工业 2018），既非 Appleton 中译更非本书中译，勿并档。
+- ⚠️/🔧 口径：Oracle 不装不跑零伪实测；sqlite3/Python 仅方法论类比（20 万行 SCAN/SEARCH、ANALYZE 前后计划翻转、cProfile≈DBMS_HPROF），全部注明"非 Oracle 结论"。
+- 互链施工单（主代理波尾执行）：本书 `05/06/07/08/12/13/14` ⇄ CBOF `01/04/05/07/09/10-13/14` 按 00 §10 对读表补实链（当前本书 `](...)` 实链为 0，跨书引用均为反引号文本）；#45 Efficient MySQL 落盘后在 `04` 补 performance_schema 反链。
+
+### 第 2 波 · 已验收：#201 Data Mesh（Zhamak Dehghani）—— 14f/1758L，160 链 0 断（主代理复验，档⓪：截断于自检、盘上零修补）
+
+- 目录版：`book/Data_Mesh/`（00=156L+13 章文件 120–129L，两节 13/13；原书 16 章→13 文件，6/7/8 与 15/16 各并一档，映射表在 00 §3）。
+- 勘误（实证推翻任务口径）：副题应为 **"Delivering Data-Driven Value at Scale"**，任务书给定"Implementing Domain-Oriented Distributed Data Architectures"系误写；ISBN 9781492092384=O'Reilly 平台电子书 ID（Crossref 不收录本书，取证缺口记录在案），目录一级证据=O'Reilly 北京官网影印版页实抓。
+- 版本谱系登记：中译《Data Mesh 权威指南》机工 2023-05·9787111725886（窦衍森/张渊/陈锋译）与《数据网格（影印版）》东南大学 2023-03·9787576605938 系同书两版；当当作者栏混入 Gwen Shapira 属商家粘贴污染，以官方页+豆瓣为准。
+- 辨析防混档：本书≠#200 Implementing Data Mesh≠#202 Data Fabric and Data Mesh Approaches with AI（同题不同书，只互链不并档，双方 00 落盘后复核）。
+- 思想谱系三源头文本（martinfowler.com 2019/2020 + 2024 Kiran Prakash 续作）全 curl 200；🔧 DuckDB 1.5.5 数据产品契约/兼容性演示（临时区 dbwave_mesh）；DDIA ch4 schema 演化=mesh 数据产品契约的机制级对应物（已互链）。
+- 互链现状：已真链 Building_the_Data_Warehouse(#169)/Streaming_Systems/Database_Internals/湖仓双书/大数据之路（集中 vs 分布两极对话）；波尾义务：#169 侧 12 章反链本书、#45/#228 关联章补链、#200/#202 落盘后双向辨析链。
+
+### 第 2 波 · 已验收：#98 Elasticsearch: The Definitive Guide —— 16f/2011L，278 链 0 断（主代理档①直补收口）
+
+- 目录版：`book/Elasticsearch_The_Definitive_Guide/`（00=150L+15 章文件 120–140L，两节 15/15）。
+- 失败复核记录：agent 于 150 轮截断（自述"剩 06/07/14"），实测仅 14 短 3 行 → **档①主代理直补**（14 章补路由手算练习/复习检查条目），复检全绿。
+- 元数据（官方写作仓库一手实证）：主署名 **Gormley & Tong**（`elastic/elasticsearch-definitive-guide` 仓库 `book-docinfo.xml` raw 实抓；二手转述的 Gandinga/Jackvony/Knize 等列 ⚠️）；O'Reilly 2014，print=First Edition 覆盖 ES 1.x、在线姊妹版至 2.4；ISBN 9781449358532（Crossref 全书无条目——O'Reilly 2014 图书普遍不入库，取证缺口记录在案）；print 目录官方页 403，5 部 18 章系二手转述逐行 ⚠️、在线目录仓库实抓互映。
+- 跨代口径特色：全书带"1.x→2026 大对位表"（types/facets/filtered/m_m_n 等作废语法逐条换算 9.x；路由公式一字未变）；Lucene/倒排概念借本机 SQLite FTS5+DuckDB 类比演示 🔧（注明非 ES 结论）；ES 本体不装不跑全 ⚠️。
+- 互链闭环（主代理 2026-09-27 波内即闭）：#89 Cassandra 姊妹册落盘后，00 §5/§7、13、14、15 五处"待建"注记全部升级实链（对等 vs 主从、反熵 vs 副本重放镜像）；其余挂链 DDIA 目录版/高性能mysql/Kafka权威指南/db.md 论文线。
+- 遗留（波尾）：与中译《Elasticsearch 权威指南》（机械工业，print 1.x vs online 2.x 版次辨析）如建目录版按 00 §7-2 预案处理。
+
+### 第 2 波 · 已验收：#87 Using SQLite —— 11f/1543L，68 链 0 断（主代理复验）
+
+- 目录版：`book/Using_SQLite/`（00=184L+10 章文件 126–145L，两节 10/10 齐备）。
+- 元数据口径：Crossref 对 ISBN 9781449394592 **total-results:0 负结果实锤**（O'Reilly 不寄存，取证声明写入 00）；作者/年份/ISBN 因 Google Books/OpenLibrary/LOC/O'Reilly 全域本会话不可达标 ⚠️ 待核验、10 章章目按通行结构标 ⚠️ 推定并写明正确用法——如实登记不硬猜。
+- 版本线取证亮点：sqlite.org changes.html 逐版 grep 实证 UPSERT=3.24.0、STRICT=3.37.0、RETURNING=3.35.0、生成列=3.31.0、JSON 内置=3.38.0、VACUUM INTO=3.27.0、partial index=3.8.0 等十余锚点；现版本 3.53.4（2026-07-24）；引用 30+ URL 逐一 curl，发现并弃用 4 个 404 页改锚。
+- 🔧 密度全系列最高（25 组，每章≥1）：WAL vs DELETE 提交吞吐 360→1578 txn/s（4.4×）、事务边界 13,852×、FTS5 vs LIKE 15×+词元语义差、busy_timeout 1.10s 精确等待、STRICT 拒 NUMERIC 新发现、增量 VACUUM freelist 精确释放、CLI .import 200k=372ms；三态基线并存（CPython 3.45.3/CLI 3.50.6/最新 3.53.4）。
+- 互链：DBRE 六挂点（含食谱实验回指）、UMI 六章对读、湖仓/数仓/DuckDB in Action/双总索引；波尾义务：DuckDB UAR(#134) 落盘后在 01/09 补"行存 vs 列存单机对位"双向链（00 已登记）。
+
+### 第 2 波 · 已验收：#12 Relational Theory for Computer Professionals（C.J. Date）—— 16f/2317L，273 链 0 断（档③窄域二轮收口）
+
+- 目录版：`book/Relational_Theory_for_Computer_Professionals/`（00=170L+15 章文件，附录 A–E 并为 15 号文）。
+- 失败复核记录：首代理 150 轮截断于"09–15 未落盘"实况→checker 实测仅剩 1 文件（15 附录）缺+01 短 5 行 → 窄域二轮（brief=`dbwave-rtcp-brief2.md`，复用 `dbwave_rtcp` 取证区）→ 15 号文 156L 落盘消 8 处断链、01 扩至 130L，主代理全目录复检 ALL OK。
+- 15 号附录内容兜链核对通过：Tutorial D 五层语法速查/dum-dee 幺元零元定律/零度投影桥/全称量词演算对照/Rel 谱系当代实现（TclRAL、PyRAL、initiald、core.relational 均 curl/api 实抓；thedailydarwen.com 本机 000 如实 ⚠️；iso.org 403 → SQL:2023/2025 只提名不附链）。
+- 新 DOI：Chandra & Harel《Computable queries》10.1016/0022-0000(80)90032-x 过 Crossref（文内注明 Crossref 日期 1980 vs 常见引年 1985 口径差）。
+- 二轮上报小瑕疵主代理裁决：06 章 ASSERT 示例 `(…MINUS…) = TABLE_DUM` 严格 Tutorial D 下度不匹配——15 号文 B 节已用"零度投影桥"脚注讲清机制，06 原文标 ⚠️ 示意未动（可接受，留人工终裁）。
+- 三部曲三角闭环：与 `../SQL_and_Relational_Theory/`、`../Database_Design_and_Relational_Theory/`（#8）互链齐备。
+
+### 第 2 波 · 已验收：#45 Efficient MySQL Performance（Daniel Nichter）—— 11f/1740L，179 链 0 断（档⓪：截断于自检、盘上零修补）
+
+- 目录版：`book/Efficient_MySQL_Performance/`（00+10 章=前言+1–10 章口径，两节齐备）。
+- 勘误（多源实证推翻任务口径）：作者=**Daniel Nichter**（Percona 八年/mysqlreport 作者；任务名册"疑 Daniël van Eeden @pingcap"实证排除、未著此书）；副题=**Best Practices and Techniques**（名册"Modern Techniques and Strategies"无来源支撑判误记）。
+- 元数据：电子书 2021-11·ISBN 9781098105082（oreil.ly 短链 301 链+封面 CDN 200+校验位合法）；印刷版 9781098105099 ⚠️ 豆瓣口径；mysql.com 页 Amazon ISBN-10 直转形式校验位不合法→不采信（细节见 00 表）。
+- 取证路径：作者官方章节摘要页 hackmysql.com/learn 九页实抓（每页脚注 Chapter N）+ 官方示例仓库 `efficient-mysql-performance/examples` + 中译本两级目录三源交叉；中译=《高效能MySQL》机工 2023-11·赵利通译·9787111737933（豆瓣 36648244 实抓）。
+- 口径：MySQL 引擎按纪律不实测 ⚠️ 转述为主（performance_schema/pt-tools 均文档口径）。波尾义务：与 TOP2e `04`（等待事件方法论对位 performance_schema）互链——已登记于双方 00。
+
+### 第 2 波 · 已验收：#134 DuckDB: Up and Running（Wei-Meng Lee）—— 10f/1296L，98 链 0 断（档②改主代理直补：二轮 agent 经用户否决，主代理实测+扩写收口）
+
+- 目录版：`book/DuckDB_Up_and_Running/`（00=164L + 9 章文件 120–132L，两节 9/9 齐备；首稿 964L 十章全薄 → 本轮净增 +332L 全达标）。
+- 失败复核记录：首代理产出内容密但全线短行（档②）；二轮 agent 启动被用户否决 → **主代理直补**：新实测批次（复用 `dbwave_duar` 实验区）+ 逐章插入扩写（不动原文，只增实测/模板/对照卡/清单节）。
+- **版本漂移新实证（成书 1.1 → 1.5.5，本收口最重收获）**：`DuckDBPyRelation.aggregate()` **参数序反转**——1.5.5 `__doc__` 逐字实抓为 `aggregate(aggr_expr, group_expr)`，聚合在前；写成成书口径 `aggregate(keys, aggs)` 撞 "GROUP BY clause cannot contain aggregates!"；聚合串内 `AS` 别名不再接受、列名回落 `count_star()` 式；Relation 裸输出不保证行序（须显式 `.order()`）。
+- 其余新实测定型：`PARTITION_BY` 导出 5.8M 行 3.14 s→14 分区目录、hive 回读 0.02 s（原 ⚠️ 转 🔧）；EXISTS 半连接 0.04 s/246,235 行；row_number 组内 Top-1 0.02 s；median+mode 画像 0.08 s；FILTER 取消率 MQ 5.10%；NULLS 保留字炸别名；`DEPARTURE_DELAY` NULL 率 1.48%（86,153/5,819,079）；DuckLake `duckdb_functions()` **21 函数名单实抓**（落盘/清理/情报/事务四分层）。
+- 元数据：Wei-Meng Lee（李维明），O'Reilly 2024-12，ebook 9781098159689 / 印刷 9781098159696（平装 305 页）；Crossref 双 ISBN 均 0 条（"当当+封面接口+官方示例 README+读者仓库署名"四源佐证链存档 00）；目录一级证据=官方示例仓库 `Chapter_1–9.ipynb` 标题逐字实抓；librowndev 镜像（2026-04，8 章+DuckDB_2026.pdf）疑修订版——00 登记"以 9 章版为唯一口径 ⚠️"。
+- 辨析：与 Manning《DuckDB in Action》**非同一本书**——00 落八主题 UAR⇄DIA 对照速查表；两册 🔧 同机同版（1.5.5）数字可互校。
+- 互链闭环（本收口内完成）：#87 `../Using_SQLite/` 三处【待建】注记（00 登记行/01/02）+07 章一处共四处全部升级实链；波尾义务：按 #87 档登记，于 Using_SQLite 00/01/09 回补"行/列单机对位"反链。
+
+### 第 2 波 · 收束登记（2026-09-27，主代理，append-only）
+
+- **14/14 全部验收，波尾复验全绿**：checker 实测全波 **197 文件 / 25,801 行 / 2,150 条本仓库实链 / 0 断链**；行数区间（00∈150–250、章∈120–200）与文末两节逐字序（核心概念速览→最新演进与工业实践，且为最后两个 `##`）14/14 通过。累计 **42/224**。
+- 波尾反链义务闭环明细（本波登记位全部换实链）：
+  - `Database_Administration_2e` 00 义务表 7 行+01–17 章共 24 处波内挂点（本波最大义务表，全闭环）；`Using_SQLite`⇄`DuckDB_Up_and_Running` 行/列单机对位五处双向链。
+  - **CBOF⇄TOP2e 双书主脊**：按 TOP 00 §10 施工单将 §9/§10 对读表全量升级实链（TOP `01/05/06/07/08/10/11/12/13/14` ⇄ CBOF `01/03/04/05/06/07/09/10–14`）；#45 作者勘误（Nichter 非 van Eeden）同步落入 TOP 00/04，TOP 04⇄EMP `00` 等待事件方法论互链建成。
+  - Date 三部曲三角（`SQL_and_Relational_Theory`/`Database_Design_and_Relational_Theory`/`Relational_Theory_for_Computer_Professionals`）+ `Database_Modeling_and_Design_5e` 四向互链全部实链化；RTCP 00 兄弟册义务表逐行闭环。
+  - `Building_the_Data_Warehouse`⇄`Data_Mesh` CIF-vs-网格论战双向（00/06/12 ⇄ 02/06）；`Expert_Apache_Cassandra_Administration`⇄`Elasticsearch_The_Definitive_Guide` 姊妹册对等/反熵镜像双向。
+  - 跨波反链（Streaming 00 §七预案兑现）：`Apache_Paimon_Streaming_Lakehouse/01` 与 `bigdata/07` 各新增本书 `../Streaming_Systems/00` 实链一条（水位线/精确一次模型出处）。
+- 范围声明：`Data_Mesh` 00 所记 #200《Implementing Data Mesh》、#202《Data Fabric and Data Mesh Approaches with AI》、`Building_Data_Systems`、`The_Data_Warehouse_Engineering_Perfected` 等**非本波书目**，保持"⚠️ 待建仅文字登记"不动；Delta/湖仓侧对 `Engineering_Lakehouses` 的越波引用同理。
+- 波尾修补记录：`Expert_Apache_Cassandra_Administration/07` 与 `Streaming_Systems/10` 的「最新演进」节标题带尾缀（非逐字），已规范化为逐字标题+首行注记；RTCP 00 义务表一处误链（不存在的 `SQLite3官方文档剖析.md`）改指 `Using_SQLite/07·08` 实文件。
+- 遗留人工裁决项（不阻塞）：RTCP 06 ASSERT 度不匹配脚注口径；TOP 3e 疑云（§6 末行，未证实）；ES print 目录 403 二手转述；DUAR librowndev 8 章镜像疑修订版（00 已按 9 章口径锁定）。
+- **第 3 波预备（草拟，发射前逐本做跨语言查重）**：SQLite 系其余、Redis/Mongo 其余、Postgres 其余、NewSQL/TiDB/CockroachDB、湖仓表格式其余版次、查询/优化器专书、数据治理/质量/元数据、流批一体、图/时序/向量数据库——剩余 182 本。
