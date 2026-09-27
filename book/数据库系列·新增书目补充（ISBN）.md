@@ -460,3 +460,140 @@
 - 波尾修补记录：`Expert_Apache_Cassandra_Administration/07` 与 `Streaming_Systems/10` 的「最新演进」节标题带尾缀（非逐字），已规范化为逐字标题+首行注记；RTCP 00 义务表一处误链（不存在的 `SQLite3官方文档剖析.md`）改指 `Using_SQLite/07·08` 实文件。
 - 遗留人工裁决项（不阻塞）：RTCP 06 ASSERT 度不匹配脚注口径；TOP 3e 疑云（§6 末行，未证实）；ES print 目录 403 二手转述；DUAR librowndev 8 章镜像疑修订版（00 已按 9 章口径锁定）。
 - **第 3 波预备（草拟，发射前逐本做跨语言查重）**：SQLite 系其余、Redis/Mongo 其余、Postgres 其余、NewSQL/TiDB/CockroachDB、湖仓表格式其余版次、查询/优化器专书、数据治理/质量/元数据、流批一体、图/时序/向量数据库——剩余 182 本。
+
+### 第 3 波 · 已验收：#52 Mastering PostgreSQL Administration（Ravi Kumar / Samayam / Kadambari）—— 11f/1465L，63 链 0 断（档⓪：agent 自检与主代理 checker 全绿一致）
+
+- 目录版：`book/Mastering_PostgreSQL_Administration/`（00=163L + 10 章 120–143L，文末两节逐字序全过）。
+- **重大勘误（Crossref 正条目推翻任务口径）**：本册=**Apress（Springer Nature）2025 第 1 版**（非 Packt；非"疑 Maxim Boguk"），作者 Y. V. Ravi Kumar / Arun Kumar Samayam / Phani Kadambari，XVII+733 页 252 插图；ISBN 9798868815072=电子版（印刷 9798868815065），DOI `10.1007/979-8-8688-1507-2` 200 + Springer 书页 200 + Crossref ISBN filter 三源交叉；10 章章题双源、10 段章摘要全文实抓存证。
+- 同名撞题辨析已登记 00：Boguk 的 Packt 2016 同名书 2e（9781785885205）Crossref total-results=0（✅ 负结果实证）、Packt 页 403——非同一书，只辨析不并档。
+- **方法论注记（更新 979 前缀先例）**：Using_SQLite 先例"979 Crossref 常无条目"不适用于本册——负/正取决于出版社寄存（Springer 寄存、O'Reilly/Packt 不寄存），后续波次照此办理（已写入 00）。
+- 口径：PG/Oracle 不装不跑 ⚠️ 转述；🔧 概念演示走本机 sqlite3 3.45.3/DuckDB 1.5.5（03 页头取证、05 WAL 检查点+热备 API、06 删除→freelist 644 页→VACUUM 650→6 页、07 SQL 内省、08 NVL/COALESCE 方言墙、09 capture→apply 5300 条对账），每条显式声明"非 PG/Oracle 结论"；引用 URL 20 余条 curl 200 验证，404 猜测链剔除、Debezium 未验证不附链。
+- 互链义务（已登记 00，主代理波尾闭环）：①#64 `PostgreSQL_10_High_Performance_3e` ↔ 本册 02/05/06/07 同族两代基线对照+反向补链；②#90 `The_Definitive_Guide_to_SQLite_2e` ↔ 本册 06（VACUUM/freelist 正主口径+🔧 互认）；③#167 `Streaming_Databases` ↔ 本册 09（CDC 上游理论）。
+
+### 第 3 波 · 已验收：#107 Redis Cookbook（O'Reilly 2011）—— 8f/1020L，94 链 0 断（档⓪+主代理修补 2 处占位符泄漏）
+
+- 目录版：`book/Redis_Cookbook/`（00=162L + 7 章 120–134L，两节逐字序全过）。
+- **主代理修补**：agent 落盘含 2 处 `<NAME>` 占位符泄漏（00:46 Redis in Action 作者、00:60 master-redis 署名）→ 已按书证修复为 Josiah L. Carlson（Manning 2015 单作者，与本行"单作者深度长文"自洽）与"Packt《Mastering Redis》9781783988181 中译，Stefano Maggiolo"（master-redis.md 书首 URL 实证）。修补后 checker 复跑全绿。**2026-09-27 追正**：#83 册 isbnsearch 实抓+主代理现场复验 9781783988181=**Jeremy Nelson（2016-05-31 1e）**，Maggiolo 系 Learning Redis 4.x 作者系误记；Redis_Cookbook/00:60 已同步更正。
+- 元数据：✅ isbnsearch.org 实抓 Redis Cookbook / O'Reilly / 2011 / 9781449311353（ISBN-10 校验位自算吻合）；**作者=Tiago Macedo 仅聚合站单源 ⚠️ 不写死**（O'Reilly 书页 403、豆瓣 404、Crossref 0 命中、Amazon/GoogleBooks/OpenLibrary 等全域被拦均系 ✅ 负结果实查；00 登记取证时间线，并提示线上常被署 Yinan Li & Tiago Jerónimo 的版次记录未证实）。
+- **诚实结构声明**：原书逐章目录无法实抓 → 00 以「目录取证声明」明示 7 文件为**主题重建（⚠️ 非原书章题）**，未伪造章名——此为先例：取证不可达时允许主题重建但必须声明。
+- 辨析：00 三书表——本册 ≠ `../Redis实战.md`（Redis in Action 中译）≠ #83 Learning Redis；另登 Redis 4.x Cookbook（Packt 2019）防混"2e"。盘上 Redis 系实为 **6+1 单文件**（含 `深入理解Redis.md`，较任务名册"五单文件"多一本），全部 ls 验名实链。
+- 🔧 三组 sqlite3/DuckDB 语义等价物（ZSET 同分字典序 tie-break、INCR/SETNX 原子步长 1000 次 4.8ms、分布式锁四步状态机含过期接管/不误删），均注"非 Redis 行为"；Redis 本体 ⚠️。
+- 波尾义务：`../Learning_Redis/00`（#83 兄弟）待其落盘后双向补实链。
+
+### 第 3 波 · 已验收：#148 Architecting an Apache Iceberg Lakehouse（Alex Merced）—— 15f/1884L，160 链 0 断（档⓪）
+
+- 目录版：`book/Architecting_an_Apache_Iceberg_Lakehouse/`（00=153L + 14 文件 120–135L；11 章+附录 A–D，附录 D 后记并入 14，映射表 00 声明）。
+- 元数据勘误：✅ Manning 官方页 JSON-LD 实抓——作者 **Alex Merced**（Dremio DevRel、DataLakehouseHub 主理人），**releaseDate 2026-04-29**（推翻名册"疑 2025"），ISBN 9781633435100 在案；Crossref isbn 过滤 0 命中（✅ 负结果登记）。
+- **方法论先例（Manning TOC 懒加载破解）**：书页目录经 JS 异步加载 → 页内提取 `productId 3868` → `manning.com/ajax/getTocHtml?id=3868` 全量实抓 01–14 三级小节（取证快照存 `tmp/dbwave_w3_icearch/`）。后续 Manning 册照此办理。
+- Catalog 生态 2026-09 实查（GitHub API ✅）：Iceberg 1.11.0（2026-05-20）、Lakekeeper v0.13.6、Nessie 0.108.8、Gravitino v1.3.0；spec 页已见 Version 4 条目、REST OpenAPI yaml 200；Polaris 毕业时点 ⚠️。
+- 🔧：DuckDB 1.5.5 手写迷你快照/清单演示五件套（D1 时间旅行、D2 剪枝、D3 CoW/MoR 两口径同 2800 行、D4 孤儿=2 文件含 delete 文件、D5 视图两族），收录 02/06/10/12/14；Iceberg 全栈 ⚠️ 不装不跑；DuckDB iceberg 扩展三态核验复用 DUAR09 结论未重复安装。
+- 三册 Iceberg 分工（入 00）：本册=架构分层选型手册 ／ 活用入門=表格式机制深读 ／ Use_Iceberg_with_Spark=Spark 单引擎实操——不并档、互为上下游；与 Engineering_Lakehouses/Paimon/Practical_Lakehouse 逐一对位。
+- 波尾义务（00 登记）：#176 挂点 05/06/10（VACUUM vs expire、Δ 摄入）、#124 挂点 09/13（AI 检索负载/Daft 向量面）、#167 挂点 06、#190 于 04 章"待建不链空"。
+
+### 第 3 波 · 已验收：#92 Cassandra: The Definitive Guide（Carpenter & Hewitt）—— 13f/1649L，125 链 0 断（档⓪；agent 自纠 2 畸形链+1 笔误，主代理复核全绿）
+
+- 目录版：`book/Cassandra_The_Definitive_Guide/`（00=167L + 12 章 120–130L，两节逐字全过）。
+- **作者团勘误**：全部可达源一致=**Jeff Carpenter & Eben Hewitt 二人**——名册"合集式多作者"注记**不成立**（按 #89 册"辨析 A 误记先例"登记为辨析 C）；ISBN 9781449399764 与实体版次（1e 9781449365220/2e 9781491933664）对不上、2015 无独立版次→登记辨析 D（书单误差，不臆改）。
+- Crossref works/ISBN→404、isbn 过滤→0 命中（✅ 负结果，照 ES TDG 先例）；O'Reilly 页 HEAD 200/GET 403 仅引不作内容依据；print TOC 不可达→整体 ⚠️ 推定 + 5 个近一手章题锚点（CSDN TDG 2e 中译系列实抓）✅，映射表逐行标态。
+- 三书辨析（00 §3 对位表）：本册 TDG（用户向 2.x）≠ #89 Expert（Alapati/Apress 2018/3.x 管理员纵深）≠ `../cassandra实战.md`（文件头实证=郭鹏 2011 国内原创、0.7/thrift 时代，**非任何 O'Reilly 中译**）；TDG 真中译=《Cassandra权威指南》（中国电力/东南大学影印，repo 未建仅登记）。
+- 00 §4 跨代对位表 13 行（SSTable/trie、vector、TCM、Accord、thrift 移除、SAI/UCS、CDC、JDK17、驱动 4.19.3…）全部官方页/NEWS.txt 实查；6.0 站标预发布如实 ⚠️。
+- 波内兄弟登记不链空（00 §7，挂点含章号）：Learning_Redis/Redis_Cookbook/Time_Series_Databases/Vector_Databases/Streaming_Databases/Neo4j TDG/Practical MongoDB Aggregations——波尾主代理闭环。
+
+### 第 3 波 · 已验收：#167 Streaming Databases（Hubert Dulay & Ralph Matthias Debusmann）—— 12f/1522L，140 链 0 断（档⓪）
+
+- 目录版：`book/Streaming_Databases/`（00=174L + 11 章 120–130L，两节逐字全过；二级小节官方不可抓（O'Reilly 403），章级精读重构体例已在 00 第二节如实声明）。
+- **重大勘误**：名册"疑 Tyler Akidau"**证伪**——实抓作者=Hubert Dulay & Ralph Matthias Debusmann（豆瓣 subject 37021167 目录+简介逐字实抓；Dulay 本人 LinkedIn 发布帖命中）；Akidau 的书即盘上 #228《Streaming Systems》，两书勿混。11 章章题全部 ✅ 逐字实抓。
+- ISBN：名册 9781098154820 与豆瓣 9781098154837 推定电/纸异形号对、官方页未核实标 ⚠️；Crossref isbn 过滤 200/0 items（O'Reilly 不入库先例入 00 台账）。
+- 两书对照（00 第三节，本波最重互链成果）：#228=语义层"流表对偶理论宣言"（2017 谷歌作者团），本册=产品层"把对偶写成采购清单"（2024 Confluent 系）——11 章逐章对照表全实链 #228 对应章文件。
+- 🔧：sqlite3 触发器手写 IVW+回滚原子性、NULL 行漏补反例、批重算 vs 增量 20 万行对账（49.2ms vs 0.076ms）、push/pull outbox；DuckDB 多重集差分增量==全量六步对账（DBSP 类比）、递归闭包 delta 传播——均注"非流引擎"；Materialize/RisingWave/Feldera/ksqlDB 不装不跑；DOI 过检：DBSP 10.14778/3587136.3587137、VLDBJ 10.1007/s00778-025-00922-y、RisingWave DEBS 10.1145/3524860.3543284；失败取证留痕（Chin&Huang DOI 猜测 404 弃用、IBM 公告深链失效改引二手 ⚠️）。
+- 硬义务四链已实链（Database_Internals/bigdata07/Paimon/Trino TDG2e）；兄弟登记不链：#176（07/08 挂点）、#20（03/11）、#124（11.3）、#190（9.2）；反向建议：Streaming_Systems/00 第七节登记"本册为其下册"（波尾执行）。
+
+### 第 3 波 · 已验收：#190 The Enterprise Data Catalog 2e —— 8f/1033L，58 链 0 断（档⓪；ISBN  anomalies 本波最重取证）
+
+- 目录版：`book/The_Enterprise_Data_Catalog_2e/`（00=157L + 7 章 122–127L，两节逐字全过）。
+- **头号取证**：名册 ISBN `0642572284909` 判定**无效 ISBN=O'Reilly 平台内部产品号** ✅（ISBN-13 必须 978/979 开头；同段 #188/#191 共用 0642572xxxxxx 且 slug 截断规律吻合）——此判定可推广到名册所有 0642 开头号。
+- 15 路取证链+负结果台账入 00§2（仿 Using_SQLite/#134 体例）：Crossref 4 路全负、O'Reilly 双域 403、Google Books/OpenLibrary/Goodreads 不可达、Springer（M&C 现托管方）零命中；**任务前提"1e 疑 Manning"经 manning.com 404+多源零命中实查否定** ✅。
+- 诚实口径：作者/出版年/2e 副题无一手证据全 ⚠️；工作性认定=Hayes/Sieverts/Williams 谱系（1e M&C 2020，2e 转投 O'Reilly 新品号段）⚠️；**同名辨析**：豆瓣实抓 Olesen-Bagneux 2e（2023，9781492098713 ✅）为第二候选，两谱系于 00§3.3/01§5/04§4 反复对读不并档；目录按「⚠️ 推定主题域重构」组织（仿 Iceberg 活用入門先例），7 章带证据级头注，00§10 缺口总清单。
+- DOI ✅：LineageX ICDE 2025 10.1109/icde65448.2025.00363、10.63345/jqst.v2i1.170 均 Crossref 200。
+- 🔧：血缘=sqlite3 递归 CTE 有向图可达性（11 边/下游 8 资产/4 跳/289µs，含防环+恰好 N 跳）；元数据检索=DuckDB 手建 postings（42 token/56 行）双词打分，并证实本机 sqlite3 带 FTS5+bm25；目录平台谱系零安装全 ⚠️+14 条 URL curl 200 逐一验证。
+- 波尾义务：#148（盘上已建未链）挂点 06/07、#176 挂点 06（Unity/CDF）、#124 挂点 04、#167（盘上已建未链）挂点 03/07；反向建议"各册 00 登记目录平台谱系见本册 06"。
+
+### 第 3 波 · 已验收：#176 Delta Lake: Up and Running —— 7f/965L，120 链 0 断（档⓪）
+
+- 目录版：`book/Delta_Lake_Up_and_Running/`（00=160L + 6 章 122–152L，两节逐字全过）。
+- 元数据：✅ ISBN 9781098139711 归 O'Reilly 书系（书页 301→slug 规范化 + covers CDN 200 + 总索引行三对齐）；副题与电子 ISBN 9781098139728 取镜像记录（次级源）；⚠️ 作者团（疑 Denny Lee/Blue/Armbrust）与 2023 出版年无官方级实证（8 条取证台账入 00）；⚠️ 官方 TOC 不可得——6 章全标「推定主题章」，未虚构目录。
+- **同名书三叉（本波防混档最重发现）**：检索实证存在 Bennie Haelen & Dan Davis 的另一本同名《Delta Lake Up and Running》（配套仓库 README 署名+真实 10 章 TOC+翔泳社日译）——中文圈"CSDN 10 章读书笔记"读的是那本**不是 #176**；00 立辨析一拦截张冠李戴。
+- 两书分工（vs 盘上 Delta_Lake_Definitive_Guide）：本册=入门实操（OSS Delta 主干，Databricks 特性作升级路径），DG=全面参考（UC/DLT/Sharing 深耦合）；DG 署名 Lee/Wentling/Haines/Babu 与本册疑共现 Denny Lee；任务书称 DG 为"Yalamanchi 等"与盘上口径不符已登记勘疑；阅读序=零基础→本册→DG 纵深。
+- 🔧：sqlite3 手写"版本表+快照读"迷你 Delta——WRITE/UPDATE(COW)/DELETE/MERGE 四版逐值快照读；**VACUUM 超窗毁史实锤**（v2 静默错值不报错）；checkpoint 物化 3 行；第二写者 BEGIN IMMEDIATE 即 locked（悲观锁 vs Delta 乐观协议对照）；ducklake 对照引 DUAR/09 实并注明出处。Delta/pyspark 零安装。
+- 波尾主代理回补清单（本册未改对方文件）：①DG 00 关系表补本册行；②四格式 00（Iceberg活用入門/Practical_Lakehouse/Engineering/Paimon）互链表各补本册 00；③#148 06 章"#176 未落盘"挂点可销（本册 03/05/06 已先行实链其章文件）；④DG 00「Engineering 待建」过时行顺手更正。
+
+### 第 3 波 · 已验收：#127 Practical MongoDB Aggregations（Paul Done）—— 9f/1142L，103 链 0 断（档⓪）
+
+- 目录版：`book/Practical_MongoDB_Aggregations/`（00=152L + 8 章 120–130L，两节逐字全过）。
+- **作者勘误**：名册/任务"疑 Michael Lynch"**证伪**——isbnsearch 双源实抓=**Paul Done**（Packt 2024-03-01，ISBN 9781835884362，精装 278 页）；Lynch 系 Gumroad 同名自出版三部曲作者，撞名辨析已登记（⚠️ 转述）。"疑 2e"未证实（各源无 edition 字样、Packt 403），按 2024 Packt 初版处理。
+- 取证缺口台账：Crossref 978 前缀 0 命中（照 #87/#190 先例）；原书逐章目录全渠道不可得（Packt 403/Google Books 超时/Amazon 降级/DNB 0/OpenLibrary 超时/作者站 DNS 失败，6 路负结果 ✅ 实查）→ 目录按「阶段族→SQL 对照」组织、00 第二节声明不冒造章号；中译反查无疑似单文件（负结果入 00）。URL 修正：mongodb release-notes 换 `/docs/manual/release-notes/`（200）、sqlite lang_cte 404 撤换。
+- 🔧 15 组/26 次引擎执行（seed=42 统一数据集：20 万单/5000 客户/6 层树）：$match 100,081、$unwind 放大 2.49×、$lookup 孤儿 8,048（ATTACH 跨引擎同值 12.3ms）、$bucket 桶差 20（拆平口径教训）、NTILE 625×8、$graphLookup 6 层 126 节点、窗口运行和 8,117.32、**日期桶 94 行跨年分歧如实登记**；**新漂移发现：DuckDB 1.5.5 `width_bucket` 实测不存在**（能力卡收录）；全注明"SQL 复现语义，非 mongod"。
+- 波尾义务（兄弟全写代码文本未链空）：#124←ch08§3/§6+00§6（$vectorSearch）、#88←ch04§3+00§6（$graphLookup⇄Cypher）、#20←ch05/06+00§6、#92←00§6（$lookup vs 反范式）、#167←ch08§2.3（增量物化）；反向：MongoDB_TDG_3e/04-聚合框架.md 回链本册。
+
+### 第 3 波 · 已验收：#83 Learning Redis（Vinoo Das）—— 9f/1168L，140 链 0 断（档⓪；头号查重义务=查否）
+
+- 目录版：`book/Learning_Redis/`（00=166L + 8 章 121–136L，两节逐字全过、术语条 12–13 达标）。
+- **跨语言查重判决：盘上 `Redis入门指南.md` 不是本书旧中译**——其头部豆瓣 26419240=李子骅《Redis入门指南（第2版）》中文原创（人邮 2015，9787115388407）；"Vinoo Das"检索豆瓣仅命中英文原版 26584641、无中译条目；作者/语言/出版社/体量四不同 → 不适用 UM 旧译升级范式，00 设「查否登记」专节、按同题不同书对位互链。
+- 元数据 ✅：Vinoo Das、Packt 2015（纸 07-01/电 06-26）、9781783980123/10:1783980125/电 9781783980130、**1e**（isbnsearch Edition:1，2e 弱否定登记）、412 页、"面向 SQL 开发者"定位（Apple Books 原文）；⚠️：packtpub/O'Reilly 403、Google Books/archive.org/OpenLibrary 不可达、Crossref 无记录（负结果台账 7 路）。真实章目录全渠道不可得→8 个「精读重构主题单元」+缺口申报+映射表留白再声明。
+- 🔧：zset 面 TOP5 11.4ms/复合索引后区间计数 0.09ms；抽样回收 1000 过期键 5653 轮/8173ms；MULTI 回滚分野对照；DuckDB 落盘 536,576 字节重启恢复——均注"非 Redis 行为"；06/07 时序面**拒做伪实测**全 ⚠️。
+- **波内碰撞仲裁（主代理现场 curl 实查）**：master-redis.md 归属——#107 初记 Maggiolo vs #83 实抓 Jeremy Nelson → isbnsearch 9781783988181 复核=**Jeremy Nelson**，#83 正确；Redis_Cookbook/00:60 与本文件 #107 登记行已同步更正（上方追正）。
+- 波尾义务：#107↔本册 00/08 双向（写作期未链空）、#92↔本册 06（分区键值对照）；盘上 Redis 七单文件已逐一对位实链（Redis实战=Redis in Action 中译等，均查异不并档）。
+
+### 第 3 波 · 已验收：#20 Time Series Databases（Ted Dunning & Ellen Friedman）—— 7f/961L，76 链 0 断（档⓪；作者图证正名）
+
+- 目录版：`book/Time_Series_Databases/`（00=187L + 6 章 121–137L，两节逐字全过；60 页 short-report 体量，6 章口径与 00 章数声明自洽）。
+- **作者正名（图证先例）**：流行"Christina Qi/John Sandford/Nikhil Chellappa 2016 同名书"一说被否定——官方封面 CDN `covers.oreillystatic.com/.../9781491920909/lrg.jpg` 下载读图=**Ted Dunning & Ellen Friedman**，与豆瓣 26725352（2014-11，60 页）+ arXiv 2408.10255v2 引文 [59] 三源交叉；双 ISBN 封面 **MD5 逐字节相同**→同书双号 ✅（纸/电对应 ⚠️）。"Qi 等著"多源未证实，不建档。
+- 章结构证据分级：第 3 章章题 ✅（SegmentFault 全章中译 2015-05-26，"疑他书"澄清归位）、第 4 章 ✅ 内证、1/2/5/6 ⚠️ 推定（封底学习点对位），00 逐行标态；另登记 arXiv [59] 年份误印 2019（实 2014-11）勘误。
+- Crossref 双路负结果留痕（沿 #228 O'Reilly 不入库口径）；O'Reilly 页 403 可引不作依据；Google Books/OpenLibrary/WorldCat/HathiTrust 本机不可达如实入台账。
+- 🔧 六组：delta-of-delta 编码 8.0×、分桶 7000 桶 0.087s、rollup 28.6:1、乱序吸收 0 差异+DuckDB 到达序不变性、玩具异常检测 **43/50 命中如实收录失败样本**（+4σ 被正弦趋势稀释漏报，作基线-残差框架注脚）、GeoHash 围栏 4 前缀→1484 候选→654 精确 0.222ms vs 暴力 7.85ms；时序引擎全 ⚠️ 不装不跑；DOI 4 篇过检 200（Gorilla/IoTDB×2/TS-Benchmark）。
+- 波尾义务（00 §7）：#124←01/06、#167←04/05、#92←03/04、#107/#83←03、#90/#87←03/04、#127←05。
+
+### 第 3 波 · 已验收：#90 The Definitive Guide to SQLite, 2e（Apress 2010）—— 12f/1658L，90 链 0 断（档⓪；Crossref 正结果+章级权威目录）
+
+- 目录版：`book/The_Definitive_Guide_to_SQLite_2e/`（00=153L + 11 章 131–144L，两节逐字全过）。
+- 元数据 ✅ **Crossref 正结果**：ISBN 9781430232254/2261、Apress 2010、DOI 10.1007/978-1-4302-3226-1，**book-chapter 条目直接给出 11 章权威一级目录**——#87 的"Crossref 负结果"先例不适用（00 注明渠道差异：Apress/Springer 寄存线，与 #52 方法论一致）。
+- **中译勘误**：《SQLite权威指南（第2版）》=**电子工业出版社** 2012-01（杨谦/刘义宣/谢志强，9787121149245，孔网条目 ✅）——任务书"机工?"存疑已排除❌入 00；盘上反查无 SQLite权威指南单文件、无并档义务，仅与 #87 互链。
+- 🔧 11 组（每章≥1，SQLite 系本波最高）：版本指纹+文件头逐字节解码、journal 生灭 776× 摊薄、typeof 亲和矩阵、OR REPLACE vs UPSERT rowid 分叉、**真崩溃热日志回滚**、增量 VACUUM 150 空闲页仅还 1 页、错误码 2067/authorizer/backup 0.125s、三代事务 API 同框、Android 血统 CLI 指纹、fsync 三档账单、EXPLAIN 26 指令解剖+EQP 双定律。
+- **版本锚点逐版实证**：备份 API=**3.6.11**（changes 原句纠正常见 3.6.10 误记）、WAL=3.7.0、FTS5=3.9.0、UPSERT=3.24.0、窗口/RENAME=3.25.0、生成列=3.31.0、RETURNING/数学函数=3.35.0、STRICT=3.37.0、JSON 内置=3.38.0、stable=**3.53.4（2026-07-24）**。
+- 行为级新知（入章文件）：incremental_vacuum 只截尾部连续空闲页；闲置 deferred 事务持 SHARED 可卡他人 COMMIT；**Python 默认 isolation_level 会让 fsync 实验全部失真**（首跑 0.00s 实录作失败教材）；wal_checkpoint 事务内=SQLITE_LOCKED。
+- 互链无欠账：#87（姊妹分工表+同版本实验互证 6 章文件实链）、#134/DSC6/Database_Internals/UM/高性能mysql 均已实链。波尾回链建议：#92/#89 三书对位表增"嵌入式对照"行指本 00；#107/#83 可引本册 04/08；#127 可引本册 04 SQL 对照；#52 义务（本册 06↔PGAdmin 06 VACUUM/freelist 正主口径）双向待闭。
+
+### 第 3 波 · 已验收：#124 Vector Databases（Harsimran Singh ⚠️）—— 9f/1137L，99 链 0 断（档⓪；本波 🔧 密度最高）
+
+- 目录版：`book/Vector_Databases/`（00=158L + 8 章 120–126L，两节逐字全过；章结构 ⚠️ 主题构造+逐文件映射表声明）。
+- 元数据：ISBN 9781098177584 按著录登记（Crossref 404 负结果 ✅）；书名 ⚠️（Coursera 官方项目页吻合）、作者/2025/O'Reilly 均 ⚠️（书页 403、OpenLibrary/Google Books 不可达，缺口全入 00）。**查重：豆瓣《向量数据库：大模型驱动的智能检索与应用》（梁楠，清华社 2025）系同名异书**，辨析入 00。
+- 🔧 10 组主实验约 25 个带数字结论：暴力 py 171–189ms vs DuckDB SQL 10.2ms（recall 锚=1.000）；度量等价律+IP 陷阱各 100/100；LSH 候选退化（k=8/L=12→9,946 候选）；PQ 0.537；IVF nprobe16 0.888@34ms；**玩具 NSW 0.604 vs DuckDB vss 真 HNSW 0.908@3.78ms（FLOAT[N] 类型契约报错实录）**；过滤三姿势 post 0.017/overfetch 0.779/pre 1.0@0.7ms；全部注明玩具/引擎真实行为归属。
+- URL 实查 25+ 条 HEAD 200（Qdrant/Milvus/Weaviate/DuckDB vss/ann-benchmarks/arXiv 四经典/CASSANDRA-19181 等）；sqlite-vec/MTEB 榜等复核 000/超时按 ⚠️ 降级入勘误日志；paper/ 空格目录 %20 编码链全部 unquote 验证。
+- 波尾义务（00 五节）：#88←05/06/07（图+向量）、#92←06（vector 类型/SAI）、#83/#107←05（HNSW 缓存形态）、#127←（$vectorSearch×聚合）、#20←（可选）。
+
+### 第 3 波 · 已验收：#64 PostgreSQL 10 High Performance 3e（Pirozzi / Ahmed / Smith）—— 17f/2120L，57 链 0 断（档⓪）
+
+- 目录版：`book/PostgreSQL_10_High_Performance_3e/`（00=152L + 16 章 120–133L，两节逐字全过；16 章存在性经官方代码仓目录树 ✅，章题为内容锚点重构 ⚠️，08/12/13 明示占位重构）。
+- **作者勘误**：任务疑 Abilova/Williams/Heddaya/Wilson 四人团**不采信**——豆瓣 ISBN 精确页+PacktPublishing 官方仓（建库日 2018-04-30）双源实抓=**Enrico Pirozzi / Ibrar Ahmed / Gregory Smith**；四人团疑为《PostgreSQL 11 High Performance》作者谱系 ⚠️ 假说登记。**年份勘误**：任务 2019→实查 2018-04-30。
+- **书系谱系表（00 建表，跨册资产）**：1e=9.0 HP（Gregory Smith 独著 2010-10-20，9781849510301 ✅）→2e=9.6 HP（Ahmed&Smith 2017-05-31，9781784392970 ✅；中译《PostgreSQL 9X之巅（原书第2版）》机工 2018 9787111596196 ✅）→3e=本册（9781788474481）；#34 成文时须回指本表（登记于 00）。
+- 三态纪律：🔧 台账 A–E 五组映射章（D 组噪声教训如实保留）；外链仅 curl 200 实查；DOI 4 篇过 Crossref（Aurora/DuckDB/PolarDB-MP/TPC-E）；自查修正 7 处（URL 补 .html、pg_pathman 降级 ⚠️ 等）。
+- 波尾义务：#52（盘上已建）双向同族两代基线对照（其 00 已挂 02/05/06/07）、#90（盘上已建）、#83/#107（Redis 线）——均已登记待主代理闭环。
+
+### 第 3 波 · 已验收：#88 Neo4j: The Definitive Guide（Misquitta & Willemsen，2025）—— 14f/1771L，125 链 0 断（档③+②混合：一轮 150 轮截断，二轮窄域收口）
+
+- 目录版：`book/Neo4j_The_Definitive_Guide/`（00=165L + 13 章 120–131L）。
+- 失败复核记录（第 7 例）：一轮 165 调用截断于"正在写文件"，盘上 11f/1068L/25 缺陷（16 断链=全/半角冒号文件名错配+9 薄文件 78–102L+11/12/13 整缺）→ 档③+②混合 → 二轮窄域（任务书=`dbwave-88-brief2.md`，复用一轮取证区含 book.tar.gz/book-main）→ 14f/1771L/125 链 0 缺陷，主代理 checker 复跑与二报一致。**教训：00 内链章文件名必须写前逐字比对盘上实名（全角冒号系本目录风格）。**
+- 元数据勘误增量：**简报预设"9781098165642 疑 2e 2024 Robinson/Webber 谱系"不成立**——一轮实抓=**Luanne Misquitta、Christophe Willemsen（GraphAware 系），2025-08-26，408 页**，本册以 ISBN+年份指称不写版次号；O'Reilly 页 403、Crossref ISBN 0 条负结果维持；中译反查无命中（清华社《Neo4j权威指南》《精通Neo4j》非中译，✅ 辨析维持）。
+- 图谱系双锚结构（00 新增「盘上图谱系对位」节）：本册=**Neo4j 产品线主锚**（5.26 LTS 全操作纵深：导入→建模→调优→RBAC→WAL/备份→Core/RR/Composite→Prometheus+Loki→GDS→向量+LLM），`Graph_Databases_2e`=世界观锚（2021）；13 行实链对照表；四本 Packt 图谱书（未建）挂双锚之下。
+- 🔧：12 章纯 python 标签传播在官方 gnr 真数据真跑（阈值收紧→图变稀，注非 Neo4j）；13 章 cos KNN+RRF 真跑（0.03279/0.01613/0.01587 序）；11 章证据实抓 tarball chapter11/commands.md 全文；Neo4j 引擎 ⚠️ 不装不跑。
+- 波尾义务（00 §七）：#124 已实链（00+05-ANN-HNSW）；#92/#167/#127/MongoDB_TDG_3e 引用处仍代码文本+待建注记（10.8/3.11/11 末条），归主代理统一闭环；#91 落盘预案维持。
+
+### 第 3 波 · 收束登记：14/14 全部验收 + 波尾互链义务大闭环（2026-09-27）
+
+- **波终全量 checker（闭环后）**：14 目录 **151f / 19,498L / 1,537 实链 / 0 断 0 规格缺陷**；`<NAME>` 输入层占位符残留=0（本波新增教训：Edit/heredoc 写西方人名会被脱敏为 `<NAME>`，须 python chr(32) 构造+逐册 grep 复核）。复用件 `D:\develops\tmp\dbwave_close3\check.py`；闭环脚本 `closure1.py`（102 处精确替换+计数断言、不匹配即整体不落盘）。
+- **波尾义务闭环（104 处实链化/销账，39 文件）**：
+  1. 14 册 00「互链义务登记」节全部改 ✅ 并升实链；章级「待建」挂点全部清除（含 Vector 00/05/06/07 十一处、PMA 00/04/05/06/08 十四处、Neo4j 00/03/10/11、StrDB 00/08/09/11、Iceberg 00/01/05/06、RC 00/03/07、EDC 00 六行、TSD 00 六行、MPA 00 四行、PGHP3e 00 三项含"缓存对位裁定 00 级不链"）。
+  2. **反向义务（改他册文件）**：`Streaming_Systems/00` §七登记 #167《Streaming Databases》为其**下册**（模型↔系统上下部）；`MongoDB_The_Definitive_Guide_3e/04-聚合框架.md` 交叉连接节回链 #127；#90 回链建议全部执行——#92/#89 两册 00 增"嵌入式对照组"行、#107/#83 00 增指 #90 行、#52↔#90 VACUUM 双向互认成立（MPA 00 表 ✅）。
+  3. **DUAR 00 回补清单四件全销**：①`Delta_Lake_Definitive_Guide/00` 关系表补 #176 行；②四格式（活用入門/Practical/Engineering/Paimon）00 互链表各补 DUAR 行；③Iceberg 06 章"#176 未落盘"登记销账；④DG 00「Engineering 待建」过时行顺手更正为实链（连带 Engineering 00「DG 未建档」过时行同修）。
+  4. **EDC 反向义务**：Iceberg/Vector/StrDB/DUAR 四册 00 各补「目录平台谱系见 EDC」反链行。
+- **累计进度：56/224。** 第 3 波无遗留未闭环义务；人工终裁遗留项（非阻塞）：RTCP 06 ASSERT、TOP 3e 疑云、ES print 403、DUAR librowndev 镜像、EDC 双谱系、#92 辨析 D、#190 真实作者、PGHP3e 版次标签 ⚠️。
