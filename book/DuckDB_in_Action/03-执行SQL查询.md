@@ -52,6 +52,53 @@ FROM range(100000) tbl(i);            -- CTAS 10 万行瞬时
 - `GROUP BY ALL` 遇到常量列也分组，结果行数可能超预期；导报表前先 count。
 - 1.x 的 `SAMPLE n PERCENT` 老写法在部分版本直接 Parser Error（本目录 04 章实测撞上过），CI 升级要回归。
 
+## 关键语法对象速查
+
+| 对象 | 例 | 备注 |
+| --- | --- | --- |
+| CTAS | `CREATE TABLE t AS SELECT ...` | 建表+灌数一步 |
+| 表约束 | `PRIMARY KEY(id)` | 冲突配合 ON CONFLICT |
+| 宏 | `CREATE MACRO m(a,b) AS a+b` | 标量宏；表宏 `CREATE MACRO m() AS TABLE` |
+| 视图 | `CREATE OR REPLACE VIEW v AS ...` | 逻辑层复用 |
+| ENUM | `CREATE TYPE e AS ENUM(...)` | 低基数列压缩 |
+| STRUCT 字面量 | `{'x':1}` | 访问要外层再引（见陷阱） |
+| UPSERT | `INSERT ... ON CONFLICT DO UPDATE SET` | 3.4.2 主菜 |
+| MERGE INTO | `MERGE t USING s ON ... WHEN MATCHED ...` | ⚠️ 成书后 GA |
+| 星号三件套 | `* EXCLUDE(a) REPLACE(f(x) AS x) RENAME(a AS b)` | 3.5.1 |
+| 按名插入 | `INSERT INTO t BY NAME SELECT ...` | 3.5.2，生产必用 |
+| 全分组 | `GROUP BY ALL` / `ORDER BY ALL` | 3.5.4 |
+| 抽样 | `USING SAMPLE 1000 ROWS` | 3.5.5（实测可用） |
+| 命名参数 | `func(x, option := 1)` | 3.5.6 |
+| DESCRIBE/SUMMARIZE | `SUMMARIZE t` | 秒出列画像 |
+
+## 本章实测复现（临时脚本，repo 零产物）
+
+```python
+# D:\develops\tmp\dbwave_duckdb\ 下执行（要点）
+con.sql("""CREATE TABLE sales AS
+  SELECT i id, (i%10) region, (i%50) product, random()*100 amount FROM range(100000)""")
+ok = lambda sql: print(con.sql(sql).fetchall()[:2])
+ok("SELECT region, sum(amount) s FROM sales GROUP BY ALL ORDER BY s DESC LIMIT 2")
+ok("SELECT * EXCLUDE (amount) FROM sales LIMIT 1")
+ok("SELECT COLUMNS('region|product') FROM sales LIMIT 1")
+ok("SELECT id%7 k, count(*) FROM sales GROUP BY k ORDER BY k")
+ok("SELECT count(*) FROM sales USING SAMPLE 1000 ROWS")          # 1000
+con.sql("CREATE TABLE t2(name VARCHAR)")
+con.sql("INSERT INTO t2 BY NAME (SELECT region::varchar name FROM sales LIMIT 2)")
+# 失败样本（1.5.5 实测）：
+# con.sql("SELECT count(*) FROM sales SAMPLE 1 PERCENT")   -> Parser Error
+# con.sql("SELECT {'x':1} s, s.x")                        -> Binder Error（同层引用）
+# con.sql("SELECT sum(*) FROM (VALUES (1),(2))")          -> Binder Error
+con.sql("PREPARE p AS SELECT ?::INT + 1"); print(con.sql("EXECUTE p(41)").fetchall())  # [(42,)]
+```
+
+## 与其他章/本书的互查
+
+- 聚合/窗口重武器展开 → [04-高级聚合与数据分析.md](04-高级聚合与数据分析.md)
+- `FROM 'file.csv'` 直查 → [05-无持久化的数据探索.md](05-无持久化的数据探索.md)
+- 参数化与 DataFrame 表名解析 → [06-融入Python生态.md](06-融入Python生态.md)
+- 标准 SQL 口径对照 → [../数据库系统概念6.md](../数据库系统概念6.md)
+
 ## 核心概念速览（中英对照）
 
 - **CTAS** — CREATE TABLE AS：从查询结果建表/填表一步到位。

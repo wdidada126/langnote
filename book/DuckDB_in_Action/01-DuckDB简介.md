@@ -42,6 +42,66 @@
 - 以为"列存 = 一切快"：点查单行、小表高频写仍是行存强项；1.4 节的"何时不用"要照抄进选型 checklist。
 - 行转列思维：DuckDB 里 `INSERT` 逐行喂是反模式，批量 `APPEND`/`COPY`/CTAS 才是正门（附录 A.4 主题）。
 
+## 关键参数与对象速查
+
+| 参数/对象 | 默认值（1.5.5 实测） | 一句话 |
+| --- | --- | --- |
+| `threads` | 16（=逻辑核） | 单查询并行度；共享机器先降 |
+| `memory_limit` | 25.0 GiB（≈80% RAM） | 超出即溢盘/报错 |
+| `max_temp_directory_size` | 90% 磁盘 | 溢盘配额 |
+| `database_path` | `:memory:` | connect 首参决定落不落盘 |
+| `access_mode` | read_write | 只读挂载用 read_only |
+| `preserve_insertion_order` | true | 大 COPY 吞吐开关 |
+| `.duckdb` 文件 | 单文件 | 库 = 1 文件 + `.wal` |
+| WAL | 自动 | 崩溃恢复日志，CHECKPOINT 收敛 |
+| `extension_directory` | `~/.duckdb/extensions` | 扩展按 os_arch+版本分目录 |
+| 许可 | MIT | 内核与主客户端均 MIT |
+
+## 本章实测复现（临时脚本，repo 零产物）
+
+```python
+# D:\develops\tmp\dbwave_duckdb\b1_engine.py（要点摘录）
+import duckdb, time, os, multiprocessing
+con = duckdb.connect()
+print(con.sql("SELECT version()").fetchone())            # ('v1.5.5',)
+print(con.sql("SELECT current_setting('threads')").fetchone(), multiprocessing.cpu_count())  # (16,) 16
+print(con.sql("SELECT current_setting('memory_limit')").fetchone())  # ('25.0 GiB',)
+
+t0=time.time()
+con.sql("CREATE TABLE t AS SELECT i id, random() v, (i%997)::int g FROM range(10000000) tbl(i)")
+print(f"CTAS 10M: {time.time()-t0:.2f}s")                 # 0.55s
+print(f"groupby cold: ", end="")
+t0=time.time(); con.sql("SELECT g,sum(v) FROM t GROUP BY g ORDER BY 2 DESC").fetchall()
+print(f"{time.time()-t0:.2f}s")                           # 0.04s
+
+# 持久化对照
+p = duckdb.connect("bench.duckdb")
+t0=time.time(); p.execute("CREATE TABLE big AS SELECT ... FROM range(10000000)")
+print(f"persistent CTAS: {time.time()-t0:.2f}s")          # 3.31s
+# 关闭后 os.path.getsize("bench.duckdb") → 77.3 MB
+```
+
+## 与其他章/本书的互链
+
+- 方言语法细节 → [03-执行SQL查询.md](03-执行SQL查询.md)、[04-高级聚合与数据分析.md](04-高级聚合与数据分析.md)
+- "不导库查文件" → [05-无持久化的数据探索.md](05-无持久化的数据探索.md)
+- Python 宿主细节 → [06-融入Python生态.md](06-融入Python生态.md)
+- 云协作补强 → [07-云端DuckDB与MotherDuck.md](07-云端DuckDB与MotherDuck.md)
+- 并发一言 → [12-附录A-客户端API.md](12-附录A-客户端API.md)
+- 内核原理（列存/向量化出处）→ [../Database_Internals/00-总览与阅读地图.md](../Database_Internals/00-总览与阅读地图.md)
+
+## 思考题（合上笔记再答）
+
+1. 为什么说"DuckDB = 分析界的 SQLite"既是好类比又是坏类比？（好：嵌入形态/单文件/零运维；坏：负载模型与并发模型完全相反——见 1.4 与实测锁行为）
+2. 你手上 2 GB 的月 CSV 报表，按本章五步流程给出最短方案，并说明是否需要落库。（参考答案方向：read_csv 直查 + PIVOT 出报表，不建库；周期性再转 Parquet）
+3. 什么信号出现时你该从 DuckDB 迁去 ClickHouse/数仓？（并发多写、常驻服务、PB 级共享、需要细粒度权限/审计）
+
+## 2026 视角补注
+
+- 本章"何时不用"清单在今天仍然成立，但每条都有了官方泄压阀：并发共享→MotherDuck/DuckLake，超大算力→集群版数仓，点查服务→仍建议正牌 OLTP。
+- 原书未提的 `lightweight storage migrations`（1.4 起）让跨版本文件兼容压力前移到工具链，选型时"锁大版本 + 升级演练"仍是铁律。
+- 教学角度：本章五步流程是全书最好的"给老板看的 15 分钟"，实操对应 demo 即 05 章三行 SQL。
+
 ## 核心概念速览（中英对照）
 
 - **嵌入式数据库** — Embedded database：以库形式链接进宿主进程、无独立服务端的数据库形态。

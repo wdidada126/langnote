@@ -43,6 +43,64 @@
 - **DBAPI 的 `%` 参数与 LIKE 冲突**：`execute("... LIKE '%x%'")` 会被当占位符解析报错——用参数位或转义 `%%`。
 - `df()` 全量物化到 pandas 是常见内存炸弹——大结果走 `to_arrow_table()` 分批或直接 `COPY TO parquet`。
 
+## 关键 API 对象速查
+
+| API | 用途 | 版本注记（1.5.5 实测） |
+| --- | --- | --- |
+| `duckdb.connect(path, read_only, config)` | 入口 | ✅ |
+| `con.execute(sql, params)` / `con.sql(sql)` | DBAPI/关系双轨 | ✅ |
+| `con.cursor()` | 独立事务上下文 | 未点验 ⚠️ |
+| `rel = con.sql(...); rel.filter().aggregate()` | Relation 链 | 未点验 ⚠️（API 在） |
+| `con.register(name, obj)` / `unregister` | 显式替换扫描注册 | ✅ |
+| `con.create_function(n, f, [types], ret)` | 标量 UDF | ✅；类型串 `"DOUBLE"`，`duckdb.typing` 已移除 |
+| `df = con.sql(...).df()` | 取回 pandas | ✅ |
+| `.arrow()` | 取 Arrow | ⚠️ 返回 **RecordBatchReader**（流） |
+| `.to_arrow_table()` | 取 Arrow Table | ✅ 新名；`fetch_arrow_table` 已弃用 |
+| `duckdb.connect()` + `rel.to_table()` 等 | polars 互喂 | 经 Arrow，✅ |
+| `con.append("t", df)` | DataFrame 直灌 | ✅ 0.12s/1M 行 |
+| `con.install_extension/load_extension` | 扩展 | ✅ |
+
+## 本章实测复现（临时脚本，repo 零产物）
+
+```python
+# D:\develops\tmp\dbwave_duckdb\ 下执行（数字均为本机真实输出）
+import duckdb, time, numpy as np, pandas as pd, polars as pl
+df = pd.DataFrame({"g": np.random.randint(0,1000,10_000_000), "v": np.random.rand(10_000_000)})
+con = duckdb.connect()
+# 三引擎同题对照（10M 行 group by 求和取 Top-3）：
+t0=time.time(); df.groupby("g")["v"].sum().sort_values(ascending=False).head(3)
+print(f"pandas  {time.time()-t0:.2f}s")     # 0.13s
+t0=time.time(); pl.from_pandas(df).group_by("g").agg(pl.col("v").sum().alias("s")).sort("s",descending=True)
+print(f"polars  {time.time()-t0:.2f}s")     # 0.05s
+t0=time.time(); con.sql("SELECT g,sum(v) s FROM df GROUP BY g ORDER BY s DESC LIMIT 3").fetchall()
+print(f"duckdb  {time.time()-t0:.2f}s")     # 0.03s（df 即替换扫描，零注册）
+# Arrow 出口行为：
+print(type(con.sql("SELECT g,sum(v) FROM df GROUP BY g").arrow()))   # RecordBatchReader
+print(con.sql("SELECT g,sum(v) FROM df GROUP BY g").to_arrow_table().num_rows)  # 1000
+# UDF 代价：
+con.create_function("classify", lambda x: "hi" if x>0.5 else "lo", ["DOUBLE"], "VARCHAR")
+t0=time.time(); con.sql("SELECT classify(v), count(*) FROM df GROUP BY 1").fetchall()
+print(f"row-wise UDF {time.time()-t0:.2f}s")  # 2.57s ≈ 纯 SQL 的 86 倍
+```
+
+## 与其他章/本书的互链
+
+- SQL 方言里这些对象怎么组合 → [03-执行SQL查询.md](03-执行SQL查询.md)、[04-高级聚合与数据分析.md](04-高级聚合与数据分析.md)
+- 替换扫描/导入姿势的量化底线 → [12-附录A-客户端API.md](12-附录A-客户端API.md)
+- 管道化 Python 侧（dlt 也是 Python-first）→ [08-构建数据管道.md](08-构建数据管道.md)
+
+## 思考题（合上笔记再答）
+
+1. 替换扫描的查找顺序是什么？什么情况下 `FROM df` 命中的不是你的 DataFrame？（先注册对象/库内表，再回落宿主变量；同名表存在时表优先——见陷阱）
+2. 为什么官方建议"能缓存就别 UDF"？给出本目录实测比值。（行级回调 2.57 s vs 纯 SQL 0.03 s ≈ 86×，且丢向量化/并行）
+3. 100 万行结果要喂给下游 pandas，写出你最省内存的出口链路。（`COPY TO parquet` 落盘分片读，或 `to_arrow_table`+`df()` 分批；避免一次 fetchall 三份拷贝）
+
+## 2026 视角补注
+
+- Python 包发布节奏跟 core release 完全同步（1.5.5 wheel 本机 `pip install` 即得 ✅），`duckdb` 已是 PyPI 分析类目头部依赖。
+- Arrow 接口从 Table 默认转向流式 RecordBatchReader 是 1.5 线的重要行为变更（实测 DeprecationWarning 路径），大结果集链路应尽早切 `to_arrow_table()`/流式消费。
+- 与 Polars 的关系从"竞品叙事"走向"同总线叙事"（共享 Arrow 内存），选型判据变成"SQL-first 还是表达式-first"。
+
 ## 核心概念速览（中英对照）
 
 - **替换扫描** — Replacement scan：SQL 标识符回落到宿主语言对象的解析机制。

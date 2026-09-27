@@ -40,16 +40,83 @@
 | 「目录布局知识会过期」 | `sql/`、`mysys/`、`storage/` 三大分区三十年稳定；过期的是具体文件名与新增子层 |
 | 「gdb 章节只是老黄历」 | 断点走查法仍是今天读 8.x 源码的第一课，只需把执行器断点换成迭代器 |
 
-## 2.5 与《MySQL 是怎样运行的》（../mysql/）对位
+## 2.5 小节逐节对位（实抓目录 15 小节 → 2026 年去处）
+
+| 书中小节 | 2007 内容 | 今日状态 |
+| --- | --- | --- |
+| Unix Shell | 开发/构建环境预期 | 不变（Linux 为唯一事实平台） |
+| BitKeeper | bk client、树模型 | 死；Git/GitHub 镜像替代 |
+| 准备系统：从BitKeeper树构建 | 依赖包与 autotools 预检 | 改为 cmake + 依赖清单 |
+| 从BitKeeper树构建MySQL | build.sh 全流程 | 作废；CMake 重做 |
+| 从源代码分发版本构建 | tarball 编译 | 概念仍在（官网源码包） |
+| 将MySQL安装到系统目录 | make install 布局 | 概念仍在（basedir/datadir） |
+| 源代码目录布局 | sql/、mysys/、storage/ 分区 | **基本有效**（最长寿小节） |
+| 准备系统：在调试程序中运行 | debug 编译开关 + gdb | 有效（`-DCMAKE_BUILD_TYPE=Debug`） |
+| 以调试程序为向导探索源代码 | 走查方法论 | 有效；断点位置需换代 |
+| gdb使用基本要点 | 线程/栈/打印 | 有效 |
+| 在源代码中查找信息 | grep+ctags 时代 | 演化 ctags→clangd/LSP |
+| 值得关注的断点和变量 | dispatch_command 等 | 大部有效（见 2.2） |
+| 修改源代码 / 编码指南 | C 保守风格 | 半失效（C++/clang-format） |
+| 不断更新BitKeeper知识库 | 主干同步 | 演化为 git rebase/pull 流 |
+| 提交补丁 | BK patch | GitHub PR / bugs.mysql.com |
+
+## 2.6 三问三答（本章高频疑问卡）
+
+- **Q1：现在还值得按本书方式「从零搭 5.0 源码树」吗？**
+  A：仅作为考古可选；若目标是读懂今天的 MySQL，直接用 8.x 镜像树 + 本书第 3、6、7、9 章的问题清单去源码里找对应物，效率高得多。
+- **Q2：书中为什么花整节讲 BitKeeper？**
+  A：因为当时「读 MySQL 源码」的前提是「能拿到开发树」；版本工具章节其实是取数通道说明，类比今天「clone 哪个仓库、跟哪个分支」。
+- **Q3：gdb 走查与 EXPLAIN/trace 走查谁先学？**
+  A：行为层（EXPLAIN/optimizer_trace）先行，代码层其次；本书与《MySQL 是怎样运行的》恰好各占一层，两本对读即得到完整阶梯。
+
+## 2.7 与《MySQL 是怎样运行的》（../mysql/）对位
 
 - mysql/ 目录**不读源码**、以行为与参数为轴（其 00 声明「不启动任何 MySQL 实例」，所有 SQL 标「教学示意」）；本书恰相反，第 2 章是全书方法论地基。
 - 两书走查法对照：本书「gdb 断点走查」↔ 那本「EXPLAIN/optimizer trace 走查」（[../mysql/16-optimizer-trace.md](../mysql/16-optimizer-trace.md)）——代码级 vs 计划级，互补不互斥。
 
-## 2.6 与其他书的联系
+## 2.8 与其他书的联系
 
 - 方法论互证：[../数据库系统实现.md](../数据库系统实现.md)（先骨架后细节的读码观）。
 - 本目录内：布局认完看对象 → [03-核心类结构与变量.md](03-核心类结构与变量.md)；线程与请求生命周期 → [06-基于线程的请求处理.md](06-基于线程的请求处理.md)；协议入口函数走查 → [04-客户端与服务器通信.md](04-客户端与服务器通信.md)。
 - 旧笔记：[../深入理解MySQL核心技术.md](../深入理解MySQL核心技术.md)。
+
+## 2.9 目录布局 → 8.4 实测路径对照（本轮 curl 核验）
+
+书中「源代码目录布局」小节的价值在于**目录即架构**。下面这张表把当年认下的路径与今天树里的实际位置对齐（本轮 `curl` 实测，可在 `https://github.com/mysql/mysql-server/tree/8.4/` 或 `https://raw.githubusercontent.com/mysql/mysql-server/8.4/<路径>` 两处复核）：
+
+| 4.1/5.0 里的位置 | 干什么 | 8.4 现状 | 实测 |
+| --- | --- | --- | --- |
+| `sql/sql_parse.cc` | 命令分发（`dispatch_command`） | 仍在同名文件 | ✅ 200 |
+| `sql/sql_class.h` | THD/TABLE/Field 一族 | 仍在同名文件 | ✅ 200 |
+| `sql/set_var.cc` | 变量与会话副本 | 同名仍在（头文件 `sql/set_var.h`） | ✅ 200 |
+| `sql/sys_vars.cc` | 系统变量声明（一个变量一段声明） | 新增/仍在 | ✅ 200 |
+| `sql/system_variables.h` | 会话变量结构体 | 仍在 | ✅ 200 |
+| `sql/sql_select.cc` | 选择与执行（旧 JOIN 内脏） | 文件仍在，执行改由 `sql/iterators/` 承担 | ✅ `sql/iterators/hash_join_iterator.h` 200 |
+| `sql/handler.h` | 引擎接口 | 同名，规模膨胀数倍 | ✅ 200 |
+| `sql/mdl.h` | 元数据锁 | 新增（5.5 之后才有） | ✅ 200 |
+| `sql/sql_yacc.yy` | SQL 语法 | 同名仍在 | ✅ 200 |
+| `sql/dd/dictionary.h` | 数据字典入口 | 新增（8.0） | ✅ 200 |
+| `mysys/` | 第二 libc | 仍在；`mysys/my_alloc.cc`、`mysys/thr_lock.cc` 实测 200 | ✅ 200 |
+| `include/thr_lock.h` | 表锁接口 | 仍在（书时代同名） | ✅ 200 |
+| `storage/<引擎>/` | 各引擎 | 仍在；CSV 为 `storage/csv/ha_tina.cc` | ✅ 200 |
+| `sql/net_serv.cc` | 包读写实现（NET） | 5.7 树实测存在（✅ `raw/…/5.7/sql/net_serv.cc` 200），8.0/8.4 该路径已重组 ⚠️ 未能定位新文件 | ⚠️ |
+
+- **判读结论**：「目录级知识」在 2026 年仍几乎全额兑现，唯一需要重学的是**新增的三个子层**（`sql/dd/`、`sql/iterators/`、`sql/auth/`）与**删掉的一个模块**（查询缓存）。
+
+## 2.10 一条 SELECT 的走查脚本（2007 断点 → 8.4 断点）
+
+| 步骤 | 书中时代的走查点 | 8.4 里怎么找 | 备注 |
+| --- | --- | --- | --- |
+| 收包 | `my_net_read`/`net_read_packet`（NET，`sql/net_serv.cc`） | 同名函数仍在（文件位置重组 ⚠️） | 包头 3+1 字节，见 [04-客户端与服务器通信.md](04-客户端与服务器通信.md) |
+| 分发 | `dispatch_command` | `sql/sql_parse.cc`（✅ 实测存在） | 断点首选，未变 |
+| 解析 | `mysql_parse` → bison 语法 | 同名 + `sql/sql_yacc.yy`（✅） | 产物是 `LEX` |
+| 打开表 | `open_tables` | 同名概念 + MDL（`sql/mdl.h` ✅） | 本书无 MDL |
+| 优化 | `JOIN::optimize` | 概念分裂为 `Query_block`/`Query_expression` 优化路径 ⚠️ 具体函数名本轮未逐条核验 | 计划结构仍是「表序 + 访问方法」 |
+| 执行 | JOIN 推式循环 | `sql/iterators/`（✅ 目录存在） | 火山模型 |
+| 跨界 | `handler::rnd_next` 等 | `sql/handler.h`（✅）+ 各引擎实现 | 见 [07-存储引擎接口.md](07-存储引擎接口.md) |
+| 回包 | `net_send_ok`/行包写缓冲 | 官方协议参考列出同名 `net_send_ok()`（✅ https://dev.mysql.com/doc/dev/mysql-server/latest/page_protocol_basic_packets.html ） | 与协议文档互相印证 |
+
+- **方法没变，坐标变了**：把上表当成「考古地图」用——书中给的函数名仍是搜索关键字，命中的实现体已换代；这比从零猜 8.x 的结构快一个数量级。
 
 ## 核心概念速览（中英对照）
 

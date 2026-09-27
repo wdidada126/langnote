@@ -126,7 +126,7 @@ WHERE NOT EXISTS (SELECT 1 FROM (SELECT DISTINCT ON (hk_link) hk_link, hd
 
 ## 最新演进与工业实践
 
-- **dbtvault 之死与续命（✅ 2026-09 实测）**：`dbtvault/dbtvault` 仓库与其 GitHub org 均已 404（原 dbtvault Inc. 项目停摆）；其模式由两条线继承——社区托管的 **AutomateDV**（Datavault-UK org，2026-02 仍活跃、文档站 https://automate-dv.com/ 可达 ✅）与 Scalefree 官方 **datavault4dbt**（2026-09 仍高频更新，并配 AI 代理技能包 https://github.com/ScalefreeCOM/datavault4dbt-agent-skills ✅）——后者是「装载自动化 × LLM」的 2026 前沿样本。
+- **dbtvault 之死与续命（✅ 2026-09 实测）**：`dbtvault/dbtvault` 仓库与其 GitHub org 均已 404（原 dbtvault Inc. 项目停摆）；其模式由两条线继承——社区托管的 **AutomateDV**（Datavault-UK org，2026-02 仍活跃、文档站 https://automate-dv.com/（403 反爬，存在性以搜索引擎收录为据 ⚠️））与 Scalefree 官方 **datavault4dbt**（2026-09 仍高频更新，并配 AI 代理技能包 https://github.com/ScalefreeCOM/datavault4dbt-agent-skills ✅）——后者是「装载自动化 × LLM」的 2026 前沿样本。
 - **湖上装载**：Iceberg/Delta/Hudi 的 MERGE 原语直接实现「NOT EXISTS」族（books 见 ../Apache_Iceberg活用入門/00-总览与阅读地图.md 等），装载并行度由 Spark/DuckDB 进程数×文件分片决定——本章 Hub/Link/Sat 三形状在 Databricks/Trino 上照抄即可（社区实践通述 ⚠️）。
 - **增量引擎**：Fivetran/Airbyte 负责 §5 之前的提取，本章之后接 dbt 宏；「ELT 中的 T 变薄」的口号在 Vault 语境下恰好反过来成立：**T 只是从存储过程变成了模板**。
 - ⚠️ 原书 SSIS 包结构、CDC 组件配置等 2015 工具细节本目录不再重述，只保留其模式语义。
