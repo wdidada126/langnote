@@ -597,3 +597,49 @@
   3. **DUAR 00 回补清单四件全销**：①`Delta_Lake_Definitive_Guide/00` 关系表补 #176 行；②四格式（活用入門/Practical/Engineering/Paimon）00 互链表各补 DUAR 行；③Iceberg 06 章"#176 未落盘"登记销账；④DG 00「Engineering 待建」过时行顺手更正为实链（连带 Engineering 00「DG 未建档」过时行同修）。
   4. **EDC 反向义务**：Iceberg/Vector/StrDB/DUAR 四册 00 各补「目录平台谱系见 EDC」反链行。
 - **累计进度：56/224。** 第 3 波无遗留未闭环义务；人工终裁遗留项（非阻塞）：RTCP 06 ASSERT、TOP 3e 疑云、ES print 403、DUAR librowndev 镜像、EDC 双谱系、#92 辨析 D、#190 真实作者、PGHP3e 版次标签 ⚠️。
+
+### 第 4 波 · 已验收：#155 Introduction to Apache Flink: Streaming at Scale（疑 Ben Stopford）—— 7f/904L，111 链 0 断（档⓪：agent 自检与主代理 close4 checker 完全一致，2026-09-27）
+
+- **取证纪律范例**：作者疑 Ben Stopford **未获证即拒绝断言**（7 条取证链全写入 00：oreilly.com 正文 403/Amazon 不可达/Crossref 题名检索负结果等）；书存在性 ✅=O'Reilly 图书馆 URL 301 实跑（ISBN 即书页 ID，slug 缩写 `introduction-to-apache` 提示题名元数据或有异体 ⚠️）；中译反查负结果，并确证《基于Apache Flink的流处理》=**Hueske 册中译**（豆瓣 34912177 双证）；原书 TOC 不可达→6 章推定重构，00 第二节硬声明「不冒充原书逐章对位」。
+- 🔧 类比 5 组全标「非 Flink 行为」：DuckDB 窗口=时间桶 10 万行 5.9ms；watermark lag 对照表（5 万事件真迟到 3.05%，lag 0→900s 误伤 70.4%→0）；SQLite keyed state 增量 vs 重算 125ms/32ms 反直觉读数如实收录；幂等重放主键表 20000 不变 vs 裸表 sum 翻倍；在线备份 20 万行 9ms≈savepoint。checkpoint/savepoint 机制 ⚠️+14 条官方 URL 逐条 curl（404 者列禁引清单）。
+- **勘误（波 4 名册自身错误）**：#155 行「Sakuma 等」不成立——盘上 `Stream_Processing_with_Apache_Flink/` 实为 **Hueske & Kalavri**（O'Reilly 2019）；另 w4-common 所指 `Trino_TDG2e` 盘上实名为 `Trino_The_Definitive_Guide_2e`。两处分录于 00 §三 三册辨析表与主代理勘误台账。
+- 流式谱系四角（#228/#167/Paimon/Hueske 册）逐条对位表+水位线/状态/Exactly-once/时间语义主题实链落地；Flink 1.18/2.0/2.1+Materialized Table 演进大补。
+- **波尾义务 B 预登记（主代理 closure 销账）**：① Streaming_Systems 03/05/06 回链本册 02/03/04；② Hueske 册 00 辨析表增列本册；③ Paimon 11 章回链本册 06；④ #195 落盘后按本册 04/06 挂点互链；⑤ 名册作者标注修正。
+- **第 4 波进度：已验收 1/14（累计 57/224）。**
+
+### 第 4 波 · 已验收：#189 Understanding Data Governance（疑 Curtis Hill ⚠️ 未确证）—— 11f/1369L，80 链 0 断（档⓪：agent 自检与主代理 close4 checker 完全一致，2026-09-27）
+
+- **取证面全网封锁下的纪律范例**：Crossref isbn 路由下线+works 过滤 0 命中（**对照已知 O'Reilly ISBN 同为 0→复现「O'Reilly 不寄存」实证**）；oreilly.com 双通道 403、Google Books/OpenLibrary/archive.org 直连不可达逐条登记；作者/年份/原书 TOC 全 ⚠️，章结构「⚠️ 推定 10 章」+00 第九节回改锚点机制（沿 #139 Presto TOC 403 推定先例）。
+- 治理五分图落地：治理（本册）×目录（EDC 2e）×网格（Data_Mesh 05/12/02）×血缘（单文件册）×质量；**盘上查证 `数据质量之理论与实践`=不存在**→缺口登记，质量主题由本册 07 章承担并对位 数据清洗.md/The_Data_Lakehouse 01。
+- 🔧 6 组全标「非治理引擎行为」：目录即表/information_schema 盘点/血缘递归闭包（上游 5 节点深度 3）/规则即数据（1000 行违规 11/12/43/491）/合同哈希哨兵/策略即视图掩码；✅ URL 逐条 curl（eur-lex 202 等，iso.org 403 存目不引）。
+- 2021→2026 演进大补：EU AI Act 2024/1689、**Data Act 2023/2854（曾疑 2852，多源确证后落盘——防坑实录）**、LLM 语料治理、数据合同生态；eur-lex JS 壳读不到正文→条文细节诚实 ⚠️。
+- 00 第五节预备池登记：#185/#186/#188/#191/#192/#202/#209/#210/#212 治理/质量/Fabric 线 9 本（已并入第 6 波名册，波尾闭环时按「在盘」处置）。
+- **第 4 波进度：已验收 2/14（累计 58/224）。**
+
+### 第 4 波 · 已验收：#13 / #14 / #46 / #56 / #58 / #113（六本，2026-09-27，主代理 close4 checker 逐本复跑）
+
+- ✅ **#13 What Is Database Design, Anyway? 档⓪**——10f/1275L，336 链 0 断。疑 Date 谱系三角（DDRT 03–16、RTCP、SQL_and_Relational_Theory 全实链）；**题面 Crossref 唯一实证=DDRT 2e 第 18 章 DOI 10.1007/978-1-4842-5540-7_18**，独立书目全线不可达→00 第一二节「两说并存、不裁决」；🔧7 组（含隐式事务致 pragma 失效本机踩坑实录）；本册补强**控制实验：O'Reilly ISBN 整体不在 Crossref**（9781449330187 亦 0 条）——「查无」一律降级为覆盖缺口而非负证据。
+- ✅ **#14 Database Design: Know It All 档⓪（名册重大勘误）**——7f/886L，103 链 0 断。①「三合一合集」口径不成立：实为 **MK 组合章节选辑**（11 章/368 页），Crossref 逐章溯源锁定 ≥6 部源书（IMRD 2e/Teorey 4e/PDD 2007/Business Metadata/Querying XML/Moving Objects）；②「Mullins/Torey/Jones?」全误：作者团实为 **17 人**（Teorey/Halpin/Simsion/Inmon/Melton/O'Neil×3 等），**Mullins 未参与**——与 #7 谱系改判「划清+议题对读」；③年份 2008-10（© 2008）非 2009；④**盘上同书发现**：Physical_Database_Design/ 即其章 7/8 源书全本，已建「选辑↔全本」对读链；⑤`Database_Design_and_Implementation.md`=Sciore/Springer 同名不同书辨析登记。🔧7 组含反直觉：DuckDB 列存 500 万行反规范化 845ms 反慢于联表 476ms。
+- ✅ **#46 Expert Performance Indexing in SQL Server 2019 档①（主代理直补 2 行收口）**——16f/2070L，174 链 0 断（06 章 119L 补丁未落盘，主代理补「重启恢复时间成本」⚠️ 两行后全绿）。**勘误：名册疑 "Duan/Williams/Storozuk/Guelbertson" 全错，Crossref 19 条记录实证=Jason Strate 独著**（Apress 2019，DOI 10.1007/978-1-4842-5464-6，15 章英文题+页界一手）；疑混对象系 Pro_SQL_Server_Internals（Korotkevitch）。🔧7 组（部分索引 1 页 vs 覆盖 1128 页、ANALYZE「计划未翻转」诚实负结果、DuckDB 点查仍 SEQ_SCAN）；XML/空间两章如实 ⚠️ 不可类比。
+- ✅ **#56 Microsoft SQL Server 2012 Internals 档⓪**——9f/1147L，164 链 0 断。**名册 ISBN 9780735670174 查无实据**（Crossref/LoC/DNB/豆瓣四路皆空），改按 LoC works/instances 18160543 实抓号 **9780735658561** 建目双号并记；作者团=Delaney/Randal/Cunningham/Nevarez/Kehayias/Beauchemin ✅（"Midgley/Tripp/Machanic"说与 LoC 冲突不采信，逐章归属 ⚠️）。**盘上 `Microsoft_SQL_Server_2008技术内幕.md` 实为 Ben-Gan T-SQL 语言卷非 2008 引擎卷**——「同题邻卷不并档」，真 2008 引擎卷盘上无对位；与 #36 三角四维度表入 00。🔧6 组；Learn 14 URL curl 200，404 候选弃用。
+- ✅ **#58 Pro Oracle 23ai Administration 档⓪**——17f/2161L，63 链 0 断。作者 ✅=**Michelle Malcher & Darl Kuhn**（Crossref book+18 章双证；979 存款规则未触发——Apress 精确命中 19 条）；18 章→16 文件合并口径 00 声明；**docs.oracle.com /23/ 全线 2026 起 301→/26/（26ai 更名旁证）**；中译反查零命中；🔧12 组全波最高密度（WITHOUT ROWID=IOT、ATTACH=CDB/PDB、统计翻转计划真实输出）34 处「非本书引擎」标注；Oracle 盘上群 8 项谱系对位表。
+- ✅ **#113 Amazon DynamoDB TDG 档⓪**——11f/1381L，92 链 0 断。号-题对应 ✅（DirectTextBook 命中+校验位实算）；作者 ⚠️ 核不到（名册"疑 Campbell"无法证实未臆写）、出版社 ⚠️ 推定 Packt；**「平台上架≠出版社归属」辨析以 Mastering DynamoDB 挂 O'Reilly 平台为实证先例**写入 00；中译反查 ✅ 零命中；占坑册复核 ✅；🔧5 组（WITHOUT ROWID 聚类 0.5ms/前缀、GSI 扇出 139.4ms、RCU 算术模型 226B→1RCU）；Dynamo 论文三 DOI 过 Crossref；**Vector Search API 2025-26 新演进 200 实抓**。
+- **全工程取证方法勘误（三 agent 独立实证，即刻生效）**：`api.crossref.org/isbn/<isbn>` 路由已下线（route-not-found），一律改用 `api.crossref.org/works?filter=isbn:<isbn>`。第 6 波任务书已注入此口径。
+- ✅ **#17 Seven Databases in Seven Weeks, 2e 档⓪**——10f/1254L，210 链 0 断（本波目前局部最高链密度）。**名册勘误三连**：①作者团"疑 Roth/Andrew/Alice"全误，实为 **Luc Perkins/Jim Wilson/Eric Redmond**（Pragmatic Bookshelf 官方页实抓）；②七库实名单=**Redis/Neo4j/CouchDB/MongoDB/HBase/PostgreSQL/DynamoDB**（名册预设 ES 不在其列）；③1e 中译《七周七数据库》出版社=**人民邮电 2013**（非名册疑"清华社"）。⚠️ 名册 ISBN 9781680505962 未获证，官方页显 9781680502534，异形号存疑登记 00（人工终裁项）。盘上专册对位网全实链（PostgreSQL/ES/Learning_Redis/Cassandra_TDG/MongoDB_TDG_3e/Neo4j/DynamoDB 波 4 兄弟等）；🔧10 组类比全标「非本书引擎」；EP/MongoDB 实装红线遵守（⚠️ 不装）。
+- ✅ **#178 Amazon Redshift TDG 档⓪**——11f/1391L，89 链 0 断。①**名册作者两疑（Carter/Wiedeman）全误**：官方中文电子书版权页实抓=**Rajesh Francis/Rajiv Gupta/Milind Oke**，Copyright **2024**（非名册"约 2023"），电子书 ISBN 978-1-098-13530-0；②纸质 ISBN 9781098135294 保留名册值但 Crossref **404**（O'Reilly 不寄存先例复现）⚠️；③中译反查 ✅ 命中 O'Reilly 平台官方中文电子书《Amazon Redshift：权威指南》(9798341658608)+APACHECN 社区全译，纸质中译 ⚠️ 无公开记录。云仓三巨头对位表入 00 §4（Snowflake 册 10 文件全实链，BigQuery/Advanced_Snowflake 兄弟只登记）。**工程性新坑登记**：AWS docs 2025-26 大改版，Redshift 旧专页（r_wlm、c_choosing_dist_style 等）批量 302→文档根——后续各册引 AWS 链接一律逐条 curl 验状态码。🔧5 组（压缩 2.5×/晚物化 4.5×/zone-map 2.4×/COPY vs INSERT 4 数量级/ANALYZE 反慢诚实记录）。
+- **第 4 波进度：已验收 10/14（累计 66/224）。** 在产 4：#177/#160/#117/#195。
+
+### 第 5 波 · 已验收：#57 Migrating to MariaDB（William Wood 独著）—— 9f/1166L，56 链 0 断（档⓪：agent 自检与主代理 close5 checker 完全一致，2026-09-27）
+
+- **名册双重勘误**：①"疑 Bartholomew/Monty"误——Crossref `works/10.1007/978-1-4842-3997-1` 命中=**William Wood 独著**（Apress/Springer 2019，ISBN 双号 9781484239971 电/9781484239964 印，XIV+156 页）；②**主题定性勘误：本书是 Oracle→MariaDB 的叙事体迁移决策书**（虚构公司 FWP、人物 Vernon，8 章官方摘要实抓），非名册预设的 MySQL→MariaDB 技术手册。apress.com 商品页实测 302→Springer。
+- **中译反查 ✅ 零命中**（结论登记）；盘上 `MariaDB原理与实现.md` 验名=张金鹏/张成远（豆瓣 26340413），**非本书中译**，00 对位登记不并档。
+- **总索引勘误（本条验收联动）**：总索引第 67 行《MariaDB原理与实现》署名"彭立勋"与盘上文件头不符——主代理复核后**已就地更正为张金鹏/张成远**。
+- 分叉史取证：mariadb.org/about + mariadb.com 兼容性页原话四条（GTID/JSON/连接器/X 协议）+ LTS/EOL 表逐行实抓（10.4→12.3 GA 2026-05-28）；Sergei 认证史博客 2017；**dev.mysql.com 反向"沉默取证"**（curl 403、WebFetch 实测 Refman 8.4 零提 MariaDB，缺口如实登记）。MariaDB 不可装（where 双空+docker registry 超时备案），🔧 仅 SQLite/DuckDB 四组类比全标「非 MariaDB 行为」。
+- **波尾义务 B 预登记**：同波 #48 `MySQL_8_Administrators_Guide` 落盘后按本册 02 章账户/复制面挂点互链；`数据库索引设计与优化.md` 挂点维持登记。
+- **第 5 波进度：已验收 1/14（累计 67/224）。** 在产 13：#9/#16/#27/#28/#47/#48/#54/#63/#86/#100/#165/#221/#226。
+
+### 第 5 波 · 已验收：#27 Data Model Patterns / #16 Fundamentals of Database Indexing（两本，2026-09-27，主代理 close5 checker 逐本复跑）
+
+- ✅ **#27 Data Model Patterns: Conventions of Thought 档⓪**——9f/1148L，19 链 0 断。**名册勘误**：①作者"疑 Stearn"否决——InformIT 官方商品页 200 实抓=**David C. Hay**（Addison-Wesley Professional **2013-07-19**，ISBN 978-0-13-348865-4 校验位本地算验）；②名册预填"Prentice Hall 2015"不符（同门 Pearson 混淆），00 §10/§12 登记。12 章→8 文件合并口径 00 §3 逐章映射；同作者 MK 2006 姊妹册三书辨析表。中译反查 ✅ 零命中（CSDN 自译碎片标 ⚠️ 不作依据）。🔧8 组含两处实测发现：逐行触发器拦合法复式分录首腿（事务+提交前校验方案）、**DuckDB 1.5.5 不支持偏索引**（NotImplementedException，双引擎对照）。⚠️ 小注：agent 报告"波 4 兄弟 WIDD/KII 未在盘"系其目录视图过期——两册实际已在盘并验收，闭环义务归主代理波尾统一处理。
+- ✅ **#16 Fundamentals of Database Indexing and Searching 档⓪**——11f/1386L，68 链 0 断。**名册勘误（重要）**："疑 Date 系"错误——Crossref `works?filter=isbn:9781466582545`+TF 书页 JSON-LD 双源实证=**Arnab Bhattacharya**（Chapman and Hall/CRC 2014，©2015，DOI 10.1201/b17767），与 C.J. Date 无关，不并入 Date 三部曲。**查重硬判决**：盘上 `数据库索引设计与优化.md` 反查=**Lahdenmäki & Leach《Relational Database Index Design and the Optimizers》(Wiley 2000) 电子工业 2015 中译**——非本书中译不并档，改列姊妹索引册对位实链。六 Part 章节树 Crossref 寄存 24 条目+TF 书页双证。🔧7 组（2M 行点查 22149ms→1.2ms、range 46×、**DuckDB 建 ART 后 EXPLAIN 仍 SEQ_SCAN**、zone-map 升序 6×、高维 NN/FN 距离比 d=500→0.8387 趋 1 实测、PCA 降维恰 3 非零奇异值）。⚠️ 小注同 #27：agent 实测"Expert_Performance_Indexing_SQL_Server_2019 目录不存在"与其已验收在盘事实冲突，判定为其视图过期，索引纵深挂点归波尾闭环。
+- **第 5 波进度：已验收 3/14（累计 69/224）。** 在产 11：#9/#28/#47/#48/#54/#63/#86/#100/#165/#221/#226。波 4 在产 4：#177/#160/#117/#195。

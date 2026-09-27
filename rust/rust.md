@@ -1,4 +1,5 @@
 # rust
+https://releases.rs/docs/1.92.0/
 
 ## edition
 
