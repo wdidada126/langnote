@@ -107,7 +107,7 @@ SELECT EXISTS (SELECT 1 FROM S WHERE CITY='Paris');  -- -> [(1,)]
 
 ### 5. 附录 E：进阶阅读指南
 
-⚠️ 具体条目未取得，按作者谱系的重构：出口是《The Third Manifesto》（Tutorial D 的完整规范来源）、《An Introduction to Relational Database Theory》（理论版全集）、同作者《SQL and Relational Theory》（本目录已建：[../SQL_and_Relational_Theory/00-总览与阅读地图.md](../SQL_and_Relational_Theory/00-总览与阅读地图.md)）与 Codd 原论文（repo 精读笔记：[../../paper/doi_10.1145_362384.362685/00-精读笔记.md](../../paper/doi_10.1145_362384.362685/00-精读笔记.md)）。设计向续读：#8《Database Design and Relational Theory》目录版 [../Database_Design_and_Relational_Theory/00-总览与阅读地图.md](../Database_Design_and_Relational_Theory/00-总览与阅读地图.md)。动手向：用代码实现附录 A/B 的算子与 dum/dee（[../BuildYourOwnDatabaseFromScratch.md](../BuildYourOwnDatabaseFromScratch.md)、[../Database_Internals/00-总览与阅读地图.md](../Database_Internals/00-总览与阅读地图.md)）。
+⚠️ 具体条目未取得，按作者谱系的重构：出口是《The Third Manifesto》（Tutorial D 的完整规范来源）、《An Introduction to Relational Database Theory》（理论版全集）、同作者《SQL and Relational Theory》（本目录已建：[../SQL_and_Relational_Theory/00-总览与阅读地图.md](../SQL_and_Relational_Theory/00-总览与阅读地图.md)）与 Codd 原论文（repo 精读笔记：[../../paper/UNKNOWN/doi_10.1145_362384.362685/00-精读笔记.md](../../paper/UNKNOWN/doi_10.1145_362384.362685/00-精读笔记.md)）。设计向续读：#8《Database Design and Relational Theory》目录版 [../Database_Design_and_Relational_Theory/00-总览与阅读地图.md](../Database_Design_and_Relational_Theory/00-总览与阅读地图.md)。动手向：用代码实现附录 A/B 的算子与 dum/dee（[../BuildYourOwnDatabaseFromScratch.md](../BuildYourOwnDatabaseFromScratch.md)、[../Database_Internals/00-总览与阅读地图.md](../Database_Internals/00-总览与阅读地图.md)）。
 
 ## 常见误区
 
@@ -128,7 +128,7 @@ SELECT EXISTS (SELECT 1 FROM S WHERE CITY='Paris');  -- -> [(1,)]
 - 附录 D ↔ 半联接/除法的算子定义：[05-关系运算符Ⅱ.md](05-关系运算符Ⅱ.md)；SQL 侧逐子句问"求值是关系还是表"：[11-SQL操作符Ⅰ.md](11-SQL操作符Ⅰ.md)、[12-SQL运算符Ⅱ.md](12-SQL运算符Ⅱ.md)。
 - 学院口径的演算（记号更形式化、例题更多）：[../数据库系统概念6/06-形式化关系查询语言.md](../数据库系统概念6/06-形式化关系查询语言.md)。
 - 可执行的教学方言（Tutorial Dees）与关系代数纠偏：[../SQL_and_Relational_Theory/12-语言教程TutorialDees与SQL对照.md](../SQL_and_Relational_Theory/12-语言教程TutorialDees与SQL对照.md)、[../SQL_and_Relational_Theory/02-关系代数与封闭性.md](../SQL_and_Relational_Theory/02-关系代数与封闭性.md)。
-- 关系模型与元组演算的原始出处：[../../paper/doi_10.1145_362384.362685/00-精读笔记.md](../../paper/doi_10.1145_362384.362685/00-精读笔记.md)。
+- 关系模型与元组演算的原始出处：[../../paper/UNKNOWN/doi_10.1145_362384.362685/00-精读笔记.md](../../paper/UNKNOWN/doi_10.1145_362384.362685/00-精读笔记.md)。
 - 设计续读（范式与依赖的操作性步骤）：[../Database_Design_and_Relational_Theory/00-总览与阅读地图.md](../Database_Design_and_Relational_Theory/00-总览与阅读地图.md)。
 
 ## 核心概念速览（中英对照）

@@ -4,7 +4,7 @@
 
 ## 内容规格（小节地图，⚠️ 推定）
 
-- **小世界性质**：随机加几条长程边的图，任意两点距离 O(log N)——NSW 的直觉出处（"A scalable solution to the nearest neighbor search problem through local-search methods on neighbor graphs" 论文线 → [../../paper/A%20scalable%20solution%20to%20the%20nearest%20neighbor%20search%20problem%20through%20local-search%20methods%20on%20neighbor%20graphs__1705.10351/00-精读笔记.md](../../paper/A%20scalable%20solution%20to%20the%20nearest%20neighbor%20search%20problem%20through%20local-search%20methods%20on%20neighbor%20graphs__1705.10351/00-精读笔记.md)）。
+- **小世界性质**：随机加几条长程边的图，任意两点距离 O(log N)——NSW 的直觉出处（"A scalable solution to the nearest neighbor search problem through local-search methods on neighbor graphs" 论文线 → [../../paper/PREPRINT/A%20scalable%20solution%20to%20the%20nearest%20neighbor%20search%20problem%20through%20local-search%20methods%20on%20neighbor%20graphs__1705.10351/00-精读笔记.md](../../paper/PREPRINT/A%20scalable%20solution%20to%20the%20nearest%20neighbor%20search%20problem%20through%20local-search%20methods%20on%20neighbor%20graphs__1705.10351/00-精读笔记.md)）。
 - **贪心 best-first 搜索**：入口点→候选堆→每跳展开邻居打分，ef 决定"允许多宽的眼界"——图索引的 nprobe。
 - **HNSW（Malkov & Yashunin 2016/2018）**：多层跳表式结构，上层稀疏长程边做"高速公路"，第 0 层全量精细图；参数 M（出度）、ef_construction（建图眼界）、ef_search（查询眼界）（arXiv:1603.09320 ✅ https://arxiv.org/abs/1603.09320 200 已验）。
 - **图的家族**：NSPG / KGraph / NSSG / NSG / DiskANN-Vamana（单图+α-剪枝+磁盘布局）、Vespa HNSW、pgvector 0.5+ HNSW——"同一个贪心，不同的图构造与落盘"。
@@ -44,7 +44,7 @@
 - **把 NSW 曲线当 HNSW 曲线**：层级带来的"先粗后细"导航是我玩具 0.604 与真 HNSW 0.9+ 的主要差距来源（实测二.3）；引用论文/博客数字前先看实现血统。
 - **M 调大≠召回稳涨**：出度翻倍→内存与每跳开销翻倍，收益在 M=16~48 后饱和（趋势转述 ⚠️；本玩具在 M=6 就卡在局部最优）。
 - **入口点敏感**：贪心搜索从"离查询很远的入口"开始会白白烧 ef；HNSW 上层顶点即为此设计——单层实现务必随机多入口重试（我的玩具没做，实测一的低召回有一部分在这）。
-- **高维灾难**：d>100 时距离集中度让"最近邻居"信号变弱，图索引普遍让位给 IVF 系/学习式（定性 ⚠️，graph 综述有系统实验 → [../../paper/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md](../../paper/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md)）。
+- **高维灾难**：d>100 时距离集中度让"最近邻居"信号变弱，图索引普遍让位给 IVF 系/学习式（定性 ⚠️，graph 综述有系统实验 → [../../paper/PREPRINT/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md](../../paper/PREPRINT/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md)）。
 - **更新风暴**：增量插入持续改图会稀释"多样性剪枝"质量——生产 HNSW 库普遍"段内建图+定期合并重建"（06 章架构线）。
 
 ## 与其他章/书的互链
@@ -52,7 +52,7 @@
 - 图的"属性图"一面（存储模型而非搜索结构）→ [../Graph_Databases_2e/00-总览与阅读地图.md](../Graph_Databases_2e/00-总览与阅读地图.md)；近邻图≠属性图，但"索引=辅助结构"的数据库通识同源 → [../Database_Internals/06-B树变体.md](../Database_Internals/06-B树变体.md)
 - ef/M 调参与召回曲线 → [08-评测基准与工程实践.md](08-评测基准与工程实践.md)
 - vss/DuckDB 在向量产品图谱中的位置 → [06-向量数据库产品图谱与架构.md](06-向量数据库产品图谱与架构.md)
-- 图搜索的并行/分布式加速 → [../../paper/Accelerating%20Graph-based%20Vector%20Search%20via%20Delayed-Synchronization%20Traversal__2406.12385/00-精读笔记.md](../../paper/Accelerating%20Graph-based%20Vector%20Search%20via%20Delayed-Synchronization%20Traversal__2406.12385/00-精读笔记.md)（贪心遍历的延迟同步并行化）与 [../../db/db.md](../../db/db.md)（并行图处理论文线）
+- 图搜索的并行/分布式加速 → [../../paper/VLDB/Accelerating%20Graph-based%20Vector%20Search%20via%20Delayed-Synchronization%20Traversal__2406.12385/00-精读笔记.md](../../paper/VLDB/Accelerating%20Graph-based%20Vector%20Search%20via%20Delayed-Synchronization%20Traversal__2406.12385/00-精读笔记.md)（贪心遍历的延迟同步并行化）与 [../../db/db.md](../../db/db.md)（并行图处理论文线）
 
 ## 思考题（合上笔记再答）
 
@@ -119,5 +119,5 @@
 ## 最新演进与工业实践
 
 - **产品默认档**：Qdrant/HNSW（Rust 自研，过滤走"可导航入口+scoring 旁路"）、Weaviate HNSW、Milvus HNSW、ES `index.hnsw`、Redis Vector Set 的 HNSW、pgvector HNSW——2024–2026 向量库开箱默认几乎都是 HNSW 或其过滤改良版（⚠️ 各官方文档转述；仓库 ✅ 200 已验，链接见 01/03 章）。
-- **系统综述读物**：graph-based ANN 的实验对比综述与学习式改进的谱系，已在本仓库论文线精读：[../../paper/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md](../../paper/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md)；理论原型（局部搜索+邻居图）见本章开头的 1705.10351 精读链。
+- **系统综述读物**：graph-based ANN 的实验对比综述与学习式改进的谱系，已在本仓库论文线精读：[../../paper/PREPRINT/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md](../../paper/PREPRINT/A%20Comprehensive%20Survey%20and%20Experimental%20Comparison%20of%20Graph-Based%20Approximate%20Nearest%20Neighbor%20Search__2101.12631/00-精读笔记.md)；理论原型（局部搜索+邻居图）见本章开头的 1705.10351 精读链。
 - **Neo4j 的图+向量组合拳**：属性图引擎内嵌 HNSW 做语义索引（⚠️ 官方文档转述：https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/ 200 已验）——与兄弟册 #88《Neo4j: The Definitive Guide》（✅ 波尾闭环（2026-09-27）：[../Neo4j_The_Definitive_Guide/00-总览与阅读地图.md](../Neo4j_The_Definitive_Guide/00-总览与阅读地图.md)）的挂点，登记于 [00-总览与阅读地图.md](00-总览与阅读地图.md)。

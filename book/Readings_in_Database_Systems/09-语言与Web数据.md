@@ -159,5 +159,5 @@ References[2]）：容错与可运维性是从引擎里长出来的世界观—�
 - → [10-复杂分析与数据集成.md](10-复杂分析与数据集成.md)：WebTables/"数据的不合理性"直通第 12 章集成论。
 - → [01-背景与系统架构.md](01-背景与系统架构.md)：What Goes Around 对新语言的判决模板。
 - → Gray 1981 精读（事务抽象"优点与局限"——9.1 危机感的原始出处）：
-  [../../paper/doi_1981_gray_transaction_concept/00-精读笔记.md](../../paper/doi_1981_gray_transaction_concept/00-精读笔记.md)
+  [../../paper/UNKNOWN/doi_1981_gray_transaction_concept/00-精读笔记.md](../../paper/UNKNOWN/doi_1981_gray_transaction_concept/00-精读笔记.md)
 - → ../基于Apache_Flink的流处理.md、../深入理解Kafka与Pulsar.md：流语义线的中文工业注脚（书外）。

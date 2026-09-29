@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | 宏观 | 前端服务/作业调度/槽位执行池/Colossus 存储 四层 ⚠️ | Dremel 论文谱系 + 官方文档 |
 | 存储 | 列式+压缩编码、分片(shard)、自动均衡；用户无索引可建 | ⚠️ |
-| 执行 | 树状扇出(leaf→intermediate→root)、Dremel 模型、shuffle | Dremel 论文 ✅（[../../paper/doi_10.14778_1920841.1920886/00-精读笔记.md](../../paper/doi_10.14778_1920841.1920886/00-精读笔记.md)） |
+| 执行 | 树状扇出(leaf→intermediate→root)、Dremel 模型、shuffle | Dremel 论文 ✅（[../../paper/UNKNOWN/doi_10.14778_1920841.1920886/00-精读笔记.md](../../paper/UNKNOWN/doi_10.14778_1920841.1920886/00-精读笔记.md)） |
 | 作业内省 | `completedParallelInputs` 看并行输入完成度；dryRun 估字节 | ✅ 配套 all_code.txt 实抓 |
 | 数据组织 | 分区/聚簇/通配表三件套（裁剪的抓手，07 章消费） | ✅ URL（下节） |
 | 多租户与隔离 | 槽位分池、按项目配额、网络隔离 | ⚠️ |
