@@ -14,7 +14,7 @@
 - Cassandra 的公开血统是 Amazon **Dynamo** 论文（VLDB/ACM SOSP'07，DOI
   `10.1145/1294261.1294281`，已过 Crossref 200 校验 ✅）：masterless ring、一致性哈希、
   vector clock、sloppy quorum、hinted handoff、Merkle 反熵，六大件全部被继承。
-  论文精读见 [../../paper/doi_10.1145_1294261.1294281/00-精读笔记.md](../../paper/doi_10.1145_1294261.1294281/00-精读笔记.md)，
+  论文精读见 [../../paper/SOSP/doi_10.1145_1294261.1294281/00-精读笔记.md](../../paper/SOSP/doi_10.1145_1294261.1294281/00-精读笔记.md)，
   论文线枢纽在 [../../db/db.md](../../db/db.md)。
 - 社区通述：源自 Facebook 2007-2008 年为收件箱搜索所做，2010 年成为 Apache 顶石项目 ⚠️
   （成书语境转述，未逐条实证）。

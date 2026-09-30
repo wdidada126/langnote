@@ -8,7 +8,7 @@
 - **乘积量化 PQ**：d 维切成 m 段、每段 k-means 码本；向量→m 字节码；ADC（非对称距离计算）用查找表把精确距离压成查表求和——Jégou et al. 2011 "Product Quantization for Nearest Neighbor Search"（TPAMI；arXiv:1111.0375 ✅ https://arxiv.org/abs/1111.0375 200 已验）。
 - **IVF 粗量化**：全库 k-means 成 nlist 个 Voronoi 胞，查询只扫 nprobe 个倒排队列——"分区剪枝"；IVFADC=IVF+PQ 联合（FAISS 的招牌形态）。
 - **两阶段/重排**：近似打分取粗候选 → 原始向量（或缓存）精确重排，nrec 决定精度上限。
-- **理论视角**：分布式 ANN 的参数化统一（Kersten/Lemire 一系，本仓库已精读）→ [../../paper/A%20Parametrizable%20Algorithm%20for%20Distributed%20Approximate%20Similarity%20Search%20with%20Arbitrary%20Distances__2405.13795/00-精读笔记.md](../../paper/A%20Parametrizable%20Algorithm%20for%20Distributed%20Approximate%20Similarity%20Search%20with%20Arbitrary%20Distances__2405.13795/00-精读笔记.md)。
+- **理论视角**：分布式 ANN 的参数化统一（Kersten/Lemire 一系，本仓库已精读）→ [../../paper/UNKNOWN/A%20Parametrizable%20Algorithm%20for%20Distributed%20Approximate%20Similarity%20Search%20with%20Arbitrary%20Distances__2405.13795/00-精读笔记.md](../../paper/UNKNOWN/A%20Parametrizable%20Algorithm%20for%20Distributed%20Approximate%20Similarity%20Search%20with%20Arbitrary%20Distances__2405.13795/00-精读笔记.md)。
 
 ## 核心技术清单
 
@@ -64,8 +64,8 @@
 ## 与其他章/书的互链
 
 - 本目录图索引对照实验 → [05-ANN索引之二-从NSW到HNSW.md](05-ANN索引之二-从NSW到HNSW.md)；全家族同场竞技 → [08-评测基准与工程实践.md](08-评测基准与工程实践.md)
-- 哈希算法的理论回顾 → [../../paper/A%20Revisit%20of%20Hashing%20Algorithms%20for%20Approximate%20Nearest%20Neighbor%20Search__1612.07545/00-精读笔记.md](../../paper/A%20Revisit%20of%20Hashing%20Algorithms%20for%20Approximate%20Nearest%20Neighbor%20Search__1612.07545/00-精读笔记.md)；整数签名上的相似检索（Sketch Trie）→ [../../paper/$b$-Bit%20Sketch%20Trie-%20Scalable%20Similarity%20Search%20on%20Integer%20Sketches__1910.08278/00-精读笔记.md](../../paper/$b$-Bit%20Sketch%20Trie-%20Scalable%20Similarity%20Search%20on%20Integer%20Sketches__1910.08278/00-精读笔记.md)
-- 聚类式 ANN 的学习排序改进（把 nprobe 选择学出来）→ [../../paper/A%20Learning-to-Rank%20Formulation%20of%20Clustering-Based%20Approximate%20Nearest%20Neighbor%20Search__2404.11731/00-精读笔记.md](../../paper/A%20Learning-to-Rank%20Formulation%20of%20Clustering-Based%20Approximate%20Nearest%20Neighbor%20Search__2404.11731/00-精读笔记.md)
+- 哈希算法的理论回顾 → [../../paper/PREPRINT/A%20Revisit%20of%20Hashing%20Algorithms%20for%20Approximate%20Nearest%20Neighbor%20Search__1612.07545/00-精读笔记.md](../../paper/PREPRINT/A%20Revisit%20of%20Hashing%20Algorithms%20for%20Approximate%20Nearest%20Neighbor%20Search__1612.07545/00-精读笔记.md)；整数签名上的相似检索（Sketch Trie）→ [../../paper/UNKNOWN/$b$-Bit%20Sketch%20Trie-%20Scalable%20Similarity%20Search%20on%20Integer%20Sketches__1910.08278/00-精读笔记.md](../../paper/UNKNOWN/$b$-Bit%20Sketch%20Trie-%20Scalable%20Similarity%20Search%20on%20Integer%20Sketches__1910.08278/00-精读笔记.md)
+- 聚类式 ANN 的学习排序改进（把 nprobe 选择学出来）→ [../../paper/UNKNOWN/A%20Learning-to-Rank%20Formulation%20of%20Clustering-Based%20Approximate%20Nearest%20Neighbor%20Search__2404.11731/00-精读笔记.md](../../paper/UNKNOWN/A%20Learning-to-Rank%20Formulation%20of%20Clustering-Based%20Approximate%20Nearest%20Neighbor%20Search__2404.11731/00-精读笔记.md)
 - LSM/分区思想的一般化 → [../Database_Internals/07-日志结构存储.md](../Database_Internals/07-日志结构存储.md)（倒排队列≈按空间分区的段）
 
 ## 思考题（合上笔记再答）

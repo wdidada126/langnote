@@ -42,7 +42,7 @@
 - 全文/BM25 侧的深水区 → [../从Lucene到Elasticsearch.md](../从Lucene到Elasticsearch.md)
 - "检索+缓存+异构系统"的组合论 → [../设计数据密集型应用.md](../设计数据密集型应用.md)
 - 图+向量的混合应用（知识图谱做骨架、向量做模糊入口）→ 兄弟册 [../Neo4j_The_Definitive_Guide/00-总览与阅读地图.md](../Neo4j_The_Definitive_Guide/00-总览与阅读地图.md) #88《Neo4j: The Definitive Guide》（✅ 波尾闭环（2026-09-27））与 [../Graph_Databases_2e/00-总览与阅读地图.md](../Graph_Databases_2e/00-总览与阅读地图.md)
-- 窗口过滤（带属性区间约束的 ANN）理论化专题 → [../../paper/Approximate%20Nearest%20Neighbor%20Search%20with%20Window%20Filters__2402.00943/00-精读笔记.md](../../paper/Approximate%20Nearest%20Neighbor%20Search%20with%20Window%20Filters__2402.00943/00-精读笔记.md)
+- 窗口过滤（带属性区间约束的 ANN）理论化专题 → [../../paper/PREPRINT/Approximate%20Nearest%20Neighbor%20Search%20with%20Window%20Filters__2402.00943/00-精读笔记.md](../../paper/PREPRINT/Approximate%20Nearest%20Neighbor%20Search%20with%20Window%20Filters__2402.00943/00-精读笔记.md)
 
 ## 思考题（合上笔记再答）
 

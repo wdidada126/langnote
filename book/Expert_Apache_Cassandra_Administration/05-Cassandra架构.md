@@ -54,7 +54,7 @@
 Cassandra 3.x 的修复流程（⚠️ 转述）：副本组对同 token range 各建 Merkle 树
 （range 分叶子、逐层哈希），比对根→不同则**下降子树**定位分歧叶子→只流该子范围；
 full/incremental/preview 三种模式，`nodetool repair` 全环轮转（每周节奏，9 章）。
-Dynamo 论文的 merkle 反熵原型见 [../../paper/doi_10.1145_1294261.1294281/00-精读笔记.md](../../paper/doi_10.1145_1294261.1294281/00-精读笔记.md)；
+Dynamo 论文的 merkle 反熵原型见 [../../paper/SOSP/doi_10.1145_1294261.1294281/00-精读笔记.md](../../paper/SOSP/doi_10.1145_1294261.1294281/00-精读笔记.md)；
 复制理论端对照 [../设计数据密集型应用/05-复制.md](../设计数据密集型应用/05-复制.md)（in-scope repair 一节）。
 
 **🔧 演示**（`D:\develops\tmp\dbwave_cass\m{0,1,2}.db`，非 Cassandra）：三库各 16 行、

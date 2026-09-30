@@ -1141,27 +1141,27 @@ Redis 专项
 
 ### paper/（24 篇）
 
-- Codd 1970 关系模型 → `paper/doi_10.1145_362384.362685/`
-- Gray 1981 事务概念 → `paper/doi_1981_gray_transaction_concept/`
-- System R 1981 → `paper/doi_10.1145_358769.358784/`（DOI 勘误：358771 未注册；首作者实为 Chamberlin）
-- AlphaSort 1994 → `paper/doi_10.1145_191839.191884/`
-- LSM-Tree 1996 → `paper/doi_10.1007_s002360050048/`（Acta Inf. 33(4)，卷号 30 系误记）
-- GFS 2003 → `paper/doi_10.1145_945445.945450/`
-- Dalvi & Suciu 2004 概率数据库 → `paper/doi_10.1016_B978-012088469-8.50076-0/`
-- MapReduce 2004 → `paper/mapreduce_2004_osdi/`（无正式 DOI，CACM 2008 重刊 10.1145/1327452.1327492 为旁证）
-- C-Store 2005 → `paper/cstore_2005_vldb/`（无正式 DOI；六件套术语出自 ICDE 姊妹篇，已就地澄清）
-- Bigtable 2006 → `paper/bigtable_2006_osdi/`（OSDI 版无 DOI；TOCS 2008 期刊版 10.1145/1365815.1365816）
-- Dynamo 2007 → `paper/doi_10.1145_1294261.1294281/`
-- Neumann 2011 Morsel 并行 → `paper/doi_10.14778_2002938.2002940/`
-- Spanner 2012 → `paper/spanner_2012_osdi/`（OSDI 版无 DOI；TOCS 2013 期刊版 10.1145/2491245；页码裁定 251–264）
-- Calvin 2012 → `paper/doi_10.1145_2213836.2213838/`（实为 **EuroSys'12**，"SOSP 2011"系误记；ACM 容器元数据亦错挂 SIGMOD'12，已三重否证）
-- RDD 2012 → `paper/rdd_2012_nsdi/`（正式版副标题为 In-Memory Cluster Computing）
-- RocksDB 2013 → `paper/rocksdb_2013_ieee_deb/`（无 DOI，机制锚定官方文档与 TOS'21 续篇 10.1145/3483840）
-- Dremel 2010 → `paper/doi_10.14778_1920841.1920886/`
-- Snowflake 2016 → `paper/doi_10.1145_2882903.2903741/`
-- Aurora 2017 → `paper/doi_10.1145_3035918.3056101/`
-- Socrates 2019 → `paper/doi_10.1145_3299869.3314047/`（DOI 勘误：3319847 不存在；存储是 Windows Azure Storage 非"盘古"）
-- LeanStore 2018 → `paper/doi_10.1109_ICDE.2018.00026/`（DOI 勘误：00041 系二手书单错链，指向 crowdsourcing 论文）
-- Delta Lake 2020 → `paper/doi_10.14778_3415478.3415560/`（PVLDB 13(12):3411–3424）
-- Lakehouse 2021 → `paper/lakehouse_2021_armbrust_databricks/`（CIDR'21 无 DOI；arXiv:2010.09846 是物理论文混淆项，一手来源为 cidrdb.org PDF）
-- Lagunita 1990 → `paper/lagunita_1990_stonebraker_lynch/`（前文"架构反思"条目即此：原文无 DOI；一手文本为 Stanford 存的 NSF 工作坊报告 PostScript，谱系含 1991 CACM *Achievements and Opportunities*（Silberschatz/Stonebraker/Ullman, 10.1145/125223.125272）三层辨析）
+- Codd 1970 关系模型 → `paper/UNKNOWN/doi_10.1145_362384.362685/`
+- Gray 1981 事务概念 → `paper/UNKNOWN/doi_1981_gray_transaction_concept/`
+- System R 1981 → `paper/UNKNOWN/doi_10.1145_358769.358784/`（DOI 勘误：358771 未注册；首作者实为 Chamberlin）
+- AlphaSort 1994 → `paper/UNKNOWN/doi_10.1145_191839.191884/`
+- LSM-Tree 1996 → `paper/UNKNOWN/doi_10.1007_s002360050048/`（Acta Inf. 33(4)，卷号 30 系误记）
+- GFS 2003 → `paper/SOSP/doi_10.1145_945445.945450/`
+- Dalvi & Suciu 2004 概率数据库 → `paper/VLDB/doi_10.1016_B978-012088469-8.50076-0/`
+- MapReduce 2004 → `paper/OSDI/mapreduce_2004_osdi/`（无正式 DOI，CACM 2008 重刊 10.1145/1327452.1327492 为旁证）
+- C-Store 2005 → `paper/VLDB/cstore_2005_vldb/`（无正式 DOI；六件套术语出自 ICDE 姊妹篇，已就地澄清）
+- Bigtable 2006 → `paper/UNKNOWN/bigtable_2006_osdi/`（OSDI 版无 DOI；TOCS 2008 期刊版 10.1145/1365815.1365816）
+- Dynamo 2007 → `paper/SOSP/doi_10.1145_1294261.1294281/`
+- Neumann 2011 Morsel 并行 → `paper/VLDB/doi_10.14778_2002938.2002940/`
+- Spanner 2012 → `paper/OSDI/spanner_2012_osdi/`（OSDI 版无 DOI；TOCS 2013 期刊版 10.1145/2491245；页码裁定 251–264）
+- Calvin 2012 → `paper/UNKNOWN/doi_10.1145_2213836.2213838/`（实为 **EuroSys'12**，"SOSP 2011"系误记；ACM 容器元数据亦错挂 SIGMOD'12，已三重否证）
+- RDD 2012 → `paper/NSDI/rdd_2012_nsdi/`（正式版副标题为 In-Memory Cluster Computing）
+- RocksDB 2013 → `paper/UNKNOWN/rocksdb_2013_ieee_deb/`（无 DOI，机制锚定官方文档与 TOS'21 续篇 10.1145/3483840）
+- Dremel 2010 → `paper/UNKNOWN/doi_10.14778_1920841.1920886/`
+- Snowflake 2016 → `paper/SIGMOD/doi_10.1145_2882903.2903741/`
+- Aurora 2017 → `paper/SIGMOD/doi_10.1145_3035918.3056101/`
+- Socrates 2019 → `paper/UNKNOWN/doi_10.1145_3299869.3314047/`（DOI 勘误：3319847 不存在；存储是 Windows Azure Storage 非"盘古"）
+- LeanStore 2018 → `paper/ICDE/doi_10.1109_ICDE.2018.00026/`（DOI 勘误：00041 系二手书单错链，指向 crowdsourcing 论文）
+- Delta Lake 2020 → `paper/VLDB/doi_10.14778_3415478.3415560/`（PVLDB 13(12):3411–3424）
+- Lakehouse 2021 → `paper/UNKNOWN/lakehouse_2021_armbrust_databricks/`（CIDR'21 无 DOI；arXiv:2010.09846 是物理论文混淆项，一手来源为 cidrdb.org PDF）
+- Lagunita 1990 → `paper/UNKNOWN/lagunita_1990_stonebraker_lynch/`（前文"架构反思"条目即此：原文无 DOI；一手文本为 Stanford 存的 NSF 工作坊报告 PostScript，谱系含 1991 CACM *Achievements and Opportunities*（Silberschatz/Stonebraker/Ullman, 10.1145/125223.125272）三层辨析）
