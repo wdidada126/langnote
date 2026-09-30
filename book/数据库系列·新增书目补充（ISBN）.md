@@ -736,3 +736,37 @@
 | — | Spark_The_Definitive_Guide | 11f/2014L/22 链 | ⓪ |
 
 本波勘误要目：#186 Ladley 1e 年份勘误（2012 非 2014）+中译命中；#210 存在性 14 渠道全负→降级推定（人工终裁项）+00 §3 四册分工表先建；#189 "Academic Press 谱系"标误（实为 Elsevier/MK imprint）；#224 DO4DE 收口（git 索引修复+6 文件扩写达标）；dbt 双册（Analytics_Engineering/Unlocking_dbt）链密度极低（0/1）如实登记。
+
+
+### 第 7 波 · 收束登记（2026-10-01 追加）
+
+**波 7 · 引擎长尾收官（14 本泳群）** — checker 全绿：**162f / 20,454L / 1,772 链 / 0 断 / 0 `<NAME>` / 0 尾节缺陷**。累计 **112/224（50%）**。发射在 2026-09-27 会话被跨会话中断（14 agent 全被杀，仅 3 空目录残留）；清理残留后 2026-10-01 全量重启，一次写足收工，无档①/②/③补位。
+
+| # | 目录 | 文件·行·链 | 档 | 关键取证/勘误 |
+|---:|---|---|---|---|
+| 35 | SQL_Server_2008_Internals | 10f/1271L/160链 | ⓪ | LoC works/instances 15502253 ✅ 实抓 Kalen Delaney [et al.]/Microsoft Press/c2009/LCCN 2008940524/**ISBN 9780735626249**；名册 9780735634787 全线不可复抓→**双号并存登记不并档**（新方法论先例）；盘上 `Microsoft_SQL_Server_2008技术内幕.md`=Ben-Gan《T-SQL 语言基础》**不同书**辨析已建 |
+| 68 | SQL_Server_Advanced_Troubleshooting | 11f/1380L/86链 | ⓪ | 作者 **Dmitri Korotkevitch**（中译责任者多源+《Expert SQL Server In-Memory OLTP》同作者互证）；TOC 全线不可达→主题重构 10 章+00 降级声明；主动勘误 5 处（MEMORY_ALLOCATION_EXT/resilient database/2014 版本/query_plan_xml 删/clerk 名） |
+| 71 | SQL_Server_2022_Administration_Inside_Out | 11f/1368L/168链 | ⓪ | **存在性存疑 ⚠️ 人工终裁项**：ISBN 9780137899845 Crossref/DNB/豆瓣/Google Books/WorldCat/OpenLibrary 全负，仅本地校验位通过；Rick Moreton 未采信；26 条 Learn URL 全 200 验真（Ledger/IQP）；清华屠建飞《SQL Server 2022 数据库管理》判不同书排除 |
+| 44 | Oracle_Essentials_5e | 10f/1244L/205链 | ⓪ | shell 网络全灭（curl 000）+ Amazon 404 + douban 404 + **DNB NOT FOUND**→九章 ⚠️ 推定主题重构+00 §二降级声明；作者三人姓名 ⚠️；🔧 15 组 T1-T15（188 处标记，波内最高密度）；波尾义务：#61/#66/#74 已在盘，其登记不链需回补为实链 |
+| 61 | Oracle_Security | 9f/1129L/65链 | ⓪ | 作者 **Marlene Theriault & William Heney**（Amazon/eBay 双源）；**名册勘误**：w7 名册 #61 行 ISBN=156592598X 与 "Steve Adams?" 均不成立，实证=1565924509；老书 TOC 不可达→主题重构 8 章；🔧 5 组 SQLite（authorizer/视图展开/trace/PBKDF2 加密/FTS5 Virtual Table） |
+| 66 | Oracle_Database_Problem_Solving | 11f/1369L/81链 | ⓪ | 任务单 ISBN 9780134429267 **全线查无**（0-13 属 Pearson 但无同名记录）→按异形号存款规则登记 ⚠️；作者经三源交叉=Tariq Farooq / Mike Ault / Paulo Portugal；20 章目录逐字实抓自中译本百科；中译=电子工业 2018-01（978-7-121-33134-3）；俄译=ДМК 2017 |
+| 74 | Oracle_Internals_An_Introduction | 7f/881L/158链 | ⓪ | **重大 ISBN 辨析**：156592598X=**9781565925984**=Steve Adams《Oracle 8i Internal Services for Waits, Latches, Locks, and Memory》O'Reilly 1999-10-18/134 页（豆瓣 ✅）；与 #61 13 位不同→**独立建档不并档**；w7 名册 #61/#74 ISBN/作者错挂已登记；第三源 Auerbach 2001《Oracle Internals》Crossref ✅ DOI 10.1201/9780203997536 排除；🔧 8 组 SQLite |
+| 75 | Understanding_DB2_2e | 16f/1981L/315链 | ⓪ | 印版 ISBN=**978-0-13-713536-3**（校验位 ✅，IBM Press ©2008）；四作者 Chong/Wang/Dang/Snow（InformIT ✅）；名册 9780768681772 校验位合法但无独立佐证→**#35 双号并存先例**登记；18 章→15 文件合并；9780132269763 判为另一本书（DB2 9 Advanced App Dev）排除；🔧 7 组（含 2 诚实负结果） |
+| 76 | IBM_Db2_11_1_Certification_Guide | 13f/1629L/93链 | ⓪ | 作者=Mohankumar Saraswatipura + Robert Collins（scholarvox/scholartext 目录+Amazon.es slug 三源）；Packt 2018-06-29 ✅；TOC 四渠道不可达→12 章按考试域主题重构；🔧 7 组（分页/MERGE/生成列/序列/CYCLE/时段表/锁与快照） |
+| 77 | DB2_9_DBA_Guide_6e | 17f/2130L/53链 | ⓪ | **InformIT 官方实抓**作者=George Baklarz & Paul C. Zikopoulos（名册"IBM DB2 团队"预记不采信）；2007-11-19；**5 Part 16 章 TOC 全 ✅**（非降级）；🔧 5 组（Backup API/WAL+checkpoint/VACUUM↔REORG/锁/ANALYZE↔RUNSTATS） |
+| 51 | The_Database_Hackers_Handbook | 9f/1185L/139链 | ⓪ | Wiley 官方产品页 ✅：David Litchfield / Chris Anley / Heasman / Grindlay，**初版 2005-07-14**（名册"2007"=平装重印或讹记）；姊妹书 *Oracle Hacker's Handbook*（Heurtel/Minto，ISBN 9780470080221）辨析纠误；中文清华社 2006《数据库黑客大曝光》26 章/8 部目录实抓作章映射主依据；🔧 6 组（注入/权限/加密/扩展点/URI/ATTACH） |
+| 93 | Databases_Illuminated_4e | 15f/1888L/122链 | ⓪ | **作者重大更正**=Catherine M. Ricardo / Susan D. Urban / Karen Davis（三源同向：sohu 馆藏+Google Books+PW），否定 w7 名册"Harvey A. Miller / Ramez Elmasri?"推定（Miller 系前 1-3 版署名）；JBL 2023 ✅；TOC 不可达→14 主题单元+降级声明；🔧 5 组（DDL/DML/双引擎高级 SQL/事务/索引 30 万行 17.9→0.34ms） |
+| 222 | Modern_Data_Architectures_with_Python | 10f/1266L/100链 | ⓪ | **存在性存疑 ⚠️ 人工终裁项**：**DNB SRU 零记录**（ISBN 存在性最强负信号，方法论先例）+ Google Books/OpenLibrary 本机超时+Packt API 404+web 检索零命中；作者 Brian L. Neal? 零证；处置=#160/#210 先例，书名+ISBN 单源→**降级主题重构 9 章**；孔网宋天龙《Python大数据架构全栈开发与应用》判中文原创非译本；🔧 5 组（ETL/数据质量/元数据/血缘 sqlglot/域自治 ATTACH） |
+| 103 | Advanced_Elasticsearch_70 | 13f/1733L/27链 | ⓪ | 作者 **Wai Tak Wong**（GitHub README 「Get to Know the Author」）+ Packt + ISBN 9781789957754（Amazon ASIN 1789957753 一致）；年份 2019 ⚠️（ES 7.0.0 基线）；18 章目录 ⚠️（GitHub Ch02-18+README 旁证）；🔧 5 组 FTS5（MATCH vs LIKE/bm25 权重/GROUP BY/rebuild/Porter 词干）；约 40 条 elastic.co 官方文档 URL 逐条 200 验真 |
+
+**波 7 累计口径**：162f / 20,454L / 1,772 链 / 0 断 / 0 `<NAME>` / 0 尾节缺陷（全 14 本一次写足）。**波 1-7 累计：98 + 14 = 112/224（50.00%）**。
+
+**波 7 方法论收获**（三条，登记供后续波次复用）：
+1. **DNB SRU 零记录=ISBN 存在性最强负信号**（#222）：Crossref/O'Reilly 403 都可能是"存款缺失"，DNB 零记录则是"该书从未被德国国家书目收录"——比 Crossref 更硬的阴性证据；O'Reilly/Packt 新书尤其适用；后续波次对存在性存疑册一律先跑 DNB。
+2. **ISBN 双号并存登记不裁决先例**（#35/#75）：LoC 或印版官方 ISBN 与名册给定号并存时，两者均如实入 00，不强并档不判谁对——留给后续人工终裁，agent 层只作"同题不同印次/装帧"说明。
+3. **Google Books 书页+译本百科=TOC 替代取证链**（#66）：原书 TOC 四渠道全灭时，中译/俄译本百科（360 百科/快懂百科/HSE 课程文献单）目录区块可作逐字替代取证；配合 Google Books 书页 id 存在性双证即够降级主题重构。
+
+**波 7 未闭环义务登记**（留给波 8 起主代理处理）：
+- **#44 波尾升实链**：Oracle_Essentials_5e 00 §四 谱系表及各章"#61/#66/#74 登记不链"行，需在三册已落盘后统一升级为实链。
+- **治理线登记号漂移**（#222 agent 发现）：Unity Catalog 册 00 头自标 #190、UDG 册 00 标 #192、总索引标 #188——三处不一致，agent 按"以各册 00 头为准、终裁权归主代理"如实登记未越权修正；主代理收束时需核对补充文件/总索引/各册 00 三处后统一。
+- **w7 名册 ISBN/作者勘误**（已由各 agent 在各自 00 登记，主代理收束时统一回改补充文件 #44/#51/#61/#66/#71/#74/#75/#76/#77/#93/#222/#35 十二行的元数据列）。
