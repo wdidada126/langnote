@@ -92,6 +92,15 @@ df = df.repartition(64, "country")                        # 只在大表 join �
 5. "何时别缓存"三条各举一反例。
 6. explain 三模式分别给谁看（调试对象：人/优化器/成本）？
 
+### 调优清单（速记）
+
+- 先看 UI 的 Stage DAG 与 task 时长分布，再决定改分区数还是改 join 策略。
+- shuffle 是多数瓶颈的来源：广播阈值、加盐、map-side combine 都围绕它展开。
+- 小文件问题优先于算子问题：读侧 merge 与写侧 coalesce 是两个不同动作。
+- 缓存要算内存账：MEMORY_AND_DISK 与 MEMORY_ONLY 的差别在溢出行为。
+- AQE 相关开关在 3.0 前不存在；本章按 2.4/3.0-preview 口径转述（⚠️ 未本机验证）。
+- 倾斜 key 先采样定位（如 count 按 key 分布），再决定广播或加盐。
+
 ## 核心概念速览（中英对照）
 
 - **动态资源分配** — Dynamic Allocation：按积压扩缩 executor，依赖 shuffle service。

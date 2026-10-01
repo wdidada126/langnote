@@ -5,7 +5,7 @@
 
 ## 1. 章域定位
 
-2015 年的 Spark 上手第一问不是 API，而是**怎么把集群跑起来、怎么把 IDE 配起来**。__A1__ 把这两件事写成 13 个食谱，覆盖从单机玩具集群到 Mesos/YARN 生产编排的完整梯度。今天回看，这一章是「Spark 1.x 时代运维复杂度」的化石记录：Spark 1.6 之后 standalone 模式边缘化、Spark 2.4 后 Mesos 支持废弃、Spark 3.x 后 Mesos 移除，而 EC2 食谱的继任者是 EMR/Databricks，本地开发从「Eclipse+SBT 手工配置」进化到「`pip install pyspark` + Databricks Community Edition」——这些落差正是本目录 00 定位节强调的「先建 3.x 坐标系再考古」的原因。
+2015 年的 Spark 上手第一问不是 API，而是**怎么把集群跑起来、怎么把 IDE 配起来**。Rishi Yadav 把这两件事写成 13 个食谱，覆盖从单机玩具集群到 Mesos/YARN 生产编排的完整梯度。今天回看，这一章是「Spark 1.x 时代运维复杂度」的化石记录：Spark 1.6 之后 standalone 模式边缘化、Spark 2.4 后 Mesos 支持废弃、Spark 3.x 后 Mesos 移除，而 EC2 食谱的继任者是 EMR/Databricks，本地开发从「Eclipse+SBT 手工配置」进化到「`pip install pyspark` + Databricks Community Edition」——这些落差正是本目录 00 定位节强调的「先建 3.x 坐标系再考古」的原因。
 
 ## 2. 食谱地图（Ch1 + Ch2，题名为官方目录逐字转录）
 
@@ -63,7 +63,7 @@
 3. Mesos 谱系为何出局？（编排层被 K8s 接管，粗/细粒度模式双维护成本）
 4. provided 作用域在 spark-submit 链条里防什么事故？（fat-jar 与集群自带库的版本冲突）
 5. Tachyon 食谱解决什么问题？职责后来被谁接管？（跨应用共享 RDD 内存；对象存储+湖仓格式+云原生缓存）
-6. Scala 2.10 工程连 2.11 构建的 Spark 会看到什么报错形态？（运行期 NoClassDefFound/序列化爆炸类，提交不报错）
+6. Scala 2.10 工程连 2.11 构建的 Spark 会看到什么报错形态？（运行期 NoClassDefFound/序列化不匹配爆炸，提交不报错）
 7. spark-shell 与工程化提交的边界在哪？（原型验证 vs 可复现产物）
 8. 本章 7 个部署食谱的共同缺失是什么？（没有监控/日志/安全面，食谱体裁通病）
 
@@ -79,6 +79,25 @@
 - 资源与运维中文口径：[../bigdata/11-调度资源与运维.md](../bigdata/11-调度资源与运维.md)
 - Scala 语言底座：[../bigdata/06-Scala函数式与集合编程.md](../bigdata/06-Scala函数式与集合编程.md)
 - 现代部署对照：[../Spark_The_Definitive_Guide/10-生产部署与性能调优.md](../Spark_The_Definitive_Guide/10-生产部署与性能调优.md)
+
+## 11. 易混点辟谣（快问快答）
+
+- **误区：standalone 是 Spark 原生调度所以最快**——它只有调度没有隔离与多租户，生产早被 YARN/K8s 接管 ⚠️。
+- **误区：装 Spark 等于装 Python 包**——`pip install pyspark` 的壳里跑的仍是 JVM 引擎，1.x 时代连壳都没有。
+- **误区：EC2 拉起成功等于理解云部署**——安全组/凭证/弹性伸缩三件事食谱各只碰了一个角。
+- **误区：SBT 更 Scala 所以选它**——构建工具是工程问题不是立场问题，选型由 CI 与仓库形态决定 ⚠️。
+- **误区：Mesos 细粒度利用率高所以该活着**——编排层竞争是生态整体胜负，K8s 带着调度器外置+CRD 通吃 ⚠️。
+- **误区：Tachyon 失败了**——它改名 Alluxio 转型湖缓存，产品存活、在计算栈的位置下移 ⚠️。
+- **误区：源码构建是性能路线**——1.2 的真实动机是接私有 Hadoop patch；性能路线属于 12 章（本目录 08）。
+- **误区：会 spark-submit 等于会部署**——提交只是最后一厘米，凭证/依赖/回滚三件事食谱都不写。
+
+## 12. 读后行动清单
+
+1. 把你当前项目翻译成 2015 写法（三 master 选一）并标注 2026 等价形态。
+2. 用最熟 IDE 搭一个 provided 作用域最小骨架的伪流程（十行内），体会当年工程化门槛。
+3. 整理一张 `spark-submit` 常用参数 1.x→3.x 对照表（--master/--deploy-mode/资源三族）⚠️。
+4. 合卷复述：standalone/Mesos/YARN 三谱系淘汰路径与时间点，各一句话。
+5. 写三行「本书 01 章 vs 传智教材环境章」差异卡片，练同题异书辨析眼力（对位 [../Spark大数据分析与实战.md](../Spark大数据分析与实战.md)）。
 
 ## 核心概念速览（中英对照）
 

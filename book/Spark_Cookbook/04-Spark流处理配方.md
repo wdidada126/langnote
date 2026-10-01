@@ -71,6 +71,32 @@ Ch5 全书仅 4 个食谱（Introduction + Word count using Streaming + Streamin
 2. 重放 E8（脚本 `D:\develops\tmp\dbwave_w8_scbkt\exp.py`）：把 5 批改 20 批，记录总耗时变化，用一句话说出「批大小-固定开销」曲线形状。
 3. 为团队写半页「2015 微批 vs 2026 SS/Flink」选型备忘：延迟下限、状态规模、乱序容忍三格各填谁。
 
+## 11. 易混点辟谣（快问快答）
+
+- **误区：Spark Streaming 等于实时**——微批延迟下限=batch interval，毫秒级诉求本就不属于它的叙事 ⚠️。
+- **误区：checkpoint 默认兜底一切**——不设目录时状态算子挂了就是全丢，DStream 图定义同样要落盘。
+- **误区：5.3 用 Kafka 就 exactly-once**——offset 在 zk 侧提交、与处理结果不同事务，食谱形态是 at-least-once。
+- **误区：Twitter 食谱已完全无用**——它示范的「外部服务 receiver」教学位由 datagen/Kafka 桥接续任，模式没死。
+- **误区：DStream 与 Structured Streaming 可混用互补**——状态与语义两套体系，一个作业只应有一套 ⚠️。
+- **误区：5.2 的教训已过时**——「第三方 API 作为流的输入端最脆弱」在 2026 的 SaaS webhook/轮询源上逐字重现。
+- **误区：并行度拉高=流更好**——批变小后调度开销与算子固定成本占比反升。
+- **误区：WAL 开了就 exactly-once**——它保输入重放不保输出幂等，端到端语义看整条链 ⚠️。
+- **误区：流食谱可以照抄批食谱参数**——batch interval 与窗口参数的耦合是流侧独有约束。
+
+## 12. 读后行动清单
+
+1. 把 5.1 改写为 Structured Streaming 三行伪码（readStream/writeStream/trigger），标出 watermark 缺口。
+2. 重放 E8（`exp.py`）：5 批改 20 批，记录总耗时，写一句「批大小-固定开销」曲线形状。
+3. 制作术语卡四张：window/slide、WAL、offset 归属、watermark——每张一句 2015 与一句 2026。
+4. 读 [../Spark_The_Definitive_Guide/09-结构化流处理.md](../Spark_The_Definitive_Guide/09-结构化流处理.md) 引言，列出本章三食谱各自的 SS 对应物。
+5. 用一页纸回答「微批第一波（本章）→ 增量查询（SS）→ 连续流（Flink）」三段的延迟-状态-语义三角取舍，收尾回贴流三角互链。
+
+### 本章一页纸总结
+
+三要素：输入 DStream（socket/receiver/Kafka）→ 转换算子（窗口/状态族）→ 输出算子（print/存外）。
+两旋钮：batch interval 定延迟下限，window/slide 定业务视野。
+一条底线：输出不幂等则一切语义白谈——sink 设计先行。
+
 ## 核心概念速览（中英对照）
 
 - **DStream** — discretized stream：连续流离散化为 RDD 序列的核心抽象，微批范式的本体。
@@ -90,5 +116,5 @@ Ch5 全书仅 4 个食谱（Introduction + Word count using Streaming + Streamin
 - **API 换代**：Structured Streaming（2.0 实验 → 2.2 生产可用 → 3.x 默认推荐）以增量查询 + 状态store + checkpoint 重构本章全部三题；官方指南 ✅ https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html （2026-10-01 curl -sI 200）。DStream 文档并列保留但不再加特性 ⚠️。
 - **语义升级**：offset 管理进 checkpoint、输出端幂等写 + 4.x 的 replay 支持使「端到端 exactly-once」从技巧变成保证；Kafka connector 统一为 0-10 reader 后，0.8 时代的 zookeeper 参数全数作废——食谱 5.3 的配置文件形态已是考古材料。
 - **Twitter 谱系**：receiver 型社交源随 API v1.1 收紧退役；演示型流数据改由 `readkafka`/datagen/云事件总线供给，教学三拍中的第二拍已重写。
-- **人物与文献**：Spark 项目与 Structured Streaming 谱系由 __A4__、__A9__ 等在 Databricks/UCB 线推动；概念史对位可引流式书目三角（本目录上节）；本书成书时间（2015-07）恰在 Spark 1.4/1.5 窗口期、SS 论文（SIGMOD 2018 线 ⚠️ 未过 Crossref 校验，仅题录）之前，属「微批第一波」的一手记录。
+- **人物与文献**：Spark 项目与 Structured Streaming 谱系由 Matei Zaharia、Tathagata Das 等在 Databricks/UCB 线推动；概念史对位可引流式书目三角（本目录上节）；本书成书时间（2015-07）恰在 Spark 1.4/1.5 窗口期、SS 论文（SIGMOD 2018 线 ⚠️ 未过 Crossref 校验，仅题录）之前，属「微批第一波」的一手记录。
 - **工业现状**：2026 年新流负载里 Flink（连续流）与 Spark SS（微批）按延迟需求分治，Spark 侧增量迁移叙事可经 [../Spark_The_Definitive_Guide/09-结构化流处理.md](../Spark_The_Definitive_Guide/09-结构化流处理.md) 与 [../Stream_Processing_with_Apache_Flink/00-总览与阅读地图.md](../Stream_Processing_with_Apache_Flink/00-总览与阅读地图.md) 双向索引；Kappa 化（一切实为流）仍是争论中而非默认 ⚠️。

@@ -73,6 +73,41 @@
 - 精确一次与副作用（Streams EOS 语义讨论的理论底）：[../Streaming_Systems/05-精确一次与副作用.md](../Streaming_Systems/05-精确一次与副作用.md)；
 - Kafka 分区/重平衡机制：[../Kafka权威指南.md](../Kafka权威指南.md)。
 
+## 拓扑拆解练习（重构：把 4.3 画成 DAG）
+
+一个"餐厅分钟单量"拓扑的最小分解（⚠️ 方法名以官方 DSL 文档为准）：
+
+- source：`streamsBuilder.stream("orders")` → 反序列化 + 时间戳提取；
+- select-key：按 `restaurant_id` 重分区（内部 republish topic，命名带 `.repartition` 痕迹 ⚠️）；
+- groupWindow：`groupBy(...).window(TumblingWindows.of(Duration.ofMinutes(1)))`；
+- aggregate：`count()` 产出窗口 KTable；
+- suppress/materialize：发射策略决定"每分钟一条"还是"随时更新"（⚠️ 语义细节属官方文档面）；
+- 桥接：`interactive queries`/本地 store 读 → CDI Bean → REST Resource。
+
+心智要点：**每一步都会产生中间 topic 或本地状态**——运维看到的"莫名 topic"多来自隐式 republish/changelog；这是 11 章容量清单（state 大小）与本课的接口。
+
+## Streams vs Flink 快答（选型面）
+
+| 维度 | Kafka Streams（本册） | Flink（盘上两册） |
+|---|---|---|
+| 部署形态 | 库，随应用进程 | 独立集群 |
+| 状态恢复 | changelog 重放 | savepoint 引导 |
+| SQL 支持 | 弱（DSL 为主 ⚠️ 新版 Table API 现状不转述） | 一等公民 |
+| 精确一次 | 幂等+事务 EOS（范围内） | 端到端 checkpoint 叙事 |
+| 适用团队 | 已有 Kafka、Java 微服务栈 | 专职流平台 |
+| 升级痛 | 拓扑变更=重建态 | savepoint 兼容管理 |
+
+- 结论不是"谁优"，而是**组织形态决定引擎形态**（与 02 章"运维面"判据一致）；
+- 理论纵深（水位线/窗口/状态函数）Flink 册覆盖更全：见"与其他册的关系"。
+
+## 局限复验法（读完 4.6 后能自己证伪）
+
+1. 试着加一个"按品类×按小时"的新切片 → 需新拓扑新 store → 维度组合爆炸实证；
+2. 压测 REST 端点并发 → 消费吞吐随查询 QPS 下降 → 服务非所长实证；
+3. 双实例查同一 key → 一端 404/空值 → 路由负担实证；
+4. 改聚合口径重放 1 小时数据 → 计时 → 回填慢实证；
+（演练基于架构原理重构 ⚠️，非书实验清单。）
+
 ## 核心概念速览（中英对照）
 
 - **流处理库** — Stream Processing Library：嵌入应用进程的处理器形态（对位集群式）。

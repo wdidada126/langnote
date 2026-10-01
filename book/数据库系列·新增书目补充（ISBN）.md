@@ -770,3 +770,29 @@
 - **#44 波尾升实链**：Oracle_Essentials_5e 00 §四 谱系表及各章"#61/#66/#74 登记不链"行，需在三册已落盘后统一升级为实链。
 - **治理线登记号漂移**（#222 agent 发现）：Unity Catalog 册 00 头自标 #190、UDG 册 00 标 #192、总索引标 #188——三处不一致，agent 按"以各册 00 头为准、终裁权归主代理"如实登记未越权修正；主代理收束时需核对补充文件/总索引/各册 00 三处后统一。
 - **w7 名册 ISBN/作者勘误**（已由各 agent 在各自 00 登记，主代理收束时统一回改补充文件 #44/#51/#61/#66/#71/#74/#75/#76/#77/#93/#222/#35 十二行的元数据列）。
+
+
+### 第 8 波 · 收束登记（14/14，2026-10-01；close8 checker 全绿 143f/18,669L/1,291实链 0断/0尾缺陷/0区间/0 `<NAME>` 泄漏）
+
+| # | 目录 | 规模 | 定性 | 要点 |
+|---|---|---|---|---|
+| 216 | High_Performance_Spark_2e | 13f/1668L/82链 | ⓪ | 作者 Holden Karau/Polak/Warren（豆瓣正证）；**勘误申报**：名册 ISBN 9781098145842 未获正证（实证平装 9781098145859 异形号并存登记）、年份 2023→实证 2026-07-14；1e→2e 版本对+谱系分工表实链 #215/#195/bigdata；🔧6 组 |
+| 196 | Learning_Spark_2e | 13f/1647L/71链 | ⓪ | **勘误**：疑作者线（Armed 系谱）证伪→Jules S. Damji/Brooke Wenig/Tathagata Das/Denny Lee（Databricks 团三源）；双号并存 0032(电)/0049(纸)；**全工程首例官方中译实证并档**：《Spark快速大数据分析 第2版》人邮 2021-11 9787115576019；东南《学习Spark》/《高能Spark》辨析不并档；🔧6 组 |
+| 150 | Modern_Data_Engineering_with_Spark | 16f/2033L/95链 | ⓪ | Scott Haines ✅（Crossref 章级 DOI 15 章实抓）；Apress 2022-03 双号；🔧4 组（水位线/迟到修正/幂等重放）；Streaming_Systems 11 文件纵深实链 |
+| 152 | Beginning_Apache_Spark_3 | 10f/1252L/78链 | ⓪ | **勘误**：名册疑 Jules S. Damji（同社 Foundations/Practical 谱系）证伪，实证 Hien Luu（Springer+Crossref 双源）；年份 2022→**2021-10-23**；Springer TOC 9 章全题+页码实抓；🔧5 组（UDF 逐行 105 倍惩罚等） |
+| 154 | Spark_Cookbook | 9f/1174L/143链 | ⓪ | **勘误**：名册疑 Debasis Sengupta & Saurabh Verma 证伪→Rishi Yadav（豆瓣/当当/微信读书四源）；疑 2e=9781800208009 证伪负结果；**微信读书官方电子版=60 项二级食谱题逐字实抓**（新取证源先例）；中译=人邮 2016 9787115429667 登记不并档；🔧8 组 |
+| 193 | Apache_Spark_2_Data_Processing | 7f/887L/37链 | ② | **重大定性**：疑 Michael Manook线不涉——疑 Kozlowski 证伪，实为 **Packt Learning Path 七人合订册**（三单品书+ISBN 实证：Mastering Apache Spark 2.x 2e/Apache Spark ML Cookbook/Learning Apache Spark 2）——书页 slug `/-/` 无名成因；官方代码仓库逐层 API 实抓；🔧5 组；逐章章名/作者映射留人工终裁 |
+| 194 | Data_Analytics_with_Spark_Python | 9f/1118L/59链 | ⓪ | 0-13 线全线取证后**存在性由 informIT 官方页实锤**（#66 同线不同结局）；**勘误**：疑 Michael Manook 证伪→Jeffrey Aven；两级 TOC 官方页实抓；🔧6 组（pandas/DuckDB/SQLite 三引擎 7.8×向量化差距等） |
+| 153 | Spark_Big_Data_Cluster_Computing_in_Production | 5f/643L/32链 | 裁决B | **裁决册翻案**：主代理预检"全网零著录"被 **DNB MARC21 全录推翻**——实证《Spark: Big Data Cluster Computing in Production》Wiley 2016/216 页/四作者（GND 规范号入账）≠#215 同书；中译=电子工业 2017《Spark：大数据集群计算的生产实践》9787121313646；目录实名申报改（波尾义务①）；🔧8 组 |
+| 156 | Streaming_Architecture | 9f/1609L/120链 | ⓪ | **硬勘误**：名册副题"New Approaches for RTA/ML"混挂证伪→封面实锤"New Designs Using Apache Kafka and MapR Streams"；Ted Dunning & Ellen Friedman ✅（#20 同作者团谱系成立，实链 Time_Series_Databases）；双号 3914/3907 同书（封面 MD5 逐字节相同）；中译=电子工业 2017-06 9787121317224 章题主据；年份 2016 ⚠️ 存疑；🔧5 组；arXiv:1708.02878 记忆条目自查系物理论文主动弃用 |
+| 157 | Building_Real_Time_Analytics_Systems | 14f/1758L/126链 | ⓪ | Mark Needham 单作者 ✅；**年份裁定 2024?→2023**；ISBN 尾号 83/90 载体并存登记；中译=机工《实时分析实战》2024-08 9787111759805（13 章全目录中译实抓镜像）；盘上 ClickHouse/Druid/Pinot 单文件 find 零命中（波8 规范预期修正）；🔧5 组（200 万事件增量=全量逐位一致） |
+| 199 | Unlocking_the_Value_of_RealTime_Analytics | 6f/784L/42链 | ① | **O'Reilly REPORT 短册定性 ✅**（封面 CDN 目读裁定）→5 文件合并口径（#223 先例同型）；出版年 2023–2024 区间 ⚠️；fabric⇄RTA 对位实链波6 四册；🔧5 组（物化视图 2000 万行增量 28.9×；小表反直觉 0.5×如实转化论据） |
+| 166 | The_Rise_of_Operational_Analytics | 9f/1177L/125链 | ② | 存在性无疑（书页 HEAD 200）但作者/年份/TOC 多源全负→**主题重构 8 章+降级声明**；疑 Toby Pons ⚠️ 未坐实（建议人工登录态书页终裁）；HTAP 谱系表七层；🔧6 组（列存 SUM 2.3ms vs 行存 50.9ms 等） |
+| 214 | Tuning_the_Snowflake_Data_Cloud | 11f/1405L/112链 | ⓪ | Andrew Carruthers 独著/Apress 2024-05-29/真实 10 章含页码——**979886 Crossref 寄存线全 ✅**；Snowflake 三册辨析表（⇄TDG 实链⇄#160 降级册实读其声明）；docs.snowflake.com 39+ URL 逐条 200；🔧5 组 |
+| 158 | BigQuery_for_Data_Warehousing | 12f/1514L/184链 | ⓪ | **勘误**：名册疑 Rick van der Lans 否证→Mark Mucchetti；年份 2022→**2020**；23 章 DOI 级实抓；Google 系直连 000→docs.cloud.google.cn 镜像 19 条 ✅/14 条 ⚠️（#157/#158 云文档镜像代验先例）；总索引 L380 `Google_BigQuery_TDg` 大小写错拼登记 |
+
+**波尾方法论收获（四条）**：① **DNB SRU 命中=最强正证据**——#153 翻案主代理"零著录"预检，与既有"DNB 零记录=最强负信号"对偶成对称规则（先 DNB 后全网）；② **Crossref `/isbn/<ISBN>` 路由下线**→统一 `works?filter=isbn:<ISBN>`（需 UA 防 429；影响 14842/979886 寄存线全部取证笔记，#52/#58/#150/#152/#202/#214/#158 实操口径）；③ **微信读书官方电子版=TOC 逐字取证源**（#154 60 项食谱题）；④ 封面 CDN **MD5 逐字节比对=同书双号实锤法**（#156 复核 #20 先例）。
+
+**波8 中译反查台账（义务④，命中 6）**：#196 人邮 2021 9787115576019（**并档首例**）｜#153 电子工业 2017 9787121313646｜#154 人邮 2016 9787115429667｜#156 电子工业 2017-06 9787121317224｜#157 机工 2024-08 9787111759805｜#216 中译草案 35776480 仅作章级推定旁证。余 8 册负结果（#150/#152/#193/#194/#199/#166/#214/#158）各 00 已录。
+
+**波尾义务状态**：#44 谱系表 #61/#66/#74 升实链 ✅（本次销账）；治理线登记号漂移终裁=**以各册 00 头为准**（Unity Catalog 标 #190/UDG 标 #192/总索引标 #188 三处并存登记不回卷）；人工终裁项+=#166 作者年份、#193 合订章名、#216 ISBN/年份、#157 ISBN 载体、#153 英文章题；w7 名册 12 处回改维持 append-only 口径（原文不动，以各册 00 勘误为准）。**累计 126/224（56.25%）。**

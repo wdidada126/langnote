@@ -36,7 +36,7 @@ Ch10-Ch11 是本书的「高级玩法」双子星：ALS 交替最小二乘做显
 
 ## 5. 精读块三：两章的公共数学骨架
 
-ALS 是「用户×物品稀疏矩阵分解」，GraphX 邻域聚合是「稀疏邻接矩阵 × 向量」——两章实为稀疏线性代数的两张应用皮。读通 05 章矩阵食谱（6.3）再看这两章，会 __A1__ 的编排意图：先给基元、再给三种终局（表格 ML/推荐/图）。这个骨架也解释了为什么 GraphX 在深度图学习时代被「采样 + GNN 训练器」架构替代：矩阵-向量迭代范式没变，变的是调度与存储 ⚠️。
+ALS 是「用户×物品稀疏矩阵分解」，GraphX 邻域聚合是「稀疏邻接矩阵 × 向量」——两章实为稀疏线性代数的两张应用皮。读通 05 章矩阵食谱（6.3）再看这两章，可见 Rishi Yadav 的编排意图：先给基元、再给三种终局（表格 ML/推荐/图）。这个骨架也解释了为什么 GraphX 在深度图学习时代被「采样 + GNN 训练器」架构替代：矩阵-向量迭代范式没变，变的是调度与存储 ⚠️。
 
 ## 6. 🔧 类比说明
 
@@ -74,6 +74,28 @@ ALS 与图迭代算法无单机 SQL 类比面（无矩阵分解/消息传递算�
 2. 把 11.4 的三角计数改写为你业务图上的一个聚合配方（好友共现/订单共购任选），写出 send/merge 两函数伪码。
 3. 对读姊妹册 [../Advanced_Analytics_with_Spark_2e/03-音乐推荐与Audioscrobbler数据集.md](../Advanced_Analytics_with_Spark_2e/03-音乐推荐与Audioscrobbler数据集.md)，列出它在评估面上补的三块内容。
 
+## 11. 易混点辟谣（快问快答）
+
+- **误区：ALS=矩阵分解=深度推荐**——它是线性双因子分解，与两塔神经模型是共存而非替代关系。
+- **误区：隐式反馈没有标签就不算监督**——隐式 ALS 照样是最小化加权损失的监督式目标，只是「标签」被置信度改写。
+- **误区：GraphX 的图就是图数据库**——RDD 值语义快照，没有事务、没有索引、没有即席查询面 ⚠️。
+- **误区：PageRank 放任何图都对**——其随机游走语义预设「链接=引用/信任」，社交强关系图上未必是合适中心性。
+- **误区：连通分量=社区发现**——CC 只做粗切分，社区粒度要靠模块度/LPA/标签传播家族继续做。
+- **误区：aggregateMessages 随旧 API 一起过时**——send/merge 即 BSP 思维本体，在所有图引擎里换名复活。
+
+## 12. 读后行动清单
+
+1. 用 10.1/10.2 设计双通道召回实验计划（冷启动走显式、行为打底走隐式），五行内。
+2. 把 11.4 三角计数改写为你业务图（共购/共友任选）的 send/merge 伪码。
+3. 列三件现代图计算替代件（GraphFrames/图库 GDS 系/Flink GEC）各自接管了本章哪些场景 ⚠️。
+4. 对读姊妹册 [../Advanced_Analytics_with_Spark_2e/03-音乐推荐与Audioscrobbler数据集.md](../Advanced_Analytics_with_Spark_2e/03-音乐推荐与Audioscrobbler数据集.md)，总结评估面三缺口。
+
+### 本章一页纸总结
+
+ALS 四参数：rank（表达力）、λ（收缩）、iterations（收敛）、α（隐式置信放大）。
+GraphX 三板斧：构造（Graph/EdgeTriplet）→ 传播（aggregateMessages）→ 迭代收敛（PageRank/CC 类）。
+一句话判词：ALS 仍在生产，GraphX 已进博物馆——带着这个落差重读，两章都是好材料。
+
 ## 核心概念速览（中英对照）
 
 - **协同过滤** — collaborative filtering：从群体行为矩阵补全个体偏好的推荐范式总称。
@@ -92,7 +114,7 @@ ALS 与图迭代算法无单机 SQL 类比面（无矩阵分解/消息传递算�
 ## 最新演进与工业实践
 
 - **推荐面**：`ml.recommendation`（DataFrame Rating 列）接管 10.x 两食谱；ALS 在 GPU（cuML 版）上迭代时间缩到秒-分级，工业中作为召回基线/评估对照长期驻留；主流增量在「两塔 + 序列模型 + LLM 重排」栈，Spark 退为特征与 embedding 批量生产端 ⚠️。
-- **图面**：GraphX 官方文档 ✅ https://spark.apache.org/docs/latest/graphx-programming-guide.html （2026-10-01 curl -sI 200）内容自 2.x 冻结——「文档活着、演进停止」的标本；生产图计算分流向 Neo4j/TigerGraph 等图库与 Flink GEC，聚合/CC/PageRank 语义在 GraphFrames `aggViews` API 中有最贴近的 Spark -native 复刻 ⚠️。
+- **图面**：GraphX 官方文档 ✅ https://spark.apache.org/docs/latest/graphx-programming-guide.html （2026-10-01 curl -sI 200）内容自 2.x 冻结——「文档活着、演进停止」的标本；生产图计算分流向 Neo4j/TigerGraph 等图库与 Flink GEC，聚合/CC/PageRank 语义在 GraphFrames `aggViews` API 中有最贴近的 Spark-native 复刻 ⚠️。
 - **评估补课**：ALS 时代的 hold-out 评估、覆盖率/多样性指标（除 RMSE 外）在 2020s 由离线-在线双环 + 多目标重排补齐，食谱未涉的评估面如今是推荐系统主要工作量所在。
 - **谱系考古**：ALS 分布式实现源自 UC Berkeley 的 Spark 早期 showcase（GitHub 仓库地址本波不可达 ⚠️ 未引链）；GraphX 论文（GraLSD, NSDI 2014）给出 RDD 图引擎设计动机——DOI 未过 Crossref 校验，仅题录 ⚠️。概念谱系对位可读 [../bigdata/10-计算引擎的演进.md](../bigdata/10-计算引擎的演进.md)。
 - **阅读建议**：Ch10 完整精读（参数扫表方法论至今可迁移），Ch11 读 11.4 一个食谱即可掌握 BSP 思维，其余交给图库文档。

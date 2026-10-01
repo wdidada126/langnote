@@ -80,6 +80,26 @@ val back: DataFrame = bonus.toDF("dept", "bonus")            // ③ 回表达式
 5. "缓解策略"四条的优先序？（尽量表达式侧→跨界一次→能不类型化就不→黑魔法最后）
 6. 本章与第 3 章的分工：一个讲"是什么"，一个讲"贵在哪"——各自的标题证据？
 
+### Dataset 类型化 API：逐点速记
+
+- Dataset[T] 是 DataFrame 的强类型视图；fromDF 需要隐式 Encoder，Scala 由 case class 提供。
+- case class 字段顺序即列顺序：CSV 映射、map 构造、schema 三者不一致时以 schema 为准。
+- map 与 select 的差别是编译期类型检查 vs 运行期列名解析；能 select 解决的不要用 map。
+- 字段类型与 parquet/Hive 物理类型不一致时，报错发生在 action 处抛 ClassCastException，不在构造时。
+- Encoder 携带可序列化约束：闭包引用非静态外部成员会导致序列化或 encoder 失败。
+- Java/Kotlin 泛型 encoder 需手工构造 ExpressionEncoder，这是原书解释 Java 侧笨重感的原因。
+- typed transform 物理层仍是 Tungsten 二进制行，强类型不额外付序列化成本（⚠️ 原书表述，未本机验证）。
+- as[CaseClass] 只是视图切换，不触发计算。
+
+### 三跨边界小结（类型/语言/执行）
+
+- 类型边界：DataFrame（Row）与 Dataset[T]（case class）之间靠 as/from 系列跨越。
+- 语言边界：Scala/Java 原生支持 typed API；Python 只有 DataFrame 层，等价语义靠 schema 与类型提示人工维持。
+- 执行边界：两侧 API 编译到同一逻辑/物理计划，性能差异来自闭包边界而非 API 表面（⚠️ 转述）。
+- 选型经验：ETL 主干用 DataFrame，需要强类型业务模型时在边界处转 Dataset，不要全程 Dataset。
+- 聚合优先 groupBy(...).agg 而非 typed reduce，后者会失去 Catalyst 优化机会。
+- 与盘上 ../bigdata/04-SparkSQL与结构化数据.md 的对照：那边从 SQL 视角讲 schema，本章从类型系统视角讲 encoder。
+
 ## 核心概念速览（中英对照）
 
 - **Dataset[T]** — 类型化分布式集合（Scala/Java 特权）。

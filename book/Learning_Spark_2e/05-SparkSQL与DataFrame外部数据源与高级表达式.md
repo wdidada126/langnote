@@ -84,6 +84,21 @@ df3 = df2.withColumnRenamed("rn", "seq").groupBy().pivot("k").sum("amount")
 5. explode-再-collect 与 `transform()` 的三条取舍（行数放大/shuffle/可读性）？
 6. 流-流之外的"窗口化"在本章指什么？与第 8 章 event-time 窗口的词义区分？
 
+### 外部源与高级表达式：误区速记
+
+- JDBC 读侧谓词下推依赖目标库方言，开源 Spark 不保证对所有 dbtable 写法生效。
+- Kafka 读取按 topic 分区并行；Spark 分区数与 Kafka 分区数不是一一对应，批式 load 与流式 read 行为也不同。
+- UDF 注册后进不了 Catalyst 的表达式重写，是常见性能陷阱；优先用内置函数。
+- UDAF 与批量向量化路径不是本章对象：本章只覆盖 UDF，向化视角在 07 章调优再提。
+- window 函数必须先构造 Window 对象再 partitionBy/orderBy；不存在 withWindow 这种 API。
+- 高阶函数（transform/filter/aggregate/zip_with）作用于 array/map 列，避免为此写 UDF。
+- 连接外部库时凭据不要写进 URL 明文；用 options 传并注意日志脱敏。
+- fetchsize、分区列读参数对性能的影响大于语法本身。
+- 本章 G2/G3 两组 🔧 类比（DuckDB/SQLite）只验证 SQL 概念，不映射 Spark 连接器实现。
+- 对损坏行与空值：nullFormat 与 mode 是两个不同开关，不要混记。
+- 小节骨架表已按镜像逐节对账；若版本页码不同，以小节标题而非页码为准。
+- 外部 sink 的 save mode 与本地文件语义一致：append/overwrite/errorifexists/ignore。
+
 ## 核心概念速览（中英对照）
 
 - **JDBC 四件套** — partitionColumn/lowerBound/upperBound/numPartitions：并行读的正解。

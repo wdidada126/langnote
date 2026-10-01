@@ -65,6 +65,40 @@ DataFrame 不只是一组 API，它是**把"你的数据"翻译成"引擎的列�
 - 中文 SQL 性能叙事：../bigdata/04-SparkSQL与结构化数据.md、../bigdata/05-Spark性能优化.md
 - 下章接棒：Join 策略全谱 → [06-Join优化](06-Join优化.md)；湖仓元数据：../Use_Iceberg_with_Spark/00-总览与阅读地图.md
 
+## 5.9 IO 链路解剖（从数据源到 executor）
+
+```
+Scan(谓词下推/列裁剪) -> 解码 -> Catalyst 表达式求值 -> 重编码(shuffle/写出)
+   ^ E3 裁剪红利位              ^ E4 列式批量红利位        ^ UDF 黑箱税位(5.5)
+```
+
+- 读侧三红利：谓词下推（row-group min/max 跳读）、列裁剪（不读的列不上车）、split 并行（读粒度＝task 粒度）。⚠️＋ https://spark.apache.org/docs/latest/sql-performance-tuning.html ✅
+- 写侧三诅咒：小文件（过度分区副作用）、高基数当分区键（分区爆炸）、压缩选型失配（CPU vs 字节对冲）。
+- 🔧 E3 实测：24 分区 parquet 1.2M 行，全扫 0.01s vs 裁剪 0.00s、EXPLAIN 见 dt 过滤——布局决定"少读"是否成立（**类比非 Spark**）。
+- 布局即写法：分桶/隐藏分区的收益模型（接 12 章）与本节同构，只是旋钮面板不同。
+
+## 5.10 Catalog、服务器与治理接入面（草案 3.11 延展）
+
+- JDBC/ODBC 服务器：Spark SQL 变成常驻查询服务——调优账上要把"长驻连接占资源"记为科目。⚠️＋ https://spark.apache.org/docs/latest/configuration.html ✅
+- session 内 catalog → 外部 catalog：这条迁移线就是 Spark×湖仓的接入面（对位 ../Use_Iceberg_with_Spark/02-Catalog配置与接入.md）。
+- 写侧模式（append/overwrite/merge 语义）归湖仓格式章——结构化章守"写出即布局决策"。⚠️
+- 治理（权限/血缘/审计）不在引擎内但入口在引擎：本章登记"入口也是调优对象"。⚠️
+
+## 5.11 写法层 FAQ（快查）
+
+- Q：有列裁剪为何 SELECT * 仍无害？——投影下推被 UDF 黑箱打断，先窄列后 UDF（对位 5.5）。⚠️
+- Q：DataFrame 还是 SQL？——同一计划同一执行，差异在写法可维护性与可审性，不在性能档位。⚠️
+- Q：缓存视图升级后失效怎么查？——计划 diff 是迁移三件套第一件（接 03 章）。⚠️
+- Q：隐式类型转换坑？——合规开关与 legacy 行为翻转属默认值清单项（接 03 章清单）。⚠️
+- Q：强类型 Dataset 更快吗？——编码/序列化边界后与 DataFrame 同构，差异在编译期不在运行期（对位 5.4）。⚠️
+- Q：多跳 join 链先物化哪步？——用本册重放公式算：被多次消费的中间结果才配 persist（接 07 章）。⚠️
+
+## 5.12 要点回显
+
+- 五区＝结构化篇写法面：schema（5.2）加载保存（5.3）强类型（5.4）UDF 边界（5.5）调试与服务器（5.6）。
+- 全篇共用意识：别打断引擎能看见的东西（裁剪/下推/codegen），是唯一通行证。
+- 结构化的物理层仍是 RDD/分区模型（接 02 章）——DataFrame 是抽象不是豁免。
+
 ## 核心概念速览（中英对照）
 
 - **DataFrame** — 带 schema 的分布式表：Catalyst 与 codegen 的入场券。

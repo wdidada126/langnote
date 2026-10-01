@@ -91,6 +91,15 @@ old = PipelineModel.load("s3://ml/linreg-v1")           # 第 11 章的部署起
 5. k-fold CV 为什么是"特征表该 persist"的典型场景（🔧 G6 直觉）？
 6. 树模型训练里 `maxBins` 为什么暗含全局成本（10.4）？
 
+### MLlib 速记
+
+- Pipeline 是多个 PipelineStage（Transformer/Estimator）的有序组合，fit 产出 Model。
+- Pipeline 与 PipelineModel 的区别：未训练与已训练，后者可序列化复用。
+- 特征列要求 Vector 类型；多列特征先过 VectorAssembler。
+- 评估器在 RDD 与 DataFrame 上均可用，但 API 面不同。
+- MLlib 覆盖经典可规模化模型，不覆盖深度学习；深度部分原书交给外部生态。
+- ⚠️ 本章 Pipeline 代码为重建示例，未在本机执行。
+
 ## 核心概念速览（中英对照）
 
 - **Estimator/Transformer/Model** — 学习算子/变换算子/已拟合变换器三词根。

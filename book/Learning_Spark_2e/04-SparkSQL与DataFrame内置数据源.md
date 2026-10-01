@@ -90,6 +90,17 @@ ORDER BY year, region;
 5. 写出文件数≈什么？由此引出哪个运维问题（4.4→07）？
 6. "同一计划树两种拼写"在 API 层怎么互嵌（4.5）？
 
+### 内置源速记（补）
+
+- parquet：列式、默认压缩，谓词下推最友好；本章 G1 类比（DuckDB parquet 往返）即其外部对照。
+- json：逐行 JSON（JSON Lines），不是单个大 JSON 文档；inferSchema 按采样行推断，生产应显式给 schema。
+- csv：与 json 共用 options 语义；注意 header/quote/escape 三项默认值与直觉不同。
+- orc：与 parquet 同类的列式格式，Hive 系生态更常见；Spark 默认可读写。
+- text：整行一列 value，仅适合日志类裸文本。
+- range：程序生成的分区序号源，常用于压测「分区数 × 数据量」组合。
+- 损坏行处理三选：PERMISSIVE / FAILFAST / DROPMALFORMED，默认 PERMISSIVE 收进 _corrupt_record。
+- ⚠️ 上述为原书选项表的转述；默认值以 spark.apache.org 的 DataFrameReader 文档页为准。
+
 ## 核心概念速览（中英对照）
 
 - **spark.sql** — SQL 字符串入口：返回 DataFrame。

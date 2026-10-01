@@ -90,6 +90,20 @@ Stage-B(agg)  ←shuffle→ Stage-A(scan)     Stage-C 复用同谱系?
 - 下文接棒：[07-高效转换算子](07-高效转换算子.md)（重用与内存）、[08-键值对数据与Shuffle](08-键值对数据与Shuffle.md)（分区器与倾斜）
 - 部署运维视角：../bigdata/11-调度资源与运维.md
 
+## 2.9 观测面小工具箱（接 10 章指标法）
+
+- Stage 计数：宽依赖数＋1 是期望值——多出的 stage 都是不必要的 shuffle（2.4 Job 剖析的机制复现）。⚠️
+- task 时长三件套 p50/p95/max：长尾分诊第一表；max/p50 超一个量级即按 08 章三查。⚠️
+- shuffle 读写字节：map 端预聚合收益的直接可计量（对位 08 章 groupByKey 节）。⚠️
+- GC 时间占比与 spill 记录数：内存阶梯的两只仪表——E1 的"120MB 挤出 spills、4GB 不挤"就是这双眼睛上的形状。🔧（**类比非 Spark**）
+- Event Log 把以上全部变成可离线回放的证据链：忘开等于把事后调优退化成猜。⚠️＋ https://spark.apache.org/docs/latest/configuration.html ✅
+
+## 2.10 执行形态三问（快速自检）
+
+- 数据在动吗：跨节点 shuffle / 节点内序列化 / 落盘 spill——三种动法成本差一个量级。
+- 时间在花在哪：计算 / 搬运 / 等待——等待段常被分区数与调度粒度藏起。
+- 账单与直觉对上了吗：对不上处恰是本节学习入口。
+
 ## 核心概念速览（中英对照）
 
 - **RDD** — Resilient Distributed Dataset：以 lineage 换容错的只读分区集合抽象，Spark 一切 API 的底座。

@@ -85,6 +85,18 @@ spark.sql("DESCRIBE HISTORY delta.`%s`" % path)                           # 操�
 5. 时间旅行对"合规删除（GDPR）"的悖论怎么解（提示：VACUUM/墓碑语义 ⚠️）？
 6. 本章三格式在 2026 的现实排位？依据哪个口径（9.1 重构注脚/演进节）？
 
+### Delta 要点与边界速记
+
+- Delta = parquet 数据文件 + _delta_log 事务日志；表格式不改变物理文件布局。
+- ACME 是原书对原子提交/一致性快照/元数据演进三件事的概括口径。
+- OPTIMIZE 合并小文件并做聚簇；与 VACUUM 的保留期互相制约。
+- VACUUM 删除未引用文件有窗口期风险：下游长查询可能仍引用旧快照。
+- 时间旅行按 version 与 timestamp 两种寻址；可回溯深度受 VACUUM 保留期限制。
+- MERGE 的 matched/not matched 子句顺序与幂等性需在业务侧自证。
+- Delta 与 Spark 版本强绑定，开源版与托管运行时能力存在差距（⚠️ 转述）。
+- 流读 Delta 表是增量读，与 Kafka 微批在 source 语义上不同层。
+- 湖仓（lakehouse）一词在原书是定位陈述，不构成选型结论。
+
 ## 核心概念速览（中英对照）
 
 - **数据湖** — Data Lake：对象存储+开放格式的低价规模仓。

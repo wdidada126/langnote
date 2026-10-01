@@ -14,7 +14,7 @@ Ch6-Ch7 承担本书机器学习域的地基：Ch6 教「MLlib 的数据类型�
 | 6.1 | Creating vectors | Vectors.dense/sparse，MLlib 全部算法的输入原语 | 仍存活；ml 系改用 VectorUDT 列 |
 | 6.2 | Creating a labeled point | LabeledPoint(label, features) 监督样本对 | 被 DataFrame 标签列取代 |
 | 6.3 | Creating matrices | 行列式/坐标式 Matrix 构造 | 面向线性代数旧 API，多已弃用 |
-| 6.4 | Calculating summary statistics | ColumnStatistics/Statiliics 类均值方差计数 | DataFrame describe/summary |
+| 6.4 | Calculating summary statistics | ColumnStatistics/Statistics 类均值方差计数 | DataFrame describe/summary |
 | 6.5 | Calculating correlation | corr/cov 皮尔逊矩阵 | DataFrame.stat.corr |
 | 6.6 | Doing hypothesis testing | chiSq/卡方、t 检验 | DataFrame.stat + Apache Commons |
 | 6.7 | Creating machine learning pipelines using ML | Pipeline/Stage/Param 初体验 | ml 系全面胜出，含 CrossValidator |
@@ -87,6 +87,22 @@ MLlib 线性代数与模型训练语义无单机 SQL 类比面（无矩阵库、
 1. 把 7.1 的三旋钮写成「症状→旋钮→方向」对照表（慢收敛/震荡/抖动各一行）。
 2. 用 6.7 伪码把你熟悉的一个分类任务（任意语言生态）改写成 pipeline 三 stage，标出可替换件。
 3. 读 [../Spark_The_Definitive_Guide/08-机器学习MLlib.md](../Spark_The_Definitive_Guide/08-机器学习MLlib.md) 的回归节，写五行「与 Ch7 的三处 API 断层」清单。
+
+## 12. 易混点辟谣（快问快答）
+
+- **误区：mllib 与 ml 只是拼写差**——两代 API：RDD 原子算法 vs DataFrame pipeline，生态位完全不同 ⚠️。
+- **误区：数据稠密就用稠密向量**——高维稀疏向量按非零存还能加速内积，默认直觉要反转。
+- **误区：假设检验是学术摆设**——类别特征筛选与数据质量闸门至今仍跑 chiSq 这类原语。
+- **误区：学了 lasso/ridge 等于学了正则化**——L1/L2 的收缩直觉在深度学习权重衰减处全额续用。
+- **误区：Pipeline 是个方便的工具类**——它是可复现性契约（fit/transform 分离、参数可序列化），MLOps 的地基件。
+- **误区：summary statistics 可以省**——均值方差是漂移监控与缺失审计的第一手证据。
+
+## 13. 读后行动清单
+
+1. 写一个三 stage 的 6.7 式 pipeline 伪码（特征抽取→模型→评估），标出可替换件清单。
+2. 整理 7.x 参数迁移表：SGD 三旋钮 → ml 系 regParam/elasticNetParam/solver（含 LBFGS）⚠️。
+3. 给「正则化前置检查」写五行 SOP：标准化→共线性→尺度一致→缺失→λ 初值。
+4. 对照 [../Spark_The_Definitive_Guide/08-机器学习MLlib.md](../Spark_The_Definitive_Guide/08-机器学习MLlib.md) 回归节，列三处 API 断层并各举一行替代写法。
 
 ## 核心概念速览（中英对照）
 
