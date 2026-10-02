@@ -12,7 +12,7 @@
 | [像计算机科学家一样思考Python(第2版)](像计算机科学家一样思考Python（第2版）/00-总览与阅读地图.md) | Allen B. Downey | 9787115450920 | 入门/CS | 🟢 推荐（已有章节目录） |
 | [Python极客项目编程](Python极客项目编程/00-总览与阅读地图.md) | Mahesh Venkitachalam | 9787115449764 | 入门/项目 | 🟢 用项目巩固 Python（已有章节目录） |
 | [Effective Python：编写高质量Python代码的90个有效方法(第2版)](Effective Python（第2版）/00-总览与阅读地图.md) | Brett Slatkin | 9787115562647（中文）/ 9780134853987（英文） | 核心主线 | 🟢 强烈推荐 |
-| [Python Cookbook(第3版)中文版](Python Cookbook（第3版）中文版.md) | David Beazley, Brian K. Jones | 9787115379597（中文）/ 9781449340377（英文） | 核心 | 🟡 API 有年代感，思想仍很好 |
+| [Python Cookbook(第3版)中文版](Python Cookbook（第3版）中文版/00-总览与阅读地图.md) | David Beazley, Brian K. Jones | 9787115379597（中文）/ 9781449340377（英文·精装 3e） | 核心 | 🟡 API 有年代感，思想仍很好（已深度展开） |
 | [Python学习手册(第5版)](Python学习手册（第5版）.md) | Mark Lutz | 9787115391309（中文）/ 9781449355739（英文） | 深入语言 | 🟡 太厚，部分内容老 |
 | [Python算法教程(第2版)](Python算法教程（第2版）.md) | Magnus Lie Hetland | 9787115485779 | 算法 | 🟢 推荐 |
 | [高性能Python(第2版)](高性能Python（第2版）.md) | Micha Gorelick, Ian Ozsvald | 9787115585776（中文）/ 9781492055020（英文） | 性能 | 🟢 核心 |
