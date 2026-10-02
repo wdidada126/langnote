@@ -15,7 +15,7 @@
 | [Python Cookbook(第3版)中文版](Python Cookbook（第3版）中文版/00-总览与阅读地图.md) | David Beazley, Brian K. Jones | 9787115379597（中文）/ 9781449340377（英文·精装 3e） | 核心 | 🟡 API 有年代感，思想仍很好（已深度展开） |
 | [Python学习手册(第5版)](Python学习手册（第5版）/00-总览与阅读地图.md) | Mark Lutz | 9787115391309（中文）/ 9781449355739（英文） | 深入语言 | 🟡 太厚，部分内容老；已深度展开 |
 | [Python算法教程(第2版)](Python算法教程（第2版）/00-总览与阅读地图.md) | Magnus Lie Hetland | 9787115485779 | 算法 | 🟢 推荐（已深度展开） |
-| [高性能Python(第2版)](高性能Python（第2版）.md) | Micha Gorelick, Ian Ozsvald | 9787115585776（中文）/ 9781492055020（英文） | 性能 | 🟢 核心 |
+| [高性能Python(第2版)](高性能Python（第2版）/00-总览与阅读地图.md) | Micha Gorelick, Ian Ozsvald | 9787115585776（中文）/ 9781492055020（英文） | 性能 | 🟢 核心（已深度展开） |
 | [CPython设计与实现](CPython设计与实现.md) | 王博俊 | 9787115549693 | CPython | 🟢 中文原创，强烈推荐 |
 | [Python Crash Course 3e](PythonCrashCourse3e.md) | Eric Matthes | 9781718502703 | 入门 | 🟢 推荐 |
 | [Automate the Boring Stuff with Python 3e](AutomateTheBoringStuff3e.md) | Al Sweigart | 9781718503403 | 入门 | 🟢 强烈推荐实践 |
