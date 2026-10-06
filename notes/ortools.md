@@ -34,3 +34,10 @@ otool -L /usr/lib/libc++.dylib
 查看动态库的版本：
 
 install_name_tool -dump /usr/lib/libc.dylib
+
+Python 库：C++ 的封装（Binding）
+是的，Python 的 ortools 是一个 Binding（绑定/封装）。
+它的源码里直接包含了一个“连接 C++ 层”的模块（ortools.init.python.init）。这意味着你在 Python 里调用的每一个函数，最终都会通过一层接口去执行底层的 C++ 代码。
+
+Java 库：同样是 Wrapper
+Java 版也是 封装。官方安装文档特别提醒：Java 版 OR-Tools 库是 “C++ 原生库的封装容器（wrapper）”，所以安装时必须先装好 C++ 的运行库（Microsoft Visual C++ Redistributable）。Java 代码通过 JNI（Java Native Interface）来调用 C++ 核心，比如你在 Java 代码里调用的 mainJNI 类，就是在负责这种跨语言交互
