@@ -18,7 +18,6 @@
 
 ## R1 · 类型安全 builder 三件套
 `[✅ | ⚠️ 归属推定：DSL 章主打 | 🔧]`
-
 ```kotlin
 @DslMarker annotation class HtmlDsl()
 @HtmlDsl class Tag(val name: String) { private val kids = mutableListOf<Tag>()
@@ -27,12 +26,10 @@
 fun html(block: Tag.() -> Unit) = Tag("html").apply(block)    // 工厂+接收者 lambda
 fun Tag.body(b: Tag.() -> Unit = {}) = Tag("body").also { add(it); it.b() }
 ```
-
-`@DslMarker` 屏蔽外层接收者、防上下文逃逸 ✅；标准库 `kotlin.html` 已移除（版本 ⚠️），自搭迷你 DSL 仍是教学/生产主力 ✅ 口径 ⚠️ 归属。
+`@DslMarker` 屏蔽外层接收者、防上下文逃逸 ✅；标准库 `kotlin.html` 已移除（版本 ⚠️），自搭迷你 DSL 仍是教学/生产主力（归属 ⚠️）。
 
 ## R2 · 访问器与 backing field
 `[✅ | ⚠️ | 🔧]`
-
 ```kotlin
 class Temperature {
     var celsius: Double = 0.0
@@ -40,45 +37,38 @@ class Temperature {
     val fahrenheit get() = celsius * 1.8 + 32           // 计算属性无 backing field ✅
 }
 ```
-
 访问器可见性可低于属性（`private set` ✅）；默认访问器映射 JavaBean getter/setter（→ [06](06-工程与互操作食谱.md) R2）。
 
 ## R3 · 委托属性两型
 `[✅ | ⚠️ | 🔧]`
-
 ```kotlin
 class Profile(val map: MutableMap<String, Any?>) {
-    var name: String by map                 // 标准库 Map 委托：属性名即键 ✅
+    var name: String by map    // 标准库 Map 委托：属性名即键 ✅
     var visits: Int by map
 }
 var logged: String by Delegates.observable("<init>") { _, o, n -> println("$o→$n") }
 ```
-
-协议=`getValue/setValue(thisRef, property[, value])` operator 约定 ✅；[02](02-面向对象与data-value类选型.md) R9 讲"为什么"，本档给"载体"；`by lazy` 的 lambda 侧在 [03](03-函数与Lambda食谱.md)。
+协议=`getValue/setValue(thisRef, property[, value])` operator 约定 ✅；[02](02-面向对象与data-value类选型.md) R9 讲"为什么"，本档给"载体"。
 
 ## R4 · provideDelegate 声明位
 `[✅ 语言事实 | ⚠️ 是否书中 recipe 存疑 | 🔧]`
-
 ```kotlin
 class Reading<T>(val qualified: String, val d: T)
 class Key<T>(val name: String, val d: T)
 operator fun <T> Key<T>.provideDelegate(r: Any?, p: kotlin.reflect.KProperty<*>): Reading<T>
     = Reading("${r}/${p.name}", d)          // 声明期拿到属性名 ✅
 ```
-
-Gradle/声明式配置线（`val x by setting(...)` 模式）的机关 ✅ 官方文档可证；本书是否收录 ⚠️——可能越出 Cookbook 范围，按通行正解预建。
+Gradle/声明式配置线（`val x by setting(...)` 模式）的机关 ✅ 官方文档可证；本书是否收录 ⚠️——按通行正解预建。
 
 ## R5 · invoke 与 infix
 `[✅ | ⚠️ | 🔧]`
-
 ```kotlin
 class Router(val base: String) { operator fun invoke(path: String) = "$base$path" }
 val api = Router("https://x"); api("/users")        // 展开 api.invoke ✅
 infix fun Int.pow(e: Int) = Math.pow(this.toDouble(), e.toDouble()).toInt()
 val v = 2 pow 3                                     // infix=单参数、无默认 ✅
 ```
-
-多接收者（`fun A.B.m(){}`）语法不存在、编译不过 ✅；invoke 重载超两个该退具名方法、DSL 语法感三件套=infix+by+接收者（口诀 ⚠️ 非书中引文）。
+多接收者（`fun A.B.m(){}`）语法不存在、编译不过 ✅；invoke 重载超两个该退具名方法、DSL 三件套=infix+by+接收者（口诀 ⚠️ 非书中引文）。
 
 ## 核心概念中英对照
 
