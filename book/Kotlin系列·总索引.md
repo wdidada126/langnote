@@ -61,3 +61,7 @@
 - 2026-10-07 第 1 波：核心 5 本建目录（各 1 枚 00-总览与阅读地图，分章档待第 2 波）+ 本总索引。
 - 2026-10-07 同日续批：Joy/Programming/Cookbook 3 本 00 档补齐——**用户书目清单内 8 本可建档者全部落档**（Head First/BNRR 按画像判不建深度档），全系列 9 枚档案 + 索引。
 - 待办：第 2 波分章展开（01–NN）；各书 ISBN/作者/逐字目录联网核验销账。
+- 2026-10-07 第 2 波收束 ✅：**62 枚分章全落**（KiA2e 01–10、Effective 01–08 条目簇、JtK 01–12、Atomic 01–08、FPIK 01–06、Joy 01–06、Programming 01–06、Cookbook 01–06 食谱带）；kotlin_check 验收 **70 枚文件 / 0 断链**。
+  - 链名对账闭环：KiA2e 01/02 与 Effective 01/03 旧前向链改指实档名；Cookbook 01/02 旧「05-空安全与异常Result」带未单列建档，链接改指 06-工程与互操作食谱并挂 ⚠️欠账；Programming 02/03「04-泛型与variance」撞号裁决=02 改指跨系列 KiA2e 06-泛型、03 改指本系列实名 04。
+  - 🔧 实测口径：本机无 kotlinc，全系列实验位一律标「未实测」；协程/擦除对照挂 `TypeScript系列·Runtime_vs_Type_System专题.md` 与 C++20 协程档。
+  - 仍待销账：Effective/Packt 双册、FPIK、Cookbook 的 ISBN 与逐字目录（403/404 墙）；本系列 commit 均未 push。

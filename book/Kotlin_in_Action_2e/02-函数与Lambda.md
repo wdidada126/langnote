@@ -5,7 +5,7 @@
 > 书中位置（⚠️ 推定）：1e 约第 5 章 Functions、第 6 章 Working with collections 中
 > 的 vararg/infix/局部函数素材、第 8 章 Higher-order functions（lambdas and function
 > references）；2e 章号未核实。本册把"函数一等公民 + lambda/闭包 + inline/reified"
-> 合并成一条线，协程对 suspend lambda 的依赖（见 [08](08-协程基础与CoroutineContext.md)）
+> 合并成一条线，协程对 suspend lambda 的依赖（见 [09](09-协程基础与suspend函数.md)）
 > 以此为地基。
 
 ## 主题机制讲解
@@ -54,7 +54,7 @@
   可写 `is T`、`javaClass`（✅）。C++ 模板天然 reified（每实参单态化）；
   Kotlin 用 inline 借来的这条路是**语法位受限的特例**，而 C++ 是默认——
   两门语言在"泛型=擦除复用 还是 模板=展开复制"上的根本取舍在此摊牌，
-  详见 [06-泛型与variance.md](06-泛型与variance.md)。
+  详见 [06-泛型.md](06-泛型.md)。
 
 ```kotlin
 // 🔧 示意：inline + reified 的过滤器
@@ -98,7 +98,7 @@ fun Base.name() = "base ext"; fun Derived.name() = "derived ext"
    改动内联体在严格意义上影响所有调用点生成物；`noinline`/局部内联是刹车片（✅）。
 5. **扩展属性没有 backing field**（✅）：`val String.quotes get() = ...` 只能计算，
    不能有字段——想"加存储"必须走委托（Map 委托、类设计重构），见
-   [04 册](04-类属性与接口.md)。
+   [04 册](04-类与接口与对象表达式.md)。
 6. **it 的不可读连锁**：嵌套两层 lambda 都含 `it` 时，`it` 绑定最近 lambda 参数——
    外层遮蔽只能靠显式命名参数或标签；代码评审惯犯。
 7. **suspend 转换 lambda 尾随语法**：`scope.launch { ... }` 里 lambda 类型是
@@ -124,7 +124,7 @@ kotlinc ch02.kt -include-runtime -d ch02.jar && java -jar ch02.jar
   顶层静态方法——证实"扩展=带接收者的静态函数"。
 - 实验 D（捕获可变变量）：`var counter=0; repeat(3){ counter++ }`；再启线程
   捕获 `var` 演示跨线程可见性问题（引出 @Volatile 与协程语境下的原子类，
-  衔接 [09 册](09-结构化并发与Channels.md)）。
+  衔接 [10 册](10-协程高级与Flow.md)）。
 
 ## 核心概念中英对照
 
@@ -143,4 +143,4 @@ kotlinc ch02.kt -include-runtime -d ch02.jar && java -jar ch02.jar
 互链：上级 [00 总览](00-总览与阅读地图.md)；上一章
 [01-语言基础与结构.md](01-语言基础与结构.md)；下一章
 [03-集合与标准库.md](03-集合与标准库.md)。inline/reified 的泛型全貌见
-[06-泛型与variance.md](06-泛型与variance.md)。
+[06-泛型.md](06-泛型.md)。

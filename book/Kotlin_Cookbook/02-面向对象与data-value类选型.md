@@ -98,7 +98,7 @@ class Audit : Repository {                      // 手写装饰器：by 表达�
 **Discussion.** `by` 生成的转发方法是**public 虚调用**：委托对象生命周期长于被委托接口引用
 没问题，但**改 delegate 指向不会生效**（转发绑的是构造时那个对象）✅ 细节以实测为准 🔧。
 规范仲裁：Effective Kotlin 主张"优先表达式委托/属性委托，接口实现委托警惕过深包装" ⚠️。
-属性委托 `by lazy` 归 [03 章](03-函数Lambda与内联.md) R6。
+属性委托 `by lazy` 归 [03 章](03-函数与Lambda食谱.md) R6。
 
 ## R4 · "data class 和 value class 都当包装类型，选哪个？"
 `[✅ | ⚠️ 归属推定：OOP 章选型 Recipe（本档主打） | 🔧]`
@@ -131,7 +131,7 @@ data class Money(val cents: Long, val currency: String)  // 多字段 → 仍然
 | 需要继承层次 | 都不是（data 不能开 class；value 不能继承） | ✅ |
 
 value class 的代价要讲透：**函数签名在 JVM 上被 mangle**（参数名带后缀、返回类型可能是底层
-类型或装箱），Java 侧调用混乱见 [06 章](06-IO序列化与JVM混编.md)；可空 `UserId?` 时又装箱 ✅。
+类型或装箱），Java 侧调用混乱见 [06 章](06-工程与互操作食谱.md)；可空 `UserId?` 时又装箱 ✅。
 "data vs value"是 00 骨架表点名的本档主打方向 ⚠️。
 
 ## R5 · "data class 能继承吗？我想给密封层次加点共享行为"
@@ -180,7 +180,7 @@ class Config {
 
 **Discussion.** companion 是**单例对象实例**（有状态、可实现接口、可作接收者），`const`/`@JvmStatic`
 才是静态视图 ✅。与顶层 `object` 的区别只在作用域归属；两者都可 `by` 实现接口 ✅。
-Java 互操作注解三件套（`@JvmStatic/@JvmField/@JvmName`）完整速查在 [06 章](06-IO序列化与JVM混编.md) R5。
+Java 互操作注解三件套（`@JvmStatic/@JvmField/@JvmName`）完整速查在 [06 章](06-工程与互操作食谱.md) R5。
 
 ## R7 · "扩展函数能覆盖成员吗？为什么我的 toString 扩展没生效？"
 `[✅ | ⚠️ | 🔧]`
@@ -248,8 +248,7 @@ val heavy: List<String> by lazy { readLines() }    // 线程安全默认 SAFE �
 
 **Discussion.** `getValue/setValue` 是 `operator` 约定 ✅；标准库另有
 `Delegates.observable/vetoable` ✅。`by lazy` 的锁模式（`LazyThreadSafetyMode`）与
-"可空 var 不能用 lateinit、初始化一次用 lazy"是高频口诀——`lateinit` 陷阱在
-[05 章](05-空安全与异常Result.md) R3。
+"可空 var 不能用 lateinit、初始化一次用 lazy"是高频口诀——`lateinit` 陷阱见原 05 章规划（未单列建档，⚠️欠账：相关口径已并入本章与 06 章互操作段）。
 
 ## R10 · "init 块、属性初始化器、构造参数默认值，执行顺序是什么？"
 `[✅ | ⚠️ | 🔧]`
@@ -287,5 +286,5 @@ class Derived(val v: Int) : Base() {
 | 延迟初始化 | lazy initialization | by lazy（线程安全默认）vs lateinit |
 | 构造初始化顺序 | initialization order | 父先于子，属性与 init 按书写序 |
 
-衔接：lambda/高阶函数侧去 [03](03-函数Lambda与内联.md)；value class 的 JVM 表征与互操作补丁去
-[06](06-IO序列化与JVM混编.md)；错误建模的 sealed 用法去 [05](05-空安全与异常Result.md) R9。
+衔接：lambda/高阶函数侧去 [03](03-函数与Lambda食谱.md)；value class 的 JVM 表征与互操作补丁去
+[06](06-工程与互操作食谱.md)；错误建模的 sealed 用法去本章 R1（原 05 章 R9 未单列建档 ⚠️欠账）。
