@@ -1,4 +1,82 @@
 # codex
+当前 Codex CLI 里，“完全访问”对应 `danger-full-access` + `never`：文件系统不受 workspace 沙盒限制，并且执行时不再逐次请求批准。OpenAI 官方文档也是这样定义 Full access 的。[OpenAI Developers](https://developers.openai.com/zh-Hans/docs/config-file/config-basic?utm_source=chatgpt.com)
+
+### 临时开启：当前这次 Codex
+
+最直接可以用：
+
+```bash
+codex --sandbox danger-full-access --ask-for-approval never
+```
+
+另外，当前 Codex CLI 里可以输入：
+
+```text
+/permissions
+```
+
+然后选择 Full access。[OpenAI Developers](https://developers.openai.com/pt-BR/docs/sandboxing?utm_source=chatgpt.com)
+
+### 永久设置：推荐
+
+编辑：
+
+```bash
+~/.codex/config.toml
+```
+
+加入：
+
+```toml
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+```
+
+以后直接：
+
+```bash
+codex
+```
+
+就是完全访问模式。Codex 的用户级默认配置文件就是 `~/.codex/config.toml`；项目也可以使用 `.codex/config.toml` 覆盖。[OpenAI Developers](https://developers.openai.com/zh-Hans/docs/config-file/config-basic?utm_source=chatgpt.com)
+
+新版 Codex 还提供权限 profile，内置包括：
+
+```text
+:read-only
+:workspace
+:danger-full-access
+```
+
+因此新版配置体系也可以围绕 `default_permissions = ":danger-full-access"` 使用；不要同时混用它和旧的 `sandbox_mode` 配置。[OpenAI Developers](https://developers.openai.com/ja-JP/docs/config-file/config-reference?utm_source=chatgpt.com)
+
+### `--yolo`
+
+如果你的 Codex CLI 版本支持，也可以使用：
+
+```bash
+codex --yolo
+```
+
+它相当于非常激进的完全访问方式；官方文档明确把 `--yolo` 与完全访问权限沙盒设置放在同一类高权限场景中。[OpenAI Developers](https://developers.openai.com/zh-Hans/docs/config-file/config-basic?utm_source=chatgpt.com)
+
+注意区别：
+
+```text
+workspace-write + never
+```
+
+只是“不询问”，不是完全访问。
+
+真正的完全访问是：
+
+```text
+danger-full-access + never
+```
+
+这意味着 Codex 生成的命令可以接触 workspace 外的文件、凭据和网络资源，所以不建议在含 SSH 私钥、云凭据、生产数据库凭据的机器上长期全局开启。[OpenAI Developers](https://developers.openai.com/api/docs/guides/agents-api/environments/security?utm_source=chatgpt.com)
+
+[OpenAI Codex 官方配置文档](https://developers.openai.com/zh-Hans/docs/config-file/config-basic?utm_source=chatgpt.com)
 
 纯命令行环境，复制auth.json到合适的文件夹下，就可以codex，不用codex login
 
