@@ -14,14 +14,14 @@
 | 擦除与运行时真相 | ../TypeScript系列·Runtime_vs_Type_System专题.md（✅ 一手记录） | 无 |
 | 迁移期混合库（allowJs/checkJs） | ../Java_to_Kotlin/（渐进迁移同题）、../Kotlin系列·总索引.md | 对照 |
 
-## 二、本书独有价值点：tsconfig 字典全项清单（33 项，标本仓实测状态）
+## 二、本书独有价值点：tsconfig 字典全项清单（33 行、合写后 40+ 个开关；每行标本仓实测状态）
 
-图例：**✅运行面**=Node 直跑已给出一手对位证据；**⚠️待tsc**=纯编译期开关，本仓 0 实测；**⚠️低置信**=一句话作用系公共面记忆，未核原文。
+图例：**✅运行面**=Node 直跑已给出一手对位证据；**⚠️待tsc**=纯编译期开关，本仓 0 实测；「一句话作用」列整体属**公共面记忆 ⚠️**（未与原文逐条对表）。
 
 | # | compilerOptions 项 | 一句话作用（⚠️ 记忆/公共面） | 本仓实测状态 |
 |---|---|---|---|
-| 1 | `target` | 产物 JS 语言代际 | ✅运行面：node v22.14 原生支持 ES2022 全部语法（static block/`#`private/Array.at/Object.hasOwn/structuredClone/fetch/WeakRef/TLA）——`esfeat.ts` |
-| 2 | `lib` | 注入哪些全局声明 | ✅运行面：`esfeat.ts` 中 `fetch/structuredClone/Intl/Object.hasOwn` 在 node 22 真实存在 ⇒ `dom` 之外的 lib 选择需对位 node 全局面 |
+| 1 | `target` | 产物 JS 语言代际 | ✅运行面：node v22.14 对所测 ES2022 面语法全绿（static block/`#`private/Array.at/Object.hasOwn/structuredClone/fetch/WeakRef/TLA）——`esfeat.ts` |
+| 2 | `lib` | 注入哪些全局声明 | ✅运行面：`esfeat.ts` 中 `fetch/structuredClone/Intl/Object.hasOwn` 在 node 22 真实存在；反向：`using d = new D()`（依赖 `esnext.disposable`）报 V8 `SyntaxError: Unexpected identifier 'd'` ✅（`us.ts`）⇒ lib 若写最新代，运行时仍可能无支撑 |
 | 3 | `module` | 产物模块制 | ⚠️待tsc；✅运行面：Node 侧模块制由 `package.json type`/`.mts/.cts` 决定，与 tsconfig 无关（`m1/s.ts`、`c.cts`） |
 | 4 | `moduleResolution` | 解析算法（node16/nodenext/bundler） | ⚠️待tsc；✅运行面：Node ESM 要求**带扩展名**——`noext.mts` → `ERR_MODULE_NOT_FOUND ... \b`（`a.mts` 带 `.mts` 则通过） |
 | 5 | `types` / 6 `typeRoots` | 自动引入哪些全局声明包 | ⚠️待tsc；✅运行面：类型-only import 不解析包（`elide.ts`/`srv.mts` 无 `@types/node` 仍跑） |
@@ -67,7 +67,7 @@
 
 ## 五、⚠️ 欠账
 
-- **字典代次风险**：上表 33 项按 TS 5.x 公共面整理 ⚠️，与**本书实际列出项**的差集未核（书中是否含 `bundler` 解析、`erasableSyntaxOnly`、`customConditions` 等）。
+- **字典代次风险**：上表 40+ 开关（33 行）按 TS 5.x 公共面整理 ⚠️，与**本书实际列出项**的差集未核（书中是否含 `bundler` 解析、`erasableSyntaxOnly`、`customConditions`、`noCheck` 等）。
 - 编译期报错面**全数 0 实测**：本机无独立 tsc；销账动作=获授权后装 typescript 5.x 并重跑「固定样例集 × 单开关」矩阵。
 - Ⅳ 部逐字章名（Node/Express/Apollo？）、Ⅴ 部是否讲 CI/部署流——未核。
 - 本带实验脚本仅存会话临时目录，未入库（`exp/` 固化待授权）。

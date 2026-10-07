@@ -64,4 +64,8 @@
 ## 收录统计
 
 - 2026-10-07 第 1 波：10 本书目全部建档（各 1 枚 00-总览与阅读地图）+ 本总索引 + 本机 type-erasure 实测基线 4 条 ✅。全系列 11 枚档案。
-- 待办：第 2 波分章展开（01–NN，含 Runtime vs Type System 专题档）；O'Reilly/Apress/Manning 各墙 ISBN·逐字目录联网销账；Compiler Notes 仓库定位。
+- 2026-10-07 第 2 波收束 ✅：9 路泳群 46 枚分章档全落盘（Learning 6/Programming 6/Effective 6/Cookbook 6/50Lessons 4/Tackling 5/Essential 5/Pro 3/Type-Level 5；Compiler Notes 按「先销账后读」纪律不展开）——**全系列 56 枚档案、断链扫描 0**。泳群合计真跑复演 ~70 次（全部 node v22.14 strip/transform 双制），实测基线新增：
+  - 非纯擦除语法拒载面由 enum/namespace 扩至**参数属性、`import = require()`、装饰器**（装饰器 legacy/Stage-3 双写法 × strip/transform 双模式四组合**全判负**＝Node 不译装饰器且不读 tsconfig，主代理已独立复现）；
+  - `as const` **不产生 Object.freeze**、`const enum` 在 Node transform 下**不内联**（运行时留绑定）——`isolatedModules`/`erasableSyntaxOnly` 语义边界自此有了运行面代理实锤；
+  - enum 转译产物=双向映射对象 `{"0":"Red","Red":0}`；`node:http` 服务端线**零 node_modules/零 @types 直跑全绿**——「运行时不做类型解析」一手证据。
+- 待办：O'Reilly/Apress/Manning 各墙 ISBN·逐字目录联网销账；TypeScript Compiler Notes 仓库定位（销账失败按 Mobedi 先例转 ⛔ 注销档）；tsc 报错矩阵（待 typescript 安装授权口径）；各书分章档内 ⚠️ 欠账逐档滚动。
