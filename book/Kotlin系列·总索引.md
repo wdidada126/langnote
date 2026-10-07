@@ -18,10 +18,10 @@
 
 | 书 | 目录 | 出版社·年份 | ISBN | 优先级 | 状态 |
 |---|---|---|---|---|---|
-| Kotlin in Action, 2nd Ed. | [Kotlin_in_Action_2e/](Kotlin_in_Action_2e/00-总览与阅读地图.md) | Manning·2024 | 9781617299605 | ★★★ 第一优先 | ✅ |
-| Effective Kotlin | [Effective_Kotlin/](Effective_Kotlin/00-总览与阅读地图.md) | Packt·2022 | ⚠️9781805125897 | ★★ | ⚠️ |
-| Java to Kotlin: A Refactoring Guidebook | [Java_to_Kotlin/](Java_to_Kotlin/00-总览与阅读地图.md) | O'Reilly·2023 | ⚠️待核验 | ★★ | ⚠️ |
-| Atomic Kotlin | [Atomic_Kotlin/](Atomic_Kotlin/00-总览与阅读地图.md) | no starch press·2021 | ⚠️9781593279610 | ★★ | ⚠️ |
+| Kotlin in Action, 2nd Ed. | [Kotlin_in_Action_2e/](Kotlin_in_Action_2e/00-总览与阅读地图.md) | Manning·2024-04 | 9781617299605 | ★★★ 第一优先 | ✅ 四作者名录实（含 Elizarov） |
+| Effective Kotlin | [Effective_Kotlin/](Effective_Kotlin/00-总览与阅读地图.md) | Packt·2022 | ⚠️9781805125897 | ★★ | ⚠️（403 墙） |
+| Java to Kotlin: A Refactoring Guidebook | [Java_to_Kotlin/](Java_to_Kotlin/00-总览与阅读地图.md) | O'Reilly·2023 | 中文版 978-7-111-73703-2 ✅ | ★★ | ✅ McGregor & Pryce |
+| Atomic Kotlin | [Atomic_Kotlin/](Atomic_Kotlin/00-总览与阅读地图.md) | no starch press·2021-11 | ⚠️9781593279610 | ★★ | ✅ 87 章全目录 |
 | Functional Programming in Kotlin | [Functional_Programming_in_Kotlin/](Functional_Programming_in_Kotlin/00-总览与阅读地图.md) | Apress·2021 | ⚠️待核验 | ★ | ⚠️ |
 
 ## 二、次线与对照参考
@@ -47,11 +47,14 @@
 - **Spring 线**：Spring Boot Kotlin 支持、jakarta 时代的 `suspend fun` Controller（衔接 `Spring系列·总索引.md` 路线 2/3）。
 - **论文线**：无直接对应；协程调度器阅读可对照 `paper/ELEPHANT/dapper` 式源码考古法。
 
-## 五、购买/阅读终裁（对用户粘贴的第三方 AI 结论的核对结果）
+## 五、购买/阅读终裁（对用户粘贴的第三方 AI 结论的核对结果·2026-10-07 联网销账版）
 
-- 五本精简清单成立：KiA2e + Atomic + Effective + Java to Kotlin + FPIK ✅（与官方书目页一致）。
-- ⚠️ 存疑点：第三方结论称 KiA2e 作者"包括 Roman Elizarov"——Manning 页署名线为 Aigner/Jemerov 等，**Elizarov 署名未获证实**，已在 KiA2e 档内标注待核验，勿按此购书决策。
-- ⚠️ ISBN 仅 KiA2e（9781617299605，✅ 用户提供+Manning 页）与 KiA1e（9781617293290，✅）可写死；其余待核验后原位升级。
+- 五本终裁清单成立 ✅（与官方 books 页一致）。
+- **KiA2e 作者四名录实 ✅**：Sebastian Aigner, **Roman Elizarov**, Svetlana Isakova, Dmitry Jemerov（Manning 官方页直证）——第三方结论"含 Elizarov"**成立**，第 1 波的存疑标注撤销；Isakova 同时是 Atomic Kotlin 作者（谱系互锁）。
+- **Java to Kotlin 作者勘正 ✅**：Duncan McGregor & Nat Pryce——第三方结论所称 "Duncan DeVore" **为误**；中文版《Java到Kotlin：代码重构指南》机械工业 978-7-111-73703-2，23 章全目录 ✅。
+- **Atomic Kotlin ✅**：no starch press/Learn Kotlin，2021-11-22，588 页，官方 7 部 87 章+2 附录全目录取得；印刷 ISBN 仍 ⚠️9781593279610。
+- **The Joy of Kotlin ✅**：Saumont，Manning 2019-04，ISBN **9781617295362**（第 1 波记忆 377 为误，已销）。
+- 403/404 墙未破、维持 ⚠️：Effective Kotlin（Packt）、Programming Kotlin（Packt）、Kotlin Cookbook（O'Reilly）、FPIK（Apress/Springer）的 ISBN/逐字章目录——购电子版后销账。
 
 ## 收录统计
 
