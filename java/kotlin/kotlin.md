@@ -23,3 +23,8 @@ https://book.douban.com/subject/28510494/
 https://book.douban.com/subject/34797679/
 
 https://book.douban.com/subject/30371872/
+
+## doc
+https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.io/println.html
+
+https://kotlinlang.org/docs/coroutines-overview.html
