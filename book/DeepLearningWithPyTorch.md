@@ -20,3 +20,6 @@
 
 ## 与其他书的联系
 - 前置：`DiveIntoDeepLearning.md`（d2l，官方在线）；对照：`DeepLearningWithPython2e.md`（Chollet，Keras 视角）。
+
+## 目录版（第 2 波，2026-10-08）
+- 深度重写版：[Deep_Learning_with_PyTorch/00-总览与阅读地图.md](Deep_Learning_with_PyTorch/00-总览与阅读地图.md)（00+6 章共 7 枚）。本速查档并存，阅读主线走目录版。

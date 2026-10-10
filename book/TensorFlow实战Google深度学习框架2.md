@@ -20,3 +20,6 @@
 
 ## 与其他书的联系
 - 同线英文：`ProgrammingTensorFlow2.md`、`DeepLearningWithTensorFlow2AndKeras.md`；跨线对照：`深度学习入门.md`（天）、`深度学习_花书.md`。
+
+## 目录版（第 2 波，2026-10-08）
+- 深度重写版：[TensorFlow实战Google深度学习框架2/00-总览与阅读地图.md](TensorFlow实战Google深度学习框架2/00-总览与阅读地图.md)（00+7 章共 8 枚，含 2026 时效裁决：作中文概念地图、不作实操教材）。本速查档并存，阅读主线走目录版。

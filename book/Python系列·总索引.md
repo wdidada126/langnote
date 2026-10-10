@@ -86,22 +86,22 @@
 ### PyTorch 线
 | 书 | 档 | 出版社·年 | ISBN | 状态 |
 |---|---|---|---|---|
-| Deep Learning with PyTorch | [DeepLearningWithPyTorch.md](DeepLearningWithPyTorch.md) | Manning·2020 ⚠️ | ⚠️待核验 | 🟢 机制纵深 |
-| Programming PyTorch for Deep Learning | [ProgrammingPyTorchDeepLearning.md](ProgrammingPyTorchDeepLearning.md) | Packt·2020 ⚠️（作者名录未证实） | ⚠️待核验 | 🟡 与上重叠，二选一 |
+| Deep Learning with PyTorch | [Deep_Learning_with_PyTorch/](Deep_Learning_with_PyTorch/00-总览与阅读地图.md)（速查版 `DeepLearningWithPyTorch.md` 并存） | Manning·2020 ⚠️ | ⚠️待核验 | 🟢 机制纵深 |
+| Programming PyTorch for Deep Learning | [Programming_PyTorch_Deep_Learning/](Programming_PyTorch_Deep_Learning/00-总览与阅读地图.md)（速查版并存） | Packt·2020 ⚠️（作者名录未证实） | ⚠️待核验 | 🟡 与上重叠，二选一 |
 | 官方教程线（非书） | pytorch.org/tutorials + d2l 中文版 | — | — | ✅ 主 API 口径，与 d2l 同读 |
 
 ### TensorFlow 线
 | 书 | 档 | 出版社·年 | ISBN | 状态 |
 |---|---|---|---|---|
-| TensorFlow：实战Google深度学习框架（2版） | [TensorFlow实战Google深度学习框架2.md](TensorFlow实战Google深度学习框架2.md) | 电子工业·2018 ✅（郑泽宇 等） | 978-7-121-33066-7 ✅（89.00 元，xiii+348 页 ✅） | 🟡 中文概念地图，1.x API 已废 |
-| Programming TensorFlow 2 | [ProgrammingTensorFlow2.md](ProgrammingTensorFlow2.md) | Packt·2021 ⚠️ | ⚠️待核验 | 🟡 |
-| Deep Learning with TensorFlow 2 and Keras 2e | [DeepLearningWithTensorFlow2AndKeras.md](DeepLearningWithTensorFlow2AndKeras.md) | Apress·2021 ⚠️ | ⚠️待核验 | 🟡 食谱式 |
+| TensorFlow：实战Google深度学习框架（2版） | [TensorFlow实战Google深度学习框架2/](TensorFlow实战Google深度学习框架2/00-总览与阅读地图.md)（速查版并存） | 电子工业·2018 ✅（郑泽宇 等） | 978-7-121-33066-7 ✅（89.00 元，xiii+348 页 ✅） | 🟡 中文概念地图，1.x API 已废 |
+| Programming TensorFlow 2 | [Programming_TensorFlow_2/](Programming_TensorFlow_2/00-总览与阅读地图.md)（速查版并存） | Packt·2021 ⚠️ | ⚠️待核验 | 🟡 |
+| Deep Learning with TensorFlow 2 and Keras 2e | [DeepLearning_with_TensorFlow2_and_Keras/](DeepLearning_with_TensorFlow2_and_Keras/00-总览与阅读地图.md)（速查版并存） | Apress·2021 ⚠️ | ⚠️待核验 | 🟡 食谱式 |
 | 官方文档线（非书） | tensorflow.org/tutorials（Keras 3 多后端变局） | — | — | 实操唯一现行口径 |
 
 ### YOLO 线
 | 书/资料 | 档 | 出版社·年 | ISBN | 状态 |
 |---|---|---|---|---|
-| 计算机视觉：YOLO目标检测原理与实践 | [计算机视觉YOLO目标检测原理与实践.md](计算机视觉YOLO目标检测原理与实践.md) | 清华社·2026-04 ✅（凌峰；3 部分 10 章 ✅） | 978-7-302-70618-2 ✅（定价 119 ✅；页数未著录 ⚠️） | 🟢 本线最新锚点 |
+| 计算机视觉：YOLO目标检测原理与实践 | [计算机视觉YOLO目标检测原理与实践/](计算机视觉YOLO目标检测原理与实践/00-总览与阅读地图.md)（速查版并存） | 清华社·2026-04 ✅（凌峰；3 部分 10 章 ✅） | 978-7-302-70618-2 ✅（定价 119 ✅；页数未著录 ⚠️） | 🟢 本线最新锚点 |
 | YOLO目标检测（同名旧书） | [YOLO目标检测.md](YOLO目标检测.md) | ⚠️存在证实，出版社/作者/年未销账 | ⚠️ | 🟡 待核档 |
 | 论文线（欠账） | YOLOv1 `1506.02640` / v3 `1804.02767` / v4 `2004.10934` ⚠️编号凭通行记忆 | — | — | 待按论文规范建 `paper/` 档（paper/ 现无 YOLO 谱系，grep 实测） |
 | 毛化《YOLO目标检测详解》系列 + Ultralytics 官方仓库（非书） | — | — | — | ✅ 社区谱系地图与工程现行口径 |
@@ -111,3 +111,5 @@
 ### 收录统计（补编）
 - 2026-10-08：三线 7 枚速查档新建；深度章节化（`book/<书名>/` 00+分章）列为第 2 波，待指定主书展开。
 - 欠账滚动：Manning/Apress/Packt 四本的 ISBN 与逐字目录销账；《YOLO目标检测》旧书元数据；YOLO 论文三枚建档；`_placeholder` 类临时文件已即时删除未入库。
+- 2026-10-08 第 2 波 ✅：**六书目录版全落 42 枚**（DLwP 7/ProgPyTorch 6/TF实战2 8/ProgTF2 7/DLwTF2K 7/YOLO凌峰 7），终验 0 断链/0 wiki 链；上表已改链目录版 00（速查档并存互挂）。《YOLO目标检测》待核书按 ⛔ 纪律**不分章**。全系列 🔧 标未实测（本机 python 无 torch/tf/sklearn/ultralytics，实测四连 Traceback 为证）；泳群对逐字章名/ISBN 的 ⚠️ 欠账滚动入下条清单。
+- 第 3 波欠账（滚动）：①五本英文书 ISBN/作者/逐字目录联网或购电子版销账；②TF实战2 章目录对版权页；③YOLO 论文三枚（v1/v3/v4）paper/ 建档；④torch/tf 环境安装授权后 🔧 实测腿（用户拍板前不装）。

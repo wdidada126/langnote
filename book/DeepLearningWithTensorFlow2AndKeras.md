@@ -18,3 +18,6 @@
 
 ## 与其他书的联系
 - 同线：`ProgrammingTensorFlow2.md`、`TensorFlow实战Google深度学习框架2.md`。
+
+## 目录版（第 2 波，2026-10-08）
+- 深度重写版：[DeepLearning_with_TensorFlow2_and_Keras/00-总览与阅读地图.md](DeepLearning_with_TensorFlow2_and_Keras/00-总览与阅读地图.md)（00+6 章共 7 枚）。本速查档并存，阅读主线走目录版。

@@ -18,3 +18,6 @@
 
 ## 与其他书的联系
 - 同线：`DeepLearningWithPyTorch.md`、`MachineLearningWithPyTorchAndScikitLearn.md`。
+
+## 目录版（第 2 波，2026-10-08）
+- 深度重写版：[Programming_PyTorch_Deep_Learning/00-总览与阅读地图.md](Programming_PyTorch_Deep_Learning/00-总览与阅读地图.md)（00+5 章共 6 枚，含与 Manning DLwP 二选一裁决位）。本速查档并存，阅读主线走目录版。
